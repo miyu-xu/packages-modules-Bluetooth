@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80618ba3_6ee4a9c4",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-02-02T22:22:34Z",
+      "side": 1,
+      "message": "nit: Since BluetoothDevice can be null here we can return a `Optional\u003cBluetoothDevice\u003e`\n\n```suggestion\n        private Optional\u003cBluetoothDevice\u003e getFallbackDevice(\n                Collection\u003cAudioRoutingDevice\u003e candidates) {\n```",
+      "range": {
+        "startLine": 333,
+        "startChar": 16,
+        "endLine": 333,
+        "endChar": 31
+      },
+      "revId": "0584dbcb6fb93fdc0f6959f325d2f48302a12ab8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9309f20b_5e1fe0b0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-02-02T22:22:34Z",
+      "side": 1,
+      "message": "Use `isEmpty()` instead\n```suggestion\n            if (!activatableDevices.isEmpty()) {\n```",
+      "revId": "0584dbcb6fb93fdc0f6959f325d2f48302a12ab8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e39b472a_ae642eaa",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-02-02T22:22:34Z",
+      "side": 1,
+      "message": "nit: Having `getFallbackDevice` returning an Optional device will avoid having two ifs by chaining the call with the built-in `or`. `try {} catch{}` can also be used to remove completely the `if`.\n\n```suggestion\nOptional\u003cBluetoothDevice\u003e fallbackDevice \u003d getFallbackDevice(candidates)\n                .or(() -\u003e getFallbackDevice(mConnectedDevices.values()));\n            if (!fallbackDevice.isPresent()) {\n                 return false;\n             }\n            AudioRoutingDevice fallbackRoutingDevice \u003d getAudioRoutingDevice(fallbackDevice);\n            AudioRoutingDevice fallbackRoutingDevice \u003d getAudioRoutingDevice(fallbackDevice.get());\n           \n```",
+      "range": {
+        "startLine": 369,
+        "startChar": 12,
+        "endLine": 377,
+        "endChar": 93
+      },
+      "revId": "0584dbcb6fb93fdc0f6959f325d2f48302a12ab8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f06d27c_6873bb08",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AudioRoutingManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-02-02T22:22:34Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 253,
+        "startChar": 29,
+        "endLine": 253,
+        "endChar": 30
+      },
+      "revId": "0584dbcb6fb93fdc0f6959f325d2f48302a12ab8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
