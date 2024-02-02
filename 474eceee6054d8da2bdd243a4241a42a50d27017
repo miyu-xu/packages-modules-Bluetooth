@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e51a02d4_129c457b",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1179,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-02T14:50:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22bf1052_faf221c5",
+      "range": {
+        "startLine": 1179,
+        "startChar": 0,
+        "endLine": 1179,
+        "endChar": 61
+      },
+      "revId": "474eceee6054d8da2bdd243a4241a42a50d27017",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab96ce34_2889c99d",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-02-01T01:12:59Z",
       "side": 1,
       "message": "do you think we should rename this since it\u0027s only for broadcast?\ne.g. handleIntentionalDeviceDisconnectionForBroadcast",
+      "revId": "474eceee6054d8da2bdd243a4241a42a50d27017",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5919e80_b742e8e6",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1409,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-02T14:50:37Z",
+      "side": 1,
+      "message": "I\u0027ve moved this to BASS, so in this context it should be clear.",
+      "parentUuid": "ab96ce34_2889c99d",
       "revId": "474eceee6054d8da2bdd243a4241a42a50d27017",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d484adf_24430211",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1410,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-02T14:50:37Z",
+      "side": 1,
+      "message": "Moved to BASS so logic is a bit different now.",
+      "parentUuid": "3394eacb_8de00a0e",
+      "revId": "474eceee6054d8da2bdd243a4241a42a50d27017",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4b351aac_1bd2f72a",
@@ -71,6 +131,24 @@
       "writtenOn": "2024-02-01T01:12:59Z",
       "side": 1,
       "message": "more general question, would it be possible we hit some race condition here? like disconnected in leAudioStateMachine but bass state is not updated?\nWhy don\u0027t we do this from Bass state machine which is also handling the connection/disconnection?",
+      "revId": "474eceee6054d8da2bdd243a4241a42a50d27017",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f683470_227c9aa9",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1421,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-02T14:50:37Z",
+      "side": 1,
+      "message": "Actually this make more sense to move it to BASS service. In term of race condition I think I can improve this - but moving this to BASS service isn\u0027t a fix. A device may be disconnected but it doesn\u0027t have to change it\u0027s receiver state at all.",
+      "parentUuid": "4b351aac_1bd2f72a",
       "revId": "474eceee6054d8da2bdd243a4241a42a50d27017",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
