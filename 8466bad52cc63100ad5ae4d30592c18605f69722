@@ -22,6 +22,30 @@
       },
       "revId": "8466bad52cc63100ad5ae4d30592c18605f69722",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e5e26c5_52160f1e",
+        "filename": "system/gd/discovery/device/bt_property.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-02T00:04:14Z",
+      "side": 1,
+      "message": "suggestions ?\n\nyou mentioned when you see Size() you think of bytes.\n\nCnt() ? Num() ?\n\nLet me know and I will update accordingly.\n\nThis is legacy so I\u0027m looking to keep an abbreviated name of 3-4 characters.\n\nProper usage would use the vector of shared_ptrs directly.",
+      "parentUuid": "387a78d5_823082e9",
+      "range": {
+        "startLine": 70,
+        "startChar": 6,
+        "endLine": 70,
+        "endChar": 9
+      },
+      "revId": "8466bad52cc63100ad5ae4d30592c18605f69722",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
