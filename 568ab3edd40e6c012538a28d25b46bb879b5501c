@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "456dbb2d_9bf53262",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 7291,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-02T04:29:30Z",
+      "side": 1,
+      "message": "```suggestion\n        if (Flags.btSystemContextReport()\n```\n\nWe need to use static flags as per flag recommandation (they changed after we start using flag and I have slowly started migrating all usage to static. Sorry for the confusion)",
+      "range": {
+        "startLine": 7291,
+        "startChar": 12,
+        "endLine": 7291,
+        "endChar": 25
+      },
+      "revId": "568ab3edd40e6c012538a28d25b46bb879b5501c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
