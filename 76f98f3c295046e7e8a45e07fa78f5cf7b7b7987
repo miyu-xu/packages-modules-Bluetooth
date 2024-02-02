@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8aefe70d_b37a87b6",
+        "filename": "system/gd/discovery/device/eir_data_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-02T00:59:30Z",
+      "side": 1,
+      "message": "nit: I think this should be checked with ASSERTs or EXPECTs instead of printed.",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 27
+      },
+      "revId": "76f98f3c295046e7e8a45e07fa78f5cf7b7b7987",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
