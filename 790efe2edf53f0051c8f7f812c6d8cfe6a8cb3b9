@@ -92,6 +92,30 @@
       },
       "revId": "790efe2edf53f0051c8f7f812c6d8cfe6a8cb3b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76e06118_bc160409",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-02T07:19:07Z",
+      "side": 1,
+      "message": "as per VCS spec\n\n\"There shall be no more than one instance of the Volume Control Service (VCS) on a device\"",
+      "parentUuid": "08c3233d_b17e491b",
+      "range": {
+        "startLine": 776,
+        "startChar": 15,
+        "endLine": 776,
+        "endChar": 40
+      },
+      "revId": "790efe2edf53f0051c8f7f812c6d8cfe6a8cb3b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
