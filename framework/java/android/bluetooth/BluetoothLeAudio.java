@@ -20,6 +20,7 @@ package android.bluetooth;
 import static android.bluetooth.BluetoothUtils.getSyncTimeout;
 
 import android.annotation.CallbackExecutor;
+import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
 import android.annotation.IntRange;
 import android.annotation.NonNull;
@@ -38,6 +39,7 @@ import android.os.RemoteException;
 import android.util.CloseGuard;
 import android.util.Log;
 
+import com.android.bluetooth.flags.Flags;
 import com.android.modules.utils.SynchronousResultReceiver;
 
 import java.lang.annotation.Retention;
@@ -85,6 +87,15 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
                 })
         @interface GroupStatus {}
 
+        /** @hide */
+        @Retention(RetentionPolicy.SOURCE)
+        @IntDef(
+                value = {
+                    GROUP_STREAM_STATUS_IDLE,
+                    GROUP_STREAM_STATUS_STREAMING,
+                })
+        @interface GroupStreamStatus {}
+
         /**
          * Callback invoked when callback is registered and when codec config changes on the remote
          * device.
@@ -127,6 +138,17 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
          */
         @SystemApi
         void onGroupStatusChanged(int groupId, @GroupStatus int groupStatus);
+
+        /**
+         * Callback invoked the group's stream status changes.
+         *
+         * @param groupId the group id
+         * @param groupStreamStatus streaming or idle state.
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_LEAUDIO_CALLBACK_ON_GROUP_STREAM_STATUS)
+        @SystemApi
+        void onGroupStreamStatusChanged(int groupId, @GroupStreamStatus int groupStreamStatus);
     }
 
     @SuppressLint("AndroidFrameworkBluetoothPermission")
@@ -619,6 +641,23 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
      * @hide
      */
     public static final int GROUP_STATUS_INACTIVE = IBluetoothLeAudio.GROUP_STATUS_INACTIVE;
+
+    /**
+     * Indicating that group stream is in IDLE (not streaming)
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_LEAUDIO_CALLBACK_ON_GROUP_STREAM_STATUS)
+    public static final int GROUP_STREAM_STATUS_IDLE = IBluetoothLeAudio.GROUP_STREAM_STATUS_IDLE;
+
+    /**
+     * Indicating that group is STREAMING
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_LEAUDIO_CALLBACK_ON_GROUP_STREAM_STATUS)
+    public static final int GROUP_STREAM_STATUS_STREAMING =
+            IBluetoothLeAudio.GROUP_STREAM_STATUS_STREAMING;
 
     private IBluetoothLeAudio mService;
 
