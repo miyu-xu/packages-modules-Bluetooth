@@ -16,6 +16,24 @@
       "message": "\"regression caused by unflagged change\" is not a valid reason for flag exemption. However, the fix here seems to be trivial, and can be granted an exemption. Could you modify the `Flag:` stanza to change to reason? Thanks!",
       "revId": "25796c5a05166bd137d3f57d9d2d7ba9a5ebc25c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd45898a_9eb3326e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-02-02T17:31:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7702729a_3fac837a",
+      "revId": "25796c5a05166bd137d3f57d9d2d7ba9a5ebc25c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
