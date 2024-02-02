@@ -1352,6 +1352,9 @@ class BluetoothManagerService {
         } else if (!isNameAndAddressSet()) {
             Log.i(TAG, "internalHandleOnBootPhase: Getting adapter name and address");
             mHandler.sendEmptyMessage(MESSAGE_GET_NAME_AND_ADDRESS);
+        } else {
+            AutoOnFeature.setupNewTimer(
+                    mLooper, mCurrentUserContext.getContentResolver(), this::enableFromAutoOn);
         }
 
         if (!mUseNewAirplaneMode) {
