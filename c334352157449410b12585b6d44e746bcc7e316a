@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "edd246bb_3d1ab901",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-02T19:39:16Z",
+      "side": 1,
+      "message": "Yes, +1 on this volume. Microphone is the AICS profile, which is not covered here.",
+      "parentUuid": "d63a1991_1e6de7a3",
+      "revId": "c334352157449410b12585b6d44e746bcc7e316a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b0578f7a_67cacf3f",
         "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
         "patchSetId": 7
