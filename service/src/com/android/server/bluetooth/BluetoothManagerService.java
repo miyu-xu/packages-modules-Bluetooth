@@ -553,7 +553,10 @@ class BluetoothManagerService {
                 && !shouldBluetoothBeOn(isSatelliteModeOn)
                 && getState() != STATE_ON) {
             AutoOnFeature.setupNewTimer(
-                    mLooper, mCurrentUserContext.getContentResolver(), this::enableFromAutoOn);
+                    mLooper,
+                    mCurrentUserContext,
+                    mCurrentUserContext.getContentResolver(),
+                    this::enableFromAutoOn);
         }
     }
 
@@ -1354,7 +1357,10 @@ class BluetoothManagerService {
             mHandler.sendEmptyMessage(MESSAGE_GET_NAME_AND_ADDRESS);
         } else {
             AutoOnFeature.setupNewTimer(
-                    mLooper, mCurrentUserContext.getContentResolver(), this::enableFromAutoOn);
+                    mLooper,
+                    mCurrentUserContext,
+                    mCurrentUserContext.getContentResolver(),
+                    this::enableFromAutoOn);
         }
 
         if (!mUseNewAirplaneMode) {
@@ -1977,6 +1983,7 @@ class BluetoothManagerService {
                     } else {
                         AutoOnFeature.setupNewTimer(
                                 mLooper,
+                                mCurrentUserContext,
                                 mCurrentUserContext.getContentResolver(),
                                 BluetoothManagerService.this::enableFromAutoOn);
                     }
@@ -2157,7 +2164,10 @@ class BluetoothManagerService {
 
         if (prevState == STATE_ON) {
             AutoOnFeature.setupNewTimer(
-                    mLooper, mCurrentUserContext.getContentResolver(), this::enableFromAutoOn);
+                    mLooper,
+                    mCurrentUserContext,
+                    mCurrentUserContext.getContentResolver(),
+                    this::enableFromAutoOn);
         }
 
         // Notify all proxy objects first of adapter state change
