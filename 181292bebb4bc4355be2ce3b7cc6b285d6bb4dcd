@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ada573a1_e8afe87c",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-02T14:16:47Z",
+      "side": 1,
+      "message": "I recently got comment that it is prefered to use static flag access\n\n`if (Flags.leaudioMultipleVocsInstancesApi()) {}`",
+      "revId": "181292bebb4bc4355be2ce3b7cc6b285d6bb4dcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
