@@ -101,8 +101,6 @@ static void btu_hcif_proc_sp_req_evt(tBTM_SP_EVT event, const uint8_t* p);
 static void btu_hcif_rem_oob_req(const uint8_t* p);
 static void btu_hcif_simple_pair_complete(const uint8_t* p);
 static void btu_hcif_proc_sp_req_evt(const tBTM_SP_EVT event, const uint8_t* p);
-static void btu_hcif_create_conn_cancel_complete(const uint8_t* p,
-                                                 uint16_t evt_len);
 static void btu_hcif_read_local_oob_complete(const uint8_t* p,
                                              uint16_t evt_len);
 
@@ -429,7 +427,6 @@ static void btu_hcif_log_command_metrics(uint16_t opcode, const uint8_t* p_cmd,
 
   switch (opcode) {
     case HCI_CREATE_CONNECTION:
-      // case HCI_CREATE_CONNECTION_CANCEL:
       STREAM_TO_BDADDR(bd_addr, p_cmd);
       log_link_layer_connection_event(
           &bd_addr, bluetooth::common::kUnknownConnectionHandle,
@@ -1371,19 +1368,6 @@ void btu_hcif_proc_sp_req_evt(tBTM_SP_EVT event, const uint8_t* p) {
       break;
   }
   btm_proc_sp_req_evt(event, bda, value);
-}
-void btu_hcif_create_conn_cancel_complete(const uint8_t* p, uint16_t evt_len) {
-  uint8_t status;
-
-  if (evt_len < 1 + BD_ADDR_LEN) {
-    LOG_ERROR("malformatted event packet, too short");
-    return;
-  }
-
-  STREAM_TO_UINT8(status, p);
-  RawAddress bd_addr;
-  STREAM_TO_BDADDR(bd_addr, p);
-  btm_create_conn_cancel_complete(status, bd_addr);
 }
 void btu_hcif_read_local_oob_complete(const uint8_t* p, uint16_t evt_len) {
   tBTM_SP_LOC_OOB evt_data;
