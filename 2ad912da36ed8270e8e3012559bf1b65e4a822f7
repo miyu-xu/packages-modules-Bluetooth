@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0344b4fc_235082d1",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-02T15:21:29Z",
+      "side": 1,
+      "message": "how to flag it here ? Or it is not necessary?",
+      "revId": "2ad912da36ed8270e8e3012559bf1b65e4a822f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
