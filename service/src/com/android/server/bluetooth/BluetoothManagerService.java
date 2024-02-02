@@ -545,9 +545,15 @@ class BluetoothManagerService {
                     BluetoothProtoEnums.ENABLE_DISABLE_REASON_SATELLITE_MODE,
                     mContext.getPackageName());
         } else if (!shouldBluetoothBeOn(isSatelliteModeOn) && getState() != STATE_OFF) {
+            AutoOnFeature.pause();
             sendDisableMsg(
                     BluetoothProtoEnums.ENABLE_DISABLE_REASON_SATELLITE_MODE,
                     mContext.getPackageName());
+        } else if (!isSatelliteModeOn
+                && !shouldBluetoothBeOn(isSatelliteModeOn)
+                && getState() != STATE_ON) {
+            AutoOnFeature.setupNewTimer(
+                    mLooper, mCurrentUserContext.getContentResolver(), this::enableFromAutoOn);
         }
     }
 

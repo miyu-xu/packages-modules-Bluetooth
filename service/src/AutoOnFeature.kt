@@ -24,6 +24,7 @@ import android.os.Looper
 import android.os.SystemProperties
 import android.provider.Settings
 import com.android.bluetooth.flags.Flags
+import com.android.server.bluetooth.satellite.isOn as isSatelliteModeOn
 import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.temporal.ChronoUnit
@@ -44,6 +45,10 @@ public fun setupNewTimer(
     }
     if (!isFeatureEnabledForUser(resolver)) {
         Log.d(TAG, "Not Enabled for current user: ${resolver}")
+        return
+    }
+    if (isSatelliteModeOn) {
+        Log.d(TAG, "Satellite prevent feature activation")
         return
     }
     Timer.start(looper, resolver, callback_on)
