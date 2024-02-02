@@ -16,6 +16,29 @@
       "message": "NOTE: Was previously included twice",
       "revId": "64a2e04f7532e78e3ffff6521a3fe3522980ed06",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "083b33c6_2a4e0b82",
+        "filename": "system/btif/src/btif_hf_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-02T00:55:11Z",
+      "side": 0,
+      "message": "nice :)",
+      "range": {
+        "startLine": 472,
+        "startChar": 24,
+        "endLine": 472,
+        "endChar": 35
+      },
+      "revId": "64a2e04f7532e78e3ffff6521a3fe3522980ed06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
