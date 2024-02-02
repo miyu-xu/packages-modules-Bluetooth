@@ -34,6 +34,24 @@
       "parentUuid": "03442e3d_b2d5b7ef",
       "revId": "99b794f804ca9e9ba7b6d94b22f67df96caf8bb2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e34c3f2_fc474f1b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2024-02-02T18:12:39Z",
+      "side": 1,
+      "message": "I see, that\u0027s unfortunate... thanks for sharing your experience! I guess I\u0027ll abandon this change for now.",
+      "parentUuid": "0d4ebf38_de4fefba",
+      "revId": "99b794f804ca9e9ba7b6d94b22f67df96caf8bb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
