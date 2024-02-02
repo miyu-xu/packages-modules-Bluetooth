@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "078e720c_fb0cbd97",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-02T16:32:35Z",
+      "side": 1,
+      "message": "So this just tells the hci layer not to register for hci events, well, just because, as it doesn\u0027t handle it anyway.  I imagine it\u0027s not handled at the lower layer too, so nothing lost, but does allow future modules to properly handle them w/out touching the hci layer.",
+      "revId": "a94fd70695cfbee1a78ad91029b47cd20539278b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
