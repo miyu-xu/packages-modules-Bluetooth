@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e229e1e3_a7fe3d70",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3705,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-02T01:06:47Z",
+      "side": 1,
+      "message": "Thank you Jack for those good suggestions. Make sense to me.\nUpdated accordingly in the newer version.",
+      "parentUuid": "f4fb9ced_328082fd",
+      "range": {
+        "startLine": 3705,
+        "startChar": 60,
+        "endLine": 3705,
+        "endChar": 68
+      },
+      "revId": "d6e2ee8fabcb7b81ee1bca69376fdd48998e66e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e51c006_a9da52dc",
@@ -54,6 +78,24 @@
       "writtenOn": "2024-02-01T22:39:44Z",
       "side": 1,
       "message": "Per above comment, we can change this to \n\nint getActiveAudioDevicePolicy()",
+      "revId": "d6e2ee8fabcb7b81ee1bca69376fdd48998e66e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "224ec36e_4edaf6c4",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3747,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-02T01:06:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e51c006_a9da52dc",
       "revId": "d6e2ee8fabcb7b81ee1bca69376fdd48998e66e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
