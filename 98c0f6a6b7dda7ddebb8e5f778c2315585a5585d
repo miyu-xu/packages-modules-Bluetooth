@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4da6cf41_293f62c7",
+        "filename": "system/stack/btm/security_event_parser.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-02-02T17:44:31Z",
+      "side": 1,
+      "message": "nit: change argument type of `bda` to `const Address`",
+      "range": {
+        "startLine": 39,
+        "startChar": 35,
+        "endLine": 39,
+        "endChar": 42
+      },
+      "revId": "98c0f6a6b7dda7ddebb8e5f778c2315585a5585d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce292be3_1554585f",
+        "filename": "system/stack/btm/security_event_parser.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-02-02T17:44:31Z",
+      "side": 1,
+      "message": "nit: if event is read only, we can also add `const`",
+      "range": {
+        "startLine": 60,
+        "startChar": 36,
+        "endLine": 60,
+        "endChar": 45
+      },
+      "revId": "98c0f6a6b7dda7ddebb8e5f778c2315585a5585d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
