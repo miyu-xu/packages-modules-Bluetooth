@@ -1,0 +1,146 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3727ee3_419858c7",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1826,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-02T22:03:40Z",
+      "side": 1,
+      "message": "remove \u0027This is called by LeAudioStateMachine.\u0027? since it\u0027s not true in newer version.",
+      "revId": "4886cf5f18db45afde1f113ffbab89a520c5518f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "649e3a91_4b974c40",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1914,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-02T22:03:40Z",
+      "side": 1,
+      "message": "if you agreed to notify for all broadcast state change, then we can add empty handles here for other states and resolve the lint complaints.\nin the future we can also leverage this to handle other states as needed.",
+      "revId": "4886cf5f18db45afde1f113ffbab89a520c5518f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8f1040c_5654dca2",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1921,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-02T22:03:40Z",
+      "side": 1,
+      "message": "nit: remove \u0027(\u0027\n\n```suggestion\n                    sEventLogger.logd(DBG, TAG, \"Broadcast ID: \" + broadcastId\n```",
+      "revId": "4886cf5f18db45afde1f113ffbab89a520c5518f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "032499cc_703bd23b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-02T22:03:40Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Crash Detector: * JAVA_CRASH in `com.google.android.bluetooth`, [link to test invocation](http://ab/I62500010242909312) [(Silence Crash)](https://b.corp.google.com/issues/new?component\u003d184315\u0026title\u003dAdd%20crash%20cluster%20to%20ignorelist\u0026type\u003dPROCESS\u0026prior...\n\nAnalyzer Description: Detect crashes introduced by the CL.\nOwner: android-realtime-stability-team@google.com\n\n* JAVA_CRASH in `com.google.android.bluetooth`, [link to test invocation](http://ab/I62500010242909312) [(Silence Crash)](https://b.corp.google.com/issues/new?component\u003d184315\u0026title\u003dAdd%20crash%20cluster%20to%20ignorelist\u0026type\u003dPROCESS\u0026priority\u003dP0\u0026severity\u003dS0\u0026assignee\u003dkevcheng@google.com\u0026format\u003dMARKDOWN\u0026description\u003dPlease%20add%20this%20crash%20to%20the%20ignorelist:%0A*%20crash%20cluster:%2015442443991753126582%0A*%20cluster%20version:%204%0A*%20process%20name:%20com.google.android.bluetooth%0A*%20change%20numbers:%202927815,2932490%0A*%20hostname:%20android)\n  * Trace [link to artifact](https://android-build.googleplex.com/builds/bug_tool?url\u003dhttps%3A%2F%2Fandroid-build.googleplex.com%2Fbuilds%2FI62500010242909312%2FP69337001%2Ftest-mapping-presubmit%2Finv_1166219630422501071%2Flogcat_17100976151623723544.txt):\n\n```\nFATAL EXCEPTION: BassClientStateMachineTestHandlerThread\nProcess: com.google.android.bluetooth, PID: 8782\njava.lang.IllegalArgumentException: com.android.bluetooth.flags.leaudio_broadcast_audio_handover_policies is not set\n\tat com.android.bluetooth.flags.FakeFeatureFlagsImpl.getValue(FakeFeatureFlagsImpl.java:564)\n\tat com.android.bluetooth.flags.FakeFeatureFlagsImpl.leaudioBroadcastAudioHandoverPolicies(FakeFeatureFlagsImpl.java:315)\n\tat com.android.bluetooth.bass_client.BassClientStateMachine$Disconnected.enter(BassClientStateMachine.java:1332)\n\tat com.android.bluetooth.x.com.android.internal.util.StateMachine$SmHandler.invokeEnterMethods(StateMachine.java:1042)\n\tat com.android.bluetooth.x.com.android.internal.util.StateMachine$SmHandler.performTransitions(StateMachine.java:888)\n\tat com.android.bluetooth.x.com.android.internal.util.StateMachine$SmHandler.handleMessage(StateMachine.java:828)\n\tat android.os.Handler.dispatchMessage(Handler.java:107)\n\tat android.os.Looper.loopOnce(Looper.java:232)\n\tat android.os.Looper.loop(Looper.java:317)\n\tat android.os.HandlerThread.run(HandlerThread.java:82)\n...\n```\n* JAVA_CRASH in `com.android.bluetooth`, [link to test invocation](http://ab/I66700010242768592) [(Silence Crash)](https://b.corp.google.com/issues/new?component\u003d184315\u0026title\u003dAdd%20crash%20cluster%20to%20ignorelist\u0026type\u003dPROCESS\u0026priority\u003dP0\u0026severity\u003dS0\u0026assignee\u003dkevcheng@google.com\u0026format\u003dMARKDOWN\u0026description\u003dPlease%20add%20this%20crash%20to%20the%20ignorelist:%0A*%20crash%20cluster:%2015442443991753126582%0A*%20cluster%20version:%204%0A*%20process%20name:%20com.android.bluetooth%0A*%20change%20numbers:%202927815,2932490%0A*%20hostname:%20android)\n  * Trace [link to artifact](https://android-build.googleplex.com/builds/bug_tool?url\u003dhttps%3A%2F%2Fandroid-build.googleplex.com%2Fbuilds%2FI66700010242768592%2FP69337008%2Ftest-mapping-presubmit%2Finv_4181762877477236218%2Flogcat_4674702863416712878.txt):\n\n```\nFATAL EXCEPTION: BassClientStateMachineTestHandlerThread\nProcess: com.android.bluetooth, PID: 6246\njava.lang.IllegalArgumentException: com.android.bluetooth.flags.leaudio_broadcast_audio_handover_policies is not set\n\tat com.android.bluetooth.flags.FakeFeatureFlagsImpl.getValue(FakeFeatureFlagsImpl.java:546)\n\tat com.android.bluetooth.flags.FakeFeatureFlagsImpl.leaudioBroadcastAudioHandoverPolicies(FakeFeatureFlagsImpl.java:297)\n\tat com.android.bluetooth.bass_client.BassClientStateMachine$Disconnected.enter(BassClientStateMachine.java:1332)\n\tat com.android.bluetooth.x.com.android.internal.util.StateMachine$SmHandler.invokeEnterMethods(StateMachine.java:1042)\n\tat com.android.bluetooth.x.com.android.internal.util.StateMachine$SmHandler.performTransitions(StateMachine.java:888)\n\tat com.android.bluetooth.x.com.android.internal.util.StateMachine$SmHandler.handleMessage(StateMachine.java:828)\n\tat android.os.Handler.dispatchMessage(Handler.java:106)\n\tat android.os.Looper.loopOnce(Looper.java:205)\n\tat android.os.Looper.loop(Looper.java:294)\n\tat android.os.HandlerThread.run(HandlerThread.java:67)\n...\n```",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "4886cf5f18db45afde1f113ffbab89a520c5518f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7726d8f_eba0b2cb",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1319,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-02T22:03:40Z",
+      "side": 1,
+      "message": "I think it\u0027s fine to remove the flag check here to avoid nested flag. BASS is anyway behind the feature flag.\nAlso it seems causing the crash detector error?",
+      "revId": "4886cf5f18db45afde1f113ffbab89a520c5518f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e84122e0_6bce0829",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1320,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-02T22:03:40Z",
+      "side": 1,
+      "message": "This should be changed to check \u0027STATE_CONNECTED\u0027?\n\nfrom the logs, it doesn\u0027t have disconnecting state.\n\"BassClientService: connectionStateChanged: fromState\u003d STATE_CONNECTED, toState\u003d STATE_DISCONNECTED\"",
+      "revId": "4886cf5f18db45afde1f113ffbab89a520c5518f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b874970b_0ade8a1e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1135,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-02T22:03:40Z",
+      "side": 1,
+      "message": "Remove this if it\u0027s not used by any place?",
+      "revId": "4886cf5f18db45afde1f113ffbab89a520c5518f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be8ab7c1_bf99bea3",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 2680,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-02T22:03:40Z",
+      "side": 1,
+      "message": "I got it why we need below notify logic since Bass doesn\u0027t have native interface. I\u0027m okay with this for now but maybe we can think of how to improve this part later. \n\nDo you think we can consider to move that to here? so that all broadcast state change will be notified. and then in Bass, we only process BROADCAST_STATE_STOPPED for now. and adding the feature flag is needed.\n\nand btw, the best practice is updated to use static way. so you can avoid using mFeatureFlag.\n\nif (Flags.leaudioBroadcastAudioHandoverPolicies()) {\n    if (bassClientService !\u003d null) {\n                      bassClientService.notifyBroadcastStateChanged(descriptor.mState,\n                                broadcastId);\n    }\n}",
+      "revId": "4886cf5f18db45afde1f113ffbab89a520c5518f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
