@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d63a1991_1e6de7a3",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-02T09:16:06Z",
+      "side": 1,
+      "message": "Maybe we should stay here that it Mutes speaker on the remote side.\nSomebody could think it Mutes microphone.",
+      "revId": "c334352157449410b12585b6d44e746bcc7e316a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b0578f7a_67cacf3f",
         "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
         "patchSetId": 7
