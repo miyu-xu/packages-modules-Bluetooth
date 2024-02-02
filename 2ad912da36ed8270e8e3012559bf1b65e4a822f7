@@ -16,6 +16,24 @@
       "message": "how to flag it here ? Or it is not necessary?",
       "revId": "2ad912da36ed8270e8e3012559bf1b65e4a822f7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c6b8a96_85e6387f",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-02-02T15:36:29Z",
+      "side": 1,
+      "message": "This callback is flagged in VolumeControlService so it will be never called here.",
+      "parentUuid": "0344b4fc_235082d1",
+      "revId": "2ad912da36ed8270e8e3012559bf1b65e4a822f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
