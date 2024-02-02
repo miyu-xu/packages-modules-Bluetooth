@@ -77,6 +77,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c48868ed_243e46af",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-02T16:31:50Z",
+      "side": 1,
+      "message": "The code in here will be different if you implement \n```\nA server socket will map to multiple connection socket. \nThis implementation assume that a server socket (listener) \nwill map to only one connection socket and doesn\u0027t handle the case correctly.\n\nPlease change the structure in the code to handle\nthis case and also any code related to this.\n\n```\n\nBut just call the socket.shutdown and then socket.close\non a socket of RFCOMM DLC",
+      "parentUuid": "973db2fc_9597e8ea",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 0
+      },
+      "revId": "a1571b8e6b4f9f50e1e437dde7bfd4961dd2ae31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0ff23bc7_43cef863",
         "filename": "floss/pandora/server/rfcomm.py",
         "patchSetId": 4
