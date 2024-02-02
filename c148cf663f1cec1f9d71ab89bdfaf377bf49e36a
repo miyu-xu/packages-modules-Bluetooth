@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ca5f4f3_6710325e",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-02-02T14:28:42Z",
+      "side": 0,
+      "message": "Should this still be a debug or info log?",
+      "range": {
+        "startLine": 238,
+        "startChar": 5,
+        "endLine": 240,
+        "endChar": 13
+      },
+      "revId": "c148cf663f1cec1f9d71ab89bdfaf377bf49e36a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
