@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56695827_e4d3168f",
+        "filename": "flags/opp.aconfig",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-02T00:35:42Z",
+      "side": 1,
+      "message": "nit: missing spaces\n\n```suggestion\n    }\n```",
+      "revId": "ed95df4da06bac5f0e73dc9e06d28b4355525006",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
