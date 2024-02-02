@@ -16,6 +16,24 @@
       "message": "Adding @girardier@google.com for DrNo review",
       "revId": "2b2b1a464209d2b41c1b00b1e45791c9be3a21b5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "833970ca_795f6ab5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-02-02T21:56:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "874df542_d19aa2d2",
+      "revId": "2b2b1a464209d2b41c1b00b1e45791c9be3a21b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
