@@ -16,6 +16,24 @@
       "message": "I think the loop is here to perform a retry. Hence I think we are introducing flakiness by removing the loop. If the test previously failed because it tried to reconnect something already connected, maybe we can just break if the connection is successful ?",
       "revId": "62082b6586eef7fa1e1e2d999644287dd7c6180b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efd50139_b93ee2ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2024-02-02T22:02:24Z",
+      "side": 1,
+      "message": "I don\u0027t see any logic catching the failure in the loop, so I think it is just repeating the same logic 10 times as a sort of stress test. Reducing the number of iterations should reduce the chance of a flake.\n\nThe failure is that onConnectionStateChange gets invoked twice, so I agree that we could make the test accept an extra callback call if that is acceptable behavior from an API standpoint.",
+      "parentUuid": "586b9f0b_ca6aa5b9",
+      "revId": "62082b6586eef7fa1e1e2d999644287dd7c6180b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
