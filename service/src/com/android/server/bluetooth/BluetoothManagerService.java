@@ -1948,6 +1948,8 @@ class BluetoothManagerService {
                         mBluetoothNotificationManager.createNotificationChannels();
                     }
 
+                    AutoOnFeature.pause();
+
                     mCurrentUserContext = mContext.createContextAsUser(userTo, 0);
 
                     /* disable and enable BT when detect a user switch */
@@ -1965,6 +1967,11 @@ class BluetoothManagerService {
                                         + (" number of retry attempt=" + userMsg.arg1)
                                         + (" isBinding=" + isBinding())
                                         + (" mAdapter=" + mAdapter));
+                    } else {
+                        AutoOnFeature.setupNewTimer(
+                                mLooper,
+                                mCurrentUserContext.getContentResolver(),
+                                BluetoothManagerService.this::enableFromAutoOn);
                     }
                     break;
 
