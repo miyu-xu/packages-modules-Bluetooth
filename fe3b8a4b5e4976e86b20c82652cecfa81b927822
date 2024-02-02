@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b265d187_fccea5ae",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 875,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-02T20:17:04Z",
+      "side": 1,
+      "message": "we need to return here?",
+      "revId": "fe3b8a4b5e4976e86b20c82652cecfa81b927822",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
