@@ -18,7 +18,11 @@
 
 package com.android.server.bluetooth
 
+import android.content.BroadcastReceiver
 import android.content.ContentResolver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Handler
 import android.os.Looper
 import android.os.SystemProperties
@@ -36,8 +40,9 @@ private const val TAG = "AutoOnFeature"
 
 public fun setupNewTimer(
     looper: Looper,
+    context: Context,
     resolver: ContentResolver,
-    callback_on: () -> Unit,
+    callback_on: () -> Unit
 ) {
     if (!isSupported) {
         Log.d(TAG, "Not supported")
@@ -51,7 +56,7 @@ public fun setupNewTimer(
         Log.d(TAG, "Satellite prevent feature activation")
         return
     }
-    Timer.start(looper, resolver, callback_on)
+    Timer.start(looper, context, resolver, callback_on)
 }
 
 public fun pause() = Timer.pause()
@@ -88,6 +93,7 @@ public fun setAutoOnEnabled(resolver: ContentResolver, status: Boolean) {
 private class Timer
 private constructor(
     looper: Looper,
+    val context: Context,
     val resolver: ContentResolver,
     callback_on: () -> Unit,
     val now: LocalDateTime,
@@ -95,6 +101,14 @@ private constructor(
     val timeToSleep: Duration
 ) {
     private val handler = Handler(looper)
+    val receiver =
+        object : BroadcastReceiver() {
+            override fun onReceive(ctx: Context, intent: Intent) {
+                Log.i(TAG, "Received ${intent.action} that trigger a new alarm scheduling")
+                Timer.pause()
+                Timer.start(looper, context, resolver, callback_on)
+            }
+        }
 
     init {
         handler.postDelayed(
@@ -106,6 +120,17 @@ private constructor(
             timeToSleep.inWholeMilliseconds
         )
         Log.i(TAG, "Will restarted at ${target} (in ${timeToSleep})")
+
+        context.registerReceiver(
+            receiver,
+            IntentFilter().apply {
+                addAction(Intent.ACTION_DATE_CHANGED)
+                addAction(Intent.ACTION_TIMEZONE_CHANGED)
+                addAction(Intent.ACTION_TIME_CHANGED)
+            },
+            null,
+            handler
+        )
     }
 
     companion object {
@@ -128,7 +153,12 @@ private constructor(
             Settings.Secure.resetToDefaults(resolver, STORAGE_KEY)
         }
 
-        fun start(looper: Looper, resolver: ContentResolver, callback_on: () -> Unit) {
+        fun start(
+            looper: Looper,
+            context: Context,
+            resolver: ContentResolver,
+            callback_on: () -> Unit
+        ) {
             timer?.let {
                 // This case should never happen
                 Log.e(TAG, "Concurrent timer already scheduled for ${it.target}. Cancelling it")
@@ -145,7 +175,7 @@ private constructor(
                 return
             }
 
-            timer = Timer(looper, resolver, callback_on, now, target, timeToSleep)
+            timer = Timer(looper, context, resolver, callback_on, now, target, timeToSleep)
         }
 
         fun pause() {
@@ -166,6 +196,7 @@ private constructor(
     /** Save timer to storage and stop it */
     fun pause() {
         Log.i(TAG, "Pausing timer for ${target}")
+        context.unregisterReceiver(receiver)
         handler.removeCallbacksAndMessages(msgToken)
         writeDateToStorage(target, resolver)
     }
@@ -173,6 +204,7 @@ private constructor(
     /** Stop timer and reset storage */
     fun cancel() {
         Log.i(TAG, "Cancelling timer for ${target}")
+        context.unregisterReceiver(receiver)
         handler.removeCallbacksAndMessages(msgToken)
         resetStorage(resolver)
     }
