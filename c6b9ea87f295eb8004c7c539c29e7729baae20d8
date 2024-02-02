@@ -16,6 +16,24 @@
       "message": "No change in unit tests, but change covered with test ?",
       "revId": "c6b9ea87f295eb8004c7c539c29e7729baae20d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0abe7adb_7bac0f38",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-02T14:58:12Z",
+      "side": 1,
+      "message": "regression covered with test. No need to add new test as this path is already covered.",
+      "parentUuid": "ea9dddb5_bbd6aadc",
+      "revId": "c6b9ea87f295eb8004c7c539c29e7729baae20d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
