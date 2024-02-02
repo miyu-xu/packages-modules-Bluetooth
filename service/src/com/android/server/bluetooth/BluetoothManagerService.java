@@ -1176,6 +1176,11 @@ class BluetoothManagerService {
         }
     }
 
+    private Unit enableFromAutoOn() {
+        enable("BluetoothSystemServer/AutoOn");
+        return Unit.INSTANCE;
+    }
+
     boolean enableNoAutoConnect(String packageName) {
         if (isSatelliteModeOn()) {
             Log.d(TAG, "enableNoAutoConnect(" + packageName + "): Blocked by satellite mode");
@@ -2129,8 +2134,14 @@ class BluetoothManagerService {
             return;
         }
 
+        if (prevState == STATE_ON) {
+            AutoOnFeature.setupNewTimer(
+                    mLooper, mCurrentUserContext.getContentResolver(), this::enableFromAutoOn);
+        }
+
         // Notify all proxy objects first of adapter state change
         if (newState == STATE_ON) {
+            AutoOnFeature.cancel(mCurrentUserContext.getContentResolver());
             sendBluetoothOnCallback();
         } else if (newState == STATE_OFF) {
             // If Bluetooth is off, send service down event to proxy objects, and unbind
