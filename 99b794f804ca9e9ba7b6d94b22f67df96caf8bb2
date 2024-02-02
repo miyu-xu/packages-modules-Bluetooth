@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03442e3d_b2d5b7ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-02T00:03:21Z",
+      "side": 1,
+      "message": "There is already a `EnableBluetoothRule` that exits, could you use that or modify it for your usecase?",
+      "revId": "99b794f804ca9e9ba7b6d94b22f67df96caf8bb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
