@@ -22,6 +22,29 @@
       },
       "revId": "e04e33524e5acc63e0fdc3243841b379b2fb5413",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04299d10_fb613942",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-02-02T22:34:37Z",
+      "side": 1,
+      "message": "Isn\u0027t this a race ?",
+      "range": {
+        "startLine": 271,
+        "startChar": 12,
+        "endLine": 280,
+        "endChar": 61
+      },
+      "revId": "e04e33524e5acc63e0fdc3243841b379b2fb5413",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
