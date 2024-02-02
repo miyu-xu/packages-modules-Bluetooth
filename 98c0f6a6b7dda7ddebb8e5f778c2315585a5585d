@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bd25a60_b7d687d6",
+        "filename": "system/stack/btm/security_event_parser.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-02T19:50:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4da6cf41_293f62c7",
+      "range": {
+        "startLine": 39,
+        "startChar": 35,
+        "endLine": 39,
+        "endChar": 42
+      },
+      "revId": "98c0f6a6b7dda7ddebb8e5f778c2315585a5585d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce292be3_1554585f",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-02T17:44:31Z",
       "side": 1,
       "message": "nit: if event is read only, we can also add `const`",
+      "range": {
+        "startLine": 60,
+        "startChar": 36,
+        "endLine": 60,
+        "endChar": 45
+      },
+      "revId": "98c0f6a6b7dda7ddebb8e5f778c2315585a5585d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d786481e_812ffa6d",
+        "filename": "system/stack/btm/security_event_parser.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-02T19:50:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce292be3_1554585f",
       "range": {
         "startLine": 60,
         "startChar": 36,
