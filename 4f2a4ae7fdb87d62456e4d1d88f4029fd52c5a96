@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33d811b8_6827ab76",
+        "filename": "system/stack/btm/btm_sec_cb.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-02-02T17:49:47Z",
+      "side": 1,
+      "message": "how about making this to be a private field of `tBTM_SEC_CB`?\n\nI think the effect is the same though",
+      "range": {
+        "startLine": 40,
+        "startChar": 23,
+        "endLine": 40,
+        "endChar": 42
+      },
+      "revId": "4f2a4ae7fdb87d62456e4d1d88f4029fd52c5a96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
