@@ -22,6 +22,30 @@
       },
       "revId": "c334352157449410b12585b6d44e746bcc7e316a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "040b81db_83b57696",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 670,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-02T09:13:48Z",
+      "side": 1,
+      "message": "AS per spec only single instance of VCS  can exist on the device.",
+      "parentUuid": "b0578f7a_67cacf3f",
+      "range": {
+        "startLine": 670,
+        "startChar": 16,
+        "endLine": 670,
+        "endChar": 20
+      },
+      "revId": "c334352157449410b12585b6d44e746bcc7e316a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
