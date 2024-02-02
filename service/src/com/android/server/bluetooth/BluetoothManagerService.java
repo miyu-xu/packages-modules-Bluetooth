@@ -2652,6 +2652,18 @@ class BluetoothManagerService {
         return BluetoothAdapter.BT_SNOOP_LOG_MODE_DISABLED;
     }
 
+    boolean isAutoOnSupported() {
+        return AutoOnFeature.isAutoOnSupported(mCurrentUserContext.getContentResolver());
+    }
+
+    boolean isAutoOnEnabled() {
+        return AutoOnFeature.isAutoOnEnabled(mCurrentUserContext.getContentResolver());
+    }
+
+    void setAutoOnEnabled(boolean status) {
+        AutoOnFeature.setAutoOnEnabled(mCurrentUserContext.getContentResolver(), status);
+    }
+
     /**
      * Check if BLE is supported by this platform
      *

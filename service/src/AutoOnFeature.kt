@@ -57,6 +57,23 @@ public fun cancel(resolver: ContentResolver) {
     }
 }
 
+public fun isAutoOnSupported(resolver: ContentResolver) =
+    isSupported && isFeatureSupportedForUser(resolver)
+
+public fun isAutoOnEnabled(resolver: ContentResolver): Boolean {
+    if (!isAutoOnSupported(resolver)) {
+        throw IllegalStateException("Feature is not supported for user: ${resolver}")
+    }
+    return isFeatureEnabledForUser(resolver)
+}
+
+public fun setAutoOnEnabled(resolver: ContentResolver, status: Boolean) {
+    if (!isAutoOnSupported(resolver)) {
+        throw IllegalStateException("Feature is not supported for user: ${resolver}")
+    }
+    setFeatureEnabledForUserUnchecked(resolver, status)
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////// PRIVATE METHODS /////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
