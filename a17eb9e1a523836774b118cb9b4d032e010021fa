@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab4e9c25_099b5fd5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-02-02T08:42:24Z",
+      "side": 1,
+      "message": "Hi Myles, Intel has fixed the issue so we are good to remove this quirk. Thanks",
+      "revId": "a17eb9e1a523836774b118cb9b4d032e010021fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
