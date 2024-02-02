@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71d87293_9caa63d3",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-02-02T12:23:33Z",
+      "side": 1,
+      "message": "One VOCS has only one ControlPoint so we decide to change name to the instatnceId which will exactly show what is that.",
+      "parentUuid": "176b8f68_f28e0a07",
+      "range": {
+        "startLine": 117,
+        "startChar": 50,
+        "endLine": 117,
+        "endChar": 63
+      },
+      "revId": "790efe2edf53f0051c8f7f812c6d8cfe6a8cb3b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "613f032a_76d81d2c",
@@ -108,6 +132,30 @@
       "side": 1,
       "message": "as per VCS spec\n\n\"There shall be no more than one instance of the Volume Control Service (VCS) on a device\"",
       "parentUuid": "08c3233d_b17e491b",
+      "range": {
+        "startLine": 776,
+        "startChar": 15,
+        "endLine": 776,
+        "endChar": 40
+      },
+      "revId": "790efe2edf53f0051c8f7f812c6d8cfe6a8cb3b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cc74fde_b2afa511",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-02-02T12:23:33Z",
+      "side": 1,
+      "message": "Control points on both are complete different things and they have nothing to number of audio outputs. First of all VCS can have only once instance whereas VOCS can have multiple instances which are represented in our implementation by audioOutoutId and by ID in native interface.\nControl Points are used for selecting procedure which will be executed on this service.\n\nTo make in clear we change the name to the getNumberOfVolumeOffsetInstatnces.",
+      "parentUuid": "90162a1b_af3e7897",
       "range": {
         "startLine": 776,
         "startChar": 15,
