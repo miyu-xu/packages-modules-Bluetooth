@@ -16,6 +16,24 @@
       "message": "There is already a `EnableBluetoothRule` that exits, could you use that or modify it for your usecase?",
       "revId": "99b794f804ca9e9ba7b6d94b22f67df96caf8bb2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d4ebf38_de4fefba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-02T00:04:30Z",
+      "side": 1,
+      "message": "Also ideally for flakiness it\u0027s better if you don\u0027t restart Bluetooth, as restarting bluetooth is flaky ... (In other pandora tools we need to have 10 retries on the Android factoryReset)",
+      "parentUuid": "03442e3d_b2d5b7ef",
+      "revId": "99b794f804ca9e9ba7b6d94b22f67df96caf8bb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
