@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72b27f1a_d72d1175",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-02-03T06:41:19Z",
+      "side": 1,
+      "message": "I went back and forth between having 1 CL that moves _all_ scan related functionality from `GattService` to this new `TransactionalScanHelper` but I thought that\u0027ll probably be harder to review and if any CL review changes are required, they may require much bigger changes. So in this CL, I would like to introduce the new class first (I\u0027m not a 100% sure on the name for example) and see where to proceed from there.\n\nFor the name, I debated on using `Manager` yet again because there is a `ScanManager` already. The new `ProfileService` type class is expected to be `ScanManagerService` and I wanted something that\u0027s both related to that and also shows it\u0027s temporariness but please let me know if you have any feedbacks.",
+      "revId": "53066d237e596a0a65d80ad2f66caaec4a532b2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
