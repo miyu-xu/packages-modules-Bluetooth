@@ -211,7 +211,7 @@ public class ContextMap<C, T> {
     private final Object mConnectionsLock = new Object();
 
     /** Add an entry to the application context list. */
-    App add(
+    protected App add(
             UUID uuid,
             WorkSource workSource,
             C callback,
@@ -289,10 +289,8 @@ public class ContextMap<C, T> {
         }
     }
 
-    /**
-     * Remove the context for a given application ID.
-     */
-    void remove(int id) {
+    /** Remove the context for a given application ID. */
+    protected void remove(int id) {
         boolean find = false;
         synchronized (mAppsLock) {
             Iterator<App> i = mApps.iterator();
@@ -312,7 +310,7 @@ public class ContextMap<C, T> {
         }
     }
 
-    List<Integer> getAllAppsIds() {
+    protected List<Integer> getAllAppsIds() {
         List<Integer> appIds = new ArrayList();
         synchronized (mAppsLock) {
             Iterator<App> i = mApps.iterator();
@@ -367,10 +365,8 @@ public class ContextMap<C, T> {
         }
     }
 
-    /**
-     * Get an application context by ID.
-     */
-    App getById(int id) {
+    /** Get an application context by ID. */
+    protected App getById(int id) {
         synchronized (mAppsLock) {
             Iterator<App> i = mApps.iterator();
             while (i.hasNext()) {
@@ -384,10 +380,8 @@ public class ContextMap<C, T> {
         return null;
     }
 
-    /**
-     * Get an application context by UUID.
-     */
-    App getByUuid(UUID uuid) {
+    /** Get an application context by UUID. */
+    protected App getByUuid(UUID uuid) {
         synchronized (mAppsLock) {
             Iterator<App> i = mApps.iterator();
             while (i.hasNext()) {
@@ -418,10 +412,8 @@ public class ContextMap<C, T> {
         return null;
     }
 
-    /**
-     * Get an application context by the context info object.
-     */
-    App getByContextInfo(T contextInfo) {
+    /** Get an application context by the context info object. */
+    protected App getByContextInfo(T contextInfo) {
         synchronized (mAppsLock) {
             Iterator<App> i = mApps.iterator();
             while (i.hasNext()) {
@@ -435,10 +427,8 @@ public class ContextMap<C, T> {
         return null;
     }
 
-    /**
-     * Get Logging info by ID
-     */
-    AppScanStats getAppScanStatsById(int id) {
+    /** Get Logging info by ID */
+    protected AppScanStats getAppScanStatsById(int id) {
         App temp = getById(id);
         if (temp != null) {
             return temp.appScanStats;
@@ -671,10 +661,8 @@ public class ContextMap<C, T> {
         return currentConnections;
     }
 
-    /**
-     * Erases all application context entries.
-     */
-    void clear() {
+    /** Erases all application context entries. */
+    protected void clear() {
         synchronized (mAppsLock) {
             Iterator<App> i = mApps.iterator();
             while (i.hasNext()) {
@@ -710,10 +698,8 @@ public class ContextMap<C, T> {
         return connectedmap;
     }
 
-    /**
-     * Logs debug information.
-     */
-    void dump(StringBuilder sb) {
+    /** Logs debug information. */
+    protected void dump(StringBuilder sb) {
         sb.append("  Entries: " + mAppScanStats.size() + "\n\n");
 
         Iterator<Map.Entry<Integer, AppScanStats>> it = mAppScanStats.entrySet().iterator();

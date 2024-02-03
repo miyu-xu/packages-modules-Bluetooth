@@ -100,6 +100,7 @@ import com.android.bluetooth.le_scan.AppScanStats;
 import com.android.bluetooth.le_scan.PeriodicScanManager;
 import com.android.bluetooth.le_scan.ScanClient;
 import com.android.bluetooth.le_scan.ScanManager;
+import com.android.bluetooth.le_scan.TransactionalScanHelper;
 import com.android.bluetooth.util.NumberUtils;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.SynchronousResultReceiver;
@@ -210,10 +211,8 @@ public class GattService extends ProfileService {
                 "0201061AFF4C000215426C7565436861726D426561636F6E730EFE1355C509168020691E0EFE13551109426C7565436861726D5F31363936383500000000",
             };
 
-    /**
-     * Keep the arguments passed in for the PendingIntent.
-     */
-    class PendingIntentInfo {
+    /** Keep the arguments passed in for the PendingIntent. */
+    public static class PendingIntentInfo {
         public PendingIntent intent;
         public ScanSettings settings;
         public List<ScanFilter> filters;
@@ -237,12 +236,7 @@ public class GattService extends ProfileService {
                 }
             };
 
-    /**
-     * List of our registered scanners.
-     */
-    public static class ScannerMap extends ContextMap<IScannerCallback, PendingIntentInfo> {}
-
-    public ScannerMap mScannerMap = new ScannerMap();
+    public TransactionalScanHelper mTransactionalScanHelper = new TransactionalScanHelper();
 
     /**
      * List of our registered advertisers.
@@ -394,7 +388,7 @@ public class GattService extends ProfileService {
         if (DBG) {
             Log.d(TAG, "stop()");
         }
-        mScannerMap.clear();
+        mTransactionalScanHelper.mScannerMap.clear();
         mAdvertiserMap.clear();
         mClientMap.clear();
         mServerMap.clear();
@@ -2017,7 +2011,8 @@ public class GattService extends ProfileService {
         byte[] legacyAdvData = Arrays.copyOfRange(advData, 0, 62);
 
         for (ScanClient client : mScanManager.getRegularScanQueue()) {
-            ScannerMap.App app = mScannerMap.getById(client.scannerId);
+            TransactionalScanHelper.ScannerMap.App app =
+                    mTransactionalScanHelper.mScannerMap.getById(client.scannerId);
             if (app == null) {
                 if (VDBG) {
                     Log.d(TAG, "App is null; skip.");
@@ -2109,7 +2104,7 @@ public class GattService extends ProfileService {
                 if (Flags.leScanFixRemoteException()) {
                     handleDeadScanClient(client);
                 } else {
-                    mScannerMap.remove(client.scannerId);
+                    mTransactionalScanHelper.mScannerMap.remove(client.scannerId);
                     mScanManager.stopScan(client.scannerId);
                 }
             }
@@ -2158,7 +2153,8 @@ public class GattService extends ProfileService {
         }
 
         // First check the callback map
-        ScannerMap.App cbApp = mScannerMap.getByUuid(uuid);
+        TransactionalScanHelper.ScannerMap.App cbApp =
+                mTransactionalScanHelper.mScannerMap.getByUuid(uuid);
         if (cbApp != null) {
             if (status == 0) {
                 cbApp.id = scannerId;
@@ -2170,7 +2166,7 @@ public class GattService extends ProfileService {
                     continuePiStartScan(scannerId, cbApp);
                 }
             } else {
-                mScannerMap.remove(scannerId);
+                mTransactionalScanHelper.mScannerMap.remove(scannerId);
             }
             if (cbApp.callback != null) {
                 cbApp.callback.onScannerRegistered(status, scannerId);
@@ -2795,7 +2791,8 @@ public class GattService extends ProfileService {
         Set<ScanResult> results = parseBatchScanResults(numRecords, reportType, recordData);
         if (reportType == ScanManager.SCAN_RESULT_TYPE_TRUNCATED) {
             // We only support single client for truncated mode.
-            ScannerMap.App app = mScannerMap.getById(scannerId);
+            TransactionalScanHelper.ScannerMap.App app =
+                    mTransactionalScanHelper.mScannerMap.getById(scannerId);
             if (app == null) {
                 return;
             }
@@ -2846,7 +2843,9 @@ public class GattService extends ProfileService {
         mScanManager.callbackDone(scannerId, status);
     }
 
-    private void sendBatchScanResults(ScannerMap.App app, ScanClient client,
+    private void sendBatchScanResults(
+            TransactionalScanHelper.ScannerMap.App app,
+            ScanClient client,
             ArrayList<ScanResult> results) {
         try {
             if (app.callback != null) {
@@ -2873,7 +2872,7 @@ public class GattService extends ProfileService {
             if (Flags.leScanFixRemoteException()) {
                 handleDeadScanClient(client);
             } else {
-                mScannerMap.remove(client.scannerId);
+                mTransactionalScanHelper.mScannerMap.remove(client.scannerId);
                 mScanManager.stopScan(client.scannerId);
             }
         }
@@ -2882,7 +2881,8 @@ public class GattService extends ProfileService {
     // Check and deliver scan results for different scan clients.
     private void deliverBatchScan(ScanClient client, Set<ScanResult> allResults)
             throws RemoteException {
-        ScannerMap.App app = mScannerMap.getById(client.scannerId);
+        TransactionalScanHelper.ScannerMap.App app =
+                mTransactionalScanHelper.mScannerMap.getById(client.scannerId);
         if (app == null) {
             return;
         }
@@ -3043,7 +3043,8 @@ public class GattService extends ProfileService {
                     + trackingInfo.getAdvState());
         }
 
-        ScannerMap.App app = mScannerMap.getById(trackingInfo.getClientIf());
+        TransactionalScanHelper.ScannerMap.App app =
+                mTransactionalScanHelper.mScannerMap.getById(trackingInfo.getClientIf());
         if (app == null || (app.callback == null && app.info == null)) {
             Log.e(TAG, "app or callback is null");
             return;
@@ -3089,7 +3090,8 @@ public class GattService extends ProfileService {
     }
 
     void onScanParamSetupCompleted(int status, int scannerId) throws RemoteException {
-        ScannerMap.App app = mScannerMap.getById(scannerId);
+        TransactionalScanHelper.ScannerMap.App app =
+                mTransactionalScanHelper.mScannerMap.getById(scannerId);
         if (app == null || app.callback == null) {
             Log.e(TAG, "Advertise app or callback is null");
             return;
@@ -3101,7 +3103,8 @@ public class GattService extends ProfileService {
 
     // callback from ScanManager for dispatch of errors apps.
     public void onScanManagerErrorCallback(int scannerId, int errorCode) throws RemoteException {
-        ScannerMap.App app = mScannerMap.getById(scannerId);
+        TransactionalScanHelper.ScannerMap.App app =
+                mTransactionalScanHelper.mScannerMap.getById(scannerId);
         if (app == null || (app.callback == null && app.info == null)) {
             Log.e(TAG, "App or callback is null");
             return;
@@ -3218,7 +3221,8 @@ public class GattService extends ProfileService {
 
         enforceImpersonatationPermissionIfNeeded(workSource);
 
-        AppScanStats app = mScannerMap.getAppScanStatsByUid(Binder.getCallingUid());
+        AppScanStats app =
+                mTransactionalScanHelper.mScannerMap.getAppScanStatsByUid(Binder.getCallingUid());
         if (app != null && app.isScanningTooFrequently()
                 && !Utils.checkCallerHasPrivilegedPermission(this)) {
             Log.e(TAG, "App '" + app.appName + "' is scanning too frequently");
@@ -3226,7 +3230,7 @@ public class GattService extends ProfileService {
             return;
         }
 
-        mScannerMap.add(uuid, workSource, callback, null, this);
+        mTransactionalScanHelper.mScannerMap.add(uuid, workSource, callback, null, this);
         mScanManager.registerScanner(uuid);
     }
 
@@ -3240,7 +3244,7 @@ public class GattService extends ProfileService {
         if (DBG) {
             Log.d(TAG, "unregisterScanner() - scannerId=" + scannerId);
         }
-        mScannerMap.remove(scannerId);
+        mTransactionalScanHelper.mScannerMap.remove(scannerId);
         mScanManager.unregisterScanner(scannerId);
     }
 
@@ -3312,8 +3316,9 @@ public class GattService extends ProfileService {
                 Utils.checkCallerHasScanWithoutLocationPermission(this);
         scanClient.associatedDevices = getAssociatedDevices(callingPackage);
 
-        AppScanStats app = mScannerMap.getAppScanStatsById(scannerId);
-        ScannerMap.App cbApp = mScannerMap.getById(scannerId);
+        AppScanStats app = mTransactionalScanHelper.mScannerMap.getAppScanStatsById(scannerId);
+        TransactionalScanHelper.ScannerMap.App cbApp =
+                mTransactionalScanHelper.mScannerMap.getById(scannerId);
         if (app != null) {
             scanClient.stats = app;
             boolean isFilteredScan = (filters != null) && !filters.isEmpty();
@@ -3360,12 +3365,13 @@ public class GattService extends ProfileService {
         }
 
         // Don't start scan if the Pi scan already in mScannerMap.
-        if (mScannerMap.getByContextInfo(piInfo) != null) {
+        if (mTransactionalScanHelper.mScannerMap.getByContextInfo(piInfo) != null) {
             Log.d(TAG, "Don't startScan(PI) since the same Pi scan already in mScannerMap.");
             return;
         }
 
-        ScannerMap.App app = mScannerMap.add(uuid, null, null, piInfo, this);
+        TransactionalScanHelper.ScannerMap.App app =
+                mTransactionalScanHelper.mScannerMap.add(uuid, null, null, piInfo, this);
 
         app.mUserHandle = UserHandle.getUserHandleForUid(Binder.getCallingUid());
         mAppOps.checkPackage(Binder.getCallingUid(), callingPackage);
@@ -3405,7 +3411,7 @@ public class GattService extends ProfileService {
         }
     }
 
-    void continuePiStartScan(int scannerId, ScannerMap.App app) {
+    void continuePiStartScan(int scannerId, TransactionalScanHelper.ScannerMap.App app) {
         final PendingIntentInfo piInfo = app.info;
         final ScanClient scanClient =
                 new ScanClient(scannerId, piInfo.settings, piInfo.filters, piInfo.callingUid);
@@ -3420,7 +3426,8 @@ public class GattService extends ProfileService {
         scanClient.associatedDevices = app.mAssociatedDevices;
         scanClient.hasDisavowedLocation = app.mHasDisavowedLocation;
 
-        AppScanStats scanStats = mScannerMap.getAppScanStatsById(scannerId);
+        AppScanStats scanStats =
+                mTransactionalScanHelper.mScannerMap.getAppScanStatsById(scannerId);
         if (scanStats != null) {
             scanClient.stats = scanStats;
             boolean isFilteredScan = (piInfo.filters != null) && !piInfo.filters.isEmpty();
@@ -3456,7 +3463,7 @@ public class GattService extends ProfileService {
         }
 
         AppScanStats app = null;
-        app = mScannerMap.getAppScanStatsById(scannerId);
+        app = mTransactionalScanHelper.mScannerMap.getAppScanStatsById(scannerId);
         if (app != null) {
             app.recordScanStop(scannerId);
         }
@@ -3472,7 +3479,8 @@ public class GattService extends ProfileService {
         }
         PendingIntentInfo pii = new PendingIntentInfo();
         pii.intent = intent;
-        ScannerMap.App app = mScannerMap.getByContextInfo(pii);
+        TransactionalScanHelper.ScannerMap.App app =
+                mTransactionalScanHelper.mScannerMap.getByContextInfo(pii);
         if (VDBG) {
             Log.d(TAG, "stopScan(PendingIntent): app found = " + app);
         }
@@ -5095,8 +5103,13 @@ public class GattService extends ProfileService {
 
     void dumpRegisterId(StringBuilder sb) {
         sb.append("  Scanner:\n");
-        for (Integer appId : mScannerMap.getAllAppsIds()) {
-            println(sb, "    app_if: " + appId + ", appName: " + mScannerMap.getById(appId).name);
+        for (Integer appId : mTransactionalScanHelper.mScannerMap.getAllAppsIds()) {
+            println(
+                    sb,
+                    "    app_if: "
+                            + appId
+                            + ", appName: "
+                            + mTransactionalScanHelper.mScannerMap.getById(appId).name);
         }
         sb.append("  Client:\n");
         for (Integer appId : mClientMap.getAllAppsIds()) {
@@ -5123,7 +5136,7 @@ public class GattService extends ProfileService {
         dumpRegisterId(sb);
 
         sb.append("GATT Scanner Map\n");
-        mScannerMap.dump(sb);
+        mTransactionalScanHelper.mScannerMap.dump(sb);
 
         sb.append("GATT Advertiser Map\n");
         mAdvertiserMap.dumpAdvertiser(sb);
