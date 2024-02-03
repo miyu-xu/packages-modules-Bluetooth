@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47e6352a_e3ee0c7c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-03T00:12:36Z",
+      "side": 1,
+      "message": "Thanks for this patch!\n\nCan you please add a TODO and file a bug about callbacks being triggered after client is closed? \n\nAlso please keep a call to gatt#close since we don\u0027t clean up between tests, but ok to remove the verifyNoMoreInteractions for now to address the flake. \n\nBluetoothGatt#close is intended to indicate client is done with the BluetoothGatt client object; so while it is correct for a disconnection to occur in this case, the callback shouldn\u0027t be notified.",
+      "range": {
+        "startLine": 136,
+        "startChar": 8,
+        "endLine": 136,
+        "endChar": 25
+      },
+      "revId": "eb61bea263bbef4d824cefcda486414be0597430",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
