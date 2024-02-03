@@ -22,6 +22,30 @@
       },
       "revId": "b3c73c29b9040d40debf0983edebe6f9b39cbc32",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4daec01_ba44f923",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1509,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-02-03T03:30:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad643c90_74dcafba",
+      "range": {
+        "startLine": 1504,
+        "startChar": 12,
+        "endLine": 1509,
+        "endChar": 14
+      },
+      "revId": "b3c73c29b9040d40debf0983edebe6f9b39cbc32",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
