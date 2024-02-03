@@ -46,6 +46,30 @@
       },
       "revId": "8466bad52cc63100ad5ae4d30592c18605f69722",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94a855a2_e768f398",
+        "filename": "system/gd/discovery/device/bt_property.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-03T00:09:20Z",
+      "side": 1,
+      "message": "Maybe I shouldn\u0027t think that when I see size, since that\u0027s what std::vector uses.\n\nI just wanted to make we thought about it, since the meaning changed.",
+      "parentUuid": "9e5e26c5_52160f1e",
+      "range": {
+        "startLine": 70,
+        "startChar": 6,
+        "endLine": 70,
+        "endChar": 9
+      },
+      "revId": "8466bad52cc63100ad5ae4d30592c18605f69722",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
