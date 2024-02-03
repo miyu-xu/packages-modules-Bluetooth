@@ -41,7 +41,9 @@ import android.os.Looper;
 import android.os.ParcelUuid;
 import android.os.PowerManager;
 import android.os.RemoteException;
+import android.platform.test.annotations.RequiresFlagsEnabled;
 import android.telecom.PhoneAccount;
+import android.util.Log;
 
 import androidx.test.InstrumentationRegistry;
 import androidx.test.espresso.intent.Intents;
@@ -55,6 +57,7 @@ import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.RemoteDevices;
 import com.android.bluetooth.btservice.SilenceDeviceManager;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
+import com.android.bluetooth.flags.Flags;
 
 import org.hamcrest.Matchers;
 import org.junit.After;
@@ -810,6 +813,20 @@ public class HeadsetServiceAndStateMachineTest {
         startVoiceRecognitionFromAg();
     }
 
+    @Test
+    public void testVoiceRecognition_SingleAgInitiatedSuccess_ScoManagedByAudio() {
+        // Connect HF
+        BluetoothDevice device = TestUtils.getTestDevice(mAdapter, 0);
+        connectTestDevice(device);
+        // Make device active
+        Assert.assertTrue(mHeadsetService.setActiveDevice(device));
+        verify(mNativeInterface).setActiveDevice(device);
+        Assert.assertEquals(device, mHeadsetService.getActiveDevice());
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS)).sendBsir(eq(device), eq(true));
+        // Start voice recognition
+        startVoiceRecognitionFromAg_ScoManagedByAudio();
+    }
+
     /**
      * Test to verify the following behavior regarding AG initiated voice recognition
      * in the successful scenario
@@ -1163,6 +1180,38 @@ public class HeadsetServiceAndStateMachineTest {
                         HeadsetHalConstants.AUDIO_STATE_CONNECTED, device));
         waitAndVerifyAudioStateIntent(ASYNC_CALL_TIMEOUT_MILLIS, device,
                 BluetoothHeadset.STATE_AUDIO_CONNECTED, BluetoothHeadset.STATE_AUDIO_CONNECTING);
+        verifyNoMoreInteractions(mNativeInterface);
+    }
+
+    @RequiresFlagsEnabled(Flags.FLAG_IS_SCO_MANAGED_BY_AUDIO)
+    private void startVoiceRecognitionFromAg_ScoManagedByAudio() {
+        if (!Flags.isScoManagedByAudio()) {
+            Log.i(TAG, "isScoManagedByAudio is disabled");
+            return;
+        }
+        BluetoothDevice device = mHeadsetService.getActiveDevice();
+        Assert.assertNotNull(device);
+        Assert.assertTrue(mHeadsetService.startVoiceRecognition(device));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS)).startVoiceRecognition(device);
+        verify(mAudioManager, timeout(ASYNC_CALL_TIMEOUT_MILLIS)).setCommunicationDevice(any());
+        verify(mAudioManager, times(0)).setA2dpSuspended(true);
+        verify(mAudioManager, times(0)).setLeAudioSuspended(true);
+        verify(mNativeInterface, times(0)).connectAudio(device);
+        waitAndVerifyAudioStateIntent(
+                ASYNC_CALL_TIMEOUT_MILLIS,
+                device,
+                BluetoothHeadset.STATE_AUDIO_CONNECTING,
+                BluetoothHeadset.STATE_AUDIO_DISCONNECTED);
+        mHeadsetService.messageFromNative(
+                new HeadsetStackEvent(
+                        HeadsetStackEvent.EVENT_TYPE_AUDIO_STATE_CHANGED,
+                        HeadsetHalConstants.AUDIO_STATE_CONNECTED,
+                        device));
+        waitAndVerifyAudioStateIntent(
+                ASYNC_CALL_TIMEOUT_MILLIS,
+                device,
+                BluetoothHeadset.STATE_AUDIO_CONNECTED,
+                BluetoothHeadset.STATE_AUDIO_CONNECTING);
         verifyNoMoreInteractions(mNativeInterface);
     }
 

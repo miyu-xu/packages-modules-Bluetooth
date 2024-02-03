@@ -63,6 +63,7 @@ import com.android.bluetooth.btservice.ServiceFactory;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.flags.FeatureFlags;
 import com.android.bluetooth.flags.FeatureFlagsImpl;
+import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.hfpclient.HeadsetClientService;
 import com.android.bluetooth.hfpclient.HeadsetClientStateMachine;
 import com.android.bluetooth.le_audio.LeAudioService;
@@ -127,6 +128,8 @@ public class HeadsetService extends ProfileService {
 
     // Timeout for state machine thread join, to prevent potential ANR.
     private static final int SM_THREAD_JOIN_TIMEOUT_MS = 1000;
+
+    private static final long BLOCKING_TIMEOUT_MS = 1000;
 
     private FeatureFlags mFeatureFlags = new FeatureFlagsImpl();
     private int mMaxHeadsetConnections = 1;
@@ -1891,7 +1894,8 @@ public class HeadsetService extends ProfileService {
             mSystemInterface.getHeadsetPhoneState().setCallState(callState);
             // Suspend A2DP when call about is about to become active
             if (mActiveDevice != null && callState != HeadsetHalConstants.CALL_STATE_DISCONNECTED
-                    && !mSystemInterface.isCallIdle() && isCallIdleBefore) {
+                && !mSystemInterface.isCallIdle() && isCallIdleBefore
+                && !Flags.isScoManagedByAudio()) {
                 mSystemInterface.getAudioManager().setA2dpSuspended(true);
                 if (isAtLeastU()) {
                     mSystemInterface.getAudioManager().setLeAudioSuspended(true);
@@ -1901,9 +1905,15 @@ public class HeadsetService extends ProfileService {
         doForEachConnectedStateMachine(
                 stateMachine -> stateMachine.sendMessage(HeadsetStateMachine.CALL_STATE_CHANGED,
                         new HeadsetCallState(numActive, numHeld, callState, number, type, name)));
+        if (Flags.isScoManagedByAudio()) {
+            getStateMachinesThreadHandler().runWithScissors(() -> {
+                // make the function becomes a blocking function so that CALL_STATE_CHANGED
+                // can be completed before Audio Framework start SCO connection
+            }, BLOCKING_TIMEOUT_MS);
+        }
         getStateMachinesThreadHandler().post(() -> {
             if (callState == HeadsetHalConstants.CALL_STATE_IDLE
-                    && mSystemInterface.isCallIdle() && !isAudioOn()) {
+                && mSystemInterface.isCallIdle() && !isAudioOn() && !Flags.isScoManagedByAudio()) {
                 // Resume A2DP when call ended and SCO is not connected
                 mSystemInterface.getAudioManager().setA2dpSuspended(false);
                 if (isAtLeastU()) {
