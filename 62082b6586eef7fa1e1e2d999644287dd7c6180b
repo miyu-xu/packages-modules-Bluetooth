@@ -34,6 +34,24 @@
       "parentUuid": "586b9f0b_ca6aa5b9",
       "revId": "62082b6586eef7fa1e1e2d999644287dd7c6180b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b1e673e_0ec3bad1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-03T00:18:34Z",
+      "side": 1,
+      "message": "IIRC this was an attempt at a minor stress test, but agree the loop isn\u0027t needed right now if flaky. FWIW I\u0027m ok with the change as drafted.",
+      "parentUuid": "efd50139_b93ee2ff",
+      "revId": "62082b6586eef7fa1e1e2d999644287dd7c6180b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
