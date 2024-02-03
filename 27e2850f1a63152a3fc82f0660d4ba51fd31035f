@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "476e6543_f9d149ca",
+        "filename": "system/include/hardware/avrcp/avrcp_logging_helper.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-03T01:33:35Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b5970f96_3c4de5f2",
+      "range": {
+        "startLine": 290,
+        "startChar": 1,
+        "endLine": 320,
+        "endChar": 78
+      },
+      "revId": "27e2850f1a63152a3fc82f0660d4ba51fd31035f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29a9f722_7e85bea7",
