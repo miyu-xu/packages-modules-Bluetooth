@@ -25,6 +25,7 @@ import static android.bluetooth.BluetoothUtils.isValidDevice;
 
 import static java.util.Objects.requireNonNull;
 
+import android.annotation.FlaggedApi;
 import android.annotation.IntRange;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
@@ -48,6 +49,7 @@ import android.os.RemoteException;
 import android.util.CloseGuard;
 import android.util.Log;
 
+import com.android.bluetooth.flags.Flags;
 import com.android.internal.annotations.VisibleForTesting;
 
 import java.util.Collections;
@@ -124,9 +126,12 @@ public final class BluetoothHeadsetClient implements BluetoothProfile, AutoClose
      *
      * @hide
      */
+    @SuppressLint("ActionValue")
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
     @SdkConstant(SdkConstantType.BROADCAST_INTENT_ACTION)
+    @FlaggedApi(Flags.FLAG_HFP_CLIENT_SYSTEM_API)
     public static final String ACTION_AG_EVENT =
             "android.bluetooth.headsetclient.profile.action.AG_EVENT";
 
@@ -195,6 +200,8 @@ public final class BluetoothHeadsetClient implements BluetoothProfile, AutoClose
     public static final int STATE_AUDIO_CONNECTING = 1;
 
     /** @hide */
+    @SystemApi
+    @FlaggedApi(Flags.FLAG_HFP_CLIENT_SYSTEM_API)
     public static final int STATE_AUDIO_CONNECTED = 2;
 
     /**
@@ -263,6 +270,9 @@ public final class BluetoothHeadsetClient implements BluetoothProfile, AutoClose
      *
      * @hide
      */
+    @SuppressLint("ActionValue")
+    @SystemApi
+    @FlaggedApi(Flags.FLAG_HFP_CLIENT_SYSTEM_API)
     public static final String EXTRA_VOICE_RECOGNITION =
             "android.bluetooth.headsetclient.extra.VOICE_RECOGNITION";
 
@@ -365,6 +375,9 @@ public final class BluetoothHeadsetClient implements BluetoothProfile, AutoClose
      *
      * @hide
      */
+    @SuppressLint("ActionValue")
+    @SystemApi
+    @FlaggedApi(Flags.FLAG_HFP_CLIENT_SYSTEM_API)
     public static final String EXTRA_AG_FEATURE_VOICE_RECOGNITION =
             "android.bluetooth.headsetclient.extra.EXTRA_AG_FEATURE_VOICE_RECOGNITION";
 
@@ -705,10 +718,11 @@ public final class BluetoothHeadsetClient implements BluetoothProfile, AutoClose
      *     otherwise; upon completion HFP sends {@link #ACTION_CONNECTION_STATE_CHANGED} intent.
      * @hide
      */
-    @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.R, trackingBug = 170729553)
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
-    public boolean disconnect(BluetoothDevice device) {
+    @FlaggedApi(Flags.FLAG_DISCONNECT_API)
+    public boolean disconnect(@NonNull BluetoothDevice device) {
         log("disconnect(" + device + ")");
         final IBluetoothHeadsetClient service = getService();
         if (service == null) {
@@ -879,9 +893,11 @@ public final class BluetoothHeadsetClient implements BluetoothProfile, AutoClose
      *     feature is not supported.
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
-    public boolean startVoiceRecognition(BluetoothDevice device) {
+    @FlaggedApi(Flags.FLAG_HFP_CLIENT_SYSTEM_API)
+    public boolean startVoiceRecognition(@NonNull BluetoothDevice device) {
         log("startVoiceRecognition()");
         final IBluetoothHeadsetClient service = getService();
         if (service == null) {
@@ -936,9 +952,11 @@ public final class BluetoothHeadsetClient implements BluetoothProfile, AutoClose
      *     feature is not supported.
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
-    public boolean stopVoiceRecognition(BluetoothDevice device) {
+    @FlaggedApi(Flags.FLAG_HFP_CLIENT_SYSTEM_API)
+    public boolean stopVoiceRecognition(@Nullable BluetoothDevice device) {
         log("stopVoiceRecognition()");
         final IBluetoothHeadsetClient service = getService();
         if (service == null) {
@@ -961,10 +979,14 @@ public final class BluetoothHeadsetClient implements BluetoothProfile, AutoClose
      * @return list of calls; empty list if none call exists
      * @hide
      */
+    @SystemApi
     @VisibleForTesting
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
-    public List<BluetoothHeadsetClientCall> getCurrentCalls(BluetoothDevice device) {
+    @SuppressLint("NullableCollection")
+    @Nullable
+    @FlaggedApi(Flags.FLAG_HFP_CLIENT_SYSTEM_API)
+    public List<BluetoothHeadsetClientCall> getCurrentCalls(@Nullable BluetoothDevice device) {
         log("getCurrentCalls()");
         final IBluetoothHeadsetClient service = getService();
         if (service == null) {
@@ -1285,10 +1307,11 @@ public final class BluetoothHeadsetClient implements BluetoothProfile, AutoClose
      *
      * @hide
      */
-    @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.R, trackingBug = 170729553)
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
-    public int getAudioState(BluetoothDevice device) {
+    @FlaggedApi(Flags.FLAG_HFP_CLIENT_SYSTEM_API)
+    public int getAudioState(@Nullable BluetoothDevice device) {
         if (VDBG) log("getAudioState");
         final IBluetoothHeadsetClient service = getService();
         if (service == null) {
@@ -1418,9 +1441,13 @@ public final class BluetoothHeadsetClient implements BluetoothProfile, AutoClose
      * @return bundle of AG features; null if no service or AG not connected
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
-    public Bundle getCurrentAgFeatures(BluetoothDevice device) {
+    @SuppressLint("NullableCollection")
+    @Nullable
+    @FlaggedApi(Flags.FLAG_HFP_CLIENT_SYSTEM_API)
+    public Bundle getCurrentAgFeatures(@Nullable BluetoothDevice device) {
         if (VDBG) log("getCurrentAgFeatures");
         final IBluetoothHeadsetClient service = getService();
         if (service == null) {

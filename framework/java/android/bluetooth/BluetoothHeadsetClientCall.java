@@ -16,14 +16,18 @@
 
 package android.bluetooth;
 
+import android.annotation.FlaggedApi;
 import android.annotation.NonNull;
 import android.annotation.RequiresNoPermission;
+import android.annotation.SystemApi;
 import android.compat.annotation.UnsupportedAppUsage;
 import android.content.AttributionSource;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.SystemClock;
+
+import com.android.bluetooth.flags.Flags;
 
 import java.util.UUID;
 
@@ -33,30 +37,46 @@ import java.util.UUID;
  *
  * @hide
  */
+@SystemApi
+@FlaggedApi(Flags.FLAG_HFP_CLIENT_CALL_SYSTEM_API)
 public final class BluetoothHeadsetClientCall implements Parcelable, Attributable {
 
     /* Call state */
-    /** Call is active. */
+    /**
+     * Call is active.
+     * @hide
+     */
     public static final int CALL_STATE_ACTIVE = 0;
-
-    /** Call is in held state. */
+    /**
+     * Call is in held state.
+     * @hide
+     */
     public static final int CALL_STATE_HELD = 1;
-
-    /** Outgoing call that is being dialed right now. */
+    /**
+     * Outgoing call that is being dialed right now.
+     * @hide
+     */
     public static final int CALL_STATE_DIALING = 2;
-
-    /** Outgoing call that remote party has already been alerted about. */
+    /**
+     * Outgoing call that remote party has already been alerted about.
+     * @hide
+     */
     public static final int CALL_STATE_ALERTING = 3;
-
-    /** Incoming call that can be accepted or rejected. */
+    /**
+     * Incoming call that can be accepted or rejected.
+     * @hide
+     */
     public static final int CALL_STATE_INCOMING = 4;
-
-    /** Waiting call state when there is already an active call. */
+    /**
+     * Waiting call state when there is already an active call.
+     * @hide
+     */
     public static final int CALL_STATE_WAITING = 5;
 
     /**
      * Call that has been held by response and hold (see Bluetooth specification for further
      * references).
+     * @hide
      */
     public static final int CALL_STATE_HELD_BY_RESPONSE_AND_HOLD = 6;
 
@@ -73,7 +93,10 @@ public final class BluetoothHeadsetClientCall implements Parcelable, Attributabl
     private final long mCreationElapsedMilli;
     private final boolean mInBandRing;
 
-    /** Creates BluetoothHeadsetClientCall instance. */
+    /**
+     * Creates BluetoothHeadsetClientCall instance.
+     * @hide
+     */
     public BluetoothHeadsetClientCall(
             BluetoothDevice device,
             int id,
@@ -85,6 +108,7 @@ public final class BluetoothHeadsetClientCall implements Parcelable, Attributabl
         this(device, id, UUID.randomUUID(), state, number, multiParty, outgoing, inBandRing);
     }
 
+    /** @hide */
     public BluetoothHeadsetClientCall(
             BluetoothDevice device,
             int id,
@@ -117,6 +141,7 @@ public final class BluetoothHeadsetClientCall implements Parcelable, Attributabl
      * <p>Note: This is an internal function and shouldn't be exposed
      *
      * @param state new call state.
+     * @hide
      */
     @RequiresNoPermission
     public void setState(int state) {
@@ -129,6 +154,7 @@ public final class BluetoothHeadsetClientCall implements Parcelable, Attributabl
      * <p>Note: This is an internal function and shouldn't be exposed
      *
      * @param number String representing phone number.
+     * @hide
      */
     @RequiresNoPermission
     public void setNumber(String number) {
@@ -141,6 +167,7 @@ public final class BluetoothHeadsetClientCall implements Parcelable, Attributabl
      * <p>Note: This is an internal function and shouldn't be exposed
      *
      * @param multiParty if <code>true</code> sets this call as a part of multi party conference.
+     * @hide
      */
     @RequiresNoPermission
     public void setMultiParty(boolean multiParty) {
@@ -151,6 +178,7 @@ public final class BluetoothHeadsetClientCall implements Parcelable, Attributabl
      * Gets call's device.
      *
      * @return call device.
+     * @hide
      */
     @RequiresNoPermission
     public BluetoothDevice getDevice() {
@@ -161,6 +189,7 @@ public final class BluetoothHeadsetClientCall implements Parcelable, Attributabl
      * Gets call's Id.
      *
      * @return call id.
+     * @hide
      */
     @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.R, trackingBug = 170729553)
     @RequiresNoPermission
@@ -184,7 +213,6 @@ public final class BluetoothHeadsetClientCall implements Parcelable, Attributabl
      *
      * @return state of this particular phone call.
      */
-    @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.R, trackingBug = 170729553)
     @RequiresNoPermission
     public int getState() {
         return mState;
@@ -194,6 +222,7 @@ public final class BluetoothHeadsetClientCall implements Parcelable, Attributabl
      * Gets call's number.
      *
      * @return string representing phone number.
+     * @hide
      */
     @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.R, trackingBug = 170729553)
     @RequiresNoPermission
@@ -205,6 +234,7 @@ public final class BluetoothHeadsetClientCall implements Parcelable, Attributabl
      * Gets call's creation time in millis since epoch.
      *
      * @return long representing the creation time.
+     * @hide
      */
     @RequiresNoPermission
     public long getCreationElapsedMilli() {
@@ -215,6 +245,7 @@ public final class BluetoothHeadsetClientCall implements Parcelable, Attributabl
      * Checks if call is an active call in a conference mode (aka multi party).
      *
      * @return <code>true</code> if call is a multi party call, <code>false</code> otherwise.
+     * @hide
      */
     @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.R, trackingBug = 170729553)
     @RequiresNoPermission
@@ -226,6 +257,7 @@ public final class BluetoothHeadsetClientCall implements Parcelable, Attributabl
      * Checks if this call is an outgoing call.
      *
      * @return <code>true</code> if its outgoing call, <code>false</code> otherwise.
+     * @hide
      */
     @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.R, trackingBug = 170729553)
     @RequiresNoPermission
@@ -237,12 +269,14 @@ public final class BluetoothHeadsetClientCall implements Parcelable, Attributabl
      * Checks if the ringtone will be generated by the connected phone
      *
      * @return <code>true</code> if in band ring is enabled, <code>false</code> otherwise.
+     * @hide
      */
     @RequiresNoPermission
     public boolean isInBandRing() {
         return mInBandRing;
     }
 
+    /** @hide */
     @Override
     public String toString() {
         return toString(false);
@@ -253,6 +287,7 @@ public final class BluetoothHeadsetClientCall implements Parcelable, Attributabl
      *
      * @param loggable whether device address should be logged
      * @return log string
+     * @hide
      */
     public String toString(boolean loggable) {
         StringBuilder builder = new StringBuilder("BluetoothHeadsetClientCall{mDevice: ");
@@ -308,8 +343,9 @@ public final class BluetoothHeadsetClientCall implements Parcelable, Attributabl
                 }
             };
 
+    /** @hide */
     @Override
-    public void writeToParcel(Parcel out, int flags) {
+    public void writeToParcel(@NonNull Parcel out, int flags) {
         mDevice.writeToParcel(out, flags);
         out.writeInt(mId);
         BluetoothUtils.writeStringToParcel(out, mUUID.toString());
@@ -320,6 +356,7 @@ public final class BluetoothHeadsetClientCall implements Parcelable, Attributabl
         out.writeInt(mInBandRing ? 1 : 0);
     }
 
+    /** @hide */
     @Override
     public int describeContents() {
         return 0;

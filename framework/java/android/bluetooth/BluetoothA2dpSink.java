@@ -23,6 +23,7 @@ import static android.bluetooth.BluetoothProfile.CONNECTION_POLICY_FORBIDDEN;
 import static android.bluetooth.BluetoothProfile.STATE_DISCONNECTED;
 import static android.bluetooth.BluetoothUtils.isValidDevice;
 
+import android.annotation.FlaggedApi;
 import android.annotation.NonNull;
 import android.annotation.RequiresNoPermission;
 import android.annotation.RequiresPermission;
@@ -40,6 +41,8 @@ import android.os.Build;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
+
+import com.android.bluetooth.flags.Flags;
 
 import java.util.Collections;
 import java.util.List;
@@ -177,11 +180,12 @@ public final class BluetoothA2dpSink implements BluetoothProfile {
      * @return false on immediate error, true otherwise
      * @hide
      */
-    @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.R, trackingBug = 170729553)
+    @SystemApi
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
-    public boolean disconnect(BluetoothDevice device) {
+    @FlaggedApi(Flags.FLAG_DISCONNECT_API)
+    public boolean disconnect(@NonNull BluetoothDevice device) {
         log("disconnect(" + device + ")");
         final IBluetoothA2dpSink service = getService();
         if (service == null) {

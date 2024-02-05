@@ -16,6 +16,7 @@
 
 package android.bluetooth;
 
+import android.annotation.FlaggedApi;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.annotation.RequiresNoPermission;
@@ -24,6 +25,8 @@ import android.compat.annotation.UnsupportedAppUsage;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import com.android.bluetooth.flags.Flags;
 
 /**
  * Represents a Bluetooth class, which describes general characteristics and capabilities of a
@@ -286,6 +289,8 @@ public final class BluetoothClass implements Parcelable {
      * @hide
      */
     @RequiresNoPermission
+    @SystemApi
+    @FlaggedApi(Flags.FLAG_GET_CLASS_OF_DEVICE)
     public int getClassOfDevice() {
         return mClass;
     }

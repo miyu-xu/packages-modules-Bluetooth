@@ -71,3 +71,31 @@ flag {
     description: "Promote getKeyMissingCount as public API"
     bug: "421357557"
 }
+
+flag {
+    name: "get_class_of_device"
+    namespace: "bluetooth"
+    description: "Promote getClassOfDevice as system API"
+    bug: "12345GM"
+}
+
+flag {
+    name: "disconnect_api"
+    namespace: "bluetooth"
+    description: "Promote some disconnect APIs as system API"
+    bug: "12345GM"
+}
+
+flag {
+    name: "hfp_client_system_api"
+    namespace: "bluetooth"
+    description: "Promote some APIs as system api"
+    bug: "123456"
+}
+
+flag {
+    name: "hfp_client_call_system_api"
+    namespace: "bluetooth"
+    description: "Promote some APIs as system api"
+    bug: "123456"
+}
