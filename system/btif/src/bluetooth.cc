@@ -303,7 +303,12 @@ struct CoreInterfaceImpl : bluetooth::core::CoreInterface {
   void removeDeviceFromProfiles(const RawAddress& bd_addr) override {
 /*special handling for HID devices */
 #if (defined(BTA_HH_INCLUDED) && (BTA_HH_INCLUDED == TRUE))
-    btif_hh_remove_device(bd_addr);
+    tTypedAddressTransport dev_addr;
+    dev_addr.addrt.bda = bd_addr;
+    //Todo:b/324120865 fill type and transport
+    //dev_addr.addrt.type
+    //dev_addr.transport
+    btif_hh_remove_device(dev_addr);
 #endif
 #if (defined(BTA_HD_INCLUDED) && (BTA_HD_INCLUDED == TRUE))
     btif_hd_remove_device(bd_addr);
