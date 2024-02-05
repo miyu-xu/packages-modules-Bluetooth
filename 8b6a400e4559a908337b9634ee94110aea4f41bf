@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab57e75a_09ab7663",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1971254
+      },
+      "writtenOn": "2024-02-05T14:45:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e752aa6_de5d89e7",
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a136fd7d_3e88d149",
@@ -179,6 +197,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6d22af0d_3b6f7a5a",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1971254
+      },
+      "writtenOn": "2024-02-05T14:45:46Z",
+      "side": 1,
+      "message": "we will not add .\ni followed the rest of clients",
+      "parentUuid": "f95c9a25_9654b7c7",
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3caf16f6_d1f9628f",
         "filename": "floss/pandora/floss/socket_manager.py",
         "patchSetId": 1
@@ -226,6 +262,24 @@
       "side": 1,
       "message": "not fixed yet",
       "parentUuid": "c68c9de6_b7535e7d",
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ac7b71c_4c979474",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1971254
+      },
+      "writtenOn": "2024-02-05T14:45:46Z",
+      "side": 1,
+      "message": "we will not add .\ni followed the rest of clients",
+      "parentUuid": "b883b50a_3fc8e800",
       "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -291,6 +345,30 @@
       "side": 1,
       "message": "not fixed yet",
       "parentUuid": "bed22199_99e19aab",
+      "range": {
+        "startLine": 275,
+        "startChar": 10,
+        "endLine": 275,
+        "endChar": 18
+      },
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61d254c9_b4d60867",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1971254
+      },
+      "writtenOn": "2024-02-05T14:45:46Z",
+      "side": 1,
+      "message": "we will not add . \ni followed the rest of clients",
+      "parentUuid": "40ed83b6_0b2b526e",
       "range": {
         "startLine": 275,
         "startChar": 10,
@@ -372,6 +450,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e661d28_bf1bb8b5",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1971254
+      },
+      "writtenOn": "2024-02-05T14:45:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "135f4cf4_ec5a9a83",
+      "range": {
+        "startLine": 325,
+        "startChar": 8,
+        "endLine": 325,
+        "endChar": 15
+      },
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89fe0913_fac418ac",
@@ -443,6 +545,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "912bed95_cc828874",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1971254
+      },
+      "writtenOn": "2024-02-05T14:45:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d23fe749_66380087",
+      "range": {
+        "startLine": 465,
+        "startChar": 12,
+        "endLine": 465,
+        "endChar": 15
+      },
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9d1aeb33_a6a3bb35",
@@ -460,6 +586,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05b02da5_421b4cd2",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1971254
+      },
+      "writtenOn": "2024-02-05T14:45:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d1aeb33_a6a3bb35",
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e2a24afb_1523e835",
@@ -473,6 +617,24 @@
       "writtenOn": "2024-01-31T14:06:17Z",
       "side": 1,
       "message": "2024",
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9d09df4_63432df1",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1971254
+      },
+      "writtenOn": "2024-02-05T14:45:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2a24afb_1523e835",
       "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -764,6 +926,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8213dbf7_0e35ee84",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1971254
+      },
+      "writtenOn": "2024-02-05T14:45:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b7ec173_01fab20e",
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6562115a_f5ab40c1",
@@ -875,6 +1055,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0040310_c639b397",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1971254
+      },
+      "writtenOn": "2024-02-05T14:45:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b7349af_f88686a5",
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8b6ca3be_221c2a47",
@@ -888,6 +1086,24 @@
       "writtenOn": "2024-01-31T14:10:54Z",
       "side": 1,
       "message": "logging.error(\u0027Exception during reading from input stream: %s\u0027, e) you didn\u0027t print the error",
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0af190c_7aecf4a5",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1971254
+      },
+      "writtenOn": "2024-02-05T14:45:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b6ca3be_221c2a47",
       "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -952,6 +1168,24 @@
       "writtenOn": "2024-01-31T14:06:17Z",
       "side": 1,
       "message": "add . after this line",
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1c8ed21_bbf9de95",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1971254
+      },
+      "writtenOn": "2024-02-05T14:45:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5aab8676_a1df835a",
       "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
