@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb5b2a9d_5e2d6a02",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfigMetadata.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-05T18:40:20Z",
+      "side": 1,
+      "message": "I don\u0027t think these need to be guarded by flag since they aren\u0027t part of API and are just object definitions.",
+      "range": {
+        "startLine": 79,
+        "startChar": 4,
+        "endLine": 79,
+        "endChar": 60
+      },
+      "revId": "e739e7eb0f48b0a6d79d9c4f8e459b68196688a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
