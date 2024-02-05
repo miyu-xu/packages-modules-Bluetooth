@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10e629a9_92995e2e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-05T21:58:24Z",
+      "side": 1,
+      "message": "I\u0027ve locally tested with this CL. I found if we disconnect while broadcasting then the audio will not be routed back to speaker.\n\n1. start broadcast\n2. disconnect the device from BT settings\n3. noticed the broadcast is stopped as the CL did. \n4. audio is not routed back to speaker\n5. reconnect the buds, somehow the audio is also not routed to unicast?\n\nI suspect some handling is missing when disconnect during broadcast, we need to clean up the audio active device properly for routing.",
+      "revId": "d5461cdc4fdb3a3bcd04cfd4bfe23f777c09f104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "799e3e59_6f52035c",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1705,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-05T21:58:24Z",
+      "side": 1,
+      "message": "If you\u0027d like to handle the unintended disconnect with this CL, we need to add the same here.\nmService.handleIntendedDeviceDisconnection(mDevice);",
+      "revId": "d5461cdc4fdb3a3bcd04cfd4bfe23f777c09f104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "500c9e25_1cb39324",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 2047,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-05T21:58:24Z",
+      "side": 1,
+      "message": "need the same disconnect handle here? in ConnectedProcessing.",
+      "revId": "d5461cdc4fdb3a3bcd04cfd4bfe23f777c09f104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f301b2e_ff537295",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 2066,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-05T21:58:24Z",
+      "side": 1,
+      "message": "handle for unintended disconnect.",
+      "revId": "d5461cdc4fdb3a3bcd04cfd4bfe23f777c09f104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
