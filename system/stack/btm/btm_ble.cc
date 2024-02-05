@@ -195,12 +195,20 @@ void BTM_BleSetPhy(const RawAddress& bd_addr, uint8_t tx_phys, uint8_t rx_phys,
   }
 
   uint8_t all_phys = 0;
+<<<<<<< PATCH SET (61af04 Fix Set phy 0 0 0 on server cannot clear prefer Phy)
+  all_phys |= (tx_phys == 0) ? 0x01 : 0;
+  all_phys |= (rx_phys == 0) ? 0x02 : 0;
+||||||| BASE
+  if (tx_phys == 0) all_phys &= 0x01;
+  if (rx_phys == 0) all_phys &= 0x02;
+=======
   if (tx_phys == 0) {
     all_phys &= 0x01;
   }
   if (rx_phys == 0) {
     all_phys &= 0x02;
   }
+>>>>>>> BASE      (745ee9 log: Remove last extra colon when logging bd_addr)
 
   uint16_t handle = get_btm_client_interface().peer.BTM_GetHCIConnHandle(bd_addr, BT_TRANSPORT_LE);
 
