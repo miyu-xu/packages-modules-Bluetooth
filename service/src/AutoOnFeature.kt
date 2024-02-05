@@ -55,7 +55,26 @@ public fun cancel(resolver: ContentResolver) {
     Timer.cancel()
 
     if (!isFeatureSupportedForUser(resolver)) {
-        setFeatureEnabledForUserUnchecked(resolver)
+        setFeatureEnabledForUserUnchecked(resolver, true)
+    }
+}
+
+public fun isUserSupported(resolver: ContentResolver) = isFeatureSupportedForUser(resolver)
+
+public fun isUserEnabled(resolver: ContentResolver): Boolean {
+    if (!isUserSupported(resolver)) {
+        throw IllegalStateException("AutoOnFeature is not supported for current user: ${resolver}")
+    }
+    return isFeatureEnabledForUser(resolver)
+}
+
+public fun setUserEnabled(resolver: ContentResolver, status: Boolean) {
+    if (!isUserSupported(resolver)) {
+        throw IllegalStateException("AutoOnFeature is not supported for current user: ${resolver}")
+    }
+    setFeatureEnabledForUserUnchecked(resolver, status)
+    if (!status) {
+        Timer.cancel()
     }
 }
 
@@ -146,6 +165,6 @@ private fun isFeatureSupportedForUser(resolver: ContentResolver): Boolean {
  *
  * @return whether the auto on feature is enabled for this user
  */
-private fun setFeatureEnabledForUserUnchecked(resolver: ContentResolver) {
-    Settings.Secure.putInt(resolver, USER_SETTINGS_KEY, 1)
+private fun setFeatureEnabledForUserUnchecked(resolver: ContentResolver, status: Boolean) {
+    Settings.Secure.putInt(resolver, USER_SETTINGS_KEY, if (status) 1 else 0)
 }

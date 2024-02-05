@@ -25,9 +25,13 @@ import com.android.server.bluetooth.Log
 import com.android.server.bluetooth.Timer
 import com.android.server.bluetooth.USER_SETTINGS_KEY
 import com.android.server.bluetooth.cancel
+import com.android.server.bluetooth.isUserEnabled
+import com.android.server.bluetooth.isUserSupported
+import com.android.server.bluetooth.setUserEnabled
 import com.android.server.bluetooth.setupNewTimer
 import com.google.common.truth.Expect
 import com.google.common.truth.Truth.assertThat
+import kotlin.test.assertFailsWith
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -159,6 +163,52 @@ class AutoOnFeatureTest {
 
         cancel(resolver)
 
-        assertThat(Settings.Secure.getInt(resolver, USER_SETTINGS_KEY, 42)).isEqualTo(1)
+        assertThat(isUserSupported(resolver)).isTrue()
+    }
+
+    @Test
+    fun apiIsUserEnable_whenItWasNeverUsed_throwException() {
+        restoreSettings()
+
+        assertFailsWith<IllegalStateException> { isUserEnabled(resolver) }
+    }
+
+    @Test
+    fun apiSetUserEnabled_whenItWasNeverUsed_throwException() {
+        restoreSettings()
+
+        assertFailsWith<IllegalStateException> { setUserEnabled(resolver, true) }
+    }
+
+    @Test
+    fun apiIsUserEnable_whenEnabled_isTrue() {
+        assertThat(isUserEnabled(resolver)).isTrue()
+    }
+
+    @Test
+    fun apiIsUserEnable_whenDisabled_isFalse() {
+        disableUserSettings()
+        assertThat(isUserEnabled(resolver)).isFalse()
+    }
+
+    @Test
+    fun apiSetUserEnableToFalse_whenScheduled_isNotScheduled() {
+        setupTimer()
+
+        setUserEnabled(resolver, false)
+
+        assertThat(isUserEnabled(resolver)).isFalse()
+        assertThat(callback_count).isEqualTo(0)
+        assertThat(Timer.timer).isNull()
+    }
+
+    @Test
+    fun apiSetUserEnableToTrue_whenIdle_canSchedule() {
+        disableUserSettings()
+
+        setUserEnabled(resolver, true)
+        setupTimer()
+
+        assertThat(Timer.timer).isNotNull()
     }
 }
