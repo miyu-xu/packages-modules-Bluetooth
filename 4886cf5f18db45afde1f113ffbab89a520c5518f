@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5830a044_b297e125",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1826,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-05T12:17:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3727ee3_419858c7",
+      "revId": "4886cf5f18db45afde1f113ffbab89a520c5518f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "649e3a91_4b974c40",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a5547a0_11e18494",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1914,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-05T12:17:01Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "649e3a91_4b974c40",
+      "revId": "4886cf5f18db45afde1f113ffbab89a520c5518f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8f1040c_5654dca2",
@@ -48,6 +84,24 @@
       "writtenOn": "2024-02-02T22:03:40Z",
       "side": 1,
       "message": "nit: remove \u0027(\u0027\n\n```suggestion\n                    sEventLogger.logd(DBG, TAG, \"Broadcast ID: \" + broadcastId\n```",
+      "revId": "4886cf5f18db45afde1f113ffbab89a520c5518f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b22a908_9ce9c084",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1921,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-05T12:17:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8f1040c_5654dca2",
       "revId": "4886cf5f18db45afde1f113ffbab89a520c5518f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -75,6 +129,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b20e684_b1fd5c27",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-05T12:17:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "032499cc_703bd23b",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "4886cf5f18db45afde1f113ffbab89a520c5518f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d7726d8f_eba0b2cb",
@@ -88,6 +166,24 @@
       "writtenOn": "2024-02-02T22:03:40Z",
       "side": 1,
       "message": "I think it\u0027s fine to remove the flag check here to avoid nested flag. BASS is anyway behind the feature flag.\nAlso it seems causing the crash detector error?",
+      "revId": "4886cf5f18db45afde1f113ffbab89a520c5518f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "344d92cb_b9c0eed3",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1319,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-05T12:17:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7726d8f_eba0b2cb",
       "revId": "4886cf5f18db45afde1f113ffbab89a520c5518f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -109,6 +205,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1be9d09f_f25166ce",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1320,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-05T12:17:01Z",
+      "side": 1,
+      "message": "I\u0027ve moved this to DISCONNECT message handler in CONNECTED state. This state seems to be lacking of DISCONNECTING state which was in LeAudioStateMachine - from where this change moved.",
+      "parentUuid": "e84122e0_6bce0829",
+      "revId": "4886cf5f18db45afde1f113ffbab89a520c5518f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b874970b_0ade8a1e",
@@ -126,6 +240,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8dcb806b_11ff458f",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1135,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-05T12:17:01Z",
+      "side": 1,
+      "message": "right! Thank you for being vigilant!",
+      "parentUuid": "b874970b_0ade8a1e",
+      "revId": "4886cf5f18db45afde1f113ffbab89a520c5518f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be8ab7c1_bf99bea3",
@@ -139,6 +271,24 @@
       "writtenOn": "2024-02-02T22:03:40Z",
       "side": 1,
       "message": "I got it why we need below notify logic since Bass doesn\u0027t have native interface. I\u0027m okay with this for now but maybe we can think of how to improve this part later. \n\nDo you think we can consider to move that to here? so that all broadcast state change will be notified. and then in Bass, we only process BROADCAST_STATE_STOPPED for now. and adding the feature flag is needed.\n\nand btw, the best practice is updated to use static way. so you can avoid using mFeatureFlag.\n\nif (Flags.leaudioBroadcastAudioHandoverPolicies()) {\n    if (bassClientService !\u003d null) {\n                      bassClientService.notifyBroadcastStateChanged(descriptor.mState,\n                                broadcastId);\n    }\n}",
+      "revId": "4886cf5f18db45afde1f113ffbab89a520c5518f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f0ee17e_0aaf11e0",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 2680,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-05T12:17:01Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "be8ab7c1_bf99bea3",
       "revId": "4886cf5f18db45afde1f113ffbab89a520c5518f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
