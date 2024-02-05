@@ -244,7 +244,7 @@ class FlossSocketManagerClient(SocketManagerCallbacks):
 
         self.connecting_sockets[connecting_id] = (result, socket, fd_dup)
 
-    def _make_dbus_device(self, address, name):
+    def make_dbus_device(self, address, name):
         return {'address': GLib.Variant('s', address), 'name': GLib.Variant('s', name)}
 
     def _make_dbus_timeout(self, timeout):
@@ -279,6 +279,26 @@ class FlossSocketManagerClient(SocketManagerCallbacks):
         # Register published callbacks with adapter daemon
         self.callback_id = self.proxy().RegisterCallback(objpath)
         return True
+
+    def register_callback_observer(self, name, observer):
+        """Add an observer for all callbacks.
+
+        Args:
+            name: Name of the observer.
+            observer: Observer that implements all callback classes.
+        """
+        if isinstance(observer, SocketManagerCallbacks):
+            self.callbacks.add_observer(name, observer)
+
+    def unregister_callback_observer(self, name, observer):
+        """Remove an observer for all callbacks.
+
+        Args:
+            name: Name of the observer.
+            observer: Observer that implements all callback classes.
+        """
+        if isinstance(observer, SocketManagerCallbacks):
+            self.callbacks.remove_observer(name, observer)
 
     def wait_for_incoming_socket_ready(self, socket_id):
         """Waits for incoming socket ready.
