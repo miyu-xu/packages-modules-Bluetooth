@@ -178,7 +178,7 @@ class FlossSocketManagerClient(SocketManagerCallbacks):
         if floss_enums.BtStatus(status) != floss_enums.BtStatus.SUCCESS:
             return
         if socket_id in self.listening_sockets:
-            logging.warn('The socket_id: %s, is already registered', socket_id)
+            logging.warning('The socket_id: %s, is already registered', socket_id)
         else:
             self.listening_sockets[socket_id] = (socket, [])
 
@@ -189,30 +189,12 @@ class FlossSocketManagerClient(SocketManagerCallbacks):
         if listener_id in self.listening_sockets:
             self.listening_sockets.pop(listener_id)
         else:
-            logging.warn('The socket_id: %s, is not registered yet', listener_id)
+            logging.warning('The socket_id: %s, is not registered yet', listener_id)
 
     @utils.glib_callback()
     def on_handle_incoming_connection(self, listener_id, connection, *, dbus_unix_fd_list=None):
         """Handles incoming socket connection callback."""
         logging.debug('on_handle_incoming_connection: listener_id: %s, connection: %s', listener_id, connection)
-        optional_fd = connection['fd']
-        if not optional_fd:
-            return
-
-        if not dbus_unix_fd_list or dbus_unix_fd_list.get_length() < 1:
-            logging.error('on_handle_incoming_connection: Empty fd list')
-            return
-
-        fd_handle = optional_fd['optional_value']
-        if fd_handle > dbus_unix_fd_list.get_length():
-            logging.error('on_handle_incoming_connection: Invalid fd handle')
-            return
-
-        fd = dbus_unix_fd_list.get(fd_handle)
-        fd_dup = os.dup(fd)
-        logging.debug('on_handle_incoming_connection: Got fd %s, dup to %s', fd, fd_dup)
-
-        self.listening_sockets[listener_id][1].append((connection, fd_dup))
 
     @utils.glib_callback()
     def on_outgoing_connection_result(self, connecting_id, result, socket, *, dbus_unix_fd_list=None):
@@ -220,35 +202,57 @@ class FlossSocketManagerClient(SocketManagerCallbacks):
         logging.debug('on_outgoing_connection_result: connecting_id: %s, result: %s, socket: %s', connecting_id, result,
                       socket)
 
-        self.connecting_sockets[connecting_id] = (result, socket, None)
-
-        if not socket:
-            return
-
-        optional_fd = socket['optional_value']['fd']
-        if not optional_fd:
-            return
-
-        if not dbus_unix_fd_list or dbus_unix_fd_list.get_length() < 1:
-            logging.error('on_outgoing_connection_result: Empty fd list')
-            return
-
-        fd_handle = optional_fd['optional_value']
-        if fd_handle > dbus_unix_fd_list.get_length():
-            logging.error('on_outgoing_connection_result: Invalid fd handle')
-            return
-
-        fd = dbus_unix_fd_list.get(fd_handle)
-        fd_dup = os.dup(fd)
-        logging.debug('on_outgoing_connection_result: Got fd %s, dup to %s', fd, fd_dup)
-
-        self.connecting_sockets[connecting_id] = (result, socket, fd_dup)
-
-    def _make_dbus_device(self, address, name):
+    def make_dbus_device(self, address, name):
         return {'address': GLib.Variant('s', address), 'name': GLib.Variant('s', name)}
 
     def _make_dbus_timeout(self, timeout):
-        return utils.dbus_optional_value('i', timeout)
+        return utils.dbus_optional_value('u', timeout)
+
+    def get_listening_socket_connections(self, listener_id):
+        """
+        Gets the list of (connection, fd_dup) tuples for a listener_id.
+
+        Args:
+            listener_id: Socket id.
+
+        Returns:
+            List of tuple (connections, fd_dup) if found, Empty list otherwise.
+        """
+        return self.listening_sockets.get(listener_id, (None, []))[1]
+
+    def set_listening_socket_connection(self, listener_id, socket_info):
+        """
+        Appends socket information (connection, fd_dup) tuple to the list for a listener_id.
+
+        Args:
+            listener_id: Socket id.
+            socket_info: Socket information as (connection, fd_dup).
+        """
+        if listener_id not in self.listening_sockets:
+            self.listening_sockets[listener_id] = (None, [])
+        self.listening_sockets[listener_id][1].append(socket_info)
+
+    def get_connecting_socket_info(self, connecting_id):
+        """
+        Gets the socket information (result, socket, fd_dup) for a connecting_id.
+
+        Args:
+            connecting_id: Socket id.
+
+        Returns:
+            Socket information as (result, socket, fd_dup) if found, None otherwise.
+        """
+        return self.connecting_sockets.get(connecting_id, None)
+
+    def set_connecting_socket_info(self, connecting_id, socket_info):
+        """
+        Sets the socket information (result, socket, fd_dup) for a connecting_id.
+
+        Args:
+            connecting_id: Socket id.
+            socket_info: Socket information as (result, socket, fd_dup).
+        """
+        self.connecting_sockets[connecting_id] = socket_info
 
     @utils.glib_call(False)
     def has_proxy(self):
@@ -279,6 +283,26 @@ class FlossSocketManagerClient(SocketManagerCallbacks):
         # Register published callbacks with adapter daemon
         self.callback_id = self.proxy().RegisterCallback(objpath)
         return True
+
+    def register_callback_observer(self, name, observer):
+        """Add an observer for all callbacks.
+
+        Args:
+            name: Name of the observer.
+            observer: Observer that implements all callback classes.
+        """
+        if isinstance(observer, SocketManagerCallbacks):
+            self.callbacks.add_observer(name, observer)
+
+    def unregister_callback_observer(self, name, observer):
+        """Remove an observer for all callbacks.
+
+        Args:
+            name: Name of the observer.
+            observer: Observer that implements all callback classes.
+        """
+        if isinstance(observer, SocketManagerCallbacks):
+            self.callbacks.remove_observer(name, observer)
 
     def wait_for_incoming_socket_ready(self, socket_id):
         """Waits for incoming socket ready.
