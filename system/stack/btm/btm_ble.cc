@@ -201,8 +201,8 @@ void BTM_BleSetPhy(const RawAddress& bd_addr, uint8_t tx_phys, uint8_t rx_phys,
   }
 
   uint8_t all_phys = 0;
-  if (tx_phys == 0) all_phys &= 0x01;
-  if (rx_phys == 0) all_phys &= 0x02;
+  all_phys |= (tx_phys == 0) ? 0x01 : 0;
+  all_phys |= (rx_phys == 0) ? 0x02 : 0;
 
   uint16_t handle = BTM_GetHCIConnHandle(bd_addr, BT_TRANSPORT_LE);
 
