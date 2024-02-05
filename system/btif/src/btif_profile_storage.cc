@@ -127,6 +127,7 @@ bt_status_t btif_storage_add_hid_device_info(
 bt_status_t btif_storage_load_bonded_hid_info(void) {
   for (const auto& bd_addr : btif_config_get_paired_devices()) {
     auto name = bd_addr.ToString();
+    tTypedAddressTransport dev_addr;
 
     LOG_VERBOSE("Remote device:%s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
 
@@ -179,8 +180,12 @@ bt_status_t btif_storage_load_bonded_hid_info(void) {
     }
 
     // add extracted information to BTA HH
-    if (btif_hh_add_added_dev(bd_addr, attr_mask)) {
-      BTA_HhAddDev(bd_addr, attr_mask, sub_class, app_id, dscp_info);
+    dev_addr.addrt.bda = bd_addr;
+    //TBD
+    //dev_addr.addrt.type = ?;
+    //dev_addr.transport = ?;
+    if (btif_hh_add_added_dev(dev_addr, attr_mask)) {
+      BTA_HhAddDev(dev_addr, attr_mask, sub_class, app_id, dscp_info);
     }
   }
 

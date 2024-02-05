@@ -275,7 +275,7 @@ static void uhid_fd_close(btif_hh_device_t* p_dev) {
     ev.type = UHID_DESTROY;
     uhid_write(p_dev->fd, &ev);
     LOG_DEBUG("Closing fd=%d, addr:%s", p_dev->fd,
-              ADDRESS_TO_LOGGABLE_CSTR(p_dev->bd_addr));
+              ADDRESS_TO_LOGGABLE_CSTR(p_dev->dev_addr));
     close(p_dev->fd);
     p_dev->fd = -1;
   }
@@ -362,7 +362,7 @@ static void* btif_hh_poll_event_thread(void* arg) {
 
   /* Todo: Disconnect if loop exited due to a failure */
   LOG_INFO("Polling thread stopped for device %s",
-           ADDRESS_TO_LOGGABLE_CSTR(p_dev->bd_addr));
+           ADDRESS_TO_LOGGABLE_CSTR(p_dev->dev_addr));
   p_dev->hh_poll_thread_id = -1;
   p_dev->hh_keep_polling = 0;
   uhid_fd_close(p_dev);
@@ -412,7 +412,7 @@ bool bta_hh_co_open(uint8_t dev_handle, uint8_t sub_class,
       LOG_INFO(
           "Found an existing device with the same handle dev_status=%d, "
           "address=%s, attr_mask=0x%04x, sub_class=0x%02x, app_id=%d",
-          p_dev->dev_status, ADDRESS_TO_LOGGABLE_CSTR(p_dev->bd_addr),
+          p_dev->dev_status, ADDRESS_TO_LOGGABLE_CSTR(p_dev->dev_addr),
           p_dev->attr_mask, p_dev->sub_class, p_dev->app_id);
 
       if (!uhid_fd_open(p_dev)) {
@@ -478,7 +478,7 @@ bool bta_hh_co_open(uint8_t dev_handle, uint8_t sub_class,
  ******************************************************************************/
 void bta_hh_co_close(btif_hh_device_t* p_dev) {
   LOG_INFO("Closing device handle=%d, status=%d, address=%s", p_dev->dev_handle,
-           p_dev->dev_status, ADDRESS_TO_LOGGABLE_CSTR(p_dev->bd_addr));
+           p_dev->dev_status, ADDRESS_TO_LOGGABLE_CSTR(p_dev->dev_addr));
 
   /* Clear the queues */
   fixed_queue_flush(p_dev->get_rpt_id_queue, osi_free);
@@ -590,7 +590,7 @@ void bta_hh_co_send_hid_info(btif_hh_device_t* p_dev, const char* dev_name,
   strlcpy((char*)ev.u.create.name, dev_name, sizeof(ev.u.create.name));
   // TODO (b/258090765) fix: ToString -> ToColonSepHexString
   snprintf((char*)ev.u.create.uniq, sizeof(ev.u.create.uniq), "%s",
-           p_dev->bd_addr.ToString().c_str());
+           p_dev->dev_addr.addrt.bda.ToString().c_str());
 
   // Write controller address to phys field to correlate the hid device with a
   // specific bluetooth controller.
