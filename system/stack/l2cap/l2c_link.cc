@@ -189,7 +189,6 @@ void l2c_link_sec_comp(const RawAddress* p_bda,
   tL2C_CONN_INFO ci;
   tL2C_LCB* p_lcb;
   tL2C_CCB* p_ccb;
-  tL2C_CCB* p_next_ccb;
 
   LOG_DEBUG("btm_status=%s, BD_ADDR=%s, transport=%s",
             btm_status_text(status).c_str(), ADDRESS_TO_LOGGABLE_CSTR(*p_bda),
@@ -211,29 +210,34 @@ void l2c_link_sec_comp(const RawAddress* p_bda,
     return;
   }
 
+  if (!p_ref_data) {
+    LOG_WARN("Argument p_ref_data is NULL");
+    return;
+  }
+
   /* Match p_ccb with p_ref_data returned by sec manager */
-  for (p_ccb = p_lcb->ccb_queue.p_first_ccb; p_ccb; p_ccb = p_next_ccb) {
-    p_next_ccb = p_ccb->p_next_ccb;
+  p_ccb = (tL2C_CCB*)p_ref_data;
 
-    if (p_ccb == p_ref_data) {
-      switch (status) {
-        case BTM_SUCCESS:
-          l2c_csm_execute(p_ccb, L2CEVT_SEC_COMP, &ci);
-          break;
+  if (p_lcb == p_ccb->p_lcb) {
+    switch (status) {
+      case BTM_SUCCESS:
+        l2c_csm_execute(p_ccb, L2CEVT_SEC_COMP, &ci);
+        break;
 
-        case BTM_DELAY_CHECK:
-          /* start a timer - encryption change not received before L2CAP connect
-           * req */
-          alarm_set_on_mloop(p_ccb->l2c_ccb_timer,
+      case BTM_DELAY_CHECK:
+        /* start a timer - encryption change not received before L2CAP connect
+         * req */
+        alarm_set_on_mloop(p_ccb->l2c_ccb_timer,
                              L2CAP_DELAY_CHECK_SM4_TIMEOUT_MS,
                              l2c_ccb_timer_timeout, p_ccb);
-          return;
+        return;
 
-        default:
-          l2c_csm_execute(p_ccb, L2CEVT_SEC_COMP_NEG, &ci);
-          break;
-      }
+      default:
+        l2c_csm_execute(p_ccb, L2CEVT_SEC_COMP_NEG, &ci);
+        break;
     }
+  } else {
+    LOG_WARN("p_ref_data doesn't match with sec manager record");
   }
 }
 
