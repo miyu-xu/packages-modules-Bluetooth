@@ -77,6 +77,7 @@ package android.bluetooth {
   }
 
   public final class BluetoothA2dpSink implements android.bluetooth.BluetoothProfile {
+    method @FlaggedApi("com.android.bluetooth.flags.disconnect_api") @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public boolean disconnect(@NonNull android.bluetooth.BluetoothDevice);
     method public void finalize();
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public java.util.List<android.bluetooth.BluetoothDevice> getConnectedDevices();
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int getConnectionPolicy(@NonNull android.bluetooth.BluetoothDevice);
@@ -215,6 +216,7 @@ package android.bluetooth {
   }
 
   public final class BluetoothClass implements android.os.Parcelable {
+    method @FlaggedApi("com.android.bluetooth.flags.get_class_of_device") public int getClassOfDevice();
     field public static final int PROFILE_A2DP_SINK = 6; // 0x6
     field public static final int PROFILE_NAP = 5; // 0x5
     field public static final int PROFILE_OPP = 2; // 0x2
@@ -455,16 +457,26 @@ package android.bluetooth {
 
   public final class BluetoothHeadsetClient implements java.lang.AutoCloseable android.bluetooth.BluetoothProfile {
     method public void close();
+    method @FlaggedApi("com.android.bluetooth.flags.disconnect_api") @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public boolean disconnect(@NonNull android.bluetooth.BluetoothDevice);
     method protected void finalize();
+    method @FlaggedApi("com.android.bluetooth.flags.hfp_client_system_api") @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public int getAudioState(@Nullable android.bluetooth.BluetoothDevice);
     method @NonNull @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public java.util.List<android.bluetooth.BluetoothDevice> getConnectedDevices();
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int getConnectionPolicy(@NonNull android.bluetooth.BluetoothDevice);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int getConnectionState(@NonNull android.bluetooth.BluetoothDevice);
+    method @FlaggedApi("com.android.bluetooth.flags.hfp_client_system_api") @Nullable @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public android.os.Bundle getCurrentAgFeatures(@Nullable android.bluetooth.BluetoothDevice);
+    method @FlaggedApi("com.android.bluetooth.flags.hfp_client_system_api") @Nullable @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public java.util.List<android.bluetooth.BluetoothHeadsetClientCall> getCurrentCalls(@Nullable android.bluetooth.BluetoothDevice);
     method @NonNull @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public java.util.List<android.bluetooth.BluetoothDevice> getDevicesMatchingConnectionStates(@NonNull int[]);
     method @Nullable @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public android.bluetooth.BluetoothHeadsetClient.NetworkServiceState getNetworkServiceState(@NonNull android.bluetooth.BluetoothDevice);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean setConnectionPolicy(@NonNull android.bluetooth.BluetoothDevice, int);
+    method @FlaggedApi("com.android.bluetooth.flags.hfp_client_system_api") @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public boolean startVoiceRecognition(@NonNull android.bluetooth.BluetoothDevice);
+    method @FlaggedApi("com.android.bluetooth.flags.hfp_client_system_api") @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public boolean stopVoiceRecognition(@Nullable android.bluetooth.BluetoothDevice);
+    field @FlaggedApi("com.android.bluetooth.flags.hfp_client_system_api") @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public static final String ACTION_AG_EVENT = "android.bluetooth.headsetclient.profile.action.AG_EVENT";
     field @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public static final String ACTION_CONNECTION_STATE_CHANGED = "android.bluetooth.headsetclient.profile.action.CONNECTION_STATE_CHANGED";
     field @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public static final String ACTION_NETWORK_SERVICE_STATE_CHANGED = "android.bluetooth.headsetclient.profile.action.NETWORK_SERVICE_STATE_CHANGED";
+    field @FlaggedApi("com.android.bluetooth.flags.hfp_client_system_api") public static final String EXTRA_AG_FEATURE_VOICE_RECOGNITION = "android.bluetooth.headsetclient.extra.EXTRA_AG_FEATURE_VOICE_RECOGNITION";
     field public static final String EXTRA_NETWORK_SERVICE_STATE = "android.bluetooth.headsetclient.extra.EXTRA_NETWORK_SERVICE_STATE";
+    field @FlaggedApi("com.android.bluetooth.flags.hfp_client_system_api") public static final String EXTRA_VOICE_RECOGNITION = "android.bluetooth.headsetclient.extra.VOICE_RECOGNITION";
+    field @FlaggedApi("com.android.bluetooth.flags.hfp_client_system_api") public static final int STATE_AUDIO_CONNECTED = 2; // 0x2
   }
 
   public static final class BluetoothHeadsetClient.NetworkServiceState implements android.os.Parcelable {
@@ -476,6 +488,14 @@ package android.bluetooth {
     method public boolean isServiceAvailable();
     method public void writeToParcel(@NonNull android.os.Parcel, int);
     field @NonNull public static final android.os.Parcelable.Creator<android.bluetooth.BluetoothHeadsetClient.NetworkServiceState> CREATOR;
+  }
+
+  @FlaggedApi("com.android.bluetooth.flags.hfp_client_call_system_api") public final class BluetoothHeadsetClientCall implements android.os.Parcelable {
+    method public int describeContents();
+    method public int getState();
+    method public void writeToParcel(@NonNull android.os.Parcel, int);
+    field public static final int CALL_STATE_TERMINATED = 7; // 0x7
+    field @NonNull public static final android.os.Parcelable.Creator<android.bluetooth.BluetoothHeadsetClientCall> CREATOR;
   }
 
   public final class BluetoothHearingAid implements android.bluetooth.BluetoothProfile {
@@ -855,6 +875,7 @@ package android.bluetooth {
 
   public final class BluetoothMapClient implements java.lang.AutoCloseable android.bluetooth.BluetoothProfile {
     method public void close();
+    method @FlaggedApi("com.android.bluetooth.flags.disconnect_api") @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean disconnect(@NonNull android.bluetooth.BluetoothDevice);
     method protected void finalize();
     method @NonNull @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public java.util.List<android.bluetooth.BluetoothDevice> getConnectedDevices();
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int getConnectionPolicy(@NonNull android.bluetooth.BluetoothDevice);
@@ -896,6 +917,7 @@ package android.bluetooth {
 
   public final class BluetoothPbapClient implements java.lang.AutoCloseable android.bluetooth.BluetoothProfile {
     method public void close();
+    method @FlaggedApi("com.android.bluetooth.flags.disconnect_api") @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean disconnect(@NonNull android.bluetooth.BluetoothDevice);
     method protected void finalize();
     method @NonNull @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public java.util.List<android.bluetooth.BluetoothDevice> getConnectedDevices();
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int getConnectionPolicy(@NonNull android.bluetooth.BluetoothDevice);

@@ -23,6 +23,7 @@ import static android.bluetooth.BluetoothProfile.CONNECTION_POLICY_FORBIDDEN;
 import static android.bluetooth.BluetoothProfile.STATE_DISCONNECTED;
 import static android.bluetooth.BluetoothUtils.isValidDevice;
 
+import android.annotation.FlaggedApi;
 import android.annotation.NonNull;
 import android.annotation.RequiresNoPermission;
 import android.annotation.RequiresPermission;
@@ -37,6 +38,8 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.CloseGuard;
 import android.util.Log;
+
+import com.android.bluetooth.flags.Flags;
 
 import java.util.Collections;
 import java.util.List;
@@ -200,9 +203,11 @@ public final class BluetoothPbapClient implements BluetoothProfile, AutoCloseabl
      * @return false on error, true otherwise
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
-    public boolean disconnect(BluetoothDevice device) {
+    @FlaggedApi(Flags.FLAG_DISCONNECT_API)
+    public boolean disconnect(@NonNull BluetoothDevice device) {
         if (DBG) {
             log("disconnect(" + device + ")" + new Exception());
         }
