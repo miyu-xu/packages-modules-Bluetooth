@@ -82,21 +82,21 @@ typedef struct {
 
 typedef struct {
   BT_HDR_RIGID hdr;
-  RawAddress bd_addr;
+  tTypedAddressTransport dev_addr;
   tBTA_HH_PROTO_MODE mode;
 } tBTA_HH_API_CONN;
 
 /* internal event data from BTE HID callback */
 typedef struct {
   BT_HDR_RIGID hdr;
-  RawAddress addr;
+  tTypedAddressTransport dev_addr;
   uint32_t data;
   BT_HDR* p_data;
 } tBTA_HH_CBACK_DATA;
 
 typedef struct {
   BT_HDR_RIGID hdr;
-  RawAddress bda;
+  tTypedAddressTransport dev_addr;
   uint16_t attr_mask;
   uint16_t sub_event;
   uint8_t sub_class;
@@ -181,7 +181,7 @@ typedef struct {
 /* device control block */
 typedef struct {
   tBTA_HH_DEV_DSCP_INFO dscp_info; /* report descriptor and DI information */
-  RawAddress addr;                 /* BD-Addr of the HID device */
+  tTypedAddressTransport addr;     /* BD-Addr of the HID device */
   uint16_t attr_mask;              /* attribute mask */
   uint16_t w4_evt;                 /* W4_handshake event name */
   uint8_t index;                   /* index number referenced to handle index */
