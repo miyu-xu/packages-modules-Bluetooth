@@ -33,6 +33,24 @@
       "message": "Q) No flag check is needed here?",
       "revId": "587a01fa928f622870d82e6a4e77d935ee93ba3b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab587f8c_2be5b007",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppNotification.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-02-05T09:23:13Z",
+      "side": 1,
+      "message": "Oops, forgot to add flag check. Thanks! Done.",
+      "parentUuid": "2e5ca59e_969624ac",
+      "revId": "587a01fa928f622870d82e6a4e77d935ee93ba3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
