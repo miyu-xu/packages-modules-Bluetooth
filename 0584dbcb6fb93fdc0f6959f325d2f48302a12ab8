@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2d4e0b5_ffedf4aa",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2024-02-05T05:21:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80618ba3_6ee4a9c4",
+      "range": {
+        "startLine": 333,
+        "startChar": 16,
+        "endLine": 333,
+        "endChar": 31
+      },
+      "revId": "0584dbcb6fb93fdc0f6959f325d2f48302a12ab8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9309f20b_5e1fe0b0",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-02-02T22:22:34Z",
       "side": 1,
       "message": "Use `isEmpty()` instead\n```suggestion\n            if (!activatableDevices.isEmpty()) {\n```",
+      "revId": "0584dbcb6fb93fdc0f6959f325d2f48302a12ab8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89601802_bfa11a8c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2024-02-05T05:21:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9309f20b_5e1fe0b0",
       "revId": "0584dbcb6fb93fdc0f6959f325d2f48302a12ab8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6386d926_e28bacfb",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2024-02-05T05:21:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e39b472a_ae642eaa",
+      "range": {
+        "startLine": 369,
+        "startChar": 12,
+        "endLine": 377,
+        "endChar": 93
+      },
+      "revId": "0584dbcb6fb93fdc0f6959f325d2f48302a12ab8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f06d27c_6873bb08",
@@ -77,6 +143,30 @@
       "writtenOn": "2024-02-02T22:22:34Z",
       "side": 1,
       "message": "typo",
+      "range": {
+        "startLine": 253,
+        "startChar": 29,
+        "endLine": 253,
+        "endChar": 30
+      },
+      "revId": "0584dbcb6fb93fdc0f6959f325d2f48302a12ab8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa40bcc6_41ccba8e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AudioRoutingManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2024-02-05T05:21:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f06d27c_6873bb08",
       "range": {
         "startLine": 253,
         "startChar": 29,
