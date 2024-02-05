@@ -5624,6 +5624,8 @@ TEST_F(UnicastTest, TwoEarbudsStreaming) {
   // Report working CSIS
   ON_CALL(mock_csis_client_module_, IsCsisClientRunning())
       .WillByDefault(Return(true));
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+      .WillByDefault(Invoke([&](int group_id) { return group_size; }));
 
   // First earbud
   const RawAddress test_address0 = GetTestAddress(0);
@@ -5642,9 +5644,6 @@ TEST_F(UnicastTest, TwoEarbudsStreaming) {
                     codec_spec_conf::kLeAudioLocationFrontRight,
                     codec_spec_conf::kLeAudioLocationFrontRight, group_size,
                     group_id, 2 /* rank*/, true /*connect_through_csis*/);
-
-  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
-      .WillByDefault(Invoke([&](int group_id) { return 2; }));
 
   // Start streaming
   EXPECT_CALL(*mock_le_audio_source_hal_client_, Start(_, _, _)).Times(1);
@@ -5732,6 +5731,9 @@ TEST_F(UnicastTest, StreamingVxAospSampleSound) {
   ON_CALL(mock_csis_client_module_, IsCsisClientRunning())
       .WillByDefault(Return(true));
 
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+      .WillByDefault(Invoke([&](int group_id) { return group_size; }));
+
   // First earbud
   const RawAddress test_address0 = GetTestAddress(0);
   EXPECT_CALL(mock_btif_storage_, AddLeaudioAutoconnect(test_address0, true))
@@ -5749,9 +5751,6 @@ TEST_F(UnicastTest, StreamingVxAospSampleSound) {
                     codec_spec_conf::kLeAudioLocationFrontRight,
                     codec_spec_conf::kLeAudioLocationFrontRight, group_size,
                     group_id, 2 /* rank*/, true /*connect_through_csis*/);
-
-  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
-      .WillByDefault(Invoke([&](int group_id) { return 2; }));
 
   // Start streaming
   EXPECT_CALL(*mock_le_audio_source_hal_client_, Start(_, _, _)).Times(1);
@@ -5792,6 +5791,9 @@ TEST_F(UnicastTest, UpdateActiveAudioConfigForLocalSinkSource) {
   ON_CALL(mock_csis_client_module_, IsCsisClientRunning())
       .WillByDefault(Return(true));
 
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+      .WillByDefault(Invoke([&](int group_id) { return group_size; }));
+
   // First earbud
   const RawAddress test_address0 = GetTestAddress(0);
   EXPECT_CALL(mock_btif_storage_, AddLeaudioAutoconnect(test_address0, true))
@@ -5809,9 +5811,6 @@ TEST_F(UnicastTest, UpdateActiveAudioConfigForLocalSinkSource) {
                     codec_spec_conf::kLeAudioLocationFrontRight,
                     codec_spec_conf::kLeAudioLocationFrontRight, group_size,
                     group_id, 2 /* rank*/, true /*connect_through_csis*/);
-
-  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
-      .WillByDefault(Invoke([&](int group_id) { return 2; }));
 
   // Set group as active
   EXPECT_CALL(*mock_le_audio_sink_hal_client_, Start(_, _, _)).Times(1);
@@ -5868,6 +5867,9 @@ TEST_F(UnicastTest, UpdateActiveAudioConfigForLocalSource) {
   ON_CALL(mock_csis_client_module_, IsCsisClientRunning())
       .WillByDefault(Return(true));
 
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+      .WillByDefault(Invoke([&](int group_id) { return group_size; }));
+
   // First earbud
   const RawAddress test_address0 = GetTestAddress(0);
   EXPECT_CALL(mock_btif_storage_, AddLeaudioAutoconnect(test_address0, true))
@@ -5885,9 +5887,6 @@ TEST_F(UnicastTest, UpdateActiveAudioConfigForLocalSource) {
                     codec_spec_conf::kLeAudioLocationFrontRight,
                     codec_spec_conf::kLeAudioLocationFrontRight, group_size,
                     group_id, 2 /* rank*/, true /*connect_through_csis*/);
-
-  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
-      .WillByDefault(Invoke([&](int group_id) { return 2; }));
 
   // Set group as active
   EXPECT_CALL(*mock_le_audio_source_hal_client_, Start(_, _, _)).Times(1);
@@ -5941,6 +5940,9 @@ TEST_F(UnicastTest, TwoEarbudsStreamingContextSwitchNoReconfigure) {
   ON_CALL(mock_csis_client_module_, IsCsisClientRunning())
       .WillByDefault(Return(true));
 
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+      .WillByDefault(Invoke([&](int group_id) { return group_size; }));
+
   // First earbud
   const RawAddress test_address0 = GetTestAddress(0);
   EXPECT_CALL(mock_btif_storage_, AddLeaudioAutoconnect(test_address0, true))
@@ -5958,9 +5960,6 @@ TEST_F(UnicastTest, TwoEarbudsStreamingContextSwitchNoReconfigure) {
                     codec_spec_conf::kLeAudioLocationFrontRight,
                     codec_spec_conf::kLeAudioLocationFrontRight, group_size,
                     group_id, 2 /* rank*/, true /*connect_through_csis*/);
-
-  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
-      .WillByDefault(Invoke([&](int group_id) { return 2; }));
 
   // Start streaming
   EXPECT_CALL(*mock_le_audio_source_hal_client_, Start(_, _, _)).Times(1);
@@ -6044,6 +6043,9 @@ TEST_F(UnicastTest, TwoEarbudsStreamingContextSwitchReconfigure) {
   ON_CALL(mock_csis_client_module_, IsCsisClientRunning())
       .WillByDefault(Return(true));
 
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+      .WillByDefault(Invoke([&](int group_id) { return group_size; }));
+
   // First earbud
   const RawAddress test_address0 = GetTestAddress(0);
   EXPECT_CALL(mock_btif_storage_, AddLeaudioAutoconnect(test_address0, true))
@@ -6064,9 +6066,6 @@ TEST_F(UnicastTest, TwoEarbudsStreamingContextSwitchReconfigure) {
 
   constexpr int gmcs_ccid = 1;
   constexpr int gtbs_ccid = 2;
-
-  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
-      .WillByDefault(Invoke([&](int group_id) { return 2; }));
 
   // Start streaming MEDIA
   EXPECT_CALL(*mock_le_audio_source_hal_client_, Start(_, _, _)).Times(1);
@@ -6158,6 +6157,9 @@ TEST_F(UnicastTest, TwoEarbudsVoipStreamingVerifyMetadataUpdate) {
   ON_CALL(mock_csis_client_module_, IsCsisClientRunning())
       .WillByDefault(Return(true));
 
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+      .WillByDefault(Invoke([&](int group_id) { return group_size; }));
+
   // First earbud
   const RawAddress test_address0 = GetTestAddress(0);
   EXPECT_CALL(mock_btif_storage_, AddLeaudioAutoconnect(test_address0, true))
@@ -6178,8 +6180,6 @@ TEST_F(UnicastTest, TwoEarbudsVoipStreamingVerifyMetadataUpdate) {
 
   constexpr int gtbs_ccid = 2;
 
-  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
-      .WillByDefault(Invoke([&](int group_id) { return 2; }));
   LeAudioClient::Get()->SetCcidInformation(gtbs_ccid, 2 /* Phone */);
   LeAudioClient::Get()->GroupSetActive(group_id);
   SyncOnMainLoop();
@@ -6237,6 +6237,9 @@ TEST_F(UnicastTest, TwoReconfigureAndVerifyEnableContextType) {
   ON_CALL(mock_csis_client_module_, IsCsisClientRunning())
       .WillByDefault(Return(true));
 
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+      .WillByDefault(Invoke([&](int group_id) { return group_size; }));
+
   // First earbud
   const RawAddress test_address0 = GetTestAddress(0);
   EXPECT_CALL(mock_btif_storage_, AddLeaudioAutoconnect(test_address0, true))
@@ -6257,9 +6260,6 @@ TEST_F(UnicastTest, TwoReconfigureAndVerifyEnableContextType) {
 
   constexpr int gmcs_ccid = 1;
   constexpr int gtbs_ccid = 2;
-
-  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
-      .WillByDefault(Invoke([&](int group_id) { return 2; }));
 
   // Start streaming MEDIA
   EXPECT_CALL(*mock_le_audio_source_hal_client_, Start(_, _, _)).Times(1);
@@ -6331,6 +6331,9 @@ TEST_F(UnicastTest, TwoEarbuds2ndLateConnect) {
   ON_CALL(mock_csis_client_module_, IsCsisClientRunning())
       .WillByDefault(Return(true));
 
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+      .WillByDefault(Invoke([&](int group_id) { return group_size; }));
+
   const RawAddress test_address0 = GetTestAddress(0);
   const RawAddress test_address1 = GetTestAddress(1);
 
@@ -6345,9 +6348,6 @@ TEST_F(UnicastTest, TwoEarbuds2ndLateConnect) {
   EXPECT_CALL(*mock_le_audio_sink_hal_client_, Start(_, _, _)).Times(1);
   LeAudioClient::Get()->GroupSetActive(group_id);
   SyncOnMainLoop();
-
-  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
-      .WillByDefault(Invoke([&](int group_id) { return 2; }));
 
   StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id);
 
@@ -6393,6 +6393,9 @@ TEST_F(UnicastTest,
   ON_CALL(mock_csis_client_module_, IsCsisClientRunning())
       .WillByDefault(Return(true));
 
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+      .WillByDefault(Invoke([&](int group_id) { return group_size; }));
+
   const RawAddress test_address0 = GetTestAddress(0);
   const RawAddress test_address1 = GetTestAddress(1);
 
@@ -6413,9 +6416,6 @@ TEST_F(UnicastTest,
   EXPECT_CALL(*mock_le_audio_sink_hal_client_, Start(_, _, _)).Times(1);
   LeAudioClient::Get()->GroupSetActive(group_id);
   SyncOnMainLoop();
-
-  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
-      .WillByDefault(Invoke([&](int group_id) { return 2; }));
 
   StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id);
 
@@ -6494,6 +6494,9 @@ TEST_F(UnicastTest, TwoEarbuds2ndReleaseAseRemoveAvailableContextAndBack) {
   ON_CALL(mock_csis_client_module_, IsCsisClientRunning())
       .WillByDefault(Return(true));
 
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+      .WillByDefault(Invoke([&](int group_id) { return group_size; }));
+
   const RawAddress test_address0 = GetTestAddress(0);
   const RawAddress test_address1 = GetTestAddress(1);
 
@@ -6514,9 +6517,6 @@ TEST_F(UnicastTest, TwoEarbuds2ndReleaseAseRemoveAvailableContextAndBack) {
   EXPECT_CALL(*mock_le_audio_sink_hal_client_, Start(_, _, _)).Times(1);
   LeAudioClient::Get()->GroupSetActive(group_id);
   SyncOnMainLoop();
-
-  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
-      .WillByDefault(Invoke([&](int group_id) { return 2; }));
 
   StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id);
 
@@ -6588,6 +6588,9 @@ TEST_F(UnicastTest, StartStream_AvailableContextTypeNotifiedLater) {
   ON_CALL(mock_csis_client_module_, IsCsisClientRunning())
       .WillByDefault(Return(true));
 
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+      .WillByDefault(Invoke([&](int group_id) { return group_size; }));
+
   const RawAddress test_address0 = GetTestAddress(0);
   const RawAddress test_address1 = GetTestAddress(1);
 
@@ -6616,9 +6619,6 @@ TEST_F(UnicastTest, StartStream_AvailableContextTypeNotifiedLater) {
   EXPECT_CALL(*mock_le_audio_sink_hal_client_, Start(_, _, _)).Times(1);
   LeAudioClient::Get()->GroupSetActive(group_id);
   SyncOnMainLoop();
-
-  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
-      .WillByDefault(Invoke([&](int group_id) { return 2; }));
 
   BidirectionalPair<AudioContexts> contexts = {
       .sink = types::AudioContexts(types::LeAudioContextType::MEDIA),
@@ -6656,6 +6656,9 @@ TEST_F(UnicastTest, ModifyContextTypeOnDeviceA_WhileDeviceB_IsDisconnected) {
   ON_CALL(mock_csis_client_module_, IsCsisClientRunning())
       .WillByDefault(Return(true));
 
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+      .WillByDefault(Invoke([&](int group_id) { return group_size; }));
+
   const RawAddress test_address0 = GetTestAddress(0);
   const RawAddress test_address1 = GetTestAddress(1);
 
@@ -6676,9 +6679,6 @@ TEST_F(UnicastTest, ModifyContextTypeOnDeviceA_WhileDeviceB_IsDisconnected) {
   EXPECT_CALL(*mock_le_audio_sink_hal_client_, Start(_, _, _)).Times(1);
   LeAudioClient::Get()->GroupSetActive(group_id);
   SyncOnMainLoop();
-
-  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
-      .WillByDefault(Invoke([&](int group_id) { return 2; }));
 
   BidirectionalPair<AudioContexts> contexts = {
       .sink = types::AudioContexts(types::LeAudioContextType::MEDIA),
@@ -6754,6 +6754,9 @@ TEST_F(UnicastTest, StartStreamToUnsupportedContextTypeUsingUnspecified) {
   ON_CALL(mock_csis_client_module_, IsCsisClientRunning())
       .WillByDefault(Return(true));
 
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+      .WillByDefault(Invoke([&](int group_id) { return group_size; }));
+
   const RawAddress test_address0 = GetTestAddress(0);
   const RawAddress test_address1 = GetTestAddress(1);
 
@@ -6790,9 +6793,6 @@ TEST_F(UnicastTest, StartStreamToUnsupportedContextTypeUsingUnspecified) {
   EXPECT_CALL(*mock_le_audio_sink_hal_client_, Start(_, _, _)).Times(1);
   LeAudioClient::Get()->GroupSetActive(group_id);
   SyncOnMainLoop();
-
-  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
-      .WillByDefault(Invoke([&](int group_id) { return 2; }));
 
   BidirectionalPair<AudioContexts> contexts = {
       .sink = types::AudioContexts(types::LeAudioContextType::UNSPECIFIED),
@@ -6832,6 +6832,9 @@ TEST_F(UnicastTest,
   // Report working CSIS
   ON_CALL(mock_csis_client_module_, IsCsisClientRunning())
       .WillByDefault(Return(true));
+
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+      .WillByDefault(Invoke([&](int group_id) { return group_size; }));
 
   const RawAddress test_address0 = GetTestAddress(0);
   const RawAddress test_address1 = GetTestAddress(1);
@@ -6877,9 +6880,6 @@ TEST_F(UnicastTest,
   LeAudioClient::Get()->GroupSetActive(group_id);
   SyncOnMainLoop();
 
-  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
-      .WillByDefault(Invoke([&](int group_id) { return 2; }));
-
   BidirectionalPair<AudioContexts> contexts = {
       .sink = types::AudioContexts(types::LeAudioContextType::UNSPECIFIED),
       .source = types::AudioContexts()};
@@ -6921,6 +6921,9 @@ TEST_F(UnicastTest, StartStreamToSupportedContextTypeThenMixUnavailable) {
   ON_CALL(mock_csis_client_module_, IsCsisClientRunning())
       .WillByDefault(Return(true));
 
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+      .WillByDefault(Invoke([&](int group_id) { return group_size; }));
+
   const RawAddress test_address0 = GetTestAddress(0);
   const RawAddress test_address1 = GetTestAddress(1);
 
@@ -6941,9 +6944,6 @@ TEST_F(UnicastTest, StartStreamToSupportedContextTypeThenMixUnavailable) {
   EXPECT_CALL(*mock_le_audio_sink_hal_client_, Start(_, _, _)).Times(1);
   LeAudioClient::Get()->GroupSetActive(group_id);
   SyncOnMainLoop();
-
-  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
-      .WillByDefault(Invoke([&](int group_id) { return 2; }));
 
   BidirectionalPair<AudioContexts> contexts = {
       .sink = types::AudioContexts(types::LeAudioContextType::MEDIA),
@@ -7060,6 +7060,9 @@ TEST_F(UnicastTest, TwoEarbuds2ndDisconnected) {
   ON_CALL(mock_csis_client_module_, IsCsisClientRunning())
       .WillByDefault(Return(true));
 
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+      .WillByDefault(Invoke([&](int group_id) { return group_size; }));
+
   // First earbud
   const RawAddress test_address0 = GetTestAddress(0);
   ConnectCsisDevice(test_address0, 1 /*conn_id*/,
@@ -7073,9 +7076,6 @@ TEST_F(UnicastTest, TwoEarbuds2ndDisconnected) {
                     codec_spec_conf::kLeAudioLocationFrontRight,
                     codec_spec_conf::kLeAudioLocationFrontRight, group_size,
                     group_id, 2 /* rank*/, true /*connect_through_csis*/);
-
-  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
-      .WillByDefault(Invoke([&](int group_id) { return 2; }));
 
   // Audio sessions are started only when device gets active
   EXPECT_CALL(*mock_le_audio_source_hal_client_, Start(_, _, _)).Times(1);
@@ -7152,6 +7152,9 @@ TEST_F(UnicastTest, TwoEarbudsStreamingProfileDisconnect) {
   ON_CALL(mock_csis_client_module_, IsCsisClientRunning())
       .WillByDefault(Return(true));
 
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+      .WillByDefault(Invoke([&](int group_id) { return group_size; }));
+
   // First earbud
   const RawAddress test_address0 = GetTestAddress(0);
   ConnectCsisDevice(test_address0, 1 /*conn_id*/,
@@ -7165,9 +7168,6 @@ TEST_F(UnicastTest, TwoEarbudsStreamingProfileDisconnect) {
                     codec_spec_conf::kLeAudioLocationFrontRight,
                     codec_spec_conf::kLeAudioLocationFrontRight, group_size,
                     group_id, 2 /* rank*/, true /*connect_through_csis*/);
-
-  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
-      .WillByDefault(Invoke([&](int group_id) { return 2; }));
 
   // Audio sessions are started only when device gets active
   EXPECT_CALL(*mock_le_audio_source_hal_client_, Start(_, _, _)).Times(1);
@@ -7218,6 +7218,9 @@ TEST_F(UnicastTest, TwoEarbudsStreamingProfileDisconnectStreamStopTimeout) {
   ON_CALL(mock_csis_client_module_, IsCsisClientRunning())
       .WillByDefault(Return(true));
 
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+      .WillByDefault(Invoke([&](int group_id) { return group_size; }));
+
   // First earbud
   const RawAddress test_address0 = GetTestAddress(0);
   ConnectCsisDevice(test_address0, 1 /*conn_id*/,
@@ -7231,9 +7234,6 @@ TEST_F(UnicastTest, TwoEarbudsStreamingProfileDisconnectStreamStopTimeout) {
                     codec_spec_conf::kLeAudioLocationFrontRight,
                     codec_spec_conf::kLeAudioLocationFrontRight, group_size,
                     group_id, 2 /* rank*/, true /*connect_through_csis*/);
-
-  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
-      .WillByDefault(Invoke([&](int group_id) { return 2; }));
 
   // Audio sessions are started only when device gets active
   EXPECT_CALL(*mock_le_audio_source_hal_client_, Start(_, _, _)).Times(1);
@@ -8458,6 +8458,9 @@ TEST_F(UnicastTest, AddMemberToAllowListWhenOneDeviceConnected) {
   ON_CALL(mock_csis_client_module_, IsCsisClientRunning())
       .WillByDefault(Return(true));
 
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+      .WillByDefault(Invoke([&](int group_id) { return group_size; }));
+
   // First earbud
   const RawAddress test_address0 = GetTestAddress(0);
   EXPECT_CALL(mock_btif_storage_, AddLeaudioAutoconnect(test_address0, true))
@@ -8502,9 +8505,6 @@ TEST_F(UnicastTest, AddMemberToAllowListWhenOneDeviceConnected) {
                     codec_spec_conf::kLeAudioLocationFrontRight, group_size,
                     group_id, 2 /* rank*/, true /*connect_through_csis*/);
 
-  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
-      .WillByDefault(Invoke([&](int group_id) { return 2; }));
-
   Mock::VerifyAndClearExpectations(&mock_gatt_interface_);
 }
 
@@ -8525,6 +8525,9 @@ TEST_F(UnicastTest, ResetToDefaultReconnectionMode) {
   // Report working CSIS
   ON_CALL(mock_csis_client_module_, IsCsisClientRunning())
       .WillByDefault(Return(true));
+
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+      .WillByDefault(Invoke([&](int group_id) { return group_size; }));
 
   // First earbud
   const RawAddress test_address0 = GetTestAddress(0);
@@ -8569,9 +8572,6 @@ TEST_F(UnicastTest, ResetToDefaultReconnectionMode) {
                     codec_spec_conf::kLeAudioLocationFrontRight,
                     codec_spec_conf::kLeAudioLocationFrontRight, group_size,
                     group_id, 2 /* rank*/, true /*connect_through_csis*/);
-
-  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
-      .WillByDefault(Invoke([&](int group_id) { return 2; }));
 
   SyncOnMainLoop();
   Mock::VerifyAndClearExpectations(&mock_gatt_interface_);
@@ -9025,6 +9025,9 @@ TEST_F_WITH_FLAGS(UnicastTestHandoverMode,
   ON_CALL(mock_csis_client_module_, IsCsisClientRunning())
       .WillByDefault(Return(true));
 
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+      .WillByDefault(Invoke([&](int group_id) { return group_size; }));
+
   // First earbud
   const RawAddress test_address0 = GetTestAddress(0);
   EXPECT_CALL(mock_btif_storage_, AddLeaudioAutoconnect(test_address0, true))
@@ -9042,9 +9045,6 @@ TEST_F_WITH_FLAGS(UnicastTestHandoverMode,
                     codec_spec_conf::kLeAudioLocationFrontRight,
                     codec_spec_conf::kLeAudioLocationFrontRight, group_size,
                     group_id, 2 /* rank*/, true /*connect_through_csis*/);
-
-  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
-      .WillByDefault(Invoke([&](int group_id) { return 2; }));
 
   // Start streaming
   EXPECT_CALL(*mock_le_audio_source_hal_client_, Start(_, _, _)).Times(1);
@@ -9198,6 +9198,9 @@ TEST_F_WITH_FLAGS(UnicastTestHandoverMode,
   ON_CALL(mock_csis_client_module_, IsCsisClientRunning())
       .WillByDefault(Return(true));
 
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+      .WillByDefault(Invoke([&](int group_id) { return group_size; }));
+
   // First earbud
   const RawAddress test_address0 = GetTestAddress(0);
   EXPECT_CALL(mock_btif_storage_, AddLeaudioAutoconnect(test_address0, true))
@@ -9215,9 +9218,6 @@ TEST_F_WITH_FLAGS(UnicastTestHandoverMode,
                     codec_spec_conf::kLeAudioLocationFrontRight,
                     codec_spec_conf::kLeAudioLocationFrontRight, group_size,
                     group_id, 2 /* rank*/, true /*connect_through_csis*/);
-
-  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
-      .WillByDefault(Invoke([&](int group_id) { return 2; }));
 
   // Start streaming
   EXPECT_CALL(*mock_le_audio_source_hal_client_, Start(_, _, _)).Times(1);
@@ -9313,6 +9313,9 @@ TEST_F_WITH_FLAGS(UnicastTestHandoverMode,
   ON_CALL(mock_csis_client_module_, IsCsisClientRunning())
       .WillByDefault(Return(true));
 
+  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
+      .WillByDefault(Invoke([&](int group_id) { return group_size; }));
+
   // First earbud
   const RawAddress test_address0 = GetTestAddress(0);
   EXPECT_CALL(mock_btif_storage_, AddLeaudioAutoconnect(test_address0, true))
@@ -9330,9 +9333,6 @@ TEST_F_WITH_FLAGS(UnicastTestHandoverMode,
                     codec_spec_conf::kLeAudioLocationFrontRight,
                     codec_spec_conf::kLeAudioLocationFrontRight, group_size,
                     group_id, 2 /* rank*/, true /*connect_through_csis*/);
-
-  ON_CALL(mock_csis_client_module_, GetDesiredSize(group_id))
-      .WillByDefault(Invoke([&](int group_id) { return 2; }));
 
   // Start streaming
   EXPECT_CALL(*mock_le_audio_source_hal_client_, Start(_, _, _)).Times(1);
