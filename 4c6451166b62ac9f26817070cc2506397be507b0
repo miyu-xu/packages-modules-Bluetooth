@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0d458a8_ca484b56",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-02-05T23:45:55Z",
+      "side": 1,
+      "message": "nit: Add a log if you think it is necessary",
+      "revId": "4c6451166b62ac9f26817070cc2506397be507b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
