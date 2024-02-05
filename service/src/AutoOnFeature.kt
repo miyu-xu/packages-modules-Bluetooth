@@ -52,6 +52,10 @@ public fun setupNewTimer(
 
 public fun cancel(resolver: ContentResolver) {
     Timer.cancel()
+
+    if (isSupported && !isFeatureSupportedForUser(resolver)) {
+        setFeatureEnabledForUserUnchecked(resolver, true)
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -124,4 +128,22 @@ val USER_SETTINGS_KEY = "bluetooth_automatic_turn_on"
  */
 private fun isFeatureEnabledForUser(resolver: ContentResolver): Boolean {
     return Settings.Secure.getInt(resolver, USER_SETTINGS_KEY, 0) == 1
+}
+
+/**
+ * *Do not use outside of this file to avoid async issues*
+ *
+ * @return whether the auto on feature is supported for the user
+ */
+private fun isFeatureSupportedForUser(resolver: ContentResolver): Boolean {
+    return Settings.Secure.getInt(resolver, USER_SETTINGS_KEY, -1) != -1
+}
+
+/**
+ * *Do not use outside of this file to avoid async issues*
+ *
+ * @return whether the auto on feature is enabled for this user
+ */
+private fun setFeatureEnabledForUserUnchecked(resolver: ContentResolver, status: Boolean) {
+    Settings.Secure.putInt(resolver, USER_SETTINGS_KEY, if (status) 1 else 0)
 }
