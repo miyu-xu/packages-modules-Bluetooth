@@ -243,7 +243,8 @@ class LeAudioClientImpl : public LeAudioClient {
         le_audio_sink_hal_client_(nullptr),
         close_vbc_timeout_(alarm_new("LeAudioCloseVbcTimeout")),
         suspend_timeout_(alarm_new("LeAudioSuspendTimeout")),
-        disable_timer_(alarm_new("LeAudioDisableTimer")) {
+        disable_timer_(alarm_new("LeAudioDisableTimer")),
+        lastNotifiedGroupStreamStatus_(GroupStreamStatus::DESTROYED) {
     LeAudioGroupStateMachine::Initialize(state_machine_callbacks_);
     groupStateMachine_ = LeAudioGroupStateMachine::Get();
 
@@ -5415,6 +5416,21 @@ class LeAudioClientImpl : public LeAudioClient {
     stream_setup_start_timestamp_ = 0;
   }
 
+  void notifyGroupStreamStatus(int group_id,
+                               GroupStreamStatus groupStreamStatus) {
+    GroupStreamStatus newGroupStreamStatus = GroupStreamStatus::IDLE;
+    if (groupStreamStatus == GroupStreamStatus::STREAMING) {
+      newGroupStreamStatus = GroupStreamStatus::STREAMING;
+    }
+
+    if (newGroupStreamStatus != lastNotifiedGroupStreamStatus_) {
+      callbacks_->OnGroupStreamStatus(group_id, newGroupStreamStatus);
+      lastNotifiedGroupStreamStatus_ = newGroupStreamStatus;
+    }
+
+    return;
+  }
+
   void OnStateMachineStatusReportCb(int group_id, GroupStreamStatus status) {
     LOG_INFO(
         "status: %d ,  group_id: %d, audio_sender_state %s, "
@@ -5423,6 +5439,7 @@ class LeAudioClientImpl : public LeAudioClient {
         bluetooth::common::ToString(audio_sender_state_).c_str(),
         bluetooth::common::ToString(audio_receiver_state_).c_str());
     LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
+    notifyGroupStreamStatus(group_id, status);
     switch (status) {
       case GroupStreamStatus::STREAMING: {
         ASSERT_LOG(group_id == active_group_id_, "invalid group id %d!=%d",
@@ -5708,6 +5725,8 @@ class LeAudioClientImpl : public LeAudioClient {
   le_audio::CodecInterface* cached_channel_ = nullptr;
 
   base::WeakPtrFactory<LeAudioClientImpl> weak_factory_{this};
+
+  GroupStreamStatus lastNotifiedGroupStreamStatus_;
 
   void ClientAudioInterfaceRelease() {
     if (le_audio_source_hal_client_) {
