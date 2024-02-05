@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c9b6ce6_5c09b7ac",
+        "filename": "system/types/ble_address_with_type.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-05T19:53:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6806c23_29c7c3e3",
+      "range": {
+        "startLine": 158,
+        "startChar": 0,
+        "endLine": 158,
+        "endChar": 2
+      },
+      "revId": "b7d1e4cbf79685f2c5f3e5997f832ee56e0b8874",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8cabe86_c100826a",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-02T18:57:48Z",
       "side": 1,
       "message": "nit: If we\u0027re not planning on using this in a hash, should we remove it to make it harder to accidentally use it in logs.",
+      "range": {
+        "startLine": 176,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 3
+      },
+      "revId": "b7d1e4cbf79685f2c5f3e5997f832ee56e0b8874",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2ca9b4b_3fa61a07",
+        "filename": "system/types/ble_address_with_type.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-05T19:53:49Z",
+      "side": 1,
+      "message": "I would prefer to keep it inline with tBLE_BD_ADDR",
+      "parentUuid": "f8cabe86_c100826a",
       "range": {
         "startLine": 176,
         "startChar": 0,
