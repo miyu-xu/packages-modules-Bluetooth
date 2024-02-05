@@ -178,7 +178,7 @@ class FlossSocketManagerClient(SocketManagerCallbacks):
         if floss_enums.BtStatus(status) != floss_enums.BtStatus.SUCCESS:
             return
         if socket_id in self.listening_sockets:
-            logging.warn('The socket_id: %s, is already registered', socket_id)
+            logging.warning('The socket_id: %s, is already registered', socket_id)
         else:
             self.listening_sockets[socket_id] = (socket, [])
 
@@ -189,7 +189,7 @@ class FlossSocketManagerClient(SocketManagerCallbacks):
         if listener_id in self.listening_sockets:
             self.listening_sockets.pop(listener_id)
         else:
-            logging.warn('The socket_id: %s, is not registered yet', listener_id)
+            logging.warning('The socket_id: %s, is not registered yet', listener_id)
 
     @utils.glib_callback()
     def on_handle_incoming_connection(self, listener_id, connection, *, dbus_unix_fd_list=None):
@@ -244,7 +244,7 @@ class FlossSocketManagerClient(SocketManagerCallbacks):
 
         self.connecting_sockets[connecting_id] = (result, socket, fd_dup)
 
-    def _make_dbus_device(self, address, name):
+    def make_dbus_device(self, address, name):
         return {'address': GLib.Variant('s', address), 'name': GLib.Variant('s', name)}
 
     def _make_dbus_timeout(self, timeout):
@@ -279,6 +279,26 @@ class FlossSocketManagerClient(SocketManagerCallbacks):
         # Register published callbacks with adapter daemon
         self.callback_id = self.proxy().RegisterCallback(objpath)
         return True
+
+    def register_callback_observer(self, name, observer):
+        """Add an observer for all callbacks.
+
+        Args:
+            name: Name of the observer.
+            observer: Observer that implements all callback classes.
+        """
+        if isinstance(observer, SocketManagerCallbacks):
+            self.callbacks.add_observer(name, observer)
+
+    def unregister_callback_observer(self, name, observer):
+        """Remove an observer for all callbacks.
+
+        Args:
+            name: Name of the observer.
+            observer: Observer that implements all callback classes.
+        """
+        if isinstance(observer, SocketManagerCallbacks):
+            self.callbacks.remove_observer(name, observer)
 
     def wait_for_incoming_socket_ready(self, socket_id):
         """Waits for incoming socket ready.
@@ -364,7 +384,7 @@ class FlossSocketManagerClient(SocketManagerCallbacks):
             return None
 
         socket_id = socket_result['id']
-        server_socket, status = self.wait_for_incoming_socket_ready(socket_id)
+        _, status = self.wait_for_incoming_socket_ready(socket_id)
         if status is None:
             return None
 
