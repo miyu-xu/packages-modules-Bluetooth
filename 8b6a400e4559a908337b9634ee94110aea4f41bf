@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3e752aa6_de5d89e7",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-02-05T14:34:53Z",
+      "side": 1,
+      "message": "not fixed yet",
+      "parentUuid": "1586ea69_9eaefefa",
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a136fd7d_3e88d149",
         "filename": "floss/pandora/floss/socket_manager.py",
         "patchSetId": 1
@@ -143,6 +161,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f95c9a25_9654b7c7",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-02-05T14:34:53Z",
+      "side": 1,
+      "message": "Not fixed yet",
+      "parentUuid": "510dcc1c_6eb751d2",
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3caf16f6_d1f9628f",
         "filename": "floss/pandora/floss/socket_manager.py",
         "patchSetId": 1
@@ -172,6 +208,24 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "3caf16f6_d1f9628f",
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b883b50a_3fc8e800",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-02-05T14:34:53Z",
+      "side": 1,
+      "message": "not fixed yet",
+      "parentUuid": "c68c9de6_b7535e7d",
       "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -213,6 +267,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "1edb0715_97b2b606",
+      "range": {
+        "startLine": 275,
+        "startChar": 10,
+        "endLine": 275,
+        "endChar": 18
+      },
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40ed83b6_0b2b526e",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-02-05T14:34:53Z",
+      "side": 1,
+      "message": "not fixed yet",
+      "parentUuid": "bed22199_99e19aab",
       "range": {
         "startLine": 275,
         "startChar": 10,
@@ -272,6 +350,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "135f4cf4_ec5a9a83",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-02-05T14:34:53Z",
+      "side": 1,
+      "message": "not fixed yet",
+      "parentUuid": "b96c1481_6d2a371f",
+      "range": {
+        "startLine": 325,
+        "startChar": 8,
+        "endLine": 325,
+        "endChar": 15
+      },
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "89fe0913_fac418ac",
         "filename": "floss/pandora/floss/socket_manager.py",
         "patchSetId": 1
@@ -307,6 +409,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "89fe0913_fac418ac",
+      "range": {
+        "startLine": 465,
+        "startChar": 12,
+        "endLine": 465,
+        "endChar": 15
+      },
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d23fe749_66380087",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-02-05T14:34:53Z",
+      "side": 1,
+      "message": "not fixed yet",
+      "parentUuid": "c46aee23_1e6b605b",
       "range": {
         "startLine": 465,
         "startChar": 12,
