@@ -51,8 +51,12 @@ public fun setupNewTimer(
     Timer.start(looper, callback_on)
 }
 
-public fun notifyBluetoothOn() {
+public fun notifyBluetoothOn(resolver: ContentResolver) {
     Timer.cancel()
+
+    if (!isFeatureSupportedForUser(resolver)) {
+        setFeatureEnabledForUserUnchecked(resolver)
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -126,4 +130,22 @@ private constructor(
  */
 private fun isFeatureEnabledForUser(resolver: ContentResolver): Boolean {
     return Settings.Secure.getInt(resolver, USER_SETTINGS_KEY, 0) == 1
+}
+
+/**
+ * *Do not use outside of this file to avoid async issues*
+ *
+ * @return whether the auto on feature is supported for the user
+ */
+private fun isFeatureSupportedForUser(resolver: ContentResolver): Boolean {
+    return Settings.Secure.getInt(resolver, USER_SETTINGS_KEY, -1) != -1
+}
+
+/**
+ * *Do not use outside of this file to avoid async issues*
+ *
+ * @return whether the auto on feature is enabled for this user
+ */
+private fun setFeatureEnabledForUserUnchecked(resolver: ContentResolver) {
+    Settings.Secure.putInt(resolver, USER_SETTINGS_KEY, 1)
 }
