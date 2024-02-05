@@ -450,6 +450,20 @@ class FlossAdapterClient(BluetoothCallbacks, BluetoothConnectionCallbacks):
         """Gets mock value for remote device rssi."""
         return -50
 
+    def get_remote_device_name(self, address):
+        """Gets the name of a remote device by address.
+
+        Args:
+            address: The address of the remote device.
+
+        Returns:
+            The name of the device if known, An empty string otherwise.
+        """
+        device_info = self.known_devices.get(address)
+        if device_info:
+            return device_info.get('name', '')
+        return ''
+
     def register_properties(self):
         """Registers a property set for this client."""
         self.properties = utils.PropertySet({
