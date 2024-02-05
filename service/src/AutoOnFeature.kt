@@ -19,8 +19,11 @@
 package com.android.server.bluetooth
 
 import android.bluetooth.BluetoothAdapter.STATE_ON
+import android.content.BroadcastReceiver
 import android.content.ContentResolver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
@@ -60,7 +63,16 @@ public fun setupNewTimer(
         it.cancel()
     }
 
-    timer = Timer.start(looper, context, callback_on)
+    val receiver =
+        object : BroadcastReceiver() {
+            override fun onReceive(ctx: Context, intent: Intent) {
+                Log.i(TAG, "Received ${intent.action} that trigger a new alarm scheduling")
+                pause()
+                setupNewTimer(looper, context, state, callback_on)
+            }
+        }
+
+    timer = Timer.start(looper, context, receiver, callback_on)
 }
 
 public fun pause() {
@@ -108,6 +120,7 @@ internal class Timer
 private constructor(
     looper: Looper,
     private val context: Context,
+    private val receiver: BroadcastReceiver,
     callback_on: () -> Unit,
     private val now: LocalDateTime,
     private val target: LocalDateTime,
@@ -127,6 +140,17 @@ private constructor(
             timeToSleep.inWholeMilliseconds
         )
         Log.i(TAG, "[${this}]: Scheduling next Bluetooth restart")
+
+        context.registerReceiver(
+            receiver,
+            IntentFilter().apply {
+                addAction(Intent.ACTION_DATE_CHANGED)
+                addAction(Intent.ACTION_TIMEZONE_CHANGED)
+                addAction(Intent.ACTION_TIME_CHANGED)
+            },
+            null,
+            handler
+        )
     }
 
     companion object {
@@ -145,7 +169,12 @@ private constructor(
             Settings.Secure.putString(resolver, STORAGE_KEY, null)
         }
 
-        fun start(looper: Looper, context: Context, callback_on: () -> Unit): Timer? {
+        fun start(
+            looper: Looper,
+            context: Context,
+            receiver: BroadcastReceiver,
+            callback_on: () -> Unit
+        ): Timer? {
             val now = LocalDateTime.now()
             val target = getDateFromStorage(context.contentResolver) ?: nextTimeout(now)
             val timeToSleep =
@@ -158,7 +187,7 @@ private constructor(
                 return null
             }
 
-            return Timer(looper, context, callback_on, now, target, timeToSleep)
+            return Timer(looper, context, receiver, callback_on, now, target, timeToSleep)
         }
 
         /** Return a LocalDateTime for tomorrow 5 am */
@@ -169,6 +198,7 @@ private constructor(
     /** Save timer to storage and stop it */
     fun pause() {
         Log.i(TAG, "[${this}]: Pausing timer")
+        context.unregisterReceiver(receiver)
         handler.removeCallbacksAndMessages(null)
     }
 
@@ -176,6 +206,7 @@ private constructor(
     @VisibleForTesting
     internal fun cancel() {
         Log.i(TAG, "[${this}]: Cancelling timer")
+        context.unregisterReceiver(receiver)
         handler.removeCallbacksAndMessages(null)
         resetStorage(context.contentResolver)
     }
