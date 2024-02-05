@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9c83ec9_36bc438f",
+        "filename": "framework/java/android/bluetooth/BluetoothHidHost.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-05T19:52:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8746c4b_02ba48c7",
+      "range": {
+        "startLine": 484,
+        "startChar": 24,
+        "endLine": 484,
+        "endChar": 26
+      },
+      "revId": "5fa0bcc8c065d30511921d41b19d3b7eb7bf73d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "790f61b7_47122f27",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-05T18:31:16Z",
       "side": 1,
       "message": "Please document exceptions in Javadoc using @throws annotation",
+      "range": {
+        "startLine": 496,
+        "startChar": 19,
+        "endLine": 496,
+        "endChar": 40
+      },
+      "revId": "5fa0bcc8c065d30511921d41b19d3b7eb7bf73d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bb9d78f_0d6f9453",
+        "filename": "framework/java/android/bluetooth/BluetoothHidHost.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-05T19:52:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "790f61b7_47122f27",
       "range": {
         "startLine": 496,
         "startChar": 19,

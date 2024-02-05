@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca386474_c16e4801",
+        "filename": "framework/java/android/bluetooth/BluetoothHidHost.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-05T19:52:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb98a409_c56164ee",
+      "range": {
+        "startLine": 478,
+        "startChar": 18,
+        "endLine": 479,
+        "endChar": 89
+      },
+      "revId": "39ab5230797e80001867b2717899762ea7a07b31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d7238ce_2986d9ba",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-02T04:23:56Z",
       "side": 1,
       "message": "Please fix this WARNING reported by AndroidLint: [FlaggedApi] @FlaggedApi should specify an actual flag constant; raw strings are discouraged (and more importantly, **not enforced**)\n\nAnalyzer Description: Reports AndroidLint warnings.\nOwner: colefaust@google.com\n\n[FlaggedApi] @FlaggedApi should specify an actual flag constant; raw strings are discouraged (and more importantly, **not enforced**)\n\n        @FlaggedApi(\"com.android.bluetooth.flags.allow_switching_hid_and_hogp\")\n                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\nThis lint check looks for accesses of APIs marked with `@FlaggedApi(X)` without a guarding `if (Flags.X)` check. See go/android-flagged-apis.\n\nLocal repro steps at go/ayeaye-android-lint\n\nThis warning was found on the git_main branch",
+      "range": {
+        "startLine": 486,
+        "startChar": 17,
+        "endLine": 486,
+        "endChar": 75
+      },
+      "revId": "39ab5230797e80001867b2717899762ea7a07b31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aec290b4_23d04679",
+        "filename": "framework/java/android/bluetooth/BluetoothHidHost.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-05T19:52:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d7238ce_2986d9ba",
       "range": {
         "startLine": 486,
         "startChar": 17,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e4cf4ae_94c7f2b1",
+        "filename": "framework/java/android/bluetooth/BluetoothHidHost.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-05T19:52:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b106bf0_449222ff",
+      "range": {
+        "startLine": 495,
+        "startChar": 60,
+        "endLine": 495,
+        "endChar": 69
+      },
+      "revId": "39ab5230797e80001867b2717899762ea7a07b31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43c35876_ba7f11b0",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-02-02T04:23:56Z",
       "side": 1,
       "message": "null parameter should return a NullPointerException as per API guidelines. I recomand doing so with `requireNonNull` instead of manually throwing exception",
+      "range": {
+        "startLine": 498,
+        "startChar": 22,
+        "endLine": 498,
+        "endChar": 46
+      },
+      "revId": "39ab5230797e80001867b2717899762ea7a07b31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d5687ad_3c00ecb7",
+        "filename": "framework/java/android/bluetooth/BluetoothHidHost.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-05T19:52:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43c35876_ba7f11b0",
       "range": {
         "startLine": 498,
         "startChar": 22,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a06cfd4c_effdef61",
+        "filename": "framework/java/android/bluetooth/BluetoothHidHost.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-05T19:52:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21edcf33_1de820d9",
+      "range": {
+        "startLine": 509,
+        "startChar": 20,
+        "endLine": 509,
+        "endChar": 33
+      },
+      "revId": "39ab5230797e80001867b2717899762ea7a07b31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "07c063ec_ba540aab",
@@ -139,6 +259,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9da356c5_16ab8996",
+        "filename": "framework/java/android/bluetooth/BluetoothHidHost.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 594,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-05T19:52:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07c063ec_ba540aab",
+      "range": {
+        "startLine": 594,
+        "startChar": 17,
+        "endLine": 594,
+        "endChar": 75
+      },
+      "revId": "39ab5230797e80001867b2717899762ea7a07b31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "00c62a43_8822d61f",
@@ -152,6 +296,30 @@
       "writtenOn": "2024-02-02T04:23:56Z",
       "side": 1,
       "message": "replace with @Transport",
+      "range": {
+        "startLine": 602,
+        "startChar": 12,
+        "endLine": 602,
+        "endChar": 28
+      },
+      "revId": "39ab5230797e80001867b2717899762ea7a07b31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22766ee8_64c4934e",
+        "filename": "framework/java/android/bluetooth/BluetoothHidHost.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-05T19:52:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00c62a43_8822d61f",
       "range": {
         "startLine": 602,
         "startChar": 12,
