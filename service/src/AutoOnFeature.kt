@@ -24,6 +24,7 @@ import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.database.ContentObserver
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
@@ -85,6 +86,16 @@ public fun setUserEnabled(resolver: ContentResolver, status: Boolean) {
     if (!status) {
         Timer.cancel()
     }
+}
+
+// Listener is needed because code should be actionable prior to V API release
+public fun registerHiddenApiListener(
+    looper: Looper,
+    context: Context,
+    state: BluetoothAdapterState,
+    callback_on: () -> Unit
+) {
+    HiddenApiListener.registerUser(looper, context, state, callback_on)
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -231,4 +242,56 @@ private fun isFeatureSupportedForUser(resolver: ContentResolver): Boolean {
  */
 private fun setFeatureEnabledForUserUnchecked(resolver: ContentResolver, status: Boolean) {
     Settings.Secure.putInt(resolver, USER_SETTINGS_KEY, if (status) 1 else 0)
+}
+
+// Listener is needed because code should be actionable prior to V API release
+private class HiddenApiListener
+private constructor(
+    looper: Looper,
+    val context: Context,
+    state: BluetoothAdapterState,
+    callback_on: () -> Unit
+) {
+    companion object {
+        private var listener: HiddenApiListener? = null
+
+        fun registerUser(
+            looper: Looper,
+            context: Context,
+            state: BluetoothAdapterState,
+            callback_on: () -> Unit
+        ) {
+            // Remove observer on previous user
+            listener?.let { it.remove() }
+            listener = HiddenApiListener(looper, context, state, callback_on)
+        }
+    }
+
+    val handler = Handler(looper)
+
+    val observer =
+        object : ContentObserver(handler) {
+            override fun onChange(selfChange: Boolean) {
+                if (!isFeatureEnabledForUser(context.contentResolver)) {
+                    Timer.cancel()
+                } else {
+                    setupNewTimer(looper, context, state, callback_on)
+                }
+            }
+        }
+
+    init {
+        val notifyForDescendants = false
+
+        context.contentResolver.registerContentObserver(
+            Settings.Secure.getUriFor(USER_SETTINGS_KEY),
+            notifyForDescendants,
+            observer
+        )
+    }
+
+    private fun remove() {
+        context.contentResolver.unregisterContentObserver(observer)
+        handler.removeCallbacksAndMessages(null)
+    }
 }
