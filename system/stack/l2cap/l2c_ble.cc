@@ -1151,6 +1151,13 @@ void l2cble_update_data_length(tL2C_LCB* p_lcb) {
     tx_mtu = BTM_BLE_DATA_SIZE_MAX;
   }
 
+<<<<<<< PATCH SET (53fcdd Fix change PHY fail when host not send set data length cmd)
+  BTM_SetBleDataLength(p_lcb->remote_bd_addr, tx_mtu);
+||||||| BASE
+  /* update TX data length if changed */
+  if (p_lcb->tx_data_len != tx_mtu)
+    BTM_SetBleDataLength(p_lcb->remote_bd_addr, tx_mtu);
+=======
   /* update TX data length if changed */
   if (p_lcb->tx_data_len != tx_mtu) {
     if (get_btm_client_interface().ble.BTM_SetBleDataLength(p_lcb->remote_bd_addr, tx_mtu) !=
@@ -1158,6 +1165,7 @@ void l2cble_update_data_length(tL2C_LCB* p_lcb) {
       log::warn("Unable to set BLE data length peer:{} mtu:{}", p_lcb->remote_bd_addr, tx_mtu);
     }
   }
+>>>>>>> BASE      (745ee9 log: Remove last extra colon when logging bd_addr)
 }
 
 /*******************************************************************************
