@@ -658,9 +658,19 @@ class CsisClientImpl : public CsisClient {
     return group_rank_map;
   }
 
-  void AddFromStorage(const RawAddress& addr, const std::vector<uint8_t>& in,
-                      bool autoconnect) {
+  void StartOpportunisticConnect(const RawAddress& address) {
+    /* Oportunistic works only for direct connect,
+     * but in fact this is background connect
+     */
+    LOG_INFO(": %s ", ADDRESS_TO_LOGGABLE_CSTR(address));
+    BTA_GATTC_Open(gatt_if_, address, BTM_BLE_DIRECT_CONNECTION, true);
+  }
+
+  void AddFromStorage(const RawAddress& addr, const std::vector<uint8_t>& in) {
     auto group_rank_map = DeserializeSets(addr, in);
+
+    LOG_DEBUG(" %s, number of groups %d", ADDRESS_TO_LOGGABLE_CSTR(addr),
+              static_cast<int>(csis_groups_.size()));
 
     auto device = FindDeviceByAddress(addr);
     if (device == nullptr) {
@@ -668,7 +678,6 @@ class CsisClientImpl : public CsisClient {
       devices_.push_back(device);
     }
 
-    bool is_le_audio_device = false;
     for (const auto& csis_group : csis_groups_) {
       if (!csis_group->IsDeviceInTheGroup(device)) continue;
 
@@ -682,21 +691,11 @@ class CsisClientImpl : public CsisClient {
         callbacks_->OnDeviceAvailable(device->addr, group_id,
                                       csis_group->GetDesiredSize(), rank,
                                       csis_group->GetUuid());
-
-        if (csis_group->GetUuid() ==
-            bluetooth::Uuid::From16Bit(UUID_COMMON_AUDIO_SERVICE)) {
-          is_le_audio_device = true;
-        }
       }
     }
 
-    /* For now, if this is LeAudio device, CSIP is opportunistic profile. */
-    bool is_opportunistic = is_le_audio_device;
-
-    if (autoconnect) {
-      BTA_GATTC_Open(gatt_if_, addr, BTM_BLE_BKG_CONNECT_ALLOW_LIST,
-                     is_opportunistic);
-    }
+    /* For bonded devices, CSIP can always be an opportunistic service */
+    StartOpportunisticConnect(addr);
   }
 
   void CleanUp() {
