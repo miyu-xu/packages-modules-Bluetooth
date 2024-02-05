@@ -71,6 +71,11 @@ class AutoOnFeatureTest {
         shadowOf(looper).idle()
     }
 
+    private fun restoreSettings() {
+        Settings.Secure.putInt(resolver, USER_SETTINGS_KEY, -1)
+        shadowOf(looper).idle()
+    }
+
     private fun callback_on() {
         callback_count++
     }
@@ -124,7 +129,7 @@ class AutoOnFeatureTest {
 
     @Test
     fun cancel_whenNoTimer_noCrash() {
-        cancel()
+        cancel(resolver)
 
         assertThat(Timer.timer).isNull()
     }
@@ -132,10 +137,19 @@ class AutoOnFeatureTest {
     @Test
     fun cancel_whenTimer_isNotScheduled() {
         setupTimer()
-        cancel()
+        cancel(resolver)
 
         shadowOf(looper).runToEndOfTasks()
         assertThat(callback_count).isEqualTo(0)
         assertThat(Timer.timer).isNull()
+    }
+
+    @Test
+    fun cancel_whenSettingsUnset_enableSettings() {
+        restoreSettings()
+
+        cancel(resolver)
+
+        assertThat(Settings.Secure.getInt(resolver, USER_SETTINGS_KEY, 42)).isEqualTo(1)
     }
 }
