@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98d5ccb3_38af5bdb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-02-05T07:13:56Z",
+      "side": 1,
+      "message": "Attached screenshot in b/323782678#comment2.",
+      "revId": "587a01fa928f622870d82e6a4e77d935ee93ba3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
