@@ -321,7 +321,6 @@ void btu_hcif_process_event(UNUSED_ATTR uint8_t controller_id,
           btm_acl_process_sca_cmpl_pkt(ble_evt_len, p);
           break;
 
-        case HCI_BLE_CIS_EST_EVT:
         case HCI_BLE_CREATE_BIG_CPL_EVT:
         case HCI_BLE_TERM_BIG_CPL_EVT:
         case HCI_BLE_CIS_REQ_EVT:
