@@ -62,8 +62,34 @@ public fun notifyBluetoothOn(resolver: ContentResolver) {
     timer = null
 
     if (!isFeatureSupportedForUser(resolver)) {
-        setFeatureEnabledForUserUnchecked(resolver)
+        setFeatureEnabledForUserUnchecked(resolver, true)
     }
+}
+
+public fun isUserSupported(resolver: ContentResolver) = isFeatureSupportedForUser(resolver)
+
+public fun isUserEnabled(context: Context): Boolean {
+    if (!isUserSupported(context.contentResolver)) {
+        throw IllegalStateException("AutoOnFeature not supported for user: ${context.getUser()}")
+    }
+    return isFeatureEnabledForUser(context.contentResolver)
+}
+
+public fun setUserEnabled(
+    looper: Looper,
+    context: Context,
+    state: BluetoothAdapterState,
+    status: Boolean,
+    callback_on: () -> Unit,
+) {
+    if (!isUserSupported(context.contentResolver)) {
+        throw IllegalStateException("AutoOnFeature not supported for user: ${context.getUser()}")
+    }
+    setFeatureEnabledForUserUnchecked(context.contentResolver, status)
+    Counter.logIncrement(
+        if (status) "bluetooth.value_auto_on_enabled" else "bluetooth.value_auto_on_disabled"
+    )
+    resetAutoOnTimerForUser(looper, context, state, callback_on)
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -148,6 +174,6 @@ private fun isFeatureSupportedForUser(resolver: ContentResolver): Boolean {
  *
  * @return whether the auto on feature is enabled for this user
  */
-private fun setFeatureEnabledForUserUnchecked(resolver: ContentResolver) {
-    Settings.Secure.putInt(resolver, USER_SETTINGS_KEY, 1)
+private fun setFeatureEnabledForUserUnchecked(resolver: ContentResolver, status: Boolean) {
+    Settings.Secure.putInt(resolver, USER_SETTINGS_KEY, if (status) 1 else 0)
 }
