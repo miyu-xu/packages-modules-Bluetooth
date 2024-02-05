@@ -601,7 +601,10 @@ cc_test {
         "liblog",
         "libutils",
     ],
-    include_dirs: ["packages/modules/Bluetooth/system"],
+    include_dirs: [
+        "packages/modules/Bluetooth/system",
+        "packages/modules/Bluetooth/system/include",
+    ],
     srcs: ["common/hal_version_manager_test.cc"],
     static_libs: [
         "android.hardware.bluetooth@1.0",
