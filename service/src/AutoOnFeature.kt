@@ -53,8 +53,27 @@ public fun setupNewTimer(
 public fun cancel(resolver: ContentResolver) {
     Timer.cancel()
 
-    if (isSupported && !isFeatureSupportedForUser(resolver)) {
+    if (!isFeatureSupportedForUser(resolver)) {
         setFeatureEnabledForUserUnchecked(resolver, true)
+    }
+}
+
+public fun isUserSupported(resolver: ContentResolver) = isFeatureSupportedForUser(resolver)
+
+public fun isUserEnabled(resolver: ContentResolver): Boolean {
+    if (!isUserSupported(resolver)) {
+        throw IllegalStateException("AutoOnFeature is not supported for current user: ${resolver}")
+    }
+    return isFeatureEnabledForUser(resolver)
+}
+
+public fun setUserEnabled(resolver: ContentResolver, status: Boolean) {
+    if (!isUserSupported(resolver)) {
+        throw IllegalStateException("AutoOnFeature is not supported for current user: ${resolver}")
+    }
+    setFeatureEnabledForUserUnchecked(resolver, status)
+    if (!status) {
+        Timer.cancel()
     }
 }
 
