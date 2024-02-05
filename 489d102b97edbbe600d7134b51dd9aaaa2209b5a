@@ -22,6 +22,53 @@
       },
       "revId": "489d102b97edbbe600d7134b51dd9aaaa2209b5a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf0866f1_1b762137",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-02-05T02:41:10Z",
+      "side": 1,
+      "message": "```suggestion\nTest: atest HeadsetStateMachineTest.java \n```",
+      "parentUuid": "04a87f00_07f2fda0",
+      "range": {
+        "startLine": 11,
+        "startChar": 6,
+        "endLine": 11,
+        "endChar": 60
+      },
+      "revId": "489d102b97edbbe600d7134b51dd9aaaa2209b5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30009949_9206e990",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetStateMachineTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-02-05T02:41:10Z",
+      "side": 1,
+      "message": "As we discussed in the meeting, please change this line as well",
+      "range": {
+        "startLine": 116,
+        "startChar": 8,
+        "endLine": 116,
+        "endChar": 12
+      },
+      "revId": "489d102b97edbbe600d7134b51dd9aaaa2209b5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
