@@ -1096,9 +1096,7 @@ void l2cble_update_data_length(tL2C_LCB* p_lcb) {
 
   if (tx_mtu > BTM_BLE_DATA_SIZE_MAX) tx_mtu = BTM_BLE_DATA_SIZE_MAX;
 
-  /* update TX data length if changed */
-  if (p_lcb->tx_data_len != tx_mtu)
-    BTM_SetBleDataLength(p_lcb->remote_bd_addr, tx_mtu);
+  BTM_SetBleDataLength(p_lcb->remote_bd_addr, tx_mtu);
 }
 
 /*******************************************************************************
