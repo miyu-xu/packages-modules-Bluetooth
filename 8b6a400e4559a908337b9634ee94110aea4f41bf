@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1586ea69_9eaefefa",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-05T13:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2cb9d859_8bf1266e",
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a136fd7d_3e88d149",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-01-31T14:06:17Z",
       "side": 1,
       "message": "why you didn\u0027t add the Args in the doc string? for all callbacks method\nI see in gatt_server we add them: https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2887906/14/floss/pandora/floss/gatt_server.py#311",
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c8c77c3_eb0cc6ba",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-05T13:20:31Z",
+      "side": 1,
+      "message": "Since I forked socket_manager from chromium to android, these arguments are not already present",
+      "parentUuid": "a136fd7d_3e88d149",
       "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -54,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "00b3c444_aa0bc5f0",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-05T13:20:31Z",
+      "side": 1,
+      "message": "Since I forked socket_manager from chromium to android, these arguments are not already present",
+      "parentUuid": "656ad8f7_7204f55b",
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a1207e9d_0c24f769",
         "filename": "floss/pandora/floss/socket_manager.py",
         "patchSetId": 1
@@ -65,6 +119,24 @@
       "writtenOn": "2024-01-31T14:06:17Z",
       "side": 1,
       "message": "add . plz",
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "510dcc1c_6eb751d2",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-05T13:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1207e9d_0c24f769",
       "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c68c9de6_b7535e7d",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-05T13:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3caf16f6_d1f9628f",
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1edb0715_97b2b606",
@@ -99,6 +189,30 @@
       "writtenOn": "2024-01-31T14:06:17Z",
       "side": 1,
       "message": "add . plz",
+      "range": {
+        "startLine": 275,
+        "startChar": 10,
+        "endLine": 275,
+        "endChar": 18
+      },
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bed22199_99e19aab",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-05T13:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1edb0715_97b2b606",
       "range": {
         "startLine": 275,
         "startChar": 10,
@@ -132,6 +246,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b96c1481_6d2a371f",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-05T13:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7647512b_6ae55d21",
+      "range": {
+        "startLine": 325,
+        "startChar": 8,
+        "endLine": 325,
+        "endChar": 15
+      },
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89fe0913_fac418ac",
@@ -145,6 +283,30 @@
       "writtenOn": "2024-01-31T14:06:17Z",
       "side": 1,
       "message": "True",
+      "range": {
+        "startLine": 465,
+        "startChar": 12,
+        "endLine": 465,
+        "endChar": 15
+      },
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c46aee23_1e6b605b",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-05T13:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89fe0913_fac418ac",
       "range": {
         "startLine": 465,
         "startChar": 12,
@@ -212,6 +374,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "09712ef4_010e3388",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-05T13:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d4af806_a3cd9d3f",
+      "range": {
+        "startLine": 49,
+        "startChar": 16,
+        "endLine": 49,
+        "endChar": 60
+      },
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b98e01b_2aeedd08",
@@ -225,6 +411,30 @@
       "writtenOn": "2024-01-31T07:43:25Z",
       "side": 1,
       "message": "Failed to listen on the L2CAP channel\nor \nFailed listening to the L2CAP channel",
+      "range": {
+        "startLine": 60,
+        "startChar": 35,
+        "endLine": 60,
+        "endChar": 65
+      },
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0b7c3dd_cae0a329",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-05T13:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b98e01b_2aeedd08",
       "range": {
         "startLine": 60,
         "startChar": 35,
@@ -258,6 +468,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "64cad0bf_09814f3d",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-05T13:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "acaf8e2f_51fe4674",
+      "range": {
+        "startLine": 91,
+        "startChar": 35,
+        "endLine": 91,
+        "endChar": 41
+      },
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67ba422c_f81dc065",
@@ -271,6 +505,24 @@
       "writtenOn": "2024-01-31T07:43:25Z",
       "side": 1,
       "message": "if the result is None, do we have connection_id?\nand if yes, what us the value",
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91ea87e9_6e889157",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-05T13:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67ba422c_f81dc065",
       "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -298,6 +550,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f239e550_5687bc1d",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-05T13:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c28d63a6_368e3a7f",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 48
+      },
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f7ce5630_afe69bb6",
@@ -311,6 +587,30 @@
       "writtenOn": "2024-01-31T07:43:25Z",
       "side": 1,
       "message": "why print it if it is None ?",
+      "range": {
+        "startLine": 125,
+        "startChar": 46,
+        "endLine": 125,
+        "endChar": 55
+      },
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "470defdf_813229a4",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-05T13:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7ce5630_afe69bb6",
       "range": {
         "startLine": 125,
         "startChar": 46,
@@ -361,6 +661,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c6a01b2_6b93b032",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-05T13:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6562115a_f5ab40c1",
+      "range": {
+        "startLine": 174,
+        "startChar": 48,
+        "endLine": 174,
+        "endChar": 59
+      },
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7634ed8f_9f1f59f4",
@@ -401,6 +725,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9c60dc9_f6d64ffb",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-05T13:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7634ed8f_9f1f59f4",
+      "range": {
+        "startLine": 195,
+        "startChar": 59,
+        "endLine": 195,
+        "endChar": 73
+      },
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8b6ca3be_221c2a47",
@@ -431,6 +779,30 @@
       "writtenOn": "2024-01-31T07:43:25Z",
       "side": 1,
       "message": "maybe better to log what is the connection you mentioned here ?",
+      "range": {
+        "startLine": 213,
+        "startChar": 25,
+        "endLine": 213,
+        "endChar": 70
+      },
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88c11a98_449fa8cc",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-05T13:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09be7084_6f8483b9",
       "range": {
         "startLine": 213,
         "startChar": 25,
