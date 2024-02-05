@@ -142,6 +142,10 @@ void IsoManager::HandleHciEvent(uint8_t sub_code, uint8_t* params,
     pimpl_->iso_impl_->on_iso_event(sub_code, params, length);
 }
 
+void IsoManager::HandleHciEvent(bluetooth::hci::LeMetaEventView event) {
+  if (pimpl_->IsRunning()) pimpl_->iso_impl_->handle_incoming_event(event);
+}
+
 void IsoManager::Start() {
   if (!pimpl_->IsRunning())
     pimpl_->Start();
