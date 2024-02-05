@@ -76,7 +76,11 @@ std::array<uint8_t, 32> data32 = {
 const RawAddress kDeviceAddress({0x11, 0x22, 0x33, 0x44, 0x55, 0x66});
 const RawAddress kDeviceAddressConnecting({0x66, 0x55, 0x44, 0x33, 0x22, 0x11});
 const uint16_t kHhHandle = 123;
-
+const tBLE_ADDR_TYPE kDeviceAddrType = BLE_ADDR_PUBLIC;
+const tBT_TRANSPORT kDeviceTransport = BT_TRANSPORT_AUTO;
+tAclLinkSpec kDeviceConnecting = {.addrt.type = kDeviceAddrType,
+                                  .addrt.bda = kDeviceAddressConnecting,
+                                  .transport = kDeviceTransport};
 // Callback parameters grouped into a structure
 struct get_report_cb_t {
   RawAddress raw_address;
@@ -195,7 +199,9 @@ class BtifHhWithDevice : public BtifHhAdapterReady {
     BtifHhAdapterReady::SetUp();
 
     // Short circuit a connected device
-    btif_hh_cb.devices[0].bd_addr = kDeviceAddress;
+    btif_hh_cb.devices[0].link_spec.addrt.bda = kDeviceAddress;
+    btif_hh_cb.devices[0].link_spec.addrt.type = kDeviceAddrType;
+    btif_hh_cb.devices[0].link_spec.transport = kDeviceTransport;
     btif_hh_cb.devices[0].dev_status = BTHH_CONN_STATE_CONNECTED;
     btif_hh_cb.devices[0].dev_handle = kHhHandle;
   }
@@ -279,7 +285,7 @@ TEST_F(BtifHHVirtualUnplugTest, test_btif_hh_virtual_unplug_device_not_open) {
   auto future = g_bthh_connection_state_promise.get_future();
 
   /* Make device in connecting state */
-  ASSERT_EQ(btif_hh_connect(&kDeviceAddressConnecting), BT_STATUS_SUCCESS);
+  ASSERT_EQ(btif_hh_connect(kDeviceConnecting), BT_STATUS_SUCCESS);
 
   ASSERT_EQ(std::future_status::ready, future.wait_for(2s));
 
