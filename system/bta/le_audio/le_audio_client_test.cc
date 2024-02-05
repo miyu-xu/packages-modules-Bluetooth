@@ -56,6 +56,7 @@ using testing::AtLeast;
 using testing::AtMost;
 using testing::DoAll;
 using testing::Expectation;
+using testing::InSequence;
 using testing::Invoke;
 using testing::Matcher;
 using testing::Mock;
@@ -262,6 +263,9 @@ class MockAudioHalClientCallbacks
   MOCK_METHOD((void), OnConnectionState,
               (ConnectionState state, const RawAddress& address), (override));
   MOCK_METHOD((void), OnGroupStatus, (int group_id, GroupStatus group_status),
+              (override));
+  MOCK_METHOD((void), OnGroupStreamStatus,
+              (int group_id, GroupStreamStatus group_stream_status),
               (override));
   MOCK_METHOD((void), OnGroupNodeStatus,
               (const RawAddress& bd_addr, int group_id,
@@ -8703,6 +8707,113 @@ TEST_F(UnicastTest, DisconnectAclBeforeGettingReadResponses) {
   /* For background connect, test needs to Inject Connected Event */
   InjectConnectedEvent(test_address0, 1);
   SyncOnMainLoop();
+}
+
+TEST_F_WITH_FLAGS(UnicastTest, GroupStreamStatus,
+                  REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(
+                      TEST_BT, leaudio_callback_on_group_stream_status))) {
+  int group_id = bluetooth::groups::kGroupUnknown;
+
+  InSequence s;
+
+  /* Check if all states are properly notified */
+  EXPECT_CALL(mock_audio_hal_client_callbacks_,
+              OnGroupStreamStatus(group_id, GroupStreamStatus::IDLE))
+      .Times(1);
+  state_machine_callbacks_->StatusReportCb(group_id, GroupStreamStatus::IDLE);
+
+  EXPECT_CALL(mock_audio_hal_client_callbacks_,
+              OnGroupStreamStatus(group_id, GroupStreamStatus::STREAMING))
+      .Times(1);
+  state_machine_callbacks_->StatusReportCb(group_id,
+                                           GroupStreamStatus::STREAMING);
+
+  EXPECT_CALL(mock_audio_hal_client_callbacks_,
+              OnGroupStreamStatus(group_id, GroupStreamStatus::IDLE))
+      .Times(1);
+  state_machine_callbacks_->StatusReportCb(group_id,
+                                           GroupStreamStatus::RELEASING);
+
+  EXPECT_CALL(mock_audio_hal_client_callbacks_,
+              OnGroupStreamStatus(group_id, GroupStreamStatus::STREAMING))
+      .Times(1);
+  state_machine_callbacks_->StatusReportCb(group_id,
+                                           GroupStreamStatus::STREAMING);
+
+  EXPECT_CALL(mock_audio_hal_client_callbacks_,
+              OnGroupStreamStatus(group_id, GroupStreamStatus::IDLE))
+      .Times(1);
+  state_machine_callbacks_->StatusReportCb(group_id,
+                                           GroupStreamStatus::SUSPENDING);
+
+  EXPECT_CALL(mock_audio_hal_client_callbacks_,
+              OnGroupStreamStatus(group_id, GroupStreamStatus::STREAMING))
+      .Times(1);
+  state_machine_callbacks_->StatusReportCb(group_id,
+                                           GroupStreamStatus::STREAMING);
+
+  EXPECT_CALL(mock_audio_hal_client_callbacks_,
+              OnGroupStreamStatus(group_id, GroupStreamStatus::IDLE))
+      .Times(1);
+  state_machine_callbacks_->StatusReportCb(group_id,
+                                           GroupStreamStatus::SUSPENDED);
+
+  EXPECT_CALL(mock_audio_hal_client_callbacks_,
+              OnGroupStreamStatus(group_id, GroupStreamStatus::STREAMING))
+      .Times(1);
+  state_machine_callbacks_->StatusReportCb(group_id,
+                                           GroupStreamStatus::STREAMING);
+
+  EXPECT_CALL(mock_audio_hal_client_callbacks_,
+              OnGroupStreamStatus(group_id, GroupStreamStatus::IDLE))
+      .Times(1);
+  state_machine_callbacks_->StatusReportCb(
+      group_id, GroupStreamStatus::CONFIGURED_AUTONOMOUS);
+
+  EXPECT_CALL(mock_audio_hal_client_callbacks_,
+              OnGroupStreamStatus(group_id, GroupStreamStatus::STREAMING))
+      .Times(1);
+  state_machine_callbacks_->StatusReportCb(group_id,
+                                           GroupStreamStatus::STREAMING);
+
+  EXPECT_CALL(mock_audio_hal_client_callbacks_,
+              OnGroupStreamStatus(group_id, GroupStreamStatus::IDLE))
+      .Times(1);
+  state_machine_callbacks_->StatusReportCb(
+      group_id, GroupStreamStatus::CONFIGURED_BY_USER);
+
+  EXPECT_CALL(mock_audio_hal_client_callbacks_,
+              OnGroupStreamStatus(group_id, GroupStreamStatus::STREAMING))
+      .Times(1);
+  state_machine_callbacks_->StatusReportCb(group_id,
+                                           GroupStreamStatus::STREAMING);
+
+  EXPECT_CALL(mock_audio_hal_client_callbacks_,
+              OnGroupStreamStatus(group_id, GroupStreamStatus::IDLE))
+      .Times(1);
+  state_machine_callbacks_->StatusReportCb(group_id,
+                                           GroupStreamStatus::DESTROYED);
+
+  /* Check if there are no resending of the same state */
+  state_machine_callbacks_->StatusReportCb(group_id,
+                                           GroupStreamStatus::RELEASING);
+  state_machine_callbacks_->StatusReportCb(group_id,
+                                           GroupStreamStatus::SUSPENDING);
+  state_machine_callbacks_->StatusReportCb(group_id,
+                                           GroupStreamStatus::SUSPENDED);
+  state_machine_callbacks_->StatusReportCb(
+      group_id, GroupStreamStatus::CONFIGURED_AUTONOMOUS);
+  state_machine_callbacks_->StatusReportCb(
+      group_id, GroupStreamStatus::CONFIGURED_BY_USER);
+  state_machine_callbacks_->StatusReportCb(group_id, GroupStreamStatus::IDLE);
+
+  EXPECT_CALL(mock_audio_hal_client_callbacks_,
+              OnGroupStreamStatus(group_id, GroupStreamStatus::STREAMING))
+      .Times(1);
+  state_machine_callbacks_->StatusReportCb(group_id,
+                                           GroupStreamStatus::STREAMING);
+  state_machine_callbacks_->StatusReportCb(group_id,
+                                           GroupStreamStatus::STREAMING);
 }
 
 TEST_F_WITH_FLAGS(UnicastTestHandoverMode,
