@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "86e0075c_e1736809",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-02-05T08:15:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bacb7799_3de0ac6b",
+      "range": {
+        "startLine": 252,
+        "startChar": 12,
+        "endLine": 267,
+        "endChar": 73
+      },
+      "revId": "e04e33524e5acc63e0fdc3243841b379b2fb5413",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04299d10_fb613942",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-02T22:34:37Z",
       "side": 1,
       "message": "Isn\u0027t this a race ?",
+      "range": {
+        "startLine": 271,
+        "startChar": 12,
+        "endLine": 280,
+        "endChar": 61
+      },
+      "revId": "e04e33524e5acc63e0fdc3243841b379b2fb5413",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "775626cd_7725dfa0",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-02-05T08:15:32Z",
+      "side": 1,
+      "message": "It looks but in practice the second request should fail immediately as it doesn\u0027t have enough time to handle write characteristic request. \n\nWe could hold handling the first request in Bumble device to ensure failing the second request when BumbleDevice has rich APIs.\n\nI used assumeFalse to avoid flakiness here just in case.",
+      "parentUuid": "04299d10_fb613942",
       "range": {
         "startLine": 271,
         "startChar": 12,
