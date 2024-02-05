@@ -16,6 +16,24 @@
       "message": "we need to return here?",
       "revId": "fe3b8a4b5e4976e86b20c82652cecfa81b927822",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96494f8a_450095b0",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 875,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-05T19:57:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b265d187_fccea5ae",
+      "revId": "fe3b8a4b5e4976e86b20c82652cecfa81b927822",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
