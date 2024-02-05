@@ -366,6 +366,7 @@ public final class BluetoothLeScanner {
      * Start truncated scan.
      *
      * @deprecated this is not used anywhere
+     * @removed use {@link startScan(List, ScanSettings, ScanCallback} instead
      * @hide
      */
     @Deprecated
