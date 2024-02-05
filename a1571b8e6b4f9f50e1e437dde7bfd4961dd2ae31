@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bb88976f_cc45cc48",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-05T15:57:36Z",
+      "side": 1,
+      "message": "Using a duplicate file descriptor enhances file descriptor management. For example, when transferring the file descriptor to a different process or thread, creating a duplicate can prevent issues like conflicts or unintended early closures.\n\nHowever, the specific reason why Hsin-chen chose this approach is not clear to me.",
+      "parentUuid": "727e34e7_6c2fac7d",
+      "revId": "a1571b8e6b4f9f50e1e437dde7bfd4961dd2ae31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3d734a13_8b524158",
         "filename": "floss/pandora/floss/socket_manager.py",
         "patchSetId": 4
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "86674af2_04abc2f5",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-05T15:57:36Z",
+      "side": 1,
+      "message": "Using a duplicate file descriptor enhances file descriptor management. For example, when transferring the file descriptor to a different process or thread, creating a duplicate can prevent issues like conflicts or unintended early closures.\n\nHowever, the specific reason why Hsin-chen chose this approach is not clear to me.",
+      "parentUuid": "3d734a13_8b524158",
+      "revId": "a1571b8e6b4f9f50e1e437dde7bfd4961dd2ae31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "512d376c_6807f55b",
         "filename": "floss/pandora/server/rfcomm.py",
         "patchSetId": 4
@@ -48,6 +84,24 @@
       "writtenOn": "2024-02-02T16:28:34Z",
       "side": 1,
       "message": "This callback is not for a RFCOMM DLC.",
+      "revId": "a1571b8e6b4f9f50e1e437dde7bfd4961dd2ae31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6798903_43169feb",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-05T15:57:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "512d376c_6807f55b",
       "revId": "a1571b8e6b4f9f50e1e437dde7bfd4961dd2ae31",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -101,6 +155,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f1c9cb7e_c07af744",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-05T15:57:36Z",
+      "side": 1,
+      "message": "In an internal discussion with John, we decided to use a unique ID for each connection instead of using listener_id, while keeping the server_map unchanged.",
+      "parentUuid": "c48868ed_243e46af",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 0
+      },
+      "revId": "a1571b8e6b4f9f50e1e437dde7bfd4961dd2ae31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0ff23bc7_43cef863",
         "filename": "floss/pandora/server/rfcomm.py",
         "patchSetId": 4
@@ -112,6 +190,30 @@
       "writtenOn": "2024-02-02T16:28:34Z",
       "side": 1,
       "message": "No need to wait for on_incoming_socket_closed.",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 123,
+        "endChar": 0
+      },
+      "revId": "a1571b8e6b4f9f50e1e437dde7bfd4961dd2ae31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "668c924d_95c7ba8f",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-05T15:57:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ff23bc7_43cef863",
       "range": {
         "startLine": 121,
         "startChar": 0,
@@ -139,6 +241,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "20646014_74fd93a7",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-05T15:57:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e6c74b7_0fca6ea4",
+      "revId": "a1571b8e6b4f9f50e1e437dde7bfd4961dd2ae31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0925d7d7_97637eca",
@@ -158,6 +278,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9140c180_dbedfc17",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-05T15:57:36Z",
+      "side": 1,
+      "message": "In an internal discussion with John, we decided to use a unique ID for each connection instead of using listener_id, while keeping the server_map unchanged.",
+      "parentUuid": "0925d7d7_97637eca",
+      "revId": "a1571b8e6b4f9f50e1e437dde7bfd4961dd2ae31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a06193fc_5d8ee515",
         "filename": "floss/pandora/server/rfcomm.py",
         "patchSetId": 4
@@ -169,6 +307,30 @@
       "writtenOn": "2024-02-01T03:03:48Z",
       "side": 1,
       "message": "```\n// Changed in python version 3.11: Raises TimeoutError instead of asyncio.TimeoutError.\nexcept asyncio.TimeoutError as e:\n    logging.error(\"AcceptConnection: asyncio.TimeoutError %s\", e)\n    return rfcomm_pb2.AcceptConnectionResponse(connection\u003drfcomm_pb2.RfcommConnection(id\u003dNone))\n```",
+      "range": {
+        "startLine": 253,
+        "startChar": 0,
+        "endLine": 259,
+        "endChar": 0
+      },
+      "revId": "a1571b8e6b4f9f50e1e437dde7bfd4961dd2ae31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "340a4379_3211c2df",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-05T15:57:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a06193fc_5d8ee515",
       "range": {
         "startLine": 253,
         "startChar": 0,
