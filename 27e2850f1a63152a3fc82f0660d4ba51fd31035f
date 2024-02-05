@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "63cdeae0_126ec476",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-05T18:57:58Z",
+      "side": 1,
+      "message": "Will address this in a follow up CL, potentially after all logs are updated.",
+      "parentUuid": "29a9f722_7e85bea7",
+      "range": {
+        "startLine": 130,
+        "startChar": 15,
+        "endLine": 130,
+        "endChar": 46
+      },
+      "revId": "27e2850f1a63152a3fc82f0660d4ba51fd31035f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20a491e7_033865c6",
@@ -94,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6231f3dc_a7d9e262",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-05T18:57:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20a491e7_033865c6",
+      "range": {
+        "startLine": 143,
+        "startChar": 49,
+        "endLine": 143,
+        "endChar": 68
+      },
+      "revId": "27e2850f1a63152a3fc82f0660d4ba51fd31035f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66197411_e3a13bf3",
@@ -107,6 +155,30 @@
       "writtenOn": "2024-01-23T23:07:44Z",
       "side": 1,
       "message": "can loghex be replaced by a formatter ?",
+      "range": {
+        "startLine": 385,
+        "startChar": 44,
+        "endLine": 385,
+        "endChar": 50
+      },
+      "revId": "27e2850f1a63152a3fc82f0660d4ba51fd31035f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0915ec6b_8ec7fbd7",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-05T18:57:58Z",
+      "side": 1,
+      "message": "Will address this in a follow up CL, potentially after all logs are updated",
+      "parentUuid": "66197411_e3a13bf3",
       "range": {
         "startLine": 385,
         "startChar": 44,
