@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "863be215_d9e2cd0c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 2045024
+      },
+      "writtenOn": "2024-02-05T04:26:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0376392_68f0b33f",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 54
+      },
+      "revId": "489d102b97edbbe600d7134b51dd9aaaa2209b5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04a87f00_07f2fda0",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "```suggestion\nTest: atest HeadsetStateMachineTest.java \n```",
       "parentUuid": "04a87f00_07f2fda0",
+      "range": {
+        "startLine": 11,
+        "startChar": 6,
+        "endLine": 11,
+        "endChar": 60
+      },
+      "revId": "489d102b97edbbe600d7134b51dd9aaaa2209b5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23a26b7c_895f108a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 2045024
+      },
+      "writtenOn": "2024-02-05T04:26:45Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "cf0866f1_1b762137",
       "range": {
         "startLine": 11,
         "startChar": 6,
