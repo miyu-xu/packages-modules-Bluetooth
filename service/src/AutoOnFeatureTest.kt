@@ -138,7 +138,7 @@ class AutoOnFeatureTest {
 
     @Test
     fun cancel_whenNoTimer_noCrash() {
-        cancel()
+        cancel(resolver)
 
         assertThat(Timer.timer).isNull()
     }
@@ -146,10 +146,19 @@ class AutoOnFeatureTest {
     @Test
     fun cancel_whenTimer_isNotScheduled() {
         setupTimer()
-        cancel()
+        cancel(resolver)
 
         shadowOf(looper).runToEndOfTasks()
         expect.that(callback_count).isEqualTo(0)
         expect.that(Timer.timer).isNull()
+    }
+
+    @Test
+    fun cancel_whenItWasNeverUsed_enableSettings() {
+        restoreSettings()
+
+        cancel(resolver)
+
+        assertThat(Settings.Secure.getInt(resolver, USER_SETTINGS_KEY, 42)).isEqualTo(1)
     }
 }
