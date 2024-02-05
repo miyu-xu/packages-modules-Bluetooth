@@ -1188,6 +1188,7 @@ class BluetoothManagerService {
     }
 
     private Unit enableFromAutoOn() {
+        sendToggleNotification("auto_on_bt_enabled_notification");
         enable("BluetoothSystemServer/AutoOn");
         return Unit.INSTANCE;
     }
