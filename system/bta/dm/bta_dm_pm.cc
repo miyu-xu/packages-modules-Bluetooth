@@ -938,8 +938,12 @@ static void bta_dm_pm_ssr(const RawAddress& peer_addr, const int ssr) {
     /* HH has the per connection SSR preference, already read the SSR params
      * from BTA HH */
     if (current_ssr_index == BTA_DM_PM_SSR_HH) {
+      tTypedAddressTransport addr_transport;
+      addr_transport.addrt.bda = peer_addr;
+      addr_transport.addrt.type = BLE_ADDR_PUBLIC;
+      addr_transport.transport = BT_TRANSPORT_BR_EDR;
       if (GetInterfaceToProfiles()->profileSpecific_HACK->bta_hh_read_ssr_param(
-              peer_addr, &p_spec_cur->max_lat, &p_spec_cur->min_rmt_to) ==
+              addr_transport, &p_spec_cur->max_lat, &p_spec_cur->min_rmt_to) ==
           BTA_HH_ERR) {
         continue;
       }
