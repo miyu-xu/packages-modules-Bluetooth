@@ -5415,6 +5415,16 @@ class LeAudioClientImpl : public LeAudioClient {
     stream_setup_start_timestamp_ = 0;
   }
 
+  void notifyGroupStreamStatus(int group_id, GroupStreamStatus status) {
+    if (status == GroupStreamStatus::STREAMING) {
+      callbacks_->OnGroupStreamStatus(group_id, GroupStreamStatus::STREAMING);
+    } else {
+      callbacks_->OnGroupStreamStatus(group_id, GroupStreamStatus::IDLE);
+    }
+
+    return;
+  }
+
   void OnStateMachineStatusReportCb(int group_id, GroupStreamStatus status) {
     LOG_INFO(
         "status: %d ,  group_id: %d, audio_sender_state %s, "
@@ -5423,6 +5433,7 @@ class LeAudioClientImpl : public LeAudioClient {
         bluetooth::common::ToString(audio_sender_state_).c_str(),
         bluetooth::common::ToString(audio_receiver_state_).c_str());
     LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
+    notifyGroupStreamStatus(group_id, status);
     switch (status) {
       case GroupStreamStatus::STREAMING: {
         ASSERT_LOG(group_id == active_group_id_, "invalid group id %d!=%d",
