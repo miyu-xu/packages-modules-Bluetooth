@@ -19,8 +19,11 @@
 package com.android.server.bluetooth
 
 import android.bluetooth.BluetoothAdapter.STATE_ON
+import android.content.BroadcastReceiver
 import android.content.ContentResolver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
@@ -100,6 +103,14 @@ private constructor(
     private val timeToSleep: Duration
 ) {
     private val handler = Handler(looper)
+    private val receiver =
+        object : BroadcastReceiver() {
+            override fun onReceive(ctx: Context, intent: Intent) {
+                Log.i(TAG, "Received ${intent.action} that trigger a new alarm scheduling")
+                Timer.pause()
+                Timer.start(looper, context, callback_on)
+            }
+        }
 
     init {
         writeDateToStorage(target, context.contentResolver)
@@ -112,6 +123,17 @@ private constructor(
             timeToSleep.inWholeMilliseconds
         )
         Log.i(TAG, "Will restarted at ${target} (in ${timeToSleep})")
+
+        context.registerReceiver(
+            receiver,
+            IntentFilter().apply {
+                addAction(Intent.ACTION_DATE_CHANGED)
+                addAction(Intent.ACTION_TIMEZONE_CHANGED)
+                addAction(Intent.ACTION_TIME_CHANGED)
+            },
+            null,
+            handler
+        )
     }
 
     companion object {
@@ -172,12 +194,14 @@ private constructor(
     /** Save timer to storage and stop it */
     fun pause() {
         Log.i(TAG, "Pausing timer for ${target}")
+        context.unregisterReceiver(receiver)
         handler.removeCallbacksAndMessages(null)
     }
 
     /** Stop timer and reset storage */
     fun cancel() {
         Log.i(TAG, "Cancelling timer for ${target}")
+        context.unregisterReceiver(receiver)
         handler.removeCallbacksAndMessages(null)
         resetStorage(context.contentResolver)
     }
