@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "954b54ba_f8316bf4",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-05T20:11:07Z",
+      "side": 1,
+      "message": "nit: \n\n```suggestion\n         * Callback invoked when the group\u0027s stream status changes.\n```",
+      "range": {
+        "startLine": 143,
+        "startChar": 27,
+        "endLine": 143,
+        "endChar": 28
+      },
+      "revId": "7339de19a385f5427194e3794f2408e02933d085",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
