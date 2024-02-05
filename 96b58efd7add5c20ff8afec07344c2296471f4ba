@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c19e9b93_dc1e7bdd",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-05T18:37:53Z",
+      "side": 1,
+      "message": "Seems this should be final",
+      "revId": "96b58efd7add5c20ff8afec07344c2296471f4ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95bdb0f2_cd5daaf6",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/TransactionalScanHelper.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-05T18:37:53Z",
+      "side": 1,
+      "message": "Would it be possible to guard accesses to this object such that it can be package private or private in this CL?\n\ne.g. by exposing a getter.\n\nAlso, it seems this should be final.",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 10
+      },
+      "revId": "96b58efd7add5c20ff8afec07344c2296471f4ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
