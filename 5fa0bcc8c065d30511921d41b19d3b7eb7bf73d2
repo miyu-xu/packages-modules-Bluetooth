@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8746c4b_02ba48c7",
+        "filename": "framework/java/android/bluetooth/BluetoothHidHost.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-05T18:31:16Z",
+      "side": 1,
+      "message": "nit: `is` is unnecessary and can be removed\n\nAlso, please add period to first sentence of doc.",
+      "range": {
+        "startLine": 484,
+        "startChar": 24,
+        "endLine": 484,
+        "endChar": 26
+      },
+      "revId": "5fa0bcc8c065d30511921d41b19d3b7eb7bf73d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "790f61b7_47122f27",
+        "filename": "framework/java/android/bluetooth/BluetoothHidHost.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-05T18:31:16Z",
+      "side": 1,
+      "message": "Please document exceptions in Javadoc using @throws annotation",
+      "range": {
+        "startLine": 496,
+        "startChar": 19,
+        "endLine": 496,
+        "endChar": 40
+      },
+      "revId": "5fa0bcc8c065d30511921d41b19d3b7eb7bf73d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
