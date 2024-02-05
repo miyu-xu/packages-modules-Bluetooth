@@ -50,6 +50,8 @@ public fun setupNewTimer(
     Timer.start(looper, context, callback_on)
 }
 
+public fun pause() = Timer.pause()
+
 public fun cancel(resolver: ContentResolver) {
     Timer.cancel()
 
@@ -106,6 +108,21 @@ private constructor(
     companion object {
         private var timer: Timer? = null
 
+        private val STORAGE_KEY = "bluetooth_internal_automatic_turn_on_timer"
+
+        private fun writeDateToStorage(date: LocalDateTime, resolver: ContentResolver): Boolean {
+            return Settings.Secure.putString(resolver, STORAGE_KEY, date.toString())
+        }
+
+        private fun getDateFromStorage(resolver: ContentResolver): LocalDateTime? {
+            val date = Settings.Secure.getString(resolver, STORAGE_KEY)
+            return date?.let { LocalDateTime.parse(it) }
+        }
+
+        private fun resetStorage(resolver: ContentResolver) {
+            Settings.Secure.resetToDefaults(resolver, STORAGE_KEY)
+        }
+
         fun start(looper: Looper, context: Context, callback_on: () -> Unit) {
             timer?.let {
                 // This case should never happen
@@ -114,11 +131,22 @@ private constructor(
             }
 
             val now = LocalDateTime.now()
-            val target = freshTimer(now)
+            val target = getDateFromStorage(context.contentResolver) ?: freshTimer(now)
             val timeToSleep =
                 now.until(target, ChronoUnit.NANOS).toDuration(DurationUnit.NANOSECONDS)
 
+            if (timeToSleep.isNegative()) {
+                Log.i(TAG, "Starting now (${now}) as it was scheduled for ${target}")
+                callback_on()
+                return
+            }
+
             timer = Timer(looper, context, callback_on, now, target, timeToSleep)
+        }
+
+        fun pause() {
+            timer?.pause()
+            timer = null
         }
 
         fun cancel() {
@@ -131,10 +159,18 @@ private constructor(
             LocalDateTime.of(now.toLocalDate(), LocalTime.of(5, 0)).plusDays(1)
     }
 
+    /** Save timer to storage and stop it */
+    fun pause() {
+        Log.i(TAG, "Pausing timer for ${target}")
+        handler.removeCallbacksAndMessages(null)
+        writeDateToStorage(target, context.contentResolver)
+    }
+
     /** Stop timer and reset storage */
     fun cancel() {
         Log.i(TAG, "Cancelling timer for ${target}")
         handler.removeCallbacksAndMessages(null)
+        resetStorage(context.contentResolver)
     }
 }
 
