@@ -16,6 +16,24 @@
       "message": "nit: Add a log if you think it is necessary",
       "revId": "4c6451166b62ac9f26817070cc2506397be507b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "862017ad_f73cf7b4",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2024-02-05T23:54:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0d458a8_ca484b56",
+      "revId": "4c6451166b62ac9f26817070cc2506397be507b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
