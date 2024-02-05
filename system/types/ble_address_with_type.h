@@ -155,6 +155,8 @@ struct tTypedAddressTransport {
   tBLE_BD_ADDR addrt;
   tBT_TRANSPORT transport;
 
+
+
   bool operator==(const tTypedAddressTransport rhs) const {
     if (rhs.addrt != addrt) return false;
 

@@ -63,7 +63,7 @@ uint8_t bta_hh_find_cb(const RawAddress& bda) {
   /* See how many active devices there are. */
   for (xx = 0; xx < BTA_HH_MAX_DEVICE; xx++) {
     /* check if any active/known devices is a match */
-    if ((bda == bta_hh_cb.kdev[xx].addr && !bda.IsEmpty())) {
+    if ((bda == bta_hh_cb.kdev[xx].addr.addrt.bda && !bda.IsEmpty())) {
 #if (BTA_HH_DEBUG == TRUE)
       LOG_VERBOSE("found kdev_cb[%d] hid_handle=%d", xx,
                   bta_hh_cb.kdev[xx].hid_handle);
@@ -81,7 +81,7 @@ uint8_t bta_hh_find_cb(const RawAddress& bda) {
   /* if no active device match, find a spot for it */
   for (xx = 0; xx < BTA_HH_MAX_DEVICE; xx++) {
     if (!bta_hh_cb.kdev[xx].in_use) {
-      bta_hh_cb.kdev[xx].addr = bda;
+      bta_hh_cb.kdev[xx].addr.addrt.bda = bda;
       break;
     }
   }
@@ -261,7 +261,7 @@ tBTA_HH_STATUS bta_hh_read_ssr_param(const RawAddress& bd_addr,
 
     uint16_t ssr_max_latency;
     if (get_btm_client_interface().link_controller.BTM_GetLinkSuperTout(
-            p_cb->addr, &ssr_max_latency) != BTM_SUCCESS) {
+            p_cb->addr.addrt.bda, &ssr_max_latency) != BTM_SUCCESS) {
       LOG_WARN("Unable to get supervision timeout for peer:%s",
                ADDRESS_TO_LOGGABLE_CSTR(p_cb->addr));
       return BTA_HH_ERR;
