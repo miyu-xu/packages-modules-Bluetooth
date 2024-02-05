@@ -23,6 +23,7 @@
 #include <vector>
 
 #include "btm_iso_api_types.h"
+#include "hci/hci_packets.h"
 
 namespace bluetooth {
 namespace hci {
@@ -225,6 +226,13 @@ class IsoManager {
    */
   virtual void HandleHciEvent(uint8_t sub_code, uint8_t* params,
                               uint16_t length);
+
+  /**
+   * Handle CIS and BIG related HCI events
+   *
+   * @param event valid LeMetaEventView of the received event.
+   */
+  virtual void HandleHciEvent(bluetooth::hci::LeMetaEventView event);
 
   /**
    * Starts the IsoManager module
