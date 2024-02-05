@@ -22,6 +22,7 @@ import android.os.Looper
 import android.provider.Settings
 import androidx.test.core.app.ApplicationProvider
 import com.android.server.bluetooth.BluetoothAdapterState
+import com.android.server.bluetooth.HiddenApiListener
 import com.android.server.bluetooth.Log
 import com.android.server.bluetooth.Timer
 import com.android.server.bluetooth.USER_SETTINGS_KEY
@@ -31,6 +32,7 @@ import com.android.server.bluetooth.isUserEnabled
 import com.android.server.bluetooth.isUserSupported
 import com.android.server.bluetooth.notifyBluetoothOn
 import com.android.server.bluetooth.pause
+import com.android.server.bluetooth.registerHiddenApiListener
 import com.android.server.bluetooth.satellite.isOn as isSatelliteModeOn
 import com.android.server.bluetooth.satellite.test.ModeListenerTest as SatelliteListener
 import com.android.server.bluetooth.setUserEnabled
@@ -53,6 +55,8 @@ import org.robolectric.Shadows.shadowOf
 @RunWith(RobolectricTestRunner::class)
 @kotlinx.coroutines.ExperimentalCoroutinesApi
 class AutoOnFeatureTest {
+    private val SETTING_URI = Settings.Secure.getUriFor(USER_SETTINGS_KEY)
+
     private val looper = Looper.getMainLooper()
     private val state = BluetoothAdapterState()
     private val context = ApplicationProvider.getApplicationContext<Context>()
@@ -75,6 +79,9 @@ class AutoOnFeatureTest {
     @After
     fun tearDown() {
         Log.i("AutoOnFeatureTest", "\t<-- tearDown(${testName.getMethodName()})\n")
+
+        HiddenApiListener.listener?.let { it.remove() }
+        HiddenApiListener.listener = null
 
         callback_count = 0
         timer?.cancel()
@@ -395,6 +402,67 @@ class AutoOnFeatureTest {
         setupTimer()
 
         AirplaneListener.setupAirplaneModeToOff(resolver, looper)
+        expect.that(timer).isNotNull()
+        expect.that(callback_count).isEqualTo(0)
+        expectStorageTime()
+    }
+
+    @Test
+    fun registerHiddenListener_whenNothing_isRegistered() {
+        registerHiddenApiListener(looper, context, state, this::callback_on)
+
+        assertThat(HiddenApiListener.listener).isNotNull()
+    }
+
+    @Test
+    fun unregisterHiddenListener_whenRegistered_isNotRegistered() {
+        registerHiddenApiListener(looper, context, state, this::callback_on)
+
+        HiddenApiListener.listener?.let { it.remove() }
+
+        assertThat(shadowOf(resolver).getContentObservers(SETTING_URI).size).isEqualTo(0)
+    }
+
+    @Test
+    fun registerHiddenListener_whenAlreadyRegistered_isRegisteredOnce() {
+        registerHiddenApiListener(looper, context, state, this::callback_on)
+
+        registerHiddenApiListener(looper, context, state, this::callback_on)
+
+        expect.that(shadowOf(resolver).getContentObservers(SETTING_URI).size).isEqualTo(1)
+        expect.that(HiddenApiListener.listener).isNotNull()
+    }
+
+    @Test
+    fun changeSettingsToDisabled_whenHiddenApiIsRegisteredandNotScheduled_isNotSchedule() {
+        registerHiddenApiListener(looper, context, state, this::callback_on)
+
+        disableUserSettings()
+
+        expect.that(timer).isNull()
+        expect.that(callback_count).isEqualTo(0)
+        expectNoStorageTime()
+    }
+
+    @Test
+    fun changeSettingsToDisabled_whenHiddenApiIsRegisteredandScheduled_isNotSchedule() {
+        setupTimer()
+        registerHiddenApiListener(looper, context, state, this::callback_on)
+
+        disableUserSettings()
+
+        expect.that(timer).isNull()
+        expect.that(callback_count).isEqualTo(0)
+        expectNoStorageTime()
+    }
+
+    @Test
+    fun changeSettingsToEnabled_whenHiddenApiIsRegisteredandScheduled_isNotSchedule() {
+        disableUserSettings()
+        registerHiddenApiListener(looper, context, state, this::callback_on)
+
+        enableUserSettings()
+
         expect.that(timer).isNotNull()
         expect.that(callback_count).isEqualTo(0)
         expectStorageTime()
