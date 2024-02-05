@@ -195,7 +195,10 @@ class BtifHhWithDevice : public BtifHhAdapterReady {
     BtifHhAdapterReady::SetUp();
 
     // Short circuit a connected device
-    btif_hh_cb.devices[0].bd_addr = kDeviceAddress;
+    btif_hh_cb.devices[0].dev_addr.addrt.bda = kDeviceAddress;
+    //Todo:b/324120865 fill type and transport
+    //dev_addr.addrt.type
+    //dev_addr.transport
     btif_hh_cb.devices[0].dev_status = BTHH_CONN_STATE_CONNECTED;
     btif_hh_cb.devices[0].dev_handle = kHhHandle;
   }
