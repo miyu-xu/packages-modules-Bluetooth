@@ -27,10 +27,13 @@ import com.android.server.bluetooth.USER_SETTINGS_KEY
 import com.android.server.bluetooth.isUserEnabled
 import com.android.server.bluetooth.isUserSupported
 import com.android.server.bluetooth.notifyBluetoothOn
+import com.android.server.bluetooth.pause
 import com.android.server.bluetooth.setUserEnabled
 import com.android.server.bluetooth.setupNewTimer
 import com.google.common.truth.Expect
 import com.google.common.truth.Truth.assertThat
+import java.time.LocalDateTime
+import java.time.LocalTime
 import kotlin.test.assertFailsWith
 import org.junit.After
 import org.junit.Before
@@ -48,6 +51,8 @@ class AutoOnFeatureTest {
     private val state = BluetoothAdapterState()
     private val context = ApplicationProvider.getApplicationContext<Context>()
     private val resolver = context.contentResolver
+    private val now = LocalDateTime.now()
+    private val timerTarget = LocalDateTime.of(now.toLocalDate(), LocalTime.of(5, 0)).plusDays(1)
 
     private var callback_count = 0
 
@@ -67,6 +72,7 @@ class AutoOnFeatureTest {
 
         callback_count = 0
         Timer.cancel()
+        restoreSavedTimer()
     }
 
     private fun setupTimer() {
@@ -86,6 +92,23 @@ class AutoOnFeatureTest {
     private fun restoreSettings() {
         Settings.Secure.putString(resolver, USER_SETTINGS_KEY, null)
         shadowOf(looper).idle()
+    }
+
+    private fun restoreSavedTimer() {
+        Settings.Secure.putString(resolver, Timer.STORAGE_KEY, null)
+        shadowOf(looper).idle()
+    }
+
+    private fun expectStorageTime() {
+        shadowOf(looper).idle()
+        expect
+            .that(Settings.Secure.getString(resolver, Timer.STORAGE_KEY))
+            .isEqualTo(timerTarget.toString())
+    }
+
+    private fun expectNoStorageTime() {
+        shadowOf(looper).idle()
+        expect.that(Settings.Secure.getString(resolver, Timer.STORAGE_KEY)).isNull()
     }
 
     private fun callback_on() {
@@ -210,5 +233,61 @@ class AutoOnFeatureTest {
         setupTimer()
 
         assertThat(Timer.timer).isNotNull()
+    }
+
+    @Test
+    fun pause_whenIdle_noTimeSave() {
+        pause()
+
+        expect.that(Timer.timer).isNull()
+        expect.that(callback_count).isEqualTo(0)
+        expectNoStorageTime()
+    }
+
+    @Test
+    fun pause_whenTimer_timeIsSaved() {
+        setupTimer()
+
+        pause()
+
+        expect.that(Timer.timer).isNull()
+        expect.that(callback_count).isEqualTo(0)
+        expectStorageTime()
+    }
+
+    @Test
+    fun setupTimer_whenIdle_timeIsSave() {
+        setupTimer()
+
+        expect.that(Timer.timer).isNotNull()
+        expect.that(callback_count).isEqualTo(0)
+        expectStorageTime()
+    }
+
+    @Test
+    fun setupTimer_whenPaused_isResumed() {
+        val now = LocalDateTime.now()
+        val alarmTime = LocalDateTime.of(now.toLocalDate(), LocalTime.of(5, 0)).plusDays(1)
+        Settings.Secure.putString(resolver, Timer.STORAGE_KEY, alarmTime.toString())
+        shadowOf(looper).idle()
+
+        setupTimer()
+
+        expect.that(Timer.timer).isNotNull()
+        expect.that(callback_count).isEqualTo(0)
+        expectStorageTime()
+    }
+
+    @Test
+    fun setupTimer_whenSaveTimerIsExpired_triggerCallback() {
+        val pastTime = timerTarget.minusDays(3)
+        Settings.Secure.putString(resolver, Timer.STORAGE_KEY, pastTime.toString())
+        shadowOf(looper).idle()
+
+        setupTimer()
+
+        expect.that(Timer.timer).isNull()
+        expect.that(callback_count).isEqualTo(1)
+        expectNoStorageTime()
     }
 }
