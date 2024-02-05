@@ -551,17 +551,11 @@ class LeAudioClientImpl : public LeAudioClient {
     if (group_conf_changed) {
       /* All the configurations should be recalculated for the new conditions */
       group->InvalidateCachedConfigurations();
+      group->InvalidateGroupStrategy();
       callbacks_->OnAudioConf(group->audio_directions_, group->group_id_,
                               group->snk_audio_locations_.to_ulong(),
                               group->src_audio_locations_.to_ulong(),
                               group->GetAvailableContexts().value());
-    }
-  }
-
-  void UpdateLocationsAndContextsAvailability(int group_id) {
-    LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
-    if (group) {
-      UpdateLocationsAndContextsAvailability(group);
     }
   }
 
@@ -642,7 +636,6 @@ class LeAudioClientImpl : public LeAudioClient {
     LeAudioDevice* leAudioDevice = leAudioDevices_.FindByAddress(address);
     LeAudioDeviceGroup* new_group;
     LeAudioDeviceGroup* old_group = nullptr;
-    int old_group_id = bluetooth::groups::kGroupUnknown;
 
     if (!leAudioDevice) {
       /* TODO This part possible to remove as this is to handle adding device to
@@ -660,7 +653,6 @@ class LeAudioClientImpl : public LeAudioClient {
     } else {
       if (leAudioDevice->group_id_ != bluetooth::groups::kGroupUnknown) {
         old_group = aseGroups_.FindById(leAudioDevice->group_id_);
-        old_group_id = old_group->group_id_;
       }
     }
 
@@ -707,11 +699,6 @@ class LeAudioClientImpl : public LeAudioClient {
     /* If device is connected and added to the group, lets read ASE states */
     if (leAudioDevice->conn_id_ != GATT_INVALID_CONN_ID)
       AseInitialStateReadRequest(leAudioDevice);
-
-    /* Group may be destroyed once moved its last node to new group, so don't
-     * use `old_group` pointer anymore.
-     * Removing node from group requires updating group context availability */
-    UpdateLocationsAndContextsAvailability(old_group_id);
 
     if (leAudioDevice->GetConnectionState() == DeviceConnectState::CONNECTED) {
       UpdateLocationsAndContextsAvailability(new_group);
@@ -1779,6 +1766,8 @@ class LeAudioClientImpl : public LeAudioClient {
        * PACs are updated.
        */
       if (group) {
+        /* Changes in PAC record channel counts may change the strategy */
+        group->InvalidateGroupStrategy();
         group->InvalidateCachedConfigurations();
       }
       if (notify) {
@@ -1804,6 +1793,8 @@ class LeAudioClientImpl : public LeAudioClient {
        * PACs are updated.
        */
       if (group) {
+        /* Changes in PAC record channel counts may change the strategy */
+        group->InvalidateGroupStrategy();
         group->InvalidateCachedConfigurations();
       }
       if (notify) {
@@ -1840,7 +1831,7 @@ class LeAudioClientImpl : public LeAudioClient {
             leAudioDevice->snk_audio_locations_.to_ulong(),
             leAudioDevice->src_audio_locations_.to_ulong());
         if (group && group->IsReleasingOrIdle()) {
-          UpdateLocationsAndContextsAvailability(leAudioDevice->group_id_);
+          UpdateLocationsAndContextsAvailability(group);
         }
       }
     } else if (hdl == leAudioDevice->src_audio_locations_hdls_.val_hdl) {
@@ -1868,7 +1859,7 @@ class LeAudioClientImpl : public LeAudioClient {
             leAudioDevice->snk_audio_locations_.to_ulong(),
             leAudioDevice->src_audio_locations_.to_ulong());
         if (group && group->IsReleasingOrIdle()) {
-          UpdateLocationsAndContextsAvailability(leAudioDevice->group_id_);
+          UpdateLocationsAndContextsAvailability(group);
         }
       }
     } else if (hdl == leAudioDevice->audio_avail_hdls_.val_hdl) {
@@ -5605,7 +5596,7 @@ class LeAudioClientImpl : public LeAudioClient {
         CleanCachedMicrophoneData();
 
         if (group) {
-          UpdateLocationsAndContextsAvailability(group->group_id_);
+          UpdateLocationsAndContextsAvailability(group);
           if (group->IsPendingConfiguration()) {
             SuspendedForReconfiguration();
             auto remote_direction =
