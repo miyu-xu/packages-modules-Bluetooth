@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "14fe73f7_cdafc186",
+        "filename": "system/btif/src/btif_config.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-05T17:00:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40786e57_1e17fa97",
+      "revId": "06adadf4dfcc058f117fc8caeadc03ed2f441d06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5b2289fe_93bcb444",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-02-02T23:12:39Z",
       "side": 1,
       "message": "BTIF_STORAGE_SECTION_INFO",
+      "range": {
+        "startLine": 57,
+        "startChar": 48,
+        "endLine": 57,
+        "endChar": 54
+      },
+      "revId": "06adadf4dfcc058f117fc8caeadc03ed2f441d06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7626b593_8075e3b7",
+        "filename": "system/gd/storage/storage_module.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-05T17:00:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b2289fe_93bcb444",
       "range": {
         "startLine": 57,
         "startChar": 48,
