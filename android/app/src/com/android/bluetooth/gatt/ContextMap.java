@@ -31,6 +31,7 @@ import androidx.annotation.VisibleForTesting;
 
 import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.le_scan.AppScanStats;
+import com.android.bluetooth.le_scan.TransactionalScanHelper;
 import com.android.internal.annotations.GuardedBy;
 
 import com.google.common.collect.EvictingQueue;
@@ -211,11 +212,11 @@ public class ContextMap<C, T> {
     private final Object mConnectionsLock = new Object();
 
     /** Add an entry to the application context list. */
-    App add(
+    public App add(
             UUID uuid,
             WorkSource workSource,
             C callback,
-            GattService.PendingIntentInfo piInfo,
+            TransactionalScanHelper.PendingIntentInfo piInfo,
             GattService service) {
         int appUid;
         String appName = null;
@@ -292,7 +293,7 @@ public class ContextMap<C, T> {
     /**
      * Remove the context for a given application ID.
      */
-    void remove(int id) {
+    public void remove(int id) {
         boolean find = false;
         synchronized (mAppsLock) {
             Iterator<App> i = mApps.iterator();
@@ -312,7 +313,7 @@ public class ContextMap<C, T> {
         }
     }
 
-    List<Integer> getAllAppsIds() {
+    public List<Integer> getAllAppsIds() {
         List<Integer> appIds = new ArrayList();
         synchronized (mAppsLock) {
             Iterator<App> i = mApps.iterator();
@@ -674,7 +675,7 @@ public class ContextMap<C, T> {
     /**
      * Erases all application context entries.
      */
-    void clear() {
+    public void clear() {
         synchronized (mAppsLock) {
             Iterator<App> i = mApps.iterator();
             while (i.hasNext()) {
