@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95ed7dc6_e7079239",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1461,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-05T18:56:40Z",
+      "side": 1,
+      "message": "This is a new API that does not exist prior to V.\nYou need to add a check on the sdkLevel before calling it\n\n```\n if (Flags.isScoManagedByAudio() \u0026\u0026 isAtLeastV()) {\n```\n\nIf you don\u0027t apex V on U / T will crash as the method will not be implemented\n\nI expect this CL to not build for now since the API is not in AOSP, but I also expect a check sdk warning / error once the build issue is solved. I would be interested to see if this lint is still enforce as this may be critical business for Bluetooth module",
+      "range": {
+        "startLine": 1461,
+        "startChar": 67,
+        "endLine": 1461,
+        "endChar": 80
+      },
+      "revId": "dea968c2edb122313d4b2513d8e20536a4a94a53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
