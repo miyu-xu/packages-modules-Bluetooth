@@ -1193,6 +1193,10 @@ class BluetoothManagerService {
     }
 
     private Unit enableFromAutoOn() {
+        if (isBluetoothDisallowed()) {
+            Log.d(TAG, "Bluetooth is not allowed, preventing AutoOn");
+            return Unit.INSTANCE;
+        }
         sendToggleNotification("auto_on_bt_enabled_notification");
         enable("BluetoothSystemServer/AutoOn");
         return Unit.INSTANCE;
