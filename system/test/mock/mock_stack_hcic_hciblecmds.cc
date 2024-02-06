@@ -94,7 +94,6 @@ struct btsnd_hcic_rej_cis_req btsnd_hcic_rej_cis_req;
 struct btsnd_hcic_remove_cig btsnd_hcic_remove_cig;
 struct btsnd_hcic_remove_iso_data_path btsnd_hcic_remove_iso_data_path;
 struct btsnd_hcic_req_peer_sca btsnd_hcic_req_peer_sca;
-struct btsnd_hcic_set_cig_params btsnd_hcic_set_cig_params;
 struct btsnd_hcic_setup_iso_data_path btsnd_hcic_setup_iso_data_path;
 struct btsnd_hcic_term_big btsnd_hcic_term_big;
 
@@ -397,16 +396,6 @@ void btsnd_hcic_remove_iso_data_path(
 void btsnd_hcic_req_peer_sca(uint16_t conn_handle) {
   inc_func_call_count(__func__);
   test::mock::stack_hcic_hciblecmds::btsnd_hcic_req_peer_sca(conn_handle);
-}
-void btsnd_hcic_set_cig_params(
-    uint8_t cig_id, uint32_t sdu_itv_mtos, uint32_t sdu_itv_stom, uint8_t sca,
-    uint8_t packing, uint8_t framing, uint16_t max_trans_lat_stom,
-    uint16_t max_trans_lat_mtos, uint8_t cis_cnt, const EXT_CIS_CFG* cis_cfg,
-    base::OnceCallback<void(uint8_t*, uint16_t)> cb) {
-  inc_func_call_count(__func__);
-  test::mock::stack_hcic_hciblecmds::btsnd_hcic_set_cig_params(
-      cig_id, sdu_itv_mtos, sdu_itv_stom, sca, packing, framing,
-      max_trans_lat_stom, max_trans_lat_mtos, cis_cnt, cis_cfg, std::move(cb));
 }
 void btsnd_hcic_setup_iso_data_path(
     uint16_t iso_handle, uint8_t data_path_dir, uint8_t data_path_id,

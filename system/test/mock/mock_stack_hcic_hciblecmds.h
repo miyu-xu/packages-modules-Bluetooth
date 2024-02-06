@@ -728,34 +728,6 @@ struct btsnd_hcic_req_peer_sca {
 };
 extern struct btsnd_hcic_req_peer_sca btsnd_hcic_req_peer_sca;
 
-// Name: btsnd_hcic_set_cig_params
-// Params: uint8_t cig_id, uint32_t sdu_itv_mtos, uint32_t sdu_itv_stom, uint8_t
-// sca, uint8_t packing, uint8_t framing, uint16_t max_trans_lat_stom, uint16_t
-// max_trans_lat_mtos, uint8_t cis_cnt, const EXT_CIS_CFG* cis_cfg,
-// base::OnceCallback<void(uint8_t*, uint16_t Return: void
-struct btsnd_hcic_set_cig_params {
-  std::function<void(uint8_t, uint32_t, uint32_t, uint8_t, uint8_t, uint8_t,
-                     uint16_t, uint16_t, uint8_t, const EXT_CIS_CFG*,
-                     base::OnceCallback<void(uint8_t*, uint16_t)>)>
-      body{[](uint8_t /* cig_id */, uint32_t /* sdu_itv_mtos */,
-              uint32_t /* sdu_itv_stom */, uint8_t /* sca */,
-              uint8_t /* packing */, uint8_t /* framing */,
-              uint16_t /* max_trans_lat_stom */,
-              uint16_t /* max_trans_lat_mtos */, uint8_t /* cis_cnt */,
-              const EXT_CIS_CFG* /* cis_cfg */,
-              base::OnceCallback<void(uint8_t*, uint16_t)> /* cb */) {}};
-  void operator()(uint8_t cig_id, uint32_t sdu_itv_mtos, uint32_t sdu_itv_stom,
-                  uint8_t sca, uint8_t packing, uint8_t framing,
-                  uint16_t max_trans_lat_stom, uint16_t max_trans_lat_mtos,
-                  uint8_t cis_cnt, const EXT_CIS_CFG* cis_cfg,
-                  base::OnceCallback<void(uint8_t*, uint16_t)> cb) {
-    body(cig_id, sdu_itv_mtos, sdu_itv_stom, sca, packing, framing,
-         max_trans_lat_stom, max_trans_lat_mtos, cis_cnt, cis_cfg,
-         std::move(cb));
-  };
-};
-extern struct btsnd_hcic_set_cig_params btsnd_hcic_set_cig_params;
-
 // Name: btsnd_hcic_setup_iso_data_path
 // Params: uint16_t iso_handle, uint8_t data_path_dir, uint8_t data_path_id,
 // uint8_t codec_id_format, uint16_t codec_id_company, uint16_t codec_id_vendor,
