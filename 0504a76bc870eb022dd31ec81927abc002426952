@@ -52,6 +52,24 @@
       "parentUuid": "4ee4de55_baec5c45",
       "revId": "0504a76bc870eb022dd31ec81927abc002426952",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7754cf70_8e3365ba",
+        "filename": "android/pandora/test/gatt_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-02-06T02:16:47Z",
+      "side": 1,
+      "message": "```\n Expected Outcome\nPass verdict\nThe IUT retrieves the specified Device Name from the Lower Tester.\n```\n\nThis test seems to only verify a name can be read, not verifying the name is correct or not.",
+      "parentUuid": "5afb3d10_919d5aea",
+      "revId": "0504a76bc870eb022dd31ec81927abc002426952",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
