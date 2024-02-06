@@ -68,8 +68,6 @@ struct MockIsoManager {
   MOCK_METHOD((void), HandleDisconnect, (uint16_t handle, uint8_t reason));
   MOCK_METHOD((void), HandleNumComplDataPkts, (uint8_t * p, uint8_t evt_len));
   MOCK_METHOD((void), HandleGdNumComplDataPkts, (uint8_t * p, uint8_t evt_len));
-  MOCK_METHOD((void), HandleHciEvent,
-              (uint8_t sub_code, uint8_t* params, uint16_t length));
   MOCK_METHOD((void), HandleHciEvent, (bluetooth::hci::LeMetaEventView event));
 
   MOCK_METHOD((void), Start, ());
