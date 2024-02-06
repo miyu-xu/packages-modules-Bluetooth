@@ -80,14 +80,13 @@ import android.os.Bundle;
 import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
+import android.platform.test.flag.junit.SetFlagsRule;
 
 import androidx.test.filters.MediumTest;
 
 import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
-import com.android.bluetooth.flags.FakeFeatureFlagsImpl;
-import com.android.bluetooth.flags.FeatureFlags;
 import com.android.bluetooth.flags.Flags;
 
 import org.hamcrest.core.IsInstanceOf;
@@ -116,6 +115,8 @@ public class BassClientStateMachineTest {
     @Rule
     public final MockitoRule mockito = MockitoJUnit.rule();
 
+    @Rule public final SetFlagsRule mSetFlagsRule = new SetFlagsRule();
+
     private static final int CONNECTION_TIMEOUT_MS = 1_000;
     private static final int TIMEOUT_MS = 2_000;
     private static final int WAIT_MS = 1_200;
@@ -124,7 +125,6 @@ public class BassClientStateMachineTest {
     private HandlerThread mHandlerThread;
     private StubBassClientStateMachine mBassClientStateMachine;
     private BluetoothDevice mTestDevice;
-    private FakeFeatureFlagsImpl mFakeFlagsImpl;
 
     @Mock private AdapterService mAdapterService;
     @Mock private BassClientService mBassClientService;
@@ -135,8 +135,6 @@ public class BassClientStateMachineTest {
         TestUtils.setAdapterService(mAdapterService);
 
         mAdapter = BluetoothAdapter.getDefaultAdapter();
-        mFakeFlagsImpl = new FakeFeatureFlagsImpl();
-        mFakeFlagsImpl.setFlag(Flags.FLAG_LEAUDIO_BROADCAST_MONITOR_SOURCE_SYNC_STATUS, false);
         BluetoothMethodProxy.setInstanceForTesting(mMethodProxy);
         doNothing().when(mMethodProxy).periodicAdvertisingManagerTransferSync(
                 any(), any(), anyInt(), anyInt());
@@ -152,8 +150,7 @@ public class BassClientStateMachineTest {
                         mTestDevice,
                         mBassClientService,
                         mHandlerThread.getLooper(),
-                        CONNECTION_TIMEOUT_MS,
-                        mFakeFlagsImpl);
+                        CONNECTION_TIMEOUT_MS);
         mBassClientStateMachine.start();
     }
 
@@ -1823,7 +1820,7 @@ public class BassClientStateMachineTest {
 
     @Test
     public void periodicAdvertisingCallbackOnSyncLost_notifySourceLost() {
-        mFakeFlagsImpl.setFlag(Flags.FLAG_LEAUDIO_BROADCAST_MONITOR_SOURCE_SYNC_STATUS, true);
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BROADCAST_MONITOR_SOURCE_SYNC_STATUS);
         PeriodicAdvertisingCallback cb = mBassClientStateMachine.mLocalPeriodicAdvCallback;
         BassClientService.Callbacks callbacks = Mockito.mock(BassClientService.Callbacks.class);
         int syncHandle = 1;
@@ -1837,7 +1834,7 @@ public class BassClientStateMachineTest {
 
     @Test
     public void periodicAdvertisingCallbackOnBigInfoAdvertisingReport_updateRssi() {
-        mFakeFlagsImpl.setFlag(Flags.FLAG_LEAUDIO_BROADCAST_MONITOR_SOURCE_SYNC_STATUS, true);
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BROADCAST_MONITOR_SOURCE_SYNC_STATUS);
         PeriodicAdvertisingCallback cb = mBassClientStateMachine.mLocalPeriodicAdvCallback;
         BassClientService.Callbacks callbacks = Mockito.mock(BassClientService.Callbacks.class);
         int testRssi = -40;
@@ -2059,9 +2056,8 @@ public class BassClientStateMachineTest {
                 BluetoothDevice device,
                 BassClientService service,
                 Looper looper,
-                int connectTimeout,
-                FeatureFlags featureFlags) {
-            super(device, service, looper, connectTimeout, featureFlags);
+                int connectTimeout) {
+            super(device, service, looper, connectTimeout);
         }
 
         @Override

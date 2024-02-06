@@ -54,8 +54,7 @@ import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.btservice.ServiceFactory;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.csip.CsipSetCoordinatorService;
-import com.android.bluetooth.flags.FeatureFlags;
-import com.android.bluetooth.flags.FeatureFlagsImpl;
+import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.le_audio.LeAudioService;
 import com.android.internal.annotations.VisibleForTesting;
 
@@ -96,7 +95,6 @@ public class BassClientService extends ProfileService {
     private final Map<BluetoothDevice, List<Integer>> mGroupManagedSources =
             new ConcurrentHashMap<>();
     private final Map<BluetoothDevice, List<Integer>> mActiveSourceMap = new ConcurrentHashMap<>();
-    private final FeatureFlags mFeatureFlags;
     private final Map<BluetoothDevice, BluetoothLeBroadcastMetadata> mBroadcastMetadataMap =
             new ConcurrentHashMap<>();
     private final LinkedList<BluetoothDevice> mPausedBroadcastSinks = new LinkedList<>();
@@ -137,13 +135,6 @@ public class BassClientService extends ProfileService {
 
     public BassClientService(Context ctx) {
         super(ctx);
-        mFeatureFlags = new FeatureFlagsImpl();
-    }
-
-    @VisibleForTesting
-    BassClientService(Context ctx, FeatureFlags featureFlags) {
-        super(ctx);
-        mFeatureFlags = featureFlags;
     }
 
     public static boolean isEnabled() {
@@ -822,8 +813,7 @@ public class BassClientService extends ProfileService {
             log("Creating a new state machine for " + device);
             stateMachine =
                     BassObjectsFactory.getInstance()
-                            .makeStateMachine(
-                                    device, this, mStateMachinesThread.getLooper(), mFeatureFlags);
+                            .makeStateMachine(device, this, mStateMachinesThread.getLooper());
             mStateMachines.put(device, stateMachine);
             return stateMachine;
         }
@@ -1730,7 +1720,7 @@ public class BassClientService extends ProfileService {
     }
 
     private boolean isAllowedToAddSource() {
-        if (mFeatureFlags.leaudioBroadcastAudioHandoverPolicies()) {
+        if (Flags.leaudioBroadcastAudioHandoverPolicies()) {
             /* Check if should wait for status update */
             if (mUnicastSourceStreamStatus.isEmpty()) {
                 /* Assistant was not active, inform about activation */
