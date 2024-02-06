@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33338ac4_e90328f3",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1841,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-06T17:58:15Z",
+      "side": 1,
+      "message": "Check here if this is primary device.",
+      "revId": "531232e7446bfd972259041160e685382a6cc430",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
