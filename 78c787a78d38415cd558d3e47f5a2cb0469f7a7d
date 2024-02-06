@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfef7ce1_83b2b532",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-02-06T10:01:46Z",
+      "side": 1,
+      "message": "if the tests are not affected, then its ok to go with code review",
+      "revId": "78c787a78d38415cd558d3e47f5a2cb0469f7a7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94681b27_5f5d2824",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-02-06T10:01:46Z",
+      "side": 1,
+      "message": "it is not clear what this 5 mean, please set it as constant \nL2CAP_ACCEPT_TIMEOUT \u003d 5\nor as you did in line 183 \n(..., timeout\u003d5)",
+      "range": {
+        "startLine": 179,
+        "startChar": 67,
+        "endLine": 179,
+        "endChar": 70
+      },
+      "revId": "78c787a78d38415cd558d3e47f5a2cb0469f7a7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
