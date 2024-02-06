@@ -93,6 +93,30 @@
       },
       "revId": "e04e33524e5acc63e0fdc3243841b379b2fb5413",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14659b57_a350d056",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-06T18:50:09Z",
+      "side": 1,
+      "message": "Should we file a follow-on bug for tracking the Bumble improvement that would help here?\n\nOtherwise ok with me for now, will want to keep an eye to ensure no flakiness when run on the presubmit. But I did discuss this before with Kyunglyul and AIUI was run numerous times locally.",
+      "parentUuid": "775626cd_7725dfa0",
+      "range": {
+        "startLine": 271,
+        "startChar": 12,
+        "endLine": 280,
+        "endChar": 61
+      },
+      "revId": "e04e33524e5acc63e0fdc3243841b379b2fb5413",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
