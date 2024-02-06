@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45f57b9f_bbea8e46",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-06T22:47:24Z",
+      "side": 1,
+      "message": "We should not disable selinux on the device",
+      "revId": "3fa7a1a1ffa5a5e133ce26521dcee4a37e902afd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
