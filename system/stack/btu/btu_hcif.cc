@@ -37,7 +37,6 @@
 
 #include "common/init_flags.h"
 #include "common/metrics.h"
-#include "device/include/controller.h"
 #include "internal_include/bt_target.h"
 #include "main/shim/hci_layer.h"
 #include "os/log.h"
@@ -49,11 +48,11 @@
 #include "stack/include/bt_types.h"
 #include "stack/include/btm_ble_addr.h"
 #include "stack/include/btm_ble_api.h"
-#include "stack/include/btm_iso_api.h"
 #include "stack/include/btm_sec_api_types.h"
 #include "stack/include/dev_hci_link_interface.h"
 #include "stack/include/hci_error_code.h"
 #include "stack/include/hci_evt_length.h"
+#include "stack/include/hcimsgs.h"
 #include "stack/include/inq_hci_link_interface.h"
 #include "stack/include/l2cap_hci_link_interface.h"
 #include "stack/include/main_thread.h"
@@ -65,7 +64,6 @@
 
 using namespace bluetooth;
 using base::Location;
-using bluetooth::hci::IsoManager;
 
 bool BTM_BLE_IS_RESOLVE_BDA(const RawAddress& x);              // TODO remove
 void BTA_sys_signal_hw_error();                                // TODO remove
@@ -319,15 +317,6 @@ void btu_hcif_process_event(UNUSED_ATTR uint8_t controller_id,
 
         case HCI_BLE_REQ_PEER_SCA_CPL_EVT:
           btm_acl_process_sca_cmpl_pkt(ble_evt_len, p);
-          break;
-
-        case HCI_BLE_CREATE_BIG_CPL_EVT:
-        case HCI_BLE_TERM_BIG_CPL_EVT:
-        case HCI_BLE_CIS_REQ_EVT:
-        case HCI_BLE_BIG_SYNC_EST_EVT:
-        case HCI_BLE_BIG_SYNC_LOST_EVT:
-          IsoManager::GetInstance()->HandleHciEvent(ble_sub_code, p,
-                                                    ble_evt_len);
           break;
 
         default:

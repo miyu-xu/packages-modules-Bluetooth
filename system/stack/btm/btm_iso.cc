@@ -131,12 +131,6 @@ void IsoManager::HandleNumComplDataPkts(uint16_t handle, uint16_t credits) {
     pimpl_->iso_impl_->handle_gd_num_completed_pkts(handle, credits);
 }
 
-void IsoManager::HandleHciEvent(uint8_t sub_code, uint8_t* params,
-                                uint16_t length) {
-  if (pimpl_->IsRunning())
-    pimpl_->iso_impl_->on_iso_event(sub_code, params, length);
-}
-
 void IsoManager::HandleHciEvent(bluetooth::hci::LeMetaEventView event) {
   if (pimpl_->IsRunning()) pimpl_->iso_impl_->handle_incoming_event(event);
 }

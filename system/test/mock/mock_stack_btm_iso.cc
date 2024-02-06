@@ -129,12 +129,6 @@ void IsoManager::HandleNumComplDataPkts(uint16_t handle, uint16_t credits) {
   pimpl_->HandleNumComplDataPkts(handle, credits);
 }
 
-void IsoManager::HandleHciEvent(uint8_t sub_code, uint8_t* params,
-                                uint16_t length) {
-  if (!pimpl_) return;
-  pimpl_->HandleHciEvent(sub_code, params, length);
-}
-
 void IsoManager::HandleHciEvent(bluetooth::hci::LeMetaEventView event) {
   if (!pimpl_) return;
   pimpl_->HandleHciEvent(event);
