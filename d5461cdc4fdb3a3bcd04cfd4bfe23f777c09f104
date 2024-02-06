@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cf5bed34_a3191b66",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1705,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-06T09:12:20Z",
+      "side": 1,
+      "message": "Actually unintended disconnection should not have any impact on Broadcast, it should remain. So this change should cover both: unintentional and intentional disconnections, or maybe I don\u0027t see something ?",
+      "parentUuid": "799e3e59_6f52035c",
+      "revId": "d5461cdc4fdb3a3bcd04cfd4bfe23f777c09f104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "500c9e25_1cb39324",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
         "patchSetId": 11
@@ -48,6 +66,24 @@
       "writtenOn": "2024-02-05T21:58:24Z",
       "side": 1,
       "message": "need the same disconnect handle here? in ConnectedProcessing.",
+      "revId": "d5461cdc4fdb3a3bcd04cfd4bfe23f777c09f104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c4d9fdc_4feb4619",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 2047,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-06T09:12:20Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "500c9e25_1cb39324",
       "revId": "d5461cdc4fdb3a3bcd04cfd4bfe23f777c09f104",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -65,6 +101,24 @@
       "writtenOn": "2024-02-05T21:58:24Z",
       "side": 1,
       "message": "handle for unintended disconnect.",
+      "revId": "d5461cdc4fdb3a3bcd04cfd4bfe23f777c09f104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a29423e_14f386ed",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 2066,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-06T09:12:20Z",
+      "side": 1,
+      "message": "This is the same as previous - I don\u0027t see currently what should be done for unintentional disconnection.",
+      "parentUuid": "5f301b2e_ff537295",
       "revId": "d5461cdc4fdb3a3bcd04cfd4bfe23f777c09f104",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
