@@ -142,6 +142,24 @@
       "parentUuid": "0a401b8f_48acdfb0",
       "revId": "0504a76bc870eb022dd31ec81927abc002426952",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c35bdd9_3ab85a9f",
+        "filename": "android/pandora/test/gatt_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-02-06T04:19:50Z",
+      "side": 1,
+      "message": "Per offline discussion with @licorne@google.com, he thinks it is implemented in PTS, discarding it.",
+      "parentUuid": "55efec6f_91f5c2d4",
+      "revId": "0504a76bc870eb022dd31ec81927abc002426952",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
