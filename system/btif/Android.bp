@@ -551,6 +551,7 @@ cc_test {
     test_suites: ["general-tests"],
     include_dirs: btifCommonIncludes,
     srcs: [
+        ":BluetoothPacketSources",
         ":TestCommonMockFunctions",
         ":TestFakeOsi",
         ":TestMockStack",

@@ -453,6 +453,7 @@ cc_test {
     ],
     srcs: [
         ":BluetoothLogRedactionSources",
+        ":BluetoothPacketSources",
         ":TestCommonMockFunctions",
         ":TestFakeOsi",
         ":TestMockBtaSys",
@@ -847,6 +848,7 @@ cc_test {
         "packages/modules/Bluetooth/system/stack/include",
     ],
     srcs: [
+        ":BluetoothPacketSources",
         ":TestCommonMockFunctions",
         ":TestMockBtaLeAudioHalVerifier",
         ":TestMockMainShim",
@@ -941,6 +943,7 @@ cc_test {
         "packages/modules/Bluetooth/system/stack/include",
     ],
     srcs: [
+        ":BluetoothPacketSources",
         ":TestCommonMockFunctions",
         ":TestMockBtaLeAudioHalVerifier",
         ":TestMockMainShim",
@@ -1058,6 +1061,7 @@ cc_test {
         "packages/modules/Bluetooth/system/stack/include",
     ],
     srcs: [
+        ":BluetoothPacketSources",
         ":TestCommonMockFunctions",
         ":TestCommonStackConfig",
         ":TestMockMainShim",
@@ -1120,6 +1124,7 @@ cc_test {
         "packages/modules/Bluetooth/system/stack/include",
     ],
     srcs: [
+        ":BluetoothPacketSources",
         ":TestCommonMockFunctions",
         ":TestCommonStackConfig",
         ":TestMockStackBtmIso",
