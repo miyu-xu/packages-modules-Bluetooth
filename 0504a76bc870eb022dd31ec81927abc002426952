@@ -124,6 +124,24 @@
       "parentUuid": "f28f9d1b_38e357e3",
       "revId": "0504a76bc870eb022dd31ec81927abc002426952",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55efec6f_91f5c2d4",
+        "filename": "android/pandora/test/gatt_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-02-06T02:48:47Z",
+      "side": 1,
+      "message": "For more context, the reason why David is asking is because if this test is already available in PTS, it would be preferable to use PTS-bot rather than implementing a dedicated Avatar test. This is a general good practice regarding Bluetooth tests as we described in https://developers.google.com/pandora/guides/testing-methodology",
+      "parentUuid": "0a401b8f_48acdfb0",
+      "revId": "0504a76bc870eb022dd31ec81927abc002426952",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
