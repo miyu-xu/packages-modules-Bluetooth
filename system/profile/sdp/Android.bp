@@ -47,6 +47,7 @@ cc_test {
         "lib-bt-packets-avrcp",
         "lib-bt-packets-base",
         "libbluetooth-types",
+        "libbluetooth_log",
         "libchrome",
         "libgmock",
         "sdp_service",

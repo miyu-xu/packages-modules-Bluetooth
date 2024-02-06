@@ -16,6 +16,8 @@
 
 #pragma once
 
+#include <bluetooth/log.h>
+
 #include <iomanip>
 #include <iostream>
 #include <sstream>
@@ -116,3 +118,14 @@ inline std::ostream& operator<<(std::ostream& os, const DataElementSize& size) {
 
 }  // namespace sdp
 }  // namespace bluetooth
+
+namespace fmt {
+template <>
+struct formatter<PduId> : ostream_formatter {};
+template <>
+struct formatter<AttributeId> : ostream_formatter {};
+template <>
+struct formatter<DataElementType> : ostream_formatter {};
+template <>
+struct formatter<DataElementSize> : ostream_formatter {};
+}  // namespace fmt
