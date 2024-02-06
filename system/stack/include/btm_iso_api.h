@@ -221,17 +221,6 @@ class IsoManager {
   /**
    * Handle CIS and BIG related HCI events
    *
-   * @param sub_code ble subcode for the HCI event
-   * @param params raw packet buffer for the event. The ownership of params is
-   * not being transferred
-   * @param length event packet buffer length
-   */
-  virtual void HandleHciEvent(uint8_t sub_code, uint8_t* params,
-                              uint16_t length);
-
-  /**
-   * Handle CIS and BIG related HCI events
-   *
    * @param event valid LeMetaEventView of the received event.
    */
   virtual void HandleHciEvent(bluetooth::hci::LeMetaEventView event);
