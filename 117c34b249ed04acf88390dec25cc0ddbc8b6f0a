@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8eaa07fb_5aabe398",
+        "filename": "system/profile/sdp/common/data_element_reader.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-06T19:16:24Z",
+      "side": 1,
+      "message": "```\npackages/modules/Bluetooth/system/profile/sdp/common/data_element_reader.cc:19:10: fatal error: \u0027bluetooth/log.h\u0027 file not found\n   19 | #include \u003cbluetooth/log.h\u003e\n      |          ^~~~~~~~~~~~~~~~~\n```",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 26
+      },
+      "revId": "117c34b249ed04acf88390dec25cc0ddbc8b6f0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
