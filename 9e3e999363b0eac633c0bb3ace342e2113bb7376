@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fff8ee41_47f7dc81",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-06T22:41:17Z",
+      "side": 1,
+      "message": "Optimize a step by skipping a deserialization step and also running directly on main thread as typically expected by stack convention",
+      "revId": "9e3e999363b0eac633c0bb3ace342e2113bb7376",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
