@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1986a8d_0d4c8209",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-06T22:12:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c800617_bd7ad3c2",
+      "revId": "723e51cd5ea036b2580dfd2c9d25cd59eedb5170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b169c3fd_3278a33b",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-02-06T05:57:51Z",
       "side": 1,
       "message": "pass the client_id to the observer and await for a on_outgoing_connection_result callback which it connecting_id is the client_id.",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 0
+      },
+      "revId": "723e51cd5ea036b2580dfd2c9d25cd59eedb5170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be4cb11a_e77ffa7c",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-06T22:12:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b169c3fd_3278a33b",
       "range": {
         "startLine": 87,
         "startChar": 0,
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "27e91c93_9a4de39f",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-06T22:12:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14ef3cba_6ca47c80",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 0
+      },
+      "revId": "723e51cd5ea036b2580dfd2c9d25cd59eedb5170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "77c48ca5_9faacfa5",
@@ -77,6 +143,30 @@
       "writtenOn": "2024-02-06T05:57:51Z",
       "side": 1,
       "message": "Pass the socket_id to the observer and await until the target on_incoming_socket_ready callback called on the scoket_id.",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 0
+      },
+      "revId": "723e51cd5ea036b2580dfd2c9d25cd59eedb5170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61c2ddd5_80af8e33",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-06T22:12:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77c48ca5_9faacfa5",
       "range": {
         "startLine": 184,
         "startChar": 0,
@@ -110,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e80414f9_33dc47f7",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-06T22:12:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "370fd57f_4b012a19",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 225,
+        "endChar": 0
+      },
+      "revId": "723e51cd5ea036b2580dfd2c9d25cd59eedb5170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e9951cf_a361be02",
@@ -133,6 +247,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ade0b45_2794bbe7",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-06T22:12:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e9951cf_a361be02",
+      "range": {
+        "startLine": 229,
+        "startChar": 0,
+        "endLine": 232,
+        "endChar": 0
+      },
+      "revId": "723e51cd5ea036b2580dfd2c9d25cd59eedb5170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e718edb_77888daf",
@@ -146,6 +284,30 @@
       "writtenOn": "2024-02-06T05:57:51Z",
       "side": 1,
       "message": "This is not a constant. Please use lower case for a variable.",
+      "range": {
+        "startLine": 233,
+        "startChar": 0,
+        "endLine": 235,
+        "endChar": 0
+      },
+      "revId": "723e51cd5ea036b2580dfd2c9d25cd59eedb5170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e403ec54_c28d05b8",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-06T22:12:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e718edb_77888daf",
       "range": {
         "startLine": 233,
         "startChar": 0,
