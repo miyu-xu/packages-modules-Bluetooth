@@ -177,6 +177,7 @@ cc_test {
         ":TestMockBta",
         ":TestMockBtif",
         ":TestMockBtu",
+        ":TestMockJni",
         ":TestMockLegacyHciCommands",
         ":TestMockLegacyHciInterface",
         ":TestMockMainShimEntry",

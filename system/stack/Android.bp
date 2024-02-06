@@ -1886,6 +1886,7 @@ cc_test {
         ":TestMockBta",
         ":TestMockBtif",
         ":TestMockHci",
+        ":TestMockJni",
         ":TestMockLegacyHciCommands",
         ":TestMockMainShim",
         ":TestMockStackAcl",
