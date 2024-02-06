@@ -562,6 +562,7 @@ cc_test {
         "libbt_shim_ffi",
         "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
+        "libgmock",
     ],
     cflags: [
         "-Wno-unused-parameter",
