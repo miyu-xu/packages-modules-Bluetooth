@@ -34,6 +34,24 @@
       "parentUuid": "9e58554b_c83f989a",
       "revId": "abc31f7b03577e73a057f91fc4f05c85a6336daa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "927a44c7_023ab2bd",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-02-06T20:34:06Z",
+      "side": 1,
+      "message": "isVolumeOffsetAvailable is fixed there:\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2943847",
+      "parentUuid": "3a0c58c6_6ffd92d0",
+      "revId": "abc31f7b03577e73a057f91fc4f05c85a6336daa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
