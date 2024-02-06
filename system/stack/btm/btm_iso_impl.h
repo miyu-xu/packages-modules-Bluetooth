@@ -31,6 +31,7 @@
 #include "common/contextual_callback.h"
 #include "common/time_util.h"
 #include "device/include/controller.h"
+#include "hci/hci_interface.h"
 #include "hci/hci_layer.h"
 #include "hci/hci_packets.h"
 #include "hci/include/hci_layer.h"
@@ -118,12 +119,10 @@ struct iso_impl {
                  bluetooth::hci::SubeventCodeText(event_code).c_str());
         break;
       case bluetooth::hci::SubeventCode::CREATE_BIG_COMPLETE:
-        LOG_INFO("Unhandled event (%s) received",
-                 bluetooth::hci::SubeventCodeText(event_code).c_str());
+        process_create_big_cmpl_pkt(event);
         break;
       case bluetooth::hci::SubeventCode::TERMINATE_BIG_COMPLETE:
-        LOG_INFO("Unhandled event (%s) received",
-                 bluetooth::hci::SubeventCodeText(event_code).c_str());
+        process_terminate_big_cmpl_pkt(event);
         break;
       case bluetooth::hci::SubeventCode::BIG_SYNC_ESTABLISHED:
         LOG_INFO("Unhandled event (%s) received",
@@ -741,34 +740,28 @@ struct iso_impl {
     }
   }
 
-  void process_create_big_cmpl_pkt(uint8_t len, uint8_t* data) {
+  void process_create_big_cmpl_pkt(bluetooth::hci::LeMetaEventView meta) {
     struct big_create_cmpl_evt evt;
 
-    LOG_ASSERT(len >= 18) << "Invalid packet length: " << +len;
+    auto event = bluetooth::hci::LeCreateBigCompleteView::Create(meta);
+    LOG_ASSERT(event.IsValid()) << "Invalid packet";
     LOG_ASSERT(big_callbacks_ != nullptr) << "Invalid BIG callbacks";
 
-    STREAM_TO_UINT8(evt.status, data);
-    STREAM_TO_UINT8(evt.big_id, data);
-    STREAM_TO_UINT24(evt.big_sync_delay, data);
-    STREAM_TO_UINT24(evt.transport_latency_big, data);
-    STREAM_TO_UINT8(evt.phy, data);
-    STREAM_TO_UINT8(evt.nse, data);
-    STREAM_TO_UINT8(evt.bn, data);
-    STREAM_TO_UINT8(evt.pto, data);
-    STREAM_TO_UINT8(evt.irc, data);
-    STREAM_TO_UINT16(evt.max_pdu, data);
-    STREAM_TO_UINT16(evt.iso_interval, data);
+    evt.status = static_cast<uint8_t>(event.GetStatus());
+    evt.big_id = event.GetBigHandle();
+    evt.big_sync_delay = event.GetBigSyncDelay();
+    evt.transport_latency_big = event.GetTransportLatencyBig();
+    evt.phy = static_cast<uint8_t>(event.GetPhy());
+    evt.nse = event.GetNse();
+    evt.bn = event.GetBn();
+    evt.pto = event.GetPto();
+    evt.irc = event.GetIrc();
+    evt.max_pdu = event.GetMaxPdu();
+    evt.iso_interval = event.GetIsoInterval();
 
-    uint8_t num_bis;
-    STREAM_TO_UINT8(num_bis, data);
-
-    LOG_ASSERT(num_bis != 0) << "Bis count is 0";
-    LOG_ASSERT(len == (18 + num_bis * sizeof(uint16_t)))
-        << "Invalid packet length: " << len << ". Number of bis: " << +num_bis;
-
-    for (auto i = 0; i < num_bis; ++i) {
-      uint16_t conn_handle;
-      STREAM_TO_UINT16(conn_handle, data);
+    auto handles = event.GetConnectionHandle();
+    for (size_t i = 0; i < handles.size(); ++i) {
+      uint16_t conn_handle = handles[i];
       evt.conn_handles.push_back(conn_handle);
       log::info(" received BIS conn_hdl {}", +conn_handle);
 
@@ -794,14 +787,15 @@ struct iso_impl {
     }
   }
 
-  void process_terminate_big_cmpl_pkt(uint8_t len, uint8_t* data) {
+  void process_terminate_big_cmpl_pkt(bluetooth::hci::LeMetaEventView meta) {
     struct big_terminate_cmpl_evt evt;
 
-    LOG_ASSERT(len == 2) << "Invalid packet length: " << +len;
+    auto event = bluetooth::hci::LeTerminateBigCompleteView::Create(meta);
+    LOG_ASSERT(event.IsValid()) << "Invalid packet";
     LOG_ASSERT(big_callbacks_ != nullptr) << "Invalid BIG callbacks";
 
-    STREAM_TO_UINT8(evt.big_id, data);
-    STREAM_TO_UINT8(evt.reason, data);
+    evt.big_id = event.GetBigHandle();
+    evt.reason = static_cast<uint8_t>(event.GetReason());
 
     bool is_known_handle = false;
     auto bis_it = conn_hdl_to_bis_map_.cbegin();
@@ -848,28 +842,6 @@ struct iso_impl {
     LOG_ASSERT(IsBigKnown(big_id)) << "No such big: " << +big_id;
 
     btsnd_hcic_term_big(big_id, reason);
-  }
-
-  void on_iso_event(uint8_t code, uint8_t* packet, uint16_t packet_len) {
-    switch (code) {
-      case HCI_BLE_CREATE_BIG_CPL_EVT:
-        process_create_big_cmpl_pkt(packet_len, packet);
-        break;
-      case HCI_BLE_TERM_BIG_CPL_EVT:
-        process_terminate_big_cmpl_pkt(packet_len, packet);
-        break;
-      case HCI_BLE_CIS_REQ_EVT:
-        /* Not supported */
-        break;
-      case HCI_BLE_BIG_SYNC_EST_EVT:
-        /* Not supported */
-        break;
-      case HCI_BLE_BIG_SYNC_LOST_EVT:
-        /* Not supported */
-        break;
-      default:
-        log::error("Unhandled event code {}", +code);
-    }
   }
 
   void handle_iso_data(BT_HDR* p_msg) {
