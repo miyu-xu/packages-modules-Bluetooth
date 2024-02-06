@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a20b36d_3c7750ce",
+        "filename": "service/src/AutoOnFeature.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-06T19:22:38Z",
+      "side": 1,
+      "message": "@rexhoffman@google.com\n\nThis line is trigger by the test and is fixed when running with aosp/2952465\n\nI may replace with a set to -1 or a putString with null to allow my testing to move on",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 66
+      },
+      "revId": "7b19a1ae3d06a95803df4c86c2538eb0d38b5f31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
