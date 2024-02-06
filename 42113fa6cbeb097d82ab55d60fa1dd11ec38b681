@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0678ac0_85c040de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-02-06T18:30:39Z",
+      "side": 1,
+      "message": "This feels like a pretty big change for a workaround for certain boards. Are we sure this is sufficiently tested and won\u0027t break functionality for any other features?",
+      "revId": "42113fa6cbeb097d82ab55d60fa1dd11ec38b681",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
