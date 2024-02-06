@@ -333,6 +333,8 @@ cc_defaults {
     ],
     static_libs: [
         "libchrome",
+        "libgmock",
+        "libgtest",
     ],
     shared_libs: [
         "liblog",
@@ -457,7 +459,6 @@ cc_fuzz {
         "libbt-platform-protos-lite",
         "libbt_shim_bridge",
         "libbt_shim_ffi",
-        "libgmock",
     ],
 }
 
@@ -504,7 +505,6 @@ cc_fuzz {
         "libbt-platform-protos-lite",
         "libbt_shim_bridge",
         "libbt_shim_ffi",
-        "libgmock",
     ],
 }
 
@@ -546,7 +546,6 @@ cc_fuzz {
         "libbt-platform-protos-lite",
         "libbt_shim_bridge",
         "libbt_shim_ffi",
-        "libgmock",
     ],
 }
 
@@ -592,7 +591,6 @@ cc_fuzz {
         "libbt_shim_bridge",
         "libbt_shim_ffi",
         "libcom.android.sysprop.bluetooth.wrapped",
-        "libgmock",
     ],
 }
 
@@ -633,7 +631,6 @@ cc_fuzz {
         "libbt-platform-protos-lite",
         "libbt_shim_bridge",
         "libbt_shim_ffi",
-        "libgmock",
     ],
     target: {
         android: {
@@ -1079,6 +1076,7 @@ cc_test {
         "libbt_shim_ffi",
         "libchrome",
         "libevent",
+        "libgmock",
         "liblog",
         "libosi",
         "libprotobuf-cpp-lite",
