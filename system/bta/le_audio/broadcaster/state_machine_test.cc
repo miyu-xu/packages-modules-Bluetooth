@@ -27,6 +27,7 @@
 #include "state_machine.h"
 #include "test/common/mock_functions.h"
 #include "test/mock/mock_main_shim_le_advertising_manager.h"
+#include "test/mock/mock_stack_btm_iso.h"
 
 using namespace bluetooth::hci::iso_manager;
 
