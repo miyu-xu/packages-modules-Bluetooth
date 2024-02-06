@@ -19,6 +19,7 @@
 #include "database.h"
 
 #include <base/logging.h>
+#include <base/strings/string_number_conversions.h>
 
 #include <algorithm>
 #include <list>
@@ -310,9 +311,13 @@ Octet16 Database::Hash() const {
       }
     }
   }
-
+  LOG(INFO) << "gatt_db_hash, serialized data: " << base::HexEncode(serialized.data(), serialized.size());
   std::reverse(serialized.begin(), serialized.end());
-  return crypto_toolbox::aes_cmac(Octet16{0}, serialized.data(),
+  LOG(INFO) << "gatt_db_hash, serialized data after reversal: " << base::HexEncode(serialized.data(), serialized.size());
+  auto hash = crypto_toolbox::aes_cmac(Octet16{0}, serialized.data(),
                                   serialized.size());
+
+  LOG(INFO) << "gatt_db_hash, hash value: " << base::HexEncode(hash.data(), hash.size());
+  return hash;
 }
 }  // namespace gatt
