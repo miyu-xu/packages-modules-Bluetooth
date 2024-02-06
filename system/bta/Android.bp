@@ -452,6 +452,7 @@ cc_test {
         "BluetoothGeneratedDumpsysDataSchema_h",
     ],
     srcs: [
+        ":BluetoothPacketSources",
         ":TestCommonMockFunctions",
         ":TestFakeOsi",
         ":TestMockBtaSys",
@@ -846,6 +847,7 @@ cc_test {
         "packages/modules/Bluetooth/system/stack/include",
     ],
     srcs: [
+        ":BluetoothPacketSources",
         ":TestCommonMockFunctions",
         ":TestMockBtaLeAudioHalVerifier",
         ":TestMockMainShim",
@@ -940,6 +942,7 @@ cc_test {
         "packages/modules/Bluetooth/system/stack/include",
     ],
     srcs: [
+        ":BluetoothPacketSources",
         ":TestCommonMockFunctions",
         ":TestMockBtaLeAudioHalVerifier",
         ":TestMockMainShim",
@@ -1057,6 +1060,7 @@ cc_test {
         "packages/modules/Bluetooth/system/stack/include",
     ],
     srcs: [
+        ":BluetoothPacketSources",
         ":TestCommonMockFunctions",
         ":TestCommonStackConfig",
         ":TestMockStackBtmIso",
@@ -1116,6 +1120,7 @@ cc_test {
         "packages/modules/Bluetooth/system/stack/include",
     ],
     srcs: [
+        ":BluetoothPacketSources",
         ":TestCommonMockFunctions",
         ":TestCommonStackConfig",
         ":TestMockStackBtmIso",
