@@ -68,8 +68,6 @@ import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.ServiceFactory;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.csip.CsipSetCoordinatorService;
-import com.android.bluetooth.flags.FakeFeatureFlagsImpl;
-import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.le_audio.LeAudioService;
 
 import org.junit.After;
@@ -138,7 +136,6 @@ public class BassClientServiceTest {
     private BluetoothDevice mCurrentDevice;
     private BluetoothDevice mCurrentDevice1;
     private BassIntentReceiver mBassIntentReceiver;
-    private FakeFeatureFlagsImpl mFakeFlagsImpl;
 
     @Spy private BassObjectsFactory mObjectsFactory = BassObjectsFactory.getInstance();
     @Mock private AdapterService mAdapterService;
@@ -239,14 +236,11 @@ public class BassClientServiceTest {
                             return stateMachine;
                         })
                 .when(mObjectsFactory)
-                .makeStateMachine(any(), any(), any(), any());
+                .makeStateMachine(any(), any(), any());
         doReturn(mBluetoothLeScannerWrapper).when(mObjectsFactory)
                 .getBluetoothLeScannerWrapper(any());
 
-        mFakeFlagsImpl = new FakeFeatureFlagsImpl();
-        mFakeFlagsImpl.setFlag(Flags.FLAG_LEAUDIO_BROADCAST_AUDIO_HANDOVER_POLICIES, false);
-
-        mBassClientService = new BassClientService(mTargetContext, mFakeFlagsImpl);
+        mBassClientService = new BassClientService(mTargetContext);
         mBassClientService.start();
         mBassClientService.setAvailable(true);
 
@@ -349,8 +343,7 @@ public class BassClientServiceTest {
         mCurrentDevice = TestUtils.getTestDevice(mBluetoothAdapter, 0);
 
         assertThat(mBassClientService.connect(mCurrentDevice)).isTrue();
-        verify(mObjectsFactory)
-                .makeStateMachine(eq(mCurrentDevice), eq(mBassClientService), any(), any());
+        verify(mObjectsFactory).makeStateMachine(eq(mCurrentDevice), eq(mBassClientService), any());
         BassClientStateMachine stateMachine = mStateMachines.get(mCurrentDevice);
         assertThat(stateMachine).isNotNull();
         verify(stateMachine).sendMessage(BassClientStateMachine.CONNECT);

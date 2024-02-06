@@ -22,7 +22,6 @@ import android.os.Looper;
 import android.util.Log;
 
 import com.android.bluetooth.Utils;
-import com.android.bluetooth.flags.FeatureFlags;
 import com.android.internal.annotations.VisibleForTesting;
 
 /**
@@ -69,15 +68,11 @@ public class BassObjectsFactory {
      * @param device the remote device associated with this state machine
      * @param svc the bass client service
      * @param looper the thread that the state machine is supposed to run on
-     * @param featureFlags feature flag from bass client service
      * @return a state machine that is initialized and started, ready to go
      */
     public BassClientStateMachine makeStateMachine(
-            BluetoothDevice device,
-            BassClientService svc,
-            Looper looper,
-            FeatureFlags featureFlags) {
-        return BassClientStateMachine.make(device, svc, looper, featureFlags);
+            BluetoothDevice device, BassClientService svc, Looper looper) {
+        return BassClientStateMachine.make(device, svc, looper);
     }
 
     /**
