@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a97bf186_bc2f23a1",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-06T07:27:16Z",
+      "side": 1,
+      "message": "Discussed with Hsin-Chen, let\u0027s keep it as it.",
+      "parentUuid": "bb88976f_cc45cc48",
+      "revId": "a1571b8e6b4f9f50e1e437dde7bfd4961dd2ae31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d734a13_8b524158",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "Using a duplicate file descriptor enhances file descriptor management. For example, when transferring the file descriptor to a different process or thread, creating a duplicate can prevent issues like conflicts or unintended early closures.\n\nHowever, the specific reason why Hsin-chen chose this approach is not clear to me.",
       "parentUuid": "3d734a13_8b524158",
+      "revId": "a1571b8e6b4f9f50e1e437dde7bfd4961dd2ae31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb36f55e_9c195de0",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-06T07:27:16Z",
+      "side": 1,
+      "message": "Discussed with Hsin-Chen, let\u0027s keep it as it.",
+      "parentUuid": "86674af2_04abc2f5",
       "revId": "a1571b8e6b4f9f50e1e437dde7bfd4961dd2ae31",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
