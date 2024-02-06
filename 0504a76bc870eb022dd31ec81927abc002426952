@@ -16,6 +16,24 @@
       "message": "Is this the same scenario as `GAP/IDLE/NAMP/BV-01-C`?",
       "revId": "0504a76bc870eb022dd31ec81927abc002426952",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ee4de55_baec5c45",
+        "filename": "android/pandora/test/gatt_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-02-06T02:07:01Z",
+      "side": 1,
+      "message": "I don\u0027t know what this test is.",
+      "parentUuid": "818cf360_cfba772f",
+      "revId": "0504a76bc870eb022dd31ec81927abc002426952",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
