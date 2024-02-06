@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "692411c8_02ba7a95",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1705,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-06T17:54:30Z",
+      "side": 1,
+      "message": "Ok - discussed offline, I\u0027ve missed some case. I\u0027ll update this CL",
+      "parentUuid": "cf5bed34_a3191b66",
+      "revId": "d5461cdc4fdb3a3bcd04cfd4bfe23f777c09f104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "500c9e25_1cb39324",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
         "patchSetId": 11
@@ -119,6 +137,24 @@
       "side": 1,
       "message": "This is the same as previous - I don\u0027t see currently what should be done for unintentional disconnection.",
       "parentUuid": "5f301b2e_ff537295",
+      "revId": "d5461cdc4fdb3a3bcd04cfd4bfe23f777c09f104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e87ffabe_3bf01e95",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 2066,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-06T17:54:30Z",
+      "side": 1,
+      "message": "Ok - discussed offline, I\u0027ve missed some case. I\u0027ll update this CL",
+      "parentUuid": "3a29423e_14f386ed",
       "revId": "d5461cdc4fdb3a3bcd04cfd4bfe23f777c09f104",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
