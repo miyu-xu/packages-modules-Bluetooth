@@ -114,11 +114,6 @@ bool is_valid_subevent_code(bluetooth::hci::SubeventCode subevent_code) {
     case bluetooth::hci::SubeventCode::CTE_REQUEST_FAILED:
     case bluetooth::hci::SubeventCode::
         PERIODIC_ADVERTISING_SYNC_TRANSFER_RECEIVED:
-    case bluetooth::hci::SubeventCode::CIS_REQUEST:
-    case bluetooth::hci::SubeventCode::CREATE_BIG_COMPLETE:
-    case bluetooth::hci::SubeventCode::TERMINATE_BIG_COMPLETE:
-    case bluetooth::hci::SubeventCode::BIG_SYNC_ESTABLISHED:
-    case bluetooth::hci::SubeventCode::BIG_SYNC_LOST:
     case bluetooth::hci::SubeventCode::REQUEST_PEER_SCA_COMPLETE:
     case bluetooth::hci::SubeventCode::PATH_LOSS_THRESHOLD:
     case bluetooth::hci::SubeventCode::TRANSMIT_POWER_REPORTING:
@@ -161,11 +156,6 @@ static bool subevent_already_registered_in_le_hci_layer(
     case bluetooth::hci::SubeventCode::CONNECTIONLESS_IQ_REPORT:
     case bluetooth::hci::SubeventCode::CONNECTION_IQ_REPORT:
     case bluetooth::hci::SubeventCode::CTE_REQUEST_FAILED:
-    case bluetooth::hci::SubeventCode::CIS_REQUEST:
-    case bluetooth::hci::SubeventCode::CREATE_BIG_COMPLETE:
-    case bluetooth::hci::SubeventCode::TERMINATE_BIG_COMPLETE:
-    case bluetooth::hci::SubeventCode::BIG_SYNC_ESTABLISHED:
-    case bluetooth::hci::SubeventCode::BIG_SYNC_LOST:
     case bluetooth::hci::SubeventCode::REQUEST_PEER_SCA_COMPLETE:
     case bluetooth::hci::SubeventCode::PATH_LOSS_THRESHOLD:
     case bluetooth::hci::SubeventCode::LONG_TERM_KEY_REQUEST:
@@ -369,8 +359,19 @@ static void register_for_iso() {
           iso->HandleHciEvent(event);
         }
       });
+  // TODO: Replace with registration for the LeIsoInterface in IsoManager
   bluetooth::shim::GetHciLayer()->RegisterLeEventHandler(
       bluetooth::hci::SubeventCode::CIS_ESTABLISHED, meta_event_handler);
+  bluetooth::shim::GetHciLayer()->RegisterLeEventHandler(
+      bluetooth::hci::SubeventCode::CIS_REQUEST, meta_event_handler);
+  bluetooth::shim::GetHciLayer()->RegisterLeEventHandler(
+      bluetooth::hci::SubeventCode::CREATE_BIG_COMPLETE, meta_event_handler);
+  bluetooth::shim::GetHciLayer()->RegisterLeEventHandler(
+      bluetooth::hci::SubeventCode::TERMINATE_BIG_COMPLETE, meta_event_handler);
+  bluetooth::shim::GetHciLayer()->RegisterLeEventHandler(
+      bluetooth::hci::SubeventCode::BIG_SYNC_ESTABLISHED, meta_event_handler);
+  bluetooth::shim::GetHciLayer()->RegisterLeEventHandler(
+      bluetooth::hci::SubeventCode::BIG_SYNC_LOST, meta_event_handler);
 }
 
 static void on_shutting_down() {
