@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f96184cd_9cad79f5",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 759,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-06T05:26:29Z",
+      "side": 1,
+      "message": "Hide doesn\u0027t do anything in app\n\n```suggestion\n     */\n```",
+      "range": {
+        "startLine": 758,
+        "startChar": 0,
+        "endLine": 759,
+        "endChar": 7
+      },
+      "revId": "bf11649081acf55b3823295b5e553287ac8d7d03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8615425c_e0799c91",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 760,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-06T05:26:29Z",
+      "side": 1,
+      "message": "nit: I believe this doesn\u0027t need to be public\n```suggestion\n    boolean setPreferredTransport(BluetoothDevice device, int transport) {\n```",
+      "range": {
+        "startLine": 760,
+        "startChar": 4,
+        "endLine": 760,
+        "endChar": 10
+      },
+      "revId": "bf11649081acf55b3823295b5e553287ac8d7d03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7eb19cb6_9f1ded48",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-06T05:26:29Z",
+      "side": 1,
+      "message": "Please follow go/todo-style",
+      "range": {
+        "startLine": 774,
+        "startChar": 11,
+        "endLine": 774,
+        "endChar": 15
+      },
+      "revId": "bf11649081acf55b3823295b5e553287ac8d7d03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6297adc8_8af7ad34",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 778,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-06T05:26:29Z",
+      "side": 1,
+      "message": "I believe we should have implementation behind an API as per go/android-api-guidelines#basics-implemented.\n\nEven without following this guidelines, this should return false as the preferred transport wasn\u0027t set\n```suggestion\n        return false;\n```\n\nor throw an exception to make sure this error is not silent",
+      "range": {
+        "startLine": 778,
+        "startChar": 15,
+        "endLine": 778,
+        "endChar": 19
+      },
+      "revId": "bf11649081acf55b3823295b5e553287ac8d7d03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4a22307_042a1c8a",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-06T05:26:29Z",
+      "side": 1,
+      "message": "We should not need to duplicate the documentation between framework and app.\nIf you really want to add documentation, you can link to the other documentation with\n\n\n```suggestion\n    /**  @see {@link BluetoothHidHost#getPreferredTransport} */\n```",
+      "range": {
+        "startLine": 801,
+        "startChar": 2,
+        "endLine": 811,
+        "endChar": 7
+      },
+      "revId": "bf11649081acf55b3823295b5e553287ac8d7d03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8c140da_460d67cf",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-06T05:26:29Z",
+      "side": 1,
+      "message": "Hide doesn\u0027t do anything in app\n\n\n```suggestion\n     */\n```",
+      "range": {
+        "startLine": 810,
+        "startChar": 0,
+        "endLine": 811,
+        "endChar": 7
+      },
+      "revId": "bf11649081acf55b3823295b5e553287ac8d7d03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "401bf958_ec8df1f8",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-06T05:26:29Z",
+      "side": 1,
+      "message": "No need for public",
+      "range": {
+        "startLine": 812,
+        "startChar": 4,
+        "endLine": 812,
+        "endChar": 10
+      },
+      "revId": "bf11649081acf55b3823295b5e553287ac8d7d03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "279940ab_54505186",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-06T05:26:29Z",
+      "side": 1,
+      "message": "go/todo-style",
+      "range": {
+        "startLine": 817,
+        "startChar": 11,
+        "endLine": 817,
+        "endChar": 15
+      },
+      "revId": "bf11649081acf55b3823295b5e553287ac8d7d03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "915bcd25_e5a03b58",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1018,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-06T05:26:29Z",
+      "side": 1,
+      "message": "go/todo-style",
+      "range": {
+        "startLine": 1018,
+        "startChar": 11,
+        "endLine": 1018,
+        "endChar": 15
+      },
+      "revId": "bf11649081acf55b3823295b5e553287ac8d7d03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c52124e3_d0ebe403",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1019,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-06T05:26:29Z",
+      "side": 1,
+      "message": "According to the documentation of the API in this CL `AUTO` is not an acceptable value in the intent",
+      "range": {
+        "startLine": 1019,
+        "startChar": 73,
+        "endLine": 1019,
+        "endChar": 87
+      },
+      "revId": "bf11649081acf55b3823295b5e553287ac8d7d03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f57bc11_2b21bcee",
+        "filename": "framework/java/android/bluetooth/BluetoothHidHost.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-06T05:26:29Z",
+      "side": 1,
+      "message": "Genuine discussion:\n\nWho will call theses API ?\n\nFrom the bug it looks like this CL is to\n\u003e create a HID connection when LEA toggle is off,  \nand created HoGP connection when LEA toggle is on\n\nIf the toggle can be read from Bluetooth, I do not see why we need an API for.\n\nI am probably missing a key step here...\nThe only thing I see is that if we want to add extra possibility to above statement like:\n\n* create a HID connection \n   * when LEA toggle is `off` and transport if `BR_EDR`\n   * when LEA toggle is `off` and transport if `AUTO`\n* Block HID connection when lea toggle is `off` and transport is `LE`\n* created HoGP connection \n   * when LEA toggle is `on` and transport if `LE`\n   * when LEA toggle is `on` and transport if `AUTO`\n* Block HID connection when lea toggle is `on` and transport is `BR_EDR`",
+      "range": {
+        "startLine": 497,
+        "startChar": 19,
+        "endLine": 497,
+        "endChar": 40
+      },
+      "revId": "bf11649081acf55b3823295b5e553287ac8d7d03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
