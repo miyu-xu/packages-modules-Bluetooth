@@ -386,8 +386,6 @@ cc_test {
         "test/bta_hf_client_security_test.cc",
     ],
     shared_libs: [
-        "android.hardware.bluetooth.audio@2.0",
-        "android.hardware.bluetooth.audio@2.1",
         "libcrypto",
         "libcutils",
         "liblog",
@@ -396,6 +394,9 @@ cc_test {
         "server_configurable_flags",
     ],
     static_libs: [
+        "android.hardware.audio.common@5.0",
+        "android.hardware.bluetooth.audio@2.0",
+        "android.hardware.bluetooth.audio@2.1",
         "bluetooth_flags_c_lib",
         "libbluetooth-types",
         "libbluetooth_crypto_toolbox",
@@ -871,14 +872,15 @@ cc_test {
         "LeAudioSetConfigSchemas_h",
     ],
     shared_libs: [
-        "android.hardware.bluetooth.audio@2.0",
-        "android.hardware.bluetooth.audio@2.1",
         "libcrypto",
         "libhidlbase",
         "liblog", // __android_log_print
         "server_configurable_flags",
     ],
     static_libs: [
+        "android.hardware.audio.common@5.0",
+        "android.hardware.bluetooth.audio@2.0",
+        "android.hardware.bluetooth.audio@2.1",
         "libbluetooth-types",
         "libbluetooth_crypto_toolbox",
         "libbluetooth_gd",

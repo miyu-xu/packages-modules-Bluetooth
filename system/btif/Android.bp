@@ -340,14 +340,15 @@ cc_test {
     target: {
         android: {
             shared_libs: [
-                "android.hardware.bluetooth.audio@2.0",
-                "android.hardware.bluetooth.audio@2.1",
                 "libPlatformProperties",
                 "libbinder_ndk",
                 "libstatssocket",
             ],
             static_libs: [
+                "android.hardware.audio.common@5.0",
                 "android.hardware.bluetooth.a2dp@1.0",
+                "android.hardware.bluetooth.audio@2.0",
+                "android.hardware.bluetooth.audio@2.1",
                 "android.hardware.bluetooth@1.0",
                 "android.hardware.bluetooth@1.1",
                 "android.hardware.common-V2-ndk",
@@ -672,12 +673,13 @@ cc_test {
     target: {
         android: {
             static_libs: [
+                "android.hardware.audio.common@5.0",
+                "android.hardware.bluetooth.audio@2.0",
+                "android.hardware.bluetooth.audio@2.1",
                 "android.hardware.common-V2-ndk",
                 "android.hardware.common.fmq-V1-ndk",
             ],
             shared_libs: [
-                "android.hardware.bluetooth.audio@2.0",
-                "android.hardware.bluetooth.audio@2.1",
                 "libaaudio",
                 "libbinder_ndk",
                 "libstatssocket",
@@ -791,13 +793,14 @@ cc_test {
     target: {
         android: {
             static_libs: [
+                "android.hardware.audio.common@5.0",
                 "android.hardware.bluetooth.a2dp@1.0",
+                "android.hardware.bluetooth.audio@2.0",
+                "android.hardware.bluetooth.audio@2.1",
                 "android.hardware.common-V2-ndk",
                 "android.hardware.common.fmq-V1-ndk",
             ],
             shared_libs: [
-                "android.hardware.bluetooth.audio@2.0",
-                "android.hardware.bluetooth.audio@2.1",
                 "libbinder_ndk",
                 "libstatssocket",
             ],
