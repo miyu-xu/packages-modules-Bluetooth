@@ -22,6 +22,30 @@
       },
       "revId": "dea968c2edb122313d4b2513d8e20536a4a94a53",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d764c34b_8936fba9",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1461,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-02-06T08:50:36Z",
+      "side": 1,
+      "message": "Sure, I will re-run presubmit after I complete the cherry-pick!",
+      "parentUuid": "95ed7dc6_e7079239",
+      "range": {
+        "startLine": 1461,
+        "startChar": 67,
+        "endLine": 1461,
+        "endChar": 80
+      },
+      "revId": "dea968c2edb122313d4b2513d8e20536a4a94a53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
