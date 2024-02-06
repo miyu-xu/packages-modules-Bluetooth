@@ -16,6 +16,24 @@
       "message": "Should your have return here ?",
       "revId": "abc31f7b03577e73a057f91fc4f05c85a6336daa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a0c58c6_6ffd92d0",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-02-06T17:50:57Z",
+      "side": 1,
+      "message": "I was inspired by the implementation above (isVolumeOffsetAvailable) and did not check the inner implementation of this line.\nYou have right that here should be a return.\nSo above in the isVolumeOffsetAvailable is the bug and it always return false. It have to be fixed, should we create a bug for that or we can fix it within this patch?",
+      "parentUuid": "9e58554b_c83f989a",
+      "revId": "abc31f7b03577e73a057f91fc4f05c85a6336daa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
