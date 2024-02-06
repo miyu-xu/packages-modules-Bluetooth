@@ -392,6 +392,7 @@ cc_fuzz {
         "packages/modules/Bluetooth/system/stack/btm",
     ],
     srcs: [
+        ":BluetoothPacketSources",
         ":LegacyStackSdp",
         ":TestCommonMockFunctions",
         ":TestFakeOsi",
@@ -427,6 +428,7 @@ cc_fuzz {
         "BluetoothGeneratedDumpsysDataSchema_h",
     ],
     srcs: [
+        ":BluetoothPacketSources",
         ":TestCommonMockFunctions",
         ":TestCommonStackConfig",
         ":TestFakeOsi",
@@ -478,6 +480,7 @@ cc_fuzz {
         "BluetoothGeneratedDumpsysDataSchema_h",
     ],
     srcs: [
+        ":BluetoothPacketSources",
         ":TestCommonMockFunctions",
         ":TestCommonStackConfig",
         ":TestFakeOsi",
@@ -524,6 +527,7 @@ cc_fuzz {
         "BluetoothGeneratedDumpsysDataSchema_h",
     ],
     srcs: [
+        ":BluetoothPacketSources",
         ":TestCommonMockFunctions",
         ":TestCommonStackConfig",
         ":TestFakeOsi",
@@ -565,6 +569,7 @@ cc_fuzz {
         "BluetoothGeneratedDumpsysDataSchema_h",
     ],
     srcs: [
+        ":BluetoothPacketSources",
         ":TestCommonMockFunctions",
         ":TestCommonStackConfig",
         ":TestFakeOsi",
@@ -610,6 +615,7 @@ cc_fuzz {
         "BluetoothGeneratedDumpsysDataSchema_h",
     ],
     srcs: [
+        ":BluetoothPacketSources",
         ":TestCommonMockFunctions",
         ":TestCommonStackConfig",
         ":TestFakeOsi",
@@ -1344,6 +1350,7 @@ cc_test {
         "packages/modules/Bluetooth/system/gd",
     ],
     srcs: [
+        ":BluetoothPacketSources",
         ":TestCommonMockFunctions",
         ":TestCommonStackConfig",
         ":TestMockMainShim",
@@ -1641,6 +1648,7 @@ cc_test {
         "packages/modules/Bluetooth/system/stack/btm",
     ],
     srcs: [
+        ":BluetoothPacketSources",
         ":TestCommonMockFunctions",
         ":TestMockStackBtm",
         ":TestMockStackL2cap",
@@ -1712,6 +1720,7 @@ cc_test {
         "BluetoothGeneratedDumpsysDataSchema_h",
     ],
     srcs: [
+        ":BluetoothPacketSources",
         ":TestCommonMockFunctions",
         ":TestMockBta",
         ":TestMockBtif",
@@ -1783,6 +1792,7 @@ cc_test {
         "BluetoothGeneratedDumpsysDataSchema_h",
     ],
     srcs: [
+        ":BluetoothPacketSources",
         ":OsiCompatSources",
         ":TestCommonMainHandler",
         ":TestCommonMockFunctions",
@@ -1881,6 +1891,7 @@ cc_test {
         "BluetoothGeneratedDumpsysDataSchema_h",
     ],
     srcs: [
+        ":BluetoothPacketSources",
         ":OsiCompatSources",
         ":TestCommonMainHandler",
         ":TestCommonMockFunctions",
@@ -1972,6 +1983,7 @@ cc_test {
         "BluetoothGeneratedDumpsysDataSchema_h",
     ],
     srcs: [
+        ":BluetoothPacketSources",
         ":OsiCompatSources",
         ":TestCommonMainHandler",
         ":TestCommonMockFunctions",
@@ -2058,6 +2070,7 @@ cc_test {
         "packages/modules/Bluetooth/system/stack/btm",
     ],
     srcs: [
+        ":BluetoothPacketSources",
         ":LegacyStackSdp",
         ":TestCommonMockFunctions",
         ":TestMockBtif",
