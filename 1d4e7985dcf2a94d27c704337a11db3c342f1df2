@@ -33,6 +33,24 @@
       "message": "we could keep current notified state somewhere in group maybe to not spam Java layer.\n\ne.g. streaming state is notified every time metadata changed. \nAlso reconfiguration will trigger couple of IDLE notifications.\n\nIdea is to call callback when state actually changes.",
       "revId": "1d4e7985dcf2a94d27c704337a11db3c342f1df2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90d362d3_d76a1677",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 5420,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-02-06T13:59:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6afb2baa_394b2049",
+      "revId": "1d4e7985dcf2a94d27c704337a11db3c342f1df2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
