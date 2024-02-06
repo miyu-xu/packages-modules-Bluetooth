@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "90011eda_5a09c3b8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2024-02-06T01:12:39Z",
+      "side": 1,
+      "message": "yes, they are dup ones, let me modify the bug id in commit message",
+      "parentUuid": "9fd080c2_d18f7a89",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "c4b5bc53b50ace1b8143b2fad75a866d5932f8c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "3253b485_e13e0d12",
@@ -60,6 +84,30 @@
       "writtenOn": "2024-02-05T18:37:00Z",
       "side": 1,
       "message": "Could we do early return instead ?\n```suggestion\n  if (p_lcb !\u003d p_ccb-\u003ep_lcb) {\n    LOG_WARN(\"p_ref_data doesn\u0027t match with sec manager record\");\n    return;\n  }\n\n  switch (status) {\n    case BTM_SUCCESS:\n      l2c_csm_execute(p_ccb, L2CEVT_SEC_COMP, \u0026ci);\n      break;\n\n    case BTM_DELAY_CHECK:\n      /* start a timer - encryption change not received before L2CAP connect\n       * req */\n      alarm_set_on_mloop(p_ccb-\u003el2c_ccb_timer,\n                          L2CAP_DELAY_CHECK_SM4_TIMEOUT_MS,\n                          l2c_ccb_timer_timeout, p_ccb);\n      return;\n\n    default:\n      l2c_csm_execute(p_ccb, L2CEVT_SEC_COMP_NEG, \u0026ci);\n      break;\n  }\n```",
+      "range": {
+        "startLine": 221,
+        "startChar": 1,
+        "endLine": 241,
+        "endChar": 3
+      },
+      "revId": "c4b5bc53b50ace1b8143b2fad75a866d5932f8c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "589b4152_a439e1b1",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2024-02-06T01:12:39Z",
+      "side": 1,
+      "message": "you mean keep the previous for loop and early return? I think the for loop is not necessary, agree?",
+      "parentUuid": "d0f19a63_807e1001",
       "range": {
         "startLine": 221,
         "startChar": 1,
