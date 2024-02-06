@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "52db3527_2e0d6c3f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2024-02-06T01:17:05Z",
+      "side": 1,
+      "message": "Thanks William. Aritra, could you help to review this change?",
+      "parentUuid": "3253b485_e13e0d12",
+      "range": {
+        "startLine": 11,
+        "startChar": 53,
+        "endLine": 13,
+        "endChar": 0
+      },
+      "revId": "c4b5bc53b50ace1b8143b2fad75a866d5932f8c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0f19a63_807e1001",
