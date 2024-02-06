@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d0739ac_01c9c7ed",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 751,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-06T23:25:08Z",
+      "side": 1,
+      "message": "Should this be in a `if (DBG` ?\n```suggestion\n        if (DBG) {\n            Log.d(TAG, \"setPreferredTransport: \" + device + \" transport: \" + transport);\n        }\n```",
+      "range": {
+        "startLine": 751,
+        "startChar": 8,
+        "endLine": 751,
+        "endChar": 11
+      },
+      "revId": "45939fcf92e18f895dc882141f614764f507d9cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77c5e53e_49e25481",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-06T23:25:08Z",
+      "side": 1,
+      "message": "Should we add back the device here to have all the information we need ?",
+      "range": {
+        "startLine": 754,
+        "startChar": 24,
+        "endLine": 754,
+        "endChar": 34
+      },
+      "revId": "45939fcf92e18f895dc882141f614764f507d9cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "762bd412_868993a6",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 762,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-06T23:25:08Z",
+      "side": 1,
+      "message": "if I set the preferred transport to BR_EDR and the device only support HID, It should be no-op right ?\n\nIf so, maybe we want to extend the if to include that:\n```suggestion\n        if ((transport \u003d\u003d LE \u0026\u0026 !Utils.arrayContains(device.getUuids(), BluetoothUuid.HOGP))\n                || (transport \u003d\u003d BR_EDR \u0026\u0026 !Utils.arrayContains(device.getUuids(), BluetoothUuid.HID))) {\n            Log.w(TAG, \"Preferred transport for \" + device + \" cannot be set to \" + transport + \" since it is not supported by remote device\");\n            return false;\n        }\n```",
+      "range": {
+        "startLine": 758,
+        "startChar": 9,
+        "endLine": 762,
+        "endChar": 9
+      },
+      "revId": "45939fcf92e18f895dc882141f614764f507d9cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2907031e_8cf7afc1",
+        "filename": "framework/java/android/bluetooth/BluetoothHidHost.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-06T23:25:08Z",
+      "side": 1,
+      "message": "Do we need to repeat ourself since this is in the intdef ?\n@hallstrom@google.com to help on that as this is only related to API guidelines",
+      "range": {
+        "startLine": 479,
+        "startChar": 83,
+        "endLine": 481,
+        "endChar": 43
+      },
+      "revId": "45939fcf92e18f895dc882141f614764f507d9cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21566a40_b1b26fca",
+        "filename": "framework/java/android/bluetooth/BluetoothHidHost.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-06T23:25:08Z",
+      "side": 1,
+      "message": "```suggestion\n     * @param device paired bluetooth device\n```\n\nshould it say \"bonded\" instead ?",
+      "range": {
+        "startLine": 483,
+        "startChar": 21,
+        "endLine": 483,
+        "endChar": 27
+      },
+      "revId": "45939fcf92e18f895dc882141f614764f507d9cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0b8a803_4d7bf15b",
+        "filename": "framework/java/android/bluetooth/BluetoothHidHost.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-06T23:25:08Z",
+      "side": 1,
+      "message": "device is annotated as NonNull,we should not need to add more doc on it.\n\n```suggestion\n     * @throws IllegalArgumentException if the {@code device} is invalid.\n```",
+      "range": {
+        "startLine": 486,
+        "startChar": 40,
+        "endLine": 486,
+        "endChar": 42
+      },
+      "revId": "45939fcf92e18f895dc882141f614764f507d9cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd67aa8b_2bdd962c",
+        "filename": "framework/java/android/bluetooth/BluetoothHidHost.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-06T23:25:08Z",
+      "side": 1,
+      "message": "there is DBG in the set  but VDG in the get, is it on purpose ?",
+      "range": {
+        "startLine": 610,
+        "startChar": 12,
+        "endLine": 610,
+        "endChar": 16
+      },
+      "revId": "45939fcf92e18f895dc882141f614764f507d9cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f632b436_a5e01fd9",
+        "filename": "framework/java/android/bluetooth/BluetoothHidHost.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-06T23:25:08Z",
+      "side": 1,
+      "message": "Doc doesn\u0027t indicate it can throw, should we add it ?",
+      "range": {
+        "startLine": 622,
+        "startChar": 12,
+        "endLine": 622,
+        "endChar": 23
+      },
+      "revId": "45939fcf92e18f895dc882141f614764f507d9cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
