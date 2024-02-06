@@ -2219,6 +2219,16 @@ public class BluetoothMapContent {
                                 }
                                 e = element(smsCursor, fi, ap);
                                 bmList.add(e);
+                                // PTS requires both CDMA and GSM messages
+                                if (Utils.isPtsTestMode()) {
+                                    int originalPhoneType = fi.mPhoneType;
+                                    fi.mPhoneType =
+                                            (fi.mPhoneType == TelephonyManager.PHONE_TYPE_CDMA)
+                                                    ? TelephonyManager.PHONE_TYPE_GSM
+                                                    : TelephonyManager.PHONE_TYPE_CDMA;
+                                    bmList.add(element(smsCursor, fi, ap));
+                                    fi.mPhoneType = originalPhoneType;
+                                }
                             }
                         }
                     }
