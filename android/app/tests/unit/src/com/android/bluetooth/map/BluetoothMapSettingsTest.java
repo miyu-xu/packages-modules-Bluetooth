@@ -30,9 +30,11 @@ import android.content.Context;
 import android.content.Intent;
 
 import androidx.test.core.app.ActivityScenario;
+import androidx.test.filters.FlakyTest;
 import androidx.test.filters.LargeTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
+import androidx.test.uiautomator.UiDevice;
 
 import com.android.bluetooth.R;
 import com.android.bluetooth.TestUtils;
@@ -72,7 +74,22 @@ public class BluetoothMapSettingsTest {
     }
 
     @Test
+    @FlakyTest
     public void initialize() throws Exception {
+        final int[] activityLocationOnScreen = new int[2];
+        // Workaround for reducing flakiness (might be related to b/159805732).
+        Thread.sleep(2_000);
+
+        mActivityScenario.onActivity(
+                activity -> {
+                    activity.getWindow()
+                            .getDecorView()
+                            .getLocationOnScreen(activityLocationOnScreen);
+                });
+
+        UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        device.click(activityLocationOnScreen[0], activityLocationOnScreen[1]);
+
         onView(withId(R.id.bluetooth_map_settings_list_view)).check(matches(isDisplayed()));
     }
 
