@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c800617_bd7ad3c2",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-06T05:57:51Z",
+      "side": 1,
+      "message": "This is not a constant. Please use lower case for a variable.\n\n```\nself.current_cookie \u003d 0x12FC0\n```",
+      "revId": "723e51cd5ea036b2580dfd2c9d25cd59eedb5170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b169c3fd_3278a33b",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-06T05:57:51Z",
+      "side": 1,
+      "message": "pass the client_id to the observer and await for a on_outgoing_connection_result callback which it connecting_id is the client_id.",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 0
+      },
+      "revId": "723e51cd5ea036b2580dfd2c9d25cd59eedb5170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14ef3cba_6ca47c80",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-06T05:57:51Z",
+      "side": 1,
+      "message": "This is not a constant. Please use lower case for a variable.",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 0
+      },
+      "revId": "723e51cd5ea036b2580dfd2c9d25cd59eedb5170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77c48ca5_9faacfa5",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-06T05:57:51Z",
+      "side": 1,
+      "message": "Pass the socket_id to the observer and await until the target on_incoming_socket_ready callback called on the scoket_id.",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 0
+      },
+      "revId": "723e51cd5ea036b2580dfd2c9d25cd59eedb5170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "370fd57f_4b012a19",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-06T05:57:51Z",
+      "side": 1,
+      "message": "We should use request.server.id here.\n\n```\nsocket_id \u003d request.server.id\n```",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 225,
+        "endChar": 0
+      },
+      "revId": "723e51cd5ea036b2580dfd2c9d25cd59eedb5170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e9951cf_a361be02",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-06T05:57:51Z",
+      "side": 1,
+      "message": "We need to wait for the target server id return a connection instead of listening on all server. on_handle_incoming_connection can return a connection from any server, we should grep the connection from the server that asked by the gRPC request.\n\n```\nfd \u003d await asyncio.wait_for(accept_rfcomm_connection, timeout\u003d5)\n```\n\nAlso pass socket_id to the accept_rfcomm_connection and check if the listener_id\nequal to the socket_id. If listener_id equal to the socket_id, then pass the fd\nback to the pandora server.",
+      "range": {
+        "startLine": 229,
+        "startChar": 0,
+        "endLine": 232,
+        "endChar": 0
+      },
+      "revId": "723e51cd5ea036b2580dfd2c9d25cd59eedb5170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e718edb_77888daf",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-06T05:57:51Z",
+      "side": 1,
+      "message": "This is not a constant. Please use lower case for a variable.",
+      "range": {
+        "startLine": 233,
+        "startChar": 0,
+        "endLine": 235,
+        "endChar": 0
+      },
+      "revId": "723e51cd5ea036b2580dfd2c9d25cd59eedb5170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
