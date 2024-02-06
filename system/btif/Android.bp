@@ -549,6 +549,7 @@ cc_test {
     ],
     static_libs: [
         "libbluetooth-types",
+        "libbluetooth_hci_pdl",
         "libbt-platform-protos-lite",
         "libbt_shim_bridge",
         "libbt_shim_ffi",

@@ -405,6 +405,7 @@ cc_fuzz {
     ],
     static_libs: [
         "libbluetooth-types",
+        "libbluetooth_hci_pdl",
         "libbt-platform-protos-lite",
         "libbt_shim_bridge",
         "libbt_shim_ffi",
@@ -1654,6 +1655,7 @@ cc_test {
     static_libs: [
         "libbluetooth-types",
         "libbluetooth_crypto_toolbox",
+        "libbluetooth_hci_pdl",
         "libbt-common",
         "libbt-platform-protos-lite",
         "libbt_shim_bridge",
@@ -1730,6 +1732,7 @@ cc_test {
     static_libs: [
         "libbluetooth-types",
         "libbluetooth_gd",
+        "libbluetooth_hci_pdl",
         "libbt-common",
         "libbt-platform-protos-lite",
         "libbt_shim_bridge",
@@ -1816,6 +1819,7 @@ cc_test {
         "libbluetooth-types",
         "libbluetooth_crypto_toolbox",
         "libbluetooth_gd",
+        "libbluetooth_hci_pdl",
         "libbt-common",
         "libbt-platform-protos-lite",
         "libbt_shim_bridge",
@@ -1904,6 +1908,7 @@ cc_test {
     static_libs: [
         "libbluetooth-types",
         "libbluetooth_gd",
+        "libbluetooth_hci_pdl",
         "libbt-common",
         "libbt-platform-protos-lite",
         "libbt_shim_bridge",
@@ -1994,6 +1999,7 @@ cc_test {
     static_libs: [
         "libbluetooth-types",
         "libbluetooth_gd",
+        "libbluetooth_hci_pdl",
         "libbt-common",
         "libbt-platform-protos-lite",
         "libbt_shim_bridge",
@@ -2068,6 +2074,7 @@ cc_test {
     static_libs: [
         "libbluetooth-types",
         "libbluetooth_gd",
+        "libbluetooth_hci_pdl",
         "libbt-common",
         "libbt-platform-protos-lite",
         "libbt_shim_bridge",
