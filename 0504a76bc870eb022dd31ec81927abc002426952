@@ -70,6 +70,24 @@
       "parentUuid": "5afb3d10_919d5aea",
       "revId": "0504a76bc870eb022dd31ec81927abc002426952",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13c8463d_75b9534b",
+        "filename": "android/pandora/test/gatt_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-06T02:18:33Z",
+      "side": 1,
+      "message": "I don\u0027t think it only verify that a name can be read 🤔\n\nMost tests from the Bluetooth Test Suite will verify that the information retrieved is valid.\n\nIn the case of the PTS, I expect it present it to the tester and ask if it\u0027s valid.",
+      "parentUuid": "7754cf70_8e3365ba",
+      "revId": "0504a76bc870eb022dd31ec81927abc002426952",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
