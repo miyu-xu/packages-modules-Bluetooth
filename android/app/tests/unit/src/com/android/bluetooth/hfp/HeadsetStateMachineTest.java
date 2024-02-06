@@ -19,7 +19,6 @@ package com.android.bluetooth.hfp;
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 
 import static org.mockito.Mockito.*;
-import static org.junit.Assume.assumeTrue;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -40,6 +39,8 @@ import android.os.HandlerThread;
 import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.platform.test.annotations.RequiresFlagsEnabled;
+import android.platform.test.flag.junit.CheckFlagsRule;
+import android.platform.test.flag.junit.DeviceFlagsValueProvider;
 import android.provider.CallLog;
 import android.provider.CallLog.Calls;
 import android.telephony.PhoneNumberUtils;
@@ -65,6 +66,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -80,6 +82,9 @@ import java.util.ArrayList;
 @MediumTest
 @RunWith(AndroidJUnit4.class)
 public class HeadsetStateMachineTest {
+    @Rule
+    public final CheckFlagsRule mCheckFlagsRule = DeviceFlagsValueProvider.createCheckFlagsRule();
+
     private static final int CONNECT_TIMEOUT_TEST_MILLIS = 1000;
     private static final int CONNECT_TIMEOUT_TEST_WAIT_MILLIS = CONNECT_TIMEOUT_TEST_MILLIS * 3 / 2;
     private static final int ASYNC_CALL_TIMEOUT_MILLIS = 250;
@@ -1659,7 +1664,7 @@ public class HeadsetStateMachineTest {
     @Test
     @RequiresFlagsEnabled(Flags.FLAG_HFP_CODEC_APTX_VOICE)
     public void testSetAudioParameters_SwbAptxEnabled() {
-        assumeTrue(SystemProperties.getBoolean("bluetooth.hfp.codec_aptx_voice.enabled", false));
+        SystemProperties.set("bluetooth.hfp.codec_aptx_voice.enabled", "true");
         setUpConnectedState();
         mHeadsetStateMachine.sendMessage(
                 HeadsetStateMachine.STACK_EVENT,
@@ -1676,6 +1681,7 @@ public class HeadsetStateMachineTest {
                         HeadsetHalConstants.AUDIO_STATE_CONNECTED,
                         mTestDevice));
         verifyAudioSystemSetParametersInvocation(false, true);
+        SystemProperties.set("bluetooth.hfp.codec_aptx_voice.enabled", "false");
     }
 
     /** Test setting audio parameters according to received SWB event. SWB LC3 is enabled. */
