@@ -30,9 +30,11 @@ import android.content.Context;
 import android.content.Intent;
 
 import androidx.test.core.app.ActivityScenario;
+import androidx.test.filters.FlakyTest;
 import androidx.test.filters.LargeTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
+import androidx.test.uiautomator.UiDevice;
 
 import com.android.bluetooth.R;
 import com.android.bluetooth.TestUtils;
@@ -64,15 +66,29 @@ public class BluetoothMapSettingsTest {
     public void tearDown() throws Exception {
         TestUtils.tearDownUiTest();
         if (mActivityScenario != null) {
-            // Workaround for b/159805732. Without this, test hangs for 45 seconds.
-            Thread.sleep(1_000);
             mActivityScenario.close();
         }
         enableActivity(false);
     }
 
     @Test
+    @FlakyTest
     public void initialize() throws Exception {
+        final int[] activityLocationOnScreen = new int[2];
+        // Wait some time until the activity is ready to be clicked.
+        // A workaround to reduce flakiness in some slow devices.
+        Thread.sleep(2_000);
+
+        mActivityScenario.onActivity(
+                activity -> {
+                    activity.getWindow()
+                            .getDecorView()
+                            .getLocationOnScreen(activityLocationOnScreen);
+                });
+
+        UiDevice device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        device.click(activityLocationOnScreen[0], activityLocationOnScreen[1]);
+
         onView(withId(R.id.bluetooth_map_settings_list_view)).check(matches(isDisplayed()));
     }
 
