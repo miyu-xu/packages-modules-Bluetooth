@@ -88,6 +88,24 @@
       "parentUuid": "7754cf70_8e3365ba",
       "revId": "0504a76bc870eb022dd31ec81927abc002426952",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f28f9d1b_38e357e3",
+        "filename": "android/pandora/test/gatt_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-02-06T02:20:22Z",
+      "side": 1,
+      "message": "Please support your claim, do not use `you think`.",
+      "parentUuid": "13c8463d_75b9534b",
+      "revId": "0504a76bc870eb022dd31ec81927abc002426952",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
