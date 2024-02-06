@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d452c2f3_e1ef50e6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-06T01:22:21Z",
+      "side": 1,
+      "message": "btm_iso_test.cc needs to be updated.",
+      "revId": "253f06aed13f648cc71c25cfb58bfc87b0352629",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
