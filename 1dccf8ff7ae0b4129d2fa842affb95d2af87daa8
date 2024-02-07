@@ -22,6 +22,86 @@
       },
       "revId": "1dccf8ff7ae0b4129d2fa842affb95d2af87daa8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7f467ca_af3adaf8",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-07T17:48:04Z",
+      "side": 1,
+      "message": "libbase required for fmt.h",
+      "revId": "1dccf8ff7ae0b4129d2fa842affb95d2af87daa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94cfa156_4e7a6120",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-07T17:48:04Z",
+      "side": 1,
+      "message": "bluetooth/log.h should be in the include path",
+      "revId": "1dccf8ff7ae0b4129d2fa842affb95d2af87daa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03116545_19ee1bfe",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-07T17:48:04Z",
+      "side": 1,
+      "message": "Not necessary now that you have the custom formatter :)",
+      "range": {
+        "startLine": 195,
+        "startChar": 71,
+        "endLine": 195,
+        "endChar": 98
+      },
+      "revId": "1dccf8ff7ae0b4129d2fa842affb95d2af87daa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6cc43b2_7d017ad7",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 805,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-07T17:48:04Z",
+      "side": 1,
+      "message": "Should be at the beginning of the file",
+      "range": {
+        "startLine": 800,
+        "startChar": 0,
+        "endLine": 805,
+        "endChar": 19
+      },
+      "revId": "1dccf8ff7ae0b4129d2fa842affb95d2af87daa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
