@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d8ebbaf_c5813f75",
+        "filename": "service/src/AutoOnFeature.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-07T00:34:21Z",
+      "side": 1,
+      "message": "```suggestion\n        Log.i(TAG, \"Will be restarted at ${target} (in ${timeToSleep})\")\n```",
+      "revId": "a3c631fea4d8309b564ef59879843e427efb29bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90b2e377_8d0ace2a",
+        "filename": "service/src/AutoOnFeature.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-07T00:34:21Z",
+      "side": 1,
+      "message": "nit: I think the timer should be managed outside of the class, directly in `setupNewTimer` and `cancel`",
+      "revId": "a3c631fea4d8309b564ef59879843e427efb29bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8250b548_6e306d9c",
+        "filename": "service/src/AutoOnFeature.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-07T00:34:21Z",
+      "side": 1,
+      "message": "nit: `freshTimer` is not verify descriptive, what do you think of `nextTimeout`?",
+      "range": {
+        "startLine": 109,
+        "startChar": 20,
+        "endLine": 109,
+        "endChar": 30
+      },
+      "revId": "a3c631fea4d8309b564ef59879843e427efb29bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
