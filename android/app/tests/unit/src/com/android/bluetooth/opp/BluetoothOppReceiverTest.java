@@ -104,6 +104,7 @@ public class BluetoothOppReceiverTest {
         TestUtils.tearDownUiTest();
         BluetoothMethodProxy.setInstanceForTesting(null);
 
+        BluetoothOppTestUtils.enableOppActivities(false, mContext);
         Intents.release();
     }
 
