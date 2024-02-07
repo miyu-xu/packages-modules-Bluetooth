@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22c86d9a_bca0ecc9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-07T21:56:13Z",
+      "side": 1,
+      "message": "Do you have a follow-on CL that uses these mocks in a test?  I fell like BTIF is pretty high up to have a mock.  What am I missing?",
+      "revId": "b2a60c7195c161b8250dd13dc6f65b7c37a9a6a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "900501aa_aabbdfed",
+        "filename": "system/test/mock/mock_btif_profile_storage.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-07T21:56:13Z",
+      "side": 1,
+      "message": "nit: remove",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 28
+      },
+      "revId": "b2a60c7195c161b8250dd13dc6f65b7c37a9a6a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
