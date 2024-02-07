@@ -117,6 +117,30 @@
       },
       "revId": "e04e33524e5acc63e0fdc3243841b379b2fb5413",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2de84342_9e32b38b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-02-07T17:28:05Z",
+      "side": 1,
+      "message": "A 0.6% flakiness is really hard to reproduce locally. We\u0027re playing with a race here, your machine could be more/less powerful than the CI hence having different results.\n\n\u003e It looks but in practice the second request should fail immediately as it doesn\u0027t have enough time to handle write characteristic request.\n\nIs it reaching Bumble or is the error triggered in the AOSP stack ?\n\nIf you feel confident about it we can upload it as is but there is a chance the test will be flaky. Adding a comment on it could help remember it when/if the flakiness occurs",
+      "parentUuid": "14659b57_a350d056",
+      "range": {
+        "startLine": 271,
+        "startChar": 12,
+        "endLine": 280,
+        "endChar": 61
+      },
+      "revId": "e04e33524e5acc63e0fdc3243841b379b2fb5413",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
