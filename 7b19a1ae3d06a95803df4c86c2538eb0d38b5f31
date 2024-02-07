@@ -22,6 +22,30 @@
       },
       "revId": "7b19a1ae3d06a95803df4c86c2538eb0d38b5f31",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acfd1cc2_0d7e8779",
+        "filename": "service/src/AutoOnFeature.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-07T20:01:11Z",
+      "side": 1,
+      "message": "Acknowledged\n\nResolving comment to allow CL to go in. Code has been replaced with a `putString(.., .., null)` as a workaround of the test infrastructure",
+      "parentUuid": "9a20b36d_3c7750ce",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 66
+      },
+      "revId": "7b19a1ae3d06a95803df4c86c2538eb0d38b5f31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
