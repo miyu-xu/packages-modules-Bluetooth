@@ -498,6 +498,18 @@ get_low_latency_scan_params() {
   uint16_t scan_window = osi_property_get_int32(kPropertyInquiryScanWindow,
                                                 BTM_BLE_LOW_LATENCY_SCAN_WIN);
 
+  if (IS_FLAG_ENABLED(brcm_better_le_scan_params) &&
+      controller_get_interface()->get_bt_version()->manufacturer ==
+          LMP_COMPID_BROADCOM) {
+    /* With Broadcom controllers, LE scan have a low priority. There is bigger
+     * chance scan won't be downgraded when it's below 51% of duty cycle. See
+     * b/323415510#comment15 for details and discussion.
+     */
+    if (scan_window > scan_interval / 2) {
+      scan_window = scan_interval / 2;
+    }
+  }
+
   return std::make_pair(scan_interval, scan_window);
 }
 
