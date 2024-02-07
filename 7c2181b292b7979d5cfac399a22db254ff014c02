@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5455fac9_2a155cca",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTestUtils.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-07T21:35:19Z",
+      "side": 1,
+      "message": "Would it make more sense to just enable each respective activity in it\u0027s own test? \n\nIt seems error prone to keep this in a common method if missing calling the enable method in a different test for a different class can impact behavior of another test.",
+      "range": {
+        "startLine": 130,
+        "startChar": 11,
+        "endLine": 130,
+        "endChar": 61
+      },
+      "revId": "7c2181b292b7979d5cfac399a22db254ff014c02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
