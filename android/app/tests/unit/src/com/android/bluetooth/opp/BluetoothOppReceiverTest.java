@@ -95,7 +95,6 @@ public class BluetoothOppReceiverTest {
 
         Intents.init();
 
-        BluetoothOppTestUtils.enableOppActivities(true, mContext);
         TestUtils.setUpUiTest();
     }
 
