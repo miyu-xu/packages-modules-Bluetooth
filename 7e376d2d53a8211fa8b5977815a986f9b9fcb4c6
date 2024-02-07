@@ -22,6 +22,30 @@
       },
       "revId": "7e376d2d53a8211fa8b5977815a986f9b9fcb4c6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90abd4f0_e7e2aaf7",
+        "filename": "android/app/res/values/strings.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-07T02:05:43Z",
+      "side": 1,
+      "message": "Probably but I do not know how to do it for now.\n\nHaving a link would be ideal and there is some API to add action on the notification.\nBut I do not know how to create the \"action\".",
+      "parentUuid": "c18acf8f_b301f7ec",
+      "range": {
+        "startLine": 260,
+        "startChar": 151,
+        "endLine": 260,
+        "endChar": 176
+      },
+      "revId": "7e376d2d53a8211fa8b5977815a986f9b9fcb4c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
