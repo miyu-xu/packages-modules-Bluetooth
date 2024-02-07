@@ -67,7 +67,6 @@ import com.android.bluetooth.flags.Flags;
 
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -134,7 +133,7 @@ public class GattServiceTest {
 
         GattObjectsFactory.setInstanceForTesting(mFactory);
         doReturn(mNativeInterface).when(mFactory).getNativeInterface();
-        doReturn(mScanManager).when(mFactory).createScanManager(any(), any(), any(), any(), any());
+        doReturn(mScanManager).when(mFactory).createScanManager(any(), any(), any(), any());
         doReturn(mPeriodicScanManager).when(mFactory).createPeriodicScanManager(any());
         doReturn(mDistanceMeasurementManager).when(mFactory)
                 .createDistanceMeasurementManager(any());
