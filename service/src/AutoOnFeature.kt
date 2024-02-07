@@ -29,6 +29,8 @@ import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
 import androidx.annotation.VisibleForTesting
+import com.android.server.bluetooth.airplane.hasUserToggledApm as hasUserToggledApm
+import com.android.server.bluetooth.airplane.isOn as isAirplaneModeOn
 import com.android.server.bluetooth.satellite.isOn as isSatelliteModeOn
 import java.time.LocalDateTime
 import java.time.LocalTime
@@ -56,6 +58,13 @@ public fun setupNewTimer(
     if (isSatelliteModeOn) {
         Log.d(TAG, "Satellite prevent feature activation")
         return
+    }
+    if (isAirplaneModeOn) {
+        if (!hasUserToggledApm(context)) {
+            Log.d(TAG, "Airplane prevent feature activation")
+            return
+        }
+        Log.d(TAG, "Airplane bypassed as enhanced mode indicate Bluetooth is supposed to be ON")
     }
     Timer.start(looper, context, callback_on)
 }
@@ -266,7 +275,7 @@ private constructor(
             callback_on: () -> Unit
         ) {
             // Remove observer on previous user
-            listener?.let { it.remove() }
+            listener?.remove()
             listener = HiddenApiListener(looper, context, state, callback_on)
         }
     }
