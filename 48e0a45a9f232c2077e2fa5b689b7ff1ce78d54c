@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c64b4bab_14a5b529",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-07T00:52:52Z",
+      "side": 1,
+      "message": "`reschedule` -\u003e `rescheduled`?",
+      "revId": "48e0a45a9f232c2077e2fa5b689b7ff1ce78d54c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
