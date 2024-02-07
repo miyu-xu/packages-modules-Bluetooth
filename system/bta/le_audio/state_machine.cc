@@ -1320,6 +1320,8 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
       return;
     }
 
+    group->dsa_mode_ = DsaMode::ISO_SW;
+    LOG_INFO("DSA Test: Forcing DSA mode");
     LOG_INFO("DSA mode selected: %d", (int)group->dsa_mode_);
 
     /* Unidirectional streaming */
