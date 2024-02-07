@@ -22,6 +22,29 @@
       },
       "revId": "73e4934148ee29aca94bdc3599fa728f4f273aba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ece4f95_19730a82",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapSettingsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-07T20:14:05Z",
+      "side": 1,
+      "message": "There\u0027s already a Thread.sleep in the tearDown of this test class, which means the thread will sleep 3 seconds now for running this test.\n\nIdeally Thread.sleep should be avoided in tests altogether; using it can be flaky and usually hides real issues. From reading the linked bug it seems there are other ways to address this. \n\nCan you please revisit?",
+      "range": {
+        "startLine": 81,
+        "startChar": 8,
+        "endLine": 81,
+        "endChar": 28
+      },
+      "revId": "73e4934148ee29aca94bdc3599fa728f4f273aba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
