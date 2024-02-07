@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ccc1fa5_2f36e891",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-07T02:17:49Z",
+      "side": 1,
+      "message": "We can absorb repeating logic within this function.\n```suggestion\n    public static byte[] getByteBrEdrAddress(AdapterService service, BluetoothDevice device) {\n        if (!Flags.identityAddressNullIfUnknown()) {\n            return service.getByteIdentityAddress(disconnectDevice);\n        }\n```",
+      "range": {
+        "startLine": 198,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 74
+      },
+      "revId": "ecca9bb32db3c018163fe19ceea0abe57d7eea89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
