@@ -167,6 +167,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6d789cce_80e3195c",
+        "filename": "framework/java/android/bluetooth/BluetoothHidHost.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-07T00:07:15Z",
+      "side": 1,
+      "message": "You shouldn\u0027t need to repeat since it is in intdef as it will automatically generate the documentation specifying the allowed type from the annotation, but this is minor thing.\n\nShould be ok to remove if you wouldn\u0027t mind.",
+      "parentUuid": "2907031e_8cf7afc1",
+      "range": {
+        "startLine": 479,
+        "startChar": 83,
+        "endLine": 481,
+        "endChar": 43
+      },
+      "revId": "45939fcf92e18f895dc882141f614764f507d9cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "21566a40_b1b26fca",
         "filename": "framework/java/android/bluetooth/BluetoothHidHost.java",
         "patchSetId": 9
