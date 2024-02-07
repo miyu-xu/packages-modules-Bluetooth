@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9060dee_56eb04ae",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapSettingsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-02-07T14:09:36Z",
+      "side": 1,
+      "message": "I know you\u0027re already aware of this and looked for alternatives but I wonder if the added time for all the tests are worth it? I can see \"Thread.sleep()\" is used in a few tests https://source.corp.google.com/search?q\u003dThread.sleep\u0026ss\u003dh%2Fandroid%2Fplatform%2Fsuperproject%2Fmain%2F%2B%2Frefs%2Fheads%2Fmain:packages%2Fmodules%2FBluetooth%2F and the growing usage of it seems like they are adding a lot of seconds to the total runtimes; which will be minutes \u0026 hours of delays when thinking of the tests running for thousands/millions of times.\nBut I guess it\u0027s better having tests than not.",
+      "range": {
+        "startLine": 81,
+        "startChar": 8,
+        "endLine": 81,
+        "endChar": 20
+      },
+      "revId": "73e4934148ee29aca94bdc3599fa728f4f273aba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
