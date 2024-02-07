@@ -16,6 +16,24 @@
       "message": "This feels like a pretty big change for a workaround for certain boards. Are we sure this is sufficiently tested and won\u0027t break functionality for any other features?",
       "revId": "42113fa6cbeb097d82ab55d60fa1dd11ec38b681",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd21d7ea_cfab51c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-02-07T01:07:51Z",
+      "side": 1,
+      "message": "I\u0027ve already tested the Cross Device features (FP, NS sender/receiver, PhoneHub, SmartLock) and platform features such as pairing. I\u0027m running the AVL test suite now.\nNote that this is actually closer to the BlueZ behavior so I expect no functionality will be broken.",
+      "parentUuid": "d0678ac0_85c040de",
+      "revId": "42113fa6cbeb097d82ab55d60fa1dd11ec38b681",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
