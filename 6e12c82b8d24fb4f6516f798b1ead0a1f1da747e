@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a970e4f_aef33cbc",
+        "filename": "service/src/AutoOnFeatureTest.kt",
+        "patchSetId": 10
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-07T02:20:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de7b4584_5a803531",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 78
+      },
+      "revId": "6e12c82b8d24fb4f6516f798b1ead0a1f1da747e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cacd95c8_2763f4bf",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-02-07T00:50:43Z",
       "side": 1,
       "message": "`expect` that do an `assertThat` ?\n\nShould it be named `assertNoStorageTime`?",
+      "revId": "6e12c82b8d24fb4f6516f798b1ead0a1f1da747e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcff47a1_03bdd916",
+        "filename": "service/src/AutoOnFeatureTest.kt",
+        "patchSetId": 10
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-07T02:20:35Z",
+      "side": 1,
+      "message": "That should have been an expect. Done",
+      "parentUuid": "cacd95c8_2763f4bf",
       "revId": "6e12c82b8d24fb4f6516f798b1ead0a1f1da747e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
