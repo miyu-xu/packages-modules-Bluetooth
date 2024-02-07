@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0b5c56a_776d3ec1",
+        "filename": "service/src/AutoOnFeature.kt",
+        "patchSetId": 11
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-07T20:02:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad9bc74e_3e8a9c01",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 57
+      },
+      "revId": "84be588cfb388bc00bdc9328606525de3e0ec412",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f13ea03_e171f6b8",
