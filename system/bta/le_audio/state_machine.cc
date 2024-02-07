@@ -1320,7 +1320,15 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
       return;
     }
 
+<<<<<<< PATCH SET (133cf8 DO_NOT_MERGE: Forcing DSA mode)
+    group->dsa_.mode = DsaMode::ISO_SW;
+    LOG_INFO("DsaTest: Forcing DSA mode");
+
+    LOG_INFO("DSA mode selected: %d", (int)group->dsa_.mode);
+    group->dsa_.active = false;
+=======
     LOG_INFO("DSA mode selected: %d", (int)group->dsa_mode_);
+>>>>>>> BASE      (ee771a Merge changes I60617a14,Ide896075 into main)
 
     /* Unidirectional streaming */
     if (param.sdu_itv_stom == 0) {
