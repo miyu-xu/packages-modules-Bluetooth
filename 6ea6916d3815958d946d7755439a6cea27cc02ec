@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e52112a1_80472d09",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-02-07T22:34:28Z",
+      "side": 1,
+      "message": "What\u0027s \"AV\" in this context? Do we really just mean A2DP? I thought AVRCP connection requests/events end up through the BTA/btif_av layers anyways.\n\nIf its just a connection to A2DP, I might remove the \"av\" from everything.\n\nAs well, I\u0027m surprised this isn\u0027t handled elsewhere in the stack already!",
+      "revId": "6ea6916d3815958d946d7755439a6cea27cc02ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
