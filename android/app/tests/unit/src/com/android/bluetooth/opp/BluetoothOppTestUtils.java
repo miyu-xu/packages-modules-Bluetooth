@@ -115,7 +115,7 @@ public class BluetoothOppTestUtils {
     }
 
     /**
-     * Enable/Disable all activities in Opp for testing
+     * Enable/Disable test-necessary activities in opp
      *
      * @param enable true to enable, false to disable
      * @param mTargetContext target context
@@ -127,15 +127,11 @@ public class BluetoothOppTestUtils {
         mTargetContext.getPackageManager().setApplicationEnabledSetting(
                 mTargetContext.getPackageName(), enabledState, DONT_KILL_APP);
 
-        // All activities to be test
+        // Activities that need to be enabled for their tests
         Class[] activities = {
-                BluetoothOppTransferActivity.class,
-                BluetoothOppBtEnableActivity.class,
-                BluetoothOppBtEnablingActivity.class,
-                BluetoothOppBtErrorActivity.class,
-                BluetoothOppIncomingFileConfirmActivity.class,
-                BluetoothOppTransferHistory.class,
-                BluetoothOppLauncherActivity.class,
+            BluetoothOppTransferActivity.class,
+            BluetoothOppIncomingFileConfirmActivity.class,
+            BluetoothOppTransferHistory.class,
         };
 
         Arrays.stream(activities).forEach(activityClass -> {
