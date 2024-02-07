@@ -16,6 +16,24 @@
       "message": "`reschedule` -\u003e `rescheduled`?",
       "revId": "48e0a45a9f232c2077e2fa5b689b7ff1ce78d54c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c140a874_bc47db0f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-07T02:22:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c64b4bab_14a5b529",
+      "revId": "48e0a45a9f232c2077e2fa5b689b7ff1ce78d54c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
