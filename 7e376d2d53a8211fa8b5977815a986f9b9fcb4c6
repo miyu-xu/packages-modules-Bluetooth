@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c18acf8f_b301f7ec",
+        "filename": "android/app/res/values/strings.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-07T00:35:38Z",
+      "side": 1,
+      "message": "nit: Could we make a link to the settings?",
+      "range": {
+        "startLine": 260,
+        "startChar": 151,
+        "endLine": 260,
+        "endChar": 176
+      },
+      "revId": "7e376d2d53a8211fa8b5977815a986f9b9fcb4c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
