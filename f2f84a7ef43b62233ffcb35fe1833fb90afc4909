@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26cfc279_c3672875",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 5812,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-07T00:45:48Z",
+      "side": 1,
+      "message": "```suggestion\n            e.rethrowFromSystemServer();\n```\n\n?",
+      "revId": "f2f84a7ef43b62233ffcb35fe1833fb90afc4909",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
