@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a07f9067_a49baf2b",
+        "filename": "service/src/AutoOnFeature.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-07T00:41:56Z",
+      "side": 1,
+      "message": "This is strange of calling it `cancel` with this new behavior.\n\nShould the cancel be named `notifyBluetoothOn` or/and put documentation.",
+      "revId": "488e94c5997024f81e9c66fa70ff4958e3d6e229",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
