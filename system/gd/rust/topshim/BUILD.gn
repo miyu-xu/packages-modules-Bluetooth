@@ -69,7 +69,10 @@ source_set("btif_cxx_bridge_code") {
     "//bt/system/gd/metrics:BluetoothMetricsSources",
     "//bt/system/pdl:BluetoothGeneratedPackets_h",
   ]
-  configs += [ "//bt/system/gd:gd_defaults" ]
+  configs += [
+    "//bt/system/gd:gd_defaults",
+    "//bt/system/log:log_defaults",
+  ]
 }
 
 cxxbridge_libheader("cxxlibheader") {
