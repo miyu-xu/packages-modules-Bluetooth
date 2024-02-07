@@ -44,7 +44,7 @@ public class HapClientNativeInterfaceTest {
         MockitoAnnotations.initMocks(this);
         when(mService.isAvailable()).thenReturn(true);
         HapClientService.setHapClient(mService);
-        mNativeInterface = HapClientNativeInterface.getInstance();
+        mNativeInterface = new HapClientNativeInterface();
     }
 
     @After

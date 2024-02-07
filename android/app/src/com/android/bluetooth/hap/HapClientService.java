@@ -126,10 +126,16 @@ public class HapClientService extends ProfileService {
         return sHapClient;
     }
 
-    public HapClientService(AdapterService adapterService) {
+    public HapClientService(
+            AdapterService adapterService, HapClientNativeInterface nativeInterface) {
         super(adapterService);
         mAdapterService = Objects.requireNonNull(adapterService);
+        mHapClientNativeInterface = Objects.requireNonNull(nativeInterface);
         mFeatureFlags = new FeatureFlagsImpl();
+    }
+
+    public HapClientService(AdapterService adapterService) {
+        this(adapterService, new HapClientNativeInterface());
     }
 
     @Override
@@ -154,15 +160,11 @@ public class HapClientService extends ProfileService {
             throw new IllegalStateException("start() called twice");
         }
 
-        // Get HapClientNativeInterface, DatabaseManager, AudioManager.
-        // None of them can be null.
+        // Get DatabaseManager
         mDatabaseManager =
                 Objects.requireNonNull(
                         mAdapterService.getDatabase(),
                         "DatabaseManager cannot be null when HapClientService starts");
-        mHapClientNativeInterface = Objects.requireNonNull(
-                HapClientNativeInterface.getInstance(),
-                "HapClientNativeInterface cannot be null when HapClientService starts");
 
         // Start handler thread for state machines
         mHandler = new Handler(Looper.getMainLooper());
@@ -219,7 +221,6 @@ public class HapClientService extends ProfileService {
 
         // Cleanup GATT interface
         mHapClientNativeInterface.cleanup();
-        mHapClientNativeInterface = null;
 
         // Cleanup the internals
         mDeviceCurrentPresetMap.clear();
