@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2db3e03c_22402a60",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-07T14:19:45Z",
+      "side": 1,
+      "message": "maybe we should define it in IBluetoothLeAudio.aidl and use here values from there?",
+      "revId": "531232e7446bfd972259041160e685382a6cc430",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "33338ac4_e90328f3",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 12
