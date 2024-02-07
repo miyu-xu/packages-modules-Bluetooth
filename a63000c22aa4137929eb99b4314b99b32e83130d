@@ -16,6 +16,24 @@
       "message": "As a small optimization, we can just `continue` here",
       "revId": "a63000c22aa4137929eb99b4314b99b32e83130d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60bdd1de_003b11d2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1377,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-02-07T01:03:36Z",
+      "side": 1,
+      "message": "Done. I guess you meant break.",
+      "parentUuid": "9a8c3863_0d129e48",
+      "revId": "a63000c22aa4137929eb99b4314b99b32e83130d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
