@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c931864_77b8ce56",
+        "filename": "service/src/AutoOnFeatureTest.kt",
+        "patchSetId": 10
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-07T01:45:24Z",
+      "side": 1,
+      "message": "nit:\n\n\n```suggestion\n    fun setupTimer_whenSatelliteIsOn_isNotScheduled() {\n```",
+      "range": {
+        "startLine": 296,
+        "startChar": 8,
+        "endLine": 296,
+        "endChar": 50
+      },
+      "revId": "4d73d5f05a937629bceaf72906876e609e8ca418",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
