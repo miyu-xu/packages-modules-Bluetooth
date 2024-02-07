@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14a13007_9fd3b07d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-02-07T08:34:20Z",
+      "side": 1,
+      "message": "Hi @hallstrom@google.com, since Android always set scan type to Active, this patch shouldn\u0027t change the behavior on Android.",
+      "revId": "1ad187a9a43016ce895d3aaa50d5fdb8c47eea1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
