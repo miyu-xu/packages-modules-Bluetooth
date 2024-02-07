@@ -16,6 +16,8 @@
 
 #include "hci/hci_layer.h"
 
+#include <log/include/bluetooth/log.h>
+
 #include "common/bind.h"
 #include "common/init_flags.h"
 #include "common/stop_watch.h"
@@ -157,8 +159,8 @@ struct HciLayer::impl {
     OpCode op_code = response_view.GetCommandOpCode();
     ErrorCode status = response_view.GetStatus();
     if (status != ErrorCode::SUCCESS) {
-      LOG_ERROR(
-          "Received UNEXPECTED command status:%s opcode:0x%02hx (%s)",
+      log::error(
+          "Received UNEXPECTED command status:{} opcode:{} ({})",
           ErrorCodeText(status).c_str(),
           op_code,
           OpCodeText(op_code).c_str());
@@ -189,7 +191,8 @@ struct HciLayer::impl {
         op_code,
         OpCodeText(op_code).c_str());
     if (waiting_command_ == OpCode::CONTROLLER_DEBUG_INFO && op_code != OpCode::CONTROLLER_DEBUG_INFO) {
-      LOG_ERROR("Discarding event that came after timeout 0x%02hx (%s)", op_code, OpCodeText(op_code).c_str());
+      log::error(
+          "Discarding event that came after timeout {} ({})", op_code, OpCodeText(op_code).c_str());
       common::StopWatch::DumpStopWatchLog();
       return;
     }
@@ -430,10 +433,8 @@ struct HciLayer::impl {
         break;
       default:
         if (event_handlers_.find(event_code) == event_handlers_.end()) {
-          LOG_WARN(
-              "Unhandled event of type 0x%02hhx (%s)",
-              event_code,
-              EventCodeText(event_code).c_str());
+          log::warn(
+              "Unhandled event of type {} ({})", event_code, EventCodeText(event_code).c_str());
         } else {
           event_handlers_[event_code].Invoke(event);
         }
@@ -795,3 +796,10 @@ void HciLayer::Stop() {
 
 }  // namespace hci
 }  // namespace bluetooth
+
+namespace fmt {
+template <>
+struct fmt::formatter<bluetooth::hci::OpCode> : enum_formatter<bluetooth::hci::OpCode> {};
+template <>
+struct fmt::formatter<bluetooth::hci::EventCode> : enum_formatter<bluetooth::hci::EventCode> {};
+}  // namespace fmt

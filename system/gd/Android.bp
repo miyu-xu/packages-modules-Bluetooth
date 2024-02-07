@@ -325,6 +325,7 @@ cc_binary {
         "libcrypto",
         "libgrpc++",
         "libgrpc_wrap",
+        "liblog",
         "libprotobuf-cpp-full",
         "libunwindstack",
         "server_configurable_flags",
@@ -596,6 +597,7 @@ cc_defaults {
         "libcrypto",
         "libgrpc++",
         "libgrpc_wrap",
+        "liblog",
         "server_configurable_flags",
     ],
     cflags: [
