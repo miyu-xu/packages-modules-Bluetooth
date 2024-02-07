@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0c8dc006_e7164bbe",
+        "filename": "framework/java/android/bluetooth/le/AdvertiseData.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 707,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:53:17Z",
+      "side": 1,
+      "message": "If encrypted key material value exchanged via OOB and both sides some preoperatory apps wants to use it and decrypt it using that same Encrypted key material, Because of that this API provision is provided. Let me know if its not needed in any sense, then I will remove the API",
+      "parentUuid": "bc8d3d92_1632198e",
+      "range": {
+        "startLine": 707,
+        "startChar": 23,
+        "endLine": 707,
+        "endChar": 51
+      },
+      "revId": "4a2a08a206f76673f0ae26f7670dc2f2ad6f14f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2d880099_4dc38027",
         "filename": "framework/java/android/bluetooth/le/BluetoothLeAdvertiser.java",
         "patchSetId": 16
@@ -37,6 +61,30 @@
       "writtenOn": "2024-01-18T18:57:38Z",
       "side": 1,
       "message": "nit: This is very verbose; I think it would be better to check all possible encrypted data at the beginning of the function to determine the value of encryptionBytesAdded",
+      "range": {
+        "startLine": 693,
+        "startChar": 12,
+        "endLine": 696,
+        "endChar": 13
+      },
+      "revId": "4a2a08a206f76673f0ae26f7670dc2f2ad6f14f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0df73ba0_a2681415",
+        "filename": "framework/java/android/bluetooth/le/BluetoothLeAdvertiser.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:53:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d880099_4dc38027",
       "range": {
         "startLine": 693,
         "startChar": 12,
@@ -94,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2baca41f_5f3c8114",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 1051,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:53:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6de390a9_ff8182de",
+      "range": {
+        "startLine": 1051,
+        "startChar": 4,
+        "endLine": 1051,
+        "endChar": 54
+      },
+      "revId": "4a2a08a206f76673f0ae26f7670dc2f2ad6f14f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73f9dbb1_ebc53082",
@@ -107,6 +179,30 @@
       "writtenOn": "2024-01-18T18:57:38Z",
       "side": 1,
       "message": "Although using the HCI LE Rand command would be correct, it is making the implementation much harder to understand.\n\nIt would be preferable to use a native random generator (e.g. provided by libcrypto, or from the libc) and return the implementation to being synchronous.",
+      "range": {
+        "startLine": 1521,
+        "startChar": 0,
+        "endLine": 1529,
+        "endChar": 29
+      },
+      "revId": "4a2a08a206f76673f0ae26f7670dc2f2ad6f14f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06375e7a_1f61e802",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 1529,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:53:17Z",
+      "side": 1,
+      "message": "We will do using libcrypto later as an enhancement. Is it ok?",
+      "parentUuid": "73f9dbb1_ebc53082",
       "range": {
         "startLine": 1521,
         "startChar": 0,
@@ -176,6 +272,30 @@
       "writtenOn": "2024-01-18T18:57:38Z",
       "side": 1,
       "message": "Unused include directives ?",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 27
+      },
+      "revId": "4a2a08a206f76673f0ae26f7670dc2f2ad6f14f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b639205_3f0f32e4",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:53:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "132c592b_db80e2d1",
       "range": {
         "startLine": 26,
         "startChar": 0,
