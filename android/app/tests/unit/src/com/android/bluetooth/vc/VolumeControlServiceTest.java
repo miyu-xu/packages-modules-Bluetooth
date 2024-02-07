@@ -34,6 +34,7 @@ import android.media.AudioManager;
 import android.os.Binder;
 import android.os.Looper;
 import android.os.ParcelUuid;
+import android.platform.test.flag.junit.SetFlagsRule;
 
 import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.MediumTest;
@@ -45,7 +46,6 @@ import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.ServiceFactory;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.csip.CsipSetCoordinatorService;
-import com.android.bluetooth.flags.FakeFeatureFlagsImpl;
 import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.le_audio.LeAudioService;
 import com.android.bluetooth.x.com.android.modules.utils.SynchronousResultReceiver;
@@ -86,7 +86,6 @@ public class VolumeControlServiceTest {
     private static final int CALL_MAX_VOL = 8;
 
     private BroadcastReceiver mVolumeControlIntentReceiver;
-    private FakeFeatureFlagsImpl mFakeFlagsImpl;
 
     @Mock private AdapterService mAdapterService;
     @Mock private LeAudioService mLeAudioService;
@@ -97,6 +96,7 @@ public class VolumeControlServiceTest {
     @Mock private CsipSetCoordinatorService mCsipService;
 
     @Rule public final ServiceTestRule mServiceRule = new ServiceTestRule();
+    @Rule public final SetFlagsRule mSetFlagsRule = new SetFlagsRule();
 
     @Before
     public void setUp() throws Exception {
@@ -123,12 +123,8 @@ public class VolumeControlServiceTest {
         doReturn(CALL_MAX_VOL).when(mAudioManager)
                 .getStreamMaxVolume(eq(AudioManager.STREAM_VOICE_CALL));
 
-        mFakeFlagsImpl = new FakeFeatureFlagsImpl();
-        mFakeFlagsImpl.setFlag(
-                Flags.FLAG_LEAUDIO_BROADCAST_VOLUME_CONTROL_FOR_CONNECTED_DEVICES, false);
-
         VolumeControlNativeInterface.setInstance(mNativeInterface);
-        mService = new VolumeControlService(mTargetContext, mFakeFlagsImpl);
+        mService = new VolumeControlService(mTargetContext);
         mService.doStart();
 
         mService.mAudioManager = mAudioManager;
@@ -1026,8 +1022,8 @@ public class VolumeControlServiceTest {
 
     @Test
     public void testServiceBinderSetDeviceVolumeMethods() throws Exception {
-        mFakeFlagsImpl.setFlag(
-                Flags.FLAG_LEAUDIO_BROADCAST_VOLUME_CONTROL_FOR_CONNECTED_DEVICES, true);
+        mSetFlagsRule.enableFlags(
+                Flags.FLAG_LEAUDIO_BROADCAST_VOLUME_CONTROL_FOR_CONNECTED_DEVICES);
 
         int groupId = 1;
         int groupVolume = 56;
@@ -1157,8 +1153,8 @@ public class VolumeControlServiceTest {
     @Test
     public void testServiceBinderRegisterVolumeChangedCallbackWhenDeviceAlreadyConnected()
             throws Exception {
-        mFakeFlagsImpl.setFlag(
-                Flags.FLAG_LEAUDIO_BROADCAST_VOLUME_CONTROL_FOR_CONNECTED_DEVICES, true);
+        mSetFlagsRule.enableFlags(
+                Flags.FLAG_LEAUDIO_BROADCAST_VOLUME_CONTROL_FOR_CONNECTED_DEVICES);
         int groupId = 1;
         int deviceOneVolume = 46;
         int deviceTwoVolume = 36;
@@ -1211,8 +1207,8 @@ public class VolumeControlServiceTest {
 
     @Test
     public void testServiceBinderTestNotifyNewRegisteredCallback() throws Exception {
-        mFakeFlagsImpl.setFlag(
-                Flags.FLAG_LEAUDIO_BROADCAST_VOLUME_CONTROL_FOR_CONNECTED_DEVICES, true);
+        mSetFlagsRule.enableFlags(
+                Flags.FLAG_LEAUDIO_BROADCAST_VOLUME_CONTROL_FOR_CONNECTED_DEVICES);
         int groupId = 1;
         int deviceOneVolume = 46;
         int deviceTwoVolume = 36;
@@ -1356,8 +1352,8 @@ public class VolumeControlServiceTest {
     /** Test Volume Control changed callback. */
     @Test
     public void testVolumeControlChangedCallback() throws Exception {
-        mFakeFlagsImpl.setFlag(
-                Flags.FLAG_LEAUDIO_BROADCAST_VOLUME_CONTROL_FOR_CONNECTED_DEVICES, true);
+        mSetFlagsRule.enableFlags(
+                Flags.FLAG_LEAUDIO_BROADCAST_VOLUME_CONTROL_FOR_CONNECTED_DEVICES);
 
         int groupId = 1;
         int groupVolume = 56;
