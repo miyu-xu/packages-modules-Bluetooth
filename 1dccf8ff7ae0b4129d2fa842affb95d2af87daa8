@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36fbd000_93a50021",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-07T17:38:48Z",
+      "side": 1,
+      "message": "It feels wrong for me to add liblog to the host shared_libs when it\u0027s explicitly just included for Android here.",
+      "range": {
+        "startLine": 23,
+        "startChar": 17,
+        "endLine": 23,
+        "endChar": 23
+      },
+      "revId": "1dccf8ff7ae0b4129d2fa842affb95d2af87daa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
