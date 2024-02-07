@@ -116,6 +116,30 @@
       },
       "revId": "581eb49e6e7fc1e9a5a5f0679cb3f7662babbf48",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ec44b55_d5f24d47",
+        "filename": "system/bta/le_audio/storage_helper.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-02-07T13:02:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9db41170_cd04f1b2",
+      "range": {
+        "startLine": 124,
+        "startChar": 8,
+        "endLine": 124,
+        "endChar": 15
+      },
+      "revId": "581eb49e6e7fc1e9a5a5f0679cb3f7662babbf48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
