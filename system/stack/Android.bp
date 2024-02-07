@@ -681,6 +681,7 @@ cc_test {
         "android.hardware.bluetooth.audio@2.1",
         "libPlatformProperties",
         "libaaudio",
+        "libbase",
         "libbinder_ndk",
         "libcrypto",
         "libcutils",
