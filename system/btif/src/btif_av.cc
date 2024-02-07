@@ -20,6 +20,7 @@
 
 #include "btif/include/btif_av.h"
 
+#include <android_bluetooth_flags.h>
 #include <android_bluetooth_sysprop.h>
 #include <base/functional/bind.h>
 #include <base/logging.h>
@@ -508,12 +509,17 @@ class BtifAvSource {
     if (peer_address.IsEmpty()) {
       LOG_VERBOSE("%s: peer address is empty, shutdown the Audio source",
                   __func__);
-      if (!btif_av_src_sink_coexist_enabled() ||
-          (btif_av_src_sink_coexist_enabled() &&
-           btif_av_sink_active_peer().IsEmpty())) {
-        if (!bta_av_co_set_active_peer(peer_address)) {
-          LOG(WARNING) << __func__
-                       << ": unable to set active peer to empty in BtaAvCo";
+      if (!IS_FLAG_ENABLED(a2dp_concurrent_source_sink)) {
+        if (!btif_av_src_sink_coexist_enabled() ||
+            (btif_av_src_sink_coexist_enabled() &&
+             btif_av_sink_active_peer().IsEmpty())) {
+          if (!bta_av_co_set_active_peer(peer_address)) {
+            LOG_WARN("Unable to set active peer to empty in BtaAvCo");
+          }
+        }
+      } else {
+        if (!bta_av_co_set_active_source_peer(peer_address)) {
+          LOG_WARN("Unable to set active peer to empty in BtaAvCo");
         }
       }
 
@@ -532,7 +538,10 @@ class BtifAvSource {
       return true;
     }
 
-    if (btif_av_src_sink_coexist_enabled()) btif_av_sink_delete_active_peer();
+    if (!IS_FLAG_ENABLED(a2dp_concurrent_source_sink) &&
+        btif_av_src_sink_coexist_enabled()) {
+      btif_av_sink_delete_active_peer();
+    }
     BtifAvPeer* peer = FindPeer(peer_address);
     if (peer == nullptr || !peer->IsConnected()) {
       LOG(ERROR) << __func__ << ": Error setting "
@@ -554,13 +563,18 @@ class BtifAvSource {
   void DeleteActivePeer(void) {
     std::promise<void> shutdown_complete_promise;
     LOG_VERBOSE("%s", __func__);
-    if (btif_av_sink_active_peer().IsEmpty()) {
-      if (!bta_av_co_set_active_peer(RawAddress::kEmpty)) {
-        LOG_WARN("%s : unable to set active peer to empty in BtaAvCo",
-                 __func__);
+    if (!IS_FLAG_ENABLED(a2dp_concurrent_source_sink)) {
+      if (btif_av_sink_active_peer().IsEmpty()) {
+        if (!bta_av_co_set_active_peer(RawAddress::kEmpty)) {
+          LOG_WARN("Unable to set active source peer to empty in BtaAvCo");
+        }
+      } else {
+        LOG_WARN("there is an active peer as source role");
       }
     } else {
-      LOG_WARN("%s : there is an active peer as source role", __func__);
+      if (!bta_av_co_set_active_source_peer(RawAddress::kEmpty)) {
+        LOG_WARN("Unable to set active source peer to empty in BtaAvCo");
+      }
     }
     btif_a2dp_source_end_session(active_peer_);
     btif_a2dp_source_shutdown(std::move(shutdown_complete_promise));
@@ -689,12 +703,17 @@ class BtifAvSink {
     if (peer_address.IsEmpty()) {
       LOG_VERBOSE("%s: peer address is empty, shutdown the Audio sink",
                   __func__);
-      if (!btif_av_src_sink_coexist_enabled() ||
-          (btif_av_src_sink_coexist_enabled() &&
-           btif_av_source_active_peer().IsEmpty())) {
-        if (!bta_av_co_set_active_peer(peer_address)) {
-          LOG(WARNING) << __func__
-                       << ": unable to set active peer to empty in BtaAvCo";
+      if (!IS_FLAG_ENABLED(a2dp_concurrent_source_sink)) {
+        if (!btif_av_src_sink_coexist_enabled() ||
+            (btif_av_src_sink_coexist_enabled() &&
+             btif_av_source_active_peer().IsEmpty())) {
+          if (!bta_av_co_set_active_peer(peer_address)) {
+            LOG_WARN("Unable to set active sink peer to empty in BtaAvCo");
+          }
+        }
+      } else {
+        if (!bta_av_co_set_active_sink_peer(peer_address)) {
+          LOG_WARN("Unable to set active sink peer to empty in BtaAvCo");
         }
       }
 
@@ -730,13 +749,18 @@ class BtifAvSink {
 
   void DeleteActivePeer(void) {
     LOG_VERBOSE("%s", __func__);
-    if (btif_av_source_active_peer().IsEmpty()) {
-      if (!bta_av_co_set_active_peer(RawAddress::kEmpty)) {
-        LOG(WARNING) << __func__
-                     << ": unable to set active peer to empty in BtaAvCo";
+    if (!IS_FLAG_ENABLED(a2dp_concurrent_source_sink)) {
+      if (btif_av_source_active_peer().IsEmpty()) {
+        if (!bta_av_co_set_active_peer(RawAddress::kEmpty)) {
+          LOG_WARN("Unable to set active peer to empty in BtaAvCo");
+        }
+      } else {
+        LOG_WARN("There is an active peer as sink role");
       }
     } else {
-      LOG(WARNING) << __func__ << ": there is an active peer as sink role";
+      if (!bta_av_co_set_active_sink_peer(RawAddress::kEmpty)) {
+        LOG_WARN("Unable to set sink active peer to empty in BtaAvCo");
+      }
     }
     btif_a2dp_sink_end_session(active_peer_);
     btif_a2dp_sink_shutdown();
