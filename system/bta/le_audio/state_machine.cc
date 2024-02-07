@@ -1418,6 +1418,9 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
       return;
     }
 
+    group->dsa_.mode = DsaMode::ISO_SW;
+    LOG_INFO("DsaTest: Forcing DSA mode");
+
     LOG_INFO("DSA mode selected: %d", (int)group->dsa_.mode);
     group->dsa_.active = false;
 
@@ -1441,7 +1444,7 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
 
                 /* Todo: Replace literal values */
                 param.sdu_itv_stom = 20000;
-                param.max_trans_lat_stom = 10;
+                param.max_trans_lat_stom = 20;
                 it->max_sdu_size_stom = 15;
                 it->rtn_stom = 2;
 
