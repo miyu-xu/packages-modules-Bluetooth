@@ -540,6 +540,12 @@ public class LeAudioServiceTest {
                 LeAudioStackEvent.CONNECTION_STATE_DISCONNECTED);
     }
 
+    private void injectAndVerifyDeviceDisconnectedFromGivenState(
+            BluetoothDevice device, int currentConnectionState) {
+        generateConnectionMessageFromNative(
+                device, LeAudioStackEvent.CONNECTION_STATE_DISCONNECTED, currentConnectionState);
+    }
+
     private void injectAndVerifyDeviceDisconnected(BluetoothDevice device) {
         generateConnectionMessageFromNative(device,
                 LeAudioStackEvent.CONNECTION_STATE_DISCONNECTED,
@@ -891,10 +897,8 @@ public class LeAudioServiceTest {
         reset(mMcpService);
 
         // Inject CONNECTION_STATE_DISCONNECTED
-        generateConnectionMessageFromNative(
-                mLeftDevice,
-                BluetoothProfile.STATE_DISCONNECTED,
-                BluetoothProfile.STATE_DISCONNECTING);
+        injectAndVerifyDeviceDisconnectedFromGivenState(
+                mLeftDevice, BluetoothProfile.STATE_DISCONNECTING);
 
         verify(mTbsService, times(1)).removeDeviceAuthorizationInfo(mLeftDevice);
         verify(mMcpService, times(1)).removeDeviceAuthorizationInfo(mLeftDevice);
