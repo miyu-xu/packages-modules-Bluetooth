@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b375a8e1_1e652e28",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-07T22:56:27Z",
+      "side": 1,
+      "message": "lets move this to the group to avoid issues when switching from one group to the other.",
+      "revId": "ba77e56b07527a469fcb2dc3002f41d5c4aab608",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
