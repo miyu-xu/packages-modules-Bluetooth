@@ -28,6 +28,8 @@ import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
 import androidx.annotation.VisibleForTesting
+import com.android.server.bluetooth.airplane.hasUserToggledApm as hasUserToggledApm
+import com.android.server.bluetooth.airplane.isOn as isAirplaneModeOn
 import com.android.server.bluetooth.satellite.isOn as isSatelliteModeOn
 import java.time.LocalDateTime
 import java.time.LocalTime
@@ -55,6 +57,13 @@ public fun setupNewTimer(
     if (isSatelliteModeOn) {
         Log.d(TAG, "Satellite prevent feature activation")
         return
+    }
+    if (isAirplaneModeOn) {
+        if (!hasUserToggledApm(context)) {
+            Log.d(TAG, "Airplane prevent feature activation")
+            return
+        }
+        Log.d(TAG, "Airplane bypassed as airplane enhanced mode has been activated previously")
     }
 
     timer?.let {
