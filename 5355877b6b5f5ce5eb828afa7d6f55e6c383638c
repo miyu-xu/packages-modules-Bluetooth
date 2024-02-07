@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42bb0990_a670c606",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-07T09:10:39Z",
+      "side": 1,
+      "message": "keep only aconfig change in this patch.",
+      "revId": "5355877b6b5f5ce5eb828afa7d6f55e6c383638c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b785c83_0570a455",
+        "filename": "flags/leaudio.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-07T09:10:39Z",
+      "side": 1,
+      "message": "metadata {\n        purpose: PURPOSE_BUGFIX\n    }",
+      "revId": "5355877b6b5f5ce5eb828afa7d6f55e6c383638c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
