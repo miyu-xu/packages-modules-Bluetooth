@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "761ef044_89f5272b",
+        "filename": "service/src/AutoOnFeature.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-07T02:15:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d8ebbaf_c5813f75",
+      "revId": "a3c631fea4d8309b564ef59879843e427efb29bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "90b2e377_8d0ace2a",
@@ -48,6 +66,30 @@
       "writtenOn": "2024-02-07T00:34:21Z",
       "side": 1,
       "message": "nit: `freshTimer` is not verify descriptive, what do you think of `nextTimeout`?",
+      "range": {
+        "startLine": 109,
+        "startChar": 20,
+        "endLine": 109,
+        "endChar": 30
+      },
+      "revId": "a3c631fea4d8309b564ef59879843e427efb29bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72b26140_89dcbe56",
+        "filename": "service/src/AutoOnFeature.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-07T02:15:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8250b548_6e306d9c",
       "range": {
         "startLine": 109,
         "startChar": 20,
