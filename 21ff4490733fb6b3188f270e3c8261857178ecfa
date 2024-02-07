@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96331fdb_93e52612",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-07T04:33:22Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Build Warnings: [EmptyCatch] Caught exceptions should not be ignored\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    [EmptyCatch] Caught exceptions should not be ignored\n                        } catch (RemoteException e) {\n                          ^\n        (see https://google.github.io/styleguide/javaguide.html#s6.2-caught-exceptions)\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P69543387/targets/errorprone-trunk_staging, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the git_main branch.",
+      "range": {
+        "startLine": 811,
+        "startChar": 0,
+        "endLine": 811,
+        "endChar": 49
+      },
+      "revId": "21ff4490733fb6b3188f270e3c8261857178ecfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b034bfd6_3d92c5ae",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-07T04:33:22Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Build Warnings: [EmptyCatch] Caught exceptions should not be ignored\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    [EmptyCatch] Caught exceptions should not be ignored\n                            } catch (RemoteException e) {\n                              ^\n        (see https://google.github.io/styleguide/javaguide.html#s6.2-caught-exceptions)\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P69543387/targets/errorprone-trunk_staging, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the git_main branch.",
+      "range": {
+        "startLine": 818,
+        "startChar": 0,
+        "endLine": 818,
+        "endChar": 53
+      },
+      "revId": "21ff4490733fb6b3188f270e3c8261857178ecfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8738b86d_ee315837",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 824,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-07T04:33:22Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Build Warnings: [EmptyCatch] Caught exceptions should not be ignored\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    [EmptyCatch] Caught exceptions should not be ignored\n                            } catch (RemoteException e) {\n                              ^\n        (see https://google.github.io/styleguide/javaguide.html#s6.2-caught-exceptions)\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P69543387/targets/errorprone-trunk_staging, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the git_main branch.",
+      "range": {
+        "startLine": 824,
+        "startChar": 0,
+        "endLine": 824,
+        "endChar": 53
+      },
+      "revId": "21ff4490733fb6b3188f270e3c8261857178ecfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
