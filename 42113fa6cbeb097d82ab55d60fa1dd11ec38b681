@@ -34,6 +34,24 @@
       "parentUuid": "d0678ac0_85c040de",
       "revId": "42113fa6cbeb097d82ab55d60fa1dd11ec38b681",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53bec4bd_9517fe04",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-02-07T08:39:38Z",
+      "side": 1,
+      "message": "The patch passed the AVL test. I tested on legacy devices and found a bug in LibBluetooth, fixed at https://r.android.com/2953531.\n\nAgain this actually follows the BlueZ behavior and I\u0027ve tested all SW team features on several controllers (MSFT supported / MSFT supported but need to get back to BlueZ behavior / MSFT not supported). WDYT?",
+      "parentUuid": "bd21d7ea_cfab51c8",
+      "revId": "42113fa6cbeb097d82ab55d60fa1dd11ec38b681",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
