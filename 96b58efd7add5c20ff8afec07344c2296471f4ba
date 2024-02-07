@@ -81,6 +81,30 @@
       },
       "revId": "96b58efd7add5c20ff8afec07344c2296471f4ba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad4a0cfc_398c90dd",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/TransactionalScanHelper.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-07T19:36:42Z",
+      "side": 1,
+      "message": "Thanks! This LGTM.\n\nGenerally getter/setter is preferred for 2 reasons:\n1) It makes it more explicit that it\u0027s only overridden for tests given usage of the setter.\n2) If in a multithreaded environment, access to certain objects can be guarded with a lock where needed.",
+      "parentUuid": "f08a51b7_d4a1b5a8",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 10
+      },
+      "revId": "96b58efd7add5c20ff8afec07344c2296471f4ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
