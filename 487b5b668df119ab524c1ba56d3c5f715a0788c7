@@ -354,6 +354,24 @@
       "message": "I\u0027m not sure if here and in broadcaster it\u0027s a good moment to introduce this rule `https://google.github.io/styleguide/cppguide.html#Variable_Names` -\u003e in general there should be underscore for members in naming.",
       "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ed35b6a_47ff4b61",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_types.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-02-07T13:03:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ddc33d5e_a6d1923f",
+      "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
