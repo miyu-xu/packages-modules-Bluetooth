@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71cb0169_c8e8fbae",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2b0a26d_fc3433be",
+      "range": {
+        "startLine": 343,
+        "startChar": 6,
+        "endLine": 343,
+        "endChar": 78
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de0780c1_d1089efe",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-01-18T03:07:06Z",
       "side": 1,
       "message": "```\nauto env_key_material \u003d \n  storage_module_-\u003eGetBin(pseudo_address.ToString().c_str(), Enc_Key_Material)\n      .value_or(std::vector\u003cuint8_t\u003e{})\n```",
+      "range": {
+        "startLine": 344,
+        "startChar": 6,
+        "endLine": 347,
+        "endChar": 84
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb4ea65a_520253f8",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de0780c1_d1089efe",
       "range": {
         "startLine": 344,
         "startChar": 6,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dae9d2b6_c2575144",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5cbc3406_168ddbd0",
+      "range": {
+        "startLine": 348,
+        "startChar": 6,
+        "endLine": 350,
+        "endChar": 85
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6814f747_5d3889a1",
@@ -110,6 +182,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2d3ddc1_ab6143da",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6814f747_5d3889a1",
+      "range": {
+        "startLine": 363,
+        "startChar": 10,
+        "endLine": 365,
+        "endChar": 11
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "94ca0178_8403b63f",
@@ -123,6 +219,30 @@
       "writtenOn": "2024-01-18T03:07:06Z",
       "side": 1,
       "message": "Please remove this debug log.",
+      "range": {
+        "startLine": 368,
+        "startChar": 10,
+        "endLine": 373,
+        "endChar": 11
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a820c0c_57d91627",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Currently kept. Will remove this log after final review.",
+      "parentUuid": "94ca0178_8403b63f",
       "range": {
         "startLine": 368,
         "startChar": 10,
@@ -175,6 +295,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "474a92fa_d4d09e5e",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "i will incorporate test file changes coming days/weeks. meanwhile please review this part",
+      "parentUuid": "3056f066_32b53927",
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "38ea585d_0ca140aa",
         "filename": "system/gd/hci/le_scanning_decrypter.cc",
         "patchSetId": 16
@@ -186,6 +324,30 @@
       "writtenOn": "2024-01-18T17:09:27Z",
       "side": 1,
       "message": "It should not be necessary to include so many headers, please trim the list down to the minimum.",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 35
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28ec81b5_b0f8ec2f",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38ea585d_0ca140aa",
       "range": {
         "startLine": 26,
         "startChar": 0,
@@ -219,6 +381,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "02a1d88f_6ae9edb4",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fd37703_275abe46",
+      "range": {
+        "startLine": 54,
+        "startChar": 2,
+        "endLine": 54,
+        "endChar": 37
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b49e8855_ce802874",
@@ -236,6 +422,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "db65e7fd_36f46915",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b49e8855_ce802874",
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d04f9689_593b8855",
@@ -249,6 +453,30 @@
       "writtenOn": "2024-01-18T17:09:27Z",
       "side": 1,
       "message": "Using the flag in this file is unnecessary as all invocations of the decrypter will have already been flagged.",
+      "range": {
+        "startLine": 69,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 54
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d406ae1e_402e9759",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d04f9689_593b8855",
       "range": {
         "startLine": 69,
         "startChar": 4,
@@ -282,6 +510,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f99f40a_fd798973",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85dc886d_9ce939d8",
+      "range": {
+        "startLine": 149,
+        "startChar": 8,
+        "endLine": 149,
+        "endChar": 37
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d88ac56_d7fa1cab",
@@ -295,6 +547,30 @@
       "writtenOn": "2024-01-18T17:09:27Z",
       "side": 1,
       "message": "It would be more appropriate to pass the encrypted data by pointer, length to avoid unnecessarily cloning encrypted data for the purpose of calling this function.",
+      "range": {
+        "startLine": 199,
+        "startChar": 4,
+        "endLine": 199,
+        "endChar": 41
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19616271_8e8bd8ef",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d88ac56_d7fa1cab",
       "range": {
         "startLine": 199,
         "startChar": 4,
@@ -328,6 +604,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88bab7f9_f8fb648c",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fea2575_7f9469f5",
+      "range": {
+        "startLine": 203,
+        "startChar": 2,
+        "endLine": 203,
+        "endChar": 38
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51eb39b6_cf684b51",
@@ -351,6 +651,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b78f6435_ef5f515a",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51eb39b6_cf684b51",
+      "range": {
+        "startLine": 229,
+        "startChar": 4,
+        "endLine": 240,
+        "endChar": 5
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e0bae62_b869d266",
@@ -364,6 +688,30 @@
       "writtenOn": "2024-01-18T17:09:27Z",
       "side": 1,
       "message": "Remove unused statement;",
+      "range": {
+        "startLine": 261,
+        "startChar": 3,
+        "endLine": 261,
+        "endChar": 74
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "181325a1_a2a4afb5",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e0bae62_b869d266",
       "range": {
         "startLine": 261,
         "startChar": 3,
@@ -399,6 +747,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6f88d177_a2314e66",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "It wont be added in the middle of advertising data. decrypted data will append only at the end of the unencrypted advertising data.",
+      "parentUuid": "855851e9_2700ae47",
+      "range": {
+        "startLine": 262,
+        "startChar": 1,
+        "endLine": 262,
+        "endChar": 32
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aeb3f9d3_3e3b1ea3",
         "filename": "system/gd/hci/le_scanning_decrypter.h",
         "patchSetId": 16
@@ -410,6 +782,30 @@
       "writtenOn": "2024-01-18T17:09:27Z",
       "side": 1,
       "message": "This function is only used to check the presence of Encrypted AD type in the advertising data; there is no need to construct a map of all the advertising data any more.\n\nI would suggest changing the name and implementation according to its use:\n```\n/// Returns true if the advertising data contains the Encrypted AD type,\n/// false otherwise.\nbool ContainsEncryptedData(std::vector\u003cuint8_t\u003e const\u0026 advertising_data);\n```",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 84
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "051e116a_eee24f7b",
+        "filename": "system/gd/hci/le_scanning_decrypter.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aeb3f9d3_3e3b1ea3",
       "range": {
         "startLine": 45,
         "startChar": 4,
@@ -443,6 +839,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a975de71_ffa7319e",
+        "filename": "system/gd/hci/le_scanning_decrypter.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e18291a9_d473ed7f",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 61
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b44ff394_a15e7c9e",
@@ -456,6 +876,30 @@
       "writtenOn": "2024-01-18T03:07:06Z",
       "side": 1,
       "message": "```\nauto env_key_material \u003d \n  storage_module_-\u003eGetBin(pseudo_address.ToString().c_str(), Enc_Key_Material)\n      .value_or(std::vector\u003cuint8_t\u003e{})\n```",
+      "range": {
+        "startLine": 472,
+        "startChar": 0,
+        "endLine": 477,
+        "endChar": 7
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12a2616a_59a2eabe",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b44ff394_a15e7c9e",
       "range": {
         "startLine": 472,
         "startChar": 0,
@@ -489,6 +933,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fa73a68_347533df",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a9e4ff7_d33a71f4",
+      "range": {
+        "startLine": 478,
+        "startChar": 0,
+        "endLine": 484,
+        "endChar": 7
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1113ba9f_eabd9bcf",
@@ -502,6 +970,30 @@
       "writtenOn": "2024-01-18T03:07:06Z",
       "side": 1,
       "message": "Flag check not necessary.\nThe encryption key material should be logged here; it is not useful when the decryption succeeds",
+      "range": {
+        "startLine": 498,
+        "startChar": 0,
+        "endLine": 500,
+        "endChar": 11
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "403d4140_6da04f9b",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 500,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1113ba9f_eabd9bcf",
       "range": {
         "startLine": 498,
         "startChar": 0,
@@ -535,6 +1027,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bebf8797_596e102b",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f952f224_ee9e43ee",
+      "range": {
+        "startLine": 503,
+        "startChar": 0,
+        "endLine": 508,
+        "endChar": 11
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10cea35f_efae21bf",
@@ -548,6 +1064,30 @@
       "writtenOn": "2024-01-18T03:07:06Z",
       "side": 1,
       "message": "nit: `address`",
+      "range": {
+        "startLine": 44,
+        "startChar": 20,
+        "endLine": 44,
+        "endChar": 37
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f8ba5b2_2dd9d1b5",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10cea35f_efae21bf",
       "range": {
         "startLine": 44,
         "startChar": 20,
@@ -581,6 +1121,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3510f54_3e8f152e",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9eac24a4_5f7df71d",
+      "range": {
+        "startLine": 47,
+        "startChar": 2,
+        "endLine": 50,
+        "endChar": 28
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72f9d24c_d21074f4",
@@ -594,6 +1158,30 @@
       "writtenOn": "2024-01-18T03:07:06Z",
       "side": 1,
       "message": "Please remove debug log",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 30
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "922ce342_5445b940",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72f9d24c_d21074f4",
       "range": {
         "startLine": 55,
         "startChar": 4,
@@ -627,6 +1215,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ed5e2ce_142833dd",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dedb7239_5f7d5bb0",
+      "range": {
+        "startLine": 58,
+        "startChar": 3,
+        "endLine": 58,
+        "endChar": 32
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97c71b8a_9c7f0aff",
@@ -650,6 +1262,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b22e24a2_4f0f0bb9",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97c71b8a_9c7f0aff",
+      "range": {
+        "startLine": 82,
+        "startChar": 2,
+        "endLine": 83,
+        "endChar": 41
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "944532f3_1901ef04",
@@ -663,6 +1299,30 @@
       "writtenOn": "2024-01-18T03:07:06Z",
       "side": 1,
       "message": "Unused include",
+      "range": {
+        "startLine": 22,
+        "startChar": 1,
+        "endLine": 22,
+        "endChar": 14
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18d39395_151b851e",
+        "filename": "system/gd/hci/le_scanning_reassembler.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "944532f3_1901ef04",
       "range": {
         "startLine": 22,
         "startChar": 1,
@@ -698,6 +1358,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "01058374_756e83b2",
+        "filename": "system/gd/hci/le_scanning_reassembler.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Can you suggest which file is apt for this declaration?",
+      "parentUuid": "1de77c66_771f0851",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 31
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "60199385_f4f35ef7",
         "filename": "system/gd/hci/le_scanning_reassembler.h",
         "patchSetId": 16
@@ -709,6 +1393,24 @@
       "writtenOn": "2024-01-18T03:07:06Z",
       "side": 1,
       "message": "Note: the change here for reassembling periodic advertising events should be ideally in a separate CL, with additional unit tests in le_scanning_reassembler_test.cc",
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edea1ab8_168a4b3b",
+        "filename": "system/gd/hci/le_scanning_reassembler.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "@henrichataing@google.com \ncurrently its tightly coupled now. Can I do separate CL for Periodic advertising events as enhancement later? or it should be done now?",
+      "parentUuid": "60199385_f4f35ef7",
       "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -738,6 +1440,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "829fe729_6853131e",
+        "filename": "system/gd/storage/storage_module.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "There was comment from previous patch sets, dont use two macro for same thing.\nSo decided to reuse the MACRO which was defined in legacy code. Suggest me if there is any cleaner way to use the existing macro",
+      "parentUuid": "ec842e85_6bda5120",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 51
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1eb21610_95c027bb",
         "filename": "system/gd/storage/storage_module.h",
         "patchSetId": 16
@@ -749,6 +1475,30 @@
       "writtenOn": "2024-01-18T03:07:06Z",
       "side": 1,
       "message": "Unnecessary friend class declaration",
+      "range": {
+        "startLine": 134,
+        "startChar": 14,
+        "endLine": 134,
+        "endChar": 35
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cdc83b5_1221694c",
+        "filename": "system/gd/storage/storage_module.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-07T07:39:49Z",
+      "side": 1,
+      "message": "Followed already existing code pattern. Will remove if its not needed.",
+      "parentUuid": "1eb21610_95c027bb",
       "range": {
         "startLine": 134,
         "startChar": 14,
