@@ -1879,25 +1879,31 @@ public class AdapterService extends Service {
     /** Initializes all the profile services fields */
     private void initProfileServices() {
         Log.i(TAG, "initProfileServices: Initializing all bluetooth profile services");
-        mA2dpService = A2dpService.getA2dpService();
-        mA2dpSinkService = A2dpSinkService.getA2dpSinkService();
-        mHeadsetService = HeadsetService.getHeadsetService();
-        mHeadsetClientService = HeadsetClientService.getHeadsetClientService();
-        mMapService = BluetoothMapService.getBluetoothMapService();
-        mMapClientService = MapClientService.getMapClientService();
-        mHidDeviceService = HidDeviceService.getHidDeviceService();
-        mHidHostService = HidHostService.getHidHostService();
-        mPanService = PanService.getPanService();
-        mPbapService = BluetoothPbapService.getBluetoothPbapService();
-        mPbapClientService = PbapClientService.getPbapClientService();
-        mHearingAidService = HearingAidService.getHearingAidService();
-        mHapClientService = HapClientService.getHapClientService();
-        mSapService = SapService.getSapService();
-        mVolumeControlService = VolumeControlService.getVolumeControlService();
-        mCsipSetCoordinatorService = CsipSetCoordinatorService.getCsipSetCoordinatorService();
-        mLeAudioService = LeAudioService.getLeAudioService();
-        mBassClientService = BassClientService.getBassClientService();
-        mBatteryService = BatteryService.getBatteryService();
+        mA2dpService = (A2dpService) mStartedProfiles.get(BluetoothProfile.A2DP);
+        mA2dpSinkService = (A2dpSinkService) mStartedProfiles.get(BluetoothProfile.A2DP_SINK);
+        mHeadsetService = (HeadsetService) mStartedProfiles.get(BluetoothProfile.HEADSET);
+        mHeadsetClientService =
+                (HeadsetClientService) mStartedProfiles.get(BluetoothProfile.HEADSET_CLIENT);
+        mMapService = (BluetoothMapService) mStartedProfiles.get(BluetoothProfile.MAP);
+        mMapClientService = (MapClientService) mStartedProfiles.get(BluetoothProfile.MAP_CLIENT);
+        mHidDeviceService = (HidDeviceService) mStartedProfiles.get(BluetoothProfile.HID_DEVICE);
+        mHidHostService = (HidHostService) mStartedProfiles.get(BluetoothProfile.HID_HOST);
+        mPanService = (PanService) mStartedProfiles.get(BluetoothProfile.PAN);
+        mPbapService = (BluetoothPbapService) mStartedProfiles.get(BluetoothProfile.PBAP);
+        mPbapClientService = (PbapClientService) mStartedProfiles.get(BluetoothProfile.PBAP_CLIENT);
+        mHearingAidService = (HearingAidService) mStartedProfiles.get(BluetoothProfile.HEARING_AID);
+        mHapClientService = (HapClientService) mStartedProfiles.get(BluetoothProfile.HAP_CLIENT);
+        mSapService = (SapService) mStartedProfiles.get(BluetoothProfile.SAP);
+        mVolumeControlService =
+                (VolumeControlService) mStartedProfiles.get(BluetoothProfile.VOLUME_CONTROL);
+        mCsipSetCoordinatorService =
+                (CsipSetCoordinatorService)
+                        mStartedProfiles.get(BluetoothProfile.CSIP_SET_COORDINATOR);
+        mLeAudioService = (LeAudioService) mStartedProfiles.get(BluetoothProfile.LE_AUDIO);
+        mBassClientService =
+                (BassClientService)
+                        mStartedProfiles.get(BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT);
+        mBatteryService = (BatteryService) mStartedProfiles.get(BluetoothProfile.BATTERY);
     }
 
     @BluetoothAdapter.RfcommListenerResult
