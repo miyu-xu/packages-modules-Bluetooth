@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccd0a019_ad6130f6",
+        "filename": "framework/java/android/bluetooth/BluetoothHidHost.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-07T00:16:33Z",
+      "side": 1,
+      "message": "Same as the setter, we do not need to repeat",
+      "range": {
+        "startLine": 592,
+        "startChar": 7,
+        "endLine": 593,
+        "endChar": 79
+      },
+      "revId": "5612cb819bef4fbd96c73b99b6210ed7439f535b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
