@@ -681,6 +681,7 @@ cc_test {
         "android.hardware.bluetooth.audio@2.1",
         "libPlatformProperties",
         "libaaudio",
+        "libbase",
         "libbinder_ndk",
         "libcrypto",
         "libcutils",
@@ -1203,6 +1204,7 @@ cc_test {
     ],
     static_libs: [
         "libFraunhoferAAC",
+        "libbase",
         "libbluetooth-types",
         "libbluetooth_crypto_toolbox",
         "libbluetooth_gd",
@@ -1259,6 +1261,7 @@ cc_test {
         "libcutils",
     ],
     static_libs: [
+        "libbase",
         "libbluetooth_crypto_toolbox",
         "libbluetooth_log",
         "libbt-common",
