@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de7b4584_5a803531",
+        "filename": "service/src/AutoOnFeatureTest.kt",
+        "patchSetId": 10
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-07T00:50:43Z",
+      "side": 1,
+      "message": "```suggestion\n        expect.that(storageString).isEqualTo(timerTarget.toString())\n```\n\n?",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 78
+      },
+      "revId": "6e12c82b8d24fb4f6516f798b1ead0a1f1da747e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cacd95c8_2763f4bf",
+        "filename": "service/src/AutoOnFeatureTest.kt",
+        "patchSetId": 10
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-07T00:50:43Z",
+      "side": 1,
+      "message": "`expect` that do an `assertThat` ?\n\nShould it be named `assertNoStorageTime`?",
+      "revId": "6e12c82b8d24fb4f6516f798b1ead0a1f1da747e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
