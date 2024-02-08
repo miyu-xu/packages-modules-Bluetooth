@@ -45,6 +45,30 @@
       },
       "revId": "73e4934148ee29aca94bdc3599fa728f4f273aba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0def4022_bcb547c6",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapSettingsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-02-08T02:25:02Z",
+      "side": 1,
+      "message": "I\u0027ll look into the bug and see whether the another workaround is feasible.",
+      "parentUuid": "2ece4f95_19730a82",
+      "range": {
+        "startLine": 81,
+        "startChar": 8,
+        "endLine": 81,
+        "endChar": 28
+      },
+      "revId": "73e4934148ee29aca94bdc3599fa728f4f273aba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
