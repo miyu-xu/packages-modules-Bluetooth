@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c46ceee2_88980eca",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-08T04:42:43Z",
+      "side": 0,
+      "message": "This could be registered as a callback with LeAclManager if we want this logic back, but it hasn\u0027t been used for a while now.",
+      "revId": "8957150666a91b14ff48ce119bdc03127b82fb75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
