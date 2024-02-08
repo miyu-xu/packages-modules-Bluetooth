@@ -1365,6 +1365,7 @@ cc_test {
         "packages/modules/Bluetooth/system/gd",
     ],
     srcs: [
+        ":BluetoothPacketSources",
         ":TestCommonMockFunctions",
         ":TestCommonStackConfig",
         ":TestMockMainShim",
