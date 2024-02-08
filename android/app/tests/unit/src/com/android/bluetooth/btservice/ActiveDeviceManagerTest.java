@@ -122,6 +122,7 @@ public class ActiveDeviceManagerTest {
 
         mFakeFlagsImpl = new FakeFeatureFlagsImpl();
         mFakeFlagsImpl.setFlag(Flags.FLAG_LEAUDIO_BROADCAST_AUDIO_HANDOVER_POLICIES, false);
+        mFakeFlagsImpl.setFlag(Flags.FLAG_LEAUDIO_ACTIVE_DEVICE_MANAGER_GROUP_HANDLING_FIX, false);
         mDatabaseManager = new TestDatabaseManager(mAdapterService, mFakeFlagsImpl);
 
         when(mAdapterService.getSystemService(Context.AUDIO_SERVICE)).thenReturn(mAudioManager);
@@ -159,6 +160,17 @@ public class ActiveDeviceManagerTest {
         when(mHearingAidService.setActiveDevice(any())).thenReturn(true);
         when(mLeAudioService.setActiveDevice(any())).thenReturn(true);
         when(mLeAudioService.removeActiveDevice(anyBoolean())).thenReturn(true);
+
+        when(mLeAudioService.getLeadDevice(mA2dpDevice)).thenReturn(mA2dpDevice);
+        when(mLeAudioService.getLeadDevice(mHeadsetDevice)).thenReturn(mHeadsetDevice);
+        when(mLeAudioService.getLeadDevice(mA2dpHeadsetDevice)).thenReturn(mA2dpHeadsetDevice);
+        when(mLeAudioService.getLeadDevice(mHearingAidDevice)).thenReturn(mHearingAidDevice);
+        when(mLeAudioService.getLeadDevice(mLeAudioDevice)).thenReturn(mLeAudioDevice);
+        when(mLeAudioService.getLeadDevice(mLeHearingAidDevice)).thenReturn(mLeHearingAidDevice);
+        when(mLeAudioService.getLeadDevice(mSecondaryAudioDevice))
+                .thenReturn(mSecondaryAudioDevice);
+        when(mLeAudioService.getLeadDevice(mDualModeAudioDevice)).thenReturn(mDualModeAudioDevice);
+        when(mLeAudioService.getLeadDevice(mLeAudioDevice2)).thenReturn(mLeAudioDevice2);
 
         List<BluetoothDevice> connectedHearingAidDevices = new ArrayList<>();
         connectedHearingAidDevices.add(mHearingAidDevice);
@@ -903,6 +915,35 @@ public class ActiveDeviceManagerTest {
 
         verify(mLeAudioService, timeout(TIMEOUT_MS)).setActiveDevice(mLeAudioDevice);
         verify(mLeAudioService, timeout(TIMEOUT_MS)).deviceDisconnected(mLeAudioDevice2, true);
+    }
+
+    @Test
+    public void leAudioSetConnectedGroupThenDisconnected_noFallback() {
+        mFakeFlagsImpl.setFlag(Flags.FLAG_LEAUDIO_ACTIVE_DEVICE_MANAGER_GROUP_HANDLING_FIX, true);
+        when(mAudioManager.getMode()).thenReturn(AudioManager.MODE_NORMAL);
+
+        leAudioConnected(mLeAudioDevice);
+        TestUtils.waitForLooperToFinishScheduledTask(mActiveDeviceManager.getHandlerLooper());
+        verify(mLeAudioService, timeout(TIMEOUT_MS)).setActiveDevice(mLeAudioDevice);
+
+        Mockito.clearInvocations(mLeAudioService);
+
+        when(mLeAudioService.getLeadDevice(mLeAudioDevice2)).thenReturn(mLeAudioDevice);
+        leAudioConnected(mLeAudioDevice2);
+        TestUtils.waitForLooperToFinishScheduledTask(mActiveDeviceManager.getHandlerLooper());
+        verify(mLeAudioService, never()).setActiveDevice(any());
+
+        Mockito.clearInvocations(mLeAudioService);
+
+        leAudioDisconnected(mLeAudioDevice2);
+        TestUtils.waitForLooperToFinishScheduledTask(mActiveDeviceManager.getHandlerLooper());
+        verify(mLeAudioService, never()).setActiveDevice(any());
+        verify(mLeAudioService, never()).removeActiveDevice(anyBoolean());
+
+        leAudioDisconnected(mLeAudioDevice);
+        TestUtils.waitForLooperToFinishScheduledTask(mActiveDeviceManager.getHandlerLooper());
+        verify(mLeAudioService, timeout(TIMEOUT_MS)).removeActiveDevice(false);
+        verify(mLeAudioService, timeout(TIMEOUT_MS)).deviceDisconnected(mLeAudioDevice2, false);
     }
 
     /**
