@@ -236,6 +236,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c898a9fc_e07f5ef2",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 16
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-08T14:26:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ca0d82d_6a1c8ad7",
+      "range": {
+        "startLine": 398,
+        "startChar": 0,
+        "endLine": 399,
+        "endChar": 42
+      },
+      "revId": "4a2a08a206f76673f0ae26f7670dc2f2ad6f14f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fe888107_0d08deb1",
@@ -249,6 +273,30 @@
       "writtenOn": "2024-01-16T22:15:31Z",
       "side": 1,
       "message": "Can we remove these?",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 39
+      },
+      "revId": "4a2a08a206f76673f0ae26f7670dc2f2ad6f14f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9de3d54_24de5e6e",
+        "filename": "system/stack/btm/btm_sec_cb.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-08T14:26:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe888107_0d08deb1",
       "range": {
         "startLine": 62,
         "startChar": 0,
