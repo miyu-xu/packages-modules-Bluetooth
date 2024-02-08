@@ -424,9 +424,15 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
           LeAudioContextType::MEDIA | LeAudioContextType::CONVERSATIONAL;
     }
 
+    /* Groups with different audio quality is not being supported now,
+     * if any subgroup preferred to use standard audio config, choose
+     * the standard audio config instead
+     */
+    uint8_t BIG_audio_quality = bluetooth::le_audio::QUALITY_HIGH;
     for (const uint8_t quality : subgroup_quality) {
       if (quality == bluetooth::le_audio::QUALITY_STANDARD) {
         public_features |= bluetooth::le_audio::kLeAudioQualityStandard;
+        BIG_audio_quality = bluetooth::le_audio::QUALITY_STANDARD;
       } else if (quality == bluetooth::le_audio::QUALITY_HIGH) {
         public_features |= bluetooth::le_audio::kLeAudioQualityHigh;
       }
@@ -481,11 +487,22 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     if (CodecManager::GetInstance()->GetCodecLocation() ==
         CodecLocation::ADSP) {
       auto offload_config =
-          CodecManager::GetInstance()->GetBroadcastOffloadConfig();
+          CodecManager::GetInstance()->GetBroadcastOffloadConfig(
+              BIG_audio_quality);
       if (offload_config == nullptr) {
         LOG_ERROR("No valid broadcast offload config");
         return;
       }
+
+      if (subgroup_quality[0] == bluetooth::le_audio::QUALITY_HIGH &&
+          offload_config->sampling_rate != 48000) {
+        LOG_WARN(
+            "Preferred quality isn't supported. Fallback to standard audio "
+            "quality");
+        public_features &= (0xFFFF & ~bluetooth::le_audio::kLeAudioQualityHigh);
+        public_features |= bluetooth::le_audio::kLeAudioQualityStandard;
+      }
+
       BroadcastCodecWrapper codec_config(
           {.coding_format = le_audio::types::kLeAudioCodingFormatLC3,
            .vendor_company_id =
