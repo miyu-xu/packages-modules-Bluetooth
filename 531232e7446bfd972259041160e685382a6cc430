@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5e5504af_0dedd228",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-08T22:15:16Z",
+      "side": 1,
+      "message": "There is a problem that those values are not related to Profile, those are from NATIVE.",
+      "parentUuid": "2db3e03c_22402a60",
+      "revId": "531232e7446bfd972259041160e685382a6cc430",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "33338ac4_e90328f3",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 12
