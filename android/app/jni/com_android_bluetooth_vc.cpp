@@ -48,8 +48,8 @@ class VolumeControlCallbacksImpl : public VolumeControlCallbacks {
   ~VolumeControlCallbacksImpl() = default;
   void OnConnectionState(ConnectionState state,
                          const RawAddress& bd_addr) override {
-    LOG(INFO) << __func__ << ", state:" << int(state)
-              << ", addr: " << bd_addr.ToRedactedStringForLogging();
+    log::info(", state:{}, addr: {}", int(state),
+              bd_addr.ToRedactedStringForLogging());
 
     std::shared_lock<std::shared_timed_mutex> lock(callbacks_mutex);
     CallbackEnv sCallbackEnv(__func__);
@@ -58,7 +58,7 @@ class VolumeControlCallbacksImpl : public VolumeControlCallbacks {
     ScopedLocalRef<jbyteArray> addr(
         sCallbackEnv.get(), sCallbackEnv->NewByteArray(sizeof(RawAddress)));
     if (!addr.get()) {
-      LOG(ERROR) << "Failed to new jbyteArray bd addr for connection state";
+      log::error("Failed to new jbyteArray bd addr for connection state");
       return;
     }
 
@@ -70,7 +70,7 @@ class VolumeControlCallbacksImpl : public VolumeControlCallbacks {
 
   void OnVolumeStateChanged(const RawAddress& bd_addr, uint8_t volume,
                             bool mute, bool isAutonomous) override {
-    LOG(INFO) << __func__;
+    log::info("");
 
     std::shared_lock<std::shared_timed_mutex> lock(callbacks_mutex);
     CallbackEnv sCallbackEnv(__func__);
@@ -79,7 +79,7 @@ class VolumeControlCallbacksImpl : public VolumeControlCallbacks {
     ScopedLocalRef<jbyteArray> addr(
         sCallbackEnv.get(), sCallbackEnv->NewByteArray(sizeof(RawAddress)));
     if (!addr.get()) {
-      LOG(ERROR) << "Failed to new jbyteArray bd addr for connection state";
+      log::error("Failed to new jbyteArray bd addr for connection state");
       return;
     }
 
@@ -91,7 +91,7 @@ class VolumeControlCallbacksImpl : public VolumeControlCallbacks {
 
   void OnGroupVolumeStateChanged(int group_id, uint8_t volume,
                                  bool mute, bool isAutonomous) override {
-    LOG(INFO) << __func__;
+    log::info("");
 
     std::shared_lock<std::shared_timed_mutex> lock(callbacks_mutex);
     CallbackEnv sCallbackEnv(__func__);
@@ -104,7 +104,7 @@ class VolumeControlCallbacksImpl : public VolumeControlCallbacks {
 
   void OnDeviceAvailable(const RawAddress& bd_addr,
                          uint8_t num_offsets) override {
-    LOG(INFO) << __func__;
+    log::info("");
 
     std::shared_lock<std::shared_timed_mutex> lock(callbacks_mutex);
     CallbackEnv sCallbackEnv(__func__);
@@ -113,7 +113,7 @@ class VolumeControlCallbacksImpl : public VolumeControlCallbacks {
     ScopedLocalRef<jbyteArray> addr(
         sCallbackEnv.get(), sCallbackEnv->NewByteArray(sizeof(RawAddress)));
     if (!addr.get()) {
-      LOG(ERROR) << "Failed to new jbyteArray bd addr for onDeviceAvailable";
+      log::error("Failed to new jbyteArray bd addr for onDeviceAvailable");
       return;
     }
 
@@ -126,7 +126,7 @@ class VolumeControlCallbacksImpl : public VolumeControlCallbacks {
   void OnExtAudioOutVolumeOffsetChanged(const RawAddress& bd_addr,
                                         uint8_t ext_output_id,
                                         int16_t offset) override {
-    LOG(INFO) << __func__;
+    log::info("");
 
     std::shared_lock<std::shared_timed_mutex> lock(callbacks_mutex);
     CallbackEnv sCallbackEnv(__func__);
@@ -135,8 +135,9 @@ class VolumeControlCallbacksImpl : public VolumeControlCallbacks {
     ScopedLocalRef<jbyteArray> addr(
         sCallbackEnv.get(), sCallbackEnv->NewByteArray(sizeof(RawAddress)));
     if (!addr.get()) {
-      LOG(ERROR) << "Failed to new jbyteArray bd addr for "
-                    "OnExtAudioOutVolumeOffsetChanged";
+      log::error(
+          "Failed to new jbyteArray bd addr for "
+          "OnExtAudioOutVolumeOffsetChanged");
       return;
     }
 
@@ -150,7 +151,7 @@ class VolumeControlCallbacksImpl : public VolumeControlCallbacks {
   void OnExtAudioOutLocationChanged(const RawAddress& bd_addr,
                                     uint8_t ext_output_id,
                                     uint32_t location) override {
-    LOG(INFO) << __func__;
+    log::info("");
 
     std::shared_lock<std::shared_timed_mutex> lock(callbacks_mutex);
     CallbackEnv sCallbackEnv(__func__);
@@ -159,8 +160,9 @@ class VolumeControlCallbacksImpl : public VolumeControlCallbacks {
     ScopedLocalRef<jbyteArray> addr(
         sCallbackEnv.get(), sCallbackEnv->NewByteArray(sizeof(RawAddress)));
     if (!addr.get()) {
-      LOG(ERROR) << "Failed to new jbyteArray bd addr for "
-                    "OnExtAudioOutLocationChanged";
+      log::error(
+          "Failed to new jbyteArray bd addr for "
+          "OnExtAudioOutLocationChanged");
       return;
     }
 
@@ -174,7 +176,7 @@ class VolumeControlCallbacksImpl : public VolumeControlCallbacks {
   void OnExtAudioOutDescriptionChanged(const RawAddress& bd_addr,
                                        uint8_t ext_output_id,
                                        std::string descr) override {
-    LOG(INFO) << __func__;
+    log::info("");
 
     std::shared_lock<std::shared_timed_mutex> lock(callbacks_mutex);
     CallbackEnv sCallbackEnv(__func__);
@@ -183,8 +185,9 @@ class VolumeControlCallbacksImpl : public VolumeControlCallbacks {
     ScopedLocalRef<jbyteArray> addr(
         sCallbackEnv.get(), sCallbackEnv->NewByteArray(sizeof(RawAddress)));
     if (!addr.get()) {
-      LOG(ERROR) << "Failed to new jbyteArray bd addr for "
-                    "OnExtAudioOutDescriptionChanged";
+      log::error(
+          "Failed to new jbyteArray bd addr for "
+          "OnExtAudioOutDescriptionChanged");
       return;
     }
 
@@ -205,31 +208,31 @@ static void initNative(JNIEnv* env, jobject object) {
 
   const bt_interface_t* btInf = getBluetoothInterface();
   if (btInf == nullptr) {
-    LOG(ERROR) << "Bluetooth module is not loaded";
+    log::error("Bluetooth module is not loaded");
     return;
   }
 
   if (sVolumeControlInterface != nullptr) {
-    LOG(INFO) << "Cleaning up VolumeControl Interface before initializing...";
+    log::info("Cleaning up VolumeControl Interface before initializing...");
     sVolumeControlInterface->Cleanup();
     sVolumeControlInterface = nullptr;
   }
 
   if (mCallbacksObj != nullptr) {
-    LOG(INFO) << "Cleaning up VolumeControl callback object";
+    log::info("Cleaning up VolumeControl callback object");
     env->DeleteGlobalRef(mCallbacksObj);
     mCallbacksObj = nullptr;
   }
 
   if ((mCallbacksObj = env->NewGlobalRef(object)) == nullptr) {
-    LOG(ERROR) << "Failed to allocate Global Ref for Volume control Callbacks";
+    log::error("Failed to allocate Global Ref for Volume control Callbacks");
     return;
   }
 
   sVolumeControlInterface =
       (VolumeControlInterface*)btInf->get_profile_interface(BT_PROFILE_VC_ID);
   if (sVolumeControlInterface == nullptr) {
-    LOG(ERROR) << "Failed to get Bluetooth Volume Control Interface";
+    log::error("Failed to get Bluetooth Volume Control Interface");
     return;
   }
 
@@ -242,7 +245,7 @@ static void cleanupNative(JNIEnv* env, jobject /* object */) {
 
   const bt_interface_t* btInf = getBluetoothInterface();
   if (btInf == nullptr) {
-    LOG(ERROR) << "Bluetooth module is not loaded";
+    log::error("Bluetooth module is not loaded");
     return;
   }
 
@@ -259,12 +262,11 @@ static void cleanupNative(JNIEnv* env, jobject /* object */) {
 
 static jboolean connectVolumeControlNative(JNIEnv* env, jobject /* object */,
                                            jbyteArray address) {
-  LOG(INFO) << __func__;
+  log::info("");
   std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
 
   if (!sVolumeControlInterface) {
-    LOG(ERROR) << __func__
-               << ": Failed to get the Bluetooth Volume Control Interface";
+    log::error("Failed to get the Bluetooth Volume Control Interface");
     return JNI_FALSE;
   }
 
@@ -282,12 +284,11 @@ static jboolean connectVolumeControlNative(JNIEnv* env, jobject /* object */,
 
 static jboolean disconnectVolumeControlNative(JNIEnv* env, jobject /* object */,
                                               jbyteArray address) {
-  LOG(INFO) << __func__;
+  log::info("");
   std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
 
   if (!sVolumeControlInterface) {
-    LOG(ERROR) << __func__
-               << ": Failed to get the Bluetooth Volume Control Interface";
+    log::error("Failed to get the Bluetooth Volume Control Interface");
     return JNI_FALSE;
   }
 
@@ -306,8 +307,7 @@ static jboolean disconnectVolumeControlNative(JNIEnv* env, jobject /* object */,
 static void setVolumeNative(JNIEnv* env, jobject /* object */,
                             jbyteArray address, jint volume) {
   if (!sVolumeControlInterface) {
-    LOG(ERROR) << __func__
-               << ": Failed to get the Bluetooth Volume Control Interface";
+    log::error("Failed to get the Bluetooth Volume Control Interface");
     return;
   }
 
@@ -325,8 +325,7 @@ static void setVolumeNative(JNIEnv* env, jobject /* object */,
 static void setGroupVolumeNative(JNIEnv* /* env */, jobject /* object */,
                                  jint group_id, jint volume) {
   if (!sVolumeControlInterface) {
-    LOG(ERROR) << __func__
-               << ": Failed to get the Bluetooth Volume Control Interface";
+    log::error("Failed to get the Bluetooth Volume Control Interface");
     return;
   }
 
@@ -335,8 +334,7 @@ static void setGroupVolumeNative(JNIEnv* /* env */, jobject /* object */,
 
 static void muteNative(JNIEnv* env, jobject /* object */, jbyteArray address) {
   if (!sVolumeControlInterface) {
-    LOG(ERROR) << __func__
-               << ": Failed to get the Bluetooth Volume Control Interface";
+    log::error("Failed to get the Bluetooth Volume Control Interface");
     return;
   }
 
@@ -354,8 +352,7 @@ static void muteNative(JNIEnv* env, jobject /* object */, jbyteArray address) {
 static void muteGroupNative(JNIEnv* /* env */, jobject /* object */,
                             jint group_id) {
   if (!sVolumeControlInterface) {
-    LOG(ERROR) << __func__
-               << ": Failed to get the Bluetooth Volume Control Interface";
+    log::error("Failed to get the Bluetooth Volume Control Interface");
     return;
   }
   sVolumeControlInterface->Mute(group_id);
@@ -364,8 +361,7 @@ static void muteGroupNative(JNIEnv* /* env */, jobject /* object */,
 static void unmuteNative(JNIEnv* env, jobject /* object */,
                          jbyteArray address) {
   if (!sVolumeControlInterface) {
-    LOG(ERROR) << __func__
-               << ": Failed to get the Bluetooth Volume Control Interface";
+    log::error("Failed to get the Bluetooth Volume Control Interface");
     return;
   }
 
@@ -383,8 +379,7 @@ static void unmuteNative(JNIEnv* env, jobject /* object */,
 static void unmuteGroupNative(JNIEnv* /* env */, jobject /* object */,
                               jint group_id) {
   if (!sVolumeControlInterface) {
-    LOG(ERROR) << __func__
-               << ": Failed to get the Bluetooth Volume Control Interface";
+    log::error("Failed to get the Bluetooth Volume Control Interface");
     return;
   }
   sVolumeControlInterface->Unmute(group_id);
@@ -395,7 +390,7 @@ static jboolean getExtAudioOutVolumeOffsetNative(JNIEnv* env,
                                                  jobject /* object */,
                                                  jbyteArray address,
                                                  jint ext_output_id) {
-  LOG(INFO) << __func__;
+  log::info("");
   std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
   if (!sVolumeControlInterface) return JNI_FALSE;
 
@@ -416,7 +411,7 @@ static jboolean setExtAudioOutVolumeOffsetNative(JNIEnv* env,
                                                  jbyteArray address,
                                                  jint ext_output_id,
                                                  jint offset) {
-  LOG(INFO) << __func__;
+  log::info("");
   std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
   if (!sVolumeControlInterface) return JNI_FALSE;
 
@@ -436,7 +431,7 @@ static jboolean setExtAudioOutVolumeOffsetNative(JNIEnv* env,
 static jboolean getExtAudioOutLocationNative(JNIEnv* env, jobject /* object */,
                                              jbyteArray address,
                                              jint ext_output_id) {
-  LOG(INFO) << __func__;
+  log::info("");
   std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
   if (!sVolumeControlInterface) return JNI_FALSE;
 
@@ -456,7 +451,7 @@ static jboolean setExtAudioOutLocationNative(JNIEnv* env, jobject /* object */,
                                              jbyteArray address,
                                              jint ext_output_id,
                                              jint location) {
-  LOG(INFO) << __func__;
+  log::info("");
   std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
   if (!sVolumeControlInterface) return JNI_FALSE;
 
@@ -477,7 +472,7 @@ static jboolean getExtAudioOutDescriptionNative(JNIEnv* env,
                                                 jobject /* object */,
                                                 jbyteArray address,
                                                 jint ext_output_id) {
-  LOG(INFO) << __func__;
+  log::info("");
   std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
   if (!sVolumeControlInterface) return JNI_FALSE;
 
@@ -498,7 +493,7 @@ static jboolean setExtAudioOutDescriptionNative(JNIEnv* env,
                                                 jbyteArray address,
                                                 jint ext_output_id,
                                                 jstring descr) {
-  LOG(INFO) << __func__;
+  log::info("");
   std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
   if (!sVolumeControlInterface) return JNI_FALSE;
 

@@ -18,7 +18,9 @@
 
 #pragma once
 
+#include <bluetooth/log.h>
 #include <stdint.h>
+
 #include <array>
 #include <string>
 
@@ -145,3 +147,8 @@ struct hash<bluetooth::Uuid> {
 };
 
 }  // namespace std
+
+namespace fmt {
+template <>
+struct formatter<bluetooth::Uuid> : ostream_formatter {};
+}  // namespace fmt
