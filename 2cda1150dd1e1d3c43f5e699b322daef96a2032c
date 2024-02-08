@@ -1382,6 +1382,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4eb42d01_74092e27",
+        "filename": "system/gd/hci/le_scanning_reassembler.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2024-02-08T02:30:58Z",
+      "side": 1,
+      "message": "The #define is not used in this file. Why do we need it? I dont think the suggestion is to move it to another file - it is to remove it unless we understand why it is necessary.",
+      "parentUuid": "01058374_756e83b2",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 31
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "60199385_f4f35ef7",
         "filename": "system/gd/hci/le_scanning_reassembler.h",
         "patchSetId": 16
