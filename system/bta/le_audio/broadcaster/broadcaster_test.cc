@@ -31,6 +31,7 @@
 #include "bta/le_audio/mock_codec_manager.h"
 #include "bta/test/common/mock_controller.h"
 #include "hci/controller_interface_mock.h"
+#include "hci/le_rand_callback.h"
 #include "stack/include/btm_iso_api.h"
 #include "test/common/mock_functions.h"
 #include "test/mock/mock_main_shim_entry.h"
@@ -64,12 +65,6 @@ using bluetooth::le_audio::broadcaster::BroadcastSubgroupCodecConfig;
 // Disables most likely false-positives from base::SplitString()
 extern "C" const char* __asan_default_options() {
   return "detect_container_overflow=0";
-}
-
-static base::Callback<void(BT_OCTET8)> generator_cb;
-
-void btsnd_hcic_ble_rand(base::Callback<void(BT_OCTET8)> cb) {
-  generator_cb = cb;
 }
 
 std::atomic<int> num_async_tasks;
@@ -253,6 +248,11 @@ class BroadcasterTest : public Test {
     bluetooth::hci::testing::mock_controller_ = &mock_controller_;
     ON_CALL(mock_controller_, SupportsBleIsochronousBroadcaster)
         .WillByDefault(Return(true));
+    ON_CALL(mock_controller_, LeRand(_))
+        .WillByDefault(
+            testing::Invoke([this](bluetooth::hci::LeRandCallback cb) {
+              generator_cb = std::move(cb);
+            }));
 
     iso_manager_ = bluetooth::hci::IsoManager::GetInstance();
     ASSERT_NE(iso_manager_, nullptr);
@@ -277,10 +277,9 @@ class BroadcasterTest : public Test {
     ContentControlIdKeeper::GetInstance()->Start();
     ContentControlIdKeeper::GetInstance()->SetCcid(LeAudioContextType::MEDIA,
                                                    media_ccid);
-
     /* Simulate random generator */
-    uint8_t random[] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08};
-    generator_cb.Run(random);
+    uint64_t random = 0x0807060504030201;
+    generator_cb.Invoke(random);
   }
 
   void ConfigCodecManagerMock(types::CodecLocation location) {
@@ -356,6 +355,7 @@ class BroadcasterTest : public Test {
 
   le_audio::CodecManager* codec_manager_ = nullptr;
   MockCodecManager* mock_codec_manager_ = nullptr;
+  bluetooth::hci::LeRandCallback generator_cb;
 };
 
 TEST_F(BroadcasterTest, Initialize) {
