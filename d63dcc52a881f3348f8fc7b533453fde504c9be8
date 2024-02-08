@@ -119,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "46d3c04b_73e2608d",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-08T21:48:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0afa9bd6_6607ac16",
+      "range": {
+        "startLine": 537,
+        "startChar": 0,
+        "endLine": 537,
+        "endChar": 104
+      },
+      "revId": "d63dcc52a881f3348f8fc7b533453fde504c9be8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "361caca3_7fb3dd14",
@@ -156,6 +180,30 @@
       "side": 1,
       "message": "Just checked that, `repo upload ./  --cbr`  does it and if I fix 100 chars issue it will change it back",
       "parentUuid": "361caca3_7fb3dd14",
+      "range": {
+        "startLine": 556,
+        "startChar": 0,
+        "endLine": 556,
+        "endChar": 107
+      },
+      "revId": "d63dcc52a881f3348f8fc7b533453fde504c9be8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3446938a_34b3e63a",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-08T21:48:42Z",
+      "side": 1,
+      "message": "lets handle it with path on top trying to remove nesting code",
+      "parentUuid": "bdaebc45_494f2dbf",
       "range": {
         "startLine": 556,
         "startChar": 0,
