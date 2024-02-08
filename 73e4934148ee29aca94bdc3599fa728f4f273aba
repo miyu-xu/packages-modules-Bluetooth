@@ -69,6 +69,54 @@
       },
       "revId": "73e4934148ee29aca94bdc3599fa728f4f273aba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "baf5082f_22a7250e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapSettingsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-02-08T08:13:04Z",
+      "side": 1,
+      "message": "Left thoughts in Christine\u0027s comment",
+      "parentUuid": "f9060dee_56eb04ae",
+      "range": {
+        "startLine": 81,
+        "startChar": 8,
+        "endLine": 81,
+        "endChar": 20
+      },
+      "revId": "73e4934148ee29aca94bdc3599fa728f4f273aba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c84435c_403212e2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapSettingsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-02-08T08:13:04Z",
+      "side": 1,
+      "message": "After some experiments, I think I can remove the Thread.sleep() in tearDown since the 45 seconds hang don\u0027t appear anymore. However, I could not find that their announcement of the fix in their patch note.\n\n(https://developer.android.com/jetpack/androidx/releases/test#core-1.6.0-alpha05, read from 1.5.0 which was released Nov 2022).\n\nAnyway, this can be removed since it seems not happening anymore.\n\n-----\n\nAbout this new `Thread.sleep()`, then it might not be related to b/159805732. I should fix the comment. Also, the workarounds in that bug is not applicable since b/159805732 is related to  closing the activity. \n\nWe may need some other way to remove/reduce the flakiness.\n\nHowever, one question is - is it really worth to spend time to investigate what\u0027s happening in ActivityScenario and find the other workaround, when we have already have a working workaround?",
+      "parentUuid": "0def4022_bcb547c6",
+      "range": {
+        "startLine": 81,
+        "startChar": 8,
+        "endLine": 81,
+        "endChar": 28
+      },
+      "revId": "73e4934148ee29aca94bdc3599fa728f4f273aba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
