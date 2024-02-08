@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "413c000f_ffd07cca",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1008,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-08T13:47:44Z",
+      "side": 1,
+      "message": "what if device is null ? Maybe you could combine it around ifs  in 1013 ?",
+      "revId": "f5d10ed8bf40145d3e6902720fa7d2525293f28f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
