@@ -112,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a00a564_1ed0e15c",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-08T14:20:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58db2b15_7360b4ab",
+      "revId": "2bdf67c3c54810f13d3b25885f8c479396883df4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "57150de2_fa83cb8e",
