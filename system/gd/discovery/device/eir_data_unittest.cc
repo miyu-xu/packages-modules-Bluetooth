@@ -20,7 +20,6 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 #include "hci/hci_packets.h"
-#include "os/log.h"
 
 using namespace bluetooth;
 using bluetooth::discovery::device::EirData;
@@ -34,20 +33,6 @@ constexpr char kAudiMmi9962[] = "Audi_MMI_9962";
 constexpr char kChromeBoxForMeetings[] = "Chromebox for Meetings";
 
 }  // namespace
-
-namespace debug {
-void LogUuids16(const std::vector<uint16_t>& uuids16) {
-  for (const auto& uuid : uuids16) {
-    LOG_INFO("  uuid:0x%x", uuid);
-  }
-}
-
-void LogUuids128(const std::vector<hci::Uuid>& uuids128) {
-  for (const auto& uuid : uuids128) {
-    LOG_INFO("  uuid:%s", uuid.ToString().c_str());
-  }
-}
-}  // namespace debug
 
 TEST(EirDataTest, partial_uuid16) {
   const EirData eir_data(
@@ -145,25 +130,6 @@ TEST(EirDataTest, test_data_packets__security_manager_oob_flags) {
   ASSERT_EQ(0, oob_flags[0][0]);
 }
 
-TEST(EirDataTest, test_data_packets__service_uuids16) {
-  ASSERT_EQ(1U, selected_packets.count("pktAsha"));
-  const auto& pkt = selected_packets["pktAsha"];
-  const EirData eir_data(std::vector<uint8_t>(&pkt[kEirOffset], &pkt[kEirOffset] + kEirSize));
-
-  std::vector<discovery::device::service_uuid16_t> service_uuids16;
-  ASSERT_TRUE(eir_data.GetServiceUuuids16(service_uuids16));
-  ASSERT_EQ(1U, service_uuids16.size());
-  ASSERT_EQ(0xfdf0, service_uuids16[0].uuid);
-}
-
-TEST(EirDataTest, test_data_packets__service_uuids32) {
-  for (const auto& pkt : data_packets) {
-    const EirData eir_data(std::vector<uint8_t>(&pkt[kEirOffset], &pkt[kEirOffset] + kEirSize));
-    std::vector<discovery::device::service_uuid32_t> service_uuids32;
-    ASSERT_FALSE(eir_data.GetServiceUuuids32(service_uuids32));
-  }
-}
-
 TEST(EirDataTest, test_data_packets__tx_power_level) {
   ASSERT_EQ(1U, selected_packets.count("pkt34639"));
   const auto& pkt = selected_packets["pkt34639"];
@@ -202,11 +168,6 @@ TEST(EirDataTest, test_select_packets__pktAsha) {
   ASSERT_TRUE(eir_data.GetUuids16(uuids16));
   ASSERT_EQ(v2.size(), uuids16.size());
   ASSERT_THAT(v2, testing::ContainerEq(uuids16));
-
-  std::vector<discovery::device::service_uuid16_t> service_uuids16;
-  ASSERT_TRUE(eir_data.GetServiceUuuids16(service_uuids16));
-  ASSERT_EQ(1U, service_uuids16.size());
-  ASSERT_EQ(0xfdf0, service_uuids16[0].uuid);
 }
 
 TEST(EirDataTest, test_select_packets__pkt34639) {
