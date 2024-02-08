@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a9f6a60_88370eae",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 5802,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-08T18:11:48Z",
+      "side": 1,
+      "message": "nit: you don\u0027t need the @return if it\u0027s a single line doc, you can simply say \"Returns [...]\": https://g3doc.corp.google.com/company/teams/android-api-council/guidelines/index.md?cl\u003dhead#methods_2",
+      "range": {
+        "startLine": 5802,
+        "startChar": 7,
+        "endLine": 5802,
+        "endChar": 14
+      },
+      "revId": "5bed0bf52a458fa044e5c1d7b5977554aee96a0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
