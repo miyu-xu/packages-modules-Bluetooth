@@ -46,6 +46,30 @@
       },
       "revId": "7e376d2d53a8211fa8b5977815a986f9b9fcb4c6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "685d2e47_2fb1e777",
+        "filename": "android/app/res/values/strings.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-08T00:00:06Z",
+      "side": 1,
+      "message": "I created b/324318567 to address that as this is a nice to have.\n\nResolving the comment for now",
+      "parentUuid": "90abd4f0_e7e2aaf7",
+      "range": {
+        "startLine": 260,
+        "startChar": 151,
+        "endLine": 260,
+        "endChar": 176
+      },
+      "revId": "7e376d2d53a8211fa8b5977815a986f9b9fcb4c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
