@@ -3212,7 +3212,7 @@ public class LeAudioService extends ProfileService {
         }
 
         if (mHapClientService == null) {
-            mHapClientService = mServiceFactory.getHapClientService();
+            mHapClientService = mAdapterService.getHapClientService();
         }
         if (mHapClientService != null) {
             mHapClientService.setConnectionPolicy(device, connectionPolicy);

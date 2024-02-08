@@ -82,10 +82,6 @@ public class ServiceFactory {
         return VolumeControlService.getVolumeControlService();
     }
 
-    public HapClientService getHapClientService() {
-        return HapClientService.getHapClientService();
-    }
-
     public BassClientService getBassClientService() {
         return BassClientService.getBassClientService();
     }

@@ -75,7 +75,6 @@ public class HapClientService extends ProfileService {
     // Upper limit of all HearingAccess devices: Bonded or Connected
     private static final int MAX_HEARING_ACCESS_STATE_MACHINES = 10;
     private static final int SM_THREAD_JOIN_TIMEOUT_MS = 1000;
-    private static HapClientService sHapClient;
     private final Map<BluetoothDevice, HapClientStateMachine> mStateMachines =
             new HashMap<>();
     @VisibleForTesting
@@ -99,31 +98,6 @@ public class HapClientService extends ProfileService {
 
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileHapClientEnabled().orElse(false);
-    }
-
-    @VisibleForTesting
-    static synchronized void setHapClient(HapClientService instance) {
-        if (DBG) {
-            Log.d(TAG, "setHapClient(): set to: " + instance);
-        }
-        sHapClient = instance;
-    }
-
-    /**
-     * Get the HapClientService instance
-     * @return HapClientService instance
-     */
-    public static synchronized HapClientService getHapClientService() {
-        if (sHapClient == null) {
-            Log.w(TAG, "getHapClientService(): service is NULL");
-            return null;
-        }
-
-        if (!sHapClient.isAvailable()) {
-            Log.w(TAG, "getHapClientService(): service is not available");
-            return null;
-        }
-        return sHapClient;
     }
 
     public HapClientService(
@@ -156,10 +130,6 @@ public class HapClientService extends ProfileService {
             Log.d(TAG, "start()");
         }
 
-        if (sHapClient != null) {
-            throw new IllegalStateException("start() called twice");
-        }
-
         // Get DatabaseManager
         mDatabaseManager =
                 Objects.requireNonNull(
@@ -175,10 +145,7 @@ public class HapClientService extends ProfileService {
         mCallbacks = new RemoteCallbackList<IBluetoothHapClientCallback>();
 
         // Initialize native interface
-        mHapClientNativeInterface.init();
-
-        // Mark service as started
-        setHapClient(this);
+        mHapClientNativeInterface.init(this);
     }
 
     @Override
@@ -186,13 +153,6 @@ public class HapClientService extends ProfileService {
         if (DBG) {
             Log.d(TAG, "stop()");
         }
-        if (sHapClient == null) {
-            Log.w(TAG, "stop() called before start()");
-            return;
-        }
-
-        // Marks service as stopped
-        setHapClient(null);
 
         // Destroy state machines and stop handler thread
         synchronized (mStateMachines) {

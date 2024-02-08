@@ -198,7 +198,7 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
              mFactory.getCsipSetCoordinatorService();
         VolumeControlService volumeControlService =
              mFactory.getVolumeControlService();
-        HapClientService hapClientService = mFactory.getHapClientService();
+        HapClientService hapClientService = mAdapterService.getHapClientService();
         BassClientService bcService = mFactory.getBassClientService();
         BatteryService batteryService = mFactory.getBatteryService();
 

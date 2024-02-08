@@ -211,16 +211,6 @@ public class HapClientTest {
 
     private void stopService() throws TimeoutException {
         mService.stop();
-        mService = HapClientService.getHapClientService();
-        Assert.assertNull(mService);
-    }
-
-    /**
-     * Test getting HA Service Client
-     */
-    @Test
-    public void testGetHapService() {
-        Assert.assertEquals(mService, HapClientService.getHapClientService());
     }
 
     /**
@@ -228,8 +218,6 @@ public class HapClientTest {
      */
     @Test
     public void testStopHapService() {
-        Assert.assertEquals(mService, HapClientService.getHapClientService());
-
         InstrumentationRegistry.getInstrumentation().runOnMainSync(mService::stop);
         InstrumentationRegistry.getInstrumentation().runOnMainSync(mService::start);
     }

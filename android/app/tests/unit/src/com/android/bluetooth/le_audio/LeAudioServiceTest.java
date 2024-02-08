@@ -207,7 +207,7 @@ public class LeAudioServiceTest {
         mService.mHapClientService = mHapClientService;
         mService.mServiceFactory = mServiceFactory;
         when(mServiceFactory.getVolumeControlService()).thenReturn(mVolumeControlService);
-        when(mServiceFactory.getHapClientService()).thenReturn(mHapClientService);
+        when(mAdapterService.getHapClientService()).thenReturn(mHapClientService);
         when(mServiceFactory.getCsipSetCoordinatorService()).thenReturn(mCsipSetCoordinatorService);
 
         LeAudioStackEvent stackEvent =

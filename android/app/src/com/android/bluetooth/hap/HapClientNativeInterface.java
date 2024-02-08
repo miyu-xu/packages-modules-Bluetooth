@@ -33,6 +33,7 @@ public class HapClientNativeInterface {
     private static final String TAG = HapClientNativeInterface.class.getSimpleName();
     private static final boolean DBG = Log.isLoggable(TAG, Log.DEBUG);
 
+    private HapClientService mService;
     private final BluetoothAdapter mAdapter;
 
     public HapClientNativeInterface() {
@@ -84,7 +85,7 @@ public class HapClientNativeInterface {
 
     @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
     void sendMessageToService(HapClientStackEvent event) {
-        HapClientService service = HapClientService.getHapClientService();
+        HapClientService service = mService;
         if (service != null) {
             service.messageFromNative(event);
         } else {
@@ -96,7 +97,8 @@ public class HapClientNativeInterface {
      * Initializes the native interface.
      */
     @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
-    public void init() {
+    public void init(HapClientService service) {
+        mService = service;
         initNative();
     }
 
@@ -106,6 +108,7 @@ public class HapClientNativeInterface {
     @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
     public void cleanup() {
         cleanupNative();
+        mService = null;
     }
 
     /**

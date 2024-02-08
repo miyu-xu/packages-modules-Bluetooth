@@ -404,6 +404,10 @@ public class AdapterService extends Service {
     private MetricsLogger mMetricsLogger;
     private FeatureFlagsImpl mFeatureFlags;
 
+    public HapClientService getHapClientService() {
+        return mHapClientService;
+    }
+
     /**
      * Register a {@link ProfileService} with AdapterService.
      *
