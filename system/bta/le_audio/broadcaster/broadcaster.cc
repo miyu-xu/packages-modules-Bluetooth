@@ -390,6 +390,12 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
       return;
     }
 
+    if (subgroup_quality.size() != 1) {
+      LOG_ERROR(
+          "Not support multi-configuration now or invalid quality setting");
+      return;
+    }
+
     if (is_public) {
       // Prepare public broadcast announcement format
       bool is_metadata_valid;
@@ -424,12 +430,13 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
           LeAudioContextType::MEDIA | LeAudioContextType::CONVERSATIONAL;
     }
 
-    for (const uint8_t quality : subgroup_quality) {
-      if (quality == bluetooth::le_audio::QUALITY_STANDARD) {
-        public_features |= bluetooth::le_audio::kLeAudioQualityStandard;
-      } else if (quality == bluetooth::le_audio::QUALITY_HIGH) {
-        public_features |= bluetooth::le_audio::kLeAudioQualityHigh;
-      }
+    if (subgroup_quality[0] == bluetooth::le_audio::QUALITY_STANDARD) {
+      public_features |= bluetooth::le_audio::kLeAudioQualityStandard;
+    } else if (subgroup_quality[0] == bluetooth::le_audio::QUALITY_HIGH) {
+      public_features |= bluetooth::le_audio::kLeAudioQualityHigh;
+    } else {
+      LOG_ERROR("Invalid quality setting.");
+      return;
     }
 
     for (const std::vector<uint8_t>& metadata : subgroup_metadata) {
@@ -481,11 +488,20 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     if (CodecManager::GetInstance()->GetCodecLocation() ==
         CodecLocation::ADSP) {
       auto offload_config =
-          CodecManager::GetInstance()->GetBroadcastOffloadConfig();
+          CodecManager::GetInstance()->GetBroadcastOffloadConfig(
+              subgroup_quality[0]);
       if (offload_config == nullptr) {
         LOG_ERROR("No valid broadcast offload config");
         return;
       }
+
+      if (subgroup_quality[0] == bluetooth::le_audio::QUALITY_HIGH &&
+          offload_config->sampling_rate != 48000) {
+        LOG_WARN("Preferred quality isn't supported. Fallback to standard");
+        public_features &= (0xFFFF & ~bluetooth::le_audio::kLeAudioQualityHigh);
+        public_features |= bluetooth::le_audio::kLeAudioQualityStandard;
+      }
+
       BroadcastCodecWrapper codec_config(
           {.coding_format = le_audio::types::kLeAudioCodingFormatLC3,
            .vendor_company_id =
