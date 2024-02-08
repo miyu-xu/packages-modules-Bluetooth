@@ -74,6 +74,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9c763510_494492b5",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-08T22:19:56Z",
+      "side": 1,
+      "message": "Flag was already checked in the service (which is the only possible caller for this)",
+      "range": {
+        "startLine": 213,
+        "startChar": 0,
+        "endLine": 213,
+        "endChar": 61
+      },
+      "revId": "d63dcc52a881f3348f8fc7b533453fde504c9be8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "900fceb8_1240c9aa",
         "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
         "patchSetId": 22
@@ -138,6 +161,29 @@
         "startChar": 0,
         "endLine": 537,
         "endChar": 104
+      },
+      "revId": "d63dcc52a881f3348f8fc7b533453fde504c9be8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "218172e3_4671e56e",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-08T22:19:56Z",
+      "side": 1,
+      "message": "Flag was already checked in the service (which is the only possible caller for this)",
+      "range": {
+        "startLine": 550,
+        "startChar": 0,
+        "endLine": 550,
+        "endChar": 81
       },
       "revId": "d63dcc52a881f3348f8fc7b533453fde504c9be8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
@@ -280,6 +326,52 @@
         "startChar": 23,
         "endLine": 641,
         "endChar": 33
+      },
+      "revId": "d63dcc52a881f3348f8fc7b533453fde504c9be8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37e1b6d7_061e4721",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 670,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-08T22:19:56Z",
+      "side": 1,
+      "message": "```suggestion\n        final int defaultInstanceId \u003d 1;\n        setVolumeOffset(device, defaultInstanceId, volumeOffset\n```",
+      "range": {
+        "startLine": 655,
+        "startChar": 3,
+        "endLine": 670,
+        "endChar": 9
+      },
+      "revId": "d63dcc52a881f3348f8fc7b533453fde504c9be8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f801c46_a0c7d459",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 792,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-08T22:19:56Z",
+      "side": 1,
+      "message": "```suggestion\n        final int defaultValue \u003d 0;\n\n        if (service \u003d\u003d null) {\n            Log.w(TAG, \"Proxy not attached to service\");\n            if (DBG) log(Log.getStackTraceString(new Throwable()));\n            return defaultValue;\n        }\n\n        if (!isEnabled()) {\n            return defaultValue;\n        }\n```",
+      "range": {
+        "startLine": 782,
+        "startChar": 8,
+        "endLine": 792,
+        "endChar": 35
       },
       "revId": "d63dcc52a881f3348f8fc7b533453fde504c9be8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
