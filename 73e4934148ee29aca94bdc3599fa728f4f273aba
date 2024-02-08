@@ -117,6 +117,30 @@
       },
       "revId": "73e4934148ee29aca94bdc3599fa728f4f273aba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "076a036b_caa4b196",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapSettingsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-08T18:55:00Z",
+      "side": 1,
+      "message": "Thanks for the response Hyundo. Sg to remove to the other Thread.sleep - ideally we should be relying on event-based behavior and not time-based events as they can become significantly more flaky when run on testing infra than locally. \n\nCan you clarify a bit why the Thread.sleep here is needed? I read through the bug and while the rest of this patch is clear, don\u0027t see any reason why the sleep ahead of calling onActivity is needed.",
+      "parentUuid": "3c84435c_403212e2",
+      "range": {
+        "startLine": 81,
+        "startChar": 8,
+        "endLine": 81,
+        "endChar": 28
+      },
+      "revId": "73e4934148ee29aca94bdc3599fa728f4f273aba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
