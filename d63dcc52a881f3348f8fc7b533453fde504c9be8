@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45d296b3_2f3a5cac",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-08T21:40:35Z",
+      "side": 1,
+      "message": "Thanks for catching - found the doc on that: https://g3doc.corp.google.com/company/teams/android-core-experiments/trunk-stable/api-flags.md?cl\u003dhead#javadoc\n\nResolving. Ideally the docs can be updated when flag is ramped fully and cleaned up  though.",
+      "parentUuid": "1eb8a7f1_8112ea0a",
+      "range": {
+        "startLine": 88,
+        "startChar": 27,
+        "endLine": 88,
+        "endChar": 39
+      },
+      "revId": "d63dcc52a881f3348f8fc7b533453fde504c9be8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "900fceb8_1240c9aa",
@@ -179,6 +203,30 @@
       "side": 1,
       "message": "ditto",
       "parentUuid": "09e0f005_c38af569",
+      "range": {
+        "startLine": 641,
+        "startChar": 23,
+        "endLine": 641,
+        "endChar": 33
+      },
+      "revId": "d63dcc52a881f3348f8fc7b533453fde504c9be8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a51f54d5_c79502c9",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-08T21:40:35Z",
+      "side": 1,
+      "message": "Resolved as above.",
+      "parentUuid": "ac004f3c_3bf1a442",
       "range": {
         "startLine": 641,
         "startChar": 23,
