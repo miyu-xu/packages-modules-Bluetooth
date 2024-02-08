@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "186c8df5_bf8e16bb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-08T22:33:22Z",
+      "side": 1,
+      "message": "Do we know what the test flakes were failing with in terms of value outside of delay range?\n\nWondering how confident we are a 10 ms increase will resolve the flakiness.",
+      "range": {
+        "startLine": 103,
+        "startChar": 46,
+        "endLine": 103,
+        "endChar": 48
+      },
+      "revId": "ae382238276704231ebeefadbee99000c5cf6b84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d7579fed_490e2440",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
         "patchSetId": 1
