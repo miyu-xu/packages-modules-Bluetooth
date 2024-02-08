@@ -23,19 +23,21 @@
 #include <gtest/gtest.h>
 
 #include <future>
+#include <map>
+#include <memory>
+#include <string>
+#include <utility>
 
 #include "../le_audio_types.h"
 #include "broadcast_configuration_provider.h"
 #include "btm_iso_api.h"
 #include "stack/include/btm_ble_api_types.h"
-#include "state_machine.h"
 #include "test/common/mock_functions.h"
 #include "test/mock/mock_main_shim_le_advertising_manager.h"
 #include "test/mock/mock_stack_btm_iso.h"
 
-#define TEST_BT com::android::bluetooth::flags
-
 using namespace bluetooth::hci::iso_manager;
+#define TEST_BT com::android::bluetooth::flags
 
 using bluetooth::hci::IsoManager;
 using bluetooth::le_audio::BasicAudioAnnouncementData;
@@ -48,8 +50,6 @@ using testing::Test;
 extern "C" const char* __asan_default_options() {
   return "detect_container_overflow=0";
 }
-
-void btsnd_hcic_ble_rand(base::Callback<void(BT_OCTET8)> cb) {}
 
 namespace bluetooth::le_audio {
 namespace broadcaster {
