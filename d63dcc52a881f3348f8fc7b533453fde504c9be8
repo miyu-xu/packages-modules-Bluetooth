@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1eb8a7f1_8112ea0a",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-08T20:09:47Z",
+      "side": 1,
+      "message": "I think we found in the instructions that you cannot use @link to flagged API.\nIt was removed in pne patches.",
+      "parentUuid": "c1554be6_a9676999",
+      "range": {
+        "startLine": 88,
+        "startChar": 27,
+        "endLine": 88,
+        "endChar": 39
+      },
+      "revId": "d63dcc52a881f3348f8fc7b533453fde504c9be8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "900fceb8_1240c9aa",
         "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
         "patchSetId": 22
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-08T17:45:06Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.",
+      "range": {
+        "startLine": 537,
+        "startChar": 0,
+        "endLine": 537,
+        "endChar": 104
+      },
+      "revId": "d63dcc52a881f3348f8fc7b533453fde504c9be8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0afa9bd6_6607ac16",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-08T20:09:47Z",
+      "side": 1,
+      "message": "I think repo --uploade did it. let me check",
+      "parentUuid": "900fceb8_1240c9aa",
       "range": {
         "startLine": 537,
         "startChar": 0,
@@ -83,6 +131,30 @@
       "writtenOn": "2024-02-08T18:16:08Z",
       "side": 1,
       "message": "Use {@link} to new method explicitly.",
+      "range": {
+        "startLine": 641,
+        "startChar": 23,
+        "endLine": 641,
+        "endChar": 33
+      },
+      "revId": "d63dcc52a881f3348f8fc7b533453fde504c9be8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac004f3c_3bf1a442",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-08T20:09:47Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "09e0f005_c38af569",
       "range": {
         "startLine": 641,
         "startChar": 23,
