@@ -382,6 +382,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "60276681_9b2e43c1",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 782,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-08T14:16:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f824b0bf_4844aca9",
+      "range": {
+        "startLine": 781,
+        "startChar": 14,
+        "endLine": 782,
+        "endChar": 55
+      },
+      "revId": "2bdf67c3c54810f13d3b25885f8c479396883df4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60104354_4eb955a3",

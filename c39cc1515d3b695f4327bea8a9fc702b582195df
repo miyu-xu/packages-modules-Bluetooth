@@ -16,6 +16,24 @@
       "message": "What is the reason for removing the anonymous namespace ?",
       "revId": "c39cc1515d3b695f4327bea8a9fc702b582195df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ea2c3fe_18c4fe2f",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-08T14:16:47Z",
+      "side": 0,
+      "message": "it is added now",
+      "parentUuid": "222f2852_6dab20d1",
+      "revId": "c39cc1515d3b695f4327bea8a9fc702b582195df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
