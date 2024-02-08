@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2d609ab_7eb52095",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-02-08T09:43:20Z",
+      "side": 1,
+      "message": "I tried to use TestLooper to change the test into using a custom clock for better time management, but failed to make the test work since the scan duration measurement code in [AppScanStats](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_scan/AppScanStats.java;l\u003d433;drc\u003d7d3a2725f4b0fac33d64a45cb88521bf7bad5965;bpv\u003d1;bpt\u003d1) uses the actual elapsed time and not the time of the TestLooper. \n\nSince the test is currently at a 0.6 flake rate which is only 0.1 percent above our target of 0.5 and the rare test failure logs show that test failed due to 1 millisecond difference in delay, proposing this CL with 10 milliseconds added to DELAY_ASYNC_MS to fix the flakiness at the moment.",
+      "revId": "ae382238276704231ebeefadbee99000c5cf6b84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
