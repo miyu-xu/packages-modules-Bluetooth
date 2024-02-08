@@ -42,8 +42,6 @@ extern "C" const char* __asan_default_options() {
   return "detect_container_overflow=0";
 }
 
-void btsnd_hcic_ble_rand(base::Callback<void(BT_OCTET8)> cb) {}
-
 namespace le_audio {
 namespace broadcaster {
 namespace {

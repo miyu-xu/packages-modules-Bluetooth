@@ -38,6 +38,7 @@
 #include "stack/include/bt_types.h"
 #include "stack/include/btm_api_types.h"
 #include "stack/include/btm_iso_api.h"
+#include "stack/include/main_thread.h"
 
 using bluetooth::common::ToString;
 using bluetooth::hci::IsoManager;
@@ -105,23 +106,29 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
   ~LeAudioBroadcasterImpl() override = default;
 
   void GenerateBroadcastIds(void) {
-    btsnd_hcic_ble_rand(base::Bind([](BT_OCTET8 rand) {
-      if (!instance) return;
+    bluetooth::shim::GetController()->LeRand(
+        get_main_thread()->BindOnce([](uint64_t rand) {
+          if (!instance) return;
 
-      /* LE Rand returns 8 octets. Lets' make 2 outstanding Broadcast Ids out
-       * of it */
-      for (int i = 0; i < 8; i += 4) {
-        BroadcastId broadcast_id = 0;
-        /* Broadcast ID should be 3 octets long (BAP v1.0 spec.) */
-        STREAM_TO_UINT24(broadcast_id, rand);
-        if (broadcast_id == bluetooth::le_audio::kBroadcastIdInvalid) continue;
-        instance->available_broadcast_ids_.emplace_back(broadcast_id);
-      }
+          /* LE Rand returns 8 octets. Lets' make 2 outstanding Broadcast Ids
+           * out of it */
+          uint64_t remaining_bytes = rand;
+          size_t generated_ids = 0;
+          while (remaining_bytes > 0 && generated_ids < 2) {
+            /* Broadcast ID should be 3 octets long (BAP v1.0 spec.) */
+            BroadcastId broadcast_id = remaining_bytes & 0xffffff;
+            remaining_bytes >>= 24;
+            if (broadcast_id == bluetooth::le_audio::kBroadcastIdInvalid)
+              continue;
+            instance->available_broadcast_ids_.emplace_back(broadcast_id);
+            generated_ids++;
+          }
 
-      if (instance->available_broadcast_ids_.empty()) {
-        LOG_ALWAYS_FATAL("Unable to generate proper broadcast identifiers.");
-      }
-    }));
+          if (instance->available_broadcast_ids_.empty()) {
+            LOG_ALWAYS_FATAL(
+                "Unable to generate proper broadcast identifiers.");
+          }
+        }));
   }
 
   void CleanUp() {
