@@ -2055,6 +2055,7 @@ cc_test {
         ":TestMockStackSmp",
         "acl/*.cc",
         "btm/btm_iot_config.cc",
+        "test/common/mock_controller.cc",
         "test/stack_acl_test.cc",
     ],
     static_libs: [
