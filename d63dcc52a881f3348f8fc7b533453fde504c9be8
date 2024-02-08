@@ -119,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3a1d321_e4cfa2c6",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-08T23:02:38Z",
+      "side": 1,
+      "message": "Per offline discussion, let\u0027 do this in a follow-up to reduce code nesting.",
+      "parentUuid": "b71a9c5e_8015c0a4",
+      "range": {
+        "startLine": 213,
+        "startChar": 0,
+        "endLine": 213,
+        "endChar": 61
+      },
+      "revId": "d63dcc52a881f3348f8fc7b533453fde504c9be8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "900fceb8_1240c9aa",
@@ -227,6 +251,30 @@
       "side": 1,
       "message": "Doesn\u0027t hurt to double check? \n\nIt will be removed eventually anyway",
       "parentUuid": "218172e3_4671e56e",
+      "range": {
+        "startLine": 550,
+        "startChar": 0,
+        "endLine": 550,
+        "endChar": 81
+      },
+      "revId": "d63dcc52a881f3348f8fc7b533453fde504c9be8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af5dd01c_49179893",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-08T23:02:38Z",
+      "side": 1,
+      "message": "Per offline discussion, let\u0027 do this in a follow-up to reduce code nesting.",
+      "parentUuid": "2f882c7e_95133dc5",
       "range": {
         "startLine": 550,
         "startChar": 0,
