@@ -60,6 +60,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a329d009_ab5e660d",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-08T02:26:43Z",
+      "side": 1,
+      "message": "It compiles, but for some reason my editor was complaining... Oh well.",
+      "parentUuid": "94cfa156_4e7a6120",
+      "revId": "1dccf8ff7ae0b4129d2fa842affb95d2af87daa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "03116545_19ee1bfe",
         "filename": "system/gd/hci/hci_layer.cc",
         "patchSetId": 1
@@ -83,6 +101,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2b903595_8e98ddff",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-08T02:26:43Z",
+      "side": 1,
+      "message": "I wrote a little test to see why I don\u0027t need that. I think I would still need the text, because the custom formatter only prints what\u0027s in quotes (the integer value), and only prints it in hex because I added :x inside the {}. Were you expecting it to print the name, as well?\n\n02-07 18:22:30.761 663134 663134 W bluetooth: packages/modules/Bluetooth/system/gd/hci/hci_layer_test.cc:652 TestBody: This is the output for an error \"31\" (unspecified)\n02-07 18:22:30.761 663134 663134 W bluetooth: packages/modules/Bluetooth/system/gd/hci/hci_layer_test.cc:653 TestBody: This is the output for an error \"e9\" 233\n02-07 18:22:30.761 663134 663134 W bluetooth: packages/modules/Bluetooth/system/gd/hci/hci_layer_test.cc:654 TestBody: This is the output for an OpCode \"1009\" ReadBdAddr\n02-07 18:22:30.761 663134 663134 W bluetooth: packages/modules/Bluetooth/system/gd/hci/hci_layer_test.cc:655 TestBody: This is the output for an OpCode \"fdfe\" 0xfdfe",
+      "parentUuid": "03116545_19ee1bfe",
+      "range": {
+        "startLine": 195,
+        "startChar": 71,
+        "endLine": 195,
+        "endChar": 98
+      },
+      "revId": "1dccf8ff7ae0b4129d2fa842affb95d2af87daa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c6cc43b2_7d017ad7",
         "filename": "system/gd/hci/hci_layer.cc",
         "patchSetId": 1
@@ -94,6 +136,30 @@
       "writtenOn": "2024-02-07T17:48:04Z",
       "side": 1,
       "message": "Should be at the beginning of the file",
+      "range": {
+        "startLine": 800,
+        "startChar": 0,
+        "endLine": 805,
+        "endChar": 19
+      },
+      "revId": "1dccf8ff7ae0b4129d2fa842affb95d2af87daa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e263b3b_b02f7de5",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 805,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-08T02:26:43Z",
+      "side": 1,
+      "message": "I\u0027ll definitely put it somewhere else once it works.",
+      "parentUuid": "c6cc43b2_7d017ad7",
       "range": {
         "startLine": 800,
         "startChar": 0,
