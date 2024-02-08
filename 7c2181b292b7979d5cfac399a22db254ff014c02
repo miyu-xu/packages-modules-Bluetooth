@@ -22,6 +22,30 @@
       },
       "revId": "7c2181b292b7979d5cfac399a22db254ff014c02",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bb8277e_ae1ea4b0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTestUtils.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-02-08T02:19:35Z",
+      "side": 1,
+      "message": "Good suggestion. Changed the tests that they only enables the activity they need.",
+      "parentUuid": "5455fac9_2a155cca",
+      "range": {
+        "startLine": 130,
+        "startChar": 11,
+        "endLine": 130,
+        "endChar": 61
+      },
+      "revId": "7c2181b292b7979d5cfac399a22db254ff014c02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
