@@ -141,6 +141,30 @@
       },
       "revId": "e04e33524e5acc63e0fdc3243841b379b2fb5413",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bdb0d4a_e9804d4a",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-02-08T06:43:07Z",
+      "side": 1,
+      "message": "Add TODO and filed a bug for a new bumble feature.\n\nI\u0027m sure there is no flakieness here because I\u0027m early-stopping the test using `assumeFalse` if testing condition is not met.\n\nTo be clear, the test passed when a race happens (I guess it\u0027s very high chance), and ignored if a race didn\u0027t happen.\n\nI\u0027ll make the test consistent after updating Bumble.",
+      "parentUuid": "2de84342_9e32b38b",
+      "range": {
+        "startLine": 271,
+        "startChar": 12,
+        "endLine": 280,
+        "endChar": 61
+      },
+      "revId": "e04e33524e5acc63e0fdc3243841b379b2fb5413",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
