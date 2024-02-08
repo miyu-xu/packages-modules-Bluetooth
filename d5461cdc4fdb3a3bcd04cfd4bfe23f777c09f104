@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a4d2061_8f3a27d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-08T22:14:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10e629a9_92995e2e",
+      "revId": "d5461cdc4fdb3a3bcd04cfd4bfe23f777c09f104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "799e3e59_6f52035c",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "Ok - discussed offline, I\u0027ve missed some case. I\u0027ll update this CL",
       "parentUuid": "cf5bed34_a3191b66",
+      "revId": "d5461cdc4fdb3a3bcd04cfd4bfe23f777c09f104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "872f44c6_b330005d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1705,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-08T22:14:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "692411c8_02ba7a95",
       "revId": "d5461cdc4fdb3a3bcd04cfd4bfe23f777c09f104",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -155,6 +191,24 @@
       "side": 1,
       "message": "Ok - discussed offline, I\u0027ve missed some case. I\u0027ll update this CL",
       "parentUuid": "3a29423e_14f386ed",
+      "revId": "d5461cdc4fdb3a3bcd04cfd4bfe23f777c09f104",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9d3964a_10601b42",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 2066,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-08T22:14:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e87ffabe_3bf01e95",
       "revId": "d5461cdc4fdb3a3bcd04cfd4bfe23f777c09f104",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
