@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d16e467e_30e36a06",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-02-08T07:02:27Z",
+      "side": 1,
+      "message": "Is SdpManager(L439) omitted on purpose?",
+      "revId": "ecca9bb32db3c018163fe19ceea0abe57d7eea89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ccc1fa5_2f36e891",
@@ -43,6 +60,29 @@
         "startChar": 0,
         "endLine": 199,
         "endChar": 74
+      },
+      "revId": "ecca9bb32db3c018163fe19ceea0abe57d7eea89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f3e3853_50591cea",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-02-08T07:02:27Z",
+      "side": 1,
+      "message": "Q) Can this be null?\n(maybe a race during turning off BT?)",
+      "range": {
+        "startLine": 199,
+        "startChar": 29,
+        "endLine": 199,
+        "endChar": 36
       },
       "revId": "ecca9bb32db3c018163fe19ceea0abe57d7eea89",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
