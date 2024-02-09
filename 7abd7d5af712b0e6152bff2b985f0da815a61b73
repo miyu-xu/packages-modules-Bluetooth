@@ -46,6 +46,30 @@
       },
       "revId": "7abd7d5af712b0e6152bff2b985f0da815a61b73",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6a6fd89_93d88a77",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1455782
+      },
+      "writtenOn": "2024-02-09T22:49:22Z",
+      "side": 1,
+      "message": "Apologies, copy-paste error. Updated to proper bug b/324633930.",
+      "parentUuid": "ba30e6b7_7bb7e783",
+      "range": {
+        "startLine": 11,
+        "startChar": 21,
+        "endLine": 11,
+        "endChar": 30
+      },
+      "revId": "7abd7d5af712b0e6152bff2b985f0da815a61b73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
