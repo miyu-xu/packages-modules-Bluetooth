@@ -682,6 +682,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
           scanner_id, ScanningCallback::ScanningStatus::ILLEGAL_PARAMETER);
       return;
     }
+    LOG_INFO("btm_send_hci_set_scan_params from GD: %d %d", scan_interval, scan_window);
     le_scan_type_ = scan_type;
     interval_ms_ = scan_interval;
     window_ms_ = scan_window;
