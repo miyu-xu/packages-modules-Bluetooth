@@ -16,6 +16,24 @@
       "message": "Can you add this here too ?\n\n```\n// Ignore these events\ncase HCI_INQUIRY_COMP_EVT:\n  break;\n```\n\nI\u0027m not sure if these metrics are being used even.\n\nI\u0027m trying to clean up the logging error \n```\n          \"Unexpectedly received event_code:0x%02x that should not be \"\n          \"handled here\",\n```\nb/c it\u0027s irritating.\n\nThe simple way would be to remove the log; but I want to know exactly what/when/where we are logging metrics first.",
       "revId": "d16600128ea5c543f34cfd9797a68037b42429dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca835d13_630de0b6",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-09T19:58:47Z",
+      "side": 1,
+      "message": "It really shouldn\u0027t show up here.  If it does, it needs to be fixed and I sign myself up to fix it with P0 priority.  I don\u0027t want to miss the fact that the event registration isn\u0027t working.  That\u0027s part of the reason why I\u0027m cleaning up the HCI layer. It\u0027s gotten to hard to trace who is using what.\n\nCan I add an ASSERT, or is it fine if it\u0027s an IOU for a P0 bug if it shows up?",
+      "parentUuid": "0c6ebbc3_546e3b5b",
+      "revId": "d16600128ea5c543f34cfd9797a68037b42429dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
