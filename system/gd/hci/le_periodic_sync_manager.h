@@ -26,6 +26,7 @@
 #include "hci/hci_packets.h"
 #include "hci/le_scanning_callback.h"
 #include "hci/le_scanning_interface.h"
+#include "hci/le_scanning_reassembler.h"
 #include "hci/uuid.h"
 #include "module.h"
 #include "os/alarm.h"
@@ -313,13 +314,20 @@ class PeriodicSyncManager {
       LOG_ERROR("[PSync]: index not found for handle %u", sync_handle);
       return;
     }
+
+    auto complete_advertising_data = scanning_reassembler_.ProcessPeriodicAdvertisingReport(
+        sync_handle, DataStatus(event_view.GetDataStatus()), event_view.GetData());
+    if (!complete_advertising_data.has_value()) {
+      return;
+    }
+
     LOG_DEBUG("%s", "[PSync]: invoking callback");
     callbacks_->OnPeriodicSyncReport(
         sync_handle,
         event_view.GetTxPower(),
         event_view.GetRssi(),
         (uint16_t)event_view.GetDataStatus(),
-        event_view.GetData());
+        complete_advertising_data.value());
   }
 
   void HandleLePeriodicAdvertisingSyncLost(LePeriodicAdvertisingSyncLostView event_view) {
@@ -532,6 +540,7 @@ class PeriodicSyncManager {
   std::list<PendingPeriodicSyncRequest> pending_sync_requests_;
   std::list<PeriodicSyncStates> periodic_syncs_;
   std::list<PeriodicSyncTransferStates> periodic_sync_transfers_;
+  LeScanningReassembler scanning_reassembler_;
   bool sync_received_callback_registered_ = false;
   int sync_received_callback_id{};
 };
