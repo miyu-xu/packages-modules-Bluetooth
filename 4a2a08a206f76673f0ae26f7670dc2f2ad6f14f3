@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "09b4aaf1_6b22c769",
+        "filename": "framework/java/android/bluetooth/le/AdvertiseData.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 707,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2024-02-09T20:15:26Z",
+      "side": 1,
+      "message": "We don\u0027t typically encourage checking in @hide APIs as we did a full year effort on cleaning up usages. @hide APIs can change anytime - QC should be aware that of this possibility and how it affects them.",
+      "parentUuid": "0c8dc006_e7164bbe",
+      "range": {
+        "startLine": 707,
+        "startChar": 23,
+        "endLine": 707,
+        "endChar": 51
+      },
+      "revId": "4a2a08a206f76673f0ae26f7670dc2f2ad6f14f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2d880099_4dc38027",
         "filename": "framework/java/android/bluetooth/le/BluetoothLeAdvertiser.java",
         "patchSetId": 16
