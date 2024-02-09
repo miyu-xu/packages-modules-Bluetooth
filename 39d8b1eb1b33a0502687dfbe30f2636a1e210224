@@ -95,6 +95,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "88524e46_1ffa0110",
+        "filename": "sysprop/hfp.sysprop",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-09T01:21:08Z",
+      "side": 1,
+      "message": "If internal does not work, I believe this may be a bug since we are an apex and thus we should replace it with the hardcorded SystemProperties.get",
+      "parentUuid": "16af26de_8a7ffc98",
+      "range": {
+        "startLine": 48,
+        "startChar": 11,
+        "endLine": 48,
+        "endChar": 17
+      },
+      "revId": "39d8b1eb1b33a0502687dfbe30f2636a1e210224",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "80b7c3f5_38681f3c",
         "filename": "sysprop/hfp.sysprop",
         "patchSetId": 3
