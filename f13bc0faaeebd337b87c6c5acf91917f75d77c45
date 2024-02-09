@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bd126001_c0bfb309",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-09T19:53:16Z",
+      "side": 1,
+      "message": "In this case, let\u0027s use the centralized check_complete.  We can have this discussion once there.",
+      "parentUuid": "abcf812a_f8fa2492",
+      "range": {
+        "startLine": 563,
+        "startChar": 16,
+        "endLine": 563,
+        "endChar": 22
+      },
+      "revId": "f13bc0faaeebd337b87c6c5acf91917f75d77c45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cfd707a6_23965c7b",
         "filename": "system/stack/btm/btm_inq.cc",
         "patchSetId": 4
