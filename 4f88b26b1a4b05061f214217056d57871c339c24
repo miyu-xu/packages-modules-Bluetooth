@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f69d8cea_16e0e9af",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 1827,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-09T15:34:40Z",
+      "side": 1,
+      "message": "Yes, this is because I wasn\u0027t sure about final version of this implementation. I\u0027ll update to suggested optimized version. If we decide something else in this disconnection cases - I\u0027ll update ;)",
+      "parentUuid": "b04f8ecc_a173e364",
+      "revId": "4f88b26b1a4b05061f214217056d57871c339c24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1da7abdf_96284d26",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ff1720d_f3e368c0",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 2057,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-09T15:34:40Z",
+      "side": 1,
+      "message": "Yes, this is needed... got lost it while rebasing :/ thank you!",
+      "parentUuid": "1da7abdf_96284d26",
+      "revId": "4f88b26b1a4b05061f214217056d57871c339c24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ae207357_b90bdb8e",
@@ -48,6 +84,24 @@
       "writtenOn": "2024-02-09T01:17:09Z",
       "side": 1,
       "message": "should we check invalid ID?\nif (mUnicastGroupIdDeactivatedForBroadcastTransition \u003d\u003d LE_AUDIO_GROUP_ID_INVALID) {\nreturn false;\n}",
+      "revId": "4f88b26b1a4b05061f214217056d57871c339c24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "335757ee_f70742f4",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 1160,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-09T15:34:40Z",
+      "side": 1,
+      "message": "I think it may be redundant check - reserve the right to think wrongly ;) then please correct me.\n\nPlease consider following cases:\n- Only group can play unicast\n- Group devices all have assigned IDs\n- Device loss ID when removed from group\n\nSo In probably all cases device would have some ID assigned, then this check `mUnicastGroupIdDeactivatedForBroadcastTransition \u003d\u003d LE_AUDIO_GROUP_ID_INVALID` would become almost the same -\u003e `descriptor.mGroupId \u003d\u003d LE_AUDIO_GROUP_ID_INVALID`\n\nDid I miss some case ?",
+      "parentUuid": "ae207357_b90bdb8e",
       "revId": "4f88b26b1a4b05061f214217056d57871c339c24",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
