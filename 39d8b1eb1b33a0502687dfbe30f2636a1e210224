@@ -72,6 +72,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "16af26de_8a7ffc98",
+        "filename": "sysprop/hfp.sysprop",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-09T00:53:57Z",
+      "side": 1,
+      "message": "I thought the access was creating un-necessary API but it looks like it may have been the scope.\n\nDoes it still work if this is Internal ?",
+      "range": {
+        "startLine": 48,
+        "startChar": 11,
+        "endLine": 48,
+        "endChar": 17
+      },
+      "revId": "39d8b1eb1b33a0502687dfbe30f2636a1e210224",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80b7c3f5_38681f3c",
+        "filename": "sysprop/hfp.sysprop",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-09T00:53:57Z",
+      "side": 1,
+      "message": "is `persist` mandatory ? This is discouraged in sysprop",
+      "range": {
+        "startLine": 50,
+        "startChar": 16,
+        "endLine": 50,
+        "endChar": 23
+      },
+      "revId": "39d8b1eb1b33a0502687dfbe30f2636a1e210224",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1b379ae3_80c7fb7b",
         "filename": "system/bta/ag/bta_ag_cmd.cc",
         "patchSetId": 3
