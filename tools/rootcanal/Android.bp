@@ -127,13 +127,13 @@ cc_library_static {
     ],
     whole_static_libs: [
         "librootcanal_config",
-        "librootcanal_rs",
     ],
     shared_libs: [
         "libbase",
         "libcrypto",
     ],
     static_libs: [
+        "librootcanal_rs",
         "libscriptedbeaconpayload-protos-lite",
     ],
 }
