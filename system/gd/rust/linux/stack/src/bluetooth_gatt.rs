@@ -888,7 +888,7 @@ impl BluetoothGattService {
                 end_handle: 0,
                 properties: char.properties as u8,
                 extended_properties: 0,
-                permissions: char.permissions as u16,
+                permissions: ((char.key_size - 7) << 12) + char.permissions as u16,
             });
 
             for desc in char.descriptors {
@@ -901,7 +901,7 @@ impl BluetoothGattService {
                     end_handle: 0,
                     properties: 0,
                     extended_properties: 0,
-                    permissions: desc.permissions as u16,
+                    permissions: ((desc.key_size - 7) << 12) + desc.permissions as u16,
                 });
             }
         }
