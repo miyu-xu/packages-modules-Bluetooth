@@ -90,18 +90,18 @@ public class A2dpService extends ProfileService {
 
     private static A2dpService sA2dpService;
 
-    private AdapterService mAdapterService;
-    private DatabaseManager mDatabaseManager;
+    private final A2dpNativeInterface mNativeInterface;
+    private final AdapterService mAdapterService;
+    private final AudioManager mAudioManager;
+    private final DatabaseManager mDatabaseManager;
+
     private HandlerThread mStateMachinesThread;
     private Handler mHandler = null;
 
-    private final A2dpNativeInterface mNativeInterface;
     @VisibleForTesting
     ServiceFactory mFactory = new ServiceFactory();
-    @VisibleForTesting
-    AudioManager mAudioManager;
     private A2dpCodecConfig mA2dpCodecConfig;
-    private CompanionDeviceManager mCompanionDeviceManager;
+    private final CompanionDeviceManager mCompanionDeviceManager;
 
     @GuardedBy("mStateMachines")
     private BluetoothDevice mActiveDevice;
@@ -127,14 +127,17 @@ public class A2dpService extends ProfileService {
             new AudioManagerAudioDeviceCallback();
 
     public A2dpService(Context ctx) {
-        super(ctx);
-        mNativeInterface = requireNonNull(A2dpNativeInterface.getInstance());
+        this(ctx, AdapterService.getAdapterService(), A2dpNativeInterface.getInstance());
     }
 
     @VisibleForTesting
-    A2dpService(Context ctx, A2dpNativeInterface nativeInterface) {
+    A2dpService(Context ctx, AdapterService adapterService, A2dpNativeInterface nativeInterface) {
         super(ctx);
+        mAdapterService = requireNonNull(adapterService);
         mNativeInterface = requireNonNull(nativeInterface);
+        mDatabaseManager = requireNonNull(mAdapterService.getDatabase());
+        mAudioManager = requireNonNull(getSystemService(AudioManager.class));
+        mCompanionDeviceManager = requireNonNull(getSystemService(CompanionDeviceManager.class));
     }
 
     public static boolean isEnabled() {
@@ -153,20 +156,6 @@ public class A2dpService extends ProfileService {
         if (sA2dpService != null) {
             throw new IllegalStateException("start() called twice");
         }
-
-        // Step 1: Get AdapterService, DatabaseManager, AudioManager.
-        // None of them can be null.
-        mAdapterService =
-                requireNonNull(
-                        AdapterService.getAdapterService(),
-                        "AdapterService cannot be null when A2dpService starts");
-        mDatabaseManager =
-                requireNonNull(
-                        mAdapterService.getDatabase(),
-                        "DatabaseManager cannot be null when A2dpService starts");
-        mAudioManager = getSystemService(AudioManager.class);
-        mCompanionDeviceManager = getSystemService(CompanionDeviceManager.class);
-        requireNonNull(mAudioManager, "AudioManager cannot be null when A2dpService starts");
 
         // Step 2: Get maximum number of connected audio devices
         mMaxConnectedAudioDevices = mAdapterService.getMaxConnectedAudioDevices();
@@ -252,10 +241,6 @@ public class A2dpService extends ProfileService {
 
         // Step 2: Reset maximum number of connected audio devices
         mMaxConnectedAudioDevices = 1;
-
-        // Step 1: Clear AdapterService, AudioManager
-        mAudioManager = null;
-        mAdapterService = null;
     }
 
     @Override

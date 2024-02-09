@@ -99,7 +99,6 @@ public class A2dpServiceTest {
             Looper.prepare();
         }
 
-        TestUtils.setAdapterService(mAdapterService);
         doReturn(true).when(mAdapterService).isA2dpOffloadEnabled();
         doReturn(MAX_CONNECTED_AUDIO_DEVICES).when(mAdapterService).getMaxConnectedAudioDevices();
         doReturn(false).when(mAdapterService).isQuietModeEnabled();
@@ -107,7 +106,7 @@ public class A2dpServiceTest {
         doReturn(mActiveDeviceManager).when(mAdapterService).getActiveDeviceManager();
         doReturn(mSilenceDeviceManager).when(mAdapterService).getSilenceDeviceManager();
 
-        mA2dpService = new A2dpService(mContext, mMockNativeInterface);
+        mA2dpService = new A2dpService(mContext, mAdapterService, mMockNativeInterface);
         mA2dpService.start();
         mA2dpService.setAvailable(true);
 
@@ -126,7 +125,6 @@ public class A2dpServiceTest {
     @After
     public void tearDown() throws Exception {
         mA2dpService.stop();
-        TestUtils.clearAdapterService(mAdapterService);
     }
 
     @SafeVarargs
