@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc166c16_17ac2f9a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2024-02-09T18:28:27Z",
+      "side": 1,
+      "message": "Dr No review please",
+      "revId": "67cc6df26ba835a749f280775936d3ca25a8508c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
