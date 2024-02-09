@@ -16,14 +16,15 @@
 
 #define LOG_TAG "bt_headless_sdp"
 
+#include "test/headless/pairing/pairing.h"
+
 #include <future>
 
 #include "base/logging.h"  // LOG() stdout and android log
 #include "btif/include/btif_api.h"
-#include "osi/include/log.h"  // android log only
+#include "os/log.h"  // android log only
 #include "test/headless/get_options.h"
 #include "test/headless/headless.h"
-#include "test/headless/pairing/pairing.h"
 #include "types/raw_address.h"
 
 int bluetooth::test::headless::Pairing::Run() {

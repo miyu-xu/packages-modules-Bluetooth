@@ -20,7 +20,7 @@
 
 #include "base/logging.h"  // LOG() stdout and android log
 #include "btif/include/btif_api.h"
-#include "osi/include/log.h"  // android log only
+#include "os/log.h"  // android log only
 #include "stack/include/sdp_api.h"
 #include "test/headless/get_options.h"
 #include "test/headless/headless.h"

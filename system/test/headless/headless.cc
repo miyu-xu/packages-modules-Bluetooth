@@ -27,7 +27,7 @@
 #include "include/check.h"
 #include "include/hardware/bluetooth.h"
 #include "internal_include/bt_trace.h"
-#include "osi/include/log.h"  // android log only
+#include "os/log.h"  // android log only
 #include "test/headless/get_options.h"
 #include "test/headless/interface.h"
 #include "test/headless/log.h"
