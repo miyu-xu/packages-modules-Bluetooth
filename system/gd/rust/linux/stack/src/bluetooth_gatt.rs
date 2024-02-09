@@ -371,6 +371,18 @@ impl ServerContextMap {
     fn get_request_handle_from_id(&self, request_id: i32) -> Option<i32> {
         self.requests.iter().find_map(|request| (request.id == request_id).then(|| request.handle))
     }
+
+    fn check_service_exists(&self, server_id: i32, uuid: Uuid128Bit, handle: i32) -> bool {
+        if let Some(server) = self.get_by_server_id(server_id) {
+            return server.services.iter().any(|service| {
+                service.service_type
+                    == <GattDbElementType as Into<i32>>::into(GattDbElementType::IncludedService)
+                    && service.instance_id == handle
+                    && service.uuid == uuid
+            });
+        }
+        return false;
+    }
 }
 
 /// Defines the GATT API.
@@ -855,7 +867,11 @@ impl BluetoothGattService {
         db_out
     }
 
-    fn into_db(service: BluetoothGattService) -> Vec<BtGattDbElement> {
+    fn into_db(
+        server_id: i32,
+        service: BluetoothGattService,
+        server_context_map: &ServerContextMap,
+    ) -> Vec<BtGattDbElement> {
         let mut db_out: Vec<BtGattDbElement> = vec![];
         db_out.push(BtGattDbElement {
             id: service.instance_id as u16,
@@ -879,7 +895,7 @@ impl BluetoothGattService {
                 end_handle: 0,
                 properties: char.properties as u8,
                 extended_properties: 0,
-                permissions: char.permissions as u16,
+                permissions: (((char.key_size - 7) << 12) + char.permissions) as u16,
             });
 
             for desc in char.descriptors {
@@ -892,12 +908,24 @@ impl BluetoothGattService {
                     end_handle: 0,
                     properties: 0,
                     extended_properties: 0,
-                    permissions: desc.permissions as u16,
+                    permissions: (((char.key_size - 7) << 12) + desc.permissions) as u16,
                 });
             }
         }
 
         for included_service in service.included_services {
+            if !server_context_map.check_service_exists(
+                server_id,
+                included_service.uuid,
+                included_service.instance_id,
+            ) {
+                log::error!(
+                    "Included service with uuid {} not found",
+                    Uuid::from(included_service.uuid)
+                );
+                continue;
+            }
+
             db_out.push(BtGattDbElement {
                 id: included_service.instance_id as u16,
                 uuid: Uuid::from(included_service.uuid),
@@ -2650,13 +2678,10 @@ impl IBluetoothGatt for BluetoothGatt {
     }
 
     fn add_service(&self, server_id: i32, service: BluetoothGattService) {
-        self.gatt
-            .as_ref()
-            .unwrap()
-            .lock()
-            .unwrap()
-            .server
-            .add_service(server_id, &BluetoothGattService::into_db(service));
+        self.gatt.as_ref().unwrap().lock().unwrap().server.add_service(
+            server_id,
+            &BluetoothGattService::into_db(server_id, service, &self.server_context_map),
+        );
     }
 
     fn remove_service(&self, server_id: i32, handle: i32) {
