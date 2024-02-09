@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc44225e_59c09aa5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 7292,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-09T18:24:06Z",
+      "side": 1,
+      "message": "What will this look like when the flag is removed correctly?\n\nif (1) { ?\n\nI think it would be easy to mess that up.  Can we make it simpler to understand the intended usage?\n\nMaybe move the logging to the front and then return early if the flag is not set or the states are not in the correct range?\n\nIs this flag supposed to ask for more information even when the stack is in the IDLE state?",
+      "range": {
+        "startLine": 7291,
+        "startChar": 13,
+        "endLine": 7292,
+        "endChar": 19
+      },
+      "revId": "a0d4e074d70dca8a366b080a0740285531d44a2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b914e3df_15a864e9",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1564,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-09T18:24:06Z",
+      "side": 1,
+      "message": "Is this function ever called when the flag is false?  If not, could you put a flag in its implementation, to make the implementation empty when your flag is removed?",
+      "range": {
+        "startLine": 1564,
+        "startChar": 23,
+        "endLine": 1564,
+        "endChar": 56
+      },
+      "revId": "a0d4e074d70dca8a366b080a0740285531d44a2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9be79346_074bd1d2",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-09T18:24:06Z",
+      "side": 1,
+      "message": "This part of the change doesn\u0027t look like it can be flagged easily.  Does this structure need to be packed, and if it does, who is depending on its size?",
+      "range": {
+        "startLine": 161,
+        "startChar": 0,
+        "endLine": 161,
+        "endChar": 50
+      },
+      "revId": "a0d4e074d70dca8a366b080a0740285531d44a2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ca61411_81fe51c2",
+        "filename": "system/main/shim/btm_api.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-09T18:24:06Z",
+      "side": 1,
+      "message": "nit: I prefer to have newlines at the end of files, to not see these messages in Gerritt.",
+      "revId": "a0d4e074d70dca8a366b080a0740285531d44a2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3f2f325_992f9edb",
+        "filename": "system/stack/acl/btm_pm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 865,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-09T18:24:06Z",
+      "side": 1,
+      "message": "Is this still a valid TODO?",
+      "range": {
+        "startLine": 864,
+        "startChar": 0,
+        "endLine": 865,
+        "endChar": 56
+      },
+      "revId": "a0d4e074d70dca8a366b080a0740285531d44a2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
