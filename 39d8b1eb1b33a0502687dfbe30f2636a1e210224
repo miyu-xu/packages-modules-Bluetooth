@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b7d8192_55173c3e",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-09T00:52:06Z",
+      "side": 1,
+      "message": "Sorry we should use static flagging now\n```suggestion\n        if (Flags.hfpCodecAptxVoice()) {\n```",
+      "range": {
+        "startLine": 197,
+        "startChar": 12,
+        "endLine": 197,
+        "endChar": 25
+      },
+      "revId": "39d8b1eb1b33a0502687dfbe30f2636a1e210224",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ea518dc_84c837e8",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2363,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-09T00:52:06Z",
+      "side": 1,
+      "message": "This should not be here, this is not an API but only a method inside the Bluetooth app.\n(API are defined in packages/modules/Bluetooth/framework/...)",
+      "range": {
+        "startLine": 2363,
+        "startChar": 0,
+        "endLine": 2363,
+        "endChar": 48
+      },
+      "revId": "39d8b1eb1b33a0502687dfbe30f2636a1e210224",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da05b968_5f5fe8ae",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2364,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-09T00:52:06Z",
+      "side": 1,
+      "message": "No need for public, this is called from our own binder or own statemachine (same package)",
+      "range": {
+        "startLine": 2364,
+        "startChar": 4,
+        "endLine": 2364,
+        "endChar": 10
+      },
+      "revId": "39d8b1eb1b33a0502687dfbe30f2636a1e210224",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b379ae3_80c7fb7b",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1981,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-09T00:52:06Z",
+      "side": 1,
+      "message": "If we return we don\u0027t need to have `else` nor the associated indentation",
+      "range": {
+        "startLine": 1981,
+        "startChar": 4,
+        "endLine": 1981,
+        "endChar": 10
+      },
+      "revId": "39d8b1eb1b33a0502687dfbe30f2636a1e210224",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
