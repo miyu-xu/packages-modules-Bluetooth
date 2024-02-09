@@ -19,7 +19,14 @@
 #include "test/headless/scan/scan.h"
 
 #include "base/logging.h"  // LOG() stdout and android log
+<<<<<<< PATCH SET (556d76 Inline osi/include/log.h)
+#include "btif/include/btif_api.h"
+#include "os/log.h"  // android log only
+#include "stack/include/sdp_api.h"
+#include "test/headless/bt_property.h"
+=======
 #include "os/log.h"
+>>>>>>> BASE      (c1ec46 Merge "BumbleBluetoothTests: Improve directConnectGattAfterC)
 #include "test/headless/get_options.h"
 #include "test/headless/headless.h"
 #include "test/headless/interface.h"

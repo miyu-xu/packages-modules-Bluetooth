@@ -19,6 +19,10 @@
 #include "test/headless/sdp/sdp_db.h"
 
 #include "base/logging.h"  // LOG() stdout and android log
+<<<<<<< PATCH SET (556d76 Inline osi/include/log.h)
+#include "os/log.h"        // android log only
+=======
+>>>>>>> BASE      (c1ec46 Merge "BumbleBluetoothTests: Improve directConnectGattAfterC)
 #include "stack/include/sdp_api.h"
 #include "types/bluetooth/uuid.h"
 

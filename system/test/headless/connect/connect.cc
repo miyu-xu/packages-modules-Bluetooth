@@ -29,7 +29,10 @@
 #include "base/logging.h"  // LOG() stdout and android log
 #include "btif/include/stack_manager_t.h"
 #include "os/log.h"  // android log only
+<<<<<<< PATCH SET (556d76 Inline osi/include/log.h)
+=======
 #include "stack/include/acl_api.h"
+>>>>>>> BASE      (c1ec46 Merge "BumbleBluetoothTests: Improve directConnectGattAfterC)
 #include "stack/include/btm_api.h"
 #include "stack/include/btm_api_types.h"
 #include "stack/include/hci_error_code.h"

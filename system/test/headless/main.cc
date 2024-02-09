@@ -26,8 +26,12 @@
 #include <unordered_map>
 
 #include "base/logging.h"     // LOG() stdout and android log
+<<<<<<< PATCH SET (556d76 Inline osi/include/log.h)
+#include "os/log.h"           // android log only
+=======
 #include "osi/include/log.h"  // android log only
 #include "test/headless/adapter/adapter.h"
+>>>>>>> BASE      (c1ec46 Merge "BumbleBluetoothTests: Improve directConnectGattAfterC)
 #include "test/headless/connect/connect.h"
 #include "test/headless/discovery/discovery.h"
 #include "test/headless/dumpsys/dumpsys.h"

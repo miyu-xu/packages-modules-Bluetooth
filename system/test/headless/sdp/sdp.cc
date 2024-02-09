@@ -21,9 +21,13 @@
 #include <future>
 
 #include "base/logging.h"     // LOG() stdout and android log
+<<<<<<< PATCH SET (556d76 Inline osi/include/log.h)
+#include "os/log.h"           // android log only
+=======
 #include "bta/dm/bta_dm_int.h"
 #include "bta/include/bta_api.h"
 #include "os/log.h"
+>>>>>>> BASE      (c1ec46 Merge "BumbleBluetoothTests: Improve directConnectGattAfterC)
 #include "osi/include/osi.h"  // UNUSED_ATTR
 #include "stack/include/sdp_api.h"
 #include "test/headless/get_options.h"

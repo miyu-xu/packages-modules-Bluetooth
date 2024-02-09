@@ -28,7 +28,13 @@
 #include "gd/os/log.h"
 #include "include/check.h"
 #include "include/hardware/bluetooth.h"
+<<<<<<< PATCH SET (556d76 Inline osi/include/log.h)
+#include "internal_include/bt_trace.h"
+#include "os/log.h"  // android log only
+#include "test/headless/get_options.h"
+=======
 #include "test/headless/bt_stack_info.h"
+>>>>>>> BASE      (c1ec46 Merge "BumbleBluetoothTests: Improve directConnectGattAfterC)
 #include "test/headless/interface.h"
 #include "test/headless/log.h"
 #include "test/headless/messenger.h"

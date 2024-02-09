@@ -17,9 +17,18 @@
 #define LOG_TAG "bt_headless_sdp"
 
 #include "test/headless/pairing/pairing.h"
+<<<<<<< PATCH SET (556d76 Inline osi/include/log.h)
+
+#include <future>
+=======
+>>>>>>> BASE      (c1ec46 Merge "BumbleBluetoothTests: Improve directConnectGattAfterC)
 
 #include "base/logging.h"  // LOG() stdout and android log
 #include "btif/include/btif_api.h"
+<<<<<<< PATCH SET (556d76 Inline osi/include/log.h)
+#include "os/log.h"  // android log only
+=======
+>>>>>>> BASE      (c1ec46 Merge "BumbleBluetoothTests: Improve directConnectGattAfterC)
 #include "test/headless/get_options.h"
 #include "test/headless/headless.h"
 #include "types/raw_address.h"
