@@ -16,6 +16,24 @@
       "message": "Any chance we can get this one in without the flagging? (:\n\nThe code has always been there, it just didn\u0027t link. It just invokes pending intents for the calling app, so no real logic change for the BT stack.\n\nFine either way though.",
       "revId": "a0cc53a0c938fefe68201bcc53fb3cda5055f26a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13c16bd9_f6cc7b0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-09T21:32:35Z",
+      "side": 1,
+      "message": "Flag is here and already implemented, let\u0027s keep it.",
+      "parentUuid": "1386026e_750b8f0e",
+      "revId": "a0cc53a0c938fefe68201bcc53fb3cda5055f26a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

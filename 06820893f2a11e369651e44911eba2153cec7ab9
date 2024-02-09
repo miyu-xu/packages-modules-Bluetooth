@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3feae65f_8c55eca9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-09T21:32:35Z",
+      "side": 1,
+      "message": "In order to have DrNo, you need the previous CL in the chain to be merged, wait until the android_flagged hotlist is added to the flag tracking bug then re-upload a patchset (rebase will do)",
+      "revId": "06820893f2a11e369651e44911eba2153cec7ab9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
