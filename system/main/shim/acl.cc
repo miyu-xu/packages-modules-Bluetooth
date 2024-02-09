@@ -1619,8 +1619,11 @@ void shim::legacy::Acl::OnConnectRequest(hci::Address address,
                                          hci::ClassOfDevice cod) {
   const RawAddress bd_addr = ToRawAddress(address);
 
+  types::ClassOfDevice legacy_cod;
+  legacy_cod.FromOctets(cod.data());
+
   TRY_POSTING_ON_MAIN(acl_interface_.connection.classic.on_connect_request,
-                      bd_addr, cod);
+                      bd_addr, legacy_cod);
   LOG_DEBUG("Received connect request remote:%s",
             ADDRESS_TO_LOGGABLE_CSTR(address));
   BTM_LogHistory(kBtmLogTag, ToRawAddress(address), "Connection request");
