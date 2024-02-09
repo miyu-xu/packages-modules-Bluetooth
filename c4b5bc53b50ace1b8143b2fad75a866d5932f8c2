@@ -164,6 +164,30 @@
       },
       "revId": "c4b5bc53b50ace1b8143b2fad75a866d5932f8c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "666f891e_115c233a",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-09T21:40:52Z",
+      "side": 1,
+      "message": "No that is not what I mean. My CL suggestion is not adding any for loop.\nI mean that: go/tott/651\n\nThe CL is currently doing that:\n```\nif (condition) {                           condition\u003c\u003c┓\n/*                                                    ┃\n* a lot of stuff                                      ┃\n* a lot of stuff                                      ┃\n* a lot of stuff                                      ┃\n* a lot of stuff                                      ┃\n* a lot of stuff                                      ┃\n* a lot of stuff                                      ┃\n* a lot of stuff                                      ┃\n* a lot of stuff                                      ┃\n* a lot of stuff                                      ┃\n* a lot of stuff                                      ┃\n*/                                                    ┃\n} else {                                              ┃\n  LOG_WARN                  //  Log for the condition ┃\n}\n```\n\n\nI am suggesting to do \n\n```\nif (!condition) {                          condition\u003c\u003c┓\n  LOG_WARN                  //  Log for the condition ┃\n  return                    // early return\n}\n/*\n* a lot of stuff\n* a lot of stuff\n* a lot of stuff\n* a lot of stuff\n* a lot of stuff\n* a lot of stuff\n* a lot of stuff\n* a lot of stuff\n* a lot of stuff\n* a lot of stuff\n*/\n```",
+      "parentUuid": "589b4152_a439e1b1",
+      "range": {
+        "startLine": 221,
+        "startChar": 1,
+        "endLine": 241,
+        "endChar": 3
+      },
+      "revId": "c4b5bc53b50ace1b8143b2fad75a866d5932f8c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
