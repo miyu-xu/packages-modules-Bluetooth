@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "725b4186_6f145ed3",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 906,
+      "author": {
+        "id": 1003259
+      },
+      "writtenOn": "2024-02-09T14:31:19Z",
+      "side": 1,
+      "message": "avoid mixing camel case and and snake case. Given camel case is already used, lets continue using it.",
+      "range": {
+        "startLine": 906,
+        "startChar": 87,
+        "endLine": 906,
+        "endChar": 97
+      },
+      "revId": "1a7041b051359e1addf1ce83651e56f222dd84bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
