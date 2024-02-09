@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "212adff7_d48cffc4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-09T18:35:45Z",
+      "side": 1,
+      "message": "packages/modules/Bluetooth/system/gd/hci/acl_manager.cc:446:63: error: no member named \u0027connect_list\u0027 in \u0027bluetooth::hci::acl_manager::le_impl\u0027\n  446 |   const auto connect_list \u003d (le_impl_ !\u003d nullptr) ? le_impl_-\u003econnect_list : std::unordered_set\u003cAddressWithType\u003e();\n  \nIt looks like AclManager reaches into the impl",
+      "revId": "541c891646a4f1a9dba8fff080cb0da1dca9a06b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0865d9f_da93a755",
