@@ -143,6 +143,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "720af1a4_eaf13def",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-02-09T09:03:37Z",
+      "side": 1,
+      "message": "@wescande@google.com it was that before but checker showed warnings about that. Unfortunately this flag guard make code very nested which cause line longer than 100 chars.",
+      "parentUuid": "c3a1d321_e4cfa2c6",
+      "range": {
+        "startLine": 213,
+        "startChar": 0,
+        "endLine": 213,
+        "endChar": 61
+      },
+      "revId": "d63dcc52a881f3348f8fc7b533453fde504c9be8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "900fceb8_1240c9aa",
@@ -464,6 +488,30 @@
       "side": 1,
       "message": "Fix applied.",
       "parentUuid": "37e1b6d7_061e4721",
+      "range": {
+        "startLine": 655,
+        "startChar": 3,
+        "endLine": 670,
+        "endChar": 9
+      },
+      "revId": "d63dcc52a881f3348f8fc7b533453fde504c9be8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ace1eb59_e433d191",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 670,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-02-09T09:03:37Z",
+      "side": 1,
+      "message": "Good refactor, thanks.",
+      "parentUuid": "853dd800_90b09e7a",
       "range": {
         "startLine": 655,
         "startChar": 3,
