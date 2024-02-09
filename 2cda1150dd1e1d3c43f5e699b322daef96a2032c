@@ -1669,6 +1669,30 @@
       },
       "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5899b647_d66abb12",
+        "filename": "system/gd/storage/storage_module.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-09T13:25:05Z",
+      "side": 1,
+      "message": "Friend is needed i think, Without its not able to accessible",
+      "parentUuid": "8cdc83b5_1221694c",
+      "range": {
+        "startLine": 134,
+        "startChar": 14,
+        "endLine": 134,
+        "endChar": 35
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
