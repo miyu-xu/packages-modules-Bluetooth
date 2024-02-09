@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "abcf812a_f8fa2492",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-09T19:32:03Z",
+      "side": 1,
+      "message": "I think Bluetooth should crash if the controller is under the control of an attacker.  Is there anything better that we can do?",
+      "parentUuid": "07e68f5d_19767346",
+      "range": {
+        "startLine": 563,
+        "startChar": 16,
+        "endLine": 563,
+        "endChar": 22
+      },
+      "revId": "f13bc0faaeebd337b87c6c5acf91917f75d77c45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cfd707a6_23965c7b",
         "filename": "system/stack/btm/btm_inq.cc",
         "patchSetId": 4
@@ -37,6 +61,24 @@
       "writtenOn": "2024-02-01T19:44:29Z",
       "side": 1,
       "message": "should this be a WARN or at least INFO ?",
+      "revId": "f13bc0faaeebd337b87c6c5acf91917f75d77c45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e4ce2cf_440eaac9",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-09T19:32:03Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "cfd707a6_23965c7b",
       "revId": "f13bc0faaeebd337b87c6c5acf91917f75d77c45",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
