@@ -324,11 +324,10 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void on_common_le_connection_complete(AddressWithType address_with_type) {
-    auto connecting_addr_with_type = connecting_le_.find(address_with_type);
-    if (connecting_addr_with_type == connecting_le_.end()) {
+    auto connecting_addr_with_type = accept_list.find(address_with_type);
+    if (connecting_addr_with_type == accept_list.end()) {
       LOG_WARN("No prior connection request for %s", ADDRESS_TO_LOGGABLE_CSTR(address_with_type));
     }
-    connecting_le_.clear();
 
     if (create_connection_timeout_alarms_.find(address_with_type) != create_connection_timeout_alarms_.end()) {
       create_connection_timeout_alarms_.at(address_with_type).Cancel();
@@ -802,7 +801,6 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       return;
     }
     accept_list.erase(address_with_type);
-    connecting_le_.erase(address_with_type);
     direct_connections_.erase(address_with_type);
     register_with_address_manager();
     le_address_manager_->RemoveDeviceFromFilterAcceptList(
@@ -888,7 +886,6 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     }
     AddressWithType empty(Address::kEmpty, AddressType::RANDOM_DEVICE_ADDRESS);
     connectability_state_ = ConnectabilityState::ARMING;
-    connecting_le_ = accept_list;
 
     uint16_t le_scan_interval = os::GetSystemPropertyUint32(kPropertyConnScanIntervalSlow, kScanIntervalSlow);
     uint16_t le_scan_window = os::GetSystemPropertyUint32(kPropertyConnScanWindowSlow, kScanWindowSlow);
@@ -1246,7 +1243,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       le_address_manager_->AckPause(this);
       return;
     }
-    arm_on_resume_ = !connecting_le_.empty();
+    arm_on_resume_ = !accept_list.empty();
     disarm_connectability();
   }
 
@@ -1293,7 +1290,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void check_for_unregister() {
-    if (connections.is_empty() && connecting_le_.empty() && address_manager_registered && ready_to_unregister) {
+    if (connections.is_empty() && accept_list.empty() && address_manager_registered && ready_to_unregister) {
       le_address_manager_->Unregister(this);
       address_manager_registered = false;
       pause_connection = false;
@@ -1314,7 +1311,6 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   LeConnectionCallbacks* le_client_callbacks_ = nullptr;
   os::Handler* le_client_handler_ = nullptr;
   LeAcceptlistCallbacks* le_acceptlist_callbacks_ = nullptr;
-  std::unordered_set<AddressWithType> connecting_le_{};
   bool arm_on_resume_{};
   bool arm_on_disarm_{};
   std::unordered_set<AddressWithType> direct_connections_{};
