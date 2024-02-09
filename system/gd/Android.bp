@@ -171,6 +171,7 @@ cc_defaults {
         "libc++fs",
     ],
     static_libs: [
+        "bluetooth_flags_c_lib",
         "libbase",
         "libbluetooth-dumpsys",
         "libbluetooth-protos",
@@ -181,6 +182,7 @@ cc_defaults {
         "libbt-platform-protos-lite",
         "libbt_shim_bridge",
         "libbt_shim_ffi",
+        "libcom.android.sysprop.bluetooth.wrapped",
         "libosi",
         "server_configurable_flags",
     ],
