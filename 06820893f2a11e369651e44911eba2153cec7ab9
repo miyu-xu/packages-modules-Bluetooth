@@ -16,6 +16,29 @@
       "message": "In order to have DrNo, you need the previous CL in the chain to be merged, wait until the android_flagged hotlist is added to the flag tracking bug then re-upload a patchset (rebase will do)",
       "revId": "06820893f2a11e369651e44911eba2153cec7ab9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f36e2a7e_e46978dc",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 868,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-09T21:33:26Z",
+      "side": 1,
+      "message": "I believe this comment is not mandatory when the case is empty. But no arm keeping it",
+      "range": {
+        "startLine": 868,
+        "startChar": 0,
+        "endLine": 868,
+        "endChar": 35
+      },
+      "revId": "06820893f2a11e369651e44911eba2153cec7ab9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
