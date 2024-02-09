@@ -181,6 +181,7 @@ cc_defaults {
         "libbt-platform-protos-lite",
         "libbt_shim_bridge",
         "libbt_shim_ffi",
+        "libcom.android.sysprop.bluetooth.wrapped",
         "libosi",
         "server_configurable_flags",
     ],
