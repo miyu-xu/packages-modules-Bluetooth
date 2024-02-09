@@ -219,6 +219,7 @@ cc_test {
         "libbt_shim_ffi",
         "libbtdevice",
         "libchrome",
+        "libcom.android.sysprop.bluetooth.wrapped",
         "libevent",
         "libflatbuffers-cpp",
         "libgmock",
@@ -227,6 +228,7 @@ cc_test {
     ],
     shared_libs: [
         "libcrypto",
+        "libPlatformProperties",
         "server_configurable_flags",
     ],
     sanitize: {

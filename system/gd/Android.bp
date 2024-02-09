@@ -316,6 +316,7 @@ cc_binary {
         "libbluetooth_log",
         "libbluetooth_rust_interop",
         "libbluetooth_smp_pdl",
+        "libcom.android.sysprop.bluetooth.wrapped",
         "libbt_shim_bridge",
         "libbt_shim_ffi",
         "libchrome",
@@ -326,6 +327,7 @@ cc_binary {
         "libcrypto",
         "libgrpc++",
         "libgrpc_wrap",
+        "libPlatformProperties",
         "libprotobuf-cpp-full",
         "libunwindstack",
         "server_configurable_flags",
@@ -450,6 +452,7 @@ cc_test {
         "libbt_shim_ffi",
         "libc++fs",
         "libchrome",
+        "libcom.android.sysprop.bluetooth.wrapped",
         "libflagtest",
         "libflatbuffers-cpp",
         "libgmock",
@@ -458,6 +461,7 @@ cc_test {
     shared_libs: [
         "libbase",
         "libcrypto",
+        "libPlatformProperties",
         "server_configurable_flags",
     ],
     sanitize: {
