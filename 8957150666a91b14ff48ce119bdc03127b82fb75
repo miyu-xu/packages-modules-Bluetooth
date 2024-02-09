@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "591fce69_42809975",
+        "filename": "system/main/shim/acl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-09T22:59:19Z",
+      "side": 1,
+      "message": "I never liked this API...it could be much simpler.  Is this even possible ?\n\n\n```suggestion\n  void UpdateConnectionParameters(\n      uint16_t handle,\n      const hci::ConnectionParameters\u0026 connection_parameters) override;\n\n```",
+      "revId": "8957150666a91b14ff48ce119bdc03127b82fb75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
