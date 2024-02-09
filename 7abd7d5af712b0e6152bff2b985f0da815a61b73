@@ -22,6 +22,30 @@
       },
       "revId": "7abd7d5af712b0e6152bff2b985f0da815a61b73",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03f355b8_1b10f3c4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-09T22:48:56Z",
+      "side": 1,
+      "message": "Found b/324633930 that I assume is the reason for revert.",
+      "parentUuid": "ba30e6b7_7bb7e783",
+      "range": {
+        "startLine": 11,
+        "startChar": 21,
+        "endLine": 11,
+        "endChar": 30
+      },
+      "revId": "7abd7d5af712b0e6152bff2b985f0da815a61b73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
