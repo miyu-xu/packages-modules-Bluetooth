@@ -25,11 +25,6 @@
  *
  ******************************************************************************/
 
-#include "hci_error_code.h"
-#include "hcidefs.h"
-#include "main/shim/helpers.h"
-#include "neighbor_inquiry.h"
-#include "packet/bit_inserter.h"
 #define LOG_TAG "bluetooth"
 
 #include <base/logging.h>
@@ -50,15 +45,20 @@
 #include "hci/event_checkers.h"
 #include "hci/hci_layer.h"
 #include "hci/inquiry_interface.h"
+#include "hci_error_code.h"
+#include "hcidefs.h"
 #include "include/check.h"
 #include "internal_include/bt_target.h"
 #include "main/shim/entry.h"
+#include "main/shim/helpers.h"
 #include "main/shim/shim.h"
+#include "neighbor_inquiry.h"
 #include "os/log.h"
 #include "osi/include/allocator.h"
 #include "osi/include/osi.h"
 #include "osi/include/properties.h"
 #include "osi/include/stack_power_telemetry.h"
+#include "packet/bit_inserter.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/btm/btm_sec.h"
 #include "stack/include/acl_api_types.h"
