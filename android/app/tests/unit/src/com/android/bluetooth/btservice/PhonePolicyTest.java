@@ -28,6 +28,7 @@ import android.bluetooth.BluetoothUuid;
 import android.os.HandlerThread;
 import android.os.ParcelUuid;
 import android.os.SystemProperties;
+import android.platform.test.flag.junit.SetFlagsRule;
 
 import androidx.room.Room;
 import androidx.test.filters.MediumTest;
@@ -39,13 +40,13 @@ import com.android.bluetooth.Utils;
 import com.android.bluetooth.a2dp.A2dpService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.btservice.storage.MetadataDatabase;
-import com.android.bluetooth.flags.FakeFeatureFlagsImpl;
 import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.hfp.HeadsetService;
 import com.android.bluetooth.le_audio.LeAudioService;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -68,7 +69,6 @@ public class PhonePolicyTest {
     private BluetoothAdapter mAdapter;
     private PhonePolicy mPhonePolicy;
     private boolean mOriginalDualModeState;
-    private FakeFeatureFlagsImpl mFakeFlagsImpl;
 
     @Mock private AdapterService mAdapterService;
     @Mock private ServiceFactory mServiceFactory;
@@ -77,6 +77,8 @@ public class PhonePolicyTest {
     @Mock private LeAudioService mLeAudioService;
 
     @Mock private DatabaseManager mDatabaseManager;
+
+    @Rule public final SetFlagsRule mSetFlagsRule = new SetFlagsRule();
 
     @Before
     public void setUp() throws Exception {
@@ -104,9 +106,7 @@ public class PhonePolicyTest {
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         PhonePolicy.sConnectOtherProfilesTimeoutMillis = CONNECT_OTHER_PROFILES_TIMEOUT_MILLIS;
 
-        mFakeFlagsImpl = new FakeFeatureFlagsImpl();
-
-        mPhonePolicy = new PhonePolicy(mAdapterService, mServiceFactory, mFakeFlagsImpl);
+        mPhonePolicy = new PhonePolicy(mAdapterService, mServiceFactory);
         mOriginalDualModeState = Utils.isDualModeAudioEnabled();
     }
 
@@ -633,8 +633,8 @@ public class PhonePolicyTest {
      */
     @Test
     public void testAutoConnectHfpOnly() {
-        mFakeFlagsImpl.setFlag(Flags.FLAG_AUTO_CONNECT_ON_HFP_WHEN_NO_A2DP_DEVICE, true);
-        mFakeFlagsImpl.setFlag(Flags.FLAG_AUTO_CONNECT_ON_MULTIPLE_HFP_WHEN_NO_A2DP_DEVICE, false);
+        mSetFlagsRule.enableFlags(Flags.FLAG_AUTO_CONNECT_ON_HFP_WHEN_NO_A2DP_DEVICE);
+        mSetFlagsRule.disableFlags(Flags.FLAG_AUTO_CONNECT_ON_MULTIPLE_HFP_WHEN_NO_A2DP_DEVICE);
 
         // Return desired values from the mocked object(s)
         doReturn(BluetoothAdapter.STATE_ON).when(mAdapterService).getState();
@@ -645,9 +645,9 @@ public class PhonePolicyTest {
                                 InstrumentationRegistry.getInstrumentation().getTargetContext(),
                                 MetadataDatabase.class)
                         .build();
-        DatabaseManager db = new DatabaseManager(mAdapterService, mFakeFlagsImpl);
+        DatabaseManager db = new DatabaseManager(mAdapterService);
         doReturn(db).when(mAdapterService).getDatabase();
-        PhonePolicy phonePolicy = new PhonePolicy(mAdapterService, mServiceFactory, mFakeFlagsImpl);
+        PhonePolicy phonePolicy = new PhonePolicy(mAdapterService, mServiceFactory);
 
         db.start(mDatabase);
         TestUtils.waitForLooperToFinishScheduledTask(db.getHandlerLooper());
@@ -671,8 +671,8 @@ public class PhonePolicyTest {
 
     @Test
     public void autoConnect_whenMultiHfp_startConnection() {
-        mFakeFlagsImpl.setFlag(Flags.FLAG_AUTO_CONNECT_ON_HFP_WHEN_NO_A2DP_DEVICE, true);
-        mFakeFlagsImpl.setFlag(Flags.FLAG_AUTO_CONNECT_ON_MULTIPLE_HFP_WHEN_NO_A2DP_DEVICE, true);
+        mSetFlagsRule.enableFlags(Flags.FLAG_AUTO_CONNECT_ON_HFP_WHEN_NO_A2DP_DEVICE);
+        mSetFlagsRule.enableFlags(Flags.FLAG_AUTO_CONNECT_ON_MULTIPLE_HFP_WHEN_NO_A2DP_DEVICE);
 
         // Return desired values from the mocked object(s)
         doReturn(BluetoothAdapter.STATE_ON).when(mAdapterService).getState();
@@ -683,9 +683,9 @@ public class PhonePolicyTest {
                                 InstrumentationRegistry.getInstrumentation().getTargetContext(),
                                 MetadataDatabase.class)
                         .build();
-        DatabaseManager db = new DatabaseManager(mAdapterService, mFakeFlagsImpl);
+        DatabaseManager db = new DatabaseManager(mAdapterService);
         doReturn(db).when(mAdapterService).getDatabase();
-        PhonePolicy phonePolicy = new PhonePolicy(mAdapterService, mServiceFactory, mFakeFlagsImpl);
+        PhonePolicy phonePolicy = new PhonePolicy(mAdapterService, mServiceFactory);
 
         db.start(mDatabase);
         TestUtils.waitForLooperToFinishScheduledTask(db.getHandlerLooper());
@@ -715,8 +715,8 @@ public class PhonePolicyTest {
 
     @Test
     public void autoConnect_whenMultiHfpAndDeconnection_startConnection() {
-        mFakeFlagsImpl.setFlag(Flags.FLAG_AUTO_CONNECT_ON_HFP_WHEN_NO_A2DP_DEVICE, true);
-        mFakeFlagsImpl.setFlag(Flags.FLAG_AUTO_CONNECT_ON_MULTIPLE_HFP_WHEN_NO_A2DP_DEVICE, true);
+        mSetFlagsRule.enableFlags(Flags.FLAG_AUTO_CONNECT_ON_MULTIPLE_HFP_WHEN_NO_A2DP_DEVICE);
+        mSetFlagsRule.enableFlags(Flags.FLAG_AUTO_CONNECT_ON_HFP_WHEN_NO_A2DP_DEVICE);
 
         // Return desired values from the mocked object(s)
         doReturn(BluetoothAdapter.STATE_ON).when(mAdapterService).getState();
@@ -727,9 +727,9 @@ public class PhonePolicyTest {
                                 InstrumentationRegistry.getInstrumentation().getTargetContext(),
                                 MetadataDatabase.class)
                         .build();
-        DatabaseManager db = new DatabaseManager(mAdapterService, mFakeFlagsImpl);
+        DatabaseManager db = new DatabaseManager(mAdapterService);
         doReturn(db).when(mAdapterService).getDatabase();
-        PhonePolicy phonePolicy = new PhonePolicy(mAdapterService, mServiceFactory, mFakeFlagsImpl);
+        PhonePolicy phonePolicy = new PhonePolicy(mAdapterService, mServiceFactory);
 
         db.start(mDatabase);
         TestUtils.waitForLooperToFinishScheduledTask(db.getHandlerLooper());
