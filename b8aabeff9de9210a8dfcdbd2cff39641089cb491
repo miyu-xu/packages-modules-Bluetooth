@@ -16,6 +16,29 @@
       "message": "Java code does not care about timing between these two lines. However, it is KI from audio framework. The code is also covered by extensive unit testing.",
       "revId": "b8aabeff9de9210a8dfcdbd2cff39641089cb491",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9308d5aa_45486487",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1318,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-10T00:36:07Z",
+      "side": 1,
+      "message": "the only thing this line does is to send codec status from C++ to Java.",
+      "range": {
+        "startLine": 1318,
+        "startChar": 4,
+        "endLine": 1318,
+        "endChar": 46
+      },
+      "revId": "b8aabeff9de9210a8dfcdbd2cff39641089cb491",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
