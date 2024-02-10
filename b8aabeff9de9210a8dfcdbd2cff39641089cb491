@@ -39,6 +39,30 @@
       },
       "revId": "b8aabeff9de9210a8dfcdbd2cff39641089cb491",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e965a58d_a14b08ab",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1318,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-10T00:36:29Z",
+      "side": 1,
+      "message": "And it makes sense to send the codec status before telling upper layer that we are streaming.",
+      "parentUuid": "9308d5aa_45486487",
+      "range": {
+        "startLine": 1318,
+        "startChar": 4,
+        "endLine": 1318,
+        "endChar": 46
+      },
+      "revId": "b8aabeff9de9210a8dfcdbd2cff39641089cb491",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
