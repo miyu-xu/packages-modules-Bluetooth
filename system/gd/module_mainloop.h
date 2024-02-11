@@ -39,7 +39,7 @@ class ModuleMainloop {
 
   // Threadsafe post onto mainloop a method and context with copyable arguments
   template <typename T, typename Functor, typename... Args>
-  void PostMethodOnMain(std::shared_ptr<T> ref, Functor&& functor, Args... args) const {
+  void PostMethodOnMain(std::shared_ptr<T> ref, Functor&& functor, Args&... args) const {
     do_in_main_thread(
         FROM_HERE,
         base::BindOnce(

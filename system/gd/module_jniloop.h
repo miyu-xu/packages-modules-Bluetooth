@@ -39,7 +39,7 @@ class ModuleJniloop {
 
   // Threadsafe post onto jni loop a method and context with copyable arguments
   template <typename T, typename Functor, typename... Args>
-  void PostMethodOnJni(std::shared_ptr<T> ref, Functor&& functor, Args... args) const {
+  void PostMethodOnJni(std::shared_ptr<T> ref, Functor&& functor, Args&... args) const {
     do_in_jni_thread(
         FROM_HERE,
         base::BindOnce(
