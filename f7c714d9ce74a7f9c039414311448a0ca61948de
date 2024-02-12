@@ -16,6 +16,24 @@
       "message": "Add Bug: 315241296 to have DrNo on this specific CL",
       "revId": "f7c714d9ce74a7f9c039414311448a0ca61948de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2536da06_06361a90",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-02-12T18:56:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "155b6c49_389de0f5",
+      "revId": "f7c714d9ce74a7f9c039414311448a0ca61948de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
