@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbf2a172_94699efd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-02-12T18:19:42Z",
+      "side": 1,
+      "message": "Can this be elaborated? What is CP? How is it being implemented? \n\nIs there a test for it? Are we implementing anything? IF it can be manually tested how?",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 28
+      },
+      "revId": "bfcded6882166e64be83c6dfdbacd24b94aca314",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f64e5b3_ecff8a10",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-02-12T18:19:42Z",
+      "side": 1,
+      "message": "Can we address the merge conflict here and update this change?",
+      "revId": "bfcded6882166e64be83c6dfdbacd24b94aca314",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
