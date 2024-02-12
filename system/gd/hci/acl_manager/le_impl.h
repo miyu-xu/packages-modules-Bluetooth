@@ -154,10 +154,8 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     SubeventCode code = event_packet.GetSubeventCode();
     switch (code) {
       case SubeventCode::CONNECTION_COMPLETE:
-        on_le_connection_complete(event_packet);
-        break;
       case SubeventCode::ENHANCED_CONNECTION_COMPLETE:
-        on_le_enhanced_connection_complete(event_packet);
+        on_le_connection_complete(event_packet);
         break;
       case SubeventCode::CONNECTION_UPDATE_COMPLETE:
         on_le_connection_update_complete(event_packet);
@@ -337,6 +335,9 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void on_le_connection_complete(LeMetaEventView packet) {
+
+
+    if (packet.GetSubeventCode() == SubeventCode::CONNECTION_COMPLETE) {
     LeConnectionCompleteView connection_complete = LeConnectionCompleteView::Create(packet);
     ASSERT(connection_complete.IsValid());
     auto status = connection_complete.GetStatus();
@@ -463,9 +464,8 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
         le_acceptlist_callbacks_->OnLeConnectSuccess(remote_address);
       }
     }
-  }
 
-  void on_le_enhanced_connection_complete(LeMetaEventView packet) {
+    } else if (packet.GetSubeventCode() == SubeventCode::ENHANCED_CONNECTION_COMPLETE) {
     LeEnhancedConnectionCompleteView connection_complete = LeEnhancedConnectionCompleteView::Create(packet);
     ASSERT(connection_complete.IsValid());
     auto status = connection_complete.GetStatus();
@@ -608,8 +608,13 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       if (le_acceptlist_callbacks_ != nullptr) {
         le_acceptlist_callbacks_->OnLeConnectSuccess(remote_address);
       }
+    }      
+    
+    } else {
+      ASSERT_LOG(false, "Bad subevent code:%02x", packet.GetSubeventCode());
     }
   }
+
 
   RoleSpecificData initialize_role_specific_data(Role role) {
     if (role == hci::Role::CENTRAL) {
