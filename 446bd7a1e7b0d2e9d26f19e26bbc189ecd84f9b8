@@ -46,6 +46,30 @@
       },
       "revId": "446bd7a1e7b0d2e9d26f19e26bbc189ecd84f9b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b07d3d7_edca776d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-12T22:32:28Z",
+      "side": 1,
+      "message": "If you change the commit message after you got PV+2, the PV+2 will be copied to the new patchset and so you don\u0027t need to rerun presubmit.\n\nYou only loose the presubmit if you upload a patchset (modify the commit message) while presubmit is running.",
+      "parentUuid": "e38c4fef_995887f3",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 75
+      },
+      "revId": "446bd7a1e7b0d2e9d26f19e26bbc189ecd84f9b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
