@@ -22,6 +22,30 @@
       },
       "revId": "446bd7a1e7b0d2e9d26f19e26bbc189ecd84f9b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e38c4fef_995887f3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-02-12T20:24:15Z",
+      "side": 1,
+      "message": "I agree, this is copy from original patch, I should have left it empty.\nI have all the requirements to submit this patch.\nI\u0027m not re-running multi-hour presubmit to get this piece of comment fixed.",
+      "parentUuid": "56db95e5_0f171eaa",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 75
+      },
+      "revId": "446bd7a1e7b0d2e9d26f19e26bbc189ecd84f9b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
