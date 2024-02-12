@@ -63,6 +63,23 @@
       "message": "Hi Himanshu, can you help with this review? Thanks.",
       "revId": "bf84eee980dcc0b04597150cf09520528585f2c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "302e6676_c86f8b3d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-02-12T18:24:26Z",
+      "side": 1,
+      "message": "Can we ensure the merge conflict on this change is fixed before we review this change?",
+      "revId": "bf84eee980dcc0b04597150cf09520528585f2c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
