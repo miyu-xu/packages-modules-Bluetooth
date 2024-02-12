@@ -202,6 +202,7 @@ fn build_commands() -> HashMap<String, CommandOption> {
                 ),
                 String::from("gatt register-notification <address> <handle> <enable|disable>"),
                 String::from("gatt register-server"),
+                String::from("gatt server-connect <client_address>"),
             ],
             description: String::from("GATT tools"),
             function_pointer: CommandHandler::cmd_gatt,
@@ -1222,6 +1223,26 @@ impl CommandHandler {
                     )),
                     false,
                 );
+            }
+            "server-connect" => {
+                let client_addr = String::from(get_arg(args, 1)?);
+                let server_id = match self.lock_context().gatt_server_context.server_id {
+                    Some(id) => id,
+                    None => return Err("GATT Server has not yet been registered".into()),
+                };
+                let is_direct = self.lock_context().gatt_server_context.is_connect_direct;
+                let transport = self.lock_context().gatt_server_context.connect_transport;
+
+                let connection_success = self
+                    .lock_context()
+                    .gatt_dbus
+                    .as_mut()
+                    .unwrap()
+                    .server_connect(server_id, client_addr, is_direct, transport);
+
+                if !connection_success {
+                    return Err("Connection was unsuccessful".into());
+                }
             }
             _ => return Err(CommandError::InvalidArgs),
         }
