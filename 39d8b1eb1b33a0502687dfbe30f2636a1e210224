@@ -262,6 +262,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d14e17ff_7953bb81",
+        "filename": "sysprop/hfp.sysprop",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2024-02-12T18:01:01Z",
+      "side": 1,
+      "message": "Hi, \"persist\" is not mandatory. Any property that can be overwritten from vendor partition if needed to enable/disable from vendor is fine.",
+      "parentUuid": "db55d700_0f91c1b4",
+      "range": {
+        "startLine": 50,
+        "startChar": 16,
+        "endLine": 50,
+        "endChar": 23
+      },
+      "revId": "39d8b1eb1b33a0502687dfbe30f2636a1e210224",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1b379ae3_80c7fb7b",
         "filename": "system/bta/ag/bta_ag_cmd.cc",
         "patchSetId": 3
