@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d87f069_d0e7b9b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-02-12T18:23:18Z",
+      "side": 1,
+      "message": "Seems like this change is failing multiple HFP PTS test cases? Can you take a look at it?\n\nThe failing tests include --\nHFP/HF/ACC/BV-03-I\nHFP/HF/ACC/BV-05-I\nHFP/HF/ATH/BV-04-I\nHFP/HF/ATH/BV-06-I\nHFP/HF/ECS/BV-01-I\nHFP/HF/ICA/BV-07-I\nHFP/HF/IIA/BV-04-I\nHFP/HF/SDP/BV-01-I\nHFP/HF/WBS/BV-03-I\n\nThese tests passed prior. Can we make sure the changes dont break PTS test",
+      "revId": "3412381ad33f4891ba652c1439eefe561e0581df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
