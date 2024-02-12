@@ -473,6 +473,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "96fb85f9_293f09fa",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 789,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-12T07:27:14Z",
+      "side": 1,
+      "message": "@hallstrom@google.com, In this API, we dont have clue of conn_id\u0027s which are valid and active.\n\nIs there any API to fetch the conn_id\u0027s which are active? I am unable to figure out that API. If you know any API which provides that information, please let me know.",
+      "parentUuid": "b5874903_d0778b7d",
+      "range": {
+        "startLine": 783,
+        "startChar": 0,
+        "endLine": 789,
+        "endChar": 13
+      },
+      "revId": "2bdf67c3c54810f13d3b25885f8c479396883df4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "694e0448_2b776ef1",
         "filename": "system/stack/gatt/gatt_attr.cc",
         "patchSetId": 18
