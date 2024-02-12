@@ -271,6 +271,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bff95474_93db3035",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-12T09:55:31Z",
+      "side": 1,
+      "message": "Changed to VERBOSE log.",
+      "parentUuid": "0a820c0c_57d91627",
+      "range": {
+        "startLine": 368,
+        "startChar": 10,
+        "endLine": 373,
+        "endChar": 11
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86af071d_f82a7fec",
@@ -284,6 +308,30 @@
       "writtenOn": "2024-01-18T03:07:06Z",
       "side": 1,
       "message": "These never get initialized",
+      "range": {
+        "startLine": 595,
+        "startChar": 2,
+        "endLine": 596,
+        "endChar": 43
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be9be195_f66dfa2a",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-12T09:55:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86af071d_f82a7fec",
       "range": {
         "startLine": 595,
         "startChar": 2,
