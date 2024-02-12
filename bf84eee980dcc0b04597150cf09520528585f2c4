@@ -80,6 +80,23 @@
       "message": "Can we ensure the merge conflict on this change is fixed before we review this change?",
       "revId": "bf84eee980dcc0b04597150cf09520528585f2c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b7a3f33_e28f9512",
+        "filename": "system/stack/a2dp/a2dp_aac_encoder.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-02-12T21:59:33Z",
+      "side": 1,
+      "message": "Can you precise your intention?\nDo you want to round the division?",
+      "revId": "bf84eee980dcc0b04597150cf09520528585f2c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
