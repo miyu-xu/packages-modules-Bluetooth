@@ -77,3 +77,10 @@ flag {
     description: "Cleans up restricted handles when disconnected"
     bug: "323110155"
 }
+
+flag {
+    name: "le_periodic_scanning_reassembler"
+    namespace: "bluetooth"
+    description: "Enable reassembly of LE periodic advertising events"
+    bug: "324886466"
+}
