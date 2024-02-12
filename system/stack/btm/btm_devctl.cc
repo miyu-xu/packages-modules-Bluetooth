@@ -422,10 +422,14 @@ void btm_read_local_name_complete(uint8_t* p, UNUSED_ATTR uint16_t evt_len) {
 tBTM_STATUS BTM_SetDeviceClass(DEV_CLASS dev_class) {
   if (btm_cb.devcb.dev_class == dev_class) return (BTM_SUCCESS);
 
+  log::info("dev_class = {:x} {:x} {:x}", dev_class[0], dev_class[1],
+            dev_class[2]);
   btm_cb.devcb.dev_class = dev_class;
 
   if (!controller_get_interface()->get_is_ready()) return (BTM_DEV_RESET);
 
+  log::info("sending dev_class = {:x} {:x} {:x}", dev_class[0], dev_class[1],
+            dev_class[2]);
   btsnd_hcic_write_dev_class(dev_class);
 
   return (BTM_SUCCESS);

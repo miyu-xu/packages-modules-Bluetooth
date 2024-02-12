@@ -2781,6 +2781,7 @@ void bta_av_dereg_comp(tBTA_AV_DATA* p_data) {
 
     /* Clear the Capturing service class bit */
     cod.service = BTM_COD_SERVICE_CAPTURING;
+    LOG_INFO("clear cod service capturing");
     utl_set_device_class(&cod, BTA_UTL_CLR_COD_SERVICE_CLASS);
   }
 }
