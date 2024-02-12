@@ -840,7 +840,7 @@ impl RPCProxy for BtGattCallback {
 
 pub(crate) struct BtGattServerCallback {
     objpath: String,
-    _context: Arc<Mutex<ClientContext>>,
+    context: Arc<Mutex<ClientContext>>,
 
     dbus_connection: Arc<SyncConnection>,
     dbus_crossroads: Arc<Mutex<Crossroads>>,
@@ -849,11 +849,11 @@ pub(crate) struct BtGattServerCallback {
 impl BtGattServerCallback {
     pub(crate) fn new(
         objpath: String,
-        _context: Arc<Mutex<ClientContext>>,
+        context: Arc<Mutex<ClientContext>>,
         dbus_connection: Arc<SyncConnection>,
         dbus_crossroads: Arc<Mutex<Crossroads>>,
     ) -> Self {
-        Self { objpath, _context, dbus_connection, dbus_crossroads }
+        Self { objpath, context, dbus_connection, dbus_crossroads }
     }
 }
 
