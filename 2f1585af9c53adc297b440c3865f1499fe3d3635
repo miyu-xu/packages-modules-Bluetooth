@@ -16,6 +16,24 @@
       "message": "Is this the proper way to fix this race condition? And delete the line instead of commenting it.",
       "revId": "2f1585af9c53adc297b440c3865f1499fe3d3635",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b037fbcb_005d4bb8",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1460,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-02-12T18:27:44Z",
+      "side": 1,
+      "message": "+1. This looks more like a hacky fix and doesn\u0027t seem to address the underlying race condition.",
+      "parentUuid": "7d025fed_7b0424bf",
+      "revId": "2f1585af9c53adc297b440c3865f1499fe3d3635",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
