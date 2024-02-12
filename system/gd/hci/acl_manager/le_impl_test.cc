@@ -1308,14 +1308,14 @@ TEST_F(LeImplTest, on_create_connection_timeout) {
   EXPECT_CALL(
       mock_le_connection_callbacks_, OnLeConnectFail(_, ErrorCode::CONNECTION_ACCEPT_TIMEOUT))
       .Times(1);
-  le_impl_->create_connection_timeout_alarms_.emplace(
+  le_impl_->direct_connections_.emplace(
       std::piecewise_construct,
       std::forward_as_tuple(
           remote_public_address_with_type_.GetAddress(), remote_public_address_with_type_.GetAddressType()),
       std::forward_as_tuple(handler_));
   le_impl_->on_create_connection_timeout(remote_public_address_with_type_);
   sync_handler();
-  ASSERT_TRUE(le_impl_->create_connection_timeout_alarms_.empty());
+  ASSERT_TRUE(le_impl_->direct_connections_.empty());
 }
 
 // b/260917913
@@ -1327,14 +1327,14 @@ TEST_F(LeImplTest, DISABLED_on_common_le_connection_complete__NoPriorConnection)
 }
 
 TEST_F(LeImplTest, cancel_connect) {
-  le_impl_->create_connection_timeout_alarms_.emplace(
+  le_impl_->direct_connections_.emplace(
       std::piecewise_construct,
       std::forward_as_tuple(
           remote_public_address_with_type_.GetAddress(), remote_public_address_with_type_.GetAddressType()),
       std::forward_as_tuple(handler_));
   le_impl_->cancel_connect(remote_public_address_with_type_);
   sync_handler();
-  ASSERT_TRUE(le_impl_->create_connection_timeout_alarms_.empty());
+  ASSERT_TRUE(le_impl_->direct_connections_.empty());
 }
 
 TEST_F(LeImplTest, set_le_suggested_default_data_parameters) {
