@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa22d039_d7fe013b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-12T21:30:36Z",
+      "side": 1,
+      "message": "Why not create one to track it?",
+      "revId": "3516e477e8517b04b059b3294809c69ba39da496",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "9a353957_70646d2e",
@@ -14,6 +31,23 @@
       "writtenOn": "2024-02-12T16:36:23Z",
       "side": 1,
       "message": "Needed simplification",
+      "revId": "3516e477e8517b04b059b3294809c69ba39da496",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5a36d1b_8c50838f",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 1103,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-12T21:30:36Z",
+      "side": 1,
+      "message": "This seems like slightly different behavior because none of this would happen if it wasn\u0027t in the list.  Is it worth having direct_connect_remove return a boolean?\n\nAre there any tests that catch these kinds of behavior changes?",
       "revId": "3516e477e8517b04b059b3294809c69ba39da496",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
