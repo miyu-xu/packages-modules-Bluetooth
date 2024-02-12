@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a53cd486_75aacc96",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-12T19:36:59Z",
+      "side": 1,
+      "message": "FYI / nit:\nI believe this flag is non necessary since the code flow is coming from native and the native code is already flagged.\n\nBut it is harmless to keep it, it just add noise",
+      "range": {
+        "startLine": 207,
+        "startChar": 30,
+        "endLine": 207,
+        "endChar": 64
+      },
+      "revId": "8c75e9f1436b7ece7fd0e739b660068eea6388f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
