@@ -68,6 +68,24 @@
       "parentUuid": "c5a36d1b_8c50838f",
       "revId": "3516e477e8517b04b059b3294809c69ba39da496",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3aa9fbd_597eee82",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 1103,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-12T22:05:50Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5023848c_e82c292f",
+      "revId": "3516e477e8517b04b059b3294809c69ba39da496",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
