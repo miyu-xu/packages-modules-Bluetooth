@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47a41b34_d1c1c455",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-12T18:47:08Z",
+      "side": 1,
+      "message": "Use Bug: 315241296 for automatic DrNo",
+      "revId": "75d34c561d5e80e8cf1dbeb2abcd6b110bd65373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
