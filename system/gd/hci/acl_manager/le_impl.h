@@ -32,6 +32,7 @@
 #include "hci/acl_manager/le_connection_callbacks.h"
 #include "hci/acl_manager/le_connection_management_callbacks.h"
 #include "hci/acl_manager/round_robin_scheduler.h"
+#include "hci/address.h"
 #include "hci/controller.h"
 #include "hci/hci_layer.h"
 #include "hci/hci_packets.h"
@@ -330,10 +331,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     }
     connecting_le_.clear();
 
-    if (create_connection_timeout_alarms_.find(address_with_type) != create_connection_timeout_alarms_.end()) {
-      create_connection_timeout_alarms_.at(address_with_type).Cancel();
-      create_connection_timeout_alarms_.erase(address_with_type);
-    }
+    direct_connect_remove(address_with_type);
   }
 
   void on_le_connection_complete(LeMetaEventView packet) {
@@ -405,11 +403,8 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
         LOG_INFO(
             "Received incoming connection of device in filter accept_list, %s",
             ADDRESS_TO_LOGGABLE_CSTR(remote_address));
+        direct_connect_remove(remote_address);
         remove_device_from_accept_list(remote_address);
-        if (create_connection_timeout_alarms_.find(remote_address) != create_connection_timeout_alarms_.end()) {
-          create_connection_timeout_alarms_.at(remote_address).Cancel();
-          create_connection_timeout_alarms_.erase(remote_address);
-        }
       }
     }
 
@@ -545,11 +540,8 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
         LOG_INFO(
             "Received incoming connection of device in filter accept_list, %s",
             ADDRESS_TO_LOGGABLE_CSTR(remote_address));
+        direct_connect_remove(remote_address);
         remove_device_from_accept_list(remote_address);
-        if (create_connection_timeout_alarms_.find(remote_address) != create_connection_timeout_alarms_.end()) {
-          create_connection_timeout_alarms_.at(remote_address).Cancel();
-          create_connection_timeout_alarms_.erase(remote_address);
-        }
       }
     }
 
@@ -768,6 +760,32 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     }
   }
 
+  void direct_connect_add(AddressWithType address_with_type) {
+    direct_connections_.insert(address_with_type);
+    if (create_connection_timeout_alarms_.find(address_with_type) != create_connection_timeout_alarms_.end()) {
+      return;
+    }
+
+    auto emplace_result = create_connection_timeout_alarms_.emplace(
+        std::piecewise_construct,
+        std::forward_as_tuple(address_with_type.GetAddress(), address_with_type.GetAddressType()),
+        std::forward_as_tuple(handler_));
+    uint32_t connection_timeout =
+        os::GetSystemPropertyUint32(kPropertyDirectConnTimeout, kCreateConnectionTimeoutMs);
+    emplace_result.first->second.Schedule(
+              common::BindOnce(&le_impl::on_create_connection_timeout, common::Unretained(this), address_with_type),
+              std::chrono::milliseconds(connection_timeout));
+  }
+
+  void direct_connect_remove(AddressWithType address_with_type) {
+    auto it = create_connection_timeout_alarms_.find(address_with_type);
+    if (it != create_connection_timeout_alarms_.end()) {
+      it->second.Cancel();
+      create_connection_timeout_alarms_.erase(it);
+    }
+    direct_connections_.erase(address_with_type);
+  }
+
   void add_device_to_accept_list(AddressWithType address_with_type) {
     if (connections.alreadyConnected(address_with_type)) {
       LOG_INFO("Device already connected, return");
@@ -800,7 +818,6 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     }
     accept_list.erase(address_with_type);
     connecting_le_.erase(address_with_type);
-    direct_connections_.erase(address_with_type);
     register_with_address_manager();
     le_address_manager_->RemoveDeviceFromFilterAcceptList(
         address_with_type.ToFilterAcceptListAddressType(), address_with_type.GetAddress());
@@ -1033,19 +1050,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       }
 
       if (is_direct) {
-        direct_connections_.insert(address_with_type);
-        if (create_connection_timeout_alarms_.find(address_with_type) == create_connection_timeout_alarms_.end()) {
-          create_connection_timeout_alarms_.emplace(
-              std::piecewise_construct,
-              std::forward_as_tuple(address_with_type.GetAddress(), address_with_type.GetAddressType()),
-              std::forward_as_tuple(handler_));
-          uint32_t connection_timeout =
-              os::GetSystemPropertyUint32(kPropertyDirectConnTimeout, kCreateConnectionTimeoutMs);
-          create_connection_timeout_alarms_.at(address_with_type)
-              .Schedule(
-                  common::BindOnce(&le_impl::on_create_connection_timeout, common::Unretained(this), address_with_type),
-                  std::chrono::milliseconds(connection_timeout));
-        }
+        direct_connect_add(address_with_type);
       }
     }
 
@@ -1095,30 +1100,23 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   void on_create_connection_timeout(AddressWithType address_with_type) {
     LOG_INFO("on_create_connection_timeout, address: %s",
              ADDRESS_TO_LOGGABLE_CSTR(address_with_type));
-    if (create_connection_timeout_alarms_.find(address_with_type) != create_connection_timeout_alarms_.end()) {
-      create_connection_timeout_alarms_.at(address_with_type).Cancel();
-      create_connection_timeout_alarms_.erase(address_with_type);
 
-      if (background_connections_.find(address_with_type) != background_connections_.end()) {
-        direct_connections_.erase(address_with_type);
-        disarm_connectability();
-      } else {
-        cancel_connect(address_with_type);
-      }
-      le_client_handler_->Post(common::BindOnce(
-          &LeConnectionCallbacks::OnLeConnectFail,
-          common::Unretained(le_client_callbacks_),
-          address_with_type,
-          ErrorCode::CONNECTION_ACCEPT_TIMEOUT));
+    direct_connect_remove(address_with_type);
+
+    if (background_connections_.find(address_with_type) != background_connections_.end()) {
+      disarm_connectability();
+    } else {
+      remove_device_from_accept_list(address_with_type);
     }
+    le_client_handler_->Post(common::BindOnce(
+        &LeConnectionCallbacks::OnLeConnectFail,
+        common::Unretained(le_client_callbacks_),
+        address_with_type,
+        ErrorCode::CONNECTION_ACCEPT_TIMEOUT));
   }
 
   void cancel_connect(AddressWithType address_with_type) {
-    // Remove any alarms for this peer, if any
-    if (create_connection_timeout_alarms_.find(address_with_type) != create_connection_timeout_alarms_.end()) {
-      create_connection_timeout_alarms_.at(address_with_type).Cancel();
-      create_connection_timeout_alarms_.erase(address_with_type);
-    }
+    direct_connect_remove(address_with_type);
     // the connection will be canceled by LeAddressManager.OnPause()
     remove_device_from_accept_list(address_with_type);
   }
