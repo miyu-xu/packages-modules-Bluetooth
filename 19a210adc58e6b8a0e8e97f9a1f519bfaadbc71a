@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5841701b_7f5cd9cb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-02-12T18:34:28Z",
+      "side": 1,
+      "message": "This isn\u0027t a valid test case. What is a valid way to test this fix?\n\nCan you give us an example to reproduce this issue?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 8
+      },
+      "revId": "19a210adc58e6b8a0e8e97f9a1f519bfaadbc71a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f4e3bb4b_3813ba3f",
         "filename": "system/btif/src/btif_rc.cc",
         "patchSetId": 5
