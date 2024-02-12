@@ -39,6 +39,30 @@
       },
       "revId": "06820893f2a11e369651e44911eba2153cec7ab9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbf1bbff_ded71997",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 868,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2024-02-12T18:58:15Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f36e2a7e_e46978dc",
+      "range": {
+        "startLine": 868,
+        "startChar": 0,
+        "endLine": 868,
+        "endChar": 35
+      },
+      "revId": "06820893f2a11e369651e44911eba2153cec7ab9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
