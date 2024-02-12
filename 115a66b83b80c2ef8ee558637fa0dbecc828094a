@@ -16,6 +16,24 @@
       "message": "You should contribute these tests directly to the Avatar repository since a lot of pairing tests are already handled there (see https://cs.android.com/android/platform/superproject/main/+/main:external/pandora/avatar/avatar/cases/security_test.py;l\u003d1). You should only add tests which aren\u0027t yet covered.\n\nYou should also make use of variant (you can take example in the existing security tests) to avoid code dupplication.",
       "revId": "115a66b83b80c2ef8ee558637fa0dbecc828094a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2a0f251_60b23eb2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 40
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-02-12T19:20:49Z",
+      "side": 1,
+      "message": "If I understand it correctly, the new tests will be added to the bluetooth repo directly.",
+      "parentUuid": "fe2aacea_218bd334",
+      "revId": "115a66b83b80c2ef8ee558637fa0dbecc828094a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
