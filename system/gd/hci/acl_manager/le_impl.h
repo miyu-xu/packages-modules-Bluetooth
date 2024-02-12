@@ -154,10 +154,8 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     SubeventCode code = event_packet.GetSubeventCode();
     switch (code) {
       case SubeventCode::CONNECTION_COMPLETE:
-        on_le_connection_complete(event_packet);
-        break;
       case SubeventCode::ENHANCED_CONNECTION_COMPLETE:
-        on_le_enhanced_connection_complete(event_packet);
+        on_le_connection_complete(event_packet);
         break;
       case SubeventCode::CONNECTION_UPDATE_COMPLETE:
         on_le_connection_update_complete(event_packet);
@@ -337,13 +335,39 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void on_le_connection_complete(LeMetaEventView packet) {
-    LeConnectionCompleteView connection_complete = LeConnectionCompleteView::Create(packet);
-    ASSERT(connection_complete.IsValid());
-    auto status = connection_complete.GetStatus();
-    auto address = connection_complete.GetPeerAddress();
-    auto peer_address_type = connection_complete.GetPeerAddressType();
-    auto role = connection_complete.GetRole();
-    AddressWithType remote_address(address, peer_address_type);
+    ErrorCode status;
+    Address address;
+    AddressType peer_address_type;
+    Role role;
+    AddressWithType remote_address;
+    uint16_t handle, conn_interval, conn_latency, supervision_timeout;
+    
+    if (packet.GetSubeventCode() == SubeventCode::CONNECTION_COMPLETE) {
+      LeConnectionCompleteView connection_complete = LeConnectionCompleteView::Create(packet);
+      ASSERT(connection_complete.IsValid());
+      status = connection_complete.GetStatus();
+      address = connection_complete.GetPeerAddress();
+      peer_address_type = connection_complete.GetPeerAddressType();
+      role = connection_complete.GetRole();
+      handle = connection_complete.GetConnectionHandle();
+      conn_interval = connection_complete.GetConnInterval();
+      conn_latency = connection_complete.GetConnLatency();
+      supervision_timeout = connection_complete.GetSupervisionTimeout();
+    } else if (packet.GetSubeventCode() == SubeventCode::ENHANCED_CONNECTION_COMPLETE) {
+      LeEnhancedConnectionCompleteView connection_complete = LeEnhancedConnectionCompleteView::Create(packet);
+      ASSERT(connection_complete.IsValid());
+      status = connection_complete.GetStatus();
+      address = connection_complete.GetPeerAddress();
+      peer_address_type = connection_complete.GetPeerAddressType();
+      role = connection_complete.GetRole();
+      handle = connection_complete.GetConnectionHandle();
+      conn_interval = connection_complete.GetConnInterval();
+      conn_latency = connection_complete.GetConnLatency();
+      supervision_timeout = connection_complete.GetSupervisionTimeout();
+    }
+
+    if (packet.GetSubeventCode() == SubeventCode::CONNECTION_COMPLETE) {
+    remote_address = AddressWithType(address, peer_address_type);
     AddressWithType local_address = le_address_manager_->GetInitiatorAddress();
     const bool in_filter_accept_list = is_device_in_accept_list(remote_address);
 
@@ -413,15 +437,11 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       }
     }
 
-    uint16_t conn_interval = connection_complete.GetConnInterval();
-    uint16_t conn_latency = connection_complete.GetConnLatency();
-    uint16_t supervision_timeout = connection_complete.GetSupervisionTimeout();
     if (!check_connection_parameters(conn_interval, conn_interval, conn_latency, supervision_timeout)) {
       LOG_ERROR("Receive connection complete with invalid connection parameters");
       return;
     }
 
-    uint16_t handle = connection_complete.GetConnectionHandle();
     auto role_specific_data = initialize_role_specific_data(role);
     auto queue = std::make_shared<AclConnection::Queue>(10);
     auto queue_down_end = queue->GetDownEnd();
@@ -463,16 +483,10 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
         le_acceptlist_callbacks_->OnLeConnectSuccess(remote_address);
       }
     }
-  }
 
-  void on_le_enhanced_connection_complete(LeMetaEventView packet) {
+    } else if (packet.GetSubeventCode() == SubeventCode::ENHANCED_CONNECTION_COMPLETE) {
     LeEnhancedConnectionCompleteView connection_complete = LeEnhancedConnectionCompleteView::Create(packet);
     ASSERT(connection_complete.IsValid());
-    auto status = connection_complete.GetStatus();
-    auto address = connection_complete.GetPeerAddress();
-    auto peer_address_type = connection_complete.GetPeerAddressType();
-    auto peer_resolvable_address = connection_complete.GetPeerResolvablePrivateAddress();
-    auto role = connection_complete.GetRole();
 
     AddressType remote_address_type;
     switch (peer_address_type) {
@@ -485,7 +499,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
         remote_address_type = AddressType::RANDOM_DEVICE_ADDRESS;
         break;
     }
-    AddressWithType remote_address(address, remote_address_type);
+    remote_address = AddressWithType(address, remote_address_type);
     const bool in_filter_accept_list = is_device_in_accept_list(remote_address);
 
 
@@ -557,14 +571,10 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     }
 
     auto role_specific_data = initialize_role_specific_data(role);
-    uint16_t conn_interval = connection_complete.GetConnInterval();
-    uint16_t conn_latency = connection_complete.GetConnLatency();
-    uint16_t supervision_timeout = connection_complete.GetSupervisionTimeout();
     if (!check_connection_parameters(conn_interval, conn_interval, conn_latency, supervision_timeout)) {
       LOG_ERROR("Receive enhenced connection complete with invalid connection parameters");
       return;
     }
-    uint16_t handle = connection_complete.GetConnectionHandle();
     auto queue = std::make_shared<AclConnection::Queue>(10);
     auto queue_down_end = queue->GetDownEnd();
     round_robin_scheduler_->Register(RoundRobinScheduler::ConnectionType::LE, handle, queue);
@@ -608,8 +618,13 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       if (le_acceptlist_callbacks_ != nullptr) {
         le_acceptlist_callbacks_->OnLeConnectSuccess(remote_address);
       }
+    }      
+    
+    } else {
+      LOG_ALWAYS_FATAL("Bad subevent code:%02x", packet.GetSubeventCode());
     }
   }
+
 
   RoleSpecificData initialize_role_specific_data(Role role) {
     if (role == hci::Role::CENTRAL) {
