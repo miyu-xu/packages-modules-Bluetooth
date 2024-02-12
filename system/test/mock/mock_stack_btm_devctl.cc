@@ -24,7 +24,6 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-#include "bt_dev_class.h"
 #include "stack/include/btm_api_types.h"
 #include "stack/include/btm_status.h"
 #include "test/common/mock_functions.h"
@@ -82,9 +81,9 @@ tBTM_STATUS BTM_SetLocalDeviceName(const char* /* p_name */) {
   inc_func_call_count(__func__);
   return BTM_SUCCESS;
 }
-DEV_CLASS BTM_ReadDeviceClass(void) {
+uint8_t* BTM_ReadDeviceClass(void) {
   inc_func_call_count(__func__);
-  return kDevClassEmpty;
+  return nullptr;
 }
 void BTM_VendorSpecificCommand(uint16_t /* opcode */, uint8_t /* param_len */,
                                uint8_t* /* p_param_buf */,
