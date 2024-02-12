@@ -21,6 +21,7 @@
 
 #include <stdbool.h>
 
+#include "stack/include/bt_dev_class.h"
 #include "stack/include/bt_device_type.h"
 #include "stack/include/bt_hdr.h"
 #ifdef __cplusplus

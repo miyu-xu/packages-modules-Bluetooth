@@ -520,10 +520,10 @@ tBTM_STATUS BTM_ReadLocalDeviceNameFromController(
  *
  * Description      This function is called to read the local device class
  *
- * Returns          the device class
+ * Returns          pointer to the device class
  *
  ******************************************************************************/
-DEV_CLASS BTM_ReadDeviceClass(void);
+uint8_t* BTM_ReadDeviceClass(void);
 
 /*******************************************************************************
  *

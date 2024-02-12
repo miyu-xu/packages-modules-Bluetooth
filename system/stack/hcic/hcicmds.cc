@@ -33,7 +33,6 @@
 #include "internal_include/bt_target.h"
 #include "main/shim/acl_api.h"
 #include "osi/include/allocator.h"
-#include "stack/include/bt_dev_class.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_lap.h"
 #include "stack/include/bt_octets.h"
@@ -978,11 +977,11 @@ void btsnd_hcic_set_event_filter(uint8_t filt_type, uint8_t filt_cond_type,
 
     if (filt_cond_type == HCI_FILTER_COND_DEVICE_CLASS) {
       DEVCLASS_TO_STREAM(pp, filt_cond);
-      filt_cond += kDevClassLength;
+      filt_cond += DEV_CLASS_LEN;
       DEVCLASS_TO_STREAM(pp, filt_cond);
-      filt_cond += kDevClassLength;
+      filt_cond += DEV_CLASS_LEN;
 
-      filt_cond_len -= (2 * kDevClassLength);
+      filt_cond_len -= (2 * DEV_CLASS_LEN);
     } else if (filt_cond_type == HCI_FILTER_COND_BD_ADDR) {
       BDADDR_TO_STREAM(pp, *((RawAddress*)filt_cond));
       filt_cond += BD_ADDR_LEN;
