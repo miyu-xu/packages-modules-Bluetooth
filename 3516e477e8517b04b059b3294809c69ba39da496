@@ -50,6 +50,24 @@
       "message": "This seems like slightly different behavior because none of this would happen if it wasn\u0027t in the list.  Is it worth having direct_connect_remove return a boolean?\n\nAre there any tests that catch these kinds of behavior changes?",
       "revId": "3516e477e8517b04b059b3294809c69ba39da496",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5023848c_e82c292f",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 1103,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-02-12T21:48:04Z",
+      "side": 1,
+      "message": "on_create_connection_timeout is called ONLY if alarms is fired.\nThis alarm, is kept in this list.\n\nNo, for that, there is most likely no test.",
+      "parentUuid": "c5a36d1b_8c50838f",
+      "revId": "3516e477e8517b04b059b3294809c69ba39da496",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
