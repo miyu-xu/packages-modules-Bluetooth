@@ -560,6 +560,7 @@ struct Controller::impl {
     vendor_capabilities_.le_address_generation_offloading_support_ = 0x00;
     vendor_capabilities_.a2dp_source_offload_capability_mask_ = 0x00;
     vendor_capabilities_.bluetooth_quality_report_support_ = 0x00;
+    vendor_capabilities_.a2dp_offload_v2_support_ = 0x00;
 
     if (!complete_view.IsValid()) {
       vendor_promise.set_value();
@@ -636,16 +637,26 @@ struct Controller::impl {
     }
     vendor_capabilities_.dynamic_audio_buffer_support_ = v103.GetDynamicAudioBufferSupport();
 
-    if (vendor_capabilities_.dynamic_audio_buffer_support_ == 0) {
+    if (vendor_capabilities_.dynamic_audio_buffer_support_) {
+      hci_->EnqueueCommand(
+          DabGetAudioBufferTimeCapabilityBuilder::Create(),
+          module_.GetHandler()->BindOnceOn(
+              this,
+              &Controller::impl::le_get_dynamic_audio_buffer_support_handler,
+              std::move(vendor_promise)));
+    }
+
+    // v1.04
+    auto v104 = LeGetVendorCapabilitiesComplete104View::Create(v103);
+    if (!v104.IsValid()) {
+      LOG_INFO("invalid data for hci requirements v1.04");
       vendor_promise.set_value();
       return;
     }
-    hci_->EnqueueCommand(
-        DabGetAudioBufferTimeCapabilityBuilder::Create(),
-        module_.GetHandler()->BindOnceOn(
-            this,
-            &Controller::impl::le_get_dynamic_audio_buffer_support_handler,
-            std::move(vendor_promise)));
+    vendor_capabilities_.a2dp_offload_v2_support_ = v104.GetA2dpOffloadV2Support();
+
+    // Done extracting vendor capabilities.
+    vendor_promise.set_value();
   }
 
   void le_get_dynamic_audio_buffer_support_handler(
