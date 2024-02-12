@@ -447,7 +447,7 @@ void AclManager::impl::Dump(
   const auto le_connectability_state_text =
       (le_impl_ != nullptr) ? connectability_state_machine_text(le_impl_->connectability_state_) : "INDETERMINATE";
   const auto le_create_connection_timeout_alarms_count =
-      (le_impl_ != nullptr) ? (int)le_impl_->create_connection_timeout_alarms_.size() : 0;
+      (le_impl_ != nullptr) ? (int)le_impl_->direct_connections_.size() : 0;
 
   auto title = fb_builder->CreateString("----- Acl Manager Dumpsys -----");
   auto le_connectability_state = fb_builder->CreateString(le_connectability_state_text);
