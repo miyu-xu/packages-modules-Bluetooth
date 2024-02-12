@@ -19,6 +19,7 @@
 #pragma once
 
 #include <stdint.h>
+
 #include <array>
 #include <string>
 
@@ -145,3 +146,12 @@ struct hash<bluetooth::Uuid> {
 };
 
 }  // namespace std
+
+#if __has_include(<bluetooth/log.h>)
+#include <bluetooth/log.h>
+
+namespace fmt {
+template <>
+struct formatter<bluetooth::Uuid> : ostream_formatter {};
+}  // namespace fmt
+#endif  // has_include(<bluetooth/log.h>)
