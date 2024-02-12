@@ -841,6 +841,7 @@ static int add_opps_sdp(const bluetooth_sdp_ops_record* rec) {
   } else {
     /* set class of device */
     cod.service = BTM_COD_SERVICE_OBJ_TRANSFER;
+    LOG_INFO("set cod object_transfer");
     utl_set_device_class(&cod, BTA_UTL_SET_COD_SERVICE_CLASS);
 
     bta_sys_add_uuid(service); /* UUID_SERVCLASS_OBEX_OBJECT_PUSH */

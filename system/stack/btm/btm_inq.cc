@@ -347,6 +347,8 @@ tBTM_STATUS BTM_SetDiscoverability(uint16_t inq_mode) {
     else
       service_class &= ~BTM_COD_SERVICE_LMTD_DISCOVER;
 
+    log::info("Changing class of device is_limited={} cod={:x} {:x} {:x}",
+              is_limited, cod[0], cod[1], cod[2]);
     FIELDS_TO_COD(cod, minor, major, service_class);
     (void)BTM_SetDeviceClass(cod);
   }

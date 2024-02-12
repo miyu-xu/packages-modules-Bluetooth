@@ -583,6 +583,7 @@ static void bta_av_api_register(tBTA_AV_DATA* p_data) {
         cod.service = BTM_COD_SERVICE_CAPTURING;
       else if (profile_initialized == UUID_SERVCLASS_AUDIO_SINK)
         cod.service = BTM_COD_SERVICE_RENDERING;
+      LOG_INFO("set service_capturing");
       utl_set_device_class(&cod, BTA_UTL_SET_COD_SERVICE_CLASS);
     } /* if 1st channel */
 

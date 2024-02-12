@@ -23,6 +23,8 @@
  ******************************************************************************/
 #include "bta/include/utl.h"
 
+#include <bluetooth/log.h>
+
 #include <cstdint>
 
 #include "internal_include/bt_target.h"
@@ -205,6 +207,10 @@ bool utl_set_device_class(tBTA_UTL_COD* p_cod, uint8_t cmd) {
   DEV_CLASS dev_class;
   FIELDS_TO_COD(dev_class, minor, major, service);
 
+  bluetooth::log::info("old_class = {:x} {:x} {:x}", old_class[0], old_class[1],
+                       old_class[2]);
+  bluetooth::log::info("Setting dev_class = {:x} {:x} {:x}", dev_class[0],
+                       dev_class[1], dev_class[2]);
   if (BTM_SetDeviceClass(dev_class) == BTM_SUCCESS) return true;
 
   return false;
