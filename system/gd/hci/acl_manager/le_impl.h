@@ -761,12 +761,11 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void direct_connect_add(AddressWithType address_with_type) {
-    direct_connections_.insert(address_with_type);
-    if (create_connection_timeout_alarms_.find(address_with_type) != create_connection_timeout_alarms_.end()) {
+    if (direct_connections_.find(address_with_type) != direct_connections_.end()) {
       return;
     }
 
-    auto emplace_result = create_connection_timeout_alarms_.emplace(
+    auto emplace_result = direct_connections_.emplace(
         std::piecewise_construct,
         std::forward_as_tuple(address_with_type.GetAddress(), address_with_type.GetAddressType()),
         std::forward_as_tuple(handler_));
@@ -778,12 +777,11 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void direct_connect_remove(AddressWithType address_with_type) {
-    auto it = create_connection_timeout_alarms_.find(address_with_type);
-    if (it != create_connection_timeout_alarms_.end()) {
+    auto it = direct_connections_.find(address_with_type);
+    if (it != direct_connections_.end()) {
       it->second.Cancel();
-      create_connection_timeout_alarms_.erase(it);
+      direct_connections_.erase(it);
     }
-    direct_connections_.erase(address_with_type);
   }
 
   void add_device_to_accept_list(AddressWithType address_with_type) {
@@ -1312,7 +1310,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   std::unordered_set<AddressWithType> connecting_le_{};
   bool arm_on_resume_{};
   bool arm_on_disarm_{};
-  std::unordered_set<AddressWithType> direct_connections_{};
+  std::map<AddressWithType, os::Alarm> direct_connections_{};
   // Set of devices that will not be removed from accept list after direct connect timeout
   std::unordered_set<AddressWithType> background_connections_;
   /* This is content of controller "Filter Accept List"*/
@@ -1324,7 +1322,6 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   bool disarmed_while_arming_ = false;
   bool system_suspend_ = false;
   ConnectabilityState connectability_state_{ConnectabilityState::DISARMED};
-  std::map<AddressWithType, os::Alarm> create_connection_timeout_alarms_{};
 };
 
 }  // namespace acl_manager
