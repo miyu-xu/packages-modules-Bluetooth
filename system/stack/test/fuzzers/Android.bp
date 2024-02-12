@@ -47,7 +47,6 @@ cc_defaults {
         "libbte",
         "libbtif",
         "libbtif-core",
-        "libcom.android.sysprop.bluetooth.wrapped",
         "libg722codec",
         "liblc3",
         "libopus",
