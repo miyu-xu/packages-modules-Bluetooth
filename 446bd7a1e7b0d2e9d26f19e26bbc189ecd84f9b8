@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56db95e5_0f171eaa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-12T18:04:31Z",
+      "side": 1,
+      "message": "nit: This test doesn\u0027t cover that part of the code.\n\nI think `N/A` would be more accurate here.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 75
+      },
+      "revId": "446bd7a1e7b0d2e9d26f19e26bbc189ecd84f9b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
