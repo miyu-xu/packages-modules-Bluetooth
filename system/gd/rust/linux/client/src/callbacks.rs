@@ -840,7 +840,7 @@ impl RPCProxy for BtGattCallback {
 
 pub(crate) struct BtGattServerCallback {
     objpath: String,
-    _context: Arc<Mutex<ClientContext>>,
+    context: Arc<Mutex<ClientContext>>,
 
     dbus_connection: Arc<SyncConnection>,
     dbus_crossroads: Arc<Mutex<Crossroads>>,
@@ -849,17 +849,18 @@ pub(crate) struct BtGattServerCallback {
 impl BtGattServerCallback {
     pub(crate) fn new(
         objpath: String,
-        _context: Arc<Mutex<ClientContext>>,
+        context: Arc<Mutex<ClientContext>>,
         dbus_connection: Arc<SyncConnection>,
         dbus_crossroads: Arc<Mutex<Crossroads>>,
     ) -> Self {
-        Self { objpath, _context, dbus_connection, dbus_crossroads }
+        Self { objpath, context, dbus_connection, dbus_crossroads }
     }
 }
 
 impl IBluetoothGattServerCallback for BtGattServerCallback {
     fn on_server_registered(&mut self, status: GattStatus, server_id: i32) {
         print_info!("GATT Server registered status = {}, server_id = {}", status, server_id);
+        self.context.lock().unwrap().gatt_server_context.server_id = Some(server_id);
     }
 
     fn on_server_connection_state(&mut self, server_id: i32, connected: bool, addr: String) {
