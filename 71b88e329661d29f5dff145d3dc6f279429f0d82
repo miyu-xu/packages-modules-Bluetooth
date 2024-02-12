@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b74c664_f886db6e",
+        "filename": "android/app/src/com/android/bluetooth/BluetoothMethodProxy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-12T22:23:53Z",
+      "side": 1,
+      "message": "could you help to explain the motivation of introducing those 2?\n\nsince getDefaultAdapter() is deprecated, should we consider to use AdapterService from Bass service?\ne.g.\nmAdapterService.getDeviceFromByte",
+      "revId": "71b88e329661d29f5dff145d3dc6f279429f0d82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
