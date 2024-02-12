@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b088edf7_8761a033",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-12T23:02:42Z",
+      "side": 1,
+      "message": "Need a bug number",
+      "range": {
+        "startLine": 12,
+        "startChar": 5,
+        "endLine": 12,
+        "endChar": 9
+      },
+      "revId": "902a5985ac5509cc2cbbf2cc4b9fe016f6422530",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
