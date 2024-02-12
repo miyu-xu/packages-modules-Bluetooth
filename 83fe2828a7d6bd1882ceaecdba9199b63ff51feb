@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93b0cf8a_b30bb577",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-02-12T23:40:14Z",
+      "side": 1,
+      "message": "Why do we need both FromPrimitive from num_derive and num_traits?",
+      "revId": "83fe2828a7d6bd1882ceaecdba9199b63ff51feb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b573520_a8c75e07",
+        "filename": "system/gd/rust/topshim/controller/controller_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-02-12T23:40:14Z",
+      "side": 1,
+      "message": "Does the controller function get_ble_supported_states returns uint8_t? Will this cause uninitialized value in states? I am a bit confused with the bit shift above `self.le_supported_states \u003e\u003e 38`.",
+      "range": {
+        "startLine": 49,
+        "startChar": 2,
+        "endLine": 49,
+        "endChar": 8
+      },
+      "revId": "83fe2828a7d6bd1882ceaecdba9199b63ff51feb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
