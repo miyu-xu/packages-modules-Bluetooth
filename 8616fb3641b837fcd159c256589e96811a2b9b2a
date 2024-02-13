@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bb03a6a_cb254289",
+        "filename": "system/stack/hid/hidd_conn.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 816,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-13T19:18:45Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 812,
+        "startChar": 0,
+        "endLine": 816,
+        "endChar": 6
+      },
+      "revId": "8616fb3641b837fcd159c256589e96811a2b9b2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
