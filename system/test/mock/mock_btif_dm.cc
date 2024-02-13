@@ -113,7 +113,7 @@ void btif_dm_hh_open_failed(RawAddress* /* bdaddr */) {
   inc_func_call_count(__func__);
 }
 void btif_dm_init(uid_set_t* /* set */) { inc_func_call_count(__func__); }
-void btif_dm_get_local_class_of_device(DEV_CLASS /* device_class */) {
+void btif_dm_get_local_class_of_device(DEV_CLASS* /* device_class */) {
   inc_func_call_count(__func__);
 }
 void btif_dm_load_ble_local_keys(void) { inc_func_call_count(__func__); }

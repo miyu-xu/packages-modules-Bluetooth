@@ -22,7 +22,6 @@
  *
  ******************************************************************************/
 
-#include "bt_dev_class.h"
 #define LOG_TAG "bt_btm_ble"
 
 #include <android_bluetooth_flags.h>
@@ -60,6 +59,7 @@
 #include "stack/include/acl_api.h"
 #include "stack/include/advertise_data_parser.h"
 #include "stack/include/ble_scanner.h"
+#include "stack/include/bt_dev_class.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/bt_uuid16.h"
 #include "stack/include/btm_api_types.h"
@@ -2269,7 +2269,7 @@ static DEV_CLASS btm_ble_appearance_to_cod(uint16_t appearance) {
 }
 
 bool btm_ble_get_appearance_as_cod(std::vector<uint8_t> const& data,
-                                   DEV_CLASS dev_class) {
+                                   DEV_CLASS* dev_class) {
   /* Check to see the BLE device has the Appearance UUID in the advertising
    * data. If it does then try to convert the appearance value to a class of
    * device value Fluoride can use. Otherwise fall back to trying to infer if
@@ -2279,7 +2279,7 @@ bool btm_ble_get_appearance_as_cod(std::vector<uint8_t> const& data,
   const uint8_t* p_uuid16 = AdvertiseDataParser::GetFieldByType(
       data, BTM_BLE_AD_TYPE_APPEARANCE, &len);
   if (p_uuid16 && len == 2) {
-    dev_class =
+    *dev_class =
         btm_ble_appearance_to_cod((uint16_t)p_uuid16[0] | (p_uuid16[1] << 8));
     return true;
   }
@@ -2294,9 +2294,9 @@ bool btm_ble_get_appearance_as_cod(std::vector<uint8_t> const& data,
     /* if this BLE device supports HID over LE, set HID Major in class of
      * device */
     if ((p_uuid16[i] | (p_uuid16[i + 1] << 8)) == UUID_SERVCLASS_LE_HID) {
-      dev_class[0] = 0;
-      dev_class[1] = BTM_COD_MAJOR_PERIPHERAL;
-      dev_class[2] = 0;
+      (*dev_class)[0] = 0;
+      (*dev_class)[1] = BTM_COD_MAJOR_PERIPHERAL;
+      (*dev_class)[2] = 0;
       return true;
     }
   }
@@ -2352,7 +2352,7 @@ void btm_ble_update_inq_result(tINQ_DB_ENT* p_i, uint8_t addr_type,
       p_cur->flag = *p_flag;
     }
 
-    btm_ble_get_appearance_as_cod(data, p_cur->dev_class);
+    btm_ble_get_appearance_as_cod(data, &p_cur->dev_class);
 
     const uint8_t* p_rsi =
         AdvertiseDataParser::GetFieldByType(data, BTM_BLE_AD_TYPE_RSI, &len);
