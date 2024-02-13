@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52aeefe9_b64951ae",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-13T09:03:06Z",
+      "side": 0,
+      "message": "for backward compatibility, even flag is enabled, we need to call old callback.",
+      "revId": "614617368bafd43ce79a0cd3ffade3fcefb37610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
