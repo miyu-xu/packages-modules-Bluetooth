@@ -20,6 +20,7 @@
 #include "btif_profile_storage.h"
 
 #include <alloca.h>
+#include <android_bluetooth_flags.h>
 #include <base/logging.h>
 #include <bluetooth/log.h>
 #include <stdlib.h>
@@ -93,26 +94,35 @@ using namespace bluetooth;
  ******************************************************************************/
 
 bt_status_t btif_storage_add_hid_device_info(
-    RawAddress* remote_bd_addr, uint16_t attr_mask, uint8_t sub_class,
+    tAclLinkSpec* link_spec, uint16_t attr_mask, uint8_t sub_class,
     uint8_t app_id, uint16_t vendor_id, uint16_t product_id, uint16_t version,
     uint8_t ctry_code, uint16_t ssr_max_latency, uint16_t ssr_min_tout,
     uint16_t dl_len, uint8_t* dsc_list) {
   log::verbose("btif_storage_add_hid_device_info:");
-  std::string bdstr = remote_bd_addr->ToString();
+  std::string bdstr = link_spec->addrt.bda.ToString();
   btif_config_set_int(bdstr, BTIF_STORAGE_KEY_HID_ATTR_MASK, attr_mask);
   btif_config_set_int(bdstr, BTIF_STORAGE_KEY_HID_SUB_CLASS, sub_class);
   btif_config_set_int(bdstr, BTIF_STORAGE_KEY_HID_APP_ID, app_id);
   btif_config_set_int(bdstr, BTIF_STORAGE_KEY_HID_VENDOR_ID, vendor_id);
   btif_config_set_int(bdstr, BTIF_STORAGE_KEY_HID_PRODUCT_ID, product_id);
-  btif_config_set_int(bdstr, BTIF_STORAGE_KEY_HID_VERSION, version);
   btif_config_set_int(bdstr, BTIF_STORAGE_KEY_HID_COUNTRY_CODE, ctry_code);
-  btif_config_set_int(bdstr, BTIF_STORAGE_KEY_HID_SSR_MAX_LATENCY,
-                      ssr_max_latency);
-  btif_config_set_int(bdstr, BTIF_STORAGE_KEY_HID_SSR_MIN_TIMEOUT,
-                      ssr_min_tout);
-  if (dl_len > 0)
-    btif_config_set_bin(bdstr, BTIF_STORAGE_KEY_HID_DESCRIPTOR, dsc_list,
-                        dl_len);
+
+  if (!IS_FLAG_ENABLED(allow_switching_hid_and_hogp) ||
+      link_spec->transport != BT_TRANSPORT_LE) {
+    btif_config_set_int(bdstr, BTIF_STORAGE_KEY_HID_VERSION, version);
+    btif_config_set_int(bdstr, BTIF_STORAGE_KEY_HID_SSR_MAX_LATENCY,
+                        ssr_max_latency);
+    btif_config_set_int(bdstr, BTIF_STORAGE_KEY_HID_SSR_MIN_TIMEOUT,
+                        ssr_min_tout);
+    if (dl_len > 0)
+      btif_config_set_bin(bdstr, BTIF_STORAGE_KEY_HID_DESCRIPTOR, dsc_list,
+                          dl_len);
+  } else {
+    btif_config_set_int(bdstr, BTIF_STORAGE_KEY_HID_DB_VERSION, version);
+    if (dl_len > 0)
+      btif_config_set_bin(bdstr, BTIF_STORAGE_KEY_HOGP_DESCRIPTOR, dsc_list,
+                          dl_len);
+  }
   return BT_STATUS_SUCCESS;
 }
 
@@ -129,17 +139,32 @@ bt_status_t btif_storage_add_hid_device_info(
 bt_status_t btif_storage_load_bonded_hid_info(void) {
   for (const auto& bd_addr : btif_config_get_paired_devices()) {
     auto name = bd_addr.ToString();
-    tAclLinkSpec link_spec;
+    tAclLinkSpec link_spec = {};
+    link_spec.addrt.bda = bd_addr;
 
     log::verbose("Remote device:{}", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
 
     int value;
+    btif_config_get_int(name, BTIF_STORAGE_KEY_ADDR_TYPE, &value);
+    link_spec.addrt.type = (tBLE_ADDR_TYPE)value;
+
+    if (IS_FLAG_ENABLED(allow_switching_hid_and_hogp)) {
+      btif_config_get_int(name, BTIF_STORAGE_KEY_ADDR_TYPE, &value);
+      link_spec.addrt.type = (tBLE_ADDR_TYPE)value;
+
+      btif_config_get_int(name, BTIF_STORAGE_KEY_HID_PREFERRED_TRANSPORT,
+                          &value);
+      link_spec.transport = (tBT_TRANSPORT)value;
+    } else {
+      link_spec.addrt.type = BLE_ADDR_PUBLIC;
+      link_spec.transport = BT_TRANSPORT_AUTO;
+    }
     if (!btif_config_get_int(name, BTIF_STORAGE_KEY_HID_ATTR_MASK, &value))
       continue;
     uint16_t attr_mask = (uint16_t)value;
 
     if (btif_in_fetch_bonded_device(name) != BT_STATUS_SUCCESS) {
-      btif_storage_remove_hid_info(bd_addr);
+      btif_storage_remove_hid_info(link_spec);
       continue;
     }
 
@@ -158,33 +183,45 @@ bt_status_t btif_storage_load_bonded_hid_info(void) {
     btif_config_get_int(name, BTIF_STORAGE_KEY_HID_PRODUCT_ID, &value);
     dscp_info.product_id = (uint16_t)value;
 
-    btif_config_get_int(name, BTIF_STORAGE_KEY_HID_VERSION, &value);
-    dscp_info.version = (uint16_t)value;
-
     btif_config_get_int(name, BTIF_STORAGE_KEY_HID_COUNTRY_CODE, &value);
     dscp_info.ctry_code = (uint8_t)value;
 
-    value = 0;
-    btif_config_get_int(name, BTIF_STORAGE_KEY_HID_SSR_MAX_LATENCY, &value);
-    dscp_info.ssr_max_latency = (uint16_t)value;
+    if (!IS_FLAG_ENABLED(allow_switching_hid_and_hogp) ||
+        link_spec.transport == BT_TRANSPORT_AUTO) {
+      btif_config_get_int(name, BTIF_STORAGE_KEY_HID_VERSION, &value);
+      dscp_info.version = (uint16_t)value;
 
-    value = 0;
-    btif_config_get_int(name, BTIF_STORAGE_KEY_HID_SSR_MIN_TIMEOUT, &value);
-    dscp_info.ssr_min_tout = (uint16_t)value;
+      value = 0;
+      btif_config_get_int(name, BTIF_STORAGE_KEY_HID_SSR_MAX_LATENCY, &value);
+      dscp_info.ssr_max_latency = (uint16_t)value;
 
-    size_t len =
-        btif_config_get_bin_length(name, BTIF_STORAGE_KEY_HID_DESCRIPTOR);
-    if (len > 0) {
-      dscp_info.descriptor.dl_len = (uint16_t)len;
-      dscp_info.descriptor.dsc_list = (uint8_t*)alloca(len);
-      btif_config_get_bin(name, BTIF_STORAGE_KEY_HID_DESCRIPTOR,
-                          (uint8_t*)dscp_info.descriptor.dsc_list, &len);
+      value = 0;
+      btif_config_get_int(name, BTIF_STORAGE_KEY_HID_SSR_MIN_TIMEOUT, &value);
+      dscp_info.ssr_min_tout = (uint16_t)value;
+
+      size_t len =
+          btif_config_get_bin_length(name, BTIF_STORAGE_KEY_HID_DESCRIPTOR);
+      if (len > 0) {
+        dscp_info.descriptor.dl_len = (uint16_t)len;
+        dscp_info.descriptor.dsc_list = (uint8_t*)alloca(len);
+        btif_config_get_bin(name, BTIF_STORAGE_KEY_HID_DESCRIPTOR,
+                            (uint8_t*)dscp_info.descriptor.dsc_list, &len);
+      }
+    } else {
+      btif_config_get_int(name, BTIF_STORAGE_KEY_HID_DB_VERSION, &value);
+      dscp_info.version = (uint16_t)value;
+
+      size_t len =
+          btif_config_get_bin_length(name, BTIF_STORAGE_KEY_HOGP_DESCRIPTOR);
+      if (len > 0) {
+        dscp_info.descriptor.dl_len = (uint16_t)len;
+        dscp_info.descriptor.dsc_list = (uint8_t*)alloca(len);
+        btif_config_get_bin(name, BTIF_STORAGE_KEY_HOGP_DESCRIPTOR,
+                            (uint8_t*)dscp_info.descriptor.dsc_list, &len);
+      }
     }
 
     // add extracted information to BTA HH
-    link_spec.addrt.bda = bd_addr;
-    link_spec.addrt.type = BLE_ADDR_PUBLIC;
-    link_spec.transport = BT_TRANSPORT_AUTO;
     if (btif_hh_add_added_dev(link_spec, attr_mask)) {
       BTA_HhAddDev(link_spec, attr_mask, sub_class, app_id, dscp_info);
     }
@@ -204,21 +241,28 @@ bt_status_t btif_storage_load_bonded_hid_info(void) {
  *                  BT_STATUS_FAIL otherwise
  *
  ******************************************************************************/
-bt_status_t btif_storage_remove_hid_info(const RawAddress& remote_bd_addr) {
-  std::string bdstr = remote_bd_addr.ToString();
+bt_status_t btif_storage_remove_hid_info(const tAclLinkSpec& link_spec) {
+  std::string bdstr = link_spec.addrt.bda.ToString();
 
   btif_config_remove(bdstr, BTIF_STORAGE_KEY_HID_ATTR_MASK);
   btif_config_remove(bdstr, BTIF_STORAGE_KEY_HID_SUB_CLASS);
   btif_config_remove(bdstr, BTIF_STORAGE_KEY_HID_APP_ID);
   btif_config_remove(bdstr, BTIF_STORAGE_KEY_HID_VENDOR_ID);
   btif_config_remove(bdstr, BTIF_STORAGE_KEY_HID_PRODUCT_ID);
-  btif_config_remove(bdstr, BTIF_STORAGE_KEY_HID_VERSION);
   btif_config_remove(bdstr, BTIF_STORAGE_KEY_HID_COUNTRY_CODE);
-  btif_config_remove(bdstr, BTIF_STORAGE_KEY_HID_SSR_MAX_LATENCY);
-  btif_config_remove(bdstr, BTIF_STORAGE_KEY_HID_SSR_MIN_TIMEOUT);
-  btif_config_remove(bdstr, BTIF_STORAGE_KEY_HID_DESCRIPTOR);
   btif_config_remove(bdstr, BTIF_STORAGE_KEY_HID_REPORT);
   btif_config_remove(bdstr, BTIF_STORAGE_KEY_HID_REPORT_VERSION);
+
+  if (!IS_FLAG_ENABLED(allow_switching_hid_and_hogp) ||
+      link_spec.transport != BT_TRANSPORT_LE) {
+    btif_config_remove(bdstr, BTIF_STORAGE_KEY_HID_VERSION);
+    btif_config_remove(bdstr, BTIF_STORAGE_KEY_HID_SSR_MAX_LATENCY);
+    btif_config_remove(bdstr, BTIF_STORAGE_KEY_HID_SSR_MIN_TIMEOUT);
+    btif_config_remove(bdstr, BTIF_STORAGE_KEY_HID_DESCRIPTOR);
+  } else {
+    btif_config_remove(bdstr, BTIF_STORAGE_KEY_HOGP_DESCRIPTOR);
+    btif_config_remove(bdstr, BTIF_STORAGE_KEY_HID_DB_VERSION);
+  }
   return BT_STATUS_SUCCESS;
 }
 
@@ -1075,6 +1119,38 @@ bt_status_t btif_storage_remove_hidd(RawAddress* remote_bd_addr) {
   btif_config_remove(remote_bd_addr->ToString(),
                      BTIF_STORAGE_KEY_HID_DEVICE_CABLED);
 
+  return BT_STATUS_SUCCESS;
+}
+
+/*******************************************************************************
+ *
+ * Function         btif_storage_set_hid_preferred_transport
+ *
+ * Description      Stores preferred transport info in nvram
+ *
+ * Returns          BT_STATUS_SUCCESS
+ *
+ ******************************************************************************/
+bt_status_t btif_storage_set_hid_preferred_transport(
+    const RawAddress* remote_bd_addr, tBT_TRANSPORT transport) {
+  btif_config_set_int(remote_bd_addr->ToString(),
+                      BTIF_STORAGE_KEY_HID_PREFERRED_TRANSPORT, transport);
+  return BT_STATUS_SUCCESS;
+}
+
+/*******************************************************************************
+ *
+ * Function         btif_storage_clear_hid_preferred_transport
+ *
+ * Description      Removes preferred transport info from nvram
+ *
+ * Returns          BT_STATUS_SUCCESS
+ *
+ ******************************************************************************/
+bt_status_t btif_storage_clear_hid_preferred_transport(
+    const RawAddress* remote_bd_addr) {
+  btif_config_remove(remote_bd_addr->ToString(),
+                     BTIF_STORAGE_KEY_HID_PREFERRED_TRANSPORT);
   return BT_STATUS_SUCCESS;
 }
 
