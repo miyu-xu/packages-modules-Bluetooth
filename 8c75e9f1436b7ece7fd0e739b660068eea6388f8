@@ -22,6 +22,30 @@
       },
       "revId": "8c75e9f1436b7ece7fd0e739b660068eea6388f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21d57724_886ece0a",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-02-13T07:42:30Z",
+      "side": 1,
+      "message": "I agree with you that from coding point of view this is not necessary and I even try to make similar thing in another patch. Unfortunately without flag checking, presumbit complains about that as a warning because there is call of flagged callback inside:\nexecutor.execute(() -\u003e callback.onGroupStreamStatusChanged(groupId, groupStreamStatus));",
+      "parentUuid": "a53cd486_75aacc96",
+      "range": {
+        "startLine": 207,
+        "startChar": 30,
+        "endLine": 207,
+        "endChar": 64
+      },
+      "revId": "8c75e9f1436b7ece7fd0e739b660068eea6388f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
