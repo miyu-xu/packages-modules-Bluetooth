@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57f224b3_dac7ecb1",
+        "filename": "system/main/shim/stack.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-13T16:34:57Z",
+      "side": 0,
+      "message": "This is redundant and surfaces only with a memory constrained unit test where os::thread is created twice and deleted once.",
+      "revId": "5c664cbcb6e986aca4e0d457575a1990b1b5a0e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
