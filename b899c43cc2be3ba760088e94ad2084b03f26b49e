@@ -106,6 +106,24 @@
       "parentUuid": "47c8b332_e944f4a0",
       "revId": "b899c43cc2be3ba760088e94ad2084b03f26b49e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9ebf533_ea45757e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-13T22:59:32Z",
+      "side": 1,
+      "message": "`SuppressLint` only works for AST based linters, not ayeaye no?",
+      "parentUuid": "e916b30a_7c56713e",
+      "revId": "b899c43cc2be3ba760088e94ad2084b03f26b49e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
