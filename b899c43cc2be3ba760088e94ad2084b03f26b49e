@@ -88,6 +88,24 @@
       "parentUuid": "9064e027_a9c01b7f",
       "revId": "b899c43cc2be3ba760088e94ad2084b03f26b49e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e916b30a_7c56713e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-13T22:55:02Z",
+      "side": 1,
+      "message": "There\u0027s a @SuppressLint annotation you can use.",
+      "parentUuid": "47c8b332_e944f4a0",
+      "revId": "b899c43cc2be3ba760088e94ad2084b03f26b49e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
