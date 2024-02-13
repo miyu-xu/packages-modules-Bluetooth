@@ -15,12 +15,12 @@
 import re
 import sys
 
-from mmi2grpc._helpers import assert_description
-from mmi2grpc._proxy import ProfileProxy
+from _helpers import assert_description
+from _proxy import ProfileProxy
 
 from pandora.host_grpc import Host
-from pandora_experimental.pan_grpc import PAN
-from pandora_experimental.os_grpc import Os
+from pandora.pan_grpc import PAN
+from pandora.os_grpc import Os
 
 # IP address of PTS
 TSPX_PTS_IP_ADDRESS = "192.168.168.100"

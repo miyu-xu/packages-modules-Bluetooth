@@ -363,6 +363,20 @@ class FlossGattServer(GattServerCallbacks):
             for observer in self.observers.values():
                 observer.on_characteristic_read_request(addr, trans_id, offset, is_long, handle)
 
+        def OnCharacteristicWriteRequest(self, addr, trans_id, offset,len, is_prep,need_rsp, handle,value):
+            """Handles characteristic write request callback.
+
+            Args:
+                addr: Remote device MAC address.
+                trans_id: Transaction id.
+                offset: Represents the offset from which the attribute value should be read.
+                is_long: A boolean value representing whether the characteristic size is longer than what we can put in
+                         the ATT PDU.
+                handle: The characteristic handle.
+            """
+            for observer in self.observers.values():
+                observer.on_characteristic_write_request(addr, trans_id, offset,len, is_prep,need_rsp, handle,value)
+
         def OnDescriptorReadRequest(self, addr, trans_id, offset, is_long, handle):
             """Handles descriptor read request callback.
 
@@ -376,22 +390,6 @@ class FlossGattServer(GattServerCallbacks):
             """
             for observer in self.observers.values():
                 observer.on_descriptor_read_request(addr, trans_id, offset, is_long, handle)
-
-        def OnCharacteristicWrite(self, addr, trans_id, offset, len, is_prep, need_rsp, handle, value):
-            """Handles characteristic write request callback.
-
-            Args:
-                addr: Remote device MAC address.
-                trans_id: Transaction id.
-                offset: Represents the offset at which the attribute value should be written.
-                len: The length of the attribute value that should be written.
-                is_prep: A boolean value representing whether it's a "prepare write" command.
-                need_rsp: A boolean value representing whether it's a "write no response" command.
-                handle: The characteristic handle.
-                value: The value that should be written to the attribute.
-            """
-            for observer in self.observers.values():
-                observer.on_characteristic_write_request(addr, trans_id, offset, len, is_prep, need_rsp, handle, value)
 
         def OnDescriptorWriteRequest(self, addr, trans_id, offset, len, is_prep, need_rsp, handle, value):
             """Handles descriptor write request callback.
@@ -511,6 +509,7 @@ class FlossGattServer(GattServerCallbacks):
         self.bus.register_object(self.cb_dbus_objpath, self.callbacks, None)
         self.server_connect_id = None
         self.server_id = None
+        self.negociated_mtu = -1
 
     def __del__(self):
         """Destructor."""
@@ -575,6 +574,10 @@ class FlossGattServer(GattServerCallbacks):
                      ATT PDU.
             handle: The characteristic handle.
         """
+        if self.negociated_mtu != -1:
+            self.proxy().SendResponse(self.server_id, addr, trans_id, 0, offset, bytearray(self.negociated_mtu))
+        else:
+            self.proxy().SendResponse(self.server_id, addr, trans_id, 0, offset, bytearray(512 - int(offset)))
         logging.debug(
             'on_characteristic_read_request: device address: %s, trans_id: %s, offset: %s, is_long: %s, handle: %s',
             addr, trans_id, offset, is_long, handle)
@@ -612,6 +615,8 @@ class FlossGattServer(GattServerCallbacks):
         logging.debug(
             'on_characteristic_write_request: device address: %s, trans_id: %s, offset: %s, length: %s, is_prep: %s, '
             'need_rsp: %s, handle: %s, values: %s', addr, trans_id, offset, len, is_prep, need_rsp, handle, value)
+
+        self.proxy().SendResponse(self.server_id, addr, trans_id, 0, offset, bytearray(value))
 
     @utils.glib_callback()
     def on_descriptor_write_request(self, addr, trans_id, offset, len, is_prep, need_rsp, handle, value):
@@ -660,6 +665,7 @@ class FlossGattServer(GattServerCallbacks):
             addr: Remote device MAC address.
             mtu: Maximum transmission unit.
         """
+        self.negociated_mtu = mtu
         logging.debug('on_mtu_changed: device address: %s, mtu : %s', addr, mtu)
 
     @utils.glib_callback()
