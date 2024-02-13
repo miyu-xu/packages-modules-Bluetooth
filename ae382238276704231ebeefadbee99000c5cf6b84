@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aeb0060f_ab36163c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-02-13T03:01:57Z",
+      "side": 1,
+      "message": "They were failing by 1ms, so decided on a value of 10ms increase. Will monitor the test flakiness after merging this CL and reinvestigate if the flakiness isn\u0027t fixed.",
+      "parentUuid": "186c8df5_bf8e16bb",
+      "range": {
+        "startLine": 103,
+        "startChar": 46,
+        "endLine": 103,
+        "endChar": 48
+      },
+      "revId": "ae382238276704231ebeefadbee99000c5cf6b84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d7579fed_490e2440",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-02-08T12:35:42Z",
       "side": 1,
       "message": "Can we change this with two assertions?\n\nassertThat(...).isGreaterThan();\nassertThat(...).isGreaterThan();",
+      "range": {
+        "startLine": 1367,
+        "startChar": 12,
+        "endLine": 1368,
+        "endChar": 91
+      },
+      "revId": "ae382238276704231ebeefadbee99000c5cf6b84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af338356_0c439e58",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1368,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-02-13T03:01:57Z",
+      "side": 1,
+      "message": "Got it. Fixed to `isAtLeast` and `isAtMost` since we\u0027re checking \u0027is greater/less then or equal to\u0027 in this test.",
+      "parentUuid": "d7579fed_490e2440",
       "range": {
         "startLine": 1367,
         "startChar": 12,
