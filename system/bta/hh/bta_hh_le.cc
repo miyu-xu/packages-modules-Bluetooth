@@ -243,6 +243,7 @@ static uint8_t bta_hh_le_get_le_dev_hdl(uint8_t cb_index) {
  ******************************************************************************/
 void bta_hh_le_open_conn(tBTA_HH_DEV_CB* p_cb, const RawAddress& remote_bda) {
   tBTA_HH_STATUS status = BTA_HH_ERR_NO_RES;
+  bta_hh_cb.p_cur = p_cb;
 
   /* update cb_index[] map */
   p_cb->hid_handle = bta_hh_le_get_le_dev_hdl(p_cb->index);
