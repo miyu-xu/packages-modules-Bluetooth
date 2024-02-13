@@ -239,6 +239,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "366f48fe_f0054b69",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 1529,
+      "author": {
+        "id": 1302832
+      },
+      "writtenOn": "2024-02-13T09:40:46Z",
+      "side": 1,
+      "message": "@henrichataing@google.com The below OPENSSL function can be used for this random generator?\nint RAND_pseudo_bytes(uint8_t *buf, size_t len)\nIs it ok to use?",
+      "parentUuid": "06375e7a_1f61e802",
+      "range": {
+        "startLine": 1521,
+        "startChar": 0,
+        "endLine": 1529,
+        "endChar": 29
+      },
+      "revId": "4a2a08a206f76673f0ae26f7670dc2f2ad6f14f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0ca0d82d_6a1c8ad7",
         "filename": "system/gd/rust/common/src/init_flags.rs",
         "patchSetId": 16
