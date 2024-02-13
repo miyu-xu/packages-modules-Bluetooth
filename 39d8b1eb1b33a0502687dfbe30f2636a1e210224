@@ -308,6 +308,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "77a52e0d_1ae2a4e3",
+        "filename": "sysprop/hfp.sysprop",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2024-02-13T13:24:05Z",
+      "side": 1,
+      "message": "Thank you. Could someone confirm if this property can be set from vendor?",
+      "parentUuid": "1084c31c_38eb5ef4",
+      "range": {
+        "startLine": 50,
+        "startChar": 16,
+        "endLine": 50,
+        "endChar": 23
+      },
+      "revId": "39d8b1eb1b33a0502687dfbe30f2636a1e210224",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b379ae3_80c7fb7b",
