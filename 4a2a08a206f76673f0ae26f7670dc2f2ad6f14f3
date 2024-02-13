@@ -263,6 +263,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "04fe18fc_a3f29193",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 1529,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-13T16:25:40Z",
+      "side": 1,
+      "message": "That is appropriate 👍\nThere is precedent for including `\u003copenssl/rand.h\u003e` in the stack.",
+      "parentUuid": "366f48fe_f0054b69",
+      "range": {
+        "startLine": 1521,
+        "startChar": 0,
+        "endLine": 1529,
+        "endChar": 29
+      },
+      "revId": "4a2a08a206f76673f0ae26f7670dc2f2ad6f14f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0ca0d82d_6a1c8ad7",
         "filename": "system/gd/rust/common/src/init_flags.rs",
         "patchSetId": 16
