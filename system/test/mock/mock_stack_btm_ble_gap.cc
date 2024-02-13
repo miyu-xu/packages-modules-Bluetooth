@@ -138,7 +138,7 @@ void btm_ble_increment_link_topology_mask(uint8_t /* link_role */) {
 }
 void btm_ble_init(void) { inc_func_call_count(__func__); }
 bool btm_ble_get_appearance_as_cod(std::vector<uint8_t> const& /* data */,
-                                   DEV_CLASS /* dev_class */) {
+                                   DEV_CLASS* /* dev_class */) {
   inc_func_call_count(__func__);
   return false;
 }

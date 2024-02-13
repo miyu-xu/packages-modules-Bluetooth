@@ -144,7 +144,7 @@ void btm_ble_process_adv_addr(RawAddress& raw_address,
                               tBLE_ADDR_TYPE* address_type);
 
 extern bool btm_ble_get_appearance_as_cod(std::vector<uint8_t> const& data,
-                                          DEV_CLASS dev_class);
+                                          DEV_CLASS* dev_class);
 
 using bluetooth::shim::BleScannerInterfaceImpl;
 
@@ -810,7 +810,7 @@ void BleScannerInterfaceImpl::handle_remote_properties(
   }
 
   DEV_CLASS dev_class;
-  if (btm_ble_get_appearance_as_cod(advertising_data, dev_class)) {
+  if (btm_ble_get_appearance_as_cod(advertising_data, &dev_class)) {
     btif_dm_update_ble_remote_properties(bd_addr, bdname.name, dev_class,
                                          device_type);
   }

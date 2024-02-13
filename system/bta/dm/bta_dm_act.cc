@@ -239,7 +239,7 @@ void BTA_dm_on_hw_on() {
   memset(&bta_dm_conn_srvcs, 0, sizeof(bta_dm_conn_srvcs));
   memset(&bta_dm_di_cb, 0, sizeof(tBTA_DM_DI_CB));
 
-  btif_dm_get_local_class_of_device(dev_class);
+  btif_dm_get_local_class_of_device(&dev_class);
   LOG_INFO("%s: Read default class of device {0x%x, 0x%x, 0x%x}", __func__,
       dev_class[0], dev_class[1], dev_class[2]);
 

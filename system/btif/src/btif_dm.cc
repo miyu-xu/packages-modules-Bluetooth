@@ -2920,7 +2920,7 @@ void btif_dm_ssp_reply(const RawAddress bd_addr, bt_ssp_variant_t variant,
  *                  the default "unclassified" value will be used
  *
  ******************************************************************************/
-void btif_dm_get_local_class_of_device(DEV_CLASS device_class) {
+void btif_dm_get_local_class_of_device(DEV_CLASS* device_class) {
   /* A class of device is a {SERVICE_CLASS, MAJOR_CLASS, MINOR_CLASS}
    *
    * The input is expected to be a string of the following format:
@@ -2931,9 +2931,9 @@ void btif_dm_get_local_class_of_device(DEV_CLASS device_class) {
    * Notice there is always two commas and no spaces.
    */
 
-  device_class[0] = 0x00;
-  device_class[1] = BTM_COD_MAJOR_UNCLASSIFIED;
-  device_class[2] = BTM_COD_MINOR_UNCLASSIFIED;
+  (*device_class)[0] = 0x00;
+  (*device_class)[1] = BTM_COD_MAJOR_UNCLASSIFIED;
+  (*device_class)[2] = BTM_COD_MINOR_UNCLASSIFIED;
 
   char prop_cod[PROPERTY_VALUE_MAX];
   osi_property_get(PROPERTY_CLASS_OF_DEVICE, prop_cod, "");
@@ -3005,15 +3005,15 @@ void btif_dm_get_local_class_of_device(DEV_CLASS device_class) {
 
   // We must have read exactly 3 numbers
   if (j == 3) {
-    device_class[0] = temp_device_class[0];
-    device_class[1] = temp_device_class[1];
-    device_class[2] = temp_device_class[2];
+    (*device_class)[0] = temp_device_class[0];
+    (*device_class)[1] = temp_device_class[1];
+    (*device_class)[2] = temp_device_class[2];
   } else {
     LOG_ERROR("COD malformed, fewer than three numbers");
   }
 
   LOG_DEBUG("Using class of device '0x%x, 0x%x, 0x%x' from CoD system property",
-            device_class[0], device_class[1], device_class[2]);
+            (*device_class)[0], (*device_class)[1], (*device_class)[2]);
 
 #ifdef __ANDROID__
   // Per BAP 1.0.1, 8.2.3. Device discovery, the stack needs to set Class of
@@ -3028,14 +3028,14 @@ void btif_dm_get_local_class_of_device(DEV_CLASS device_class) {
       android::sysprop::BluetoothProperties::
           isProfileBapBroadcastSourceEnabled()
               .value_or(false)) {
-    device_class[1] |= 0x01 << 6;
+    (*device_class)[1] |= 0x01 << 6;
   } else {
-    device_class[1] &= ~(0x01 << 6);
+    (*device_class)[1] &= ~(0x01 << 6);
   }
   LOG_DEBUG(
       "Check LE audio enabled status, update class of device to '0x%x, 0x%x, "
       "0x%x'",
-      device_class[0], device_class[1], device_class[2]);
+      (*device_class)[0], (*device_class)[1], (*device_class)[2]);
 #endif
 }
 
