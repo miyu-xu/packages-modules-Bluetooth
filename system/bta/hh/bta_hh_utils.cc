@@ -51,19 +51,21 @@ constexpr uint16_t kSsrMaxLatency = 18; /* slots * 0.625ms */
  *
  * Function         bta_hh_find_cb
  *
- * Description      Find best available control block according to BD address.
+ * Description      Find best available control block according to  address
+ *                  transport.
  *
  *
  * Returns          void
  *
  ******************************************************************************/
-uint8_t bta_hh_find_cb(const RawAddress& bda) {
+uint8_t bta_hh_find_cb(const tTypedAddressTransport& addr_transport) {
   uint8_t xx;
 
   /* See how many active devices there are. */
   for (xx = 0; xx < BTA_HH_MAX_DEVICE; xx++) {
     /* check if any active/known devices is a match */
-    if ((bda == bta_hh_cb.kdev[xx].addr.addrt.bda && !bda.IsEmpty())) {
+    if ((bta_hh_cb.kdev[xx].addr.StrictlyEquals(addr_transport) &&
+                                                !addr_transport.addrt.bda.IsEmpty())) {
 #if (BTA_HH_DEBUG == TRUE)
       LOG_VERBOSE("found kdev_cb[%d] hid_handle=%d", xx,
                   bta_hh_cb.kdev[xx].hid_handle);
@@ -81,7 +83,7 @@ uint8_t bta_hh_find_cb(const RawAddress& bda) {
   /* if no active device match, find a spot for it */
   for (xx = 0; xx < BTA_HH_MAX_DEVICE; xx++) {
     if (!bta_hh_cb.kdev[xx].in_use) {
-      bta_hh_cb.kdev[xx].addr.addrt.bda = bda;
+      bta_hh_cb.kdev[xx].addr = addr_transport;
       break;
     }
   }
@@ -95,8 +97,8 @@ uint8_t bta_hh_find_cb(const RawAddress& bda) {
   return xx;
 }
 
-tBTA_HH_DEV_CB* bta_hh_get_cb(const RawAddress& bda) {
-  uint8_t idx = bta_hh_find_cb(bda);
+tBTA_HH_DEV_CB* bta_hh_get_cb(const tTypedAddressTransport& addr_transport) {
+  uint8_t idx = bta_hh_find_cb(addr_transport);
   if (idx == BTA_HH_IDX_INVALID) {
     return nullptr;
   }
@@ -245,12 +247,12 @@ bool bta_hh_tod_spt(tBTA_HH_DEV_CB* p_cb, uint8_t sub_class) {
  * Returns          tBTA_HH_STATUS  operation status
  *
  ******************************************************************************/
-tBTA_HH_STATUS bta_hh_read_ssr_param(const RawAddress& bd_addr,
+tBTA_HH_STATUS bta_hh_read_ssr_param(const tTypedAddressTransport& addr_transport,
                                      uint16_t* p_max_ssr_lat,
                                      uint16_t* p_min_ssr_tout) {
-  tBTA_HH_DEV_CB* p_cb = bta_hh_get_cb(bd_addr);
+  tBTA_HH_DEV_CB* p_cb = bta_hh_get_cb(addr_transport);
   if (p_cb == nullptr) {
-    LOG_WARN("Unable to find device:%s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+    LOG_WARN("Unable to find device:%s", ADDRESS_TO_LOGGABLE_CSTR(addr_transport));
     return BTA_HH_ERR;
   }
 
@@ -275,7 +277,7 @@ tBTA_HH_STATUS bta_hh_read_ssr_param(const RawAddress& bd_addr,
       ssr_max_latency = BTA_HH_SSR_MAX_LATENCY_DEF;
 
     char remote_name[BTM_MAX_REM_BD_NAME_LEN] = "";
-    if (btif_storage_get_stored_remote_name(bd_addr, remote_name)) {
+    if (btif_storage_get_stored_remote_name(addr_transport.addrt.bda, remote_name)) {
       if (interop_match_name(INTEROP_HID_HOST_LIMIT_SNIFF_INTERVAL,
                              remote_name)) {
         if (ssr_max_latency > kSsrMaxLatency /* slots * 0.625ms */) {

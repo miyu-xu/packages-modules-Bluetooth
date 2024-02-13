@@ -436,6 +436,19 @@ bt_status_t btif_storage_remove_hidd(RawAddress* remote_bd_addr);
 // |BTM_MAX_REM_BD_NAME_LEN|.
 bool btif_storage_get_stored_remote_name(const RawAddress& bd_addr, char* name);
 
+/*******************************************************************************
+ *
+ * Function         btif_storage_set_hid_preferred_transport
+ *
+ * Description      Stores hid preferred transport info in nvram.
+ *
+ * Returns          BT_STATUS_SUCCESS
+ *
+ ******************************************************************************/
+
+bt_status_t btif_storage_set_hid_preferred_transport(RawAddress* remote_bd_addr,
+                                                     tBT_TRANSPORT transport);
+
 /******************************************************************************
  * Exported for unit tests
  *****************************************************************************/
