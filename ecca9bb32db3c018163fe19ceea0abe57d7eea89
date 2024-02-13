@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a806f259_2ce5a733",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-13T21:43:20Z",
+      "side": 1,
+      "message": "Thanks for catching! Added.",
+      "parentUuid": "d16e467e_30e36a06",
+      "revId": "ecca9bb32db3c018163fe19ceea0abe57d7eea89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ccc1fa5_2f36e891",
@@ -83,6 +101,54 @@
         "startChar": 29,
         "endLine": 199,
         "endChar": 36
+      },
+      "revId": "ecca9bb32db3c018163fe19ceea0abe57d7eea89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91d2fc81_f25af08a",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-13T21:43:20Z",
+      "side": 1,
+      "message": "It shouldn\u0027t ever be if the AdapterService is running; is not reset when BT is cycled, it\u0027s tied to the service lifecycle. \n\nIt\u0027s set in the onCreate of the AdapterService: https://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/AdapterService.java;l\u003d723;drc\u003d32a953fb738080d084170f12a1964ce063ab3fa5;bpv\u003d1;bpt\u003d1",
+      "parentUuid": "6f3e3853_50591cea",
+      "range": {
+        "startLine": 199,
+        "startChar": 29,
+        "endLine": 199,
+        "endChar": 36
+      },
+      "revId": "ecca9bb32db3c018163fe19ceea0abe57d7eea89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fdf38f6_e66494c0",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-13T21:43:20Z",
+      "side": 1,
+      "message": "It\u0027s cleaner to leave out the unnecessary param instead of passing in AdapterService, which matches other method in this util file that accesses AdapterService.\n\nI\u0027d prefer to keep the new method defined consistent (on this side it\u0027s only duplicated logic until the flag is cleaned up anyways, and makes more clear the logical change with the flag). It\u0027s also logically incorrect to only return identity address from this method; if the flag were not to be launched it doesn\u0027t make sense to call a single method from a util method. \n\nPlease feel free to reopen if you feel strongly about this.",
+      "parentUuid": "64358a25_c59bfa56",
+      "range": {
+        "startLine": 198,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 74
       },
       "revId": "ecca9bb32db3c018163fe19ceea0abe57d7eea89",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
