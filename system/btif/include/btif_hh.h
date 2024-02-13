@@ -130,10 +130,11 @@ typedef struct {
 extern btif_hh_cb_t btif_hh_cb;
 
 btif_hh_device_t* btif_hh_find_connected_dev_by_handle(uint8_t handle);
-void btif_hh_remove_device(const tTypedAddressTransport& bd_addr);
-bool btif_hh_add_added_dev(const tTypedAddressTransport& bda, tBTA_HH_ATTR_MASK attr_mask);
-bt_status_t btif_hh_virtual_unplug(const RawAddress* bd_addr);
-void btif_hh_disconnect(RawAddress* bd_addr);
+void btif_hh_remove_device(const tTypedAddressTransport& transport);
+bool btif_hh_add_added_dev(const tTypedAddressTransport& transport,
+                           tBTA_HH_ATTR_MASK attr_mask);
+bt_status_t btif_hh_virtual_unplug(const tTypedAddressTransport& transport);
+void btif_hh_disconnect(const tTypedAddressTransport& transport);
 void btif_hh_setreport(btif_hh_device_t* p_dev, bthh_report_type_t r_type,
                        uint16_t size, uint8_t* report);
 void btif_hh_senddata(btif_hh_device_t* p_dev, uint16_t size, uint8_t* report);

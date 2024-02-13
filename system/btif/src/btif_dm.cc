@@ -850,9 +850,14 @@ static void btif_dm_cb_create_bond(const RawAddress bd_addr,
 
   if (!IS_FLAG_ENABLED(connect_hid_after_service_discovery) &&
       is_hid && (device_type & BT_DEVICE_TYPE_BLE) == 0) {
+    tTypedAddressTransport dev_addr;
+    dev_addr.addrt.bda = bd_addr;
+    dev_addr.addrt.type = addr_type;
+    dev_addr.transport = transport;
+
     const bt_status_t status =
         GetInterfaceToProfiles()->profileSpecific_HACK->btif_hh_connect(
-            &bd_addr);
+            dev_addr);
     if (status != BT_STATUS_SUCCESS)
       bond_state_changed(status, bd_addr, BT_BOND_STATE_NONE);
   } else {
@@ -2835,8 +2840,19 @@ void btif_dm_remove_bond(const RawAddress bd_addr) {
   // there is a valid hid connection with this bd_addr. If yes VUP will be
   // issued.
 #if (BTA_HH_INCLUDED == TRUE)
+  tTypedAddressTransport dev_addr;
+  dev_addr.addrt.bda = bd_addr;
+  int value = 0;
+  btif_config_get_int(bd_addr.ToString(),
+                      BTIF_STORAGE_KEY_HID_PREFERRED_TRANSPORT, &value);
+  dev_addr.transport = (tBT_TRANSPORT)value;
+
+  value = 0;
+  btif_config_get_int(bd_addr.ToString(), BTIF_STORAGE_KEY_ADDR_TYPE, &value);
+  dev_addr.addrt.type = (tBLE_ADDR_TYPE)value;
+
   if (GetInterfaceToProfiles()->profileSpecific_HACK->btif_hh_virtual_unplug(
-          &bd_addr) != BT_STATUS_SUCCESS)
+          dev_addr) != BT_STATUS_SUCCESS)
 #endif
   {
     LOG_DEBUG("Removing HH device");
