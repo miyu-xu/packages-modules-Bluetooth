@@ -2844,6 +2844,15 @@ void btif_dm_remove_bond(const RawAddress bd_addr) {
   link_spec.transport = BT_TRANSPORT_AUTO;
   link_spec.addrt.type = BLE_ADDR_PUBLIC;
 
+  int value = 0;
+  btif_config_get_int(bd_addr.ToString(),
+                      BTIF_STORAGE_KEY_HID_PREFERRED_TRANSPORT, &value);
+  link_spec.transport = (tBT_TRANSPORT)value;
+
+  value = 0;
+  btif_config_get_int(bd_addr.ToString(), BTIF_STORAGE_KEY_ADDR_TYPE, &value);
+  link_spec.addrt.type = (tBLE_ADDR_TYPE)value;
+
   if (GetInterfaceToProfiles()->profileSpecific_HACK->btif_hh_virtual_unplug(
           &link_spec) != BT_STATUS_SUCCESS)
 #endif
