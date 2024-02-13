@@ -313,18 +313,19 @@ btif_hh_device_t* btif_hh_find_connected_dev_by_handle(uint8_t handle) {
 
 /*******************************************************************************
  *
- * Function         btif_hh_find_dev_by_bda
+ * Function         btif_hh_find_dev_by_link_spec
  *
- * Description      Return the device pointer of the specified RawAddress.
+ * Description      Return the device pointer of the specified ACL link
+ *                  specification.
  *
  * Returns          Device entry pointer in the device table
  ******************************************************************************/
-static btif_hh_device_t* btif_hh_find_dev_by_bda(
+static btif_hh_device_t* btif_hh_find_dev_by_link_spec(
     const tAclLinkSpec& link_spec) {
   uint32_t i;
   for (i = 0; i < BTIF_HH_MAX_HID; i++) {
     if (btif_hh_cb.devices[i].dev_status != BTHH_CONN_STATE_UNKNOWN &&
-        btif_hh_cb.devices[i].link_spec.addrt.bda == link_spec.addrt.bda) {
+        btif_hh_cb.devices[i].link_spec == link_spec) {
       return &btif_hh_cb.devices[i];
     }
   }
@@ -333,19 +334,19 @@ static btif_hh_device_t* btif_hh_find_dev_by_bda(
 
 /*******************************************************************************
  *
- * Function         btif_hh_find_connected_dev_by_bda
+ * Function         btif_hh_find_connected_dev_by_link_spec
  *
- * Description      Return the connected device pointer of the specified
- *                  RawAddress.
+ * Description      Return the connected device pointer of the specified ACL
+ *                  link specification.
  *
  * Returns          Device entry pointer in the device table
  ******************************************************************************/
-static btif_hh_device_t* btif_hh_find_connected_dev_by_bda(
+static btif_hh_device_t* btif_hh_find_connected_dev_by_link_spec(
     const tAclLinkSpec& link_spec) {
   uint32_t i;
   for (i = 0; i < BTIF_HH_MAX_HID; i++) {
     if (btif_hh_cb.devices[i].dev_status == BTHH_CONN_STATE_CONNECTED &&
-        btif_hh_cb.devices[i].link_spec.addrt.bda == link_spec.addrt.bda) {
+        btif_hh_cb.devices[i].link_spec == link_spec) {
       return &btif_hh_cb.devices[i];
     }
   }
@@ -361,7 +362,7 @@ static btif_hh_device_t* btif_hh_find_connected_dev_by_bda(
  * Returns      void
  ******************************************************************************/
 static void btif_hh_stop_vup_timer(tAclLinkSpec* link_spec) {
-  btif_hh_device_t* p_dev = btif_hh_find_connected_dev_by_bda(*link_spec);
+  btif_hh_device_t* p_dev = btif_hh_find_connected_dev_by_link_spec(*link_spec);
 
   if (p_dev != NULL) {
     LOG_VERBOSE("stop VUP timer");
@@ -380,7 +381,7 @@ static void btif_hh_stop_vup_timer(tAclLinkSpec* link_spec) {
 static void btif_hh_start_vup_timer(const tAclLinkSpec* link_spec) {
   LOG_VERBOSE("%s", __func__);
 
-  btif_hh_device_t* p_dev = btif_hh_find_connected_dev_by_bda(*link_spec);
+  btif_hh_device_t* p_dev = btif_hh_find_connected_dev_by_link_spec(*link_spec);
   CHECK(p_dev != NULL);
 
   alarm_free(p_dev->vup_timer);
@@ -398,19 +399,21 @@ static void hh_connect_complete(uint8_t handle, tAclLinkSpec& link_spec,
     state = BTHH_CONN_STATE_DISCONNECTED;
     BTA_HhClose(handle);
   }
-  HAL_CBACK(bt_hh_callbacks, connection_state_cb, &link_spec.addrt.bda, state);
+  HAL_CBACK(bt_hh_callbacks, connection_state_cb, &link_spec.addrt.bda,
+            link_spec.addrt.type, link_spec.transport, state);
 }
 
 static void hh_open_handler(tBTA_HH_CONN& conn) {
   LOG_DEBUG("status = %d, handle = %d", conn.status, conn.handle);
 
   HAL_CBACK(bt_hh_callbacks, connection_state_cb,
-            (RawAddress*)&conn.link_spec.addrt.bda, BTHH_CONN_STATE_CONNECTING);
+            (RawAddress*)&conn.link_spec.addrt.bda, conn.link_spec.addrt.type,
+            conn.link_spec.transport, BTHH_CONN_STATE_CONNECTING);
   btif_hh_cb.pending_link_spec = {};
 
   if (conn.status != BTA_HH_OK) {
     btif_dm_hh_open_failed(&conn.link_spec.addrt.bda);
-    btif_hh_device_t* p_dev = btif_hh_find_dev_by_bda(conn.link_spec);
+    btif_hh_device_t* p_dev = btif_hh_find_dev_by_link_spec(conn.link_spec);
     if (p_dev != NULL) {
       btif_hh_stop_vup_timer(&(p_dev->link_spec));
       p_dev->dev_status = BTHH_CONN_STATE_DISCONNECTED;
@@ -508,7 +511,7 @@ void btif_hh_remove_device(const tAclLinkSpec& link_spec) {
     }
   }
 
-  p_dev = btif_hh_find_dev_by_bda(link_spec);
+  p_dev = btif_hh_find_dev_by_link_spec(link_spec);
   if (p_dev == NULL) {
     LOG(WARNING) << " Oops, can't find device "
                  << ADDRESS_TO_LOGGABLE_STR(link_spec);
@@ -519,11 +522,12 @@ void btif_hh_remove_device(const tAclLinkSpec& link_spec) {
    * with up-layer */
 
   do_in_jni_thread(base::Bind(
-      [](RawAddress bd_addr) {
-        HAL_CBACK(bt_hh_callbacks, connection_state_cb, &bd_addr,
-                  BTHH_CONN_STATE_DISCONNECTED);
+      [](RawAddress bd_addr, tBLE_ADDR_TYPE dev_type, tBT_TRANSPORT transport) {
+        HAL_CBACK(bt_hh_callbacks, connection_state_cb, &bd_addr, dev_type,
+                  transport, BTHH_CONN_STATE_DISCONNECTED);
       },
-      p_dev->link_spec.addrt.bda));
+      p_dev->link_spec.addrt.bda, p_dev->link_spec.addrt.type,
+      p_dev->link_spec.transport));
 
   p_dev->dev_status = BTHH_CONN_STATE_UNKNOWN;
   p_dev->dev_handle = BTA_HH_INVALID_HANDLE;
@@ -571,7 +575,7 @@ bool btif_hh_copy_hid_info(tBTA_HH_DEV_DSCP_INFO* dest,
 bt_status_t btif_hh_virtual_unplug(const tAclLinkSpec* link_spec) {
   LOG_VERBOSE("%s", __func__);
   btif_hh_device_t* p_dev;
-  p_dev = btif_hh_find_dev_by_bda(*link_spec);
+  p_dev = btif_hh_find_dev_by_link_spec(*link_spec);
   if ((p_dev != NULL) && (p_dev->dev_status == BTHH_CONN_STATE_CONNECTED) &&
       (p_dev->attr_mask & HID_VIRTUAL_CABLE)) {
     LOG_VERBOSE("%s: Sending BTA_HH_CTRL_VIRTUAL_CABLE_UNPLUG for: %s",
@@ -601,11 +605,13 @@ bt_status_t btif_hh_virtual_unplug(const tAclLinkSpec* link_spec) {
       /* need to notify up-layer device is disconnected to avoid
        * state out of sync with up-layer */
       do_in_jni_thread(base::Bind(
-          [](RawAddress bd_addrcb) {
+          [](RawAddress bd_addrcb, tBLE_ADDR_TYPE dev_type,
+             tBT_TRANSPORT transport) {
             HAL_CBACK(bt_hh_callbacks, connection_state_cb, &bd_addrcb,
-                      BTHH_CONN_STATE_DISCONNECTED);
+                      dev_type, transport, BTHH_CONN_STATE_DISCONNECTED);
           },
-          link_spec->addrt.bda));
+          p_dev->link_spec.addrt.bda, p_dev->link_spec.addrt.type,
+          p_dev->link_spec.transport));
     }
     return BT_STATUS_FAIL;
   }
@@ -626,7 +632,7 @@ bt_status_t btif_hh_connect(const tAclLinkSpec* link_spec) {
 
   CHECK_BTHH_INIT();
   LOG_VERBOSE("BTHH: %s", __func__);
-  btif_hh_device_t* dev = btif_hh_find_dev_by_bda(*link_spec);
+  btif_hh_device_t* dev = btif_hh_find_dev_by_link_spec(*link_spec);
   if (!dev && btif_hh_cb.device_num >= BTIF_HH_MAX_HID) {
     // No space for more HID device now.
     LOG_WARN("%s: Error, exceeded the maximum supported HID device number %d",
@@ -673,11 +679,11 @@ bt_status_t btif_hh_connect(const tAclLinkSpec* link_spec) {
   BTA_HhOpen(btif_hh_cb.pending_link_spec);
 
   do_in_jni_thread(base::Bind(
-      [](RawAddress bd_addr) {
-        HAL_CBACK(bt_hh_callbacks, connection_state_cb, &bd_addr,
-                  BTHH_CONN_STATE_CONNECTING);
+      [](RawAddress bd_addr, tBLE_ADDR_TYPE dev_type, tBT_TRANSPORT transport) {
+        HAL_CBACK(bt_hh_callbacks, connection_state_cb, &bd_addr, dev_type,
+                  transport, BTHH_CONN_STATE_CONNECTING);
       },
-      link_spec->addrt.bda));
+      link_spec->addrt.bda, link_spec->addrt.type, link_spec->transport));
   return BT_STATUS_SUCCESS;
 }
 
@@ -692,7 +698,8 @@ bt_status_t btif_hh_connect(const tAclLinkSpec* link_spec) {
  ******************************************************************************/
 void btif_hh_disconnect(tAclLinkSpec* link_spec) {
   CHECK(link_spec != nullptr);
-  const btif_hh_device_t* p_dev = btif_hh_find_connected_dev_by_bda(*link_spec);
+  const btif_hh_device_t* p_dev =
+      btif_hh_find_connected_dev_by_link_spec(*link_spec);
   if (p_dev == nullptr) {
     LOG_DEBUG("Unable to disconnect unknown HID device:%s",
               ADDRESS_TO_LOGGABLE_CSTR((*link_spec)));
@@ -867,7 +874,8 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
       p_dev = btif_hh_find_connected_dev_by_handle(p_data->dev_status.handle);
       if (p_dev != NULL) {
         HAL_CBACK(bt_hh_callbacks, connection_state_cb,
-                  &(p_dev->link_spec.addrt.bda), BTHH_CONN_STATE_DISCONNECTING);
+                  &(p_dev->link_spec.addrt.bda), p_dev->link_spec.addrt.type,
+                  p_dev->link_spec.transport, BTHH_CONN_STATE_DISCONNECTING);
         LOG_VERBOSE("%s: uhid fd=%d local_vup=%d", __func__, p_dev->fd,
                     p_dev->local_vup);
         btif_hh_stop_vup_timer(&(p_dev->link_spec));
@@ -891,7 +899,8 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
 
         bta_hh_co_close(p_dev);
         HAL_CBACK(bt_hh_callbacks, connection_state_cb,
-                  &(p_dev->link_spec.addrt.bda), p_dev->dev_status);
+                  &(p_dev->link_spec.addrt.bda), p_dev->link_spec.addrt.type,
+                  p_dev->link_spec.transport, p_dev->dev_status);
       } else {
         LOG_WARN("Error: cannot find device with handle %d",
                  p_data->dev_status.handle);
@@ -910,6 +919,7 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
           uint16_t len = hdr->len;
           HAL_CBACK(bt_hh_callbacks, get_report_cb,
                     (RawAddress*)&(p_dev->link_spec.addrt.bda),
+                    p_dev->link_spec.addrt.type, p_dev->link_spec.transport,
                     (bthh_status_t)p_data->hs_data.status, data, len);
 
           bta_hh_co_get_rpt_rsp(p_dev->dev_handle,
@@ -918,6 +928,7 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
         } else { /* Handshake */
           HAL_CBACK(bt_hh_callbacks, handshake_cb,
                     (RawAddress*)&(p_dev->link_spec.addrt.bda),
+                    p_dev->link_spec.addrt.type, p_dev->link_spec.transport,
                     (bthh_status_t)p_data->hs_data.status);
         }
       } else {
@@ -934,6 +945,7 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
       if (p_dev != NULL) {
         HAL_CBACK(bt_hh_callbacks, handshake_cb,
                   (RawAddress*)&(p_dev->link_spec.addrt.bda),
+                  p_dev->link_spec.addrt.type, p_dev->link_spec.transport,
                   (bthh_status_t)p_data->hs_data.status);
 
         bta_hh_co_set_rpt_rsp(p_dev->dev_handle, p_data->dev_status.status);
@@ -960,11 +972,13 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
       if (p_data->hs_data.rsp_data.proto_mode != BTA_HH_PROTO_UNKNOWN) {
         HAL_CBACK(bt_hh_callbacks, protocol_mode_cb,
                   (RawAddress*)&(p_dev->link_spec.addrt.bda),
+                  p_dev->link_spec.addrt.type, p_dev->link_spec.transport,
                   (bthh_status_t)p_data->hs_data.status,
                   (bthh_protocol_mode_t)p_data->hs_data.rsp_data.proto_mode);
       } else {
         HAL_CBACK(bt_hh_callbacks, handshake_cb,
                   (RawAddress*)&(p_dev->link_spec.addrt.bda),
+                  p_dev->link_spec.addrt.type, p_dev->link_spec.transport,
                   (bthh_status_t)p_data->hs_data.status);
       }
       break;
@@ -976,6 +990,7 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
       if (p_dev) {
         HAL_CBACK(bt_hh_callbacks, handshake_cb,
                   (RawAddress*)&(p_dev->link_spec.addrt.bda),
+                  p_dev->link_spec.addrt.type, p_dev->link_spec.transport,
                   (bthh_status_t)p_data->hs_data.status);
       }
       break;
@@ -988,6 +1003,7 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
       if (p_dev) {
         HAL_CBACK(bt_hh_callbacks, idle_time_cb,
                   (RawAddress*)&(p_dev->link_spec.addrt.bda),
+                  p_dev->link_spec.addrt.type, p_dev->link_spec.transport,
                   (bthh_status_t)p_data->hs_data.status,
                   p_data->hs_data.rsp_data.idle_rate);
       }
@@ -1122,7 +1138,8 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
         p_dev->dev_status = BTHH_CONN_STATE_DISCONNECTED;
         LOG_VERBOSE("%s---Sending connection state change", __func__);
         HAL_CBACK(bt_hh_callbacks, connection_state_cb,
-                  &(p_dev->link_spec.addrt.bda), p_dev->dev_status);
+                  &(p_dev->link_spec.addrt.bda), p_dev->link_spec.addrt.type,
+                  p_dev->link_spec.transport, p_dev->dev_status);
         LOG_VERBOSE("%s---Removing HID bond", __func__);
         /* If it is locally initiated VUP or remote device has its major COD as
         Peripheral removed the bond.*/
@@ -1132,7 +1149,8 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
         } else
           btif_hh_remove_device(p_dev->link_spec);
         HAL_CBACK(bt_hh_callbacks, virtual_unplug_cb,
-                  &(p_dev->link_spec.addrt.bda),
+                  &(p_dev->link_spec.addrt.bda), p_dev->link_spec.addrt.type,
+                  p_dev->link_spec.transport,
                   (bthh_status_t)p_data->dev_status.status);
       }
       break;
@@ -1243,32 +1261,36 @@ static void bte_hh_evt(tBTA_HH_EVT event, tBTA_HH* p_data) {
 static void btif_hh_handle_evt(uint16_t event, char* p_param) {
   CHECK(p_param != nullptr);
   tAclLinkSpec* p_link_spec = (tAclLinkSpec*)p_param;
+
   switch (event) {
     case BTIF_HH_CONNECT_REQ_EVT: {
       LOG_DEBUG("Connect request received remote:%s",
-                ADDRESS_TO_LOGGABLE_CSTR((*p_link_spec)));
+                ADDRESS_TO_LOGGABLE_CSTR(*p_link_spec));
       if (btif_hh_connect(p_link_spec) == BT_STATUS_SUCCESS) {
-        HAL_CBACK(bt_hh_callbacks, connection_state_cb, &p_link_spec->addrt.bda,
-                  BTHH_CONN_STATE_CONNECTING);
+        HAL_CBACK(bt_hh_callbacks, connection_state_cb,
+                  &(p_link_spec->addrt.bda), p_link_spec->addrt.type,
+                  p_link_spec->transport, BTHH_CONN_STATE_CONNECTING);
       } else
-        HAL_CBACK(bt_hh_callbacks, connection_state_cb, &p_link_spec->addrt.bda,
-                  BTHH_CONN_STATE_DISCONNECTED);
+        HAL_CBACK(bt_hh_callbacks, connection_state_cb,
+                  &(p_link_spec->addrt.bda), p_link_spec->addrt.type,
+                  p_link_spec->transport, BTHH_CONN_STATE_DISCONNECTED);
     } break;
 
     case BTIF_HH_DISCONNECT_REQ_EVT: {
       LOG_DEBUG("Disconnect request received remote:%s",
-                ADDRESS_TO_LOGGABLE_CSTR((*p_link_spec)));
+                ADDRESS_TO_LOGGABLE_CSTR(*p_link_spec));
       btif_hh_disconnect(p_link_spec);
-      HAL_CBACK(bt_hh_callbacks, connection_state_cb, &p_link_spec->addrt.bda,
+      HAL_CBACK(bt_hh_callbacks, connection_state_cb, &(p_link_spec->addrt.bda),
+                p_link_spec->addrt.type, p_link_spec->transport,
                 BTHH_CONN_STATE_DISCONNECTING);
     } break;
 
     case BTIF_HH_VUP_REQ_EVT: {
       LOG_DEBUG("Virtual unplug request received remote:%s",
-                ADDRESS_TO_LOGGABLE_CSTR((*p_link_spec)));
+                ADDRESS_TO_LOGGABLE_CSTR(*p_link_spec));
       if (btif_hh_virtual_unplug(p_link_spec) != BT_STATUS_SUCCESS) {
         LOG_WARN("Unable to virtual unplug device remote:%s",
-                 ADDRESS_TO_LOGGABLE_CSTR((*p_link_spec)));
+                 ADDRESS_TO_LOGGABLE_CSTR(*p_link_spec));
       }
     } break;
 
@@ -1338,7 +1360,8 @@ static bt_status_t init(bthh_callbacks_t* callbacks) {
  * Returns         bt_status_t
  *
  ******************************************************************************/
-static bt_status_t connect(RawAddress* bd_addr) {
+static bt_status_t connect(RawAddress* bd_addr, tBLE_ADDR_TYPE addr_type,
+                           tBT_TRANSPORT transport) {
   btif_hh_device_t* p_dev;
   tAclLinkSpec link_spec;
 
@@ -1351,11 +1374,10 @@ static bt_status_t connect(RawAddress* bd_addr) {
     return BT_STATUS_NOT_READY;
   }
   link_spec.addrt.bda = *bd_addr;
-  // Todo: fill with params received
-  link_spec.addrt.type = BLE_ADDR_PUBLIC;
-  link_spec.transport = BT_TRANSPORT_AUTO;
+  link_spec.addrt.type = addr_type;
+  link_spec.transport = transport;
 
-  p_dev = btif_hh_find_connected_dev_by_bda(link_spec);
+  p_dev = btif_hh_find_connected_dev_by_link_spec(link_spec);
   if (p_dev) {
     if (p_dev->dev_status == BTHH_CONN_STATE_CONNECTED ||
         p_dev->dev_status == BTHH_CONN_STATE_CONNECTING) {
@@ -1382,7 +1404,8 @@ static bt_status_t connect(RawAddress* bd_addr) {
  * Returns         bt_status_t
  *
  ******************************************************************************/
-static bt_status_t disconnect(RawAddress* bd_addr) {
+static bt_status_t disconnect(RawAddress* bd_addr, tBLE_ADDR_TYPE addr_type,
+                              tBT_TRANSPORT transport) {
   CHECK_BTHH_INIT();
   LOG_VERBOSE("BTHH: %s", __func__);
   btif_hh_device_t* p_dev;
@@ -1398,7 +1421,11 @@ static bt_status_t disconnect(RawAddress* bd_addr) {
   link_spec.addrt.type = BLE_ADDR_PUBLIC;
   link_spec.transport = BT_TRANSPORT_AUTO;
 
-  p_dev = btif_hh_find_connected_dev_by_bda(link_spec);
+  link_spec.addrt.bda = *bd_addr;
+  link_spec.addrt.type = addr_type;
+  link_spec.transport = transport;
+
+  p_dev = btif_hh_find_connected_dev_by_link_spec(link_spec);
   if (!p_dev) {
     LOG_ERROR("%s: Error, device %s not opened.", __func__,
               ADDRESS_TO_LOGGABLE_CSTR(*bd_addr));
@@ -1429,21 +1456,22 @@ static bt_status_t disconnect(RawAddress* bd_addr) {
  * Returns         bt_status_t
  *
  ******************************************************************************/
-static bt_status_t virtual_unplug(RawAddress* bd_addr) {
+static bt_status_t virtual_unplug(RawAddress* bd_addr, tBLE_ADDR_TYPE addr_type,
+                                  tBT_TRANSPORT transport) {
   CHECK_BTHH_INIT();
   LOG_VERBOSE("BTHH: %s", __func__);
   btif_hh_device_t* p_dev;
-  tAclLinkSpec link_spec;
+
   if (btif_hh_cb.status == BTIF_HH_DISABLED) {
     LOG_ERROR("%s: Error, HH status = %d", __func__, btif_hh_cb.status);
     return BT_STATUS_FAIL;
   }
-  link_spec.addrt.bda = *bd_addr;
-  // Todo: fill with params received
-  link_spec.addrt.type = BLE_ADDR_PUBLIC;
-  link_spec.transport = BT_TRANSPORT_AUTO;
 
-  p_dev = btif_hh_find_dev_by_bda(link_spec);
+  tAclLinkSpec link_spec;
+  link_spec.addrt.bda = *bd_addr;
+  link_spec.addrt.type = addr_type;
+  link_spec.transport = transport;
+  p_dev = btif_hh_find_dev_by_link_spec(link_spec);
   if (!p_dev) {
     LOG_ERROR("%s: Error, device %s not opened.", __func__,
               ADDRESS_TO_LOGGABLE_CSTR(*bd_addr));
@@ -1463,7 +1491,8 @@ static bt_status_t virtual_unplug(RawAddress* bd_addr) {
 ** Returns         bt_status_t
 **
 *******************************************************************************/
-static bt_status_t get_idle_time(RawAddress* bd_addr) {
+static bt_status_t get_idle_time(RawAddress* bd_addr, tBLE_ADDR_TYPE addr_type,
+                                 tBT_TRANSPORT transport) {
   CHECK_BTHH_INIT();
   tAclLinkSpec link_spec;
 
@@ -1473,12 +1502,12 @@ static bt_status_t get_idle_time(RawAddress* bd_addr) {
     LOG_ERROR("%s: Error, HH status = %d", __func__, btif_hh_cb.status);
     return BT_STATUS_FAIL;
   }
-  link_spec.addrt.bda = *bd_addr;
-  // Todo: fill with params received
-  link_spec.addrt.type = BLE_ADDR_PUBLIC;
-  link_spec.transport = BT_TRANSPORT_AUTO;
 
-  btif_hh_device_t* p_dev = btif_hh_find_connected_dev_by_bda(link_spec);
+  link_spec.addrt.bda = *bd_addr;
+  link_spec.addrt.type = addr_type;
+  link_spec.transport = transport;
+
+  btif_hh_device_t* p_dev = btif_hh_find_connected_dev_by_link_spec(link_spec);
   if (p_dev == NULL) return BT_STATUS_FAIL;
 
   BTA_HhGetIdle(p_dev->dev_handle);
@@ -1494,7 +1523,8 @@ static bt_status_t get_idle_time(RawAddress* bd_addr) {
 ** Returns         bt_status_t
 **
 *******************************************************************************/
-static bt_status_t set_idle_time(RawAddress* bd_addr, uint8_t idle_time) {
+static bt_status_t set_idle_time(RawAddress* bd_addr, tBLE_ADDR_TYPE addr_type,
+                                 tBT_TRANSPORT transport, uint8_t idle_time) {
   CHECK_BTHH_INIT();
   tAclLinkSpec link_spec;
 
@@ -1505,12 +1535,12 @@ static bt_status_t set_idle_time(RawAddress* bd_addr, uint8_t idle_time) {
     LOG_ERROR("%s: Error, HH status = %d", __func__, btif_hh_cb.status);
     return BT_STATUS_FAIL;
   }
-  link_spec.addrt.bda = *bd_addr;
-  // Todo: fill with params received
-  link_spec.addrt.type = BLE_ADDR_PUBLIC;
-  link_spec.transport = BT_TRANSPORT_AUTO;
 
-  btif_hh_device_t* p_dev = btif_hh_find_connected_dev_by_bda(link_spec);
+  link_spec.addrt.bda = *bd_addr;
+  link_spec.addrt.type = addr_type;
+  link_spec.transport = transport;
+
+  btif_hh_device_t* p_dev = btif_hh_find_connected_dev_by_link_spec(link_spec);
   if (p_dev == NULL) {
     LOG_WARN("%s: addr = %s not opened", __func__,
              ADDRESS_TO_LOGGABLE_CSTR(*bd_addr));
@@ -1530,7 +1560,8 @@ static bt_status_t set_idle_time(RawAddress* bd_addr, uint8_t idle_time) {
  * Returns         bt_status_t
  *
  ******************************************************************************/
-static bt_status_t set_info(RawAddress* bd_addr, bthh_hid_info_t hid_info) {
+static bt_status_t set_info(RawAddress* bd_addr, tBLE_ADDR_TYPE addr_type,
+                            tBT_TRANSPORT transport, bthh_hid_info_t hid_info) {
   CHECK_BTHH_INIT();
   tBTA_HH_DEV_DSCP_INFO dscp_info;
   tAclLinkSpec link_spec;
@@ -1559,9 +1590,8 @@ static bt_status_t set_info(RawAddress* bd_addr, bthh_hid_info_t hid_info) {
   memcpy(dscp_info.descriptor.dsc_list, &(hid_info.dsc_list), hid_info.dl_len);
 
   link_spec.addrt.bda = *bd_addr;
-  // Todo: fill with params received
-  link_spec.addrt.type = BLE_ADDR_PUBLIC;
-  link_spec.transport = BT_TRANSPORT_AUTO;
+  link_spec.addrt.type = addr_type;
+  link_spec.transport = transport;
 
   if (btif_hh_add_added_dev(link_spec, hid_info.attr_mask)) {
     BTA_HhAddDev(link_spec, hid_info.attr_mask, hid_info.sub_class,
@@ -1582,7 +1612,8 @@ static bt_status_t set_info(RawAddress* bd_addr, bthh_hid_info_t hid_info) {
  * Returns         bt_status_t
  *
  ******************************************************************************/
-static bt_status_t get_protocol(RawAddress* bd_addr,
+static bt_status_t get_protocol(RawAddress* bd_addr, tBLE_ADDR_TYPE addr_type,
+                                tBT_TRANSPORT transport,
                                 bthh_protocol_mode_t /* protocolMode */) {
   CHECK_BTHH_INIT();
   tAclLinkSpec link_spec;
@@ -1593,12 +1624,12 @@ static bt_status_t get_protocol(RawAddress* bd_addr,
     LOG_ERROR("%s: Error, HH status = %d", __func__, btif_hh_cb.status);
     return BT_STATUS_FAIL;
   }
-  link_spec.addrt.bda = *bd_addr;
-  // Todo: fill with params received
-  link_spec.addrt.type = BLE_ADDR_PUBLIC;
-  link_spec.transport = BT_TRANSPORT_AUTO;
 
-  btif_hh_device_t* p_dev = btif_hh_find_connected_dev_by_bda(link_spec);
+  link_spec.addrt.bda = *bd_addr;
+  link_spec.addrt.type = addr_type;
+  link_spec.transport = transport;
+
+  btif_hh_device_t* p_dev = btif_hh_find_connected_dev_by_link_spec(link_spec);
   if (!p_dev) return BT_STATUS_FAIL;
 
   BTA_HhGetProtoMode(p_dev->dev_handle);
@@ -1614,7 +1645,8 @@ static bt_status_t get_protocol(RawAddress* bd_addr,
  * Returns         bt_status_t
  *
  ******************************************************************************/
-static bt_status_t set_protocol(RawAddress* bd_addr,
+static bt_status_t set_protocol(RawAddress* bd_addr, tBLE_ADDR_TYPE addr_type,
+                                tBT_TRANSPORT transport,
                                 bthh_protocol_mode_t protocolMode) {
   CHECK_BTHH_INIT();
   btif_hh_device_t* p_dev;
@@ -1628,12 +1660,12 @@ static bt_status_t set_protocol(RawAddress* bd_addr,
     LOG_ERROR("%s: Error, HH status = %d", __func__, btif_hh_cb.status);
     return BT_STATUS_FAIL;
   }
-  link_spec.addrt.bda = *bd_addr;
-  // Todo: fill with params received
-  link_spec.addrt.type = BLE_ADDR_PUBLIC;
-  link_spec.transport = BT_TRANSPORT_AUTO;
 
-  p_dev = btif_hh_find_connected_dev_by_bda(link_spec);
+  link_spec.addrt.bda = *bd_addr;
+  link_spec.addrt.type = addr_type;
+  link_spec.transport = transport;
+
+  p_dev = btif_hh_find_connected_dev_by_link_spec(link_spec);
   if (p_dev == NULL) {
     LOG(WARNING) << " Error, device" << ADDRESS_TO_LOGGABLE_STR(*bd_addr) << " not opened";
     return BT_STATUS_FAIL;
@@ -1657,7 +1689,8 @@ static bt_status_t set_protocol(RawAddress* bd_addr,
  * Returns         bt_status_t
  *
  ******************************************************************************/
-static bt_status_t get_report(RawAddress* bd_addr,
+static bt_status_t get_report(RawAddress* bd_addr, tBLE_ADDR_TYPE addr_type,
+                              tBT_TRANSPORT transport,
                               bthh_report_type_t reportType, uint8_t reportId,
                               int bufferSize) {
   CHECK_BTHH_INIT();
@@ -1672,12 +1705,12 @@ static bt_status_t get_report(RawAddress* bd_addr,
     LOG_ERROR("%s: Error, HH status = %d", __func__, btif_hh_cb.status);
     return BT_STATUS_FAIL;
   }
-  link_spec.addrt.bda = *bd_addr;
-  // Todo: fill with params received
-  link_spec.addrt.type = BLE_ADDR_PUBLIC;
-  link_spec.transport = BT_TRANSPORT_AUTO;
 
-  p_dev = btif_hh_find_connected_dev_by_bda(link_spec);
+  link_spec.addrt.bda = *bd_addr;
+  link_spec.addrt.type = addr_type;
+  link_spec.transport = transport;
+
+  p_dev = btif_hh_find_connected_dev_by_link_spec(link_spec);
   if (p_dev == NULL) {
     LOG(ERROR) << " Error, device" << ADDRESS_TO_LOGGABLE_STR(*bd_addr) << " not opened";
     return BT_STATUS_FAIL;
@@ -1701,8 +1734,11 @@ static bt_status_t get_report(RawAddress* bd_addr,
  * Returns         bt_status_t
  *
  ******************************************************************************/
-static bt_status_t get_report_reply(RawAddress* bd_addr, bthh_status_t status,
-                                    char* report, uint16_t size) {
+static bt_status_t get_report_reply(RawAddress* bd_addr,
+                                    tBLE_ADDR_TYPE addr_type,
+                                    tBT_TRANSPORT transport,
+                                    bthh_status_t status, char* report,
+                                    uint16_t size) {
   CHECK_BTHH_INIT();
   btif_hh_device_t* p_dev;
   tAclLinkSpec link_spec;
@@ -1714,11 +1750,10 @@ static bt_status_t get_report_reply(RawAddress* bd_addr, bthh_status_t status,
     return BT_STATUS_FAIL;
   }
   link_spec.addrt.bda = *bd_addr;
-  // Todo: fill with params received
-  link_spec.addrt.type = BLE_ADDR_PUBLIC;
-  link_spec.transport = BT_TRANSPORT_AUTO;
+  link_spec.addrt.type = addr_type;
+  link_spec.transport = transport;
 
-  p_dev = btif_hh_find_connected_dev_by_bda(link_spec);
+  p_dev = btif_hh_find_connected_dev_by_link_spec(link_spec);
   if (p_dev == NULL) {
     LOG(ERROR) << " Error, device" << ADDRESS_TO_LOGGABLE_STR(*bd_addr) << " not opened";
     return BT_STATUS_FAIL;
@@ -1738,7 +1773,8 @@ static bt_status_t get_report_reply(RawAddress* bd_addr, bthh_status_t status,
  * Returns         bt_status_t
  *
  ******************************************************************************/
-static bt_status_t set_report(RawAddress* bd_addr,
+static bt_status_t set_report(RawAddress* bd_addr, tBLE_ADDR_TYPE addr_type,
+                              tBT_TRANSPORT transport,
                               bthh_report_type_t reportType, char* report) {
   CHECK_BTHH_INIT();
   btif_hh_device_t* p_dev;
@@ -1751,12 +1787,12 @@ static bt_status_t set_report(RawAddress* bd_addr,
     LOG_ERROR("%s: Error, HH status = %d", __func__, btif_hh_cb.status);
     return BT_STATUS_FAIL;
   }
-  link_spec.addrt.bda = *bd_addr;
-  // Todo: fill with params received
-  link_spec.addrt.type = BLE_ADDR_PUBLIC;
-  link_spec.transport = BT_TRANSPORT_AUTO;
 
-  p_dev = btif_hh_find_connected_dev_by_bda(link_spec);
+  link_spec.addrt.bda = *bd_addr;
+  link_spec.addrt.type = addr_type;
+  link_spec.transport = transport;
+
+  p_dev = btif_hh_find_connected_dev_by_link_spec(link_spec);
   if (p_dev == NULL) {
     LOG(ERROR) << " Error, device" << ADDRESS_TO_LOGGABLE_STR(*bd_addr) << " not opened";
     return BT_STATUS_FAIL;
@@ -1799,7 +1835,8 @@ static bt_status_t set_report(RawAddress* bd_addr,
  * Returns         bt_status_t
  *
  ******************************************************************************/
-static bt_status_t send_data(RawAddress* bd_addr, char* data) {
+static bt_status_t send_data(RawAddress* bd_addr, tBLE_ADDR_TYPE addr_type,
+                             tBT_TRANSPORT transport, char* data) {
   CHECK_BTHH_INIT();
   btif_hh_device_t* p_dev;
   tAclLinkSpec link_spec;
@@ -1810,19 +1847,17 @@ static bt_status_t send_data(RawAddress* bd_addr, char* data) {
     LOG_ERROR("%s: Error, HH status = %d", __func__, btif_hh_cb.status);
     return BT_STATUS_FAIL;
   }
-  link_spec.addrt.bda = *bd_addr;
-  // Todo: fill with params received
-  link_spec.addrt.type = BLE_ADDR_PUBLIC;
-  link_spec.transport = BT_TRANSPORT_AUTO;
 
-  p_dev = btif_hh_find_connected_dev_by_bda(link_spec);
+  link_spec.addrt.bda = *bd_addr;
+  link_spec.addrt.type = addr_type;
+  link_spec.transport = transport;
+
+  p_dev = btif_hh_find_connected_dev_by_link_spec(link_spec);
   if (p_dev == NULL) {
     LOG(ERROR) << " Error, device"
                << ADDRESS_TO_LOGGABLE_STR(*bd_addr) << " not opened";
     return BT_STATUS_FAIL;
-  }
-
-  else {
+  } else {
     int hex_bytes_filled;
     size_t len = (strlen(data) + 1) / 2;
     uint8_t* hexbuf = (uint8_t*)osi_calloc(len);
