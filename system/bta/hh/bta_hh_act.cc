@@ -499,7 +499,7 @@ void bta_hh_connect(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
   bt_property_t remote_properties = {BT_PROPERTY_UUIDS, sizeof(remote_uuids),
                                      &remote_uuids};
   const RawAddress& bd_addr = p_data->api_conn.link_spec.addrt.bda;
-
+  p_cb->link_spec = p_data->api_conn.link_spec;
   // Find the device type
   tBT_DEVICE_TYPE dev_type;
   tBLE_ADDR_TYPE addr_type;
