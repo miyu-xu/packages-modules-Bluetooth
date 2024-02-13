@@ -1,0 +1,255 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4f00a1f_8feb323f",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-13T23:48:54Z",
+      "side": 1,
+      "message": "😂 another exception to add to the script\n\n```suggestion\n  log::verbose(\"BDA {} PSM: 0x{:04x}\", ADDRESS_TO_LOGGABLE_STR(p_bd_addr), psm);\n```",
+      "revId": "70472f782320a1c2e72188cbf51470e62d7b5627",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd9b2109_3db6262f",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-13T23:48:54Z",
+      "side": 1,
+      "message": "```suggestion\n  log::verbose(\"BDA: {} PSM: 0x{:04x}\", ADDRESS_TO_LOGGABLE_STR(p_bd_addr), psm);\n```",
+      "revId": "70472f782320a1c2e72188cbf51470e62d7b5627",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "626f1aac_ea7fd7f2",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 673,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-13T23:48:54Z",
+      "side": 1,
+      "message": "```suggestion\n  log::verbose(\"BDA: {} num of cids: {} Result: {}\",\n```",
+      "revId": "70472f782320a1c2e72188cbf51470e62d7b5627",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75687047_7e328e16",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-13T23:48:54Z",
+      "side": 1,
+      "message": "```suggestion\n  log::verbose(\"BDA: {} PSM: 0x{:04x}\", ADDRESS_TO_LOGGABLE_STR(p_bd_addr), psm);\n```",
+      "revId": "70472f782320a1c2e72188cbf51470e62d7b5627",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44445799_138142d9",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1103,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-13T23:48:54Z",
+      "side": 1,
+      "message": "```suggestion\n  log::verbose(\"BDA: {} ExtFea: 0x{:08x} Chnl_Mask[0]: 0x{:02x}\",\n```",
+      "revId": "70472f782320a1c2e72188cbf51470e62d7b5627",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3c0f623_28e97442",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1410,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-13T23:48:54Z",
+      "side": 1,
+      "message": "```suggestion\n    log::warn(\"BDA: {} CID: 0x{:04x} not connected\",\n```",
+      "revId": "70472f782320a1c2e72188cbf51470e62d7b5627",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c293314d_33403046",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1415,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-13T23:48:54Z",
+      "side": 1,
+      "message": "```suggestion\n  log::verbose(\"BDA: {} CID: 0x{:04x}\", ADDRESS_TO_LOGGABLE_STR(rem_bda),\n```",
+      "revId": "70472f782320a1c2e72188cbf51470e62d7b5627",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b552d4a0_0991cbd2",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1461,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-13T23:48:54Z",
+      "side": 1,
+      "message": "```suggestion\n    log::warn(\"BDA: {} CID: 0x{:04x} not connected\",\n```",
+      "revId": "70472f782320a1c2e72188cbf51470e62d7b5627",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6aac54ea_cec77b87",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-13T23:48:54Z",
+      "side": 1,
+      "message": "```suggestion\n              ADDRESS_TO_LOGGABLE_CSTR(rem_bda), lock);\n```",
+      "range": {
+        "startLine": 120,
+        "startChar": 49,
+        "endLine": 120,
+        "endChar": 50
+      },
+      "revId": "70472f782320a1c2e72188cbf51470e62d7b5627",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3502f24_1f3bcd83",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-13T23:48:54Z",
+      "side": 1,
+      "message": "```suggestion\n            ADDRESS_TO_LOGGABLE_CSTR(rem_bda), lock);\n```",
+      "range": {
+        "startLine": 133,
+        "startChar": 47,
+        "endLine": 133,
+        "endChar": 48
+      },
+      "revId": "70472f782320a1c2e72188cbf51470e62d7b5627",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7103506_1a95d3db",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-13T23:48:54Z",
+      "side": 1,
+      "message": "```suggestion\n              ADDRESS_TO_LOGGABLE_CSTR(rem_bda), lock);\n```",
+      "range": {
+        "startLine": 159,
+        "startChar": 49,
+        "endLine": 159,
+        "endChar": 50
+      },
+      "revId": "70472f782320a1c2e72188cbf51470e62d7b5627",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb26c010_e5c8d436",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-13T23:48:54Z",
+      "side": 1,
+      "message": "```suggestion\n            ADDRESS_TO_LOGGABLE_CSTR(rem_bda), lock);\n```",
+      "range": {
+        "startLine": 172,
+        "startChar": 47,
+        "endLine": 172,
+        "endChar": 48
+      },
+      "revId": "70472f782320a1c2e72188cbf51470e62d7b5627",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f577606_a0c3cd69",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3061,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-13T23:48:54Z",
+      "side": 1,
+      "message": "```suggestion\n    log::verbose(\"\\t cid: {}\", cid);\n```",
+      "range": {
+        "startLine": 3061,
+        "startChar": 18,
+        "endLine": 3061,
+        "endChar": 20
+      },
+      "revId": "70472f782320a1c2e72188cbf51470e62d7b5627",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
