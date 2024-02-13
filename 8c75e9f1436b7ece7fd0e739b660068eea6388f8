@@ -46,6 +46,30 @@
       },
       "revId": "8c75e9f1436b7ece7fd0e739b660068eea6388f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0673fee1_0cd3a0e3",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-02-13T09:19:51Z",
+      "side": 1,
+      "message": "If you reverse the condition, you get one less indentation:\n```\nif (!flag) {\n return;\n}\n\n...\n```",
+      "parentUuid": "21d57724_886ece0a",
+      "range": {
+        "startLine": 207,
+        "startChar": 30,
+        "endLine": 207,
+        "endChar": 64
+      },
+      "revId": "8c75e9f1436b7ece7fd0e739b660068eea6388f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
