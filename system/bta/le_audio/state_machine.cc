@@ -1420,6 +1420,9 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
       return;
     }
 
+    LOG_INFO("Forcing DsaMode::ISO_SW");
+    group->dsa_.mode = DsaMode::ISO_SW;
+
     LOG_INFO("DSA mode selected: %d", (int)group->dsa_.mode);
     group->dsa_.active = false;
 
