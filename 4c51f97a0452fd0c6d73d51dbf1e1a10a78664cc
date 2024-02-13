@@ -22,6 +22,30 @@
       },
       "revId": "4c51f97a0452fd0c6d73d51dbf1e1a10a78664cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f82f3ca_81125c21",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 999,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-02-13T09:19:25Z",
+      "side": 1,
+      "message": "This is correctly handled in LeAudioService.setActiveDevice and even if we will call it in all cases it will work fine. Nevertheless, there is need to check leadDevice below, because without that ActiveDeviceManager stores different activeDevice than LeAudioService. So ActiveDeviceManager has to know about LEALeadDevice and with that knowladge it can omit unnecessary calling of setActiveDevice too.",
+      "parentUuid": "8605ccec_f07e4b42",
+      "range": {
+        "startLine": 990,
+        "startChar": 0,
+        "endLine": 999,
+        "endChar": 17
+      },
+      "revId": "4c51f97a0452fd0c6d73d51dbf1e1a10a78664cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
