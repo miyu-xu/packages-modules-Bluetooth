@@ -24,6 +24,8 @@
 
 #define LOG_TAG "bt_bta_hh"
 
+#include <android_bluetooth_flags.h>
+
 #include <cstdint>
 #include <string>
 
@@ -497,64 +499,73 @@ void bta_hh_connect(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
   bt_property_t remote_properties = {BT_PROPERTY_UUIDS, sizeof(remote_uuids),
                                      &remote_uuids};
   const RawAddress& bd_addr = p_data->api_conn.dev_addr.addrt.bda;
+  p_cb->mode = p_data->api_conn.mode;
 
-  // Find the device type
-  tBT_DEVICE_TYPE dev_type;
-  tBLE_ADDR_TYPE addr_type;
-  BTM_ReadDevInfo(bd_addr, &dev_type, &addr_type);
+  if (!IS_FLAG_ENABLED(allow_switching_hid_and_hogp) ||
+      p_data->api_conn.dev_addr.transport == BT_TRANSPORT_AUTO) {
+    // Find the device type
+    tBT_DEVICE_TYPE dev_type;
+    tBLE_ADDR_TYPE addr_type;
+    BTM_ReadDevInfo(bd_addr, &dev_type, &addr_type);
 
-  // Find which transports are already connected
-  bool bredr = BTM_IsAclConnectionUp(bd_addr, BT_TRANSPORT_BR_EDR);
-  bool le_acl = BTM_IsAclConnectionUp(bd_addr, BT_TRANSPORT_LE);
+    // Find which transports are already connected
+    bool bredr = BTM_IsAclConnectionUp(bd_addr, BT_TRANSPORT_BR_EDR);
+    bool le_acl = BTM_IsAclConnectionUp(bd_addr, BT_TRANSPORT_LE);
 
-  // Find which services known to be available
-  if (btif_storage_get_remote_device_property(&bd_addr,
-                                              &remote_properties) == BT_STATUS_SUCCESS) {
-    int count = remote_properties.len / sizeof(remote_uuids[0]);
-    for (int i = 0; i < count; i++) {
-      if (remote_uuids[i].Is16Bit()) {
-        if (remote_uuids[i].As16Bit() == UUID_SERVCLASS_HUMAN_INTERFACE) {
-          hid_available = true;
-        } else if (remote_uuids[i].As16Bit() == UUID_SERVCLASS_LE_HID) {
-          hogp_available = true;
+    // Find which services known to be available
+    if (btif_storage_get_remote_device_property(&bd_addr, &remote_properties) ==
+        BT_STATUS_SUCCESS) {
+      int count = remote_properties.len / sizeof(remote_uuids[0]);
+      for (int i = 0; i < count; i++) {
+        if (remote_uuids[i].Is16Bit()) {
+          if (remote_uuids[i].As16Bit() == UUID_SERVCLASS_HUMAN_INTERFACE) {
+            hid_available = true;
+          } else if (remote_uuids[i].As16Bit() == UUID_SERVCLASS_LE_HID) {
+            hogp_available = true;
+          }
+        }
+
+        if (hid_available && hogp_available) {
+          break;
         }
       }
-
-      if (hid_available && hogp_available) {
-        break;
-      }
     }
-  }
 
-  /* Decide whether to connect HID or HOGP */
-  if (bredr && hid_available) {
-    p_cb->is_le_device = false;
-  } else if (le_acl && hogp_available) {
-    p_cb->is_le_device = true;
-  } else if (hid_available) {
-    p_cb->is_le_device = false;
-  } else if (hogp_available) {
-    p_cb->is_le_device = true;
-  } else if (bredr) {
-    p_cb->is_le_device = false;
-  } else if (le_acl || dev_type == BT_DEVICE_TYPE_BLE) {
-    p_cb->is_le_device = true;
+    /* Decide whether to connect HID or HOGP */
+    if (bredr && hid_available) {
+      p_cb->is_le_device = false;
+    } else if (le_acl && hogp_available) {
+      p_cb->is_le_device = true;
+    } else if (hid_available) {
+      p_cb->is_le_device = false;
+    } else if (hogp_available) {
+      p_cb->is_le_device = true;
+    } else if (bredr) {
+      p_cb->is_le_device = false;
+    } else if (le_acl || dev_type == BT_DEVICE_TYPE_BLE) {
+      p_cb->is_le_device = true;
+    } else {
+      p_cb->is_le_device = false;
+    }
+
+    LOG_DEBUG(
+        "bd_addr:%s, bredr:%d, hid_available:%d, le_acl:%d, hogp_available:%d, "
+        "dev_type:%d, is_le_device:%d",
+        ADDRESS_TO_LOGGABLE_CSTR(bd_addr), bredr, hid_available, le_acl,
+        hogp_available, dev_type, p_cb->is_le_device);
+
+    // Initiate HID host connection
+    if (p_cb->is_le_device) {
+      bta_hh_le_open_conn(p_cb, bd_addr);
+    } else {
+      bta_hh_bredr_conn(p_cb, p_data);
+    }
   } else {
-    p_cb->is_le_device = false;
-  }
-
-  LOG_DEBUG("bd_addr:%s, bredr:%d, hid_available:%d, le_acl:%d, hogp_available:%d, "
-            "dev_type:%d, is_le_device:%d", ADDRESS_TO_LOGGABLE_CSTR(bd_addr), bredr,
-            hid_available, le_acl, hogp_available, dev_type, p_cb->is_le_device);
-
-  p_cb->mode = p_data->api_conn.mode;
-  bta_hh_cb.p_cur = p_cb;
-
-  // Initiate HID host connection
-  if (p_cb->is_le_device) {
-    bta_hh_le_open_conn(p_cb, bd_addr);
-  } else {
-    bta_hh_bredr_conn(p_cb, p_data);
+    if (p_data->api_conn.dev_addr.transport == BT_TRANSPORT_LE) {
+      bta_hh_le_open_conn(p_cb, bd_addr);
+    } else {
+      bta_hh_bredr_conn(p_cb, p_data);
+    }
   }
 }
 
@@ -997,14 +1008,17 @@ void bta_hh_maint_dev_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
       dev_info.addr.addrt.bda = p_dev_info->dev_addr.addrt.bda;
       /* initialize callback data */
       if (p_cb->hid_handle == BTA_HH_INVALID_HANDLE) {
-        if (BTM_UseLeLink(p_data->api_conn.dev_addr.addrt.bda)) {
+        if ((IS_FLAG_ENABLED(allow_switching_hid_and_hogp) &&
+             p_data->api_conn.dev_addr.transport == BT_TRANSPORT_LE) ||
+            BTM_UseLeLink(p_data->api_conn.dev_addr.addrt.bda)) {
           p_cb->is_le_device = true;
           dev_info.handle = bta_hh_le_add_device(p_cb, p_dev_info);
           if (dev_info.handle != BTA_HH_INVALID_HANDLE)
             dev_info.status = BTA_HH_OK;
         } else
 
-            if (HID_HostAddDev(p_dev_info->dev_addr.addrt.bda, p_dev_info->attr_mask,
+            if (HID_HostAddDev(p_dev_info->dev_addr.addrt.bda,
+                               p_dev_info->attr_mask,
                                &dev_handle) == HID_SUCCESS) {
           dev_info.handle = dev_handle;
           dev_info.status = BTA_HH_OK;
