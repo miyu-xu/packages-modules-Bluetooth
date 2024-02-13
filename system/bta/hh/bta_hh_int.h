@@ -25,6 +25,7 @@
 #ifndef BTA_HH_INT_H
 #define BTA_HH_INT_H
 
+#include <android_bluetooth_flags.h>
 #include <bluetooth/log.h>
 
 #include <cstdint>

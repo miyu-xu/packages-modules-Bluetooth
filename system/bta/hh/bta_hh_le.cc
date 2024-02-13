@@ -254,6 +254,7 @@ static uint8_t bta_hh_le_get_le_dev_hdl(uint8_t cb_index) {
  ******************************************************************************/
 void bta_hh_le_open_conn(tBTA_HH_DEV_CB* p_cb, const tAclLinkSpec& link_spec) {
   tBTA_HH_STATUS status = BTA_HH_ERR_NO_RES;
+  bta_hh_cb.p_cur = p_cb;
 
   /* update cb_index[] map */
   p_cb->hid_handle = bta_hh_le_get_le_dev_hdl(p_cb->index);
@@ -290,9 +291,10 @@ static tBTA_HH_DEV_CB* bta_hh_le_find_dev_cb_by_conn_id(uint16_t conn_id) {
 
 /*******************************************************************************
  *
- * Function         bta_hh_le_find_dev_cb_by_bda
+ * Function         bta_hh_le_find_dev_cb_by_addr_transport
  *
- * Description      Utility function find a device control block by BD address.
+ * Description      Utility function find a device control block by ACL link
+ *                  specification.
  *
  ******************************************************************************/
 static tBTA_HH_DEV_CB* bta_hh_le_find_dev_cb_by_bda(
@@ -962,7 +964,7 @@ static void bta_hh_le_pri_service_discovery(tBTA_HH_DEV_CB* p_cb) {
  *
  ******************************************************************************/
 static void bta_hh_le_encrypt_cback(const RawAddress* bd_addr,
-                                    UNUSED_ATTR tBT_TRANSPORT transport,
+                                    tBT_TRANSPORT transport,
                                     UNUSED_ATTR void* p_ref_data,
                                     tBTM_STATUS result) {
   tAclLinkSpec link_spec;
@@ -1659,7 +1661,10 @@ void bta_hh_le_open_fail(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
     bta_hh_clear_service_cache(p_cb);
   }
 
-  if (p_cb->is_le_device && p_cb->status != BTA_HH_ERR_SDP) {
+  if ((!IS_FLAG_ENABLED(allow_switching_hid_and_hogp) && p_cb->is_le_device &&
+       p_cb->status != BTA_HH_ERR_SDP) ||
+      (p_cb->link_spec.transport == BT_TRANSPORT_LE &&
+       p_cb->status != BTA_HH_ERR_SDP)) {
     log::debug("gd_acl: Re-adding HID device to acceptlist");
     // gd removes from bg list after failed connection
     // Correct the cached state to allow re-add to acceptlist.

@@ -53,7 +53,8 @@ constexpr uint16_t kSsrMaxLatency = 18; /* slots * 0.625ms */
  *
  * Function         bta_hh_find_cb
  *
- * Description      Find best available control block according to BD address.
+ * Description      Find best available control block according to ACL link
+ *                  specification.
  *
  *
  * Returns          void
@@ -119,7 +120,8 @@ tBTA_HH_DEV_CB* bta_hh_get_cb(const tAclLinkSpec& link_spec) {
 void bta_hh_clean_up_kdev(tBTA_HH_DEV_CB* p_cb) {
   uint8_t index;
 
-  if (p_cb->is_le_device) {
+  if ((!IS_FLAG_ENABLED(allow_switching_hid_and_hogp) && p_cb->is_le_device) ||
+      p_cb->link_spec.transport == BT_TRANSPORT_LE) {
     uint8_t le_hid_handle = BTA_HH_GET_LE_CB_IDX(p_cb->hid_handle);
     if (le_hid_handle >= BTA_HH_LE_MAX_KNOWN) {
       log::warn("Invalid LE hid_handle {}", p_cb->hid_handle);
