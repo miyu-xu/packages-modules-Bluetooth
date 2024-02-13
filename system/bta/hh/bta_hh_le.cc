@@ -243,6 +243,7 @@ static uint8_t bta_hh_le_get_le_dev_hdl(uint8_t cb_index) {
  ******************************************************************************/
 void bta_hh_le_open_conn(tBTA_HH_DEV_CB* p_cb, const tAclLinkSpec& link_spec) {
   tBTA_HH_STATUS status = BTA_HH_ERR_NO_RES;
+  bta_hh_cb.p_cur = p_cb;
 
   /* update cb_index[] map */
   p_cb->hid_handle = bta_hh_le_get_le_dev_hdl(p_cb->index);
@@ -279,9 +280,10 @@ static tBTA_HH_DEV_CB* bta_hh_le_find_dev_cb_by_conn_id(uint16_t conn_id) {
 
 /*******************************************************************************
  *
- * Function         bta_hh_le_find_dev_cb_by_bda
+ * Function         bta_hh_le_find_dev_cb_by_addr_transport
  *
- * Description      Utility function find a device control block by BD address.
+ * Description      Utility function find a device control block by ACL link
+ *                  specification.
  *
  ******************************************************************************/
 static tBTA_HH_DEV_CB* bta_hh_le_find_dev_cb_by_bda(
@@ -951,7 +953,7 @@ static void bta_hh_le_pri_service_discovery(tBTA_HH_DEV_CB* p_cb) {
  *
  ******************************************************************************/
 static void bta_hh_le_encrypt_cback(const RawAddress* bd_addr,
-                                    UNUSED_ATTR tBT_TRANSPORT transport,
+                                    tBT_TRANSPORT transport,
                                     UNUSED_ATTR void* p_ref_data,
                                     tBTM_STATUS result) {
   tAclLinkSpec link_spec;
