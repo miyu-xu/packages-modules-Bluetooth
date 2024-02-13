@@ -1,16 +1,16 @@
 import time
 import sys
 
-from mmi2grpc._helpers import assert_description
-from mmi2grpc._helpers import match_description
-from mmi2grpc._proxy import ProfileProxy
-from mmi2grpc._rootcanal import Dongle
+from _helpers import assert_description
+from _helpers import match_description
+from _proxy import ProfileProxy
+from _rootcanal import Dongle
 
 from pandora.host_grpc import Host
 from pandora.host_pb2 import PUBLIC, RANDOM, Connection
 from pandora.security_pb2 import PairingEventAnswer
 from pandora.security_grpc import Security
-from pandora_experimental.l2cap_grpc import L2CAP
+from pandora.l2cap_grpc import L2CAP
 
 from typing import Optional
 

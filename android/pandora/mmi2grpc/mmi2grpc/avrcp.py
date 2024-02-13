@@ -18,16 +18,16 @@ from typing import Optional
 
 from grpc import RpcError
 
-from mmi2grpc._audio import AudioSignal
-from mmi2grpc._helpers import assert_description
-from mmi2grpc._proxy import ProfileProxy
+from _audio import AudioSignal
+from _helpers import assert_description
+from _proxy import ProfileProxy
 from pandora.a2dp_grpc import A2DP
 from pandora.a2dp_pb2 import Sink, Source
-from pandora_experimental.avrcp_grpc import AVRCP
+from pandora.avrcp_grpc import AVRCP
 from pandora.host_grpc import Host
 from pandora.host_pb2 import Connection
-from pandora_experimental.mediaplayer_grpc import MediaPlayer
-from pandora_experimental.mediaplayer_pb2 import NONE, ALL, GROUP
+from pandora.mediaplayer_grpc import MediaPlayer
+from pandora.mediaplayer_pb2 import NONE, ALL, GROUP
 
 
 class AVRCPProxy(ProfileProxy):
