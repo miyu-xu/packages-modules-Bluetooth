@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c985267b_89d690f3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-02-13T16:33:28Z",
+      "side": 1,
+      "message": "Ah, actually you\u0027re right. We only need it from num_derive for line 71.",
+      "parentUuid": "93b0cf8a_b30bb577",
+      "revId": "83fe2828a7d6bd1882ceaecdba9199b63ff51feb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b573520_a8c75e07",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-02-12T23:40:14Z",
       "side": 1,
       "message": "Does the controller function get_ble_supported_states returns uint8_t? Will this cause uninitialized value in states? I am a bit confused with the bit shift above `self.le_supported_states \u003e\u003e 38`.",
+      "range": {
+        "startLine": 49,
+        "startChar": 2,
+        "endLine": 49,
+        "endChar": 8
+      },
+      "revId": "83fe2828a7d6bd1882ceaecdba9199b63ff51feb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "069b69ad_746d4111",
+        "filename": "system/gd/rust/topshim/controller/controller_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-02-13T16:33:28Z",
+      "side": 1,
+      "message": "It returns a uint8_t pointer to a uint64_t. See https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/main/shim/controller.cc;l\u003d114?q\u003dget_ble_suppo\u0026ss\u003dh%2Fgoogleplex-android%2Fplatform%2Fsuperproject%2Fmain%2F%2B%2Frefs%2Fheads%2Fmain:packages%2Fmodules%2FBluetooth%2F. So it will not have uninitialized values.",
+      "parentUuid": "9b573520_a8c75e07",
       "range": {
         "startLine": 49,
         "startChar": 2,
