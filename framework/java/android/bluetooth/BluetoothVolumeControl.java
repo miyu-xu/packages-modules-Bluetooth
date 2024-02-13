@@ -290,22 +290,20 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
         mService = IBluetoothVolumeControl.Stub.asInterface(service);
         // re-register the service-to-app callback
         synchronized (mCallbackExecutorMap) {
-            if (!mCallbackExecutorMap.isEmpty()) {
-                try {
-                    if (service != null) {
-                        final SynchronousResultReceiver<Integer> recv =
-                                SynchronousResultReceiver.get();
-                        mService.registerCallback(mCallback, mAttributionSource, recv);
-                        recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
-                    }
-                } catch (RemoteException e) {
-                    Log.e(
-                            TAG,
-                            "onBluetoothServiceUp: Failed to register" + "Volume Control callback",
-                            e);
-                } catch (TimeoutException e) {
-                    Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
-                }
+            if (mCallbackExecutorMap.isEmpty()) {
+                return;
+            }
+
+            try {
+                SynchronousResultReceiver<Void> recv = SynchronousResultReceiver.get();
+                mService.registerCallback(mCallback, mAttributionSource, recv);
+                recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
+
+                recv = SynchronousResultReceiver.get();
+                mService.notifyNewRegisteredCallback(mCallback, mAttributionSource, recv);
+                recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
+            } catch (RemoteException | TimeoutException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
             }
         }
     }
@@ -461,27 +459,35 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
             if (service == null) {
                 return;
             }
-            try {
-                final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
 
-                /* If the callback map is empty, we register the service-to-app callback.
-                 *  Otherwise, callback is registered in mCallbackExecutorMap and we just notify
-                 *  user over callback with current values.
-                 */
-                boolean isRegisterCallbackRequired = mCallbackExecutorMap.isEmpty();
+            // If the callback map is empty, we register the service-to-app callback.
+            // Otherwise, callback is already registered
+            if (mCallbackExecutorMap.isEmpty()) {
+                try {
+                    final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
+                    service.registerCallback(mCallback, mAttributionSource, recv);
+                    recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
+                } catch (RemoteException e) {
+                    Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+                    throw e.rethrowAsRuntimeException();
+                } catch (TimeoutException e) {
+                    Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+                    return;
+                }
+            }
+
+            try {
                 mCallbackExecutorMap.put(callback, executor);
 
-                if (isRegisterCallbackRequired) {
-                    service.registerCallback(mCallback, mAttributionSource, recv);
-                } else {
-                    service.notifyNewRegisteredCallback(
-                            new VolumeControlNotifyCallback(Map.of(callback, executor)),
-                            mAttributionSource,
-                            recv);
-                }
+                final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
+                // Notify user over callback with current values.
+                service.notifyNewRegisteredCallback(
+                        new VolumeControlNotifyCallback(Map.of(callback, executor)),
+                        mAttributionSource,
+                        recv);
                 recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
             } catch (RemoteException e) {
-                mCallbackExecutorMap.remove(callback);
+                unregisterCallback(callback);
                 Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
                 throw e.rethrowAsRuntimeException();
             } catch (TimeoutException e) {
