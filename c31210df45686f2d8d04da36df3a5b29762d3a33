@@ -22,6 +22,30 @@
       },
       "revId": "c31210df45686f2d8d04da36df3a5b29762d3a33",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6e07834_0a0a988f",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-02-13T07:09:51Z",
+      "side": 1,
+      "message": "It is call twice (old and new) to make it backward compatible. I assume that this is needed.\nOld interface works only on instanceID 1 whereas new one support multi instances.",
+      "parentUuid": "c72230cc_d16f76db",
+      "range": {
+        "startLine": 174,
+        "startChar": 24,
+        "endLine": 188,
+        "endChar": 25
+      },
+      "revId": "c31210df45686f2d8d04da36df3a5b29762d3a33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
