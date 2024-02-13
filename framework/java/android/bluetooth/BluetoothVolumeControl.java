@@ -113,7 +113,11 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
         default void onVolumeOffsetChanged(
                 @NonNull BluetoothDevice device,
                 @IntRange(from = 1, to = 255) int instanceId,
-                @IntRange(from = -255, to = 255) int volumeOffset) {}
+                @IntRange(from = -255, to = 255) int volumeOffset) {
+            if (instanceId == 1) {
+                onVolumeOffsetChanged(device, volumeOffset);
+            }
+        }
 
         /**
          * Callback invoked when callback is registered and when audio location changes on the
@@ -175,6 +179,7 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
         }
 
         private void forEach(Consumer<BluetoothVolumeControl.Callback> consumer) {
+            Attributable.setAttributionSource(device, mAttributionSource);
             synchronized (mCallbackMap) {
                 mCallbackMap.forEach(
                         (callback, executor) -> executor.execute(() -> consumer.accept(callback)));
@@ -184,11 +189,6 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
         @Override
         public void onVolumeOffsetChanged(
                 @NonNull BluetoothDevice device, int instanceId, int volumeOffset) {
-            Attributable.setAttributionSource(device, mAttributionSource);
-
-            if (instanceId == 1) {
-                forEach((cb) -> cb.onVolumeOffsetChanged(device, volumeOffset));
-            }
             if (Flags.leaudioMultipleVocsInstancesApi()) {
                 forEach((cb) -> cb.onVolumeOffsetChanged(device, instanceId, volumeOffset));
             }
@@ -197,7 +197,6 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
         @Override
         public void onVolumeOffsetAudioLocationChanged(
                 @NonNull BluetoothDevice device, int instanceId, int audioLocation) {
-            Attributable.setAttributionSource(device, mAttributionSource);
             forEach(
                     (cb) ->
                             cb.onVolumeOffsetAudioLocationChanged(
@@ -207,7 +206,6 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
         @Override
         public void onVolumeOffsetAudioDescriptionChanged(
                 @NonNull BluetoothDevice device, int instanceId, String audioDescription) {
-            Attributable.setAttributionSource(device, mAttributionSource);
             forEach(
                     (cb) ->
                             cb.onVolumeOffsetAudioDescriptionChanged(
@@ -216,7 +214,6 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
 
         @Override
         public void onDeviceVolumeChanged(@NonNull BluetoothDevice device, int volume) {
-            Attributable.setAttributionSource(device, mAttributionSource);
             forEach((cb) -> cb.onDeviceVolumeChanged(device, volume));
         }
     }
