@@ -1,0 +1,12 @@
+[
+    {
+        "test_name": "HID/HOS/HDT/BV-01-I",
+        "interactions": [
+            "TSC_MMI_iut_enable_connection"
+
+        ],
+        "descriptions": [
+            "Click Ok, then using the Implementation Under Test (IUT) connect to the\nPTS."
+        ]
+    }
+]

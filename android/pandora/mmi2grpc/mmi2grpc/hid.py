@@ -14,12 +14,12 @@
 
 from threading import Thread
 from time import sleep
-from mmi2grpc._helpers import assert_description, match_description
-from mmi2grpc._proxy import ProfileProxy
+from _helpers import assert_description, match_description
+from _proxy import ProfileProxy
 
-from pandora_experimental.hid_grpc import HID
+from pandora.hid_grpc import HID
 from pandora.host_grpc import Host
-from pandora_experimental.hid_pb2 import HID_REPORT_TYPE_OUTPUT
+from pandora.hid_pb2 import HID_REPORT_TYPE_OUTPUT
 
 
 class HIDProxy(ProfileProxy):
@@ -38,7 +38,7 @@ class HIDProxy(ProfileProxy):
         PTS.
         """
 
-        self.rootcanal.move_in_range()
+        # self.rootcanal.move_in_range()
         self.connection = self.host.Connect(address=pts_addr).connection
 
         return "OK"
