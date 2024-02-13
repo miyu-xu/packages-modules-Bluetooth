@@ -1,0 +1,421 @@
+[
+    {
+        "test_name": "HFP/AG/IIC/BV-03-C",
+        "interactions": [
+            "test_started",
+            "TSC_iut_enable_slc",
+            "TSC_disable_ag_cellular_network_expect_no_notification",
+            "TSC_impair_ag_signal_expect_no_notification",
+            "TSC_iut_disable_slc"
+        ],
+        "descriptions": [
+            "",
+            "Click Ok, then initiate a service level connection from the\\nImplementation Under Test (IUT) to the PTS.",
+            "Disable the control channel, such that the AG is de-registered. Then,\nclick OK.",
+            "Impair the signal to the AG so that a reduction in signal strength can\nbe observed. Then, click OK.",
+            "Click Ok, then disable the service level connection using the\nImplementation Under Test (IUT)."
+        ]
+    },
+    {
+        "test_name": "HFP/AG/ACR/BV-01-C",
+        "interactions": [
+            "test_started",
+            "TSC_iut_enable_slc",
+            "TSC_ag_iut_enable_call",
+            "TSC_verify_audio",
+            "TSC_ag_iut_disable_call_external",
+            "TSC_iut_disable_slc"
+        ],
+        "descriptions": [
+            "",
+            "Click Ok, then initiate a service level connection from the\nImplementation Under Test (IUT) to the PTS.",
+            "Click Ok, then place a call from an external line to the Implementation\nUnder Test (IUT). Do not answer the call unless prompted to do so.",
+            "Verify the presence of an audio connection, then click Ok.",
+            "Click Ok, then end the call using the external terminal.",
+            "Click Ok, then disable the service level connection using the\nImplementation Under Test (IUT)."
+        ]
+    },
+    {
+        "test_name": "HFP/AG/ACR/BV-02-C",
+        "interactions": [
+            "test_started",
+            "TSC_iut_enable_slc",
+            "TSC_ag_iut_enable_call",
+            "TSC_verify_audio",
+            "TSC_ag_iut_disable_call_external",
+            "TSC_iut_disable_slc"
+        ],
+        "descriptions": [
+            "",
+            "Click Ok, then initiate a service level connection from the\nImplementation Under Test (IUT) to the PTS.",
+            "Click Ok, then place a call from an external line to the Implementation\nUnder Test (IUT). Do not answer the call unless prompted to do so.",
+            "Verify the presence of an audio connection, then click Ok.",
+            "Click Ok, then end the call using the external terminal.",
+            "Click Ok, then disable the service level connection using the\nImplementation Under Test (IUT)."
+        ]
+    },
+    {
+        "test_name": "HFP/AG/ACS/BI-14-C",
+        "interactions": [
+            "test_started",
+            "TSC_iut_enable_slc",
+            "TSC_ag_iut_enable_call",
+            "TSC_verify_audio",
+            "TSC_iut_disable_audio",
+            "TSC_verify_no_audio",
+            "TSC_verify_no_audio",
+            "TSC_ag_iut_disable_call_external",
+            "TSC_iut_disable_slc"
+        ],
+        "descriptions": [
+            "",
+            "Click Ok, then initiate a service level connection from the\nImplementation Under Test (IUT) to the PTS.",
+            "Click Ok, then place a call from an external line to the Implementation\nUnder Test (IUT). Do not answer the call unless prompted to do so.",
+            "Verify the presence of an audio connection, then click Ok.",
+            "Click Ok, then close the audio connection (SCO) between the\nImplementation Under Test (IUT) and the PTS.  Do not close the serivice\nlevel connection (SLC) or power-off the IUT.",
+            "Verify the absence of an audio connection (SCO), then click Ok.",
+            "Verify the absence of an audio connection (SCO), then click Ok.",
+            "Click Ok, then end the call using the external terminal.",
+            "Click Ok, then disable the service level connection using the\nImplementation Under Test (IUT)."
+        ]
+    },
+    {
+        "test_name": "HFP/AG/ACS/BV-04-C",
+        "interactions": [
+            "test_started",
+            "TSC_iut_enable_slc",
+            "TSC_ag_iut_enable_call",
+            "TSC_verify_audio",
+            "TSC_iut_disable_audio",
+            "TSC_verify_audio",
+            "TSC_ag_iut_disable_call_external",
+            "TSC_iut_disable_slc"
+        ],
+        "descriptions": [
+            "",
+            "Click Ok, then initiate a service level connection from the\nImplementation Under Test (IUT) to the PTS.",
+            "Click Ok, then place a call from an external line to the Implementation\nUnder Test (IUT). Do not answer the call unless prompted to do so.",
+            "Verify the presence of an audio connection, then click Ok.",
+            "Click Ok, then close the audio connection (SCO) between the\nImplementation Under Test (IUT) and the PTS.  Do not close the serivice\nlevel connection (SLC) or power-off the IUT.",
+            "Verify the presence of an audio connection, then click Ok.",
+            "Click Ok, then end the call using the external terminal.",
+            "Click Ok, then disable the service level connection using the\nImplementation Under Test (IUT)."
+        ]
+    },
+    {
+        "test_name": "HFP/AG/ACS/BV-08-C",
+        "interactions": [
+            "test_started",
+            "TSC_iut_enable_slc",
+            "TSC_ag_iut_enable_call",
+            "TSC_verify_audio",
+            "TSC_iut_disable_audio",
+            "TSC_verify_audio",
+            "TSC_ag_iut_disable_call_external",
+            "TSC_iut_disable_slc"
+        ],
+        "descriptions": [
+            "",
+            "Click Ok, then initiate a service level connection from the\nImplementation Under Test (IUT) to the PTS.",
+            "Click Ok, then place a call from an external line to the Implementation\nUnder Test (IUT). Do not answer the call unless prompted to do so.",
+            "Verify the presence of an audio connection, then click Ok.",
+            "Click Ok, then close the audio connection (SCO) between the\nImplementation Under Test (IUT) and the PTS.  Do not close the serivice\nlevel connection (SLC) or power-off the IUT.",
+            "Verify the presence of an audio connection, then click Ok.",
+            "Click Ok, then end the call using the external terminal.",
+            "Click Ok, then disable the service level connection using the\nImplementation Under Test (IUT)."
+        ]
+    },
+    {
+        "test_name": "HFP/AG/ACS/BV-11-C",
+        "interactions": [
+            "test_started",
+            "TSC_iut_enable_slc",
+            "TSC_ag_iut_enable_call",
+            "TSC_verify_audio",
+            "TSC_iut_disable_audio",
+            "TSC_verify_audio",
+            "TSC_ag_iut_disable_call_external",
+            "TSC_iut_disable_slc"
+        ],
+        "descriptions": [
+            "",
+            "Click Ok, then initiate a service level connection from the\nImplementation Under Test (IUT) to the PTS.",
+            "Click Ok, then place a call from an external line to the Implementation\nUnder Test (IUT). Do not answer the call unless prompted to do so.",
+            "Verify the presence of an audio connection, then click Ok.",
+            "Click Ok, then close the audio connection (SCO) between the\nImplementation Under Test (IUT) and the PTS.  Do not close the serivice\nlevel connection (SLC) or power-off the IUT.",
+            "Verify the presence of an audio connection, then click Ok.",
+            "Click Ok, then end the call using the external terminal.",
+            "Click Ok, then disable the service level connection using the\nImplementation Under Test (IUT)."
+        ]
+    },
+    {
+        "test_name": "HFP/AG/ATA/BV-01-C",
+        "interactions": [
+            "test_started",
+            "TSC_iut_enable_slc",
+            "TSC_ag_iut_enable_call",
+            "TSC_verify_audio",
+            "TSC_iut_disable_audio",
+            "TSC_verify_no_audio",
+            "TSC_ag_iut_disable_call_external",
+            "TSC_iut_disable_slc"
+        ],
+        "descriptions": [
+            "",
+            "Click Ok, then initiate a service level connection from the\nImplementation Under Test (IUT) to the PTS.",
+            "Click Ok, then place a call from an external line to the Implementation\nUnder Test (IUT). Do not answer the call unless prompted to do so.",
+            "Verify the presence of an audio connection, then click Ok.",
+            "Click Ok, then close the audio connection (SCO) between the\nImplementation Under Test (IUT) and the PTS.  Do not close the serivice\nlevel connection (SLC) or power-off the IUT.",
+            "Verify the absence of an audio connection (SCO), then click Ok.",
+            "Click Ok, then end the call using the external terminal.",
+            "Click Ok, then disable the service level connection using the\nImplementation Under Test (IUT)."
+        ]
+    },
+    {
+        "test_name": "HFP/AG/ATH/BV-06-C",
+        "interactions": [
+            "test_started",
+            "TSC_iut_enable_slc",
+            "TSC_ag_iut_enable_call",
+            "TSC_verify_audio",
+            "TSC_iut_disable_audio",
+            "TSC_verify_no_audio",
+            "TSC_iut_enable_audio",
+            "TSC_verify_audio",
+            "TSC_ag_iut_disable_call_external",
+            "TSC_iut_disable_slc"
+        ],
+        "descriptions": [
+            "",
+            "Click Ok, then initiate a service level connection from the\nImplementation Under Test (IUT) to the PTS.",
+            "Click Ok, then place a call from an external line to the Implementation\nUnder Test (IUT). Do not answer the call unless prompted to do so.",
+            "Verify the presence of an audio connection, then click Ok.",
+            "Click Ok, then close the audio connection (SCO) between the\nImplementation Under Test (IUT) and the PTS.  Do not close the serivice\nlevel connection (SLC) or power-off the IUT.",
+            "Verify the absence of an audio connection (SCO), then click Ok.",
+            "Click Ok, then initiate an audio connection (SCO) from the\nImplementation Under Test (IUT) to the PTS.",
+            "Verify the presence of an audio connection, then click Ok.",
+            "Click Ok, then end the call using the external terminal.",
+            "Click Ok, then disable the service level connection using the\nImplementation Under Test (IUT)."
+        ]
+    },
+    {
+        "test_name": "HFP/AG/ICA/BV-04-C",
+        "interactions": [
+            "test_started",
+            "TSC_iut_enable_slc",
+            "TSC_ag_iut_enable_call",
+            "TSC_verify_audio",
+            "TSC_ag_iut_disable_call_external",
+            "TSC_iut_disable_slc"
+        ],
+        "descriptions": [
+            "",
+            "Click Ok, then initiate a service level connection from the\nImplementation Under Test (IUT) to the PTS.",
+            "Click Ok, then place a call from an external line to the Implementation\nUnder Test (IUT). Do not answer the call unless prompted to do so.",
+            "Verify the presence of an audio connection, then click Ok.",
+            "Click Ok, then end the call using the external terminal.",
+            "Click Ok, then disable the service level connection using the\nImplementation Under Test (IUT)."
+        ]
+    },
+    {
+        "test_name": "HFP/AG/ATH/BV-06-C",
+        "interactions": [
+            "test_started",
+            "TSC_iut_enable_slc",
+            "TSC_ag_iut_enable_call",
+            "TSC_verify_audio",
+            "TSC_iut_disable_audio",
+            "TSC_verify_no_audio",
+            "TSC_iut_enable_audio_using_codec",
+            "TSC_ag_iut_disable_call_external",
+            "TSC_iut_disable_slc"
+        ],
+        "descriptions": [
+            "",
+            "Click Ok, then initiate a service level connection from the\nImplementation Under Test (IUT) to the PTS.",
+            "Click Ok, then place a call from an external line to the Implementation\nUnder Test (IUT). Do not answer the call unless prompted to do so.",
+            "Verify the presence of an audio connection, then click Ok.",
+            "Click Ok, then close the audio connection (SCO) between the\nImplementation Under Test (IUT) and the PTS.  Do not close the serivice\nlevel connection (SLC) or power-off the IUT.",
+            "Verify the absence of an audio connection (SCO), then click Ok.",
+            "Click OK, then initiate an audio connection using the Codec Connection\nSetup procedure.",
+            "Click Ok, then end the call using the external terminal.",
+            "Click Ok, then disable the service level connection using the\nImplementation Under Test (IUT)."
+        ]
+    },
+    {
+        "test_name": "HFP/AG/ICA/BV-04-C",
+        "interactions": [
+            "test_started",
+            "TSC_iut_enable_slc",
+            "TSC_ag_iut_enable_call",
+            "TSC_verify_audio",
+            "TSC_ag_iut_disable_call_external",
+            "TSC_iut_disable_slc"
+        ],
+        "descriptions": [
+            "",
+            "Click Ok, then initiate a service level connection from the\nImplementation Under Test (IUT) to the PTS.",
+            "Click Ok, then place a call from an external line to the Implementation\nUnder Test (IUT). Do not answer the call unless prompted to do so.",
+            "Verify the presence of an audio connection, then click Ok.",
+            "Click Ok, then end the call using the external terminal.",
+            "Click Ok, then disable the service level connection using the\nImplementation Under Test (IUT)."
+        ]
+    },
+    {
+        "test_name": "HFP/AG/IIA/BV-01-C",
+        "interactions": [
+            "test_started",
+            "TSC_iut_enable_slc",
+            "TSC_disable_ag_cellular_network_expect_notification",
+            "TSC_adjust_ag_battery_level_expect_notification",
+            "TSC_iut_disable_slc"
+        ],
+        "descriptions": [
+            "",
+            "Click Ok, then initiate a service level connection from the\nImplementation Under Test (IUT) to the PTS.",
+            "Click OK. Then, disable the control channel, such that the AG is de-\nregistered.",
+            "Click OK. Then adjust the battery level on the AG to\na level that should\ncause a battery level indication to be sent to\nHF.",
+            "Click Ok, then disable the service level connection using the\nImplementation Under Test (IUT)."
+        ]
+    },
+    {
+        "test_name": "HFP/AG/IIA/BV-02-C",
+        "interactions": [
+            "test_started",
+            "TSC_iut_enable_slc",
+            "TSC_adjust_ag_battery_level_expect_no_notification",
+            "TSC_disable_ag_cellular_network_expect_notification",
+            "TSC_iut_disable_slc"
+        ],
+        "descriptions": [
+            "",
+            "Click Ok, then initiate a service level connection from the\nImplementation Under Test (IUT) to the PTS.",
+            "Adjust the battery level on the AG to a level that should cause a\nbattery level indication to be sent to HF. Then, click OK.",
+            "Click OK. Then, disable the control channel, such that the AG is de-\nregistered.",
+            "Click Ok, then disable the service level connection using the\nImplementation Under Test (IUT)."
+        ]
+    },
+    {
+        "test_name": "HFP/AG/IIC/BV-02-C",
+        "interactions": [
+            "test_started",
+            "TSC_iut_enable_slc",
+            "TSC_adjust_ag_battery_level_expect_no_notification",
+            "TSC_disable_ag_cellular_network_expect_notification",
+            "TSC_iut_disable_slc"
+        ],
+        "descriptions": [
+            "",
+            "Click Ok, then initiate a service level connection from the\nImplementation Under Test (IUT) to the PTS.",
+            "Adjust the battery level on the AG to a level that should cause a\nbattery level indication to be sent to HF. Then, click OK.",
+            "Click OK. Then, disable the control channel, such that the AG is de-\nregistered.",
+            "Click Ok, then disable the service level connection using the\nImplementation Under Test (IUT)."
+        ]
+    },
+    {
+        "test_name": "HFP/AG/IID/BV-03-C",
+        "interactions": [
+            "test_started",
+            "TSC_iut_enable_slc",
+            "TSC_impair_ag_signal_expect_no_notification",
+            "TSC_adjust_ag_battery_level_expect_no_notification",
+            "TSC_trigger_a_change_on_non_mandatory_indicator_such_as_network",
+            "TSC_iut_disable_slc"
+        ],
+        "descriptions": [
+            "",
+            "Click Ok, then initiate a service level connection from the\nImplementation Under Test (IUT) to the PTS.",
+            "Impair the signal to the AG so that a reduction in signal strength can\nbe observed. Then, click OK.",
+            "Adjust the battery level on the AG to a level that should cause a\nbattery level indication to be sent to HF. Then, click OK.",
+            "Click OK. Then take action to make a change that\n        normally would trigger a change in a non-mandatory indicator,\n        e.g., force the AG to disable the presence of a cellular network.",
+            "Click Ok, then disable the service level connection using the\nImplementation Under Test (IUT)."
+        ]
+    },
+    {
+        "test_name": "HFP/AG/OCL/BV-01-C",
+        "interactions": [
+            "test_started",
+            "TSC_ag_prepare_at_bldn",
+            "TSC_iut_enable_slc",
+            "TSC_ag_iut_prepare_for_atd",
+            "TSC_terminal_answer_call"
+        ],
+        "descriptions": [
+            "",
+            "Place the Implemenation Under Test (IUT) in a state which will accept an\nutgoing call set-up request from the PTS, then click OK.\n\nNote:  The\nPTS will send a request to establish an outgoing call from the IUT to\nthe last dialed number.  Answer the incoming call when alerted.",
+            "Click Ok, then initiate a service level connection from the\nImplementation Under Test (IUT) to the PTS.",
+            "Place the Implementation Under Test (IUT) in a mode that will allow an\noutgoing call initiated by the PTS, and click Ok.",
+            "Click Ok, then answer the incoming call on the external terminal."
+        ]
+    },
+    {
+        "test_name": "HFP/AG/OCM/BV-01-C",
+        "interactions": [
+            "test_started",
+            "TSC_iut_enable_slc",
+            "TSC_ag_iut_prepare_for_atd"
+        ],
+        "descriptions": [
+            "",
+            "Click Ok, then initiate a service level connection from the\nImplementation Under Test (IUT) to the PTS.",
+            "Place the Implementation Under Test (IUT) in a mode that will allow an\noutgoing call initiated by the PTS, and click Ok."
+        ]
+    },
+    {
+        "test_name": "HFP/AG/OCN/BV-01-C",
+        "interactions": [
+            "test_started",
+            "TSC_iut_enable_slc",
+            "TSC_ag_iut_prepare_for_atd",
+            "TSC_terminal_answer_call",
+            "TSC_verify_audio",
+            "TSC_ag_iut_disable_call_external",
+            "TSC_iut_disable_slc"
+        ],
+        "descriptions": [
+            "",
+            "Click Ok, then initiate a service level connection from the\nImplementation Under Test (IUT) to the PTS.",
+            "Place the Implementation Under Test (IUT) in a mode that will allow an\noutgoing call initiated by the PTS, and click Ok.",
+            "Click Ok, then answer the incoming call on the external terminal.",
+            "Verify the presence of an audio connection, then click Ok.",
+            "Click Ok, then end the call using the external terminal.",
+            "Click Ok, then disable the service level connection using the\nImplementation Under Test (IUT)."
+        ]
+    },
+    {
+        "test_name": "HFP/AG/PSI/BV-01-C",
+        "interactions": [
+            "test_started",
+            "TSC_iut_enable_slc",
+            "TSC_signal_strength_verify",
+            "TSC_signal_strength_impair",
+            "TSC_signal_strength_verify",
+            "TSC_iut_disable_slc"
+        ],
+        "descriptions": [
+            "",
+            "Click Ok, then initiate a service level connection from the\nImplementation Under Test (IUT) to the PTS.",
+            "Verify that the signal reported on the Implementaion Under Test (IUT) is\nproportional to the value (out of 5), then click Ok.5",
+            "Impair the cellular signal by placing the Implementation Under Test\n        (IUT) under partial RF shielding, then click Ok.",
+            "Verify that the signal reported on the Implementaion Under Test (IUT) is\nproportional to the value (out of 5), then click Ok.2",
+            "Click Ok, then disable the service level connection using the\nImplementation Under Test (IUT)."
+        ]
+    },
+    {
+        "test_name": "HFP/AG/TRS/BV-01-C",
+        "interactions": [
+            "test_started",
+            "TSC_iut_enable_slc",
+            "TSC_iut_disable_network",
+            "TSC_iut_enable_network",
+            "TSC_iut_disable_slc"
+        ],
+        "descriptions": [
+            "",
+            "Click Ok, then initiate a service level connection from the\nImplementation Under Test (IUT) to the PTS.",
+            "Click Ok, then disable the cellular network using the\nImplementation Under Test (IUT) by performing one of the below\nactions:\n1. If the IUT is an Audio Gateway (AG), turn the cellular network\n        using the UI.\n        2. Place the PTS and IUT in an RF shield box. Once the network\nis disabled the PTS will send an alert to your machine confirming\nthe network connection was lost. Please note that speakers are\nneeded to hear the said alert.",
+            "Click Ok, then enable the cellular network using the Implementation Under Test (IUT).",
+            "Click Ok, then disable the service level connection using the\nImplementation Under Test (IUT)."
+        ]
+    }
+]

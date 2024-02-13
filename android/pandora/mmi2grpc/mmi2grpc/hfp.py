@@ -13,15 +13,15 @@
 # limitations under the License.
 """HFP proxy module."""
 
-from mmi2grpc._helpers import assert_description, match_description
-from mmi2grpc._proxy import ProfileProxy
+from _helpers import assert_description, match_description
+from _proxy import ProfileProxy
 
-from pandora_experimental.hfp_grpc import HFP
+from pandora.hfp_grpc import HFP
 from pandora.host_grpc import Host
 from pandora.host_pb2 import DISCOVERABLE_GENERAL, CONNECTABLE
 from pandora.security_grpc import Security, SecurityStorage
 from pandora.security_pb2 import PairingEventAnswer
-from pandora_experimental.hfp_pb2 import AUDIO_PATH_HANDSFREE, AUDIO_PATH_SPEAKERS
+from pandora.hfp_pb2 import AUDIO_PATH_HANDSFREE, AUDIO_PATH_SPEAKERS
 
 import sys
 import threading
@@ -30,8 +30,8 @@ import time
 # Standard time to wait before asking for waitConnection
 WAIT_DELAY_BEFORE_CONNECTION = 2
 
-IXIT_PHONE_NUMBER = 42
-IXIT_SECOND_PHONE_NUMBER = 43
+IXIT_PHONE_NUMBER = "1234567"
+IXIT_SECOND_PHONE_NUMBER = "7654321"
 
 
 class HFPProxy(ProfileProxy):
@@ -184,7 +184,7 @@ class HFPProxy(ProfileProxy):
 
         def enable_call():
             time.sleep(2)
-            self.modem.call(IXIT_PHONE_NUMBER)
+            self.modem.Call(IXIT_PHONE_NUMBER)
 
         threading.Thread(target=enable_call).start()
 
@@ -292,7 +292,7 @@ class HFPProxy(ProfileProxy):
         (IUT).  When the call is active, click Ok.
         """
 
-        self.modem.call(IXIT_PHONE_NUMBER)
+        self.modem.Call(IXIT_PHONE_NUMBER)
         time.sleep(5)  # there's a delay before Android registers the call
         self.hfp.AnswerCall()
         time.sleep(2)
@@ -309,7 +309,7 @@ class HFPProxy(ProfileProxy):
 
         def enable_second_call():
             time.sleep(2)
-            self.modem.call(IXIT_SECOND_PHONE_NUMBER)
+            self.modem.Call(IXIT_SECOND_PHONE_NUMBER)
 
         threading.Thread(target=enable_second_call).start()
 
@@ -399,20 +399,43 @@ class HFPProxy(ProfileProxy):
 
         return "OK"
 
+    def TSC_trigger_a_change_on_non_mandatory_indicator_such_as_network(self,**kwargs):
+        """
+        Click OK. Then take action to make a change that
+        normally would trigger a change in a non-mandatory indicator,
+        e.g., force the AG to disable the presence of a cellular network.
+        """
+        def testing():
+            time.sleep(2)
+            #TODO: I used different imp but used it in this interface.
+            self.hfp.DisableSlcAsHandsfree(connection=self.connection)
+            time.sleep(2)
+
+
+        threading.Thread(target=testing).start()
+        return "OK"
+
     @assert_description
     def TSC_disable_ag_cellular_network_expect_notification(self, pts_addr: bytes, **kwargs):
         """
         Click OK. Then, disable the control channel, such that the AG is de-
         registered.
         """
-
-        def disable_slc():
+        def testing():
             time.sleep(2)
-            self.hfp.DisableSlc(connection=self.connection)
+            # TODO: I used different imp but used it in this interface.
+            self.hfp.DisableSlcAsHandsfree(connection=self.connection)
+            time.sleep(2)
 
-        threading.Thread(target=disable_slc).start()
 
-        return "OK"
+        threading.Thread(target=testing).start()
+        # def disable_slc():
+        #     time.sleep(2)
+        #     self.hfp.DisableSlc(connection=self.connection)
+        #
+        # threading.Thread(target=disable_slc).start()
+        #
+        # return "OK"
 
     @assert_description
     def TSC_adjust_ag_battery_level_expect_no_notification(self, **kwargs):
@@ -422,6 +445,18 @@ class HFPProxy(ProfileProxy):
         """
 
         self.hfp.SetBatteryLevel(connection=self.connection, battery_percentage=42)
+
+        return "OK"
+
+    @assert_description
+    def TSC_adjust_ag_battery_level_expect_notification(self, **kwargs):
+        """
+        Click OK. Then adjust the battery level on the AG to
+        a level that should
+        cause a battery level indication to be sent to
+        HF.
+        """
+        self.hfp.SetBatteryLevel(connection=self.connection, battery_percentage=5)
 
         return "OK"
 
@@ -471,20 +506,52 @@ class HFPProxy(ProfileProxy):
         def answer_call():
             time.sleep(2)
             self.log("Answering")
-            self.modem.answer_outgoing_call(IXIT_PHONE_NUMBER)
+            self.hfp.AnswerCall()
 
         threading.Thread(target=answer_call).start()
 
         return "OK"
 
-    @match_description
     def TSC_signal_strength_verify(self, **kwargs):
         """
-        Verify that the signal reported on the Implementaion Under Test \(IUT\) is
-        proportional to the value \(out of 5\), then click Ok.[0-9]
+        Verify that the signal reported on the Implementaion Under Test (IUT) is
+        proportional to the value (out of 5), then click Ok.[0-9]
         """
 
         return "OK"
+    def TSC_iut_enable_network(self, **kwargs):
+        """
+        Click Ok, then enable the cellular network using the Implementation Under Test (IUT).
+        """
+
+        def testing():
+            time.sleep(2)
+            # TODO: I used different imp but used it in this interface.
+            self.hfp.EnableSlcAsHandsfree(connection=self.connection)
+            time.sleep(2)
+
+        threading.Thread(target=testing).start()
+
+
+    def TSC_iut_disable_network(self, **kwargs):
+        """
+        Click Ok, then disable the cellular network using the
+        Implementation Under Test (IUT) by performing one of the below
+        actions:
+        1. If the IUT is an Audio Gateway (AG), turn the cellular network
+        using the UI.
+        2. Place the PTS and IUT in an RF shield box. Once the network
+        is disabled the PTS will send an alert to your machine confirming
+        the network connection was lost. Please note that speakers are
+        needed to hear the said alert.
+        """
+        def testing():
+            time.sleep(2)
+            # TODO: I used different imp but used it in this interface.
+            self.hfp.DisableSlcAsHandsfree(connection=self.connection)
+            time.sleep(2)
+        threading.Thread(target=testing).start()
+
 
     @assert_description
     def TSC_signal_strength_impair(self, **kwargs):
@@ -492,7 +559,7 @@ class HFPProxy(ProfileProxy):
         Impair the cellular signal by placing the Implementation Under Test
         (IUT) under partial RF shielding, then click Ok.
         """
-
+        self.hfp.SendDtmfFromHandsfree(connection=self.connection, code=2)
         return "OK"
 
     @assert_description
