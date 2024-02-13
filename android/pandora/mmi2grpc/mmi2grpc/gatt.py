@@ -17,16 +17,16 @@ import sys
 import time
 from threading import Thread
 
-from mmi2grpc._helpers import assert_description, match_description
-from mmi2grpc._proxy import ProfileProxy
-from mmi2grpc._rootcanal import Dongle
+from _helpers import assert_description, match_description
+from _proxy import ProfileProxy
+from _rootcanal import Dongle
 
-from pandora_experimental.gatt_grpc import GATT
+from pandora.gatt_grpc import GATT
 from pandora.host_grpc import Host
 from pandora.host_pb2 import PUBLIC, RANDOM
 from pandora.security_grpc import Security, SecurityStorage
 from pandora.security_pb2 import PairingEventAnswer
-from pandora_experimental.gatt_pb2 import (
+from pandora.gatt_pb2 import (
     INVALID_HANDLE,
     READ_NOT_PERMITTED,
     UNKNOWN_ERROR,
@@ -47,11 +47,11 @@ from pandora_experimental.gatt_pb2 import (
     ENABLE_NOTIFICATION_VALUE,
     ENABLE_INDICATION_VALUE,
 )
-from pandora_experimental.gatt_pb2 import GattServiceParams
-from pandora_experimental.gatt_pb2 import GattCharacteristicParams
-from pandora_experimental.gatt_pb2 import GattDescriptorParams
-from pandora_experimental.gatt_pb2 import ReadCharacteristicResponse
-from pandora_experimental.gatt_pb2 import ReadCharacteristicsFromUuidResponse
+from pandora.gatt_pb2 import GattServiceParams
+from pandora.gatt_pb2 import GattCharacteristicParams
+from pandora.gatt_pb2 import GattDescriptorParams
+from pandora.gatt_pb2 import ReadCharacteristicResponse
+from pandora.gatt_pb2 import ReadCharacteristicsFromUuidResponse
 
 # Tests that need GATT cache cleared before discovering services.
 NEEDS_CACHE_CLEARED = {
@@ -67,7 +67,7 @@ BASE_UUID = "0000XXXX-0000-1000-8000-00805F9B34FB"
 
 # These UUIDs are used as reference for GATT server tests
 BASE_READ_WRITE_SERVICE_UUID = "0000FFFE-0000-1000-8000-00805F9B34FB"
-BASE_READ_CHARACTERISTIC_UUID = "0000FFD-0000-1000-8000-00805F9B34FB"
+BASE_READ_CHARACTERISTIC_UUID = "0000FFFD-0000-1000-8000-00805F9B34FB"
 BASE_WRITE_CHARACTERISTIC_UUID = "0000FFFA-0000-1000-8000-00805F9B34FB"
 BASE_READ_WRITE_ENCRYPTED_CHARACTERISTIC_UUID = "0000FFF9-0000-1000-8000-00805F9B34FB"
 BASE_READ_WRITE_ENCRYPTED_MITM_CHARACTERISTIC_UUID = "0000FFF8-0000-1000-8000-00805F9B34FB"
@@ -581,11 +581,13 @@ class GATTProxy(ProfileProxy):
         """
 
         assert self.connection is not None
+        print('weeeeeeeeeeeeeeee')
         matches = re.findall("'([a0-Z9]*)'O", description)
         self.read_response = self.gatt.ReadCharacteristicsFromUuid(\
                 connection=self.connection, uuid=formatUuid(matches[0]),\
                 start_handle=stringHandleToInt(matches[1]),\
                 end_handle=stringHandleToInt(matches[2]))
+        print(self.read_response)
         return "OK"
 
     @assert_description
@@ -933,8 +935,7 @@ class GATTProxy(ProfileProxy):
 
     def MMI_IUT_SEND_WRITE_REQUEST_GREATER(self, description: str, **kwargs):
         """
-        Please send write request with characteristic handle = 'XXXX'O with
-        greater than 'X' byte of any octet value to the PTS.
+        Please send write request with characteristic handle = 'XXXX'O with reater than 'X' byte of any octet value to the PTS.
 
         Description:
         Verify that the Implementation Under Test (IUT) can send write request.
@@ -1011,6 +1012,7 @@ class GATTProxy(ProfileProxy):
             own_address_type=PUBLIC,
         )
         self.pairing_events = self.security.OnPairing()
+
         time.sleep(1)
         self.gatt.RegisterService(service=GattServiceParams(
             uuid=BASE_READ_WRITE_SERVICE_UUID,
@@ -1044,7 +1046,6 @@ class GATTProxy(ProfileProxy):
                 ),
             ],
         ))
-
         return "OK"
 
     def MMI_CONFIRM_IUT_PRIMARY_SERVICE_128(self, **kwargs):
@@ -1322,8 +1323,16 @@ class GATTProxy(ProfileProxy):
         """
         Please confirm that 6 digit number is matched with (?P<passkey>[0-9]+).
         """
-
+        print(passkey)
         for event in self.pairing_events:
+            print('!!!!!!!!!!!!!!!!!!!!!!')
+            print('.....................')
+            print(event.address)
+            print('.....................')
+            print(event.passkey_entry_request)
+            print('.....................')
+            print(event.numeric_comparison)
+            print('.....................')
             if event.address == pts_addr and event.numeric_comparison == int(passkey):
                 self.pairing_events.send(PairingEventAnswer(
                     event=event,
@@ -1351,6 +1360,7 @@ class GATTProxy(ProfileProxy):
         """
 
         for event in self.pairing_events:
+
             if event.address == pts_addr and event.passkey_entry_request:
                 self.pairing_events.send(PairingEventAnswer(event=event, passkey=int(passkey)))
                 return "OK"

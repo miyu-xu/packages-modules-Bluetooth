@@ -22,25 +22,25 @@ import sys
 
 import grpc
 
-from mmi2grpc.a2dp import A2DPProxy
-from mmi2grpc.avrcp import AVRCPProxy
-from mmi2grpc.gatt import GATTProxy
-from mmi2grpc.gap import GAPProxy
-from mmi2grpc.hfp import HFPProxy
-from mmi2grpc.hid import HIDProxy
-from mmi2grpc.hogp import HOGPProxy
-from mmi2grpc.l2cap import L2CAPProxy
-from mmi2grpc.map import MAPProxy
-from mmi2grpc.opp import OPPProxy
-from mmi2grpc.pan import PANProxy
-from mmi2grpc.pbap import PBAPProxy
-from mmi2grpc.rfcomm import RFCOMMProxy
-from mmi2grpc.sdp import SDPProxy
-from mmi2grpc.sm import SMProxy
-from mmi2grpc.vcp import VCPProxy
-from mmi2grpc._helpers import format_proxy
-from mmi2grpc._rootcanal import RootCanal
-from mmi2grpc._modem import Modem
+from a2dp import A2DPProxy
+from avrcp import AVRCPProxy
+from gatt import GATTProxy
+from gap import GAPProxy
+from hfp import HFPProxy
+from hid import HIDProxy
+from hogp import HOGPProxy
+from l2cap import L2CAPProxy
+from map import MAPProxy
+from opp import OPPProxy
+from pan import PANProxy
+from pbap import PBAPProxy
+from rfcomm import RFCOMMProxy
+from sdp import SDPProxy
+from sm import SMProxy
+from vcp import VCPProxy
+from _helpers import format_proxy
+from _rootcanal import RootCanal
+from _modem import Modem
 
 from pandora.host_grpc import Host
 
