@@ -16,6 +16,24 @@
       "message": "Can you consider suppressing the lint warning on this if it\u0027s not expected to be changed?",
       "revId": "b899c43cc2be3ba760088e94ad2084b03f26b49e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af0b8d01_a76c4b5b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1043473
+      },
+      "writtenOn": "2024-02-13T22:30:08Z",
+      "side": 1,
+      "message": "I feel its OK to have the lint error to catch future violations. In this case the lint error can be ignored.",
+      "parentUuid": "1b84fb6f_be38f998",
+      "revId": "b899c43cc2be3ba760088e94ad2084b03f26b49e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
