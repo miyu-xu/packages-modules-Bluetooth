@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c76ac861_cf1c23de",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 653,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-13T20:10:02Z",
+      "side": 1,
+      "message": "What happens if the promise was moved on line 646?\n\nCan we continue to have the EnqueueCommand on line 641 be the last thing in this function?  Do you have a different suggestion of how to make sure the controller is initialized before moving on?\n\nIt would be nice to add a test for parsing a 1.04 packet in gd/hci/controller_test.cc",
+      "range": {
+        "startLine": 653,
+        "startChar": 6,
+        "endLine": 653,
+        "endChar": 20
+      },
+      "revId": "498753642b0ffee130d0fe35e288b1d6a96ad4f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4b3e7e4_243ca957",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 5329,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-13T20:10:02Z",
+      "side": 1,
+      "message": "I\u0027d prefer to have the test packet by the packet.\n\nDo you have a 104 test packet from wireshark to add?",
+      "range": {
+        "startLine": 5329,
+        "startChar": 5,
+        "endLine": 5329,
+        "endChar": 39
+      },
+      "revId": "498753642b0ffee130d0fe35e288b1d6a96ad4f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
