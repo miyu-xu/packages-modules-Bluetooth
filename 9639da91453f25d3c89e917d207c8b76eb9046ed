@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "714cc7fc_f998278b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-13T19:33:22Z",
+      "side": 1,
+      "message": "This stack of CLs migrates HCI commands one at a time to PDL.",
+      "revId": "9639da91453f25d3c89e917d207c8b76eb9046ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
