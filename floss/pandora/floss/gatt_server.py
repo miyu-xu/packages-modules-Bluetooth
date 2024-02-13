@@ -435,7 +435,6 @@ class FlossGattServer(GattServerCallbacks):
             for observer in self.observers.values():
                 observer.on_characteristic_write_request(addr, trans_id, offset, length, is_prep, need_rsp, handle,
                                                          value)
-
         def OnDescriptorReadRequest(self, addr, trans_id, offset, is_long, handle):
             """Handles descriptor read request callback.
 
@@ -1150,6 +1149,10 @@ class FlossGattServer(GattServerCallbacks):
                      ATT PDU.
             handle: The characteristic handle.
         """
+        if self.negociated_mtu != -1:
+            self.proxy().SendResponse(self.server_id, addr, trans_id, 0, offset, bytearray(self.negociated_mtu))
+        else:
+            self.proxy().SendResponse(self.server_id, addr, trans_id, 0, offset, bytearray(512 - int(offset)))
         logging.debug(
             'on_characteristic_read_request: device address: %s, trans_id: %s, offset: %s, is_long: %s, handle: %s',
             addr, trans_id, offset, is_long, handle)
@@ -1191,6 +1194,8 @@ class FlossGattServer(GattServerCallbacks):
             'on_characteristic_write_request: device address: %s, trans_id: %s, offset: %s, length: %s, is_prep: %s, '
             'need_rsp: %s, handle: %s, values: %s', addr, trans_id, offset, length, is_prep, need_rsp, handle, value)
         self.on_attr_write(addr, trans_id, offset, length, is_prep, need_rsp, handle, value)
+
+        self.proxy().SendResponse(self.server_id, addr, trans_id, 0, offset, bytearray(value))
 
     @utils.glib_callback()
     def on_descriptor_write_request(self, addr, trans_id, offset, length, is_prep, need_rsp, handle, value):
@@ -1253,6 +1258,7 @@ class FlossGattServer(GattServerCallbacks):
             addr: Remote device MAC address.
             mtu: Maximum transmission unit.
         """
+        self.negociated_mtu = mtu
         logging.debug('on_mtu_changed: device address: %s, mtu : %s', addr, mtu)
         self.mtu_value = mtu
 

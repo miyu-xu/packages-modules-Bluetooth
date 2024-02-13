@@ -1,0 +1,633 @@
+[
+    {
+        "test_name": "GATT/SR/GAR/BI-04-C",
+        "interactions": [
+            "MMI_IUT_NO_SECURITY",
+            "MMI_MAKE_IUT_CONNECTABLE"
+        ],
+        "descriptions": [
+            "Please make sure IUT does not initiate security procedure.\n\nDescription:\nPTS will delete bond information. Test case requires that no\nauthentication or authorization procedure has been performed between the\nIUT and the test system.",
+            "Please prepare IUT into a connectable mode.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can accept GATT connect request from\nPTS."
+        ]
+    },
+    {
+        "test_name": "GATT/CL/GAN/BV-01-C",
+        "interactions": [
+            "MMI_IUT_INITIATE_CONNECTION",
+            "MMI_IUT_SEND_NOTIFICATION",
+            "MMI_IUT_RECEIVE_NOTIFICATION",
+            "MMI_IUT_INITIATE_DISCONNECTION"
+        ],
+        "descriptions": [
+            "Please initiate a GATT connection to the PTS.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can initiate GATT connect request to\nPTS.",
+            "Please write to client characteristic configuration handle = '0134'O to\nenable notification to the PTS. Discover all characteristics if needed.\nDescription: Verify that the Implementation Under Test (IUT) can receive\nnotification sent from PTS.",
+            "Please confirm IUT received notification from PTS. Click YES if\nreceived, otherwise NO.\n\nDescription: Verify that the Implementation\nUnder Test (IUT) can receive notification send from PTS.",
+            "Please initiate a GATT disconnection to the PTS.\n\nDescription: Verify\nthat the Implementation Under Test (IUT) can initiate GATT disconnect\nrequest to PTS."
+        ]
+    },
+    {
+        "test_name": "GATT/SR/GAC/BV-01-C",
+        "interactions": [
+            "MMI_MAKE_IUT_CONNECTABLE"
+        ],
+        "descriptions": [
+            "Please prepare IUT into a connectable mode.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can accept GATT connect request from\nPTS."
+        ]
+    },
+    {
+        "test_name": "GATT/CL/GAD/BV-03-C",
+        "interactions": [
+            "MMI_IUT_INITIATE_CONNECTION",
+            "MMI_IUT_FIND_INCLUDED_SERVICES",
+            "MMI_CONFIRM_NO_INCLUDE_SERVICE",
+            "MMI_IUT_INITIATE_DISCONNECTION",
+            "MMI_IUT_INITIATE_CONNECTION",
+            "MMI_IUT_FIND_INCLUDED_SERVICES",
+            "MMI_CONFIRM_INCLUDE_SERVICE",
+            "MMI_IUT_INITIATE_DISCONNECTION",
+            "MMI_IUT_INITIATE_CONNECTION",
+            "MMI_IUT_FIND_INCLUDED_SERVICES",
+            "MMI_CONFIRM_INCLUDE_SERVICE",
+            "MMI_IUT_INITIATE_DISCONNECTION",
+            "MMI_IUT_INITIATE_CONNECTION",
+            "MMI_IUT_FIND_INCLUDED_SERVICES",
+            "MMI_CONFIRM_INCLUDE_SERVICE",
+            "MMI_IUT_INITIATE_DISCONNECTION"
+        ],
+        "descriptions": [
+            "Please initiate a GATT connection to the PTS.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can initiate GATT connect request to\nPTS.",
+            "Please send discover all include services to the PTS to discover all\nInclude Service supported in the PTS. Discover primary service if\nneeded.\n\nDescription: Verify that the Implementation Under Test (IUT)\ncan send Discover all include services command.",
+            "There is no include service in the database file.\n\nDescription: Verify\nthat the Implementation Under Test (IUT) can send Discover all include\nservices in database.",
+            "Please initiate a GATT disconnection to the PTS.\n\nDescription: Verify\nthat the Implementation Under Test (IUT) can initiate GATT disconnect\nrequest to PTS.",
+            "Please initiate a GATT connection to the PTS.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can initiate GATT connect request to\nPTS.",
+            "Please send discover all include services to the PTS to discover all\nInclude Service supported in the PTS. Discover primary service if\nneeded.\n\nDescription: Verify that the Implementation Under Test (IUT)\ncan send Discover all include services command.",
+            "Please confirm IUT received include services:\n\nAttribute Handle = '0002'O, Included Service Attribute handle = '0080'O,\nEnd Group Handle = '0085'O, Service UUID = 'A00B'O\n\nClick Yes if IUT received it, otherwise click No.\n\nDescription: Verify\nthat the Implementation Under Test (IUT) can send Discover all include\nservices in database.",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    {
+        "test_name": "GATT/CL/GAI/BV-01-C",
+        "interactions": [
+            "MMI_IUT_INITIATE_CONNECTION",
+            "MMI_IUT_SEND_INDICATION",
+            "MMI_IUT_RECEIVE_INDICATION",
+            "MMI_IUT_INITIATE_DISCONNECTION"
+        ],
+        "descriptions": [
+            "Please initiate a GATT connection to the PTS.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can initiate GATT connect request to\nPTS.",
+            "Please write to client characteristic configuration handle = '0133'O to\nenable indication to the PTS. Discover all characteristics if needed.\nDescription: Verify that the Implementation Under Test (IUT) can receive\nindication sent from PTS.",
+            "Please confirm IUT received indication from PTS. Click YES if received,\notherwise NO.\n\nDescription: Verify that the Implementation Under Test\n(IUT) can receive indication send from PTS.",
+            "Please initiate a GATT disconnection to the PTS.\n\nDescription: Verify\nthat the Implementation Under Test (IUT) can initiate GATT disconnect\nrequest to PTS."
+        ]
+    },
+    {
+        "test_name": "GATT/CL/GAR/BI-07-C",
+        "interactions": [
+            "MMI_IUT_INITIATE_CONNECTION",
+            "MMI_IUT_SEND_READ_CHARACTERISTIC_UUID",
+            "MMI_IUT_CONFIRM_ATTRIBUTE_NOT_FOUND",
+            "MMI_IUT_INITIATE_DISCONNECTION"
+        ],
+        "descriptions": [
+            "Please initiate a GATT connection to the PTS.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can initiate GATT connect request to\nPTS.",
+            "Please send read using characteristic UUID = '1D27'O handle range =\n'0001'O to 'FFFF'O to the PTS.\n\nDescription: Verify that the\nImplementation Under Test (IUT) can send Read characteristic by UUID.",
+            "Please confirm IUT received attribute not found error. Click Yes if IUT\nreceived it, otherwise click No.\n\nDescription: Verify that the\nImplementation Under Test (IUT) indicate attribute not found error when\nread a characteristic.",
+            "Please initiate a GATT disconnection to the PTS.\n\nDescription: Verify\nthat the Implementation Under Test (IUT) can initiate GATT disconnect\nrequest to PTS."
+        ]
+    },
+    {
+        "test_name": "GATT/CL/GAC/BV-01-C",
+        "interactions": [
+            "MMI_IUT_INITIATE_CONNECTION",
+            "MMI_IUT_MTU_EXCHANGE",
+            "MMI_IUT_INITIATE_DISCONNECTION"
+        ],
+        "descriptions": [
+            "Please initiate a GATT connection to the PTS.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can initiate GATT connect request to\nPTS.",
+            "Please send exchange MTU command to the PTS.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can send Exchange MTU command to the\ntester.",
+            "Please initiate a GATT disconnection to the PTS.\n\nDescription: Verify\nthat the Implementation Under Test (IUT) can initiate GATT disconnect\nrequest to PTS."
+        ]
+    },
+    {
+        "test_name": "GATT/CL/GAW/BI-33-C",
+        "interactions": [
+            "MMI_IUT_INITIATE_CONNECTION",
+            "MMI_IUT_SEND_WRITE_REQUEST_GREATER",
+            "MMI_IUT_CONFIRM_WRITE_INVALID_LENGTH",
+            "MMI_IUT_INITIATE_DISCONNECTION"
+        ],
+        "descriptions": [
+            "Please initiate a GATT connection to the PTS.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can initiate GATT connect request to\nPTS.",
+            "Please send write request with characteristic handle = '0064'O with greater than '2' byte of any octet value to the PTS.\n\nDescription:\nVerify that the Implementation Under Test (IUT) can send write request.",
+            "Please confirm IUT received Invalid attribute value length error. Click\nYes if IUT received it, otherwise click No.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) indicate Invalid attribute value\nlength error when write a characteristic.",
+            "Please initiate a GATT disconnection to the PTS.\n\nDescription: Verify\nthat the Implementation Under Test (IUT) can initiate GATT disconnect\nrequest to PTS."
+        ]
+    },
+    {
+        "test_name": "GATT/CL/GAW/BI-02-C",
+        "interactions": [
+            "MMI_IUT_INITIATE_CONNECTION",
+            "MMI_IUT_SEND_WRITE_REQUEST",
+            "MMI_IUT_CONFIRM_WRITE_INVALID_HANDLE",
+            "MMI_IUT_INITIATE_DISCONNECTION"
+        ],
+        "descriptions": [
+            "Please initiate a GATT connection to the PTS.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can initiate GATT connect request to\nPTS.",
+            "Please send write request with characteristic handle = 'XXXX'O with <= 'X' byte of any octet value to the PTS.\n\nDescription: Verify that theImplementation Under Test (IUT) can send write request.",
+            "Please confirm IUT received Invalid handle error. Click Yes if IUT\nreceived it, otherwise click No.\n\nDescription: Verify that the\nImplementation Under Test (IUT) indicate Invalid handle error when write\na characteristic.",
+            "Please initiate a GATT disconnection to the PTS.\n\nDescription: Verify\nthat the Implementation Under Test (IUT) can initiate GATT disconnect\nrequest to PTS."
+        ]
+    },
+    {
+        "test_name": "GATT/CL/GAW/BI-03-C",
+        "interactions": [
+            "MMI_IUT_INITIATE_CONNECTION",
+            "MMI_IUT_SEND_WRITE_REQUEST",
+            "MMI_IUT_CONFIRM_WRITE_NOT_PERMITTED",
+            "MMI_IUT_INITIATE_DISCONNECTION"
+        ],
+        "descriptions": [
+            "Please initiate a GATT connection to the PTS.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can initiate GATT connect request to\nPTS.",
+            "Please send write request with characteristic handle = 'XXXX'O with <= 'X' byte of any octet value to the PTS.\n\nDescription: Verify that theImplementation Under Test (IUT) can send write request.",
+            "Please confirm IUT received write is not permitted error. Click Yes if\nIUT received it, otherwise click No.\n\nDescription: Verify that the\nImplementation Under Test (IUT) indicate write is not permitted error\nwhen write a characteristic.",
+            "Please initiate a GATT disconnection to the PTS.\n\nDescription: Verify\nthat the Implementation Under Test (IUT) can initiate GATT disconnect\nrequest to PTS."
+        ]
+    },
+    {
+        "test_name": "GATT/CL/GAW/BV-08-C",
+        "interactions": [
+            "MMI_IUT_INITIATE_CONNECTION",
+            "MMI_IUT_SEND_WRITE_REQUEST",
+            "MMI_IUT_INITIATE_DISCONNECTION"
+        ],
+        "descriptions": [
+            "Please initiate a GATT connection to the PTS.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can initiate GATT connect request to\nPTS.",
+            "Please send write request with characteristic handle = 'XXXX'O with <= 'X' byte of any octet value to the PTS.\n\nDescription: Verify that theImplementation Under Test (IUT) can send write request.",
+            "Please initiate a GATT disconnection to the PTS.\n\nDescription: Verify\nthat the Implementation Under Test (IUT) can initiate GATT disconnect\nrequest to PTS."
+        ]
+    },
+    {
+        "test_name": "GATT/SR/GAR/BI-03-C",
+        "interactions": [
+            "MMI_IUT_NO_SECURITY",
+            "MMI_MAKE_IUT_CONNECTABLE"
+        ],
+        "descriptions": [
+            "Please make sure IUT does not initiate security procedure.\n\nDescription:\nPTS will delete bond information. Test case requires that no\nauthentication or authorization procedure has been performed between the\nIUT and the test system.",
+            "Please prepare IUT into a connectable mode.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can accept GATT connect request from\nPTS."
+        ]
+    },
+    {
+        "test_name": "GATT/SR/GAR/BV-04-C",
+        "interactions": [
+            "MMI_MAKE_IUT_CONNECTABLE",
+            "MMI_IUT_CONFIRM_READ_HANDLE_VALUE"
+        ],
+        "descriptions": [
+            "Please prepare IUT into a connectable mode.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can accept GATT connect request from\nPTS.",
+            "Please confirm IUT Handle='XX'O characteristic\nvalue='XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'O in random\nelected adopted database. Click Yes if it matches the IUT, otherwise\nclick No.\n\nDescription: Verify that the Implementation Under Test (IUT)\ncan send Read long characteristic to PTS random select adopted database."
+        ]
+    },
+    {
+        "test_name": "GATT/SR/GAR/BI-05-C",
+        "interactions": [
+            "MMI_MAKE_IUT_CONNECTABLE",
+            "MMI_CONFIRM_PASSKEY"
+        ],
+        "descriptions": [
+            "Please prepare IUT into a connectable mode.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can accept GATT connect request from\nPTS.",
+            "The secureId is (?P<passkey>[0-9]+)."
+        ]
+    },
+    {
+        "test_name": "GATT/SR/GAR/BI-09-C",
+        "interactions": [
+            "MMI_IUT_NO_SECURITY",
+            "MMI_MAKE_IUT_CONNECTABLE",
+            "MMI_IUT_ENTER_UUID_INSUFFICIENT_AUTHORIZATION",
+            "MMI_IUT_ENTER_HANDLE_INSUFFICIENT_AUTHORIZATIOND"
+        ],
+        "descriptions": [
+            "Please make sure IUT does not initiate security procedure.\n\nDescription:\nPTS will delete bond information. Test case requires that no\nauthentication or authorization procedure has been performed between the\nIUT and the test system.",
+            "Please prepare IUT into a connectable mode.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can accept GATT connect request from\nPTS.",
+            "Enter UUID(0x) response with Insufficient Authorization.\n\nDescription: \nVerify that the Implementation\nUnder Test (IUT) can respond Insufficient \nAuthorization.",
+            "Enter Handle(0x)(Range 0x0001-0xFFFF) response with Insufficient\nAuthorization.\n\nDescription: Verify that the Implementation Under Test\n(IUT) can respond Insufficient Authorization."
+        ]
+    },
+    {
+        "test_name": "GATT/SR/GAR/BI-13-C",
+        "interactions": [
+            "MMI_MAKE_IUT_CONNECTABLE"
+        ],
+        "descriptions": [
+            "Please prepare IUT into a connectable mode.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can accept GATT connect request from\nPTS."
+        ]
+    },
+    {
+        "test_name": "GATT/SR/GAR/BI-15-C",
+        "interactions": [
+            "MMI_IUT_NO_SECURITY",
+            "MMI_MAKE_IUT_CONNECTABLE"
+        ],
+        "descriptions": [
+            "Please make sure IUT does not initiate security procedure.\n\nDescription:\nPTS will delete bond information. Test case requires that no\nauthentication or authorization procedure has been performed between the\nIUT and the test system.",
+            "Please prepare IUT into a connectable mode.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can accept GATT connect request from\nPTS."
+        ]
+    },
+    {
+        "test_name": "GATT/SR/GAR/BI-20-C",
+        "interactions": [
+            "MMI_IUT_NO_SECURITY",
+            "MMI_MAKE_IUT_CONNECTABLE"
+        ],
+        "descriptions": [
+            "Please make sure IUT does not initiate security procedure.\n\nDescription:\nPTS will delete bond information. Test case requires that no\nauthentication or authorization procedure has been performed between the\nIUT and the test system.",
+            "Please prepare IUT into a connectable mode.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can accept GATT connect request from\nPTS."
+        ]
+    },
+    {
+        "test_name": "GATT/SR/GAR/BI-22-C",
+        "interactions": [
+            "MMI_MAKE_IUT_CONNECTABLE",
+            "MMI_CONFIRM_PASSKEY"
+        ],
+        "descriptions": [
+            "Please prepare IUT into a connectable mode.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can accept GATT connect request from\nPTS.",
+            "The secureId is (?P<passkey>[0-9]+)."
+        ]
+    },
+    {
+        "test_name": "GATT/SR/GAR/BV-05-C",
+        "interactions": [
+            "MMI_MAKE_IUT_CONNECTABLE",
+            "MMI_IUT_CONFIRM_READ_MULTIPLE_HANDLE_VALUES"
+        ],
+        "descriptions": [
+            "Please prepare IUT into a connectable mode.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can accept GATT connect request from\nPTS.",
+            "Please confirm IUT Handle pair = 'XXXX'O 'XXXX'O\nvalue='XXXXXXXXXXXXXXXXXXXXXXXXXXX in random selected\nadopted database. Click Yes if it matches the IUT, otherwise click No.\nDescription: Verify that the Implementation Under Test (IUT) can send\nRead multiple characteristics."
+        ]
+    },
+    {
+        "test_name": "GATT/SR/GAR/BV-06-C",
+        "interactions": [
+            "MMI_MAKE_IUT_CONNECTABLE",
+            "MMI_IUT_ENTER_UUID_READ_NOT_PERMITTED",
+            "MMI_IUT_ENTER_HANDLE_READ_NOT_PERMITTED"
+        ],
+        "descriptions": [
+            "Please prepare IUT into a connectable mode.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can accept GATT connect request from\nPTS.",
+            "Enter UUID(0x) response with Read Not Permitted.\n\nDescription: Verify\nthat the Implementation Under Test (IUT) can respond Read Not Permitted.",
+            "Please input a handle(0x)(Range 0x0001-0xFFFF) that doesn't permit\nreading (i.e. Read Not Permitted)\n\nDescription: Verify that the\nImplementation Under Test (IUT) can issue a Read Not Permitted Response."
+        ]
+    },
+    {
+        "test_name": "GATT/SR/GAR/BV-07-C",
+        "interactions": [
+            "MMI_MAKE_IUT_CONNECTABLE",
+            "MMI_IUT_ENTER_UUID_ATTRIBUTE_NOT_FOUND"
+        ],
+        "descriptions": [
+            "Please prepare IUT into a connectable mode.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can accept GATT connect request from\nPTS.",
+            "Enter UUID(0x) response with Attribute Not Found.\n\nDescription: Verify\nthat the Implementation Under Test (IUT) can respond Attribute Not\nFound."
+        ]
+    },
+    {
+        "test_name": "GATT/SR/GAR/BV-08-C",
+        "interactions": [
+            "MMI_MAKE_IUT_CONNECTABLE"
+        ],
+        "descriptions": [
+            "Please prepare IUT into a connectable mode.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can accept GATT connect request from\nPTS."
+        ]
+    },
+    {
+        "test_name": "GATT/SR/GAI/BV-01-C",
+        "interactions": [
+            "MMI_MAKE_IUT_CONNECTABLE",
+            "MMI_IUT_SEND_INDICATION_VALUE"
+        ],
+        "descriptions": [
+            "Please prepare IUT into a connectable mode.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can accept GATT connect request from\nPTS.",
+            "Please send an Handle Value indication handle = XXXX'O after \nenabled by the PTS.\n\nDescription: Verify that the Implementation Under Test (IUT) \ncan send handle value notification to the PTS."
+        ]
+    },
+    {
+        "test_name": "GATT/SR/GAW/BI-06-C",
+        "interactions": [
+            "MMI_MAKE_IUT_CONNECTABLE",
+            "_mmi_2004",
+            "MMI_CONFIRM_PASSKEY"
+        ],
+        "descriptions": [
+            "Please prepare IUT into a connectable mode.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can accept GATT connect request from\nPTS.",
+            "Please confirm that 6 digit number is matched with (?P<passkey>[0-9]+).",
+            "The secureId is (?P<passkey>[0-9]+)."
+        ]
+    },
+    {
+        "test_name": "GATT/CL/GAR/BI-03-C",
+        "interactions": [
+            "MMI_IUT_INITIATE_CONNECTION",
+            "MMI_IUT_SEND_READ_CHARACTERISTIC_HANDLE",
+            "MMI_IUT_CONFIRM_READ_AUTHORIZATION",
+            "MMI_IUT_INITIATE_DISCONNECTION"
+        ],
+        "descriptions": [
+            "Please initiate a GATT connection to the PTS.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can initiate GATT connect request to\nPTS.",
+            "Please send read characteristic handle = '0006'O to the PTS.\nDescription: Verify that the Implementation Under Test (IUT) can send\nRead characteristic.",
+            "Please confirm IUT received authorization error. Click Yes if IUT\nreceived it, otherwise click No.\n\nDescription: Verify that the\nImplementation Under Test (IUT) indicate\nauthorization error when read a\ncharacteristic.",
+            "Please initiate a GATT disconnection to the PTS.\n\nDescription: Verify\nthat the Implementation Under Test (IUT) can initiate GATT disconnect\nrequest to PTS."
+        ]
+    },
+    {
+        "test_name": "GATT/CL/GAR/BI-04-C",
+        "interactions": [
+            "MMI_IUT_INITIATE_CONNECTION",
+            "MMI_IUT_SEND_READ_CHARACTERISTIC_HANDLE",
+            "MMI_IUT_CONFIRM_READ_AUTHENTICATION",
+            "MMI_IUT_INITIATE_DISCONNECTION"
+        ],
+        "descriptions": [
+            "Please initiate a GATT connection to the PTS.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can initiate GATT connect request to\nPTS.",
+            "Please send read characteristic handle = '0004'O to the PTS.\nDescription: Verify that the Implementation Under Test (IUT) can send\nRead characteristic.",
+            "Please confirm IUT received authentication error. Click Yes if IUT\nreceived it, otherwise click No.\n\nDescription: Verify that the\nImplementation Under Test (IUT) indicate authentication error when read\na characteristic.",
+            "Please initiate a GATT disconnection to the PTS.\n\nDescription: Verify\nthat the Implementation Under Test (IUT) can initiate GATT disconnect\nrequest to PTS."
+        ]
+    },
+    {
+        "test_name": "GATT/CL/GAR/BI-05-C",
+        "interactions": [
+            "MMI_IUT_INITIATE_CONNECTION"
+        ],
+        "descriptions": [
+            "Please initiate a GATT connection to the PTS.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can initiate GATT connect request to\nPTS."
+        ]
+    },
+    {
+        "test_name": "GATT/CL/GAR/BI-09-C",
+        "interactions": [
+            "MMI_IUT_INITIATE_CONNECTION",
+            "MMI_IUT_SEND_READ_CHARACTERISTIC_UUID",
+            "MMI_IUT_CONFIRM_READ_AUTHORIZATION",
+            "MMI_IUT_INITIATE_DISCONNECTION"
+        ],
+        "descriptions": [
+            "Please initiate a GATT connection to the PTS.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can initiate GATT connect request to\nPTS.",
+            "Please send read using characteristic UUID = '1D27'O handle range =\n'0001'O to 'FFFF'O to the PTS.\n\nDescription: Verify that the\nImplementation Under Test (IUT) can send Read characteristic by UUID.",
+            "Please confirm IUT received authorization error. Click Yes if IUT\nreceived it, otherwise click No.\n\nDescription: Verify that the\nImplementation Under Test (IUT) indicate\nauthorization error when read a\ncharacteristic.",
+            "Please initiate a GATT disconnection to the PTS.\n\nDescription: Verify\nthat the Implementation Under Test (IUT) can initiate GATT disconnect\nrequest to PTS."
+        ]
+    },
+    {
+        "test_name": "GATT/CL/GAR/BI-10-C",
+        "interactions": [
+            "MMI_IUT_INITIATE_CONNECTION",
+            "MMI_IUT_SEND_READ_CHARACTERISTIC_UUID",
+            "MMI_IUT_CONFIRM_READ_AUTHENTICATION",
+            "MMI_IUT_INITIATE_DISCONNECTION"
+        ],
+        "descriptions": [
+            "Please initiate a GATT connection to the PTS.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can initiate GATT connect request to\nPTS.",
+            "Please send read using characteristic UUID = 'B002'O handle range =\n'00EE'O to '00EE'O to the PTS.\n\nDescription: Verify that the\nImplementation Under Test (IUT) can send Read characteristic by UUID.",
+            "Please confirm IUT received authentication error. Click Yes if IUT\nreceived it, otherwise click No.\n\nDescription: Verify that the\nImplementation Under Test (IUT) indicate authentication error when read\na characteristic.",
+            "Please initiate a GATT disconnection to the PTS.\n\nDescription: Verify\nthat the Implementation Under Test (IUT) can initiate GATT disconnect\nrequest to PTS."
+        ]
+    },
+    {
+        "test_name": "GATT/CL/GAR/BI-11-C",
+        "interactions": [
+            "MMI_IUT_INITIATE_CONNECTION"
+        ],
+        "descriptions": [
+            "Please initiate a GATT connection to the PTS.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can initiate GATT connect request to\nPTS."
+        ]
+    },
+    {
+        "test_name": "GATT/CL/GAR/BI-15-C",
+        "interactions": [
+            "MMI_IUT_INITIATE_CONNECTION",
+            "MMI_IUT_SEND_READ_CHARACTERISTIC_HANDLE",
+            "MMI_IUT_CONFIRM_READ_AUTHORIZATION",
+            "MMI_IUT_INITIATE_DISCONNECTION"
+        ],
+        "descriptions": [
+            "Please initiate a GATT connection to the PTS.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can initiate GATT connect request to\nPTS.",
+            "Please send read characteristic handle = '00EE'O to the PTS.\nDescription: Verify that the Implementation Under Test (IUT) can send\nRead characteristic.",
+            "Please confirm IUT received authorization error. Click Yes if IUT\nreceived it, otherwise click No.\n\nDescription: Verify that the\nImplementation Under Test (IUT) indicate\nauthorization error when read a\ncharacteristic.",
+            "Please initiate a GATT disconnection to the PTS.\n\nDescription: Verify\nthat the Implementation Under Test (IUT) can initiate GATT disconnect\nrequest to PTS."
+        ]
+    },
+    {
+        "test_name": "GATT/CL/GAR/BI-16-C",
+        "interactions": [
+            "MMI_IUT_INITIATE_CONNECTION",
+            "MMI_IUT_SEND_READ_CHARACTERISTIC_HANDLE",
+            "MMI_IUT_CONFIRM_READ_AUTHENTICATION",
+            "MMI_IUT_INITIATE_DISCONNECTION"
+        ],
+        "descriptions": [
+            "Please initiate a GATT connection to the PTS.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can initiate GATT connect request to\nPTS.",
+            "Please send read characteristic handle = '00EE'O to the PTS.\nDescription: Verify that the Implementation Under Test (IUT) can send\nRead characteristic.",
+            "Please confirm IUT received authentication error. Click Yes if IUT\nreceived it, otherwise click No.\n\nDescription: Verify that the\nImplementation Under Test (IUT) indicate authentication error when read\na characteristic.",
+            "Please initiate a GATT disconnection to the PTS.\n\nDescription: Verify\nthat the Implementation Under Test (IUT) can initiate GATT disconnect\nrequest to PTS."
+        ]
+    },
+    {
+        "test_name": "GATT/CL/GAR/BI-34-C",
+        "interactions": [
+            "MMI_IUT_INITIATE_BR_CONNECTION"
+        ],
+        "descriptions": [
+            "Please initiate a GATT connection over BR/EDR to the PTS.\n\nDescription: Verify that the Implementation Under Test (IUT) can initiate GATT connect request over BR/EDR to PTS."
+        ]
+    },
+    {
+        "test_name": "GATT/CL/GAR/BI-35-C",
+        "interactions": [
+            "MMI_IUT_INITIATE_CONNECTION"
+        ],
+        "descriptions": [
+            "Please initiate a GATT connection to the PTS.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can initiate GATT connect request to\nPTS."
+        ]
+    },
+    {
+        "test_name": "GATT/SR/GAW/BV-05-C",
+        "interactions": [
+            "MMI_MAKE_IUT_CONNECTABLE"
+        ],
+        "descriptions": [
+            "Please prepare IUT into a connectable mode.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can accept GATT connect request from\nPTS."
+        ]
+    },
+    {
+        "test_name": "GATT/SR/GAW/BV-08-C",
+        "interactions": [
+            "MMI_MAKE_IUT_CONNECTABLE"
+        ],
+        "descriptions": [
+            "Please prepare IUT into a connectable mode.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can accept GATT connect request from\nPTS."
+        ]
+    },
+    {
+        "test_name": "GATT/SR/GAW/BV-03-C",
+        "interactions": [
+            "MMI_MAKE_IUT_CONNECTABLE"
+        ],
+        "descriptions": [
+            "Please prepare IUT into a connectable mode.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can accept GATT connect request from\nPTS."
+        ]
+    },
+    {
+        "test_name": "GATT/SR/GAW/BV-01-C",
+        "interactions": [
+            "MMI_MAKE_IUT_CONNECTABLE",
+            "MMI_IUT_CONFIRM_WRITE"
+        ],
+        "descriptions": [
+            "Please prepare IUT into a connectable mode.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can accept GATT connect request from\nPTS.",
+            "Please confirm IUT Write characteristic handle= 'XXXX'O value= 'XX'O .\nClick Yes if IUT received it, otherwise click No.\n\nDescription: Verify that the Implementation Under Test (IUT) can Write\ncharacteristic."
+        ]
+    },
+    {
+        "test_name": "GATT/SR/GAW/BI-32-C",
+        "interactions": [
+            "MMI_MAKE_IUT_CONNECTABLE",
+            "MMI_IUT_ENTER_HANDLE_INVALID_ATTRIBUTE_LEN"
+        ],
+        "descriptions": [
+            "Please prepare IUT into a connectable mode.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can accept GATT connect request from\nPTS.",
+            "Please input a handle(0x)(Range 0x0001-0xFFFF) that is fixed length\nand it is smaller than MTU-3.\n\nDescription: Verify that the Implementation Under Test (IUT) can issue\nan Invalid Handle Response."
+        ]
+    },
+    {
+        "test_name": "GATT/SR/GAW/BI-33-C",
+        "interactions": [
+            "MMI_MAKE_IUT_CONNECTABLE",
+            "MMI_IUT_ENTER_HANDLE_INVALID_ATTRIBUTE_LEN"
+        ],
+        "descriptions": [
+            "Please prepare IUT into a connectable mode.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can accept GATT connect request from\nPTS.",
+            "Please input a handle(0x)(Range 0x0001-0xFFFF) that is fixed length\nand it is smaller than MTU-3.\n\nDescription: Verify that the Implementation Under Test (IUT) can issue\nan Invalid Handle Response."
+        ]
+    },
+    {
+        "test_name": "GATT/SR/GAW/BI-11-C",
+        "interactions": [
+            "MMI_IUT_NO_SECURITY",
+            "MMI_MAKE_IUT_CONNECTABLE"
+        ],
+        "descriptions": [
+            "Please make sure IUT does not initiate security procedure.\n\nDescription:\nPTS will delete bond information. Test case requires that no\nauthentication or authorization procedure has been performed between the\nIUT and the test system.",
+            "Please prepare IUT into a connectable mode.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can accept GATT connect request from\nPTS."
+        ]
+    },
+    {
+        "test_name": "GATT/SR/GAW/BI-9-C",
+        "interactions": [
+            "MMI_MAKE_IUT_CONNECTABLE"
+        ],
+        "descriptions": [
+            "Please prepare IUT into a connectable mode.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can accept GATT connect request from\nPTS."
+        ]
+    },
+    {
+        "test_name": "GATT/SR/GAW/BI-4-C",
+        "interactions": [
+            "MMI_IUT_NO_SECURITY",
+            "MMI_MAKE_IUT_CONNECTABLE"
+        ],
+        "descriptions": [
+            "Please make sure IUT does not initiate security procedure.\n\nDescription:\nPTS will delete bond information. Test case requires that no\nauthentication or authorization procedure has been performed between the\nIUT and the test system.",
+            "Please prepare IUT into a connectable mode.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can accept GATT connect request from\nPTS."
+        ]
+    },
+    {
+        "test_name": "GATT/CL/GAR/BV-03-C",
+        "interactions": [
+            "MMI_IUT_INITIATE_CONNECTION",
+            "MMI_IUT_READ_BY_TYPE_UUID",
+            "MMI_IUT_CONFIRM_READ_BY_TYPE_RESP",
+            "MMI_IUT_READ_BY_TYPE_UUID",
+            "MMI_IUT_CONFIRM_READ_BY_TYPE_RESP",
+            "MMI_IUT_INITIATE_DISCONNECTION"
+        ],
+        "descriptions": [
+            "Please initiate a GATT connection to the PTS.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can initiate GATT connect request to\nPTS.",
+            "Please send read by type characteristic UUID = 'XXXX'O to the PTS.\nDescription: Verify that the Implementation Under Test (IUT) can send\nRead characteristic.",
+            "Please confirm IUT received %s in random selected adopted database.\nATT_READ_BLOB_REQ PDU can be used to read the remaining octets of a\nlong attribute value. Click Yes if IUT received it, otherwise click No.\n\nDescription: Verify that the\nImplementation Under Test (IUT) can send Read by type request\nto PTS random select adopted database.",
+            "Please send read by type characteristic UUID = 'XXXX'O to the PTS.\nDescription: Verify that the Implementation Under Test (IUT) can send\nRead characteristic.",
+            "Please confirm IUT received %s in random selected adopted database.\nATT_READ_BLOB_REQ PDU can be used to read the remaining octets of a\nlong attribute value. Click Yes if IUT received it, otherwise click No.\n\nDescription: Verify that the\nImplementation Under Test (IUT) can send Read by type request\nto PTS random select adopted database.",
+            "Please initiate a GATT disconnection to the PTS.\n\nDescription: Verify\nthat the Implementation Under Test (IUT) can initiate GATT disconnect\nrequest to PTS."
+        ]
+    },
+    {
+        "test_name": "GATT/CL/GAW/BI-04-C",
+        "interactions": [
+            "MMI_IUT_INITIATE_CONNECTION",
+            "MMI_IUT_SEND_WRITE_REQUEST",
+            "MMI_IUT_CONFIRM_WRITE_AUTHORIZATION",
+            "MMI_IUT_INITIATE_DISCONNECTION"
+        ],
+        "descriptions": [
+            "Please initiate a GATT connection to the PTS.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can initiate GATT connect request to\nPTS.",
+            "Please send write request with characteristic handle = 'XXXX'O with <= 'X' byte of any octet value to the PTS.\n\nDescription: Verify that theImplementation Under Test (IUT) can send write request.",
+            "Please confirm IUT received write authorization\nerror. Click Yes if IUT\nreceived it, otherwise click No.\n\nDescription: Verify that the\nImplementation Under Test\n(IUT) indicate authorization error when write\na characteristic.",
+            "Please initiate a GATT disconnection to the PTS.\n\nDescription: Verify\nthat the Implementation Under Test (IUT) can initiate GATT disconnect\nrequest to PTS."
+        ]
+    },
+    {
+        "test_name": "GATT/CL/GAW/BI-05-C",
+        "interactions": [
+            "MMI_IUT_INITIATE_CONNECTION",
+            "MMI_IUT_SEND_WRITE_REQUEST",
+            "MMI_IUT_CONFIRM_WRITE_AUTHENTICATION",
+            "MMI_IUT_INITIATE_DISCONNECTION"
+        ],
+        "descriptions": [
+            "Please initiate a GATT connection to the PTS.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can initiate GATT connect request to\nPTS.",
+            "Please send write request with characteristic handle = 'XXXX'O with <= 'X' byte of any octet value to the PTS.\n\nDescription: Verify that theImplementation Under Test (IUT) can send write request.",
+            "Please confirm IUT received write authentication\nerror. Click Yes if IUT\nreceived it, otherwise click\nNo.\n\nDescription: Verify that the\nImplementation Under Test\n(IUT) indicate authentication error when write\na characteristic.",
+            "Please initiate a GATT disconnection to the PTS.\n\nDescription: Verify\nthat the Implementation Under Test (IUT) can initiate GATT disconnect\nrequest to PTS."
+        ]
+    },
+    {
+        "test_name": "GATT/CL/GAW/BV-01-C",
+        "interactions": [
+            "MMI_IUT_INITIATE_CONNECTION",
+            "MMI_IUT_SEND_WRITE_COMMAND",
+            "MMI_IUT_INITIATE_DISCONNECTION"
+        ],
+        "descriptions": [
+            "Please initiate a GATT connection to the PTS.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can initiate GATT connect request to\nPTS.",
+            "Please send write command with handle = '0052'O with <= '1' bytes of any\noctet value to the PTS.\n\nDescription: Verify that the Implementation\nUnder Test (IUT) can send write request.",
+            "Please initiate a GATT disconnection to the PTS.\n\nDescription: Verify\nthat the Implementation Under Test (IUT) can initiate GATT disconnect\nrequest to PTS."
+        ]
+    },
+    {
+        "test_name": "GATT/SR/GAS/BV-01-C",
+        "interactions": [
+            "MMI_MAKE_IUT_CONNECTABLE"
+        ],
+        "descriptions": [
+            "Please prepare IUT into a connectable mode.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can accept GATT connect request from\nPTS."
+        ]
+    },
+    {
+        "test_name": "GATT/SR/GAT/BV-01-C",
+        "interactions": [
+            "MMI_MAKE_IUT_CONNECTABLE",
+            "MMI_IUT_SEND_INDICATION_VALUE"
+        ],
+        "descriptions": [
+            "Please prepare IUT into a connectable mode.\n\nDescription: Verify that\nthe Implementation Under Test (IUT) can accept GATT connect request from\nPTS.",
+            "Please send an Handle Value indication handle = XXXX'O after \nenabled by the PTS.\n\nDescription: Verify that the Implementation Under Test (IUT) \ncan send handle value notification to the PTS."
+        ]
+    }
+]
