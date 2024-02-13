@@ -23,7 +23,6 @@ cc_defaults {
     ],
     static_libs: [
         "libFraunhoferAAC",
-        "libaudio-a2dp-hw-utils",
         "libbluetooth-dumpsys",
         "libbluetooth-types",
         "libbluetooth_core_rs",

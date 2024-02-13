@@ -101,7 +101,6 @@ cc_library_shared {
         "lib-bt-packets-avrcp",
         "lib-bt-packets-base",
         "libFraunhoferAAC",
-        "libaudio-a2dp-hw-utils",
         "libbase",
         "libbluetooth",
         "libbluetooth-dumpsys",

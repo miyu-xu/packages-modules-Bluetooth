@@ -147,10 +147,4 @@ size_t audio_a2dp_hw_stream_compute_buffer_size(
     btav_a2dp_codec_bits_per_sample_t codec_bits_per_sample,
     btav_a2dp_codec_channel_mode_t codec_channel_mode);
 
-// Returns whether the delay reporting property is set.
-bool delay_reporting_enabled();
-
-// Returns a string representation of |event|.
-const char* audio_a2dp_hw_dump_ctrl_event(tA2DP_CTRL_CMD event);
-
 #endif /* A2DP_AUDIO_HW_H */

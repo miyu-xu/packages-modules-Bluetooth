@@ -27,7 +27,6 @@ cc_library {
     relative_install_path: "hw",
     srcs: [
         "src/audio_a2dp_hw.cc",
-        "src/audio_a2dp_hw_utils.cc",
     ],
     apex_available: [
         "com.android.btservices",
@@ -41,22 +40,6 @@ cc_library {
         "libbluetooth_log",
         "libosi",
     ],
-}
-
-cc_library_static {
-    name: "libaudio-a2dp-hw-utils",
-    defaults: ["audio_a2dp_hw_defaults"],
-    srcs: [
-        "src/audio_a2dp_hw_utils.cc",
-    ],
-    host_supported: true,
-    apex_available: [
-        "com.android.btservices",
-    ],
-    static_libs: [
-        "libbluetooth_log",
-    ],
-    min_sdk_version: "29",
 }
 
 // Audio A2DP library unit tests for target and host
