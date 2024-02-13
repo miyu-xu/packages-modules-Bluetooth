@@ -78,6 +78,8 @@ TEST_F(BtaHhTest, bta_hh_ctrl_dat_act__BTA_HH_GET_RPT_EVT) {
                       .layer_specific = 0,
                   },
               .dev_addr.addrt.bda = RawAddress::kEmpty,
+              .dev_addr.addrt.type = 0,
+              .dev_addr.transport = 0,
               .data = 32,
               .p_data = static_cast<BT_HDR*>(osi_calloc(32 + sizeof(BT_HDR))),
           },
