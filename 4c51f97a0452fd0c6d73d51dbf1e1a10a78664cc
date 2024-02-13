@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8605ccec_f07e4b42",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 999,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2024-02-13T04:35:36Z",
+      "side": 1,
+      "message": "Can\u0027t we handle this inside of LeAudioService.setActiveDevice()?",
+      "range": {
+        "startLine": 990,
+        "startChar": 0,
+        "endLine": 999,
+        "endChar": 17
+      },
+      "revId": "4c51f97a0452fd0c6d73d51dbf1e1a10a78664cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
