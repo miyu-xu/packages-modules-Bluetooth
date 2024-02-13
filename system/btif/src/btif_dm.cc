@@ -26,6 +26,7 @@
  *
  ******************************************************************************/
 
+#include "bt_dev_class.h"
 #define LOG_TAG "bt_btif_dm"
 
 #include "btif_dm.h"
@@ -2912,15 +2913,12 @@ void btif_dm_ssp_reply(const RawAddress bd_addr, bt_ssp_variant_t variant,
  *
  * Description      Reads the system property configured class of device
  *
- * Inputs           A pointer to a DEV_CLASS that you want filled with the
- *                  current class of device. Size is assumed to be 3.
- *
- * Returns          Nothing. device_class will contain the current class of
- *                  device. If no value is present, or the value is malformed
- *                  the default "unclassified" value will be used
+ * Returns          A DEV_CLASS containing the current class of device.
+ *                  If no value is present, or the value is malformed
+ *                  the default kEmpty value will be used
  *
  ******************************************************************************/
-void btif_dm_get_local_class_of_device(DEV_CLASS device_class) {
+DEV_CLASS btif_dm_get_local_class_of_device() {
   /* A class of device is a {SERVICE_CLASS, MAJOR_CLASS, MINOR_CLASS}
    *
    * The input is expected to be a string of the following format:
@@ -2930,6 +2928,7 @@ void btif_dm_get_local_class_of_device(DEV_CLASS device_class) {
    *
    * Notice there is always two commas and no spaces.
    */
+  DEV_CLASS device_class;
 
   device_class[0] = 0x00;
   device_class[1] = BTM_COD_MAJOR_UNCLASSIFIED;
@@ -2941,7 +2940,7 @@ void btif_dm_get_local_class_of_device(DEV_CLASS device_class) {
   // If the property is empty, use the default
   if (prop_cod[0] == '\0') {
     LOG_ERROR("COD property is empty");
-    return;
+    return kDevClassEmpty;
   }
 
   // Start reading the contents of the property string. If at any point anything
@@ -2958,7 +2957,7 @@ void btif_dm_get_local_class_of_device(DEV_CLASS device_class) {
       char c = prop_cod[i++];
       if (!std::isdigit(c)) {
         LOG_ERROR("COD malformed, '%c' is a non-digit", c);
-        return;
+        return kDevClassEmpty;
       }
       value += c;
     }
@@ -2966,20 +2965,20 @@ void btif_dm_get_local_class_of_device(DEV_CLASS device_class) {
     // If we hit the end and it wasn't null terminated then return the default
     if (i == PROPERTY_VALUE_MAX && prop_cod[PROPERTY_VALUE_MAX - 1] != '\0') {
       LOG_ERROR("COD malformed, value was truncated");
-      return;
+      return kDevClassEmpty;
     }
 
     // Each number in the list must be one byte, meaning 0 (0x00) -> 255 (0xFF)
     if (value.size() > 3 || value.size() == 0) {
       LOG_ERROR("COD malformed, '%s' must be between [0, 255]", value.c_str());
-      return;
+      return kDevClassEmpty;
     }
 
     // Grab the value. If it's too large, then return the default
     uint32_t uint32_val = static_cast<uint32_t>(std::stoul(value.c_str()));
     if (uint32_val > 0xFF) {
       LOG_ERROR("COD malformed, '%s' must be between [0, 255]", value.c_str());
-      return;
+      return kDevClassEmpty;
     }
 
     // Otherwise, it's safe to use
@@ -2989,7 +2988,7 @@ void btif_dm_get_local_class_of_device(DEV_CLASS device_class) {
     if (j >= 3) {
       if (prop_cod[i] != '\0') {
         LOG_ERROR("COD malformed, more than three numbers");
-        return;
+        return kDevClassEmpty;
       }
       break;
     }
@@ -3037,6 +3036,7 @@ void btif_dm_get_local_class_of_device(DEV_CLASS device_class) {
       "0x%x'",
       device_class[0], device_class[1], device_class[2]);
 #endif
+  return device_class;
 }
 
 /*******************************************************************************
