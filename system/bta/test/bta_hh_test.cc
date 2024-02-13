@@ -79,7 +79,13 @@ TEST_F(BtaHhTest, bta_hh_ctrl_dat_act__BTA_HH_GET_RPT_EVT) {
                       .offset = 0,
                       .layer_specific = 0,
                   },
+<<<<<<< PATCH SET (395d83 Added transport in HID host JNI)
+              .dev_addr.addrt.bda = RawAddress::kEmpty,
+              .dev_addr.addrt.type = 0,
+              .dev_addr.transport = 0,
+=======
               .addr = RawAddress::kEmpty,
+>>>>>>> BASE      (cee3c2 Merge changes Ia4fbbb2d,I115120d3 into main)
               .data = 32,
               .p_data = static_cast<BT_HDR*>(osi_calloc(32 + sizeof(BT_HDR))),
           },

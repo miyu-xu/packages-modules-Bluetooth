@@ -177,10 +177,24 @@ bt_status_t btif_storage_load_bonded_hid_info(void) {
       btif_config_get_bin(name, BTIF_STORAGE_KEY_HID_DESCRIPTOR,
                           (uint8_t*)dscp_info.descriptor.dsc_list, &len);
     }
+    value = 0;
+    btif_config_get_int(name, BTIF_STORAGE_KEY_ADDR_TYPE, &value);
+    dev_addr.addrt.type = (tBLE_ADDR_TYPE)value;
+
+    value = 0;
+    btif_config_get_int(name, BTIF_STORAGE_KEY_HID_PREFERRED_TRANSPORT, &value);
+
+    dev_addr.transport = (tBT_TRANSPORT)value;
+    dev_addr.addrt.bda = bd_addr;
 
     // add extracted information to BTA HH
+<<<<<<< PATCH SET (395d83 Added transport in HID host JNI)
+    if (btif_hh_add_added_dev(dev_addr, attr_mask)) {
+      BTA_HhAddDev(dev_addr, attr_mask, sub_class, app_id, dscp_info);
+=======
     if (btif_hh_add_added_dev(bd_addr, attr_mask)) {
       BTA_HhAddDev(bd_addr, attr_mask, sub_class, app_id, dscp_info);
+>>>>>>> BASE      (cee3c2 Merge changes Ia4fbbb2d,I115120d3 into main)
     }
   }
 
@@ -213,6 +227,7 @@ bt_status_t btif_storage_remove_hid_info(const RawAddress& remote_bd_addr) {
   btif_config_remove(bdstr, BTIF_STORAGE_KEY_HID_DESCRIPTOR);
   btif_config_remove(bdstr, BTIF_STORAGE_KEY_HID_REPORT);
   btif_config_remove(bdstr, BTIF_STORAGE_KEY_HID_REPORT_VERSION);
+  btif_config_remove(bdstr, BTIF_STORAGE_KEY_HID_PREFERRED_TRANSPORT);
   return BT_STATUS_SUCCESS;
 }
 
@@ -1067,6 +1082,22 @@ bt_status_t btif_storage_remove_hidd(RawAddress* remote_bd_addr) {
   btif_config_remove(remote_bd_addr->ToString(),
                      BTIF_STORAGE_KEY_HID_DEVICE_CABLED);
 
+  return BT_STATUS_SUCCESS;
+}
+
+/*******************************************************************************
+ *
+ * Function         btif_storage_set_hid_preferred_transport
+ *
+ * Description      Stores preferred transport info in nvram
+ *
+ * Returns          BT_STATUS_SUCCESS
+ *
+ ******************************************************************************/
+bt_status_t btif_storage_set_hid_preferred_transport(RawAddress* remote_bd_addr,
+                                                     tBT_TRANSPORT transport) {
+  btif_config_set_int(remote_bd_addr->ToString(),
+                      BTIF_STORAGE_KEY_HID_PREFERRED_TRANSPORT, transport);
   return BT_STATUS_SUCCESS;
 }
 

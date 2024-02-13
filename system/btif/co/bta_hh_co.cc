@@ -517,7 +517,8 @@ void bta_hh_co_close(btif_hh_device_t* p_dev) {
  ******************************************************************************/
 void bta_hh_co_data(uint8_t dev_handle, uint8_t* p_rpt, uint16_t len,
                     tBTA_HH_PROTO_MODE mode, uint8_t sub_class,
-                    uint8_t ctry_code, UNUSED_ATTR const RawAddress& peer_addr,
+                    uint8_t ctry_code,
+                    UNUSED_ATTR const tTypedAddressTransport& addr_transport,
                     uint8_t app_id) {
   btif_hh_device_t* p_dev;
 
@@ -745,19 +746,19 @@ void bta_hh_co_get_rpt_rsp(uint8_t dev_handle, uint8_t status,
  *                  information in NV if device is bonded and load it back when
  *                  stack reboot.
  *
- * Parameters       remote_bda  - remote device address
+ * Parameters       addr_transport  - remote device address transport
  *                  p_entry     - report entry pointer
  *                  app_id      - application id
  *
  * Returns          void.
  *
  ******************************************************************************/
-void bta_hh_le_co_rpt_info(const RawAddress& remote_bda,
+void bta_hh_le_co_rpt_info(const tTypedAddressTransport& addr_transport,
                            tBTA_HH_RPT_CACHE_ENTRY* p_entry,
                            UNUSED_ATTR uint8_t app_id) {
   unsigned idx = 0;
 
-  std::string addrstr = remote_bda.ToString();
+  std::string addrstr = addr_transport.addrt.bda.ToString();
   const char* bdstr = addrstr.c_str();
 
   size_t len = btif_config_get_bin_length(bdstr, BTIF_STORAGE_KEY_HID_REPORT);
@@ -775,7 +776,7 @@ void bta_hh_le_co_rpt_info(const RawAddress& remote_bda,
     btif_config_set_int(bdstr, BTIF_STORAGE_KEY_HID_REPORT_VERSION,
                         BTA_HH_CACHE_REPORT_VERSION);
     LOG_VERBOSE("%s() - Saving report; dev=%s, idx=%d", __func__,
-                ADDRESS_TO_LOGGABLE_CSTR(remote_bda), idx);
+                ADDRESS_TO_LOGGABLE_CSTR(addr_transport), idx);
   }
 }
 
@@ -788,17 +789,17 @@ void bta_hh_le_co_rpt_info(const RawAddress& remote_bda,
  *                  is completed, bta_hh_le_co_cache_load() is called by the
  *                  application.
  *
- * Parameters       remote_bda  - remote device address
+ * Parameters       addr_transport  - remote device address transport
  *                  p_num_rpt   - number of cached report
  *                  app_id      - application id
  *
  * Returns          the cached report array
  *
  ******************************************************************************/
-tBTA_HH_RPT_CACHE_ENTRY* bta_hh_le_co_cache_load(const RawAddress& remote_bda,
-                                                 uint8_t* p_num_rpt,
-                                                 UNUSED_ATTR uint8_t app_id) {
-  std::string addrstr = remote_bda.ToString();
+tBTA_HH_RPT_CACHE_ENTRY* bta_hh_le_co_cache_load(
+    const tTypedAddressTransport& addr_transport, uint8_t* p_num_rpt,
+    UNUSED_ATTR uint8_t app_id) {
+  std::string addrstr = addr_transport.addrt.bda.ToString();
   const char* bdstr = addrstr.c_str();
 
   size_t len = btif_config_get_bin_length(bdstr, BTIF_STORAGE_KEY_HID_REPORT);
@@ -813,14 +814,14 @@ tBTA_HH_RPT_CACHE_ENTRY* bta_hh_le_co_cache_load(const RawAddress& remote_bda,
                       &cache_version);
 
   if (cache_version != BTA_HH_CACHE_REPORT_VERSION) {
-    bta_hh_le_co_reset_rpt_cache(remote_bda, app_id);
+    bta_hh_le_co_reset_rpt_cache(addr_transport, app_id);
     return NULL;
   }
 
   *p_num_rpt = len / sizeof(tBTA_HH_RPT_CACHE_ENTRY);
 
   LOG_VERBOSE("%s() - Loaded %d reports; dev=%s", __func__, *p_num_rpt,
-              ADDRESS_TO_LOGGABLE_CSTR(remote_bda));
+              ADDRESS_TO_LOGGABLE_CSTR(addr_transport));
 
   return sReportCache;
 }
@@ -831,18 +832,18 @@ tBTA_HH_RPT_CACHE_ENTRY* bta_hh_le_co_cache_load(const RawAddress& remote_bda,
  *
  * Description      This callout function is to reset the HOGP device cache.
  *
- * Parameters       remote_bda  - remote device address
+ * Parameters       addr_transport  - remote device address transport
  *
  * Returns          none
  *
  ******************************************************************************/
-void bta_hh_le_co_reset_rpt_cache(const RawAddress& remote_bda,
+void bta_hh_le_co_reset_rpt_cache(const tTypedAddressTransport& addr_transport,
                                   UNUSED_ATTR uint8_t app_id) {
-  std::string addrstr = remote_bda.ToString();
+  std::string addrstr = addr_transport.addrt.bda.ToString();
   const char* bdstr = addrstr.c_str();
 
   btif_config_remove(bdstr, BTIF_STORAGE_KEY_HID_REPORT);
   btif_config_remove(bdstr, BTIF_STORAGE_KEY_HID_REPORT_VERSION);
   LOG_VERBOSE("%s() - Reset cache for bda %s", __func__,
-              ADDRESS_TO_LOGGABLE_CSTR(remote_bda));
+              ADDRESS_TO_LOGGABLE_CSTR(addr_transport));
 }

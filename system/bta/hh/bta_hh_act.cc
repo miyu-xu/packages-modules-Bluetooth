@@ -377,7 +377,13 @@ void bta_hh_sdp_cmpl(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
   /* initialize call back data */
   memset((void*)&conn_dat, 0, sizeof(tBTA_HH_CONN));
   conn_dat.handle = p_cb->hid_handle;
+<<<<<<< PATCH SET (395d83 Added transport in HID host JNI)
+  conn_dat.addr.addrt.bda = p_cb->addr.addrt.bda;
+  conn_dat.addr.addrt.type = p_cb->addr.addrt.type;
+  conn_dat.addr.transport = p_cb->addr.transport;
+=======
   conn_dat.bda = p_cb->addr;
+>>>>>>> BASE      (cee3c2 Merge changes Ia4fbbb2d,I115120d3 into main)
 
   /* if SDP compl success */
   if (status == BTA_HH_OK) {
@@ -496,8 +502,15 @@ void bta_hh_connect(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
   bluetooth::Uuid remote_uuids[BT_MAX_NUM_UUIDS] = {};
   bt_property_t remote_properties = {BT_PROPERTY_UUIDS, sizeof(remote_uuids),
                                      &remote_uuids};
+<<<<<<< PATCH SET (395d83 Added transport in HID host JNI)
+  const RawAddress& bd_addr = p_data->api_conn.dev_addr.addrt.bda;
+  p_cb->addr.addrt.bda = bd_addr;
+  p_cb->addr.addrt.type = p_data->api_conn.dev_addr.addrt.type;
+  p_cb->addr.transport = p_data->api_conn.dev_addr.transport;
+=======
   const RawAddress& bd_addr = p_data->api_conn.bd_addr;
 
+>>>>>>> BASE      (cee3c2 Merge changes Ia4fbbb2d,I115120d3 into main)
   // Find the device type
   tBT_DEVICE_TYPE dev_type;
   tBLE_ADDR_TYPE addr_type;
@@ -552,7 +565,7 @@ void bta_hh_connect(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
 
   // Initiate HID host connection
   if (p_cb->is_le_device) {
-    bta_hh_le_open_conn(p_cb, bd_addr);
+    bta_hh_le_open_conn(p_cb, p_data->api_conn.dev_addr);
   } else {
     bta_hh_bredr_conn(p_cb, p_data);
   }
@@ -616,7 +629,13 @@ void bta_hh_open_cmpl_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
 
   memset((void*)&conn, 0, sizeof(tBTA_HH_CONN));
   conn.handle = dev_handle;
+<<<<<<< PATCH SET (395d83 Added transport in HID host JNI)
+  conn.addr.addrt.bda = p_cb->addr.addrt.bda;
+  conn.addr.addrt.type = p_cb->addr.addrt.type;
+  conn.addr.transport = p_cb->addr.transport;
+=======
   conn.bda = p_cb->addr;
+>>>>>>> BASE      (cee3c2 Merge changes Ia4fbbb2d,I115120d3 into main)
 
   /* increase connection number */
   bta_hh_cb.cnt_num++;
@@ -688,7 +707,13 @@ void bta_hh_open_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
     p_cb->incoming_hid_handle = dev_handle;
 
     memset(&conn_data, 0, sizeof(tBTA_HH_API_CONN));
+<<<<<<< PATCH SET (395d83 Added transport in HID host JNI)
+    conn_data.dev_addr.addrt.bda = p_cb->addr.addrt.bda;
+    conn_data.dev_addr.addrt.type = p_cb->addr.addrt.type;
+    conn_data.dev_addr.transport = p_cb->addr.transport;
+=======
     conn_data.bd_addr = p_cb->addr;
+>>>>>>> BASE      (cee3c2 Merge changes Ia4fbbb2d,I115120d3 into main)
     bta_hh_cb.p_cur = p_cb;
     bta_hh_bredr_conn(p_cb, (tBTA_HH_DATA*)&conn_data);
   }
@@ -766,7 +791,14 @@ void bta_hh_handsk_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
       bta_hh.conn.status =
           p_data->hid_cback.data ? BTA_HH_ERR_PROTO : BTA_HH_OK;
       bta_hh.conn.handle = p_cb->hid_handle;
+<<<<<<< PATCH SET (395d83 Added transport in HID host JNI)
+      bta_hh.conn.addr.addrt.bda = p_cb->addr.addrt.bda;
+      bta_hh.conn.addr.addrt.type = p_cb->addr.addrt.type;
+      bta_hh.conn.addr.transport = p_cb->addr.transport;
+
+=======
       bta_hh.conn.bda = p_cb->addr;
+>>>>>>> BASE      (cee3c2 Merge changes Ia4fbbb2d,I115120d3 into main)
       (*bta_hh_cb.p_cback)(p_cb->w4_evt, &bta_hh);
       bta_hh_trace_dev_db();
       p_cb->w4_evt = 0;
@@ -866,7 +898,14 @@ void bta_hh_open_failure(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
   conn_dat.handle = p_cb->hid_handle;
   conn_dat.status =
       (reason == HID_ERR_AUTH_FAILED) ? BTA_HH_ERR_AUTH_FAILED : BTA_HH_ERR;
+<<<<<<< PATCH SET (395d83 Added transport in HID host JNI)
+  conn_dat.addr.addrt.bda = p_cb->addr.addrt.bda;
+  conn_dat.addr.addrt.type = p_cb->addr.addrt.type;
+  conn_dat.addr.transport = p_cb->addr.transport;
+
+=======
   conn_dat.bda = p_cb->addr;
+>>>>>>> BASE      (cee3c2 Merge changes Ia4fbbb2d,I115120d3 into main)
   HID_HostCloseDev(p_cb->hid_handle);
 
   /* Report OPEN fail event */
@@ -994,7 +1033,14 @@ void bta_hh_maint_dev_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
 
   switch (p_dev_info->sub_event) {
     case BTA_HH_ADD_DEV_EVT: /* add a device */
+<<<<<<< PATCH SET (395d83 Added transport in HID host JNI)
+      dev_info.addr.addrt.bda = p_dev_info->dev_addr.addrt.bda;
+      dev_info.addr.addrt.type = p_dev_info->dev_addr.addrt.type;
+      dev_info.addr.transport = p_dev_info->dev_addr.transport;
+
+=======
       dev_info.bda = p_dev_info->bda;
+>>>>>>> BASE      (cee3c2 Merge changes Ia4fbbb2d,I115120d3 into main)
       /* initialize callback data */
       if (p_cb->hid_handle == BTA_HH_INVALID_HANDLE) {
         if (BTM_UseLeLink(p_data->api_conn.bd_addr)) {
@@ -1034,7 +1080,13 @@ void bta_hh_maint_dev_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
       break;
     case BTA_HH_RMV_DEV_EVT: /* remove device */
       dev_info.handle = (uint8_t)p_dev_info->hdr.layer_specific;
+<<<<<<< PATCH SET (395d83 Added transport in HID host JNI)
+      dev_info.addr.addrt.bda = p_cb->addr.addrt.bda;
+      dev_info.addr.addrt.type = p_cb->addr.addrt.type;
+      dev_info.addr.transport = p_cb->addr.transport;
+=======
       dev_info.bda = p_cb->addr;
+>>>>>>> BASE      (cee3c2 Merge changes Ia4fbbb2d,I115120d3 into main)
 
       if (p_cb->is_le_device) {
         bta_hh_le_remove_dev_bg_conn(p_cb);
@@ -1235,7 +1287,13 @@ static void bta_hh_cback(uint8_t dev_handle, const RawAddress& addr,
     p_buf->hdr.event = sm_event;
     p_buf->hdr.layer_specific = (uint16_t)dev_handle;
     p_buf->data = data;
+<<<<<<< PATCH SET (395d83 Added transport in HID host JNI)
+    p_buf->dev_addr.addrt.bda = addr;
+    p_buf->dev_addr.addrt.type = BLE_ADDR_PUBLIC;
+    p_buf->dev_addr.transport = BT_TRANSPORT_BR_EDR;
+=======
     p_buf->addr = addr;
+>>>>>>> BASE      (cee3c2 Merge changes Ia4fbbb2d,I115120d3 into main)
     p_buf->p_data = pdata;
 
     bta_sys_sendmsg(p_buf);
