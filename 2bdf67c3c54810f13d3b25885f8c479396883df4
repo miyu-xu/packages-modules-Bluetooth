@@ -519,6 +519,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7492a79_cf39e8f1",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 789,
+      "author": {
+        "id": 1302832
+      },
+      "writtenOn": "2024-02-13T08:33:06Z",
+      "side": 1,
+      "message": "Thanks for pointing it. I have removed bda_and_conn_id variable and used gap_clbs for conn_id and bda.",
+      "parentUuid": "434a775c_fcd8f31a",
+      "range": {
+        "startLine": 783,
+        "startChar": 0,
+        "endLine": 789,
+        "endChar": 13
+      },
+      "revId": "2bdf67c3c54810f13d3b25885f8c479396883df4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "694e0448_2b776ef1",
