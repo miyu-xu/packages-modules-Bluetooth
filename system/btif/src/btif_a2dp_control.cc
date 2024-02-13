@@ -61,6 +61,30 @@ static void btif_a2dp_ctrl_cb(tUIPC_CH_ID ch_id, tUIPC_EVENT event);
 static tA2DP_CTRL_CMD a2dp_cmd_pending = A2DP_CTRL_CMD_NONE;
 std::unique_ptr<tUIPC_STATE> a2dp_uipc = nullptr;
 
+static const char* audio_a2dp_hw_dump_ctrl_event(tA2DP_CTRL_CMD event) {
+  switch (event) {
+    case A2DP_CTRL_CMD_NONE:
+      return "A2DP_CTRL_CMD_NONE";
+    case A2DP_CTRL_CMD_CHECK_READY:
+      return "A2DP_CTRL_CMD_CHECK_READY";
+    case A2DP_CTRL_CMD_START:
+      return "A2DP_CTRL_CMD_START";
+    case A2DP_CTRL_CMD_STOP:
+      return "A2DP_CTRL_CMD_STOP";
+    case A2DP_CTRL_CMD_SUSPEND:
+      return "A2DP_CTRL_CMD_SUSPEND";
+    case A2DP_CTRL_GET_INPUT_AUDIO_CONFIG:
+      return "A2DP_CTRL_GET_INPUT_AUDIO_CONFIG";
+    case A2DP_CTRL_GET_OUTPUT_AUDIO_CONFIG:
+      return "A2DP_CTRL_GET_OUTPUT_AUDIO_CONFIG";
+    case A2DP_CTRL_SET_OUTPUT_AUDIO_CONFIG:
+      return "A2DP_CTRL_SET_OUTPUT_AUDIO_CONFIG";
+    case A2DP_CTRL_GET_PRESENTATION_POSITION:
+      return "A2DP_CTRL_GET_PRESENTATION_POSITION";
+  }
+  return "UNKNOWN A2DP_CTRL_CMD";
+}
+
 void btif_a2dp_control_init(void) {
   a2dp_uipc = UIPC_Init();
   UIPC_Open(*a2dp_uipc, UIPC_CH_ID_AV_CTRL, btif_a2dp_ctrl_cb, A2DP_CTRL_PATH);

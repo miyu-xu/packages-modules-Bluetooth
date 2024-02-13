@@ -55,6 +55,7 @@
 #include "internal_include/bt_trace.h"
 #include "osi/include/alarm.h"
 #include "osi/include/allocator.h"
+#include "osi/include/properties.h"
 #include "stack/include/avrc_api.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_uuid16.h"
@@ -4012,6 +4013,10 @@ static void btif_av_sink_dispatch_sm_event(const RawAddress& peer_address,
                                               AVDT_TSEP_SRC,  // peer_sep
                                               peer_address, kBtaHandleUnknown,
                                               btif_av_event));
+}
+
+static bool delay_reporting_enabled() {
+  return !osi_property_get_bool("persist.bluetooth.disabledelayreports", false);
 }
 
 bt_status_t btif_av_source_execute_service(bool enable) {
