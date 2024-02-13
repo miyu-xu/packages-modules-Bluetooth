@@ -34,6 +34,24 @@
       "parentUuid": "0c6ebbc3_546e3b5b",
       "revId": "d16600128ea5c543f34cfd9797a68037b42429dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c41aa158_0139c38c",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-13T21:18:18Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ca835d13_630de0b6",
+      "revId": "d16600128ea5c543f34cfd9797a68037b42429dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
