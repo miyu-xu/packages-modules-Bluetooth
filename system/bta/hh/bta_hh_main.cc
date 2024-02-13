@@ -308,11 +308,11 @@ bool bta_hh_hdl_event(const BT_HDR_RIGID* p_msg) {
   /* all events processed in state machine need to find corresponding
      CB before proceed */
   if (p_msg->event == BTA_HH_API_OPEN_EVT) {
-    index = bta_hh_find_cb(((tBTA_HH_API_CONN*)p_msg)->dev_addr.addrt.bda);
+    index = bta_hh_find_cb(((tBTA_HH_API_CONN*)p_msg)->dev_addr);
   } else if (p_msg->event == BTA_HH_API_MAINT_DEV_EVT) {
     /* if add device */
     if (((tBTA_HH_MAINT_DEV*)p_msg)->sub_event == BTA_HH_ADD_DEV_EVT) {
-      index = bta_hh_find_cb(((tBTA_HH_MAINT_DEV*)p_msg)->dev_addr.addrt.bda);
+      index = bta_hh_find_cb(((tBTA_HH_MAINT_DEV*)p_msg)->dev_addr);
     } else /* else remove device by handle */ {
       index = bta_hh_dev_handle_to_cb_idx((uint8_t)p_msg->layer_specific);
       /* If BT disable is done while the HID device is connected and
@@ -330,7 +330,7 @@ bool bta_hh_hdl_event(const BT_HDR_RIGID* p_msg) {
       }
     }
   } else if (p_msg->event == BTA_HH_INT_OPEN_EVT) {
-    index = bta_hh_find_cb(((tBTA_HH_CBACK_DATA*)p_msg)->dev_addr.addrt.bda);
+    index = bta_hh_find_cb(((tBTA_HH_CBACK_DATA*)p_msg)->dev_addr);
   } else {
     index = bta_hh_dev_handle_to_cb_idx((uint8_t)p_msg->layer_specific);
   }
