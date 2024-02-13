@@ -141,6 +141,30 @@
       },
       "revId": "73e4934148ee29aca94bdc3599fa728f4f273aba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "254026e1_ce5d1d7f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapSettingsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-02-13T14:16:42Z",
+      "side": 1,
+      "message": "Thanks for your comment. That sounds reasonable - we need a reason why the `sleep` is needed.\n\nSince the acloud is not working now, let me update this comment after the acloud functionality gets back to normal. \n\nFiled b/325000568 for the acloud issue.",
+      "parentUuid": "076a036b_caa4b196",
+      "range": {
+        "startLine": 81,
+        "startChar": 8,
+        "endLine": 81,
+        "endChar": 28
+      },
+      "revId": "73e4934148ee29aca94bdc3599fa728f4f273aba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
