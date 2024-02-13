@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1c5f48b_6f1510a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-02-13T21:18:36Z",
+      "side": 1,
+      "message": "Thanks for the review. Updated comments.",
+      "revId": "a0d4e074d70dca8a366b080a0740285531d44a2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc44225e_59c09aa5",
@@ -14,6 +31,30 @@
       "writtenOn": "2024-02-09T18:24:06Z",
       "side": 1,
       "message": "What will this look like when the flag is removed correctly?\n\nif (1) { ?\n\nI think it would be easy to mess that up.  Can we make it simpler to understand the intended usage?\n\nMaybe move the logging to the front and then return early if the flag is not set or the states are not in the correct range?\n\nIs this flag supposed to ask for more information even when the stack is in the IDLE state?",
+      "range": {
+        "startLine": 7291,
+        "startChar": 13,
+        "endLine": 7292,
+        "endChar": 19
+      },
+      "revId": "a0d4e074d70dca8a366b080a0740285531d44a2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c67ccc2_6b0b7023",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 7292,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-02-13T21:18:36Z",
+      "side": 1,
+      "message": "Yes, I wanted to remove the previous condition like if (1) when the flag is enabled.The change will report a 32-bitmap as ctrlState which is consist of several states so that we don\u0027t have to check the previous simple state value anymore.",
+      "parentUuid": "dc44225e_59c09aa5",
       "range": {
         "startLine": 7291,
         "startChar": 13,
@@ -49,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "885de938_7b86974a",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1564,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-02-13T21:18:36Z",
+      "side": 1,
+      "message": "bta_dm_pm_obtain_controller_state() has been called when the flag is false.",
+      "parentUuid": "b914e3df_15a864e9",
+      "range": {
+        "startLine": 1564,
+        "startChar": 23,
+        "endLine": 1564,
+        "endChar": 56
+      },
+      "revId": "a0d4e074d70dca8a366b080a0740285531d44a2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9be79346_074bd1d2",
         "filename": "system/include/hardware/bluetooth.h",
         "patchSetId": 11
@@ -60,6 +125,30 @@
       "writtenOn": "2024-02-09T18:24:06Z",
       "side": 1,
       "message": "This part of the change doesn\u0027t look like it can be flagged easily.  Does this structure need to be packed, and if it does, who is depending on its size?",
+      "range": {
+        "startLine": 161,
+        "startChar": 0,
+        "endLine": 161,
+        "endChar": 50
+      },
+      "revId": "a0d4e074d70dca8a366b080a0740285531d44a2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14b07f0d_2a318d79",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-02-13T21:18:36Z",
+      "side": 1,
+      "message": "I could not find where the size of bt_activity_energy_info has been used directly.",
+      "parentUuid": "9be79346_074bd1d2",
       "range": {
         "startLine": 161,
         "startChar": 0,
@@ -89,6 +178,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d7ee3ddb_7c47b747",
+        "filename": "system/main/shim/btm_api.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-02-13T21:18:36Z",
+      "side": 1,
+      "message": "clang-format required to remove the newline.",
+      "parentUuid": "4ca61411_81fe51c2",
+      "revId": "a0d4e074d70dca8a366b080a0740285531d44a2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d3f2f325_992f9edb",
         "filename": "system/stack/acl/btm_pm.cc",
         "patchSetId": 11
@@ -100,6 +207,30 @@
       "writtenOn": "2024-02-09T18:24:06Z",
       "side": 1,
       "message": "Is this still a valid TODO?",
+      "range": {
+        "startLine": 864,
+        "startChar": 0,
+        "endLine": 865,
+        "endChar": 56
+      },
+      "revId": "a0d4e074d70dca8a366b080a0740285531d44a2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "418cdafb_107aa20c",
+        "filename": "system/stack/acl/btm_pm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 865,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-02-13T21:18:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3f2f325_992f9edb",
       "range": {
         "startLine": 864,
         "startChar": 0,
