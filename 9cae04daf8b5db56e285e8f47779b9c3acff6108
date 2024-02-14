@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40da2518_7c52266e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1455782
+      },
+      "writtenOn": "2024-02-14T01:30:31Z",
+      "side": 1,
+      "message": "Confirmed that this fixes the connection issue as described in b/324633930.",
+      "revId": "9cae04daf8b5db56e285e8f47779b9c3acff6108",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
