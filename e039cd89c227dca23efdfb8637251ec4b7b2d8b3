@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6603359f_75a5c9f3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-14T19:53:35Z",
+      "side": 1,
+      "message": "Overall this lgtm, only one comment. \nPlease help to double check this before merging.  \n\nI assumed @rlukasz@google.com comment is also resolved, in case it\u0027s not, I think we can address that with another CL.\n\n+2 to unblock and let you make the call.",
+      "revId": "e039cd89c227dca23efdfb8637251ec4b7b2d8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50b76d2c_bb43dfeb",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 898,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-14T19:53:35Z",
+      "side": 1,
+      "message": "Do we need this here?\n\n```suggestion\n            mLocalBroadcastReceivers.remove(mBroadcastId);\n            leAudioService.stopBroadcast(mBroadcastId);\n```",
+      "revId": "e039cd89c227dca23efdfb8637251ec4b7b2d8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43f8aa96_d66fb358",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 1883,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-14T19:53:35Z",
+      "side": 1,
+      "message": "I\u0027d suggest to add unit tests for this part of logic. We can do in a separate CL though.",
+      "revId": "e039cd89c227dca23efdfb8637251ec4b7b2d8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
