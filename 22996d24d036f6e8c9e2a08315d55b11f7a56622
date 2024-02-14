@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fb1e98c_7a01bcd5",
+        "filename": "system/main/test/main_shim_stack_lifecycle_test.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-14T17:39:55Z",
+      "side": 1,
+      "message": "I thought there was an even better way to do this that had to do with waiting for idle.\n\nIs that only available for Handlers?",
+      "range": {
+        "startLine": 72,
+        "startChar": 7,
+        "endLine": 72,
+        "endChar": 24
+      },
+      "revId": "22996d24d036f6e8c9e2a08315d55b11f7a56622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
