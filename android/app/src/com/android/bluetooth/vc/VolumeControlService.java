@@ -639,6 +639,7 @@ public class VolumeControlService extends ProfileService {
      * {@hide}
      */
     public void setGroupVolume(int groupId, int volume) {
+        Log.i(TAG, "setGroupVolume: groupId: " + groupId + " Volume: " + volume);
         if (volume < 0) {
             Log.w(TAG, "Tried to set invalid volume " + volume + ". Ignored.");
             return;
@@ -650,6 +651,7 @@ public class VolumeControlService extends ProfileService {
         // We only receive the volume change and mute state needs to be acquired manually
         Boolean isGroupMute = mGroupMuteCache.getOrDefault(groupId, false);
         Boolean isStreamMute = mAudioManager.isStreamMute(getBluetoothContextualVolumeStream());
+        Log.i(TAG, "setGroupVolume: isGroupMute: " + isGroupMute + " isStreamMute: " + isStreamMute);
 
         /* Note: AudioService keeps volume levels for each stream and for each device type,
          * however it stores the mute state only for the stream type but not for each individual

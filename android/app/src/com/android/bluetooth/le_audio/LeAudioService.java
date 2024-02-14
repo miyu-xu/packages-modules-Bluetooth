@@ -544,6 +544,7 @@ public class LeAudioService extends ProfileService {
                 Log.e(TAG, "Volume control service is not available");
             }
         }
+        Log.i(TAG, "getVolumeControlService(): mVolumeControlService: " + mVolumeControlService);
         return mVolumeControlService;
     }
 
@@ -3315,6 +3316,7 @@ public class LeAudioService extends ProfileService {
 
         VolumeControlService volumeControlService = getVolumeControlService();
         if (volumeControlService != null) {
+            Log.d(TAG, "setVolume: volumeControlService is NOT null");
             volumeControlService.setGroupVolume(currentlyActiveGroupId, volume);
         }
     }
