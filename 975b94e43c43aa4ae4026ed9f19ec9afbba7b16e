@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a413a0ee_9f812c31",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-14T21:49:26Z",
+      "side": 1,
+      "message": "Dr. No stamp since Chris also reviewed.",
+      "revId": "975b94e43c43aa4ae4026ed9f19ec9afbba7b16e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
