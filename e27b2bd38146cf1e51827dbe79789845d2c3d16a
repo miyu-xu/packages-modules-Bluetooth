@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5537ca2_703ca9fa",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-02-14T11:23:45Z",
+      "side": 1,
+      "message": "Why can\u0027t the check be done inside the transport_-\u003eStartRequest method ?\nWe wouldn\u0027t have to define the V2 version, and this would save you lots of modifications.",
+      "range": {
+        "startLine": 347,
+        "startChar": 2,
+        "endLine": 347,
+        "endChar": 55
+      },
+      "revId": "e27b2bd38146cf1e51827dbe79789845d2c3d16a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
