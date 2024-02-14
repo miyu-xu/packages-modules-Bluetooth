@@ -141,6 +141,24 @@
       "message": "Thanks for correcting these 😊",
       "revId": "b899c43cc2be3ba760088e94ad2084b03f26b49e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b90200d_3b985149",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-14T00:03:30Z",
+      "side": 1,
+      "message": "I\u0027m not sure, but there should be a way to suppress the linter if SuppressLint doesn\u0027t work. \n\nI\u0027ll close this as no action required to unblock submitting this, but it would be great if you could check that.",
+      "parentUuid": "b9ebf533_ea45757e",
+      "revId": "b899c43cc2be3ba760088e94ad2084b03f26b49e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
