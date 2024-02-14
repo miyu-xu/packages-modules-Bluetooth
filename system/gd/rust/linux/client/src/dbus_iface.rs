@@ -30,7 +30,7 @@ use btstack::bluetooth_adv::{
     PeriodicAdvertisingParameters,
 };
 use btstack::bluetooth_gatt::{
-    BluetoothGattCharacteristic, BluetoothGattDescriptor, BluetoothGattService,
+    BluetoothGattCharacteristic, BluetoothGattDescriptor, BluetoothGattService, GattDbElementType,
     GattWriteRequestStatus, GattWriteType, IBluetoothGatt, IBluetoothGattCallback,
     IBluetoothGattServerCallback, IScannerCallback, ScanFilter, ScanFilterCondition,
     ScanFilterPattern, ScanResult, ScanSettings, ScanType,
@@ -84,6 +84,7 @@ impl_dbus_arg_enum!(BtPropertyType);
 impl_dbus_arg_enum!(BtSspVariant);
 impl_dbus_arg_enum!(BtStatus);
 impl_dbus_arg_enum!(BtTransport);
+impl_dbus_arg_enum!(GattDbElementType);
 impl_dbus_arg_enum!(GattStatus);
 impl_dbus_arg_enum!(GattWriteRequestStatus);
 impl_dbus_arg_enum!(GattWriteType);
