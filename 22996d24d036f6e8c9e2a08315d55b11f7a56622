@@ -22,6 +22,30 @@
       },
       "revId": "22996d24d036f6e8c9e2a08315d55b11f7a56622",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d260ba7_1fd0767a",
+        "filename": "system/main/test/main_shim_stack_lifecycle_test.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-14T18:27:31Z",
+      "side": 1,
+      "message": "This has a deficiency if the underlying code re-posts onto mainloop it may fail.\n\nThis is challenging for our current production code but should be find for a well written module that does not re-post onto mainloop during the execution.",
+      "parentUuid": "9fb1e98c_7a01bcd5",
+      "range": {
+        "startLine": 72,
+        "startChar": 7,
+        "endLine": 72,
+        "endChar": 24
+      },
+      "revId": "22996d24d036f6e8c9e2a08315d55b11f7a56622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
