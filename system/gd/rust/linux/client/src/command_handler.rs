@@ -205,6 +205,7 @@ fn build_commands() -> HashMap<String, CommandOption> {
                 ),
                 String::from("gatt register-notification <address> <handle> <enable|disable>"),
                 String::from("gatt register-server"),
+                String::from("gatt unregister-server"),
                 String::from("gatt server-connect <client_address>"),
                 String::from("gatt server-add-service"),
             ],
@@ -1227,6 +1228,14 @@ impl CommandHandler {
                     )),
                     false,
                 );
+            }
+            "unregister-server" => {
+                let server_id = match self.lock_context().gatt_server_context.server_id {
+                    Some(id) => id,
+                    None => return Err("GATT Server has not yet been registered".into()),
+                };
+
+                self.lock_context().gatt_dbus.as_mut().unwrap().unregister_server(server_id);
             }
             "server-connect" => {
                 let client_addr = String::from(get_arg(args, 1)?);
