@@ -189,6 +189,30 @@
       },
       "revId": "73e4934148ee29aca94bdc3599fa728f4f273aba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b91fd95_a186b7a7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapSettingsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-14T23:33:10Z",
+      "side": 1,
+      "message": "Could you use UiDevice#hasObject or UiDevice#wait using Until#hasObject? Or is there some reason that activity isn\u0027t clickable past the rendering (i.e. what event are we waiting for?)",
+      "parentUuid": "604cfbce_49239394",
+      "range": {
+        "startLine": 81,
+        "startChar": 8,
+        "endLine": 81,
+        "endChar": 28
+      },
+      "revId": "73e4934148ee29aca94bdc3599fa728f4f273aba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
