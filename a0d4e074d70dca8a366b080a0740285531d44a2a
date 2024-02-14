@@ -112,6 +112,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "229ed934_6c460df9",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1564,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-14T21:40:54Z",
+      "side": 1,
+      "message": "Never mind.  I was thinking an empty implementation would be nice, but it returns a struct...",
+      "parentUuid": "885de938_7b86974a",
+      "range": {
+        "startLine": 1564,
+        "startChar": 23,
+        "endLine": 1564,
+        "endChar": 56
+      },
+      "revId": "a0d4e074d70dca8a366b080a0740285531d44a2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9be79346_074bd1d2",
@@ -149,6 +173,30 @@
       "side": 1,
       "message": "I could not find where the size of bt_activity_energy_info has been used directly.",
       "parentUuid": "9be79346_074bd1d2",
+      "range": {
+        "startLine": 161,
+        "startChar": 0,
+        "endLine": 161,
+        "endChar": 50
+      },
+      "revId": "a0d4e074d70dca8a366b080a0740285531d44a2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3892213_c8696f13",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-14T21:40:54Z",
+      "side": 1,
+      "message": "Offline chat, I would feel better if we removed the packed attributes, but not in this CL.",
+      "parentUuid": "14b07f0d_2a318d79",
       "range": {
         "startLine": 161,
         "startChar": 0,
