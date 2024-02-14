@@ -17,18 +17,49 @@
 
 #include <fuzzer/FuzzedDataProvider.h>
 
+#include "android-base/properties.h"
 #include "audio_hal_interface/le_audio_software.h"
-#include "osi/include/properties.h"
 
 using ::bluetooth::audio::le_audio::LeAudioClientInterface;
 
-constexpr int32_t kRandomStringLength = 256;
+constexpr int16_t kRandomStringLength = 256;
+constexpr int16_t kMinDataInterval = 1000;
+constexpr int16_t kMinFrameDuration = 0;
+constexpr int16_t kMinPeerDelay = 0;
 
-constexpr uint8_t kBitsPerSample[] = {16, 24, 32};
+constexpr char kMessageLoopThreadName[] = "FuzzerMessageLoopThread";
+constexpr char kPropertyName[] =
+    "persist.device_config.aconfig_flags.bluetooth.com.android.bluetooth.flags."
+    "leaudio_dynamic_spatial_audio";
 
-constexpr uint8_t kChannelCount[] = {1, 2};
+constexpr uint8_t kBitsPerSample[] = {
+    ::bluetooth::audio::le_audio::kBitsPerSample16,
+    ::bluetooth::audio::le_audio::kBitsPerSample24,
+    ::bluetooth::audio::le_audio::kBitsPerSample32,
+};
 
-constexpr uint32_t kSampleRates[] = {16000, 24000, 44100, 48000, 88200, 96000};
+constexpr uint8_t kChannelCount[] = {
+    ::bluetooth::audio::le_audio::kChannelNumberMono,
+    ::bluetooth::audio::le_audio::kChannelNumberStereo,
+};
+
+constexpr uint32_t kSampleRates[] = {
+    ::bluetooth::audio::le_audio::kSampleRate8000,
+    ::bluetooth::audio::le_audio::kSampleRate16000,
+    ::bluetooth::audio::le_audio::kSampleRate24000,
+    ::bluetooth::audio::le_audio::kSampleRate32000,
+    ::bluetooth::audio::le_audio::kSampleRate44100,
+    ::bluetooth::audio::le_audio::kSampleRate48000,
+};
+
+bluetooth::audio::le_audio::StreamCallbacks streamCallbacks = {
+    [](bool) { return true; } /* onResume */,
+    []() { return true; } /* onSuspend */,
+    [](const source_metadata_v7_t&, bluetooth::le_audio::DsaMode) {
+      return true;
+    } /* onMetadataUpdate */,
+    [](const sink_metadata_v7_t&) { return true; } /* onSinkMetadataUpdate */,
+};
 
 extern "C" {
 struct android_namespace_t* android_get_exported_namespace(const char*) {
@@ -36,73 +67,171 @@ struct android_namespace_t* android_get_exported_namespace(const char*) {
 }
 }
 
-bool onResume(bool) { return true; }
-
-bool onSuspend(void) { return true; }
-
-bool onMetadataUpdate(const source_metadata_v7_t&,
-                      bluetooth::le_audio::DsaMode) {
-  return true;
+void setParams(LeAudioClientInterface::PcmParameters* params,
+               FuzzedDataProvider* fdp) {
+  params->data_interval_us = fdp->ConsumeIntegralInRange<uint32_t>(
+      kMinDataInterval, std::numeric_limits<uint32_t>::max());
+  params->sample_rate = fdp->PickValueInArray(kSampleRates);
+  params->bits_per_sample = fdp->PickValueInArray(kBitsPerSample);
+  params->channels_count = fdp->PickValueInArray(kChannelCount);
 }
 
-bool onSinkMetadataUpdate(const sink_metadata_v7_t&) { return true; }
+void setOffloadConfig(bluetooth::le_audio::offload_config* config,
+                      FuzzedDataProvider* fdp) {
+  uint8_t streamMapSize = fdp->ConsumeIntegral<uint8_t>();
+  for (uint8_t i = 0; i < streamMapSize; ++i) {
+    bluetooth::le_audio::stream_map_info stream_map(
+        fdp->ConsumeIntegral<uint16_t>() /* stream_handle */,
+        fdp->ConsumeIntegral<uint32_t>() /* audio_channel_allocation */,
+        fdp->ConsumeBool() /* is_stream_active */);
+
+    config->stream_map.push_back(stream_map);
+  }
+  config->bits_per_sample = fdp->PickValueInArray(kBitsPerSample);
+  config->sampling_rate = fdp->PickValueInArray(kSampleRates);
+  config->frame_duration = fdp->ConsumeIntegralInRange<uint32_t>(
+      kMinFrameDuration, std::numeric_limits<uint32_t>::max());
+  config->octets_per_frame = fdp->ConsumeIntegral<uint16_t>();
+  config->blocks_per_sdu = fdp->ConsumeIntegral<uint8_t>();
+  config->peer_delay_ms = fdp->ConsumeIntegralInRange<uint32_t>(
+      kMinPeerDelay, std::numeric_limits<uint32_t>::max());
+}
+
+void setBroadcastOffloadConfig(
+    bluetooth::le_audio::broadcast_offload_config* config,
+    FuzzedDataProvider* fdp) {
+  uint8_t streamMapSize = fdp->ConsumeIntegral<uint8_t>();
+  for (uint8_t i = 0; i < streamMapSize; ++i) {
+    config->stream_map.push_back(
+        {fdp->ConsumeIntegral<uint16_t>(), fdp->ConsumeIntegral<uint32_t>()});
+  }
+  config->bits_per_sample = fdp->PickValueInArray(kBitsPerSample);
+  config->sampling_rate = fdp->PickValueInArray(kSampleRates);
+  config->frame_duration = fdp->ConsumeIntegralInRange<uint32_t>(
+      kMinFrameDuration, std::numeric_limits<uint32_t>::max());
+  config->octets_per_frame = fdp->ConsumeIntegral<uint16_t>();
+  config->blocks_per_sdu = fdp->ConsumeIntegral<uint8_t>();
+  config->retransmission_number = fdp->ConsumeIntegral<uint8_t>();
+  config->max_transport_latency = fdp->ConsumeIntegral<uint16_t>();
+}
 
 static void source_init_delayed(void) {}
 
 extern "C" int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
   FuzzedDataProvider fdp(data, size);
-  osi_property_set("persist.bluetooth.a2dp_offload.disabled",
-                   fdp.PickValueInArray({"true", "false"}));
-  std::string name = fdp.ConsumeRandomLengthString(kRandomStringLength);
-  bluetooth::common::MessageLoopThread messageLoopThread(name);
+
+  bluetooth::common::MessageLoopThread messageLoopThread(
+      kMessageLoopThreadName);
   messageLoopThread.StartUp();
   messageLoopThread.DoInThread(FROM_HERE, base::BindOnce(&source_init_delayed));
 
   LeAudioClientInterface* interface = LeAudioClientInterface::Get();
 
-  bluetooth::audio::le_audio::StreamCallbacks streamCb = {
-      onResume, onSuspend, onMetadataUpdate, onSinkMetadataUpdate};
-
-  if (!interface->IsSourceAcquired()) {
-    LeAudioClientInterface::Source* source =
-        interface->GetSource(streamCb, &messageLoopThread);
-    if (source != nullptr) {
-      uint16_t delay = fdp.ConsumeIntegral<uint16_t>();
-      source->SetRemoteDelay(delay);
-      LeAudioClientInterface::PcmParameters params;
-      params.data_interval_us = fdp.ConsumeIntegralInRange<uint32_t>(
-          1000, std::numeric_limits<uint32_t>::max());
-      params.sample_rate = fdp.PickValueInArray(kSampleRates);
-      params.bits_per_sample = fdp.PickValueInArray(kBitsPerSample);
-      params.channels_count = fdp.PickValueInArray(kChannelCount);
-      source->SetPcmParameters(params);
-      source->StartSession();
-      source->StopSession();
-      source->Cleanup();
-    }
-    interface->ReleaseSource(source);
+  if (!interface) {
+    return 0;
   }
 
-  if (!interface->IsUnicastSinkAcquired()) {
-    LeAudioClientInterface::Sink* sink =
-        interface->GetSink(streamCb, &messageLoopThread, false);
-    if (sink != nullptr) {
-      uint16_t delay = fdp.ConsumeIntegral<uint16_t>();
-      sink->SetRemoteDelay(delay);
-      LeAudioClientInterface::PcmParameters params;
-      params.data_interval_us = fdp.ConsumeIntegralInRange<uint32_t>(
-          1000, std::numeric_limits<uint32_t>::max());
-      params.sample_rate = fdp.PickValueInArray(kSampleRates);
-      params.bits_per_sample = fdp.PickValueInArray(kBitsPerSample);
-      params.channels_count = fdp.PickValueInArray(kChannelCount);
-      sink->SetPcmParameters(params);
-      sink->StartSession();
-      sink->StopSession();
-      sink->Cleanup();
-    }
-    interface->ReleaseSink(sink);
+  LeAudioClientInterface::Source* source =
+      interface->GetSource(streamCallbacks, &messageLoopThread);
+
+  LeAudioClientInterface::Sink* sink =
+      interface->GetSink(streamCallbacks, &messageLoopThread,
+                         fdp.ConsumeBool() /* is_broadcasting_session_type */);
+
+  if (!interface->IsSourceAcquired() || !sink) {
+    return 0;
   }
 
-  messageLoopThread.ShutDown();
+  if (!sink->IsBroadcaster()) {
+    bluetooth::le_audio::DsaModes dsaModes;
+    if (fdp.ConsumeBool()) {
+      dsaModes.push_back(bluetooth::le_audio::DsaMode::DISABLED);
+    }
+    if (fdp.ConsumeBool()) {
+      dsaModes.push_back(bluetooth::le_audio::DsaMode::ACL);
+    }
+    if (fdp.ConsumeBool()) {
+      dsaModes.push_back(bluetooth::le_audio::DsaMode::ISO_SW);
+    }
+    if (fdp.ConsumeBool()) {
+      dsaModes.push_back(bluetooth::le_audio::DsaMode::ISO_HW);
+    }
+
+    std::string propertyValue =
+        android::base::GetProperty(kPropertyName, "false");
+    if (fdp.ConsumeBool()) {
+      android::base::SetProperty(kPropertyName, "true");
+    } else {
+      android::base::SetProperty(kPropertyName, "false");
+    }
+
+    interface->SetAllowedDsaModes(dsaModes);
+
+    android::base::SetProperty(kPropertyName, propertyValue);
+  }
+
+  source->StartSession();
+  sink->StartSession();
+
+  LeAudioClientInterface::PcmParameters params;
+  setParams(&params, &fdp);
+
+  while (fdp.remaining_bytes()) {
+    auto invokeLeAudioSoftwareAPI =
+        fdp.PickValueInArray<const std::function<void()>>(
+            {[&]() {
+               source->SetRemoteDelay(
+                   fdp.ConsumeIntegral<uint16_t>() /* delay_report_ms */);
+             },
+             [&]() { source->SetPcmParameters(params); },
+             [&]() { source->ConfirmStreamingRequest(); },
+             [&]() { source->CancelStreamingRequest(); },
+             [&]() {
+               bluetooth::le_audio::offload_config config;
+               setOffloadConfig(&config, &fdp);
+               source->UpdateAudioConfigToHal(config);
+             },
+             [&]() { source->SuspendedForReconfiguration(); },
+             [&]() { source->ReconfigurationComplete(); },
+             [&]() {
+               std::vector<uint8_t> writeData =
+                   fdp.ConsumeBytes<uint8_t>(fdp.ConsumeIntegral<uint16_t>());
+               source->Write(writeData.data(), writeData.size());
+             },
+             [&]() {
+               sink->SetRemoteDelay(
+                   fdp.ConsumeIntegral<uint16_t>() /* delay_report_ms */);
+             },
+             [&]() { sink->SetPcmParameters(params); },
+             [&]() { sink->ConfirmStreamingRequest(); },
+             [&]() { sink->CancelStreamingRequest(); },
+             [&]() {
+               bluetooth::le_audio::offload_config config;
+               setOffloadConfig(&config, &fdp);
+               sink->UpdateAudioConfigToHal(config);
+             },
+             [&]() {
+               bluetooth::le_audio::broadcast_offload_config config;
+               setBroadcastOffloadConfig(&config, &fdp);
+               sink->UpdateBroadcastAudioConfigToHal(config);
+             },
+             [&]() { sink->SuspendedForReconfiguration(); },
+             [&]() { sink->ReconfigurationComplete(); },
+             [&]() {
+               uint8_t readData[fdp.ConsumeIntegral<uint16_t>()];
+               sink->Read(readData, sizeof(readData));
+             }});
+
+    invokeLeAudioSoftwareAPI();
+  }
+
+  interface->ReleaseSource(source);
+  /**
+   * Calling LeAudioClientInterface::Sink::Cleanup() explicitly because of the
+   * improper setting of sink in le_audio_software.cc.
+   */
+  sink->Cleanup();
+  interface->ReleaseSink(sink);
+
   return 0;
 }
