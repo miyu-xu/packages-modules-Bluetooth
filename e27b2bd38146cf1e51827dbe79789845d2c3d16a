@@ -22,6 +22,30 @@
       },
       "revId": "e27b2bd38146cf1e51827dbe79789845d2c3d16a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87d0024b_03bf5952",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-14T11:49:23Z",
+      "side": 1,
+      "message": "Because of this:\n\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2962588/1/system/audio_hal_interface/aidl/le_audio_software_aidl.cc#72\n\nIn addition, removing flag will be easier (rename back to StartRequest)",
+      "parentUuid": "e5537ca2_703ca9fa",
+      "range": {
+        "startLine": 347,
+        "startChar": 2,
+        "endLine": 347,
+        "endChar": 55
+      },
+      "revId": "e27b2bd38146cf1e51827dbe79789845d2c3d16a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
