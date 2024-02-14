@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e6e0bbd_f3db9b87",
+        "filename": "system/bta/hh/bta_hh_utils.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 0,
+      "message": "parameter should be of type tTypedAddressTransport\n```suggestion\nuint8_t bta_hh_find_cb(const tTypedAddressTransport\u0026 bda) {\n```",
+      "revId": "5c664cbcb6e986aca4e0d457575a1990b1b5a0e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

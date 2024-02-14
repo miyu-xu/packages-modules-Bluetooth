@@ -1,0 +1,463 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18465e36_dacc03df",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 1239,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 1,
+      "message": "This function is applicable for BR/EDR. So the transport will always be BR/EDR.",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cf5f1de_f2a42ceb",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 1,
+      "message": "second parameter should be of type tTypedAddressTransport",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0879fc7b_b02436fa",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 1,
+      "message": "parameter should be of type tTypedAddressTransport",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abba25a2_41cff4db",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 868,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 1,
+      "message": "second parameter should be of type tTypedAddressTransport",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b9fa6f4_b639dcfb",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 2074,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 1,
+      "message": "parameter should be of type tTypedAddressTransport",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07d93887_9773ae43",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 2107,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 1,
+      "message": "parameter should be of type tTypedAddressTransport",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c1666c8_20471ef9",
+        "filename": "system/bta/hh/bta_hh_utils.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 1,
+      "message": "parameter should be of type tTypedAddressTransport\n```suggestion\nuint8_t bta_hh_find_cb(const tTypedAddressTransport\u0026 bda) {\n```",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d14054f4_2efe612e",
+        "filename": "system/bta/hh/bta_hh_utils.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 1,
+      "message": "parameter should be of type tTypedAddressTransport\n```suggestion\ntBTA_HH_DEV_CB* bta_hh_get_cb(const tTypedAddressTransport\u0026 bda) {\n  uint8_t idx \u003d bta_hh_find_cb(bda.bda);\n```",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "555f1d95_de257ced",
+        "filename": "system/bta/hh/bta_hh_utils.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 1,
+      "message": "parameter should be of type tTypedAddressTransport\n```suggestion\ntBTA_HH_DEV_CB* bta_hh_get_cb(const tTypedAddressTransport\u0026 bda) {\n```",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ca0d6b8_af2963b0",
+        "filename": "system/bta/hh/bta_hh_utils.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 1,
+      "message": "parameter should be of type tTypedAddressTransport\n```suggestion\ntBTA_HH_STATUS bta_hh_read_ssr_param(const tTypedAddressTransport\u0026 bd_addr,\n```",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43a1947f_1d88b40c",
+        "filename": "system/bta/hh/bta_hh_utils.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 1,
+      "message": "Parameters should of type tTypedAddressTransport\n```suggestion\ntBTA_HH_STATUS bta_hh_read_ssr_param(const tTypedAddressTransport\u0026 bd_addr,\n```",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da4390a5_f4a88ebb",
+        "filename": "system/bta/test/bta_hh_test.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 1,
+      "message": "Assign type and transport as well",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2264e434_3a3baa6e",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 1,
+      "message": "Use tTypedAddressTransport for sake of completeness\n```suggestion\n                    uint8_t ctry_code,\n                    UNUSED_ATTR const tTypedAddressTransport\u0026 peer_addr,\n```",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e91b0aeb_913be15d",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 755,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 1,
+      "message": "parameter should be of type tTypedAddressTransport \n```suggestion\nvoid bta_hh_le_co_rpt_info(const tTypedAddressTransport\u0026 remote_bda,\n```",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e554cd4a_a63c70cb",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 798,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 1,
+      "message": "Parameter should of type tTypedAddressTransport\n```suggestion\ntBTA_HH_RPT_CACHE_ENTRY* bta_hh_le_co_cache_load(\n    const tTypedAddressTransport\u0026 remote_bda, uint8_t* p_num_rpt,\n    UNUSED_ATTR uint8_t app_id) {\n  std::string addrstr \u003d remote_bda.address.ToString();\n```",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fa5ed2f_c33d2523",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 839,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 1,
+      "message": "parameter should be of type tTypedAddressTransport\n```suggestion\nvoid bta_hh_le_co_reset_rpt_cache(const RawAddress\u0026 remote_bda,\n                                  tTypedAddressTransport transport,\n```",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bf60996_385599c6",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 1,
+      "message": "We can use AUTO in this case since we should remove both the transports.",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d477fcc_489935be",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 1,
+      "message": "parameter should be of type tTypedAddressTransport",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a779b033_a9f30707",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 1,
+      "message": "parameter should be of type tTypedAddressTransport",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54c33b0e_3d3ae664",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 1,
+      "message": "parameter should be of type tTypedAddressTransport",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "389fe059_5cd5b076",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 1,
+      "message": "parameter should be of type tTypedAddressTransport",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12be0900_2b10990d",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 1,
+      "message": "parameter should be of type tTypedAddressTransport",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6906b9b_f9c9b744",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 1,
+      "message": "parameter should be of type tTypedAddressTransport",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64820c28_744c91a3",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 1,
+      "message": "parameter should be of type tTypedAddressTransport",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3a989df_c245a2f0",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 1,
+      "message": "parameter should be of type tTypedAddressTransport",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dff4d660_012df7a1",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 1234,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 1,
+      "message": "This should be of type tTypedAddressTransport",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07eeef55_9c0dcee7",
+        "filename": "system/btif/test/btif_hh_test.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T03:22:32Z",
+      "side": 1,
+      "message": "Initialize address type and transport with public and auto, respectively.",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
