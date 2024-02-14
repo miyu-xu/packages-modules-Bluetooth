@@ -23,7 +23,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.ParcelUuid;
-import android.os.Parcelable;
 
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -37,11 +36,13 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
 import pandora.HostProto.ConnectRequest;
 import pandora.HostProto.WaitConnectionRequest;
-
-import java.util.ArrayList;
-import java.util.UUID;
 
 /** Test cases for {@link ServiceDiscoveryManager}. */
 @RunWith(AndroidJUnit4.class)
@@ -52,7 +53,7 @@ public class SdpClientTest {
     private final BluetoothManager mManager = mContext.getSystemService(BluetoothManager.class);
     private final BluetoothAdapter mAdapter = mManager.getAdapter();
 
-    private SettableFuture<ArrayList<UUID>> mFutureIntent;
+    private SettableFuture<List<UUID>> mFutureIntent;
 
     @Rule public final AdoptShellPermissionsRule mPermissionRule = new AdoptShellPermissionsRule();
 
@@ -63,15 +64,14 @@ public class SdpClientTest {
                 @Override
                 public void onReceive(Context context, Intent intent) {
                     if (BluetoothDevice.ACTION_UUID.equals(intent.getAction())) {
-                        Parcelable[] parcelable =
-                                (Parcelable[]) intent.getExtra(BluetoothDevice.EXTRA_UUID);
-                        if (parcelable != null) {
-                            ArrayList<UUID> list = new ArrayList<UUID>();
-                            for (Parcelable p : parcelable) {
-                                ParcelUuid uuid = (ParcelUuid) p;
-                                list.add(uuid.getUuid());
-                            }
-                            mFutureIntent.set(list);
+                        ParcelUuid[] parcelUuids =
+                                intent.getParcelableArrayExtra(
+                                        BluetoothDevice.EXTRA_UUID, ParcelUuid.class);
+                        if (parcelUuids != null) {
+                            mFutureIntent.set(
+                                    Arrays.stream(parcelUuids)
+                                            .map(ParcelUuid::getUuid)
+                                            .collect(Collectors.toList()));
                         }
                     }
                 }
@@ -107,8 +107,8 @@ public class SdpClientTest {
         // Execute service discovery procedure
         assertThat(device.fetchUuidsWithSdp()).isTrue();
 
-        ArrayList<UUID> list = mFutureIntent.get();
-        assertThat(list.isEmpty()).isFalse();
+        List<UUID> list = mFutureIntent.get();
+        assertThat(list).contains(BluetoothUuid.HFP.getUuid());
 
         mContext.unregisterReceiver(mConnectionStateReceiver);
     }
