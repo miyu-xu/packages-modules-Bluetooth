@@ -572,7 +572,7 @@ void handle_rc_ctrl_features_all(btif_rc_device_cb_t* p_dev) {
       "%s: peer_tg_features: 0x%x, rc_features_processed=%d, connected=%d, "
       "peer_is_src:%d",
       __func__, p_dev->peer_tg_features, p_dev->rc_features_processed,
-      btif_av_is_connected_addr(p_dev->rc_addr),
+      btif_av_is_connected_addr(p_dev->rc_addr, A2dpType::kSink),
       btif_av_peer_is_source(p_dev->rc_addr));
 
   if ((p_dev->peer_tg_features & BTA_AV_FEAT_ADV_CTRL) &&
@@ -592,7 +592,7 @@ void handle_rc_ctrl_features_all(btif_rc_device_cb_t* p_dev) {
     p_dev->rc_features_processed = true;
   }
 
-  if (btif_av_is_connected_addr(p_dev->rc_addr)) {
+  if (btif_av_is_connected_addr(p_dev->rc_addr, A2dpType::kSink)) {
     if (btif_av_peer_is_source(p_dev->rc_addr)) {
       p_dev->rc_features = p_dev->peer_tg_features;
       if ((p_dev->peer_tg_features & BTA_AV_FEAT_METADATA) &&
@@ -974,7 +974,8 @@ void handle_rc_passthrough_cmd(tBTA_AV_REMOTE_CMD* p_remote_cmd) {
 
   /* If AVRC is open and peer sends PLAY but there is no AVDT, then we queue-up
    * this PLAY */
-  if ((p_remote_cmd->rc_id == AVRC_ID_PLAY) && (!btif_av_is_connected())) {
+  if ((p_remote_cmd->rc_id == AVRC_ID_PLAY) &&
+      (!btif_av_is_connected(A2dpType::kSink))) {
     if (p_remote_cmd->key_state == AVRC_STATE_PRESS) {
       LOG_WARN("%s: AVDT not open, queuing the PLAY command", __func__);
       p_dev->rc_pending_play = true;
@@ -990,7 +991,7 @@ void handle_rc_passthrough_cmd(tBTA_AV_REMOTE_CMD* p_remote_cmd) {
   }
 
   if ((p_remote_cmd->rc_id == AVRC_ID_STOP) &&
-      (!btif_av_stream_started_ready())) {
+      (!btif_av_stream_started_ready(A2dpType::kSink))) {
     LOG_WARN("%s: Stream suspended, ignore STOP cmd", __func__);
     return;
   }
@@ -2165,7 +2166,7 @@ static bt_status_t register_notification_rsp(
       case BTRC_EVT_PLAY_STATUS_CHANGED:
         avrc_rsp.reg_notif.param.play_status = p_param->play_status;
         if (avrc_rsp.reg_notif.param.play_status == PLAY_STATUS_PLAYING)
-          btif_av_clear_remote_suspend_flag();
+          btif_av_clear_remote_suspend_flag(A2dpType::kSink);
         break;
       case BTRC_EVT_TRACK_CHANGE:
         memcpy(&(avrc_rsp.reg_notif.param.track), &(p_param->track),
