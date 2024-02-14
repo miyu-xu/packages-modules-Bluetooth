@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ec31aae_74ab3406",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-14T02:15:30Z",
+      "side": 1,
+      "message": "Just say \"null check\"",
+      "revId": "01aa2b68bfb0984f365f46dec304419be6dcf17d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
