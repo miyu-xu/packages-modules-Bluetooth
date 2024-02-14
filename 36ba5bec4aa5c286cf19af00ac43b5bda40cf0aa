@@ -22,6 +22,30 @@
       },
       "revId": "36ba5bec4aa5c286cf19af00ac43b5bda40cf0aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5832ede8_e1c7298c",
+        "filename": "system/types/hci_role.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-14T21:20:27Z",
+      "side": 1,
+      "message": "libbluetooth_headers is also used in vendor code; \nwe do not want to add vendor to the visibility of libbluetooth_log",
+      "parentUuid": "86cbddc3_fc65fa28",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 17
+      },
+      "revId": "36ba5bec4aa5c286cf19af00ac43b5bda40cf0aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
