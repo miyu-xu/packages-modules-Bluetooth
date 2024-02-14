@@ -37,11 +37,11 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import pandora.HostProto.ConnectRequest;
-import pandora.HostProto.WaitConnectionRequest;
-
 import java.util.ArrayList;
 import java.util.UUID;
+
+import pandora.HostProto.ConnectRequest;
+import pandora.HostProto.WaitConnectionRequest;
 
 /** Test cases for {@link ServiceDiscoveryManager}. */
 @RunWith(AndroidJUnit4.class)
@@ -64,7 +64,8 @@ public class SdpClientTest {
                 public void onReceive(Context context, Intent intent) {
                     if (BluetoothDevice.ACTION_UUID.equals(intent.getAction())) {
                         Parcelable[] parcelable =
-                                (Parcelable[]) intent.getExtra(BluetoothDevice.EXTRA_UUID);
+                                intent.getParcelableArrayExtra(
+                                        BluetoothDevice.EXTRA_UUID, Parcelable.class);
                         if (parcelable != null) {
                             ArrayList<UUID> list = new ArrayList<UUID>();
                             for (Parcelable p : parcelable) {
@@ -109,6 +110,7 @@ public class SdpClientTest {
 
         ArrayList<UUID> list = mFutureIntent.get();
         assertThat(list.isEmpty()).isFalse();
+        assertThat(list).contains(BluetoothUuid.HFP.getUuid());
 
         mContext.unregisterReceiver(mConnectionStateReceiver);
     }
