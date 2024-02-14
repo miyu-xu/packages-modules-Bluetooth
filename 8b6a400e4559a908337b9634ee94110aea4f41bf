@@ -107,6 +107,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f89951d9_929b55e4",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-14T08:34:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c8c77c3_eb0cc6ba",
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "656ad8f7_7204f55b",
@@ -138,6 +156,24 @@
       "side": 1,
       "message": "Since I forked socket_manager from chromium to android, these arguments are not already present",
       "parentUuid": "656ad8f7_7204f55b",
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e7046bb_8bf35836",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-14T08:34:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00b3c444_aa0bc5f0",
       "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -213,6 +249,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61024646_7c1a6e93",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-14T08:34:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d22af0d_3b6f7a5a",
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3caf16f6_d1f9628f",
@@ -280,6 +334,24 @@
       "side": 1,
       "message": "we will not add .\ni followed the rest of clients",
       "parentUuid": "b883b50a_3fc8e800",
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afe8e3f2_abaa0fc3",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-14T08:34:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ac7b71c_4c979474",
       "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -369,6 +441,30 @@
       "side": 1,
       "message": "we will not add . \ni followed the rest of clients",
       "parentUuid": "40ed83b6_0b2b526e",
+      "range": {
+        "startLine": 275,
+        "startChar": 10,
+        "endLine": 275,
+        "endChar": 18
+      },
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d58b6acf_702468c9",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-14T08:34:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61d254c9_b4d60867",
       "range": {
         "startLine": 275,
         "startChar": 10,
