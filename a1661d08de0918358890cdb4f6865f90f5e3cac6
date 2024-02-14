@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38f5bca3_dc9bed1e",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-14T19:10:22Z",
+      "side": 1,
+      "message": "This seems to be unused",
+      "revId": "a1661d08de0918358890cdb4f6865f90f5e3cac6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "812b8eb7_5dca0472",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-14T19:10:22Z",
+      "side": 1,
+      "message": "`LOG_ALWAYS_FATAL` ?",
+      "revId": "a1661d08de0918358890cdb4f6865f90f5e3cac6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
