@@ -9,12 +9,14 @@ use crate::bt_gatt::AuthReq;
 use crate::callbacks::{BtGattCallback, BtGattServerCallback};
 use crate::ClientContext;
 use crate::{console_red, console_yellow, print_error, print_info};
-use bt_topshim::btif::{BtConnectionState, BtDiscMode, BtStatus, BtTransport, INVALID_RSSI};
+use bt_topshim::btif::{BtConnectionState, BtDiscMode, BtStatus, BtTransport, Uuid, INVALID_RSSI};
 use bt_topshim::profiles::hid_host::BthhReportType;
 use bt_topshim::profiles::sdp::{BtSdpMpsRecord, BtSdpRecord};
 use bt_topshim::profiles::{gatt::LePhy, ProfileConnectionState};
 use btstack::bluetooth::{BluetoothDevice, IBluetooth};
-use btstack::bluetooth_gatt::{GattWriteType, IBluetoothGatt};
+use btstack::bluetooth_gatt::{
+    BluetoothGattService, GattDbElementType, GattWriteType, IBluetoothGatt,
+};
 use btstack::bluetooth_media::{IBluetoothMedia, IBluetoothTelephony};
 use btstack::bluetooth_qa::IBluetoothQA;
 use btstack::socket_manager::{IBluetoothSocketManager, SocketResult};
@@ -27,6 +29,7 @@ const BAR2_CHAR: &str = "-";
 const MAX_MENU_CHAR_WIDTH: usize = 72;
 const GATT_CLIENT_APP_UUID: &str = "12345678123456781234567812345678";
 const GATT_SERVER_APP_UUID: &str = "12345678123456781234567812345679";
+const HEART_RATE_SERVICE_UUID: &str = "0000180D-0000-1000-8000-00805F9B34FB";
 
 enum CommandError {
     // Command not handled due to invalid arguments.
@@ -203,6 +206,7 @@ fn build_commands() -> HashMap<String, CommandOption> {
                 String::from("gatt register-notification <address> <handle> <enable|disable>"),
                 String::from("gatt register-server"),
                 String::from("gatt server-connect <client_address>"),
+                String::from("gatt server-add-service"),
             ],
             description: String::from("GATT tools"),
             function_pointer: CommandHandler::cmd_gatt,
@@ -1243,6 +1247,20 @@ impl CommandHandler {
                 if !connection_success {
                     return Err("Connection was unsuccessful".into());
                 }
+            }
+            "server-add-service" => {
+                let uuid = Uuid::from(UuidHelper::from_string(HEART_RATE_SERVICE_UUID).unwrap());
+                let instance_id = 0;
+                let service_type = GattDbElementType::PrimaryService;
+
+                let server_id = match self.lock_context().gatt_server_context.server_id {
+                    Some(id) => id,
+                    None => return Err("GATT Server has not yet been registered".into()),
+                };
+                let service =
+                    BluetoothGattService::new(uuid.into(), instance_id, service_type.into());
+
+                self.lock_context().gatt_dbus.as_mut().unwrap().add_service(server_id, service);
             }
             _ => return Err(CommandError::InvalidArgs),
         }
