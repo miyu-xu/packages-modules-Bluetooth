@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2eda302_5f38dece",
+        "filename": "framework/tests/bumble/src/android/bluetooth/SdpClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-02-14T18:47:54Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "5fa33769_34563704",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 25
+      },
+      "revId": "a4324ba42900a22c61f994a375602bfc6ac48487",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ed443e4a_ef3eec3f",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-14T18:23:55Z",
       "side": 1,
       "message": "Remove the assert above as this case is also covered by your new assertion.\n\n```suggestion\n        assertThat(list).contains(BluetoothUuid.HFP.getUuid());\n```",
+      "range": {
+        "startLine": 112,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 63
+      },
+      "revId": "a4324ba42900a22c61f994a375602bfc6ac48487",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01e5a311_cda6d240",
+        "filename": "framework/tests/bumble/src/android/bluetooth/SdpClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-02-14T18:47:54Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "ed443e4a_ef3eec3f",
       "range": {
         "startLine": 112,
         "startChar": 0,
