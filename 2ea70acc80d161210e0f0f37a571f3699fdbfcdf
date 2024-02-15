@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6018d2a1_31cba242",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1455782
+      },
+      "writtenOn": "2024-02-15T18:36:58Z",
+      "side": 1,
+      "message": "Confirming that this fixes the connection issue in b/324633930, tested on Pixel 7 and 8.",
+      "revId": "2ea70acc80d161210e0f0f37a571f3699fdbfcdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a32ce0a1_eefa8683",
