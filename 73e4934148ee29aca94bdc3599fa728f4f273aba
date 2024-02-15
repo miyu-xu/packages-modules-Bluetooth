@@ -213,6 +213,30 @@
       },
       "revId": "73e4934148ee29aca94bdc3599fa728f4f273aba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36330965_5e02969c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapSettingsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-02-15T11:35:59Z",
+      "side": 1,
+      "message": "Thanks! Didn\u0027t know this kind of methods exist. Changed the `sleep` into `wait`.\n(But still flaky, Almost same failure rate compared to `Thread.sleep()` usage.)",
+      "parentUuid": "3b91fd95_a186b7a7",
+      "range": {
+        "startLine": 81,
+        "startChar": 8,
+        "endLine": 81,
+        "endChar": 28
+      },
+      "revId": "73e4934148ee29aca94bdc3599fa728f4f273aba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
