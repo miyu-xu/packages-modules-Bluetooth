@@ -1468,17 +1468,8 @@ bool LeAudioDeviceGroup::ConfigureAses(
       continue;
     }
 
-    ASSERT_LOG(
-        audio_set_conf->topology_info.has_value(),
-        "No topology info, which is required to properly configure the ASEs");
-    uint8_t required_device_cnt =
-        audio_set_conf->topology_info->device_count.get(direction);
+    auto required_device_cnt = NumOfConnected();
     uint8_t active_ase_cnt = 0;
-
-    if (required_device_cnt == 0) {
-      LOG_ERROR("Device count for direction %s is 0", direction_str);
-      continue;
-    }
 
     auto configuration_closure = [&](LeAudioDevice* dev) -> void {
       /* For the moment, we configure only connected devices and when it is
