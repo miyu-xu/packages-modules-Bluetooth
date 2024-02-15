@@ -138,7 +138,7 @@ void bta_dm_remote_key_missing(const RawAddress bd_addr) {
  *                  required information stored in the NVRAM.
  ******************************************************************************/
 void bta_dm_add_device(std::unique_ptr<tBTA_DM_API_ADD_DEVICE> msg) {
-  DEV_CLASS dc = kDevClassEmpty;
+  DEV_CLASS dc = kDevClassUnclassified;
   LinkKey* p_lc = NULL;
 
   /* If not all zeros, the device class has been specified */
