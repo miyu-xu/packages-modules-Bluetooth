@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e0e08c9_c42ad60f",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1635,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-15T20:07:33Z",
+      "side": 1,
+      "message": "Should we return here ?\n\nWhat about inq results with multiples ?",
+      "revId": "4ff3bf7b0942efb7b03f3677d03300559b17df50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2920e30_f0c706c5",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1704,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-15T20:07:33Z",
+      "side": 1,
+      "message": "This loads the vector with zeros ?",
+      "revId": "4ff3bf7b0942efb7b03f3677d03300559b17df50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
