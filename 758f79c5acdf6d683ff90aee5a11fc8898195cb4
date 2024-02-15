@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ce24339_ae1b289e",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-15T00:21:25Z",
+      "side": 1,
+      "message": "I have another option implemented in the next version. Maybe we can avoid this checking here, and use the loop to select the fallback quality.\nThen once we comes to the multi configuration support, we can update this part later.",
+      "revId": "758f79c5acdf6d683ff90aee5a11fc8898195cb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b9a3f50_be92b0af",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-15T00:21:25Z",
+      "side": 1,
+      "message": "fixing the use of frame_duration.",
+      "revId": "758f79c5acdf6d683ff90aee5a11fc8898195cb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b2e4d33_015ab697",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-15T00:21:25Z",
+      "side": 1,
+      "message": "supported_broadcast_config[target?].sampling_rate",
+      "revId": "758f79c5acdf6d683ff90aee5a11fc8898195cb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

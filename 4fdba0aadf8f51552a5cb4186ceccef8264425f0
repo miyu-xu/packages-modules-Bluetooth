@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebdd2f03_a58018f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-15T00:21:25Z",
+      "side": 1,
+      "message": "Hi Alice, \nPer our offline discussions, I\u0027ve made some changes on top of your CL. \nCould you please help to check if those make sense to you?\n\nWith those changes, I\u0027m able to select different config per user\u0027s selection.\nHowever, I noticed we\u0027re requesting the 24_2 config, but the audio hal is still using 48_4. Do you have any ideas why? I\u0027m holding this CL now.\n\naudio_source_hal_client.cc -\u003e Start: bit rate: 16, num channels: 2, sample rate: 24000, data interval: 10000\nBTAudioSessionAidl: OnSessionStarted  SessionType\u003dLE_AUDIO_BROADCAST_HARDWARE_OFFLOAD_ENCODING_DATAPATH  Lc3Configuration{pcmBitDepth: 16, samplingFrequencyHz: 48000, frameDurationUs: 10000, octetsPerFrame: 120, blocksPerSdu: 1, channelMode: UNKNOWN}}, pcmStreamId:",
+      "revId": "4fdba0aadf8f51552a5cb4186ceccef8264425f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
