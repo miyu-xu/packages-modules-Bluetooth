@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5be0607f_70ee36f0",
+        "filename": "system/btif/src/btif_a2dp_control.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-02-15T22:27:59Z",
+      "side": 1,
+      "message": "shouldn\u0027t the peer type here be sink i.e. AVDT_TSEP_SNK. And not AVDT_TSEP_SRC.",
+      "revId": "3415095ca189f03d725cdead519001dbb528edee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
