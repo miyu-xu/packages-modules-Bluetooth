@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14d6fe86_d4addce0",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1595,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-15T20:00:13Z",
+      "side": 1,
+      "message": "Extra brackets",
+      "revId": "ae83b73444e3403e75b4f4e4c511ea5f2b3e4fb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc8c5606_25a58b4d",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1658,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-15T20:00:13Z",
+      "side": 1,
+      "message": "Nice !",
+      "revId": "ae83b73444e3403e75b4f4e4c511ea5f2b3e4fb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
