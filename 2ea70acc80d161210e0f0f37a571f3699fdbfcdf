@@ -33,6 +33,24 @@
       "message": "The previous one returns the defaults with BTM_CODE_*_UNCLASSIFIED.\n\nMaybe we should add in `bt_dev_class` a constant `kDevClassUnclassified` in addition to Empty, which should be deprecated.  \n\n```\ninline constexpr DEV_CLASS kDevClassUnclassified \u003d {{0x00, BTM_COD_MAJOR_UNCLASSIFIED, BTM_COD_MINOR_UNCLASSIFIED}};\n```",
       "revId": "2ea70acc80d161210e0f0f37a571f3699fdbfcdf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "455ad910_dd3b5f7c",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2943,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-15T21:40:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a32ce0a1_eefa8683",
+      "revId": "2ea70acc80d161210e0f0f37a571f3699fdbfcdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
