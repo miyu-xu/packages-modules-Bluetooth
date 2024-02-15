@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41f693b6_2201b9c4",
+        "filename": "system/stack/smp/smp_l2c.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-15T23:15:00Z",
+      "side": 1,
+      "message": "nice",
+      "revId": "8e2bfdc0a7b235ee356175f195bff58fb36768f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27348681_8df44dae",
+        "filename": "system/stack/smp/smp_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1321,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-15T23:15:00Z",
+      "side": 1,
+      "message": "nit:\n\n```suggestion\n               p_cb-\u003esc_only_mode_locally_required);\n```",
+      "range": {
+        "startLine": 1321,
+        "startChar": 15,
+        "endLine": 1321,
+        "endChar": 69
+      },
+      "revId": "8e2bfdc0a7b235ee356175f195bff58fb36768f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
