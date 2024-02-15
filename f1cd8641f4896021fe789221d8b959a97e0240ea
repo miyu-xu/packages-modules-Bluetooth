@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48724f2d_f9e80fdf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-15T08:01:01Z",
+      "side": 1,
+      "message": "Could we update the CL description indicating that the flags in callbacks are removed as well?",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 46
+      },
+      "revId": "f1cd8641f4896021fe789221d8b959a97e0240ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
