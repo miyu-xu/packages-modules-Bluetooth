@@ -1,0 +1,366 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d8e6f07_6eb9055d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T21:56:56Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Test Validation: \"Test: m \u003ctarget\u003e\" or \"Test: atest \u003cautomated-test\u003e\" is required to be in the commit message.\n\nAnalyzer Description: Validates that commit messages indicate how changes were tested\nOwner: ayeaye-team@google.com\n\n\"Test: m \u003ctarget\u003e\" or \"Test: atest \u003cautomated-test\u003e\" is required to be in the commit message.",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "345743b2503a100f21fdb40319f3a9312e28d17c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f824fd32_78e443dd",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T21:56:56Z",
+      "side": 1,
+      "message": "Is this file change needed to be in this CL anymore?",
+      "revId": "345743b2503a100f21fdb40319f3a9312e28d17c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9e00e98_39e8cf32",
+        "filename": "system/gd/hci/Android.bp",
+        "patchSetId": 21
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T21:56:56Z",
+      "side": 1,
+      "message": "nit: Move to correct location to be alphabetically ordered.",
+      "range": {
+        "startLine": 28,
+        "startChar": 8,
+        "endLine": 28,
+        "endChar": 35
+      },
+      "revId": "345743b2503a100f21fdb40319f3a9312e28d17c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec671ef1_6d26ae9d",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 21
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T21:56:56Z",
+      "side": 1,
+      "message": "Can this log be either removed or dropped to debug? (ideally combined with the log in line 310 if needed as debug)",
+      "range": {
+        "startLine": 320,
+        "startChar": 4,
+        "endLine": 320,
+        "endChar": 13
+      },
+      "revId": "345743b2503a100f21fdb40319f3a9312e28d17c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac24393d_74eaa4f4",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T21:56:56Z",
+      "side": 1,
+      "message": "Can this be removed?",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 34
+      },
+      "revId": "345743b2503a100f21fdb40319f3a9312e28d17c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebc62096_f9848f2f",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T21:56:56Z",
+      "side": 1,
+      "message": "Would it be simpler to do the following and remove enc_adv_data_map altogether?\n\n*has_encrypted_data \u003d ContainsEncryptedData(adv_data.data(), adv_data.size());\nif (!*hasEncryptedData) {\n  LOG_DEBUG(\"No encrypted data found\");\n  return false;\n} \n\nLOG_DEBUG(\"Found encrypted data\");",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 31
+      },
+      "revId": "345743b2503a100f21fdb40319f3a9312e28d17c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0a6eb58_c186e1f3",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T21:56:56Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this case be unreachable? If enc_adv_data_map in line 55 is false, there\u0027s a return; the only true case appears to be set in line 56, unless I\u0027m missing something. (Also see comment above)",
+      "range": {
+        "startLine": 64,
+        "startChar": 2,
+        "endLine": 65,
+        "endChar": 17
+      },
+      "revId": "345743b2503a100f21fdb40319f3a9312e28d17c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbde09d8_88b50abc",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T21:56:56Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Please remove the trailing whitespace.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nPlease remove the trailing whitespace.",
+      "range": {
+        "startLine": 121,
+        "startChar": 58,
+        "endLine": 121,
+        "endChar": 59
+      },
+      "revId": "345743b2503a100f21fdb40319f3a9312e28d17c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffb0cfac_eabfbadd",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T21:56:56Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Please remove the trailing whitespace.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nPlease remove the trailing whitespace.",
+      "range": {
+        "startLine": 143,
+        "startChar": 49,
+        "endLine": 143,
+        "endChar": 50
+      },
+      "revId": "345743b2503a100f21fdb40319f3a9312e28d17c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c90166e2_291a3081",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T21:56:56Z",
+      "side": 1,
+      "message": "Should be debug level not info.",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 232,
+        "endChar": 73
+      },
+      "revId": "345743b2503a100f21fdb40319f3a9312e28d17c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94029f0d_bd5f3100",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T21:56:56Z",
+      "side": 1,
+      "message": "Formatting (indentation). \n\n```suggestion\n    return std::make_optional(out);\n```",
+      "range": {
+        "startLine": 248,
+        "startChar": 0,
+        "endLine": 248,
+        "endChar": 3
+      },
+      "revId": "345743b2503a100f21fdb40319f3a9312e28d17c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08d4c946_3f589521",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T21:56:56Z",
+      "side": 1,
+      "message": "Combine logs into one. \n\nOR change \"decryption not successful\" to error log, and log in line 251 to debug.",
+      "range": {
+        "startLine": 250,
+        "startChar": 4,
+        "endLine": 252,
+        "endChar": 23
+      },
+      "revId": "345743b2503a100f21fdb40319f3a9312e28d17c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16f07808_a311e9f0",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T21:56:56Z",
+      "side": 1,
+      "message": "Formatting (indentation)\n```suggestion\n    return std::nullopt;\n```",
+      "range": {
+        "startLine": 252,
+        "startChar": 0,
+        "endLine": 252,
+        "endChar": 3
+      },
+      "revId": "345743b2503a100f21fdb40319f3a9312e28d17c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06ad3a06_ccaa6957",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T21:56:56Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Please remove the trailing whitespace.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nPlease remove the trailing whitespace.",
+      "range": {
+        "startLine": 473,
+        "startChar": 29,
+        "endLine": 473,
+        "endChar": 30
+      },
+      "revId": "345743b2503a100f21fdb40319f3a9312e28d17c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cd62c70_8b987601",
+        "filename": "system/gd/storage/config_keys.h",
+        "patchSetId": 21
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T21:56:56Z",
+      "side": 1,
+      "message": "Is this additional define needed or can BTIF_STORAGE_KEY_ENCR_DATA be used instead?",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 51
+      },
+      "revId": "345743b2503a100f21fdb40319f3a9312e28d17c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bf5effe_bcc661c9",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T21:56:56Z",
+      "side": 1,
+      "message": "Please remove this log or lower to debug at least.",
+      "range": {
+        "startLine": 58,
+        "startChar": 2,
+        "endLine": 58,
+        "endChar": 24
+      },
+      "revId": "345743b2503a100f21fdb40319f3a9312e28d17c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
