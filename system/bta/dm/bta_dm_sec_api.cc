@@ -150,7 +150,7 @@ void BTA_DmAddDevice(const RawAddress& bd_addr, DEV_CLASS dev_class,
   msg->link_key = link_key;
 
   /* Load device class if specified */
-  if (dev_class != kDevClassEmpty) {
+  if (dev_class != kDevClassUnclassified) {
     msg->dc_known = true;
     msg->dc = dev_class;
   }
