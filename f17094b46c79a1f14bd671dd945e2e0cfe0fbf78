@@ -16,6 +16,24 @@
       "message": "Don\u0027t need this and open bracket anymore",
       "revId": "f17094b46c79a1f14bd671dd945e2e0cfe0fbf78",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50a10bbb_a78f580f",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1317,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-15T19:58:01Z",
+      "side": 1,
+      "message": "I agree.  I was trying to minimize the diff for the reviewer 😊\n\nThe whole block gets removed in the next CL that touches standard inquiry events.",
+      "parentUuid": "0bc5b18c_57a6f9ba",
+      "revId": "f17094b46c79a1f14bd671dd945e2e0cfe0fbf78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
