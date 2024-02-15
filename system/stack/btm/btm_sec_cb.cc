@@ -15,6 +15,7 @@
  *
  */
 
+#include "bt_dev_class.h"
 #define LOG_TAG "SEC_CB"
 
 #include "stack/btm/btm_sec_cb.h"
@@ -44,7 +45,7 @@ void tBTM_SEC_CB::Init(uint8_t initial_security_mode) {
   memset(&pin_code, 0, sizeof(pin_code));
   memset(sec_serv_rec, 0, sizeof(sec_serv_rec));
   connecting_bda = RawAddress::kEmpty;
-  connecting_dc = kDevClassEmpty;
+  connecting_dc = kDevClassUnclassified;
 
   sec_pending_q = fixed_queue_new(SIZE_MAX);
   sec_collision_timer = alarm_new("btm.sec_collision_timer");
