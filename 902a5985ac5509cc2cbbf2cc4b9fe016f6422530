@@ -46,6 +46,30 @@
       },
       "revId": "902a5985ac5509cc2cbbf2cc4b9fe016f6422530",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5842232_2e17948f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-02-15T22:45:49Z",
+      "side": 1,
+      "message": "For those couple small patches I don\u0027t think it makes sense to create bug.",
+      "parentUuid": "50ff75c8_687e288b",
+      "range": {
+        "startLine": 12,
+        "startChar": 5,
+        "endLine": 12,
+        "endChar": 9
+      },
+      "revId": "902a5985ac5509cc2cbbf2cc4b9fe016f6422530",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
