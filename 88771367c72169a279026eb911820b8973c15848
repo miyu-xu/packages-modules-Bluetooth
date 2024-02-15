@@ -16,6 +16,24 @@
       "message": "Like previous comments, let\u0027s add server-id as an arg",
       "revId": "88771367c72169a279026eb911820b8973c15848",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fd2a8bb_2d9e2bec",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1233,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-02-15T23:24:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82c61a9a_82f46b5f",
+      "revId": "88771367c72169a279026eb911820b8973c15848",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
