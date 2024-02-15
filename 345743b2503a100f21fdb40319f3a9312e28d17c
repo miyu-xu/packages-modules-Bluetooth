@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "62628cc4_277f5ce1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T21:57:43Z",
+      "side": 1,
+      "message": "At minimum this should be built and run on device if unit tests added later.",
+      "parentUuid": "8d8e6f07_6eb9055d",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "345743b2503a100f21fdb40319f3a9312e28d17c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f824fd32_78e443dd",
         "filename": "system/btif/src/btif_storage.cc",
         "patchSetId": 21
