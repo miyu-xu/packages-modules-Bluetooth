@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e54cdf3b_7c580fc9",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-15T22:46:46Z",
+      "side": 1,
+      "message": "fix",
+      "range": {
+        "startLine": 530,
+        "startChar": 60,
+        "endLine": 530,
+        "endChar": 62
+      },
+      "revId": "4335bce419f29f9b5924a01ee03ba44fcb6038ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdbeb7be_89c716bb",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-15T22:46:46Z",
+      "side": 1,
+      "message": "fix",
+      "range": {
+        "startLine": 538,
+        "startChar": 12,
+        "endLine": 538,
+        "endChar": 13
+      },
+      "revId": "4335bce419f29f9b5924a01ee03ba44fcb6038ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cee89edf_dc3ff724",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-15T22:46:46Z",
+      "side": 1,
+      "message": "fix",
+      "range": {
+        "startLine": 502,
+        "startChar": 15,
+        "endLine": 502,
+        "endChar": 16
+      },
+      "revId": "4335bce419f29f9b5924a01ee03ba44fcb6038ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc580e41_271daeef",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-15T22:46:46Z",
+      "side": 1,
+      "message": "fix",
+      "range": {
+        "startLine": 507,
+        "startChar": 15,
+        "endLine": 507,
+        "endChar": 16
+      },
+      "revId": "4335bce419f29f9b5924a01ee03ba44fcb6038ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d429cf2_aaf8b145",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1629,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-15T22:46:46Z",
+      "side": 1,
+      "message": "fix",
+      "range": {
+        "startLine": 1629,
+        "startChar": 21,
+        "endLine": 1629,
+        "endChar": 22
+      },
+      "revId": "4335bce419f29f9b5924a01ee03ba44fcb6038ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa835ef9_72dfb4e8",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3039,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-15T22:46:46Z",
+      "side": 1,
+      "message": "fix",
+      "range": {
+        "startLine": 3039,
+        "startChar": 15,
+        "endLine": 3039,
+        "endChar": 16
+      },
+      "revId": "4335bce419f29f9b5924a01ee03ba44fcb6038ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "179a8643_115f73a4",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3164,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-15T22:46:46Z",
+      "side": 1,
+      "message": "fix",
+      "range": {
+        "startLine": 3164,
+        "startChar": 16,
+        "endLine": 3164,
+        "endChar": 17
+      },
+      "revId": "4335bce419f29f9b5924a01ee03ba44fcb6038ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
