@@ -65,6 +65,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3aa98496_3b7e9d1f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 7292,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-02-15T05:44:56Z",
+      "side": 1,
+      "message": "To make the Flagging logic clear, branched out energyInfoCallbackInternal().",
+      "parentUuid": "6c67ccc2_6b0b7023",
+      "range": {
+        "startLine": 7291,
+        "startChar": 13,
+        "endLine": 7292,
+        "endChar": 19
+      },
+      "revId": "a0d4e074d70dca8a366b080a0740285531d44a2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b914e3df_15a864e9",
@@ -238,6 +262,24 @@
       "side": 1,
       "message": "clang-format required to remove the newline.",
       "parentUuid": "4ca61411_81fe51c2",
+      "revId": "a0d4e074d70dca8a366b080a0740285531d44a2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51284aca_adde1710",
+        "filename": "system/main/shim/btm_api.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-02-15T05:44:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7ee3ddb_7c47b747",
       "revId": "a0d4e074d70dca8a366b080a0740285531d44a2a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
