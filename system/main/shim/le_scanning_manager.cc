@@ -805,8 +805,8 @@ void BleScannerInterfaceImpl::handle_remote_properties(
       memcpy(bdname.name, p_eir_remote_name, remote_name_len);
       if (remote_name_len < BD_NAME_LEN + 1)
         bdname.name[remote_name_len] = '\0';
-      btif_dm_update_ble_remote_properties(bd_addr, bdname.name, kDevClassEmpty,
-                                           device_type);
+      btif_dm_update_ble_remote_properties(bd_addr, bdname.name,
+                                           kDevClassUnclassified, device_type);
     }
   }
 

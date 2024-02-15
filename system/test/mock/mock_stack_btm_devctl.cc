@@ -84,7 +84,7 @@ tBTM_STATUS BTM_SetLocalDeviceName(const char* /* p_name */) {
 }
 DEV_CLASS BTM_ReadDeviceClass(void) {
   inc_func_call_count(__func__);
-  return kDevClassEmpty;
+  return kDevClassUnclassified;
 }
 void BTM_VendorSpecificCommand(uint16_t /* opcode */, uint8_t /* param_len */,
                                uint8_t* /* p_param_buf */,

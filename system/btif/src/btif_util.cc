@@ -58,14 +58,7 @@
  ****************************************************************************/
 
 uint32_t devclass2uint(const DEV_CLASS dev_class) {
-  uint32_t cod = 0;
-
-  if (dev_class != kDevClassEmpty) {
-    /* if COD is 0, irrespective of the device type set it to Unclassified
-     * device */
-    cod = (dev_class[2]) | (dev_class[1] << 8) | (dev_class[0] << 16);
-  }
-  return cod;
+  return (dev_class[2]) | (dev_class[1] << 8) | (dev_class[0] << 16);
 }
 DEV_CLASS uint2devclass(uint32_t cod) {
   DEV_CLASS dev_class;

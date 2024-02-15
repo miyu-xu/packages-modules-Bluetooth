@@ -2230,8 +2230,8 @@ void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr,
         hci_status_code_text(status).c_str(),
         reinterpret_cast<char const*>(p_bd_name));
 
-    call_registered_rmt_name_callbacks(p_bd_addr, kDevClassEmpty, nullptr,
-                                       status);
+    call_registered_rmt_name_callbacks(p_bd_addr, kDevClassUnclassified,
+                                       nullptr, status);
     return;
   }
 
@@ -4169,7 +4169,8 @@ static void btm_sec_pairing_timeout(void* /* data */) {
         if (p_dev_rec == NULL) {
           name[0] = 0;
           (*btm_sec_cb.api.p_auth_complete_callback)(
-              p_cb->pairing_bda, kDevClassEmpty, name, HCI_ERR_CONNECTION_TOUT);
+              p_cb->pairing_bda, kDevClassUnclassified, name,
+              HCI_ERR_CONNECTION_TOUT);
         } else
           NotifyBondingChange(*p_dev_rec, HCI_ERR_CONNECTION_TOUT);
       }
@@ -4225,7 +4226,8 @@ static void btm_sec_pairing_timeout(void* /* data */) {
         if (p_dev_rec == NULL) {
           name[0] = 0;
           (*btm_sec_cb.api.p_auth_complete_callback)(
-              p_cb->pairing_bda, kDevClassEmpty, name, HCI_ERR_CONNECTION_TOUT);
+              p_cb->pairing_bda, kDevClassUnclassified, name,
+              HCI_ERR_CONNECTION_TOUT);
         } else {
           NotifyBondingChange(*p_dev_rec, HCI_ERR_CONNECTION_TOUT);
         }
