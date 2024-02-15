@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b12073ad_9354aca5",
+        "filename": "system/stack/btm/btm_devctl.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2024-02-15T13:28:07Z",
+      "side": 1,
+      "message": "It\u0027s possible I\u0027m misunderstanding things, as I\u0027m not an STL expert.\n\nBut, is this legal?  Trying this on a small test program, I get a segmentation fault.  I believe that accessing a nonexistent vector element through the [] operator is undefined behavior. (https://en.cppreference.com/w/cpp/container/vector/operator_at)\n\nIt seems like we need to at least initialize the vector with a capacity of 3.  Although we might as well give it the capacity for all the elements we\u0027re initially adding, to minimize resizing.  So maybe something like:\n\n```\nstd::vector\u003cuint8_t\u003e reconstructed_event(3 + bqr_parameter_length);\nreconstructed_event[0] \u003d [...];\n[...]\nreconstructed_event[2] \u003d [...];\nfor (i \u003d 0; i \u003c bqr_parameter_length; i++) {\n  reconstructed_event[3 + i] \u003d p[i];\n}\n```",
+      "range": {
+        "startLine": 555,
+        "startChar": 1,
+        "endLine": 559,
+        "endChar": 0
+      },
+      "revId": "602a68296331b822f11859846611c9fc9bc9c709",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
