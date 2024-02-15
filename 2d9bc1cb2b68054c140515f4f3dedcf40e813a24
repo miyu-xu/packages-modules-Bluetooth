@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecfbad4b_08286ac7",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 904,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-15T20:39:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2cdb0b8_f04e2367",
+      "range": {
+        "startLine": 904,
+        "startChar": 0,
+        "endLine": 904,
+        "endChar": 47
+      },
+      "revId": "2d9bc1cb2b68054c140515f4f3dedcf40e813a24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cfc1b6af_f2398bf2",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-02-15T17:26:23Z",
       "side": 1,
       "message": "Just want to double check, we\u0027re intended to remove the primary device check here in this newer version.\nI\u0027m okay with this. If yes, could you update the log here? \n```suggestion\n                            \"connectionStateChanged: reconnected previously synced\"\n```",
+      "revId": "2d9bc1cb2b68054c140515f4f3dedcf40e813a24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d44df97d_92e9c130",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 958,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-15T20:39:20Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "cfc1b6af_f2398bf2",
       "revId": "2d9bc1cb2b68054c140515f4f3dedcf40e813a24",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
