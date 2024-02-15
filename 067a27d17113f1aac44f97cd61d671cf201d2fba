@@ -1,0 +1,228 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90cfd174_7e863b4b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T22:44:08Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Test Validation: \"Test: m \u003ctarget\u003e\" or \"Test: atest \u003cautomated-test\u003e\" is required to be in the commit message.\n\nAnalyzer Description: Validates that commit messages indicate how changes were tested\nOwner: ayeaye-team@google.com\n\n\"Test: m \u003ctarget\u003e\" or \"Test: atest \u003cautomated-test\u003e\" is required to be in the commit message.",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "067a27d17113f1aac44f97cd61d671cf201d2fba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57df2e46_04261c57",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T22:44:08Z",
+      "side": 1,
+      "message": "Can this file be removed from this change?",
+      "revId": "067a27d17113f1aac44f97cd61d671cf201d2fba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48da0225_eeab6ec9",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 1655,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T22:44:08Z",
+      "side": 1,
+      "message": "Can this log and log in line 1675 be removed?",
+      "range": {
+        "startLine": 1655,
+        "startChar": 2,
+        "endLine": 1655,
+        "endChar": 24
+      },
+      "revId": "067a27d17113f1aac44f97cd61d671cf201d2fba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66387bfa_24a92202",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 1657,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T22:44:08Z",
+      "side": 1,
+      "message": "Can this be defined somewhere as a constant instead of hardcoded where it is used throughout this file?",
+      "range": {
+        "startLine": 1657,
+        "startChar": 33,
+        "endLine": 1657,
+        "endChar": 42
+      },
+      "revId": "067a27d17113f1aac44f97cd61d671cf201d2fba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "116896ba_10091256",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 2048,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T22:44:08Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Please remove the trailing whitespace.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nPlease remove the trailing whitespace.",
+      "range": {
+        "startLine": 2048,
+        "startChar": 2,
+        "endLine": 2048,
+        "endChar": 3
+      },
+      "revId": "067a27d17113f1aac44f97cd61d671cf201d2fba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d767d19_e389e19e",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 877,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T22:44:08Z",
+      "side": 1,
+      "message": "Drop to debug. \n```suggestion\n                LOG_DEBUG(\" BDA: %s conn_id: %d\",\n```",
+      "range": {
+        "startLine": 877,
+        "startChar": 16,
+        "endLine": 877,
+        "endChar": 24
+      },
+      "revId": "067a27d17113f1aac44f97cd61d671cf201d2fba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51752342_49d48eea",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 953,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T22:44:08Z",
+      "side": 1,
+      "message": "btm_ble prefix should not be used on methods defined in this file (this is for btm_ble_[...].cc files.",
+      "range": {
+        "startLine": 953,
+        "startChar": 5,
+        "endLine": 953,
+        "endChar": 13
+      },
+      "revId": "067a27d17113f1aac44f97cd61d671cf201d2fba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46c67de5_db5ce47a",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 1106,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T22:44:08Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Please remove the trailing whitespace.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nPlease remove the trailing whitespace.",
+      "range": {
+        "startLine": 1106,
+        "startChar": 4,
+        "endLine": 1106,
+        "endChar": 5
+      },
+      "revId": "067a27d17113f1aac44f97cd61d671cf201d2fba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5e83912_bd98f6dc",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 1107,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T22:44:08Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"encypted\" -- should it be \"encrypted\"?\n\nAnalyzer Description: Linter for catching common typos motivated by go/todo-fail and go/lol-codesearch. Shared with google3 common typos library go/common-typos.\nOwner: ayeaye-team@google.com\n\nCommon typo found: \"encypted\" -- should it be \"encrypted\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 1107,
+        "startChar": 25,
+        "endLine": 1107,
+        "endChar": 33
+      },
+      "revId": "067a27d17113f1aac44f97cd61d671cf201d2fba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b19a8fb_d9b92bd9",
+        "filename": "system/stack/include/gap_api.h",
+        "patchSetId": 25
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T22:44:08Z",
+      "side": 1,
+      "message": "nit: remove\n```suggestion\n * Returns          Enc Key Material characteristic value\n```",
+      "range": {
+        "startLine": 328,
+        "startChar": 20,
+        "endLine": 328,
+        "endChar": 28
+      },
+      "revId": "067a27d17113f1aac44f97cd61d671cf201d2fba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
