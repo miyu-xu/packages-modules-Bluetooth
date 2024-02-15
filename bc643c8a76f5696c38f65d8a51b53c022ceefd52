@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5c821a2_95adef61",
+        "filename": "framework/tests/bumble/src/android/bluetooth/SdpClientTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-02-15T01:32:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b441ee5_05c20697",
+      "revId": "bc643c8a76f5696c38f65d8a51b53c022ceefd52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6bcabcda_86557ba9",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-02-15T01:05:40Z",
       "side": 1,
       "message": "nit:\n\n```suggestion\n        assertThat(arr).asList().contains(BluetoothUuid.HFP);\n```",
+      "revId": "bc643c8a76f5696c38f65d8a51b53c022ceefd52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "816c3e47_ee24e3cc",
+        "filename": "framework/tests/bumble/src/android/bluetooth/SdpClientTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-02-15T01:32:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6bcabcda_86557ba9",
       "revId": "bc643c8a76f5696c38f65d8a51b53c022ceefd52",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
