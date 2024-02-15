@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e82ef80c_86fece28",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-15T22:29:28Z",
+      "side": 1,
+      "message": "I think `system/gd/os/syslog.cc` needs to take into account the log level as well.",
+      "revId": "26872d5e9d7511df1d9477a4aa8038baf640b6ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
