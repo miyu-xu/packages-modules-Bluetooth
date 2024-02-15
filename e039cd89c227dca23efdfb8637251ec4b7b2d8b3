@@ -37,6 +37,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "56c3de2e_5ba40fee",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 898,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-15T12:25:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50b76d2c_bb43dfeb",
+      "revId": "e039cd89c227dca23efdfb8637251ec4b7b2d8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "43f8aa96_d66fb358",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 18
@@ -65,6 +83,24 @@
       "writtenOn": "2024-02-15T01:03:23Z",
       "side": 1,
       "message": "Also could you help to double check those error prone warnings?",
+      "revId": "e039cd89c227dca23efdfb8637251ec4b7b2d8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc9370c7_782a7e15",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 1906,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-15T12:25:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1dbcb8f3_70e595b1",
       "revId": "e039cd89c227dca23efdfb8637251ec4b7b2d8b3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
