@@ -403,6 +403,7 @@ class BtifAvSource {
   btav_source_callbacks_t* Callbacks() { return callbacks_; }
   bool Enabled() const { return enabled_; }
   bool A2dpOffloadEnabled() const { return a2dp_offload_enabled_; }
+  // TODO: b/321806163: Remove this method as part of flag cleanup
   void SetInvalidPeerCheck(bool invalid_peer_check) {
     invalid_peer_check_ = invalid_peer_check;
   }
@@ -645,6 +646,7 @@ class BtifAvSink {
   btav_sink_callbacks_t* Callbacks() { return callbacks_; }
   bool Enabled() const { return enabled_; }
 
+  // TODO: b/321806163: Remove this method as part of flag cleanup
   void SetInvalidPeerCheck(bool invalid_peer_check) {
     invalid_peer_check_ = invalid_peer_check;
   }
@@ -1328,7 +1330,9 @@ BtifAvPeer* BtifAvSource::FindOrCreatePeer(const RawAddress& peer_address,
 
 bool BtifAvSource::AllowedToConnect(const RawAddress& peer_address) const {
   int connected = 0;
-  if (btif_av_src_sink_coexist_enabled() && invalid_peer_check_) {
+
+  if (!IS_FLAG_ENABLED(a2dp_concurrent_source_sink) &&
+      btif_av_src_sink_coexist_enabled() && invalid_peer_check_) {
     LOG_INFO(
         "invalid_peer_check_ so allow to connect here, when"
         " BTA_AV_OPEN_EVT coming, would check again!");
@@ -1344,8 +1348,10 @@ bool BtifAvSource::AllowedToConnect(const RawAddress& peer_address) const {
       case BtifAvStateMachine::kStateStarted:
         if (peer->PeerAddress() == peer_address) {
           /* we should check if another role is used */
-          if (btif_av_src_sink_coexist_enabled() && btif_av_both_enable())
+          if (!IS_FLAG_ENABLED(a2dp_concurrent_source_sink) &&
+              btif_av_src_sink_coexist_enabled() && btif_av_both_enable()) {
             break;
+          }
 
           return true;  // Already connected or accounted for
         }
@@ -1355,7 +1361,8 @@ bool BtifAvSource::AllowedToConnect(const RawAddress& peer_address) const {
         break;
     }
   }
-  if (btif_av_src_sink_coexist_enabled() && btif_av_both_enable()) {
+  if (!IS_FLAG_ENABLED(a2dp_concurrent_source_sink) &&
+      btif_av_src_sink_coexist_enabled() && btif_av_both_enable()) {
     LOG_INFO("%s: connected=%d, max_connected_peers_=%d, sink_peers=%d",
              __PRETTY_FUNCTION__, connected, max_connected_peers_,
              (int)btif_av_sink.Peers().size());
@@ -1587,7 +1594,8 @@ BtifAvPeer* BtifAvSink::FindOrCreatePeer(const RawAddress& peer_address,
 bool BtifAvSink::AllowedToConnect(const RawAddress& peer_address) const {
   int connected = 0;
 
-  if (btif_av_src_sink_coexist_enabled() && invalid_peer_check_) {
+  if (!IS_FLAG_ENABLED(a2dp_concurrent_source_sink) &&
+      btif_av_src_sink_coexist_enabled() && invalid_peer_check_) {
     LOG_INFO(
         "invalid_peer_check_ so allow to connect here, when"
         " BTA_AV_OPEN_EVT coming, would check again!");
@@ -1601,8 +1609,10 @@ bool BtifAvSink::AllowedToConnect(const RawAddress& peer_address) const {
       case BtifAvStateMachine::kStateOpened:
       case BtifAvStateMachine::kStateStarted:
         if (peer->PeerAddress() == peer_address) {
-          /* we should check if another role is used */
-          if (btif_av_both_enable()) break;
+          if (!IS_FLAG_ENABLED(a2dp_concurrent_source_sink)) {
+            /* we should check if another role is used */
+            if (btif_av_both_enable()) break;
+          }
           return true;  // Already connected or accounted for
         }
         connected++;
@@ -1622,7 +1632,7 @@ bool BtifAvSink::AllowedToConnect(const RawAddress& peer_address) const {
         break;
     }
   }
-  if (btif_av_both_enable()) {
+  if (!IS_FLAG_ENABLED(a2dp_concurrent_source_sink) && btif_av_both_enable()) {
     LOG_INFO("connected=%d, max_connected_peers_=%d, source_peers=%d",
              connected, max_connected_peers_,
              (int)btif_av_source.Peers().size());
@@ -1852,6 +1862,8 @@ bool BtifAvStateMachine::StateIdle::ProcessEvent(uint32_t event, void* p_data) {
       if (peer_.IsSink()) {
         can_connect = btif_av_source.AllowedToConnect(peer_.PeerAddress());
         if (!can_connect) {
+          LOG_ERROR("Source profile doesn't allow connection to peer:%s",
+                    ADDRESS_TO_LOGGABLE_CSTR(peer_.PeerAddress()));
           if (btif_av_src_sink_coexist_enabled())
             BTA_AvCloseRc(((tBTA_AV*)p_data)->rc_open.rc_handle);
           else
@@ -1860,6 +1872,8 @@ bool BtifAvStateMachine::StateIdle::ProcessEvent(uint32_t event, void* p_data) {
       } else if (peer_.IsSource()) {
         can_connect = btif_av_sink.AllowedToConnect(peer_.PeerAddress());
         if (!can_connect) {
+          LOG_ERROR("Sink profile doesn't allow connection to peer:%s",
+                    ADDRESS_TO_LOGGABLE_CSTR(peer_.PeerAddress()));
           if (btif_av_src_sink_coexist_enabled())
             BTA_AvCloseRc(((tBTA_AV*)p_data)->rc_open.rc_handle);
           else
@@ -1939,12 +1953,14 @@ bool BtifAvStateMachine::StateIdle::ProcessEvent(uint32_t event, void* p_data) {
                       ADDRESS_TO_LOGGABLE_CSTR(peer_.PeerAddress()),
                       peer_.PeerSep(), p_bta_data->open.sep);
           /* if peer is wrong sep type, move it to BtifAvSxxx */
-          if (peer_.PeerSep() == AVDT_TSEP_SNK) {
-            LOG_VERBOSE("set source invalid_peer_check as false");
-            btif_av_source.SetInvalidPeerCheck(false);
-          } else {
-            LOG_VERBOSE("set sink invalid_peer_check as false");
-            btif_av_sink.SetInvalidPeerCheck(false);
+          if (!IS_FLAG_ENABLED(a2dp_concurrent_source_sink)) {
+            if (peer_.PeerSep() == AVDT_TSEP_SNK) {
+              LOG_VERBOSE("set source invalid_peer_check as false");
+              btif_av_source.SetInvalidPeerCheck(false);
+            } else {
+              LOG_VERBOSE("set sink invalid_peer_check as false");
+              btif_av_sink.SetInvalidPeerCheck(false);
+            }
           }
           if (peer_.PeerSep() != p_bta_data->open.sep) {
             BtifAvPeer* tmp_peer = nullptr;
@@ -2156,12 +2172,14 @@ bool BtifAvStateMachine::StateOpening::ProcessEvent(uint32_t event,
                       ADDRESS_TO_LOGGABLE_CSTR(peer_.PeerAddress()),
                       peer_.PeerSep(), p_bta_data->open.sep);
           /* if peer is wrong sep type, move it to BtifAvSxxx */
-          if (peer_.PeerSep() == AVDT_TSEP_SNK) {
-            LOG_VERBOSE("set source invalid_peer_check as false");
-            btif_av_source.SetInvalidPeerCheck(false);
-          } else {
-            LOG_VERBOSE("set sink invalid_peer_check as false");
-            btif_av_sink.SetInvalidPeerCheck(false);
+          if (!IS_FLAG_ENABLED(a2dp_concurrent_source_sink)) {
+            if (peer_.PeerSep() == AVDT_TSEP_SNK) {
+              LOG_VERBOSE("set source invalid_peer_check as false");
+              btif_av_source.SetInvalidPeerCheck(false);
+            } else {
+              LOG_VERBOSE("set sink invalid_peer_check as false");
+              btif_av_sink.SetInvalidPeerCheck(false);
+            }
           }
           if (peer_.PeerSep() != p_bta_data->open.sep) {
             BtifAvPeer* tmp_peer = nullptr;
@@ -3217,7 +3235,9 @@ static BtifAvPeer* btif_av_handle_both_peer(uint8_t peer_sep,
                       peer_sep);
           peer = btif_av_source.FindOrCreatePeer(peer_address, bta_handle);
         } else {
-          btif_av_source.SetInvalidPeerCheck(true);
+          if (!IS_FLAG_ENABLED(a2dp_concurrent_source_sink)) {
+            btif_av_source.SetInvalidPeerCheck(true);
+          }
           if (!btif_av_source.Peers().empty()) {
             LOG_VERBOSE(
                 "%s: peer_sep invalid, and already has sink peer,"
