@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "24b79516_34738983",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-02-15T23:58:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "982dc44d_f132fb22",
+      "revId": "9dad7bc5853e1a995cf719472d83e3bef14b3ecb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9319f71_fcc009ea",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-02-15T19:57:07Z",
       "side": 1,
       "message": "Like the previous CL, I\u0027d rather have this be an arg.",
+      "revId": "9dad7bc5853e1a995cf719472d83e3bef14b3ecb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3932dfa7_9d5b5bf9",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1256,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-02-15T23:58:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9319f71_fcc009ea",
       "revId": "9dad7bc5853e1a995cf719472d83e3bef14b3ecb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "46491256_55446f7c",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1261,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-02-15T23:58:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1965fa26_a488ef6a",
+      "revId": "9dad7bc5853e1a995cf719472d83e3bef14b3ecb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d16ac347_54b9f201",
@@ -65,6 +119,24 @@
       "writtenOn": "2024-02-15T19:57:07Z",
       "side": 1,
       "message": "Why do we need to expose this over DBUS?",
+      "revId": "9dad7bc5853e1a995cf719472d83e3bef14b3ecb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a0612d7_33332d9e",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-02-15T23:58:14Z",
+      "side": 1,
+      "message": "I believe we can\u0027t access it otherwise.",
+      "parentUuid": "d16ac347_54b9f201",
       "revId": "9dad7bc5853e1a995cf719472d83e3bef14b3ecb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
