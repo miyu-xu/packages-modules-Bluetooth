@@ -123,6 +123,23 @@
       "message": "rpius@google.com is this still needed? Is there any bug number for this or any test that can be run to satisfy the linters?",
       "revId": "5166dbd0c69bc076f91c11605a4305db7a56a8a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed141b38_a15f0be2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1074459
+      },
+      "writtenOn": "2024-02-15T18:50:34Z",
+      "side": 1,
+      "message": "We need to wait for this to be BT SIG certified.",
+      "revId": "5166dbd0c69bc076f91c11605a4305db7a56a8a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
