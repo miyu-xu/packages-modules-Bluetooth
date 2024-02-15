@@ -45,6 +45,54 @@
       },
       "revId": "9d782fffbfa6310206865003e259e3698bb83a08",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "533ce155_e0172cef",
+        "filename": "system/gd/rust/topshim/src/syslog.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2024-02-15T22:34:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8fcc8d6_663fa62f",
+      "range": {
+        "startLine": 48,
+        "startChar": 51,
+        "endLine": 48,
+        "endChar": 60
+      },
+      "revId": "9d782fffbfa6310206865003e259e3698bb83a08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8daa4ba3_a632306d",
+        "filename": "system/gd/rust/topshim/src/syslog.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2024-02-15T22:34:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f7e58d8_94a5ad0d",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 48,
+        "endChar": 18
+      },
+      "revId": "9d782fffbfa6310206865003e259e3698bb83a08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
