@@ -122,7 +122,7 @@ bool BTM_SecAddDevice(const RawAddress& bd_addr, DEV_CLASS dev_class,
     p_dev_rec->sec_rec.bond_type = BOND_TYPE_UNKNOWN;
   }
 
-  if (dev_class != kDevClassEmpty) p_dev_rec->dev_class = dev_class;
+  if (dev_class != kDevClassUnclassified) p_dev_rec->dev_class = dev_class;
 
   memset(p_dev_rec->sec_bd_name, 0, sizeof(tBTM_BD_NAME));
 

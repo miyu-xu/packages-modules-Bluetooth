@@ -23,8 +23,6 @@
 constexpr size_t kDevClassLength = 3;
 typedef std::array<uint8_t, kDevClassLength> DEV_CLASS; /* Device class */
 
-inline constexpr DEV_CLASS kDevClassEmpty = {};
-
 /* 0x00 is used as unclassified for all minor device classes */
 #define BTM_COD_MINOR_UNCLASSIFIED 0x00
 #define BTM_COD_MINOR_WEARABLE_HEADSET 0x04

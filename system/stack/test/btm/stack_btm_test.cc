@@ -33,6 +33,7 @@
 #include "stack/btm/btm_sec_cb.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/acl_hci_link_interface.h"
+#include "stack/include/bt_dev_class.h"
 #include "stack/include/btm_client_interface.h"
 #include "stack/l2cap/l2c_int.h"
 #include "test/common/mock_functions.h"
@@ -249,7 +250,7 @@ TEST_F(StackBtmWithInitFreeTest, btm_sec_rmt_name_request_complete) {
   btm_sec_rmt_name_request_complete(&bd_addr, p_bd_name, HCI_SUCCESS);
 
   ASSERT_THAT(btm_test.bd_name, Each(Eq(0)));
-  ASSERT_THAT(btm_test.dc, Each(Eq(0)));
+  ASSERT_EQ(btm_test.dc, kDevClassUnclassified);
   ASSERT_EQ(bd_addr, btm_test.bd_addr);
 
   btm_test = {};

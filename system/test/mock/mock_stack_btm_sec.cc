@@ -25,6 +25,7 @@
 #include <cstdint>
 #include <string>
 
+#include "bt_dev_class.h"
 #include "stack/include/btm_sec_api_types.h"
 #include "stack/include/btm_status.h"
 #include "test/common/mock_functions.h"
@@ -138,7 +139,7 @@ bool BTM_SecIsSecurityPending::return_value = false;
 bool BTM_SecRegister::return_value = false;
 tBTM_STATUS BTM_SetEncryption::return_value = 0;
 bool BTM_SetSecurityLevel::return_value = false;
-const DEV_CLASS btm_get_dev_class::return_value = kDevClassEmpty;
+const DEV_CLASS btm_get_dev_class::return_value = kDevClassUnclassified;
 tBTM_STATUS btm_sec_bond_by_transport::return_value = 0;
 tBTM_STATUS btm_sec_disconnect::return_value = 0;
 bool btm_sec_is_a_bonded_dev::return_value = false;
