@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f04b82e8_d8a1139e",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-15T07:59:41Z",
+      "side": 0,
+      "message": "this CL is also removing the Flag",
+      "range": {
+        "startLine": 195,
+        "startChar": 20,
+        "endLine": 195,
+        "endChar": 66
+      },
+      "revId": "1d5d4bae0c0417130b2eb23b32e48fb1511019f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
