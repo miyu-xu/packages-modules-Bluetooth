@@ -46,6 +46,30 @@
       },
       "revId": "22996d24d036f6e8c9e2a08315d55b11f7a56622",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6184a5d6_256cec21",
+        "filename": "system/main/test/main_shim_stack_lifecycle_test.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-15T22:59:57Z",
+      "side": 1,
+      "message": "Handlers have an ability to quiesce the reactor which we need to bring into mainloop, and/or deprecate mainloop\n```\n  void Handler::WaitUntilStopped(std::chrono::milliseconds timeout) {\n    ASSERT(reactable_ \u003d\u003d nullptr);\n    ASSERT(thread_-\u003eGetReactor()-\u003eWaitForUnregisteredReactable(timeout));\n  }\n```",
+      "parentUuid": "7d260ba7_1fd0767a",
+      "range": {
+        "startLine": 72,
+        "startChar": 7,
+        "endLine": 72,
+        "endChar": 24
+      },
+      "revId": "22996d24d036f6e8c9e2a08315d55b11f7a56622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
