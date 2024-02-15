@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75e66905_3e9f61c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-02-15T19:37:58Z",
+      "side": 1,
+      "message": "Also, since your next couple patches are also just adding to btclient, you can just add them all to the same CL since I think they\u0027re similar enough. That way you don\u0027t have to maintain an extensive relation chain.",
+      "revId": "13f5baa0eca471e1a493f63813ba827862ffe293",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99dc5c69_e0a43978",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1229,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-02-15T19:37:58Z",
+      "side": 1,
+      "message": "Instead of getting the server id from the callback and storing it in the context, I would rather pass it as an arg. In case someone wants to test registering multiple servers",
+      "revId": "13f5baa0eca471e1a493f63813ba827862ffe293",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ff43012_92f75629",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1234,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-02-15T19:37:58Z",
+      "side": 1,
+      "message": "You don\u0027t give the user of btclient any way to set these.",
+      "revId": "13f5baa0eca471e1a493f63813ba827862ffe293",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff70d7d0_9e39de08",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1243,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-02-15T19:37:58Z",
+      "side": 1,
+      "message": "Can you just do this check when you call `server_connect` above?\n\n`if !self.lock_context().gatt_dbus.as_mut().unwrap().server_connect...`",
+      "revId": "13f5baa0eca471e1a493f63813ba827862ffe293",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
