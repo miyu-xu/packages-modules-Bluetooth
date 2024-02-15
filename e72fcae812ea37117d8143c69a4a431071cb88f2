@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "688dc433_001365cc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T22:27:59Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Test Validation: \"Test: m \u003ctarget\u003e\" or \"Test: atest \u003cautomated-test\u003e\" is required to be in the commit message.\n\nAnalyzer Description: Validates that commit messages indicate how changes were tested\nOwner: ayeaye-team@google.com\n\n\"Test: m \u003ctarget\u003e\" or \"Test: atest \u003cautomated-test\u003e\" is required to be in the commit message.",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "e72fcae812ea37117d8143c69a4a431071cb88f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c323b479_bb608f84",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseHelper.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T22:27:59Z",
+      "side": 1,
+      "message": "Can this be moved back to original location (after service solicitation UUIDs)?\n\nIn order to reduce the diff from this change.",
+      "range": {
+        "startLine": 194,
+        "startChar": 0,
+        "endLine": 203,
+        "endChar": 9
+      },
+      "revId": "e72fcae812ea37117d8143c69a4a431071cb88f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2791b1d_8edbd6f4",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T22:27:59Z",
+      "side": 1,
+      "message": "Can the changes in this file be more cleanly guarded behind the flag? \n\nThe diff on this is pretty large relative to the flag guarded portion (see difference between base and current patchset).",
+      "revId": "e72fcae812ea37117d8143c69a4a431071cb88f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d6ee069_fd097e37",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T22:27:59Z",
+      "side": 1,
+      "message": "Why is this logic added to rotate_advertiser_address method?",
+      "range": {
+        "startLine": 755,
+        "startChar": 0,
+        "endLine": 771,
+        "endChar": 7
+      },
+      "revId": "e72fcae812ea37117d8143c69a4a431071cb88f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80ffdccb_0293dcdc",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 1133,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T22:27:59Z",
+      "side": 1,
+      "message": "This doesn\u0027t make sense. This line is only reachable if the flag is enabled and data_encrypt is non-empty. Please correct.",
+      "range": {
+        "startLine": 1133,
+        "startChar": 8,
+        "endLine": 1133,
+        "endChar": 84
+      },
+      "revId": "e72fcae812ea37117d8143c69a4a431071cb88f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "beffc321_7adb579d",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 1872,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-15T22:27:59Z",
+      "side": 1,
+      "message": "This is not proper usage of flag. \n\nThese info logs should either be downgraded to debug or removed altogether.",
+      "range": {
+        "startLine": 1869,
+        "startChar": 6,
+        "endLine": 1872,
+        "endChar": 7
+      },
+      "revId": "e72fcae812ea37117d8143c69a4a431071cb88f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
