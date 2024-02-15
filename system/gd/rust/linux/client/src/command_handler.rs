@@ -202,6 +202,7 @@ fn build_commands() -> HashMap<String, CommandOption> {
                 ),
                 String::from("gatt register-notification <address> <handle> <enable|disable>"),
                 String::from("gatt register-server"),
+                String::from("gatt unregister-server <server_id>"),
             ],
             description: String::from("GATT tools"),
             function_pointer: CommandHandler::cmd_gatt,
@@ -1222,6 +1223,13 @@ impl CommandHandler {
                     )),
                     false,
                 );
+            }
+            "unregister-server" => {
+                let server_id = String::from(get_arg(args, 1)?)
+                    .parse::<i32>()
+                    .or(Err("Failed parsing server id"))?;
+
+                self.lock_context().gatt_dbus.as_mut().unwrap().unregister_server(server_id);
             }
             _ => return Err(CommandError::InvalidArgs),
         }
