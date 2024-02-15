@@ -23,6 +23,7 @@
 #include <memory>
 
 #include "bta/include/bta_api_data_types.h"
+#include "btif/include/btif_dm.h"
 #include "btif/include/mock_core_callbacks.h"
 #include "main/shim/stack.h"
 #include "module.h"
@@ -196,4 +197,8 @@ TEST_F_WITH_FLAGS(BtifDmWithStackTest,
   ASSERT_STREQ(
       kBdName,
       (const char*)invoke_remote_device_properties_cb.properties[0].val);
+}
+
+TEST_F(BtifDmWithStackTest, btif_dm_get_local_class_of_device) {
+  [[maybe_unused]] DEV_CLASS dev_class = btif_dm_get_local_class_of_device();
 }
