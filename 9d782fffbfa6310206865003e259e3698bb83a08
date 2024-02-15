@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8fcc8d6_663fa62f",
+        "filename": "system/gd/rust/topshim/src/syslog.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-15T22:33:03Z",
+      "side": 1,
+      "message": "nit: `overridden`",
+      "range": {
+        "startLine": 48,
+        "startChar": 51,
+        "endLine": 48,
+        "endChar": 60
+      },
+      "revId": "9d782fffbfa6310206865003e259e3698bb83a08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f7e58d8_94a5ad0d",
+        "filename": "system/gd/rust/topshim/src/syslog.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-15T22:33:03Z",
+      "side": 1,
+      "message": "nit: `default`",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 48,
+        "endChar": 18
+      },
+      "revId": "9d782fffbfa6310206865003e259e3698bb83a08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
