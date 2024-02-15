@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b98fccfa_a812772f",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1455,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-15T20:02:55Z",
+      "side": 1,
+      "message": "In a sing-songy voice ` Aaaawwwkkkk---waaaarrd`",
+      "revId": "186682e9dc1fd43e49f8d6e4291ce85ba5cbaba2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
