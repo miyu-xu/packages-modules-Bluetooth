@@ -2138,7 +2138,7 @@ static uint8_t btm_ble_is_discoverable(const RawAddress& bda,
 }
 
 static DEV_CLASS btm_ble_appearance_to_cod(uint16_t appearance) {
-  DEV_CLASS dev_class = kDevClassEmpty;
+  DEV_CLASS dev_class{};
 
   switch (appearance) {
     case BTM_BLE_APPEARANCE_GENERIC_PHONE:
