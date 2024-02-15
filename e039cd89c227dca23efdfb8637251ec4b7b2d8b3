@@ -50,6 +50,23 @@
       "message": "I\u0027d suggest to add unit tests for this part of logic. We can do in a separate CL though.",
       "revId": "e039cd89c227dca23efdfb8637251ec4b7b2d8b3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dbcb8f3_70e595b1",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 1906,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-15T01:03:23Z",
+      "side": 1,
+      "message": "Also could you help to double check those error prone warnings?",
+      "revId": "e039cd89c227dca23efdfb8637251ec4b7b2d8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
