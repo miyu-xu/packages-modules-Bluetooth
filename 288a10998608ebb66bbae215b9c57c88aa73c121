@@ -34,6 +34,24 @@
       "parentUuid": "27a7a019_e3d65a54",
       "revId": "288a10998608ebb66bbae215b9c57c88aa73c121",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f200d9f_644e4b7b",
+        "filename": "system/main/shim/acl_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1741425
+      },
+      "writtenOn": "2024-02-16T19:48:15Z",
+      "side": 1,
+      "message": "Please ignore my previous comment. The usage of static mentioned by Shai above has been guaranteed since C++11.",
+      "parentUuid": "c41dfd49_b0919c0c",
+      "revId": "288a10998608ebb66bbae215b9c57c88aa73c121",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
