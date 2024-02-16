@@ -139,6 +139,24 @@
       "parentUuid": "d16ac347_54b9f201",
       "revId": "9dad7bc5853e1a995cf719472d83e3bef14b3ecb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a54b0419_15e5f05e",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-02-16T16:36:27Z",
+      "side": 1,
+      "message": "You commented it out and it passed presubmit? So maybe we don\u0027t need to expose it?",
+      "parentUuid": "7a0612d7_33332d9e",
+      "revId": "9dad7bc5853e1a995cf719472d83e3bef14b3ecb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
