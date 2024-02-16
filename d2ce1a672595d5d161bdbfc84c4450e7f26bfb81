@@ -1,0 +1,348 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71a7dbd1_20d75ece",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 969,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-16T00:28:46Z",
+      "side": 1,
+      "message": "Don\u0027t use literals\n```suggestion\n        return mNativeInterface.sendData(getByteAddress(device),\n                BluetoothDevice.ADDRESS_TYPE_PUBLIC, BluetoothDevice.TRANSPORT_AUTO, report);\n```",
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9598a44_325091d3",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-16T00:28:46Z",
+      "side": 1,
+      "message": "Assign the object directly\n```suggestion\n  conn_dat.addr \u003d p_cb-\u003eaddr;\n```",
+      "range": {
+        "startLine": 380,
+        "startChar": 0,
+        "endLine": 382,
+        "endChar": 49
+      },
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67185199_c3b4d936",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-16T00:28:46Z",
+      "side": 1,
+      "message": "Assign the object directly\n```suggestion\n  p_cb-\u003eaddr \u003d p_data-\u003eapi_conn.dev_addr;\n```",
+      "range": {
+        "startLine": 502,
+        "startChar": 0,
+        "endLine": 504,
+        "endChar": 61
+      },
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ec2933a_9db3a25e",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-16T00:28:46Z",
+      "side": 1,
+      "message": "Assign the object directly\n```suggestion\n  conn.addr \u003d p_cb-\u003eaddr;\n\n  /* increase connection number */\n```",
+      "range": {
+        "startLine": 623,
+        "startChar": 0,
+        "endLine": 625,
+        "endChar": 45
+      },
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5eba8c3_58afcc13",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-16T00:28:46Z",
+      "side": 1,
+      "message": "Assign the object directly\n```suggestion\n    conn_data.dev_addr \u003d p_cb-\u003eaddr;\n```",
+      "range": {
+        "startLine": 697,
+        "startChar": 0,
+        "endLine": 699,
+        "endChar": 56
+      },
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "224d6ae8_ba2000da",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 779,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-16T00:28:46Z",
+      "side": 1,
+      "message": "Assign the object directly\n```suggestion\n      bta_hh.conn.addr \u003d p_cb-\u003eaddr;\n```",
+      "range": {
+        "startLine": 777,
+        "startChar": 0,
+        "endLine": 779,
+        "endChar": 56
+      },
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eacf1bc6_2ddbd2c1",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 882,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-16T00:28:46Z",
+      "side": 1,
+      "message": "Assign the object directly\n```suggestion\n  conn_dat.addr \u003d p_cb-\u003eaddr;\n```",
+      "range": {
+        "startLine": 880,
+        "startChar": 0,
+        "endLine": 882,
+        "endChar": 49
+      },
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "217d195d_dcf36d5b",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1013,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-16T00:28:46Z",
+      "side": 1,
+      "message": "Assign the object directly\n```suggestion\n      dev_info.addr \u003d p_dev_info-\u003edev_addr;\n```",
+      "range": {
+        "startLine": 1011,
+        "startChar": 0,
+        "endLine": 1013,
+        "endChar": 63
+      },
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1eaff896_129a22e1",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1056,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-16T00:28:46Z",
+      "side": 1,
+      "message": "Assign the object directly\n```suggestion\n      dev_info.addr \u003d p_cb-\u003eaddr;\n```",
+      "range": {
+        "startLine": 1054,
+        "startChar": 0,
+        "endLine": 1056,
+        "endChar": 53
+      },
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "727349bc_ffd445a6",
+        "filename": "system/btif/include/btif_storage.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-16T00:28:46Z",
+      "side": 1,
+      "message": "Logical change. This should be moved to a separate CL",
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c95fb3bf_3b23d59d",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 2852,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-16T00:28:46Z",
+      "side": 1,
+      "message": "Logical change. This should be introduce in a separate CL.",
+      "range": {
+        "startLine": 2843,
+        "startChar": 0,
+        "endLine": 2852,
+        "endChar": 46
+      },
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3658e72_a0cfa9c7",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-16T00:28:46Z",
+      "side": 1,
+      "message": "Logical change. Move this into a separate CL.\nAt this time just use public address type and transport type as AUTO",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 33
+      },
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd8bfdc0_8c01e0b8",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-16T00:28:46Z",
+      "side": 1,
+      "message": "Logical change. Move this into a separate CL",
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71cf4dd2_5657d931",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1101,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-16T00:28:46Z",
+      "side": 1,
+      "message": "Logical change. Move this into a separate CL",
+      "range": {
+        "startLine": 1086,
+        "startChar": 1,
+        "endLine": 1101,
+        "endChar": 2
+      },
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c522518_8faea327",
+        "filename": "system/gd/storage/config_keys.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-16T00:28:46Z",
+      "side": 1,
+      "message": "Logical change. Move this into a separate CL",
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59ba918a_66d170ac",
+        "filename": "system/include/hardware/bt_hh.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-16T00:28:46Z",
+      "side": 1,
+      "message": "We can use the tBLE_ADDR_TYPE and tBT_TRANSPORT directly instead of recreating them here.",
+      "range": {
+        "startLine": 79,
+        "startChar": 4,
+        "endLine": 92,
+        "endChar": 14
+      },
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
