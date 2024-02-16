@@ -19,6 +19,7 @@
 #ifndef GATT_INT_H
 #define GATT_INT_H
 
+#include <android_bluetooth_flags.h>
 #include <base/functional/bind.h>
 #include <base/strings/stringprintf.h>
 #include <bluetooth/log.h>
@@ -43,6 +44,9 @@
 #define GATT_GET_GATT_IF(conn_id) ((tGATT_IF)((uint8_t)(conn_id)))
 
 #define GATT_TRANS_ID_MAX 0x0fffffff /* 4 MSB is reserved */
+
+/* This is offset to be used to index ongoing direct connect */
+#define GATT_ONGOING_DIRECT_CONN_TCB_IDX_OFFSET (GATT_MAX_PHY_CHANNEL + 1)
 
 /* security action for GATT write and read request */
 typedef enum : uint8_t {
@@ -402,6 +406,9 @@ typedef struct {
 } tGATT_PROFILE_CLCB;
 
 typedef struct {
+  /* This list is used for outstanding direct connect.*/
+  std::list<tGATT_TCB> ongoing_direct_conn_tcb_list_;
+
   tGATT_TCB tcb[GATT_MAX_PHY_CHANNEL];
   fixed_queue_t* sign_op_queue;
 
@@ -619,6 +626,15 @@ void gatt_sr_update_prep_cnt(tGATT_TCB& tcb, tGATT_IF gatt_if, bool is_inc,
 
 uint8_t gatt_num_clcb_by_bd_addr(const RawAddress& bda);
 tGATT_TCB* gatt_find_tcb_by_cid(uint16_t lcid);
+int gatt_tcb_get_available_slots(void);
+bool gatt_is_ongoing_direct_conn_tcb(tGATT_TCB* p_tcb);
+tGATT_TCB* gatt_find_tcb_ongoing_direct_conn_req(const RawAddress& bda,
+                                                 tBT_TRANSPORT transport);
+tGATT_TCB* gatt_allocate_tcb_for_direct_conn_req(const RawAddress& bda,
+                                                 tBT_TRANSPORT transport);
+tGATT_TCB* gatt_reassign_ongoing_direct_tcb(tGATT_TCB* source_p_tcb);
+void gatt_remove_tcb_for_direct_conn_req(tGATT_TCB* source_p_tcb);
+void gatt_deallocate_tcb(tGATT_TCB* p_tcb);
 tGATT_TCB* gatt_allocate_tcb_by_bdaddr(const RawAddress& bda,
                                        tBT_TRANSPORT transport);
 tGATT_TCB* gatt_get_tcb_by_idx(uint8_t tcb_idx);

@@ -463,8 +463,210 @@ void gatt_tcb_dump(int fd) {
     }
   }
 
-  dprintf(fd, "TCB (GATT_MAX_PHY_CHANNEL: %d) in_use: %d\n%s\n",
-          GATT_MAX_PHY_CHANNEL, in_use_cnt, stream.str().c_str());
+  if (gatt_cb.ongoing_direct_conn_tcb_list_.size() > 0) {
+    stream << "\nOngoing TCBs:\n";
+    for (const auto tcb : gatt_cb.ongoing_direct_conn_tcb_list_) {
+      ongoing_cnt++;
+      stream << "  id: " << +tcb.tcb_idx
+             << "  address: " << ADDRESS_TO_LOGGABLE_STR(tcb.peer_bda)
+             << "  transport: " << bt_transport_text(tcb.transport)
+             << "  ch_state: " << gatt_channel_state_text(tcb.ch_state);
+      stream << "\n";
+    }
+  }
+
+  dprintf(fd, "TCB (GATT_MAX_PHY_CHANNEL: %d) in_use: %d , ongoing: %d \n%s\n",
+          GATT_MAX_PHY_CHANNEL, in_use_cnt, ongoing_cnt, stream.str().c_str());
+}
+
+/*******************************************************************************
+ *
+ * Function     gatt_tcb_get_available_slots
+ *
+ * Description  Gets number of available (not "in_use") slots in gatt_cb.tcb[].
+ *
+ * Returns      void
+ *
+ ******************************************************************************/
+int gatt_tcb_get_available_slots(void) {
+  int free_slot_cnt = 0;
+
+  for (int i = 0; i < GATT_MAX_PHY_CHANNEL; i++) {
+    tGATT_TCB* p_tcb = &gatt_cb.tcb[i];
+    if (!p_tcb->in_use) {
+      free_slot_cnt++;
+      continue;
+    }
+  }
+  return free_slot_cnt;
+}
+
+/*******************************************************************************
+ *
+ * Function     gatt_find_tcb_ongoing_direct_conn_req
+ *
+ * Description  Finds TCB in the ongoing direct connect list
+ *
+ * Returns      nullptr if not found. Otherwise pointer to the tcb.
+ *
+ ******************************************************************************/
+tGATT_TCB* gatt_find_tcb_ongoing_direct_conn_req(const RawAddress& bda,
+                                                 tBT_TRANSPORT transport) {
+  auto iter = std::find_if(
+      gatt_cb.ongoing_direct_conn_tcb_list_.begin(),
+      gatt_cb.ongoing_direct_conn_tcb_list_.end(), [bda, transport](auto& el) {
+        if (el.peer_bda == bda && el.transport == transport) {
+          return true;
+        }
+        return false;
+      });
+
+  if (iter == gatt_cb.ongoing_direct_conn_tcb_list_.end()) {
+    log::verbose("TCB for address:{} not found ",
+                 ADDRESS_TO_LOGGABLE_CSTR(bda));
+    return nullptr;
+  }
+
+  log::verbose("TCB for address:{} found idx: {}",
+               ADDRESS_TO_LOGGABLE_CSTR(bda), iter->tcb_idx);
+  return &(*iter);
+}
+
+/*******************************************************************************
+ *
+ * Function     gatt_allocate_tcb_for_direct_conn_req
+ *
+ * Description  Allocates TCB in the ongoing direct connect list.
+ *              tcb_idx on this list is with the offset 0x20
+ *
+ * Returns      Pointer to the tcb.
+ *
+ ******************************************************************************/
+tGATT_TCB* gatt_allocate_tcb_for_direct_conn_req(const RawAddress& bda,
+                                                 tBT_TRANSPORT transport) {
+  log::verbose("address:{} transport:{} ", ADDRESS_TO_LOGGABLE_CSTR(bda),
+               bt_transport_text(transport).c_str());
+
+  if (!IS_FLAG_ENABLED(gatt_reconnect_on_bt_on_fix)) {
+    return gatt_allocate_tcb_by_bdaddr(bda, transport);
+  }
+
+  static uint8_t tmp_idx_offset = GATT_ONGOING_DIRECT_CONN_TCB_IDX_OFFSET;
+  tGATT_TCB tcb = tGATT_TCB();
+
+  tcb.pending_ind_q = fixed_queue_new(SIZE_MAX);
+  tcb.conf_timer = alarm_new("gatt.conf_timer");
+  tcb.ind_ack_timer = alarm_new("gatt.ind_ack_timer");
+  tcb.in_use = true;
+
+  tcb.tcb_idx = tmp_idx_offset++;
+  if (tmp_idx_offset < GATT_ONGOING_DIRECT_CONN_TCB_IDX_OFFSET) {
+    tmp_idx_offset = GATT_ONGOING_DIRECT_CONN_TCB_IDX_OFFSET;
+  }
+
+  tcb.transport = transport;
+  tcb.peer_bda = bda;
+  tcb.eatt = 0;
+  tcb.pending_user_mtu_exchange_value = 0;
+  tcb.conn_ids_waiting_for_mtu_exchange = std::list<uint16_t>();
+  tcb.max_user_mtu = 0;
+  gatt_sr_init_cl_status(tcb);
+  gatt_cl_init_sr_status(tcb);
+
+  gatt_cb.ongoing_direct_conn_tcb_list_.push_back(tcb);
+  auto p_tcb = &(gatt_cb.ongoing_direct_conn_tcb_list_.back());
+  log::verbose("Allocated TCB idx: {}", p_tcb->tcb_idx);
+
+  return p_tcb;
+}
+
+/*******************************************************************************
+ *
+ * Function     gatt_remove_tcb_for_direct_conn_req
+ *
+ * Description  Removes TCB from the ongoing direct connect list.
+ *
+ * Returns      void
+ *
+ ******************************************************************************/
+void gatt_remove_tcb_for_direct_conn_req(tGATT_TCB* source_p_tcb) {
+  log::verbose("address:", ADDRESS_TO_LOGGABLE_CSTR(source_p_tcb->peer_bda));
+  gatt_cb.ongoing_direct_conn_tcb_list_.erase(std::remove_if(
+      gatt_cb.ongoing_direct_conn_tcb_list_.begin(),
+      gatt_cb.ongoing_direct_conn_tcb_list_.end(), [source_p_tcb](auto& el) {
+        if (el.peer_bda == source_p_tcb->peer_bda &&
+            el.transport == source_p_tcb->transport) {
+          log::verbose("Removed address:{}",
+                       ADDRESS_TO_LOGGABLE_CSTR(source_p_tcb->peer_bda));
+          return true;
+        }
+        return false;
+      }));
+}
+
+bool gatt_is_ongoing_direct_conn_tcb(tGATT_TCB* p_tcb) {
+  if (!p_tcb) {
+    return false;
+  }
+
+  return p_tcb->tcb_idx >= GATT_ONGOING_DIRECT_CONN_TCB_IDX_OFFSET;
+}
+/*******************************************************************************
+ *
+ * Function     gatt_reassign_ongoing_direct_tcb
+ *
+ * Description  Moves TCB from the list to the static memory for the connected
+ *              devices if there is a space for it.
+ *
+ * Returns      nullptr when failed. Pointer to tcb otherwise
+ *
+ ******************************************************************************/
+tGATT_TCB* gatt_reassign_ongoing_direct_tcb(tGATT_TCB* source_p_tcb) {
+  uint8_t j =
+      gatt_find_i_tcb_by_addr(source_p_tcb->peer_bda, source_p_tcb->transport);
+
+  if (j != GATT_INDEX_INVALID) {
+    /* That should never happen, but in case it does, lets handle it correctly
+     */
+    gatt_cb.tcb[j] = *source_p_tcb;
+    gatt_cb.tcb[j].tcb_idx = j;
+    gatt_remove_tcb_for_direct_conn_req(source_p_tcb);
+
+    LOG_WARN("Done (known )");
+    return &gatt_cb.tcb[j];
+  }
+
+  /* find free tcb */
+  for (int i = 0; i < GATT_MAX_PHY_CHANNEL; i++) {
+    if (gatt_cb.tcb[i].in_use) continue;
+
+    gatt_cb.tcb[i] = *source_p_tcb;
+    gatt_cb.tcb[i].tcb_idx = i;
+
+    log::verbose("Done from idx {} ->  idx {}", source_p_tcb->tcb_idx, i);
+    gatt_remove_tcb_for_direct_conn_req(source_p_tcb);
+    return &gatt_cb.tcb[i];
+  }
+
+  return nullptr;
+}
+
+/*******************************************************************************
+ *
+ * Function         gatt_deallocate_tcb
+ *
+ ******************************************************************************/
+void gatt_deallocate_tcb(tGATT_TCB* p_tcb) {
+  if (!IS_FLAG_ENABLED(gatt_reconnect_on_bt_on_fix)) {
+    *p_tcb = tGATT_TCB();
+    return;
+  }
+
+  if (p_tcb->tcb_idx >= GATT_ONGOING_DIRECT_CONN_TCB_IDX_OFFSET) {
+    gatt_remove_tcb_for_direct_conn_req(p_tcb);
+  } else {
+    *p_tcb = tGATT_TCB();
+  }
 }
 
 /*******************************************************************************
@@ -478,6 +680,9 @@ void gatt_tcb_dump(int fd) {
  ******************************************************************************/
 tGATT_TCB* gatt_allocate_tcb_by_bdaddr(const RawAddress& bda,
                                        tBT_TRANSPORT transport) {
+  log::verbose("address:{} transport:{} ", ADDRESS_TO_LOGGABLE_CSTR(bda),
+               bt_transport_text(transport).c_str());
+
   /* search for existing tcb with matching bda    */
   uint8_t j = gatt_find_i_tcb_by_addr(bda, transport);
   if (j != GATT_INDEX_INVALID) return &gatt_cb.tcb[j];
@@ -1752,6 +1957,9 @@ void gatt_cleanup_upon_disc(const RawAddress& bda, tGATT_DISCONN_REASON reason,
 
   tGATT_TCB* p_tcb = gatt_find_tcb_by_addr(bda, transport);
   if (!p_tcb) {
+    p_tcb = gatt_find_tcb_ongoing_direct_conn_req(bda, transport);
+  }
+  if (!p_tcb) {
     log::error(
         "Disconnect for unknown connection bd_addr:{} reason:{} transport:{}",
         ADDRESS_TO_LOGGABLE_CSTR(bda), gatt_disconnection_reason_text(reason),
@@ -1803,7 +2011,7 @@ void gatt_cleanup_upon_disc(const RawAddress& bda, tGATT_DISCONN_REASON reason,
     }
   }
 
-  *p_tcb = tGATT_TCB();
+  gatt_deallocate_tcb(p_tcb);
   log::verbose("exit");
 }
 /*******************************************************************************
