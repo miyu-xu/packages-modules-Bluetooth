@@ -157,6 +157,24 @@
       "parentUuid": "7a0612d7_33332d9e",
       "revId": "9dad7bc5853e1a995cf719472d83e3bef14b3ecb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "562928d2_56de9369",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-02-16T20:21:04Z",
+      "side": 1,
+      "message": "My bad, I forgot to update the comment.",
+      "parentUuid": "a54b0419_15e5f05e",
+      "revId": "9dad7bc5853e1a995cf719472d83e3bef14b3ecb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
