@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "12363a4f_e6108efd",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 856,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-02-16T16:35:08Z",
+      "side": 1,
+      "message": "Oh also, since we\u0027re not saving the server_id from the callback anymore, can we add the _context back to these few lines?",
+      "revId": "2897a2c689836339ffd6975bc31ab84d3595fa16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e15c51ac_45bbed70",
         "filename": "system/gd/rust/linux/client/src/command_handler.rs",
         "patchSetId": 4
