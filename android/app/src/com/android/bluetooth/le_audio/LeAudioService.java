@@ -135,6 +135,16 @@ public class LeAudioService extends ProfileService {
     public static final String BLUETOOTH_LE_BROADCAST_FALLBACK_ACTIVE_GROUP_ID =
             "bluetooth_le_broadcast_fallback_active_group_id";
 
+    /**
+     * Per PBP 1.0 4.3. High Quality Public Broadcast Audio, Broadcast HIGH quality audio configs
+     * are with sampling frequency 48khz
+     */
+    private static final BluetoothLeAudioCodecConfig BROADCAST_HIGH_QUALITY_CONFIG =
+            new BluetoothLeAudioCodecConfig.Builder()
+                    .setCodecType(BluetoothLeAudioCodecConfig.SOURCE_CODEC_TYPE_LC3)
+                    .setSampleRate(BluetoothLeAudioCodecConfig.SAMPLE_RATE_48000)
+                    .build();
+
     private AdapterService mAdapterService;
     private DatabaseManager mDatabaseManager;
     private HandlerThread mStateMachinesThread;
@@ -924,14 +934,50 @@ public class LeAudioService extends ProfileService {
         Log.i(TAG, "createBroadcast: isEncrypted=" + (isEncrypted ? "true" : "false"));
 
         mAwaitingBroadcastCreateResponse = true;
-        mLeAudioBroadcasterNativeInterface.createBroadcast(broadcastSettings.isPublicBroadcast(),
-                broadcastSettings.getBroadcastName(), broadcastCode,
+        mLeAudioBroadcasterNativeInterface.createBroadcast(
+                broadcastSettings.isPublicBroadcast(),
+                broadcastSettings.getBroadcastName(),
+                broadcastCode,
                 publicMetadata == null ? null : publicMetadata.getRawMetadata(),
-                settingsList.stream()
-                        .mapToInt(s -> s.getPreferredQuality()).toArray(),
+                getBroadcastAudioQualityPerSinkCapabilities(settingsList),
                 settingsList.stream()
                         .map(s -> s.getContentMetadata().getRawMetadata())
                         .toArray(byte[][]::new));
+    }
+
+    private int[] getBroadcastAudioQualityPerSinkCapabilities(
+            List<BluetoothLeBroadcastSubgroupSettings> settingsList) {
+        int[] preferredQualityArray =
+                settingsList.stream().mapToInt(s -> s.getPreferredQuality()).toArray();
+
+        BassClientService bassClientService = getBassClientService();
+        if (bassClientService == null) {
+            return preferredQualityArray;
+        }
+
+        for (BluetoothDevice sink : bassClientService.getConnectedDevices()) {
+            int groupId = getGroupId(sink);
+            if (groupId == LE_AUDIO_GROUP_ID_INVALID) {
+                continue;
+            }
+
+            BluetoothLeAudioCodecStatus codecStatus = getCodecStatus(groupId);
+            if (codecStatus != null
+                    && !codecStatus.isInputCodecConfigSelectable(BROADCAST_HIGH_QUALITY_CONFIG)) {
+                // If any sink device does not support high quality audio config,
+                // set all subgroup audio quality to standard quality for now before multi codec
+                // config support is ready
+                Log.i(
+                        TAG,
+                        "Sink device doesn't support HIGH broadcast audio quality, use STANDARD"
+                                + " quality");
+                Arrays.fill(
+                        preferredQualityArray,
+                        BluetoothLeBroadcastSubgroupSettings.QUALITY_STANDARD);
+                break;
+            }
+        }
+        return preferredQualityArray;
     }
 
     /**
@@ -958,6 +1004,7 @@ public class LeAudioService extends ProfileService {
             Log.w(TAG, "Native interface not available.");
             return;
         }
+        Log.d(TAG, "rxliu updateBroadcast");
 
         LeAudioBroadcastDescriptor descriptor = mBroadcastDescriptors.get(broadcastId);
         if (descriptor == null) {
@@ -971,6 +1018,18 @@ public class LeAudioService extends ProfileService {
                 broadcastSettings.getSubgroupSettings();
         if (settingsList == null || settingsList.size() < 1) {
             Log.d(TAG, "subgroup settings is not valid value");
+            return;
+        }
+        if (mAwaitingBroadcastUpdateComplete != INVALID_BROADCAST_ID) {
+            Log.d(TAG, "rxliu avoid duplicated update");
+            notifyBroadcastStartFailed(broadcastId, BluetoothStatusCodes.ERROR_UNKNOWN);
+            return;
+        }
+        if (shouldRestartBroadcastForUpdateSettings(broadcastId, broadcastSettings)) {
+            Log.d(TAG, "rxliu update broadcast settings required restarting broadcast");
+            mAwaitingBroadcastUpdateComplete = broadcastId;
+            mCreateBroadcastQueue.add(broadcastSettings);
+            mLeAudioBroadcasterNativeInterface.stopBroadcast(broadcastId);
             return;
         }
 
