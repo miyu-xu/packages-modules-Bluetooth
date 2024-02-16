@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "f55bea52_fa431a70",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-02-16T17:56:04Z",
+      "side": 1,
+      "message": "Just like in parent patch, it\u0027s a minor thing, not worth a bug IMHO.",
+      "parentUuid": "aa22d039_d7fe013b",
+      "revId": "3516e477e8517b04b059b3294809c69ba39da496",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "9a353957_70646d2e",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
