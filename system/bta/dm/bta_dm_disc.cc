@@ -44,6 +44,7 @@
 #include "osi/include/fixed_queue.h"
 #include "osi/include/osi.h"          // UNUSED_ATTR
 #include "stack/btm/btm_int_types.h"  // TimestampedStringCircularBuffer
+#include "stack/btm/btm_sec.h"
 #include "stack/btm/neighbor_inquiry.h"
 #include "stack/include/avrc_api.h"
 #include "stack/include/bt_dev_class.h"
@@ -1345,6 +1346,12 @@ static void bta_dm_discover_device(const RawAddress& remote_bd_addr) {
       bluetooth::common::init_flags::sdp_skip_rnr_if_known_is_enabled()) {
     LOG_DEBUG("Security record already known skipping read remote name peer:%s",
               ADDRESS_TO_LOGGABLE_CSTR(remote_bd_addr));
+    bta_dm_search_cb.name_discover_done = true;
+  }
+
+  if (BTM_IsLinkKeyKnown(remote_bd_addr, BT_TRANSPORT_BR_EDR)) {
+    LOG_INFO("Bonded classic device - skipping read remote name peer:%s",
+             ADDRESS_TO_LOGGABLE_CSTR(remote_bd_addr));
     bta_dm_search_cb.name_discover_done = true;
   }
 
