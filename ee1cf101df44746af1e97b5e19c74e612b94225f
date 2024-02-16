@@ -16,6 +16,24 @@
       "message": "You don\u0027t need this anymore",
       "revId": "ee1cf101df44746af1e97b5e19c74e612b94225f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1947a8d3_5df32670",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1248,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-02-16T21:05:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "968c7e32_9fa614b1",
+      "revId": "ee1cf101df44746af1e97b5e19c74e612b94225f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
