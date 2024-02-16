@@ -3092,6 +3092,7 @@
     "AVRCP": {
       "TSPX_player_feature_bitmask": "0000000000B7010C0A00000000000000"
     },
+    "BAP": {},
     "BNEP": {},
     "DID": {},
     "GAP": {},
