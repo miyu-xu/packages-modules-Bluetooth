@@ -403,6 +403,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8893a95_f0b1008b",
+        "filename": "system/bta/test/bta_hh_test.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-16T19:19:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da4390a5_f4a88ebb",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2264e434_3a3baa6e",
@@ -906,6 +924,24 @@
       "writtenOn": "2024-02-14T03:22:32Z",
       "side": 1,
       "message": "Initialize address type and transport with public and auto, respectively.",
+      "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf15f645_1d31bd6f",
+        "filename": "system/btif/test/btif_hh_test.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-16T19:19:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07eeef55_9c0dcee7",
       "revId": "7f9aeca4ad989ab89927af2ca88c97f834558313",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0369e158_b564eb26",
+        "filename": "system/bta/include/bta_hh_api.h",
+        "patchSetId": 25
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-16T19:19:56Z",
+      "side": 1,
+      "message": "Update the comment\n```suggestion\n  tAclLinkSpec link_spec; /* HID device ACL link specification */\n```",
+      "revId": "0bbfc2b434f3b5abf7f733de7e9632043b3bf6a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
