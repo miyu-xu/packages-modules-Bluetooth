@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c262c71_f01e6185",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 856,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-02-16T20:20:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12363a4f_e6108efd",
+      "revId": "2897a2c689836339ffd6975bc31ab84d3595fa16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e15c51ac_45bbed70",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-02-16T16:28:34Z",
       "side": 1,
       "message": "If we\u0027re adding the server-id as an arg, it doesn\u0027t make sense to save the addr from before and use it here to disconnect. There could be multiple clients connected to 1 server or multiple servers connected to various clients.",
+      "revId": "2897a2c689836339ffd6975bc31ab84d3595fa16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f0e749f_2ffe0db1",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1255,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-02-16T20:20:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e15c51ac_45bbed70",
       "revId": "2897a2c689836339ffd6975bc31ab84d3595fa16",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
