@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3826f320_c7bf3784",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1635,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-16T02:15:42Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3e4e72e9_65ec4c80",
+      "revId": "4ff3bf7b0942efb7b03f3677d03300559b17df50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a2920e30_f0c706c5",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "Yes, it pads it to HCI_EXT_INQ_RESPONSE_LEN, because I didn\u0027t want to change the behavior in this CL.  All of this should go away when btm_set_eir_uuid can take a vector of EIR data.",
       "parentUuid": "a2920e30_f0c706c5",
+      "revId": "4ff3bf7b0942efb7b03f3677d03300559b17df50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "014c4e4c_64288020",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1704,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-16T02:15:42Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c88b11c8_7ed9776f",
       "revId": "4ff3bf7b0942efb7b03f3677d03300559b17df50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
