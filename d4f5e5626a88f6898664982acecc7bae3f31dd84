@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41964ba1_d04c7695",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-02-16T20:35:55Z",
+      "side": 1,
+      "message": "You forgot to remove this addition as well",
+      "revId": "d4f5e5626a88f6898664982acecc7bae3f31dd84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
