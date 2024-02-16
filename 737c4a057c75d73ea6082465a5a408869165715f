@@ -22,6 +22,30 @@
       },
       "revId": "737c4a057c75d73ea6082465a5a408869165715f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d705820_6b181ee4",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 963,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-16T19:05:08Z",
+      "side": 1,
+      "message": "`seems like a really long time` yes the timeout is calibrated only for internal testing not production.\n\nProduction would never hit this based upon the underlying condition, so IIUC you would like to know if the internal testing times out.",
+      "parentUuid": "6488215f_9bc8e1b6",
+      "range": {
+        "startLine": 963,
+        "startChar": 0,
+        "endLine": 963,
+        "endChar": 79
+      },
+      "revId": "737c4a057c75d73ea6082465a5a408869165715f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
