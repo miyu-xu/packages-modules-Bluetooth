@@ -45,6 +45,7 @@
 #include "stack/btm/btm_sec.h"
 #include "stack/eatt/eatt.h"
 #include "stack/gatt/gatt_int.h"
+#include "stack/include/acl_api.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_psm_types.h"
 #include "stack/include/bt_types.h"
@@ -422,6 +423,9 @@ bool gatt_act_connect(tGATT_REG* p_reg, const RawAddress& bd_addr,
                       tBLE_ADDR_TYPE addr_type, tBT_TRANSPORT transport,
                       int8_t initiating_phys) {
   tGATT_TCB* p_tcb = gatt_find_tcb_by_addr(bd_addr, transport);
+  if (p_tcb == NULL) {
+    p_tcb = gatt_find_tcb_ongoing_direct_conn_req(bd_addr, transport);
+  }
   if (p_tcb != NULL) {
     /* before link down, another app try to open a GATT connection */
     uint8_t st = gatt_get_ch_state(p_tcb);
@@ -439,9 +443,17 @@ bool gatt_act_connect(tGATT_REG* p_reg, const RawAddress& bd_addr,
     return true;
   }
 
-  p_tcb = gatt_allocate_tcb_by_bdaddr(bd_addr, transport);
+  if (gatt_tcb_get_available_slots() == 0) {
+    log::error("Max TCBs reached when connecting address:{}. gatt_if: {}.",
+               ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
+               static_cast<int>(p_reg->gatt_if));
+    return false;
+  }
+
+  p_tcb = gatt_allocate_tcb_for_direct_conn_req(bd_addr, transport);
   if (!p_tcb) {
-    log::error("Max TCB for gatt_if [ {}] reached.", p_reg->gatt_if);
+    log::error("Out of resources when connecting address:{} ",
+               ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
     return false;
   }
 
@@ -449,7 +461,7 @@ bool gatt_act_connect(tGATT_REG* p_reg, const RawAddress& bd_addr,
                     p_reg->gatt_if)) {
     log::error("gatt_connect failed");
     fixed_queue_free(p_tcb->pending_ind_q, NULL);
-    *p_tcb = tGATT_TCB();
+    gatt_deallocate_tcb(p_tcb);
     return false;
   }
 
@@ -499,6 +511,14 @@ static void gatt_le_connect_cback(uint16_t chan, const RawAddress& bd_addr,
       gatt_add_a_bonded_dev_for_srv_chg(bd_addr);
   }
 
+  if (p_tcb == nullptr) {
+    p_tcb = gatt_find_tcb_ongoing_direct_conn_req(bd_addr, transport);
+    if (p_tcb) {
+      log::info("Outgoing connection to address:{}, tcb found {}.",
+                ADDRESS_TO_LOGGABLE_CSTR(bd_addr), p_tcb);
+    }
+  }
+
   if (!connected) {
     if (p_tcb != nullptr) {
       bluetooth::shim::arbiter::GetArbiter().OnLeDisconnect(p_tcb->tcb_idx);
@@ -510,6 +530,23 @@ static void gatt_le_connect_cback(uint16_t chan, const RawAddress& bd_addr,
 
   /* do we have a channel initiating a connection? */
   if (p_tcb) {
+    if (gatt_is_ongoing_direct_conn_tcb(p_tcb)) {
+      auto tmp_p_tcb = gatt_reassign_ongoing_direct_tcb(p_tcb);
+      if (!tmp_p_tcb) {
+        /* Looks like all the available slots for the LE devices has been used.
+         * Let's disconnect device as there is no space for it. */
+        log::error(
+            "address:{} connected but there is no space for it in tcb_cb. "
+            "Disconnecting ...",
+            ADDRESS_TO_LOGGABLE_CSTR(p_tcb->peer_bda));
+        gatt_deallocate_tcb(p_tcb);
+        // When single FIXED channel cannot be created, there is no reason to
+        // keep the link
+        btm_remove_acl(bd_addr, transport);
+        return;
+      }
+      p_tcb = tmp_p_tcb;
+    }
     /* we are initiating connection */
     if (gatt_get_ch_state(p_tcb) == GATT_CH_CONN) {
       /* send callback */
@@ -526,6 +563,13 @@ static void gatt_le_connect_cback(uint16_t chan, const RawAddress& bd_addr,
     p_tcb = gatt_allocate_tcb_by_bdaddr(bd_addr, BT_TRANSPORT_LE);
     if (!p_tcb) {
       log::error("CCB max out, no rsources");
+      if (IS_FLAG_ENABLED(gatt_reconnect_on_bt_on_fix)) {
+        log::error("Disconnecting {} due to out of resources.",
+                   ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+        // When single FIXED channel cannot be created, there is no reason to
+        // keep the link
+        btm_remove_acl(bd_addr, transport);
+      }
       return;
     }
 
