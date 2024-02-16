@@ -1,0 +1,147 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1eb55770_fc28570b",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-16T17:54:36Z",
+      "side": 1,
+      "message": "nit: Naming.  These look like intervals.\n\nCS_LOW_FREQUENCY_INTERVAL_MS \u003d 5000 ?",
+      "range": {
+        "startLine": 51,
+        "startChar": 48,
+        "endLine": 51,
+        "endChar": 52
+      },
+      "revId": "cee75b144303f1581d0ff5b17c30df527dfdc415",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a0ced41_ab0c4f21",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-16T17:54:36Z",
+      "side": 1,
+      "message": "Are we expecting the user to connect GATT first?  I\u0027m kind of surprised we don\u0027t try to connect.",
+      "revId": "cee75b144303f1581d0ff5b17c30df527dfdc415",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a0b75a5_f5c9c956",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-16T17:54:36Z",
+      "side": 1,
+      "message": "mCsTrackers?\n```suggestion\n            mCsTrackers.remove(identityAddress);\n```",
+      "range": {
+        "startLine": 237,
+        "startChar": 12,
+        "endLine": 237,
+        "endChar": 25
+      },
+      "revId": "cee75b144303f1581d0ff5b17c30df527dfdc415",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "343b22d8_32780f12",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-16T17:54:36Z",
+      "side": 1,
+      "message": "enable_periodic_cs_procedure?",
+      "range": {
+        "startLine": 244,
+        "startChar": 7,
+        "endLine": 244,
+        "endChar": 36
+      },
+      "revId": "cee75b144303f1581d0ff5b17c30df527dfdc415",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "396a0603_90fe054c",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-16T17:54:36Z",
+      "side": 1,
+      "message": "Do we not have a periodic alarm?",
+      "range": {
+        "startLine": 262,
+        "startChar": 36,
+        "endLine": 262,
+        "endChar": 41
+      },
+      "revId": "cee75b144303f1581d0ff5b17c30df527dfdc415",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d43df456_e74ee296",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-16T17:54:36Z",
+      "side": 1,
+      "message": "It seems like we should clean up here, as well.  Or we should assert.  There isn\u0027t a good reason to have a malformed command complete event here.\n```suggestion\n      LOG_WARN(\"Get invalid LeCsProcedureEnableCompleteView\");\n      if (cs_trackers_.find(connection_handle) !\u003d cs_trackers_.end() \u0026\u0026\n          cs_trackers_[connection_handle].waiting_for_start_callback) {\n        cs_trackers_[connection_handle].waiting_for_start_callback \u003d false;\n        distance_measurement_callbacks_-\u003eOnDistanceMeasurementStartFail(\n            cs_trackers_[connection_handle].address, REASON_INTERNAL_ERROR, METHOD_CS);\n      }\n```",
+      "revId": "cee75b144303f1581d0ff5b17c30df527dfdc415",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba175274_cc859b1e",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1004,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-16T17:54:36Z",
+      "side": 1,
+      "message": "This seems like a period, not a frequency.  Can we add units, or make it std::chrono::milliseconds or something?",
+      "revId": "cee75b144303f1581d0ff5b17c30df527dfdc415",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
