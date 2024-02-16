@@ -98,7 +98,7 @@ tBTA_GATTC_CLCB* bta_gattc_find_clcb_by_cif(uint8_t client_if,
                                             const RawAddress& remote_bda,
                                             tBT_TRANSPORT transport) {
   tBTA_GATTC_CLCB* p_clcb = &bta_gattc_cb.clcb[0];
-  uint8_t i;
+  int i;
 
   for (i = 0; i < BTA_GATTC_CLCB_MAX; i++, p_clcb++) {
     if (p_clcb->in_use && p_clcb->p_rcb->client_if == client_if &&
@@ -118,7 +118,7 @@ tBTA_GATTC_CLCB* bta_gattc_find_clcb_by_cif(uint8_t client_if,
  ******************************************************************************/
 tBTA_GATTC_CLCB* bta_gattc_find_clcb_by_conn_id(uint16_t conn_id) {
   tBTA_GATTC_CLCB* p_clcb = &bta_gattc_cb.clcb[0];
-  uint8_t i;
+  int i;
 
   for (i = 0; i < BTA_GATTC_CLCB_MAX; i++, p_clcb++) {
     if (p_clcb->in_use && p_clcb->bta_conn_id == conn_id) return p_clcb;
@@ -138,7 +138,7 @@ tBTA_GATTC_CLCB* bta_gattc_find_clcb_by_conn_id(uint16_t conn_id) {
 tBTA_GATTC_CLCB* bta_gattc_clcb_alloc(tGATT_IF client_if,
                                       const RawAddress& remote_bda,
                                       tBT_TRANSPORT transport) {
-  uint8_t i_clcb = 0;
+  int i_clcb = 0;
   tBTA_GATTC_CLCB* p_clcb = NULL;
 
   for (i_clcb = 0; i_clcb < BTA_GATTC_CLCB_MAX; i_clcb++) {
