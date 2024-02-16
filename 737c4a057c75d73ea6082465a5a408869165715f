@@ -46,6 +46,30 @@
       },
       "revId": "737c4a057c75d73ea6082465a5a408869165715f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01d529de_e35abfe1",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 963,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-16T19:06:49Z",
+      "side": 1,
+      "message": "I was actually thinking about the case where something went catastrophically wrong: deadlock, main_thread stopped, etc.",
+      "parentUuid": "1d705820_6b181ee4",
+      "range": {
+        "startLine": 963,
+        "startChar": 0,
+        "endLine": 963,
+        "endChar": 79
+      },
+      "revId": "737c4a057c75d73ea6082465a5a408869165715f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
