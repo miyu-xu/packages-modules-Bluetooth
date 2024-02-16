@@ -16,6 +16,24 @@
       "message": "These two values are defined as read-only properties, yet we\u0027re reading their values every time. You could change the code to read at most once and memoize the result. It\u0027ll save you two sysprop reads in every call, which is expensive and slow work.\n```suggestion\n  /* Default to 7 minutes minimum, 15 minutes maximum for random address\n   * refreshing; device can override. */\n  static auto minimum_rotation_time \u003d std::chrono::minutes(\n      GET_SYSPROP(Ble, random_address_rotation_interval_min, 7));  // NOLINT\n  static auto maximum_rotation_time \u003d std::chrono::minutes(\n      GET_SYSPROP(Ble, random_address_rotation_interval_max, 15));  // NOLINT\n```",
       "revId": "288a10998608ebb66bbae215b9c57c88aa73c121",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c41dfd49_b0919c0c",
+        "filename": "system/main/shim/acl_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1741425
+      },
+      "writtenOn": "2024-02-16T19:24:22Z",
+      "side": 1,
+      "message": "static variables reside in heap instead of stack so that they can preserve the value. Each time the function is called, the code should check if the static variable has been previously initialized and skip the redundant sysprop assignment.\n\nSomething like: if (minimum_rotation_time \u003d\u003d INVALID_VALUE) m_r_t \u003d GET_SYSPROP();",
+      "parentUuid": "27a7a019_e3d65a54",
+      "revId": "288a10998608ebb66bbae215b9c57c88aa73c121",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
