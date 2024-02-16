@@ -118,6 +118,30 @@
       },
       "revId": "737c4a057c75d73ea6082465a5a408869165715f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "515528fd_295b39d8",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 963,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-16T20:59:03Z",
+      "side": 1,
+      "message": "Ok I removed the timeout and ASSERT if we cannot post on mainloop, which would be the only source of failure.",
+      "parentUuid": "f49bff09_6e9b5aa3",
+      "range": {
+        "startLine": 963,
+        "startChar": 0,
+        "endLine": 963,
+        "endChar": 79
+      },
+      "revId": "737c4a057c75d73ea6082465a5a408869165715f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
