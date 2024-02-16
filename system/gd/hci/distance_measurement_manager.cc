@@ -161,13 +161,13 @@ struct DistanceMeasurementManager::impl {
         }
       } break;
       case METHOD_CS: {
-        start_distance_measurement_with_cs(address, connection_handle);
+        start_distance_measurement_with_cs(address, connection_handle, frequency);
       } break;
     }
   }
 
   void start_distance_measurement_with_cs(
-      const Address& cs_remote_address, uint16_t connection_handle) {
+      const Address& cs_remote_address, uint16_t connection_handle, uint16_t frequency) {
     LOG_INFO(
         "connection_handle: %d, address: %s",
         connection_handle,
@@ -190,7 +190,10 @@ struct DistanceMeasurementManager::impl {
       cs_trackers_[connection_handle].address = cs_remote_address;
       // TODO: Check ROLE via CS config. (b/304295768)
       cs_trackers_[connection_handle].role = CsRole::INITIATOR;
+      cs_trackers_[connection_handle].alarm = std::make_unique<os::Alarm>(handler_);
     }
+    cs_trackers_[connection_handle].frequency = frequency;
+    cs_trackers_[connection_handle].waiting_for_start_callback = true;
 
     if (!cs_trackers_[connection_handle].setup_complete) {
       send_le_cs_read_remote_supported_capabilities(connection_handle);
@@ -200,7 +203,11 @@ struct DistanceMeasurementManager::impl {
       send_le_cs_create_config(connection_handle);
       return;
     }
-    send_le_cs_procedure_enable(connection_handle, Enable::ENABLED);
+    LOG_INFO(
+        "enable_cs_procedure_regularly with frequency: %d",
+        cs_trackers_[connection_handle].frequency);
+    cs_trackers_[connection_handle].alarm->Cancel();
+    enable_cs_procedure_regularly(connection_handle);
   }
 
   void stop_distance_measurement(const Address& address, DistanceMeasurementMethod method) {
@@ -225,10 +232,37 @@ struct DistanceMeasurementManager::impl {
         if (cs_trackers_.find(connection_handle) == cs_trackers_.end()) {
           LOG_WARN("Can't find CS tracker for %s ", ADDRESS_TO_LOGGABLE_CSTR(address));
         } else {
+          cs_trackers_[connection_handle].alarm->Cancel();
+          cs_trackers_[connection_handle].alarm.reset();
+          send_le_cs_procedure_enable(connection_handle, Enable::DISABLED);
           cs_trackers_.erase(connection_handle);
         }
       } break;
     }
+  }
+
+  void enable_cs_procedure_regularly(uint16_t connection_handle) {
+    if (cs_trackers_.find(connection_handle) == cs_trackers_.end()) {
+      LOG_WARN("Can't find cs tracker for connection %d", connection_handle);
+      return;
+    }
+    Address address = cs_trackers_[connection_handle].address;
+    // Check if the connection still exists
+    uint16_t connection_handle_from_acl_manager = acl_manager_->HACK_GetLeHandle(address);
+    if (connection_handle == kIllegalConnectionHandle) {
+      LOG_WARN("Can't find connection for %s ", ADDRESS_TO_LOGGABLE_CSTR(address));
+      distance_measurement_callbacks_->OnDistanceMeasurementStopped(
+          address, REASON_NO_LE_CONNECTION, METHOD_CS);
+      cs_trackers_[connection_handle].alarm->Cancel();
+      cs_trackers_[connection_handle].alarm.reset();
+      cs_trackers_.erase(connection_handle);
+      return;
+    }
+    send_le_cs_procedure_enable(connection_handle, Enable::ENABLED);
+    cs_trackers_[connection_handle].alarm->Schedule(
+        common::BindOnce(
+            &impl::enable_cs_procedure_regularly, common::Unretained(this), connection_handle),
+        std::chrono::milliseconds(cs_trackers_[connection_handle].frequency));
   }
 
   void read_rssi_regularly(const Address& address, uint16_t frequency) {
@@ -288,12 +322,6 @@ struct DistanceMeasurementManager::impl {
       default:
         LOG_INFO("Unknown subevent %s", hci::SubeventCodeText(event.GetSubeventCode()).c_str());
     }
-  }
-
-  void send_le_cs_read_local_supported_capabilities() {
-    hci_layer_->EnqueueCommand(
-        LeCsReadLocalSupportedCapabilitiesBuilder::Create(),
-        handler_->BindOnceOn(this, &impl::on_cs_read_local_supported_capabilities));
   }
 
   void send_le_cs_read_remote_supported_capabilities(uint16_t connection_handle) {
@@ -509,7 +537,11 @@ struct DistanceMeasurementManager::impl {
     }
 
     if (cs_trackers_[connection_handle].role == CsRole::INITIATOR) {
-      send_le_cs_procedure_enable(complete_view.GetConnectionHandle(), Enable::ENABLED);
+      LOG_INFO(
+          "enable_cs_procedure_regularly with frequency: %d",
+          cs_trackers_[connection_handle].frequency);
+      cs_trackers_[connection_handle].alarm->Cancel();
+      enable_cs_procedure_regularly(connection_handle);
     }
   }
 
@@ -517,14 +549,28 @@ struct DistanceMeasurementManager::impl {
     if (!event_view.IsValid()) {
       LOG_WARN("Get invalid LeCsProcedureEnableCompleteView");
       return;
-    } else if (event_view.GetStatus() != ErrorCode::SUCCESS) {
+    }
+    uint16_t connection_handle = event_view.GetConnectionHandle();
+    if (event_view.GetStatus() != ErrorCode::SUCCESS) {
       std::string error_code = ErrorCodeText(event_view.GetStatus());
       LOG_WARN("Received LeCsProcedureEnableCompleteView with error code %s", error_code.c_str());
+      if (cs_trackers_.find(connection_handle) != cs_trackers_.end() &&
+          cs_trackers_[connection_handle].waiting_for_start_callback) {
+        cs_trackers_[connection_handle].waiting_for_start_callback = false;
+        distance_measurement_callbacks_->OnDistanceMeasurementStartFail(
+            cs_trackers_[connection_handle].address, REASON_INTERNAL_ERROR, METHOD_CS);
+      }
       return;
     }
 
     if (event_view.GetState() == Enable::ENABLED) {
-      LOG_INFO("Procedure enabled, %s", event_view.ToString().c_str());
+      LOG_DEBUG("Procedure enabled, %s", event_view.ToString().c_str());
+      if (cs_trackers_.find(connection_handle) != cs_trackers_.end() &&
+          cs_trackers_[connection_handle].waiting_for_start_callback) {
+        cs_trackers_[connection_handle].waiting_for_start_callback = false;
+        distance_measurement_callbacks_->OnDistanceMeasurementStarted(
+            cs_trackers_[connection_handle].address, METHOD_CS);
+      }
     }
   }
 
@@ -955,6 +1001,9 @@ struct DistanceMeasurementManager::impl {
     CsRttType rtt_type;
     bool remote_support_phase_based_ranging = false;
     std::vector<CsProcedureData> procedure_data_list;
+    uint16_t frequency;
+    bool waiting_for_start_callback = false;
+    std::unique_ptr<os::Alarm> alarm;
   };
 
   os::Handler* handler_;
