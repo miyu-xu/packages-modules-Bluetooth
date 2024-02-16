@@ -21,6 +21,7 @@
 
 #include "btif_a2dp.h"
 
+#include <android_bluetooth_flags.h>
 #include <base/logging.h>
 #include <stdbool.h>
 
@@ -42,9 +43,13 @@ void btif_a2dp_on_idle(const RawAddress& peer_addr, const A2dpType a2dp_type) {
   LOG_VERBOSE(
       "Peer stream endpoint type:%s",
       peer_stream_endpoint_text(btif_av_get_peer_sep(a2dp_type)).c_str());
-  if (btif_av_get_peer_sep(a2dp_type) == AVDT_TSEP_SNK) {
+  if ((IS_FLAG_ENABLED(a2dp_concurrent_source_sink) &&
+       a2dp_type == A2dpType::kSource) ||
+      btif_av_get_peer_sep(a2dp_type) == AVDT_TSEP_SNK) {
     btif_a2dp_source_on_idle();
-  } else if (btif_av_get_peer_sep(a2dp_type) == AVDT_TSEP_SRC) {
+  } else if ((IS_FLAG_ENABLED(a2dp_concurrent_source_sink) &&
+              a2dp_type == A2dpType::kSink) ||
+             btif_av_get_peer_sep(a2dp_type) == AVDT_TSEP_SRC) {
     btif_a2dp_sink_on_idle();
   }
 }
@@ -118,13 +123,17 @@ void btif_a2dp_on_stopped(tBTA_AV_SUSPEND* p_av_suspend,
                           const A2dpType a2dp_type) {
   LOG_INFO("%s: ## ON A2DP STOPPED ## p_av_suspend=%p", __func__, p_av_suspend);
 
-  if (btif_av_get_peer_sep(a2dp_type) == AVDT_TSEP_SRC) {
+  const uint8_t peer_type_sep = btif_av_get_peer_sep(a2dp_type);
+  if (peer_type_sep == AVDT_TSEP_SRC) {
     btif_a2dp_sink_on_stopped(p_av_suspend);
     return;
   }
-  if (bluetooth::audio::a2dp::is_hal_enabled() ||
-      !btif_av_is_a2dp_offload_running()) {
-    btif_a2dp_source_on_stopped(p_av_suspend);
+  if (!IS_FLAG_ENABLED(a2dp_concurrent_source_sink) ||
+      peer_type_sep == AVDT_TSEP_SNK) {
+    if (bluetooth::audio::a2dp::is_hal_enabled() ||
+        !btif_av_is_a2dp_offload_running()) {
+      btif_a2dp_source_on_stopped(p_av_suspend);
+    }
   }
 }
 
@@ -132,13 +141,17 @@ void btif_a2dp_on_suspended(tBTA_AV_SUSPEND* p_av_suspend,
                             const A2dpType a2dp_type) {
   LOG_INFO("%s: ## ON A2DP SUSPENDED ## p_av_suspend=%p", __func__,
            p_av_suspend);
-  if (btif_av_get_peer_sep(a2dp_type) == AVDT_TSEP_SRC) {
+  const uint8_t peer_type_sep = btif_av_get_peer_sep(a2dp_type);
+  if (peer_type_sep == AVDT_TSEP_SRC) {
     btif_a2dp_sink_on_suspended(p_av_suspend);
     return;
   }
-  if (bluetooth::audio::a2dp::is_hal_enabled() ||
-      !btif_av_is_a2dp_offload_running()) {
-    btif_a2dp_source_on_suspended(p_av_suspend);
+  if (!IS_FLAG_ENABLED(a2dp_concurrent_source_sink) ||
+      peer_type_sep == AVDT_TSEP_SNK) {
+    if (bluetooth::audio::a2dp::is_hal_enabled() ||
+        !btif_av_is_a2dp_offload_running()) {
+      btif_a2dp_source_on_suspended(p_av_suspend);
+    }
   }
 }
 
