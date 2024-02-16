@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27a7a019_e3d65a54",
+        "filename": "system/main/shim/acl_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1059977
+      },
+      "writtenOn": "2024-02-16T19:08:02Z",
+      "side": 1,
+      "message": "These two values are defined as read-only properties, yet we\u0027re reading their values every time. You could change the code to read at most once and memoize the result. It\u0027ll save you two sysprop reads in every call, which is expensive and slow work.\n```suggestion\n  /* Default to 7 minutes minimum, 15 minutes maximum for random address\n   * refreshing; device can override. */\n  static auto minimum_rotation_time \u003d std::chrono::minutes(\n      GET_SYSPROP(Ble, random_address_rotation_interval_min, 7));  // NOLINT\n  static auto maximum_rotation_time \u003d std::chrono::minutes(\n      GET_SYSPROP(Ble, random_address_rotation_interval_max, 15));  // NOLINT\n```",
+      "revId": "288a10998608ebb66bbae215b9c57c88aa73c121",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
