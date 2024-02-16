@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cc75662_0d8f5456",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1415877
+      },
+      "writtenOn": "2024-02-16T23:56:42Z",
+      "side": 1,
+      "message": "Thank you Myles,\n\nin b/323989744 you can find more tests which are affected by removal of the same dependency.",
+      "revId": "2fba1da8b590e59bfd5fcfe50c37b5d0505edfb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
