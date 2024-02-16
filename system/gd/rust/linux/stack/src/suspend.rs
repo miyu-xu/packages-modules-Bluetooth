@@ -271,7 +271,6 @@ impl ISuspend for Suspend {
         self.suspend_state.lock().unwrap().le_rand_expected = true;
         self.suspend_state.lock().unwrap().suspend_expected = true;
         self.suspend_state.lock().unwrap().suspend_id = Some(suspend_id);
-        self.bt.lock().unwrap().le_rand();
 
         if let Some(join_handle) = &self.suspend_timeout_joinhandle {
             join_handle.abort();
@@ -290,6 +289,8 @@ impl ISuspend for Suspend {
                 let _result = tx.send(Message::SuspendReady(suspend_id)).await;
             });
         }));
+
+        self.bt.lock().unwrap().le_rand();
     }
 
     fn resume(&mut self) -> bool {
@@ -362,7 +363,6 @@ impl ISuspend for Suspend {
 
         self.suspend_state.lock().unwrap().le_rand_expected = true;
         self.suspend_state.lock().unwrap().resume_expected = true;
-        self.bt.lock().unwrap().le_rand();
 
         let tx = self.tx.clone();
         let suspend_state = self.suspend_state.clone();
@@ -377,6 +377,7 @@ impl ISuspend for Suspend {
                 let _result = tx.send(Message::ResumeReady(suspend_id)).await;
             });
         }));
+        self.bt.lock().unwrap().le_rand();
 
         true
     }

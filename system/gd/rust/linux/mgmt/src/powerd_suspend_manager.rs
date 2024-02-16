@@ -135,6 +135,21 @@ impl ISuspendCallback for SuspendCallback {
                 );
             } else {
                 log::warn!("Suspend ready but no SuspendImminent signal or powerd session");
+
+                if let (Some(adapter_suspend_dbus), Some(_)) =
+                    (&context.adapter_suspend_dbus, &context.powerd_session)
+                {
+                    log::warn!(
+                        "SuspendImminent signal is missing, suspend is aborted, call resume"
+                    );
+                    let mut suspend_dbus_rpc = adapter_suspend_dbus.rpc.clone();
+                    tokio::spawn(async move {
+                        let result = suspend_dbus_rpc.resume().await;
+                        log::debug!("Adapter resume call, success = {}", result.unwrap_or(false));
+                    });
+                } else {
+                    log::debug!("Adapter is not available, nothing to resume.");
+                }
             }
         }
     }
