@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88dfa3b4_d04c4151",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2024-02-16T22:14:24Z",
+      "side": 1,
+      "message": "Should you be using the address instead of the handle for `pending_disconnect`? Will the same `address` always result in the same handle from the controller? (i.e. is this what the spec says must occur?)",
+      "revId": "b1740f83237f862511d6e53299e03fe91e386a16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
