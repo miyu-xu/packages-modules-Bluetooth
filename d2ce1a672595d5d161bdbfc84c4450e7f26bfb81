@@ -429,6 +429,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04fcbec7_1a2e88fd",
+        "filename": "system/btif/include/btif_storage.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-17T16:30:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "727349bc_ffd445a6",
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c95fb3bf_3b23d59d",
@@ -442,6 +460,30 @@
       "writtenOn": "2024-02-16T00:28:46Z",
       "side": 1,
       "message": "Logical change. This should be introduce in a separate CL.",
+      "range": {
+        "startLine": 2843,
+        "startChar": 0,
+        "endLine": 2852,
+        "endChar": 46
+      },
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66e1a61b_722df6f8",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 2852,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-17T16:30:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c95fb3bf_3b23d59d",
       "range": {
         "startLine": 2843,
         "startChar": 0,
@@ -475,6 +517,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1c79607_0052018e",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-17T16:30:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3658e72_a0cfa9c7",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 33
+      },
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd8bfdc0_8c01e0b8",
@@ -488,6 +554,24 @@
       "writtenOn": "2024-02-16T00:28:46Z",
       "side": 1,
       "message": "Logical change. Move this into a separate CL",
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77261213_3e2f5a08",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-17T16:30:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd8bfdc0_8c01e0b8",
       "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -515,6 +599,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3020bcaf_00a2c7f9",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1101,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-17T16:30:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71cf4dd2_5657d931",
+      "range": {
+        "startLine": 1086,
+        "startChar": 1,
+        "endLine": 1101,
+        "endChar": 2
+      },
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c522518_8faea327",
@@ -528,6 +636,24 @@
       "writtenOn": "2024-02-16T00:28:46Z",
       "side": 1,
       "message": "Logical change. Move this into a separate CL",
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88f78499_5c42d054",
+        "filename": "system/gd/storage/config_keys.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-17T16:30:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c522518_8faea327",
       "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
