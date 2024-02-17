@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "438b1dd8_d87ea423",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1595,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-17T01:11:25Z",
+      "side": 1,
+      "message": "They get removed in the next CL.",
+      "parentUuid": "14d6fe86_d4addce0",
+      "revId": "ae83b73444e3403e75b4f4e4c511ea5f2b3e4fb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "cc8c5606_25a58b4d",
         "filename": "system/stack/btm/btm_inq.cc",
         "patchSetId": 8
