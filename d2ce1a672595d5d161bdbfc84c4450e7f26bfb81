@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88cf2bc4_11c19b95",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 969,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-17T00:57:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71a7dbd1_20d75ece",
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a9598a44_325091d3",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-02-16T00:28:46Z",
       "side": 1,
       "message": "Assign the object directly\n```suggestion\n  conn_dat.addr \u003d p_cb-\u003eaddr;\n```",
+      "range": {
+        "startLine": 380,
+        "startChar": 0,
+        "endLine": 382,
+        "endChar": 49
+      },
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88c2a7b0_10677dd4",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-17T00:57:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9598a44_325091d3",
       "range": {
         "startLine": 380,
         "startChar": 0,
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4573c41_87fcac1d",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-17T00:57:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67185199_c3b4d936",
+      "range": {
+        "startLine": 502,
+        "startChar": 0,
+        "endLine": 504,
+        "endChar": 61
+      },
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ec2933a_9db3a25e",
@@ -77,6 +143,30 @@
       "writtenOn": "2024-02-16T00:28:46Z",
       "side": 1,
       "message": "Assign the object directly\n```suggestion\n  conn.addr \u003d p_cb-\u003eaddr;\n\n  /* increase connection number */\n```",
+      "range": {
+        "startLine": 623,
+        "startChar": 0,
+        "endLine": 625,
+        "endChar": 45
+      },
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a572a47_08f41675",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-17T00:57:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ec2933a_9db3a25e",
       "range": {
         "startLine": 623,
         "startChar": 0,
@@ -110,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "735fed90_fe313d1b",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-17T00:57:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5eba8c3_58afcc13",
+      "range": {
+        "startLine": 697,
+        "startChar": 0,
+        "endLine": 699,
+        "endChar": 56
+      },
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "224d6ae8_ba2000da",
@@ -123,6 +237,30 @@
       "writtenOn": "2024-02-16T00:28:46Z",
       "side": 1,
       "message": "Assign the object directly\n```suggestion\n      bta_hh.conn.addr \u003d p_cb-\u003eaddr;\n```",
+      "range": {
+        "startLine": 777,
+        "startChar": 0,
+        "endLine": 779,
+        "endChar": 56
+      },
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c941d0c7_a642a216",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 779,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-17T00:57:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "224d6ae8_ba2000da",
       "range": {
         "startLine": 777,
         "startChar": 0,
@@ -156,6 +294,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d51f470b_bef22318",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 882,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-17T00:57:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eacf1bc6_2ddbd2c1",
+      "range": {
+        "startLine": 880,
+        "startChar": 0,
+        "endLine": 882,
+        "endChar": 49
+      },
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "217d195d_dcf36d5b",
@@ -179,6 +341,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0d7acf5_e2fac573",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1013,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-17T00:57:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "217d195d_dcf36d5b",
+      "range": {
+        "startLine": 1011,
+        "startChar": 0,
+        "endLine": 1013,
+        "endChar": 63
+      },
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1eaff896_129a22e1",
@@ -192,6 +378,30 @@
       "writtenOn": "2024-02-16T00:28:46Z",
       "side": 1,
       "message": "Assign the object directly\n```suggestion\n      dev_info.addr \u003d p_cb-\u003eaddr;\n```",
+      "range": {
+        "startLine": 1054,
+        "startChar": 0,
+        "endLine": 1056,
+        "endChar": 53
+      },
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29811089_c0141b52",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1056,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-17T00:57:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1eaff896_129a22e1",
       "range": {
         "startLine": 1054,
         "startChar": 0,
@@ -335,6 +545,30 @@
       "writtenOn": "2024-02-16T00:28:46Z",
       "side": 1,
       "message": "We can use the tBLE_ADDR_TYPE and tBT_TRANSPORT directly instead of recreating them here.",
+      "range": {
+        "startLine": 79,
+        "startChar": 4,
+        "endLine": 92,
+        "endChar": 14
+      },
+      "revId": "d2ce1a672595d5d161bdbfc84c4450e7f26bfb81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff9623a6_7fefac2a",
+        "filename": "system/include/hardware/bt_hh.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-17T00:57:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59ba918a_66d170ac",
       "range": {
         "startLine": 79,
         "startChar": 4,
