@@ -16,6 +16,24 @@
       "message": "Unneeded extra brackets",
       "revId": "8a31c7f8fbfba0a9a0d170f0425ff2b1ea1ecdc7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9563bec4_76c0af3c",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1442,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-17T01:10:58Z",
+      "side": 1,
+      "message": "They get removed in the next CL.",
+      "parentUuid": "90a71c7f_70de8543",
+      "revId": "8a31c7f8fbfba0a9a0d170f0425ff2b1ea1ecdc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
