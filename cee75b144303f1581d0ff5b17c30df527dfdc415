@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "016f7a1f_c0aa0284",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-02-18T09:31:52Z",
+      "side": 1,
+      "message": "Done, thanks!",
+      "parentUuid": "1eb55770_fc28570b",
+      "range": {
+        "startLine": 51,
+        "startChar": 48,
+        "endLine": 51,
+        "endChar": 52
+      },
+      "revId": "cee75b144303f1581d0ff5b17c30df527dfdc415",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a0ced41_ab0c4f21",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee615097_2af7a69e",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-02-18T09:31:52Z",
+      "side": 1,
+      "message": "Yes, an encrypted connection is a precondition for CS. We expect the app to handle the connection independently. Introducing connection logic here would require us to manage connection timeouts, failures, and other errors. I\u0027d prefer to keep our logic simple and focused on CS.\nIf this approach is not feasible, we can file a bug and address it in a separate patch.\nThanks!",
+      "parentUuid": "0a0ced41_ab0c4f21",
+      "revId": "cee75b144303f1581d0ff5b17c30df527dfdc415",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a0b75a5_f5c9c956",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-02-16T17:54:36Z",
       "side": 1,
       "message": "mCsTrackers?\n```suggestion\n            mCsTrackers.remove(identityAddress);\n```",
+      "range": {
+        "startLine": 237,
+        "startChar": 12,
+        "endLine": 237,
+        "endChar": 25
+      },
+      "revId": "cee75b144303f1581d0ff5b17c30df527dfdc415",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70f20106_ff1edfb6",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-02-18T09:31:52Z",
+      "side": 1,
+      "message": "Good catch, thanks!",
+      "parentUuid": "7a0b75a5_f5c9c956",
       "range": {
         "startLine": 237,
         "startChar": 12,
@@ -87,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15b79fcc_2b53730e",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-02-18T09:31:52Z",
+      "side": 1,
+      "message": "No longer need this function with repeating_alarm",
+      "parentUuid": "343b22d8_32780f12",
+      "range": {
+        "startLine": 244,
+        "startChar": 7,
+        "endLine": 244,
+        "endChar": 36
+      },
+      "revId": "cee75b144303f1581d0ff5b17c30df527dfdc415",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "396a0603_90fe054c",
@@ -100,6 +190,30 @@
       "writtenOn": "2024-02-16T17:54:36Z",
       "side": 1,
       "message": "Do we not have a periodic alarm?",
+      "range": {
+        "startLine": 262,
+        "startChar": 36,
+        "endLine": 262,
+        "endChar": 41
+      },
+      "revId": "cee75b144303f1581d0ff5b17c30df527dfdc415",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce366d0b_cba31e78",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-02-18T09:31:52Z",
+      "side": 1,
+      "message": "Replace with repeating_alarm, thanks!",
+      "parentUuid": "396a0603_90fe054c",
       "range": {
         "startLine": 262,
         "startChar": 36,
@@ -127,6 +241,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a316297_b121ed45",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-02-18T09:31:52Z",
+      "side": 1,
+      "message": "Get connection handle will ASSERT(was_validated_). Let\u0027s assert here.",
+      "parentUuid": "d43df456_e74ee296",
+      "revId": "cee75b144303f1581d0ff5b17c30df527dfdc415",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba175274_cc859b1e",
@@ -140,6 +272,24 @@
       "writtenOn": "2024-02-16T17:54:36Z",
       "side": 1,
       "message": "This seems like a period, not a frequency.  Can we add units, or make it std::chrono::milliseconds or something?",
+      "revId": "cee75b144303f1581d0ff5b17c30df527dfdc415",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b8d3014_b6f88add",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1004,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-02-18T09:31:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba175274_cc859b1e",
       "revId": "cee75b144303f1581d0ff5b17c30df527dfdc415",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
