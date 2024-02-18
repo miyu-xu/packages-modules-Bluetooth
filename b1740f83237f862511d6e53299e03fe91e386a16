@@ -16,6 +16,24 @@
       "message": "Should you be using the address instead of the handle for `pending_disconnect`? Will the same `address` always result in the same handle from the controller? (i.e. is this what the spec says must occur?)",
       "revId": "b1740f83237f862511d6e53299e03fe91e386a16",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8099e3b5_2b0626f3",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-02-18T14:20:47Z",
+      "side": 1,
+      "message": "The `pending_disconnect` only keep track of the handle. This is due to the disconnection command and event only take handle as the argument.\n\nThe following new connection with the same handle might be from a different address, and consequently, the same address might be given a different handle (i.e. the spec doesn\u0027t say a thing about this). \nHowever, that doesn\u0027t matter in the end because we want to: \n(1) not skipping disconnection from the specified handle \n(2) avoid double counting disconnection from the specified handle\nTherefore, we don\u0027t need to map the handle to the address.\n\nThis reminds me though, we still ave `pending_disconnect` on connection.rs so I have to update the one over there as well.",
+      "parentUuid": "88dfa3b4_d04c4151",
+      "revId": "b1740f83237f862511d6e53299e03fe91e386a16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
