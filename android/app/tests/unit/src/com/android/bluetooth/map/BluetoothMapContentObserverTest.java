@@ -31,6 +31,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.RemoteException;
 import android.os.UserManager;
+import android.platform.test.flag.junit.SetFlagsRule;
 import android.provider.ContactsContract;
 import android.provider.Telephony;
 import android.provider.Telephony.Mms;
@@ -43,6 +44,7 @@ import androidx.test.filters.MediumTest;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.BluetoothMethodProxy;
+import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.map.BluetoothMapUtils.TYPE;
 import com.android.bluetooth.mapapi.BluetoothMapContract;
 import com.android.bluetooth.mapapi.BluetoothMapContract.MessageColumns;
@@ -50,10 +52,7 @@ import com.android.obex.ResponseCodes;
 
 import com.google.android.mms.pdu.PduHeaders;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -62,6 +61,7 @@ import org.mockito.Spy;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -115,6 +115,8 @@ public class BluetoothMapContentObserverTest {
     static final String TEST_STATUS_TEXT_DIFFERENT = "col_status_text_different";
     static final int TEST_PRIORITY = 1;
     static final int TEST_LAST_ONLINE = 1;
+
+    @Rule public final SetFlagsRule mSetFlagsRule = new SetFlagsRule();
 
     @Mock
     private BluetoothMnsObexClient mClient;
@@ -1229,10 +1231,9 @@ public class BluetoothMapContentObserverTest {
 
     @Test
     public void handleMsgListChangesMms_withNonExistingOldMessage_andVersion12() {
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.YEAR, -1);
-        cal.add(Calendar.DATE, -1);
-        long timestampSec = TimeUnit.MILLISECONDS.toSeconds(cal.getTimeInMillis());
+        mSetFlagsRule.enableFlags(Flags.FLAG_MAP_LIMIT_NOTIFICATION);
+        Instant oldInstant = Instant.now().minus(BluetoothMapContentObserver.NEW_MESSAGE_DURATION);
+        long timestampSec = oldInstant.getEpochSecond();
 
         MatrixCursor cursor = new MatrixCursor(new String[] {Mms._ID, Mms.MESSAGE_BOX,
             Mms.MESSAGE_TYPE, Mms.THREAD_ID, Mms.READ, Mms.DATE, Mms.SUBJECT,
@@ -1254,7 +1255,7 @@ public class BluetoothMapContentObserverTest {
 
         mObserver.handleMsgListChangesMms();
 
-        Assert.assertEquals(mObserver.getMsgListMms().get(TEST_HANDLE_ONE), null);
+        Assert.assertEquals(null, mObserver.getMsgListMms().get(TEST_HANDLE_ONE));
     }
 
     @Test
@@ -1462,14 +1463,21 @@ public class BluetoothMapContentObserverTest {
 
     @Test
     public void handleMsgListChangesSms_withNonExistingOldMessage_andVersion12() {
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.YEAR, -1);
-        cal.add(Calendar.DATE, -1);
+        mSetFlagsRule.enableFlags(Flags.FLAG_MAP_LIMIT_NOTIFICATION);
+        Instant oldInstant = Instant.now().minus(BluetoothMapContentObserver.NEW_MESSAGE_DURATION);
 
         MatrixCursor cursor = new MatrixCursor(new String[] {Sms._ID, Sms.TYPE, Sms.THREAD_ID,
             Sms.READ, Sms.DATE, Sms.BODY, Sms.ADDRESS});
-        cursor.addRow(new Object[] {TEST_HANDLE_ONE, TEST_SMS_TYPE_ALL, TEST_THREAD_ID,
-            TEST_READ_FLAG_ONE, cal.getTimeInMillis(), "", null});
+        cursor.addRow(
+                new Object[] {
+                    TEST_HANDLE_ONE,
+                    TEST_SMS_TYPE_ALL,
+                    TEST_THREAD_ID,
+                    TEST_READ_FLAG_ONE,
+                    oldInstant.toEpochMilli(),
+                    "",
+                    null
+                });
         doReturn(cursor).when(mMapMethodProxy).contentResolverQuery(any(), any(), any(), any(),
             any(), any());
 
@@ -1484,7 +1492,7 @@ public class BluetoothMapContentObserverTest {
 
         mObserver.handleMsgListChangesSms();
 
-        Assert.assertEquals(mObserver.getMsgListSms().get(TEST_HANDLE_ONE), null);
+        Assert.assertEquals(null, mObserver.getMsgListSms().get(TEST_HANDLE_ONE));
     }
 
     @Test
