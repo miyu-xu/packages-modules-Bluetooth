@@ -29,6 +29,7 @@
 
 #include "btif/include/btif_hh.h"
 
+#include <android_bluetooth_flags.h>
 #include <base/logging.h>
 
 #include <cstdint>
@@ -325,7 +326,7 @@ static btif_hh_device_t* btif_hh_find_dev_by_link_spec(
   uint32_t i;
   for (i = 0; i < BTIF_HH_MAX_HID; i++) {
     if (btif_hh_cb.devices[i].dev_status != BTHH_CONN_STATE_UNKNOWN &&
-        btif_hh_cb.devices[i].link_spec == link_spec) {
+        btif_hh_cb.devices[i].link_spec.addrt.bda == link_spec.addrt.bda) {
       return &btif_hh_cb.devices[i];
     }
   }
@@ -346,7 +347,7 @@ static btif_hh_device_t* btif_hh_find_connected_dev_by_link_spec(
   uint32_t i;
   for (i = 0; i < BTIF_HH_MAX_HID; i++) {
     if (btif_hh_cb.devices[i].dev_status == BTHH_CONN_STATE_CONNECTED &&
-        btif_hh_cb.devices[i].link_spec == link_spec) {
+        btif_hh_cb.devices[i].link_spec.addrt.bda == link_spec.addrt.bda) {
       return &btif_hh_cb.devices[i];
     }
   }
@@ -405,6 +406,30 @@ static void hh_connect_complete(uint8_t handle, tAclLinkSpec& link_spec,
 
 static void hh_open_handler(tBTA_HH_CONN& conn) {
   LOG_DEBUG("status = %d, handle = %d", conn.status, conn.handle);
+
+  if (IS_FLAG_ENABLED(allow_switching_hid_and_hogp) &&
+      conn.link_spec.transport != BT_TRANSPORT_AUTO) {
+    bool hogp_preferred = false;
+    bool reconnect_allow = false;
+    btif_storage_get_hid_connection_policy(&conn.link_spec, &hogp_preferred,
+                                           &reconnect_allow);
+
+    LOG_DEBUG(" hogp_preferred = %d reconnect_allow = %d", hogp_preferred,
+              reconnect_allow);
+    if ((conn.link_spec.transport == BT_TRANSPORT_LE && hogp_preferred &&
+         reconnect_allow) ||
+        (conn.link_spec.transport == BT_TRANSPORT_BR_EDR && !hogp_preferred &&
+         reconnect_allow)) {
+      HAL_CBACK(bt_hh_callbacks, connection_state_cb,
+                (RawAddress*)&conn.link_spec.addrt.bda,
+                conn.link_spec.addrt.type, conn.link_spec.transport,
+                BTHH_CONN_STATE_ACCEPTING);
+    } else {
+      hh_connect_complete(conn.handle, conn.link_spec,
+                          BTIF_HH_DEV_DISCONNECTED);
+      return;
+    }
+  }
 
   HAL_CBACK(bt_hh_callbacks, connection_state_cb,
             (RawAddress*)&conn.link_spec.addrt.bda, conn.link_spec.addrt.type,
@@ -504,7 +529,10 @@ void btif_hh_remove_device(const tAclLinkSpec& link_spec) {
     p_added_dev = &btif_hh_cb.added_devices[i];
     if (p_added_dev->link_spec.addrt.bda == link_spec.addrt.bda) {
       BTA_HhRemoveDev(p_added_dev->dev_handle);
-      btif_storage_remove_hid_info(p_added_dev->link_spec.addrt.bda);
+      btif_storage_remove_hid_info(p_added_dev->link_spec);
+      if (IS_FLAG_ENABLED(allow_switching_hid_and_hogp)) {
+        btif_storage_clear_hid_connection_policy(&p_added_dev->link_spec);
+      }
       p_added_dev->link_spec = {};
       p_added_dev->dev_handle = BTA_HH_INVALID_HANDLE;
       break;
@@ -891,7 +919,7 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
           LOG_WARN(
               "Removing cached descriptor due to service change, handle = %d",
               p_data->dev_status.handle);
-          btif_storage_remove_hid_info(p_dev->link_spec.addrt.bda);
+          btif_storage_remove_hid_info(p_dev->link_spec);
         }
 
         btif_hh_cb.status = (BTIF_HH_STATUS)BTIF_HH_DEV_DISCONNECTED;
@@ -1059,7 +1087,7 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
                        p_dev->app_id, dscp_info);
           // write hid info to nvram
           ret = btif_storage_add_hid_device_info(
-              &(p_dev->link_spec.addrt.bda), p_dev->attr_mask, p_dev->sub_class,
+              &(p_dev->link_spec), p_dev->attr_mask, p_dev->sub_class,
               p_dev->app_id, p_data->dscp_info.vendor_id,
               p_data->dscp_info.product_id, p_data->dscp_info.version,
               p_data->dscp_info.ctry_code, p_data->dscp_info.ssr_max_latency,
@@ -1377,6 +1405,10 @@ static bt_status_t connect(RawAddress* bd_addr, tBLE_ADDR_TYPE addr_type,
   link_spec.addrt.type = addr_type;
   link_spec.transport = transport;
 
+  if (IS_FLAG_ENABLED(allow_switching_hid_and_hogp)) {
+    btif_storage_set_hid_connection_policy(&link_spec, true);
+  }
+
   p_dev = btif_hh_find_connected_dev_by_link_spec(link_spec);
   if (p_dev) {
     if (p_dev->dev_status == BTHH_CONN_STATE_CONNECTED ||
@@ -1405,7 +1437,7 @@ static bt_status_t connect(RawAddress* bd_addr, tBLE_ADDR_TYPE addr_type,
  *
  ******************************************************************************/
 static bt_status_t disconnect(RawAddress* bd_addr, tBLE_ADDR_TYPE addr_type,
-                              tBT_TRANSPORT transport) {
+                              tBT_TRANSPORT transport, bool reconnect_allow) {
   CHECK_BTHH_INIT();
   LOG_VERBOSE("BTHH: %s", __func__);
   btif_hh_device_t* p_dev;
@@ -1416,14 +1448,14 @@ static bt_status_t disconnect(RawAddress* bd_addr, tBLE_ADDR_TYPE addr_type,
     LOG_WARN("%s: Error, HH status = %d", __func__, btif_hh_cb.status);
     return BT_STATUS_UNHANDLED;
   }
-  link_spec.addrt.bda = *bd_addr;
-  // Todo: fill with params received
-  link_spec.addrt.type = BLE_ADDR_PUBLIC;
-  link_spec.transport = BT_TRANSPORT_AUTO;
 
   link_spec.addrt.bda = *bd_addr;
   link_spec.addrt.type = addr_type;
   link_spec.transport = transport;
+
+  if (IS_FLAG_ENABLED(allow_switching_hid_and_hogp)) {
+    btif_storage_set_hid_connection_policy(&link_spec, reconnect_allow);
+  }
 
   p_dev = btif_hh_find_connected_dev_by_link_spec(link_spec);
   if (!p_dev) {
