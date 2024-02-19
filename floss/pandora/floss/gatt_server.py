@@ -511,6 +511,7 @@ class FlossGattServer(GattServerCallbacks):
         self.bus.register_object(self.cb_dbus_objpath, self.callbacks, None)
         self.server_connect_id = None
         self.server_id = None
+        self.negociated_mtu = -1
 
     def __del__(self):
         """Destructor."""
@@ -575,6 +576,10 @@ class FlossGattServer(GattServerCallbacks):
                      ATT PDU.
             handle: The characteristic handle.
         """
+        if self.negociated_mtu != -1:
+            self.proxy().SendResponse(self.server_id, addr, trans_id, 0, offset, bytearray(self.negociated_mtu))
+        else:
+            self.proxy().SendResponse(self.server_id, addr, trans_id, 0, offset, bytearray(512 - int(offset)))
         logging.debug(
             'on_characteristic_read_request: device address: %s, trans_id: %s, offset: %s, is_long: %s, handle: %s',
             addr, trans_id, offset, is_long, handle)
@@ -660,6 +665,7 @@ class FlossGattServer(GattServerCallbacks):
             addr: Remote device MAC address.
             mtu: Maximum transmission unit.
         """
+        self.negociated_mtu = mtu
         logging.debug('on_mtu_changed: device address: %s, mtu : %s', addr, mtu)
 
     @utils.glib_callback()

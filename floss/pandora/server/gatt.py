@@ -407,8 +407,8 @@ class GATTService(gatt_grpc_aio.GATTServicer):
             def on_characteristic_read(self, addr, status, handle, value):
                 if addr != self.task['address']:
                     return
-                if handle < self.task['start_handle'] or handle > self.task['end_handle']:
-                    return
+                # if handle < self.task['start_handle'] or handle > self.task['end_handle']:
+                #     return
                 if floss_enums.GattStatus(status) != floss_enums.GattStatus.SUCCESS:
                     logging.error('Failed to read characteristic from handle. Status: %s', status)
                 future = self.task['characteristic_from_uuid']
@@ -449,28 +449,34 @@ class GATTService(gatt_grpc_aio.GATTServicer):
                                                                       characteristic['instance_id'],
                                                                       self.AUTHENTICATION_NONE)
                         status, handle, value = await characteristic_from_uuid
-                        if status != floss_enums.GattStatus.SUCCESS:
-                            raise ValueError(f'Found no characteristic from uuid={request.uuid}.')
                         characteristics.append((status, handle, value))
         finally:
-            for name, observer in observers:
-                self.bluetooth.gatt_client.unregister_callback_observer(name, observer)
+            pass
+            # for name, observer in observers:
+            #     self.bluetooth.gatt_client.unregister_callback_observer(name, observer)
 
         if not characteristics:
+            self.bluetooth.read_using_characteristic_uuid(address, request.uuid,
+                                                          request.start_handle,
+                                                          request.end_handle,
+                                                          self.AUTHENTICATION_NONE)
+            status, handle, value = await characteristic_from_uuid
+            for name, observer in observers:
+                self.bluetooth.gatt_client.unregister_callback_observer(name, observer)
             return gatt_pb2.ReadCharacteristicsFromUuidResponse(characteristics_read=[
                 gatt_pb2.ReadCharacteristicResponse(
-                    value=gatt_pb2.AttValue(value=bytes(), handle=request.start_handle),
-                    status=gatt_pb2.UNKNOWN_ERROR,
+                    value=gatt_pb2.AttValue(value=bytes(value), handle=handle),
+                    status=status
                 )
             ])
-
+        for name, observer in observers:
+            self.bluetooth.gatt_client.unregister_callback_observer(name, observer)
         return gatt_pb2.ReadCharacteristicsFromUuidResponse(characteristics_read=[
             gatt_pb2.ReadCharacteristicResponse(
                 value=gatt_pb2.AttValue(value=bytes(value), handle=handle),
                 status=status,
             ) for status, handle, value in characteristics
         ])
-
     async def ReadCharacteristicDescriptorFromHandle(
             self, request: gatt_pb2.ReadCharacteristicDescriptorRequest,
             context: grpc.ServicerContext) -> gatt_pb2.ReadCharacteristicDescriptorResponse:
