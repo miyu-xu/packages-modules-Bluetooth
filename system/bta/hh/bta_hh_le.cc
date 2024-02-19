@@ -1155,7 +1155,7 @@ void bta_hh_gatt_open(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_buf) {
       bta_hh_le_api_disc_act(p_cb);
       return;
     }
-    p_cb->is_le_device = true;
+    p_cb->link_spec.transport = BT_TRANSPORT_LE;
     p_cb->in_use = true;
     p_cb->conn_id = p_data->conn_id;
 
@@ -1649,10 +1649,12 @@ static void bta_hh_le_input_rpt_notify(tBTA_GATTC_NOTIFY* p_data) {
 void bta_hh_le_open_fail(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
   const tBTA_HH_LE_CLOSE* le_close = &p_data->le_close;
 
-  BTM_LogHistory(kBtmLogTag, p_cb->link_spec.addrt.bda, "Open failed",
-                 base::StringPrintf(
-                     "%s reason %s", (p_cb->is_le_device) ? "le" : "classic",
-                     gatt_disconnection_reason_text(le_close->reason).c_str()));
+  BTM_LogHistory(
+      kBtmLogTag, p_cb->link_spec.addrt.bda, "Open failed",
+      base::StringPrintf(
+          "%s reason %s",
+          (p_cb->link_spec.transport == BT_TRANSPORT_LE) ? "le" : "classic",
+          gatt_disconnection_reason_text(le_close->reason).c_str()));
   log::warn("Open failed for device:{}",
             ADDRESS_TO_LOGGABLE_CSTR(p_cb->link_spec.addrt.bda));
 
@@ -1661,7 +1663,8 @@ void bta_hh_le_open_fail(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
     bta_hh_clear_service_cache(p_cb);
   }
 
-  if (p_cb->is_le_device && p_cb->status != BTA_HH_ERR_SDP) {
+  if (p_cb->link_spec.transport == BT_TRANSPORT_LE &&
+      p_cb->status != BTA_HH_ERR_SDP) {
     log::debug("gd_acl: Re-adding HID device to acceptlist");
     // gd removes from bg list after failed connection
     // Correct the cached state to allow re-add to acceptlist.
@@ -1699,10 +1702,12 @@ void bta_hh_le_open_fail(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
 void bta_hh_gatt_close(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
   const tBTA_HH_LE_CLOSE* le_close = &p_data->le_close;
 
-  BTM_LogHistory(kBtmLogTag, p_cb->link_spec.addrt.bda, "Closed",
-                 base::StringPrintf(
-                     "%s reason %s", (p_cb->is_le_device) ? "le" : "classic",
-                     gatt_disconnection_reason_text(le_close->reason).c_str()));
+  BTM_LogHistory(
+      kBtmLogTag, p_cb->link_spec.addrt.bda, "Closed",
+      base::StringPrintf(
+          "%s reason %s",
+          (p_cb->link_spec.transport == BT_TRANSPORT_LE) ? "le" : "classic",
+          gatt_disconnection_reason_text(le_close->reason).c_str()));
 
   /* deregister all notification */
   bta_hh_le_deregister_input_notif(p_cb);
