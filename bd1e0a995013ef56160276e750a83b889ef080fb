@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "033c84e4_5da477ef",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 965,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-19T10:02:24Z",
+      "side": 1,
+      "message": "I would say that this could be risky/not expected since here the codec status is get for group. Only one group is active and most probably (due to current policy that only handover to broadcast is possible) set to MUSIC context. Rest of groups may be left in non MUSIC \"configuration\".\n\nThis may lead to confusion when method is called \"*PerSinkCapabilities\" - while it\u0027s checking against last set Unicast configuration.\n\nIf I understand correctly this method would set broadcast to HIGH quality when all connected devices were set lately (before deactivation) to HIGH quality ? Do I understand it correctly and if so, is this intended ?",
+      "revId": "bd1e0a995013ef56160276e750a83b889ef080fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
