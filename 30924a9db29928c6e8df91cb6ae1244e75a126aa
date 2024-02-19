@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd39ca7a_b2e8fbb3",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-19T14:43:50Z",
+      "side": 1,
+      "message": "There is a timing issue in A2DP/SRC/REL/BV-02-I. The a2dp.start() function is being called twice in succession. Before the second call can complete, the test passes and the Bluetooth device disconnects. This prevents the Pandora server from selecting the output node, causing an exception and a failed test result.\n\nWe are able to fix this by not calling time.sleep(2) here. (is there a reason to call it?)",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 21
+      },
+      "revId": "30924a9db29928c6e8df91cb6ae1244e75a126aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
