@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0daec6ed_4044b2ed",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 824,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-02-19T10:01:35Z",
+      "side": 1,
+      "message": "if (!condition) continue;\n\nyour_code;\n\nYou save one indendation.",
+      "range": {
+        "startLine": 824,
+        "startChar": 3,
+        "endLine": 824,
+        "endChar": 31
+      },
+      "revId": "2c46c00dceaf4ded16c11b69d6510b583fa3042b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cecd5efb_f33ea924",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 838,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-02-19T10:01:35Z",
+      "side": 1,
+      "message": "if (!condition) continue;\n\nyour_code;\n\nYou save one indendation.",
+      "range": {
+        "startLine": 838,
+        "startChar": 4,
+        "endLine": 838,
+        "endChar": 29
+      },
+      "revId": "2c46c00dceaf4ded16c11b69d6510b583fa3042b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcce13f2_0b6c86df",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 854,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-02-19T10:01:35Z",
+      "side": 1,
+      "message": "if (!condition) continue;\n\nyour_code;\n\nYou save one indendation.",
+      "range": {
+        "startLine": 854,
+        "startChar": 13,
+        "endLine": 854,
+        "endChar": 53
+      },
+      "revId": "2c46c00dceaf4ded16c11b69d6510b583fa3042b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4ef2902_19f54e09",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 872,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-02-19T10:01:35Z",
+      "side": 1,
+      "message": "if (!condition) continue;\n\nyour_code;\n\nYou save one indendation.",
+      "range": {
+        "startLine": 865,
+        "startChar": 0,
+        "endLine": 872,
+        "endChar": 5
+      },
+      "revId": "2c46c00dceaf4ded16c11b69d6510b583fa3042b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0d9122b_3db36099",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 881,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-02-19T10:01:35Z",
+      "side": 1,
+      "message": "if (!condition) continue;\n\nyour_code;\n\nYou save one indendation.",
+      "range": {
+        "startLine": 881,
+        "startChar": 4,
+        "endLine": 881,
+        "endChar": 33
+      },
+      "revId": "2c46c00dceaf4ded16c11b69d6510b583fa3042b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
