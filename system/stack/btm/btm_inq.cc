@@ -1936,6 +1936,48 @@ uint8_t BTM_GetEirUuidList(const uint8_t* p_eir, size_t eir_len,
     return 0x00;
   }
 
+  if (true /* some flag */) {
+    uint8_t uuid_data_len;
+    // offset by 2 bytes to start at the beginning of the EIR structure
+    p_uuid_data -= 2;
+    yy = 0;
+    while ((p_uuid_data = AdvertiseDataParser::GetFieldByType(
+                p_uuid_data, eir_len - (p_uuid_data - p_eir), type,
+                &uuid_data_len))) {
+      if (uuid_size != uuid_data_len) {
+        LOG_WARN("EIR UUID data len is %d, but %d expected", uuid_data_len,
+                 uuid_size);
+        break;
+      }
+
+      if (uuid_size == Uuid::kNumBytes16) {
+        STREAM_TO_UINT16(*(p_uuid16 + yy), p_uuid_data);
+        LOG_VERBOSE("                     0x%04X", *(p_uuid16 + yy));
+      } else if (uuid_size == Uuid::kNumBytes32) {
+        STREAM_TO_UINT32(*(p_uuid32 + yy), p_uuid_data);
+        LOG_VERBOSE("                     0x%08X", *(p_uuid32 + yy));
+      } else if (uuid_size == Uuid::kNumBytes128) {
+        STREAM_TO_ARRAY16(p_uuid_list + yy * Uuid::kNumBytes128, p_uuid_data);
+        for (xx = 0; xx < Uuid::kNumBytes128; xx++)
+          snprintf(buff + xx * 2, sizeof(buff) - xx * 2, "%02X",
+                   *(p_uuid_list + yy * Uuid::kNumBytes128 + xx));
+        LOG_VERBOSE("                     0x%s", buff);
+      }
+
+      yy++;
+      if (yy >= max_num_uuid) {
+        LOG_WARN("number of uuid in EIR = %d, size of uuid list = %d", yy,
+                 max_num_uuid);
+        yy = max_num_uuid;
+        break;
+      }
+    }
+
+    *p_num_uuid = yy;
+    LOG_VERBOSE("type = %02X, number of uuid = %d", type, *p_num_uuid);
+    return type;
+  }
+
   if (*p_num_uuid > max_num_uuid) {
     LOG_WARN("number of uuid in EIR = %d, size of uuid list = %d", *p_num_uuid,
              max_num_uuid);
@@ -1976,7 +2018,7 @@ uint8_t BTM_GetEirUuidList(const uint8_t* p_eir, size_t eir_len,
  * Parameters       p_eir - address of EIR
  *                  eir_len - EIR length
  *                  uuid_size - size of UUID to find
- *                  p_num_uuid - number of UUIDs found
+ *                  p_num_uuid - number of UUIDs found (wrong, don't use!)
  *                  p_uuid_list_type - EIR data type
  *
  * Returns          NULL - if UUID list with uuid_size is not found
@@ -2099,6 +2141,45 @@ void btm_set_eir_uuid(const uint8_t* p_eir, tBTM_INQ_RESULTS* p_results) {
   uint16_t uuid16;
   uint8_t yy;
   uint8_t type = HCI_EIR_MORE_16BITS_UUID_TYPE;
+
+  if (true /* some flag */) {
+    uint8_t uuid_data_len;
+    const size_t uuid_sizes[] = {Uuid::kNumBytes16, Uuid::kNumBytes32,
+                                 Uuid::kNumBytes128};
+
+    for (const size_t uuid_size : uuid_sizes) {
+      p_uuid_data = btm_eir_get_uuid_list(p_eir, HCI_EXT_INQ_RESPONSE_LEN,
+                                          uuid_size, &num_uuid, &type);
+
+      if (p_uuid_data) {
+        // offset by 2 bytes to start at the beginning of the EIR structure
+        p_uuid_data -= 2;
+        while (
+            (p_uuid_data = AdvertiseDataParser::GetFieldByType(
+                 p_uuid_data, HCI_EXT_INQ_RESPONSE_LEN - (p_uuid_data - p_eir),
+                 type, &uuid_data_len))) {
+          if (uuid_data_len != uuid_size) {
+            LOG_WARN("EIR UUID data len is %d, but %d expected", uuid_data_len,
+                     uuid_size);
+            break;
+          }
+          uuid16 = btm_convert_uuid_to_uuid16(p_uuid_data, uuid_size);
+          p_uuid_data += uuid_size;
+          if (uuid16) BTM_AddEirService(p_results->eir_uuid, uuid16);
+        }
+      }
+
+      if (uuid_size == Uuid::kNumBytes16) {
+        if (type == HCI_EIR_COMPLETE_16BITS_UUID_TYPE) {
+          p_results->eir_complete_list = true;
+        } else {
+          p_results->eir_complete_list = false;
+        }
+        LOG_VERBOSE("eir_complete_list=0x%02X", p_results->eir_complete_list);
+      }
+    }
+    return;
+  }
 
   p_uuid_data = btm_eir_get_uuid_list(p_eir, HCI_EXT_INQ_RESPONSE_LEN,
                                       Uuid::kNumBytes16, &num_uuid, &type);
