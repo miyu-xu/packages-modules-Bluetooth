@@ -45,6 +45,75 @@
       },
       "revId": "882554beffff7c608ef2b77b348c807b66178080",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e72c6e43_240df3f5",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-19T21:07:38Z",
+      "side": 1,
+      "message": "same as below, suggest merging these two blocks under the same write lock?",
+      "range": {
+        "startLine": 462,
+        "startChar": 7,
+        "endLine": 466,
+        "endChar": 30
+      },
+      "revId": "882554beffff7c608ef2b77b348c807b66178080",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc118e55_f9b9cdeb",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3022,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-19T21:07:38Z",
+      "side": 1,
+      "message": "there is a time gap here. should we lock the write lock first before releasing the read lock?\n\nOR, just use the Write lock from the beginning, otherwise, you can\u0027t guarantee atomicity here.",
+      "range": {
+        "startLine": 3018,
+        "startChar": 0,
+        "endLine": 3022,
+        "endChar": 31
+      },
+      "revId": "882554beffff7c608ef2b77b348c807b66178080",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7618f52c_6defb99a",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3664,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-19T21:07:38Z",
+      "side": 1,
+      "message": "same as above, this CL breaks the atomic block into two blocks. Maybe we should hold the write lock from the beginning?",
+      "range": {
+        "startLine": 3664,
+        "startChar": 0,
+        "endLine": 3664,
+        "endChar": 27
+      },
+      "revId": "882554beffff7c608ef2b77b348c807b66178080",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
