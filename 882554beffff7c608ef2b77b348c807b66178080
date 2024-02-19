@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0289550a_da2b0266",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-19T20:59:14Z",
+      "side": 1,
+      "message": "Could you suggest list or range of manual tests needed instead?",
+      "range": {
+        "startLine": 25,
+        "startChar": 14,
+        "endLine": 25,
+        "endChar": 56
+      },
+      "revId": "882554beffff7c608ef2b77b348c807b66178080",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
