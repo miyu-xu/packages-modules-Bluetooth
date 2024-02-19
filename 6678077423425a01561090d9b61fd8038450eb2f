@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fec77669_91c06e0e",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 2612,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-02-19T07:21:10Z",
+      "side": 0,
+      "message": "This should go away too ? I think it was used just from 2 functions above you are deleting.",
+      "revId": "6678077423425a01561090d9b61fd8038450eb2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
