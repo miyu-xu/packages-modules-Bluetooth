@@ -23,6 +23,7 @@
 
 #include <vector>
 
+#include "types/ble_address_with_type.h"
 #include "types/raw_address.h"
 
 /*******************************************************************************
@@ -70,7 +71,7 @@ bt_status_t btif_storage_load_bonded_hid_info(void);
  *                  BT_STATUS_FAIL otherwise
  *
  ******************************************************************************/
-bt_status_t btif_storage_remove_hid_info(const RawAddress& remote_bd_addr);
+bt_status_t btif_storage_remove_hid_info(const tAclLinkSpec& link_spec);
 
 /** Returns all bonded LE hid devices + their address types. */
 std::vector<std::pair<RawAddress, uint8_t>> btif_storage_get_le_hid_devices(
