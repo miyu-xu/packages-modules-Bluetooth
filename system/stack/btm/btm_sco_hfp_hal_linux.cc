@@ -319,6 +319,16 @@ void init() {
   close(fd);
 }
 
+// Check if transparent mode is supported on local device
+bool get_transparent_mode_supported() {
+  for (cached_codec_info c : cached_codecs) {
+    if (c.inner.codec == MSBC_TRANSPARENT) {
+      return true;
+    }
+  }
+  return false;
+}
+
 // Check if wideband speech is supported on local device
 bool get_wbs_supported() {
   for (cached_codec_info c : cached_codecs) {
@@ -331,13 +341,8 @@ bool get_wbs_supported() {
 
 // Check if super-wideband speech is supported on local device
 bool get_swb_supported() {
-  for (cached_codec_info c : cached_codecs) {
-    // SWB runs on the same path as MSBC non-offload.
-    if (c.inner.codec == MSBC_TRANSPARENT) {
-      return true;
-    }
-  }
-  return false;
+  // We only support SWB via transparent mode.
+  return get_transparent_mode_supported();
 }
 
 // Checks the supported codecs

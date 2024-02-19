@@ -251,6 +251,9 @@ pub trait IBluetooth {
 
     /// Returns a list of all the roles that are supported.
     fn get_supported_roles(&self) -> Vec<BtAdapterRole>;
+
+    /// Returns whether transparent mode is supported.
+    fn is_transparent_mode_supported(&self) -> bool;
 }
 
 /// Adapter API for Bluetooth qualification and verification.
@@ -2796,6 +2799,10 @@ impl IBluetooth for Bluetooth {
         }
 
         roles
+    }
+
+    fn is_transparent_mode_supported(&self) -> bool {
+        self.intf.lock().unwrap().get_transparent_mode_supported()
     }
 }
 

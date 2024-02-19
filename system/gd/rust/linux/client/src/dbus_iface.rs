@@ -1001,6 +1001,11 @@ impl IBluetooth for BluetoothDBus {
     fn get_supported_roles(&self) -> Vec<BtAdapterRole> {
         dbus_generated!()
     }
+
+    #[dbus_method("IsTransparentModeSupported")]
+    fn is_transparent_mode_supported(&self) -> bool {
+        dbus_generated!()
+    }
 }
 
 pub(crate) struct BluetoothQALegacyDBus {

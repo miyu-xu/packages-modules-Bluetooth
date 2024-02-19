@@ -69,6 +69,9 @@ constexpr inline int esco_coding_to_codec(esco_coding_format_t esco_coding) {
 // Initialize the SCO HFP HAL module
 void init();
 
+// Check if transparent mode is supported on local device.
+bool get_transparent_mode_supported();
+
 // Check if wideband speech is supported on local device.
 bool get_wbs_supported();
 

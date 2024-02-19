@@ -712,6 +712,11 @@ impl IBluetooth for IBluetoothDBus {
     fn get_supported_roles(&self) -> Vec<BtAdapterRole> {
         dbus_generated!()
     }
+
+    #[dbus_method("IsTransparentModeSupported", DBusLog::Disable)]
+    fn is_transparent_mode_supported(&self) -> bool {
+        dbus_generated!()
+    }
 }
 
 impl_dbus_arg_enum!(SocketType);

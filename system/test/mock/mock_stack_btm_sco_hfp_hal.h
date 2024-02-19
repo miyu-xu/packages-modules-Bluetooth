@@ -114,6 +114,16 @@ struct get_swb_supported {
 };
 extern struct get_swb_supported get_swb_supported;
 
+// Name: get_transparent_mode_supported
+// Params:
+// Return: bool
+struct get_transparent_mode_supported {
+  static bool return_value;
+  std::function<bool()> body{[]() { return return_value; }};
+  bool operator()() { return body(); };
+};
+extern struct get_transparent_mode_supported get_transparent_mode_supported;
+
 // Name: init
 // Params:
 // Return: void
