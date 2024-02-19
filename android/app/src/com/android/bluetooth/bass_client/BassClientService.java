@@ -1342,6 +1342,7 @@ public class BassClientService extends ProfileService {
                         .setServiceData(BassConstants.BAAS_UUID,
                                 serviceData, serviceDataMask).build());
             }
+
             scanner.startScan(filters, settings, mSearchScanCallback);
             sEventLogger.logd(DBG, TAG, "startSearchingForSources");
             mCallbacks.notifySearchStarted(BluetoothStatusCodes.REASON_LOCAL_APP_REQUEST);
