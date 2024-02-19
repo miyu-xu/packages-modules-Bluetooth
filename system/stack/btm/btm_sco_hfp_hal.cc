@@ -48,6 +48,8 @@ void init() {
   cached_codecs.emplace_back(msbc);
 }
 
+bool get_transparent_mode_supported() { return false; }
+
 // Android statically compiles WBS support.
 bool get_wbs_supported() { return !DISABLE_WBS; }
 

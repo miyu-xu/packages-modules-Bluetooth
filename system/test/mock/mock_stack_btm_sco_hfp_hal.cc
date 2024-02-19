@@ -43,6 +43,7 @@ struct get_offload_supported get_offload_supported;
 struct get_packet_size get_packet_size;
 struct get_wbs_supported get_wbs_supported;
 struct get_swb_supported get_swb_supported;
+struct get_transparent_mode_supported get_transparent_mode_supported;
 struct init init;
 struct notify_sco_connection_change notify_sco_connection_change;
 struct set_codec_datapath set_codec_datapath;
@@ -64,6 +65,7 @@ bool get_offload_supported::return_value = false;
 int get_packet_size::return_value = 0;
 bool get_wbs_supported::return_value = false;
 bool get_swb_supported::return_value = false;
+bool get_transparent_mode_supported::return_value = false;
 
 }  // namespace stack_btm_sco_hfp_hal
 }  // namespace mock
@@ -99,6 +101,10 @@ bool get_wbs_supported() {
 bool get_swb_supported() {
   inc_func_call_count(__func__);
   return test::mock::stack_btm_sco_hfp_hal::get_swb_supported();
+}
+bool get_transparent_mode_supported() {
+  inc_func_call_count(__func__);
+  return test::mock::stack_btm_sco_hfp_hal::get_transparent_mode_supported();
 }
 void init() {
   inc_func_call_count(__func__);

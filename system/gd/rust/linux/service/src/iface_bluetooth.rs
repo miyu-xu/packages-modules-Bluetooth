@@ -706,6 +706,11 @@ impl IBluetooth for IBluetoothDBus {
     fn is_swb_supported(&self) -> bool {
         dbus_generated!()
     }
+
+    #[dbus_method("IsTransparentModeSupported", DBusLog::Disable)]
+    fn is_transparent_mode_supported(&self) -> bool {
+        dbus_generated!()
+    }
 }
 
 impl_dbus_arg_enum!(SocketType);

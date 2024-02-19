@@ -1327,6 +1327,10 @@ impl BluetoothInterface {
         ccall!(self, get_swb_supported)
     }
 
+    pub fn get_transparent_mode_supported(&self) -> bool {
+        ccall!(self, get_transparent_mode_supported)
+    }
+
     pub fn le_rand(&self) -> i32 {
         ccall!(self, le_rand)
     }

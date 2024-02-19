@@ -943,6 +943,13 @@ typedef struct {
   bool (*get_swb_supported)();
 
   /**
+   *
+   * Is transparent mode supported by the controller
+   *
+   */
+  bool (*get_transparent_mode_supported)();
+
+  /**
    * Data passed from BluetoothDevice.metadata_changed
    *
    * @param remote_bd_addr remote address
