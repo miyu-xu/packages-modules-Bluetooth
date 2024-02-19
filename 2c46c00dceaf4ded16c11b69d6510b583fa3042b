@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb15f6e7_74ae8303",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 824,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-19T15:31:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0daec6ed_4044b2ed",
+      "range": {
+        "startLine": 824,
+        "startChar": 3,
+        "endLine": 824,
+        "endChar": 31
+      },
+      "revId": "2c46c00dceaf4ded16c11b69d6510b583fa3042b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cecd5efb_f33ea924",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-19T10:01:35Z",
       "side": 1,
       "message": "if (!condition) continue;\n\nyour_code;\n\nYou save one indendation.",
+      "range": {
+        "startLine": 838,
+        "startChar": 4,
+        "endLine": 838,
+        "endChar": 29
+      },
+      "revId": "2c46c00dceaf4ded16c11b69d6510b583fa3042b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9140bb16_b553d878",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 838,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-19T15:31:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cecd5efb_f33ea924",
       "range": {
         "startLine": 838,
         "startChar": 4,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b60e47c_21759cae",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 854,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-19T15:31:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dcce13f2_0b6c86df",
+      "range": {
+        "startLine": 854,
+        "startChar": 13,
+        "endLine": 854,
+        "endChar": 53
+      },
+      "revId": "2c46c00dceaf4ded16c11b69d6510b583fa3042b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4ef2902_19f54e09",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6664615_a178e9e8",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 872,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-19T15:31:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4ef2902_19f54e09",
+      "range": {
+        "startLine": 865,
+        "startChar": 0,
+        "endLine": 872,
+        "endChar": 5
+      },
+      "revId": "2c46c00dceaf4ded16c11b69d6510b583fa3042b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f0d9122b_3db36099",
@@ -106,6 +202,30 @@
       "writtenOn": "2024-02-19T10:01:35Z",
       "side": 1,
       "message": "if (!condition) continue;\n\nyour_code;\n\nYou save one indendation.",
+      "range": {
+        "startLine": 881,
+        "startChar": 4,
+        "endLine": 881,
+        "endChar": 33
+      },
+      "revId": "2c46c00dceaf4ded16c11b69d6510b583fa3042b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6670ea1e_0537a07a",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 881,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-19T15:31:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0d9122b_3db36099",
       "range": {
         "startLine": 881,
         "startChar": 4,
