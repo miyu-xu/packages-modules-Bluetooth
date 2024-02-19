@@ -118,7 +118,8 @@ tBTA_HH_DEV_CB* bta_hh_get_cb(const tAclLinkSpec& link_spec) {
 void bta_hh_clean_up_kdev(tBTA_HH_DEV_CB* p_cb) {
   uint8_t index;
 
-  if (p_cb->is_le_device) {
+  if ((!IS_FLAG_ENABLED(allow_switching_hid_and_hogp) && p_cb->is_le_device) ||
+      p_cb->link_spec.transport == BT_TRANSPORT_LE) {
     uint8_t le_hid_handle = BTA_HH_GET_LE_CB_IDX(p_cb->hid_handle);
     if (le_hid_handle >= BTA_HH_LE_MAX_KNOWN) {
       LOG_WARN("Invalid LE hid_handle %d", p_cb->hid_handle);
