@@ -1651,7 +1651,10 @@ void bta_hh_le_open_fail(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
     bta_hh_clear_service_cache(p_cb);
   }
 
-  if (p_cb->is_le_device && p_cb->status != BTA_HH_ERR_SDP) {
+  if ((!IS_FLAG_ENABLED(allow_switching_hid_and_hogp) && p_cb->is_le_device &&
+       p_cb->status != BTA_HH_ERR_SDP) ||
+      (p_cb->link_spec.transport == BT_TRANSPORT_LE &&
+       p_cb->status != BTA_HH_ERR_SDP)) {
     LOG_DEBUG("gd_acl: Re-adding HID device to acceptlist");
     // gd removes from bg list after failed connection
     // Correct the cached state to allow re-add to acceptlist.
