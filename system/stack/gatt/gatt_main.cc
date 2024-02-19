@@ -45,6 +45,7 @@
 #include "stack/btm/btm_sec.h"
 #include "stack/eatt/eatt.h"
 #include "stack/gatt/gatt_int.h"
+#include "stack/include/acl_api.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_psm_types.h"
 #include "stack/include/bt_types.h"
@@ -421,6 +422,8 @@ void gatt_update_app_use_link_flag(tGATT_IF gatt_if, tGATT_TCB* p_tcb,
 bool gatt_act_connect(tGATT_REG* p_reg, const RawAddress& bd_addr,
                       tBLE_ADDR_TYPE addr_type, tBT_TRANSPORT transport,
                       int8_t initiating_phys) {
+  log::verbose("address:{}, transport:{}", ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
+               bt_transport_text(transport).c_str());
   tGATT_TCB* p_tcb = gatt_find_tcb_by_addr(bd_addr, transport);
   if (p_tcb != NULL) {
     /* before link down, another app try to open a GATT connection */
