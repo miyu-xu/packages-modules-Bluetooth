@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2e232f2_84172ae9",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-02-19T10:52:15Z",
+      "side": 1,
+      "message": "If it doesn\u0027t jeopardize the feature targeting on m124, creating a new DBus interface for AdvertiserManager would be preferable. Just update BluetoothClient to support new interface on new Floss API version, we can change API signature later for known issue in the future.",
+      "range": {
+        "startLine": 417,
+        "startChar": 0,
+        "endLine": 417,
+        "endChar": 94
+      },
+      "revId": "eb6f61c2b9ff19c142b82e0c26ef1155efdb491e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
