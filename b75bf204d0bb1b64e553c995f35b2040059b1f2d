@@ -1,0 +1,330 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "630fd6f1_b5f5e0bc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-19T17:58:02Z",
+      "side": 1,
+      "message": "Please fix the commit message warnings.\n\nReference:  https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2882816/15",
+      "revId": "b75bf204d0bb1b64e553c995f35b2040059b1f2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55262237_10cffddd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-19T17:58:02Z",
+      "side": 1,
+      "message": "The RFCOMM tests are all passed. Just some style changes.",
+      "revId": "b75bf204d0bb1b64e553c995f35b2040059b1f2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49190ae9_e14674c3",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-19T17:58:02Z",
+      "side": 1,
+      "message": "2024",
+      "range": {
+        "startLine": 1,
+        "startChar": 12,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "b75bf204d0bb1b64e553c995f35b2040059b1f2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77c1c0b9_4ee8b0fa",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-19T17:58:02Z",
+      "side": 1,
+      "message": "```suggestion\n            logging.warning(\u0027The socket_id: %s, is already registered\u0027, socket_id)\n```",
+      "range": {
+        "startLine": 181,
+        "startChar": 12,
+        "endLine": 181,
+        "endChar": 24
+      },
+      "revId": "b75bf204d0bb1b64e553c995f35b2040059b1f2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f2317f6_f62224af",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-19T17:58:02Z",
+      "side": 1,
+      "message": "```suggestion\n            logging.warning(\u0027The socket_id: %s, is not registered yet\u0027, listener_id)\n```",
+      "range": {
+        "startLine": 192,
+        "startChar": 0,
+        "endLine": 192,
+        "endChar": 81
+      },
+      "revId": "b75bf204d0bb1b64e553c995f35b2040059b1f2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c422dcaf_acd47f38",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-19T17:58:02Z",
+      "side": 1,
+      "message": "```suggestion\n        Returns:\n            SocketResult as {status:BtStatus, id:int} on success, None otherwise.\n```",
+      "range": {
+        "startLine": 328,
+        "startChar": 0,
+        "endLine": 328,
+        "endChar": 86
+      },
+      "revId": "b75bf204d0bb1b64e553c995f35b2040059b1f2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8232cbad_453adb0d",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-19T17:58:02Z",
+      "side": 1,
+      "message": "```suggestion\n        _, status \u003d self.wait_for_incoming_socket_ready(socket_id)\n```",
+      "revId": "b75bf204d0bb1b64e553c995f35b2040059b1f2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e63c1784_d045156d",
+        "filename": "floss/pandora/server/bluetooth.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-19T17:58:02Z",
+      "side": 1,
+      "message": "Please use more meaningful name here.\n\n```suggestion\n    def accept_socket(self, socket_id, timeout_ms\u003dNone):\n```",
+      "revId": "b75bf204d0bb1b64e553c995f35b2040059b1f2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d47d2098_1b8b3666",
+        "filename": "floss/pandora/server/bluetooth.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-19T17:58:02Z",
+      "side": 1,
+      "message": "Please use more meaningful name here.\n\n\n```suggestion\n    def close_socket(self, socket_id):\n```",
+      "range": {
+        "startLine": 381,
+        "startChar": 0,
+        "endLine": 381,
+        "endChar": 31
+      },
+      "revId": "b75bf204d0bb1b64e553c995f35b2040059b1f2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "709f3c75_f4c5fbb1",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-19T17:58:02Z",
+      "side": 1,
+      "message": "Please fix the linter warnings:\nW0621: 58:RFCOMMService.ConnectToServer.CreateRFCOMMObserver.on_outgoing_connection_result: Redefining name \u0027socket\u0027 from outer scope (line 18) [redefined-outer-name]\nhttp://go/gpylint-faq#redefined-outer-name\n\nW0621:171:RFCOMMService.StartServer.StartServerObserver.on_incoming_socket_ready: Redefining name \u0027socket\u0027 from outer scope (line 18) [redefined-outer-name]\nhttp://go/gpylint-faq#redefined-outer-name\n\nW0621:198:RFCOMMService.StartServer: Redefining name \u0027socket\u0027 from outer scope (line 18) [redefined-outer-name]\nhttp://go/gpylint-faq#redefined-outer-name\n\n\n\nYou can fix it by `import socket as socket_module` to avoid conflicting with \nmodule name.",
+      "revId": "b75bf204d0bb1b64e553c995f35b2040059b1f2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40781529_141113be",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-19T17:58:02Z",
+      "side": 1,
+      "message": "Please fix the linter warning:\nC0103: 44:RFCOMMService.__init__: Attribute name \"BUFFER_SIZE\" doesn\u0027t conform to \u0027^_{0,2}[a-z][a-z0-9_]*$\u0027 pattern [invalid-name]\n\nYou can fix it by moving this out from ```__init__``` : \n```\nBUFFER_SIZE \u003d 512\n\ndef __init__...\n```",
+      "revId": "b75bf204d0bb1b64e553c995f35b2040059b1f2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87c3c323_bfbae264",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-19T17:58:02Z",
+      "side": 1,
+      "message": "We need to set result and return in here since ```_, _, fd \u003d socket_info``` will fail to unpack from socket_info if the socket_info is None.",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 0
+      },
+      "revId": "b75bf204d0bb1b64e553c995f35b2040059b1f2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26023611_ae9467ad",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-19T17:58:02Z",
+      "side": 1,
+      "message": "Please make this function\u0027s name more meaningful.\n\n```suggestion\n                if not self.bluetooth.close_socket(listener_id):\n```",
+      "range": {
+        "startLine": 151,
+        "startChar": 23,
+        "endLine": 151,
+        "endChar": 43
+      },
+      "revId": "b75bf204d0bb1b64e553c995f35b2040059b1f2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51063368_504a4f15",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-19T17:58:02Z",
+      "side": 1,
+      "message": "If \u0027id\u0027 not in socket, socket_id will not exist and then\n```\n                if socket_id !\u003d self.task[\u0027socket_id\u0027]:\n                    return\n```\nwill raise an Exception.\n\n```suggestion\n                if not socket or \u0027id\u0027 not in socket:\n                    return\n\n                socket_id \u003d socket[\u0027id\u0027]\n                if socket_id !\u003d self.task[\u0027socket_id\u0027]:\n                    return\n```",
+      "range": {
+        "startLine": 172,
+        "startChar": 0,
+        "endLine": 177,
+        "endChar": 0
+      },
+      "revId": "b75bf204d0bb1b64e553c995f35b2040059b1f2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78c18c28_177bc01b",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-19T17:58:02Z",
+      "side": 1,
+      "message": "Please use more meaningful name for the socket accept here.\n\n```suggestion\n                accept_socket_status \u003d self.bluetooth.accept_socket(listener_id, 5)\n```",
+      "range": {
+        "startLine": 240,
+        "startChar": 0,
+        "endLine": 240,
+        "endChar": 76
+      },
+      "revId": "b75bf204d0bb1b64e553c995f35b2040059b1f2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0d3f985_5847d987",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-19T17:58:02Z",
+      "side": 1,
+      "message": "C6012:288: Quote delimiter \" is inconsistent with the rest of the file [g-inconsistent-quotes]",
+      "revId": "b75bf204d0bb1b64e553c995f35b2040059b1f2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
