@@ -72,6 +72,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "192fcc2c_945bd2d7",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-02-19T22:16:14Z",
+      "side": 1,
+      "message": "But I don\u0027t want to hold write lock when I call \"updateActiveDevices\", or when I wait for state machine to quit and cleanup.\n\nEspecially \"updateActiveDevices\" - as it makes blocking call to AudioFramework.\n\nIf I hold write lock, and make call to AF, and then AF calls BT stack back with operation that requires Read Lock, we get a deadlock.\n\nWrite lock should be held just for modifications of list they guard. All other read/access operation can be handled by read lock only.",
+      "parentUuid": "e72c6e43_240df3f5",
+      "range": {
+        "startLine": 462,
+        "startChar": 7,
+        "endLine": 466,
+        "endChar": 30
+      },
+      "revId": "882554beffff7c608ef2b77b348c807b66178080",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cc118e55_f9b9cdeb",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 3
@@ -95,6 +119,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dbfda668_c1de5afa",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3022,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-02-19T22:16:14Z",
+      "side": 1,
+      "message": "When we hold read lock, there is no guarantee for atomicity, as multiple threads can lock it at same time.\n\nWe need atomicity just for removal of list element.\n\nFrom https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/locks/ReentrantReadWriteLock.html : \n``writer can acquire the read lock, but not vice-versa``\n``If a reader tries to acquire the write lock it will never succeed.``",
+      "parentUuid": "cc118e55_f9b9cdeb",
+      "range": {
+        "startLine": 3018,
+        "startChar": 0,
+        "endLine": 3022,
+        "endChar": 31
+      },
+      "revId": "882554beffff7c608ef2b77b348c807b66178080",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7618f52c_6defb99a",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 3
@@ -106,6 +154,30 @@
       "writtenOn": "2024-02-19T21:07:38Z",
       "side": 1,
       "message": "same as above, this CL breaks the atomic block into two blocks. Maybe we should hold the write lock from the beginning?",
+      "range": {
+        "startLine": 3664,
+        "startChar": 0,
+        "endLine": 3664,
+        "endChar": 27
+      },
+      "revId": "882554beffff7c608ef2b77b348c807b66178080",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e37dac66_a00c8057",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3664,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-02-19T22:16:14Z",
+      "side": 1,
+      "message": "IMHO this is ok, and should work good.\nhandleGroupTransitToInactive might be lengthy, would prefer to not do it under WriteLock.",
+      "parentUuid": "7618f52c_6defb99a",
       "range": {
         "startLine": 3664,
         "startChar": 0,
