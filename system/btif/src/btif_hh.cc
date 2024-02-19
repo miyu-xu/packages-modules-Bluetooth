@@ -29,6 +29,7 @@
 
 #include "btif/include/btif_hh.h"
 
+#include <android_bluetooth_flags.h>
 #include <base/logging.h>
 
 #include <cstdint>
@@ -325,7 +326,7 @@ static btif_hh_device_t* btif_hh_find_dev_by_link_spec(
   uint32_t i;
   for (i = 0; i < BTIF_HH_MAX_HID; i++) {
     if (btif_hh_cb.devices[i].dev_status != BTHH_CONN_STATE_UNKNOWN &&
-        btif_hh_cb.devices[i].link_spec == link_spec) {
+        btif_hh_cb.devices[i].link_spec.addrt.bda == link_spec.addrt.bda) {
       return &btif_hh_cb.devices[i];
     }
   }
@@ -346,7 +347,7 @@ static btif_hh_device_t* btif_hh_find_connected_dev_by_link_spec(
   uint32_t i;
   for (i = 0; i < BTIF_HH_MAX_HID; i++) {
     if (btif_hh_cb.devices[i].dev_status == BTHH_CONN_STATE_CONNECTED &&
-        btif_hh_cb.devices[i].link_spec == link_spec) {
+        btif_hh_cb.devices[i].link_spec.addrt.bda == link_spec.addrt.bda) {
       return &btif_hh_cb.devices[i];
     }
   }
@@ -504,7 +505,11 @@ void btif_hh_remove_device(const tAclLinkSpec& link_spec) {
     p_added_dev = &btif_hh_cb.added_devices[i];
     if (p_added_dev->link_spec.addrt.bda == link_spec.addrt.bda) {
       BTA_HhRemoveDev(p_added_dev->dev_handle);
-      btif_storage_remove_hid_info(p_added_dev->link_spec.addrt.bda);
+      btif_storage_remove_hid_info(p_added_dev->link_spec);
+      if (IS_FLAG_ENABLED(allow_switching_hid_and_hogp)) {
+        btif_storage_clear_hid_preferred_transport(
+            &p_added_dev->link_spec.addrt.bda);
+      }
       p_added_dev->link_spec = {};
       p_added_dev->dev_handle = BTA_HH_INVALID_HANDLE;
       break;
@@ -667,6 +672,11 @@ bt_status_t btif_hh_connect(const tAclLinkSpec* link_spec) {
     LOG_DEBUG("HidHost profile already connected for %s",
               ADDRESS_TO_LOGGABLE_CSTR((*link_spec)));
     return BT_STATUS_SUCCESS;
+  }
+
+  if (IS_FLAG_ENABLED(allow_switching_hid_and_hogp)) {
+    btif_storage_set_hid_preferred_transport(&link_spec->addrt.bda,
+                                             link_spec->transport);
   }
 
   /* Not checking the NORMALLY_Connectible flags from sdp record, and anyways
@@ -891,7 +901,7 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
           LOG_WARN(
               "Removing cached descriptor due to service change, handle = %d",
               p_data->dev_status.handle);
-          btif_storage_remove_hid_info(p_dev->link_spec.addrt.bda);
+          btif_storage_remove_hid_info(p_dev->link_spec);
         }
 
         btif_hh_cb.status = (BTIF_HH_STATUS)BTIF_HH_DEV_DISCONNECTED;
@@ -1059,7 +1069,7 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
                        p_dev->app_id, dscp_info);
           // write hid info to nvram
           ret = btif_storage_add_hid_device_info(
-              &(p_dev->link_spec.addrt.bda), p_dev->attr_mask, p_dev->sub_class,
+              &(p_dev->link_spec), p_dev->attr_mask, p_dev->sub_class,
               p_dev->app_id, p_data->dscp_info.vendor_id,
               p_data->dscp_info.product_id, p_data->dscp_info.version,
               p_data->dscp_info.ctry_code, p_data->dscp_info.ssr_max_latency,
