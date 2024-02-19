@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64b7b365_55000131",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-02-19T10:02:22Z",
+      "side": 1,
+      "message": "One Change-Id should be enough",
+      "range": {
+        "startLine": 11,
+        "startChar": 36,
+        "endLine": 14,
+        "endChar": 52
+      },
+      "revId": "a226605953ea9bcdafb6c4185e5d9a24d9ccd5ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
