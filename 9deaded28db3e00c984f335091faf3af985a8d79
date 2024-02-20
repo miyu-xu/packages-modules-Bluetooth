@@ -46,6 +46,30 @@
       },
       "revId": "9deaded28db3e00c984f335091faf3af985a8d79",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "922c20ca_25cd4df7",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-02-20T07:51:09Z",
+      "side": 1,
+      "message": "Reverted back to `stopInternal` since I\u0027m planning to call this in `stop` with feature flag.",
+      "parentUuid": "cf059a88_929d2c60",
+      "range": {
+        "startLine": 587,
+        "startChar": 17,
+        "endLine": 587,
+        "endChar": 29
+      },
+      "revId": "9deaded28db3e00c984f335091faf3af985a8d79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
