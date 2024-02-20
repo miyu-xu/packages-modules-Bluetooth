@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e72f87d_132a2138",
+        "filename": "system/gd/discovery/device/adv_data.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-02-20T08:44:09Z",
+      "side": 1,
+      "message": "Do we need this level of complexity for such a simple task of looping through byte array/vector ?\n\nYou have AdvData extending EirData, which uses DataParser, which rely on GapData to hold pieces of initial vector inside separate vectors.\n\nIf you pass this structure around, you will have to reconstruct the initial vector from vector of GapData every time you need original vector - i.e. to pass it to Java.\n\nIt took me 20 minutes to try figure where the errors in parsing data field are handled. And will take couple more to verify if my analysis is correct.\n\ni.e. What if someone parses invalid advertisement, where last field length is bigger than whole packet size ? You have to analyze generated code of GapData to figure that, plus there is no handling of this issue.",
+      "revId": "98afc1705b3ef82286dcaf9c331f8bdb9c1db4a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e6cdc9a_41c5296b",
+        "filename": "system/gd/discovery/device/adv_data.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-02-20T08:44:09Z",
+      "side": 1,
+      "message": "Should you be returning inside if, after you parsed your field ?\nHere and in all loops below",
+      "revId": "98afc1705b3ef82286dcaf9c331f8bdb9c1db4a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c5af5d2_522f2d09",
+        "filename": "system/gd/discovery/device/adv_data.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-02-20T08:44:09Z",
+      "side": 1,
+      "message": "Seems like a lot of repetitions of same pattern through this file loop and if check of data type.\nMaybe some helper, i.e. GetFieldByType could encapsulate this and reduce repetitions ?",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 3
+      },
+      "revId": "98afc1705b3ef82286dcaf9c331f8bdb9c1db4a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a46ae0ac_c89ffe63",
+        "filename": "system/gd/discovery/device/adv_data.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-02-20T08:44:09Z",
+      "side": 1,
+      "message": "There is existing Advertisitng Data Parser:\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/include/advertise_data_parser.h\n\nWith a bunch of unit tests:\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/test/ad_parser_unittest.cc",
+      "range": {
+        "startLine": 45,
+        "startChar": 6,
+        "endLine": 45,
+        "endChar": 13
+      },
+      "revId": "98afc1705b3ef82286dcaf9c331f8bdb9c1db4a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "776df717_68aa751c",
+        "filename": "system/gd/discovery/device/eir_data.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-02-20T08:44:09Z",
+      "side": 1,
+      "message": "Flags are not allowed on Classic transport, it\u0027s just for LE.\nYou would have to check for other fields if having EIR and AD data tied together makes sense. i.e. getting name on LE transport can return less than 240bytes.",
+      "range": {
+        "startLine": 48,
+        "startChar": 1,
+        "endLine": 48,
+        "endChar": 56
+      },
+      "revId": "98afc1705b3ef82286dcaf9c331f8bdb9c1db4a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
