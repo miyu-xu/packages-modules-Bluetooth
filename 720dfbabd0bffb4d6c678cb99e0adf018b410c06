@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dc8c878_e0223a62",
+        "filename": "system/stack/rfcomm/rfc_port_fsm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-20T23:10:07Z",
+      "side": 1,
+      "message": "Why log it here, then?\n\nDid you mean if !\u003d RFC_STATE_OPENED?",
+      "range": {
+        "startLine": 88,
+        "startChar": 2,
+        "endLine": 88,
+        "endChar": 68
+      },
+      "revId": "720dfbabd0bffb4d6c678cb99e0adf018b410c06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12772e98_ace01895",
+        "filename": "system/stack/rfcomm/rfc_port_fsm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-20T23:10:07Z",
+      "side": 1,
+      "message": "while you\u0027re here, should these warnings really be warnings?",
+      "range": {
+        "startLine": 515,
+        "startChar": 11,
+        "endLine": 515,
+        "endChar": 15
+      },
+      "revId": "720dfbabd0bffb4d6c678cb99e0adf018b410c06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
