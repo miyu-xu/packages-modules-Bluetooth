@@ -16,6 +16,29 @@
       "message": "Could anyone please review this change?",
       "revId": "233282135f65243e64648fbed31e15765fc3b77d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5acb21c_3e8f6ebb",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3037,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-20T23:17:51Z",
+      "side": 1,
+      "message": "Should this be inside the if, like it is on line 3796?",
+      "range": {
+        "startLine": 3037,
+        "startChar": 13,
+        "endLine": 3037,
+        "endChar": 33
+      },
+      "revId": "233282135f65243e64648fbed31e15765fc3b77d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
