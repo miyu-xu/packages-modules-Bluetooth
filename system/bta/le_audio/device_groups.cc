@@ -1875,22 +1875,23 @@ bool LeAudioDeviceGroup::IsAudioSetConfigurationSupported(
   for (auto direction : {le_audio::types::kLeAudioDirectionSink,
                          le_audio::types::kLeAudioDirectionSource}) {
     const auto& confs = audio_set_conf->confs.get(direction);
+    if (confs.size() == 0) continue;
+
+    LOG_INFO("Looking for requirements: %s - %s", audio_set_conf->name.c_str(),
+             (direction == 1 ? "snk" : "src"));
     for (const auto& ent : confs) {
-      LOG_INFO("Looking for requirements: %s - %s",
-               audio_set_conf->name.c_str(), (direction == 1 ? "snk" : "src"));
-      auto pac = leAudioDevice->GetCodecConfigurationSupportedPac(direction,
-                                                                  ent.codec);
-      if (pac != nullptr) {
-        LOG_INFO("Configuration is supported by device %s",
+      if (!leAudioDevice->GetCodecConfigurationSupportedPac(direction,
+                                                            ent.codec)) {
+        LOG_INFO("Configuration is NOT supported by device %s",
                  ADDRESS_TO_LOGGABLE_CSTR(leAudioDevice->address_));
-        return true;
+        return false;
       }
     }
   }
 
-  LOG_INFO("Configuration is NOT supported by device %s",
+  LOG_INFO("Configuration is supported by device %s",
            ADDRESS_TO_LOGGABLE_CSTR(leAudioDevice->address_));
-  return false;
+  return true;
 }
 
 const set_configurations::AudioSetConfiguration*
