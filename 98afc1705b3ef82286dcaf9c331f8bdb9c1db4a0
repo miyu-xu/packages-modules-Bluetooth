@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d9adebb_ac380130",
+        "filename": "system/gd/discovery/device/adv_data.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-20T22:53:55Z",
+      "side": 1,
+      "message": "I\u0027m simply using the PDL parser APIs",
+      "parentUuid": "1e72f87d_132a2138",
+      "revId": "98afc1705b3ef82286dcaf9c331f8bdb9c1db4a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e6cdc9a_41c5296b",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8f7b98e_8c00da9a",
+        "filename": "system/gd/discovery/device/adv_data.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-20T22:53:55Z",
+      "side": 1,
+      "message": "This is to defend against illegal data being presented.",
+      "parentUuid": "4e6cdc9a_41c5296b",
+      "revId": "98afc1705b3ef82286dcaf9c331f8bdb9c1db4a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c5af5d2_522f2d09",
@@ -48,6 +84,30 @@
       "writtenOn": "2024-02-20T08:44:09Z",
       "side": 1,
       "message": "Seems like a lot of repetitions of same pattern through this file loop and if check of data type.\nMaybe some helper, i.e. GetFieldByType could encapsulate this and reduce repetitions ?",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 3
+      },
+      "revId": "98afc1705b3ef82286dcaf9c331f8bdb9c1db4a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6a7112a_be1eff60",
+        "filename": "system/gd/discovery/device/adv_data.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-20T22:53:55Z",
+      "side": 1,
+      "message": "Yes...after identifying the important parts I needed I found that the patterns were in a nice cadence.  Next iteration would be to simplify.",
+      "parentUuid": "5c5af5d2_522f2d09",
       "range": {
         "startLine": 129,
         "startChar": 0,
@@ -81,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f17b381_37751f5b",
+        "filename": "system/gd/discovery/device/adv_data.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-20T22:53:55Z",
+      "side": 1,
+      "message": "ok we will use that one then",
+      "parentUuid": "a46ae0ac_c89ffe63",
+      "range": {
+        "startLine": 45,
+        "startChar": 6,
+        "endLine": 45,
+        "endChar": 13
+      },
+      "revId": "98afc1705b3ef82286dcaf9c331f8bdb9c1db4a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "776df717_68aa751c",
@@ -94,6 +178,30 @@
       "writtenOn": "2024-02-20T08:44:09Z",
       "side": 1,
       "message": "Flags are not allowed on Classic transport, it\u0027s just for LE.\nYou would have to check for other fields if having EIR and AD data tied together makes sense. i.e. getting name on LE transport can return less than 240bytes.",
+      "range": {
+        "startLine": 48,
+        "startChar": 1,
+        "endLine": 48,
+        "endChar": 56
+      },
+      "revId": "98afc1705b3ef82286dcaf9c331f8bdb9c1db4a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fea2684_80e320d8",
+        "filename": "system/gd/discovery/device/eir_data.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-20T22:53:55Z",
+      "side": 1,
+      "message": "The EIR and AD are already tied together in the legacy impl.\n\nReturning \u003c240B is fine for a name; we just need to make sure we can hold the names.\n\n`Flags are not allowed on Classic transport, it\u0027s just for LE` \nThat is not true\n\nhttps://www.bluetooth.com/specifications/css-11/",
+      "parentUuid": "776df717_68aa751c",
       "range": {
         "startLine": 48,
         "startChar": 1,
