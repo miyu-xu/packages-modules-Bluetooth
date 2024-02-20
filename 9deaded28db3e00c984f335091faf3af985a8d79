@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3df8e61b_587f99cc",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-02-20T07:39:03Z",
+      "side": 1,
+      "message": "nit) handleStop to imply that it\u0027s called from a handler and `stop` does not call this.\n```suggestion\n    private void handleStop() {\n```",
+      "range": {
+        "startLine": 587,
+        "startChar": 17,
+        "endLine": 587,
+        "endChar": 29
+      },
+      "revId": "9deaded28db3e00c984f335091faf3af985a8d79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
