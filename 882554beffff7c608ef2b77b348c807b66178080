@@ -168,6 +168,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b34592b2_d874ea5d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-02-20T18:03:53Z",
+      "side": 1,
+      "message": "Yes I can use this pattern, but I don\u0027t think it\u0027s necessary in this place.",
+      "parentUuid": "ab5dcbbf_29dc6074",
+      "range": {
+        "startLine": 462,
+        "startChar": 7,
+        "endLine": 466,
+        "endChar": 30
+      },
+      "revId": "882554beffff7c608ef2b77b348c807b66178080",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cc118e55_f9b9cdeb",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 3
