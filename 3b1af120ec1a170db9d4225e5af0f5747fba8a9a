@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b49d856f_932b08ef",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 897,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-20T18:38:22Z",
+      "side": 1,
+      "message": "Can you remove those from the pass list?",
+      "revId": "3b1af120ec1a170db9d4225e5af0f5747fba8a9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
