@@ -64,3 +64,11 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "request_le_conn_update"
+    namespace: "bluetooth"
+    description: "Send LE connection parameters to low layer stack and controller"
+    bug: "335331426"
+    is_exported: true
+}
