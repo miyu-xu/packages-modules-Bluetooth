@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "50702006_27f837ba",
+        "filename": "system/btif/src/btif_a2dp.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-02-20T21:38:53Z",
+      "side": 1,
+      "message": "I think it should continue to use the peer sep type rather than the a2dp type check. The `btif_av_get_peer_sep` checks the peer sep type for the active a2dp type. So, if there is no active peer then the peer sep type would be invalid.",
+      "parentUuid": "bf46ab38_352164a9",
+      "range": {
+        "startLine": 46,
+        "startChar": 6,
+        "endLine": 47,
+        "endChar": 41
+      },
+      "revId": "b021c124b15615b53df831c7ab06c135f7b795d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4fdd4093_cca46290",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-20T18:38:40Z",
       "side": 1,
       "message": "Out of curiosity, why are no changes needed to on_start?\n\nPresumably, its related to the fact that there\u0027s no offload support for sink/decoding?",
+      "range": {
+        "startLine": 57,
+        "startChar": 5,
+        "endLine": 57,
+        "endChar": 25
+      },
+      "revId": "b021c124b15615b53df831c7ab06c135f7b795d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0c65ee8_2c0d2ec2",
+        "filename": "system/btif/src/btif_a2dp.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-02-20T21:38:53Z",
+      "side": 1,
+      "message": "Correct. This is only invoked when the peer is of type sink i.e. only for source profile.",
+      "parentUuid": "4fdd4093_cca46290",
       "range": {
         "startLine": 57,
         "startChar": 5,
