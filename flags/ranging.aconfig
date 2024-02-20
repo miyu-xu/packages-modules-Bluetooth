@@ -6,6 +6,7 @@ flag {
     namespace: "bluetooth"
     description: "Enable Channel Sounding"
     bug: "317683528"
+    is_exported: true
 }
 
 flag {
