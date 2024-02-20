@@ -1811,6 +1811,46 @@ TEST_F(LeAudioAseConfigurationTest, test_getting_cis_count) {
   ASSERT_EQ(snk_cis_count, 2);
 }
 
+TEST_F(LeAudioAseConfigurationTest, test_config_support) {
+  LeAudioDevice* left = AddTestDevice(2, 1);
+  LeAudioDevice* right = AddTestDevice(0, 0, 0, 0, false, true);
+
+  /* Change location as by default it is stereo */
+  left->snk_audio_locations_ = kChannelAllocationStereo;
+  right->snk_audio_locations_ = kChannelAllocationStereo;
+  group_->ReloadAudioLocations();
+
+  auto test_config = getSpecificConfiguration(
+      "DualDev_OneChanStereoSnk_48_4_OneChanStereoSrc_16_2_Balanced_"
+      "Reliability",
+      LeAudioContextType::VOICEASSISTANTS);
+  ASSERT_NE(nullptr, test_config);
+
+  /* Create PACs for sink */
+  PublishedAudioCapabilitiesBuilder snk_pac_builder;
+  snk_pac_builder.Reset();
+  for (const auto& entry : (*test_config).confs.sink) {
+    snk_pac_builder.Add(entry.codec, 1);
+  }
+  left->snk_pacs_ = snk_pac_builder.Get();
+  right->snk_pacs_ = snk_pac_builder.Get();
+
+  ASSERT_FALSE(group_->IsAudioSetConfigurationSupported(left, test_config));
+  ASSERT_FALSE(group_->IsAudioSetConfigurationSupported(right, test_config));
+
+  /* Create PACs for source */
+  PublishedAudioCapabilitiesBuilder src_pac_builder;
+  src_pac_builder.Reset();
+  for (const auto& entry : (*test_config).confs.source) {
+    src_pac_builder.Add(entry.codec, 1);
+  }
+  left->src_pacs_ = src_pac_builder.Get();
+  right->src_pacs_ = src_pac_builder.Get();
+
+  ASSERT_TRUE(group_->IsAudioSetConfigurationSupported(left, test_config));
+  ASSERT_TRUE(group_->IsAudioSetConfigurationSupported(right, test_config));
+}
+
 }  // namespace
 }  // namespace internal
 }  // namespace le_audio
