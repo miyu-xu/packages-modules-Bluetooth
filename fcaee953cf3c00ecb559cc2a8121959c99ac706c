@@ -16,6 +16,29 @@
       "message": "Similar to aosp/2967142, changing the test logic to use TestLooper to fix flakiness. Detailed explanation is added in comments inside the test.",
       "revId": "fcaee953cf3c00ecb559cc2a8121959c99ac706c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9557414b_45e7dd17",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-02-20T06:38:06Z",
+      "side": 1,
+      "message": "Q) For what assertion is this mock used?  Can this be placed right before that assertion?",
+      "range": {
+        "startLine": 618,
+        "startChar": 8,
+        "endLine": 618,
+        "endChar": 67
+      },
+      "revId": "fcaee953cf3c00ecb559cc2a8121959c99ac706c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
