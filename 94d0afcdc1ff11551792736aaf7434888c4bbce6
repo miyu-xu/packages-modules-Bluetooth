@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db85ec85_7cefe074",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1380,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-02-20T17:26:38Z",
+      "side": 0,
+      "message": "Hi reviewers, due to the signature / field change of `AdvertiseManagerImpl`, it becomes hard to test the add / remove functions. WDYT about removing these tests?\n\nMy next CL will move the `new_reg_id()` function out as a global function because it\u0027s shareable for both stacks. Perhaps we could help a simpler unittest for that.",
+      "range": {
+        "startLine": 1380,
+        "startChar": 7,
+        "endLine": 1380,
+        "endChar": 40
+      },
+      "revId": "94d0afcdc1ff11551792736aaf7434888c4bbce6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
