@@ -70,6 +70,30 @@
       },
       "revId": "9deaded28db3e00c984f335091faf3af985a8d79",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e525ff7_ae76e4c7",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-02-20T08:36:15Z",
+      "side": 1,
+      "message": "In that case stopInternal looks good to me.",
+      "parentUuid": "922c20ca_25cd4df7",
+      "range": {
+        "startLine": 587,
+        "startChar": 17,
+        "endLine": 587,
+        "endChar": 29
+      },
+      "revId": "9deaded28db3e00c984f335091faf3af985a8d79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
