@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "bce345e6_f52f0e4e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-02-20T05:04:01Z",
+      "side": 1,
+      "message": "If you want to detect external controller, maybe a better way is to detect for two open indexes (i.e. hci0 and hci1)? \n\nThe open/close index can be tracked by snooping the OpenIndex and CloseIndex opcodes here: https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/floss/hcidoc/src/parser.rs;l\u003d83;drc\u003d201214c5d7484bbb942dc232bb72c90b51ed5ea1",
+      "range": {
+        "startLine": 7,
+        "startChar": 19,
+        "endLine": 7,
+        "endChar": 38
+      },
+      "revId": "407aa6364eb58eec7512856c6a136fb2bb27430d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "084dcae7_e8b56f23",
@@ -14,6 +37,75 @@
       "writtenOn": "2024-02-20T04:29:22Z",
       "side": 1,
       "message": "Hi, could you review this? Thanks!",
+      "revId": "407aa6364eb58eec7512856c6a136fb2bb27430d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d636599f_5b1fda64",
+        "filename": "floss/hcidoc/src/groups/controllers.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-02-20T05:04:01Z",
+      "side": 1,
+      "message": "I don\u0027t fully support this, seems like this can be updated by the vendors as they please. But OTOH this might provide useful for us as well.",
+      "range": {
+        "startLine": 26,
+        "startChar": 15,
+        "endLine": 26,
+        "endChar": 37
+      },
+      "revId": "407aa6364eb58eec7512856c6a136fb2bb27430d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e4a5275_25a94d7c",
+        "filename": "floss/hcidoc/src/groups/controllers.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-02-20T05:04:01Z",
+      "side": 1,
+      "message": "nit: AX200/AX201/AX203",
+      "range": {
+        "startLine": 32,
+        "startChar": 59,
+        "endLine": 32,
+        "endChar": 76
+      },
+      "revId": "407aa6364eb58eec7512856c6a136fb2bb27430d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df0ed066_772e7d48",
+        "filename": "floss/hcidoc/src/groups/controllers.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-02-20T05:04:01Z",
+      "side": 1,
+      "message": "nit: MANUFACTURERS",
+      "range": {
+        "startLine": 35,
+        "startChar": 6,
+        "endLine": 35,
+        "endChar": 34
+      },
       "revId": "407aa6364eb58eec7512856c6a136fb2bb27430d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
