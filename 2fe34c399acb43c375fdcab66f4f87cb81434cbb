@@ -16,6 +16,24 @@
       "message": "Can you remove those from the pass list?",
       "revId": "2fe34c399acb43c375fdcab66f4f87cb81434cbb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38cb02ab_0ea73344",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 964,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-02-20T18:41:36Z",
+      "side": 1,
+      "message": "Regarding the pass list, I\u0027d like to remove it entirely in a next CL. We already have the computed information in sponge:\nhttps://fusion2.corp.google.com/invocations/bc475060-a1e6-4604-8643-4f9ec530092e/targets/x86_64%20avatar;config\u003ddefault/tests",
+      "parentUuid": "8d6267af_d8aebec9",
+      "revId": "2fe34c399acb43c375fdcab66f4f87cb81434cbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
