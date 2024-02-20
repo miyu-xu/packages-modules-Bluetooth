@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc19164b_9a011abb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-02-20T06:33:44Z",
+      "side": 1,
+      "message": "Similar to aosp/2967142, changing the test logic to use TestLooper to fix flakiness. Detailed explanation is added in comments inside the test.",
+      "revId": "fcaee953cf3c00ecb559cc2a8121959c99ac706c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
