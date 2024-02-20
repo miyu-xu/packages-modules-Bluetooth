@@ -22,6 +22,7 @@ import android.annotation.NonNull;
 import android.annotation.RequiresNoPermission;
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
+import android.annotation.SystemApi;
 import android.bluetooth.BluetoothGattCharacteristic.WriteType;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.bluetooth.annotations.RequiresLegacyBluetoothPermission;
@@ -2035,6 +2036,8 @@ public final class BluetoothGatt implements BluetoothProfile {
      * @return true, if the request is send to the Bluetooth stack.
      * @hide
      */
+    @FlaggedApi(Flags.FLAG_REQUEST_LE_CONN_UPDATE)
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public boolean requestLeConnectionUpdate(
