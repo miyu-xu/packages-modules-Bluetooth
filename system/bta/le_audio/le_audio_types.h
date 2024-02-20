@@ -1165,14 +1165,6 @@ struct QosConfigSetting {
   uint16_t max_transport_latency;
 };
 
-// THis is a subconfig for an individual direction
-// TODO: Rename this to AseConfiguration
-// struct AseDirectionConfiguration {
-//   // similar to SetConfiguration
-//   AseCodecConfiguration ase_codec_config;
-//   AseQosConfiguration ase_qos_config;
-//   DataPathConfiguration data_path_config;
-// };
 struct AseConfiguration {
   AseConfiguration(CodecConfigSetting codec,
                    QosConfigSetting qos = {.target_latency = 0,
@@ -1194,9 +1186,7 @@ struct AudioSetConfiguration {
   /* ISO data packing within the CIG */
   uint8_t packing = bluetooth::hci::kIsoCigPackingSequential;
   types::BidirectionalPair<std::vector<struct AseConfiguration>> confs;
-  /* Flags: NONE, LOSSLESS, LOW_LATENCY, ALLOW_ASYMMETRIC_CONFIGURATIONS,
-   *        SPATIAL_AUDIO, PROVIDE_ASE_METADATA, MONO_MIC_CONFIGURATION
-   */
+  /* Codec feature flags */
   int32_t codec_flags = 0;
 
   struct TopologyInfo {
