@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8795fc90_95af54e9",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2867,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-02-20T19:28:12Z",
+      "side": 1,
+      "message": "Why do we need the `!is_new_avrcp_enabled()` check?\n\nThis basically says \"if AVRCP Target isn\u0027t enabled and AVRCP isn\u0027t connected,\" as `is_new_avrcp_enabled()` checks for the profile sysprop for AVRCP Target.\n\nDo you really want special logic for when AVRCP Target is disabled?",
+      "range": {
+        "startLine": 2867,
+        "startChar": 6,
+        "endLine": 2867,
+        "endChar": 32
+      },
+      "revId": "e3bc1c41518a06824aa43870709ef427d2464eca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4dabeddd_ba3ecf4f",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 4365,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-02-20T19:28:12Z",
+      "side": 1,
+      "message": "if-else logic based on what profiles are enabled will not work for when _both_ profiles are enabled. Leaving this code in could be a source of bugs in the future, and may encourage other uses of a pattern we don\u0027t like.\n\nIf we can, I would remove this and exclusively use the type of logic above, where you make dispatch decisions based on the peer type, regardless of what profiles are enabled. Just get rid of the `btif_av_both_enable()` check. I think things will work all the same.",
+      "range": {
+        "startLine": 4361,
+        "startChar": 1,
+        "endLine": 4365,
+        "endChar": 3
+      },
+      "revId": "e3bc1c41518a06824aa43870709ef427d2464eca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
