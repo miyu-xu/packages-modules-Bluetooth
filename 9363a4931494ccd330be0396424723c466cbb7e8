@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4a4d7fa_853be53c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-02-20T15:35:48Z",
+      "side": 1,
+      "message": "Hi Chienyuan, I don\u0027t think `is_exported: true` is yet officially supported. I\u0027m waiting for more information before approving this. CC @wescande@google.com",
+      "revId": "9363a4931494ccd330be0396424723c466cbb7e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
