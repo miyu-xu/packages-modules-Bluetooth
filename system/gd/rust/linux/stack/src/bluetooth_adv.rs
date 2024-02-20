@@ -1180,6 +1180,9 @@ impl BtifGattAdvCallbacks for AdvertiseManager {
             s.set_adv_id(Some(advertiser_id.into()));
             s.set_enabled(status == AdvertisingStatus::Success);
         } else {
+            // If we can't find the adv set then it's probably removed due to
+            // callback unregistration. Unregister the advertiser now.
+            self.gatt.as_ref().unwrap().lock().unwrap().advertiser.unregister(advertiser_id);
             return;
         }
         let s = self.get_mut_by_reg_id(reg_id).unwrap().clone();
