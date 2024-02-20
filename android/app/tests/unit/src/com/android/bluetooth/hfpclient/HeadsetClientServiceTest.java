@@ -124,6 +124,7 @@ public class HeadsetClientServiceTest {
     public void testUpdateBatteryLevel() throws Exception {
         startService();
 
+        Thread.sleep(100);
         // Put mock state machine
         BluetoothDevice device =
                 BluetoothAdapter.getDefaultAdapter().getRemoteDevice("00:01:02:03:04:05");
