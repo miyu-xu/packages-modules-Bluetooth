@@ -34,6 +34,23 @@
       "parentUuid": "41ce504a_48ae6e6e",
       "revId": "11ff04fce1626c851152017f7e1991348a97e539",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63580843_4cf23579",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-20T22:46:55Z",
+      "side": 1,
+      "message": "Have you investigated using an entirely different approach ?\n\ne.g. Using PDL to do the parsing for you ?\n\nhci::GapData::Parse ?",
+      "revId": "11ff04fce1626c851152017f7e1991348a97e539",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
