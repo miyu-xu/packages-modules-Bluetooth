@@ -144,6 +144,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ab5dcbbf_29dc6074",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-20T15:58:45Z",
+      "side": 1,
+      "message": "but Jakub you could do something like this::\n\n```\nvoid processCachedData() {\n     rwl.readLock().lock();\n     if (!cacheValid) {\n       // Must release read lock before acquiring write lock\n       rwl.readLock().unlock();\n       rwl.writeLock().lock();\n       try {\n         // Recheck state because another thread might have\n         // acquired write lock and changed state before we did.\n         if (!cacheValid) {\n           data \u003d ...\n           cacheValid \u003d true;\n         }\n         // Downgrade by acquiring read lock before releasing write lock\n         rwl.readLock().lock();\n       } finally {\n         rwl.writeLock().unlock(); // Unlock write, still hold read\n       }\n     }\n ```",
+      "parentUuid": "23007138_1e0674e0",
+      "range": {
+        "startLine": 462,
+        "startChar": 7,
+        "endLine": 466,
+        "endChar": 30
+      },
+      "revId": "882554beffff7c608ef2b77b348c807b66178080",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cc118e55_f9b9cdeb",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 3
