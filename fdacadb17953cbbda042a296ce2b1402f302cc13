@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa1ce717_c2edd808",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-02-20T14:02:05Z",
+      "side": 1,
+      "message": "This section is not needed as already assigned in line 504",
+      "range": {
+        "startLine": 556,
+        "startChar": 2,
+        "endLine": 556,
+        "endChar": 43
+      },
+      "revId": "fdacadb17953cbbda042a296ce2b1402f302cc13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be3c9e61_807f47eb",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-02-20T14:02:05Z",
+      "side": 1,
+      "message": "This section is not needed as already assigned in line 504",
+      "range": {
+        "startLine": 560,
+        "startChar": 0,
+        "endLine": 561,
+        "endChar": 69
+      },
+      "revId": "fdacadb17953cbbda042a296ce2b1402f302cc13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf55efd3_57a2b489",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1015,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-02-20T14:02:05Z",
+      "side": 1,
+      "message": "p_data-\u003eapi_conn.link_spec: here api_conn is intentional? instead of can we use p_data-\u003eapi_maintdev.link_spec (p_dev_info)",
+      "range": {
+        "startLine": 1015,
+        "startChar": 13,
+        "endLine": 1015,
+        "endChar": 68
+      },
+      "revId": "fdacadb17953cbbda042a296ce2b1402f302cc13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
