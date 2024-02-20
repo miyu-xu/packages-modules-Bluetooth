@@ -33,6 +33,24 @@
       "message": "Similarly, the check should be against SRC and not SNK. A sink profile ideally will never have the peer\u0027s SEP as SRC.",
       "revId": "3415095ca189f03d725cdead519001dbb528edee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3812ad66_871460a3",
+        "filename": "system/btif/src/btif_a2dp_sink.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-02-20T17:57:49Z",
+      "side": 1,
+      "message": "nvm. it makes sense to ignore if the peer is SNK for a sink profile.",
+      "parentUuid": "6202a0c5_97a3a69e",
+      "revId": "3415095ca189f03d725cdead519001dbb528edee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
