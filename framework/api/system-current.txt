@@ -311,6 +311,10 @@ package android.bluetooth {
     field public static final int FILTER_TYPE_TRANSFER = 2; // 0x2
   }
 
+  public final class BluetoothGatt implements android.bluetooth.BluetoothProfile {
+    method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public boolean requestLeConnectionUpdate(int, int, int, int, int, int);
+  }
+
   public final class BluetoothHapClient implements java.lang.AutoCloseable android.bluetooth.BluetoothProfile {
     method public void close();
     method protected void finalize();
