@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf46ab38_352164a9",
+        "filename": "system/btif/src/btif_a2dp.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-02-20T18:38:40Z",
+      "side": 1,
+      "message": "Any reason why this function routes based on `a2dp_type`, whereas the other functions updated in this CL route based on `a2dp_type` -\u003e peer_sep?\n\nAt the end of the day, I feel like the a2dp_type/role more or less implies the stream endpoint type of the peer (if we\u0027re doing it right), so it doesn\u0027t really matter, but just curious!",
+      "range": {
+        "startLine": 46,
+        "startChar": 6,
+        "endLine": 47,
+        "endChar": 41
+      },
+      "revId": "b021c124b15615b53df831c7ab06c135f7b795d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fdd4093_cca46290",
+        "filename": "system/btif/src/btif_a2dp.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-02-20T18:38:40Z",
+      "side": 1,
+      "message": "Out of curiosity, why are no changes needed to on_start?\n\nPresumably, its related to the fact that there\u0027s no offload support for sink/decoding?",
+      "range": {
+        "startLine": 57,
+        "startChar": 5,
+        "endLine": 57,
+        "endChar": 25
+      },
+      "revId": "b021c124b15615b53df831c7ab06c135f7b795d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
