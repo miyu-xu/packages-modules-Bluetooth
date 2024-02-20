@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6021a4ec_f9f5ff7b",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-02-20T18:32:55Z",
+      "side": 1,
+      "message": "I like those better",
+      "parentUuid": "20e2b4b7_69521d91",
+      "range": {
+        "startLine": 149,
+        "startChar": 23,
+        "endLine": 149,
+        "endChar": 37
+      },
+      "revId": "0ea8cc2b393d1f2420a2fe727ee611f8ec483461",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c6a659b_2a485271",
