@@ -145,6 +145,9 @@ cc_library_static {
     generated_sources: ["libbluetooth_core_rs_bridge_codegen"],
     apex_available: ["com.android.btservices"],
     min_sdk_version: "Tiramisu",
+    lto: {
+        never: true,
+    },
 }
 
 /// FFI codegen
