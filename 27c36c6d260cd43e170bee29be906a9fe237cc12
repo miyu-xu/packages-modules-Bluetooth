@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc63e84a_dc95f236",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-20T06:59:07Z",
+      "side": 1,
+      "message": "Hi Mohammad, I believe this patch will solve the insufficient key size issue.\nPlease focus on gatt server part and other chars, thanks.",
+      "revId": "27c36c6d260cd43e170bee29be906a9fe237cc12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
