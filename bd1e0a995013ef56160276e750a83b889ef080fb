@@ -16,6 +16,24 @@
       "message": "I would say that this could be risky/not expected since here the codec status is get for group. Only one group is active and most probably (due to current policy that only handover to broadcast is possible) set to MUSIC context. Rest of groups may be left in non MUSIC \"configuration\".\n\nThis may lead to confusion when method is called \"*PerSinkCapabilities\" - while it\u0027s checking against last set Unicast configuration.\n\nIf I understand correctly this method would set broadcast to HIGH quality when all connected devices were set lately (before deactivation) to HIGH quality ? Do I understand it correctly and if so, is this intended ?",
       "revId": "bd1e0a995013ef56160276e750a83b889ef080fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "766b908e_de7f3cba",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 965,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-20T21:43:59Z",
+      "side": 1,
+      "message": "The scope of this change is simply to check sink\u0027s PACS before creating broadcast streams, and it\u0027s not intended to resolve other dynamic audio codec configs cases, e.g. remote updates PACS while broadcast. So if the config is not available we will just proceed with whatever preferred by the application side.\n\nAnd as I understand, the selectable codec configs will be provided by sinks upon device connections. Then when we started the broadcast with those connected devices, we will check the previously saved configs. \nIs your concern that the configs are not updated before we started the broadcast? I didn\u0027t understand why this is related to the handover cases.",
+      "parentUuid": "033c84e4_5da477ef",
+      "revId": "bd1e0a995013ef56160276e750a83b889ef080fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
