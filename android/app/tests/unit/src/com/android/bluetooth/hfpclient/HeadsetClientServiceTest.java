@@ -17,6 +17,7 @@
 package com.android.bluetooth.hfpclient;
 
 import static android.content.pm.PackageManager.FEATURE_WATCH;
+import java.util.concurrent.TimeUnit;
 
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyInt;
@@ -124,6 +125,7 @@ public class HeadsetClientServiceTest {
     public void testUpdateBatteryLevel() throws Exception {
         startService();
 
+        TimeUnit.MILLISECONDS.sleep(STANDARD_WAIT_MILLIS);
         // Put mock state machine
         BluetoothDevice device =
                 BluetoothAdapter.getDefaultAdapter().getRemoteDevice("00:01:02:03:04:05");
