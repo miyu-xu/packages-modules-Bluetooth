@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d32613e_51388bf2",
+        "filename": "system/bta/gatt/bta_gattc_int.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-20T22:42:29Z",
+      "side": 1,
+      "message": "It doesn\u0027t really make sense IMO to increase the control blocks per connection if not increasing the max apps gatt can support; every time a gatt app resources are cleared we iterate through the entire array of this size. \n\nI think the right solution here is to switch to heap-based client allocation which could remove the limit altogether. \n\nCan you clarify, is this intended as temporary workaround for the bug linked?",
+      "range": {
+        "startLine": 86,
+        "startChar": 27,
+        "endLine": 86,
+        "endChar": 72
+      },
+      "revId": "37aef1ccab4c6f3f957f492030fdb72ca207f1c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
