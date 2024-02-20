@@ -39,6 +39,30 @@
       },
       "revId": "fcaee953cf3c00ecb559cc2a8121959c99ac706c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "318fe1da_fa3452f5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-02-20T07:07:11Z",
+      "side": 1,
+      "message": "Placed right before this mock is needed! It\u0027s need when handling `MSG_SCAN_TIMEOUT`, which runs [regularScanTimeout](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_scan/ScanManager.java;l\u003d1382;drc\u003d6785fdccfb0624a0bd38bdcacd5faf1ea1767acc;bpv\u003d1;bpt\u003d1?q\u003dScanManager\u0026sq\u003drepo:%22googleplex-android%2Fplatform%2Fsuperproject%2Fmain%22%20branch:%22main%22) that checks client scan time with `isScanningTooLong`. In a real scan timeout scenario or when using Thread.sleep with real elapsed time, this will return true and thus scan mode will be downgraded, but with TestLooper no real time is elapsed, so forcing this with a mock.",
+      "parentUuid": "9557414b_45e7dd17",
+      "range": {
+        "startLine": 618,
+        "startChar": 8,
+        "endLine": 618,
+        "endChar": 67
+      },
+      "revId": "fcaee953cf3c00ecb559cc2a8121959c99ac706c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
