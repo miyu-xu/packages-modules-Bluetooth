@@ -84,9 +84,13 @@ static void rfc_set_port_state(tPORT_STATE* port_pars, MX_FRAME* p_frame);
  ******************************************************************************/
 void rfc_port_sm_execute(tPORT* p_port, tRFC_PORT_EVENT event, void* p_data) {
   CHECK(p_port != nullptr) << __func__ << ": NULL port event " << event;
-  log::info("bd_addr:{}, port:{}, state:{}, event:{}",
-            ADDRESS_TO_LOGGABLE_CSTR(p_port->bd_addr), p_port->handle,
-            p_port->rfc.state, event);
+
+  // logs for state RFC_STATE_OPENED handled in rfc_port_sm_opened()
+  if (p_port->rfc.state != RFC_STATE_OPENED) {
+    log::info("bd_addr:{}, index:{}, state:{}, event:{}",
+              ADDRESS_TO_LOGGABLE_CSTR(p_port->bd_addr), p_port->handle,
+              p_port->rfc.state, event);
+  }
   switch (p_port->rfc.state) {
     case RFC_STATE_CLOSED:
       rfc_port_sm_state_closed(p_port, event, p_data);
@@ -460,10 +464,14 @@ void rfc_port_sm_orig_wait_sec_check(tPORT* p_port, tRFC_PORT_EVENT event,
 void rfc_port_sm_opened(tPORT* p_port, tRFC_PORT_EVENT event, void* p_data) {
   switch (event) {
     case RFC_PORT_EVENT_OPEN:
-      log::error("Port error state {} event {}", p_port->rfc.state, event);
+      log::error("Port error, bd_addr={}, state={}, event={}",
+                 ADDRESS_TO_LOGGABLE_CSTR(p_port->bd_addr), p_port->rfc.state,
+                 event);
       return;
 
     case RFC_PORT_EVENT_CLOSE:
+      log::info("RFC_PORT_EVENT_CLOSE bd_addr={}, index={}",
+                ADDRESS_TO_LOGGABLE_CSTR(p_port->bd_addr), p_port->handle);
       rfc_port_timer_start(p_port, RFC_DISC_TIMEOUT);
       rfc_send_disc(p_port->rfc.p_mcb, p_port->dlci);
       p_port->rfc.expected_rsp = 0;
@@ -471,7 +479,8 @@ void rfc_port_sm_opened(tPORT* p_port, tRFC_PORT_EVENT event, void* p_data) {
       return;
 
     case RFC_PORT_EVENT_CLEAR:
-      log::warn("RFC_PORT_EVENT_CLEAR, index={}", p_port->handle);
+      log::warn("RFC_PORT_EVENT_CLEAR, bd_addr={}, index={}",
+                ADDRESS_TO_LOGGABLE_CSTR(p_port->bd_addr), p_port->handle);
       rfc_port_closed(p_port);
       return;
 
@@ -503,12 +512,16 @@ void rfc_port_sm_opened(tPORT* p_port, tRFC_PORT_EVENT event, void* p_data) {
       return;
 
     case RFC_PORT_EVENT_DM:
-      log::warn("RFC_EVENT_DM, index={}", p_port->handle);
+      log::info("RFC_EVENT_DM, bd_addr={}, index={}",
+                ADDRESS_TO_LOGGABLE_CSTR(p_port->bd_addr), p_port->handle);
       PORT_DlcReleaseInd(p_port->rfc.p_mcb, p_port->dlci);
       rfc_port_closed(p_port);
       return;
 
     case RFC_PORT_EVENT_DISC:
+      log::info("RFC_PORT_EVENT_DISC, bd_addr={}, index={}",
+                ADDRESS_TO_LOGGABLE_CSTR(p_port->bd_addr), p_port->handle,
+                p_port->rfc.state, event);
       p_port->rfc.state = RFC_STATE_CLOSED;
       rfc_send_ua(p_port->rfc.p_mcb, p_port->dlci);
       if (!fixed_queue_is_empty(p_port->rx.queue)) {
