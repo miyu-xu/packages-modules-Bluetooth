@@ -16,6 +16,63 @@
       "message": "Tested and it works.",
       "revId": "0ea8cc2b393d1f2420a2fe727ee611f8ec483461",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20e2b4b7_69521d91",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-20T15:26:52Z",
+      "side": 1,
+      "message": "since it guards device descriptor and group descriptor maybe call it mLeAudioRead/WriteLock",
+      "range": {
+        "startLine": 149,
+        "startChar": 23,
+        "endLine": 149,
+        "endChar": 37
+      },
+      "revId": "0ea8cc2b393d1f2420a2fe727ee611f8ec483461",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c6a659b_2a485271",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-20T15:26:52Z",
+      "side": 1,
+      "message": "here or inside this function we should have write lock.",
+      "revId": "0ea8cc2b393d1f2420a2fe727ee611f8ec483461",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73a24a63_788f99bf",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3554,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-20T15:26:52Z",
+      "side": 1,
+      "message": "here we need write.lock",
+      "revId": "0ea8cc2b393d1f2420a2fe727ee611f8ec483461",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
