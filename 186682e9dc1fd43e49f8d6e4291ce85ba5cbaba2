@@ -16,6 +16,24 @@
       "message": "In a sing-songy voice ` Aaaawwwkkkk---waaaarrd`",
       "revId": "186682e9dc1fd43e49f8d6e4291ce85ba5cbaba2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e7db7d5_13724012",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1455,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-20T19:10:03Z",
+      "side": 1,
+      "message": "Definitely!  Open to suggestions...",
+      "parentUuid": "b98fccfa_a812772f",
+      "revId": "186682e9dc1fd43e49f8d6e4291ce85ba5cbaba2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
