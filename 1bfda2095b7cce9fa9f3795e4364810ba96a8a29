@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "38475ff9_8a792811",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-02-20T18:20:32Z",
+      "side": 1,
+      "message": "This is quite a logic change and it is not specified by go/bt-audio-routing-design. What is justifying this change ?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 51
+      },
+      "revId": "1bfda2095b7cce9fa9f3795e4364810ba96a8a29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "44c65478_80e9f654",
