@@ -237,6 +237,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce029563_04b509d5",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3022,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-20T18:32:44Z",
+      "side": 1,
+      "message": "ACK, race condition risk is small. Same as below.",
+      "parentUuid": "dbfda668_c1de5afa",
+      "range": {
+        "startLine": 3018,
+        "startChar": 0,
+        "endLine": 3022,
+        "endChar": 31
+      },
+      "revId": "882554beffff7c608ef2b77b348c807b66178080",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7618f52c_6defb99a",
@@ -274,6 +298,30 @@
       "side": 1,
       "message": "IMHO this is ok, and should work good.\nhandleGroupTransitToInactive might be lengthy, would prefer to not do it under WriteLock.",
       "parentUuid": "7618f52c_6defb99a",
+      "range": {
+        "startLine": 3664,
+        "startChar": 0,
+        "endLine": 3664,
+        "endChar": 27
+      },
+      "revId": "882554beffff7c608ef2b77b348c807b66178080",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0626dce9_7fb211bb",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3664,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-20T18:32:44Z",
+      "side": 1,
+      "message": "ACK, the risk of race condition is small because the 1st section only does read. The same pattern is used in A2DP code as well.",
+      "parentUuid": "e37dac66_a00c8057",
       "range": {
         "startLine": 3664,
         "startChar": 0,
