@@ -97,6 +97,18 @@ class BluetoothSocketManagerBinder extends IBluetoothSocketManager.Stub {
                 .requestMaximumTxDataLength(Utils.getBytesFromAddress(device.getAddress()));
     }
 
+    @Override
+    public boolean checkPermissionForL2capChannelInfo() {
+        enforceActiveUser();
+        if (!Utils.checkCallerHasPrivilegedPermission(mService)) {
+            return false;
+        }
+        if (!Utils.checkConnectPermissionForPreflight(mService)) {
+            return false;
+        }
+        return true;
+    }
+
     private void enforceActiveUser() {
         if (!Utils.checkCallerIsSystemOrActiveOrManagedUser(mService, TAG)) {
             throw new SecurityException("Not allowed for non-active user");
