@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "835ebf4e_250bc48a",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-21T22:58:35Z",
+      "side": 1,
+      "message": "shouldn\u0027t we continue instead of returning here?",
+      "revId": "a654391862a2a63cfe05ba6a499575879e20c979",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9594b6bd_dc6ef062",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 886,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-21T22:58:35Z",
+      "side": 1,
+      "message": "is ISO_SW what you want there? duplicated check for ISO_HW\n\nalso should we merge this with \u0027if (dsa_modes.empty())\u0027? the action is the same",
+      "revId": "a654391862a2a63cfe05ba6a499575879e20c979",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
