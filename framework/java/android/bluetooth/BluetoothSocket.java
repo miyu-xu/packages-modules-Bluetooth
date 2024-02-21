@@ -18,6 +18,7 @@ package android.bluetooth;
 
 import android.annotation.RequiresNoPermission;
 import android.annotation.RequiresPermission;
+import android.annotation.SystemApi;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.compat.annotation.UnsupportedAppUsage;
 import android.net.LocalSocket;
@@ -151,11 +152,13 @@ public final class BluetoothSocket implements Closeable {
     @UnsupportedAppUsage private int mPort; /* RFCOMM channel or L2CAP psm */
     private String mServiceName;
 
-    private static final int SOCK_SIGNAL_SIZE = 20;
+    private static final int SOCK_SIGNAL_SIZE = 24;
 
     private ByteBuffer mL2capBuffer = null;
     private int mMaxTxPacketSize = 0; // The l2cap maximum packet size supported by the peer.
     private int mMaxRxPacketSize = 0; // The l2cap maximum packet size that can be received.
+    private int mL2capLocalCid = 0;
+    private int mL2capRemoteCid = 0;
 
     private long mSocketCreationTimeNanos = 0;
     private long mSocketCreationLatencyNanos = 0;
@@ -832,6 +835,52 @@ public final class BluetoothSocket implements Closeable {
         }
     }
 
+    /**
+     * Returns the L2CAP local channel ID associated with an open connection to this socket.
+     *
+     * @return the L2CAP local channel ID.
+     * @throws BluetoothSocketException in case of failure, with the corresponding error code.
+     * @hide
+     */
+    @SystemApi
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
+    public int getL2capLocalChannelId() throws IOException {
+        if (mType != TYPE_L2CAP && mType != TYPE_L2CAP_LE) {
+            throw new BluetoothSocketException(BluetoothSocketException.L2CAP_NO_RESOURCES);
+        }
+        if (mSocketState == SocketState.CLOSED) {
+            throw new BluetoothSocketException(BluetoothSocketException.SOCKET_CLOSED);
+        }
+        return mL2capLocalCid;
+    }
+
+    /**
+     * Returns the L2CAP remote channel ID associated with an open connection to this socket.
+     *
+     * @return the L2CAP remote channel ID.
+     * @throws BluetoothSocketException in case of failure, with the corresponding error code.
+     * @hide
+     */
+    @SystemApi
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
+    public int getL2capRemoteChannelId() throws IOException {
+        if (mType != TYPE_L2CAP && mType != TYPE_L2CAP_LE) {
+            throw new BluetoothSocketException(BluetoothSocketException.L2CAP_NO_RESOURCES);
+        }
+        if (mSocketState == SocketState.CLOSED) {
+            throw new BluetoothSocketException(BluetoothSocketException.SOCKET_CLOSED);
+        }
+        return mL2capLocalCid;
+    }
+
     /** @hide */
     public ParcelFileDescriptor getParcelFileDescriptor() {
         return mPfd;
@@ -868,6 +917,8 @@ public final class BluetoothSocket implements Closeable {
         int status = bb.getInt();
         mMaxTxPacketSize = (bb.getShort() & 0xffff); // Convert to unsigned value
         mMaxRxPacketSize = (bb.getShort() & 0xffff); // Convert to unsigned value
+        mL2capLocalCid = (bb.getShort() & 0xffff); // Convert to unsigned value
+        mL2capRemoteCid = (bb.getShort() & 0xffff); // Convert to unsigned value
         String RemoteAddr = convertAddr(addr);
         if (VDBG) {
             Log.d(
@@ -883,7 +934,11 @@ public final class BluetoothSocket implements Closeable {
                             + " MaxRxPktSize: "
                             + mMaxRxPacketSize
                             + " MaxTxPktSize: "
-                            + mMaxTxPacketSize);
+                            + mMaxTxPacketSize
+                            + " mL2capLocalCid: "
+                            + mL2capLocalCid
+                            + " mL2capRemoteCid: "
+                            + mL2capRemoteCid);
         }
         if (status != 0) {
             throw new IOException("Connection failure, status: " + status);
