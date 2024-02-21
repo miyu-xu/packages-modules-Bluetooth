@@ -637,9 +637,16 @@ static void gap_connect_ind(const RawAddress& bd_addr, uint16_t l2cap_cid,
 static void gap_checks_con_flags(tGAP_CCB* p_ccb) {
   /* if all the required con_flags are set, report the OPEN event now */
   if ((p_ccb->con_flags & GAP_CCB_FLAGS_CONN_DONE) == GAP_CCB_FLAGS_CONN_DONE) {
+    tGAP_CB_DATA* cb_data_ptr = nullptr;
+    tGAP_CB_DATA cb_data;
+    if (L2CA_GetPeerChannelId(p_ccb->connection_id,
+                              &cb_data.l2cap_remote_cid)) {
+      cb_data.l2cap_local_cid = p_ccb->connection_id;
+      cb_data_ptr = &cb_data;
+    }
     p_ccb->con_state = GAP_CCB_STATE_CONNECTED;
 
-    p_ccb->p_callback(p_ccb->gap_handle, GAP_EVT_CONN_OPENED, nullptr);
+    p_ccb->p_callback(p_ccb->gap_handle, GAP_EVT_CONN_OPENED, cb_data_ptr);
   }
 }
 
