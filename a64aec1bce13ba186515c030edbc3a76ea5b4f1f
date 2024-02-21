@@ -22,6 +22,30 @@
       },
       "revId": "a64aec1bce13ba186515c030edbc3a76ea5b4f1f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a82174f_ebbf2863",
+        "filename": "system/test/mock/mock_main_shim_dumpsys.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-21T23:00:57Z",
+      "side": 1,
+      "message": "They are in fact different files:\n\n```\n./main/shim/dumpsys.h\n./test/headless/dumpsys/dumpsys.h\n./gd/shim/dumpsys.h\n./gd/dumpsys/dumpsys.h\n```\n\nThe effort is to consolidate the dumpsys together into the gdx library and reduce the confusion as the functionality spans both gd and legacy.",
+      "parentUuid": "681be5e6_9a3adebf",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 25
+      },
+      "revId": "a64aec1bce13ba186515c030edbc3a76ea5b4f1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
