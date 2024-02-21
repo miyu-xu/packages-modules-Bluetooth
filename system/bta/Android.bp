@@ -346,6 +346,7 @@ cc_test {
         "BluetoothGeneratedDumpsysDataSchema_h",
     ],
     shared_libs: [
+        "libbase",
         "libcrypto",
         "liblog",
         "server_configurable_flags",
