@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ed1c88fd_94b967bb",
+        "filename": "system/bta/csis/csis_client_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-21T16:54:15Z",
+      "side": 1,
+      "message": "ASSERT_TRUE is imported from gtest, wouldn\u0027t that affect the test output?",
+      "parentUuid": "436126d2_cca58b3b",
+      "range": {
+        "startLine": 417,
+        "startChar": 0,
+        "endLine": 418,
+        "endChar": 33
+      },
+      "revId": "dd521ce4e5fb91c3759714895b5dc07f7014a1c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4f64031f_8ba2e200",
         "filename": "system/bta/csis/csis_types.h",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-21T02:28:51Z",
       "side": 1,
       "message": "Remove `bluetooth::`",
+      "range": {
+        "startLine": 172,
+        "startChar": 4,
+        "endLine": 172,
+        "endChar": 13
+      },
+      "revId": "dd521ce4e5fb91c3759714895b5dc07f7014a1c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a75e2f44_84e2a8d5",
+        "filename": "system/bta/csis/csis_types.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-21T16:54:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f64031f_8ba2e200",
       "range": {
         "startLine": 172,
         "startChar": 4,
