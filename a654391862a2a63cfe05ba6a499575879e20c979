@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5042af9a_37a6e1f9",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-21T23:07:49Z",
+      "side": 1,
+      "message": "Rest of the state machine does not know that we have opened bidirectional CIS and that we setting datapath for incoming ISO packets. So we don\u0027t need to continue processing this event.",
+      "parentUuid": "835ebf4e_250bc48a",
+      "revId": "a654391862a2a63cfe05ba6a499575879e20c979",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9594b6bd_dc6ef062",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-02-21T22:58:35Z",
       "side": 1,
       "message": "is ISO_SW what you want there? duplicated check for ISO_HW\n\nalso should we merge this with \u0027if (dsa_modes.empty())\u0027? the action is the same",
+      "revId": "a654391862a2a63cfe05ba6a499575879e20c979",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2673eeb_975de911",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 886,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-21T23:07:49Z",
+      "side": 1,
+      "message": "Good catch, this should be ISO_SW. I have fixed it now.\n\nThere are 4 possible DsaModes: DISABLED, LE_ACL, ISO_SW and ISO_HW. Datapath has to be set only for ISO_SW and ISO_HW.",
+      "parentUuid": "9594b6bd_dc6ef062",
       "revId": "a654391862a2a63cfe05ba6a499575879e20c979",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
