@@ -347,6 +347,13 @@ public class A2dpServiceTest {
 
         // Verify the list of connected devices
         Assert.assertTrue(mA2dpService.getConnectedDevices().contains(sTestDevice));
+        // Verify that AdapterService received the connection state change
+        verify(mAdapterService)
+                .updateProfileConnectionAdapterProperties(
+                        sTestDevice,
+                        BluetoothProfile.A2DP,
+                        BluetoothProfile.STATE_CONNECTED,
+                        BluetoothProfile.STATE_CONNECTING);
 
         // Send a disconnect request
         Assert.assertTrue("Disconnect failed", mA2dpService.disconnect(sTestDevice));
@@ -418,6 +425,13 @@ public class A2dpServiceTest {
                     BluetoothProfile.STATE_CONNECTED, mA2dpService.getConnectionState(testDevice));
             // Verify the list of connected devices
             Assert.assertTrue(mA2dpService.getConnectedDevices().contains(testDevice));
+            // Verify that AdapterService received the connection state change
+            verify(mAdapterService)
+                    .updateProfileConnectionAdapterProperties(
+                            sTestDevice,
+                            BluetoothProfile.A2DP,
+                            BluetoothProfile.STATE_CONNECTED,
+                            BluetoothProfile.STATE_CONNECTING);
         }
 
         // Prepare and connect the extra test device. The connect request should fail
@@ -1036,6 +1050,13 @@ public class A2dpServiceTest {
 
         // Verify that the device is in the list of connected devices
         Assert.assertTrue(mA2dpService.getConnectedDevices().contains(device));
+        // Verify that AdapterService received the connection state change
+        verify(mAdapterService)
+                .updateProfileConnectionAdapterProperties(
+                        sTestDevice,
+                        BluetoothProfile.A2DP,
+                        BluetoothProfile.STATE_CONNECTED,
+                        BluetoothProfile.STATE_CONNECTING);
         // Verify the list of previously connected devices
         for (BluetoothDevice prevDevice : prevConnectedDevices) {
             Assert.assertTrue(mA2dpService.getConnectedDevices().contains(prevDevice));
