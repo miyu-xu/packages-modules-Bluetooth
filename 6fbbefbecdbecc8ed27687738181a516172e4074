@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "219b6d85_8685533b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-21T18:56:26Z",
+      "side": 1,
+      "message": "Looks like this one needs an Android.bp change for the groups test.  The child CL isn\u0027t building.",
+      "revId": "6fbbefbecdbecc8ed27687738181a516172e4074",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
