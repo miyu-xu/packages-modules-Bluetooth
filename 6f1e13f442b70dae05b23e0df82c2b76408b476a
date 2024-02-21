@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fff8901b_770877f9",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2063,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-21T02:44:26Z",
+      "side": 1,
+      "message": "```suggestion\n               ADDRESS_TO_LOGGABLE_STR(p_data-\u003eremote_bda));\n```",
+      "revId": "6f1e13f442b70dae05b23e0df82c2b76408b476a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
