@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44929a7c_412cfa0e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3994,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-21T01:16:06Z",
+      "side": 1,
+      "message": "Did you observe some case that \u0027stucked/error start\u0027 and there is no callback for such failure?\n\nSince we\u0027ve handled the recover part with notifyBroadcastStartFailed around line#2700, do we really need the timeout to handle this?\n\nWhat I\u0027m worried is using this might actually hide the issue we should properly notify with failure callbacks.",
+      "revId": "89669cc9c986c34e8a1d13d6342c188d9b20b864",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
