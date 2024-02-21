@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d378746_62c16fcb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2024-02-21T01:19:56Z",
+      "side": 1,
+      "message": "The following sentences in the doc implies this change:\n\"When the active device is changed:\n  If the current active device support both media and call, make the device activated for both media and call.\"\n\nSince when the audio mode changed, it is possible that the active device can be changed in case the prev one was HFP only or A2DP only.",
+      "parentUuid": "38475ff9_8a792811",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 51
+      },
+      "revId": "1bfda2095b7cce9fa9f3795e4364810ba96a8a29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "44c65478_80e9f654",
