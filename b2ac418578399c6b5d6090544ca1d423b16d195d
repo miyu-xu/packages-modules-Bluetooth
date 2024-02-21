@@ -34,6 +34,24 @@
       "parentUuid": "67f93e82_dd85680c",
       "revId": "b2ac418578399c6b5d6090544ca1d423b16d195d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3476278e_d44f59d7",
+        "filename": "system/bta/has/has_ctp.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-21T22:32:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d011da3b_fd4d512b",
+      "revId": "b2ac418578399c6b5d6090544ca1d423b16d195d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
