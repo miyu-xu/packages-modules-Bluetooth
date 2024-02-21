@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67b4c103_ea9c62b1",
+        "filename": "flags/opp.aconfig",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-02-21T04:48:53Z",
+      "side": 1,
+      "message": "Q) 326135849?",
+      "range": {
+        "startLine": 25,
+        "startChar": 10,
+        "endLine": 25,
+        "endChar": 19
+      },
+      "revId": "8450dd47d9057d65d1af157bb13d937e9e2540f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
