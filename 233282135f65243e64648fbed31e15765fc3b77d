@@ -39,6 +39,30 @@
       },
       "revId": "233282135f65243e64648fbed31e15765fc3b77d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "263ff113_2d97a3d9",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3037,
+      "author": {
+        "id": 3211944
+      },
+      "writtenOn": "2024-02-21T03:42:33Z",
+      "side": 1,
+      "message": "Make sense. Fixed.",
+      "parentUuid": "c5acb21c_3e8f6ebb",
+      "range": {
+        "startLine": 3037,
+        "startChar": 13,
+        "endLine": 3037,
+        "endChar": 33
+      },
+      "revId": "233282135f65243e64648fbed31e15765fc3b77d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
