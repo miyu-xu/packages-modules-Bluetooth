@@ -16,6 +16,24 @@
       "message": "```suggestion\n               ADDRESS_TO_LOGGABLE_STR(p_data-\u003eremote_bda));\n```",
       "revId": "6f1e13f442b70dae05b23e0df82c2b76408b476a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d75fd68_ba764933",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2063,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-21T17:03:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fff8901b_770877f9",
+      "revId": "6f1e13f442b70dae05b23e0df82c2b76408b476a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
