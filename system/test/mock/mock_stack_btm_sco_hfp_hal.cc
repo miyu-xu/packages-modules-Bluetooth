@@ -100,6 +100,11 @@ bool get_swb_supported() {
   inc_func_call_count(__func__);
   return test::mock::stack_btm_sco_hfp_hal::get_swb_supported();
 }
+bool is_coding_format_supported(esco_coding_format_t coding_format) {
+  inc_func_call_count(__func__);
+  return test::mock::stack_btm_sco_hfp_hal::is_coding_format_supported(
+      coding_format);
+}
 void init() {
   inc_func_call_count(__func__);
   test::mock::stack_btm_sco_hfp_hal::init();
