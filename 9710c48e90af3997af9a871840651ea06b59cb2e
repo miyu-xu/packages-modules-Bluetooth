@@ -22,6 +22,30 @@
       },
       "revId": "9710c48e90af3997af9a871840651ea06b59cb2e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9a1a774_a46f363e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-02-21T12:44:27Z",
+      "side": 1,
+      "message": "You are right, this is not working as per bug. Removing the annotation.",
+      "parentUuid": "d8b822ee_0d1e9987",
+      "range": {
+        "startLine": 276,
+        "startChar": 16,
+        "endLine": 276,
+        "endChar": 26
+      },
+      "revId": "9710c48e90af3997af9a871840651ea06b59cb2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
