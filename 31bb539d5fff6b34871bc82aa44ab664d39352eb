@@ -1,0 +1,297 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1eb16dca_08d9d975",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-02-21T07:59:50Z",
+      "side": 1,
+      "message": "Please re-order the import statements in all files (ctrlshift+o) and use git cl format --python",
+      "revId": "31bb539d5fff6b34871bc82aa44ab664d39352eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b81b4ce_69aabad3",
+        "filename": "floss/pandora/floss/audio_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-02-21T07:59:50Z",
+      "side": 1,
+      "message": "format the import",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 9
+      },
+      "revId": "31bb539d5fff6b34871bc82aa44ab664d39352eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31cccd0f_89f8857c",
+        "filename": "floss/pandora/floss/audio_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-02-21T07:59:50Z",
+      "side": 1,
+      "message": "No use please remove",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 17
+      },
+      "revId": "31bb539d5fff6b34871bc82aa44ab664d39352eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0e41443_9077fe4b",
+        "filename": "floss/pandora/floss/audio_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-02-21T07:59:50Z",
+      "side": 1,
+      "message": "A2DP_TEST_DATA",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "31bb539d5fff6b34871bc82aa44ab664d39352eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23d33d1a_035d9738",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-02-21T07:59:50Z",
+      "side": 1,
+      "message": "please reorder (use auto formater)\nin eclips its (ctrl+shift+o)",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 37
+      },
+      "revId": "31bb539d5fff6b34871bc82aa44ab664d39352eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a40871c5_0513d7c2",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-02-21T07:59:50Z",
+      "side": 1,
+      "message": "link must be in one line (its ok to exceed 120 for links)",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 50
+      },
+      "revId": "31bb539d5fff6b34871bc82aa44ab664d39352eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c148da2_fdf0d62c",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-02-21T07:59:50Z",
+      "side": 1,
+      "message": "No use, please remove",
+      "range": {
+        "startLine": 29,
+        "startChar": 62,
+        "endLine": 29,
+        "endChar": 107
+      },
+      "revId": "31bb539d5fff6b34871bc82aa44ab664d39352eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b6b1fe5_657dc039",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-02-21T07:59:50Z",
+      "side": 1,
+      "message": "No use, please remove",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 32
+      },
+      "revId": "31bb539d5fff6b34871bc82aa44ab664d39352eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5ab729c_dfddb4e6",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-02-21T07:59:50Z",
+      "side": 1,
+      "message": "A2DP\nplease fix on other locations",
+      "range": {
+        "startLine": 39,
+        "startChar": 39,
+        "endLine": 39,
+        "endChar": 43
+      },
+      "revId": "31bb539d5fff6b34871bc82aa44ab664d39352eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c66aa979_9caac6f6",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-02-21T07:59:50Z",
+      "side": 1,
+      "message": "i will not be False, you always return true, so maybe return None from the callback and just use \nawait close_stream",
+      "range": {
+        "startLine": 219,
+        "startChar": 19,
+        "endLine": 219,
+        "endChar": 26
+      },
+      "revId": "31bb539d5fff6b34871bc82aa44ab664d39352eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78942e68_b11e12b6",
+        "filename": "floss/pandora/server/server.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-02-21T07:59:50Z",
+      "side": 1,
+      "message": "before from floss.pandora.server import bluetooth as bluetooth_module",
+      "range": {
+        "startLine": 24,
+        "startChar": 33,
+        "endLine": 24,
+        "endChar": 37
+      },
+      "revId": "31bb539d5fff6b34871bc82aa44ab664d39352eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a055e56a_2707a69d",
+        "filename": "floss/pandora/server/server.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-02-21T07:59:50Z",
+      "side": 1,
+      "message": "before from pandora import host_grpc_aio",
+      "range": {
+        "startLine": 30,
+        "startChar": 20,
+        "endLine": 30,
+        "endChar": 33
+      },
+      "revId": "31bb539d5fff6b34871bc82aa44ab664d39352eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edee0b9d_64564b0d",
+        "filename": "floss/pandora/server/server.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-02-21T07:59:50Z",
+      "side": 1,
+      "message": "there is no actual use in A2DP class, please remove",
+      "range": {
+        "startLine": 60,
+        "startChar": 55,
+        "endLine": 60,
+        "endChar": 71
+      },
+      "revId": "31bb539d5fff6b34871bc82aa44ab664d39352eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
