@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "111bc412_0100884a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1185,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-02-21T03:40:05Z",
+      "side": 1,
+      "message": "Per offline discussion, a potential sequence that unregister_callback happens before on_advertising_set_started needs to be addressed in unregister_callback. We can add error message for this case. Thanks for the fix.",
+      "range": {
+        "startLine": 1183,
+        "startChar": 0,
+        "endLine": 1185,
+        "endChar": 93
+      },
+      "revId": "724a3120f3f2d6b0a92f6e04102be23c40a83bc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
