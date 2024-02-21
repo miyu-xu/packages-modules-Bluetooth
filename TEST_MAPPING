@@ -110,6 +110,9 @@
       "name": "bluetooth_test_gd_unit"
     },
     {
+      "name": "bluetooth_test_gdx_unit"
+    },
+    {
       "name": "bluetooth_test_sdp"
     },
     {
@@ -324,9 +327,6 @@
     },
     {
       "name": "bluetooth-test-audio-hal-a2dp-provider-info"
-    },
-    {
-      "name": "bluetooth_test_gdx_unit"
     },
     {
       "name": "CtsStrictJavaPackagesTestCases"
