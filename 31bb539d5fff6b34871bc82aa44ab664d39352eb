@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c271910_69cf1867",
+        "filename": "floss/pandora/floss/audio_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2024-02-21T13:55:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b81b4ce_69aabad3",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 9
+      },
+      "revId": "31bb539d5fff6b34871bc82aa44ab664d39352eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "31cccd0f_89f8857c",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-02-21T07:59:50Z",
       "side": 1,
       "message": "No use please remove",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 17
+      },
+      "revId": "31bb539d5fff6b34871bc82aa44ab664d39352eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c68eca5c_c1c237ff",
+        "filename": "floss/pandora/floss/audio_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2024-02-21T13:55:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31cccd0f_89f8857c",
       "range": {
         "startLine": 8,
         "startChar": 0,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "528a3615_a70e6df2",
+        "filename": "floss/pandora/floss/audio_utils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2024-02-21T13:55:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0e41443_9077fe4b",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "31bb539d5fff6b34871bc82aa44ab664d39352eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "23d33d1a_035d9738",
@@ -100,6 +172,30 @@
       "writtenOn": "2024-02-21T07:59:50Z",
       "side": 1,
       "message": "please reorder (use auto formater)\nin eclips its (ctrl+shift+o)",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 37
+      },
+      "revId": "31bb539d5fff6b34871bc82aa44ab664d39352eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba58b851_f08731d0",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2024-02-21T13:55:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23d33d1a_035d9738",
       "range": {
         "startLine": 1,
         "startChar": 0,
@@ -133,6 +229,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9036dbd0_b94536fa",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2024-02-21T13:55:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a40871c5_0513d7c2",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 50
+      },
+      "revId": "31bb539d5fff6b34871bc82aa44ab664d39352eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c148da2_fdf0d62c",
@@ -146,6 +266,30 @@
       "writtenOn": "2024-02-21T07:59:50Z",
       "side": 1,
       "message": "No use, please remove",
+      "range": {
+        "startLine": 29,
+        "startChar": 62,
+        "endLine": 29,
+        "endChar": 107
+      },
+      "revId": "31bb539d5fff6b34871bc82aa44ab664d39352eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f6c89e0_2e672918",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2024-02-21T13:55:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c148da2_fdf0d62c",
       "range": {
         "startLine": 29,
         "startChar": 62,
@@ -179,6 +323,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc117d20_454db88c",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2024-02-21T13:55:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b6b1fe5_657dc039",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 32
+      },
+      "revId": "31bb539d5fff6b34871bc82aa44ab664d39352eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5ab729c_dfddb4e6",
@@ -192,6 +360,30 @@
       "writtenOn": "2024-02-21T07:59:50Z",
       "side": 1,
       "message": "A2DP\nplease fix on other locations",
+      "range": {
+        "startLine": 39,
+        "startChar": 39,
+        "endLine": 39,
+        "endChar": 43
+      },
+      "revId": "31bb539d5fff6b34871bc82aa44ab664d39352eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "155b38f6_a0e9a974",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2024-02-21T13:55:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5ab729c_dfddb4e6",
       "range": {
         "startLine": 39,
         "startChar": 39,
@@ -225,6 +417,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c1c64a1_7e3372ff",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2024-02-21T13:55:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c66aa979_9caac6f6",
+      "range": {
+        "startLine": 219,
+        "startChar": 19,
+        "endLine": 219,
+        "endChar": 26
+      },
+      "revId": "31bb539d5fff6b34871bc82aa44ab664d39352eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78942e68_b11e12b6",
@@ -238,6 +454,30 @@
       "writtenOn": "2024-02-21T07:59:50Z",
       "side": 1,
       "message": "before from floss.pandora.server import bluetooth as bluetooth_module",
+      "range": {
+        "startLine": 24,
+        "startChar": 33,
+        "endLine": 24,
+        "endChar": 37
+      },
+      "revId": "31bb539d5fff6b34871bc82aa44ab664d39352eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97f04fd3_ea93bbdf",
+        "filename": "floss/pandora/server/server.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2024-02-21T13:55:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78942e68_b11e12b6",
       "range": {
         "startLine": 24,
         "startChar": 33,
@@ -271,6 +511,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "31c75d32_24744ec1",
+        "filename": "floss/pandora/server/server.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2024-02-21T13:55:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a055e56a_2707a69d",
+      "range": {
+        "startLine": 30,
+        "startChar": 20,
+        "endLine": 30,
+        "endChar": 33
+      },
+      "revId": "31bb539d5fff6b34871bc82aa44ab664d39352eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "edee0b9d_64564b0d",
@@ -284,6 +548,30 @@
       "writtenOn": "2024-02-21T07:59:50Z",
       "side": 1,
       "message": "there is no actual use in A2DP class, please remove",
+      "range": {
+        "startLine": 60,
+        "startChar": 55,
+        "endLine": 60,
+        "endChar": 71
+      },
+      "revId": "31bb539d5fff6b34871bc82aa44ab664d39352eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30e9aa30_a272ddea",
+        "filename": "floss/pandora/server/server.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2024-02-21T13:55:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "edee0b9d_64564b0d",
       "range": {
         "startLine": 60,
         "startChar": 55,
