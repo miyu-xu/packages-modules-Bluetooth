@@ -73,9 +73,11 @@ struct tGAP_COC_CREDITS {
   uint16_t credit_count;
 };
 
-union tGAP_CB_DATA {
+struct tGAP_CB_DATA {
   tGAP_COC_CREDITS coc_credits;
   uint16_t l2cap_result;
+  uint16_t l2cap_local_cid;
+  uint16_t l2cap_remote_cid;
 };
 
 /*****************************************************************************
