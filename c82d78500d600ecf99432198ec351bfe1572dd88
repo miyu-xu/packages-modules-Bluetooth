@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85650f92_0f7b02cc",
+        "filename": "system/bta/ag/bta_ag_swb_aptx.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-21T02:04:16Z",
+      "side": 1,
+      "message": "```suggestion\n        log::verbose(\"Unknown Codec UUID({}) received\", codec_mode);\n```",
+      "revId": "c82d78500d600ecf99432198ec351bfe1572dd88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
