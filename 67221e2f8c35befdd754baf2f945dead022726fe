@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c90fee94_c6c82ef1",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 5808,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-21T23:13:47Z",
+      "side": 1,
+      "message": "This should never happen. It should ideally be treated as an error but I was apprehensive about putting an error log in this path.\n\nI will remove it if you feel strongly about it.",
+      "parentUuid": "d8aa9435_71654cfa",
+      "revId": "67221e2f8c35befdd754baf2f945dead022726fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1621dea3_63271f05",
         "filename": "system/bta/le_audio/devices.cc",
         "patchSetId": 3
@@ -31,6 +49,24 @@
       "writtenOn": "2024-02-21T23:05:15Z",
       "side": 1,
       "message": "if we\u0027re not returning false, should we use void?",
+      "revId": "67221e2f8c35befdd754baf2f945dead022726fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbb01d01_a24ce987",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1036,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-21T23:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1621dea3_63271f05",
       "revId": "67221e2f8c35befdd754baf2f945dead022726fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
