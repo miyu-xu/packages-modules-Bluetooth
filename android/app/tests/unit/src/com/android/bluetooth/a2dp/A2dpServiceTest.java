@@ -418,6 +418,13 @@ public class A2dpServiceTest {
                     BluetoothProfile.STATE_CONNECTED, mA2dpService.getConnectionState(testDevice));
             // Verify the list of connected devices
             Assert.assertTrue(mA2dpService.getConnectedDevices().contains(testDevice));
+            // Verify that AdapterService received the connection state change
+            verify(mAdapterService)
+                    .updateProfileConnectionAdapterProperties(
+                            sTestDevice,
+                            BluetoothProfile.A2DP,
+                            BluetoothProfile.STATE_CONNECTED,
+                            BluetoothProfile.STATE_CONNECTING);
         }
 
         // Prepare and connect the extra test device. The connect request should fail
