@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3b68591_de0995b7",
+        "filename": "system/rust/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1087625
+      },
+      "writtenOn": "2024-02-21T04:16:19Z",
+      "side": 1,
+      "message": "Add a comment above, so that this can be easily searched and deleted when we eventually converge LLVM versions.",
+      "range": {
+        "startLine": 148,
+        "startChar": 4,
+        "endLine": 148,
+        "endChar": 10
+      },
+      "revId": "d4cc6a32659404c7b9c2501eae2fe38c2216f0eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
