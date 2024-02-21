@@ -28,6 +28,10 @@
 #include "packet/packet_builder.h"
 #include "storage/storage_module.h"
 
+#ifdef TARGET_FLOSS
+#include <signal.h>
+#endif
+
 namespace bluetooth {
 namespace hci {
 using bluetooth::common::BindOn;
@@ -443,7 +447,15 @@ struct HciLayer::impl {
   void on_hardware_error(EventView event) {
     HardwareErrorView event_view = HardwareErrorView::Create(event);
     ASSERT(event_view.IsValid());
+#ifdef TARGET_FLOSS
+    LOG_WARN("Hardware Error Event with code 0x%02x", event_view.GetHardwareCode());
+    // Sending SIGINT to process the exception from BT controller.
+    // The Floss daemon will be restarted. HCI reset during restart will clear the
+    // error state of the BT controller.
+    kill(getpid(), SIGINT);
+#else
     LOG_ALWAYS_FATAL("Hardware Error Event with code 0x%02x", event_view.GetHardwareCode());
+#endif
   }
 
   void on_le_meta_event(EventView event) {
