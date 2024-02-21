@@ -16,6 +16,24 @@
       "message": "This should go away too ? I think it was used just from 2 functions above you are deleting.",
       "revId": "6678077423425a01561090d9b61fd8038450eb2f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c6d47e3_818abfa4",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 2612,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-21T22:37:50Z",
+      "side": 0,
+      "message": "I think it\u0027s called from the shim:\n```\nvoid Btm::ScanningCallbacks::OnScanResult(\n    uint16_t /* event_type */, uint8_t address_type,\n    bluetooth::hci::Address address, uint8_t primary_phy, uint8_t secondary_phy,\n    uint8_t advertising_sid, int8_t tx_power, int8_t rssi,\n    uint16_t periodic_advertising_interval,\n    std::vector\u003cuint8_t\u003e advertising_data) {\n  tBLE_ADDR_TYPE ble_address_type \u003d to_ble_addr_type(address_type);\n  uint16_t extended_event_type \u003d 0;\n\n  RawAddress raw_address;\n  RawAddress::FromString(address.ToString(), raw_address);\n\n  if (ble_address_type !\u003d BLE_ADDR_ANONYMOUS) {\n    btm_ble_process_adv_addr(raw_address, \u0026ble_address_type);\n  }\n\n  // Pass up to GattService#onScanResult\n  RawAddress original_bda \u003d raw_address;\n  btm_ble_process_adv_addr(raw_address, \u0026ble_address_type);\n  btm_ble_process_adv_pkt_cont(                 \u003c---------------------\n      extended_event_type, ble_address_type, raw_address, primary_phy,\n      secondary_phy, advertising_sid, tx_power, rssi,\n      periodic_advertising_interval, advertising_data.size(),\n      advertising_data.data(), original_bda);\n}\n```",
+      "parentUuid": "fec77669_91c06e0e",
+      "revId": "6678077423425a01561090d9b61fd8038450eb2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
