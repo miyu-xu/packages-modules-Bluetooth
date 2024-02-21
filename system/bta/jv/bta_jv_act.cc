@@ -929,6 +929,10 @@ static void bta_jv_l2cap_client_cback(uint16_t gap_handle, uint16_t event,
     case GAP_EVT_CONN_OPENED:
       evt_data.l2c_open.rem_bda = *GAP_ConnGetRemoteAddr(gap_handle);
       evt_data.l2c_open.tx_mtu = GAP_ConnGetRemMtuSize(gap_handle);
+      if (data != nullptr) {
+        evt_data.l2c_open.local_cid = data->l2cap_local_cid;
+        evt_data.l2c_open.remote_cid = data->l2cap_remote_cid;
+      }
       p_cb->state = BTA_JV_ST_CL_OPEN;
       p_cb->p_cback(BTA_JV_L2CAP_OPEN_EVT, &evt_data, p_cb->l2cap_socket_id);
       break;
