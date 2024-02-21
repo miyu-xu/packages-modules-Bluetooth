@@ -16,6 +16,24 @@
       "message": "Wondering what\u0027s your thoughts around STOP_SCAN_OFFLOAD? Is it necessary to send that upon stopping scan?\n\nAlso did you find the remote buds behave differently in some case w/wo this start scan notification?",
       "revId": "5e93c388827968fcdb8fd031502393b51839beed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f98d815b_a9bf0a3b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1350,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-21T12:15:11Z",
+      "side": 1,
+      "message": "From my brief overview on this it looks like STOP_SCAN_OFFLOAD is handled in BassClientStateMachine.\n\nYou think that there are more cases that should be handled ?\n\nIn case of differently behavior of sink devices I personally didn\u0027t notice any behavior. I think this is worth to have it and follow the specification to inform sink device about scanning behalf of server.",
+      "parentUuid": "224cc245_cea92636",
+      "revId": "5e93c388827968fcdb8fd031502393b51839beed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
