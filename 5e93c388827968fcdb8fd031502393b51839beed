@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "224cc245_cea92636",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1350,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-21T00:56:07Z",
+      "side": 1,
+      "message": "Wondering what\u0027s your thoughts around STOP_SCAN_OFFLOAD? Is it necessary to send that upon stopping scan?\n\nAlso did you find the remote buds behave differently in some case w/wo this start scan notification?",
+      "revId": "5e93c388827968fcdb8fd031502393b51839beed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
