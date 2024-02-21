@@ -5084,6 +5084,18 @@ class LeAudioClientImpl : public LeAudioClient {
       }
     }
 
+    if (IS_FLAG_ENABLED(leaudio_dynamic_spatial_audio)) {
+      // Reconfigure if DSA mode changed for media streaming
+      if (new_configuration_context ==
+              le_audio::types::LeAudioContextType::MEDIA &&
+          (group->dsa_.mode == DsaMode::ISO_SW ||
+           group->dsa_.mode == DsaMode::ISO_HW) &&
+          !group->dsa_.active) {
+        LOG_INFO("DSA mode %d requested but not active", group->dsa_.mode);
+        return true;
+      }
+    }
+
     if (group->GetTargetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
       LOG_INFO(
           "The %s configuration did not change. Updating the metadata to "
