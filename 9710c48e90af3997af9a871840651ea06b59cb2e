@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8b822ee_0d1e9987",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1003259
+      },
+      "writtenOn": "2024-02-21T11:09:11Z",
+      "side": 1,
+      "message": "does this annotation still work with ReentrantReadWriteLock?\n\nSee b/73998692",
+      "range": {
+        "startLine": 276,
+        "startChar": 16,
+        "endLine": 276,
+        "endChar": 26
+      },
+      "revId": "9710c48e90af3997af9a871840651ea06b59cb2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
