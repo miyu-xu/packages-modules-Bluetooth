@@ -69,6 +69,24 @@
       "parentUuid": "63580843_4cf23579",
       "revId": "11ff04fce1626c851152017f7e1991348a97e539",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cea96d5_51f8733c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-02-22T08:07:55Z",
+      "side": 1,
+      "message": "It seems I misunderstood how this works. If anyone is interested why this is brought up, please refer to comment#31 on the bug. In short, the current implementation is correct but there\u0027s a peer device that implements this incorrectly, and I mistook that as the correct implementation. Therefore, maybe I\u0027ll figure out something else in a different CL to work around it.",
+      "parentUuid": "9bf86f92_865061b7",
+      "revId": "11ff04fce1626c851152017f7e1991348a97e539",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
