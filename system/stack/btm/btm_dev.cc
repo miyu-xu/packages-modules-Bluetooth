@@ -36,7 +36,6 @@
 #include "btm_sec_api.h"
 #include "btm_sec_cb.h"
 #include "common/init_flags.h"
-#include "device/include/controller.h"
 #include "internal_include/bt_target.h"
 #include "l2c_api.h"
 #include "os/log.h"
@@ -304,51 +303,6 @@ tBTM_SEC_DEV_REC* btm_sec_alloc_dev(const RawAddress& bd_addr) {
   p_dev_rec->hci_handle = BTM_GetHCIConnHandle(bd_addr, BT_TRANSPORT_BR_EDR);
 
   return (p_dev_rec);
-}
-
-/*******************************************************************************
- *
- * Function         btm_dev_support_role_switch
- *
- * Description      This function is called by the L2CAP to check if remote
- *                  device supports role switch
- *
- * Parameters:      bd_addr       - Address of the peer device
- *
- * Returns          true if device is known and role switch is supported
- *                  for the link.
- *
- ******************************************************************************/
-bool btm_dev_support_role_switch(const RawAddress& bd_addr) {
-  if (BTM_IsScoActiveByBdaddr(bd_addr)) {
-    log::verbose("Role switch is not allowed if a SCO is up");
-    return false;
-  }
-
-  tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bd_addr);
-  if (p_dev_rec == nullptr) {
-    log::verbose("Unknown address for role switch");
-    return false;
-  }
-
-  if (!controller_get_interface()->SupportsRoleSwitch()) {
-    log::verbose("Local controller does not support role switch");
-    return false;
-  }
-
-  if (p_dev_rec->remote_supports_hci_role_switch) {
-    log::verbose("Peer controller supports role switch");
-    return true;
-  }
-
-  if (!p_dev_rec->remote_feature_received) {
-    log::verbose(
-        "Unknown peer capabilities, assuming peer supports role switch");
-    return true;
-  }
-
-  log::verbose("Peer controller does not support role switch");
-  return false;
 }
 
 static bool is_handle_equal(void* data, void* context) {
