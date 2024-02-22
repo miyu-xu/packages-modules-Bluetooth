@@ -22,6 +22,144 @@
       },
       "revId": "d5ef6d6ef4d226a0c16ca98b6e2d527bdaebbe18",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01bcf052_d4018d19",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 1775,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-22T06:34:55Z",
+      "side": 1,
+      "message": "This should be a write lock since the content is being modified",
+      "range": {
+        "startLine": 1775,
+        "startChar": 0,
+        "endLine": 1775,
+        "endChar": 30
+      },
+      "revId": "d5ef6d6ef4d226a0c16ca98b6e2d527bdaebbe18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43a129cc_f52f7474",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 2007,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-22T06:34:55Z",
+      "side": 1,
+      "message": "this should be a write lock as `getOrCreateStateMachine()` may create extra entries",
+      "range": {
+        "startLine": 2007,
+        "startChar": 41,
+        "endLine": 2007,
+        "endChar": 64
+      },
+      "revId": "d5ef6d6ef4d226a0c16ca98b6e2d527bdaebbe18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dd639ed_1dc309d2",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 2035,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-22T06:34:55Z",
+      "side": 1,
+      "message": "this should also be write lock as state machine values are being modified",
+      "range": {
+        "startLine": 2035,
+        "startChar": 8,
+        "endLine": 2035,
+        "endChar": 22
+      },
+      "revId": "d5ef6d6ef4d226a0c16ca98b6e2d527bdaebbe18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcbbd3b2_fc47d72e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 2152,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-22T06:34:55Z",
+      "side": 1,
+      "message": "this should be done outside critical section and remaining should be locked with a write lock as `updateActiveDevices` is modifying the state, but `updateActiveDevices` is also calling audio framework",
+      "range": {
+        "startLine": 2149,
+        "startChar": 12,
+        "endLine": 2152,
+        "endChar": 13
+      },
+      "revId": "d5ef6d6ef4d226a0c16ca98b6e2d527bdaebbe18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e66473c_fb2ab200",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 2997,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-22T06:34:55Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be a write lock as well?",
+      "range": {
+        "startLine": 2997,
+        "startChar": 0,
+        "endLine": 2997,
+        "endChar": 22
+      },
+      "revId": "d5ef6d6ef4d226a0c16ca98b6e2d527bdaebbe18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "534bb44c_8bfd2a8a",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 3019,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-22T06:34:55Z",
+      "side": 1,
+      "message": "Why do we want to break this section into two?",
+      "range": {
+        "startLine": 3015,
+        "startChar": 8,
+        "endLine": 3019,
+        "endChar": 31
+      },
+      "revId": "d5ef6d6ef4d226a0c16ca98b6e2d527bdaebbe18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
