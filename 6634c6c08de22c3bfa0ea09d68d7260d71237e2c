@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "597a7178_8249d094",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-02-22T23:05:52Z",
+      "side": 1,
+      "message": "can we add the Flag tag with \"EXEMPT\" since this is test only change.",
+      "range": {
+        "startLine": 11,
+        "startChar": 4,
+        "endLine": 11,
+        "endChar": 5
+      },
+      "revId": "6634c6c08de22c3bfa0ea09d68d7260d71237e2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
