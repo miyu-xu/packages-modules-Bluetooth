@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "67920ced_e829cc5a",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 3000,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-22T10:06:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aec13399_48b8d415",
+      "range": {
+        "startLine": 3000,
+        "startChar": 0,
+        "endLine": 3000,
+        "endChar": 23
+      },
+      "revId": "19ede23c1b86115ff16d57568a246463709fe5f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b3afec2b_2211b46b",
