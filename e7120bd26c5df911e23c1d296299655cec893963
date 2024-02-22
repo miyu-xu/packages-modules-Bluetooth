@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "190ba623_e02f0140",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-02-22T23:07:20Z",
+      "side": 1,
+      "message": "add the FLAG tag with \"EXEMPT\" since this is test only.",
+      "range": {
+        "startLine": 11,
+        "startChar": 36,
+        "endLine": 11,
+        "endChar": 40
+      },
+      "revId": "e7120bd26c5df911e23c1d296299655cec893963",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
