@@ -605,8 +605,6 @@ cc_test {
         "mts_defaults",
     ],
     shared_libs: [
-        "android.hardware.bluetooth.audio@2.0",
-        "android.hardware.bluetooth.audio@2.1",
         "libbase",
         "libbinder",
         "libbinder_ndk",
@@ -618,6 +616,8 @@ cc_test {
     include_dirs: ["packages/modules/Bluetooth/system"],
     srcs: ["common/hal_version_manager_test.cc"],
     static_libs: [
+        "android.hardware.bluetooth.audio@2.0",
+        "android.hardware.bluetooth.audio@2.1",
         "android.hardware.bluetooth@1.0",
         "android.hardware.bluetooth@1.1",
         "android.hardware.common-V2-ndk",
