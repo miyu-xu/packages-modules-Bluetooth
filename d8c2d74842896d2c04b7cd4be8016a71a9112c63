@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5548dd48_a724cf48",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-02-22T09:19:22Z",
+      "side": 1,
+      "message": "Hi, this is another attempt to fix the same issue as aosp/2968364 after understanding the issue more. PTAL, thanks!",
+      "revId": "d8c2d74842896d2c04b7cd4be8016a71a9112c63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
