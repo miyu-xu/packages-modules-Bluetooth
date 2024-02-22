@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "647f6aa3_708b1f64",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-22T10:14:53Z",
+      "side": 1,
+      "message": "if flag is not set, the unlock is for write, even the lock was for read. Is it intended?",
+      "revId": "82086ad9ef7bcc2c8c61558811da5baa98cb0fb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
