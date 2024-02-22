@@ -46,6 +46,30 @@
       },
       "revId": "099ca2394b58f33e20e0044411a41682bc23a47a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2995aac6_fae18acb",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-22T15:58:40Z",
+      "side": 1,
+      "message": "😭 I like _ much better.  It\u0027s easier to read as a space.  This doesn\u0027t need to be argued for this CL, though.",
+      "parentUuid": "2e178162_70a34795",
+      "range": {
+        "startLine": 108,
+        "startChar": 9,
+        "endLine": 108,
+        "endChar": 25
+      },
+      "revId": "099ca2394b58f33e20e0044411a41682bc23a47a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
