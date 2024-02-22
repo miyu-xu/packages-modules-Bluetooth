@@ -22,6 +22,30 @@
       },
       "revId": "25dc7852282adb04b53ef6e7a495897fba84dd75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1302d3cf_4c6eeedd",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-22T18:52:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77d7154b_eecdfc2b",
+      "range": {
+        "startLine": 367,
+        "startChar": 8,
+        "endLine": 367,
+        "endChar": 21
+      },
+      "revId": "25dc7852282adb04b53ef6e7a495897fba84dd75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
