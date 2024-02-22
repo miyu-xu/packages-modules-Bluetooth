@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e62fba6d_80d4cd34",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2465,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-22T19:22:43Z",
+      "side": 1,
+      "message": "Please comment out unused parameters.\n\nBy the way, is this really a set_acl_latency if we don\u0027t send them the handle?\n\n```suggestion\nstatic void l2cu_set_acl_latency_mtk(tL2C_LCB* /* p_lcb */, tL2CAP_LATENCY latency) {\n```",
+      "range": {
+        "startLine": 2465,
+        "startChar": 47,
+        "endLine": 2465,
+        "endChar": 52
+      },
+      "revId": "39c67fb2749b028c0ed6ee925160309e9e376f68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa430d25_4b67d5d6",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2466,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-22T19:22:43Z",
+      "side": 1,
+      "message": "logging has been updated (see line 2440)",
+      "range": {
+        "startLine": 2466,
+        "startChar": 2,
+        "endLine": 2466,
+        "endChar": 10
+      },
+      "revId": "39c67fb2749b028c0ed6ee925160309e9e376f68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b456f4a6_604057db",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2476,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-22T19:22:43Z",
+      "side": 1,
+      "message": "What do the zeros mean?",
+      "range": {
+        "startLine": 2476,
+        "startChar": 23,
+        "endLine": 2476,
+        "endChar": 24
+      },
+      "revId": "39c67fb2749b028c0ed6ee925160309e9e376f68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
