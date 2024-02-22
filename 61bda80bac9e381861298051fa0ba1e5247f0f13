@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01926f9c_7c5a8e6d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/a2dp/A2dpServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-22T00:53:54Z",
+      "side": 1,
+      "message": "testDevice",
+      "range": {
+        "startLine": 431,
+        "startChar": 28,
+        "endLine": 431,
+        "endChar": 39
+      },
+      "revId": "61bda80bac9e381861298051fa0ba1e5247f0f13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "702d85ab_a55d7c5f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/a2dp/A2dpServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1056,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-22T00:53:54Z",
+      "side": 1,
+      "message": "device",
+      "range": {
+        "startLine": 1056,
+        "startChar": 24,
+        "endLine": 1056,
+        "endChar": 35
+      },
+      "revId": "61bda80bac9e381861298051fa0ba1e5247f0f13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
