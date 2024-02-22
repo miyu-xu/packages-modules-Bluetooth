@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50b2757a_31303616",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 659,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-22T04:42:56Z",
+      "side": 1,
+      "message": "Why do we need to move it up here?",
+      "range": {
+        "startLine": 659,
+        "startChar": 8,
+        "endLine": 659,
+        "endChar": 38
+      },
+      "revId": "d5ef6d6ef4d226a0c16ca98b6e2d527bdaebbe18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
