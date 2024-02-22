@@ -51,6 +51,24 @@
       "message": "Have you investigated using an entirely different approach ?\n\ne.g. Using PDL to do the parsing for you ?\n\nhci::GapData::Parse ?",
       "revId": "11ff04fce1626c851152017f7e1991348a97e539",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bf86f92_865061b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-02-22T04:25:36Z",
+      "side": 1,
+      "message": "No, I haven\u0027t.\n\nBut looks like `hci::GapData::Parse` is just a way to transform a byte stream of (len, type, data) into a GapData struct, so it will not solve the problem we have. If we\u0027re using it, I think we will just end up doing similar thing but with a slight different function call.\nFor example, [1] and [2] looks quite similar.\n\n[1] https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/include/advertise_data_parser.h;l\u003d112;drc\u003dfe7a567aa50c966279d4d44ce0538dc1ae1b299c\n[2] https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/main/shim/utils.cc;l\u003d25;drc\u003d5b0977e64527539360b96649fd9a03078ba2de6f",
+      "parentUuid": "63580843_4cf23579",
+      "revId": "11ff04fce1626c851152017f7e1991348a97e539",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
