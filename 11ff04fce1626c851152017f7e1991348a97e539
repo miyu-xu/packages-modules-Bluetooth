@@ -87,6 +87,24 @@
       "parentUuid": "9bf86f92_865061b7",
       "revId": "11ff04fce1626c851152017f7e1991348a97e539",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6549426b_9d29d786",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-02-22T09:18:17Z",
+      "side": 1,
+      "message": "New CL is aosp/2971615",
+      "parentUuid": "1cea96d5_51f8733c",
+      "revId": "11ff04fce1626c851152017f7e1991348a97e539",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
