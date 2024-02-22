@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b16d126d_94858e93",
+        "filename": "system/gd/rust/topshim/src/profiles/hfp.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-02-22T08:26:08Z",
+      "side": 1,
+      "message": "I assume this is just for codec negotiation related methods.\nCan we add some comments to ensure future maintainers don\u0027t confuse with HfpCodecFormat below?",
+      "revId": "a14204f442ba075838ffa127a14f2b9179243d61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
