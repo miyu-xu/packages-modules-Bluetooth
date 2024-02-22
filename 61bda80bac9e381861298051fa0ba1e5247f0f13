@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "de1457c2_6e925bbe",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/a2dp/A2dpServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-22T21:51:22Z",
+      "side": 1,
+      "message": "Good question.  I figured that since it disconnects after this and verifies that...  The test doesn\u0027t have to wait for it.  But I don\u0027t write enough Java tests.",
+      "parentUuid": "d4b6899b_1134069f",
+      "revId": "61bda80bac9e381861298051fa0ba1e5247f0f13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "01926f9c_7c5a8e6d",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/a2dp/A2dpServiceTest.java",
         "patchSetId": 2
