@@ -1,0 +1,193 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2e57e6d_f7cb14e1",
+        "filename": "floss/pandora/floss/audio_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-22T08:53:51Z",
+      "side": 1,
+      "message": "Where does the audio data come from? I think there\u0027s no audio data when running the PTS test. If you first do `rm /usr/local/autotest/cros/audio/test_data` on the DUT and then run the test again, what will happen? We should have a way to generate the data for the PTS test.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 59
+      },
+      "revId": "dd783dc1b3d49aefddc4cbb505700abb4283fec8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11530858_2a19be9e",
+        "filename": "floss/pandora/floss/cmd_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-22T08:53:51Z",
+      "side": 1,
+      "message": "Please fix this warning.",
+      "revId": "dd783dc1b3d49aefddc4cbb505700abb4283fec8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76a4b3ab_8b7f95dc",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-22T08:53:51Z",
+      "side": 1,
+      "message": "Please fix the following lint warnings:\n\n\n```\n************* File pandora/server/a2dp.py\nC0114:  1: Missing module docstring [missing-module-docstring]\nC6201:  9: Multiple import [g-multiple-import]\nC6203:  9: Invalid import order.\nDiff:\n    import asyncio\n    import json\n    import logging\n    import time\n    from typing import AsyncGenerator\n    from typing import AsyncIterator\n-   import grpc\n-   from google.protobuf import wrappers_pb2, empty_pb2\n    from floss.pandora.floss import audio_utils\n    from floss.pandora.floss import cras_utils\n    from floss.pandora.floss import media_client\n    from floss.pandora.floss import utils\n    from floss.pandora.server import bluetooth as bluetooth_module\n+   from google.protobuf import wrappers_pb2, empty_pb2\n+   import grpc\n    from pandora import a2dp_grpc_aio\n    from pandora import a2dp_pb2\nCopy and pastable ordering:\nimport asyncio\nimport json\nimport logging\nimport time\nfrom typing import AsyncGenerator\nfrom typing import AsyncIterator\n\nfrom floss.pandora.floss import audio_utils\nfrom floss.pandora.floss import cras_utils\nfrom floss.pandora.floss import media_client\nfrom floss.pandora.floss import utils\nfrom floss.pandora.server import bluetooth as bluetooth_module\nfrom google.protobuf import wrappers_pb2, empty_pb2\nimport grpc\nfrom pandora import a2dp_grpc_aio\nfrom pandora import a2dp_pb2\n [g-bad-import-order]\nW1203: 67:A2DPService.OpenSource: Use lazy % formatting in logging functions [logging-fstring-interpolation]\nW1203:113:A2DPService.WaitSource: Use lazy % formatting in logging functions [logging-fstring-interpolation]\n```",
+      "revId": "dd783dc1b3d49aefddc4cbb505700abb4283fec8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0030701_2863930e",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-22T08:53:51Z",
+      "side": 1,
+      "message": "No need to time.sleep here. (Is any of the test failing on your side without this line?)",
+      "revId": "dd783dc1b3d49aefddc4cbb505700abb4283fec8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f204e5f_ffd1cd4f",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-22T08:53:51Z",
+      "side": 1,
+      "message": "No need to time.sleep here.",
+      "range": {
+        "startLine": 117,
+        "startChar": 8,
+        "endLine": 117,
+        "endChar": 18
+      },
+      "revId": "dd783dc1b3d49aefddc4cbb505700abb4283fec8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d74dd0a_2c79fbab",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-22T08:53:51Z",
+      "side": 1,
+      "message": "No need to try... except here.",
+      "range": {
+        "startLine": 159,
+        "startChar": 0,
+        "endLine": 161,
+        "endChar": 0
+      },
+      "revId": "dd783dc1b3d49aefddc4cbb505700abb4283fec8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "027cd9e8_bc85ed0e",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-22T08:53:51Z",
+      "side": 1,
+      "message": "No need to try... except here.",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 0
+      },
+      "revId": "dd783dc1b3d49aefddc4cbb505700abb4283fec8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fad0c6b_efe27373",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-22T08:53:51Z",
+      "side": 1,
+      "message": "Please help me check if this function is successfully streaming audio frame from the mmi2grpc.",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 237,
+        "endChar": 51
+      },
+      "revId": "dd783dc1b3d49aefddc4cbb505700abb4283fec8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a63dc1d9_5bd6cbdb",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-22T08:53:51Z",
+      "side": 1,
+      "message": "No need to try... except here.",
+      "range": {
+        "startLine": 238,
+        "startChar": 0,
+        "endLine": 240,
+        "endChar": 0
+      },
+      "revId": "dd783dc1b3d49aefddc4cbb505700abb4283fec8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
