@@ -16,6 +16,24 @@
       "message": "if flag is not set, the unlock is for write, even the lock was for read. Is it intended?",
       "revId": "82086ad9ef7bcc2c8c61558811da5baa98cb0fb0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5774380_6ca05cf1",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-22T10:16:07Z",
+      "side": 1,
+      "message": "Yes, when flag is not set, \n\n* groupMutexLock(any()) \u003d\u003d mGroupLock.lock()\n* groupMutexUnlock(any()) \u003d\u003d mGroupLock.unlock()",
+      "parentUuid": "647f6aa3_708b1f64",
+      "revId": "82086ad9ef7bcc2c8c61558811da5baa98cb0fb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
