@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "c719e208_cd25fb31",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-02-22T09:17:19Z",
+      "side": 1,
+      "message": "Added implmentation of NewIndex in the parser.rs.",
+      "parentUuid": "bce345e6_f52f0e4e",
+      "range": {
+        "startLine": 7,
+        "startChar": 19,
+        "endLine": 7,
+        "endChar": 38
+      },
+      "revId": "407aa6364eb58eec7512856c6a136fb2bb27430d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "084dcae7_e8b56f23",
@@ -66,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f64fe8f6_d82b71f7",
+        "filename": "floss/hcidoc/src/groups/controllers.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-02-22T09:17:19Z",
+      "side": 1,
+      "message": "Agreed that this needs to be maintained in the future but I assumed our vendors won\u0027t change this often.",
+      "parentUuid": "d636599f_5b1fda64",
+      "range": {
+        "startLine": 26,
+        "startChar": 15,
+        "endLine": 26,
+        "endChar": 37
+      },
+      "revId": "407aa6364eb58eec7512856c6a136fb2bb27430d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7e4a5275_25a94d7c",
         "filename": "floss/hcidoc/src/groups/controllers.rs",
         "patchSetId": 3
@@ -77,6 +125,30 @@
       "writtenOn": "2024-02-20T05:04:01Z",
       "side": 1,
       "message": "nit: AX200/AX201/AX203",
+      "range": {
+        "startLine": 32,
+        "startChar": 59,
+        "endLine": 32,
+        "endChar": 76
+      },
+      "revId": "407aa6364eb58eec7512856c6a136fb2bb27430d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "080470b5_a6cb141f",
+        "filename": "floss/hcidoc/src/groups/controllers.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-02-22T09:17:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e4a5275_25a94d7c",
       "range": {
         "startLine": 32,
         "startChar": 59,
@@ -100,6 +172,30 @@
       "writtenOn": "2024-02-20T05:04:01Z",
       "side": 1,
       "message": "nit: MANUFACTURERS",
+      "range": {
+        "startLine": 35,
+        "startChar": 6,
+        "endLine": 35,
+        "endChar": 34
+      },
+      "revId": "407aa6364eb58eec7512856c6a136fb2bb27430d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6c437cf_0c8e8a16",
+        "filename": "floss/hcidoc/src/groups/controllers.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-02-22T09:17:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df0ed066_772e7d48",
       "range": {
         "startLine": 35,
         "startChar": 6,
