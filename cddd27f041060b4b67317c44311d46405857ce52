@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b7775d8_7ec7eddf",
+        "filename": "floss/hcidoc/src/groups/controllers.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-02-22T09:27:34Z",
+      "side": 1,
+      "message": "`len` is the correct method",
+      "range": {
+        "startLine": 103,
+        "startChar": 28,
+        "endLine": 103,
+        "endChar": 36
+      },
+      "revId": "cddd27f041060b4b67317c44311d46405857ce52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
