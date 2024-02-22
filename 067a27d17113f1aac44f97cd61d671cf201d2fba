@@ -41,6 +41,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a3aa296_cb4ec440",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-22T17:10:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57df2e46_04261c57",
+      "revId": "067a27d17113f1aac44f97cd61d671cf201d2fba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "48da0225_eeab6ec9",
@@ -54,6 +72,30 @@
       "writtenOn": "2024-02-15T22:44:08Z",
       "side": 1,
       "message": "Can this log and log in line 1675 be removed?",
+      "range": {
+        "startLine": 1655,
+        "startChar": 2,
+        "endLine": 1655,
+        "endChar": 24
+      },
+      "revId": "067a27d17113f1aac44f97cd61d671cf201d2fba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e3f145d_e54c6135",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 1655,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-22T17:10:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48da0225_eeab6ec9",
       "range": {
         "startLine": 1655,
         "startChar": 2,
@@ -87,6 +129,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "42ccb14c_b39701e9",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 1657,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-22T17:10:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66387bfa_24a92202",
+      "range": {
+        "startLine": 1657,
+        "startChar": 33,
+        "endLine": 1657,
+        "endChar": 42
+      },
+      "revId": "067a27d17113f1aac44f97cd61d671cf201d2fba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "116896ba_10091256",
@@ -100,6 +166,30 @@
       "writtenOn": "2024-02-15T22:44:08Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Check Contents: Please remove the trailing whitespace.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nPlease remove the trailing whitespace.",
+      "range": {
+        "startLine": 2048,
+        "startChar": 2,
+        "endLine": 2048,
+        "endChar": 3
+      },
+      "revId": "067a27d17113f1aac44f97cd61d671cf201d2fba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10ee2b02_65410f9e",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 2048,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-22T17:10:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "116896ba_10091256",
       "range": {
         "startLine": 2048,
         "startChar": 2,
@@ -133,6 +223,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "21b3c755_4f02bda3",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 877,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-22T17:10:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d767d19_e389e19e",
+      "range": {
+        "startLine": 877,
+        "startChar": 16,
+        "endLine": 877,
+        "endChar": 24
+      },
+      "revId": "067a27d17113f1aac44f97cd61d671cf201d2fba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51752342_49d48eea",
@@ -146,6 +260,30 @@
       "writtenOn": "2024-02-15T22:44:08Z",
       "side": 1,
       "message": "btm_ble prefix should not be used on methods defined in this file (this is for btm_ble_[...].cc files.",
+      "range": {
+        "startLine": 953,
+        "startChar": 5,
+        "endLine": 953,
+        "endChar": 13
+      },
+      "revId": "067a27d17113f1aac44f97cd61d671cf201d2fba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a37c786_dc35de6e",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 953,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-22T17:10:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51752342_49d48eea",
       "range": {
         "startLine": 953,
         "startChar": 5,
@@ -179,6 +317,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f344bf8_91aea616",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 1106,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-22T17:10:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46c67de5_db5ce47a",
+      "range": {
+        "startLine": 1106,
+        "startChar": 4,
+        "endLine": 1106,
+        "endChar": 5
+      },
+      "revId": "067a27d17113f1aac44f97cd61d671cf201d2fba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5e83912_bd98f6dc",
@@ -202,6 +364,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ceac981_9f076c5c",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 1107,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-22T17:10:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5e83912_bd98f6dc",
+      "range": {
+        "startLine": 1107,
+        "startChar": 25,
+        "endLine": 1107,
+        "endChar": 33
+      },
+      "revId": "067a27d17113f1aac44f97cd61d671cf201d2fba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b19a8fb_d9b92bd9",
@@ -215,6 +401,30 @@
       "writtenOn": "2024-02-15T22:44:08Z",
       "side": 1,
       "message": "nit: remove\n```suggestion\n * Returns          Enc Key Material characteristic value\n```",
+      "range": {
+        "startLine": 328,
+        "startChar": 20,
+        "endLine": 328,
+        "endChar": 28
+      },
+      "revId": "067a27d17113f1aac44f97cd61d671cf201d2fba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "800a4f90_cbabfc1d",
+        "filename": "system/stack/include/gap_api.h",
+        "patchSetId": 25
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-22T17:10:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b19a8fb_d9b92bd9",
       "range": {
         "startLine": 328,
         "startChar": 20,
