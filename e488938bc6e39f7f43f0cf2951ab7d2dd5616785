@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cea66c6_5da243b5",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-02-22T18:46:15Z",
+      "side": 1,
+      "message": "can we add verbose/debug logs for write events",
+      "range": {
+        "startLine": 686,
+        "startChar": 0,
+        "endLine": 686,
+        "endChar": 41
+      },
+      "revId": "e488938bc6e39f7f43f0cf2951ab7d2dd5616785",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c846f46_d3ecd9a4",
+        "filename": "system/stack/rfcomm/rfc_port_fsm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-02-22T18:46:15Z",
+      "side": 1,
+      "message": "can we make the logs for state opened verbose / debug in the else constraint",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 68
+      },
+      "revId": "e488938bc6e39f7f43f0cf2951ab7d2dd5616785",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
