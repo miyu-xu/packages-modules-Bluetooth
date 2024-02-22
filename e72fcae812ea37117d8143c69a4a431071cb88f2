@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd0355ce_715cf0e8",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseHelper.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-22T17:19:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c323b479_bb608f84",
+      "range": {
+        "startLine": 194,
+        "startChar": 0,
+        "endLine": 203,
+        "endChar": 9
+      },
+      "revId": "e72fcae812ea37117d8143c69a4a431071cb88f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d2791b1d_8edbd6f4",
@@ -77,6 +101,30 @@
       "writtenOn": "2024-02-15T22:27:59Z",
       "side": 1,
       "message": "Why is this logic added to rotate_advertiser_address method?",
+      "range": {
+        "startLine": 755,
+        "startChar": 0,
+        "endLine": 771,
+        "endChar": 7
+      },
+      "revId": "e72fcae812ea37117d8143c69a4a431071cb88f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56162c13_7fc17fdc",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-22T17:19:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d6ee069_fd097e37",
       "range": {
         "startLine": 755,
         "startChar": 0,
@@ -123,6 +171,30 @@
       "writtenOn": "2024-02-15T22:27:59Z",
       "side": 1,
       "message": "This is not proper usage of flag. \n\nThese info logs should either be downgraded to debug or removed altogether.",
+      "range": {
+        "startLine": 1869,
+        "startChar": 6,
+        "endLine": 1872,
+        "endChar": 7
+      },
+      "revId": "e72fcae812ea37117d8143c69a4a431071cb88f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5886a0d0_7bc86529",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 1872,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-22T17:19:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "beffc321_7adb579d",
       "range": {
         "startLine": 1869,
         "startChar": 6,
