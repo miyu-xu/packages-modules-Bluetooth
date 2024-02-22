@@ -402,20 +402,19 @@ class HostService(host_grpc_aio.HostServicer):
                 observers.append((name, observer))
 
             while True:
-                if not self.bluetooth.advertising_client.active_advs:
-                    reg_id = self.bluetooth.start_advertising_set(parameters, advertise_data, None, None, None, 0, 0)
+                reg_id = self.bluetooth.start_advertising_set(parameters, advertise_data, None, None, None, 0, 0)
 
-                    advertising_request = {
-                        'start_advertising': asyncio.get_running_loop().create_future(),
-                        'reg_id': reg_id
-                    }
-                    observer = AdvertisingObserver(advertising_request)
-                    name = utils.create_observer_name(observer)
-                    self.bluetooth.advertising_client.register_callback_observer(name, observer)
-                    observers.append((name, observer))
+                advertising_request = {
+                    'start_advertising': asyncio.get_running_loop().create_future(),
+                    'reg_id': reg_id
+                }
+                observer = AdvertisingObserver(advertising_request)
+                name = utils.create_observer_name(observer)
+                self.bluetooth.advertising_client.register_callback_observer(name, observer)
+                observers.append((name, observer))
 
-                    advertiser_id = await asyncio.wait_for(advertising_request['start_advertising'], timeout=5)
-                    started_ids.append(advertiser_id)
+                advertiser_id = await asyncio.wait_for(advertising_request['start_advertising'], timeout=5)
+                started_ids.append(advertiser_id)
 
                 if not request.connectable:
                     await asyncio.sleep(1)
