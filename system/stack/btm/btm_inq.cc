@@ -2333,7 +2333,7 @@ uint8_t BTM_GetEirUuidList(const uint8_t* p_eir, size_t eir_len,
                            uint8_t* p_uuid_list, uint8_t max_num_uuid) {
   const uint8_t* p_uuid_data;
   uint8_t type;
-  uint8_t yy, xx;
+  uint8_t yy = 0, xx;
   uint16_t* p_uuid16 = (uint16_t*)p_uuid_list;
   uint32_t* p_uuid32 = (uint32_t*)p_uuid_list;
   char buff[Uuid::kNumBytes128 * 2 + 1];
@@ -2344,6 +2344,7 @@ uint8_t BTM_GetEirUuidList(const uint8_t* p_eir, size_t eir_len,
     return 0x00;
   }
 
+process_uuid:
   if (*p_num_uuid > max_num_uuid) {
     log::warn("number of uuid in EIR = {}, size of uuid list = {}", *p_num_uuid,
               max_num_uuid);
@@ -2353,22 +2354,37 @@ uint8_t BTM_GetEirUuidList(const uint8_t* p_eir, size_t eir_len,
   log::verbose("type = {:02X}, number of uuid = {}", type, *p_num_uuid);
 
   if (uuid_size == Uuid::kNumBytes16) {
-    for (yy = 0; yy < *p_num_uuid; yy++) {
+    for (; yy < *p_num_uuid; yy++) {
       STREAM_TO_UINT16(*(p_uuid16 + yy), p_uuid_data);
       log::verbose("                     0x{:04X}", *(p_uuid16 + yy));
     }
   } else if (uuid_size == Uuid::kNumBytes32) {
-    for (yy = 0; yy < *p_num_uuid; yy++) {
+    for (; yy < *p_num_uuid; yy++) {
       STREAM_TO_UINT32(*(p_uuid32 + yy), p_uuid_data);
       log::verbose("                     0x{:08X}", *(p_uuid32 + yy));
     }
   } else if (uuid_size == Uuid::kNumBytes128) {
-    for (yy = 0; yy < *p_num_uuid; yy++) {
+    for (; yy < *p_num_uuid; yy++) {
       STREAM_TO_ARRAY16(p_uuid_list + yy * Uuid::kNumBytes128, p_uuid_data);
       for (xx = 0; xx < Uuid::kNumBytes128; xx++)
         snprintf(buff + xx * 2, sizeof(buff) - xx * 2, "%02X",
                  *(p_uuid_list + yy * Uuid::kNumBytes128 + xx));
       log::verbose("                     0x{}", buff);
+    }
+  }
+
+  // Some peers wrongly have multiple entries of the same UUID list field
+  if (true /* Some flags */) {
+    if (*p_num_uuid < max_num_uuid) {
+      uint8_t new_num_uuid, new_type;
+      p_uuid_data =
+          btm_eir_get_uuid_list(p_uuid_data, eir_len - (p_uuid_data - p_eir),
+                                uuid_size, &new_num_uuid, &new_type);
+
+      if (p_uuid_data) {
+        *p_num_uuid += new_num_uuid;
+        goto process_uuid;
+      }
     }
   }
 
@@ -2511,38 +2527,63 @@ void btm_set_eir_uuid(const uint8_t* p_eir, tBTM_INQ_RESULTS* p_results) {
   p_uuid_data = btm_eir_get_uuid_list(p_eir, HCI_EXT_INQ_RESPONSE_LEN,
                                       Uuid::kNumBytes16, &num_uuid, &type);
 
+process_16bits_uuid:
   if (type == HCI_EIR_COMPLETE_16BITS_UUID_TYPE) {
     p_results->eir_complete_list = true;
-  } else {
-    p_results->eir_complete_list = false;
   }
-
-  log::verbose("eir_complete_list=0x{:02X}", p_results->eir_complete_list);
 
   if (p_uuid_data) {
     for (yy = 0; yy < num_uuid; yy++) {
       STREAM_TO_UINT16(uuid16, p_uuid_data);
       BTM_AddEirService(p_results->eir_uuid, uuid16);
     }
+
+    // Some peers wrongly have multiple entries of the same UUID list field
+    if (true /* Some flags */) {
+      p_uuid_data = btm_eir_get_uuid_list(
+          p_uuid_data, HCI_EXT_INQ_RESPONSE_LEN - (p_uuid_data - p_eir),
+          Uuid::kNumBytes16, &num_uuid, &type);
+      goto process_16bits_uuid;
+    }
   }
+
+  log::verbose("eir_complete_list=0x{:02X}", p_results->eir_complete_list);
 
   p_uuid_data = btm_eir_get_uuid_list(p_eir, HCI_EXT_INQ_RESPONSE_LEN,
                                       Uuid::kNumBytes32, &num_uuid, &type);
+process_32bits_uuid:
   if (p_uuid_data) {
     for (yy = 0; yy < num_uuid; yy++) {
       uuid16 = btm_convert_uuid_to_uuid16(p_uuid_data, Uuid::kNumBytes32);
       p_uuid_data += Uuid::kNumBytes32;
       if (uuid16) BTM_AddEirService(p_results->eir_uuid, uuid16);
     }
+
+    // Some peers wrongly have multiple entries of the same UUID list field
+    if (true /* Some flags */) {
+      p_uuid_data = btm_eir_get_uuid_list(
+          p_uuid_data, HCI_EXT_INQ_RESPONSE_LEN - (p_uuid_data - p_eir),
+          Uuid::kNumBytes32, &num_uuid, &type);
+      goto process_32bits_uuid;
+    }
   }
 
   p_uuid_data = btm_eir_get_uuid_list(p_eir, HCI_EXT_INQ_RESPONSE_LEN,
                                       Uuid::kNumBytes128, &num_uuid, &type);
+process_128bits_uuid:
   if (p_uuid_data) {
     for (yy = 0; yy < num_uuid; yy++) {
       uuid16 = btm_convert_uuid_to_uuid16(p_uuid_data, Uuid::kNumBytes128);
       p_uuid_data += Uuid::kNumBytes128;
       if (uuid16) BTM_AddEirService(p_results->eir_uuid, uuid16);
+    }
+
+    // Some peers wrongly have multiple entries of the same UUID list field
+    if (true /* Some flags */) {
+      p_uuid_data = btm_eir_get_uuid_list(
+          p_uuid_data, HCI_EXT_INQ_RESPONSE_LEN - (p_uuid_data - p_eir),
+          Uuid::kNumBytes128, &num_uuid, &type);
+      goto process_128bits_uuid;
     }
   }
 }
