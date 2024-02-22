@@ -93,6 +93,30 @@
       },
       "revId": "bd5baf996890fd8bdc099e5cace3ad854f4b6fac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "556ba086_0777972c",
+        "filename": "pandora/interfaces/pandora_experimental/gatt.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-02-22T22:41:48Z",
+      "side": 1,
+      "message": "Sounds good to me then, thanks for the clarification. Wanted to make sure since the Pandora Interfaces should stick to the Bluetooth specification.",
+      "parentUuid": "fcd90eb7_83dbd57b",
+      "range": {
+        "startLine": 47,
+        "startChar": 2,
+        "endLine": 51,
+        "endChar": 107
+      },
+      "revId": "bd5baf996890fd8bdc099e5cace3ad854f4b6fac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
