@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00e7fcaa_2de01037",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-22T19:33:12Z",
+      "side": 1,
+      "message": "fix",
+      "range": {
+        "startLine": 504,
+        "startChar": 20,
+        "endLine": 504,
+        "endChar": 22
+      },
+      "revId": "272796a762c451e36c8b1f273476881040831e69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cb6bd82_19a04f54",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-22T19:33:12Z",
+      "side": 1,
+      "message": "fix, rssi",
+      "range": {
+        "startLine": 647,
+        "startChar": 29,
+        "endLine": 647,
+        "endChar": 30
+      },
+      "revId": "272796a762c451e36c8b1f273476881040831e69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
