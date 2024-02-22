@@ -70,6 +70,30 @@
       },
       "revId": "099ca2394b58f33e20e0044411a41682bc23a47a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb747dec_e74c2970",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-22T21:29:45Z",
+      "side": 1,
+      "message": "Well, I think this is a bikeshed-issue to be discussed.\n\nThe precedent for library names is dots and dashes.  For all other labels, underscores are welcome.\n\nMost libraries and Android use dots and dashes which I think is conformant.",
+      "parentUuid": "2995aac6_fae18acb",
+      "range": {
+        "startLine": 108,
+        "startChar": 9,
+        "endLine": 108,
+        "endChar": 25
+      },
+      "revId": "099ca2394b58f33e20e0044411a41682bc23a47a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
