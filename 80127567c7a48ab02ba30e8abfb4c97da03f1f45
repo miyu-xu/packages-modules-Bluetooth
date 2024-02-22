@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86fda2cb_0e74e243",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 653,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-22T23:22:08Z",
+      "side": 1,
+      "message": "just fyi, there is some ongoing work to replace those with static feature flags. But since LeAudioService is not done yet, it\u0027s out of the scope of this work.",
+      "revId": "80127567c7a48ab02ba30e8abfb4c97da03f1f45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7433f1d7_3c570ca1",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-22T23:22:08Z",
+      "side": 1,
+      "message": "do we need null check for sm here?\n```suggestion\n\n        if (mFeatureFlags.leaudioApiSynchronizedBlockFix() \u0026\u0026 sm !\u003d null) {\n            sm.sendMessage(LeAudioStateMachine.CONNECT);\n```",
+      "revId": "80127567c7a48ab02ba30e8abfb4c97da03f1f45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
