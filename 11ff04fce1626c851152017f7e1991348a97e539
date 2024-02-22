@@ -105,6 +105,24 @@
       "parentUuid": "1cea96d5_51f8733c",
       "revId": "11ff04fce1626c851152017f7e1991348a97e539",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dd5c865_d932cbda",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-22T23:50:09Z",
+      "side": 1,
+      "message": "ok thanks...the reason to bring PDL is that the conversion from PDL packets from the hci will no longer be converted into a bytestream and will be presented as a PDL view.\n\nso any code operating on raw byte streams will no longer be supported.\n\nMy worry is ensuring that any vendor defects are also captures appropriately.",
+      "parentUuid": "6549426b_9d29d786",
+      "revId": "11ff04fce1626c851152017f7e1991348a97e539",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
