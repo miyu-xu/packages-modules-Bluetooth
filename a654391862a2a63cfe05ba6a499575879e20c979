@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7aa12763_d8523843",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-22T19:09:31Z",
+      "side": 1,
+      "message": "This is fine to me since this logic is behind the flag.\nAs we discussed offline with Jack, let\u0027s merge those and give a headsup to @rlukasz@google.com and @tyszkowski@google.com. Then they will continue to check if any improvements we can on top of this.",
+      "parentUuid": "5042af9a_37a6e1f9",
+      "revId": "a654391862a2a63cfe05ba6a499575879e20c979",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9594b6bd_dc6ef062",
