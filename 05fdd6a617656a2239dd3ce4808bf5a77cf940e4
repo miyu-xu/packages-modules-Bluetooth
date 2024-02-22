@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eeb604e1_0994ac6a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-22T19:50:01Z",
+      "side": 1,
+      "message": "Please keep test with flag disabled (can set flag disabled explicitly), and add new test case for flag enabled.\n\nFWIW I\u0027m not concerned about regression with this change, but more so noting as a matter of practice.",
+      "revId": "05fdd6a617656a2239dd3ce4808bf5a77cf940e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74e86bb5_e3b331b8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-22T19:50:01Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Import specific classes instead of wildcard imports\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nImport specific classes instead of wildcard imports",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 19
+      },
+      "revId": "05fdd6a617656a2239dd3ce4808bf5a77cf940e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
