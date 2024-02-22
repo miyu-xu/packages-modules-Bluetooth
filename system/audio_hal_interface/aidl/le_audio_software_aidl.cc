@@ -67,7 +67,15 @@ LeAudioTransport::LeAudioTransport(void (*flush)(void),
       data_position_({}),
       pcm_config_(std::move(pcm_config)),
       start_request_state_(StartRequestState::IDLE),
-      dsa_mode_(DsaMode::DISABLED){};
+      dsa_mode_(DsaMode::DISABLED),
+      cached_source_metadata_({}){};
+
+LeAudioTransport::~LeAudioTransport() {
+  if (cached_source_metadata_.tracks != nullptr) {
+    free(cached_source_metadata_.tracks);
+    cached_source_metadata_.tracks = nullptr;
+  }
+}
 
 BluetoothAudioCtrlAck LeAudioTransport::StartRequest(bool is_low_latency) {
   // Check if operation is pending already
@@ -178,8 +186,10 @@ void LeAudioTransport::SetLatencyMode(LatencyMode latency_mode) {
       break;
     default:
       LOG(WARNING) << ", invalid latency mode: " << (int)latency_mode;
-      break;
+      return;
   }
+
+  SourceMetadataChanged(cached_source_metadata_);
 }
 
 bool LeAudioTransport::GetPresentationPosition(uint64_t* remote_delay_report_ns,
@@ -206,6 +216,20 @@ void LeAudioTransport::SourceMetadataChanged(
   if (track_count == 0) {
     LOG(WARNING) << ", invalid number of metadata changed tracks";
     return;
+  }
+
+  if (IS_FLAG_ENABLED(leaudio_dynamic_spatial_audio)) {
+    if (cached_source_metadata_.tracks != nullptr) {
+      free(cached_source_metadata_.tracks);
+      cached_source_metadata_.tracks = nullptr;
+    }
+
+    playback_track_metadata_v7* tracks;
+    tracks = (playback_track_metadata_v7*)malloc(sizeof(*tracks) * track_count);
+    memcpy(tracks, source_metadata.tracks, sizeof(*tracks) * track_count);
+
+    cached_source_metadata_.track_count = track_count;
+    cached_source_metadata_.tracks = tracks;
   }
 
   stream_cb_.on_metadata_update_(source_metadata, dsa_mode_);
