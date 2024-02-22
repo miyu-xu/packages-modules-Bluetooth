@@ -790,6 +790,7 @@ impl From<BluetoothProperty> for (Box<[u8]>, bindings::bt_property_t) {
     }
 }
 
+#[derive(Clone)]
 pub enum SupportedProfiles {
     HidHost,
     Hfp,
@@ -801,21 +802,24 @@ pub enum SupportedProfiles {
     AvrcpCtrl,
 }
 
+impl From<SupportedProfiles> for String {
+    fn from(profile: SupportedProfiles) -> Self {
+        match profile {
+            SupportedProfiles::HidHost => "hidhost".to_string(),
+            SupportedProfiles::Hfp => "handsfree".to_string(),
+            SupportedProfiles::A2dp => "a2dp".to_string(),
+            SupportedProfiles::Gatt => "gatt".to_string(),
+            SupportedProfiles::Sdp => "sdp".to_string(),
+            SupportedProfiles::Socket => "socket".to_string(),
+            SupportedProfiles::HfClient => "handsfree_client".to_string(),
+            SupportedProfiles::AvrcpCtrl => "avrcp_ctrl".to_string(),
+        }
+    }
+}
+
 impl From<SupportedProfiles> for Vec<u8> {
     fn from(item: SupportedProfiles) -> Self {
-        match item {
-            SupportedProfiles::HidHost => "hidhost",
-            SupportedProfiles::Hfp => "handsfree",
-            SupportedProfiles::A2dp => "a2dp",
-            SupportedProfiles::Gatt => "gatt",
-            SupportedProfiles::Sdp => "sdp",
-            SupportedProfiles::Socket => "socket",
-            SupportedProfiles::HfClient => "handsfree_client",
-            SupportedProfiles::AvrcpCtrl => "avrcp_ctrl",
-        }
-        .bytes()
-        .chain("\0".bytes())
-        .collect::<Vec<u8>>()
+        String::from(item).bytes().chain("\0".bytes()).collect::<Vec<u8>>()
     }
 }
 
@@ -1358,6 +1362,17 @@ impl BluetoothInterface {
         let cprofile = Vec::<u8>::from(profile);
         let cprofile_ptr = LTCheckedPtr::from(&cprofile);
         ccall!(self, get_profile_interface, cprofile_ptr.cast_into::<std::os::raw::c_char>())
+    }
+
+    pub(crate) fn get_profile_interface_or_panic(
+        &self,
+        profile: SupportedProfiles,
+    ) -> *const std::os::raw::c_void {
+        let profile_interface = self.get_profile_interface(profile.clone());
+        if profile_interface == std::ptr::null() {
+            panic!("Unable to find required profile interface: {}", String::from(profile));
+        }
+        profile_interface
     }
 
     pub(crate) fn as_raw_ptr(&self) -> *const u8 {
