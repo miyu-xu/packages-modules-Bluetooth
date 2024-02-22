@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "292fce95_086e6c5e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2136,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-22T22:49:27Z",
+      "side": 1,
+      "message": "could we consider this?\n\n```suggestion\n                BluetoothDevice device \u003d mAdapterService.getDeviceFromByte(Utils.getBytesFromAddress(\"FF:FF:FF:FF:FF:FF\"));\n                \n                if (!device.equals(mActiveBroadcastAudioDevice)) {\n                    updateBroadcastActiveDevice(device, mActiveBroadcastAudioDevice, true);\n                }\n```",
+      "revId": "b4e7fc39158285119fc86fc93beb6352d9a4dc93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5038121a_149b3860",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2660,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-22T22:49:27Z",
+      "side": 1,
+      "message": "is this coming from some rebase mistakenly?\n\n\n```suggestion\n                    if (mActiveBroadcastAudioDevice !\u003d null) {\n```",
+      "revId": "b4e7fc39158285119fc86fc93beb6352d9a4dc93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19179738_b342b7cb",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2718,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-22T22:49:27Z",
+      "side": 1,
+      "message": "nit: !device.equals(mActiveBroadcastAudioDevice)?",
+      "revId": "b4e7fc39158285119fc86fc93beb6352d9a4dc93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "461e6fa1_eb02368a",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 4015,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-22T22:49:27Z",
+      "side": 1,
+      "message": "```suggestion\n            if (mActiveBroadcastAudioDevice !\u003d null) {\n```",
+      "revId": "b4e7fc39158285119fc86fc93beb6352d9a4dc93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
