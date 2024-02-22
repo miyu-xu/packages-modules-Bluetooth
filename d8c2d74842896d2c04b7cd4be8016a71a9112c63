@@ -16,6 +16,23 @@
       "message": "Hi, this is another attempt to fix the same issue as aosp/2968364 after understanding the issue more. PTAL, thanks!",
       "revId": "d8c2d74842896d2c04b7cd4be8016a71a9112c63",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "efa86484_2ac41cfb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-22T22:45:54Z",
+      "side": 1,
+      "message": "Would it be possible for you to snip an inquiry result packet from `Razer Hammerhead TWS Pro` ?\n\nI would like to include this in a new parser using PDL.\n\n(you have another CL which parses EIR also that I made reference to PDL)",
+      "revId": "d8c2d74842896d2c04b7cd4be8016a71a9112c63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
