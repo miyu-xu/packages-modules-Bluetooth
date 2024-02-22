@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6b08cbc_cc42ee50",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-02-22T22:38:25Z",
+      "side": 1,
+      "message": "Made this into a parameterized test.",
+      "parentUuid": "9af8f31d_80102f77",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 244,
+        "endChar": 5
+      },
+      "revId": "bd5baf996890fd8bdc099e5cace3ad854f4b6fac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "622bd784_ed270f55",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-22T21:59:07Z",
       "side": 1,
       "message": "I am not familiar with the term \"Indicate\". Is this term defined in the Bluetooth specification?",
+      "range": {
+        "startLine": 47,
+        "startChar": 2,
+        "endLine": 51,
+        "endChar": 107
+      },
+      "revId": "bd5baf996890fd8bdc099e5cace3ad854f4b6fac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcd90eb7_83dbd57b",
+        "filename": "pandora/interfaces/pandora_experimental/gatt.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-02-22T22:38:25Z",
+      "side": 1,
+      "message": "Yes, notifications and indications are specified in the Bluetooth spec as mechanisms for the server to inform the client of characteristic values. The main difference between the two is that indications expect an acknowledgment from the client that the indication was received while a notification does not expect that acknowledgment.",
+      "parentUuid": "622bd784_ed270f55",
       "range": {
         "startLine": 47,
         "startChar": 2,
