@@ -46,6 +46,30 @@
       },
       "revId": "37aef1ccab4c6f3f957f492030fdb72ca207f1c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c522a6f_9a4f017a",
+        "filename": "system/bta/gatt/bta_gattc_int.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-22T20:11:47Z",
+      "side": 1,
+      "message": "I guess I\u0027m okay with this as temporary workaround as we should be cleaning this up soon; the only alternative I can think of is to add buffer for LE audio/system GATT usage instead of per connection limit such as this because it\u0027s largely the LE audio case where we seem to hit this limit, but given it\u0027s temporary I will approve.",
+      "parentUuid": "e56b5b7e_f0ac4b48",
+      "range": {
+        "startLine": 86,
+        "startChar": 27,
+        "endLine": 86,
+        "endChar": 72
+      },
+      "revId": "37aef1ccab4c6f3f957f492030fdb72ca207f1c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
