@@ -33,6 +33,24 @@
       "message": "Would it be possible for you to snip an inquiry result packet from `Razer Hammerhead TWS Pro` ?\n\nI would like to include this in a new parser using PDL.\n\n(you have another CL which parses EIR also that I made reference to PDL)",
       "revId": "d8c2d74842896d2c04b7cd4be8016a71a9112c63",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f773e8be_a5b3a9a1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-22T23:43:25Z",
+      "side": 1,
+      "message": "ok...I just re-read your comment and see that this is a second effort to address the eir parsing issue and you abandoned the previous one.\n\nThis parsing code is more or less deprecated in favor of using PDL to GapData to parse these packets.\n\nI wonder if the vendor violates the PDL packet parsing code...I\u0027m collecting inquiry response packets for testing and could use this as part of the unit/regression tests.",
+      "parentUuid": "efa86484_2ac41cfb",
+      "revId": "d8c2d74842896d2c04b7cd4be8016a71a9112c63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
