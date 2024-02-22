@@ -34,6 +34,24 @@
       "parentUuid": "224cc245_cea92636",
       "revId": "5e93c388827968fcdb8fd031502393b51839beed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5748b4e1_8bed3196",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1350,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-22T22:14:22Z",
+      "side": 1,
+      "message": "Yea, I saw we have handled this in some cases, like sink synced, error cases... But those places don\u0027t seem to be paired with the starting scanning. If we started scanning and notify the sinks, we might not perform any sync or adding source operations. Then we might end up with notifying starting scan but never stopping scan.\nSince we\u0027re adding this to start scan, should we also add \u0027stop scan\u0027 in \u0027stopSearchingForSources\u0027?",
+      "parentUuid": "f98d815b_a9bf0a3b",
+      "revId": "5e93c388827968fcdb8fd031502393b51839beed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
