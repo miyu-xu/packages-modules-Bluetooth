@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c8f5e5b_796f272f",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-22T14:50:08Z",
+      "side": 1,
+      "message": "I\u0027d prefer naming it libbluetooth_gdx, so it ends up next to libbluetooth_gd.",
+      "range": {
+        "startLine": 108,
+        "startChar": 9,
+        "endLine": 108,
+        "endChar": 25
+      },
+      "revId": "099ca2394b58f33e20e0044411a41682bc23a47a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
