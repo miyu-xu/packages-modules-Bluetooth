@@ -146,6 +146,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "586a8435_a447407c",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-22T09:00:26Z",
+      "side": 1,
+      "message": "disconnect_media",
+      "revId": "dd783dc1b3d49aefddc4cbb505700abb4283fec8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7fad0c6b_efe27373",
         "filename": "floss/pandora/server/a2dp.py",
         "patchSetId": 5
@@ -186,6 +203,69 @@
         "endLine": 240,
         "endChar": 0
       },
+      "revId": "dd783dc1b3d49aefddc4cbb505700abb4283fec8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e242f3df_1db0a7b9",
+        "filename": "floss/pandora/server/bluetooth.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-22T09:00:26Z",
+      "side": 1,
+      "message": "Please help to fix the linter warnings:\n\n```\n************* File pandora/server/bluetooth.py\nC6203: 25: Invalid import order.\nDiff:\n    import logging\n    import threading\n    import traceback\n    from floss.pandora.floss import adapter_client\n    from floss.pandora.floss import advertising_client\n+   from floss.pandora.floss import floss_enums\n+   from floss.pandora.floss import gatt_client\n+   from floss.pandora.floss import gatt_server\n    from floss.pandora.floss import manager_client\n+   from floss.pandora.floss import media_client\n    from floss.pandora.floss import qa_client\n    from floss.pandora.floss import scanner_client\n-   from floss.pandora.floss import media_client\n-   from floss.pandora.floss import gatt_client\n-   from floss.pandora.floss import gatt_server\n-   from floss.pandora.floss import floss_enums\n    from floss.pandora.floss import utils\n    from gi.repository import GLib\n    import pydbus\nCopy and pastable ordering:\nimport logging\nimport threading\nimport traceback\n\nfrom floss.pandora.floss import adapter_client\nfrom floss.pandora.floss import advertising_client\nfrom floss.pandora.floss import floss_enums\nfrom floss.pandora.floss import gatt_client\nfrom floss.pandora.floss import gatt_server\nfrom floss.pandora.floss import manager_client\nfrom floss.pandora.floss import media_client\nfrom floss.pandora.floss import qa_client\nfrom floss.pandora.floss import scanner_client\nfrom floss.pandora.floss import utils\nfrom gi.repository import GLib\nimport pydbus\n [g-bad-import-order]\n```",
+      "range": {
+        "startLine": 24,
+        "startChar": 9,
+        "endLine": 25,
+        "endChar": 8
+      },
+      "revId": "dd783dc1b3d49aefddc4cbb505700abb4283fec8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "737734a1_33e4215f",
+        "filename": "floss/pandora/server/bluetooth.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-22T09:00:26Z",
+      "side": 1,
+      "message": "disconnect_media",
+      "range": {
+        "startLine": 374,
+        "startChar": 8,
+        "endLine": 374,
+        "endChar": 24
+      },
+      "revId": "dd783dc1b3d49aefddc4cbb505700abb4283fec8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03e0764c_7e922e02",
+        "filename": "floss/pandora/server/server.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-22T09:00:26Z",
+      "side": 1,
+      "message": "Please fix the linter warnings:\n\n```\n************* File pandora/server/server.py\nC6203: 21: Invalid import order.\nDiff:\n    import asyncio\n    import logging\n-   import grpc\n    from floss.pandora.server import a2dp\n    from floss.pandora.server import bluetooth as bluetooth_module\n    from floss.pandora.server import gatt\n    from floss.pandora.server import hid\n    from floss.pandora.server import host\n    from floss.pandora.server import security\n+   import grpc\n    from pandora import a2dp_grpc_aio\n    from pandora import host_grpc_aio\n    from pandora import security_grpc_aio\n    from pandora_experimental import gatt_grpc_aio\n    from pandora_experimental import hid_grpc_aio\nCopy and pastable ordering:\nimport asyncio\nimport logging\n\nfrom floss.pandora.server import a2dp\nfrom floss.pandora.server import bluetooth as bluetooth_module\nfrom floss.pandora.server import gatt\nfrom floss.pandora.server import hid\nfrom floss.pandora.server import host\nfrom floss.pandora.server import security\nimport grpc\nfrom pandora import a2dp_grpc_aio\nfrom pandora import host_grpc_aio\nfrom pandora import security_grpc_aio\nfrom pandora_experimental import gatt_grpc_aio\nfrom pandora_experimental import hid_grpc_aio\n [g-bad-import-order]\nC6012: 44: Quote delimiter \" is inconsistent with the rest of the file [g-inconsistent-quotes]\nC6012: 68: Quote delimiter \" is inconsistent with the rest of the file [g-inconsistent-quotes]\n```",
       "revId": "dd783dc1b3d49aefddc4cbb505700abb4283fec8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
