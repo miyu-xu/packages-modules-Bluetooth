@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d4b6899b_1134069f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/a2dp/A2dpServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-22T17:43:49Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this have a timeout?\n\nBecause AFAIU mockito will not wait for it and this will just make the test fail differently.",
+      "revId": "61bda80bac9e381861298051fa0ba1e5247f0f13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "01926f9c_7c5a8e6d",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/a2dp/A2dpServiceTest.java",
         "patchSetId": 2
