@@ -218,6 +218,7 @@ class LeAudioClientImpl : public LeAudioClient {
     alarm_free(close_vbc_timeout_);
     alarm_free(disable_timer_);
     alarm_free(suspend_timeout_);
+    alarm_free(suspend_asymmetric_ble_phy_timeout_);
   };
 
   LeAudioClientImpl(
@@ -245,7 +246,9 @@ class LeAudioClientImpl : public LeAudioClient {
         le_audio_sink_hal_client_(nullptr),
         close_vbc_timeout_(alarm_new("LeAudioCloseVbcTimeout")),
         suspend_timeout_(alarm_new("LeAudioSuspendTimeout")),
-        disable_timer_(alarm_new("LeAudioDisableTimer")) {
+        disable_timer_(alarm_new("LeAudioDisableTimer")),
+        suspend_asymmetric_ble_phy_timeout_(
+            alarm_new("LeAudioAsymmetricBlePhyTimeout")) {
     LeAudioGroupStateMachine::Initialize(state_machine_callbacks_);
     groupStateMachine_ = LeAudioGroupStateMachine::Get();
 
@@ -4008,6 +4011,43 @@ class LeAudioClientImpl : public LeAudioClient {
           if (instance) instance->GroupStop(PTR_TO_INT(data));
         },
         INT_TO_PTR(active_group_id_));
+
+    auto group = aseGroups_.FindById(active_group_id_);
+    if (!group) {
+      LOG(ERROR) << __func__
+                 << ", Invalid group: " << static_cast<int>(active_group_id_);
+      return;
+    }
+
+    if (group->asymmetric_phy_for_unidirectional_cis_supported) {
+      if (group->GetSduInterval(le_audio::types::kLeAudioDirectionSource) ==
+          0) {
+        uint64_t asymmetric_ble_phy_timeout_ms =
+            kAudioSuspentAsymmetricBlePhyTimeoutMs;
+        if (alarm_is_scheduled(suspend_asymmetric_ble_phy_timeout_))
+          alarm_cancel(suspend_asymmetric_ble_phy_timeout_);
+
+        LOG_VERBOSE("suspend_asymmetric_ble_phy_timeout_ started: %d ms",
+                    static_cast<int>(asymmetric_ble_phy_timeout_ms));
+
+        alarm_set_on_mloop(
+            suspend_asymmetric_ble_phy_timeout_, asymmetric_ble_phy_timeout_ms,
+            [](void* data) {
+              LeAudioDeviceGroup* group = (LeAudioDeviceGroup*)data;
+              LeAudioDevice* leAudioDevice = group->GetFirstActiveDevice();
+              if (leAudioDevice != nullptr) {
+                for (auto tmpDevice = leAudioDevice; tmpDevice != nullptr;
+                     tmpDevice = group->GetNextActiveDevice(tmpDevice)) {
+                  LOG_VERBOSE(
+                      "suspend_asymmetric_ble_phy_timeout_: set LE ACL PHY to "
+                      "2M");
+                  BTM_BleSetPhy(tmpDevice->address_, PHY_LE_2M, PHY_LE_2M, 0);
+                }
+              }
+            },
+            group);
+      }
+    }
   }
 
   void OnLocalAudioSourceSuspend() {
@@ -4231,6 +4271,8 @@ class LeAudioClientImpl : public LeAudioClient {
             /* Stream is up just restore it */
             if (alarm_is_scheduled(suspend_timeout_))
               alarm_cancel(suspend_timeout_);
+            if (alarm_is_scheduled(suspend_asymmetric_ble_phy_timeout_))
+              alarm_cancel(suspend_asymmetric_ble_phy_timeout_);
             ConfirmLocalAudioSourceStreamingRequest();
             le_audio::MetricsCollector::Get()->OnStreamStarted(
                 active_group_id_, configuration_context_type_);
@@ -4505,6 +4547,8 @@ class LeAudioClientImpl : public LeAudioClient {
             /* Stream is up just restore it */
             if (alarm_is_scheduled(suspend_timeout_))
               alarm_cancel(suspend_timeout_);
+            if (alarm_is_scheduled(suspend_asymmetric_ble_phy_timeout_))
+              alarm_cancel(suspend_asymmetric_ble_phy_timeout_);
             ConfirmLocalAudioSinkStreamingRequest();
             break;
           case AudioState::RELEASING:
@@ -4607,6 +4651,8 @@ class LeAudioClientImpl : public LeAudioClient {
     }
 
     if (alarm_is_scheduled(suspend_timeout_)) alarm_cancel(suspend_timeout_);
+    if (alarm_is_scheduled(suspend_asymmetric_ble_phy_timeout_))
+      alarm_cancel(suspend_asymmetric_ble_phy_timeout_);
 
     /* Need to reconfigure stream */
     group->SetPendingConfiguration();
@@ -5504,6 +5550,8 @@ class LeAudioClientImpl : public LeAudioClient {
               0) {
             SetAsymmetricBlePhy(group, true);
           } else {
+            if (alarm_is_scheduled(suspend_asymmetric_ble_phy_timeout_))
+              alarm_cancel(suspend_asymmetric_ble_phy_timeout_);
             SetAsymmetricBlePhy(group, false);
           }
         }
@@ -5780,7 +5828,9 @@ class LeAudioClientImpl : public LeAudioClient {
   alarm_t* close_vbc_timeout_;
   alarm_t* suspend_timeout_;
   alarm_t* disable_timer_;
+  alarm_t* suspend_asymmetric_ble_phy_timeout_;
   static constexpr uint64_t kDeviceAttachDelayMs = 500;
+  static constexpr uint64_t kAudioSuspentAsymmetricBlePhyTimeoutMs = 60000;
 
   uint32_t cached_channel_timestamp_ = 0;
   le_audio::CodecInterface* cached_channel_ = nullptr;
@@ -5790,6 +5840,23 @@ class LeAudioClientImpl : public LeAudioClient {
   std::map<int, GroupStreamStatus> lastNotifiedGroupStreamStatusMap_;
 
   void ClientAudioInterfaceRelease() {
+    auto group = aseGroups_.FindById(active_group_id_);
+    if (!group) {
+      LOG(ERROR) << __func__
+                 << ", Invalid group: " << static_cast<int>(active_group_id_);
+    } else if (group->asymmetric_phy_for_unidirectional_cis_supported) {
+      if (group->GetSduInterval(le_audio::types::kLeAudioDirectionSource) ==
+          0) {
+        if (alarm_is_scheduled(suspend_asymmetric_ble_phy_timeout_)) {
+          alarm_cancel(suspend_asymmetric_ble_phy_timeout_);
+        }
+        SetAsymmetricBlePhy(group, false);
+        LOG_VERBOSE(
+            "ClientAudioInterfaceRelease - cleanup asymmetric BLE ACL PHY "
+            "setting");
+      }
+    }
+
     if (le_audio_source_hal_client_) {
       le_audio_source_hal_client_->Stop();
       le_audio_source_hal_client_.reset();
@@ -5851,10 +5918,11 @@ class LeAudioClientImpl : public LeAudioClient {
   void SetAsymmetricBlePhy(LeAudioDeviceGroup* group, bool asymmetric) {
     LeAudioDevice* leAudioDevice = group->GetFirstActiveDevice();
     if (leAudioDevice == nullptr) {
-      LOG_ERROR(" Shouldn't be called without an active device.");
+      LOG_ERROR("Shouldn't be called without an active device.");
       return;
     }
 
+    LOG_VERBOSE("SetAsymmetricBlePhy: %d", asymmetric);
     for (auto tmpDevice = leAudioDevice; tmpDevice != nullptr;
          tmpDevice = group->GetNextActiveDevice(tmpDevice)) {
       BTM_BleSetPhy(tmpDevice->address_, PHY_LE_2M,
