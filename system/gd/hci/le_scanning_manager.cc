@@ -458,7 +458,8 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     // scan responses are still reported too.
     scanning_reassembler_.SetIgnoreScanResponses(
         le_scan_type_ == LeScanType::PASSIVE ||
-        filter_policy_ == LeScanningFilterPolicy::FILTER_ACCEPT_LIST_ONLY);
+        filter_policy_ == LeScanningFilterPolicy::FILTER_ACCEPT_LIST_ONLY &&
+            api_type_ == ScanApiType::ANDROID_HCI);
 
     std::optional<LeScanningReassembler::CompleteAdvertisingData> processed_report =
         scanning_reassembler_.ProcessAdvertisingReport(
