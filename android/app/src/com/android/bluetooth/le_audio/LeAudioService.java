@@ -4980,25 +4980,69 @@ public class LeAudioService extends ProfileService {
 
     private void groupMutexLock(boolean isReadOnly) {
         if (mFeatureFlags.leaudioApiSynchronizedBlockFix()) {
+            Log.i(
+                    TAG,
+                    "groupMutexLock, flag=true, isReadOnly="
+                            + isReadOnly
+                            + ", from="
+                            + getCallSite());
             if (isReadOnly) {
                 mGroupReadLock.lock();
             } else {
                 mGroupWriteLock.lock();
             }
+            Log.i(TAG, "groupMutexLock, flag=true, isReadOnly=" + isReadOnly + ", done");
         } else {
+            Log.i(
+                    TAG,
+                    "groupMutexLock, flag=false, isReadOnly="
+                            + isReadOnly
+                            + ", from="
+                            + getCallSite());
             mGroupLock.lock();
+            Log.i(TAG, "groupMutexLock, flag=false, isReadOnly=" + isReadOnly + ", done");
         }
     }
 
     private void groupMutexUnlock(boolean isReadOnly) {
         if (mFeatureFlags.leaudioApiSynchronizedBlockFix()) {
+            Log.i(
+                    TAG,
+                    "groupMutexUnlock, flag=true, isReadOnly="
+                            + isReadOnly
+                            + ", from="
+                            + getCallSite());
             if (isReadOnly) {
                 mGroupReadLock.unlock();
             } else {
                 mGroupWriteLock.unlock();
             }
+            Log.i(TAG, "groupMutexUnlock, flag=true, isReadOnly=" + isReadOnly + ", done");
         } else {
+            Log.i(
+                    TAG,
+                    "groupMutexUnlock, flag=false, isReadOnly="
+                            + isReadOnly
+                            + ", from="
+                            + getCallSite());
             mGroupLock.unlock();
+            Log.i(TAG, "groupMutexUnlock, flag=false, isReadOnly=" + isReadOnly + ", done");
         }
+    }
+
+    String getCallSite() {
+        StackTraceElement[] elements = Thread.currentThread().getStackTrace();
+        if (elements.length < 5) {
+            return "None";
+        }
+        StackTraceElement s = elements[4];
+        return s.getClassName()
+                + "."
+                + s.getMethodName()
+                + "("
+                + s.getFileName()
+                + ":"
+                + s.getLineNumber()
+                + ")";
     }
 }
