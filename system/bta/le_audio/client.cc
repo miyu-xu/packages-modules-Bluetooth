@@ -218,6 +218,7 @@ class LeAudioClientImpl : public LeAudioClient {
     alarm_free(close_vbc_timeout_);
     alarm_free(disable_timer_);
     alarm_free(suspend_timeout_);
+    alarm_free(suspend_asymmetric_ble_phy_timeout_);
   };
 
   LeAudioClientImpl(
@@ -245,7 +246,9 @@ class LeAudioClientImpl : public LeAudioClient {
         le_audio_sink_hal_client_(nullptr),
         close_vbc_timeout_(alarm_new("LeAudioCloseVbcTimeout")),
         suspend_timeout_(alarm_new("LeAudioSuspendTimeout")),
-        disable_timer_(alarm_new("LeAudioDisableTimer")) {
+        disable_timer_(alarm_new("LeAudioDisableTimer")),
+        suspend_asymmetric_ble_phy_timeout_(
+            alarm_new("LeAudioAsymmetricBlePhyTimeout")) {
     LeAudioGroupStateMachine::Initialize(state_machine_callbacks_);
     groupStateMachine_ = LeAudioGroupStateMachine::Get();
 
@@ -5504,15 +5507,6 @@ class LeAudioClientImpl : public LeAudioClient {
 
         take_stream_time();
 
-        if (group->asymmetric_phy_for_unidirectional_cis_supported) {
-          if (group->GetSduInterval(le_audio::types::kLeAudioDirectionSource) ==
-              0) {
-            SetAsymmetricBlePhy(group, true);
-          } else {
-            SetAsymmetricBlePhy(group, false);
-          }
-        }
-
         le_audio::MetricsCollector::Get()->OnStreamStarted(
             active_group_id_, configuration_context_type_);
 
@@ -5525,6 +5519,22 @@ class LeAudioClientImpl : public LeAudioClient {
           LOG_ERROR("Group %d does not exist anymore. This shall not happen ",
                     group_id);
           return;
+        }
+
+        if (alarm_is_scheduled(suspend_asymmetric_ble_phy_timeout_)) {
+          LOG_VERBOSE(
+              "streaming state: suspend_asymmetric_ble_phy_timeout_ "
+              "schedulled, cancel");
+          alarm_cancel(suspend_asymmetric_ble_phy_timeout_);
+        }
+
+        if (group->asymmetric_phy_for_unidirectional_cis_supported) {
+          if (group->GetSduInterval(le_audio::types::kLeAudioDirectionSource) ==
+              0) {
+            SetAsymmetricBlePhy(group, true);
+          } else {
+            SetAsymmetricBlePhy(group, false);
+          }
         }
 
         if ((audio_sender_state_ == AudioState::IDLE) &&
@@ -5683,6 +5693,39 @@ class LeAudioClientImpl : public LeAudioClient {
           groupSetAndNotifyInactive();
         }
 
+        if (group && group->asymmetric_phy_for_unidirectional_cis_supported) {
+          if (group->GetSduInterval(le_audio::types::kLeAudioDirectionSource) ==
+              0) {
+            uint64_t asymmetric_ble_phy_timeout_ms =
+                kAudioSuspentAsymmetricBlePhyTimeoutMs;
+            if (alarm_is_scheduled(suspend_asymmetric_ble_phy_timeout_))
+              alarm_cancel(suspend_asymmetric_ble_phy_timeout_);
+
+            LOG_VERBOSE("suspend_asymmetric_ble_phy_timeout_ started: %d ms",
+                        static_cast<int>(asymmetric_ble_phy_timeout_ms));
+
+            alarm_set_on_mloop(
+                suspend_asymmetric_ble_phy_timeout_,
+                asymmetric_ble_phy_timeout_ms,
+                [](void* data) {
+                  LeAudioDeviceGroup* group = (LeAudioDeviceGroup*)data;
+                  LeAudioDevice* leAudioDevice = group->GetFirstDevice();
+                  if (leAudioDevice != nullptr) {
+                    for (auto tmpDevice = leAudioDevice; tmpDevice != nullptr;
+                         tmpDevice = group->GetNextDevice(tmpDevice)) {
+                      LOG_VERBOSE(
+                          "suspend_asymmetric_ble_phy_timeout_: set LE ACL PHY "
+                          "to "
+                          "2M");
+                      BTM_BleSetPhy(tmpDevice->address_, PHY_LE_2M, PHY_LE_2M,
+                                    0);
+                    }
+                  }
+                },
+                group);
+          }
+        }
+
         if (audio_sender_state_ != AudioState::IDLE)
           audio_sender_state_ = AudioState::RELEASING;
 
@@ -5785,7 +5828,9 @@ class LeAudioClientImpl : public LeAudioClient {
   alarm_t* close_vbc_timeout_;
   alarm_t* suspend_timeout_;
   alarm_t* disable_timer_;
+  alarm_t* suspend_asymmetric_ble_phy_timeout_;
   static constexpr uint64_t kDeviceAttachDelayMs = 500;
+  static constexpr uint64_t kAudioSuspentAsymmetricBlePhyTimeoutMs = 60000;
 
   uint32_t cached_channel_timestamp_ = 0;
   le_audio::CodecInterface* cached_channel_ = nullptr;
@@ -5795,6 +5840,20 @@ class LeAudioClientImpl : public LeAudioClient {
   std::map<int, GroupStreamStatus> lastNotifiedGroupStreamStatusMap_;
 
   void ClientAudioInterfaceRelease() {
+    auto group = aseGroups_.FindById(active_group_id_);
+    if (!group) {
+      LOG(ERROR) << __func__
+                 << ", Invalid group: " << static_cast<int>(active_group_id_);
+    } else if (group->asymmetric_phy_for_unidirectional_cis_supported) {
+      if (alarm_is_scheduled(suspend_asymmetric_ble_phy_timeout_)) {
+        alarm_cancel(suspend_asymmetric_ble_phy_timeout_);
+      }
+      SetAsymmetricBlePhy(group, false);
+      LOG_VERBOSE(
+          "ClientAudioInterfaceRelease - cleanup "
+          "suspend_asymmetric_ble_phy_timeout_");
+    }
+
     if (le_audio_source_hal_client_) {
       le_audio_source_hal_client_->Stop();
       le_audio_source_hal_client_.reset();
@@ -5854,14 +5913,15 @@ class LeAudioClientImpl : public LeAudioClient {
   }
 
   void SetAsymmetricBlePhy(LeAudioDeviceGroup* group, bool asymmetric) {
-    LeAudioDevice* leAudioDevice = group->GetFirstActiveDevice();
+    LeAudioDevice* leAudioDevice = group->GetFirstDevice();
     if (leAudioDevice == nullptr) {
-      LOG_ERROR(" Shouldn't be called without an active device.");
+      LOG_ERROR("Shouldn't be called without an active device.");
       return;
     }
 
+    LOG_VERBOSE("SetAsymmetricBlePhy: %d", asymmetric);
     for (auto tmpDevice = leAudioDevice; tmpDevice != nullptr;
-         tmpDevice = group->GetNextActiveDevice(tmpDevice)) {
+         tmpDevice = group->GetNextDevice(tmpDevice)) {
       BTM_BleSetPhy(tmpDevice->address_, PHY_LE_2M,
                     asymmetric ? PHY_LE_1M : PHY_LE_2M, 0);
     }
