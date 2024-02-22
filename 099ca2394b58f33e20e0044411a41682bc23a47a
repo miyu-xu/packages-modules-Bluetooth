@@ -22,6 +22,30 @@
       },
       "revId": "099ca2394b58f33e20e0044411a41682bc23a47a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e178162_70a34795",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-22T15:54:35Z",
+      "side": 1,
+      "message": "The naming convention is a bit of a mess regardless.\n\nI prefer using `-` for libraries...rather than underscore.  This is a common convention but is pretty mixed in our source.\n\nWhat if I made \u0027libbluetooth-gd\u0027 first ?\n\n(there is also other prefixes...libbt...etc...)",
+      "parentUuid": "2c8f5e5b_796f272f",
+      "range": {
+        "startLine": 108,
+        "startChar": 9,
+        "endLine": 108,
+        "endChar": 25
+      },
+      "revId": "099ca2394b58f33e20e0044411a41682bc23a47a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
