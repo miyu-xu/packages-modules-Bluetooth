@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6793cdfa_7a05ee21",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 1775,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-22T07:35:22Z",
+      "side": 1,
+      "message": "Having this as Write lock doesn\u0027t hurt since this code has no external dependencies.",
+      "parentUuid": "d83fe940_b290894e",
+      "range": {
+        "startLine": 1775,
+        "startChar": 0,
+        "endLine": 1775,
+        "endChar": 30
+      },
+      "revId": "d5ef6d6ef4d226a0c16ca98b6e2d527bdaebbe18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43a129cc_f52f7474",
@@ -189,6 +213,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61c0897d_93d9fb91",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 2035,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-22T07:35:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b514e0b7_55c385e1",
+      "range": {
+        "startLine": 2035,
+        "startChar": 8,
+        "endLine": 2035,
+        "endChar": 22
+      },
+      "revId": "d5ef6d6ef4d226a0c16ca98b6e2d527bdaebbe18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dcbbd3b2_fc47d72e",
@@ -259,6 +307,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "32568227_9468f30d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 2997,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-22T07:35:22Z",
+      "side": 1,
+      "message": "Yes, when the descriptor is removed from hashtable",
+      "parentUuid": "0e66473c_fb2ab200",
+      "range": {
+        "startLine": 2997,
+        "startChar": 0,
+        "endLine": 2997,
+        "endChar": 22
+      },
+      "revId": "d5ef6d6ef4d226a0c16ca98b6e2d527bdaebbe18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "534bb44c_8bfd2a8a",
@@ -272,6 +344,30 @@
       "writtenOn": "2024-02-22T06:34:55Z",
       "side": 1,
       "message": "Why do we want to break this section into two?",
+      "range": {
+        "startLine": 3015,
+        "startChar": 8,
+        "endLine": 3019,
+        "endChar": 31
+      },
+      "revId": "d5ef6d6ef4d226a0c16ca98b6e2d527bdaebbe18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "251a5268_157350ef",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 3019,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-22T07:35:22Z",
+      "side": 1,
+      "message": "See reason above",
+      "parentUuid": "534bb44c_8bfd2a8a",
       "range": {
         "startLine": 3015,
         "startChar": 8,
