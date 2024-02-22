@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88a0f3e4_3a22fdd3",
+        "filename": "TEST_MAPPING",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-22T17:40:56Z",
+      "side": 1,
+      "message": "The `1.32%` flakiness is above the `0.5%` mandated by trunk stable.\n\nCould you take a look @cmanton@google.com at why those tests are flaky?",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "591f17ecdcccc1fff985f8a43cddeedb3228839e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
