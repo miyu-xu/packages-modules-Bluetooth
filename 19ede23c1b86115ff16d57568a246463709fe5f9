@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3afec2b_2211b46b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-22T08:22:55Z",
+      "side": 1,
+      "message": "Tried to set this as true as well. However, in code base, we set it as false until it advance to next step. .",
+      "range": {
+        "startLine": 203,
+        "startChar": 0,
+        "endLine": 203,
+        "endChar": 85
+      },
+      "revId": "19ede23c1b86115ff16d57568a246463709fe5f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
