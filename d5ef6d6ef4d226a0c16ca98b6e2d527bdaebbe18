@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f306244b_487e91fd",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 659,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-22T07:11:22Z",
+      "side": 1,
+      "message": "I moved it back in for the latest patch set.",
+      "parentUuid": "50b2757a_31303616",
+      "range": {
+        "startLine": 659,
+        "startChar": 8,
+        "endLine": 659,
+        "endChar": 38
+      },
+      "revId": "d5ef6d6ef4d226a0c16ca98b6e2d527bdaebbe18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01bcf052_d4018d19",
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d83fe940_b290894e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 1775,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-22T07:11:22Z",
+      "side": 1,
+      "message": "Should probably change back to Read only lock since the lock is protecting the descriptor HashMap and not values in the HashMap",
+      "parentUuid": "01bcf052_d4018d19",
+      "range": {
+        "startLine": 1775,
+        "startChar": 0,
+        "endLine": 1775,
+        "endChar": 30
+      },
+      "revId": "d5ef6d6ef4d226a0c16ca98b6e2d527bdaebbe18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43a129cc_f52f7474",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 14
@@ -60,6 +108,30 @@
       "writtenOn": "2024-02-22T06:34:55Z",
       "side": 1,
       "message": "this should be a write lock as `getOrCreateStateMachine()` may create extra entries",
+      "range": {
+        "startLine": 2007,
+        "startChar": 41,
+        "endLine": 2007,
+        "endChar": 64
+      },
+      "revId": "d5ef6d6ef4d226a0c16ca98b6e2d527bdaebbe18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed8a8016_2e174244",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 2007,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-22T07:11:22Z",
+      "side": 1,
+      "message": "Fixed in latest patch set",
+      "parentUuid": "43a129cc_f52f7474",
       "range": {
         "startLine": 2007,
         "startChar": 41,
@@ -95,6 +167,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b514e0b7_55c385e1",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 2035,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-22T07:11:22Z",
+      "side": 1,
+      "message": "Should probably change back to Read only lock since the lock is protecting the descriptor HashMap and not values in the HashMap",
+      "parentUuid": "0dd639ed_1dc309d2",
+      "range": {
+        "startLine": 2035,
+        "startChar": 8,
+        "endLine": 2035,
+        "endChar": 22
+      },
+      "revId": "d5ef6d6ef4d226a0c16ca98b6e2d527bdaebbe18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dcbbd3b2_fc47d72e",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 14
@@ -106,6 +202,30 @@
       "writtenOn": "2024-02-22T06:34:55Z",
       "side": 1,
       "message": "this should be done outside critical section and remaining should be locked with a write lock as `updateActiveDevices` is modifying the state, but `updateActiveDevices` is also calling audio framework",
+      "range": {
+        "startLine": 2149,
+        "startChar": 12,
+        "endLine": 2152,
+        "endChar": 13
+      },
+      "revId": "d5ef6d6ef4d226a0c16ca98b6e2d527bdaebbe18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19c37dfd_b9297237",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 2152,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-22T07:11:22Z",
+      "side": 1,
+      "message": "This is fine to use read lock as it does not add or remove entries from the descriptor hash map",
+      "parentUuid": "dcbbd3b2_fc47d72e",
       "range": {
         "startLine": 2149,
         "startChar": 12,

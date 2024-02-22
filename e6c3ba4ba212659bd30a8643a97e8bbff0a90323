@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "748d6bf2_c8a4f848",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-22T07:11:22Z",
+      "side": 1,
+      "message": "this need to be simplified",
+      "range": {
+        "startLine": 443,
+        "startChar": 8,
+        "endLine": 447,
+        "endChar": 9
+      },
+      "revId": "e6c3ba4ba212659bd30a8643a97e8bbff0a90323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c25cd61_c387f6ff",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-22T07:11:22Z",
+      "side": 1,
+      "message": "the 2nd try-finally is not needed",
+      "range": {
+        "startLine": 485,
+        "startChar": 0,
+        "endLine": 485,
+        "endChar": 15
+      },
+      "revId": "e6c3ba4ba212659bd30a8643a97e8bbff0a90323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "770a7913_3d296a09",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 3539,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-22T07:11:22Z",
+      "side": 1,
+      "message": "can be simplified",
+      "range": {
+        "startLine": 3538,
+        "startChar": 8,
+        "endLine": 3539,
+        "endChar": 17
+      },
+      "revId": "e6c3ba4ba212659bd30a8643a97e8bbff0a90323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
