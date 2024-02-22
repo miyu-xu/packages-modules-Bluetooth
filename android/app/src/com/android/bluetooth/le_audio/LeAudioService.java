@@ -147,6 +147,8 @@ public class LeAudioService extends ProfileService {
     private LeAudioCodecConfig mLeAudioCodecConfig;
     private final ReentrantLock mGroupLock = new ReentrantLock();
     private final ReentrantReadWriteLock mGroupReadWriteLock = new ReentrantReadWriteLock();
+    private int mRead = 0;
+    private int mWrite = 0;
     private final Lock mGroupReadLock = mGroupReadWriteLock.readLock();
     private final Lock mGroupWriteLock = mGroupReadWriteLock.writeLock();
     private FeatureFlags mFeatureFlags;
@@ -4978,25 +4980,91 @@ public class LeAudioService extends ProfileService {
 
     private void groupMutexLock(boolean isReadOnly) {
         if (mFeatureFlags.leaudioApiSynchronizedBlockFix()) {
+            int iter = 0;
+            Log.i(
+                    TAG,
+                    "groupMutexLock before lock, flag=true "
+                            + (isReadOnly ? "Read" : "Write")
+                            + ", from="
+                            + getCallSite()
+                            + " mRead: "
+                            + mRead
+                            + " mWrite: "
+                            + mWrite);
             if (isReadOnly) {
+                iter = ++mRead;
                 mGroupReadLock.lock();
             } else {
+                iter = ++mWrite;
                 mGroupWriteLock.lock();
             }
+            Log.i(
+                    TAG,
+                    "groupMutexLock Done, flag=true, "
+                            + (isReadOnly ? "Read: " : "Write: ")
+                            + iter);
         } else {
+            Log.i(
+                    TAG,
+                    "groupMutexLock, flag=false, isReadOnly="
+                            + isReadOnly
+                            + ", from="
+                            + getCallSite());
             mGroupLock.lock();
+            Log.i(TAG, "groupMutexLock, flag=false, isReadOnly=" + isReadOnly + ", done ");
         }
     }
 
     private void groupMutexUnlock(boolean isReadOnly) {
         if (mFeatureFlags.leaudioApiSynchronizedBlockFix()) {
+            int iter = 0;
+            Log.i(
+                    TAG,
+                    "groupMutexUnlock before unlock, flag=true "
+                            + (isReadOnly ? "Read" : "Write")
+                            + ", from="
+                            + getCallSite()
+                            + " mRead: "
+                            + mRead
+                            + " mWrite: "
+                            + mWrite);
             if (isReadOnly) {
+                iter = --mRead;
                 mGroupReadLock.unlock();
             } else {
+                iter = --mWrite;
                 mGroupWriteLock.unlock();
             }
+            Log.i(
+                    TAG,
+                    "groupMutexUnlock done, flag=true, "
+                            + (isReadOnly ? "Read: " : "Write: ")
+                            + iter);
         } else {
+            Log.i(
+                    TAG,
+                    "groupMutexUnlock, flag=false, isReadOnly="
+                            + isReadOnly
+                            + ", from="
+                            + getCallSite());
             mGroupLock.unlock();
+            Log.i(TAG, "groupMutexUnlock, flag=false, isReadOnly=" + isReadOnly + ", done");
         }
+    }
+
+    String getCallSite() {
+        StackTraceElement[] elements = Thread.currentThread().getStackTrace();
+        if (elements.length < 5) {
+            return "None";
+        }
+        StackTraceElement s = elements[4];
+        return s.getClassName()
+                + "."
+                + s.getMethodName()
+                + "("
+                + s.getFileName()
+                + ":"
+                + s.getLineNumber()
+                + ")";
     }
 }
