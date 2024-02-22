@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91461422_cf81e45c",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1785,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-22T19:30:55Z",
+      "side": 1,
+      "message": "nit: it seems cleaner and easier for maintenance to guard the new logic with the flag instead of early return when flag disabled (in case other logic is added after line 1785).",
+      "range": {
+        "startLine": 1784,
+        "startChar": 4,
+        "endLine": 1785,
+        "endChar": 68
+      },
+      "revId": "3e8f2ba990fc17938cef05a5cc0c9df843e77e44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
