@@ -87,6 +87,24 @@
       "parentUuid": "751c0d93_98a708e3",
       "revId": "82086ad9ef7bcc2c8c61558811da5baa98cb0fb0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65c33dd1_b13812d3",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 652,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-22T10:20:15Z",
+      "side": 1,
+      "message": "I just noticed that now and even if this is still working fine, it makes sense to change that.",
+      "parentUuid": "0a34ce6f_1be4f2f4",
+      "revId": "82086ad9ef7bcc2c8c61558811da5baa98cb0fb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
