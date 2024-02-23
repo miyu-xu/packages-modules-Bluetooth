@@ -33,6 +33,24 @@
       "message": "Should we ASSERT or simply log ?\n\nI agree flushing an LE is bad but unsure if this is recoverable.",
       "revId": "cb90466a5f02bd870bf8c83ba74e976d557131d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7091d025_51047b92",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 891,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-23T01:29:45Z",
+      "side": 1,
+      "message": "I was following along with EnqueueClassicPacket()\n\nI agree it is pretty strict.  I\u0027m not sure.",
+      "parentUuid": "721bae63_0cbf0ae0",
+      "revId": "cb90466a5f02bd870bf8c83ba74e976d557131d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
