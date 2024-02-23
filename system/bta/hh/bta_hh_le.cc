@@ -1787,30 +1787,31 @@ static void read_report_cb(uint16_t conn_id, tGATT_STATUS status,
     return;
   }
 
-  const gatt::Characteristic* p_char =
-      BTA_GATTC_GetCharacteristic(conn_id, handle);
-  if (p_char == nullptr) {
-    LOG_ERROR("Unknown handle");
-    return;
-  }
-
-  uint16_t char_uuid = p_char->uuid.As16Bit();
-  switch (char_uuid) {
-    case GATT_UUID_HID_REPORT:
-    case GATT_UUID_HID_BT_KB_INPUT:
-    case GATT_UUID_HID_BT_KB_OUTPUT:
-    case GATT_UUID_HID_BT_MOUSE_INPUT:
-    case GATT_UUID_BATTERY_LEVEL:
-      break;
-    default:
-      LOG_ERROR("Unexpected Read UUID: 0x%04x", char_uuid);
-      return;
-  }
-
   tBTA_HH_HSDATA hs_data = {};
   hs_data.status = BTA_HH_ERR;
   hs_data.handle = p_dev_cb->hid_handle;
+
   if (status == GATT_SUCCESS) {
+    const gatt::Characteristic* p_char =
+        BTA_GATTC_GetCharacteristic(conn_id, handle);
+    if (p_char == nullptr) {
+      LOG_ERROR("Unknown handle");
+      return;
+    }
+
+    uint16_t char_uuid = p_char->uuid.As16Bit();
+    switch (char_uuid) {
+      case GATT_UUID_HID_REPORT:
+      case GATT_UUID_HID_BT_KB_INPUT:
+      case GATT_UUID_HID_BT_KB_OUTPUT:
+      case GATT_UUID_HID_BT_MOUSE_INPUT:
+      case GATT_UUID_BATTERY_LEVEL:
+        break;
+      default:
+        LOG_ERROR("Unexpected Read UUID: 0x%04x", char_uuid);
+        return;
+    }
+
     tBTA_HH_LE_RPT* p_rpt;
     const gatt::Service* p_svc =
         BTA_GATTC_GetOwningService(conn_id, p_char->value_handle);
@@ -1854,14 +1855,17 @@ static void bta_hh_le_get_rpt(tBTA_HH_DEV_CB* p_cb, tBTA_HH_RPT_TYPE r_type,
   tBTA_HH_LE_RPT* p_rpt = bta_hh_le_find_rpt_by_idtype(
       p_cb->hid_srvc.report, p_cb->mode, r_type, rpt_id);
 
+  p_cb->w4_evt = BTA_HH_GET_RPT_EVT;
   if (p_rpt == NULL) {
     LOG_ERROR("no matching report");
-    return;
-  }
 
-  p_cb->w4_evt = BTA_HH_GET_RPT_EVT;
-  BtaGattQueue::ReadCharacteristic(p_cb->conn_id, p_rpt->char_inst_id,
-                                   read_report_cb, p_cb);
+    // Send error response back to uhid.
+    read_report_cb(p_cb->conn_id, GATT_REQ_NOT_SUPPORTED, /*handle=*/0,
+                   /*len=*/0, /*value=*/NULL, /*data=*/p_cb);
+  } else {
+    BtaGattQueue::ReadCharacteristic(p_cb->conn_id, p_rpt->char_inst_id,
+                                     read_report_cb, p_cb);
+  }
 }
 
 static void write_report_cb(uint16_t conn_id, tGATT_STATUS status,

@@ -680,7 +680,11 @@ void bta_hh_co_set_rpt_rsp(uint8_t dev_handle, uint8_t status) {
  * Function         bta_hh_co_get_rpt_rsp
  *
  * Description      This callout function is executed by HH when Get Report
- *                  Response is received on Control Channel.
+ *                  Response is received on Control Channel or to report an
+ *                  error for Get Report.
+ *
+ *                  Note: |p_rpt| can be null. Always check it is valid before
+ *                  using.
  *
  * Returns          void.
  *
@@ -715,7 +719,12 @@ void bta_hh_co_get_rpt_rsp(uint8_t dev_handle, uint8_t status,
     return;
   }
 
-  if (len == 0 || len > UHID_DATA_MAX) {
+  if (len > 0 && p_rpt == nullptr) {
+    LOG_WARN("Non-zero length %d but pointer to data is null!", len);
+    return;
+  }
+
+  if (len > UHID_DATA_MAX) {
     LOG_WARN("Invalid report size = %d", len);
     return;
   }
@@ -730,7 +739,10 @@ void bta_hh_co_get_rpt_rsp(uint8_t dev_handle, uint8_t status,
           },
       },
   };
-  memcpy(ev.u.feature_answer.data, p_rpt, len);
+
+  if (len > 0) {
+    memcpy(ev.u.feature_answer.data, p_rpt, len);
+  }
 
   uhid_write(p_dev->fd, &ev);
   osi_free(context);

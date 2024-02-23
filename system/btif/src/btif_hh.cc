@@ -904,22 +904,26 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
       p_dev = btif_hh_find_connected_dev_by_handle(p_data->hs_data.handle);
       if (p_dev) {
         BT_HDR* hdr = p_data->hs_data.rsp_data.p_rpt_data;
+        uint8_t* data = nullptr;
+        uint16_t len = 0;
 
         if (hdr) { /* Get report response */
-          uint8_t* data = (uint8_t*)(hdr + 1) + hdr->offset;
-          uint16_t len = hdr->len;
+          data = (uint8_t*)(hdr + 1) + hdr->offset;
+          len = hdr->len;
           HAL_CBACK(bt_hh_callbacks, get_report_cb,
                     (RawAddress*)&(p_dev->link_spec.addrt.bda),
                     (bthh_status_t)p_data->hs_data.status, data, len);
 
-          bta_hh_co_get_rpt_rsp(p_dev->dev_handle,
-                                (tBTA_HH_STATUS)p_data->hs_data.status, data,
-                                len);
         } else { /* Handshake */
+          len = 0;
           HAL_CBACK(bt_hh_callbacks, handshake_cb,
                     (RawAddress*)&(p_dev->link_spec.addrt.bda),
                     (bthh_status_t)p_data->hs_data.status);
         }
+
+        bta_hh_co_get_rpt_rsp(p_dev->dev_handle,
+                              (tBTA_HH_STATUS)p_data->hs_data.status, data,
+                              len);
       } else {
         LOG_WARN("Error: cannot find device with handle %d",
                  p_data->hs_data.handle);
