@@ -25,16 +25,18 @@ namespace hci {
 template <class T>
 void check_complete(CommandCompleteView view) {
   ASSERT(view.IsValid());
+  OpCode op_code = view.GetCommandOpCode();
   auto status_view = T::Create(view);
   if (!status_view.IsValid()) {
-    LOG_ERROR("Invalid packet, opcode 0x%02hx", view.GetCommandOpCode());
+    LOG_ERROR("Invalid packet, opcode 0x%02hx", static_cast<uint16_t>(op_code));
     return;
   }
   ErrorCode status = status_view.GetStatus();
-  OpCode op_code = status_view.GetCommandOpCode();
   if (status != ErrorCode::SUCCESS) {
-    std::string error_code = ErrorCodeText(status);
-    LOG_ERROR("Error code %s, opcode 0x%02hx", error_code.c_str(), op_code);
+    LOG_ERROR(
+        "Error code %s, opcode 0x%02hx",
+        ErrorCodeText(status).c_str(),
+        static_cast<uint16_t>(op_code));
     return;
   }
 }
@@ -42,16 +44,21 @@ void check_complete(CommandCompleteView view) {
 template <class T>
 void check_status(CommandStatusView view) {
   ASSERT(view.IsValid());
+  OpCode op_code = view.GetCommandOpCode();
+  ErrorCode status = view.GetStatus();
   auto status_view = T::Create(view);
   if (!status_view.IsValid()) {
-    LOG_ERROR("Invalid packet, opcode 0x%02hx", view.GetCommandOpCode());
+    LOG_ERROR(
+        "Invalid packet, opcode 0x%02hx status %s",
+        static_cast<uint16_t>(op_code),
+        ErrorCodeText(status).c_str());
     return;
   }
-  ErrorCode status = status_view.GetStatus();
-  OpCode op_code = status_view.GetCommandOpCode();
   if (status != ErrorCode::SUCCESS) {
-    std::string error_code = ErrorCodeText(status);
-    LOG_ERROR("Error code %s, opcode 0x%02hx", error_code.c_str(), op_code);
+    LOG_ERROR(
+        "Error code %s, opcode 0x%02hx",
+        ErrorCodeText(status).c_str(),
+        static_cast<uint16_t>(op_code));
     return;
   }
 }
