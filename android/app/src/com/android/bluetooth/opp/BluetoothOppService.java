@@ -177,8 +177,7 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
 
     private static final String WHERE_INBOUND_SUCCESS =
             BluetoothShare.DIRECTION + "=" + BluetoothShare.DIRECTION_INBOUND + " AND "
-                    + BluetoothShare.STATUS + "=" + BluetoothShare.STATUS_SUCCESS + " AND "
-                    + INVISIBLE;
+                    + BluetoothShare.STATUS + "=" + BluetoothShare.STATUS_SUCCESS;
 
     private static final String WHERE_CONFIRM_PENDING_INBOUND =
             BluetoothShare.DIRECTION + "=" + BluetoothShare.DIRECTION_INBOUND + " AND "
