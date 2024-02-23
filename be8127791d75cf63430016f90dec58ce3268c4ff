@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3946c53_60324535",
+        "filename": "system/bta/hf_client/bta_hf_client_main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 770,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-23T19:26:11Z",
+      "side": 1,
+      "message": "fix",
+      "range": {
+        "startLine": 770,
+        "startChar": 24,
+        "endLine": 770,
+        "endChar": 26
+      },
+      "revId": "be8127791d75cf63430016f90dec58ce3268c4ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f68151c_36a23f83",
+        "filename": "system/bta/hf_client/bta_hf_client_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-23T19:26:11Z",
+      "side": 1,
+      "message": "fix",
+      "range": {
+        "startLine": 141,
+        "startChar": 37,
+        "endLine": 141,
+        "endChar": 39
+      },
+      "revId": "be8127791d75cf63430016f90dec58ce3268c4ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
