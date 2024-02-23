@@ -33,6 +33,24 @@
       "message": "How confident are we that this does introduce any code flow change?",
       "revId": "438d8592b7fc480ebf28b24085572d8dba3e40d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73451bc4_7d990f5c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2024-02-23T03:11:50Z",
+      "side": 1,
+      "message": "I have run atest for L2CAP. And I also run test on Pixel device and checked log.",
+      "parentUuid": "09b607eb_719c64ad",
+      "revId": "438d8592b7fc480ebf28b24085572d8dba3e40d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
