@@ -223,8 +223,37 @@ impl IBluetoothExperimental for BluetoothManager {
             Ok(true) => true,
             _ => false,
         };
+        let current_address_status = match config_util::read_floss_address_privacy_enabled() {
+            Ok(true) => true,
+            _ => false,
+        };
+
+        let devices_status = migrate::floss_have_le_devices();
+        let mut force_restart = false;
+
+        // When LL privacy is enabled and address is public, enable privacy for own
+        // address if no LE devices in storage.
+        if enabled && !current_address_status && !devices_status {
+            if let Err(e) = config_util::write_floss_address_privacy_enabled(true) {
+                error!("Failed to write address privacy status: {}", e);
+            } else {
+                // Force restart if LL privacy is enabled before to apply address change.
+                if current_status == enabled {
+                    force_restart = true;
+                }
+            }
+        }
+        // When LL privacy is disabled, always use public address
+        if !enabled && current_address_status {
+            if let Err(e) = config_util::write_floss_address_privacy_enabled(false) {
+                error!("Failed to write address privacy status: {}", e);
+            }
+        }
 
         if current_status == enabled {
+            if force_restart {
+                self.restart_adapters();
+            }
             return true;
         }
 

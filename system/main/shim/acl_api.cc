@@ -36,6 +36,14 @@
 #include "types/ble_address_with_type.h"
 #include "types/raw_address.h"
 
+#if TARGET_FLOSS
+#include "osi/include/properties.h"
+#ifndef PROPERTY_BLE_PRIVACY_OWN_ADDRESS_ENABLED
+#define PROPERTY_BLE_PRIVACY_OWN_ADDRESS_ENABLED \
+  "bluetooth.core.gap.le.privacy.own_address_type.enabled"
+#endif
+#endif
+
 void bluetooth::shim::ACL_CreateClassicConnection(
     const RawAddress& raw_address) {
   auto address = ToGdAddress(raw_address);
@@ -86,10 +94,20 @@ void bluetooth::shim::ACL_SendConnectionParameterUpdateRequest(
 }
 
 void bluetooth::shim::ACL_ConfigureLePrivacy(bool is_le_privacy_enabled) {
+#if TARGET_FLOSS
+  bool use_address_privacy =
+      osi_property_get_bool(PROPERTY_BLE_PRIVACY_OWN_ADDRESS_ENABLED, false);
+  hci::LeAddressManager::AddressPolicy address_policy =
+      hci::LeAddressManager::AddressPolicy::USE_PUBLIC_ADDRESS;
+  if (is_le_privacy_enabled && use_address_privacy)
+    address_policy =
+        hci::LeAddressManager::AddressPolicy::USE_RESOLVABLE_ADDRESS;
+#else
   hci::LeAddressManager::AddressPolicy address_policy =
       is_le_privacy_enabled
           ? hci::LeAddressManager::AddressPolicy::USE_RESOLVABLE_ADDRESS
           : hci::LeAddressManager::AddressPolicy::USE_PUBLIC_ADDRESS;
+#endif
   hci::AddressWithType empty_address_with_type(
       hci::Address{}, hci::AddressType::RANDOM_DEVICE_ADDRESS);
 

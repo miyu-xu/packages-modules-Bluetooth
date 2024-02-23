@@ -641,6 +641,37 @@ fn merge_and_write_bluez_conf(filepath: String, conf: &mut Ini) {
     }
 }
 
+/// Helper function that check if there is at least one device entry in Floss config file.
+fn config_with_le_device_entry(filename: &str) -> bool {
+    let mut floss_conf = Ini::new_cs();
+    let floss_map = match floss_conf.load(filename) {
+        Ok(map) => map,
+        Err(err) => {
+            warn!("Error opening ini file while loading Floss devices for {}: {}", filename, err);
+            return false;
+        }
+    };
+    for (sec, props) in floss_map {
+        // Skip all the non-device sections
+        if !sec.contains(":") {
+            continue;
+        }
+        // Invalid entries have no DevType
+        if !props.contains_key("DevType") {
+            continue;
+        }
+        for (k, v) in props {
+            if k == "DevType" {
+                let val = v.unwrap_or_default().to_string();
+                // "1" BREDR, "2" LE, "3" DUAL
+                if val != "1" {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
 /// Helper function that does the conversion from Floss to BlueZ for a single adapter
 ///
 /// # Arguments
@@ -918,6 +949,24 @@ pub fn migrate_floss_devices() {
     for entry in globbed {
         convert_floss_conf(entry.unwrap_or_default().to_str().unwrap_or_default());
     }
+}
+
+/// Check if there are Floss devices in storage.
+pub fn floss_have_le_devices() -> bool {
+    let globbed = match glob(FLOSS_CONF_FILE) {
+        Ok(v) => v,
+        Err(_) => {
+            warn!("Didn't find Floss conf file to search devices");
+            return false;
+        }
+    };
+
+    for entry in globbed {
+        if config_with_le_device_entry(entry.unwrap_or_default().to_str().unwrap_or_default()) {
+            return true;
+        }
+    }
+    return false;
 }
 
 #[cfg(test)]

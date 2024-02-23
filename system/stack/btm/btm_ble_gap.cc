@@ -91,6 +91,10 @@ static const char kPropertyInquiryScanInterval[] =
     "bluetooth.core.le.inquiry_scan_interval";
 static const char kPropertyInquiryScanWindow[] =
     "bluetooth.core.le.inquiry_scan_window";
+#if TARGET_FLOSS
+static const char kLeAddressPrivacy[] =
+    "bluetooth.core.gap.le.privacy.own_address_type.enabled";
+#endif
 
 static void btm_ble_start_scan();
 static void btm_ble_stop_scan();
@@ -958,7 +962,17 @@ bool BTM_BleConfigPrivacy(bool privacy_mode) {
   {
     /* always set host random address, used when privacy 1.1 or priavcy 1.2 is
      * disabled */
+#if TARGET_FLOSS
+    bool use_address_privacy =
+        osi_property_get_bool(kLeAddressPrivacy, /**/ false);
+    if (use_address_privacy) {
+      btm_cb.ble_ctr_cb.addr_mgnt_cb.own_addr_type = BLE_ADDR_RANDOM;
+    } else {
+      btm_cb.ble_ctr_cb.addr_mgnt_cb.own_addr_type = BLE_ADDR_PUBLIC;
+    }
+#else
     btm_cb.ble_ctr_cb.addr_mgnt_cb.own_addr_type = BLE_ADDR_RANDOM;
+#endif
 
     /* 4.2 controller only allow privacy 1.2 or mixed mode, resolvable private
      * address in controller */
