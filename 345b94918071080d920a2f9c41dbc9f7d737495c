@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8879dc7a_66062724",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-02-23T17:37:55Z",
+      "side": 1,
+      "message": "As requested by @aritrasen@google.com, breaking down the original CL aosp/2954849 into smaller CLs",
+      "revId": "345b94918071080d920a2f9c41dbc9f7d737495c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
