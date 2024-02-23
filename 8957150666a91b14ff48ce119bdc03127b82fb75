@@ -16,6 +16,24 @@
       "message": "I never liked this API...it could be much simpler.  Is this even possible ?\n\n\n```suggestion\n  void UpdateConnectionParameters(\n      uint16_t handle,\n      const hci::ConnectionParameters\u0026 connection_parameters) override;\n\n```",
       "revId": "8957150666a91b14ff48ce119bdc03127b82fb75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edd81395_c89ecc07",
+        "filename": "system/main/shim/acl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-23T01:37:18Z",
+      "side": 1,
+      "message": "I don\u0027t think we have a struct for this in PDL, but I agree it\u0027s a bit much.",
+      "parentUuid": "591fce69_42809975",
+      "revId": "8957150666a91b14ff48ce119bdc03127b82fb75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
