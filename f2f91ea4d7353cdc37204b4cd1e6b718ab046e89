@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd717862_7994310d",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-23T19:40:57Z",
+      "side": 1,
+      "message": "fix",
+      "range": {
+        "startLine": 232,
+        "startChar": 15,
+        "endLine": 232,
+        "endChar": 17
+      },
+      "revId": "f2f91ea4d7353cdc37204b4cd1e6b718ab046e89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c76300ab_8427245a",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-23T19:40:57Z",
+      "side": 1,
+      "message": "fix",
+      "range": {
+        "startLine": 320,
+        "startChar": 17,
+        "endLine": 320,
+        "endChar": 19
+      },
+      "revId": "f2f91ea4d7353cdc37204b4cd1e6b718ab046e89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abff2e62_5413df43",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-23T19:40:57Z",
+      "side": 1,
+      "message": "fix",
+      "range": {
+        "startLine": 655,
+        "startChar": 15,
+        "endLine": 655,
+        "endChar": 17
+      },
+      "revId": "f2f91ea4d7353cdc37204b4cd1e6b718ab046e89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1975dd0c_8c55c962",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 673,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-23T19:40:57Z",
+      "side": 1,
+      "message": "fix",
+      "range": {
+        "startLine": 673,
+        "startChar": 15,
+        "endLine": 673,
+        "endChar": 17
+      },
+      "revId": "f2f91ea4d7353cdc37204b4cd1e6b718ab046e89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
