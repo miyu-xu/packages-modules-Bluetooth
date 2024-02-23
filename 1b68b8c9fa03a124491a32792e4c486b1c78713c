@@ -87,6 +87,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cc64800_ad82faeb",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-02-23T11:51:34Z",
+      "side": 1,
+      "message": "Never mind. socket_result is needed for registration.",
+      "parentUuid": "016bd1b1_b466af54",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 84
+      },
+      "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "955c4ee2_de151bbb",
@@ -134,6 +158,30 @@
       "writtenOn": "2024-02-23T10:08:13Z",
       "side": 1,
       "message": "register observer before calling API",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 201,
+        "endChar": 84
+      },
+      "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0efafb9_d2c7c6e7",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-02-23T11:51:34Z",
+      "side": 1,
+      "message": "Never mind. socket_result is needed for registration.",
+      "parentUuid": "55a496ed_a74cd688",
       "range": {
         "startLine": 190,
         "startChar": 0,
