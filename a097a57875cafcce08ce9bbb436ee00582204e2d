@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6f4d1d9f_644f8a69",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-23T17:58:37Z",
+      "side": 1,
+      "message": "Acknowledged. Working on a test case.",
+      "parentUuid": "1472578b_7f44bc78",
+      "revId": "a097a57875cafcce08ce9bbb436ee00582204e2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d06e2a45_3cb6476b",
         "filename": "android/app/src/com/android/bluetooth/btservice/JniCallbacks.java",
         "patchSetId": 1
@@ -31,6 +49,30 @@
       "writtenOn": "2024-02-23T17:51:34Z",
       "side": 1,
       "message": "I would prefer to check the bond state here and call removeAddressMapping directly.\n\n\n```suggestion\n        if (Flags.removeBondWithAddressMap()) {\n            if (newState \u003d\u003d BluetoothDevice.BOND_NONE) {\n                mRemoteDevices.removeAddressMapping(address);\n            }\n        }\n```",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 9
+      },
+      "revId": "a097a57875cafcce08ce9bbb436ee00582204e2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25839c45_3c404b83",
+        "filename": "android/app/src/com/android/bluetooth/btservice/JniCallbacks.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-23T17:58:37Z",
+      "side": 1,
+      "message": "JNI callback should not take any logical decisions.\nIt is for the remote devices module to interpret what bond state change should mean.",
+      "parentUuid": "d06e2a45_3cb6476b",
       "range": {
         "startLine": 71,
         "startChar": 0,
