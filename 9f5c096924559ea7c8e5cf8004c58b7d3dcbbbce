@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e986a16_6ebe79fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-02-23T10:29:01Z",
+      "side": 1,
+      "message": "Here are more details to justify the wait-and-retry would work for some cases.\n\nIn [af_bluetooth.c](https://source.corp.google.com/h/chromium/chromiumos/codesearch/+/main:src/third_party/kernel/v5.10/net/bluetooth/af_bluetooth.c;l\u003d1?q\u003daf_bluetooth.c\u0026sq\u003d\u0026ss\u003dh%2Fchromium%2Fchromiumos%2Fcodesearch%2F%2B%2Frefs%2Fheads%2Fmain:src%2Fthird_party%2Fkernel%2Fv5.10%2Fnet%2Fbluetooth%2F)::bt_init, there is a tiny window that PH_BLUETOOTH is registered but mgmt is not initialized. This causes the BtSocket::open to succeed but BtSocket::bind to fail. In this case, a short wait and retry should work.",
+      "revId": "9f5c096924559ea7c8e5cf8004c58b7d3dcbbbce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
