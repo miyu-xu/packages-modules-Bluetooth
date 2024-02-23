@@ -34,6 +34,24 @@
       "parentUuid": "23c917fd_d3f3df38",
       "revId": "54e4d21fabb3ce3f370565618dcd333a14718195",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccb6cb9d_918a3f69",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-23T21:50:16Z",
+      "side": 1,
+      "message": "\u003e It looks like there is active development in the framework in google3.\n\nYes and it seems to be mirrored on github https://github.com/google/TestParameterInjector. However no one seems to sync/update the mirror that we have in AOSP hence my worries.\n\nI think we should really check with the current owners before using it in AOSP.",
+      "parentUuid": "02feabd2_01f489ab",
+      "revId": "54e4d21fabb3ce3f370565618dcd333a14718195",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
