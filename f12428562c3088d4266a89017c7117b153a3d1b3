@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88c6d652_da529380",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-02-23T17:38:38Z",
+      "side": 1,
+      "message": "As requested by @aritrasen@google.com, migrated the previous logger to new logger",
+      "revId": "f12428562c3088d4266a89017c7117b153a3d1b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
