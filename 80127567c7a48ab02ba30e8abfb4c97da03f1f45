@@ -33,6 +33,24 @@
       "message": "do we need null check for sm here?\n```suggestion\n\n        if (mFeatureFlags.leaudioApiSynchronizedBlockFix() \u0026\u0026 sm !\u003d null) {\n            sm.sendMessage(LeAudioStateMachine.CONNECT);\n```",
       "revId": "80127567c7a48ab02ba30e8abfb4c97da03f1f45",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82c03e1f_dfbecbd4",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-23T00:55:27Z",
+      "side": 1,
+      "message": "Not really, in line 648, if sm is null, this function would have returned.",
+      "parentUuid": "7433f1d7_3c570ca1",
+      "revId": "80127567c7a48ab02ba30e8abfb4c97da03f1f45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
