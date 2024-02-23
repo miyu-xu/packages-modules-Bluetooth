@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5dc929a5_912c9117",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-23T00:06:13Z",
+      "side": 1,
+      "message": "hi @jernej@google.com, if this is not the culprit CL, can we abandon this now?",
+      "revId": "8cddce2fa6b7c7c6da9bcaeef65f3f298b1f6848",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
