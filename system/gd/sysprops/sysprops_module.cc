@@ -70,6 +70,8 @@ void SyspropsModule::parse_config(std::string file_path) {
       "bluetooth.device.default_name",
       "bluetooth.core.gap.le.privacy.enabled",
       "bluetooth.core.gap.le.privacy.own_address_type.enabled",
+      "bluetooth.ble.random_address_rotation_interval_min",
+      "bluetooth.ble.random_address_rotation_interval_max",
       "bluetooth.core.gap.le.conn.only_init_1m_phy.enabled",
       "bluetooth.device.class_of_device",
       "bluetooth.device_id.product_id",
