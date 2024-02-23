@@ -22,11 +22,12 @@
  *  BTIF.
  *
  ******************************************************************************/
+#define LOG_TAG "bta_av_co"
 
 #include "btif/include/bta_av_co.h"
 
 #include <android_bluetooth_flags.h>
-#include <base/logging.h>
+#include <bluetooth/log.h>
 
 #include <mutex>
 #include <optional>
@@ -74,7 +75,7 @@ void BtaAvCoState::Reset() {
 void BtaAvCo::Init(
     const std::vector<btav_a2dp_codec_config_t>& codec_priorities,
     std::vector<btav_a2dp_codec_info_t>* supported_codecs) {
-  LOG_VERBOSE("%s", __func__);
+  bluetooth::log::verbose("invoked");
 
   std::lock_guard<std::recursive_mutex> lock(peer_cache_->codec_lock_);
 
@@ -114,7 +115,7 @@ bool BtaAvCo::IsSupportedCodec(btav_a2dp_codec_index_t codec_index) {
   // hence we check only the first peer.
   A2dpCodecs* codecs = peer_cache_->peers_[0].GetCodecs();
   if (codecs == nullptr) {
-    LOG_ERROR("Peer codecs is set to null");
+    bluetooth::log::error("Peer codecs is set to null");
     return false;
   }
   return codecs->isSupportedCodec(codec_index);
@@ -150,8 +151,8 @@ void BtaAvCo::ProcessDiscoveryResult(tBTA_AV_HNDL bta_av_handle,
                                      const RawAddress& peer_address,
                                      uint8_t num_seps, uint8_t num_sinks,
                                      uint8_t num_sources, uint16_t uuid_local) {
-  LOG_VERBOSE(
-      "%s: peer %s bta_av_handle:0x%x num_seps:%d num_sinks:%d num_sources:%d",
+  bluetooth::log::verbose(
+      "peer {} bta_av_handle:0x{:x} num_seps:{} num_sinks:{} num_sources:{}",
       __func__, ADDRESS_TO_LOGGABLE_CSTR(peer_address), bta_av_handle, num_seps,
       num_sinks, num_sources);
 
@@ -159,15 +160,16 @@ void BtaAvCo::ProcessDiscoveryResult(tBTA_AV_HNDL bta_av_handle,
   BtaAvCoPeer* p_peer =
       peer_cache_->FindPeerAndUpdate(bta_av_handle, peer_address);
   if (p_peer == nullptr) {
-    LOG_ERROR("%s: could not find peer entry for bta_av_handle 0x%x peer %s",
-              __func__, bta_av_handle, ADDRESS_TO_LOGGABLE_CSTR(peer_address));
+    bluetooth::log::error(
+        "could not find peer entry for bta_av_handle 0x{:x} peer {}", __func__,
+        bta_av_handle, ADDRESS_TO_LOGGABLE_CSTR(peer_address));
     return;
   }
 
   /* Sanity check : this should never happen */
   if (p_peer->opened) {
-    LOG_ERROR("%s: peer %s already opened", __func__,
-              ADDRESS_TO_LOGGABLE_CSTR(peer_address));
+    bluetooth::log::error("peer {} already opened",
+                          ADDRESS_TO_LOGGABLE_CSTR(peer_address));
   }
 
   /* Copy the discovery results */
@@ -196,26 +198,28 @@ tA2DP_STATUS BtaAvCo::ProcessSourceGetConfig(
     tBTA_AV_HNDL bta_av_handle, const RawAddress& peer_address,
     uint8_t* p_codec_info, uint8_t* p_sep_info_idx, uint8_t seid,
     uint8_t* p_num_protect, uint8_t* p_protect_info) {
-  LOG_VERBOSE("%s: peer %s bta_av_handle:0x%x codec:%s seid:%d", __func__,
-              ADDRESS_TO_LOGGABLE_CSTR(peer_address), bta_av_handle,
-              A2DP_CodecName(p_codec_info), seid);
-  LOG_VERBOSE("%s: num_protect:0x%02x protect_info:0x%02x%02x%02x", __func__,
-              *p_num_protect, p_protect_info[0], p_protect_info[1],
-              p_protect_info[2]);
-  LOG_VERBOSE("%s: codec: %s", __func__,
-              A2DP_CodecInfoString(p_codec_info).c_str());
+  bluetooth::log::verbose("peer {} bta_av_handle:0x{:x} codec:{} seid:{}",
+                          ADDRESS_TO_LOGGABLE_CSTR(peer_address), bta_av_handle,
+                          A2DP_CodecName(p_codec_info), seid);
+  bluetooth::log::verbose(
+      "num_protect:0x{:02x} protect_info:0x{:02x}{:02x}{:02x}", *p_num_protect,
+      p_protect_info[0], p_protect_info[1], p_protect_info[2]);
+  bluetooth::log::verbose("codec: {}",
+                          A2DP_CodecInfoString(p_codec_info).c_str());
 
   // Find the peer
   BtaAvCoPeer* p_peer =
       peer_cache_->FindPeerAndUpdate(bta_av_handle, peer_address);
   if (p_peer == nullptr) {
-    LOG_ERROR("%s: could not find peer entry for bta_av_handle 0x%x peer %s",
-              __func__, bta_av_handle, ADDRESS_TO_LOGGABLE_CSTR(peer_address));
+    bluetooth::log::error(
+        "could not find peer entry for bta_av_handle 0x{:x} peer {}", __func__,
+        bta_av_handle, ADDRESS_TO_LOGGABLE_CSTR(peer_address));
     return A2DP_FAIL;
   }
-  LOG_VERBOSE("%s: peer(o=%d, n_sinks=%d, n_rx_sinks=%d, n_sup_sinks=%d)",
-              __func__, p_peer->opened, p_peer->num_sinks, p_peer->num_rx_sinks,
-              p_peer->num_sup_sinks);
+  bluetooth::log::verbose(
+      "peer(o={}, n_sinks={}, n_rx_sinks={}, n_sup_sinks={})", __func__,
+      p_peer->opened, p_peer->num_sinks, p_peer->num_rx_sinks,
+      p_peer->num_sup_sinks);
 
   p_peer->num_rx_sinks++;
 
@@ -233,9 +237,10 @@ tA2DP_STATUS BtaAvCo::ProcessSourceGetConfig(
     if (p_peer->num_sup_sinks < BTA_AV_CO_NUM_ELEMENTS(p_peer->sinks)) {
       BtaAvCoSep* p_sink = &p_peer->sinks[p_peer->num_sup_sinks++];
 
-      LOG_VERBOSE("%s: saved caps[%x:%x:%x:%x:%x:%x]", __func__,
-                  p_codec_info[1], p_codec_info[2], p_codec_info[3],
-                  p_codec_info[4], p_codec_info[5], p_codec_info[6]);
+      bluetooth::log::verbose("saved caps[{:x}:{:x}:{:x}:{:x}:{:x}:{:x}]",
+                              p_codec_info[1], p_codec_info[2], p_codec_info[3],
+                              p_codec_info[4], p_codec_info[5],
+                              p_codec_info[6]);
 
       memcpy(p_sink->codec_caps, p_codec_info, AVDT_CODEC_SIZE);
       p_sink->sep_info_idx = *p_sep_info_idx;
@@ -243,8 +248,8 @@ tA2DP_STATUS BtaAvCo::ProcessSourceGetConfig(
       p_sink->num_protect = *p_num_protect;
       memcpy(p_sink->protect_info, p_protect_info, AVDT_CP_INFO_LEN);
     } else {
-      LOG_ERROR("%s: peer %s : no more room for Sink info", __func__,
-                ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
+      bluetooth::log::error("peer {} : no more room for Sink info",
+                            ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
     }
   }
 
@@ -254,9 +259,9 @@ tA2DP_STATUS BtaAvCo::ProcessSourceGetConfig(
       (p_peer->num_sup_sinks != BTA_AV_CO_NUM_ELEMENTS(p_peer->sinks))) {
     return A2DP_FAIL;
   }
-  LOG_VERBOSE("%s: last Sink codec reached for peer %s (local %s)", __func__,
-              ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr),
-              p_peer->acceptor ? "acceptor" : "initiator");
+  bluetooth::log::verbose("last Sink codec reached for peer {} (local {})",
+                          ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr),
+                          p_peer->acceptor ? "acceptor" : "initiator");
 
   bta_av_co_store_peer_codectype(p_peer);
 
@@ -272,8 +277,8 @@ tA2DP_STATUS BtaAvCo::ProcessSourceGetConfig(
     }
     p_sink = p_peer->p_sink;
     if (p_sink == nullptr) {
-      LOG_ERROR("%s: cannot find the selected codec for peer %s", __func__,
-                ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
+      bluetooth::log::error("cannot find the selected codec for peer {}",
+                            ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
       return A2DP_FAIL;
     }
   } else {
@@ -282,8 +287,8 @@ tA2DP_STATUS BtaAvCo::ProcessSourceGetConfig(
       p_sink = peer_cache_->FindPeerSink(
           p_peer, BTAV_A2DP_CODEC_INDEX_SOURCE_SBC, ContentProtectFlag());
       if (p_sink != nullptr) {
-        LOG_VERBOSE("%s: mandatory codec preferred for peer %s", __func__,
-                    ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
+        bluetooth::log::verbose("mandatory codec preferred for peer {}",
+                                ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
         btav_a2dp_codec_config_t high_priority_mandatory{
             .codec_type = BTAV_A2DP_CODEC_INDEX_SOURCE_SBC,
             .codec_priority = BTAV_A2DP_CODEC_PRIORITY_HIGHEST,
@@ -300,14 +305,14 @@ tA2DP_STATUS BtaAvCo::ProcessSourceGetConfig(
             result_codec_config, &restart_input, &restart_output,
             &config_updated);
       } else {
-        LOG_WARN("%s: mandatory codec not found for peer %s", __func__,
-                 ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
+        bluetooth::log::warn("mandatory codec not found for peer {}",
+                             ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
       }
     }
     p_sink = SelectSourceCodec(p_peer);
     if (p_sink == nullptr) {
-      LOG_ERROR("%s: cannot set up codec for peer %s", __func__,
-                ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
+      bluetooth::log::error("cannot set up codec for peer {}",
+                            ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
       return A2DP_FAIL;
     }
   }
@@ -321,14 +326,15 @@ tA2DP_STATUS BtaAvCo::ProcessSourceGetConfig(
 
   // If acceptor -> reconfig otherwise reply for configuration
   *p_sep_info_idx = p_sink->sep_info_idx;
-  LOG_VERBOSE("%s: peer %s acceptor:%s reconfig_needed:%s", __func__,
-              ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr),
-              (p_peer->acceptor) ? "true" : "false",
-              (p_peer->reconfig_needed) ? "true" : "false");
+  bluetooth::log::verbose("peer {} acceptor:{} reconfig_needed:{}",
+                          ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr),
+                          (p_peer->acceptor) ? "true" : "false",
+                          (p_peer->reconfig_needed) ? "true" : "false");
   if (p_peer->acceptor) {
     if (p_peer->reconfig_needed) {
-      LOG_VERBOSE("%s: call BTA_AvReconfig(0x%x) for peer %s", __func__,
-                  bta_av_handle, ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
+      bluetooth::log::verbose("call BTA_AvReconfig(0x{:x}) for peer {}",
+                              bta_av_handle,
+                              ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
       BTA_AvReconfig(bta_av_handle, true, p_sink->sep_info_idx,
                      p_peer->codec_config, *p_num_protect, bta_av_co_cp_scmst);
     }
@@ -352,26 +358,27 @@ tA2DP_STATUS BtaAvCo::ProcessSinkGetConfig(tBTA_AV_HNDL bta_av_handle,
                                            uint8_t* p_protect_info) {
   std::lock_guard<std::recursive_mutex> lock(peer_cache_->codec_lock_);
 
-  LOG_VERBOSE("%s: peer %s bta_av_handle:0x%x codec:%s seid:%d", __func__,
-              ADDRESS_TO_LOGGABLE_CSTR(peer_address), bta_av_handle,
-              A2DP_CodecName(p_codec_info), seid);
-  LOG_VERBOSE("%s: num_protect:0x%02x protect_info:0x%02x%02x%02x", __func__,
-              *p_num_protect, p_protect_info[0], p_protect_info[1],
-              p_protect_info[2]);
-  LOG_VERBOSE("%s: codec: %s", __func__,
-              A2DP_CodecInfoString(p_codec_info).c_str());
+  bluetooth::log::verbose("peer {} bta_av_handle:0x{:x} codec:{} seid:{}",
+                          ADDRESS_TO_LOGGABLE_CSTR(peer_address), bta_av_handle,
+                          A2DP_CodecName(p_codec_info), seid);
+  bluetooth::log::verbose(
+      "num_protect:0x{:02x} protect_info:0x{:02x}{:02x}{:02x}", *p_num_protect,
+      p_protect_info[0], p_protect_info[1], p_protect_info[2]);
+  bluetooth::log::verbose("codec: {}",
+                          A2DP_CodecInfoString(p_codec_info).c_str());
 
   // Find the peer
   BtaAvCoPeer* p_peer =
       peer_cache_->FindPeerAndUpdate(bta_av_handle, peer_address);
   if (p_peer == nullptr) {
-    LOG_ERROR("%s: could not find peer entry for bta_av_handle 0x%x peer %s",
-              __func__, bta_av_handle, ADDRESS_TO_LOGGABLE_CSTR(peer_address));
+    bluetooth::log::error(
+        "could not find peer entry for bta_av_handle 0x{:x} peer {}", __func__,
+        bta_av_handle, ADDRESS_TO_LOGGABLE_CSTR(peer_address));
     return A2DP_FAIL;
   }
-  LOG_VERBOSE(
-      "%s: peer %s found (o=%d, n_sources=%d, n_rx_sources=%d, "
-      "n_sup_sources=%d)",
+  bluetooth::log::verbose(
+      "peer {} found (o={}, n_sources={}, n_rx_sources={}, "
+      "n_sup_sources={})",
       __func__, ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr), p_peer->opened,
       p_peer->num_sources, p_peer->num_rx_sources, p_peer->num_sup_sources);
 
@@ -383,9 +390,10 @@ tA2DP_STATUS BtaAvCo::ProcessSinkGetConfig(tBTA_AV_HNDL bta_av_handle,
     if (p_peer->num_sup_sources < BTA_AV_CO_NUM_ELEMENTS(p_peer->sources)) {
       BtaAvCoSep* p_source = &p_peer->sources[p_peer->num_sup_sources++];
 
-      LOG_VERBOSE("%s: saved caps[%x:%x:%x:%x:%x:%x]", __func__,
-                  p_codec_info[1], p_codec_info[2], p_codec_info[3],
-                  p_codec_info[4], p_codec_info[5], p_codec_info[6]);
+      bluetooth::log::verbose("saved caps[{:x}:{:x}:{:x}:{:x}:{:x}:{:x}]",
+                              p_codec_info[1], p_codec_info[2], p_codec_info[3],
+                              p_codec_info[4], p_codec_info[5],
+                              p_codec_info[6]);
 
       memcpy(p_source->codec_caps, p_codec_info, AVDT_CODEC_SIZE);
       p_source->sep_info_idx = *p_sep_info_idx;
@@ -393,8 +401,8 @@ tA2DP_STATUS BtaAvCo::ProcessSinkGetConfig(tBTA_AV_HNDL bta_av_handle,
       p_source->num_protect = *p_num_protect;
       memcpy(p_source->protect_info, p_protect_info, AVDT_CP_INFO_LEN);
     } else {
-      LOG_ERROR("%s: peer %s : no more room for Source info", __func__,
-                ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
+      bluetooth::log::error("peer {} : no more room for Source info",
+                            ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
     }
   }
 
@@ -404,8 +412,8 @@ tA2DP_STATUS BtaAvCo::ProcessSinkGetConfig(tBTA_AV_HNDL bta_av_handle,
       (p_peer->num_sup_sources != BTA_AV_CO_NUM_ELEMENTS(p_peer->sources))) {
     return A2DP_FAIL;
   }
-  LOG_VERBOSE("%s: last Source codec reached for peer %s", __func__,
-              ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
+  bluetooth::log::verbose("last Source codec reached for peer {}",
+                          ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
 
   // Select the Sink codec
   const BtaAvCoSep* p_source = nullptr;
@@ -419,15 +427,15 @@ tA2DP_STATUS BtaAvCo::ProcessSinkGetConfig(tBTA_AV_HNDL bta_av_handle,
     }
     p_source = p_peer->p_source;
     if (p_source == nullptr) {
-      LOG_ERROR("%s: cannot find the selected codec for peer %s", __func__,
-                ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
+      bluetooth::log::error("cannot find the selected codec for peer {}",
+                            ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
       return A2DP_FAIL;
     }
   } else {
     p_source = SelectSinkCodec(p_peer);
     if (p_source == nullptr) {
-      LOG_ERROR("%s: cannot set up codec for the peer %s", __func__,
-                ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
+      bluetooth::log::error("cannot set up codec for the peer {}",
+                            ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
       return A2DP_FAIL;
     }
   }
@@ -441,14 +449,15 @@ tA2DP_STATUS BtaAvCo::ProcessSinkGetConfig(tBTA_AV_HNDL bta_av_handle,
 
   // If acceptor -> reconfig otherwise reply for configuration
   *p_sep_info_idx = p_source->sep_info_idx;
-  LOG_VERBOSE("%s: peer %s acceptor:%s reconfig_needed:%s", __func__,
-              ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr),
-              (p_peer->acceptor) ? "true" : "false",
-              (p_peer->reconfig_needed) ? "true" : "false");
+  bluetooth::log::verbose("peer {} acceptor:{} reconfig_needed:{}",
+                          ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr),
+                          (p_peer->acceptor) ? "true" : "false",
+                          (p_peer->reconfig_needed) ? "true" : "false");
   if (p_peer->acceptor) {
     if (p_peer->reconfig_needed) {
-      LOG_VERBOSE("%s: call BTA_AvReconfig(0x%x) for peer %s", __func__,
-                  bta_av_handle, ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
+      bluetooth::log::verbose("call BTA_AvReconfig(0x{:x}) for peer {}",
+                              bta_av_handle,
+                              ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
       BTA_AvReconfig(bta_av_handle, true, p_source->sep_info_idx,
                      p_peer->codec_config, *p_num_protect, bta_av_co_cp_scmst);
     }
@@ -469,56 +478,57 @@ void BtaAvCo::ProcessSetConfig(tBTA_AV_HNDL bta_av_handle,
   uint8_t category = A2DP_SUCCESS;
   bool reconfig_needed = false;
 
-  LOG_VERBOSE(
-      "%s: bta_av_handle=0x%x peer_address=%s seid=%d "
-      "num_protect=%d t_local_sep=%d avdt_handle=%d",
+  bluetooth::log::verbose(
+      "bta_av_handle=0x{:x} peer_address={} seid={} "
+      "num_protect={} t_local_sep={} avdt_handle={}",
       __func__, bta_av_handle, ADDRESS_TO_LOGGABLE_CSTR(peer_address), seid,
       num_protect, t_local_sep, avdt_handle);
-  LOG_VERBOSE("%s: p_codec_info[%x:%x:%x:%x:%x:%x]", __func__, p_codec_info[1],
-              p_codec_info[2], p_codec_info[3], p_codec_info[4],
-              p_codec_info[5], p_codec_info[6]);
-  LOG_VERBOSE("%s: num_protect:0x%02x protect_info:0x%02x%02x%02x", __func__,
-              num_protect, p_protect_info[0], p_protect_info[1],
-              p_protect_info[2]);
-  LOG_VERBOSE("%s: codec: %s", __func__,
-              A2DP_CodecInfoString(p_codec_info).c_str());
+  bluetooth::log::verbose("p_codec_info[{:x}:{:x}:{:x}:{:x}:{:x}:{:x}]",
+                          p_codec_info[1], p_codec_info[2], p_codec_info[3],
+                          p_codec_info[4], p_codec_info[5], p_codec_info[6]);
+  bluetooth::log::verbose(
+      "num_protect:0x{:02x} protect_info:0x{:02x}{:02x}{:02x}", num_protect,
+      p_protect_info[0], p_protect_info[1], p_protect_info[2]);
+  bluetooth::log::verbose("codec: {}",
+                          A2DP_CodecInfoString(p_codec_info).c_str());
 
   // Find the peer
   BtaAvCoPeer* p_peer =
       peer_cache_->FindPeerAndUpdate(bta_av_handle, peer_address);
   if (p_peer == nullptr) {
-    LOG_ERROR("%s: could not find peer entry for bta_av_handle 0x%x peer %s",
-              __func__, bta_av_handle, ADDRESS_TO_LOGGABLE_CSTR(peer_address));
+    bluetooth::log::error(
+        "could not find peer entry for bta_av_handle 0x{:x} peer {}", __func__,
+        bta_av_handle, ADDRESS_TO_LOGGABLE_CSTR(peer_address));
     // Call call-in rejecting the configuration
     bta_av_ci_setconfig(bta_av_handle, A2DP_BUSY, AVDT_ASC_CODEC, 0, nullptr,
                         false, avdt_handle);
     return;
   }
 
-  LOG_VERBOSE(
-      "%s: peer %s found (o=%d, n_sinks=%d, n_rx_sinks=%d, "
-      "n_sup_sinks=%d)",
+  bluetooth::log::verbose(
+      "peer {} found (o={}, n_sinks={}, n_rx_sinks={}, "
+      "n_sup_sinks={})",
       __func__, ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr), p_peer->opened,
       p_peer->num_sinks, p_peer->num_rx_sinks, p_peer->num_sup_sinks);
 
   // Sanity check: should not be opened at this point
   if (p_peer->opened) {
-    LOG_ERROR("%s: peer %s already in use", __func__,
-              ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
+    bluetooth::log::error("peer {} already in use",
+                          ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
   }
 
   if (num_protect != 0) {
     if (ContentProtectEnabled()) {
       if ((num_protect != 1) || !ContentProtectIsScmst(p_protect_info)) {
-        LOG_ERROR("%s: wrong CP configuration for peer %s", __func__,
-                  ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
+        bluetooth::log::error("wrong CP configuration for peer {}",
+                              ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
         status = A2DP_BAD_CP_TYPE;
         category = AVDT_ASC_PROTECT;
       }
     } else {
       // Do not support content protection for the time being
-      LOG_ERROR("%s: wrong CP configuration for peer %s", __func__,
-                ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
+      bluetooth::log::error("wrong CP configuration for peer {}",
+                            ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
       status = A2DP_BAD_CP_TYPE;
       category = AVDT_ASC_PROTECT;
     }
@@ -528,8 +538,8 @@ void BtaAvCo::ProcessSetConfig(tBTA_AV_HNDL bta_av_handle,
     bool codec_config_supported = false;
 
     if (t_local_sep == AVDT_TSEP_SNK) {
-      LOG_VERBOSE("%s: peer %s is A2DP Source", __func__,
-                  ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
+      bluetooth::log::verbose("peer {} is A2DP Source",
+                              ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
       codec_config_supported = A2DP_IsSinkCodecSupported(p_codec_info);
       if (codec_config_supported) {
         // If Peer is Source, and our config subset matches with what is
@@ -539,17 +549,17 @@ void BtaAvCo::ProcessSetConfig(tBTA_AV_HNDL bta_av_handle,
       }
     }
     if (t_local_sep == AVDT_TSEP_SRC) {
-      LOG_VERBOSE("%s: peer %s is A2DP SINK", __func__,
-                  ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
+      bluetooth::log::verbose("peer {} is A2DP SINK",
+                              ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
       // Ignore the restart_output flag: accepting the remote device's
       // codec selection should not trigger codec reconfiguration.
       bool dummy_restart_output = false;
       if ((p_peer->GetCodecs() == nullptr) ||
           !SetCodecOtaConfig(p_peer, p_codec_info, num_protect, p_protect_info,
                              &dummy_restart_output, t_local_sep)) {
-        LOG_ERROR("%s: cannot set source codec %s for peer %s", __func__,
-                  A2DP_CodecName(p_codec_info),
-                  ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
+        bluetooth::log::error("cannot set source codec {} for peer {}",
+                              A2DP_CodecName(p_codec_info),
+                              ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
       } else {
         codec_config_supported = true;
         // Check if reconfiguration is needed
@@ -567,8 +577,9 @@ void BtaAvCo::ProcessSetConfig(tBTA_AV_HNDL bta_av_handle,
   }
 
   if (status != A2DP_SUCCESS) {
-    LOG_VERBOSE("%s: peer %s reject s=%d c=%d", __func__,
-                ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr), status, category);
+    bluetooth::log::verbose("peer {} reject s={} c={}",
+                            ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr), status,
+                            category);
     // Call call-in rejecting the configuration
     bta_av_ci_setconfig(bta_av_handle, status, category, 0, nullptr, false,
                         avdt_handle);
@@ -578,8 +589,9 @@ void BtaAvCo::ProcessSetConfig(tBTA_AV_HNDL bta_av_handle,
   // Mark that this is an acceptor peer
   p_peer->acceptor = true;
   p_peer->reconfig_needed = reconfig_needed;
-  LOG_VERBOSE("%s: peer %s accept reconf=%d", __func__,
-              ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr), reconfig_needed);
+  bluetooth::log::verbose("peer {} accept reconf={}",
+                          ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr),
+                          reconfig_needed);
   // Call call-in accepting the configuration
   bta_av_ci_setconfig(bta_av_handle, A2DP_SUCCESS, A2DP_SUCCESS, 0, nullptr,
                       reconfig_needed, avdt_handle);
@@ -587,15 +599,17 @@ void BtaAvCo::ProcessSetConfig(tBTA_AV_HNDL bta_av_handle,
 
 void BtaAvCo::ProcessOpen(tBTA_AV_HNDL bta_av_handle,
                           const RawAddress& peer_address, uint16_t mtu) {
-  LOG_VERBOSE("%s: peer %s bta_av_handle: 0x%x mtu:%d", __func__,
-              ADDRESS_TO_LOGGABLE_CSTR(peer_address), bta_av_handle, mtu);
+  bluetooth::log::verbose("peer {} bta_av_handle: 0x{:x} mtu:{}",
+                          ADDRESS_TO_LOGGABLE_CSTR(peer_address), bta_av_handle,
+                          mtu);
 
   // Find the peer
   BtaAvCoPeer* p_peer =
       peer_cache_->FindPeerAndUpdate(bta_av_handle, peer_address);
   if (p_peer == nullptr) {
-    LOG_ERROR("%s: could not find peer entry for bta_av_handle 0x%x peer %s",
-              __func__, bta_av_handle, ADDRESS_TO_LOGGABLE_CSTR(peer_address));
+    bluetooth::log::error(
+        "could not find peer entry for bta_av_handle 0x{:x} peer {}", __func__,
+        bta_av_handle, ADDRESS_TO_LOGGABLE_CSTR(peer_address));
     return;
   }
   p_peer->opened = true;
@@ -603,7 +617,7 @@ void BtaAvCo::ProcessOpen(tBTA_AV_HNDL bta_av_handle,
 
   BtaAvCoState* reference_state = getStateFromPeer(p_peer);
   if (reference_state == nullptr) {
-    LOG_WARN("Invalid bta av state");
+    bluetooth::log::warn("Invalid bta av state");
     return;
   }
   BtaAvCoPeer* active_peer = reference_state->getActivePeer();
@@ -614,23 +628,25 @@ void BtaAvCo::ProcessOpen(tBTA_AV_HNDL bta_av_handle,
 
 void BtaAvCo::ProcessClose(tBTA_AV_HNDL bta_av_handle,
                            const RawAddress& peer_address) {
-  LOG_VERBOSE("%s: peer %s bta_av_handle: 0x%x", __func__,
-              ADDRESS_TO_LOGGABLE_CSTR(peer_address), bta_av_handle);
+  bluetooth::log::verbose("peer {} bta_av_handle: 0x{:x}",
+                          ADDRESS_TO_LOGGABLE_CSTR(peer_address),
+                          bta_av_handle);
   btif_av_reset_audio_delay();
 
   // Find the peer
   BtaAvCoPeer* p_peer =
       peer_cache_->FindPeerAndUpdate(bta_av_handle, peer_address);
   if (p_peer == nullptr) {
-    LOG_ERROR("%s: could not find peer entry for bta_av_handle 0x%x peer %s",
-              __func__, bta_av_handle, ADDRESS_TO_LOGGABLE_CSTR(peer_address));
+    bluetooth::log::error(
+        "could not find peer entry for bta_av_handle 0x{:x} peer {}", __func__,
+        bta_av_handle, ADDRESS_TO_LOGGABLE_CSTR(peer_address));
     return;
   }
   // Reset the active peer
 
   BtaAvCoState* reference_state = getStateFromPeer(p_peer);
   if (reference_state == nullptr) {
-    LOG_WARN("Invalid bta av state");
+    bluetooth::log::warn("Invalid bta av state");
     return;
   }
   BtaAvCoPeer* active_peer = reference_state->getActivePeer();
@@ -645,30 +661,33 @@ void BtaAvCo::ProcessClose(tBTA_AV_HNDL bta_av_handle,
 void BtaAvCo::ProcessStart(tBTA_AV_HNDL bta_av_handle,
                            const RawAddress& peer_address,
                            const uint8_t* p_codec_info, bool* p_no_rtp_header) {
-  LOG_VERBOSE("%s: peer %s bta_av_handle: 0x%x", __func__,
-              ADDRESS_TO_LOGGABLE_CSTR(peer_address), bta_av_handle);
+  bluetooth::log::verbose("peer {} bta_av_handle: 0x{:x}",
+                          ADDRESS_TO_LOGGABLE_CSTR(peer_address),
+                          bta_av_handle);
 
   // Find the peer
   BtaAvCoPeer* p_peer =
       peer_cache_->FindPeerAndUpdate(bta_av_handle, peer_address);
   if (p_peer == nullptr) {
-    LOG_ERROR("%s: could not find peer entry for bta_av_handle 0x%x peer %s",
-              __func__, bta_av_handle, ADDRESS_TO_LOGGABLE_CSTR(peer_address));
+    bluetooth::log::error(
+        "could not find peer entry for bta_av_handle 0x{:x} peer {}", __func__,
+        bta_av_handle, ADDRESS_TO_LOGGABLE_CSTR(peer_address));
     return;
   }
 
   bool add_rtp_header =
       A2DP_UsesRtpHeader(p_peer->ContentProtectActive(), p_codec_info);
 
-  LOG_VERBOSE("%s: bta_av_handle: 0x%x add_rtp_header: %s", __func__,
-              bta_av_handle, add_rtp_header ? "true" : "false");
+  bluetooth::log::verbose("bta_av_handle: 0x{:x} add_rtp_header: {}",
+                          bta_av_handle, add_rtp_header ? "true" : "false");
   *p_no_rtp_header = !add_rtp_header;
 }
 
 void BtaAvCo::ProcessStop(tBTA_AV_HNDL bta_av_handle,
                           const RawAddress& peer_address) {
-  LOG_VERBOSE("%s: peer %s bta_av_handle: 0x%x", __func__,
-              ADDRESS_TO_LOGGABLE_CSTR(peer_address), bta_av_handle);
+  bluetooth::log::verbose("peer {} bta_av_handle: 0x{:x}",
+                          ADDRESS_TO_LOGGABLE_CSTR(peer_address),
+                          bta_av_handle);
   // Nothing to do
 }
 
@@ -676,14 +695,14 @@ BT_HDR* BtaAvCo::GetNextSourceDataPacket(const uint8_t* p_codec_info,
                                          uint32_t* p_timestamp) {
   BT_HDR* p_buf;
 
-  LOG_VERBOSE("%s: codec: %s", __func__, A2DP_CodecName(p_codec_info));
+  bluetooth::log::verbose("codec: {}", A2DP_CodecName(p_codec_info));
 
   p_buf = btif_a2dp_source_audio_readbuf();
   if (p_buf == nullptr) return nullptr;
 
   if (p_buf->offset < 4) {
     osi_free(p_buf);
-    LOG_ERROR("No space for timestamp in packet, dropped");
+    bluetooth::log::error("No space for timestamp in packet, dropped");
     return nullptr;
   }
   /*
@@ -697,8 +716,8 @@ BT_HDR* BtaAvCo::GetNextSourceDataPacket(const uint8_t* p_codec_info,
   if (!A2DP_GetPacketTimestamp(p_codec_info, (const uint8_t*)(p_buf + 1),
                                p_timestamp) ||
       !A2DP_BuildCodecHeader(p_codec_info, p_buf, p_buf->layer_specific)) {
-    LOG_ERROR("%s: unsupported codec type (%d)", __func__,
-              A2DP_GetCodecType(p_codec_info));
+    bluetooth::log::error("unsupported codec type ({})",
+                          A2DP_GetCodecType(p_codec_info));
     osi_free(p_buf);
     return nullptr;
   }
@@ -725,15 +744,16 @@ BT_HDR* BtaAvCo::GetNextSourceDataPacket(const uint8_t* p_codec_info,
 
 void BtaAvCo::DataPacketWasDropped(tBTA_AV_HNDL bta_av_handle,
                                    const RawAddress& peer_address) {
-  LOG_ERROR("%s: peer %s dropped audio packet on handle 0x%x", __func__,
-            ADDRESS_TO_LOGGABLE_CSTR(peer_address), bta_av_handle);
+  bluetooth::log::error("peer {} dropped audio packet on handle 0x{:x}",
+                        ADDRESS_TO_LOGGABLE_CSTR(peer_address), bta_av_handle);
 }
 
 void BtaAvCo::ProcessAudioDelay(tBTA_AV_HNDL bta_av_handle,
                                 const RawAddress& peer_address,
                                 uint16_t delay) {
-  LOG_VERBOSE("%s: peer %s bta_av_handle: 0x%x delay:0x%x", __func__,
-              ADDRESS_TO_LOGGABLE_CSTR(peer_address), bta_av_handle, delay);
+  bluetooth::log::verbose("peer {} bta_av_handle: 0x{:x} delay:0x{:x}",
+                          ADDRESS_TO_LOGGABLE_CSTR(peer_address), bta_av_handle,
+                          delay);
 
   btif_av_set_audio_delay(peer_address, delay);
 }
@@ -764,8 +784,9 @@ bool BtaAvCo::SetActivePeer(const RawAddress& peer_address,
 
   BtaAvCoState* reference_state = getStateFromLocalProfile(t_local_sep);
   if (reference_state == nullptr) {
-    LOG_WARN("Invalid bta av state for peer_address : %s with local sep as :%d",
-             ADDRESS_TO_LOGGABLE_CSTR(peer_address), t_local_sep);
+    bluetooth::log::warn(
+        "Invalid bta av state for peer_address : {} with local sep as :{}",
+        ADDRESS_TO_LOGGABLE_CSTR(peer_address), t_local_sep);
     return false;
   }
   if (peer_address.IsEmpty()) {
@@ -785,7 +806,8 @@ bool BtaAvCo::SetActivePeer(const RawAddress& peer_address,
   reference_state->setActivePeer(p_peer);
   uint8_t* codec_config = reference_state->getCodecConfig();
   memcpy(codec_config, p_peer->codec_config, AVDT_CODEC_SIZE);
-  LOG_INFO("codec = %s", A2DP_CodecInfoString(codec_config).c_str());
+  bluetooth::log::info("codec = {}",
+                       A2DP_CodecInfoString(codec_config).c_str());
   // report the selected codec configuration of this new active peer.
   ReportSourceCodecState(p_peer);
   return true;
@@ -835,8 +857,8 @@ void BtaAvCo::GetPeerEncoderParameters(
   p_peer_params->is_peer_edr = btif_av_is_peer_edr(peer_address);
   p_peer_params->peer_supports_3mbps =
       btif_av_peer_supports_3mbps(peer_address);
-  LOG_VERBOSE(
-      "%s: peer_address=%s peer_mtu=%d is_peer_edr=%s peer_supports_3mbps=%s",
+  bluetooth::log::verbose(
+      "peer_address={} peer_mtu={} is_peer_edr={} peer_supports_3mbps={}",
       __func__, ADDRESS_TO_LOGGABLE_CSTR(peer_address), p_peer_params->peer_mtu,
       logbool(p_peer_params->is_peer_edr).c_str(),
       logbool(p_peer_params->peer_supports_3mbps).c_str());
@@ -1061,7 +1083,7 @@ bool BtaAvCo::ReportSourceCodecState(BtaAvCoPeer* p_peer) {
           << ADDRESS_TO_LOGGABLE_STR(p_peer->addr);
   A2dpCodecs* codecs = p_peer->GetCodecs();
   if (codecs == nullptr) {
-    LOG_ERROR("Peer codecs is set to null");
+    bluetooth::log::error("Peer codecs is set to null");
     return false;
   }
   if (!codecs->getCodecConfigAndCapabilities(&codec_config,
@@ -1083,8 +1105,8 @@ bool BtaAvCo::ReportSourceCodecState(BtaAvCoPeer* p_peer) {
 }
 
 bool BtaAvCo::ReportSinkCodecState(BtaAvCoPeer* p_peer) {
-  LOG_VERBOSE("%s: peer_address=%s", __func__,
-              ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
+  bluetooth::log::verbose("peer_address={}",
+                          ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
   // Nothing to do (for now)
   return true;
 }
@@ -1182,7 +1204,8 @@ BtaAvCoSep* BtaAvCo::SelectProviderCodecConfiguration(
   // AttemptSourceCodecSelection, except the configuration
   // is provided by the HAL rather than derived locally.
 
-  LOG_INFO("Configuration=%s", provider_codec_config.toString().c_str());
+  bluetooth::log::info("Configuration={}",
+                       provider_codec_config.toString().c_str());
 
   // Identify the selected sink.
   auto* p_sink = peer_cache_->FindPeerSink(
@@ -1235,16 +1258,19 @@ const BtaAvCoSep* BtaAvCo::SelectSourceCodec(BtaAvCoPeer* p_peer) {
         p_peer, iter->codecIndex(), ContentProtectFlag());
 
     if (p_sink == nullptr) {
-      LOG_VERBOSE("peer Sink for codec %s not found", iter->name().c_str());
+      bluetooth::log::verbose("peer Sink for codec {} not found",
+                              iter->name().c_str());
       continue;
     }
 
     if (!p_peer->GetCodecs()->setCodecConfig(
             p_sink->codec_caps, true /* is_capability */, new_codec_config,
             false /* select_current_codec */)) {
-      LOG_VERBOSE("cannot set source codec %s", iter->name().c_str());
+      bluetooth::log::verbose("cannot set source codec {}",
+                              iter->name().c_str());
     } else {
-      LOG_VERBOSE("feasible to set source codec %s", iter->name().c_str());
+      bluetooth::log::verbose("feasible to set source codec {}",
+                              iter->name().c_str());
       software_codec_config = iter;
       break;
     }
@@ -1277,13 +1303,13 @@ const BtaAvCoSep* BtaAvCo::SelectSinkCodec(BtaAvCoPeer* p_peer) {
 
   // Select the codec
   for (const auto& iter : p_peer->GetCodecs()->orderedSinkCodecs()) {
-    LOG_VERBOSE("%s: trying codec %s", __func__, iter->name().c_str());
+    bluetooth::log::verbose("trying codec {}", iter->name().c_str());
     p_source = AttemptSinkCodecSelection(*iter, p_peer);
     if (p_source != nullptr) {
-      LOG_VERBOSE("%s: selected codec %s", __func__, iter->name().c_str());
+      bluetooth::log::verbose("selected codec {}", iter->name().c_str());
       break;
     }
-    LOG_VERBOSE("%s: cannot use codec %s", __func__, iter->name().c_str());
+    bluetooth::log::verbose("cannot use codec {}", iter->name().c_str());
   }
 
   // NOTE: Unconditionally dispatch the event to make sure a callback with
@@ -1297,21 +1323,21 @@ const BtaAvCoSep* BtaAvCo::AttemptSourceCodecSelection(
     const A2dpCodecConfig& codec_config, BtaAvCoPeer* p_peer) {
   uint8_t new_codec_config[AVDT_CODEC_SIZE];
 
-  LOG_VERBOSE("%s", __func__);
+  bluetooth::log::verbose("invoked");
 
   // Find the peer Sink for the codec
   BtaAvCoSep* p_sink = peer_cache_->FindPeerSink(
       p_peer, codec_config.codecIndex(), ContentProtectFlag());
   if (p_sink == nullptr) {
-    LOG_VERBOSE("%s: peer Sink for codec %s not found", __func__,
-                codec_config.name().c_str());
+    bluetooth::log::verbose("peer Sink for codec {} not found",
+                            codec_config.name().c_str());
     return nullptr;
   }
   if (!p_peer->GetCodecs()->setCodecConfig(
           p_sink->codec_caps, true /* is_capability */, new_codec_config,
           true /* select_current_codec */)) {
-    LOG_VERBOSE("%s: cannot set source codec %s", __func__,
-                codec_config.name().c_str());
+    bluetooth::log::verbose("cannot set source codec {}",
+                            codec_config.name().c_str());
     return nullptr;
   }
   p_peer->p_sink = p_sink;
@@ -1326,21 +1352,21 @@ const BtaAvCoSep* BtaAvCo::AttemptSinkCodecSelection(
     const A2dpCodecConfig& codec_config, BtaAvCoPeer* p_peer) {
   uint8_t new_codec_config[AVDT_CODEC_SIZE];
 
-  LOG_VERBOSE("%s", __func__);
+  bluetooth::log::verbose("invoked");
 
   // Find the peer Source for the codec
   BtaAvCoSep* p_source = peer_cache_->FindPeerSource(
       p_peer, codec_config.codecIndex(), ContentProtectFlag());
   if (p_source == nullptr) {
-    LOG_VERBOSE("%s: peer Source for codec %s not found", __func__,
-                codec_config.name().c_str());
+    bluetooth::log::verbose("peer Source for codec {} not found",
+                            codec_config.name().c_str());
     return nullptr;
   }
   if (!p_peer->GetCodecs()->setSinkCodecConfig(
           p_source->codec_caps, true /* is_capability */, new_codec_config,
           true /* select_current_codec */)) {
-    LOG_VERBOSE("%s: cannot set sink codec %s", __func__,
-                codec_config.name().c_str());
+    bluetooth::log::verbose("cannot set sink codec {}",
+                            codec_config.name().c_str());
     return nullptr;
   }
   p_peer->p_source = p_source;
@@ -1352,12 +1378,12 @@ const BtaAvCoSep* BtaAvCo::AttemptSinkCodecSelection(
 }
 
 size_t BtaAvCo::UpdateAllSelectableSourceCodecs(BtaAvCoPeer* p_peer) {
-  LOG_VERBOSE("%s: peer %s", __func__, ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
+  bluetooth::log::verbose("peer {}", ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
 
   size_t updated_codecs = 0;
   for (const auto& iter : p_peer->GetCodecs()->orderedSourceCodecs()) {
-    LOG_VERBOSE("%s: updating selectable codec %s", __func__,
-                iter->name().c_str());
+    bluetooth::log::verbose("updating selectable codec {}",
+                            iter->name().c_str());
     if (UpdateSelectableSourceCodec(*iter, p_peer)) {
       updated_codecs++;
     }
@@ -1367,7 +1393,7 @@ size_t BtaAvCo::UpdateAllSelectableSourceCodecs(BtaAvCoPeer* p_peer) {
 
 bool BtaAvCo::UpdateSelectableSourceCodec(const A2dpCodecConfig& codec_config,
                                           BtaAvCoPeer* p_peer) {
-  LOG_VERBOSE("%s: peer %s", __func__, ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
+  bluetooth::log::verbose("peer {}", ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
 
   // Find the peer Sink for the codec
   const BtaAvCoSep* p_sink = peer_cache_->FindPeerSink(
@@ -1377,21 +1403,21 @@ bool BtaAvCo::UpdateSelectableSourceCodec(const A2dpCodecConfig& codec_config,
     return false;
   }
   if (!p_peer->GetCodecs()->setPeerSinkCodecCapabilities(p_sink->codec_caps)) {
-    LOG_WARN("%s: cannot update peer %s codec capabilities for %s", __func__,
-             ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr),
-             A2DP_CodecName(p_sink->codec_caps));
+    bluetooth::log::warn("cannot update peer {} codec capabilities for {}",
+                         ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr),
+                         A2DP_CodecName(p_sink->codec_caps));
     return false;
   }
   return true;
 }
 
 size_t BtaAvCo::UpdateAllSelectableSinkCodecs(BtaAvCoPeer* p_peer) {
-  LOG_VERBOSE("%s: peer %s", __func__, ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
+  bluetooth::log::verbose("peer {}", ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
 
   size_t updated_codecs = 0;
   for (const auto& iter : p_peer->GetCodecs()->orderedSinkCodecs()) {
-    LOG_VERBOSE("%s: updating selectable codec %s", __func__,
-                iter->name().c_str());
+    bluetooth::log::verbose("updating selectable codec {}",
+                            iter->name().c_str());
     if (UpdateSelectableSinkCodec(*iter, p_peer)) {
       updated_codecs++;
     }
@@ -1401,7 +1427,7 @@ size_t BtaAvCo::UpdateAllSelectableSinkCodecs(BtaAvCoPeer* p_peer) {
 
 bool BtaAvCo::UpdateSelectableSinkCodec(const A2dpCodecConfig& codec_config,
                                         BtaAvCoPeer* p_peer) {
-  LOG_VERBOSE("%s: peer %s", __func__, ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
+  bluetooth::log::verbose("peer {}", ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
 
   // Find the peer Source for the codec
   const BtaAvCoSep* p_source = peer_cache_->FindPeerSource(
@@ -1412,9 +1438,9 @@ bool BtaAvCo::UpdateSelectableSinkCodec(const A2dpCodecConfig& codec_config,
   }
   if (!p_peer->GetCodecs()->setPeerSourceCodecCapabilities(
           p_source->codec_caps)) {
-    LOG_WARN("%s: cannot update peer %s codec capabilities for %s", __func__,
-             ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr),
-             A2DP_CodecName(p_source->codec_caps));
+    bluetooth::log::warn("cannot update peer {} codec capabilities for {}",
+                         ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr),
+                         A2DP_CodecName(p_source->codec_caps));
     return false;
   }
   return true;
@@ -1425,15 +1451,16 @@ void BtaAvCo::SaveNewCodecConfig(BtaAvCoPeer* p_peer,
                                  uint8_t num_protect,
                                  const uint8_t* p_protect_info,
                                  const uint8_t t_local_sep) {
-  LOG_VERBOSE("%s: peer %s", __func__, ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
-  LOG_VERBOSE("%s: codec: %s", __func__,
-              A2DP_CodecInfoString(new_codec_config).c_str());
+  bluetooth::log::verbose("peer {}", ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
+  bluetooth::log::verbose("codec: {}",
+                          A2DP_CodecInfoString(new_codec_config).c_str());
 
   std::lock_guard<std::recursive_mutex> lock(peer_cache_->codec_lock_);
   BtaAvCoState* reference_state = getStateFromLocalProfile(t_local_sep);
   if (reference_state == nullptr) {
-    LOG_WARN("Invalid bta av state for peer_address : %s with local sep as :%d",
-             ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr), t_local_sep);
+    bluetooth::log::warn(
+        "Invalid bta av state for peer_address : {} with local sep as :{}",
+        ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr), t_local_sep);
     return;
   }
   uint8_t* codec_config = reference_state->getCodecConfig();
@@ -1556,7 +1583,7 @@ void bta_av_co_audio_disc_res(tBTA_AV_HNDL bta_av_handle,
 static void bta_av_co_store_peer_codectype(const BtaAvCoPeer* p_peer) {
   int index, peer_codec_type = 0;
   const BtaAvCoSep* p_sink;
-  LOG_VERBOSE("%s", __func__);
+  bluetooth::log::verbose("invoked");
   for (index = 0; index < p_peer->num_sup_sinks; index++) {
     p_sink = &p_peer->sinks[index];
     peer_codec_type |= A2DP_IotGetPeerSinkCodecType(p_sink->codec_caps);
@@ -1577,44 +1604,44 @@ static bool bta_av_co_should_select_hardware_codec(
   // Prioritize any offload codec except SBC and AAC
   if (A2DP_GetCodecType(hardware_config.codec_config) ==
       A2DP_MEDIA_CT_NON_A2DP) {
-    LOG_VERBOSE("select hardware codec: %s",
-                A2DP_CodecIndexStr(hardware_offload_index));
+    bluetooth::log::verbose("select hardware codec: {}",
+                            A2DP_CodecIndexStr(hardware_offload_index));
     return true;
   }
   // Prioritize LDAC, AptX HD and AptX over AAC and SBC offload codecs
   if (software_codec_index == BTAV_A2DP_CODEC_INDEX_SOURCE_LDAC ||
       software_codec_index == BTAV_A2DP_CODEC_INDEX_SOURCE_APTX_HD ||
       software_codec_index == BTAV_A2DP_CODEC_INDEX_SOURCE_APTX) {
-    LOG_VERBOSE("select software codec: %s",
-                A2DP_CodecIndexStr(software_codec_index));
+    bluetooth::log::verbose("select software codec: {}",
+                            A2DP_CodecIndexStr(software_codec_index));
     return false;
   }
   // Prioritize AAC offload
   if (hardware_offload_index == BTAV_A2DP_CODEC_INDEX_SOURCE_AAC) {
-    LOG_VERBOSE("select hardware codec: %s",
-                A2DP_CodecIndexStr(hardware_offload_index));
+    bluetooth::log::verbose("select hardware codec: {}",
+                            A2DP_CodecIndexStr(hardware_offload_index));
     return true;
   }
   // Prioritize AAC software
   if (software_codec_index == BTAV_A2DP_CODEC_INDEX_SOURCE_AAC) {
-    LOG_VERBOSE("select software codec: %s",
-                A2DP_CodecIndexStr(software_codec_index));
+    bluetooth::log::verbose("select software codec: {}",
+                            A2DP_CodecIndexStr(software_codec_index));
     return false;
   }
   // Prioritize SBC offload
   if (hardware_offload_index == BTAV_A2DP_CODEC_INDEX_SOURCE_SBC) {
-    LOG_VERBOSE("select hardware codec: %s",
-                A2DP_CodecIndexStr(hardware_offload_index));
+    bluetooth::log::verbose("select hardware codec: {}",
+                            A2DP_CodecIndexStr(hardware_offload_index));
     return true;
   }
   // Prioritize SBC software
   if (software_codec_index == BTAV_A2DP_CODEC_INDEX_SOURCE_SBC) {
-    LOG_VERBOSE("select software codec: %s",
-                A2DP_CodecIndexStr(software_codec_index));
+    bluetooth::log::verbose("select software codec: {}",
+                            A2DP_CodecIndexStr(software_codec_index));
     return false;
   }
-  LOG_ERROR("select unknown software codec: %s",
-            A2DP_CodecIndexStr(software_codec_index));
+  bluetooth::log::error("select unknown software codec: {}",
+                        A2DP_CodecIndexStr(software_codec_index));
   return false;
 }
 
@@ -1626,8 +1653,9 @@ tA2DP_STATUS bta_av_co_audio_getconfig(tBTA_AV_HNDL bta_av_handle,
                                        uint8_t* p_protect_info) {
   uint16_t peer_uuid = bta_av_co_cb.peer_cache_->FindPeerUuid(bta_av_handle);
 
-  LOG_VERBOSE("%s: peer %s bta_av_handle=0x%x peer_uuid=0x%x", __func__,
-              ADDRESS_TO_LOGGABLE_CSTR(peer_address), bta_av_handle, peer_uuid);
+  bluetooth::log::verbose("peer {} bta_av_handle=0x{:x} peer_uuid=0x{:x}",
+                          ADDRESS_TO_LOGGABLE_CSTR(peer_address), bta_av_handle,
+                          peer_uuid);
 
   switch (peer_uuid) {
     case UUID_SERVCLASS_AUDIO_SOURCE:
@@ -1641,9 +1669,9 @@ tA2DP_STATUS bta_av_co_audio_getconfig(tBTA_AV_HNDL bta_av_handle,
     default:
       break;
   }
-  LOG_ERROR("%s: peer %s : Invalid peer UUID: 0x%x for bta_av_handle 0x%x",
-            __func__, ADDRESS_TO_LOGGABLE_CSTR(peer_address), peer_uuid,
-            bta_av_handle);
+  bluetooth::log::error(
+      "peer {} : Invalid peer UUID: 0x{:x} for bta_av_handle 0x{:x}", __func__,
+      ADDRESS_TO_LOGGABLE_CSTR(peer_address), peer_uuid, bta_av_handle);
   return A2DP_FAIL;
 }
 

@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#define LOG_TAG "bta_av_co"
+
 #include "btif/include/bta_av_co_peer.h"
 
-#include <base/logging.h>
+#include <bluetooth/log.h>
 
 #include "bta/include/bta_av_api.h"
-#include "include/check.h"
 
 // Macro to convert BTA AV audio handle to index and vice versa
 #define BTA_AV_CO_AUDIO_HANDLE_TO_INDEX(bta_av_handle) \
@@ -129,8 +130,8 @@ BtaAvCoSep* BtaAvCoPeerCache::FindPeerSource(
     BtaAvCoPeer* p_peer, btav_a2dp_codec_index_t codec_index,
     const uint8_t content_protect_flag) {
   if (codec_index == BTAV_A2DP_CODEC_INDEX_MAX) {
-    LOG_WARN("%s: invalid codec index for peer %s", __func__,
-             ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
+    bluetooth::log::warn("invalid codec index for peer {}",
+                         ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
     return nullptr;
   }
 
@@ -143,10 +144,10 @@ BtaAvCoSep* BtaAvCoPeerCache::FindPeerSource(
       continue;
     }
     if (!AudioSepHasContentProtection(p_source, content_protect_flag)) {
-      LOG_VERBOSE(
-          "%s: peer Source for codec %s does not support "
+      bluetooth::log::verbose(
+          "Peer Source for codec {} does not support "
           "Content Protection",
-          __func__, A2DP_CodecIndexStr(codec_index));
+          A2DP_CodecIndexStr(codec_index));
       continue;
     }
     return p_source;
@@ -158,8 +159,8 @@ BtaAvCoSep* BtaAvCoPeerCache::FindPeerSink(BtaAvCoPeer* p_peer,
                                            btav_a2dp_codec_index_t codec_index,
                                            const uint8_t content_protect_flag) {
   if (codec_index == BTAV_A2DP_CODEC_INDEX_MAX) {
-    LOG_WARN("%s: invalid codec index for peer %s", __func__,
-             ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
+    bluetooth::log::warn("invalid codec index for peer {}",
+                         ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
     return nullptr;
   }
 
@@ -172,10 +173,10 @@ BtaAvCoSep* BtaAvCoPeerCache::FindPeerSink(BtaAvCoPeer* p_peer,
       continue;
     }
     if (!AudioSepHasContentProtection(p_sink, content_protect_flag)) {
-      LOG_VERBOSE(
-          "%s: peer Sink for codec %s does not support "
+      bluetooth::log::verbose(
+          "peer Sink for codec {} does not support "
           "Content Protection",
-          __func__, A2DP_CodecIndexStr(codec_index));
+          A2DP_CodecIndexStr(codec_index));
       continue;
     }
     return p_sink;
@@ -187,13 +188,14 @@ BtaAvCoPeer* BtaAvCoPeerCache::FindPeer(tBTA_AV_HNDL bta_av_handle) {
 
   index = BTA_AV_CO_AUDIO_HANDLE_TO_INDEX(bta_av_handle);
 
-  LOG_VERBOSE("%s: bta_av_handle = 0x%x index = %d", __func__, bta_av_handle,
-              index);
+  bluetooth::log::verbose("bta_av_handle = 0x{:x} index = {}", bta_av_handle,
+                          index);
 
   // Validity check
   if (index >= BTA_AV_CO_NUM_ELEMENTS(peers_)) {
-    LOG_ERROR("%s: peer index %d for BTA AV handle 0x%x is out of bounds",
-              __func__, index, bta_av_handle);
+    bluetooth::log::error(
+        "peer index %d for BTA AV handle 0x{:x} is out of bounds", index,
+        bta_av_handle);
     return nullptr;
   }
 
@@ -202,19 +204,21 @@ BtaAvCoPeer* BtaAvCoPeerCache::FindPeer(tBTA_AV_HNDL bta_av_handle) {
 
 BtaAvCoPeer* BtaAvCoPeerCache::FindPeerAndUpdate(
     tBTA_AV_HNDL bta_av_handle, const RawAddress& peer_address) {
-  LOG_VERBOSE("%s: peer %s bta_av_handle = 0x%x", __func__,
-              ADDRESS_TO_LOGGABLE_CSTR(peer_address), bta_av_handle);
+  bluetooth::log::verbose("peer {} bta_av_handle = 0x{:x}",
+                          ADDRESS_TO_LOGGABLE_CSTR(peer_address),
+                          bta_av_handle);
 
   BtaAvCoPeer* p_peer = FindPeer(bta_av_handle);
   if (p_peer == nullptr) {
-    LOG_ERROR("%s: peer entry for BTA AV handle 0x%x peer %s not found",
-              __func__, bta_av_handle, ADDRESS_TO_LOGGABLE_CSTR(peer_address));
+    bluetooth::log::error(
+        "peer entry for BTA AV handle 0x{:x} peer {} not found", bta_av_handle,
+        ADDRESS_TO_LOGGABLE_CSTR(peer_address));
     return nullptr;
   }
 
-  LOG_VERBOSE("%s: peer %s bta_av_handle = 0x%x previous address %s", __func__,
-              ADDRESS_TO_LOGGABLE_CSTR(peer_address), bta_av_handle,
-              ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
+  bluetooth::log::verbose("peer {} bta_av_handle = 0x{:x} previous address {}",
+                          ADDRESS_TO_LOGGABLE_CSTR(peer_address), bta_av_handle,
+                          ADDRESS_TO_LOGGABLE_CSTR(p_peer->addr));
   p_peer->addr = peer_address;
   return p_peer;
 }
@@ -228,14 +232,14 @@ uint16_t BtaAvCoPeerCache::FindPeerUuid(tBTA_AV_HNDL bta_av_handle) {
 }
 
 bool ContentProtectIsScmst(const uint8_t* p_protect_info) {
-  LOG_VERBOSE("%s", __func__);
+  bluetooth::log::verbose("invoked");
 
   if (*p_protect_info >= AVDT_CP_LOSC) {
     uint16_t cp_id;
     p_protect_info++;
     STREAM_TO_UINT16(cp_id, p_protect_info);
     if (cp_id == AVDT_CP_SCMS_T_ID) {
-      LOG_VERBOSE("%s: SCMS-T found", __func__);
+      bluetooth::log::verbose("SCMS-T found");
       return true;
     }
   }
@@ -243,25 +247,25 @@ bool ContentProtectIsScmst(const uint8_t* p_protect_info) {
 }
 
 bool AudioProtectHasScmst(uint8_t num_protect, const uint8_t* p_protect_info) {
-  LOG_VERBOSE("%s", __func__);
+  bluetooth::log::verbose("invoked");
   while (num_protect--) {
     if (ContentProtectIsScmst(p_protect_info)) return true;
     // Move to the next Content Protect schema
     p_protect_info += *p_protect_info + 1;
   }
-  LOG_VERBOSE("%s: SCMS-T not found", __func__);
+  bluetooth::log::verbose("SCMS-T not found");
   return false;
 }
 
 bool AudioSepHasContentProtection(const BtaAvCoSep* p_sep,
                                   const uint8_t content_protect_flag) {
-  LOG_VERBOSE("%s", __func__);
+  bluetooth::log::verbose("invoked");
 
   // Check if content protection is enabled for this stream
   if (content_protect_flag != AVDT_CP_SCMS_COPY_FREE) {
     return AudioProtectHasScmst(p_sep->num_protect, p_sep->protect_info);
   }
 
-  LOG_VERBOSE("%s: not required", __func__);
+  bluetooth::log::verbose("not required");
   return true;
 }
