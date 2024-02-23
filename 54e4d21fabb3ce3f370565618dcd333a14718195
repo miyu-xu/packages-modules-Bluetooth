@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23c917fd_d3f3df38",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-23T18:26:15Z",
+      "side": 1,
+      "message": "TIL that this library exists 😁, it seems very nice, indeed way easier than the Parameterized runner.\n\nI was looking at who else uses it in Android, and it seems that at least on AOSP we are the only user of it 😅 https://cs.android.com/search?q\u003dfile:Android.bp%20TestParameterInjector\u0026sq\u003d\n\nAnd it has not been updated since it\u0027s initial import.\n\nI wonder if it\u0027s really something that we want to use (we should maybe check if the current owners still support it) and if we do, we should change the other parametrized tests to use it (at least in BumbleBluetoothTests)",
+      "revId": "54e4d21fabb3ce3f370565618dcd333a14718195",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
