@@ -70,6 +70,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05bde264_b5fe72d4",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-02-23T11:50:46Z",
+      "side": 1,
+      "message": "Never mind. socket_result is needed for registration.",
+      "parentUuid": "c2eb5d7f_eb52a488",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 84
+      },
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5656f818_9b6ce388",
@@ -146,6 +170,30 @@
       "writtenOn": "2024-02-23T09:45:44Z",
       "side": 1,
       "message": "register observer first",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 84
+      },
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76bcf7ab_f7cad41d",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-02-23T11:50:46Z",
+      "side": 1,
+      "message": "Never mind. socket_result is needed for registration.",
+      "parentUuid": "23d39e3c_6f8aabf1",
       "range": {
         "startLine": 129,
         "startChar": 0,
