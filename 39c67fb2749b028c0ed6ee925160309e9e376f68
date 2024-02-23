@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9c14d094_ae52398b",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2465,
+      "author": {
+        "id": 1943896
+      },
+      "writtenOn": "2024-02-23T05:37:38Z",
+      "side": 1,
+      "message": "I just want to use the same fomat with other vendor. Anyway, I can comment out it.\nFor MTK, low latency is for wifi/bt coex behavior. Currently, we may not need handle.",
+      "parentUuid": "e62fba6d_80d4cd34",
+      "range": {
+        "startLine": 2465,
+        "startChar": 47,
+        "endLine": 2465,
+        "endChar": 52
+      },
+      "revId": "39c67fb2749b028c0ed6ee925160309e9e376f68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fa430d25_4b67d5d6",
         "filename": "system/stack/l2cap/l2c_utils.cc",
         "patchSetId": 4
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "30e6be5f_4356e928",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2466,
+      "author": {
+        "id": 1943896
+      },
+      "writtenOn": "2024-02-23T05:37:38Z",
+      "side": 1,
+      "message": "I\u0027m not notice this. I will upload new patch to resolve it.",
+      "parentUuid": "fa430d25_4b67d5d6",
+      "range": {
+        "startLine": 2466,
+        "startChar": 2,
+        "endLine": 2466,
+        "endChar": 10
+      },
+      "revId": "39c67fb2749b028c0ed6ee925160309e9e376f68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b456f4a6_604057db",
         "filename": "system/stack/l2cap/l2c_utils.cc",
         "patchSetId": 4
@@ -60,6 +108,30 @@
       "writtenOn": "2024-02-22T19:22:43Z",
       "side": 1,
       "message": "What do the zeros mean?",
+      "range": {
+        "startLine": 2476,
+        "startChar": 23,
+        "endLine": 2476,
+        "endChar": 24
+      },
+      "revId": "39c67fb2749b028c0ed6ee925160309e9e376f68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8217d90_9365e607",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2476,
+      "author": {
+        "id": 1943896
+      },
+      "writtenOn": "2024-02-23T05:37:38Z",
+      "side": 1,
+      "message": "In order to conform to the VSC format:\n1)the first byte is codec type. Here is unkown type. Because we don\u0027t know and also don\u0027t need codec type.\n\n2)this second two bytes are reserved.",
+      "parentUuid": "b456f4a6_604057db",
       "range": {
         "startLine": 2476,
         "startChar": 23,
