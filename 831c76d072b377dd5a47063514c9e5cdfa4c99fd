@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89eb721c_3f5b5006",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-24T16:58:42Z",
+      "side": 1,
+      "message": "Too bad.  It builds on AOSP.  I\u0027ll cut back on the pruning.",
+      "revId": "831c76d072b377dd5a47063514c9e5cdfa4c99fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
