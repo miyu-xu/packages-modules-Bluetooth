@@ -72,7 +72,6 @@ import java.util.stream.Collectors;
  * @hide
  */
 public class CsipSetCoordinatorService extends ProfileService {
-    private static final boolean DBG = false;
     private static final String TAG = "CsipSetCoordinatorService";
 
     // Timeout for state machine thread join, to prevent potential ANR.
@@ -124,9 +123,7 @@ public class CsipSetCoordinatorService extends ProfileService {
 
     @Override
     public void start() {
-        if (DBG) {
-            Log.d(TAG, "start()");
-        }
+        Log.d(TAG, "start()");
         if (sCsipSetCoordinatorService != null) {
             throw new IllegalStateException("start() called twice");
         }
@@ -167,9 +164,7 @@ public class CsipSetCoordinatorService extends ProfileService {
 
     @Override
     public void stop() {
-        if (DBG) {
-            Log.d(TAG, "stop()");
-        }
+        Log.d(TAG, "stop()");
         if (sCsipSetCoordinatorService == null) {
             Log.w(TAG, "stop() called before start()");
             return;
@@ -223,9 +218,7 @@ public class CsipSetCoordinatorService extends ProfileService {
 
     @Override
     public void cleanup() {
-        if (DBG) {
-            Log.d(TAG, "cleanup()");
-        }
+        Log.d(TAG, "cleanup()");
     }
 
     /**
@@ -247,9 +240,7 @@ public class CsipSetCoordinatorService extends ProfileService {
 
     private static synchronized void setCsipSetCoordinatorService(
             CsipSetCoordinatorService instance) {
-        if (DBG) {
-            Log.d(TAG, "setCsipSetCoordinatorService(): set to: " + instance);
-        }
+        Log.d(TAG, "setCsipSetCoordinatorService(): set to: " + instance);
         sCsipSetCoordinatorService = instance;
     }
 
@@ -261,9 +252,7 @@ public class CsipSetCoordinatorService extends ProfileService {
     public boolean connect(BluetoothDevice device) {
         enforceCallingOrSelfPermission(
                 BLUETOOTH_PRIVILEGED, "Need BLUETOOTH_PRIVILEGED permission");
-        if (DBG) {
-            Log.d(TAG, "connect(): " + device);
-        }
+        Log.d(TAG, "connect(): " + device);
         if (device == null) {
             return false;
         }
@@ -297,9 +286,7 @@ public class CsipSetCoordinatorService extends ProfileService {
     public boolean disconnect(BluetoothDevice device) {
         enforceCallingOrSelfPermission(
                 BLUETOOTH_PRIVILEGED, "Need BLUETOOTH_PRIVILEGED permission");
-        if (DBG) {
-            Log.d(TAG, "disconnect(): " + device);
-        }
+        Log.d(TAG, "disconnect(): " + device);
         if (device == null) {
             return false;
         }
@@ -469,9 +456,7 @@ public class CsipSetCoordinatorService extends ProfileService {
     public boolean setConnectionPolicy(BluetoothDevice device, int connectionPolicy) {
         enforceCallingOrSelfPermission(
                 BLUETOOTH_PRIVILEGED, "Need BLUETOOTH_PRIVILEGED permission");
-        if (DBG) {
-            Log.d(TAG, "Saved connectionPolicy " + device + " = " + connectionPolicy);
-        }
+        Log.d(TAG, "Saved connectionPolicy " + device + " = " + connectionPolicy);
         mDatabaseManager.setProfileConnectionPolicy(
                 device, BluetoothProfile.CSIP_SET_COORDINATOR, connectionPolicy);
         if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
@@ -506,9 +491,7 @@ public class CsipSetCoordinatorService extends ProfileService {
     public @Nullable UUID lockGroup(
             int groupId, @NonNull IBluetoothCsipSetCoordinatorLockCallback callback) {
         if (callback == null) {
-            if (DBG) {
-                Log.d(TAG, "lockGroup(): " + groupId + ", callback not provided ");
-            }
+            Log.d(TAG, "lockGroup(): " + groupId + ", callback not provided ");
             return null;
         }
 
@@ -535,18 +518,14 @@ public class CsipSetCoordinatorService extends ProfileService {
                 } catch (RemoteException e) {
                     throw e.rethrowFromSystemServer();
                 }
-                if (DBG) {
-                    Log.d(TAG, "lockGroup(): " + groupId + ", ERROR_CSIP_GROUP_LOCKED_BY_OTHER ");
-                }
+                Log.d(TAG, "lockGroup(): " + groupId + ", ERROR_CSIP_GROUP_LOCKED_BY_OTHER ");
                 return null;
             }
 
             mLocks.put(groupId, new Pair<>(uuid, callback));
         }
 
-        if (DBG) {
-            Log.d(TAG, "lockGroup(): locking group: " + groupId);
-        }
+        Log.d(TAG, "lockGroup(): locking group: " + groupId);
         mCsipSetCoordinatorNativeInterface.groupLockSet(groupId, true);
         return uuid;
     }
@@ -559,9 +538,7 @@ public class CsipSetCoordinatorService extends ProfileService {
      */
     public void unlockGroup(@NonNull UUID lockUuid) {
         if (lockUuid == null) {
-            if (DBG) {
-                Log.d(TAG, "unlockGroup(): lockUuid is null");
-            }
+            Log.d(TAG, "unlockGroup(): lockUuid is null");
             return;
         }
 
@@ -570,9 +547,7 @@ public class CsipSetCoordinatorService extends ProfileService {
                     mLocks.entrySet()) {
                 Pair<UUID, IBluetoothCsipSetCoordinatorLockCallback> uuidCbPair = entry.getValue();
                 if (uuidCbPair.first.equals(lockUuid)) {
-                    if (DBG) {
-                        Log.d(TAG, "unlockGroup(): unlocking ... " + lockUuid);
-                    }
+                    Log.d(TAG, "unlockGroup(): unlocking ... " + lockUuid);
                     mCsipSetCoordinatorNativeInterface.groupLockSet(entry.getKey(), false);
                     return;
                 }
@@ -773,9 +748,7 @@ public class CsipSetCoordinatorService extends ProfileService {
 
         for (Map.Entry<Executor, IBluetoothCsipSetCoordinatorCallback> entry :
                 mCallbacks.get(uuid).entrySet()) {
-            if (DBG) {
-                Log.d(TAG, " executing " + uuid + " " + entry.getKey());
-            }
+            Log.d(TAG, " executing " + uuid + " " + entry.getKey());
             try {
                 executeCallback(entry.getKey(), entry.getValue(), device, groupId);
             } catch (RemoteException e) {
@@ -824,9 +797,7 @@ public class CsipSetCoordinatorService extends ProfileService {
     }
 
     void notifySetMemberAvailable(BluetoothDevice device, int groupId) {
-        if (DBG) {
-            Log.d(TAG, "notifySetMemberAvailable: " + device + ", " + groupId);
-        }
+        Log.d(TAG, "notifySetMemberAvailable: " + device + ", " + groupId);
 
         /* Sent intent as well */
         Intent intent = new Intent(BluetoothCsipSetCoordinator.ACTION_CSIS_SET_MEMBER_AVAILABLE);
@@ -924,9 +895,7 @@ public class CsipSetCoordinatorService extends ProfileService {
                                 + MAX_CSIS_STATE_MACHINES);
                 return null;
             }
-            if (DBG) {
-                Log.d(TAG, "Creating a new state machine for " + device);
-            }
+            Log.d(TAG, "Creating a new state machine for " + device);
             sm = CsipSetCoordinatorStateMachine.make(device, this,
                     mCsipSetCoordinatorNativeInterface, mStateMachinesThread.getLooper());
             mStateMachines.put(device, sm);
@@ -949,9 +918,7 @@ public class CsipSetCoordinatorService extends ProfileService {
      */
     @VisibleForTesting
     void bondStateChanged(BluetoothDevice device, int bondState) {
-        if (DBG) {
-            Log.d(TAG, "Bond state changed for device: " + device + " state: " + bondState);
-        }
+        Log.d(TAG, "Bond state changed for device: " + device + " state: " + bondState);
         if (bondState == BluetoothDevice.BOND_BONDING
                 && mFoundSetMemberToGroupId.containsKey(device)) {
             mFoundSetMemberToGroupId.remove(device);
@@ -1019,9 +986,7 @@ public class CsipSetCoordinatorService extends ProfileService {
         if (toState == BluetoothProfile.STATE_DISCONNECTED) {
             int bondState = mAdapterService.getBondState(device);
             if (bondState == BluetoothDevice.BOND_NONE) {
-                if (DBG) {
-                    Log.d(TAG, device + " is unbond. Remove state machine");
-                }
+                Log.d(TAG, device + " is unbond. Remove state machine");
                 removeStateMachine(device);
             }
         } else if (toState == BluetoothProfile.STATE_CONNECTED) {

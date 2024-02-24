@@ -55,7 +55,6 @@ import java.util.List;
  */
 public class BluetoothMediaBrowserService extends MediaBrowserServiceCompat {
     private static final String TAG = "BluetoothMediaBrowserService";
-    private static final boolean DBG = Log.isLoggable(TAG, Log.DEBUG);
 
     private static BluetoothMediaBrowserService sBluetoothMediaBrowserService;
 
@@ -86,7 +85,7 @@ public class BluetoothMediaBrowserService extends MediaBrowserServiceCompat {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if (action.equals(Intent.ACTION_LOCALE_CHANGED)) {
-                if (DBG) Log.d(TAG, "Locale has updated");
+                Log.d(TAG, "Locale has updated");
                 if (sBluetoothMediaBrowserService == null) return;
                 MediaSessionCompat session = sBluetoothMediaBrowserService.getSession();
 
@@ -112,7 +111,7 @@ public class BluetoothMediaBrowserService extends MediaBrowserServiceCompat {
      */
     @Override
     public void onCreate() {
-        if (DBG) Log.d(TAG, "Service Created");
+        Log.d(TAG, "Service Created");
         super.onCreate();
 
         // Create and configure the MediaSessionCompat
@@ -134,7 +133,7 @@ public class BluetoothMediaBrowserService extends MediaBrowserServiceCompat {
 
     @Override
     public void onDestroy() {
-        if (DBG) Log.d(TAG, "Service Destroyed");
+        Log.d(TAG, "Service Destroyed");
         unregisterReceiver(mReceiver);
         mReceiver = null;
     }
@@ -235,7 +234,7 @@ public class BluetoothMediaBrowserService extends MediaBrowserServiceCompat {
     @Override
     public synchronized void onLoadChildren(final String parentMediaId,
             final Result<List<MediaItem>> result) {
-        if (DBG) Log.d(TAG, "Request for contents, id= " + parentMediaId);
+        Log.d(TAG, "Request for contents, id= " + parentMediaId);
         BrowseResult contents = getContents(parentMediaId);
         byte status = contents.getStatus();
         List<MediaItem> results = contents.getResults();
@@ -243,10 +242,8 @@ public class BluetoothMediaBrowserService extends MediaBrowserServiceCompat {
             Log.i(TAG, "Download pending - no results, id= " + parentMediaId);
             result.detach();
         } else {
-            if (DBG) {
-                Log.d(TAG, "Received Contents, id= " + parentMediaId + ", status= "
-                        + contents.getStatusString() + ", results=" + results);
-            }
+            Log.d(TAG, "Received Contents, id= " + parentMediaId + ", status= "
+                    + contents.getStatusString() + ", results=" + results);
             result.sendResult(results);
         }
     }
@@ -271,7 +268,7 @@ public class BluetoothMediaBrowserService extends MediaBrowserServiceCompat {
         } else {
             mSession.setQueue(null);
         }
-        if (DBG) Log.d(TAG, "Now Playing List Changed, queue=" + mMediaQueue);
+        Log.d(TAG, "Now Playing List Changed, queue=" + mMediaQueue);
     }
 
     private void clearNowPlayingQueue() {
@@ -284,7 +281,7 @@ public class BluetoothMediaBrowserService extends MediaBrowserServiceCompat {
             if (node.getScope() == AvrcpControllerService.BROWSE_SCOPE_NOW_PLAYING) {
                 sBluetoothMediaBrowserService.updateNowPlayingQueue(node);
             } else {
-                if (DBG) Log.d(TAG, "Browse Node contents changed, node=" + node);
+                Log.d(TAG, "Browse Node contents changed, node=" + node);
                 sBluetoothMediaBrowserService.notifyChildrenChanged(node.getID());
             }
         }
@@ -303,7 +300,7 @@ public class BluetoothMediaBrowserService extends MediaBrowserServiceCompat {
     }
 
     static synchronized void trackChanged(AvrcpItem track) {
-        if (DBG) Log.d(TAG, "Track Changed, track=" + track);
+        Log.d(TAG, "Track Changed, track=" + track);
         if (sBluetoothMediaBrowserService != null) {
             if (track != null) {
                 sBluetoothMediaBrowserService.mSession.setMetadata(track.toMediaMetadata());
@@ -317,7 +314,7 @@ public class BluetoothMediaBrowserService extends MediaBrowserServiceCompat {
     }
 
     static synchronized void notifyChanged(PlaybackStateCompat playbackState) {
-        if (DBG) Log.d(TAG, "Playback State Changed, state=" + playbackState);
+        Log.d(TAG, "Playback State Changed, state=" + playbackState);
         if (sBluetoothMediaBrowserService != null) {
             sBluetoothMediaBrowserService.mSession.setPlaybackState(playbackState);
         } else {
@@ -379,7 +376,7 @@ public class BluetoothMediaBrowserService extends MediaBrowserServiceCompat {
      */
     public static synchronized void setActive(boolean active) {
         if (sBluetoothMediaBrowserService != null) {
-            if (DBG) Log.d(TAG, "Setting the session active state to:" + active);
+            Log.d(TAG, "Setting the session active state to:" + active);
             sBluetoothMediaBrowserService.mSession.setActive(active);
         } else {
             Log.w(TAG, "setActive Unavailable");
@@ -418,7 +415,7 @@ public class BluetoothMediaBrowserService extends MediaBrowserServiceCompat {
             sBluetoothMediaBrowserService.mSession.setMetadata(null);
             sBluetoothMediaBrowserService.setErrorPlaybackState();
             sBluetoothMediaBrowserService.mSession.setCallback(null);
-            if (DBG) Log.d(TAG, "Service state has been reset");
+            Log.d(TAG, "Service state has been reset");
         } else {
             Log.w(TAG, "reset unavailable");
         }

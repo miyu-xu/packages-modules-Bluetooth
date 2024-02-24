@@ -74,7 +74,6 @@ import java.util.Objects;
 import java.util.Scanner;
 
 final class A2dpStateMachine extends StateMachine {
-    private static final boolean DBG = true;
     private static final String TAG = "A2dpStateMachine";
 
     static final int CONNECT = 1;
@@ -675,17 +674,15 @@ final class A2dpStateMachine extends StateMachine {
             mCodecStatus = newCodecStatus;
         }
 
-        if (DBG) {
-            Log.d(TAG, "A2DP Codec Config: " + prevCodecConfig + "->"
-                    + newCodecStatus.getCodecConfig());
-            for (BluetoothCodecConfig codecConfig :
-                     newCodecStatus.getCodecsLocalCapabilities()) {
-                Log.d(TAG, "A2DP Codec Local Capability: " + codecConfig);
-            }
-            for (BluetoothCodecConfig codecConfig :
-                     newCodecStatus.getCodecsSelectableCapabilities()) {
-                Log.d(TAG, "A2DP Codec Selectable Capability: " + codecConfig);
-            }
+        Log.d(TAG, "A2DP Codec Config: " + prevCodecConfig + "->"
+                + newCodecStatus.getCodecConfig());
+        for (BluetoothCodecConfig codecConfig :
+                 newCodecStatus.getCodecsLocalCapabilities()) {
+            Log.d(TAG, "A2DP Codec Local Capability: " + codecConfig);
+        }
+        for (BluetoothCodecConfig codecConfig :
+                 newCodecStatus.getCodecsSelectableCapabilities()) {
+            Log.d(TAG, "A2DP Codec Selectable Capability: " + codecConfig);
         }
 
         if (isConnected() && !sameSelectableCodec(prevCodecStatus, mCodecStatus)) {
@@ -872,8 +869,6 @@ final class A2dpStateMachine extends StateMachine {
 
     @Override
     protected void log(String msg) {
-        if (DBG) {
-            super.log(msg);
-        }
+        super.log(msg);
     }
 }

@@ -39,7 +39,6 @@ import java.util.UUID;
 // has only the active state otherwise the block should be GCed.
 public class HfpClientDeviceBlock {
     private static final String TAG = "HfpClientDeviceBlock";
-    private static final boolean DBG = false;
 
     private static final String KEY_SCO_STATE = "com.android.bluetooth.hfpclient.SCO_STATE";
 
@@ -383,9 +382,7 @@ public class HfpClientDeviceBlock {
     // Per-Device logging
 
     public void debug(String message) {
-        if (DBG) {
-            Log.d(TAG, "[device=" + mDevice + "] " + message);
-        }
+        Log.d(TAG, "[device=" + mDevice + "] " + message);
     }
 
     public void warn(String message) {

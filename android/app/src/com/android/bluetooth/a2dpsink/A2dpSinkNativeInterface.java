@@ -32,7 +32,6 @@ import java.util.Objects;
  */
 public class A2dpSinkNativeInterface {
     private static final String TAG = "A2dpSinkNativeInterface";
-    private static final boolean DBG = Log.isLoggable(TAG, Log.DEBUG);
     private AdapterService mAdapterService;
 
     @GuardedBy("INSTANCE_LOCK")
@@ -171,9 +170,7 @@ public class A2dpSinkNativeInterface {
     public void onConnectionStateChanged(byte[] address, int state) {
         StackEvent event =
                 StackEvent.connectionStateChanged(getDevice(address), state);
-        if (DBG) {
-            Log.d(TAG, "onConnectionStateChanged: " + event);
-        }
+        Log.d(TAG, "onConnectionStateChanged: " + event);
         sendMessageToService(event);
     }
 
@@ -182,9 +179,7 @@ public class A2dpSinkNativeInterface {
      */
     public void onAudioStateChanged(byte[] address, int state) {
         StackEvent event = StackEvent.audioStateChanged(getDevice(address), state);
-        if (DBG) {
-            Log.d(TAG, "onAudioStateChanged: " + event);
-        }
+        Log.d(TAG, "onAudioStateChanged: " + event);
         sendMessageToService(event);
     }
 
@@ -194,9 +189,7 @@ public class A2dpSinkNativeInterface {
     public void onAudioConfigChanged(byte[] address, int sampleRate, int channelCount) {
         StackEvent event = StackEvent.audioConfigChanged(
                 getDevice(address), sampleRate, channelCount);
-        if (DBG) {
-            Log.d(TAG, "onAudioConfigChanged: " + event);
-        }
+        Log.d(TAG, "onAudioConfigChanged: " + event);
         sendMessageToService(event);
     }
 

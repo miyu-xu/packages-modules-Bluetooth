@@ -58,8 +58,6 @@ import java.util.List;
 public final class BluetoothOppProvider extends ContentProvider {
 
     private static final String TAG = "BluetoothOppProvider";
-    private static final boolean D = Constants.DEBUG;
-    private static final boolean V = Constants.VERBOSE;
 
     /** Database filename */
     private static final String DB_NAME = "btopp.db";
@@ -116,9 +114,7 @@ public final class BluetoothOppProvider extends ContentProvider {
          */
         @Override
         public void onCreate(final SQLiteDatabase db) {
-            if (V) {
-                Log.v(TAG, "populating new database");
-            }
+            Log.v(TAG, "populating new database");
             createTable(db);
         }
 
@@ -367,47 +363,45 @@ public final class BluetoothOppProvider extends ContentProvider {
                 throw new IllegalArgumentException("Unknown URI: " + uri);
         }
 
-        if (V) {
-            java.lang.StringBuilder sb = new java.lang.StringBuilder();
-            sb.append("starting query, database is ");
-            if (db != null) {
-                sb.append("not ");
-            }
-            sb.append("null; ");
-            if (projection == null) {
-                sb.append("projection is null; ");
-            } else if (projection.length == 0) {
-                sb.append("projection is empty; ");
-            } else {
-                for (int i = 0; i < projection.length; ++i) {
-                    sb.append("projection[");
-                    sb.append(i);
-                    sb.append("] is ");
-                    sb.append(projection[i]);
-                    sb.append("; ");
-                }
-            }
-            sb.append("selection is ");
-            sb.append(selection);
-            sb.append("; ");
-            if (selectionArgs == null) {
-                sb.append("selectionArgs is null; ");
-            } else if (selectionArgs.length == 0) {
-                sb.append("selectionArgs is empty; ");
-            } else {
-                for (int i = 0; i < selectionArgs.length; ++i) {
-                    sb.append("selectionArgs[");
-                    sb.append(i);
-                    sb.append("] is ");
-                    sb.append(selectionArgs[i]);
-                    sb.append("; ");
-                }
-            }
-            sb.append("sort is ");
-            sb.append(sortOrder);
-            sb.append(".");
-            Log.v(TAG, sb.toString());
+        java.lang.StringBuilder sb = new java.lang.StringBuilder();
+        sb.append("starting query, database is ");
+        if (db != null) {
+            sb.append("not ");
         }
+        sb.append("null; ");
+        if (projection == null) {
+            sb.append("projection is null; ");
+        } else if (projection.length == 0) {
+            sb.append("projection is empty; ");
+        } else {
+            for (int i = 0; i < projection.length; ++i) {
+                sb.append("projection[");
+                sb.append(i);
+                sb.append("] is ");
+                sb.append(projection[i]);
+                sb.append("; ");
+            }
+        }
+        sb.append("selection is ");
+        sb.append(selection);
+        sb.append("; ");
+        if (selectionArgs == null) {
+            sb.append("selectionArgs is null; ");
+        } else if (selectionArgs.length == 0) {
+            sb.append("selectionArgs is empty; ");
+        } else {
+            for (int i = 0; i < selectionArgs.length; ++i) {
+                sb.append("selectionArgs[");
+                sb.append(i);
+                sb.append("] is ");
+                sb.append(selectionArgs[i]);
+                sb.append("; ");
+            }
+        }
+        sb.append("sort is ");
+        sb.append(sortOrder);
+        sb.append(".");
+        Log.v(TAG, sb.toString());
 
         Cursor ret = qb.query(db, projection, selection, selectionArgs, null, null, sortOrder);
 

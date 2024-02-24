@@ -37,7 +37,6 @@ import java.util.Objects;
 class VendorCommandResponseProcessor {
 
     private static final String TAG = "VendorCommandResponseProcessor";
-    private static final boolean DBG = Log.isLoggable(TAG, Log.DEBUG);
 
     private final HeadsetClientService mService;
     private final NativeInterface mNativeInterface;
@@ -188,8 +187,6 @@ class VendorCommandResponseProcessor {
     }
 
     private void logD(String msg) {
-        if (DBG) {
-            Log.d(TAG, msg);
-        }
+        Log.d(TAG, msg);
     }
 }

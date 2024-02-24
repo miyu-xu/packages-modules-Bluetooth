@@ -63,7 +63,6 @@ import javax.crypto.spec.GCMParameterSpec;
 public class BluetoothKeystoreService {
     private static final String TAG = "BluetoothKeystoreService";
 
-    private static final boolean DBG = false;
 
     private static BluetoothKeystoreService sBluetoothKeystoreService;
     private boolean mCleaningUp;
@@ -801,9 +800,7 @@ public class BluetoothKeystoreService {
     }
 
     private static void infoLog(String msg) {
-        if (DBG) {
-            Log.i(TAG, msg);
-        }
+        Log.i(TAG, msg);
     }
 
     private static void debugLog(String msg) {

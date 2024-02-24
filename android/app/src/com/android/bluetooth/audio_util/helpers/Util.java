@@ -30,7 +30,6 @@ import java.util.List;
 
 class Util {
     public static String TAG = "audio_util.Util";
-    public static boolean DEBUG = false;
 
     private static final String GPM_KEY = "com.google.android.music.mediasession.music_metadata";
 

@@ -39,7 +39,6 @@ import java.util.HashMap;
  */
 public class AvrcpCoverArtService {
     private static final String TAG = "AvrcpCoverArtService";
-    private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
 
     private static final int COVER_ART_STORAGE_MAX_ITEMS = 32;
 
@@ -289,9 +288,7 @@ public class AvrcpCoverArtService {
      * Print a message to DEBUG if debug output is enabled
      */
     private void debug(String msg) {
-        if (DEBUG) {
-            Log.d(TAG, msg);
-        }
+        Log.d(TAG, msg);
     }
 
     /**

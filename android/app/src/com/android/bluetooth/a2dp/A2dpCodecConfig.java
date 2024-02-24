@@ -36,7 +36,6 @@ import java.util.Objects;
  * A2DP Codec Configuration setup.
  */
 class A2dpCodecConfig {
-    private static final boolean DBG = true;
     private static final String TAG = "A2dpCodecConfig";
 
     private Context mContext;

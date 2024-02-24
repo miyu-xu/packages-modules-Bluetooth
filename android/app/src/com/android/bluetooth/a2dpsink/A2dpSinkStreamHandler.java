@@ -49,7 +49,6 @@ import com.android.bluetooth.avrcpcontroller.AvrcpControllerService;
  */
 public class A2dpSinkStreamHandler extends Handler {
     private static final String TAG = "A2dpSinkStreamHandler";
-    private static final boolean DBG = Log.isLoggable(TAG, Log.DEBUG);
 
     // Configuration Variables
     private static final int DEFAULT_DUCK_PERCENT = 25;
@@ -94,9 +93,7 @@ public class A2dpSinkStreamHandler extends Handler {
     private OnAudioFocusChangeListener mAudioFocusListener = new OnAudioFocusChangeListener() {
         @Override
         public void onAudioFocusChange(int focusChange) {
-            if (DBG) {
-                Log.d(TAG, "onAudioFocusChangeListener focuschange " + focusChange);
-            }
+            Log.d(TAG, "onAudioFocusChangeListener focuschange " + focusChange);
             A2dpSinkStreamHandler.this.obtainMessage(AUDIO_FOCUS_CHANGE, focusChange)
                     .sendToTarget();
         }
@@ -133,10 +130,8 @@ public class A2dpSinkStreamHandler extends Handler {
 
     @Override
     public void handleMessage(Message message) {
-        if (DBG) {
-            Log.d(TAG, " process message: " + message.what);
-            Log.d(TAG, " current audioFocus state =  " + mAudioFocus);
-        }
+        Log.d(TAG, " process message: " + message.what);
+        Log.d(TAG, " current audioFocus state =  " + mAudioFocus);
         switch (message.what) {
             case SRC_STR_START:
                 mStreamAvailable = true;
@@ -184,10 +179,8 @@ public class A2dpSinkStreamHandler extends Handler {
 
             case AUDIO_FOCUS_CHANGE:
                 final int focusChangeCode = (int) message.obj;
-                if (DBG) {
-                    Log.d(TAG, "New audioFocus =  " + focusChangeCode
-                            + " Previous audio focus = " + mAudioFocus);
-                }
+                Log.d(TAG, "New audioFocus =  " + focusChangeCode
+                        + " Previous audio focus = " + mAudioFocus);
                 mAudioFocus = focusChangeCode;
                 // message.obj is the newly granted audio focus.
                 switch (mAudioFocus) {
@@ -205,9 +198,7 @@ public class A2dpSinkStreamHandler extends Handler {
                             duckPercent = DEFAULT_DUCK_PERCENT;
                         }
                         float duckRatio = (duckPercent / 100.0f);
-                        if (DBG) {
-                            Log.d(TAG, "Setting reduce gain on transient loss gain=" + duckRatio);
-                        }
+                        Log.d(TAG, "Setting reduce gain on transient loss gain=" + duckRatio);
                         setFluorideAudioTrackGain(duckRatio);
                         break;
 
@@ -241,14 +232,14 @@ public class A2dpSinkStreamHandler extends Handler {
      * Utility functions.
      */
     private void requestAudioFocusIfNone() {
-        if (DBG) Log.d(TAG, "requestAudioFocusIfNone()");
+        Log.d(TAG, "requestAudioFocusIfNone()");
         if (mAudioFocus != AudioManager.AUDIOFOCUS_GAIN) {
             requestAudioFocus();
         }
     }
 
     private synchronized int requestAudioFocus() {
-        if (DBG) Log.d(TAG, "requestAudioFocus()");
+        Log.d(TAG, "requestAudioFocus()");
         // Bluetooth A2DP may carry Music, Audio Books, Navigation, or other sounds so mark content
         // type unknown.
         AudioAttributes streamAttributes =
@@ -285,7 +276,7 @@ public class A2dpSinkStreamHandler extends Handler {
      * chosen to use it.
      */
     private synchronized void requestMediaKeyFocus() {
-        if (DBG) Log.d(TAG, "requestMediaKeyFocus()");
+        Log.d(TAG, "requestMediaKeyFocus()");
 
         if (mMediaPlayer == null) {
             AudioAttributes attrs = new AudioAttributes.Builder()
@@ -311,7 +302,7 @@ public class A2dpSinkStreamHandler extends Handler {
     }
 
     private synchronized void abandonAudioFocus() {
-        if (DBG) Log.d(TAG, "abandonAudioFocus()");
+        Log.d(TAG, "abandonAudioFocus()");
         stopFluorideStreaming();
         mAudioManager.abandonAudioFocus(mAudioFocusListener);
         mAudioFocus = AudioManager.AUDIOFOCUS_NONE;
@@ -322,7 +313,7 @@ public class A2dpSinkStreamHandler extends Handler {
      * we're no longer playing audio.
      */
     private synchronized void releaseMediaKeyFocus() {
-        if (DBG) Log.d(TAG, "releaseMediaKeyFocus()");
+        Log.d(TAG, "releaseMediaKeyFocus()");
         if (mMediaPlayer == null) {
             return;
         }

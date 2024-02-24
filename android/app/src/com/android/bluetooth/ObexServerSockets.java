@@ -48,7 +48,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class ObexServerSockets {
     private static final String TAG = "ObexServerSockets";
-    private static final boolean D = true; // TODO: set this to false!
+// TODO: set this to false!
 
     private final IObexConnectionHandler mConHandler;
     /* The wrapped sockets */
@@ -110,9 +110,7 @@ public class ObexServerSockets {
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     private static ObexServerSockets create(IObexConnectionHandler validator, int rfcommChannel,
             int l2capPsm, boolean isSecure) {
-        if (D) {
-            Log.d(TAG, "create(rfcomm = " + rfcommChannel + ", l2capPsm = " + l2capPsm + ")");
-        }
+        Log.d(TAG, "create(rfcomm = " + rfcommChannel + ", l2capPsm = " + l2capPsm + ")");
         BluetoothAdapter bt = BluetoothAdapter.getDefaultAdapter();
         if (bt == null) {
             throw new RuntimeException("No bluetooth adapter...");
@@ -156,9 +154,7 @@ public class ObexServerSockets {
                     break;
                 }
                 try {
-                    if (D) {
-                        Log.v(TAG, "waiting 300 ms...");
-                    }
+                    Log.v(TAG, "waiting 300 ms...");
                     Thread.sleep(300);
                 } catch (InterruptedException e) {
                     Log.e(TAG, "create() was interrupted");
@@ -169,9 +165,7 @@ public class ObexServerSockets {
         }
 
         if (initSocketOK) {
-            if (D) {
-                Log.d(TAG, "Succeed to create listening sockets ");
-            }
+            Log.d(TAG, "Succeed to create listening sockets ");
             ObexServerSockets sockets = new ObexServerSockets(validator, rfcommSocket, l2capSocket);
             sockets.startAccept();
             return sockets;

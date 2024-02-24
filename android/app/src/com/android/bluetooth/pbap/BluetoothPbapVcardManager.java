@@ -57,7 +57,6 @@ import java.util.Collections;
 public class BluetoothPbapVcardManager {
     private static final String TAG = "BluetoothPbapVcardManager";
 
-    private static final boolean V = BluetoothPbapService.VERBOSE;
 
     private ContentResolver mResolver;
 
@@ -150,9 +149,7 @@ public class BluetoothPbapVcardManager {
                 size = getCallHistorySize(type);
                 break;
         }
-        if (V) {
-            Log.v(TAG, "getPhonebookSize size = " + size + " type = " + type);
-        }
+        Log.v(TAG, "getPhonebookSize size = " + size + " type = " + type);
         return size;
     }
 
@@ -418,9 +415,7 @@ public class BluetoothPbapVcardManager {
                         Log.i(TAG, "Contact may have been deleted during operation");
                         continue;
                     }
-                    if (V) {
-                        Log.v(TAG, "Checking selected bits in the vcard composer" + vcard);
-                    }
+                    Log.v(TAG, "Checking selected bits in the vcard composer" + vcard);
 
                     if (!vcardselector.checkVCardSelector(vcard, vCardSelectorOperator)) {
                         Log.e(TAG, "vcard selector check fail");
@@ -443,14 +438,10 @@ public class BluetoothPbapVcardManager {
                     i++;
                 }
                 if (orderByWhat == BluetoothPbapObexServer.ORDER_BY_INDEXED) {
-                    if (V) {
-                        Log.v(TAG, "getPhonebookNameList, order by index");
-                    }
+                    Log.v(TAG, "getPhonebookNameList, order by index");
                     // Do not need to do anything, as we sort it by index already
                 } else if (orderByWhat == BluetoothPbapObexServer.ORDER_BY_ALPHABETICAL) {
-                    if (V) {
-                        Log.v(TAG, "getPhonebookNameList, order by alpha");
-                    }
+                    Log.v(TAG, "getPhonebookNameList, order by alpha");
                     Collections.sort(nameList);
                 }
             }
@@ -492,10 +483,8 @@ public class BluetoothPbapVcardManager {
             if (contactCursor != null) {
                 appendDistinctNameIdList(nameList, mContext.getString(android.R.string.unknownName),
                         contactCursor);
-                if (V) {
-                    for (String nameIdStr : nameList) {
-                        Log.v(TAG, "got name " + nameIdStr + " by number " + phoneNumber);
-                    }
+                for (String nameIdStr : nameList) {
+                    Log.v(TAG, "got name " + nameIdStr + " by number " + phoneNumber);
                 }
             }
         } catch (CursorWindowAllocationException e) {
@@ -595,18 +584,14 @@ public class BluetoothPbapVcardManager {
             if (callsCursor != null) {
                 callsCursor.moveToPosition(startPoint - 1);
                 startPointId = callsCursor.getLong(ID_COLUMN_INDEX);
-                if (V) {
-                    Log.v(TAG, "Call Log query startPointId = " + startPointId);
-                }
+                Log.v(TAG, "Call Log query startPointId = " + startPointId);
                 if (startPoint == endPoint) {
                     endPointId = startPointId;
                 } else {
                     callsCursor.moveToPosition(endPoint - 1);
                     endPointId = callsCursor.getLong(ID_COLUMN_INDEX);
                 }
-                if (V) {
-                    Log.v(TAG, "Call log query endPointId = " + endPointId);
-                }
+                Log.v(TAG, "Call log query endPointId = " + endPointId);
             }
         } catch (CursorWindowAllocationException e) {
             ContentProfileErrorReportUtils.report(
@@ -639,9 +624,7 @@ public class BluetoothPbapVcardManager {
             selection = "(" + typeSelection + ") AND (" + recordSelection + ")";
         }
 
-        if (V) {
-            Log.v(TAG, "Call log query selection is: " + selection);
-        }
+        Log.v(TAG, "Call log query selection is: " + selection);
 
         return composeCallLogsAndSendSelectedVCards(op, selection, vcardType21, needSendBody,
                 pbSize, null, ignorefilter, filter, vcardselector, vcardselectorop, vcardselect);
@@ -784,9 +767,7 @@ public class BluetoothPbapVcardManager {
                     previousContactId = currentContactId;
                     if (currentOffset >= startPoint) {
                         contactIdsCursor.addRow(new Long[]{currentContactId});
-                        if (V) {
-                            Log.v(TAG, "contactIdsCursor.addRow: " + currentContactId);
-                        }
+                        Log.v(TAG, "contactIdsCursor.addRow: " + currentContactId);
                     }
                     currentOffset++;
                 }
@@ -798,9 +779,7 @@ public class BluetoothPbapVcardManager {
     private int composeContactsAndSendVCards(Operation op, final Cursor contactIdCursor,
             final boolean vcardType21, String ownerVCard, boolean ignorefilter, byte[] filter) {
         long timestamp = 0;
-        if (V) {
-            timestamp = System.currentTimeMillis();
-        }
+        timestamp = System.currentTimeMillis();
 
         VCardComposer composer = null;
         VCardFilter vcardfilter = new VCardFilter(ignorefilter ? null : filter);
@@ -875,16 +854,12 @@ public class BluetoothPbapVcardManager {
                     Log.i(TAG, "Contact may have been deleted during operation");
                     continue;
                 }
-                if (V) {
-                    Log.v(TAG, "vCard from composer: " + vcard);
-                }
+                Log.v(TAG, "vCard from composer: " + vcard);
 
                 vcard = vcardfilter.apply(vcard, vcardType21);
                 vcard = stripTelephoneNumber(vcard);
 
-                if (V) {
-                    Log.v(TAG, "vCard after cleanup: " + vcard);
-                }
+                Log.v(TAG, "vCard after cleanup: " + vcard);
 
                 if (!buffer.writeVCard(vcard)) {
                     // onEntryCreate() already emits error.
@@ -900,10 +875,8 @@ public class BluetoothPbapVcardManager {
             }
         }
 
-        if (V) {
-            Log.v(TAG, "Total vcard composing and sending out takes " + (System.currentTimeMillis()
-                    - timestamp) + " ms");
-        }
+        Log.v(TAG, "Total vcard composing and sending out takes " + (System.currentTimeMillis()
+                - timestamp) + " ms");
 
         return ResponseCodes.OBEX_HTTP_OK;
     }
@@ -912,9 +885,7 @@ public class BluetoothPbapVcardManager {
             final boolean vcardType21, String ownerVCard, int needSendBody, int pbSize,
             boolean ignorefilter, byte[] filter, byte[] selector, String vcardselectorop) {
         long timestamp = 0;
-        if (V) {
-            timestamp = System.currentTimeMillis();
-        }
+        timestamp = System.currentTimeMillis();
 
         VCardComposer composer = null;
         VCardFilter vcardfilter = new VCardFilter(ignorefilter ? null : filter);
@@ -986,9 +957,7 @@ public class BluetoothPbapVcardManager {
                     Log.i(TAG, "Contact may have been deleted during operation");
                     continue;
                 }
-                if (V) {
-                    Log.v(TAG, "Checking selected bits in the vcard composer" + vcard);
-                }
+                Log.v(TAG, "Checking selected bits in the vcard composer" + vcard);
 
                 if (!vcardselector.checkVCardSelector(vcard, vcardselectorop)) {
                     Log.e(TAG, "vcard selector check fail");
@@ -1009,9 +978,7 @@ public class BluetoothPbapVcardManager {
                     vcard = vcardfilter.apply(vcard, vcardType21);
                     vcard = stripTelephoneNumber(vcard);
 
-                    if (V) {
-                        Log.v(TAG, "vCard after cleanup: " + vcard);
-                    }
+                    Log.v(TAG, "vCard after cleanup: " + vcard);
 
                     if (!buffer.writeVCard(vcard)) {
                         // onEntryCreate() already emits error.
@@ -1032,10 +999,8 @@ public class BluetoothPbapVcardManager {
             }
         }
 
-        if (V) {
-            Log.v(TAG, "Total vcard composing and sending out takes " + (System.currentTimeMillis()
-                    - timestamp) + " ms");
-        }
+        Log.v(TAG, "Total vcard composing and sending out takes " + (System.currentTimeMillis()
+                - timestamp) + " ms");
 
         return ResponseCodes.OBEX_HTTP_OK;
     }
@@ -1045,9 +1010,7 @@ public class BluetoothPbapVcardManager {
             boolean ignorefilter, byte[] filter, byte[] selector, String vcardselectorop,
             boolean vCardSelct) {
         long timestamp = 0;
-        if (V) {
-            timestamp = System.currentTimeMillis();
-        }
+        timestamp = System.currentTimeMillis();
 
         BluetoothPbapCallLogComposer composer = null;
         HandlerForStringBuffer buffer = null;
@@ -1099,10 +1062,8 @@ public class BluetoothPbapVcardManager {
                         }
                         vcard = vcardfilter.apply(vcard, vcardType21);
 
-                        if (V) {
-                            Log.v(TAG, "Vcard Entry:");
-                            Log.v(TAG, vcard);
-                        }
+                        Log.v(TAG, "Vcard Entry:");
+                        Log.v(TAG, vcard);
                         buffer.writeVCard(vcard);
                     }
                 } else {
@@ -1117,10 +1078,8 @@ public class BluetoothPbapVcardManager {
                                 21);
                         return ResponseCodes.OBEX_HTTP_INTERNAL_ERROR;
                     }
-                    if (V) {
-                        Log.v(TAG, "Vcard Entry:");
-                        Log.v(TAG, vcard);
-                    }
+                    Log.v(TAG, "Vcard Entry:");
+                    Log.v(TAG, vcard);
                     buffer.writeVCard(vcard);
                 }
             }
@@ -1136,10 +1095,8 @@ public class BluetoothPbapVcardManager {
             }
         }
 
-        if (V) {
-            Log.v(TAG, "Total vcard composing and sending out takes " + (System.currentTimeMillis()
-                    - timestamp) + " ms");
-        }
+        Log.v(TAG, "Total vcard composing and sending out takes " + (System.currentTimeMillis()
+                - timestamp) + " ms");
         return ResponseCodes.OBEX_HTTP_OK;
     }
 
@@ -1157,9 +1114,7 @@ public class BluetoothPbapVcardManager {
                                              .replace(")", "")
                                              .replace(" ", "");
                 if (vTagAndTel[1].length() < telLenBefore) {
-                    if (V) {
-                        Log.v(TAG, "Fixing vCard TEL to " + vTagAndTel[1]);
-                    }
+                    Log.v(TAG, "Fixing vCard TEL to " + vTagAndTel[1]);
                     attr[i] = new StringBuilder().append(vTagAndTel[0]).append(":")
                                                  .append(vTagAndTel[1]).toString();
                 }
@@ -1171,9 +1126,7 @@ public class BluetoothPbapVcardManager {
                 stripedVCard = stripedVCard.concat(attr[i] + separator);
             }
         }
-        if (V) {
-            Log.v(TAG, "vCard with stripped telephone no.: " + stripedVCard);
-        }
+        Log.v(TAG, "vCard with stripped telephone no.: " + stripedVCard);
         return stripedVCard;
     }
 
@@ -1382,9 +1335,7 @@ public class BluetoothPbapVcardManager {
                 previousContactId = contactId;
             }
         }
-        if (V) {
-            Log.i(TAG, "getDistinctContactIdSize result: " + count);
-        }
+        Log.i(TAG, "getDistinctContactIdSize result: " + count);
         return count;
     }
 
@@ -1411,10 +1362,8 @@ public class BluetoothPbapVcardManager {
                 resultList.add(newString);
             }
         }
-        if (V) {
-            for (String nameId : resultList) {
-                Log.i(TAG, "appendDistinctNameIdList result: " + nameId);
-            }
+        for (String nameId : resultList) {
+            Log.i(TAG, "appendDistinctNameIdList result: " + nameId);
         }
     }
 

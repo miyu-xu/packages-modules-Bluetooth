@@ -27,7 +27,6 @@ import java.util.Map;
  */
 final class AvrcpCoverArtStorage {
     private static final String TAG = "AvrcpCoverArtStorage";
-    private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
 
     private final Object mHandlesLock = new Object();
     private int mNextImageHandle = 0;
@@ -198,9 +197,7 @@ final class AvrcpCoverArtStorage {
      * Print a message to DEBUG if debug output is enabled
      */
     private void debug(String msg) {
-        if (DEBUG) {
-            Log.d(TAG, msg);
-        }
+        Log.d(TAG, msg);
     }
 
     /**

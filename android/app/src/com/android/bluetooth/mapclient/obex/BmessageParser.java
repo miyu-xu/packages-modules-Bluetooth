@@ -36,7 +36,6 @@ import java.text.ParseException;
 /* BMessage as defined by MAP_SPEC_V101 Section 3.1.3 Message format (x-bt/message) */
 class BmessageParser {
     private static final String TAG = "BmessageParser";
-    private static final boolean DBG = MapClientService.DBG;
 
     private static final String CRLF = "\r\n";
 
@@ -72,9 +71,7 @@ class BmessageParser {
     public static Bmessage createBmessage(String str) {
         BmessageParser p = new BmessageParser();
 
-        if (DBG) {
-            Log.d(TAG, "actual wired contents: " + str);
-        }
+        Log.d(TAG, "actual wired contents: " + str);
 
         try {
             p.parse(str);
@@ -294,9 +291,7 @@ class BmessageParser {
          * not always UTF-8, downgrading log message from ERROR to DEBUG.
          */
         if (!"UTF-8".equals(mBmsg.mBbodyCharset)) {
-            if (DBG) {
-                Log.d(TAG, "The charset was not set to charset UTF-8: " + mBmsg.mBbodyCharset);
-            }
+            Log.d(TAG, "The charset was not set to charset UTF-8: " + mBmsg.mBbodyCharset);
         }
 
         /*
