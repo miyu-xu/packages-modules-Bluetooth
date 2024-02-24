@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2965fbd_2ddb9a71",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-24T01:23:27Z",
+      "side": 1,
+      "message": "packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/JniCallbacks.java:71: error: cannot find symbol\n        if (Flags.removeBondWithAddressMap()) {\n                 ^\n  symbol:   method removeBondWithAddressMap()\n  location: class Flags",
+      "revId": "b77bc68aa61ccb8549ac376710c3d4aa10d9b2d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
