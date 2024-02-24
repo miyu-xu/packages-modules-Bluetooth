@@ -16,6 +16,24 @@
       "message": "packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/JniCallbacks.java:71: error: cannot find symbol\n        if (Flags.removeBondWithAddressMap()) {\n                 ^\n  symbol:   method removeBondWithAddressMap()\n  location: class Flags",
       "revId": "b77bc68aa61ccb8549ac376710c3d4aa10d9b2d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddeeabd5_504e222e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-24T01:28:52Z",
+      "side": 1,
+      "message": "Thats because pre-submit was triggered again just after flag change was merged. So the flag change is in flight.",
+      "parentUuid": "c2965fbd_2ddb9a71",
+      "revId": "b77bc68aa61ccb8549ac376710c3d4aa10d9b2d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
