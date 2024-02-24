@@ -16,6 +16,24 @@
       "message": "Hi DC, can you create a new flag tracking bug? The entire process for creating a flag is described in https://g3doc.corp.google.com/company/teams/android-bluetooth/contribution-guide/create-a-flag.md?cl\u003dhead",
       "revId": "0ed0b0ae4d8aa7d1c5e2ec3c3c6eade279c93187",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fa64610_774d6ba5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2024-02-24T12:09:49Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b9e839ce_d1ce96fd",
+      "revId": "0ed0b0ae4d8aa7d1c5e2ec3c3c6eade279c93187",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

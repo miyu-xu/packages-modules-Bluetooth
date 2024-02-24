@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "824cd58f_2fd7aace",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2024-02-24T12:09:49Z",
+      "side": 1,
+      "message": "Hi Thomas,\nThe issue you mentioned is resolved. This CL is modified according to the guidelines. Please review it again. Thanks.",
+      "revId": "08d0cf92691a9689da8d59351d70a3b502a6f99b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
