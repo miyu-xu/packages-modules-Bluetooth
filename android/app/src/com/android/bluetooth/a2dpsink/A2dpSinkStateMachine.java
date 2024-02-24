@@ -38,7 +38,6 @@ import com.android.internal.util.StateMachine;
 
 class A2dpSinkStateMachine extends StateMachine {
     private static final String TAG = A2dpSinkStateMachine.class.getSimpleName();
-    static final boolean DBG = Log.isLoggable(TAG, Log.DEBUG);
 
     // 0->99 Events from Outside
     @VisibleForTesting static final int CONNECT = 1;
@@ -75,7 +74,7 @@ class A2dpSinkStateMachine extends StateMachine {
         mDeviceAddress = Utils.getByteAddress(mDevice);
         mService = service;
         mNativeInterface = nativeInterface;
-        if (DBG) Log.d(TAG, device.toString());
+        Log.d(TAG, device.toString());
 
         mDisconnected = new Disconnected();
         mConnecting = new Connecting();
@@ -147,7 +146,7 @@ class A2dpSinkStateMachine extends StateMachine {
     class Disconnected extends State {
         @Override
         public void enter() {
-            if (DBG) Log.d(TAG, "Enter Disconnected");
+            Log.d(TAG, "Enter Disconnected");
             if (mMostRecentState != BluetoothProfile.STATE_DISCONNECTED) {
                 sendMessage(CLEANUP);
             }
@@ -161,7 +160,7 @@ class A2dpSinkStateMachine extends StateMachine {
                     processStackEvent((StackEvent) message.obj);
                     return true;
                 case CONNECT:
-                    if (DBG) Log.d(TAG, "Connect");
+                    Log.d(TAG, "Connect");
                     transitionTo(mConnecting);
                     return true;
                 case CLEANUP:
@@ -203,7 +202,7 @@ class A2dpSinkStateMachine extends StateMachine {
 
         @Override
         public void enter() {
-            if (DBG) Log.d(TAG, "Enter Connecting");
+            Log.d(TAG, "Enter Connecting");
             onConnectionStateChanged(BluetoothProfile.STATE_CONNECTING);
             sendMessageDelayed(CONNECT_TIMEOUT, CONNECT_TIMEOUT_MS);
 
@@ -255,7 +254,7 @@ class A2dpSinkStateMachine extends StateMachine {
     class Connected extends State {
         @Override
         public void enter() {
-            if (DBG) Log.d(TAG, "Enter Connected");
+            Log.d(TAG, "Enter Connected");
             onConnectionStateChanged(BluetoothProfile.STATE_CONNECTED);
         }
 
@@ -296,7 +295,7 @@ class A2dpSinkStateMachine extends StateMachine {
     protected class Disconnecting extends State {
         @Override
         public void enter() {
-            if (DBG) Log.d(TAG, "Enter Disconnecting");
+            Log.d(TAG, "Enter Disconnecting");
             onConnectionStateChanged(BluetoothProfile.STATE_DISCONNECTING);
             transitionTo(mDisconnected);
         }
@@ -309,10 +308,8 @@ class A2dpSinkStateMachine extends StateMachine {
         if (currentState == BluetoothProfile.STATE_CONNECTED) {
             MetricsLogger.logProfileConnectionEvent(BluetoothMetricsProto.ProfileId.A2DP_SINK);
         }
-        if (DBG) {
-            Log.d(TAG, "Connection state " + mDevice + ": " + mMostRecentState + "->"
-                    + currentState);
-        }
+        Log.d(TAG, "Connection state " + mDevice + ": " + mMostRecentState + "->"
+                + currentState);
         Intent intent = new Intent(BluetoothA2dpSink.ACTION_CONNECTION_STATE_CHANGED);
         intent.putExtra(BluetoothProfile.EXTRA_PREVIOUS_STATE, mMostRecentState);
         intent.putExtra(BluetoothProfile.EXTRA_STATE, currentState);

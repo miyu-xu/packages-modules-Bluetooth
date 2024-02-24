@@ -230,8 +230,7 @@ class AdvertiseHelper {
     static void check_length(int type, int length) {
         if (length > 255) {
             Log.w(
-                    TAG,
-                    "Length ("
+                    TAG, "Length ("
                             + length
                             + ") of data with type "
                             + Integer.toString(type, 16)

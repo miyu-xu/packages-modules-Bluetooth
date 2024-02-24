@@ -306,8 +306,7 @@ public class BassClientStateMachine extends StateMachine {
             BluetoothDevice device = currentSources.get(i).getSourceDevice();
             if (device != null && device.equals(srcDevice)) {
                 state = currentSources.get(i);
-                Log.e(TAG,
-                        "getBroadcastReceiveStateForSourceDevice: returns for: "
+                Log.e(TAG, "getBroadcastReceiveStateForSourceDevice: returns for: "
                                 + srcDevice + "&srcInfo" + state);
                 return state;
             }
@@ -2245,9 +2244,7 @@ public class BassClientStateMachine extends StateMachine {
 
     @Override
     protected void log(String msg) {
-        if (BassConstants.BASS_DBG) {
-            super.log(msg);
-        }
+        super.log(msg);
     }
 
     private static void logByteArray(String prefix, byte[] value, int offset, int count) {

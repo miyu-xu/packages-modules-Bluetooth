@@ -46,7 +46,6 @@ import java.lang.ref.WeakReference;
  */
 public class AvrcpBipClient {
     private static final String TAG = "AvrcpBipClient";
-    private static final boolean DBG = Log.isLoggable(TAG, Log.DEBUG);
 
     // AVRCP Controller BIP Image Initiator/Cover Art UUID - AVRCP 1.6 Section 5.14.2.1
     private static final byte[] BLUETOOTH_UUID_AVRCP_COVER_ART = new byte[] {
@@ -466,9 +465,7 @@ public class AvrcpBipClient {
      * Print to debug if debug is enabled for this class
      */
     private void debug(String msg) {
-        if (DBG) {
-            Log.d(TAG, "[" + mDevice + "] " + msg);
-        }
+        Log.d(TAG, "[" + mDevice + "] " + msg);
     }
 
     /**

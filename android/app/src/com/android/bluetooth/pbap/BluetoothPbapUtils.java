@@ -53,7 +53,6 @@ import java.util.concurrent.atomic.AtomicLong;
 // Next tag value for ContentProfileErrorReportUtils.report(): 4
 class BluetoothPbapUtils {
     private static final String TAG = "BluetoothPbapUtils";
-    private static final boolean V = BluetoothPbapService.VERBOSE;
 
     // Filter constants from Bluetooth PBAP specification
     private static final int FILTER_PHOTO = 3;
@@ -144,9 +143,7 @@ class BluetoothPbapUtils {
                 BluetoothPbapConfig.includePhotosInVcard() && (!hasFilter(filter) || isFilterBitSet(
                         filter, FILTER_PHOTO));
         if (!includePhoto) {
-            if (V) {
-                Log.v(TAG, "Excluding images from VCardComposer...");
-            }
+            Log.v(TAG, "Excluding images from VCardComposer...");
             vType |= VCardConfig.FLAG_REFRAIN_IMAGE_EXPORT;
         }
         if (hasFilter(filter)) {
@@ -215,8 +212,7 @@ class BluetoothPbapUtils {
                 vcard = composer.createOneEntry();
             } else {
                 Log.e(
-                        TAG,
-                        "Unable to create profile vcard. Error initializing composer: "
+                        TAG, "Unable to create profile vcard. Error initializing composer: "
                                 + composer.getErrorReason());
                 ContentProfileErrorReportUtils.report(
                         BluetoothProfile.PBAP,
@@ -251,10 +247,8 @@ class BluetoothPbapUtils {
         edit.putLong("totalSvcFields", sTotalSvcFields);
         edit.apply();
 
-        if (V) {
-            Log.v(TAG, "Saved Primary:" + sPrimaryVersionCounter + ", Secondary:"
-                    + sSecondaryVersionCounter + ", Database Identifier: " + dbIdentifier);
-        }
+        Log.v(TAG, "Saved Primary:" + sPrimaryVersionCounter + ", Secondary:"
+                + sSecondaryVersionCounter + ", Database Identifier: " + dbIdentifier);
     }
 
     /* fetchPbapParams() loads preserved value of Database Identifiers and folder
@@ -272,15 +266,11 @@ class BluetoothPbapUtils {
         BluetoothPbapUtils.sContactsLastUpdated = pref.getLong("lastUpdatedTimestamp", timeStamp);
         BluetoothPbapUtils.sTotalFields = pref.getLong("totalFields", 0);
         BluetoothPbapUtils.sTotalSvcFields = pref.getLong("totalSvcFields", 0);
-        if (V) {
-            Log.v(TAG, " fetchPbapParams " + pref.getAll());
-        }
+        Log.v(TAG, " fetchPbapParams " + pref.getAll());
     }
 
     static void loadAllContacts(Context context, Handler handler) {
-        if (V) {
-            Log.v(TAG, "Loading Contacts ...");
-        }
+        Log.v(TAG, "Loading Contacts ...");
 
         String[] projection = {Data.CONTACT_ID, Data.DATA1, Data.MIMETYPE};
         sTotalContacts = fetchAndSetContacts(context, handler, projection, null, null, true);
@@ -326,9 +316,7 @@ class BluetoothPbapUtils {
             currentContactCount = c.getCount();
         }
 
-        if (V) {
-            Log.v(TAG, "updated list =" + updatedList);
-        }
+        Log.v(TAG, "updated list =" + updatedList);
         String[] dataProjection = {Data.CONTACT_ID, Data.DATA1, Data.MIMETYPE};
 
         String whereClause = Data.CONTACT_ID + "=?";
@@ -353,9 +341,7 @@ class BluetoothPbapUtils {
             deletedContacts.removeAll(currentContactSet);
             sPrimaryVersionCounter += deletedContacts.size();
             sSecondaryVersionCounter += deletedContacts.size();
-            if (V) {
-                Log.v(TAG, "Deleted Contacts : " + deletedContacts);
-            }
+            Log.v(TAG, "Deleted Contacts : " + deletedContacts);
 
             // to decrement totalFields and totalSvcFields count
             for (String deletedContact : deletedContacts) {
@@ -467,8 +453,7 @@ class BluetoothPbapUtils {
             }
         }
 
-        Log.d(TAG,
-                "primaryVersionCounter = " + sPrimaryVersionCounter + ", secondaryVersionCounter="
+        Log.d(TAG, "primaryVersionCounter = " + sPrimaryVersionCounter + ", secondaryVersionCounter="
                         + sSecondaryVersionCounter);
 
         // check if Primary/Secondary version Counter has rolled over
@@ -654,8 +639,6 @@ class BluetoothPbapUtils {
         sDbIdentifier.set(Calendar.getInstance().getTimeInMillis());
         sPrimaryVersionCounter = (sPrimaryVersionCounter < 0) ? 0 : sPrimaryVersionCounter;
         sSecondaryVersionCounter = (sSecondaryVersionCounter < 0) ? 0 : sSecondaryVersionCounter;
-        if (V) {
-            Log.v(TAG, "DbIdentifier rolled over to:" + sDbIdentifier);
-        }
+        Log.v(TAG, "DbIdentifier rolled over to:" + sDbIdentifier);
     }
 }

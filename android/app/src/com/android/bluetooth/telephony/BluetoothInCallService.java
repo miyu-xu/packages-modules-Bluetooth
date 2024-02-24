@@ -299,8 +299,7 @@ public class BluetoothInCallService extends InCallService {
             if (call.getParentId() != null) {
                 // If this BluetoothCall is newly conferenced, ignore the callback.
                 // We only care about the one sent for the parent conference call.
-                Log.d(TAG,
-                        "Ignoring onIsConferenceChanged from child BluetoothCall with new parent");
+                Log.d(TAG, "Ignoring onIsConferenceChanged from child BluetoothCall with new parent");
                 return;
             }
             updateHeadsetWithCallState(false /* force */);
@@ -323,8 +322,7 @@ public class BluetoothInCallService extends InCallService {
                 // ignore the callback as well since the minimum number of child calls to
                 // start a conference BluetoothCall is 2. We expect this to be called again
                 // when the parent BluetoothCall has another child BluetoothCall added.
-                Log.d(TAG,
-                        "Ignoring onIsConferenceChanged from parent with only one child call");
+                Log.d(TAG, "Ignoring onIsConferenceChanged from parent with only one child call");
                 return;
             }
             updateHeadsetWithCallState(false /* force */);
@@ -756,8 +754,7 @@ public class BluetoothInCallService extends InCallService {
             // find the conference call parent among calls
             if (call.isConference() && !mBluetoothConferenceCallInference.isEmpty()) {
                 Log.d(
-                        TAG,
-                        "conference call inferred size: "
+                        TAG, "conference call inferred size: "
                                 + mBluetoothConferenceCallInference.size()
                                 + " current size: "
                                 + mBluetoothCallHashMap.size());
@@ -802,8 +799,7 @@ public class BluetoothInCallService extends InCallService {
                                     mTelephonyManager.getNetworkCountryIso());
                     if (isSame) {
                         Log.d(
-                                TAG,
-                                "found conference call children that has same call handle, "
+                                TAG, "found conference call children that has same call handle, "
                                         + "call id: "
                                         + bluetoothCall.getId());
                         bluetoothCall.mClccIndex = inferredCall.mClccIndex;
@@ -838,8 +834,7 @@ public class BluetoothInCallService extends InCallService {
                     continue;
                 }
                 Log.i(
-                        TAG,
-                        String.format(
+                        TAG, String.format(
                                 "sending inferred clcc for BluetoothCall: index %d, direction"
                                         + " %d, state %d, isPartOfConference %b, addressType %d",
                                 (int) response[0],
@@ -866,8 +861,7 @@ public class BluetoothInCallService extends InCallService {
             // device (e.g. IMS Conference).
             boolean isConferenceWithNoChildren = isConferenceWithNoChildren(call);
             Log.i(
-                    TAG,
-                    "sendListOfCalls isConferenceWithNoChildren "
+                    TAG, "sendListOfCalls isConferenceWithNoChildren "
                             + isConferenceWithNoChildren
                             + ", call.getChildrenIds() size "
                             + call.getChildrenIds().size());

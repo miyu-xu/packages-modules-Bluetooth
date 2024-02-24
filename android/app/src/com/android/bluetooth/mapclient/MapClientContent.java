@@ -178,15 +178,11 @@ class MapClientContent {
     }
 
     private static void logD(String message) {
-        if (MapClientService.DBG) {
-            Log.d(TAG, message);
-        }
+        Log.d(TAG, message);
     }
 
     private static void logV(String message) {
-        if (MapClientService.VDBG) {
-            Log.v(TAG, message);
-        }
+        Log.v(TAG, message);
     }
 
     /**

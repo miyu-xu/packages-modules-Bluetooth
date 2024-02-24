@@ -71,8 +71,6 @@ import java.io.IOException;
 @VisibleForTesting(visibility = Visibility.PACKAGE)
 public class PbapStateMachine extends StateMachine {
     private static final String TAG = "PbapStateMachine";
-    private static final boolean DEBUG = true;
-    private static final boolean VERBOSE = true;
     private static final String PBAP_OBEX_NOTIFICATION_CHANNEL = "pbap_obex_notification_channel";
 
     static final int AUTHORIZED = 1;
@@ -364,9 +362,7 @@ public class PbapStateMachine extends StateMachine {
         }
 
         private void startObexServerSession() throws IOException {
-            if (VERBOSE) {
-                Log.v(TAG, "Pbap Service startObexServerSession");
-            }
+            Log.v(TAG, "Pbap Service startObexServerSession");
 
             // acquire the wakeLock before start Obex transaction thread
             mServiceHandler.sendMessage(
@@ -387,9 +383,7 @@ public class PbapStateMachine extends StateMachine {
         }
 
         private void stopObexServerSession() {
-            if (VERBOSE) {
-                Log.v(TAG, "Pbap Service stopObexServerSession");
-            }
+            Log.v(TAG, "Pbap Service stopObexServerSession");
             transitionTo(mFinished);
         }
 
@@ -475,8 +469,6 @@ public class PbapStateMachine extends StateMachine {
 
     @Override
     protected void log(String msg) {
-        if (DEBUG) {
-            super.log(msg);
-        }
+        super.log(msg);
     }
 }

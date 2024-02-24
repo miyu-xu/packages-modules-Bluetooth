@@ -52,8 +52,7 @@ public class ContentProfileErrorReportUtils {
     public static synchronized boolean report(int profile, int fileNameEnum, int type, int tag) {
         if (isTooFrequentReport()) {
             Log.w(
-                    TAG,
-                    "Skipping reporting this error to prevent flooding."
+                    TAG, "Skipping reporting this error to prevent flooding."
                             + " fileNameEnum="
                             + fileNameEnum
                             + ", tag="

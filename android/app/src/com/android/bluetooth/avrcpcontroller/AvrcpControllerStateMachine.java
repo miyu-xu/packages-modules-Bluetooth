@@ -55,7 +55,6 @@ import java.util.Set;
  */
 class AvrcpControllerStateMachine extends StateMachine {
     static final String TAG = "AvrcpControllerStateMachine";
-    static final boolean DBG = Log.isLoggable(TAG, Log.DEBUG);
 
     //0->99 Events from Outside
     public static final int CONNECT = 1;
@@ -301,9 +300,7 @@ class AvrcpControllerStateMachine extends StateMachine {
     }
 
     private static void logD(String message) {
-        if (DBG) {
-            Log.d(TAG, message);
-        }
+        Log.d(TAG, message);
     }
 
     synchronized void onBrowsingConnected() {

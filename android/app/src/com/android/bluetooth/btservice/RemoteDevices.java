@@ -62,7 +62,6 @@ import java.util.function.Predicate;
 
 /** Remote device manager. This class is currently mostly used for HF and AG remote devices. */
 public class RemoteDevices {
-    private static final boolean DBG = false;
     private static final String TAG = "BluetoothRemoteDevices";
 
     // Maximum number of device properties to remember
@@ -1366,8 +1365,7 @@ public class RemoteDevices {
         if (companyId != BluetoothAssignedNumbers.PLANTRONICS
                 && companyId != BluetoothAssignedNumbers.APPLE) {
             Log.i(
-                    TAG,
-                    "onVendorSpecificHeadsetEvent() filtered out non-PLANTRONICS and non-APPLE "
+                    TAG, "onVendorSpecificHeadsetEvent() filtered out non-PLANTRONICS and non-APPLE "
                             + "vendor commands");
             return;
         }
@@ -1541,15 +1539,11 @@ public class RemoteDevices {
     }
 
     private static void debugLog(String msg) {
-        if (DBG) {
-            Log.d(TAG, msg);
-        }
+        Log.d(TAG, msg);
     }
 
     private static void infoLog(String msg) {
-        if (DBG) {
-            Log.i(TAG, msg);
-        }
+        Log.i(TAG, msg);
     }
 
     private static void warnLog(String msg) {

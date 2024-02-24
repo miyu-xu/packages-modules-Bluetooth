@@ -236,8 +236,7 @@ public class BluetoothMapAppParams {
                 case MAX_LIST_COUNT:
                     if (tagLength != MAX_LIST_COUNT_LEN) {
                         Log.w(
-                                TAG,
-                                "MAX_LIST_COUNT: Wrong length received: "
+                                TAG, "MAX_LIST_COUNT: Wrong length received: "
                                         + tagLength
                                         + " expected: "
                                         + MAX_LIST_COUNT_LEN);
@@ -253,8 +252,7 @@ public class BluetoothMapAppParams {
                     break;
                 case START_OFFSET:
                     if (tagLength != START_OFFSET_LEN) {
-                        Log.w(TAG,
-                                "START_OFFSET: Wrong length received: " + tagLength + " expected: "
+                        Log.w(TAG, "START_OFFSET: Wrong length received: " + tagLength + " expected: "
                                         + START_OFFSET_LEN);
                         ContentProfileErrorReportUtils.report(
                                 BluetoothProfile.MAP,
@@ -311,8 +309,7 @@ public class BluetoothMapAppParams {
                 case FILTER_READ_STATUS:
                     if (tagLength != FILTER_READ_STATUS_LEN) {
                         Log.w(
-                                TAG,
-                                "FILTER_READ_STATUS: Wrong length received: "
+                                TAG, "FILTER_READ_STATUS: Wrong length received: "
                                         + tagLength
                                         + " expected: "
                                         + FILTER_READ_STATUS_LEN);
@@ -345,8 +342,7 @@ public class BluetoothMapAppParams {
                         setFilterOriginator(new String(appParams, i, tagLength));
                     } else {
                         Log.w(
-                                TAG,
-                                "FILTER_ORIGINATOR: Wrong length received: "
+                                TAG, "FILTER_ORIGINATOR: Wrong length received: "
                                         + tagLength
                                         + " expected to be more than 0");
                         ContentProfileErrorReportUtils.report(
@@ -388,8 +384,7 @@ public class BluetoothMapAppParams {
                 case TRANSPARENT:
                     if (tagLength != TRANSPARENT_LEN) {
                         Log.w(
-                                TAG,
-                                "TRANSPARENT: Wrong length received: "
+                                TAG, "TRANSPARENT: Wrong length received: "
                                         + tagLength
                                         + " expected: "
                                         + TRANSPARENT_LEN);
@@ -420,8 +415,7 @@ public class BluetoothMapAppParams {
                 case NEW_MESSAGE:
                     if (tagLength != NEW_MESSAGE_LEN) {
                         Log.w(
-                                TAG,
-                                "NEW_MESSAGE: Wrong length received: "
+                                TAG, "NEW_MESSAGE: Wrong length received: "
                                         + tagLength
                                         + " expected: "
                                         + NEW_MESSAGE_LEN);
@@ -466,8 +460,7 @@ public class BluetoothMapAppParams {
                 case MAS_INSTANCE_ID:
                     if (tagLength != MAS_INSTANCE_ID_LEN) {
                         Log.w(
-                                TAG,
-                                "MAS_INSTANCE_ID: Wrong length received: "
+                                TAG, "MAS_INSTANCE_ID: Wrong length received: "
                                         + tagLength
                                         + " expected: "
                                         + MAS_INSTANCE_ID_LEN);
@@ -512,8 +505,7 @@ public class BluetoothMapAppParams {
                 case MESSAGE_LISTING_SIZE:
                     if (tagLength != MESSAGE_LISTING_SIZE_LEN) {
                         Log.w(
-                                TAG,
-                                "MESSAGE_LISTING_SIZE: Wrong length received: "
+                                TAG, "MESSAGE_LISTING_SIZE: Wrong length received: "
                                         + tagLength
                                         + " expected: "
                                         + MESSAGE_LISTING_SIZE_LEN);
@@ -600,8 +592,7 @@ public class BluetoothMapAppParams {
                 case STATUS_VALUE:
                     if (tagLength != STATUS_VALUE_LEN) {
                         Log.w(
-                                TAG,
-                                "STATUS_VALUER: Wrong length received: "
+                                TAG, "STATUS_VALUER: Wrong length received: "
                                         + tagLength
                                         + " expected: "
                                         + STATUS_VALUE_LEN);
@@ -720,8 +711,7 @@ public class BluetoothMapAppParams {
                     break;
                 case CONVO_LISTING_SIZE:
                     if (tagLength != CONVO_LISTING_SIZE_LEN) {
-                        Log.w(TAG,
-                                "LISTING_SIZE: Wrong length received: " + tagLength + " expected: "
+                        Log.w(TAG, "LISTING_SIZE: Wrong length received: " + tagLength + " expected: "
                                         + CONVO_LISTING_SIZE_LEN);
                         ContentProfileErrorReportUtils.report(
                                 BluetoothProfile.MAP,

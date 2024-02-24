@@ -36,7 +36,6 @@ import java.util.Arrays;
  */
 public class AvrcpBipObexServer extends ServerRequestHandler {
     private static final String TAG = "AvrcpBipObexServer";
-    private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG);
 
     private final AvrcpCoverArtService mAvrcpCoverArtService;
 
@@ -358,8 +357,6 @@ public class AvrcpBipObexServer extends ServerRequestHandler {
     }
 
     private void debug(String msg) {
-        if (DEBUG) {
-            Log.d(TAG, msg);
-        }
+        Log.d(TAG, msg);
     }
 }

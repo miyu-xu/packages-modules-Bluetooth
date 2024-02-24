@@ -157,8 +157,7 @@ final class BondStateMachine extends StateMachine {
                                         ? msg.getData().getShort(DELAY_RETRY_COUNT)
                                         : 0;
                         Log.d(
-                                TAG,
-                                "Delay CREATE_BOND because native is busy - attempt no "
+                                TAG, "Delay CREATE_BOND because native is busy - attempt no "
                                         + retry_no);
 
                         if (retry_no < DELAY_MAX_RETRIES) {
@@ -384,8 +383,7 @@ final class BondStateMachine extends StateMachine {
         }
 
         Log.w(
-                TAG,
-                dev.getAddressForLogging()
+                TAG, dev.getAddressForLogging()
                         + " cannot be removed since "
                         + ((devProp == null)
                                 ? "properties are empty"

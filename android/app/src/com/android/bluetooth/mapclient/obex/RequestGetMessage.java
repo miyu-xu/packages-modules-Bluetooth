@@ -81,8 +81,7 @@ class RequestGetMessage extends Request {
         try {
             bmsg = baos.toString(StandardCharsets.UTF_8.name());
         } catch (UnsupportedEncodingException ex) {
-            Log.e(TAG,
-                    "Coudn't decode the bmessage with UTF-8. Something must be really messed up.");
+            Log.e(TAG, "Coudn't decode the bmessage with UTF-8. Something must be really messed up.");
             return;
         }
 

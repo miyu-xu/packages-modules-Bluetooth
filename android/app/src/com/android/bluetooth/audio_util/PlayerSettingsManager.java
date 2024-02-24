@@ -103,8 +103,7 @@ public class PlayerSettingsManager {
         int repeatMode = getPlayerRepeatMode();
         int shuffleMode = getPlayerShuffleMode();
         Log.i(
-                TAG,
-                "updateRemoteDevice: "
+                TAG, "updateRemoteDevice: "
                         + getRepeatModeStringValue(repeatMode)
                         + ", "
                         + getShuffleModeStringValue(shuffleMode));

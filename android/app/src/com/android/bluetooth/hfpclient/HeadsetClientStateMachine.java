@@ -89,7 +89,6 @@ import java.util.Set;
 
 public class HeadsetClientStateMachine extends StateMachine {
     private static final String TAG = "HeadsetClientStateMachine";
-    private static final boolean DBG = Log.isLoggable(TAG, Log.DEBUG);
 
     static final int NO_ACTION = 0;
     static final int IN_BAND_RING_ENABLED = 1;
@@ -1482,8 +1481,7 @@ public class HeadsetClientStateMachine extends StateMachine {
                         // Start looping on calling current calls.
                         sendMessage(QUERY_CURRENT_CALLS);
                     } else {
-                        Log.e(TAG,
-                                "ERROR: Cannot dial with a given number:" + c.toString());
+                        Log.e(TAG, "ERROR: Cannot dial with a given number:" + c.toString());
                         // Set the call to terminated remove.
                         c.setState(HfpClientCall.CALL_STATE_TERMINATED);
                         sendCallChangedIntent(c);
@@ -1525,9 +1523,7 @@ public class HeadsetClientStateMachine extends StateMachine {
                     break;
                 case QUERY_CURRENT_CALLS:
                     removeMessages(QUERY_CURRENT_CALLS);
-                    if (DBG) {
-                        Log.d(TAG, "mClccPollDuringCall=" + mClccPollDuringCall);
-                    }
+                    Log.d(TAG, "mClccPollDuringCall=" + mClccPollDuringCall);
                     // If there are ongoing calls periodically check their status.
                     if (mCalls.size() > 1
                             && mClccPollDuringCall) {
@@ -1792,9 +1788,7 @@ public class HeadsetClientStateMachine extends StateMachine {
                         HeadsetClientHalConstants.AUDIO_STATE_CONNECTED_MSBC:
                     mAudioSWB = state == HeadsetClientHalConstants.AUDIO_STATE_CONNECTED_LC3;
                     mAudioWbs = state == HeadsetClientHalConstants.AUDIO_STATE_CONNECTED_MSBC;
-                    if (DBG) {
-                        Log.d(TAG, "mAudioRouteAllowed=" + mAudioRouteAllowed);
-                    }
+                    Log.d(TAG, "mAudioRouteAllowed=" + mAudioRouteAllowed);
                     if (!mAudioRouteAllowed) {
                         Log.i(TAG, "Audio is not allowed! Disconnect SCO.");
                         sendMessage(HeadsetClientStateMachine.DISCONNECT_AUDIO);
@@ -2252,9 +2246,7 @@ public class HeadsetClientStateMachine extends StateMachine {
     }
 
     private static void logD(String message) {
-        if (DBG) {
-            Log.d(TAG, message);
-        }
+        Log.d(TAG, message);
     }
 
     public void setAudioRouteAllowed(boolean allowed) {

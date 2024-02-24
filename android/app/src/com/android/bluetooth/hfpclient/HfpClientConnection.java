@@ -29,7 +29,6 @@ import java.util.UUID;
 
 public class HfpClientConnection extends Connection {
     private static final String TAG = "HfpClientConnection";
-    private static final boolean DBG = Log.isLoggable(TAG, Log.DEBUG);
 
     private static final String EVENT_SCO_CONNECT = "com.android.bluetooth.hfpclient.SCO_CONNECT";
     private static final String EVENT_SCO_DISCONNECT =
@@ -129,9 +128,7 @@ public class HfpClientConnection extends Connection {
         HfpClientConference conference = (HfpClientConference) getConference();
         int state = mCurrentCall.getState();
 
-        if (DBG) {
-            Log.d(TAG, "Got call state change to " + state);
-        }
+        Log.d(TAG, "Got call state change to " + state);
         switch (state) {
             case HfpClientCall.CALL_STATE_ACTIVE:
                 setActive();
@@ -171,9 +168,7 @@ public class HfpClientConnection extends Connection {
     }
 
     public synchronized void close(int cause) {
-        if (DBG) {
-            Log.d(TAG, "Closing call " + mCurrentCall + "state: " + mClosed);
-        }
+        Log.d(TAG, "Closing call " + mCurrentCall + "state: " + mClosed);
         if (mClosed) {
             return;
         }
@@ -196,9 +191,7 @@ public class HfpClientConnection extends Connection {
 
     @Override
     public synchronized void onPlayDtmfTone(char c) {
-        if (DBG) {
-            Log.d(TAG, "onPlayDtmfTone " + c + " " + mCurrentCall);
-        }
+        Log.d(TAG, "onPlayDtmfTone " + c + " " + mCurrentCall);
         if (!mClosed) {
             mServiceInterface.sendDTMF(mDevice, (byte) c);
         }
@@ -206,9 +199,7 @@ public class HfpClientConnection extends Connection {
 
     @Override
     public synchronized void onDisconnect() {
-        if (DBG) {
-            Log.d(TAG, "onDisconnect call: " + mCurrentCall + " state: " + mClosed);
-        }
+        Log.d(TAG, "onDisconnect call: " + mCurrentCall + " state: " + mClosed);
         // The call is not closed so we should send a terminate here.
         if (!mClosed) {
             mServiceInterface.terminateCall(mDevice, mCurrentCall);
@@ -219,17 +210,13 @@ public class HfpClientConnection extends Connection {
 
     @Override
     public void onAbort() {
-        if (DBG) {
-            Log.d(TAG, "onAbort " + mCurrentCall);
-        }
+        Log.d(TAG, "onAbort " + mCurrentCall);
         onDisconnect();
     }
 
     @Override
     public synchronized void onHold() {
-        if (DBG) {
-            Log.d(TAG, "onHold " + mCurrentCall);
-        }
+        Log.d(TAG, "onHold " + mCurrentCall);
         if (!mClosed) {
             mServiceInterface.holdCall(mDevice);
         }
@@ -241,9 +228,7 @@ public class HfpClientConnection extends Connection {
             Log.w(TAG, "Ignoring unhold; call hold on the foreground call");
             return;
         }
-        if (DBG) {
-            Log.d(TAG, "onUnhold " + mCurrentCall);
-        }
+        Log.d(TAG, "onUnhold " + mCurrentCall);
         if (!mClosed) {
             mServiceInterface.acceptCall(mDevice, HeadsetClientServiceInterface.CALL_ACCEPT_HOLD);
         }
@@ -251,9 +236,7 @@ public class HfpClientConnection extends Connection {
 
     @Override
     public synchronized void onAnswer() {
-        if (DBG) {
-            Log.d(TAG, "onAnswer " + mCurrentCall);
-        }
+        Log.d(TAG, "onAnswer " + mCurrentCall);
         if (!mClosed) {
             mServiceInterface.acceptCall(mDevice, HeadsetClientServiceInterface.CALL_ACCEPT_NONE);
         }
@@ -261,9 +244,7 @@ public class HfpClientConnection extends Connection {
 
     @Override
     public synchronized void onReject() {
-        if (DBG) {
-            Log.d(TAG, "onReject " + mCurrentCall);
-        }
+        Log.d(TAG, "onReject " + mCurrentCall);
         if (!mClosed) {
             mServiceInterface.rejectCall(mDevice);
         }
@@ -271,9 +252,7 @@ public class HfpClientConnection extends Connection {
 
     @Override
     public void onCallEvent(String event, Bundle extras) {
-        if (DBG) {
-            Log.d(TAG, "onCallEvent(" + event + ", " + extras + ")");
-        }
+        Log.d(TAG, "onCallEvent(" + event + ", " + extras + ")");
         if (mClosed) {
             return;
         }

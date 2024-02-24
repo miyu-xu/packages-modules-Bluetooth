@@ -368,8 +368,7 @@ public class DatabaseManager {
                 && newConnectionPolicy != BluetoothProfile.CONNECTION_POLICY_FORBIDDEN
                 && newConnectionPolicy != BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
             Log.e(
-                    TAG,
-                    "setProfileConnectionPolicy: invalid connection policy " + newConnectionPolicy);
+                    TAG, "setProfileConnectionPolicy: invalid connection policy " + newConnectionPolicy);
             return false;
         }
 
@@ -613,8 +612,7 @@ public class DatabaseManager {
         }
 
         Log.d(
-                TAG,
-                "Updating last connected time for device: "
+                TAG, "Updating last connected time for device: "
                         + device
                         + " to "
                         + metadata.last_active_time);
@@ -663,15 +661,13 @@ public class DatabaseManager {
     public void setDisconnection(BluetoothDevice device, int profileId) {
         if (device == null) {
             Log.e(
-                    TAG,
-                    "setDisconnection: device is null, "
+                    TAG, "setDisconnection: device is null, "
                             + "profileId: "
                             + BluetoothProfile.getProfileName(profileId));
             return;
         }
         Log.d(
-                TAG,
-                "setDisconnection: device "
+                TAG, "setDisconnection: device "
                         + device
                         + "profileId: "
                         + BluetoothProfile.getProfileName(profileId));
@@ -692,16 +688,14 @@ public class DatabaseManager {
             if (profileId == BluetoothProfile.A2DP && metadata.is_active_a2dp_device) {
                 metadata.is_active_a2dp_device = false;
                 Log.d(
-                        TAG,
-                        "setDisconnection: Updating is_active_device to false for device: "
+                        TAG, "setDisconnection: Updating is_active_device to false for device: "
                                 + device);
                 updateDatabase(metadata);
             }
             if (profileId == BluetoothProfile.HEADSET && metadata.isActiveHfpDevice) {
                 metadata.isActiveHfpDevice = false;
                 Log.d(
-                        TAG,
-                        "setDisconnection: Updating isActiveHfpDevice to false for device: "
+                        TAG, "setDisconnection: Updating isActiveHfpDevice to false for device: "
                                 + device);
                 updateDatabase(metadata);
             }
@@ -835,8 +829,7 @@ public class DatabaseManager {
                         .getRemoteDevice(entry.getValue().getAddress());
             } catch (IllegalArgumentException ex) {
                 Log.d(
-                        TAG,
-                        "getMostRecentlyActiveHfpDevice: Invalid address for "
+                        TAG, "getMostRecentlyActiveHfpDevice: Invalid address for "
                                 + "device "
                                 + entry.getValue().getAnonymizedAddress());
             }
@@ -931,8 +924,7 @@ public class DatabaseManager {
                 }
                 if (duplexProfile != 0 && (metadata.preferred_output_only_profile != 0
                         || metadata.preferred_duplex_profile != 0)) {
-                    Log.i(TAG,
-                            "setPreferredAudioProfiles: Updating DUPLEX audio profile for device: "
+                    Log.i(TAG, "setPreferredAudioProfiles: Updating DUPLEX audio profile for device: "
                                     + device + " to " + BluetoothProfile.getProfileName(
                                     duplexProfile));
                     metadata.preferred_duplex_profile = duplexProfile;
@@ -955,8 +947,7 @@ public class DatabaseManager {
                     metadata.preferred_output_only_profile = outputProfile;
                 }
                 if (duplexProfile != 0) {
-                    Log.i(TAG,
-                            "setPreferredAudioProfiles: Updating duplex audio profile for device: "
+                    Log.i(TAG, "setPreferredAudioProfiles: Updating duplex audio profile for device: "
                                     + firstGroupDevice + " to " + BluetoothProfile.getProfileName(
                                     duplexProfile));
                     metadata.preferred_duplex_profile = duplexProfile;
@@ -1031,8 +1022,7 @@ public class DatabaseManager {
 
             Metadata metadata = mMetadataCache.get(address);
             Log.i(
-                    TAG,
-                    "Updating active_audio_device_policy setting for "
+                    TAG, "Updating active_audio_device_policy setting for "
                             + "device "
                             + device
                             + " to: "
@@ -1151,8 +1141,7 @@ public class DatabaseManager {
 
         Metadata data = dataBuilder.build();
         Log.d(
-                TAG,
-                "createMetadata: "
+                TAG, "createMetadata: "
                         + (" address=" + data.getAnonymizedAddress())
                         + (" isActiveHfpDevice=" + isActiveHfpDevice)
                         + (" isActiveA2dpDevice=" + isActiveA2dpDevice));

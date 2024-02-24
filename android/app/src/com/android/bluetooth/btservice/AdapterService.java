@@ -182,13 +182,9 @@ import java.util.stream.Collectors;
 
 public class AdapterService extends Service {
     private static final String TAG = "BluetoothAdapterService";
-    private static final boolean DBG = true;
-    private static final boolean VERBOSE = false;
 
     static {
-        if (DBG) {
-            Log.d(TAG, "Loading JNI Library");
-        }
+        Log.d(TAG, "Loading JNI Library");
         if (Utils.isInstrumentationTestMode()) {
             Log.w(TAG, "App is instrumented. Skip loading the native");
         } else {
@@ -318,8 +314,7 @@ public class AdapterService extends Service {
             sAdapterService = null;
         } else {
             Log.d(
-                    TAG,
-                    "clearAdapterService() - incorrect cleared adapter."
+                    TAG, "clearAdapterService() - incorrect cleared adapter."
                             + (" Instance=" + instance)
                             + (" vs sAdapterService=" + sAdapterService));
         }
@@ -484,8 +479,7 @@ public class AdapterService extends Service {
                         PendingAudioProfilePreferenceRequest request =
                                 mCsipGroupsPendingAudioProfileChanges.remove(groupId);
                         Log.e(
-                                TAG,
-                                "Preferred audio profiles change audio framework timeout for "
+                                TAG, "Preferred audio profiles change audio framework timeout for "
                                         + ("device " + request.mDeviceRequested));
                         sendPreferredAudioProfilesCallbackToApps(
                                 request.mDeviceRequested,
@@ -831,8 +825,7 @@ public class AdapterService extends Service {
         long endToEndLatencyMillis = currentTime - socketCreationTimeMillis;
         long socketAcceptanceLatencyMillis = currentTime - socketConnectionTimeMillis;
         Log.i(
-                TAG,
-                "Statslog L2capcoc server connection."
+                TAG, "Statslog L2capcoc server connection."
                         + (" metricId " + metricId)
                         + (" port " + port)
                         + (" isSecured " + isSecured)
@@ -884,8 +877,7 @@ public class AdapterService extends Service {
         long socketCreationLatencyMillis = socketCreationLatencyNanos / 1000000;
         long socketConnectionLatencyMillis = (currentTime - socketConnectionTimeNanos) / 1000000;
         Log.i(
-                TAG,
-                "Statslog L2capcoc client connection."
+                TAG, "Statslog L2capcoc client connection."
                         + (" metricId " + metricId)
                         + (" port " + port)
                         + (" isSecured " + isSecured)
@@ -982,8 +974,7 @@ public class AdapterService extends Service {
         // start up errors yielding init loops.
         if (!GattService.isEnabled()) {
             Log.w(
-                    TAG,
-                    "GATT is configured off but the stack assumes it to be enabled. Start anyway.");
+                    TAG, "GATT is configured off but the stack assumes it to be enabled. Start anyway.");
         }
         startGattProfileService();
     }
@@ -1209,8 +1200,7 @@ public class AdapterService extends Service {
         if (reportId == BqrQualityReportId.QUALITY_REPORT_ID_SCO_VOICE_CHOPPY.getValue()) {
             if (bluetoothInCallService == null) {
                 Log.w(
-                        TAG,
-                        "No BluetoothInCallService while trying to send BQR."
+                        TAG, "No BluetoothInCallService while trying to send BQR."
                                 + (" timestamp: " + timestamp)
                                 + (" reportId: " + reportId)
                                 + (" rssi: " + rssi)
@@ -1473,8 +1463,7 @@ public class AdapterService extends Service {
                 onProfileServiceStateChanged(profileService, BluetoothAdapter.STATE_ON);
             } else {
                 Log.e(
-                        TAG,
-                        "setProfileServiceState("
+                        TAG, "setProfileServiceState("
                                 + BluetoothProfile.getProfileName(profileId)
                                 + ", STATE_ON): profile is already started");
             }
@@ -1489,8 +1478,7 @@ public class AdapterService extends Service {
                 profileService.getBinder().cleanup();
             } else {
                 Log.e(
-                        TAG,
-                        "setProfileServiceState("
+                        TAG, "setProfileServiceState("
                                 + BluetoothProfile.getProfileName(profileId)
                                 + ", STATE_OFF): profile is already stopped");
             }
@@ -1589,12 +1577,10 @@ public class AdapterService extends Service {
                     + BluetoothProfile.getProfileName(profile) + "): remote device Uuids Empty");
         }
 
-        if (VERBOSE) {
-            Log.v(TAG, "isProfileSupported(device=" + device + ", profile="
-                    + BluetoothProfile.getProfileName(profile) + "): local_uuids="
-                    + Arrays.toString(localDeviceUuids) + ", remote_uuids="
-                    + Arrays.toString(remoteDeviceUuids));
-        }
+        Log.v(TAG, "isProfileSupported(device=" + device + ", profile="
+                + BluetoothProfile.getProfileName(profile) + "): local_uuids="
+                + Arrays.toString(localDeviceUuids) + ", remote_uuids="
+                + Arrays.toString(remoteDeviceUuids));
 
         if (profile == BluetoothProfile.HEADSET) {
             return (Utils.arrayContains(localDeviceUuids, BluetoothUuid.HSP_AG)
@@ -1922,8 +1908,7 @@ public class AdapterService extends Service {
             AttributionSource attributionSource) {
         if (mBluetoothServerSockets.containsKey(uuid.getUuid())) {
             Log.d(
-                    TAG,
-                    String.format(
+                    TAG, String.format(
                             "Cannot start RFCOMM listener: UUID %s already in use.",
                             uuid.getUuid()));
             return BluetoothStatusCodes.RFCOMM_LISTENER_START_FAILED_UUID_IN_USE;
@@ -1945,8 +1930,7 @@ public class AdapterService extends Service {
 
         if (listenerData == null) {
             Log.d(
-                    TAG,
-                    String.format(
+                    TAG, String.format(
                             "Cannot stop RFCOMM listener: UUID %s is not registered.",
                             uuid.getUuid()));
             return BluetoothStatusCodes.RFCOMM_LISTENER_OPERATION_FAILED_NO_MATCHING_SERVICE_RECORD;
@@ -2896,8 +2880,7 @@ public class AdapterService extends Service {
             DeviceProperties deviceProp = service.mRemoteDevices.getDeviceProperties(device);
             if (deviceProp == null || deviceProp.getBondState() != BluetoothDevice.BOND_BONDED) {
                 Log.w(
-                        TAG,
-                        device.getAddressForLogging()
+                        TAG, device.getAddressForLogging()
                                 + " cannot be removed since "
                                 + ((deviceProp == null)
                                         ? "properties are empty"
@@ -5207,8 +5190,7 @@ public class AdapterService extends Service {
 
             if (!service.mPreferredAudioProfilesCallbacks.unregister(callback)) {
                 Log.e(
-                        TAG,
-                        "unregisterPreferredAudioProfilesChangedCallback: callback was never "
+                        TAG, "unregisterPreferredAudioProfilesChangedCallback: callback was never "
                                 + "registered");
                 return BluetoothStatusCodes.ERROR_CALLBACK_NOT_REGISTERED;
             }
@@ -5289,8 +5271,7 @@ public class AdapterService extends Service {
 
             if (!service.mBluetoothQualityReportReadyCallbacks.unregister(callback)) {
                 Log.e(
-                        TAG,
-                        "unregisterBluetoothQualityReportReadyCallback: callback was never "
+                        TAG, "unregisterBluetoothQualityReportReadyCallback: callback was never "
                                 + "registered");
                 return BluetoothStatusCodes.ERROR_CALLBACK_NOT_REGISTERED;
             }
@@ -5656,8 +5637,7 @@ public class AdapterService extends Service {
         int previousDuplex = previousPreferences.getInt(BluetoothAdapter.AUDIO_MODE_DUPLEX);
 
         Log.i(
-                TAG,
-                "sendPreferredAudioProfileChangeToAudioFramework: changing output from "
+                TAG, "sendPreferredAudioProfileChangeToAudioFramework: changing output from "
                         + BluetoothProfile.getProfileName(previousOutput)
                         + " to "
                         + BluetoothProfile.getProfileName(newOutput)
@@ -5681,8 +5661,7 @@ public class AdapterService extends Service {
         List<BluetoothDevice> groupDevices = mLeAudioService.getGroupDevices(groupId);
         if (groupDevices.isEmpty()) {
             Log.i(
-                    TAG,
-                    "sendPreferredAudioProfileChangeToAudioFramework: Empty LEA group for "
+                    TAG, "sendPreferredAudioProfileChangeToAudioFramework: Empty LEA group for "
                             + "device - "
                             + device);
             sendPreferredAudioProfilesCallbackToApps(
@@ -5723,8 +5702,7 @@ public class AdapterService extends Service {
             }
 
             Log.i(
-                    TAG,
-                    "sendPreferredAudioProfileChangeToAudioFramework: sent "
+                    TAG, "sendPreferredAudioProfileChangeToAudioFramework: sent "
                             + numRequestsToAudioFw
                             + " request(s) to the Audio Framework for device: "
                             + device);
@@ -5750,13 +5728,11 @@ public class AdapterService extends Service {
     private void removeFromPendingAudioProfileChanges(int groupId) {
         synchronized (mCsipGroupsPendingAudioProfileChanges) {
             Log.i(
-                    TAG,
-                    "removeFromPendingAudioProfileChanges: Timeout on change for groupId="
+                    TAG, "removeFromPendingAudioProfileChanges: Timeout on change for groupId="
                             + groupId);
             if (!mCsipGroupsPendingAudioProfileChanges.containsKey(groupId)) {
                 Log.e(
-                        TAG,
-                        "removeFromPendingAudioProfileChanges( "
+                        TAG, "removeFromPendingAudioProfileChanges( "
                                 + groupId
                                 + ", "
                                 + groupId
@@ -5787,8 +5763,7 @@ public class AdapterService extends Service {
         synchronized (mCsipGroupsPendingAudioProfileChanges) {
             if (!mCsipGroupsPendingAudioProfileChanges.containsKey(groupId)) {
                 Log.e(
-                        TAG,
-                        "notifyActiveDeviceChangeApplied, but no pending request for "
+                        TAG, "notifyActiveDeviceChangeApplied, but no pending request for "
                                 + "groupId: "
                                 + groupId);
                 return BluetoothStatusCodes.ERROR_UNKNOWN;
@@ -5800,8 +5775,7 @@ public class AdapterService extends Service {
             // If this is the final audio framework request, send callback to apps
             if (pendingRequest.mRemainingRequestsToAudioFramework == 1) {
                 Log.i(
-                        TAG,
-                        "notifyActiveDeviceChangeApplied: Complete for device "
+                        TAG, "notifyActiveDeviceChangeApplied: Complete for device "
                                 + pendingRequest.mDeviceRequested);
                 sendPreferredAudioProfilesCallbackToApps(
                         pendingRequest.mDeviceRequested,
@@ -5817,16 +5791,14 @@ public class AdapterService extends Service {
                                 pendingRequest.mRemainingRequestsToAudioFramework - 1,
                                 pendingRequest.mDeviceRequested);
                 Log.i(
-                        TAG,
-                        "notifyActiveDeviceChangeApplied: Updating device "
+                        TAG, "notifyActiveDeviceChangeApplied: Updating device "
                                 + updatedPendingRequest.mDeviceRequested
                                 + " with new remaining requests count="
                                 + updatedPendingRequest.mRemainingRequestsToAudioFramework);
                 mCsipGroupsPendingAudioProfileChanges.put(groupId, updatedPendingRequest);
             } else {
                 Log.i(
-                        TAG,
-                        "notifyActiveDeviceChangeApplied: "
+                        TAG, "notifyActiveDeviceChangeApplied: "
                                 + pendingRequest.mDeviceRequested
                                 + " has no remaining requests to audio framework, but is still"
                                 + " present in mCsipGroupsPendingAudioProfileChanges");
@@ -6434,8 +6406,7 @@ public class AdapterService extends Service {
                 } else {
                     activeDevices = mHearingAidService.getActiveDevices();
                     Log.i(
-                            TAG,
-                            "getActiveDevices: Hearing Aid devices:"
+                            TAG, "getActiveDevices: Hearing Aid devices:"
                                     + (" Left[" + activeDevices.get(0) + "] -")
                                     + (" Right[" + activeDevices.get(1) + "]"));
                 }
@@ -6446,8 +6417,7 @@ public class AdapterService extends Service {
                 } else {
                     activeDevices = mLeAudioService.getActiveDevices();
                     Log.i(
-                            TAG,
-                            "getActiveDevices: LeAudio devices:"
+                            TAG, "getActiveDevices: LeAudio devices:"
                                     + (" Lead[" + activeDevices.get(0) + "] -")
                                     + (" member_1[" + activeDevices.get(1) + "]"));
                 }
@@ -6553,8 +6523,7 @@ public class AdapterService extends Service {
             if (mHapClientService != null
                     && isProfileSupported(device, BluetoothProfile.HAP_CLIENT)) {
                 Log.i(
-                        TAG,
-                        "connectAllSupportedProfiles: Hearing Access Client Profile is enabled at"
+                        TAG, "connectAllSupportedProfiles: Hearing Access Client Profile is enabled at"
                                 + " the same time with Hearing Aid Profile, ignore Hearing Aid"
                                 + " Profile");
             } else {
@@ -6603,8 +6572,7 @@ public class AdapterService extends Service {
         }
 
         Log.i(
-                TAG,
-                "connectAllSupportedProfiles: Number of Profiles Connected: "
+                TAG, "connectAllSupportedProfiles: Number of Profiles Connected: "
                         + numProfilesConnected);
     }
 
@@ -6751,8 +6719,7 @@ public class AdapterService extends Service {
                         || mBassClientService.getConnectionState(device)
                                 == BluetoothProfile.STATE_CONNECTING)) {
             Log.i(
-                    TAG,
-                    "disconnectAllEnabledProfiles: Disconnecting "
+                    TAG, "disconnectAllEnabledProfiles: Disconnecting "
                             + "LE Broadcast Assistant Profile");
             mBassClientService.disconnect(device);
         }
@@ -7592,15 +7559,11 @@ public class AdapterService extends Service {
     }
 
     private void debugLog(String msg) {
-        if (DBG) {
-            Log.d(TAG, msg);
-        }
+        Log.d(TAG, msg);
     }
 
     private void verboseLog(String msg) {
-        if (VERBOSE) {
-            Log.v(TAG, msg);
-        }
+        Log.v(TAG, msg);
     }
 
     private void errorLog(String msg) {
@@ -8129,10 +8092,8 @@ public class AdapterService extends Service {
             return;
         }
         Log.i(TAG, "sendUuidsInternal: Received service discovery UUIDs for device " + device);
-        if (DBG) {
-            for (int i = 0; i < uuids.length; i++) {
-                Log.d(TAG, "sendUuidsInternal: index=" + i + " uuid=" + uuids[i]);
-            }
+        for (int i = 0; i < uuids.length; i++) {
+            Log.d(TAG, "sendUuidsInternal: index=" + i + " uuid=" + uuids[i]);
         }
         if (mPhonePolicy != null) {
             mPhonePolicy.onUuidsDiscovered(device, uuids);

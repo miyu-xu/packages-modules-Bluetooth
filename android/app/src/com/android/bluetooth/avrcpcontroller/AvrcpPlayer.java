@@ -30,7 +30,6 @@ import java.util.Arrays;
  */
 class AvrcpPlayer {
     private static final String TAG = "AvrcpPlayer";
-    private static final boolean DBG = Log.isLoggable(TAG, Log.DEBUG);
 
     public static final int DEFAULT_ID = -1;
 
@@ -169,9 +168,7 @@ class AvrcpPlayer {
     }
 
     public PlaybackStateCompat getPlaybackState() {
-        if (DBG) {
-            Log.d(TAG, "getPlayBackState state " + mPlayStatus + " time " + mPlayTime);
-        }
+        Log.d(TAG, "getPlayBackState state " + mPlayStatus + " time " + mPlayTime);
         return mPlaybackStateCompat;
     }
 
@@ -186,11 +183,11 @@ class AvrcpPlayer {
     }
 
     public synchronized boolean notifyImageDownload(String uuid, Uri imageUri) {
-        if (DBG) Log.d(TAG, "Got an image download -- uuid=" + uuid + ", uri=" + imageUri);
+        Log.d(TAG, "Got an image download -- uuid=" + uuid + ", uri=" + imageUri);
         if (uuid == null || imageUri == null || mCurrentTrack == null) return false;
         if (uuid.equals(mCurrentTrack.getCoverArtUuid())) {
             mCurrentTrack.setCoverArtLocation(imageUri);
-            if (DBG) Log.d(TAG, "Image UUID '" + uuid + "' was added to current track.");
+            Log.d(TAG, "Image UUID '" + uuid + "' was added to current track.");
             return true;
         }
         return false;
@@ -234,7 +231,7 @@ class AvrcpPlayer {
         mPlaybackStateCompat = new PlaybackStateCompat.Builder(mPlaybackStateCompat)
                 .setActions(mAvailableActions).build();
 
-        if (DBG) Log.d(TAG, "Supported Actions = " + mAvailableActions);
+        Log.d(TAG, "Supported Actions = " + mAvailableActions);
     }
 
     @Override
@@ -248,7 +245,6 @@ class AvrcpPlayer {
      */
     public static class Builder {
         private static final String TAG = "AvrcpPlayer.Builder";
-        private static final boolean DBG = Log.isLoggable(TAG, Log.DEBUG);
 
         private BluetoothDevice mDevice = null;
         private int mPlayerId = AvrcpPlayer.DEFAULT_ID;

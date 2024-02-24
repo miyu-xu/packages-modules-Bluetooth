@@ -82,8 +82,7 @@ public class BluetoothKeystoreNativeInterface {
 
         if (service == null) {
             Log.e(
-                    TAG,
-                    "setEncryptKeyOrRemoveKeyCallback: Event ignored, service not available: "
+                    TAG, "setEncryptKeyOrRemoveKeyCallback: Event ignored, service not available: "
                             + prefixString);
             return;
         }
