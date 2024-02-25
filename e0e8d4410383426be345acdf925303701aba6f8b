@@ -159,6 +159,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0d78a19f_be2f84c2",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-25T21:59:40Z",
+      "side": 1,
+      "message": "I checked how callbacks behave when I worked on the L2CAP and RFCOMM profiles. I saw that the callback for FlossSocketManagerClient.on_outgoing_connection_result and other callbacks in the socket_manager always run their code completely before moving to this L2CAP callback. This means the connecting_sockets dictionary always gets filled with data before reaching this callback. Based on this, I decided to use connecting_sockets and listening_sockets from socket_manager instead of duplicating the code. Based on your comments, I will create getter methods for both of them in socket_manager. Is this approach good for you based on my description or do you still prefer to clone the code from socket_manager?\n@chharry@chromium.org",
+      "parentUuid": "3267f6b2_dbc5c779",
+      "range": {
+        "startLine": 116,
+        "startChar": 16,
+        "endLine": 116,
+        "endChar": 27
+      },
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc399497_e084b1b3",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-25T21:59:40Z",
+      "side": 1,
+      "message": "Would you prefer I create a getter function in FlossSocketManagerClient or clone the callback code from FlossSocketManagerClient.on_outgoing_connection_result directly here?",
+      "parentUuid": "528bf2e1_998b10ef",
+      "range": {
+        "startLine": 116,
+        "startChar": 42,
+        "endLine": 116,
+        "endChar": 60
+      },
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "23d39e3c_6f8aabf1",
         "filename": "floss/pandora/server/l2cap.py",
         "patchSetId": 7
