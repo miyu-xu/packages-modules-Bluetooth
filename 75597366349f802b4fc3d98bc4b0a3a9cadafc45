@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e05c7f73_1011c014",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958854
+      },
+      "writtenOn": "2024-02-26T17:05:14Z",
+      "side": 1,
+      "message": "Great job on the coverage improvements. \n\nUnfortunately 5 executions / sec is extremely low for fuzzing. Can you please take a look at the Expensive Initialization docs (especially `LLVMFuzzerInitialize`):\n\nIf the library you are testing requires some expensive/slow initialization you should consider moving that code into a separate LLVMFuzzerInitialize() function. This function will be called once, when the fuzz target starts. The code in LLVMFuzzerTestOneInput() is then called repeatedly in a loop.\n\n\nMore here: go/fuzzer-review-checklist",
+      "revId": "75597366349f802b4fc3d98bc4b0a3a9cadafc45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
