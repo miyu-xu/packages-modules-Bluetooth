@@ -34,6 +34,24 @@
       "parentUuid": "033c84e4_5da477ef",
       "revId": "bd1e0a995013ef56160276e750a83b889ef080fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbde634b_85cb092f",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 965,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-26T12:32:54Z",
+      "side": 1,
+      "message": "Ops I think I just missed that the codecStatus contains also capability - I thought that it contains only \"last\" configuration for group.\nSorry for this misunderstanding.",
+      "parentUuid": "766b908e_de7f3cba",
+      "revId": "bd1e0a995013ef56160276e750a83b889ef080fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
