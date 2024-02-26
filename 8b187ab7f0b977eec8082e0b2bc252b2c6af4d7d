@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef38f844_0aa2e8d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958854
+      },
+      "writtenOn": "2024-02-26T16:44:47Z",
+      "side": 1,
+      "message": "Great coverage improvements",
+      "revId": "8b187ab7f0b977eec8082e0b2bc252b2c6af4d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "533e5cb5_fe950775",
+        "filename": "system/audio_hal_interface/fuzzer/libbt_audio_hal_a2dp_encoding_fuzzer.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1958854
+      },
+      "writtenOn": "2024-02-26T16:44:47Z",
+      "side": 1,
+      "message": "nit: is the final period (`.`) expected?",
+      "revId": "8b187ab7f0b977eec8082e0b2bc252b2c6af4d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
