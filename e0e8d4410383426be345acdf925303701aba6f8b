@@ -278,6 +278,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "71519c8b_66a12bc2",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-26T02:28:48Z",
+      "side": 1,
+      "message": "Per offline discussed with Hsin-chen:\n\nPlease use the following stlye to handle the status code return from the callback:\n\n1. return the status code from the callback to the caller function.\n2. only go to the next step if the status code is success. Otherwise,\nlog the error, cleanup the function, and then return.\n\nFor example, in \n\n```\n                fd \u003d await asyncio.wait_for(l2cap_channel_acceptance[\u0027accept_l2cap_channel\u0027], timeout\u003d5)\n                if fd is None:\n                    raise RuntimeError(f\u0027Failed to get the fd from socket_id: {socket_id}\u0027)\n                server_socket \u003d socket_module.fromfd(fd, socket_module.AF_UNIX, socket_module.SOCK_STREAM)\n                self.connection_stream[connection_value] \u003d server_socket\n\n\n```\n\nWe should NOT raise an Exception because this is not an exception in the gRPC server. The failure request should return to the client instead. gRPC have series of functions for this kind of error handling https://grpc.github.io/grpc/python/grpc.html#grpc.ServicerContext.abort.",
+      "range": {
+        "startLine": 146,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 0
+      },
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dfa1a761_c01c2892",
         "filename": "floss/pandora/server/l2cap.py",
         "patchSetId": 7
