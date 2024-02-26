@@ -24,7 +24,8 @@ import com.google.auto.service.AutoService
 @AutoService(IssueRegistry::class)
 @Suppress("UnstableApiUsage")
 class BluetoothLintCheckerIssueRegistry : IssueRegistry() {
-    override val issues = listOf(LogEnforcementVariableCreationDetector.ISSUE)
+    override val issues =
+        listOf(LogEnforcementVariableCreationDetector.ISSUE, LogTagAsStringDetector.ISSUE)
 
     override val api: Int
         get() = CURRENT_API
