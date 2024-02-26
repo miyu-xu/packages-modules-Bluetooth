@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "673b9410_32571de9",
+        "filename": "system/gd/rust/linux/mgmt/src/powerd_suspend_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2024-02-26T23:33:15Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"singal\" -- should it be \"signal\"?\n\nAnalyzer Description: Linter for catching common typos motivated by go/todo-fail and go/lol-codesearch. Shared with google3 common typos library go/common-typos.\nOwner: ayeaye-team@google.com\n\nCommon typo found: \"singal\" -- should it be \"signal\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 519,
+        "startChar": 46,
+        "endLine": 519,
+        "endChar": 52
+      },
+      "revId": "b0fbb35557e592f25a45a5d4b6c4e2c2b368c0a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0afe22da_ad65587b",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2024-02-26T23:33:15Z",
+      "side": 1,
+      "message": "I would double check how this interacts with suspend_imminent and suspend_done and test this thoroughly. The intent seems to be to let `on_suspend_ready` trigger the `resume` rather than let `on_suspend_done`. \n\nAlso, make sure the metrics logging above still makes sense as you\u0027ll get it logged multiple times in the abort scenario.",
+      "revId": "b0fbb35557e592f25a45a5d4b6c4e2c2b368c0a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b084c2ad_51bb735c",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2024-02-26T23:33:15Z",
+      "side": 1,
+      "message": "Why we do we delay after le_rand to say suspend is ready? Needs documentation.",
+      "revId": "b0fbb35557e592f25a45a5d4b6c4e2c2b368c0a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
