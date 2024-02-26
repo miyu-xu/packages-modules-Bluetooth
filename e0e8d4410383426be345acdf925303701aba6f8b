@@ -365,6 +365,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b95d8c54_dd2f7942",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-26T04:41:53Z",
+      "side": 1,
+      "message": "Please use contex.abort(error_code, details) with the error code and details to handle the error.\n\nerror code can be found under grpc.StatusCode:\n```\n      OK: Not an error; returned on success\n      CANCELLED: The operation was cancelled (typically by the caller).\n      UNKNOWN: Unknown error.\n      INVALID_ARGUMENT: Client specified an invalid argument.\n      DEADLINE_EXCEEDED: Deadline expired before operation could complete.\n      NOT_FOUND: Some requested entity (e.g., file or directory) was not found.\n      ALREADY_EXISTS: Some entity that we attempted to create (e.g., file or directory)\n        already exists.\n      PERMISSION_DENIED: The caller does not have permission to execute the specified\n        operation.\n      UNAUTHENTICATED: The request does not have valid authentication credentials for the\n        operation.\n      RESOURCE_EXHAUSTED: Some resource has been exhausted, perhaps a per-user quota, or\n        perhaps the entire file system is out of space.\n      FAILED_PRECONDITION: Operation was rejected because the system is not in a state\n        required for the operation\u0027s execution.\n      ABORTED: The operation was aborted, typically due to a concurrency issue\n        like sequencer check failures, transaction aborts, etc.\n      UNIMPLEMENTED: Operation is not implemented or not supported/enabled in this service.\n      INTERNAL: Internal errors.  Means some invariants expected by underlying\n        system has been broken.\n      UNAVAILABLE: The service is currently unavailable.\n      DATA_LOSS: Unrecoverable data loss or corruption.\n```",
+      "parentUuid": "6231ecb4_2ce975cc",
+      "range": {
+        "startLine": 146,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 0
+      },
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dfa1a761_c01c2892",
         "filename": "floss/pandora/server/l2cap.py",
         "patchSetId": 7
