@@ -85,6 +85,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fde87b84_01b1dda9",
+        "filename": "floss/pandora/floss/cmd_utils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-26T00:30:53Z",
+      "side": 1,
+      "message": "Checks: Open-Source-Licensing -1\n\nThird-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nUse of this source code is governed by a BSD-style license",
+      "parentUuid": "36e06e8e_1f3f10dd",
+      "revId": "dd783dc1b3d49aefddc4cbb505700abb4283fec8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "76a4b3ab_8b7f95dc",
         "filename": "floss/pandora/server/a2dp.py",
         "patchSetId": 5
