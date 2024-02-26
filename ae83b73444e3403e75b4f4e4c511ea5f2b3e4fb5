@@ -51,6 +51,24 @@
       "message": "Nice !",
       "revId": "ae83b73444e3403e75b4f4e4c511ea5f2b3e4fb5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00bd4cd8_7fef2c1a",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1658,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-26T23:24:56Z",
+      "side": 1,
+      "message": "Done :)",
+      "parentUuid": "cc8c5606_25a58b4d",
+      "revId": "ae83b73444e3403e75b4f4e4c511ea5f2b3e4fb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
