@@ -66,6 +66,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "df462553_8595e58a",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-26T02:51:33Z",
+      "side": 1,
+      "message": "Please use the following stlye to handle the status code return from the callback:\n\n1. return the status code from the callback to the caller function.\n2. only go to the next step if the status code is success. Otherwise,\nlog the error, cleanup the function, and then return.",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 0
+      },
+      "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4110eff4_de0a2f4c",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-26T02:51:33Z",
+      "side": 1,
+      "message": "dtto",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 101
+      },
+      "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "016bd1b1_b466af54",
         "filename": "floss/pandora/server/rfcomm.py",
         "patchSetId": 2
@@ -113,6 +159,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "13c5bd22_169bd2c5",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-26T02:51:33Z",
+      "side": 1,
+      "message": "dtto",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 111
+      },
+      "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "955c4ee2_de151bbb",
         "filename": "floss/pandora/server/rfcomm.py",
         "patchSetId": 2
@@ -130,6 +199,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "22f434c6_d5a1d03d",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-26T02:51:33Z",
+      "side": 1,
+      "message": "dtto",
+      "range": {
+        "startLine": 155,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 70
+      },
+      "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e73d696b_60e92cc3",
         "filename": "floss/pandora/server/rfcomm.py",
         "patchSetId": 2
@@ -141,6 +233,29 @@
       "writtenOn": "2024-02-23T10:08:13Z",
       "side": 1,
       "message": "Let the outer function know and handle the error",
+      "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "615db365_d79c321c",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-26T02:51:33Z",
+      "side": 1,
+      "message": "dtto",
+      "range": {
+        "startLine": 193,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 102
+      },
       "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -210,6 +325,52 @@
         "startChar": 47,
         "endLine": 225,
         "endChar": 96
+      },
+      "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af026b11_a8017ce3",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-26T02:51:33Z",
+      "side": 1,
+      "message": "dtto",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 250,
+        "endChar": 0
+      },
+      "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30f99f79_528fdfc8",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-26T02:51:33Z",
+      "side": 1,
+      "message": "dtto",
+      "range": {
+        "startLine": 253,
+        "startChar": 0,
+        "endLine": 253,
+        "endChar": 107
       },
       "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
