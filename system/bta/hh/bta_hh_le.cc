@@ -107,9 +107,7 @@ static const char* bta_hh_le_rpt_name[4] = {"UNKNOWN", "INPUT", "OUTPUT",
  *
  ******************************************************************************/
 static bool bta_hh_is_fix_initial_missing_keys() {
-  static bool feature_enabled = osi_property_get_bool(
-      kPropertyHogpFixInitialMissingKeys, false);
-  return feature_enabled;
+  return true;
 }
 
 /*******************************************************************************

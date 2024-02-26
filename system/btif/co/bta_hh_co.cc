@@ -42,8 +42,6 @@
 #include "types/raw_address.h"
 
 const char* dev_path = "/dev/uhid";
-static const char kPropertyHogpFixInitialMissingKeys[] =
-  "bluetooth.core.hogp.fix_initial_missing_keys";
 static const char kPropertyWaitUsAfterUhidOpen[] =
   "bluetooth.core.hogp.wait_us_after_uhid_open";
 
@@ -66,9 +64,7 @@ static const bthh_report_type_t map_rtype_uhid_hh[] = {
 static void* btif_hh_poll_event_thread(void* arg);
 
 static bool is_fix_initial_missing_keys() {
-  static bool feature_enabled = osi_property_get_bool(
-      kPropertyHogpFixInitialMissingKeys, false);
-  return feature_enabled;
+  return true;
 }
 
 static int32_t get_wait_us_after_uhid_open() {
