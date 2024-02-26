@@ -16,6 +16,24 @@
       "message": "This `log::warn` and the one in the inner block are duplicated. I would prefer the following refactor:\n\n```\nif context.powerd_session.is_none() {\n  log::warn!(\"No powerd session!\");\n  return;\n}\n\nif let (Some(pending_suspend_imminent), Some(powerd_session)) \u003d (...) {\n  // ... Send suspend readiness\n  \n} else if let (Some(adapter_suspend_dbus), None) \u003d \n  (\u0026context.adapter_suspend_dbus, \n   \u0026context.pending_suspend_imminent) {\n   \n  log::info!(\"Suspend was aborted (imminent signal missing) so calling resume.\");\n  \n  // ... send resume rpc\n} else {\n  log::warn!(\"Suspend ready but powerd session valid\u003d{}, adapter available\u003d{}.\",\n    context.powerd_sesssion.is_some(), context.adapter_suspend_dbus.is_some());\n}\n\n```",
       "revId": "4f58e3b9935185365da5642ef11b9ba8e0380ba2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24b11b8b_f9bbff79",
+        "filename": "system/gd/rust/linux/mgmt/src/powerd_suspend_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-02-26T23:21:36Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "5d10117f_41f51de7",
+      "revId": "4f58e3b9935185365da5642ef11b9ba8e0380ba2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee83e06b_23032898",
+        "filename": "system/gd/rust/linux/mgmt/src/powerd_suspend_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-02-26T23:21:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "438897ca_e3a1b840",
+      "revId": "661208bf9984fbce0e561b1fc6377afd5fd77a69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff90f937_24c8df35",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b582034d_9c4a9e38",
+        "filename": "system/gd/rust/linux/mgmt/src/powerd_suspend_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-02-26T23:21:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff90f937_24c8df35",
+      "revId": "661208bf9984fbce0e561b1fc6377afd5fd77a69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c088ad4_6a787ec8",
@@ -48,6 +84,24 @@
       "writtenOn": "2024-02-26T17:22:08Z",
       "side": 1,
       "message": "Add a comment about why this is at the end of the function. This kind of race is easy to repeat unless we document in code why it\u0027s occurring.",
+      "revId": "661208bf9984fbce0e561b1fc6377afd5fd77a69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3267cadc_1cfdfd36",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-02-26T23:21:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c088ad4_6a787ec8",
       "revId": "661208bf9984fbce0e561b1fc6377afd5fd77a69",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
