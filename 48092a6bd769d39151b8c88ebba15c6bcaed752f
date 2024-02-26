@@ -22,6 +22,30 @@
       },
       "revId": "48092a6bd769d39151b8c88ebba15c6bcaed752f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58ed2dd5_43fe88b3",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-26T06:46:36Z",
+      "side": 1,
+      "message": "Thanks, I\u0027ll handle the server error together in the next patch.",
+      "parentUuid": "9f6cf83b_311fa443",
+      "range": {
+        "startLine": 416,
+        "startChar": 16,
+        "endLine": 416,
+        "endChar": 29
+      },
+      "revId": "48092a6bd769d39151b8c88ebba15c6bcaed752f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
