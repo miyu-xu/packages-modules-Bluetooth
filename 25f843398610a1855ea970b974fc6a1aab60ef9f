@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fcd2277_da1b55b6",
+        "filename": "floss/pandora/floss/audio_test_data.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2024-02-26T09:20:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4fdaceef_aa701858",
+      "range": {
+        "startLine": 25,
+        "startChar": 59,
+        "endLine": 25,
+        "endChar": 83
+      },
+      "revId": "25f843398610a1855ea970b974fc6a1aab60ef9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "46a24be7_267466bd",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-26T01:31:41Z",
       "side": 1,
       "message": "Will sox command create the audio test data directory? \u0027/tmp/audio`",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 0
+      },
+      "revId": "25f843398610a1855ea970b974fc6a1aab60ef9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9c9924b_35a30d72",
+        "filename": "floss/pandora/floss/audio_utils.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2024-02-26T09:20:44Z",
+      "side": 1,
+      "message": "I added these lines of code to create the directory if it does not exist\ndirectory \u003d os.path.dirname(audio_data[\u0027file\u0027])\n    if not os.path.exists(directory):\n        os.makedirs(directory)",
+      "parentUuid": "46a24be7_267466bd",
       "range": {
         "startLine": 156,
         "startChar": 0,
