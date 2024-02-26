@@ -66,9 +66,8 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.hamcrest.MockitoHamcrest;
 
 import java.time.Duration;
+import java.util.ArrayDeque;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -109,7 +108,7 @@ public class PairingTest {
             new EnableBluetoothRule(false /* enableTestMode */, true /* toggleBluetooth */);
 
     @Mock private BroadcastReceiver mReceiver;
-    private final Map<String, Integer> mActionRegistrationCounts = new HashMap<>();
+    private final ArrayDeque<String[]> mActionRegistrations = new ArrayDeque<>();
     private InOrder mInOrder = null;
     private BluetoothDevice mBumbleDevice;
 
@@ -158,9 +157,9 @@ public class PairingTest {
             removeBond(mBumbleDevice);
         }
         mBumbleDevice = null;
-        if (getTotalActionRegistrationCounts() > 0) {
+        if (!mActionRegistrations.isEmpty()) {
             sTargetContext.unregisterReceiver(mReceiver);
-            mActionRegistrationCounts.clear();
+            mActionRegistrations.clear();
         }
     }
 
@@ -213,8 +212,7 @@ public class PairingTest {
 
         verifyNoMoreInteractions(mReceiver);
 
-        unregisterIntentActions(
-                BluetoothDevice.ACTION_BOND_STATE_CHANGED, BluetoothDevice.ACTION_PAIRING_REQUEST);
+        unregisterIntentActions();
     }
 
     /**
@@ -239,7 +237,7 @@ public class PairingTest {
      *   <li>Android cancels the pairing
      * </ol>
      *
-     * Expectation: Pairing gets cancelled instead of getting timed out
+     * <p>Expectation: Pairing gets cancelled instead of getting timed out
      */
     @Test
     @RequiresFlagsEnabled(Flags.FLAG_RESET_PAIRING_ONLY_FOR_RELATED_SERVICE_DISCOVERY)
@@ -265,7 +263,7 @@ public class PairingTest {
 
         verifyNoMoreInteractions(mReceiver);
 
-        unregisterIntentActions(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
+        unregisterIntentActions();
     }
 
     /**
@@ -290,7 +288,7 @@ public class PairingTest {
      *   <li>Pairing is successful
      * </ol>
      *
-     * Expectation: Pairing succeeds
+     * <p>Expectation: Pairing succeeds
      */
     @Test
     @RequiresFlagsEnabled(Flags.FLAG_RESET_PAIRING_ONLY_FOR_RELATED_SERVICE_DISCOVERY)
@@ -315,7 +313,7 @@ public class PairingTest {
 
         verifyNoMoreInteractions(mReceiver);
 
-        unregisterIntentActions(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
+        unregisterIntentActions();
     }
 
     /* Starts outgoing GATT service discovery and incoming LE pairing in parallel */
@@ -406,11 +404,7 @@ public class PairingTest {
                         BluetoothDevice.EXTRA_UUID,
                         Matchers.arrayContainingInAnyOrder(BATTERY_UUID)));
 
-        unregisterIntentActions(
-                BluetoothDevice.ACTION_BOND_STATE_CHANGED,
-                BluetoothDevice.ACTION_PAIRING_REQUEST,
-                BluetoothDevice.ACTION_UUID,
-                BluetoothDevice.ACTION_ACL_CONNECTED);
+        unregisterIntentActions();
 
         return responseObserver;
     }
@@ -424,7 +418,7 @@ public class PairingTest {
                 hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
                 hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_NONE));
 
-        unregisterIntentActions(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
+        unregisterIntentActions();
     }
 
     @SafeVarargs
@@ -451,76 +445,40 @@ public class PairingTest {
      */
     private void registerIntentActions(String... actions) {
         if (actions.length == 0) {
+            Log.w(TAG, "registerIntentActions(): No intents to register");
             return;
         }
-        if (getTotalActionRegistrationCounts() > 0) {
-            Log.d(TAG, "registerIntentActions(): unregister ALL intents");
-            sTargetContext.unregisterReceiver(mReceiver);
-        }
-        for (String action : actions) {
-            mActionRegistrationCounts.merge(action, 1, Integer::sum);
-        }
-        IntentFilter filter = new IntentFilter();
-        mActionRegistrationCounts.entrySet().stream()
-                .filter(entry -> entry.getValue() > 0)
-                .forEach(
-                        entry -> {
-                            Log.d(
-                                    TAG,
-                                    "registerIntentActions(): Registering action = "
-                                            + entry.getKey());
-                            filter.addAction(entry.getKey());
-                        });
-        sTargetContext.registerReceiver(mReceiver, filter);
+
+        mActionRegistrations.push(actions);
+        registerIntents(actions);
     }
 
     /**
      * Helper function to reduce reference count to registered intent actions If total reference
      * count is zero after removal, no broadcast receiver will be registered.
-     *
-     * @param actions intent actions to be removed. If some action is not registered, it is no-op
-     *     for that action. If the actions array is empty, it is also a no-op.
      */
-    private void unregisterIntentActions(String... actions) {
-        if (actions.length == 0) {
+    private void unregisterIntentActions() {
+        if (mActionRegistrations.isEmpty()) {
+            Log.w(TAG, "unregisterIntentActions(): No intents registered");
             return;
         }
-        if (getTotalActionRegistrationCounts() <= 0) {
+        mActionRegistrations.pop();
+
+        if (mActionRegistrations.isEmpty()) {
+            Log.d(TAG, "unregisterIntentActions(): unregistered ALL intents");
+            sTargetContext.unregisterReceiver(mReceiver);
             return;
         }
-        Log.d(TAG, "unregisterIntentActions(): unregister ALL intents");
-        sTargetContext.unregisterReceiver(mReceiver);
-        for (String action : actions) {
-            if (!mActionRegistrationCounts.containsKey(action)) {
-                continue;
-            }
-            mActionRegistrationCounts.put(action, mActionRegistrationCounts.get(action) - 1);
-            if (mActionRegistrationCounts.get(action) <= 0) {
-                mActionRegistrationCounts.remove(action);
-            }
-        }
-        if (getTotalActionRegistrationCounts() > 0) {
-            IntentFilter filter = new IntentFilter();
-            mActionRegistrationCounts.entrySet().stream()
-                    .filter(entry -> entry.getValue() > 0)
-                    .forEach(
-                            entry -> {
-                                Log.d(
-                                        TAG,
-                                        "unregisterIntentActions(): Registering action = "
-                                                + entry.getKey());
-                                filter.addAction(entry.getKey());
-                            });
-            sTargetContext.registerReceiver(mReceiver, filter);
-        }
+        String[] actions = mActionRegistrations.peek();
+        registerIntents(actions);
     }
 
-    /**
-     * Get sum of reference count from all registered actions
-     *
-     * @return sum of reference count from all registered actions
-     */
-    private int getTotalActionRegistrationCounts() {
-        return mActionRegistrationCounts.values().stream().reduce(0, Integer::sum);
+    private void registerIntents(String... actions) {
+        IntentFilter filter = new IntentFilter();
+        Log.d(TAG, "registerIntents(): Registering for intents: " + Arrays.toString(actions));
+        for (String intentString : actions) {
+            filter.addAction(intentString);
+        }
+        sTargetContext.registerReceiver(mReceiver, filter);
     }
 }
