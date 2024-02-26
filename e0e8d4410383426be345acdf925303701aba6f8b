@@ -301,6 +301,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6231ecb4_2ce975cc",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-26T02:31:01Z",
+      "side": 1,
+      "message": "And also, we should NOT keep going to the next line because it will lead server\nto a problematic state.",
+      "parentUuid": "71519c8b_66a12bc2",
+      "range": {
+        "startLine": 146,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 0
+      },
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dfa1a761_c01c2892",
         "filename": "floss/pandora/server/l2cap.py",
         "patchSetId": 7
