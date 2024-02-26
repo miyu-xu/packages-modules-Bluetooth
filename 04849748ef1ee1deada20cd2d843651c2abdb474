@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f56bb12a_b752011a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2024-02-26T20:20:03Z",
+      "side": 1,
+      "message": "LGTM, thanks!",
+      "revId": "04849748ef1ee1deada20cd2d843651c2abdb474",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d56068d2_2ec94d34",
@@ -32,6 +49,52 @@
       "side": 1,
       "message": "Oh nevermind, this is the legacy PDU handler.",
       "parentUuid": "d56068d2_2ec94d34",
+      "revId": "04849748ef1ee1deada20cd2d843651c2abdb474",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56a5125e_291be0ab",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 4981,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2024-02-26T20:20:03Z",
+      "side": 1,
+      "message": "nit: It would be nice to actually calculate this number based on the size of the header.",
+      "range": {
+        "startLine": 4981,
+        "startChar": 37,
+        "endLine": 4981,
+        "endChar": 40
+      },
+      "revId": "04849748ef1ee1deada20cd2d843651c2abdb474",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71ff28e7_123044b6",
+        "filename": "tools/rootcanal/test/LL/DDI/SCN/BV_20_C.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2024-02-26T20:20:03Z",
+      "side": 1,
+      "message": "2024",
+      "range": {
+        "startLine": 1,
+        "startChar": 12,
+        "endLine": 1,
+        "endChar": 16
+      },
       "revId": "04849748ef1ee1deada20cd2d843651c2abdb474",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
