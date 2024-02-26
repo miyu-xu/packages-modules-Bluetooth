@@ -27,7 +27,8 @@ class BluetoothLintCheckerIssueRegistry : IssueRegistry() {
     override val issues =
         listOf(
             LogEnforcementVariableCreationDetector.ISSUE,
-            GuardedLogLineDetector.ISSUE
+            LogTagAsStringDetector.ISSUE,
+            GuardedLogLineDetector.ISSUE,
         )
 
     override val api: Int
