@@ -16,6 +16,24 @@
       "message": "could you help to explain the motivation of introducing those 2?\n\nsince getDefaultAdapter() is deprecated, should we consider to use AdapterService from Bass service?\ne.g.\nmAdapterService.getDeviceFromByte",
       "revId": "71b88e329661d29f5dff145d3dc6f279429f0d82",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e59281c8_1e41c9d8",
+        "filename": "android/app/src/com/android/bluetooth/BluetoothMethodProxy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-26T10:56:40Z",
+      "side": 1,
+      "message": "Oh nice! Thank you for this suggestion! Definitely if there is such method in mockable object then I\u0027ll use it.",
+      "parentUuid": "2b74c664_f886db6e",
+      "revId": "71b88e329661d29f5dff145d3dc6f279429f0d82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
