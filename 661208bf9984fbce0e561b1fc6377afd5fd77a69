@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "438897ca_e3a1b840",
+        "filename": "system/gd/rust/linux/mgmt/src/powerd_suspend_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2024-02-26T17:22:08Z",
+      "side": 1,
+      "message": "This could also be an aborted suspend attempt. Should update comment.",
+      "revId": "661208bf9984fbce0e561b1fc6377afd5fd77a69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff90f937_24c8df35",
+        "filename": "system/gd/rust/linux/mgmt/src/powerd_suspend_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2024-02-26T17:22:08Z",
+      "side": 1,
+      "message": "Spelling: \"Received\"",
+      "revId": "661208bf9984fbce0e561b1fc6377afd5fd77a69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c088ad4_6a787ec8",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2024-02-26T17:22:08Z",
+      "side": 1,
+      "message": "Add a comment about why this is at the end of the function. This kind of race is easy to repeat unless we document in code why it\u0027s occurring.",
+      "revId": "661208bf9984fbce0e561b1fc6377afd5fd77a69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
