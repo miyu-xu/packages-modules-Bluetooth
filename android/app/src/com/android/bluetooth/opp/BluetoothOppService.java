@@ -1245,26 +1245,13 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
         // disabled (by OPP service, shell command, etc.).
         // At the sametime, it's ok to retry trimDatabase later when the service restart
         try {
-            // remove the invisible/unconfirmed inbound shares
-            int delNum =
-                    BluetoothMethodProxy.getInstance()
-                            .contentResolverDelete(
-                                    contentResolver,
-                                    BluetoothShare.CONTENT_URI,
-                                    WHERE_INVISIBLE_UNCONFIRMED,
-                                    null);
-            if (V) {
-                Log.v(TAG, "Deleted shares, number = " + delNum);
-            }
-
-            // Keep the latest inbound and successful shares.
             Cursor cursor =
                     BluetoothMethodProxy.getInstance()
                             .contentResolverQuery(
                                     contentResolver,
                                     BluetoothShare.CONTENT_URI,
                                     new String[] {BluetoothShare._ID},
-                                    WHERE_INBOUND_SUCCESS,
+                                    null,
                                     null,
                                     BluetoothShare._ID); // sort by id
             if (cursor == null) {
@@ -1277,7 +1264,7 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
                 if (cursor.moveToPosition(numToDelete)) {
                     int columnId = cursor.getColumnIndexOrThrow(BluetoothShare._ID);
                     long id = cursor.getLong(columnId);
-                    delNum =
+                    int delNum =
                             BluetoothMethodProxy.getInstance()
                                     .contentResolverDelete(
                                             contentResolver,
@@ -1285,7 +1272,7 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
                                             BluetoothShare._ID + " < " + id,
                                             null);
                     if (V) {
-                        Log.v(TAG, "Deleted old inbound success share: " + delNum);
+                        Log.v(TAG, "Deleted old shares: " + delNum);
                     }
                 }
             }
