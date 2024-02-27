@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f423dabc_89d99a40",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-27T19:21:42Z",
+      "side": 1,
+      "message": "Probably yes",
+      "parentUuid": "1add3501_29cb135c",
+      "range": {
+        "startLine": 178,
+        "startChar": 1,
+        "endLine": 178,
+        "endChar": 8
+      },
+      "revId": "68f89392ca0c974525eac9e03246ab17b4b2e5c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "23f64863_35bbfdc3",
         "filename": "tools/rootcanal/model/controller/dual_mode_controller.h",
         "patchSetId": 1
