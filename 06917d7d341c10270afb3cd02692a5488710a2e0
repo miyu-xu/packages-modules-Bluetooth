@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53205167_dfb19cf6",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-02-27T07:11:15Z",
+      "side": 1,
+      "message": "This loop doesn\u0027t restart adv anymore. Would Floss keeps advertising after connected?",
+      "revId": "06917d7d341c10270afb3cd02692a5488710a2e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
