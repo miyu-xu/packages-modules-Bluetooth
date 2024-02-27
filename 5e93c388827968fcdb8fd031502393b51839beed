@@ -52,6 +52,24 @@
       "parentUuid": "f98d815b_a9bf0a3b",
       "revId": "5e93c388827968fcdb8fd031502393b51839beed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e883d20_9bbe2fe8",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1350,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-27T14:00:19Z",
+      "side": 1,
+      "message": "Ok, this is fair enough reason to extend this CL- thank you for highlighting this.",
+      "parentUuid": "5748b4e1_8bed3196",
+      "revId": "5e93c388827968fcdb8fd031502393b51839beed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
