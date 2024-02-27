@@ -553,6 +553,25 @@ class DualModeController : public Device {
   void SendCommandCompleteUnknownOpCodeEvent(
       bluetooth::hci::OpCode op_code) const;
 
+  // Validate that a received command is correctly formatted.
+  // If the command failed to be parsed, the function sends a HCI Command
+  // Complete event with a status of Invalid HCI Command Parameters
+  // and logs the packet to the configured handler.
+  template <typename T>
+  bool CheckCommandView(T const& command) {
+    if (command.IsValid()) {
+      return true;
+    }
+
+    // Send a hardware error to reset the host, and report the packet
+    // for tracing.
+    send_event_(bluetooth::hci::HardwareErrorBuilder::Create(0x43));
+    invalid_packet_handler_(id_, InvalidPacketReason::kParseError,
+                            OpCodeText(command.GetOpCode()),
+                            command.bytes().bytes());
+    return false;
+  }
+
   // Callbacks to send packets back to the HCI.
   std::function<void(std::shared_ptr<bluetooth::hci::AclBuilder>)> send_acl_;
   std::function<void(std::shared_ptr<bluetooth::hci::EventBuilder>)>
