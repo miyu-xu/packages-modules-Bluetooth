@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20df9ce3_43b186e0",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-02-27T23:12:13Z",
+      "side": 1,
+      "message": "This should be safe to remove. right? I had the log migration changes. I can remove it as part of my other CL.",
+      "revId": "b9bf480d8c079362b40c0dfc947e1ec725b27b00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
