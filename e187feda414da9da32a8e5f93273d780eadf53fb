@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d51d4c2c_7cf8e0bc",
+        "filename": "system/btif/co/bta_av_co_peer.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-27T22:06:17Z",
+      "side": 1,
+      "message": "Reset is called here and in the BtaAvCo::Init.\n\nBtaAvCo::Reset is also calling the reset.\n\nwe could skip one reset",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 10
+      },
+      "revId": "e187feda414da9da32a8e5f93273d780eadf53fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6a0b5d0_f7e966a6",
+        "filename": "system/btif/co/bta_av_co_peer.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-27T22:06:17Z",
+      "side": 1,
+      "message": "All these looks could be easier if peers_ was a std::array",
+      "range": {
+        "startLine": 112,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 3
+      },
+      "revId": "e187feda414da9da32a8e5f93273d780eadf53fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bdc72a4_5e6b4848",
+        "filename": "system/btif/co/bta_av_co_peer.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-27T22:06:17Z",
+      "side": 1,
+      "message": "func is not needed in LOG_XXXX",
+      "range": {
+        "startLine": 149,
+        "startChar": 10,
+        "endLine": 149,
+        "endChar": 18
+      },
+      "revId": "e187feda414da9da32a8e5f93273d780eadf53fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "698dadaf_dcdd1e1f",
+        "filename": "system/btif/co/bta_av_co_peer.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-27T22:06:17Z",
+      "side": 1,
+      "message": "Have you run the clang format ?No empty line here is suspicious",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 3
+      },
+      "revId": "e187feda414da9da32a8e5f93273d780eadf53fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5796aad7_684749fb",
+        "filename": "system/btif/include/bta_av_co_peer.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-27T22:06:17Z",
+      "side": 1,
+      "message": "Use std::array to have iterator ?",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 69
+      },
+      "revId": "e187feda414da9da32a8e5f93273d780eadf53fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
