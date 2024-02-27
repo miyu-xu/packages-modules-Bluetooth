@@ -52,6 +52,24 @@
       "parentUuid": "766b908e_de7f3cba",
       "revId": "bd1e0a995013ef56160276e750a83b889ef080fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "774743a3_9eb551d5",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 965,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-27T14:16:31Z",
+      "side": 1,
+      "message": "I\u0027ve followed this code more and came to conclusion that:\n- Capabilities are LOCAL for adsp (https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/le_audio/codec_manager.cc?q\u003dsymbol%3A%5Cble_audio%3A%3Acodec_manager_impl%3A%3AstoreLocalCapa%5Cb%20case%3Ayes)\n- Configuration is the current configuration of the group\n\nI don\u0027t see here any relation to PACs. PACs path should be the correct way.\n\nSo I believe that my previous worries are valid.",
+      "parentUuid": "bbde634b_85cb092f",
+      "revId": "bd1e0a995013ef56160276e750a83b889ef080fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
