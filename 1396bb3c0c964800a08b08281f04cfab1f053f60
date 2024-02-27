@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "92296909_309bd821",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3100,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-02-27T22:10:14Z",
+      "side": 1,
+      "message": "Fixed in aosp/2976834. Please take a look there. Thank you.",
+      "parentUuid": "08ae4ec6_d7764828",
+      "range": {
+        "startLine": 3100,
+        "startChar": 0,
+        "endLine": 3100,
+        "endChar": 51
+      },
+      "revId": "1396bb3c0c964800a08b08281f04cfab1f053f60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a5e8294_95fdfc32",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "620b64a6_d1abe11d",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1925,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-02-27T22:10:14Z",
+      "side": 1,
+      "message": "Fixed in aosp/2976834. Please take a look there. Thank you.",
+      "parentUuid": "1a5e8294_95fdfc32",
+      "range": {
+        "startLine": 1925,
+        "startChar": 74,
+        "endLine": 1925,
+        "endChar": 98
+      },
+      "revId": "1396bb3c0c964800a08b08281f04cfab1f053f60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f742a640_7fddf6a6",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-02-09T19:29:45Z",
       "side": 1,
       "message": "Please fix this WARNING reported by AndroidLint: [VisibleForTests] This class should only be accessed from tests or within package private scope\n\nAnalyzer Description: Reports AndroidLint warnings.\nOwner: colefaust@google.com\n\n[VisibleForTests] This class should only be accessed from tests or within package private scope\n\n                extends ContextMap\u003cIScannerCallback, GattService.PendingIntentInfo\u003e {}\n                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\nThis check looks for accesses from production code (e.g. not tests) where the access would not have been allowed with the intended production visibility.\n\nDepending on your development environment, you may be able to use an `@VisibleForTesting` annotation to specify the intended visibility if the method had not been more widely visible for the tests.\n\nWhen using `androidx.annotations.VisibleForTesting`, the production visibility is assumed to be private unless specified with the `otherwise\u003d` parameter. `com.google.common.annotations.VisibleForTesting` and `com.android.internal.annotations.VisibleForTesting` work similarly with their own parameters called `productionVisibility` and `visibility`.\n\nIf instead you use `org.jetbrains.annotations.VisibleForTesting`, there is no such parameter, and the production visibility is instead assumed to be \"one step down\" from the testing visibility. For example, if the testing visibility is public, the production visibility is assumed to be package-private.\n\nLocal repro steps at go/ayeaye-android-lint\n\nFor common FAQs about the @VisibleForTesting warning, see go/ayeaye-android-lint#visiblefortesting-faqs\n\nThis warning was found on the git_main branch",
+      "range": {
+        "startLine": 37,
+        "startChar": 21,
+        "endLine": 37,
+        "endChar": 82
+      },
+      "revId": "1396bb3c0c964800a08b08281f04cfab1f053f60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4819ad42_13144eda",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-02-27T22:10:14Z",
+      "side": 1,
+      "message": "Fixed in aosp/2976834. Please take a look there. Thank you.",
+      "parentUuid": "f742a640_7fddf6a6",
       "range": {
         "startLine": 37,
         "startChar": 21,
