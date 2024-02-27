@@ -1,7 +1,8 @@
 # Bluetooth Lint Checks for AOSP
 
 Custom Android Lint checks are written here to be executed against Bluetooth
-Java and Kotlin source code.
+Java and Kotlin source code. These will appear as part of errorprone builds and
+pre
 
 ## How to run Bluetooth lint checks against the code base
 
@@ -24,9 +25,9 @@ Or:
 aninja -t query Bluetooth-lint
 ```
 
-Step 3: Use the lint report directory and run this to validate the file:
+Step 3: Identify the lint report you want to view the results of, typically in the following format:
 ```
-m out/soong/.intermediates/packages/modules/Bluetooth/android/app/Bluetooth/android_common/lint/lint-report.html
+out/soong/.intermediates/packages/modules/Bluetooth/android/app/Bluetooth/android_common/<run-identifier>/lint/lint-report.html
 ```
 
 Step 4: Open the file in your favorite web browser.
