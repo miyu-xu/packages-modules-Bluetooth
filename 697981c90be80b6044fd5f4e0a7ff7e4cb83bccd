@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d7e2db3_db040b10",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-02-27T07:19:02Z",
+      "side": 1,
+      "message": "I think this should be `grpc.StatusCode.INVALID_ARGUMENT` or `UNIMPLEMENTED`?",
+      "range": {
+        "startLine": 104,
+        "startChar": 12,
+        "endLine": 104,
+        "endChar": 17
+      },
+      "revId": "697981c90be80b6044fd5f4e0a7ff7e4cb83bccd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a880918_b003d0a3",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-02-27T07:19:02Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 125,
+        "startChar": 8,
+        "endLine": 125,
+        "endChar": 13
+      },
+      "revId": "697981c90be80b6044fd5f4e0a7ff7e4cb83bccd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72e6a9a2_2e111862",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-02-27T07:19:02Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 154,
+        "startChar": 12,
+        "endLine": 154,
+        "endChar": 17
+      },
+      "revId": "697981c90be80b6044fd5f4e0a7ff7e4cb83bccd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
