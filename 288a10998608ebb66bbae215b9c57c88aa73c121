@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8a04e9f8_3f52ab5a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-27T23:52:20Z",
+      "side": 1,
+      "message": "This change is adding close to 1 MiB inside the apex.\nIt\u0027s increasing the size by 5%. This is HUGE !\n\nI believe the libPlatformProperties should be linked statically to only fetch the symbols we need.\n\nIs this possible ?",
+      "revId": "288a10998608ebb66bbae215b9c57c88aa73c121",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "27a7a019_e3d65a54",
         "filename": "system/main/shim/acl_api.cc",
         "patchSetId": 2
