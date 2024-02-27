@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b32cf40a_3acc7f64",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1405,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-02-27T07:55:22Z",
+      "side": 1,
+      "message": "nit: add a comment like \"True if it\u0027s advertising, False otherwise.\" to explain the state.",
+      "range": {
+        "startLine": 1405,
+        "startChar": 4,
+        "endLine": 1405,
+        "endChar": 18
+      },
+      "revId": "511c9220bedb6b6bbf640f7971c6a9fa3cc77adf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cedee903_706feeed",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1497,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-02-27T07:55:22Z",
+      "side": 1,
+      "message": "nit: invokes",
+      "range": {
+        "startLine": 1497,
+        "startChar": 70,
+        "endLine": 1497,
+        "endChar": 76
+      },
+      "revId": "511c9220bedb6b6bbf640f7971c6a9fa3cc77adf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73655d7d_0c0f9d9d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1541,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-02-27T07:55:22Z",
+      "side": 1,
+      "message": "We silently ignore this case here. Is this is not an expected case, adding debug log would help identify it.",
+      "range": {
+        "startLine": 1541,
+        "startChar": 0,
+        "endLine": 1541,
+        "endChar": 33
+      },
+      "revId": "511c9220bedb6b6bbf640f7971c6a9fa3cc77adf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "802d61f6_f54a3304",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1576,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-02-27T07:55:22Z",
+      "side": 1,
+      "message": "Maybe something like this may be clear:\n\"Checks if the current advertiser is still allowed to advertise, or if it should schedule the next one in the queue.\"",
+      "range": {
+        "startLine": 1575,
+        "startChar": 31,
+        "endLine": 1576,
+        "endChar": 39
+      },
+      "revId": "511c9220bedb6b6bbf640f7971c6a9fa3cc77adf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bd48d00_e05cd1ca",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1581,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-02-27T07:55:22Z",
+      "side": 1,
+      "message": "Based on line 1507, t \u003d\u003d now is not expired. (t \u003e\u003d now) should be used here for consistency unless you tream the t \u003d\u003d now case differently.",
+      "range": {
+        "startLine": 1581,
+        "startChar": 56,
+        "endLine": 1581,
+        "endChar": 57
+      },
+      "revId": "511c9220bedb6b6bbf640f7971c6a9fa3cc77adf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
