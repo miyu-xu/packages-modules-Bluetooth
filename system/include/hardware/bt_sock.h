@@ -16,6 +16,7 @@
 
 #pragma once
 
+#include <bluetooth/log.h>
 #include <stddef.h>
 
 #include "bluetooth.h"
@@ -110,3 +111,8 @@ typedef struct {
 } btsock_interface_t;
 
 __END_DECLS
+
+namespace fmt {
+template <>
+struct formatter<btsock_type_t> : enum_formatter<btsock_type_t> {};
+}  // namespace fmt
