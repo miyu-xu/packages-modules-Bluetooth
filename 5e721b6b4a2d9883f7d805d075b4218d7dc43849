@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "74ef5ff8_fd85a769",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-27T06:47:11Z",
+      "side": 1,
+      "message": "Thanks!, Looks like regression after my change aosp/2962588",
+      "revId": "5e721b6b4a2d9883f7d805d075b4218d7dc43849",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "aa6f010b_08f54929",
         "filename": "system/audio_hal_interface/le_audio_software.cc",
         "patchSetId": 1
