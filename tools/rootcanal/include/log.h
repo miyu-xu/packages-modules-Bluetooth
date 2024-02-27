@@ -70,6 +70,14 @@ static void Log(Verbosity verb, char const* file, int line, char const* format,
   rootcanal::log::Log(rootcanal::log::Verbosity::kFatal, __FILE__, __LINE__, \
                       __VA_ARGS__)
 
+#if defined(NDEBUG) && !defined(ASSERT_ALWAYS_ON)
+#define ASSERT_IS_ON 0
+#else
+#define ASSERT_IS_ON 1
+#endif
+
+#if ASSERT_IS_ON
+
 #define ASSERT(x)                                                       \
   __builtin_expect((x) != 0, true) ||                                   \
       (rootcanal::log::Log(rootcanal::log::Verbosity::kFatal, __FILE__, \
@@ -82,5 +90,12 @@ static void Log(Verbosity verb, char const* file, int line, char const* format,
                            __LINE__, "Check failed: {}, {}", #x,        \
                            fmt::sprintf(__VA_ARGS__)),                  \
        false)
+
+#else  // ASSERT_IS_ON
+
+#define ASSERT(x) (void)(x)
+#define ASSERT_LOG(x, ...) (void)(x)
+
+#endif  // ASSERT_IS_ON
 
 }  // namespace rootcanal::log
