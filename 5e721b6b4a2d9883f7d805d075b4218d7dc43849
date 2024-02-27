@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa6f010b_08f54929",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-27T05:45:57Z",
+      "side": 1,
+      "message": "Note that this CL is copying code from this section to the section shown above to correct an earlier error in https://r.android.com/2962588",
+      "range": {
+        "startLine": 378,
+        "startChar": 0,
+        "endLine": 398,
+        "endChar": 3
+      },
+      "revId": "5e721b6b4a2d9883f7d805d075b4218d7dc43849",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
