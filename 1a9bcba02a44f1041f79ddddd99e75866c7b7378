@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc498864_219469d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2024-02-27T22:15:41Z",
+      "side": 1,
+      "message": "Dr.No as the CL has been testing with Floss this time. Does not make sense to flag VSC commands.",
+      "revId": "1a9bcba02a44f1041f79ddddd99e75866c7b7378",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
