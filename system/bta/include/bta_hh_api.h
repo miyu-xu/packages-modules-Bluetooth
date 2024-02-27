@@ -524,4 +524,5 @@ namespace fmt {
 template <>
 struct formatter<tBTA_HH_STATUS> : enum_formatter<tBTA_HH_STATUS> {};
 }  // namespace fmt
+
 #endif /* BTA_HH_API_H */
