@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a708212_3e741536",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-27T08:14:50Z",
+      "side": 1,
+      "message": "Sounds godd, thanks!",
+      "parentUuid": "3e4cd757_9291f4d9",
+      "range": {
+        "startLine": 104,
+        "startChar": 12,
+        "endLine": 104,
+        "endChar": 17
+      },
+      "revId": "697981c90be80b6044fd5f4e0a7ff7e4cb83bccd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5a880918_b003d0a3",
@@ -119,6 +143,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7e8924e_089f3f13",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-27T08:14:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f31b1ba_f8e2d03f",
+      "range": {
+        "startLine": 125,
+        "startChar": 8,
+        "endLine": 125,
+        "endChar": 13
+      },
+      "revId": "697981c90be80b6044fd5f4e0a7ff7e4cb83bccd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72e6a9a2_2e111862",
@@ -156,6 +204,30 @@
       "side": 1,
       "message": "This is a utility function and is not a gRPC function, so I leave it as it.",
       "parentUuid": "72e6a9a2_2e111862",
+      "range": {
+        "startLine": 154,
+        "startChar": 12,
+        "endLine": 154,
+        "endChar": 17
+      },
+      "revId": "697981c90be80b6044fd5f4e0a7ff7e4cb83bccd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17b54957_e312f950",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-27T08:14:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "744fdf11_5e879430",
       "range": {
         "startLine": 154,
         "startChar": 12,
