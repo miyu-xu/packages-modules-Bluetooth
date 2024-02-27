@@ -234,6 +234,29 @@
       },
       "revId": "511c9220bedb6b6bbf640f7971c6a9fa3cc77adf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d976ae19_a041c522",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1955,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-02-27T11:03:04Z",
+      "side": 1,
+      "message": "Using a single advertising set and rotate every 2 seconds makes it harder to scan compared to real multiple advertising set behavior. However, since this patch aims to match BlueZ behavior, we can revisit design of software rotation in the future.",
+      "range": {
+        "startLine": 1952,
+        "startChar": 0,
+        "endLine": 1955,
+        "endChar": 34
+      },
+      "revId": "511c9220bedb6b6bbf640f7971c6a9fa3cc77adf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
