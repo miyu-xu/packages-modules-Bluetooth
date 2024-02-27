@@ -34,6 +34,24 @@
       "parentUuid": "c4a4d7fa_853be53c",
       "revId": "9363a4931494ccd330be0396424723c466cbb7e8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdf8e873_146d3cf7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-02-27T05:33:47Z",
+      "side": 1,
+      "message": "Some partner would like to test the APIs before finalization. \nNever mind, we find another way to test them.\nMany thanks!",
+      "parentUuid": "3f1baaea_12121ad1",
+      "revId": "9363a4931494ccd330be0396424723c466cbb7e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
