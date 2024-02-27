@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "aec95f59_a9294764",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-27T18:09:44Z",
+      "side": 1,
+      "message": "I root caused a flake to the fact that we aren\u0027t waiting for this call, then the test ends, the mock gets destroyed, and the call causes a null-pointer exception.",
+      "parentUuid": "a7fc4272_0967b53f",
+      "range": {
+        "startLine": 12,
+        "startChar": 5,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "b5c90ba5256e61715d8cd3cd8d2732e06c4d27b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "892f0733_79590ee3",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/a2dp/A2dpServiceTest.java",
         "patchSetId": 7
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-27T02:38:56Z",
       "side": 1,
       "message": "Isn\u0027t it already check with \n```\n    verifyConnectionStateIntent(\n                sTestDevice, BluetoothProfile.STATE_CONNECTED, BluetoothProfile.STATE_CONNECTING);\n```\n(line 343 just above)",
+      "range": {
+        "startLine": 351,
+        "startChar": 5,
+        "endLine": 356,
+        "endChar": 59
+      },
+      "revId": "b5c90ba5256e61715d8cd3cd8d2732e06c4d27b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2015052_88ee3ce5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/a2dp/A2dpServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-27T18:09:44Z",
+      "side": 1,
+      "message": "Not exactly, but close.",
+      "parentUuid": "892f0733_79590ee3",
       "range": {
         "startLine": 351,
         "startChar": 5,
