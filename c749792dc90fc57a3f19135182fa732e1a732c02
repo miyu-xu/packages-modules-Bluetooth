@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b69afb8_2455c549",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerWrapper.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-02-27T19:29:01Z",
+      "side": 1,
+      "message": "This",
+      "range": {
+        "startLine": 287,
+        "startChar": 0,
+        "endLine": 294,
+        "endChar": 0
+      },
+      "revId": "c749792dc90fc57a3f19135182fa732e1a732c02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
