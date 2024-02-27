@@ -16,6 +16,40 @@
       "message": "Great job on the coverage improvements. \n\nUnfortunately 5 executions / sec is extremely low for fuzzing. Can you please take a look at the Expensive Initialization docs (especially `LLVMFuzzerInitialize`):\n\nIf the library you are testing requires some expensive/slow initialization you should consider moving that code into a separate LLVMFuzzerInitialize() function. This function will be called once, when the fuzz target starts. The code in LLVMFuzzerTestOneInput() is then called repeatedly in a loop.\n\n\nMore here: go/fuzzer-review-checklist",
       "revId": "75597366349f802b4fc3d98bc4b0a3a9cadafc45",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef723711_015baa54",
+        "filename": "system/audio_hal_interface/fuzzer/libbt_audio_hal_le_audio_software_fuzzer.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1137703
+      },
+      "writtenOn": "2024-02-27T01:12:11Z",
+      "side": 1,
+      "message": "Sending the entire data buffer means that some of the fuzz data is being reused for multiple purposes, which may make it difficult for the fuzzer to reach certain cases.\n\nRather than writing the entire data buffer, this should probably consume a random number of bytes, something like:\n\nsize_t writeBufferSize \u003d fdp.ConsumeIntegral\u003cuint16_t\u003e();\nstd::vector\u003cuint8_t\u003e writeBuffer \u003d fdp.ConsumeBytes(writeBufferSize);\nsource-\u003eWrite(writeBuffer.data(), writeBuffer.size());",
+      "revId": "75597366349f802b4fc3d98bc4b0a3a9cadafc45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4c00fdb_e8e56459",
+        "filename": "system/audio_hal_interface/fuzzer/libbt_audio_hal_le_audio_software_fuzzer.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1137703
+      },
+      "writtenOn": "2024-02-27T01:12:11Z",
+      "side": 1,
+      "message": "Size should be based on a value consumed from the fuzz data (eg. fdp.ConsumeIntegral\u003cuint16_t\u003e()), rather than the total size of all the fuzz data.  That\u0027ll make it easier for the fuzz mutator to explore any issues with different read buffer sizes.",
+      "revId": "75597366349f802b4fc3d98bc4b0a3a9cadafc45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
