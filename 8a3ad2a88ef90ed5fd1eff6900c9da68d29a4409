@@ -1,5 +1,57 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b80fea05_91b48f37",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-27T11:49:03Z",
+      "side": 1,
+      "message": "state_machine_test.cc has infrastructure for the unit test in this file. Please add test for this case.",
+      "revId": "8a3ad2a88ef90ed5fd1eff6900c9da68d29a4409",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56d1a02c_65b5aa49",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1317,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-27T11:49:03Z",
+      "side": 1,
+      "message": "This adds backchannel to CIG Create command when CIG creates unidirectional CISes.\n\nis this all needed for DSA?",
+      "revId": "8a3ad2a88ef90ed5fd1eff6900c9da68d29a4409",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ee7ec83_8ffa3c7e",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1341,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-27T11:49:03Z",
+      "side": 1,
+      "message": "can we avoid magic number here?",
+      "revId": "8a3ad2a88ef90ed5fd1eff6900c9da68d29a4409",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
