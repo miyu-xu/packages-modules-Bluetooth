@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30f820ca_04652d92",
+        "filename": "system/btif/src/btif_has_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-27T17:49:50Z",
+      "side": 1,
+      "message": "unnecessary?",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 26
+      },
+      "revId": "36bfa8f940d7db015547c8d54264e57ed5cba2f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e00381b2_c2024234",
+        "filename": "system/btif/src/btif_le_audio_broadcaster.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-27T17:49:50Z",
+      "side": 1,
+      "message": "unnecessary? (same with the using namespace on line 35)",
+      "range": {
+        "startLine": 20,
+        "startChar": 10,
+        "endLine": 20,
+        "endChar": 19
+      },
+      "revId": "36bfa8f940d7db015547c8d54264e57ed5cba2f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
