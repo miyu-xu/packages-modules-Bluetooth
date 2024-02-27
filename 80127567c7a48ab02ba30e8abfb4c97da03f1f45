@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2799910_23838329",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 23
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-27T01:39:57Z",
+      "side": 1,
+      "message": "Why is there a need for concurrent access in this code ?\nI believe there should be no lock, and operation should be perform on a single thread there.\n\nThe fact that lock are added and piled on top of each other and that we have so many lock that we need this is a big code smell in my opinion",
+      "range": {
+        "startLine": 9,
+        "startChar": 1,
+        "endLine": 12,
+        "endChar": 7
+      },
+      "revId": "80127567c7a48ab02ba30e8abfb4c97da03f1f45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "86fda2cb_0e74e243",
@@ -49,6 +72,29 @@
       "side": 1,
       "message": "Not really, in line 648, if sm is null, this function would have returned.",
       "parentUuid": "7433f1d7_3c570ca1",
+      "revId": "80127567c7a48ab02ba30e8abfb4c97da03f1f45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e2495f5_30ddbfbb",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 5001,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-27T01:39:57Z",
+      "side": 1,
+      "message": "I believe this abstraction should not be needed",
+      "range": {
+        "startLine": 4979,
+        "startChar": 0,
+        "endLine": 5001,
+        "endChar": 5
+      },
       "revId": "80127567c7a48ab02ba30e8abfb4c97da03f1f45",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

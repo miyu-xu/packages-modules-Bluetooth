@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "377435ee_221d2fd8",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-27T01:39:57Z",
+      "side": 0,
+      "message": "Why removing this ? This CL aim to enforce more lock safety, and this generate useful warning. Removing it will generate error in the futur",
+      "range": {
+        "startLine": 273,
+        "startChar": 0,
+        "endLine": 273,
+        "endChar": 28
+      },
+      "revId": "bc75e6fadb39495e56018b5449b43a7c3223e266",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
