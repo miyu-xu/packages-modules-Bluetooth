@@ -70,6 +70,24 @@
       "parentUuid": "bbde634b_85cb092f",
       "revId": "bd1e0a995013ef56160276e750a83b889ef080fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ded993bb_f40102a1",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 965,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-27T17:42:35Z",
+      "side": 1,
+      "message": "Those input/output capabilities are from remote PACS. Let me explain the flow.\n\n1. the sink pacs are passed from here all the way to Java InputCodecsSelectableCapabilities. \n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/le_audio/client.cc;l\u003d3170?q\u003dSendAudioGroupSelectableCodecConfigChanged\u0026ct\u003dos\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%2Fmain%20branch:main\n\n2. then at this logic part, we will check the sink\u0027s pacs(input/output capabilities) and update the codec config for the source\n\n3. in broadcaster.cc, we will check the adsp capabilities and decide the final capability for broadcaster(source).",
+      "parentUuid": "774743a3_9eb551d5",
+      "revId": "bd1e0a995013ef56160276e750a83b889ef080fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
