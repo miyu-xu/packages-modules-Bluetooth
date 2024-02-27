@@ -16,6 +16,24 @@
       "message": "for backward compatibility, even flag is enabled, we need to call old callback.",
       "revId": "614617368bafd43ce79a0cd3ffade3fcefb37610",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c388ce5_65461852",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-27T08:32:16Z",
+      "side": 0,
+      "message": "It is called since the default implementation of the callback is calling the deprecated callback. (cf line 117).\n\nThis way the behavior is to Call the new callback every time and either:\n  * the client override the new callback \u003d\u003e The old callback is not notified.\n  * Client didn\u0027t update the callback \u003d\u003e The default implementation call the legacy callback directly\n\nFor the second point, we may want to have a crash saying that the callback need to be implemented.. I will check on that part (we don\u0027t want new user to require implementing the deprecated callback)",
+      "parentUuid": "52aeefe9_b64951ae",
+      "revId": "614617368bafd43ce79a0cd3ffade3fcefb37610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
