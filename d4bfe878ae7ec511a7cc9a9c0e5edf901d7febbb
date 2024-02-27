@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5f388c3_a0e884e7",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-27T14:30:07Z",
+      "side": 1,
+      "message": "not sure if this is real todo :P",
+      "revId": "d4bfe878ae7ec511a7cc9a9c0e5edf901d7febbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
