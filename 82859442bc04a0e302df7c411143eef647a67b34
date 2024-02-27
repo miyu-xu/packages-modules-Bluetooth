@@ -58,6 +58,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab621c62_b34cb66d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-27T18:04:39Z",
+      "side": 1,
+      "message": "You can add \"clear_collision_state_on_pairing_complete\" topic after guarding the changes to include aosp/2980012 in the presubmit builds.",
+      "revId": "82859442bc04a0e302df7c411143eef647a67b34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cbcfb054_d306eef3",
