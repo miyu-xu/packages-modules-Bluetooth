@@ -85,6 +85,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4cf95f59_baa23704",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-02-27T00:22:41Z",
+      "side": 1,
+      "message": "Moved the check forward to avoid double count the metrics.",
+      "parentUuid": "1570be63_b1742661",
+      "revId": "b0fbb35557e592f25a45a5d4b6c4e2c2b368c0a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b084c2ad_51bb735c",
         "filename": "system/gd/rust/linux/stack/src/suspend.rs",
         "patchSetId": 2
@@ -114,6 +132,24 @@
       "side": 1,
       "message": "The reason for the delay is documented at the top of the file before LE_RAND_CB_SUSPEND_READY_DELAY_MS. I can add another comment here. The reason to move suspend_state to the async call is to make sure the suspend_expected value is not reset until the suspend ready signal is sent. Will add a comment here.",
       "parentUuid": "b084c2ad_51bb735c",
+      "revId": "b0fbb35557e592f25a45a5d4b6c4e2c2b368c0a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8367b063_120a0c6e",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-02-27T00:22:41Z",
+      "side": 1,
+      "message": "Comments added.",
+      "parentUuid": "8a4cc4c4_7f8c9d9f",
       "revId": "b0fbb35557e592f25a45a5d4b6c4e2c2b368c0a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
