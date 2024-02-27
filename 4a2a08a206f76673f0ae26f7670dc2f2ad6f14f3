@@ -96,6 +96,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8136ca1a_8053fde1",
+        "filename": "framework/java/android/bluetooth/le/AdvertiseData.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 707,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-27T01:27:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4cbd22b9_e694ef85",
+      "range": {
+        "startLine": 707,
+        "startChar": 23,
+        "endLine": 707,
+        "endChar": 51
+      },
+      "revId": "4a2a08a206f76673f0ae26f7670dc2f2ad6f14f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d880099_4dc38027",
@@ -299,6 +323,30 @@
       "side": 1,
       "message": "That is appropriate 👍\nThere is precedent for including `\u003copenssl/rand.h\u003e` in the stack.",
       "parentUuid": "366f48fe_f0054b69",
+      "range": {
+        "startLine": 1521,
+        "startChar": 0,
+        "endLine": 1529,
+        "endChar": 29
+      },
+      "revId": "4a2a08a206f76673f0ae26f7670dc2f2ad6f14f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9d02b47_fd52a033",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 1529,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-27T01:27:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04fe18fc_a3f29193",
       "range": {
         "startLine": 1521,
         "startChar": 0,
