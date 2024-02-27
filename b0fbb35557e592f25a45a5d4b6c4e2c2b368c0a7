@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "184b2ced_86466682",
+        "filename": "system/gd/rust/linux/mgmt/src/powerd_suspend_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-02-27T00:01:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "673b9410_32571de9",
+      "range": {
+        "startLine": 519,
+        "startChar": 46,
+        "endLine": 519,
+        "endChar": 52
+      },
+      "revId": "b0fbb35557e592f25a45a5d4b6c4e2c2b368c0a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0afe22da_ad65587b",
@@ -43,6 +67,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1570be63_b1742661",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-02-27T00:01:44Z",
+      "side": 1,
+      "message": "Right. After the suspend is aborted, the SuspendDone will trigger two things. (1) set suspend imminent to None. (2) Call resume. This resume can happen at the same time as the Suspend. I would like to abort this resume according to the suspend_expected value. This value is only set to false before the suspend ready signal.",
+      "parentUuid": "0afe22da_ad65587b",
+      "revId": "b0fbb35557e592f25a45a5d4b6c4e2c2b368c0a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b084c2ad_51bb735c",
         "filename": "system/gd/rust/linux/stack/src/suspend.rs",
         "patchSetId": 2
@@ -54,6 +96,24 @@
       "writtenOn": "2024-02-26T23:33:15Z",
       "side": 1,
       "message": "Why we do we delay after le_rand to say suspend is ready? Needs documentation.",
+      "revId": "b0fbb35557e592f25a45a5d4b6c4e2c2b368c0a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a4cc4c4_7f8c9d9f",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-02-27T00:01:44Z",
+      "side": 1,
+      "message": "The reason for the delay is documented at the top of the file before LE_RAND_CB_SUSPEND_READY_DELAY_MS. I can add another comment here. The reason to move suspend_state to the async call is to make sure the suspend_expected value is not reset until the suspend ready signal is sent. Will add a comment here.",
+      "parentUuid": "b084c2ad_51bb735c",
       "revId": "b0fbb35557e592f25a45a5d4b6c4e2c2b368c0a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
