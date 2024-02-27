@@ -288,6 +288,7 @@ cc_test {
     ],
     header_libs: ["libbluetooth_headers"],
     shared_libs: [
+        "libbase",
         "libcrypto",
         "libcutils",
         "libhidlbase",
@@ -399,7 +400,10 @@ cc_test {
         "-DBUILDCFG",
         "-Wno-unused-parameter",
     ],
-    shared_libs: ["liblog"],
+    shared_libs: [
+        "libbase",
+        "liblog",
+    ],
 }
 
 // btif avrcp audio track unit tests
@@ -433,6 +437,7 @@ cc_test {
         "libosi",
     ],
     shared_libs: [
+        "libbase",
         "liblog",
     ],
     cflags: [
@@ -464,6 +469,7 @@ cc_test {
     ],
     header_libs: ["libbluetooth_headers"],
     shared_libs: [
+        "libbase",
         "libcrypto",
         "libcutils",
         "liblog",
@@ -515,6 +521,7 @@ cc_test {
     ],
     header_libs: ["libbluetooth_headers"],
     shared_libs: [
+        "libbase",
         "libbinder_ndk",
         "libcrypto",
         "libcutils",
@@ -557,6 +564,7 @@ cc_test {
     ],
     header_libs: ["libbluetooth_headers"],
     shared_libs: [
+        "libbase",
         "libcutils",
         "liblog",
     ],
