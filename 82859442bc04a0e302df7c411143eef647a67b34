@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "e74b6904_c690613b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-27T16:59:19Z",
+      "side": 1,
+      "message": "nit: If you put this on the same line, it will avoid the Test Validation error.\n\nTest: m com.android.btservices",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 24
+      },
+      "revId": "82859442bc04a0e302df7c411143eef647a67b34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "0860cf4d_f50dcb27",
@@ -14,6 +37,23 @@
       "writtenOn": "2024-02-26T03:46:46Z",
       "side": 1,
       "message": "Any further comments on this change?",
+      "revId": "82859442bc04a0e302df7c411143eef647a67b34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac2b2533_66c5f806",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-27T16:59:19Z",
+      "side": 1,
+      "message": "Looks good to me, deferring to the owner for +2, test coverage, and flagging.",
       "revId": "82859442bc04a0e302df7c411143eef647a67b34",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
