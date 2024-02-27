@@ -16,6 +16,24 @@
       "message": "This should be safe to remove. right? I had the log migration changes. I can remove it as part of my other CL.",
       "revId": "b9bf480d8c079362b40c0dfc947e1ec725b27b00",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8725465_8336f9bf",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-27T23:22:31Z",
+      "side": 1,
+      "message": "Yes absolutely. I am planning to do a cleanup pass to remove them all at the same time after all logs are converted; it is less work than removing the include on each CL individually.",
+      "parentUuid": "20df9ce3_43b186e0",
+      "revId": "b9bf480d8c079362b40c0dfc947e1ec725b27b00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
