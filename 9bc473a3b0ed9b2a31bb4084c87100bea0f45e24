@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3d7ba6f_b1ab5e5f",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-27T05:30:45Z",
+      "side": 0,
+      "message": "this part belongs to CancelStreamingRequest as well",
+      "range": {
+        "startLine": 291,
+        "startChar": 0,
+        "endLine": 549,
+        "endChar": 3
+      },
+      "revId": "9bc473a3b0ed9b2a31bb4084c87100bea0f45e24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
