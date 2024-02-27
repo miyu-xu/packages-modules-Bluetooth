@@ -1,5 +1,46 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e64539e6_78db9f75",
+        "filename": "system/bta/le_audio/device_groups.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-27T12:55:48Z",
+      "side": 1,
+      "message": "do we need DISABLE state when we have active? Or the other why, why active is needed?",
+      "range": {
+        "startLine": 100,
+        "startChar": 23,
+        "endLine": 100,
+        "endChar": 31
+      },
+      "revId": "03734fbd38cb2c302e2763c4a81bfee2a2420a3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c76da12_79195503",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 878,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-27T12:55:48Z",
+      "side": 1,
+      "message": "when dsa_mode is set to leAudioDevice  ?",
+      "revId": "03734fbd38cb2c302e2763c4a81bfee2a2420a3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
