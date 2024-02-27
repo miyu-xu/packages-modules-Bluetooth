@@ -2,12 +2,18 @@ package: "com.android.bluetooth.flags"
 container: "com.android.btservices"
 
 flag {
+    name: "clear_collision_state_on_pairing_complete"
+    namespace: "bluetooth"
+    description: "Clear authentication collision state on pairing conclusion"
+    bug: "327208896"
+}
+
+flag {
     name: "correct_bond_type_of_loaded_devices"
     namespace: "bluetooth"
     description: "Mark the bond type of loaded device as persistent"
     bug: "319530790"
 }
-
 
 flag {
     name: "fix_pairing_failure_reason_from_remote"
