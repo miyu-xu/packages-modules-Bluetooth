@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7fc4272_0967b53f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-27T02:38:56Z",
+      "side": 1,
+      "message": "b/321252288 is about test flakiness and I don\u0027t understand how this CL address test flakiness.",
+      "range": {
+        "startLine": 12,
+        "startChar": 5,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "b5c90ba5256e61715d8cd3cd8d2732e06c4d27b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "892f0733_79590ee3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/a2dp/A2dpServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-27T02:38:56Z",
+      "side": 1,
+      "message": "Isn\u0027t it already check with \n```\n    verifyConnectionStateIntent(\n                sTestDevice, BluetoothProfile.STATE_CONNECTED, BluetoothProfile.STATE_CONNECTING);\n```\n(line 343 just above)",
+      "range": {
+        "startLine": 351,
+        "startChar": 5,
+        "endLine": 356,
+        "endChar": 59
+      },
+      "revId": "b5c90ba5256e61715d8cd3cd8d2732e06c4d27b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
