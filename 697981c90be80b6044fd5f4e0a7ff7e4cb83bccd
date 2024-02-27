@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3e4cd757_9291f4d9",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-02-27T07:54:29Z",
+      "side": 1,
+      "message": "Since this is called by the gRPC function the exception would still be propagated to the server and cause crashes. Consider handle this in gRPC function or just simply `logging.error` + `return False` here.",
+      "parentUuid": "de2de2cc_61bbd1b7",
+      "range": {
+        "startLine": 104,
+        "startChar": 12,
+        "endLine": 104,
+        "endChar": 17
+      },
+      "revId": "697981c90be80b6044fd5f4e0a7ff7e4cb83bccd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5a880918_b003d0a3",
         "filename": "floss/pandora/server/security.py",
         "patchSetId": 3
