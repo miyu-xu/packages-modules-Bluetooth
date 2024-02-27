@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "50ff3885_cc4c6013",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-27T21:58:32Z",
+      "side": 1,
+      "message": "I found that using the original setup led to failures in the `accept_socket` method for L2CAP and RFCOMM, preventing connections from being accepted. Modifying the code to use `{\u0027timeout_ms\u0027: GLib.Variant(\u0027i\u0027, timeout)}` resolved the issue, enabling the `accept_socket` method to function correctly. Further investigation revealed that changing the key in `dbus_optional_value` from `optional_value` to `timeout_ms` also made the `accept_socket` method work as intended, unlike in the original setup where it wasn\u0027t working. This is why I updated the code.",
+      "parentUuid": "37c77121_73b21b80",
+      "range": {
+        "startLine": 251,
+        "startChar": 15,
+        "endLine": 251,
+        "endChar": 57
+      },
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dd1e2e42_24eb36d8",
         "filename": "floss/pandora/server/l2cap.py",
         "patchSetId": 7
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-23T09:45:44Z",
       "side": 1,
       "message": "`(socket, status)` or `(socket if floss_enums.BtStatus(status) \u003d\u003d floss_enums.BtStatus.SUCCESS else None)` and handle the failure at line #90",
+      "range": {
+        "startLine": 70,
+        "startChar": 74,
+        "endLine": 70,
+        "endChar": 80
+      },
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb57bca8_6cde5adc",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-27T21:58:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd1e2e42_24eb36d8",
       "range": {
         "startLine": 70,
         "startChar": 74,
@@ -60,6 +108,30 @@
       "writtenOn": "2024-02-26T02:45:20Z",
       "side": 1,
       "message": "dtto",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 0
+      },
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f4e5c2b_5df82650",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-27T21:58:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ad260ae_22fdff51",
       "range": {
         "startLine": 80,
         "startChar": 0,
@@ -130,6 +202,24 @@
       "writtenOn": "2024-02-23T09:45:44Z",
       "side": 1,
       "message": "Let the outer function know and handle this error",
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4611ef86_672565ce",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-27T21:58:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5656f818_9b6ce388",
       "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -254,6 +344,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "52436c85_3d10a845",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-27T21:58:32Z",
+      "side": 1,
+      "message": "I introduced getter and setter methods for both `connecting_sockets` and `listening_sockets` within the `FlossSocketManagerClient`.",
+      "parentUuid": "fc399497_e084b1b3",
+      "range": {
+        "startLine": 116,
+        "startChar": 42,
+        "endLine": 116,
+        "endChar": 60
+      },
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1bf9075_27dc7a62",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-27T21:58:32Z",
+      "side": 1,
+      "message": "To ensure that `socket_info` is generated only when necessary and to avoid the redundancy of creating file descriptors (fd) that go unused, I implemented a check using getter methods to determine if `connecting_id` is already present in `connecting_sockets`. This check helps us understand if `socket_info` has been filled by executing the `FlossSocketManagerClient.on_outgoing_connection_result` observer. If we directly replicate the implementation from socket_manager without this check, it results in overwriting the `connecting_id` and adding a new fd value, potentially leading to unused fds and memory issues.\n\nTherefore, if `connecting_id` does not exist, I proceed to use the clone code from `FlossSocketManagerClient.on_outgoing_connection_result` and then update `connecting_sockets` with the obtained information using the setter method. This approach is also applied to `listening_sockets`.\n\nI suggest incorporating a check for `connecting_id` within `FlossSocketManagerClient.on_outgoing_connection_result`. This is because if `L2CAP.on_outgoing_connection_result` is executed first, it populates `connecting_sockets`, and then running `FlossSocketManagerClient.on_outgoing_connection_result` might overwrite `connecting_id` values, leading to the unnecessary creation of fds. What do you think, please?",
+      "parentUuid": "2a1fd9ff_9f8fa54c",
+      "range": {
+        "startLine": 116,
+        "startChar": 16,
+        "endLine": 116,
+        "endChar": 27
+      },
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "12db8ef6_0cdb80ec",
         "filename": "floss/pandora/server/l2cap.py",
         "patchSetId": 7
@@ -265,6 +403,24 @@
       "writtenOn": "2024-02-26T02:45:20Z",
       "side": 1,
       "message": "dtto",
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b6a90db_01b4cbfc",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-27T21:58:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12db8ef6_0cdb80ec",
       "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -387,6 +543,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a80b21c_643d207c",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-27T21:58:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b95d8c54_dd2f7942",
+      "range": {
+        "startLine": 146,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 0
+      },
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dfa1a761_c01c2892",
@@ -433,6 +613,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c128c0ba_d2678948",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-27T21:58:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfa1a761_c01c2892",
+      "range": {
+        "startLine": 172,
+        "startChar": 16,
+        "endLine": 172,
+        "endChar": 32
+      },
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54675ba3_908984e4",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-27T21:58:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf6435f7_dc654840",
+      "range": {
+        "startLine": 172,
+        "startChar": 47,
+        "endLine": 172,
+        "endChar": 64
+      },
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "232faec5_0625e2a3",
@@ -456,6 +684,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c493938_163f928b",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-27T21:58:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "232faec5_0625e2a3",
+      "range": {
+        "startLine": 187,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 0
+      },
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b998e041_c663530c",
@@ -469,6 +721,30 @@
       "writtenOn": "2024-02-23T09:45:44Z",
       "side": 1,
       "message": "One server socket id could be associated with multiple streams, consider making this a list.\n\nOr if the test flow guarantees to have at most 1 incoming connection, add comment here and in `__init__`.\n\n```suggestion\n                self.connection_stream.setdefault(connection_value, []).append(server_socket)\n```",
+      "range": {
+        "startLine": 210,
+        "startChar": 16,
+        "endLine": 210,
+        "endChar": 56
+      },
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84f6e6a4_5dba0843",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-27T21:58:32Z",
+      "side": 1,
+      "message": "When I examined the `connection_streams`, I initiated and accepted two sockets using the same `connection_value`. This revealed that a single `connection_value` can be associated with multiple server sockets when executing more than one socket operation. Therefore, for `ReceiveData` and `SendData` methods based on connection_value, I used the most recently added socket object. This ensures that the socket handling data transmission is active.\n\nSimilarly, with `self.connection_server_sockets`, I observed that a `connection_value` can be linked to multiple listening socket objects. Hence, I\u0027ve treated the associated value as a list and appended new socket objects to it. For the `AcceptL2CAPChannel` method, I\u0027ll use the last socket added to this list, ensuring we\u0027re working with the most recent listening socket.",
+      "parentUuid": "b998e041_c663530c",
       "range": {
         "startLine": 210,
         "startChar": 16,
