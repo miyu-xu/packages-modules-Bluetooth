@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd092615_972941b6",
+        "filename": "android/pandora/test/pairing/br_edr/ssp/keyboard_input_only/tests.py",
+        "patchSetId": 60
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-02-27T19:37:57Z",
+      "side": 1,
+      "message": "This test is still failing, see comments for AIs.",
+      "range": {
+        "startLine": 45,
+        "startChar": 22,
+        "endLine": 45,
+        "endChar": 28
+      },
+      "revId": "8a20adf2cd9d7b8ea93af978526ef6e3db2739ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
