@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cab6f31_24610d91",
+        "filename": "system/gd/hal/link_clocker.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-27T22:18:33Z",
+      "side": 1,
+      "message": "```suggestion\n      // | | [4..5]  CID\n      // | | [6..7]  Credits\n```\n\nBut what about pdl for all this parsing ?\nCan we evaluate the possibility of it ?",
+      "range": {
+        "startLine": 201,
+        "startChar": 6,
+        "endLine": 202,
+        "endChar": 26
+      },
+      "revId": "5ded31acd954c92b6067f55099eb21bf0adfee17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
