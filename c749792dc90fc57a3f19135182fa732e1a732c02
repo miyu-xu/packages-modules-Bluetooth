@@ -22,6 +22,30 @@
       },
       "revId": "c749792dc90fc57a3f19135182fa732e1a732c02",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74fac0bd_d5c08c6e",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerWrapper.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-02-27T19:30:31Z",
+      "side": 1,
+      "message": "Sorry for realizing this late but --\n\nIt seems to me that the \"else if\" condition is a superset of the original \"if\" case. Can we eliminate the if case and test if it works fine? Thank you.",
+      "parentUuid": "5b69afb8_2455c549",
+      "range": {
+        "startLine": 287,
+        "startChar": 0,
+        "endLine": 294,
+        "endChar": 0
+      },
+      "revId": "c749792dc90fc57a3f19135182fa732e1a732c02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
