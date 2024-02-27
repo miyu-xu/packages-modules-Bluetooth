@@ -100,6 +100,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdbe8955_c30c7ace",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 4981,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2024-02-27T00:48:39Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3c7cf3c2_98bb9626",
+      "range": {
+        "startLine": 4981,
+        "startChar": 37,
+        "endLine": 4981,
+        "endChar": 40
+      },
+      "revId": "04849748ef1ee1deada20cd2d843651c2abdb474",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "71ff28e7_123044b6",
