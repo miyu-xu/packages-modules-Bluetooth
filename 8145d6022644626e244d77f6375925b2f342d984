@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89aec322_8c8ad57a",
+        "filename": "system/bta/le_audio/le_audio_types.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-27T14:17:39Z",
+      "side": 1,
+      "message": "Why old logging way?\n\nAnyways, yet another new logging system is coming so it can stay for now.",
+      "revId": "8145d6022644626e244d77f6375925b2f342d984",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
