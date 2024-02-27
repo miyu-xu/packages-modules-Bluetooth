@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1add3501_29cb135c",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-27T18:33:23Z",
+      "side": 1,
+      "message": "CHECK_COMMAND_VIEW?  I guess it would require some refactoring.  Should we send a hardware error here?",
+      "range": {
+        "startLine": 178,
+        "startChar": 1,
+        "endLine": 178,
+        "endChar": 8
+      },
+      "revId": "68f89392ca0c974525eac9e03246ab17b4b2e5c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23f64863_35bbfdc3",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-27T18:33:23Z",
+      "side": 1,
+      "message": "nit: At some point, it would be nice to have defines somewhere for 0x42 and 0x43 and what they mean.",
+      "range": {
+        "startLine": 568,
+        "startChar": 61,
+        "endLine": 568,
+        "endChar": 65
+      },
+      "revId": "68f89392ca0c974525eac9e03246ab17b4b2e5c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
