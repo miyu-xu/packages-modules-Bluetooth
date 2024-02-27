@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac203824_9763c7f1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-02-27T20:49:01Z",
+      "side": 1,
+      "message": "nit: documentation",
+      "revId": "58e8d7ec646307c1904404a1d6ccb110f2cfea9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08f82f56_9f47cc80",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-02-27T20:49:01Z",
+      "side": 1,
+      "message": "nit: documentation",
+      "revId": "58e8d7ec646307c1904404a1d6ccb110f2cfea9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91ab5d02_0eca26f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-02-27T20:49:01Z",
+      "side": 1,
+      "message": "Has this been approved by the necessary folks? I haven\u0027t seen the design doc either.",
+      "revId": "58e8d7ec646307c1904404a1d6ccb110f2cfea9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
