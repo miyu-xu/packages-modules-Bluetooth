@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a95e9ac1_1b402698",
+        "filename": "system/btif/co/bta_av_co_peer.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-02-27T23:26:52Z",
+      "side": 1,
+      "message": "Removed the reset within the cache-\u003e init. Caller has to make sure to reset the cache.",
+      "parentUuid": "d51d4c2c_7cf8e0bc",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 10
+      },
+      "revId": "e187feda414da9da32a8e5f93273d780eadf53fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b6a0b5d0_f7e966a6",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-27T22:06:17Z",
       "side": 1,
       "message": "All these looks could be easier if peers_ was a std::array",
+      "range": {
+        "startLine": 112,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 3
+      },
+      "revId": "e187feda414da9da32a8e5f93273d780eadf53fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2ed9967_16d1e220",
+        "filename": "system/btif/co/bta_av_co_peer.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-02-27T23:26:52Z",
+      "side": 1,
+      "message": "Yeah, I wanted this CL just to be the refactor. Using arrays can be done as part of other CLs behind flags.",
+      "parentUuid": "b6a0b5d0_f7e966a6",
       "range": {
         "startLine": 112,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e16105c_20dfa426",
+        "filename": "system/btif/co/bta_av_co_peer.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-02-27T23:26:52Z",
+      "side": 1,
+      "message": "I had the log change as part other CL. Looks like Henri had merged the changes for log migration. no longer applicable.",
+      "parentUuid": "2bdc72a4_5e6b4848",
+      "range": {
+        "startLine": 149,
+        "startChar": 10,
+        "endLine": 149,
+        "endChar": 18
+      },
+      "revId": "e187feda414da9da32a8e5f93273d780eadf53fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "698dadaf_dcdd1e1f",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79363fb5_e1eb437e",
+        "filename": "system/btif/co/bta_av_co_peer.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-02-27T23:26:52Z",
+      "side": 1,
+      "message": "Yup, clang format was executed and didn\u0027t format this nit. I have manually added a new line.",
+      "parentUuid": "698dadaf_dcdd1e1f",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 3
+      },
+      "revId": "e187feda414da9da32a8e5f93273d780eadf53fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5796aad7_684749fb",
@@ -106,6 +202,30 @@
       "writtenOn": "2024-02-27T22:06:17Z",
       "side": 1,
       "message": "Use std::array to have iterator ?",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 69
+      },
+      "revId": "e187feda414da9da32a8e5f93273d780eadf53fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a74e0a59_64917cf5",
+        "filename": "system/btif/include/bta_av_co_peer.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-02-27T23:26:52Z",
+      "side": 1,
+      "message": "Same as previous. Separate CL (behind flag) would be better to address the concern.",
+      "parentUuid": "5796aad7_684749fb",
       "range": {
         "startLine": 125,
         "startChar": 0,
