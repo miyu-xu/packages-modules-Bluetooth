@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a98f9a8_6d087e3e",
+        "filename": "floss/pandora/floss/audio_utils.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-02-27T10:49:30Z",
+      "side": 1,
+      "message": "How about just use `utils.poll_for_condition`? If you still prefer `_poll_for_condition`, handle its return value.",
+      "range": {
+        "startLine": 96,
+        "startChar": 4,
+        "endLine": 96,
+        "endChar": 23
+      },
+      "revId": "2e97c0007ca37e28fb990fce4fb333f0fe6360cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45a98f18_6b301ed5",
+        "filename": "floss/pandora/floss/cras_utils.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-02-27T10:49:30Z",
+      "side": 1,
+      "message": "Probably still worth applying https://crrev.com/c/5300083 here.",
+      "revId": "2e97c0007ca37e28fb990fce4fb333f0fe6360cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8397f5d8_1de0bdc6",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-02-27T10:49:30Z",
+      "side": 1,
+      "message": "@johnlai@google.com please provide the guidance of the error handling.",
+      "range": {
+        "startLine": 78,
+        "startChar": 20,
+        "endLine": 78,
+        "endChar": 38
+      },
+      "revId": "2e97c0007ca37e28fb990fce4fb333f0fe6360cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
