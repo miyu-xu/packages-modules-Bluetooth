@@ -33,6 +33,24 @@
       "message": "break into two as discussed",
       "revId": "6bbb3659bf4268e74ae691a6bb8c7556578a2c1e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "775e3a16_578111cd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-27T18:03:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c670254_0adbd075",
+      "revId": "6bbb3659bf4268e74ae691a6bb8c7556578a2c1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
