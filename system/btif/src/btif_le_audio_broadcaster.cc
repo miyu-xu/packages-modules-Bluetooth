@@ -17,6 +17,7 @@
 
 #include <base/functional/bind.h>
 #include <base/logging.h>
+#include <bluetooth/log.h>
 #include <hardware/bluetooth.h>
 #include <hardware/bt_le_audio.h>
 
@@ -31,6 +32,7 @@ using bluetooth::le_audio::BroadcastId;
 using bluetooth::le_audio::BroadcastState;
 using bluetooth::le_audio::LeAudioBroadcasterCallbacks;
 using bluetooth::le_audio::LeAudioBroadcasterInterface;
+using namespace bluetooth;
 
 namespace {
 class LeAudioBroadcasterInterfaceImpl;
