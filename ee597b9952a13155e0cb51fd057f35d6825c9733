@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e08c496c_0c318ec6",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-02-27T18:54:27Z",
+      "side": 1,
+      "message": "nit: It would be better to create a constant at the top of the file with this value, and use that constant.  \n\nAlso, add a comment about adding this delay is to avoid the impact of delayed broadcast intent",
+      "range": {
+        "startLine": 128,
+        "startChar": 36,
+        "endLine": 128,
+        "endChar": 39
+      },
+      "revId": "ee597b9952a13155e0cb51fd057f35d6825c9733",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
