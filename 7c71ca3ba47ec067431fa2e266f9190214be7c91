@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9c569ba_8cd97ba5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-02-27T23:18:32Z",
+      "side": 1,
+      "message": "I am not sure whether we can still modify `sysprop/api/com.android.sysprop.bluetooth-current.txt` after API Complete date Feb 14",
+      "revId": "7c71ca3ba47ec067431fa2e266f9190214be7c91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0f2797d_89e2fa6a",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1017,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-02-27T23:18:32Z",
+      "side": 1,
+      "message": "Looks like this is an exact same code copy for `CALL_STATE_CHANGED` in `CONNECTING` state.\n\nIf it is, consider to extract as a function :)",
+      "range": {
+        "startLine": 988,
+        "startChar": 20,
+        "endLine": 1017,
+        "endChar": 21
+      },
+      "revId": "7c71ca3ba47ec067431fa2e266f9190214be7c91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66a27638_9e0f555d",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-02-27T23:18:32Z",
+      "side": 1,
+      "message": "aosp/2932510 is about AVRCP, is it correct?",
+      "range": {
+        "startLine": 558,
+        "startChar": 51,
+        "endLine": 558,
+        "endChar": 63
+      },
+      "revId": "7c71ca3ba47ec067431fa2e266f9190214be7c91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
