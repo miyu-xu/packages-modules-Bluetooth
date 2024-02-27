@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c21a64a6_3edc19fa",
+        "filename": "system/gd/hal/link_clocker.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-27T01:15:12Z",
+      "side": 1,
+      "message": "`-1` on a uint16_t ?\n\nCreate a `kIllegalConnectionHandle` with `0xffff`?",
+      "range": {
+        "startLine": 49,
+        "startChar": 51,
+        "endLine": 49,
+        "endChar": 54
+      },
+      "revId": "5fab2c6af88cd07d7a83cfbfcb70417bb2f89547",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f6041c5_4cfff96d",
+        "filename": "system/gd/hal/link_clocker.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-27T01:15:12Z",
+      "side": 1,
+      "message": "nit: Use `int` or types from `stdint.h` but not both.",
+      "range": {
+        "startLine": 182,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 49
+      },
+      "revId": "5fab2c6af88cd07d7a83cfbfcb70417bb2f89547",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
