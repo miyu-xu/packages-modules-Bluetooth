@@ -1,5 +1,40 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1765b45b_bf9e911b",
+        "filename": "system/bta/include/bta_le_audio_api.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-27T14:11:00Z",
+      "side": 1,
+      "message": "genericIsoDataCounsumer is not a great idea in LeAudio code. \nIT would work good in btm_iso.h \n\nHere, we might allow for DSA only consumers.\n\nRegisterDsaDataConsumer.\n\nAt least in this case we know which ISO data are going to be consumed, which direction  etc.\n\nWhile speaking about btm_iso.h, it might be good to consider, having there such a callback to consume ISO data from back channel, and this callback would just provide a CIS HANDLE for DSA data. But not sure how would it work when we have both DSA and Audio data in the CIS e.g. for SW path",
+      "revId": "d736f196a82b40194ec25367d587e482b5aa58be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ee8e939_f7f7d52d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 5803,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-27T14:11:00Z",
+      "side": 1,
+      "message": "in this point, why would iso_data_callback return false?\n\nIs this OK to proceed this data futher in such a case?",
+      "revId": "d736f196a82b40194ec25367d587e482b5aa58be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
