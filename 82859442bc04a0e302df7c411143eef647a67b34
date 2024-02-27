@@ -56,6 +56,52 @@
       "message": "Looks good to me, deferring to the owner for +2, test coverage, and flagging.",
       "revId": "82859442bc04a0e302df7c411143eef647a67b34",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbcfb054_d306eef3",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3043,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-27T18:02:49Z",
+      "side": 1,
+      "message": "We need to guard these changes. I have created aosp/2980012 for the flag.\n\n```suggestion\n  if (IS_FLAG_ENABLED(clear_collision_state_on_pairing_complete)) {\n    if (p_dev_rec \u0026\u0026 btm_cb.p_collided_dev_rec \u0026\u0026\n        p_dev_rec-\u003ebd_addr \u003d\u003d btm_cb.p_collided_dev_rec-\u003ebd_addr) {\n      btm_sec_cb.collision_start_time \u003d 0;\n      btm_cb.p_collided_dev_rec \u003d NULL;\n      if (alarm_is_scheduled(btm_cb.sec_collision_timer))\n        alarm_cancel(btm_cb.sec_collision_timer);\n    }\n  }\n```",
+      "range": {
+        "startLine": 3037,
+        "startChar": 0,
+        "endLine": 3043,
+        "endChar": 3
+      },
+      "revId": "82859442bc04a0e302df7c411143eef647a67b34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9465e045_d34673ef",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3799,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-27T18:02:49Z",
+      "side": 1,
+      "message": "We need to guard these changes. I have created aosp/2980012 for the flag.\n\n```suggestion\n  if (IS_FLAG_ENABLED(clear_collision_state_on_pairing_complete)) {\n    if (btm_cb.p_collided_dev_rec \u0026\u0026\n        p_dev_rec-\u003ebd_addr \u003d\u003d btm_cb.p_collided_dev_rec-\u003ebd_addr) {\n      LOG_DEBUG(\"cleanup auth collision info after disconnected\");\n      btm_cb.collision_start_time \u003d 0;\n      btm_cb.p_collided_dev_rec \u003d NULL;\n      if (alarm_is_scheduled(btm_cb.sec_collision_timer))\n        alarm_cancel(btm_cb.sec_collision_timer);\n    }\n  }\n```",
+      "range": {
+        "startLine": 3792,
+        "startChar": 0,
+        "endLine": 3799,
+        "endChar": 3
+      },
+      "revId": "82859442bc04a0e302df7c411143eef647a67b34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
