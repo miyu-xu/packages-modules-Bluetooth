@@ -184,4 +184,66 @@ class PlayerApplicationSettings {
         }
         return JNI_STATUS_INVALID;
     }
+
+    public static String equalizerStatusToString(int eq) {
+        switch (eq) {
+            case JNI_EQUALIZER_STATUS_OFF:
+                return "OFF";
+            case JNI_EQUALIZER_STATUS_ON:
+                return "ON";
+            default:
+                return "Unsupported";
+        }
+    }
+
+    public static String repeatStatusToString(int repeatMode) {
+        switch (repeatMode) {
+            case PlaybackStateCompat.REPEAT_MODE_ALL:
+                return "ALL";
+            case PlaybackStateCompat.REPEAT_MODE_GROUP:
+                return "GROUP";
+            case PlaybackStateCompat.REPEAT_MODE_NONE:
+                return "NONE";
+            case PlaybackStateCompat.REPEAT_MODE_ONE:
+                return "ONE";
+            default:
+                return "Unsupported";
+        }
+    }
+
+    public static String shuffleStatusToString(int shuffleMode) {
+        switch (shuffleMode) {
+            case PlaybackStateCompat.SHUFFLE_MODE_NONE:
+                return "NONE";
+            case PlaybackStateCompat.SHUFFLE_MODE_ALL:
+                return "ALL";
+            case PlaybackStateCompat.SHUFFLE_MODE_GROUP:
+                return "GROUP";
+            default:
+                return "Unsupported";
+        }
+    }
+
+    public static String scanStatusToString(int scanMode) {
+        switch (scanMode) {
+            case JNI_SCAN_STATUS_OFF:
+                return "SCAN_OFF";
+            case JNI_SCAN_STATUS_ALL_TRACK_SCAN:
+                return "TRACK_SCAN";
+            case JNI_SCAN_STATUS_GROUP_SCAN:
+                return "GROUP_SCAN";
+            default:
+                return "Unsupported";
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "<PlayerApplicationSettings"
+                + " equalizer=" + equalizerStatusToString(getSetting(EQUALIZER_STATUS))
+                + " repeat=" + repeatStatusToString(getSetting(REPEAT_STATUS))
+                + " shuffle=" + shuffleStatusToString(getSetting(SHUFFLE_STATUS))
+                + " scan=" + scanStatusToString(getSetting(SCAN_STATUS))
+                + ">";
+    }
 }
