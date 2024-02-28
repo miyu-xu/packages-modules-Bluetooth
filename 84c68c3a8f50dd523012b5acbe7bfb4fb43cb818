@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "709e8baa_d70caa6d",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-28T22:40:01Z",
+      "side": 1,
+      "message": "remove import ?",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 32
+      },
+      "revId": "84c68c3a8f50dd523012b5acbe7bfb4fb43cb818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec994083_59d812b2",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-28T22:40:01Z",
+      "side": 1,
+      "message": "This file does not contain code diff and we should remove it from the patchset",
+      "revId": "84c68c3a8f50dd523012b5acbe7bfb4fb43cb818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ba51554_8015f3fd",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-28T22:40:01Z",
+      "side": 1,
+      "message": "This specific include was needed inside `le_periodic_sync_manager.h` as the other header was calling base:hexencode that require this dependency.\n\nLooks like the most recent patchset changed le_periodic_sync_manager and the header is not needed at all now. (TBC)",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 51
+      },
+      "revId": "84c68c3a8f50dd523012b5acbe7bfb4fb43cb818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e8dbd66_07d37256",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-28T22:40:01Z",
+      "side": 1,
+      "message": "It build without adding the import, please remove",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 25
+      },
+      "revId": "84c68c3a8f50dd523012b5acbe7bfb4fb43cb818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a334c92c_c567b11e",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-28T22:40:01Z",
+      "side": 1,
+      "message": "It build without adding the import. Please remove",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 33
+      },
+      "revId": "84c68c3a8f50dd523012b5acbe7bfb4fb43cb818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af6c2d32_d261bc15",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-28T22:40:01Z",
+      "side": 1,
+      "message": "This looks suspicious to me. Why are we changing this ?\n@hallstrom@google.com to validate",
+      "range": {
+        "startLine": 228,
+        "startChar": 31,
+        "endLine": 228,
+        "endChar": 48
+      },
+      "revId": "84c68c3a8f50dd523012b5acbe7bfb4fb43cb818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edc1cc09_e45ccc3c",
+        "filename": "system/main/shim/le_scanning_manager.h",
+        "patchSetId": 27
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-28T22:40:01Z",
+      "side": 1,
+      "message": "I am surprise there is no equivalent in GD.\n@hallstrom@google.com can you confirm using the shim is the right way to go ?",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 60
+      },
+      "revId": "84c68c3a8f50dd523012b5acbe7bfb4fb43cb818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

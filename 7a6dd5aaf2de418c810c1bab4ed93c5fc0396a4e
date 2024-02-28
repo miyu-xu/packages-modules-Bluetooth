@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8790637_775ee80e",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-28T22:40:01Z",
+      "side": 0,
+      "message": "Removing the empty line are creating extra diff",
+      "range": {
+        "startLine": 45,
+        "startChar": 2,
+        "endLine": 53,
+        "endChar": 6
+      },
+      "revId": "7a6dd5aaf2de418c810c1bab4ed93c5fc0396a4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3000fef0_66837450",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-28T22:40:01Z",
+      "side": 0,
+      "message": "Removing the empty line are creating extra diff",
+      "range": {
+        "startLine": 221,
+        "startChar": 0,
+        "endLine": 227,
+        "endChar": 2
+      },
+      "revId": "7a6dd5aaf2de418c810c1bab4ed93c5fc0396a4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
