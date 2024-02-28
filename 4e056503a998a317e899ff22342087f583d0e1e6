@@ -33,6 +33,24 @@
       "message": "should we consider to move this above to exit earlier? e.g. to line 5817",
       "revId": "4e056503a998a317e899ff22342087f583d0e1e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81aef701_7e1f6595",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 5831,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-28T21:08:39Z",
+      "side": 1,
+      "message": "1. Keeping this check here makes sure that we are complaining about the missing callback only when the DSA is used.\n2. Presently, DSA data consumer is registered during initialization by the HOGP. However, LE audio client should not make any assumptions about it. It is possible that HOGP or any other consumer would register this callback only when the DSA is activated.",
+      "parentUuid": "f9084889_79b20635",
+      "revId": "4e056503a998a317e899ff22342087f583d0e1e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
