@@ -22,7 +22,7 @@
 
 #include <vector>
 
-namespace le_audio {
+namespace bluetooth::le_audio {
 namespace types {
 
 using ::testing::AllOf;
@@ -373,4 +373,4 @@ TEST(LeAudioLtvMapTest, test_capabilities_valid) {
 }
 
 }  // namespace types
-}  // namespace le_audio
+}  // namespace bluetooth::le_audio
