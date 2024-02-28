@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8778e3e_e4aff114",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-28T02:36:09Z",
+      "side": 0,
+      "message": "Should this be kept and used when the flag is disabled ? (looks like a logic entry point that is easily flaggable, but I may be wrong",
+      "range": {
+        "startLine": 366,
+        "startChar": 2,
+        "endLine": 366,
+        "endChar": 77
+      },
+      "revId": "782e770babc92d0690b3d19af49f64665dfff841",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

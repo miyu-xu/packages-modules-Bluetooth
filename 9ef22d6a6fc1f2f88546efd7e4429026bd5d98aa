@@ -106,6 +106,121 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eec28bf6_b56f1324",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-28T02:36:09Z",
+      "side": 1,
+      "message": "Splitting method allow to easily identify which part of the code is behind a flag from which one is not.\n\nBelow suggestion add a flag, split the method and also doing early return to prevent having extra identation and having the if far away from the error check\n\n```suggestion\nstatic tGATT_STATUS _proc_write_req_flagged(tGATT_WRITE_REQ* p_data,\n                                         uint16_t conn_id) {\n  for (const auto\u0026 db_addr : gatt_attr) {\n    if (p_data-\u003ehandle !\u003d db_addr.handle) {\n      continue;\n    }\n    if (db_addr.uuid !\u003d GATT_UUID_CHAR_CLIENT_CONFIG) {\n      return GATT_WRITE_NOT_PERMIT;\n    }\n    uint8_t value \u003d 0;\n    uint8_t* p \u003d p_data-\u003evalue;\n    STREAM_TO_UINT8(value, p);\n\n    tGATT_TCB\u0026 tcb \u003d gatt_cb.tcb[GATT_GET_TCB_IDX(conn_id)];\n    btif_storage_set_encr_data_cccd(tcb.peer_bda, value);\n    return GATT_SUCCESS;\n  }\n  return GATT_NOT_FOUND;\n}\n\ntGATT_STATUS proc_write_req(tGATTS_REQ_TYPE, tGATT_WRITE_REQ* p_data,\n                            uint16_t conn_id) {\n  if (IS_FLAG_ENABLED(encrypted_advertising_data)) {\n    return _proc_write_req_flagged(p_data, conn_id);\n  }\n  for (const auto\u0026 db_addr : gatt_attr)\n    if (p_data-\u003ehandle \u003d\u003d db_addr.handle) return GATT_WRITE_NOT_PERMIT;\n\n  return GATT_NOT_FOUND;\n}\n```\n\nLet me know if you think this does not need to be flag (and why) as there may be reason not to flag in some cases",
+      "range": {
+        "startLine": 255,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 1
+      },
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5615aa0_1c68ceb5",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-28T02:36:09Z",
+      "side": 1,
+      "message": "send_cl_read_request -\u003e send_cl_request\nIs this behavior change that need to be flagged ? (same a couple line below)",
+      "range": {
+        "startLine": 428,
+        "startChar": 9,
+        "endLine": 428,
+        "endChar": 24
+      },
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b885b35_83524b3d",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-28T02:36:09Z",
+      "side": 1,
+      "message": "Without this CL, how does receiving GATTC_OPTYPE_WRITE / GATTC_OPTYPE_INDICATION where supposed to work ?\n\n@hallstrom@google.com does this need a flag between previous behavior and the new one ? or are the two new operation specific to encrypted advertisement ?",
+      "range": {
+        "startLine": 544,
+        "startChar": 0,
+        "endLine": 589,
+        "endChar": 3
+      },
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef1ced8c_bb3d8a28",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 807,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-28T02:36:09Z",
+      "side": 1,
+      "message": "Is `6` the correct value here ? I believe it should stay 4",
+      "range": {
+        "startLine": 807,
+        "startChar": 34,
+        "endLine": 807,
+        "endChar": 35
+      },
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4be6ffd4_ee049bad",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 809,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-28T02:36:09Z",
+      "side": 1,
+      "message": "FYI, to avoid modifying too much \"whitespace line\", it could be sometimes interesting to do a early return, especially when this is the end of the method\n\nAka\n\nwhen the code is \n```\nvoid fun() {\n foo\n}\n```\n\nThe new code could be:\n```\nvoid fun() {\n if (flag) {\n   bar;\n   return;\n }\n foo   // No git diff at all on this line\n}\n```\n\nUploading this comment as a nit as gerrit offer  tools to delete whitespace diff but that may be usefull sometimes",
+      "range": {
+        "startLine": 694,
+        "startChar": 2,
+        "endLine": 809,
+        "endChar": 3
+      },
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3e0b6c60_26f99b14",
         "filename": "system/stack/gatt/gatt_attr.cc",
         "patchSetId": 27
