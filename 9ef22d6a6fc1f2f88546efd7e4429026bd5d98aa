@@ -129,6 +129,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "30a658af_755d2cb4",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-28T01:43:19Z",
+      "side": 1,
+      "message": "Yes, this should be flagged since addition to logic.\n\nPlease add a flag guard here.",
+      "parentUuid": "3e0b6c60_26f99b14",
+      "range": {
+        "startLine": 582,
+        "startChar": 1,
+        "endLine": 586,
+        "endChar": 55
+      },
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9b13e070_f969a0ee",
         "filename": "system/stack/gatt/gatt_attr.cc",
         "patchSetId": 27
