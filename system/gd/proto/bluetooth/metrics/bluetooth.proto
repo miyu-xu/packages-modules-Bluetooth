@@ -294,3 +294,23 @@ message HeadsetProfileConnectionStats {
   // Number of times this type of headset profile is connected
   optional int32 num_times_connected = 2;
 }
+
+/**
+* Encapsulates Remote Device Information
+*
+* Logged from:
+*    packages/modules/Bluetooth
+*/
+message BluetoothRemoteDeviceInformation {
+  // SHA256 hashed bluetooth device name
+  optional string device_name_hash = 1;
+  // Class of device
+  optional int32 class_of_device = 2;
+  // OUI: First 3 bytes of mac address
+  // Byte 1
+  optional int32 byte1 = 3;
+  // Byte 2
+  optional int32 byte2 = 4;
+  // Byte 3
+  optional int32 byte3 = 5;
+}
