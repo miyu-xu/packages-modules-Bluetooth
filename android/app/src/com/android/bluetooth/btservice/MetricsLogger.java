@@ -18,14 +18,17 @@ package com.android.bluetooth.btservice;
 import static com.android.bluetooth.BtRestrictedStatsLog.RESTRICTED_BLUETOOTH_DEVICE_NAME_REPORTED;
 
 import android.app.AlarmManager;
+import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.os.Build;
 import android.os.SystemClock;
 import android.util.Log;
+import android.util.proto.ProtoOutputStream;
 
 import androidx.annotation.RequiresApi;
 
 import com.android.bluetooth.BluetoothMetricsProto.BluetoothLog;
+import com.android.bluetooth.BluetoothMetricsProto.BluetoothRemoteDeviceInformation;
 import com.android.bluetooth.BluetoothMetricsProto.ProfileConnectionStats;
 import com.android.bluetooth.BluetoothMetricsProto.ProfileId;
 import com.android.bluetooth.BluetoothStatsLog;
@@ -48,9 +51,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * Class of Bluetooth Metrics
- */
+/** Class of Bluetooth Metrics */
 public class MetricsLogger {
     private static final String TAG = "BluetoothMetricsLogger";
     private static final String BLOOMFILTER_PATH = "/data/misc/bluetooth";
@@ -70,21 +71,22 @@ public class MetricsLogger {
     private Context mContext = null;
     private AlarmManager mAlarmManager = null;
     private boolean mInitialized = false;
-    static final private Object mLock = new Object();
+    private static final Object M_LOCK = new Object();
     private BloomFilter<byte[]> mBloomFilter = null;
     protected boolean mBloomFilterInitialized = false;
 
-    private AlarmManager.OnAlarmListener mOnAlarmListener = new AlarmManager.OnAlarmListener () {
-        @Override
-        public void onAlarm() {
-            drainBufferedCounters();
-            scheduleDrains();
-        }
-    };
+    private AlarmManager.OnAlarmListener mOnAlarmListener =
+            new AlarmManager.OnAlarmListener() {
+                @Override
+                public void onAlarm() {
+                    drainBufferedCounters();
+                    scheduleDrains();
+                }
+            };
 
     public static MetricsLogger getInstance() {
         if (sInstance == null) {
-            synchronized (mLock) {
+            synchronized (M_LOCK) {
                 if (sInstance == null) {
                     sInstance = new MetricsLogger();
                 }
@@ -101,7 +103,7 @@ public class MetricsLogger {
     @VisibleForTesting
     public static void setInstanceForTesting(MetricsLogger instance) {
         Utils.enforceInstrumentationTestMode();
-        synchronized (mLock) {
+        synchronized (M_LOCK) {
             Log.d(TAG, "setInstanceForTesting(), set to " + instance);
             sInstance = instance;
         }
@@ -124,11 +126,14 @@ public class MetricsLogger {
             mBloomFilterInitialized = true;
         } catch (IOException e1) {
             Log.w(TAG, "MetricsLogger can't read the BloomFilter file.");
-            byte[] bloomfilterData = DeviceBloomfilterGenerator.hexStringToByteArray(
-                    DeviceBloomfilterGenerator.BLOOM_FILTER_DEFAULT);
+            byte[] bloomfilterData =
+                    DeviceBloomfilterGenerator.hexStringToByteArray(
+                            DeviceBloomfilterGenerator.BLOOM_FILTER_DEFAULT);
             try {
-                mBloomFilter = BloomFilter.readFrom(
-                        new ByteArrayInputStream(bloomfilterData), Funnels.byteArrayFunnel());
+                mBloomFilter =
+                        BloomFilter.readFrom(
+                                new ByteArrayInputStream(bloomfilterData),
+                                Funnels.byteArrayFunnel());
                 mBloomFilterInitialized = true;
                 Log.i(TAG, "The default bloomfilter is used");
                 return true;
@@ -171,7 +176,7 @@ public class MetricsLogger {
         }
         long total = 0;
 
-        synchronized (mLock) {
+        synchronized (M_LOCK) {
             if (mCounters.containsKey(key)) {
                 total = mCounters.get(key);
             }
@@ -186,9 +191,9 @@ public class MetricsLogger {
     }
 
     /**
-     * Log profile connection event by incrementing an internal counter for that profile.
-     * This log persists over adapter enable/disable and only get cleared when metrics are
-     * dumped or when Bluetooth process is killed.
+     * Log profile connection event by incrementing an internal counter for that profile. This log
+     * persists over adapter enable/disable and only get cleared when metrics are dumped or when
+     * Bluetooth process is killed.
      *
      * @param profileId Bluetooth profile that is connected at this event
      */
@@ -199,19 +204,19 @@ public class MetricsLogger {
     }
 
     /**
-     * Dump collected metrics into proto using a builder.
-     * Clean up internal data after the dump.
+     * Dump collected metrics into proto using a builder. Clean up internal data after the dump.
      *
      * @param metricsBuilder proto builder for {@link BluetoothLog}
      */
     public static void dumpProto(BluetoothLog.Builder metricsBuilder) {
         synchronized (sProfileConnectionCounts) {
             sProfileConnectionCounts.forEach(
-                    (key, value) -> metricsBuilder.addProfileConnectionStats(
-                            ProfileConnectionStats.newBuilder()
-                                    .setProfileId(key)
-                                    .setNumTimesConnected(value)
-                                    .build()));
+                    (key, value) ->
+                            metricsBuilder.addProfileConnectionStats(
+                                    ProfileConnectionStats.newBuilder()
+                                            .setProfileId(key)
+                                            .setNumTimesConnected(value)
+                                            .build()));
             sProfileConnectionCounts.clear();
         }
     }
@@ -238,14 +243,13 @@ public class MetricsLogger {
             Log.w(TAG, "count is not larger than 0. count: " + count + " key: " + key);
             return false;
         }
-        BluetoothStatsLog.write(
-                BluetoothStatsLog.BLUETOOTH_CODE_PATH_COUNTER, key, count);
+        BluetoothStatsLog.write(BluetoothStatsLog.BLUETOOTH_CODE_PATH_COUNTER, key, count);
         return true;
     }
 
     protected void drainBufferedCounters() {
         Log.i(TAG, "drainBufferedCounters().");
-        synchronized (mLock) {
+        synchronized (M_LOCK) {
             // send mCounters to statsd
             for (int key : mCounters.keySet()) {
                 count(key, mCounters.get(key));
@@ -269,8 +273,67 @@ public class MetricsLogger {
         mBloomFilterInitialized = false;
         return true;
     }
+
     protected void cancelPendingDrain() {
         mAlarmManager.cancel(mOnAlarmListener);
+    }
+
+    /**
+     * Retrieves a ProtoOutputStream containing serialized device information (name, address, class)
+     * for the specified BluetoothDevice. This data can be used for remote device identification and
+     * logging.
+     *
+     * @param device The BluetoothDevice for which to retrieve device information.
+     * @return A ProtoOutputStream containing the serialized device information.
+     */
+    public byte[] getRemoteDeviceInfoProto(BluetoothDevice device) {
+        try {
+            ProtoOutputStream proto = new ProtoOutputStream();
+
+            // write Allowlisted Device Name Hash
+            proto.write(
+                    ProtoOutputStream.FIELD_TYPE_STRING
+                            | ProtoOutputStream.FIELD_COUNT_SINGLE
+                            | BluetoothRemoteDeviceInformation
+                                    .ALLOWLISTED_DEVICE_NAME_HASH_FIELD_NUMBER,
+                    getAllowlistedDeviceNameHash(device.getName()));
+
+            // write COD
+            proto.write(
+                    ProtoOutputStream.FIELD_TYPE_INT32
+                            | ProtoOutputStream.FIELD_COUNT_SINGLE
+                            | BluetoothRemoteDeviceInformation.CLASS_OF_DEVICE_FIELD_NUMBER,
+                    device.getBluetoothClass().getClassOfDevice());
+
+            // write OUI
+            proto.write(
+                    ProtoOutputStream.FIELD_TYPE_INT32
+                            | ProtoOutputStream.FIELD_COUNT_SINGLE
+                            | BluetoothRemoteDeviceInformation.OUI_FIELD_NUMBER,
+                    getOui(device));
+            return proto.getBytes();
+        } catch (Exception e) {
+            Log.e(TAG, "Error creating remote device information proto: " + e.getMessage());
+            return null;
+        }
+    }
+
+    private int compressBytes(int b1, int b2, int b3) {
+        // Ensure input integers are within the byte range (0-255)
+        b1 = b1 & 0xFF;
+        b2 = b2 & 0xFF;
+        b3 = b3 & 0xFF;
+
+        // Combine bytes using bitwise shifts and OR operations
+        return (b1 << 16) | (b2 << 8) | b3;
+    }
+
+    private int getOui(BluetoothDevice device) {
+        String[] macAddress = device.getAddress().split(":");
+        return compressBytes(
+                Integer.parseInt(macAddress[0], 16),
+                Integer.parseInt(macAddress[1], 16),
+                Integer.parseInt(macAddress[2], 16));
     }
 
     private List<String> getWordBreakdownList(String deviceName) {
@@ -280,8 +343,7 @@ public class MetricsLogger {
         // remove more than one spaces in a row
         deviceName = deviceName.trim().replaceAll(" +", " ");
         // remove non alphanumeric characters and spaces, and transform to lower cases.
-        String[] words = deviceName.replaceAll(
-                "[^a-zA-Z0-9 ]", "").toLowerCase().split(" ");
+        String[] words = deviceName.replaceAll("[^a-zA-Z0-9 ]", "").toLowerCase().split(" ");
 
         if (words.length > MAX_WORDS_ALLOWED_IN_DEVICE_NAME) {
             // Validity checking here to avoid excessively long sequences
@@ -347,8 +409,7 @@ public class MetricsLogger {
 
     protected void statslogBluetoothDeviceNames(int metricId, String matchedString) {
         String sha256 = getSha256String(matchedString);
-        Log.d(TAG,
-                "Uploading sha256 hash of matched bluetooth device name: " + sha256);
+        Log.d(TAG, "Uploading sha256 hash of matched bluetooth device name: " + sha256);
         BluetoothStatsLog.write(
                 BluetoothStatsLog.BLUETOOTH_HASHED_DEVICE_NAME_REPORTED, metricId, sha256);
     }
