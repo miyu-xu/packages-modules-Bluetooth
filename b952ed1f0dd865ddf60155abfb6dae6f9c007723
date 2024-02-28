@@ -22,6 +22,29 @@
       },
       "revId": "b952ed1f0dd865ddf60155abfb6dae6f9c007723",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30f40f33_7a3496f5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 6095,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-28T22:15:29Z",
+      "side": 1,
+      "message": "nit: \n\n```\n        byte[] addressBytes \u003d getBytesFromAddress(device.getAddress());\n        if (mFeatureFlags.apiGetConnectionStateUsingIdentityAddress()) {\n            final String identityAddress \u003d device.getIdentityAddress();\n            if (identityAddress !\u003d null) {\n              addressBytes \u003d getBytesFromAddress(identityAddress)\u0027\n            }\n        }\n        return mNativeInterface.getConnectionState(getBytesFromAddress(device.getAddress()));\n```",
+      "range": {
+        "startLine": 6089,
+        "startChar": 0,
+        "endLine": 6095,
+        "endChar": 93
+      },
+      "revId": "b952ed1f0dd865ddf60155abfb6dae6f9c007723",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
