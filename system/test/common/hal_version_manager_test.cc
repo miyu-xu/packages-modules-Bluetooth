@@ -279,3 +279,13 @@ TEST_F_WITH_FLAGS(
   EXPECT_TRUE(BluetoothAudioHalVersion(BluetoothAudioHalTransport::AIDL, 5, 0)
                   .isAIDL());
 }
+
+TEST_F(BluetoothAudioHalVersionTest, halTransportMustBeKnown) {
+  EXPECT_TRUE(HalVersionManager::GetHalTransport() !=
+              BluetoothAudioHalTransport::UNKNOWN);
+}
+
+TEST_F(BluetoothAudioHalVersionTest, halVersionMustBeKnown) {
+  EXPECT_TRUE(HalVersionManager::GetHalVersion() !=
+              BluetoothAudioHalVersion::VERSION_UNAVAILABLE);
+}
