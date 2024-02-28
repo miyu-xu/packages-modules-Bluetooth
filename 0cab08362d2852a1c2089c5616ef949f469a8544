@@ -16,6 +16,24 @@
       "message": "LGTM but just to clarify shouldn\u0027t we have this same change for sco close as well?",
       "revId": "0cab08362d2852a1c2089c5616ef949f469a8544",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24825575_4cf14f11",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-02-28T21:21:13Z",
+      "side": 1,
+      "message": "because when there is no more call usage, we would like to close the SCO as soon as possible. There is no explicit benefit for waiting until the Audio HAL closes the SCO",
+      "parentUuid": "f2f4cd23_53059ded",
+      "revId": "0cab08362d2852a1c2089c5616ef949f469a8544",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
