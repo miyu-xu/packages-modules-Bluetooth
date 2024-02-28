@@ -18,11 +18,15 @@ package com.android.bluetooth.btservice;
 import static com.android.bluetooth.BtRestrictedStatsLog.RESTRICTED_BLUETOOTH_DEVICE_NAME_REPORTED;
 
 import android.app.AlarmManager;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.rfcomm.BluetoothRfcommProtoEnums;
 import android.content.Context;
 import android.os.SystemClock;
 import android.util.Log;
+import android.util.proto.ProtoOutputStream;
 
 import com.android.bluetooth.BluetoothMetricsProto.BluetoothLog;
+import com.android.bluetooth.BluetoothMetricsProto.BluetoothRemoteDeviceInformation;
 import com.android.bluetooth.BluetoothMetricsProto.ProfileConnectionStats;
 import com.android.bluetooth.BluetoothMetricsProto.ProfileId;
 import com.android.bluetooth.BluetoothStatsLog;
@@ -269,6 +273,26 @@ public class MetricsLogger {
         mAlarmManager.cancel(mOnAlarmListener);
     }
 
+<<<<<<< PATCH SET (905299 [BluetoothMetrics] RDI Changes inside RFCOMM proto)
+    /**
+     * Retrieves a ProtoOutputStream containing serialized device information (name, address, class)
+     * for the specified BluetoothDevice. This data can be used for remote device identification and
+     * logging.
+     *
+     * @param device The BluetoothDevice for which to retrieve device information.
+     * @return A ProtoOutputStream containing the serialized device information.
+     */
+    public ProtoOutputStream getRemoteDeviceInfoProto(BluetoothDevice device) {
+        ProtoOutputStream proto = new ProtoOutputStream();
+        long remoteDeviceInformationToken =
+                proto.start(BluetoothRemoteDeviceInformation.DEVICE_NAME_HASH_FIELD_NUMBER);
+        proto.write(
+                BluetoothRemoteDeviceInformation.CLASS_OF_DEVICE_FIELD_NUMBER,
+                device.getBluetoothClass().getClassOfDevice());
+        proto.end(remoteDeviceInformationToken);
+        Log.d(TAG, "Bluetooth Remote Device Information Proto: " + proto.getBytes());
+        return proto;
+=======
     private ArrayList<String> getWordBreakdownList(String deviceName) {
         if (deviceName == null) {
             return new ArrayList<String>();
@@ -295,8 +319,79 @@ public class MetricsLogger {
         }
 
         return wordBreakdownList;
+>>>>>>> BASE      (1b9c1b [BluetoothMetrics] Refactor Hashed Name Retrieval from loggi)
     }
 
+<<<<<<< PATCH SET (905299 [BluetoothMetrics] RDI Changes inside RFCOMM proto)
+    /**
+     * Logs a Bluetooth RFCOMM connection attempt with detailed metrics.
+     *
+     * @param metricId An integer identifier for the specific metric being logged.
+     * @param device The BluetoothDevice involved in the connection attempt.
+     * @param isSecured True if the connection attempt used a secured channel, false otherwise.
+     * @param resultCode An integer result code indicating the outcome of the connection attempt.
+     * @param socketCreationTimeNanos The time (in nanoseconds) taken to create the RFCOMM socket.
+     * @param isSerialPort True if the RFCOMM connection is for a serial port profile, false
+     *     otherwise.
+     * @param appUid The UID of the application initiating the connection attempt.
+     */
+    public void statsLogBluetoothRfcommConnectionAttempt(
+            int metricId,
+            BluetoothDevice device,
+            boolean isSecured,
+            int resultCode,
+            long socketCreationTimeNanos,
+            boolean isSerialPort,
+            int appUid) {
+        long currentTime = System.nanoTime();
+        long endToEndLatencyNanos = currentTime - socketCreationTimeNanos;
+        ProtoOutputStream remoteDeviceInfoOutput = getRemoteDeviceInfoProto(device);
+        BluetoothStatsLog.write(
+                BluetoothStatsLog.BLUETOOTH_RFCOMM_CONNECTION_ATTEMPTED,
+                metricId,
+                endToEndLatencyNanos,
+                isSecured
+                        ? BluetoothRfcommProtoEnums.SOCKET_SECURITY_SECURE
+                        : BluetoothRfcommProtoEnums.SOCKET_SECURITY_INSECURE,
+                resultCode,
+                isSerialPort,
+                appUid,
+                remoteDeviceInfoOutput.getBytes());
+    }
+
+    private void uploadRestrictedBluetothDeviceName(ArrayList<String> wordBreakdownList) {
+        for (String word : wordBreakdownList) {
+            BtRestrictedStatsLog.write(RESTRICTED_BLUETOOTH_DEVICE_NAME_REPORTED, word);
+        }
+    }
+
+    private String getMatchedString(ArrayList<String> wordBreakdownList) {
+        if (!mBloomFilterInitialized || wordBreakdownList.isEmpty()) {
+            return "";
+        }
+
+        String matchedString = "";
+        for (String word : wordBreakdownList) {
+            byte[] sha256 = getSha256(word);
+            if (mBloomFilter.mightContain(sha256) && word.length() > matchedString.length()) {
+                matchedString = word;
+            }
+        }
+        return matchedString;
+    }
+
+    protected String logDeviceNameSha(int metricId, String deviceName, boolean logRestrictedNames) {
+        ArrayList<String> wordBreakdownList = getWordBreakdownList(deviceName);
+        String matchedString = getMatchedString(wordBreakdownList);
+        if (logRestrictedNames) {
+            // Log the restricted bluetooth device name
+            if (SdkLevel.isAtLeastU()) {
+                uploadRestrictedBluetothDeviceName(wordBreakdownList);
+        }
+            if (!matchedString.isEmpty()) {
+                statslogBluetoothDeviceNames(metricId, matchedString);
+            }
+=======
     private void uploadRestrictedBluetothDeviceName(ArrayList<String> wordBreakdownList) {
         for (String word : wordBreakdownList) {
             BtRestrictedStatsLog.write(RESTRICTED_BLUETOOTH_DEVICE_NAME_REPORTED, word);
@@ -336,6 +431,7 @@ public class MetricsLogger {
         }
         if (!matchedString.isEmpty()) {
             statslogBluetoothDeviceNames(metricId, matchedString);
+>>>>>>> BASE      (1b9c1b [BluetoothMetrics] Refactor Hashed Name Retrieval from loggi)
         }
         return getSha256String(matchedString);
     }
