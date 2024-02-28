@@ -18,23 +18,24 @@ package com.android.bluetooth.btservice;
 import static com.android.bluetooth.BtRestrictedStatsLog.RESTRICTED_BLUETOOTH_DEVICE_NAME_REPORTED;
 
 import android.app.AlarmManager;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.rfcomm.BluetoothRfcommProtoEnums;
 import android.content.Context;
 import android.os.SystemClock;
 import android.util.Log;
-
+import android.util.proto.ProtoOutputStream;
 import com.android.bluetooth.BluetoothMetricsProto.BluetoothLog;
+import com.android.bluetooth.BluetoothMetricsProto.BluetoothRemoteDeviceInformation;
 import com.android.bluetooth.BluetoothMetricsProto.ProfileConnectionStats;
 import com.android.bluetooth.BluetoothMetricsProto.ProfileId;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.BtRestrictedStatsLog;
 import com.android.bluetooth.Utils;
-import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.build.SdkLevel;
-
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
 import com.google.common.hash.Hashing;
-
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -319,6 +320,39 @@ public class MetricsLogger {
                 matchedString,
                 Hashing.sha256().hashString(matchedString, StandardCharsets.UTF_8).toString());
         return true;
+    }
+
+    public ProtoOutputStream getRemoteDeviceInfoProto(BluetoothDevice device) {
+      // Start a Remote Device Information token
+      ProtoOutputStream proto = new ProtoOutputStream();
+      long remoteDeviceInformationToken = proto.start(BluetoothRemoteDeviceInformation.DEVICE_NAME_HASH_FIELD_NUMBER);
+      proto.write(BluetoothRemoteDeviceInformation.CLASS_OF_DEVICE_FIELD_NUMBER, device.getBluetoothClass().getClassOfDevice());
+      proto.end(remoteDeviceInformationToken);
+      Log.d(TAG, "Bluetooth Remote Device Information Proto: " + proto.getBytes());
+      return proto;
+    }
+
+    public void statsLogBluetoothRfcommConnectionAttempt(
+            int metricId,
+            BluetoothDevice device,
+            boolean isSecured,
+            int resultCode,
+            long socketCreationTimeNanos,
+            boolean isSerialPort,
+            int appUid) {
+        long currentTime = System.nanoTime();
+        long endToEndLatencyNanos = currentTime - socketCreationTimeNanos;
+        ProtoOutputStream remoteDeviceInfoOutput = getRemoteDeviceInfoProto(device);
+        BluetoothStatsLog.write(
+                BluetoothStatsLog.BLUETOOTH_RFCOMM_CONNECTION_ATTEMPTED,
+                metricId,
+                endToEndLatencyNanos,
+                isSecured
+                        ? BluetoothRfcommProtoEnums.SOCKET_SECURITY_SECURE
+                        : BluetoothRfcommProtoEnums.SOCKET_SECURITY_INSECURE,
+                resultCode,
+                isSerialPort,
+                appUid);
     }
 
     protected void statslogBluetoothDeviceNames(int metricId, String matchedString, String sha256) {
