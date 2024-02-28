@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69612ab9_17e7e03b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 972,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-28T09:27:10Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "25935805_06191c4b",
+      "revId": "43c23b1fb4df84d71bc2ecef7275d5ed28983249",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c413c20_62fe298d",
@@ -48,6 +66,24 @@
       "writtenOn": "2024-02-28T01:11:22Z",
       "side": 1,
       "message": "looking at your other CLs reminds me of this :p, stateMachine !\u003d null?",
+      "revId": "43c23b1fb4df84d71bc2ecef7275d5ed28983249",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6057f405_3c8fc386",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1359,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-28T09:27:10Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7c413c20_62fe298d",
       "revId": "43c23b1fb4df84d71bc2ecef7275d5ed28983249",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
