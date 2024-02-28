@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "090daa1a_d3406e8a",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2867,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-02-28T15:07:38Z",
+      "side": 1,
+      "message": "We need the fix presented in this CL for a case where the peer is sink and we are using the new AVRCP profile implementation. I found in the code such ways to distinguish the new and the old one:\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/av/bta_av_aact.cc;drc\u003d7881793e9b56994212d3a7c31795bec682c53c4d;l\u003d3064\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/av/bta_av_aact.cc;drc\u003d7881793e9b56994212d3a7c31795bec682c53c4d;l\u003d3078\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/av/bta_av_act.cc;drc\u003d49ac8b74a83c293e8c3097691f1781d20ad80aad;l\u003d335\n\nNow the legacy AVRCP has that fix implemented already here:\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/btif/src/btif_av.cc;drc\u003d49ac8b74a83c293e8c3097691f1781d20ad80aad;l\u003d1767\n\nSo I wanted to invoke it from the new implementation, which does not rely on btif_rc_(...), and omit the check btif_rc_is_connected_peer() as it would always fail in this case. \n\nThis ensures that we don\u0027t break the old version and we fix the new implementation.\n\nIf you know about a better way of determining which AVRCP implementation is being used please let me know, as I did struggle with that ; )",
+      "parentUuid": "8795fc90_95af54e9",
+      "range": {
+        "startLine": 2867,
+        "startChar": 6,
+        "endLine": 2867,
+        "endChar": 32
+      },
+      "revId": "e3bc1c41518a06824aa43870709ef427d2464eca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4dabeddd_ba3ecf4f",
         "filename": "system/btif/src/btif_av.cc",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-20T19:28:12Z",
       "side": 1,
       "message": "if-else logic based on what profiles are enabled will not work for when _both_ profiles are enabled. Leaving this code in could be a source of bugs in the future, and may encourage other uses of a pattern we don\u0027t like.\n\nIf we can, I would remove this and exclusively use the type of logic above, where you make dispatch decisions based on the peer type, regardless of what profiles are enabled. Just get rid of the `btif_av_both_enable()` check. I think things will work all the same.",
+      "range": {
+        "startLine": 4361,
+        "startChar": 1,
+        "endLine": 4365,
+        "endChar": 3
+      },
+      "revId": "e3bc1c41518a06824aa43870709ef427d2464eca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "038d5d00_78e13fe3",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 4365,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-02-28T15:07:38Z",
+      "side": 1,
+      "message": "Thank you for your comments. I had to redesign the fix, because in this moment we do not know exactly if perr is audio source or audio sink. Hence I am doing service discovery for audio sink and audio source and based on that information I trigger btif_av_sink_dispatch_sm_event and btif_av_source_dispatch_sm_event respectively. \nThis introduces a greater delay between avrcp connect and a2dp connect, but I don\u0027t think that would be a problem. Let me know what do you think",
+      "parentUuid": "4dabeddd_ba3ecf4f",
       "range": {
         "startLine": 4361,
         "startChar": 1,
