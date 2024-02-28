@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "789aa711_d3a5a952",
+        "filename": "system/bta/le_audio/broadcaster/broadcast_configuration_provider.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-28T11:03:42Z",
+      "side": 1,
+      "message": "2024",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "43fa1663d6beadbde138eb7c16bd15d8a0762184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5574222_b8053d0d",
+        "filename": "system/bta/le_audio/broadcaster/broadcast_configuration_provider.h",
+        "patchSetId": 25
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-28T11:03:42Z",
+      "side": 1,
+      "message": "nit 2024",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "43fa1663d6beadbde138eb7c16bd15d8a0762184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c9ea4b49_07de83de",
         "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
         "patchSetId": 25
