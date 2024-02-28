@@ -10,7 +10,12 @@ package {
 
 cc_library_static {
     name: "libbt-audio-hal-interface",
-    defaults: ["fluoride_defaults"],
+    defaults: [
+        "fluoride_defaults",
+        "latest_android_hardware_audio_common_ndk_static",
+        "latest_android_hardware_bluetooth_audio_ndk_static",
+        "latest_android_media_audio_common_types_ndk_static",
+    ],
     include_dirs: [
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/bta/include",
@@ -19,12 +24,17 @@ cc_library_static {
         "packages/modules/Bluetooth/system/stack/include",
     ],
     shared_libs: [
-        "android.hardware.bluetooth.audio@2.0",
-        "android.hardware.bluetooth.audio@2.1",
+        "libbase",
+        "libcutils",
         "libhidlbase",
         "libutils",
     ],
     static_libs: [
+        "android.hardware.audio.common@5.0",
+        "android.hardware.bluetooth.audio@2.0",
+        "android.hardware.bluetooth.audio@2.1",
+        "android.hardware.common-V2-ndk",
+        "android.hardware.common.fmq-V1-ndk",
         "bluetooth_flags_c_lib",
         "libbluetooth_log",
         "libbt-common",
@@ -34,7 +44,6 @@ cc_library_static {
     target: {
         android: {
             shared_libs: [
-                "android.hardware.bluetooth.audio-V4-ndk",
                 "libbinder_ndk",
                 "libfmq",
             ],
