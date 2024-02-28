@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cae6c05f_6db7f56a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-28T00:36:28Z",
+      "side": 1,
+      "message": "Hi, please apply formatting across the whole CL and topic, there are around 140 changes that are not formatted. (I only commented on the first 3 files but I belie\n\nFYI AOSP provide tools to reformat code when uploading a CL using repo.",
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "765efd7d_de806f03",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-28T00:36:28Z",
+      "side": 1,
+      "message": "Please apply format, this is not correctly sorted",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 36
+      },
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "178cc195_ad61266c",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 1005,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-28T00:36:28Z",
+      "side": 1,
+      "message": "Please apply format, there should not be 2 lines",
+      "range": {
+        "startLine": 1004,
+        "startChar": 6,
+        "endLine": 1005,
+        "endChar": 23
+      },
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fad59bd5_ad2bd334",
+        "filename": "system/bta/include/bta_sec_api.h",
+        "patchSetId": 27
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-28T00:36:28Z",
+      "side": 1,
+      "message": "wrong indentation level",
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2154b36_ea415794",
+        "filename": "system/btif/include/btif_storage.h",
+        "patchSetId": 27
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-28T00:36:28Z",
+      "side": 1,
+      "message": "wrong indentation",
+      "range": {
+        "startLine": 351,
+        "startChar": 0,
+        "endLine": 351,
+        "endChar": 46
+      },
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
