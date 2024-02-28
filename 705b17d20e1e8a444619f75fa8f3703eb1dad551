@@ -16,6 +16,69 @@
       "message": "Merge conflict for now. Will re-base along with Aritra\u0027s comment (if any)",
       "revId": "705b17d20e1e8a444619f75fa8f3703eb1dad551",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef1567ad_83f48692",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-02-28T23:09:52Z",
+      "side": 1,
+      "message": "can we resolve merge conflicts?",
+      "revId": "705b17d20e1e8a444619f75fa8f3703eb1dad551",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec547d5f_00475371",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-02-28T23:09:52Z",
+      "side": 1,
+      "message": "do we need a null check for reference state here?",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 62
+      },
+      "revId": "705b17d20e1e8a444619f75fa8f3703eb1dad551",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5331765e_a2909a38",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-02-28T23:09:52Z",
+      "side": 1,
+      "message": "why dont we need a null check here as well?",
+      "range": {
+        "startLine": 712,
+        "startChar": 29,
+        "endLine": 712,
+        "endChar": 44
+      },
+      "revId": "705b17d20e1e8a444619f75fa8f3703eb1dad551",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
