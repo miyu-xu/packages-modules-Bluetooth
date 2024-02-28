@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc4a8f54_2a50b1c6",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 3037,
+      "author": {
+        "id": 3211944
+      },
+      "writtenOn": "2024-02-28T03:18:54Z",
+      "side": 1,
+      "message": "This flag is enabled by default, right? What kind of changes need to be guarded with flags?",
+      "range": {
+        "startLine": 3037,
+        "startChar": 6,
+        "endLine": 3037,
+        "endChar": 65
+      },
+      "revId": "c6187ab1d6ae752e2b8a2d506eafdff15b5aeeb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
