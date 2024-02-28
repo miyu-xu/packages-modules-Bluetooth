@@ -22,7 +22,6 @@ import static android.bluetooth.BluetoothDevice.TRANSPORT_AUTO;
 import static android.bluetooth.IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;
 import static android.text.format.DateUtils.MINUTE_IN_MILLIS;
 import static android.text.format.DateUtils.SECOND_IN_MILLIS;
-
 import static com.android.bluetooth.ChangeIds.ENFORCE_CONNECT;
 import static com.android.bluetooth.Utils.callerIsSystem;
 import static com.android.bluetooth.Utils.callerIsSystemOrActiveOrManagedUser;
@@ -34,7 +33,6 @@ import static com.android.bluetooth.Utils.getBytesFromAddress;
 import static com.android.bluetooth.Utils.hasBluetoothPrivilegedPermission;
 import static com.android.bluetooth.Utils.isDualModeAudioEnabled;
 import static com.android.bluetooth.Utils.isPackageNameAccurate;
-
 import static java.util.Objects.requireNonNull;
 
 import android.annotation.NonNull;
@@ -107,7 +105,6 @@ import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.util.SparseArray;
-
 import com.android.bluetooth.BluetoothMetricsProto;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.R;
@@ -152,11 +149,7 @@ import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.BackgroundThread;
 import com.android.modules.utils.BytesMatcher;
 import com.android.modules.utils.SynchronousResultReceiver;
-
 import com.google.protobuf.InvalidProtocolBufferException;
-
-import libcore.util.SneakyThrow;
-
 import java.io.FileDescriptor;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -179,6 +172,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import libcore.util.SneakyThrow;
 
 public class AdapterService extends Service {
     private static final String TAG = "BluetoothAdapterService";
@@ -922,6 +916,15 @@ public class AdapterService extends Service {
             boolean isSerialPort,
             int appUid) {
         int metricId = getMetricId(device);
+        MetricsLogger.getInstance()
+                .statsLogBluetoothRfcommConnectionAttempt(
+                        metricId,
+                        device,
+                        isSecured,
+                        resultCode,
+                        socketCreationTimeNanos,
+                        isSerialPort,
+                        appUid);
         long currentTime = System.nanoTime();
         long endToEndLatencyNanos = currentTime - socketCreationTimeNanos;
         BluetoothStatsLog.write(

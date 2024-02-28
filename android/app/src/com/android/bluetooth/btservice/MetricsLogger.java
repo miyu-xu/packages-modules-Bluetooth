@@ -18,22 +18,32 @@ package com.android.bluetooth.btservice;
 import static com.android.bluetooth.BtRestrictedStatsLog.RESTRICTED_BLUETOOTH_DEVICE_NAME_REPORTED;
 
 import android.app.AlarmManager;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.rfcomm.BluetoothRfcommProtoEnums;
 import android.content.Context;
 import android.os.SystemClock;
 import android.util.Log;
-
+import android.util.proto.ProtoOutputStream;
 import com.android.bluetooth.BluetoothMetricsProto.BluetoothLog;
+import com.android.bluetooth.BluetoothMetricsProto.BluetoothRemoteDeviceInformation;
 import com.android.bluetooth.BluetoothMetricsProto.ProfileConnectionStats;
 import com.android.bluetooth.BluetoothMetricsProto.ProfileId;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.BtRestrictedStatsLog;
 import com.android.bluetooth.Utils;
 import com.android.modules.utils.build.SdkLevel;
+<<<<<<< PATCH SET (0ac23d [BluetoothMetrics] RDI Changes inside RFCOMM proto)
+=======
 
+>>>>>>> BASE      (6f3e8f [BluetoothMetrics] Refactor Hashed Name Retrieval from loggi)
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
+<<<<<<< PATCH SET (0ac23d [BluetoothMetrics] RDI Changes inside RFCOMM proto)
+import com.google.common.hash.Hashing;
+=======
 
+>>>>>>> BASE      (6f3e8f [BluetoothMetrics] Refactor Hashed Name Retrieval from loggi)
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -294,6 +304,47 @@ public class MetricsLogger {
         return wordBreakdownList;
     }
 
+<<<<<<< PATCH SET (0ac23d [BluetoothMetrics] RDI Changes inside RFCOMM proto)
+    // Returns the ProtoOutputStream containing the Remote Device Information
+    public ProtoOutputStream getRemoteDeviceInfoProto(BluetoothDevice device) {
+        // Start a Remote Device Information token
+        ProtoOutputStream proto = new ProtoOutputStream();
+        long remoteDeviceInformationToken =
+                proto.start(BluetoothRemoteDeviceInformation.DEVICE_NAME_HASH_FIELD_NUMBER);
+        proto.write(
+                BluetoothRemoteDeviceInformation.CLASS_OF_DEVICE_FIELD_NUMBER,
+                device.getBluetoothClass().getClassOfDevice());
+        proto.end(remoteDeviceInformationToken);
+        Log.d(TAG, "Bluetooth Remote Device Information Proto: " + proto.getBytes());
+        return proto;
+    }
+
+    public void statsLogBluetoothRfcommConnectionAttempt(
+            int metricId,
+            BluetoothDevice device,
+            boolean isSecured,
+            int resultCode,
+            long socketCreationTimeNanos,
+            boolean isSerialPort,
+            int appUid) {
+        long currentTime = System.nanoTime();
+        long endToEndLatencyNanos = currentTime - socketCreationTimeNanos;
+        ProtoOutputStream remoteDeviceInfoOutput = getRemoteDeviceInfoProto(device);
+        BluetoothStatsLog.write(
+                BluetoothStatsLog.BLUETOOTH_RFCOMM_CONNECTION_ATTEMPTED,
+                metricId,
+                endToEndLatencyNanos,
+                isSecured
+                        ? BluetoothRfcommProtoEnums.SOCKET_SECURITY_SECURE
+                        : BluetoothRfcommProtoEnums.SOCKET_SECURITY_INSECURE,
+                resultCode,
+                isSerialPort,
+                appUid,
+                remoteDeviceInfoOutput.getBytes());
+    }
+
+    protected void statslogBluetoothDeviceNames(int metricId, String matchedString, String sha256) {
+=======
     private void uploadRestrictedBluetothDeviceName(ArrayList<String> wordBreakdownList) {
         for (String word : wordBreakdownList) {
             BtRestrictedStatsLog.write(RESTRICTED_BLUETOOTH_DEVICE_NAME_REPORTED, word);
@@ -332,6 +383,7 @@ public class MetricsLogger {
 
     protected void statslogBluetoothDeviceNames(int metricId, String matchedString) {
         String sha256 = getSha256String(matchedString);
+>>>>>>> BASE      (6f3e8f [BluetoothMetrics] Refactor Hashed Name Retrieval from loggi)
         Log.d(TAG,
                 "Uploading sha256 hash of matched bluetooth device name: " + sha256);
         BluetoothStatsLog.write(
