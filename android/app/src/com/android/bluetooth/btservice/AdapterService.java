@@ -923,6 +923,15 @@ public class AdapterService extends Service {
             int appUid) {
 
         int metricId = getMetricId(device);
+        MetricsLogger.getInstance()
+                .statsLogBluetoothRfcommConnectionAttempt(
+                        metricId,
+                        device,
+                        isSecured,
+                        resultCode,
+                        socketCreationTimeNanos,
+                        isSerialPort,
+                        appUid);
         long currentTime = System.nanoTime();
         long endToEndLatencyNanos = currentTime - socketCreationTimeNanos;
         BluetoothStatsLog.write(
