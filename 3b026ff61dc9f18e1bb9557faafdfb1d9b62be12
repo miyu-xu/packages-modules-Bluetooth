@@ -16,6 +16,29 @@
       "message": "Removed new test cases as they won\u0027t pass for the `hal_version_manager_host` implementation",
       "revId": "3b026ff61dc9f18e1bb9557faafdfb1d9b62be12",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a315768a_6022160a",
+        "filename": "system/audio_hal_interface/hal_version_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-28T22:50:04Z",
+      "side": 1,
+      "message": "Can these all be static constexpr?\n```suggestion\nstatic constexpr BluetoothAudioHalVersion\n    BluetoothAudioHalVersion::VERSION_UNAVAILABLE \u003d BluetoothAudioHalVersion();\nstatic constexpr BluetoothAudioHalVersion\n    BluetoothAudioHalVersion::VERSION_2_0 \u003d\n```",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 5
+      },
+      "revId": "3b026ff61dc9f18e1bb9557faafdfb1d9b62be12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
