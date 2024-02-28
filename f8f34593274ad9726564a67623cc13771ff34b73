@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d59184b_5e076874",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-28T16:28:26Z",
+      "side": 1,
+      "message": "@cmanton, can we remove this from mockcify.pl, as well?",
+      "revId": "f8f34593274ad9726564a67623cc13771ff34b73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
