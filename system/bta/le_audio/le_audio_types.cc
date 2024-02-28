@@ -30,7 +30,7 @@
 #include "internal_include/bt_trace.h"
 #include "stack/include/bt_types.h"
 
-namespace le_audio {
+namespace bluetooth::le_audio {
 using types::acs_ac_record;
 using types::LeAudioContextType;
 
@@ -752,7 +752,7 @@ std::string ToHexString(const LeAudioContextType& value) {
 
 std::string AudioContexts::to_string() const {
   std::stringstream s;
-  for (auto ctx : le_audio::types::kLeAudioContextAllTypesArray) {
+  for (auto ctx : bluetooth::le_audio::types::kLeAudioContextAllTypesArray) {
     if (test(ctx)) {
       if (s.tellp() != 0) s << " | ";
       s << ctx;
@@ -814,4 +814,4 @@ template struct BidirectionalPair<stream_parameters>;
 template struct BidirectionalPair<uint16_t>;
 
 }  // namespace types
-}  // namespace le_audio
+}  // namespace bluetooth::le_audio

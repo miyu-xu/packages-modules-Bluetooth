@@ -848,8 +848,9 @@ void btif_storage_load_bonded_leaudio_has_devices() {
     if (btif_config_get_int(name, BTIF_STORAGE_KEY_LEAUDIO_HAS_FLAGS, &value))
       features = value;
 
-    do_in_main_thread(FROM_HERE, Bind(&le_audio::has::HasClient::AddFromStorage,
-                                      bd_addr, features, is_acceptlisted));
+    do_in_main_thread(FROM_HERE,
+                      Bind(&bluetooth::le_audio::has::HasClient::AddFromStorage,
+                           bd_addr, features, is_acceptlisted));
 #else
     ASSERT_LOG(false, "TODO - Fix LE audio build.");
 #endif
