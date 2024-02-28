@@ -26,6 +26,29 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "8d950f05_552342ad",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 6081,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-28T22:16:17Z",
+      "side": 1,
+      "message": "getIdentityAddress() is handled automatically when getting structures from RemoteDevices.",
+      "range": {
+        "startLine": 6081,
+        "startChar": 53,
+        "endLine": 6081,
+        "endChar": 72
+      },
+      "revId": "b952ed1f0dd865ddf60155abfb6dae6f9c007723",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "30f40f33_7a3496f5",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
         "patchSetId": 8
