@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2c847d1_bdcd261f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-28T19:58:43Z",
+      "side": 1,
+      "message": "@rlukasz@google.com @tyszkowski@google.com, could you also help to review this CL since you might continue to work on this feature?",
+      "revId": "4e056503a998a317e899ff22342087f583d0e1e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9084889_79b20635",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 5831,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-28T19:58:43Z",
+      "side": 1,
+      "message": "should we consider to move this above to exit earlier? e.g. to line 5817",
+      "revId": "4e056503a998a317e899ff22342087f583d0e1e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
