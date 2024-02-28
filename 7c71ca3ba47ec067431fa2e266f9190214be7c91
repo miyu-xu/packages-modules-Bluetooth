@@ -59,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6ab4b6c_2f7bb21d",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-02-28T17:04:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f4584ed_2f049fcb",
+      "range": {
+        "startLine": 270,
+        "startChar": 0,
+        "endLine": 270,
+        "endChar": 40
+      },
+      "revId": "7c71ca3ba47ec067431fa2e266f9190214be7c91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6cecba37_68fba403",
@@ -72,6 +96,30 @@
       "writtenOn": "2024-02-27T23:42:50Z",
       "side": 1,
       "message": "init_flags isn\u0027t used anymore, why is the include needed ?",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 33
+      },
+      "revId": "7c71ca3ba47ec067431fa2e266f9190214be7c91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d7cf29c_6762fe0c",
+        "filename": "android/app/jni/com_android_bluetooth_hfp.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-02-28T17:04:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6cecba37_68fba403",
       "range": {
         "startLine": 24,
         "startChar": 0,
@@ -105,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f4a82e5_9e40e1fc",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1017,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-02-28T17:04:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0f2797d_89e2fa6a",
+      "range": {
+        "startLine": 988,
+        "startChar": 20,
+        "endLine": 1017,
+        "endChar": 21
+      },
+      "revId": "7c71ca3ba47ec067431fa2e266f9190214be7c91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66a27638_9e0f555d",
@@ -128,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "109d6039_c115e130",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-02-28T17:04:23Z",
+      "side": 1,
+      "message": "My mistake, fixed, thanks ; )",
+      "parentUuid": "66a27638_9e0f555d",
+      "range": {
+        "startLine": 558,
+        "startChar": 51,
+        "endLine": 558,
+        "endChar": 63
+      },
+      "revId": "7c71ca3ba47ec067431fa2e266f9190214be7c91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03352281_1da70a44",
@@ -141,6 +237,24 @@
       "writtenOn": "2024-02-27T23:42:50Z",
       "side": 1,
       "message": "Delete the file ?",
+      "revId": "7c71ca3ba47ec067431fa2e266f9190214be7c91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00f803c8_ac5cbabd",
+        "filename": "sysprop/api/com.android.sysprop.bluetooth-current.txt",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-02-28T17:04:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03352281_1da70a44",
       "revId": "7c71ca3ba47ec067431fa2e266f9190214be7c91",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
