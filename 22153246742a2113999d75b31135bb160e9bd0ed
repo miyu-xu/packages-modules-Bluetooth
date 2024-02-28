@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7c53ebf_ae9c779d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 973,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-28T17:34:04Z",
+      "side": 1,
+      "message": "should we move this before stateMachine.sendMessage?",
+      "range": {
+        "startLine": 973,
+        "startChar": 0,
+        "endLine": 973,
+        "endChar": 16
+      },
+      "revId": "22153246742a2113999d75b31135bb160e9bd0ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
