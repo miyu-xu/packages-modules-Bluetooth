@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b053811f_5be62958",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-28T18:19:06Z",
+      "side": 1,
+      "message": "this looks redundant.",
+      "range": {
+        "startLine": 683,
+        "startChar": 20,
+        "endLine": 683,
+        "endChar": 40
+      },
+      "revId": "acf423bc5da459ebc42aa2ce921b903325822c90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f66dc2a8_a7c4abe5",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 718,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-28T18:19:06Z",
+      "side": 1,
+      "message": "```suggestion\n  if (service_uuid \u003d\u003d UUID_SERVCLASS_AUDIO_SOURCE) {\n     device-\u003ea2dp_source_supported_ \u003d found;\n     // try looking for AUDIO_SINK\n     SdpLookupAudioRole(UUID_SERVCLASS_AUDIO_SINK, handle);\n     return;\n  }\n  \n  device-\u003ea2dp_sink_supported_ \u003d found;\n  \n  // Here not sure if we always want to call it..\n  device-\u003econnect_a2dp_delayed(handle, peer_address);\n  }\n```",
+      "range": {
+        "startLine": 704,
+        "startChar": 2,
+        "endLine": 718,
+        "endChar": 3
+      },
+      "revId": "acf423bc5da459ebc42aa2ce921b903325822c90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6089d182_96d82351",
+        "filename": "system/profile/avrcp/device.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-28T18:19:06Z",
+      "side": 1,
+      "message": "this is Device class. Is is proper place for this?\n\ne.g. address_ is already here",
+      "revId": "acf423bc5da459ebc42aa2ce921b903325822c90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "106118d2_7a6b6a28",
+        "filename": "system/profile/avrcp/device.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-28T18:19:06Z",
+      "side": 1,
+      "message": "function name says we search for A2DP. What else could be in `service_uuid` ?",
+      "range": {
+        "startLine": 337,
+        "startChar": 25,
+        "endLine": 337,
+        "endChar": 46
+      },
+      "revId": "acf423bc5da459ebc42aa2ce921b903325822c90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fda9761_12f76281",
+        "filename": "system/profile/avrcp/device.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-28T18:19:06Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 337,
+        "startChar": 48,
+        "endLine": 337,
+        "endChar": 78
+      },
+      "revId": "acf423bc5da459ebc42aa2ce921b903325822c90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
