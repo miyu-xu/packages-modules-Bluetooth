@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "099f414a_22b987fa",
+        "filename": "system/btif/src/btif_a2dp_control.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-02-28T23:19:24Z",
+      "side": 1,
+      "message": "I think it sends ACK immediately if peer is source ... if sink we check `btif_av_stream_started_ready`.",
+      "parentUuid": "5be0607f_70ee36f0",
+      "revId": "3415095ca189f03d725cdead519001dbb528edee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6202a0c5_97a3a69e",
         "filename": "system/btif/src/btif_a2dp_sink.cc",
         "patchSetId": 2

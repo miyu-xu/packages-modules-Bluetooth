@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "298d748d_e164d339",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 649,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-02-28T23:19:24Z",
+      "side": 1,
+      "message": "nit: can we use `log::warn` instead.",
+      "range": {
+        "startLine": 649,
+        "startChar": 8,
+        "endLine": 649,
+        "endChar": 16
+      },
+      "revId": "dac982a671b567db21fae7d828b50d7245b0fb56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

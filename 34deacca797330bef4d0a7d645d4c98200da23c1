@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f1ce7a6_5c2a4ecb",
+        "filename": "system/btif/src/btif_a2dp.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-02-28T23:19:24Z",
+      "side": 0,
+      "message": "Why are we removing this???",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 0
+      },
+      "revId": "34deacca797330bef4d0a7d645d4c98200da23c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
