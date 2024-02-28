@@ -283,6 +283,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ed4ae39a_e5f0947f",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-28T23:42:39Z",
+      "side": 1,
+      "message": "This should be flagged.",
+      "parentUuid": "1b885b35_83524b3d",
+      "range": {
+        "startLine": 544,
+        "startChar": 0,
+        "endLine": 589,
+        "endChar": 3
+      },
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ef1ced8c_bb3d8a28",
         "filename": "system/stack/gap/gap_ble.cc",
         "patchSetId": 27
