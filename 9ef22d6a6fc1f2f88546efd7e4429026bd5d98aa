@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7bfa718_25e5f8c4",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 989,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-28T02:37:03Z",
+      "side": 0,
+      "message": "update aosp/2748039  instead",
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
