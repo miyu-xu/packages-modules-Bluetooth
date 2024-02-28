@@ -29,7 +29,7 @@
 
 #include "le_audio_types.h"
 
-namespace le_audio {
+namespace bluetooth::le_audio {
 namespace utils {
 types::LeAudioContextType AudioContentToLeAudioContext(
     audio_content_type_t content_type, audio_usage_t usage);
@@ -58,4 +58,4 @@ std::vector<bluetooth::le_audio::btle_audio_codec_config_t>
 GetRemoteBtLeAudioCodecConfigFromPac(
     const types::PublishedAudioCapabilities& group_pacs);
 }  // namespace utils
-}  // namespace le_audio
+}  // namespace bluetooth::le_audio
