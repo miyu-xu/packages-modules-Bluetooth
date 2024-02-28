@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e58bc510_28332864",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 1168,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-28T12:54:28Z",
+      "side": 0,
+      "message": "this seems to be not related",
+      "revId": "c1a2e75575769e4a2694f97c110d9f99bbcfe2a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0243576a_bcf68869",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 1197,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-28T12:54:28Z",
+      "side": 0,
+      "message": "this seems to be not related",
+      "revId": "c1a2e75575769e4a2694f97c110d9f99bbcfe2a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
