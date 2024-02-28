@@ -76,7 +76,6 @@ import android.bluetooth.IBluetoothSocketManager;
 import android.bluetooth.IncomingRfcommSocketInfo;
 import android.bluetooth.OobData;
 import android.bluetooth.UidTraffic;
-import android.bluetooth.rfcomm.BluetoothRfcommProtoEnums;
 import android.companion.CompanionDeviceManager;
 import android.content.AttributionSource;
 import android.content.Context;
@@ -946,20 +945,15 @@ public class AdapterService extends Service {
             long socketCreationTimeNanos,
             boolean isSerialPort,
             int appUid) {
-        int metricId = getMetricId(device);
-        long currentTime = System.nanoTime();
-        long endToEndLatencyNanos = currentTime - socketCreationTimeNanos;
-        BluetoothStatsLog.write(
-                BluetoothStatsLog.BLUETOOTH_RFCOMM_CONNECTION_ATTEMPTED,
-                metricId,
-                endToEndLatencyNanos,
-                isSecured
-                        ? BluetoothRfcommProtoEnums.SOCKET_SECURITY_SECURE
-                        : BluetoothRfcommProtoEnums.SOCKET_SECURITY_INSECURE,
-                resultCode,
-                isSerialPort,
-                appUid,
-                new byte[0]);
+        MetricsLogger.getInstance()
+                .statsLogBluetoothRfcommConnectionAttempt(
+                        getMetricId(device),
+                        device,
+                        isSecured,
+                        resultCode,
+                        socketCreationTimeNanos,
+                        isSerialPort,
+                        appUid);
     }
 
     @RequiresPermission(
