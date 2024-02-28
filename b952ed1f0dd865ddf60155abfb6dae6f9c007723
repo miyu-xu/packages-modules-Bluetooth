@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66b80b67_ac1124b4",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 3035,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-28T22:11:40Z",
+      "side": 1,
+      "message": "Please code it this way to allow calling getIdentityAddress() from getConnectionState()\n\n```\nfinal long token \u003d Binder.clearCallingIdentity();\ntry {\n  return service.getConnectionState(device);\n} finally {\n  Binder.restoreCallingIdentity(token);\n}\n```",
+      "range": {
+        "startLine": 3034,
+        "startChar": 0,
+        "endLine": 3035,
+        "endChar": 54
+      },
+      "revId": "b952ed1f0dd865ddf60155abfb6dae6f9c007723",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
