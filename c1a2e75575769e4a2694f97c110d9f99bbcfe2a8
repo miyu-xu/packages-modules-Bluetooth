@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26be550f_9fe3c8e4",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-28T12:44:02Z",
+      "side": 1,
+      "message": "after offline discussion,\n\nthis assert will happen if stack would call this function for configuration received from AIDL, which would be an internal error which shall be fixed.\n\nIt is ok to keep this assert then",
+      "revId": "c1a2e75575769e4a2694f97c110d9f99bbcfe2a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb089272_c0c996c7",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 1169,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-28T12:44:02Z",
+      "side": 1,
+      "message": "something to clean.",
+      "revId": "c1a2e75575769e4a2694f97c110d9f99bbcfe2a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
