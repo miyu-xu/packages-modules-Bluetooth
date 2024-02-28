@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8deb26ce_f4a56cc6",
+        "filename": "framework/java/android/bluetooth/le/AdvertiseData.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-28T00:40:45Z",
+      "side": 1,
+      "message": "this doesn\u0027t match the function parameter:\n\nneedEncryption !\u003d enableEncryption \n\nCan you check if the comment still apply",
+      "range": {
+        "startLine": 556,
+        "startChar": 18,
+        "endLine": 556,
+        "endChar": 34
+      },
+      "revId": "cda7ce733fda6ed3769e944be4c609a875b33227",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
