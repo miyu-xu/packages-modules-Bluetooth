@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "200ad0a5_df7c245b",
+        "filename": "system/audio_hal_interface/fuzzer/libbt_audio_hal_a2dp_encoding_fuzzer.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1137703
+      },
+      "writtenOn": "2024-02-28T20:06:18Z",
+      "side": 1,
+      "message": "Do we need to consume bytes from the fuzzer?  Does the read() function use the data in the buffer, or does it just overwrite it?",
+      "revId": "d189ea7359f2dc5374685bb35fd4968b910b4945",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

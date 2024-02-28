@@ -86,6 +86,24 @@
       "parentUuid": "c5ba39f0_6ad91438",
       "revId": "8b187ab7f0b977eec8082e0b2bc252b2c6af4d7d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37a62c9c_ea8ce1a5",
+        "filename": "system/audio_hal_interface/fuzzer/libbt_audio_hal_a2dp_encoding_fuzzer.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1137703
+      },
+      "writtenOn": "2024-02-28T20:06:18Z",
+      "side": 1,
+      "message": "Thanks!  Resolving...",
+      "parentUuid": "209abff1_6cd273c1",
+      "revId": "8b187ab7f0b977eec8082e0b2bc252b2c6af4d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
