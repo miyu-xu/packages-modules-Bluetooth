@@ -51,6 +51,24 @@
       "parentUuid": "f9084889_79b20635",
       "revId": "4e056503a998a317e899ff22342087f583d0e1e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b290067d_7a473c1a",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 5831,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-28T21:12:39Z",
+      "side": 1,
+      "message": "I\u0027m not suggesting to remove this check. \nJust from the code logic flow\u0027s pov, I think it would be better to do this check earlier than here, so that if callback is null, we skip checking the rest.",
+      "parentUuid": "81aef701_7e1f6595",
+      "revId": "4e056503a998a317e899ff22342087f583d0e1e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
