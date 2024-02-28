@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c68b42ee_5395b335",
+        "filename": "floss/pandora/server/bluetooth.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-28T14:48:02Z",
+      "side": 1,
+      "message": "I included the device name because it\u0027s required along with the address to pass as parameters to `create_insecure_rfcomm_socket_to_service_record` or any similar method that requires the device. Since the name isn\u0027t available from the grpc request, I had to specify it. \nThis approach was inspired by an instance I found in adapter_client where a test needed a device name that wasn\u0027t provided, so a mock name was used.\nhttps://source.chromium.org/chromiumos/chromiumos/codesearch/+/main:src/third_party/autotest/files/client/cros/bluetooth/floss/adapter_client.py;l\u003d687?q\u003d%22Test%20device%22\u0026ss\u003dchromiumos%2Fchromiumos%2Fcodesearch:src%2Fthird_party%2Fautotest%2Ffiles%2F",
+      "parentUuid": "abc9b976_3d52f3fd",
+      "range": {
+        "startLine": 391,
+        "startChar": 16,
+        "endLine": 391,
+        "endChar": 27
+      },
+      "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "042c2310_e4443901",
         "filename": "floss/pandora/server/rfcomm.py",
         "patchSetId": 2
@@ -37,6 +61,24 @@
       "writtenOn": "2024-02-23T10:08:13Z",
       "side": 1,
       "message": "let the outer function know and handle this error",
+      "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87021903_3ae6892f",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-28T14:48:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "042c2310_e4443901",
       "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -54,6 +96,30 @@
       "writtenOn": "2024-02-23T10:08:13Z",
       "side": 1,
       "message": "Similar to https://r.android.com/c/2950369, shouldn\u0027t depend on this data as it may not yet be generated",
+      "range": {
+        "startLine": 68,
+        "startChar": 42,
+        "endLine": 68,
+        "endChar": 79
+      },
+      "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c31732dd_f5aeaa9a",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-28T14:48:02Z",
+      "side": 1,
+      "message": "I applied the same approach as outlined for L2CAP\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2950369/comment/3267f6b2_dbc5c779/",
+      "parentUuid": "404d8caa_792c0490",
       "range": {
         "startLine": 68,
         "startChar": 42,
@@ -89,6 +155,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a441e3f4_bce902be",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-28T14:48:02Z",
+      "side": 1,
+      "message": "I removed the check of request.address based on your suggestion in offline discussion",
+      "parentUuid": "df462553_8595e58a",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 0
+      },
+      "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4110eff4_de0a2f4c",
         "filename": "floss/pandora/server/rfcomm.py",
         "patchSetId": 2
@@ -100,6 +190,30 @@
       "writtenOn": "2024-02-26T02:51:33Z",
       "side": 1,
       "message": "dtto",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 101
+      },
+      "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba88e370_20aa55f5",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-28T14:48:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4110eff4_de0a2f4c",
       "range": {
         "startLine": 85,
         "startChar": 0,
@@ -180,6 +294,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "636c45c5_d207815a",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-28T14:48:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13c5bd22_169bd2c5",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 111
+      },
+      "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "955c4ee2_de151bbb",
@@ -193,6 +331,24 @@
       "writtenOn": "2024-02-23T10:08:13Z",
       "side": 1,
       "message": "Let the outer function know and handle the error",
+      "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20d93f9b_827c544b",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-28T14:48:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "955c4ee2_de151bbb",
       "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -220,6 +376,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "821de70b_d696d6ce",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-28T14:48:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22f434c6_d5a1d03d",
+      "range": {
+        "startLine": 155,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 70
+      },
+      "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e73d696b_60e92cc3",
@@ -237,6 +417,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7025ab0c_391790d5",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-28T14:48:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e73d696b_60e92cc3",
+      "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "615db365_d79c321c",
@@ -250,6 +448,30 @@
       "writtenOn": "2024-02-26T02:51:33Z",
       "side": 1,
       "message": "dtto",
+      "range": {
+        "startLine": 193,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 102
+      },
+      "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccdd62c1_31d5adc1",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-28T14:48:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "615db365_d79c321c",
       "range": {
         "startLine": 193,
         "startChar": 0,
@@ -330,6 +552,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f6a5fae_df48da47",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-28T14:48:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86c80de7_5f395513",
+      "range": {
+        "startLine": 225,
+        "startChar": 47,
+        "endLine": 225,
+        "endChar": 96
+      },
+      "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af026b11_a8017ce3",
@@ -353,6 +599,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "27ef820b_f8fde517",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-28T14:48:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af026b11_a8017ce3",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 250,
+        "endChar": 0
+      },
+      "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "30f99f79_528fdfc8",
@@ -366,6 +636,30 @@
       "writtenOn": "2024-02-26T02:51:33Z",
       "side": 1,
       "message": "dtto",
+      "range": {
+        "startLine": 253,
+        "startChar": 0,
+        "endLine": 253,
+        "endChar": 107
+      },
+      "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cf29cbb_9c0b25c1",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-28T14:48:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30f99f79_528fdfc8",
       "range": {
         "startLine": 253,
         "startChar": 0,
