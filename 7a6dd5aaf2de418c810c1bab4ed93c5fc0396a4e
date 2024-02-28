@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24828a82_7e06f3b8",
+        "filename": "framework/java/android/bluetooth/le/BluetoothLeAdvertiser.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 668,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-28T22:42:10Z",
+      "side": 1,
+      "message": "encryptionBytesAdded is always false here since defined line 664\n```suggestion\n        if (data.getDeviceNameEnc()) {\n```\n\nBut I believe this is done on purpose in order to repeat exactly the same pattern bellow.\n\n\nNit:\n\nInstead of repeating this over and over we could do 2 things.\n\nEither we only assigne to `encryptionBytesAdded` with a mask and add the size at the end\n```java\n[…]\nencryptionBytesAdded |\u003d data.getServiceSolicitationUuidsEnc();\n[…]\nencryptionBytesAdded |\u003d data.getTransportDiscoveryDataEnc();\n[…]\n\nif (encryptionBytesAdded) {\n  size +\u003d ENCRYPTION_OVERHEAD_BYTES\n}\n```\n\n\nOr we can do a big if at the end and remove the temporary variable.\n\n```\nif (data.getDeviceNameEnc()\n    || (data.getServiceSolicitationUuids() !\u003d null \u0026\u0026 data.getServiceSolicitationUuidsEnc())\n    || (!data.getTransportDiscoveryData().isEmpty() \u0026\u0026 data.getTransportDiscoveryDataEnc())\n    || ([…]) ) {\n  size +\u003d ENCRYPTION_OVERHEAD_BYTES\n}\n```\n\n\nI think I prefer the first one that is more readable. (and therefor maybe rename the variable to `encryptionBytesNeeded`.",
+      "range": {
+        "startLine": 668,
+        "startChar": 13,
+        "endLine": 668,
+        "endChar": 33
+      },
+      "revId": "7a6dd5aaf2de418c810c1bab4ed93c5fc0396a4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
