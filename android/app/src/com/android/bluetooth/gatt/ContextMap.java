@@ -27,7 +27,6 @@ import android.os.UserHandle;
 import android.os.WorkSource;
 import android.util.Log;
 
-import androidx.annotation.VisibleForTesting;
 
 import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.le_scan.AppScanStats;
@@ -256,8 +255,9 @@ public class ContextMap<C, T> {
         synchronized (mAppsLock) {
             synchronized (this) {
                 if (!mAppAdvertiseStats.containsKey(id)) {
-                    AppAdvertiseStats appAdvertiseStats = BluetoothMethodProxy.getInstance()
-                            .createAppAdvertiseStats(appUid, id, appName, this, service);
+                    AppAdvertiseStats appAdvertiseStats =
+                            BluetoothMethodProxy.getInstance()
+                                    .createAppAdvertiseStats(id, appName, this, service);
                     mAppAdvertiseStats.put(id, appAdvertiseStats);
                 }
             }

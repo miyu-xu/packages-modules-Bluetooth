@@ -127,38 +127,12 @@ public class GattService extends ProfileService {
     private static final boolean DBG = GattServiceConfig.DBG;
     private static final boolean VDBG = GattServiceConfig.VDBG;
     private static final String TAG = GattServiceConfig.TAG_PREFIX + "GattService";
-    private static final String UUID_SUFFIX = "-0000-1000-8000-00805f9b34fb";
-    private static final String UUID_ZERO_PAD = "00000000";
 
     static final int SCAN_FILTER_ENABLED = 1;
     static final int SCAN_FILTER_MODIFIED = 2;
 
-    private static final int MAC_ADDRESS_LENGTH = 6;
     // Batch scan related constants.
     private static final int TRUNCATED_RESULT_SIZE = 11;
-    private static final int TIME_STAMP_LENGTH = 2;
-
-    private enum MatchOrigin {
-        PSEUDO_ADDRESS,
-        ORIGINAL_ADDRESS
-    }
-
-    private static class MatchResult {
-        private final boolean mMatches;
-        private final MatchOrigin mOrigin;
-        private MatchResult(boolean matches, MatchOrigin origin) {
-            this.mMatches = matches;
-            this.mOrigin = origin;
-        }
-
-        public boolean getMatches() {
-            return mMatches;
-        }
-
-        public MatchOrigin getMatchOrigin() {
-            return mOrigin;
-        }
-    }
 
     /**
      * The default floor value for LE batch scan report delays greater than 0
@@ -357,7 +331,6 @@ public class GattService extends ProfileService {
                 new AdvertiseManager(
                         this,
                         AdvertiseManagerNativeInterface.getInstance(),
-                        mAdapterService,
                         mAdvertiserMap);
 
         HandlerThread thread = new HandlerThread("BluetoothScanManager");
@@ -476,16 +449,6 @@ public class GattService extends ProfileService {
             return;
         }
         enforceBluetoothPrivilegedPermission(this);
-    }
-
-    // Suppressed because we are conditionally enforcing
-    @SuppressLint("AndroidFrameworkRequiresPermission")
-    private void permissionCheck(ClientMap.App app, int connId, int handle) {
-        if (!isHandleRestricted(connId, handle) || app.hasBluetoothPrivilegedPermission) {
-            return;
-        }
-        enforceBluetoothPrivilegedPermission(this);
-        app.hasBluetoothPrivilegedPermission = true;
     }
 
     private boolean isHandleRestricted(int connId, int handle) {
@@ -2067,11 +2030,15 @@ public class GattService extends ProfileService {
                     result = sanitized;
                 }
             }
-            MatchResult matchResult = matchesFilters(client, result, originalAddress);
-            if (!hasPermission || !matchResult.getMatches()) {
+            boolean matchResult = matchesFilters(client, result, originalAddress);
+            if (!hasPermission || !matchResult) {
                 if (VDBG) {
-                    Log.d(TAG, "Skipping client: permission="
-                            + hasPermission + " matches=" + matchResult.getMatches());
+                    Log.d(
+                            TAG,
+                            "Skipping client: permission="
+                                    + hasPermission
+                                    + " matches="
+                                    + matchResult);
                 }
                 continue;
             }
@@ -2185,28 +2152,28 @@ public class GattService extends ProfileService {
     }
 
     // Check if a scan record matches a specific filters.
-    private MatchResult matchesFilters(ScanClient client, ScanResult scanResult) {
+    private boolean matchesFilters(ScanClient client, ScanResult scanResult) {
         return matchesFilters(client, scanResult, null);
     }
 
     // Check if a scan record matches a specific filters or original address
-    private MatchResult matchesFilters(ScanClient client, ScanResult scanResult,
-            String originalAddress) {
+    private boolean matchesFilters(
+            ScanClient client, ScanResult scanResult, String originalAddress) {
         if (client.filters == null || client.filters.isEmpty()) {
             // TODO: Do we really wanna return true here?
-            return new MatchResult(true, MatchOrigin.PSEUDO_ADDRESS);
+            return true;
         }
         for (ScanFilter filter : client.filters) {
             // Need to check the filter matches, and the original address without changing the API
             if (filter.matches(scanResult)) {
-                return new MatchResult(true, MatchOrigin.PSEUDO_ADDRESS);
+                return true;
             }
             if (originalAddress != null
                     && originalAddress.equalsIgnoreCase(filter.getDeviceAddress())) {
-                return new MatchResult(true, MatchOrigin.ORIGINAL_ADDRESS);
+                return true;
             }
         }
-        return new MatchResult(false, MatchOrigin.PSEUDO_ADDRESS);
+        return false;
     }
 
     private void handleDeadScanClient(ScanClient client) {
@@ -2909,7 +2876,7 @@ public class GattService extends ProfileService {
         // Reconstruct the scan results.
         ArrayList<ScanResult> results = new ArrayList<ScanResult>();
         for (ScanResult scanResult : permittedResults) {
-            if (matchesFilters(client, scanResult).getMatches()) {
+            if (matchesFilters(client, scanResult)) {
                 results.add(scanResult);
             }
         }
@@ -3459,8 +3426,7 @@ public class GattService extends ProfileService {
             Log.d(TAG, "stopScan() - queue size =" + scanQueueSize);
         }
 
-        AppScanStats app = null;
-        app = mTransitionalScanHelper.getScannerMap().getAppScanStatsById(scannerId);
+        AppScanStats app = mTransitionalScanHelper.getScannerMap().getAppScanStatsById(scannerId);
         if (app != null) {
             app.recordScanStop(scannerId);
         }
