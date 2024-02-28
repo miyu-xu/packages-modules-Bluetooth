@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "48fbc10a_9919765c",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-28T22:44:42Z",
+      "side": 1,
+      "message": "Or maybe this was needed in another CL but not this one ?",
+      "parentUuid": "709e8baa_d70caa6d",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 32
+      },
+      "revId": "84c68c3a8f50dd523012b5acbe7bfb4fb43cb818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ec994083_59d812b2",
         "filename": "system/gd/hci/le_periodic_sync_manager.h",
         "patchSetId": 27
