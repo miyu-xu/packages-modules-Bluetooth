@@ -72,8 +72,7 @@ public class MetricsLoggerTest {
         }
 
         @Override
-        protected void statslogBluetoothDeviceNames(
-                int metricId, String matchedString, String sha256) {
+        protected void statslogBluetoothDeviceNames(int metricId, String matchedString) {
             mTestableDeviceNames.merge(matchedString, 1, Integer::sum);
         }
     }
@@ -224,7 +223,7 @@ public class MetricsLoggerTest {
 
     @Test
     public void testDeviceNameUploadingDeviceSet1() {
-        initTestingBloomfitler();
+        initTestingBloomfilter();
 
         mTestableMetricsLogger.logSanitizedBluetoothDeviceName(1, "a b c d e f g h pixel 7");
         Assert.assertTrue(mTestableMetricsLogger.mTestableDeviceNames.isEmpty());
@@ -329,7 +328,7 @@ public class MetricsLoggerTest {
 
     @Test
     public void testDeviceNameUploadingDeviceSet2() {
-        initTestingBloomfitler();
+        initTestingBloomfilter();
 
         mTestableMetricsLogger
                 .logSanitizedBluetoothDeviceName(1, "Galaxy Buds pro");
@@ -387,7 +386,8 @@ public class MetricsLoggerTest {
         Assert.assertTrue(mTestableMetricsLogger.mTestableDeviceNames.isEmpty());
 
     }
-    private void initTestingBloomfitler() {
+
+    private void initTestingBloomfilter() {
         byte[] bloomfilterData = DeviceBloomfilterGenerator.hexStringToByteArray(
                 DeviceBloomfilterGenerator.BLOOM_FILTER_DEFAULT);
         try {
