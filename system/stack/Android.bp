@@ -137,6 +137,7 @@ cc_library_static {
         "pan/pan_utils.cc",
     ],
     static_libs: [
+        "bluetooth_flags_c_lib",
         "libbluetooth_crypto_toolbox",
         "libbluetooth_hci_pdl",
         "libbluetooth_log",
