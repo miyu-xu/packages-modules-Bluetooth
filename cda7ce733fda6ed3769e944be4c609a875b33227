@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fd2bca3_b66e32da",
+        "filename": "framework/java/android/bluetooth/le/AdvertiseData.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-28T13:23:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8deb26ce_f4a56cc6",
+      "range": {
+        "startLine": 556,
+        "startChar": 18,
+        "endLine": 556,
+        "endChar": 34
+      },
+      "revId": "cda7ce733fda6ed3769e944be4c609a875b33227",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64e20146_fddcd2d6",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-28T02:37:03Z",
       "side": 1,
       "message": "should all the parse_gap_data be behind a flag or is it safe to process in all cases ? or is the data already safe ?\n\n@hallstrom@google.com for giving the indication here, note that this is used extensively in all this file",
+      "range": {
+        "startLine": 130,
+        "startChar": 4,
+        "endLine": 130,
+        "endChar": 18
+      },
+      "revId": "cda7ce733fda6ed3769e944be4c609a875b33227",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a062a8a7_ad13375d",
+        "filename": "system/main/shim/le_advertising_manager.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-28T13:23:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64e20146_fddcd2d6",
       "range": {
         "startLine": 130,
         "startChar": 4,

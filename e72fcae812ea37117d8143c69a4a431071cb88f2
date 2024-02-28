@@ -88,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c08cdf1_0c4ad2da",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-28T13:23:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2791b1d_8edbd6f4",
+      "revId": "e72fcae812ea37117d8143c69a4a431071cb88f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d6ee069_fd097e37",
@@ -148,6 +166,30 @@
       "writtenOn": "2024-02-15T22:27:59Z",
       "side": 1,
       "message": "This doesn\u0027t make sense. This line is only reachable if the flag is enabled and data_encrypt is non-empty. Please correct.",
+      "range": {
+        "startLine": 1133,
+        "startChar": 8,
+        "endLine": 1133,
+        "endChar": 84
+      },
+      "revId": "e72fcae812ea37117d8143c69a4a431071cb88f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf3cc0c2_b1be8ec0",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 1133,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2024-02-28T13:23:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80ffdccb_0293dcdc",
       "range": {
         "startLine": 1133,
         "startChar": 8,
