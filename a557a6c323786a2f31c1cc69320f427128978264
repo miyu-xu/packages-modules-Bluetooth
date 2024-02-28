@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8bc6984_f0bed9b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-02-28T23:28:36Z",
+      "side": 1,
+      "message": "Hello, this is a short-term fix to address the browse connection issue on sink profile.",
+      "revId": "a557a6c323786a2f31c1cc69320f427128978264",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
