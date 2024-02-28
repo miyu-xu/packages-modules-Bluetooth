@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68a7f651_31c9747c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1956242
+      },
+      "writtenOn": "2024-02-28T22:47:16Z",
+      "side": 1,
+      "message": "Removed new test cases as they won\u0027t pass for the `hal_version_manager_host` implementation",
+      "revId": "3b026ff61dc9f18e1bb9557faafdfb1d9b62be12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
