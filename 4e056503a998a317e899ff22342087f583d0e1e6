@@ -69,6 +69,24 @@
       "parentUuid": "81aef701_7e1f6595",
       "revId": "4e056503a998a317e899ff22342087f583d0e1e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e87da06a_8361b473",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 5831,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-28T21:54:40Z",
+      "side": 1,
+      "message": "It is an error if DSA active but the callback is not registered. We should log if this happens. If we return early, we don\u0027t know if DSA was active or not. So we cannot determine if this was an error or not.",
+      "parentUuid": "b290067d_7a473c1a",
+      "revId": "4e056503a998a317e899ff22342087f583d0e1e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
