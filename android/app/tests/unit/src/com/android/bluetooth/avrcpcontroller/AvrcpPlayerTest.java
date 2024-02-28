@@ -32,8 +32,6 @@ import org.mockito.MockitoAnnotations;
 
 public class AvrcpPlayerTest {
     private static final int TEST_PLAYER_ID = 1;
-    private static final int TEST_PLAYER_TYPE = AvrcpPlayer.TYPE_VIDEO;
-    private static final int TEST_PLAYER_SUB_TYPE = AvrcpPlayer.SUB_TYPE_AUDIO_BOOK;
     private static final String TEST_NAME = "test_name";
     private static final int TEST_FEATURE = AvrcpPlayer.FEATURE_PLAY;
     private static final int TEST_PLAY_STATUS = PlaybackStateCompat.STATE_STOPPED;
@@ -59,8 +57,6 @@ public class AvrcpPlayerTest {
         AvrcpPlayer.Builder builder = new AvrcpPlayer.Builder();
         builder.setDevice(mTestDevice);
         builder.setPlayerId(TEST_PLAYER_ID);
-        builder.setPlayerType(TEST_PLAYER_TYPE);
-        builder.setPlayerSubType(TEST_PLAYER_SUB_TYPE);
         builder.setName(TEST_NAME);
         builder.setSupportedFeature(TEST_FEATURE);
         builder.setPlayStatus(TEST_PLAY_STATUS);

@@ -988,20 +988,6 @@ public class BluetoothInCallService extends InCallService {
         }
     }
 
-    private String getClccMapKey(BluetoothCall call) {
-        if (mCallInfo.isNullCall(call) || call.getHandle() == null) {
-            return "";
-        }
-        Uri handle = call.getHandle();
-        String key;
-        if (call.hasProperty(Call.Details.PROPERTY_SELF_MANAGED)) {
-            key = handle.toString() + " self managed " + call.getId();
-        } else {
-            key = handle.toString();
-        }
-        return key;
-    }
-
     int getNextAvailableClccIndex(int index) {
         // find the next available smallest index
         SortedSet<Integer> availableIndex = new TreeSet<>();
@@ -1576,7 +1562,6 @@ public class BluetoothInCallService extends InCallService {
 
     private BluetoothLeCall createTbsCall(BluetoothCall call) {
         Integer state = getTbsCallState(call);
-        boolean isPartOfConference = false;
         boolean isConferenceWithNoChildren = isConferenceWithNoChildren(call);
 
         if (state == null) {
@@ -1585,8 +1570,6 @@ public class BluetoothInCallService extends InCallService {
 
         BluetoothCall conferenceCall = getBluetoothCallById(call.getParentId());
         if (!mCallInfo.isNullCall(conferenceCall)) {
-            isPartOfConference = true;
-
             // Run some alternative states for Conference-level merge/swap support.
             // Basically, if BluetoothCall supports swapping or merging at the
             // conference-level,
@@ -1608,7 +1591,6 @@ public class BluetoothInCallService extends InCallService {
                                     && !conferenceCall.wasConferencePreviouslyMerged());
 
                 if (shouldReevaluateState) {
-                    isPartOfConference = false;
                     if (call == activeChild) {
                         state = BluetoothLeCall.STATE_ACTIVE;
                     } else {
@@ -1631,7 +1613,6 @@ public class BluetoothInCallService extends InCallService {
             // The BluetoothCall will be marked as a conference, but the conference will not
             // have
             // child calls where conference event packages are not used by the carrier.
-            isPartOfConference = true;
         }
 
         final Uri addressUri;
