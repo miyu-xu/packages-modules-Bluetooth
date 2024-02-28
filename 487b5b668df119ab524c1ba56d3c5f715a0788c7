@@ -154,6 +154,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8cfa7cab_9cf02f6c",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-28T10:58:10Z",
+      "side": 1,
+      "message": "this seems to be resolved, right?",
+      "parentUuid": "9303a40b_82020096",
+      "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4233bc81_0a34e22a",
         "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
         "patchSetId": 16
@@ -265,6 +283,24 @@
       "side": 1,
       "message": "Just a non-standard number in \u0027some\u0027 vendor codec. There is no unit test yet verifying that. AFAIK We don\u0027t support it at every layer yet, but future tests may reuse this static variable and verify that.",
       "parentUuid": "b9a3b22a_e3faeafd",
+      "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "687485d2_db6ce370",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_test.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 901,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-28T10:58:10Z",
+      "side": 1,
+      "message": "is this resolved?",
+      "parentUuid": "4584622c_9a39c702",
       "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
