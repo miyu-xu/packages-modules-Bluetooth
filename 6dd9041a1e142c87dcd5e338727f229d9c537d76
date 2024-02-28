@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0aa2533d_92465de5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-28T10:56:31Z",
+      "side": 1,
+      "message": "nit:\nwhen looking into this change it looks like logical change. \n\nIt would be good to explain in commit message why this is \"no logical change\"",
+      "range": {
+        "startLine": 11,
+        "startChar": 25,
+        "endLine": 11,
+        "endChar": 31
+      },
+      "revId": "6dd9041a1e142c87dcd5e338727f229d9c537d76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
