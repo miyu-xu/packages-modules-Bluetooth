@@ -102,6 +102,52 @@
       },
       "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e0b6c60_26f99b14",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-28T01:37:46Z",
+      "side": 1,
+      "message": "@hallstrom@google.com Does that need to be flagged ?",
+      "range": {
+        "startLine": 582,
+        "startChar": 1,
+        "endLine": 586,
+        "endChar": 55
+      },
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b13e070_f969a0ee",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-28T01:37:46Z",
+      "side": 1,
+      "message": "1/ Can we move within the if line 635 ? \n\n```c\n    if (status \u003d\u003d GATT_SUCCESS \u0026\u0026 (cl_op_uuid \u003d\u003d GATT_UUID_CLIENT_SUP_FEAT) \u0026\u0026\n        (IS_FLAG_ENABLED(encrypted_advertising_data))) {\n      tGATT_PROFILE_CLCB* p_clcb \u003d gatt_profile_find_clcb_by_conn_id(conn_id);\n      GAP_BleGetEncKeyMaterialInfo(p_clcb-\u003ebda);\n    }\n```\n\n2/ the method can return null. Should we have a null check or is it guarantee to be non null when reaching this code ?",
+      "range": {
+        "startLine": 623,
+        "startChar": 0,
+        "endLine": 623,
+        "endChar": 74
+      },
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
