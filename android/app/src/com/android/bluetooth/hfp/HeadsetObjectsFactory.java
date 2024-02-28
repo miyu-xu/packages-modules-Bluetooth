@@ -17,9 +17,7 @@ package com.android.bluetooth.hfp;
 
 import android.bluetooth.BluetoothDevice;
 import android.os.Looper;
-import android.util.Log;
 
-import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
 
 /**
@@ -44,19 +42,6 @@ public class HeadsetObjectsFactory {
             }
         }
         return sInstance;
-    }
-
-    /**
-     * Allow unit tests to substitute HeadsetObjectsFactory with a test instance
-     *
-     * @param objectsFactory a test instance of the HeadsetObjectsFactory
-     */
-    private static void setInstanceForTesting(HeadsetObjectsFactory objectsFactory) {
-        Utils.enforceInstrumentationTestMode();
-        synchronized (INSTANCE_LOCK) {
-            Log.d(TAG, "setInstanceForTesting(), set to " + objectsFactory);
-            sInstance = objectsFactory;
-        }
     }
 
     /**
