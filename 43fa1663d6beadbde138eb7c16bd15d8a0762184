@@ -85,6 +85,23 @@
       },
       "revId": "43fa1663d6beadbde138eb7c16bd15d8a0762184",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af20007e_283e2b30",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-28T11:33:40Z",
+      "side": 1,
+      "message": "can we do early return here?\n\nif (GetCodecLocation() !\u003d types::CodecLocation::ADSP) {\n return ::le_audio::broadcaster::GetBroadcastConfig(subgroup_quality);\n}",
+      "revId": "43fa1663d6beadbde138eb7c16bd15d8a0762184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
