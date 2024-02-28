@@ -159,6 +159,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "77b05a7e_18826adf",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-28T23:40:35Z",
+      "side": 1,
+      "message": "+1 to this Q - it\u0027s not clear to me why changes in this file are needed in this patch.",
+      "parentUuid": "af6c2d32_d261bc15",
+      "range": {
+        "startLine": 228,
+        "startChar": 31,
+        "endLine": 228,
+        "endChar": 48
+      },
+      "revId": "84c68c3a8f50dd523012b5acbe7bfb4fb43cb818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "edc1cc09_e45ccc3c",
         "filename": "system/main/shim/le_scanning_manager.h",
         "patchSetId": 27
@@ -170,6 +194,30 @@
       "writtenOn": "2024-02-28T22:40:01Z",
       "side": 1,
       "message": "I am surprise there is no equivalent in GD.\n@hallstrom@google.com can you confirm using the shim is the right way to go ?",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 60
+      },
+      "revId": "84c68c3a8f50dd523012b5acbe7bfb4fb43cb818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03f66755_a9fa8553",
+        "filename": "system/main/shim/le_scanning_manager.h",
+        "patchSetId": 27
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-28T23:40:35Z",
+      "side": 1,
+      "message": "AFAIK the method this calls internally is the only existing one currently  (btm_identity_addr_to_random_pseudo). \n\nCouldn\u0027t we just use RawAddress type here though and remove the need for newly defined method?\n\nThis doesn\u0027t seem necessary.\n\nE.g. it is already used in BleScannerInterfaceImpl::OnPeriodicSyncStarted in le_scanning_manager.cc.",
+      "parentUuid": "edc1cc09_e45ccc3c",
       "range": {
         "startLine": 28,
         "startChar": 0,

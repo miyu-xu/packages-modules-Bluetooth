@@ -1673,6 +1673,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d7567f5_82352e75",
+        "filename": "system/gd/hci/le_scanning_reassembler.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-28T23:40:35Z",
+      "side": 1,
+      "message": "Yes this looks to be resolved now, closing.",
+      "parentUuid": "d7a2fea0_71a737b9",
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec842e85_6bda5120",
