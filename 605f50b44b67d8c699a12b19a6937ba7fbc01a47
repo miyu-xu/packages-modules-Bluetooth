@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7b9bc0f_b823250d",
+        "filename": "android/app/jni/com_android_bluetooth_hid_host.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-28T04:55:15Z",
+      "side": 1,
+      "message": "Rename it to either \"allow_reconnect\" or \"reconnect_allowed\"",
+      "revId": "605f50b44b67d8c699a12b19a6937ba7fbc01a47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1516f80f_870f9ede",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1037,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-28T04:55:15Z",
+      "side": 1,
+      "message": "Set the transport to BR/EDR in the else block",
+      "revId": "605f50b44b67d8c699a12b19a6937ba7fbc01a47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8adf7f5a_5fa2efe0",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-28T04:55:15Z",
+      "side": 1,
+      "message": "We don\u0027t need hogp_preferred parameter in this function. Every connection instance just needs to check their connection policy.",
+      "revId": "605f50b44b67d8c699a12b19a6937ba7fbc01a47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9383de8c_c35824ae",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-28T04:55:15Z",
+      "side": 1,
+      "message": "We don\u0027t need to get the connection policy from storage here to make this decision. This decision can be made based on the current state.\n\nFor a connection to be accepted, connection instance should be either in connecting or accepting state.",
+      "revId": "605f50b44b67d8c699a12b19a6937ba7fbc01a47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a50b96e2_ccccf412",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1458,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-28T04:55:15Z",
+      "side": 1,
+      "message": "Save it only if the reconnect_allow is false.",
+      "revId": "605f50b44b67d8c699a12b19a6937ba7fbc01a47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a717f735_487a1a2a",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-28T04:55:15Z",
+      "side": 1,
+      "message": "Nit: It may be easier to read this if the condition was reversed\n```suggestion\n  if (IS_FLAG_ENABLED(allow_switching_hid_and_hogp) \u0026\u0026\n      link_spec-\u003etransport \u003d\u003d BT_TRANSPORT_LE) {\n    uint8_t dbVersion \u003d 1;\n    btif_config_set_int(bdstr, BTIF_STORAGE_KEY_HID_DB_VERSION, dbVersion);\n    if (dl_len \u003e 0)\n      btif_config_set_bin(bdstr, BTIF_STORAGE_KEY_HOGP_DESCRIPTOR, dsc_list,\n                          dl_len);\n  } else {\n```",
+      "revId": "605f50b44b67d8c699a12b19a6937ba7fbc01a47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59c79d7b_cebd7423",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-28T04:55:15Z",
+      "side": 1,
+      "message": "We should check the DB version before assigning the transport. If DB version is not present, transport should be AUTO",
+      "revId": "605f50b44b67d8c699a12b19a6937ba7fbc01a47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63568235_b75bbf6a",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-28T04:55:15Z",
+      "side": 1,
+      "message": "Check for DB version before attempting to read this key",
+      "revId": "605f50b44b67d8c699a12b19a6937ba7fbc01a47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "982d1ab1_f862b44f",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-28T04:55:15Z",
+      "side": 1,
+      "message": "Any key used for both the transports should be split into two keys.",
+      "revId": "605f50b44b67d8c699a12b19a6937ba7fbc01a47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f49080de_2edb8198",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1123,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-28T04:55:15Z",
+      "side": 1,
+      "message": "Only change connection policy for the requested transport",
+      "revId": "605f50b44b67d8c699a12b19a6937ba7fbc01a47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab14a8e0_d1e2ee90",
+        "filename": "system/include/hardware/bt_hh.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-28T04:55:15Z",
+      "side": 1,
+      "message": "The connection instance will go into the accepting state on disconnection if the connection policy allows reconnections.",
+      "revId": "605f50b44b67d8c699a12b19a6937ba7fbc01a47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
