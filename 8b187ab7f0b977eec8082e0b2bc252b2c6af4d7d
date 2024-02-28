@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "756248d2_b6bb12bc",
+        "filename": "system/audio_hal_interface/fuzzer/libbt_audio_hal_a2dp_encoding_fuzzer.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 2045828
+      },
+      "writtenOn": "2024-02-28T09:44:28Z",
+      "side": 1,
+      "message": "The whole string is a single property name. After applying clang-format it was split into 2 lines.",
+      "parentUuid": "533e5cb5_fe950775",
+      "revId": "8b187ab7f0b977eec8082e0b2bc252b2c6af4d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c5ba39f0_6ad91438",
         "filename": "system/audio_hal_interface/fuzzer/libbt_audio_hal_a2dp_encoding_fuzzer.cpp",
         "patchSetId": 3
@@ -48,6 +66,24 @@
       "writtenOn": "2024-02-26T19:40:57Z",
       "side": 1,
       "message": "If the bool is false and this sets length to the result of mFdp.ConsumeIntegral, aren\u0027t we setting the fuzzer up for a possible OOB write to this stack buffer, if the resulting length is larger than the size of the buffer?  That would lead to a fuzzer crash, not a crash of the library being fuzzed.  Shouldn\u0027t the ConsumeIntegral value be limited to at most the size of the buffer?",
+      "revId": "8b187ab7f0b977eec8082e0b2bc252b2c6af4d7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "209abff1_6cd273c1",
+        "filename": "system/audio_hal_interface/fuzzer/libbt_audio_hal_a2dp_encoding_fuzzer.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 2045828
+      },
+      "writtenOn": "2024-02-28T09:44:28Z",
+      "side": 1,
+      "message": "Updated the code to ensure that the length doesn\u0027t surpass the buffer size.",
+      "parentUuid": "c5ba39f0_6ad91438",
       "revId": "8b187ab7f0b977eec8082e0b2bc252b2c6af4d7d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
