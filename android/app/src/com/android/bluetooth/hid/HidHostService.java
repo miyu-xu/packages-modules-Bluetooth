@@ -61,7 +61,6 @@ import java.util.Map;
  * @hide
  */
 public class HidHostService extends ProfileService {
-    private static final boolean DBG = false;
     private static final String TAG = "BluetoothHidHostService";
 
     private Map<BluetoothDevice, Integer> mInputDevices;
@@ -122,14 +121,12 @@ public class HidHostService extends ProfileService {
 
     @Override
     public void stop() {
-        if (DBG) {
-            Log.d(TAG, "Stopping Bluetooth HidHostService");
-        }
+        Log.d(TAG, "Stopping Bluetooth HidHostService");
     }
 
     @Override
     public void cleanup() {
-        if (DBG) Log.d(TAG, "Stopping Bluetooth HidHostService");
+        Log.d(TAG, "Stopping Bluetooth HidHostService");
         if (mNativeAvailable) {
             mNativeInterface.cleanup();
             mNativeAvailable = false;
@@ -176,9 +173,7 @@ public class HidHostService extends ProfileService {
     }
 
     private static synchronized void setHidHostService(HidHostService instance) {
-        if (DBG) {
-            Log.d(TAG, "setHidHostService(): set to: " + instance);
-        }
+        Log.d(TAG, "setHidHostService(): set to: " + instance);
         sHidHostService = instance;
     }
 
@@ -186,7 +181,7 @@ public class HidHostService extends ProfileService {
 
         @Override
         public void handleMessage(Message msg) {
-            if (DBG) Log.v(TAG, "handleMessage(): msg.what=" + msg.what);
+            Log.v(TAG, "handleMessage(): msg.what=" + msg.what);
 
             switch (msg.what) {
                 case MESSAGE_CONNECT: {
@@ -217,19 +212,15 @@ public class HidHostService extends ProfileService {
                                 (prevStateInteger == null)
                                         ? BluetoothProfile.STATE_DISCONNECTED
                                         : prevStateInteger;
-                        if (DBG) {
-                            Log.d(
-                                    TAG,
-                                    "MESSAGE_CONNECT_STATE_CHANGED"
-                                            + (" newState=" + state)
-                                            + (" prevState=" + prevState));
-                        }
+                        Log.d(
+                                TAG,
+                                "MESSAGE_CONNECT_STATE_CHANGED"
+                                        + (" newState=" + state)
+                                        + (" prevState=" + prevState));
                         if (state == BluetoothProfile.STATE_CONNECTED
                                 && prevState == BluetoothProfile.STATE_DISCONNECTED
                                 && (!okToConnect(device))) {
-                            if (DBG) {
-                                Log.d(TAG, "Incoming HID connection rejected");
-                            }
+                            Log.d(TAG, "Incoming HID connection rejected");
                             mNativeInterface.virtualUnPlug(getByteAddress(device));
                         } else {
                             broadcastConnectionState(device, state);
@@ -653,7 +644,7 @@ public class HidHostService extends ProfileService {
      * @return true if connection request is passed down to mHandler.
      */
     public boolean connect(BluetoothDevice device) {
-        if (DBG) Log.d(TAG, "connect: " + device);
+        Log.d(TAG, "connect: " + device);
         if (getConnectionState(device) != BluetoothProfile.STATE_DISCONNECTED) {
             Log.e(TAG, "Hid Device not disconnected: " + device);
             return false;
@@ -675,7 +666,7 @@ public class HidHostService extends ProfileService {
      * @return true
      */
     public boolean disconnect(BluetoothDevice device) {
-        if (DBG) Log.d(TAG, "disconnect: " + device);
+        Log.d(TAG, "disconnect: " + device);
         Message msg = mHandler.obtainMessage(MESSAGE_DISCONNECT, device);
         mHandler.sendMessage(msg);
         return true;
@@ -691,7 +682,7 @@ public class HidHostService extends ProfileService {
      * {@link BluetoothProfile#STATE_DISCONNECTING} if this profile is being disconnected
      */
     public int getConnectionState(BluetoothDevice device) {
-        if (DBG) Log.d(TAG, "getConnectionState: " + device);
+        Log.d(TAG, "getConnectionState: " + device);
         if (mInputDevices.get(device) == null) {
             return BluetoothProfile.STATE_DISCONNECTED;
         }
@@ -699,7 +690,7 @@ public class HidHostService extends ProfileService {
     }
 
     List<BluetoothDevice> getDevicesMatchingConnectionStates(int[] states) {
-        if (DBG) Log.d(TAG, "getDevicesMatchingConnectionStates()");
+        Log.d(TAG, "getDevicesMatchingConnectionStates()");
         List<BluetoothDevice> inputDevices = new ArrayList<BluetoothDevice>();
 
         for (BluetoothDevice device : mInputDevices.keySet()) {
@@ -730,17 +721,13 @@ public class HidHostService extends ProfileService {
      * @return true if connectionPolicy is set, false on error
      */
     public boolean setConnectionPolicy(BluetoothDevice device, int connectionPolicy) {
-        if (DBG) {
-            Log.d(TAG, "setConnectionPolicy: " + device);
-        }
+        Log.d(TAG, "setConnectionPolicy: " + device);
 
         if (!mDatabaseManager.setProfileConnectionPolicy(device, BluetoothProfile.HID_HOST,
                   connectionPolicy)) {
             return false;
         }
-        if (DBG) {
-            Log.d(TAG, "Saved connectionPolicy " + device + " = " + connectionPolicy);
-        }
+        Log.d(TAG, "Saved connectionPolicy " + device + " = " + connectionPolicy);
         if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
             connect(device);
         } else if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
@@ -753,9 +740,7 @@ public class HidHostService extends ProfileService {
      * @see BluetoothHidHost#setPreferredTransport
      */
     boolean setPreferredTransport(BluetoothDevice device, int transport) {
-        if (DBG) {
-            Log.i(TAG, "setPreferredTransport: " + device + " transport: " + transport);
-        }
+        Log.i(TAG, "setPreferredTransport: " + device + " transport: " + transport);
 
         if (device.getBondState() != BluetoothDevice.BOND_BONDED) {
             Log.w(TAG, "Device not bonded" + device);
@@ -793,9 +778,7 @@ public class HidHostService extends ProfileService {
      * @hide
      */
     public int getConnectionPolicy(BluetoothDevice device) {
-        if (DBG) {
-            Log.d(TAG, "getConnectionPolicy: " + device);
-        }
+        Log.d(TAG, "getConnectionPolicy: " + device);
         return mDatabaseManager
                 .getProfileConnectionPolicy(device, BluetoothProfile.HID_HOST);
     }
@@ -804,9 +787,7 @@ public class HidHostService extends ProfileService {
      * @see BluetoothHidHost#getPreferredTransport
      */
     int getPreferredTransport(BluetoothDevice device) {
-        if (DBG) {
-            Log.d(TAG, "getPreferredTransport: " + device);
-        }
+        Log.d(TAG, "getPreferredTransport: " + device);
 
         // TODO: b/324094542 - Implement getPreferredTransport API
         return BluetoothDevice.TRANSPORT_AUTO;
@@ -814,9 +795,7 @@ public class HidHostService extends ProfileService {
 
     /* The following APIs regarding test app for compliance */
     boolean getProtocolMode(BluetoothDevice device) {
-        if (DBG) {
-            Log.d(TAG, "getProtocolMode: " + device);
-        }
+        Log.d(TAG, "getProtocolMode: " + device);
         int state = this.getConnectionState(device);
         if (state != BluetoothProfile.STATE_CONNECTED) {
             return false;
@@ -827,9 +806,7 @@ public class HidHostService extends ProfileService {
     }
 
     boolean virtualUnplug(BluetoothDevice device) {
-        if (DBG) {
-            Log.d(TAG, "virtualUnplug: " + device);
-        }
+        Log.d(TAG, "virtualUnplug: " + device);
         int state = this.getConnectionState(device);
         if (state != BluetoothProfile.STATE_CONNECTED) {
             return false;
@@ -840,9 +817,7 @@ public class HidHostService extends ProfileService {
     }
 
     boolean setProtocolMode(BluetoothDevice device, int protocolMode) {
-        if (DBG) {
-            Log.d(TAG, "setProtocolMode: " + device);
-        }
+        Log.d(TAG, "setProtocolMode: " + device);
         int state = this.getConnectionState(device);
         if (state != BluetoothProfile.STATE_CONNECTED) {
             return false;
@@ -855,9 +830,7 @@ public class HidHostService extends ProfileService {
     }
 
     boolean getReport(BluetoothDevice device, byte reportType, byte reportId, int bufferSize) {
-        if (DBG) {
-            Log.d(TAG, "getReport: " + device);
-        }
+        Log.d(TAG, "getReport: " + device);
         int state = this.getConnectionState(device);
         if (state != BluetoothProfile.STATE_CONNECTED) {
             return false;
@@ -874,9 +847,7 @@ public class HidHostService extends ProfileService {
     }
 
     boolean setReport(BluetoothDevice device, byte reportType, String report) {
-        if (DBG) {
-            Log.d(TAG, "setReport: " + device);
-        }
+        Log.d(TAG, "setReport: " + device);
         int state = this.getConnectionState(device);
         if (state != BluetoothProfile.STATE_CONNECTED) {
             return false;
@@ -893,9 +864,7 @@ public class HidHostService extends ProfileService {
     }
 
     boolean sendData(BluetoothDevice device, String report) {
-        if (DBG) {
-            Log.d(TAG, "sendData: " + device);
-        }
+        Log.d(TAG, "sendData: " + device);
         int state = this.getConnectionState(device);
         if (state != BluetoothProfile.STATE_CONNECTED) {
             return false;
@@ -905,7 +874,7 @@ public class HidHostService extends ProfileService {
     }
 
     boolean getIdleTime(BluetoothDevice device) {
-        if (DBG) Log.d(TAG, "getIdleTime: " + device);
+        Log.d(TAG, "getIdleTime: " + device);
         int state = this.getConnectionState(device);
         if (state != BluetoothProfile.STATE_CONNECTED) {
             return false;
@@ -916,7 +885,7 @@ public class HidHostService extends ProfileService {
     }
 
     boolean setIdleTime(BluetoothDevice device, byte idleTime) {
-        if (DBG) Log.d(TAG, "setIdleTime: " + device);
+        Log.d(TAG, "setIdleTime: " + device);
         int state = this.getConnectionState(device);
         if (state != BluetoothProfile.STATE_CONNECTED) {
             return false;
@@ -931,7 +900,7 @@ public class HidHostService extends ProfileService {
     }
 
     void onGetProtocolMode(byte[] address, int mode) {
-        if (DBG) Log.d(TAG, "onGetProtocolMode()");
+        Log.d(TAG, "onGetProtocolMode()");
         Message msg = mHandler.obtainMessage(MESSAGE_ON_GET_PROTOCOL_MODE);
         msg.obj = address;
         msg.arg1 = mode;
@@ -939,7 +908,7 @@ public class HidHostService extends ProfileService {
     }
 
     void onGetIdleTime(byte[] address, int idleTime) {
-        if (DBG) Log.d(TAG, "onGetIdleTime()");
+        Log.d(TAG, "onGetIdleTime()");
         Message msg = mHandler.obtainMessage(MESSAGE_ON_GET_IDLE_TIME);
         msg.obj = address;
         msg.arg1 = idleTime;
@@ -947,7 +916,7 @@ public class HidHostService extends ProfileService {
     }
 
     void onGetReport(byte[] address, byte[] report, int rptSize) {
-        if (DBG) Log.d(TAG, "onGetReport()");
+        Log.d(TAG, "onGetReport()");
         Message msg = mHandler.obtainMessage(MESSAGE_ON_GET_REPORT);
         msg.obj = address;
         Bundle data = new Bundle();
@@ -958,7 +927,7 @@ public class HidHostService extends ProfileService {
     }
 
     void onHandshake(byte[] address, int status) {
-        if (DBG) Log.d(TAG, "onHandshake: status=" + status);
+        Log.d(TAG, "onHandshake: status=" + status);
         Message msg = mHandler.obtainMessage(MESSAGE_ON_HANDSHAKE);
         msg.obj = address;
         msg.arg1 = status;
@@ -966,7 +935,7 @@ public class HidHostService extends ProfileService {
     }
 
     void onVirtualUnplug(byte[] address, int status) {
-        if (DBG) Log.d(TAG, "onVirtualUnplug: status=" + status);
+        Log.d(TAG, "onVirtualUnplug: status=" + status);
         Message msg = mHandler.obtainMessage(MESSAGE_ON_VIRTUAL_UNPLUG);
         msg.obj = address;
         msg.arg1 = status;
@@ -974,7 +943,7 @@ public class HidHostService extends ProfileService {
     }
 
     void onConnectStateChanged(byte[] address, int state) {
-        if (DBG) Log.d(TAG, "onConnectStateChanged: state=" + state);
+        Log.d(TAG, "onConnectStateChanged: state=" + state);
         Message msg = mHandler.obtainMessage(MESSAGE_CONNECT_STATE_CHANGED);
         msg.obj = address;
         msg.arg1 = state;
@@ -1033,9 +1002,7 @@ public class HidHostService extends ProfileService {
         intent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT);
         Utils.sendBroadcast(this, intent, BLUETOOTH_CONNECT,
                 Utils.getTempAllowlistBroadcastOptions());
-        if (DBG) {
-            Log.d(TAG, "Protocol Mode (" + device + "): " + protocolMode);
-        }
+        Log.d(TAG, "Protocol Mode (" + device + "): " + protocolMode);
     }
 
     private void broadcastReport(BluetoothDevice device, byte[] report, int rptSize) {
@@ -1064,9 +1031,7 @@ public class HidHostService extends ProfileService {
         intent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT);
         Utils.sendBroadcast(this, intent, BLUETOOTH_CONNECT,
                 Utils.getTempAllowlistBroadcastOptions());
-        if (DBG) {
-            Log.d(TAG, "Idle time (" + device + "): " + idleTime);
-        }
+        Log.d(TAG, "Idle time (" + device + "): " + idleTime);
     }
 
     /**
