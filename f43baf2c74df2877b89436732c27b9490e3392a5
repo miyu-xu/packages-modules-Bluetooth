@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6eea7b32_ea95a43f",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1442,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-29T18:43:49Z",
+      "side": 1,
+      "message": "This can return nullptr.  Is that intended?  Should it be logged when that happens?\n\n```suggestion\n\nBtaAvCoState* BtaAvCo::getStateFromPeer(const BtaAvCoPeer* p_peer) {\n  if (IS_FLAG_ENABLED(a2dp_concurrent_source_sink)) {\n    if (p_peer-\u003euuid_to_connect \u003d\u003d UUID_SERVCLASS_AUDIO_SINK) {\n      return \u0026bta_av_source_state_;\n    } else if (p_peer-\u003euuid_to_connect \u003d\u003d UUID_SERVCLASS_AUDIO_SOURCE) {\n      return \u0026bta_av_sink_state_;\n    }\n  } else {\n    return \u0026bta_av_legacy_state_;\n  }\n  // Should there be a log here?\n  return nullptr;\n}\n```",
+      "range": {
+        "startLine": 1429,
+        "startChar": 0,
+        "endLine": 1442,
+        "endChar": 1
+      },
+      "revId": "f43baf2c74df2877b89436732c27b9490e3392a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f86efca_a5c071e5",
+        "filename": "system/btif/src/btif_a2dp_sink.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-29T18:43:49Z",
+      "side": 1,
+      "message": "Prefer to be consistent with the flag checks.  I\u0027d rather have them all with \u0027!\u0027 or not.  It will be easier when we remove the flag.",
+      "range": {
+        "startLine": 263,
+        "startChar": 6,
+        "endLine": 263,
+        "endChar": 7
+      },
+      "revId": "f43baf2c74df2877b89436732c27b9490e3392a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
