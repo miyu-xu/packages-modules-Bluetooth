@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cd2d7a41_9107f724",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T22:31:28Z",
+      "side": 1,
+      "message": "Thank you for applying native format.\n\nFYI there is also a hook for java format using google-java-format:\n```\n  cd packages/modules/Bluetooth \u0026\u0026 \\\n    tools/repohooks/tools/google-java-format.py --fix --google-java-format prebuilts/tools/common/google-java-format/google-java-format --google-java-format-diff prebuilts/tools/common/google-java-format/google-java-format-diff.py --commit \u003cFOO\u003e\n```\n\n(replace \u003cFOO\u003e with your commit hash)",
+      "revId": "7a6dd5aaf2de418c810c1bab4ed93c5fc0396a4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "24828a82_7e06f3b8",
         "filename": "framework/java/android/bluetooth/le/BluetoothLeAdvertiser.java",
         "patchSetId": 27
