@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "19088a78_7a6f138c",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3775,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-29T23:12:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "52205f1c_4753bd75",
+      "range": {
+        "startLine": 3775,
+        "startChar": 0,
+        "endLine": 3775,
+        "endChar": 68
+      },
+      "revId": "52fb8447e8917d5fcb241006f4d969915895fe61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f4be2a1_6203c611",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-29T06:07:24Z",
       "side": 1,
       "message": "Open bug to LE DRI ( CC @hallstrom@google.com ) since this not using the parameter from the iteration is extremely suspicious. There may be a unknown bug happening here !\n😮",
+      "range": {
+        "startLine": 1354,
+        "startChar": 16,
+        "endLine": 1366,
+        "endChar": 17
+      },
+      "revId": "52fb8447e8917d5fcb241006f4d969915895fe61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ce439c4_99a3bce0",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1366,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-29T23:12:12Z",
+      "side": 1,
+      "message": "b/327671856",
+      "parentUuid": "8f4be2a1_6203c611",
       "range": {
         "startLine": 1354,
         "startChar": 16,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c5ed276_cc48d9b2",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMnsObexClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-29T23:12:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c6953e9_f3c3dcae",
+      "range": {
+        "startLine": 445,
+        "startChar": 7,
+        "endLine": 446,
+        "endChar": 9
+      },
+      "revId": "52fb8447e8917d5fcb241006f4d969915895fe61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "32784042_ad6f6c2a",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-02-29T06:07:24Z",
       "side": 1,
       "message": "Open bug for file descriptor leak",
+      "range": {
+        "startLine": 302,
+        "startChar": 20,
+        "endLine": 304,
+        "endChar": 92
+      },
+      "revId": "52fb8447e8917d5fcb241006f4d969915895fe61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "806b969b_b222c9b8",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppUtility.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-29T23:12:12Z",
+      "side": 1,
+      "message": "b/327672309",
+      "parentUuid": "32784042_ad6f6c2a",
       "range": {
         "startLine": 302,
         "startChar": 20,
