@@ -61,7 +61,6 @@ import java.util.Set;
 
 public class AudioRoutingManager extends ActiveDeviceManager {
     private static final String TAG = AudioRoutingManager.class.getSimpleName();
-    private static final boolean DBG = Log.isLoggable(TAG, Log.DEBUG);
     @VisibleForTesting static final int A2DP_HFP_SYNC_CONNECTION_TIMEOUT_MS = 5_000;
 
     private final AdapterService mAdapterService;
@@ -137,9 +136,7 @@ public class AudioRoutingManager extends ActiveDeviceManager {
     }
 
     private void handleAdapterStateChanged(int currentState) {
-        if (DBG) {
-            Log.d(TAG, "handleAdapterStateChanged: currentState=" + currentState);
-        }
+        Log.d(TAG, "handleAdapterStateChanged: currentState=" + currentState);
         if (currentState == BluetoothAdapter.STATE_ON) {
             mHandler.resetState();
         }
@@ -157,9 +154,7 @@ public class AudioRoutingManager extends ActiveDeviceManager {
 
     @Override
     void start() {
-        if (DBG) {
-            Log.d(TAG, "start()");
-        }
+        Log.d(TAG, "start()");
 
         mHandlerThread = new HandlerThread("BluetoothActiveDeviceManager");
         BluetoothMethodProxy mp = BluetoothMethodProxy.getInstance();
@@ -172,9 +167,7 @@ public class AudioRoutingManager extends ActiveDeviceManager {
 
     @Override
     void cleanup() {
-        if (DBG) {
-            Log.d(TAG, "cleanup()");
-        }
+        Log.d(TAG, "cleanup()");
 
         mAudioManager.unregisterAudioDeviceCallback(mAudioManagerAudioDeviceCallback);
         mAdapterService.unregisterBluetoothStateCallback(this);
@@ -222,19 +215,15 @@ public class AudioRoutingManager extends ActiveDeviceManager {
         // Called in mHandler thread. See AudioRoutingManager.start()
         @Override
         public void onAudioDevicesAdded(AudioDeviceInfo[] addedDevices) {
-            if (DBG) {
-                Log.d(TAG, "onAudioDevicesAdded");
-            }
+            Log.d(TAG, "onAudioDevicesAdded");
             boolean hasAddedWiredDevice = false;
             for (AudioDeviceInfo deviceInfo : addedDevices) {
-                if (DBG) {
-                    Log.d(
-                            TAG,
-                            "Audio device added: "
-                                    + deviceInfo.getProductName()
-                                    + " type: "
-                                    + deviceInfo.getType());
-                }
+                Log.d(
+                        TAG,
+                        "Audio device added: "
+                                + deviceInfo.getProductName()
+                                + " type: "
+                                + deviceInfo.getType());
                 if (isWiredAudioHeadset(deviceInfo)) {
                     hasAddedWiredDevice = true;
                     break;
@@ -260,20 +249,16 @@ public class AudioRoutingManager extends ActiveDeviceManager {
         }
 
         public void handleProfileConnected(int profile, BluetoothDevice device) {
-            if (DBG) {
-                Log.d(
-                        TAG,
-                        "handleProfileConnected(device="
-                                + device
-                                + ", profile="
-                                + BluetoothProfile.getProfileName(profile)
-                                + ")");
-            }
+            Log.d(
+                    TAG,
+                    "handleProfileConnected(device="
+                            + device
+                            + ", profile="
+                            + BluetoothProfile.getProfileName(profile)
+                            + ")");
             AudioRoutingDevice connectedDevice = getAudioRoutingDevice(device);
             if (connectedDevice.connectedProfiles.contains(profile)) {
-                if (DBG) {
-                    Log.d(TAG, "This device is already connected: " + device);
-                }
+                Log.d(TAG, "This device is already connected: " + device);
                 return;
             }
             connectedDevice.connectedProfiles.add(profile);
@@ -281,9 +266,7 @@ public class AudioRoutingManager extends ActiveDeviceManager {
                 return;
             }
             if (!connectedDevice.canActivateNow(profile)) {
-                if (DBG) {
-                    Log.d(TAG, "Can not activate now: " + BluetoothProfile.getProfileName(profile));
-                }
+                Log.d(TAG, "Can not activate now: " + BluetoothProfile.getProfileName(profile));
                 mHandler.postDelayed(
                         () -> activateDeviceProfile(connectedDevice, profile),
                         connectedDevice,
@@ -294,15 +277,13 @@ public class AudioRoutingManager extends ActiveDeviceManager {
         }
 
         public void handleProfileDisconnected(int profile, BluetoothDevice device) {
-            if (DBG) {
-                Log.d(
-                        TAG,
-                        "handleProfileDisconnected(device="
-                                + device
-                                + ", profile="
-                                + BluetoothProfile.getProfileName(profile)
-                                + ")");
-            }
+            Log.d(
+                    TAG,
+                    "handleProfileDisconnected(device="
+                            + device
+                            + ", profile="
+                            + BluetoothProfile.getProfileName(profile)
+                            + ")");
             AudioRoutingDevice disconnectedDevice = getAudioRoutingDevice(device);
             disconnectedDevice.connectedProfiles.remove(profile);
             if (disconnectedDevice.connectedProfiles.isEmpty()) {
@@ -354,9 +335,7 @@ public class AudioRoutingManager extends ActiveDeviceManager {
         }
 
         private boolean setFallbackDeviceActive(int profile) {
-            if (DBG) {
-                Log.d(TAG, "setFallbackDeviceActive: " + BluetoothProfile.getProfileName(profile));
-            }
+            Log.d(TAG, "setFallbackDeviceActive: " + BluetoothProfile.getProfileName(profile));
             // 1. Activate the lastly activated device among currently activated devices.
             Set<AudioRoutingDevice> candidates = new HashSet<>();
             for (int i = 0; i < mActiveDevices.size(); ++i) {
@@ -389,9 +368,7 @@ public class AudioRoutingManager extends ActiveDeviceManager {
                 return activateDeviceProfile(fallbackRoutingDevice, profileToActivate);
             } catch (NoSuchElementException e) {
                 // Thrown when no available fallback devices found
-                if (DBG) {
-                    Log.d(TAG, "Found no available BT fallback devices.");
-                }
+                Log.d(TAG, "Found no available BT fallback devices.");
                 return false;
             }
         }
@@ -448,15 +425,13 @@ public class AudioRoutingManager extends ActiveDeviceManager {
         public boolean activateDeviceProfile(
                 @NonNull AudioRoutingDevice routingDevice, int profile) {
             mHandler.removeCallbacksAndMessages(routingDevice);
-            if (DBG) {
-                Log.d(
-                        TAG,
-                        "activateDeviceProfile("
-                                + routingDevice.device
-                                + ", "
-                                + BluetoothProfile.getProfileName(profile)
-                                + ")");
-            }
+            Log.d(
+                    TAG,
+                    "activateDeviceProfile("
+                            + routingDevice.device
+                            + ", "
+                            + BluetoothProfile.getProfileName(profile)
+                            + ")");
 
             List<BluetoothDevice> activeDevices = mActiveDevices.get(profile);
             if (activeDevices != null && activeDevices.contains(routingDevice.device)) {
@@ -547,15 +522,13 @@ public class AudioRoutingManager extends ActiveDeviceManager {
 
         @SuppressLint("MissingPermission")
         private boolean setActiveDevice(int profile, BluetoothDevice device) {
-            if (DBG) {
-                Log.d(
-                        TAG,
-                        "setActiveDevice("
-                                + BluetoothProfile.getProfileName(profile)
-                                + ", "
-                                + device
-                                + ")");
-            }
+            Log.d(
+                    TAG,
+                    "setActiveDevice("
+                            + BluetoothProfile.getProfileName(profile)
+                            + ", "
+                            + device
+                            + ")");
             boolean activated = switch (profile) {
                 case BluetoothProfile.A2DP -> {
                     A2dpService service = mFactory.getA2dpService();
@@ -590,15 +563,13 @@ public class AudioRoutingManager extends ActiveDeviceManager {
         }
 
         private boolean removeActiveDevice(int profile, boolean hasFallbackDevice) {
-            if (DBG) {
-                Log.d(
-                        TAG,
-                        "removeActiveDevice("
-                                + BluetoothProfile.getProfileName(profile)
-                                + ", hadFallbackDevice="
-                                + hasFallbackDevice
-                                + ")");
-            }
+            Log.d(
+                    TAG,
+                    "removeActiveDevice("
+                            + BluetoothProfile.getProfileName(profile)
+                            + ", hadFallbackDevice="
+                            + hasFallbackDevice
+                            + ")");
             mActiveDevices.remove(profile);
             return switch (profile) {
                 case BluetoothProfile.A2DP -> {
@@ -730,9 +701,7 @@ public class AudioRoutingManager extends ActiveDeviceManager {
         @VisibleForTesting
         @RequiresPermission(android.Manifest.permission.MODIFY_PHONE_STATE)
         void wiredAudioDeviceConnected() {
-            if (DBG) {
-                Log.d(TAG, "wiredAudioDeviceConnected");
-            }
+            Log.d(TAG, "wiredAudioDeviceConnected");
             removeActiveDevice(BluetoothProfile.A2DP, true);
             removeActiveDevice(BluetoothProfile.HEADSET, true);
             removeActiveDevice(BluetoothProfile.HEARING_AID, true);
