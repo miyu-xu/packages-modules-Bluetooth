@@ -18,6 +18,7 @@
 #pragma once
 
 #include <base/logging.h>
+#include <bluetooth/log.h>
 
 #include <variant>
 
@@ -61,7 +62,7 @@ struct BroadcastCodecWrapper {
         octets_per_codec_frame(octets_per_codec_frame),
         blocks_per_sdu(blocks_per_sdu) {
     if (codec_id.coding_format != types::kLeAudioCodingFormatLC3)
-      LOG(ERROR) << "Unsupported coding format!";
+      log::error("Unsupported coding format!");
   }
 
   /* We need this copy-assignment operator as we currently use global copy of a
@@ -84,10 +85,8 @@ struct BroadcastCodecWrapper {
       return GetOctetsPerCodecFrame() * blocks_per_sdu;
     }
 
-    LOG(ERROR) << "Invalid codec ID: "
-               << "[" << +codec_id.coding_format << ":"
-               << +codec_id.vendor_company_id << ":"
-               << +codec_id.vendor_codec_id << "]";
+    log::error("Invalid codec ID: [{}:{}:{}]", codec_id.coding_format,
+               codec_id.vendor_company_id, codec_id.vendor_codec_id);
     return 0;
   }
 
