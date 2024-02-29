@@ -68,6 +68,305 @@
       },
       "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "748ff9ce_cbf4c682",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T20:07:29Z",
+      "side": 1,
+      "message": "Dropping an idea here.\n\nWhat about extending `GattService` ?\n\nThis way you don\u0027t have to change anything in `ScanManager` as the Service it has is always matching\n\nSee this code example:\n\n```java\nclass Foo {\n  String getName() { return \"Foo\"; }\n  String getFoo() { return \"Foo\"; }\n\n}\n\nclass Bar extends Foo {\n  String getName() { return \"Bar\"; }\n}\n\nFoo foo \u003d new Foo();\nSystem.out.println(\"Hello, \" + foo.getName());\n\nFoo bar \u003d new Bar();\nSystem.out.println(\"Hello, \" + bar.getName() + \" -- \" + bar.getFoo());\n```\n\nBar can be interpreted as a Foo, Aka the scanManagerService could be downcaat as a GattService.\n\n\nObviously, this only work as long as there is no new method in scanManagerService that are called from external. In this case, an explicit cast to `scanManagerService` is necessary",
+      "range": {
+        "startLine": 37,
+        "startChar": 40,
+        "endLine": 37,
+        "endChar": 54
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "daad1b79_f09edfce",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T20:07:29Z",
+      "side": 1,
+      "message": "Nit / FYI:\nSince all the \"service\" of bluetooth has been moved to be started as local instance (call of `new Foo` instead of `start service`) there are only one service in Bluetooth: the AdapterService.\n\nEverything else is a local instance.\n\nIs this class a ScanManagerManager ? 😂",
+      "range": {
+        "startLine": 37,
+        "startChar": 13,
+        "endLine": 37,
+        "endChar": 31
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bede3f7_b064505e",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T20:07:29Z",
+      "side": 1,
+      "message": "Is this just a ContextMap with extra wrapper ?\n\nI fail to see the benefits of the double wrapper (in TransitionalScanHelper then in a blank ScannerMap)",
+      "range": {
+        "startLine": 46,
+        "startChar": 40,
+        "endLine": 46,
+        "endChar": 63
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "777ec2cd_f4f2b72c",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T20:07:29Z",
+      "side": 1,
+      "message": "```suggestion\n    public ScanManagerService(AdapterService adapterService) {\n        super(ctx);\n        mAdapterService \u003d adapterService;\n    }\n```",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 5
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9d56f4c_958eb10b",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T20:07:29Z",
+      "side": 1,
+      "message": "I believe ScanManagerService repetition is not needed as we are in the class already\n```suggestion\n        return new BluetoothScanManagerBinder(this);\n```",
+      "range": {
+        "startLine": 54,
+        "startChar": 19,
+        "endLine": 54,
+        "endChar": 37
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b1d5b4a_0fce41b4",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T20:07:29Z",
+      "side": 1,
+      "message": "remove and use instead `private final AdapterService mAdapterService` and set it in constructor",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 38
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "971e3787_1b95563b",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T20:07:29Z",
+      "side": 1,
+      "message": "Please, do not create (yet) another thread.\n\nWe should jump on this occasion to use existing thread.\n\nI strongly recommand taking the looper in parameter of the constructor",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 73
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ea29f47_16b06957",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T20:07:29Z",
+      "side": 1,
+      "message": "Why do we need a factory for ? Can we call the constructor directly ?",
+      "range": {
+        "startLine": 69,
+        "startChar": 12,
+        "endLine": 69,
+        "endChar": 30
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f0633d5_25f47388",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T20:07:29Z",
+      "side": 1,
+      "message": "Permission should be enforced when coming from the binder to keep \"untrusted caller\" in the binder code.\n\nAka:\n```java\nclass ScanManager {\n\n  void foo() {\n    // do the foo without type check / permission check / thread check\n  }\n\n  static class ScanBinder {\n    void foo(attributionSource) {\n      enforceScanPermission(attributionSource) // check the permissioon\n      // check parameter if needed\n      ScanManager.handler.post(// post on thread\n         () -\u003e ScanManager.foo()  // here EVERYTHING is solidly trusted. Making an Happy worl\n      ) \n    }\n  }\n}\n```",
+      "range": {
+        "startLine": 88,
+        "startChar": 19,
+        "endLine": 88,
+        "endChar": 53
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c55fa8e5_e5f8d956",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T20:07:29Z",
+      "side": 1,
+      "message": "Can there  be action taken related to this exception ?\nIf not, should we just try catch directly here and not throws the exception ?",
+      "range": {
+        "startLine": 120,
+        "startChar": 29,
+        "endLine": 120,
+        "endChar": 46
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29fc101e_89315fba",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T20:07:29Z",
+      "side": 1,
+      "message": "I believe we can put that final and never set it to null.\n\n@licorne@google.com, on always on service like that, I think this make a lot of sens and facilitate the check in the futur. Am I missing something obvious ?",
+      "range": {
+        "startLine": 128,
+        "startChar": 36,
+        "endLine": 128,
+        "endChar": 44
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a211bb64_496fe66b",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T20:07:29Z",
+      "side": 1,
+      "message": "Please, split the aidl, it will defnitily help to have better limitation between the Gatt and the scan",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 85
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31732b02_0cecb34b",
+        "filename": "framework/java/android/bluetooth/BluetoothProfile.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T20:07:29Z",
+      "side": 1,
+      "message": "I really doesn\u0027t like adding profile here that are not profile.\nI believe you are doing this in order to put that in the mStartedProfile list, right ?\n\n(With recent modification around the config I believe it will be very easy to no long use it in the started profile...)",
+      "range": {
+        "startLine": 245,
+        "startChar": 0,
+        "endLine": 245,
+        "endChar": 18
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
