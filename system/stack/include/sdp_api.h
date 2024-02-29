@@ -578,7 +578,7 @@ const struct tSdpApi* get_legacy_stack_sdp_api();
 struct tLegacyStackSdbCallback {
   void(tSDP_DISC_CMPL_CB)(const RawAddress& bd_addr, tSDP_RESULT result);
   void(tSDP_DISC_CMPL_CB2)(const RawAddress& bd_addr, tSDP_RESULT result,
-                           const void* user_data);
+                           void* user_data);
 };
 
 }  // namespace sdp
