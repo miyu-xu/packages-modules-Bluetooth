@@ -270,11 +270,7 @@ public class MetricsLogger {
         mAlarmManager.cancel(mOnAlarmListener);
     }
 
-    protected boolean logSanitizedBluetoothDeviceName(int metricId, String deviceName) {
-        if (!mBloomFilterInitialized || deviceName == null) {
-            return false;
-        }
-
+    private List<String> getWordBreakdown(String deviceName) {
         // remove more than one spaces in a row
         deviceName = deviceName.trim().replaceAll(" +", " ");
         // remove non alphanumeric characters and spaces, and transform to lower cases.
@@ -283,34 +279,55 @@ public class MetricsLogger {
 
         if (words.length > MAX_WORDS_ALLOWED_IN_DEVICE_NAME) {
             // Validity checking here to avoid excessively long sequences
-            return false;
+            return ArrayList<String>();
         }
-        // find the longest matched substring
-        String matchedString = "";
-        byte[] matchedSha256 = null;
+        // collect the word breakdown in an arraylist
+        ArrayList<String> wordBreakdownList = new ArrayList<String>();
         for (int start = 0; start < words.length; start++) {
 
             String toBeMatched = "";
             for (int end = start; end < words.length; end++) {
                 toBeMatched += words[end];
-                // TODO(b/280868296): Refactor to log even if bloom filter isn't initialized.
-                if (SdkLevel.isAtLeastU()) {
-                    BtRestrictedStatsLog.write(RESTRICTED_BLUETOOTH_DEVICE_NAME_REPORTED,
-                            toBeMatched);
-                }
-                byte[] sha256 = getSha256(toBeMatched);
-                if (sha256 == null) {
-                    continue;
-                }
-
-                if (mBloomFilter.mightContain(sha256)
-                        && toBeMatched.length() > matchedString.length()) {
-                    matchedString = toBeMatched;
-                    matchedSha256 = sha256;
-                }
+                wordBreakdownList.add(toBeMatched);
             }
         }
+        return wordBreakdownList;
+    }
 
+    private void uploadRestrictedBluetothDeviceName(ArrayList<String> wordBreakdownList) {
+      for (String word : wordBreakdownList) {
+        BtRestrictedStatsLog.write(RESTRICTED_BLUETOOTH_DEVICE_NAME_REPORTED, word);
+      }
+    }
+
+    private String getMatchedSha256(ArrayList<String> wordBreakdownList) {
+        if (!mBloomFilterInitialized || wordBreakdownList.isEmpty()) {
+            return null;
+        }
+
+        byte[] matchedSha256 = null;
+        String matchedString = "";
+        for (String word : wordBreakdownList) {
+          byte[] sha256 = getSha256(word);
+          if (mBloomFilter.mightContain(sha256)
+                && word.length() > matchedString.length()) {
+              matchedString = word;
+              matchedSha256 = sha256;
+          }
+        }
+        return matchedSha256;
+    }
+
+
+    protected boolean logSanitizedBluetoothDeviceName(int metricId, String deviceName) {
+        ArrayList<String> wordBreakdownList = getWordBreakdown(deviceName);
+
+        // Log the restricted bluetooth device name
+        if (SdkLevel.isAtLeastU()) {
+          uploadRestrictedBluetothDeviceName(deviceName);
+        }
+        // get the SHA256 matched string
+        String matchedSha256 = getMatchedSha256(deviceName);
         // upload the sha256 of the longest matched string.
         if (matchedSha256 == null) {
             return false;
