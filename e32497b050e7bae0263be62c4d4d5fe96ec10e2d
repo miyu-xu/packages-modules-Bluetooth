@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00d743dd_b7501d5d",
+        "filename": "floss/pandora/floss/cras_utils.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-02-29T15:45:12Z",
+      "side": 1,
+      "message": "We don\u0027t need to do this in Pandora. Let\u0027s import it at the top of the file normally.",
+      "range": {
+        "startLine": 204,
+        "startChar": 0,
+        "endLine": 211,
+        "endChar": 0
+      },
+      "revId": "e32497b050e7bae0263be62c4d4d5fe96ec10e2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5b6c266_7476e5da",
+        "filename": "floss/pandora/floss/cras_utils.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-02-29T15:45:12Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 246,
+        "startChar": 0,
+        "endLine": 251,
+        "endChar": 13
+      },
+      "revId": "e32497b050e7bae0263be62c4d4d5fe96ec10e2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9013bb1_b7a304a2",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-02-29T15:45:12Z",
+      "side": 1,
+      "message": "This function could `raise`. Consider catching it and fail this RPC call with `context.abort`. Actually many util functions could raise, please catch all of them if possible.\n```suggestion\n        try:\n            audio_utils.select_audio_output_node()\n        except ValueError as e:\n            await context.abort(grpc.StatusCode.UNKNOWN,\n                                f\u0027Failed to select audio output node: {e}\u0027)\n```",
+      "revId": "e32497b050e7bae0263be62c4d4d5fe96ec10e2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
