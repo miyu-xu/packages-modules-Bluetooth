@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6feeed24_e1195290",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-29T13:14:11Z",
+      "side": 1,
+      "message": "nit: Can this be private instead\n```suggestion\n    private ServiceFactory mFactory \u003d new ServiceFactory();\n    private A2dpCodecConfig mA2dpCodecConfig;\n```",
+      "range": {
+        "startLine": 101,
+        "startChar": 5,
+        "endLine": 101,
+        "endChar": 22
+      },
+      "revId": "5cf88facfec529269ddbe28243e99f6d4b582790",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e87c3b7_bd21ad21",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1602,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-29T13:14:11Z",
+      "side": 1,
+      "message": "nit: this seems unrelated to the test flakiness to me.",
+      "range": {
+        "startLine": 1597,
+        "startChar": 0,
+        "endLine": 1602,
+        "endChar": 17
+      },
+      "revId": "5cf88facfec529269ddbe28243e99f6d4b582790",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
