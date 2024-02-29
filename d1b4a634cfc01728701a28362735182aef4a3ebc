@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fd713da_ec68152c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T22:54:12Z",
+      "side": 1,
+      "message": "Please apply repo hook recommendation regarding code format",
+      "revId": "d1b4a634cfc01728701a28362735182aef4a3ebc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
