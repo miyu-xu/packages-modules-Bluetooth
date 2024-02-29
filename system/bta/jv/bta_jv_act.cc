@@ -58,6 +58,18 @@
 using namespace bluetooth::legacy::stack::sdp;
 using namespace bluetooth;
 
+namespace {
+
+void set_bta_jv_sdp_active(const enum tBTA_JV_SDP_ACT& state,
+                           std::string token) {
+  log::info("{} : sdp_active {} ==> {}", token,
+            bta_jv_sdp_act_text(bta_jv_cb.sdp_active),
+            bta_jv_sdp_act_text(state));
+  bta_jv_cb.sdp_active = state;
+}
+
+}  // namespace
+
 tBTA_JV_CB bta_jv_cb;
 std::unordered_set<uint16_t> used_l2cap_classic_dynamic_psm;
 
@@ -633,11 +645,13 @@ bool bta_jv_check_psm(uint16_t psm) {
 
 /* Initialises the JAVA I/F */
 void bta_jv_enable(tBTA_JV_DM_CBACK* p_cback) {
-  tBTA_JV_STATUS status = BTA_JV_SUCCESS;
   bta_jv_cb.p_dm_cback = p_cback;
-  tBTA_JV bta_jv;
-  bta_jv.status = status;
-  bta_jv_cb.p_dm_cback(BTA_JV_ENABLE_EVT, &bta_jv, 0);
+  if (bta_jv_cb.p_dm_cback) {
+    tBTA_JV bta_jv = {
+        .status = BTA_JV_SUCCESS,
+    };
+    bta_jv_cb.p_dm_cback(BTA_JV_ENABLE_EVT, &bta_jv, 0);
+  }
   memset(bta_jv_cb.free_psm_list, 0, sizeof(bta_jv_cb.free_psm_list));
   memset(bta_jv_cb.scn_in_use, 0, sizeof(bta_jv_cb.scn_in_use));
   bta_jv_cb.scn_search_index = 1;
@@ -794,17 +808,17 @@ void bta_jv_free_scn(int32_t type /* One of BTA_JV_CONN_TYPE_ */,
 static void bta_jv_start_discovery_cback(UNUSED_ATTR const RawAddress& bd_addr,
                                          tSDP_RESULT result,
                                          const void* user_data) {
-  tBTA_JV_STATUS status;
-  uint32_t* p_rfcomm_slot_id =
-      static_cast<uint32_t*>(const_cast<void*>(user_data));
-
-  log::verbose("res={}", loghex(static_cast<uint16_t>(result)));
-
-  bta_jv_cb.sdp_active = BTA_JV_SDP_ACT_NONE;
+  set_bta_jv_sdp_active(tBTA_JV_SDP_ACT::NONE, __func__);
   if (bta_jv_cb.p_dm_cback) {
-    tBTA_JV_DISCOVERY_COMP dcomp;
-    dcomp.scn = 0;
-    status = BTA_JV_FAILURE;
+    const uint32_t rfcomm_slot_id = *static_cast<const uint32_t*>(user_data);
+    tBTA_JV bta_jv = {
+        .disc_comp =
+            {
+                // tBTA_JV_DISCOVERY_COMP
+                .status = BTA_JV_FAILURE,
+                .scn = 0,
+            },
+    };
     if (result == SDP_SUCCESS || result == SDP_DB_FULL) {
       tSDP_DISC_REC* p_sdp_rec = NULL;
       tSDP_PROTOCOL_ELEM pe;
@@ -815,41 +829,56 @@ static void bta_jv_start_discovery_cback(UNUSED_ATTR const RawAddress& bd_addr,
       if (p_sdp_rec &&
           get_legacy_stack_sdp_api()->record.SDP_FindProtocolListElemInRec(
               p_sdp_rec, UUID_PROTOCOL_RFCOMM, &pe)) {
-        dcomp.scn = (uint8_t)pe.params[0];
-        status = BTA_JV_SUCCESS;
+        bta_jv = {
+            .disc_comp =
+                {
+                    // tBTA_JV_DISCOVERY_COMP
+                    .status = BTA_JV_SUCCESS,
+                    .scn = (uint8_t)pe.params[0],
+                },
+        };
       }
     }
-
-    dcomp.status = status;
-    tBTA_JV bta_jv;
-    bta_jv.disc_comp = dcomp;
-    bta_jv_cb.p_dm_cback(BTA_JV_DISCOVERY_COMP_EVT, &bta_jv, *p_rfcomm_slot_id);
-    osi_free(p_rfcomm_slot_id);
+    bta_jv_cb.p_dm_cback(BTA_JV_DISCOVERY_COMP_EVT, &bta_jv, rfcomm_slot_id);
   }
+  // User data memory is allocated in `bta_jv_start_discovery`
+  osi_free(const_cast<void*>(user_data));
 }
 
 /* Discovers services on a remote device */
 void bta_jv_start_discovery(const RawAddress& bd_addr, uint16_t num_uuid,
                             bluetooth::Uuid* uuid_list,
                             uint32_t rfcomm_slot_id) {
-  tBTA_JV_STATUS status = BTA_JV_FAILURE;
-  log::verbose("in, sdp_active={}", bta_jv_cb.sdp_active);
-  if (bta_jv_cb.sdp_active != BTA_JV_SDP_ACT_NONE) {
+  ASSERT(uuid_list != nullptr);
+  if (bta_jv_cb.sdp_active != tBTA_JV_SDP_ACT::NONE) {
+    log::warn(
+        "Unable to start discovery not idle sdp_active:{} bd_addr:{} "
+        "num:uuid:{} rfcomm_slot_id:{}",
+        bta_jv_sdp_act_text(bta_jv_cb.sdp_active).c_str(),
+        ADDRESS_TO_LOGGABLE_CSTR(bd_addr), num_uuid, rfcomm_slot_id);
     /* SDP is still in progress */
-    status = BTA_JV_BUSY;
     if (bta_jv_cb.p_dm_cback) {
-      tBTA_JV bta_jv;
-      bta_jv.status = status;
+      tBTA_JV bta_jv = {
+          .status = BTA_JV_BUSY,
+      };
       bta_jv_cb.p_dm_cback(BTA_JV_DISCOVERY_COMP_EVT, &bta_jv, rfcomm_slot_id);
+    } else {
+      log::warn(
+          "bta::jv module DISABLED so unable to inform caller that SDP is "
+          "unavailable");
     }
     return;
   }
 
   /* init the database/set up the filter */
-  log::verbose("call SDP_InitDiscoveryDb, num_uuid={}", num_uuid);
-  get_legacy_stack_sdp_api()->service.SDP_InitDiscoveryDb(
-      p_bta_jv_cfg->p_sdp_db, p_bta_jv_cfg->sdp_db_size, num_uuid, uuid_list, 0,
-      NULL);
+  if (!get_legacy_stack_sdp_api()->service.SDP_InitDiscoveryDb(
+          p_bta_jv_cfg->p_sdp_db, p_bta_jv_cfg->sdp_db_size, num_uuid,
+          uuid_list, 0, NULL)) {
+    log::warn(
+        "Unable to initialize service discovery db bd_addr:{} num:uuid:{} "
+        "rfcomm_slot_id:{}",
+        ADDRESS_TO_LOGGABLE_CSTR(bd_addr), num_uuid, rfcomm_slot_id);
+  }
 
   /* tell SDP to keep the raw data */
   p_bta_jv_cfg->p_sdp_db->raw_data = p_bta_jv_cfg->p_sdp_raw_data;
@@ -858,20 +887,30 @@ void bta_jv_start_discovery(const RawAddress& bd_addr, uint16_t num_uuid,
   bta_jv_cb.p_sel_raw_data = 0;
   bta_jv_cb.uuid = uuid_list[0];
 
-  bta_jv_cb.sdp_active = BTA_JV_SDP_ACT_YES;
+  set_bta_jv_sdp_active(tBTA_JV_SDP_ACT::YES, __func__);
 
+  // NOTE: This gets freed on the callback
   uint32_t* rfcomm_slot_id_copy = (uint32_t*)osi_malloc(sizeof(uint32_t));
   *rfcomm_slot_id_copy = rfcomm_slot_id;
 
+  // user_data memory is freed in `bta_jv_start_discovery_cback` callback
   if (!get_legacy_stack_sdp_api()->service.SDP_ServiceSearchAttributeRequest2(
           bd_addr, p_bta_jv_cfg->p_sdp_db, bta_jv_start_discovery_cback,
           (void*)rfcomm_slot_id_copy)) {
-    bta_jv_cb.sdp_active = BTA_JV_SDP_ACT_NONE;
+    osi_free(rfcomm_slot_id_copy);
+    set_bta_jv_sdp_active(tBTA_JV_SDP_ACT::NONE, __func__);
+    log::warn(
+        "Unable to original service discovery bd_addr:{} num:uuid:{} "
+        "rfcomm_slot_id:{}",
+        ADDRESS_TO_LOGGABLE_CSTR(bd_addr), num_uuid, rfcomm_slot_id);
     /* failed to start SDP. report the failure right away */
     if (bta_jv_cb.p_dm_cback) {
-      tBTA_JV bta_jv;
-      bta_jv.status = status;
+      tBTA_JV bta_jv = {
+          .status = BTA_JV_FAILURE,
+      };
       bta_jv_cb.p_dm_cback(BTA_JV_DISCOVERY_COMP_EVT, &bta_jv, rfcomm_slot_id);
+    } else {
+      log::warn("No callback set for discovery complete event");
     }
   }
   /*
@@ -1914,3 +1953,12 @@ static void bta_jv_reset_sniff_timer(tBTA_JV_PM_CB* p_cb) {
   }
 }
 /******************************************************************************/
+
+namespace bluetooth::legacy::testing {
+
+void bta_jv_start_discovery_cback(const RawAddress& bd_addr, tSDP_RESULT result,
+                                  const void* user_data) {
+  ::bta_jv_start_discovery_cback(bd_addr, result, user_data);
+}
+
+}  // namespace bluetooth::legacy::testing
