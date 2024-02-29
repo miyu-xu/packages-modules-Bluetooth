@@ -87,6 +87,24 @@
       "parentUuid": "b290067d_7a473c1a",
       "revId": "4e056503a998a317e899ff22342087f583d0e1e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59a019b8_d623e296",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 5831,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-29T17:41:56Z",
+      "side": 1,
+      "message": "so the sytuation that `iso_data_callback \u003d\u003d nullptr` and dsa_ is active is OK or Not ?\n\nWhen this function returns false, data will be considered as audio data - is this expected?\n\nMaybe we should have here `return true` ?",
+      "parentUuid": "e87da06a_8361b473",
+      "revId": "4e056503a998a317e899ff22342087f583d0e1e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
