@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7d825ea_d7584a54",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-02-29T16:40:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac203824_9763c7f1",
+      "revId": "58e8d7ec646307c1904404a1d6ccb110f2cfea9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "08f82f56_9f47cc80",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-02-27T20:49:01Z",
       "side": 1,
       "message": "nit: documentation",
+      "revId": "58e8d7ec646307c1904404a1d6ccb110f2cfea9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d89151f0_ae10421a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-02-29T16:40:36Z",
+      "side": 1,
+      "message": "I\u0027m almost impressed I managed it twice.",
+      "parentUuid": "08f82f56_9f47cc80",
       "revId": "58e8d7ec646307c1904404a1d6ccb110f2cfea9e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -69,6 +105,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fa5e876_4fce0682",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-02-29T16:40:36Z",
+      "side": 1,
+      "message": "Added more approval to the style guide specifically. We can continue to discuss content there while figuring out organization of files here. Or whatever, I\u0027ll keep them synced as best I can.",
+      "parentUuid": "91ab5d02_0eca26f9",
+      "revId": "58e8d7ec646307c1904404a1d6ccb110f2cfea9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "978e6882_8ab34954",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-02-29T16:40:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75a2927d_94eecbf1",
+      "revId": "58e8d7ec646307c1904404a1d6ccb110f2cfea9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c62fe52_3c17aad5",
@@ -94,6 +166,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d8b41351_06b1b412",
+        "filename": "system/gd/rust/linux/docs_style_guide.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-02-29T16:40:36Z",
+      "side": 1,
+      "message": "I have added a glossary and sample entry. Before I fill in some starter content, could you take a look at the structure to see what you think?",
+      "parentUuid": "5c62fe52_3c17aad5",
+      "range": {
+        "startLine": 19,
+        "startChar": 11,
+        "endLine": 20,
+        "endChar": 16
+      },
+      "revId": "58e8d7ec646307c1904404a1d6ccb110f2cfea9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a891ba1d_63e64b56",
         "filename": "system/gd/rust/linux/docs_style_guide.md",
         "patchSetId": 2
@@ -105,6 +201,30 @@
       "writtenOn": "2024-02-29T14:25:54Z",
       "side": 1,
       "message": "please add one space",
+      "range": {
+        "startLine": 92,
+        "startChar": 3,
+        "endLine": 92,
+        "endChar": 5
+      },
+      "revId": "58e8d7ec646307c1904404a1d6ccb110f2cfea9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3dbb484_23d0285b",
+        "filename": "system/gd/rust/linux/docs_style_guide.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-02-29T16:40:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a891ba1d_63e64b56",
       "range": {
         "startLine": 92,
         "startChar": 3,
