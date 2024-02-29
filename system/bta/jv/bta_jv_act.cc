@@ -824,8 +824,8 @@ static void bta_jv_start_discovery_cback(UNUSED_ATTR const RawAddress& bd_addr,
     tBTA_JV bta_jv;
     bta_jv.disc_comp = dcomp;
     bta_jv_cb.p_dm_cback(BTA_JV_DISCOVERY_COMP_EVT, &bta_jv, *p_rfcomm_slot_id);
-    osi_free(p_rfcomm_slot_id);
   }
+  osi_free(p_rfcomm_slot_id);
 }
 
 /* Discovers services on a remote device */
