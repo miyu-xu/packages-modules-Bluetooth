@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32e8a769_7ed52572",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T07:25:06Z",
+      "side": 1,
+      "message": "Nothing looks obviously wrong, but I feel like this is leaking some control handle and may have unforeseen security angle.\nAre we sure giving these information is OK ? (Profile owner and more Spec related people should weight in to address that).",
+      "revId": "0e71b72fdfbf5f93d204c0164eb11c6da33b305a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51ab8cba_9ab94577",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T07:25:06Z",
+      "side": 1,
+      "message": "Why is this needed ?",
+      "range": {
+        "startLine": 158,
+        "startChar": 48,
+        "endLine": 158,
+        "endChar": 50
+      },
+      "revId": "0e71b72fdfbf5f93d204c0164eb11c6da33b305a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4474c45_63bd133f",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T07:25:06Z",
+      "side": 1,
+      "message": "None of these permission are enforced",
+      "range": {
+        "startLine": 852,
+        "startChar": 15,
+        "endLine": 853,
+        "endChar": 65
+      },
+      "revId": "0e71b72fdfbf5f93d204c0164eb11c6da33b305a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5f4c602_ead6776c",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 857,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T07:25:06Z",
+      "side": 1,
+      "message": "Is this the correct exception ?",
+      "range": {
+        "startLine": 857,
+        "startChar": 72,
+        "endLine": 857,
+        "endChar": 90
+      },
+      "revId": "0e71b72fdfbf5f93d204c0164eb11c6da33b305a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e3b64b0_e89227a7",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 877,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T07:25:06Z",
+      "side": 1,
+      "message": "None of these permission are enforced",
+      "range": {
+        "startLine": 876,
+        "startChar": 16,
+        "endLine": 877,
+        "endChar": 65
+      },
+      "revId": "0e71b72fdfbf5f93d204c0164eb11c6da33b305a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c0659f8_ee2a714a",
+        "filename": "system/stack/include/gap_api.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T07:25:06Z",
+      "side": 1,
+      "message": "To follow the pattern, this should stay a union and another struct should be created that contains 2 uint16_t",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 6
+      },
+      "revId": "0e71b72fdfbf5f93d204c0164eb11c6da33b305a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd6075e2_d3578a17",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 1798,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T07:25:06Z",
+      "side": 1,
+      "message": "I would prefer this to assert that rcid is not null, or send a mutable reference that cannot be null \u0026 is checked at build time",
+      "range": {
+        "startLine": 1798,
+        "startChar": 0,
+        "endLine": 1798,
+        "endChar": 21
+      },
+      "revId": "0e71b72fdfbf5f93d204c0164eb11c6da33b305a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
