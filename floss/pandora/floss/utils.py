@@ -18,6 +18,7 @@ import logging
 import threading
 import time
 from typing import List, Optional
+from uuid import UUID
 
 from floss.pandora.floss import floss_enums
 from gi.repository import GLib
@@ -387,6 +388,18 @@ def uuid16_to_uuid128(uuid16: str):
 
 def uuid32_to_uuid128(uuid32: str):
     return f'{uuid32}-0000-1000-8000-00805f9b34fb'
+
+
+def get_uuid_as_list(uuid):
+    """Converts string uuid to a list of bytes.
+
+    Args:
+        uuid: String UUID.
+
+    Returns:
+        UUID string as list of bytes.
+    """
+    return list(UUID(uuid).bytes)
 
 
 def advertise_data_from(request_data: host_pb2.DataTypes):
