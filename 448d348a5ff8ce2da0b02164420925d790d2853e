@@ -22,6 +22,30 @@
       },
       "revId": "448d348a5ff8ce2da0b02164420925d790d2853e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cba6f058_c36ed22f",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-02-29T21:36:00Z",
+      "side": 1,
+      "message": "I added this check in by hand to try to avoid the two for-loops. Looping through all the codecs each time we get a config update seemed like a valid reason to use `Log.isLoggable()`, even if the logs themselves will be governed by the Log framework.\n\nI\u0027m fine either way, I just took a guess at what we might prefer here.\n\nFWIW, I only did this one other time in the patches (so far) in `MediaPlayerWrapper.java`. Its in the AVRCP Target patch. It had a similar loop in it that I figured we might want to avoid.",
+      "parentUuid": "8ba37bd0_d5374855",
+      "range": {
+        "startLine": 677,
+        "startChar": 7,
+        "endLine": 678,
+        "endChar": 27
+      },
+      "revId": "448d348a5ff8ce2da0b02164420925d790d2853e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
