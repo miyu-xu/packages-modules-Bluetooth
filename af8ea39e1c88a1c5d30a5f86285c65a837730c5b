@@ -22,6 +22,30 @@
       },
       "revId": "af8ea39e1c88a1c5d30a5f86285c65a837730c5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05fc39fc_d2efe9b4",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-29T19:01:16Z",
+      "side": 1,
+      "message": "Depends on your idea of what `const` is ?\n\nFor me, const means must not modify within it\u0027s operational timeframe.\n\nFree\u0027ing is another matter as it\u0027s a lifecycle issue not operational timeframe issue.\n\nSo it\u0027s IMHO it\u0027s philosophical.\n\nI can make that change though as I\u0027m mostly in agreement.",
+      "parentUuid": "b4ffc99f_ef21510a",
+      "range": {
+        "startLine": 796,
+        "startChar": 41,
+        "endLine": 796,
+        "endChar": 51
+      },
+      "revId": "af8ea39e1c88a1c5d30a5f86285c65a837730c5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
