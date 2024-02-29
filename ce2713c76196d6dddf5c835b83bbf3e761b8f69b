@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3d9bb4a_5d531408",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-29T16:19:21Z",
+      "side": 1,
+      "message": "It\u0027s not obvious to me that this CL has no unflagged side effects.  I think it would be easier to review if you added the state class with no logical changes, then added your flagged changes in a separate CL.",
+      "revId": "ce2713c76196d6dddf5c835b83bbf3e761b8f69b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
