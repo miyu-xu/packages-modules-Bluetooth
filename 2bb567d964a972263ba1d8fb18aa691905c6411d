@@ -16,6 +16,24 @@
       "message": "How can this be a \"no logical change\" if we change the command we send to the controller? I believe this should be flag guarded",
       "revId": "2bb567d964a972263ba1d8fb18aa691905c6411d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6e8ebe1_aef907c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-29T05:10:00Z",
+      "side": 1,
+      "message": "It could be flag guarded.\n\nIn this case, it doesn\u0027t matter what the controller returns.  It just matters that it responds, so it\u0027s not a logical change to me.  Even if the controller doesn\u0027t recognize the command, it will respond.",
+      "parentUuid": "c534694d_bd6a0ffb",
+      "revId": "2bb567d964a972263ba1d8fb18aa691905c6411d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
