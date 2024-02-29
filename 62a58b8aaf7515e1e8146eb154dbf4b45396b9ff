@@ -16,6 +16,23 @@
       "message": "STEAMING state is called multiple time whenever Metadata Update is completed.\nIn this form it would be called multiple times.\n\nI suggest to have a helper function `handleAsymmetricPhyForUnicast(*LeAudioDeviceGroup, GroupStreamStatus)`,\n\nWHere you can take a decision on this and also probably keep current state. We had to do similar thing for `notifyGroupStreamStatus`",
       "revId": "62a58b8aaf7515e1e8146eb154dbf4b45396b9ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3671137b_5f5239b1",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 5510,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-29T07:38:51Z",
+      "side": 1,
+      "message": "ok so here we make sure that for bidirecational case, PHY will go back to 2M. Right?\n\nIf so, can we make a comment around that?",
+      "revId": "62a58b8aaf7515e1e8146eb154dbf4b45396b9ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
