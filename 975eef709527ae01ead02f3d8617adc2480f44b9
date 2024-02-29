@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63945924_121c3c3b",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1330,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-29T03:13:08Z",
+      "side": 1,
+      "message": "Unsure what dev_class this returns when unintialized",
+      "revId": "975eef709527ae01ead02f3d8617adc2480f44b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
