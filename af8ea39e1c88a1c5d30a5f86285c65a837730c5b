@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4ffc99f_ef21510a",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-29T18:53:51Z",
+      "side": 1,
+      "message": "Why are we responsible for freeing a const pointer 😢\n\nSince we\u0027re here, and this is static, can we make it not const?",
+      "range": {
+        "startLine": 796,
+        "startChar": 41,
+        "endLine": 796,
+        "endChar": 51
+      },
+      "revId": "af8ea39e1c88a1c5d30a5f86285c65a837730c5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
