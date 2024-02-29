@@ -16,6 +16,24 @@
       "message": "Please fix this and all other places and make sure that the code will work.\n\n```suggestion\n                await context.abort(\n```",
       "revId": "7ec6e805ea920ccefffd02bb7c1400568fd288cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6485f2b_e4afa526",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-02-29T07:21:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4971eb47_8aafe729",
+      "revId": "7ec6e805ea920ccefffd02bb7c1400568fd288cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
