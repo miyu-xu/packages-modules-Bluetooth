@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b19790ae_80a9236c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-29T18:36:59Z",
+      "side": 1,
+      "message": "Thanks!  That made it much easier to review.",
+      "revId": "f8d0e334d2ac23730b115d33951af1921067dd08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "438e3143_a3eacbf7",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-29T18:36:59Z",
+      "side": 1,
+      "message": "Can this be const?\n```suggestion\nconst uint8_t* BtaAvCoState::getCodecConfig() { return codec_config_; }\n\nvoid BtaAvCoState::clearCodecConfig() { memset(codec_config_, 0, sizeof(codec_config_)); }\n\nvoid BtaAvCoState::setCodecConfig(const uint8_t* src) { memcpy(codec_config, src, AVDT_CODEC_SIZE); }\n```\n\nI think it would be nice to have get, set, and clear to encapsulate it better.",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 65
+      },
+      "revId": "f8d0e334d2ac23730b115d33951af1921067dd08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b993694d_187f72a9",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-29T18:36:59Z",
+      "side": 1,
+      "message": "Then we\u0027ll have a lot fewer warnings from the checker, as well.\n```suggestion\n  clearCodecConfig();\n```",
+      "range": {
+        "startLine": 72,
+        "startChar": 1,
+        "endLine": 72,
+        "endChar": 49
+      },
+      "revId": "f8d0e334d2ac23730b115d33951af1921067dd08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
