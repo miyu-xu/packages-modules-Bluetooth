@@ -135,6 +135,7 @@ import com.android.bluetooth.hid.HidDeviceService;
 import com.android.bluetooth.hid.HidHostService;
 import com.android.bluetooth.le_audio.LeAudioService;
 import com.android.bluetooth.le_scan.ScanManager;
+import com.android.bluetooth.le_scan.ScanManagerService;
 import com.android.bluetooth.map.BluetoothMapService;
 import com.android.bluetooth.mapclient.MapClientService;
 import com.android.bluetooth.mcp.McpService;
@@ -397,6 +398,7 @@ public class AdapterService extends Service {
     private BatteryService mBatteryService;
     private BluetoothQualityReportNativeInterface mBluetoothQualityReportNativeInterface;
     private GattService mGattService;
+    private ScanManagerService mScanManagerService;
 
     private volatile boolean mTestModeEnabled = false;
 
@@ -985,11 +987,19 @@ public class AdapterService extends Service {
                     TAG,
                     "GATT is configured off but the stack assumes it to be enabled. Start anyway.");
         }
-        startGattProfileService();
+        if (Flags.scanManagerRefactor()) {
+            startScanProfileService();
+        } else {
+            startGattProfileService();
+        }
     }
 
     void bringDownBle() {
-        stopGattProfileService();
+        if (Flags.scanManagerRefactor()) {
+            stopScanProfileService();
+        } else {
+            stopGattProfileService();
+        }
     }
 
     void stateChangeCallback(int status) {
@@ -1049,6 +1059,16 @@ public class AdapterService extends Service {
         onProfileServiceStateChanged(mGattService, BluetoothAdapter.STATE_ON);
     }
 
+    private void startScanProfileService() {
+        mScanManagerService = new ScanManagerService(this);
+
+        mStartedProfiles.put(BluetoothProfile.SCAN, mScanManagerService);
+        addProfile(mScanManagerService);
+        mScanManagerService.start();
+        mScanManagerService.setAvailable(true);
+        onProfileServiceStateChanged(mScanManagerService, BluetoothAdapter.STATE_ON);
+    }
+
     private void stopGattProfileService() {
         mAdapterProperties.onBleDisable();
         if (mRunningProfiles.size() == 0) {
@@ -1066,6 +1086,10 @@ public class AdapterService extends Service {
             mGattService.getBinder().cleanup();
             mGattService = null;
         }
+    }
+
+    private void stopScanProfileService() {
+        // TODO(b/327503826)
     }
 
     private void invalidateBluetoothGetStateCache() {
