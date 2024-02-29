@@ -35,6 +35,10 @@ use crate::bluetooth::{
     BluetoothDevice, DelayedActions, IBluetooth,
 };
 use crate::bluetooth_admin::{BluetoothAdmin, IBluetoothAdmin};
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
+=======
+use crate::bluetooth_adv::{dispatch_le_adv_callbacks, AdvertiserActions};
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
 use crate::bluetooth_gatt::{
     dispatch_gatt_client_callbacks, dispatch_gatt_server_callbacks, dispatch_le_adv_callbacks,
     dispatch_le_scanner_callbacks, dispatch_le_scanner_inband_callbacks, BluetoothGatt,
@@ -116,6 +120,7 @@ pub enum Message {
 
     // Advertising related
     AdvertiserCallbackDisconnected(u32),
+    AdvertiserActions(AdvertiserActions),
 
     SocketManagerActions(SocketActions),
     SocketManagerCallbackDisconnected(u32),
@@ -365,6 +370,10 @@ impl Stack {
 
                 Message::AdvertiserCallbackDisconnected(id) => {
                     bluetooth_gatt.lock().unwrap().remove_adv_callback(id);
+                }
+
+                Message::AdvertiserActions(action) => {
+                    bluetooth_gatt.lock().unwrap().handle_adv_action(action);
                 }
 
                 Message::SocketManagerActions(action) => {

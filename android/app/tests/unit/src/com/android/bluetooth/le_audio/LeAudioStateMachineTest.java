@@ -42,8 +42,6 @@ import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
-import com.android.bluetooth.flags.FakeFeatureFlagsImpl;
-import com.android.bluetooth.flags.Flags;
 
 import org.junit.After;
 import org.junit.Before;
@@ -60,7 +58,6 @@ public class LeAudioStateMachineTest {
     private HandlerThread mHandlerThread;
     private LeAudioStateMachine mLeAudioStateMachine;
     private BluetoothDevice mTestDevice;
-    private FakeFeatureFlagsImpl mFakeFlagsImpl;
     private static final int TIMEOUT_MS = 1000;
 
     @Mock private AdapterService mAdapterService;
@@ -75,8 +72,11 @@ public class LeAudioStateMachineTest {
         TestUtils.setAdapterService(mAdapterService);
 
         mAdapter = BluetoothAdapter.getDefaultAdapter();
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
         mFakeFlagsImpl = new FakeFeatureFlagsImpl();
         mFakeFlagsImpl.setFlag(Flags.FLAG_AUDIO_ROUTING_CENTRALIZATION, false);
+=======
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
 
         // Get a device for testing
         mTestDevice = mAdapter.getRemoteDevice("00:01:02:03:04:05");
@@ -91,8 +91,7 @@ public class LeAudioStateMachineTest {
                         mTestDevice,
                         mLeAudioService,
                         mLeAudioNativeInterface,
-                        mHandlerThread.getLooper(),
-                        mFakeFlagsImpl);
+                        mHandlerThread.getLooper());
     }
 
     @After

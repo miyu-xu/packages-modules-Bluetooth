@@ -227,6 +227,26 @@ void LeAudioTransport::LeAudioSetSelectedHalPcmConfig(uint32_t sample_rate_hz,
   pcm_config_.dataIntervalUs = data_interval;
 }
 
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
+=======
+bool LeAudioTransport::IsRequestCompletedAfterUpdate(
+    const std::function<std::pair<StartRequestState, bool>(StartRequestState)>&
+        lambda) {
+  std::lock_guard<std::mutex> guard(start_request_state_mutex_);
+  auto result = lambda(start_request_state_);
+  auto new_state = std::get<0>(result);
+  if (new_state != start_request_state_) {
+    start_request_state_ = new_state;
+  }
+
+  auto ret = std::get<1>(result);
+  LOG_VERBOSE("new state: %d, return: %s",
+              static_cast<int>(start_request_state_.load()),
+              ret ? "true" : "false");
+  return ret;
+}
+
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
 StartRequestState LeAudioTransport::GetStartRequestState(void) {
   return start_request_state_;
 }

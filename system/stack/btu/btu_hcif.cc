@@ -41,7 +41,6 @@
 #include "main/shim/hci_layer.h"
 #include "os/log.h"
 #include "osi/include/allocator.h"
-#include "stack/btm/neighbor_inquiry.h"
 #include "stack/include/acl_hci_link_interface.h"
 #include "stack/include/ble_acl_interface.h"
 #include "stack/include/ble_hci_link_interface.h"
@@ -235,6 +234,7 @@ void btu_hcif_process_event(UNUSED_ATTR uint8_t controller_id,
   btu_hcif_log_event_metrics(hci_evt_code, p);
 
   switch (hci_evt_code) {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
     case HCI_INQUIRY_COMP_EVT:
       btu_hcif_inquiry_comp_evt(p);
       break;
@@ -247,6 +247,8 @@ void btu_hcif_process_event(UNUSED_ATTR uint8_t controller_id,
     case HCI_EXTENDED_INQUIRY_RESULT_EVT:
       btm_process_inq_results(p, hci_evt_len, BTM_INQ_RESULT_EXTENDED);
       break;
+=======
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     case HCI_AUTHENTICATION_COMP_EVT:
       btu_hcif_authentication_comp_evt(p);
       break;

@@ -826,7 +826,11 @@ void l2c_link_check_send_pkts(tL2C_LCB* p_lcb, uint16_t local_cid,
    ** This LCB will be served when receiving number of completed packet event.
    */
   if (l2cb.is_cong_cback_context) {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
     LOG_INFO("skipping, is_cong_cback_context=true");
+=======
+    log::warn("skipping, is_cong_cback_context=true");
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     return;
   }
 
@@ -898,10 +902,15 @@ void l2c_link_check_send_pkts(tL2C_LCB* p_lcb, uint16_t local_cid,
       l2cb.ble_check_round_robin = false;
   } else /* if this is not round-robin service */
   {
-    /* If a partial segment is being sent, can't send anything else */
+    /* link_state or power mode not ready, can't send anything else */
     if ((p_lcb->link_state != LST_CONNECTED) ||
         (l2c_link_check_power_mode(p_lcb))) {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
       LOG_INFO("A partial segment is being sent, cannot send anything else");
+=======
+      log::warn("Can't send, link state: {} not LST_CONNECTED or power mode BTM_PM_STS_PENDING",
+                p_lcb->link_state);
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
       return;
     }
     LOG_VERBOSE(

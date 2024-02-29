@@ -20,8 +20,13 @@ use bt_utils::array_utils;
 use crate::async_helper::{AsyncHelper, CallbackSender};
 use crate::bluetooth::{Bluetooth, BluetoothDevice, IBluetooth};
 use crate::bluetooth_adv::{
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
     AdvertiseData, AdvertiserId, Advertisers, AdvertisingSetInfo, AdvertisingSetParameters,
     IAdvertisingSetCallback, PeriodicAdvertisingParameters, INVALID_REG_ID,
+=======
+    AdvertiseData, AdvertiseManager, AdvertiserActions, AdvertisingSetParameters,
+    BtifGattAdvCallbacks, IAdvertisingSetCallback, PeriodicAdvertisingParameters,
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
 };
 use crate::callbacks::Callbacks;
 use crate::uuid::UuidHelper;
@@ -1470,14 +1475,12 @@ impl BluetoothGatt {
         }
     }
 
-    pub fn init_profiles(
-        &mut self,
-        tx: Sender<Message>,
-        api_tx: Sender<APIMessage>,
-        adapter: Arc<Mutex<Box<Bluetooth>>>,
-    ) {
+    pub fn init_profiles(&mut self, tx: Sender<Message>, api_tx: Sender<APIMessage>) {
         self.gatt = Gatt::new(&self.intf.lock().unwrap()).map(|gatt| Arc::new(Mutex::new(gatt)));
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
         self.adapter = Some(adapter);
+=======
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
 
         let tx_clone = tx.clone();
         let gatt_client_callbacks_dispatcher = GattClientCallbacksDispatcher {
@@ -1559,6 +1562,26 @@ impl BluetoothGatt {
             time::sleep(time::Duration::from_millis(500)).await;
             let _ = api_tx_clone.send(APIMessage::IsReady(BluetoothAPI::Gatt)).await;
         });
+    }
+
+    /// Initializes AdvertiseManager.
+    ///
+    /// Query |is_le_ext_adv_supported| outside this function (before locking BluetoothGatt) to
+    /// avoid deadlock. |is_le_ext_adv_supported| can only be queried after Bluetooth is ready.
+    ///
+    /// TODO(b/242083290): Correctly fire IsReady message for Adv API in this function after the
+    /// API is fully split out. For now Gatt is delayed for 500ms (see
+    /// |BluetoothGatt::init_profiles|) which shall be enough for Bluetooth to become ready.
+    pub fn init_adv_manager(
+        &mut self,
+        adapter: Arc<Mutex<Box<Bluetooth>>>,
+        is_le_ext_adv_supported: bool,
+    ) {
+        self.adv_manager.initialize(
+            self.gatt.as_ref().unwrap().clone(),
+            adapter,
+            is_le_ext_adv_supported,
+        );
     }
 
     pub fn enable(&mut self, enabled: bool) {
@@ -1777,6 +1800,7 @@ impl BluetoothGatt {
 
     /// Remove an advertiser callback and unregisters all advertising sets associated with that callback.
     pub fn remove_adv_callback(&mut self, callback_id: u32) -> bool {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
         self.advertisers
             .remove_callback(callback_id, &mut self.gatt.as_ref().unwrap().lock().unwrap())
     }
@@ -1787,6 +1811,9 @@ impl BluetoothGatt {
         } else {
             String::new()
         }
+=======
+        self.adv_manager.get_impl().unregister_callback(callback_id)
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     }
 
     pub fn remove_client_callback(&mut self, callback_id: u32) {
@@ -1815,6 +1842,7 @@ impl BluetoothGatt {
 
     /// Enters suspend mode for LE advertising.
     pub fn advertising_enter_suspend(&mut self) {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
         self.advertisers.set_suspend_mode(SuspendMode::Suspending);
 
         let mut pausing_cnt = 0;
@@ -1832,10 +1860,14 @@ impl BluetoothGatt {
         if pausing_cnt == 0 {
             self.advertisers.set_suspend_mode(SuspendMode::Suspended);
         }
+=======
+        self.adv_manager.get_impl().enter_suspend()
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     }
 
     /// Exits suspend mode for LE advertising.
     pub fn advertising_exit_suspend(&mut self) {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
         for id in self.advertisers.stopped_sets().map(|s| s.adv_id()).collect::<Vec<_>>() {
             self.gatt.as_ref().unwrap().lock().unwrap().advertiser.unregister(id);
             self.advertisers.remove_by_advertiser_id(id as AdvertiserId);
@@ -1851,6 +1883,9 @@ impl BluetoothGatt {
         }
 
         self.advertisers.set_suspend_mode(SuspendMode::Normal);
+=======
+        self.adv_manager.get_impl().exit_suspend()
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     }
 
     /// Start an active scan on given scanner id. This will look up and assign
@@ -1912,6 +1947,10 @@ impl BluetoothGatt {
                 }
             }
         }
+    }
+
+    pub fn handle_adv_action(&mut self, action: AdvertiserActions) {
+        self.adv_manager.get_impl().handle_action(action);
     }
 }
 
@@ -2150,12 +2189,20 @@ impl IBluetoothGatt for BluetoothGatt {
         &mut self,
         callback: Box<dyn IAdvertisingSetCallback + Send>,
     ) -> u32 {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
         self.advertisers.add_callback(callback)
+=======
+        self.adv_manager.get_impl().register_callback(callback)
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     }
 
     fn unregister_advertiser_callback(&mut self, callback_id: u32) -> bool {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
         self.advertisers
             .remove_callback(callback_id, &mut self.gatt.as_ref().unwrap().lock().unwrap())
+=======
+        self.adv_manager.get_impl().unregister_callback(callback_id)
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     }
 
     fn start_advertising_set(
@@ -2169,6 +2216,7 @@ impl IBluetoothGatt for BluetoothGatt {
         max_ext_adv_events: i32,
         callback_id: u32,
     ) -> i32 {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
         if self.advertisers.suspend_mode() != SuspendMode::Normal {
             return INVALID_REG_ID;
         }
@@ -2226,9 +2274,22 @@ impl IBluetoothGatt for BluetoothGatt {
             adv_events,
         );
         reg_id
+=======
+        self.adv_manager.get_impl().start_advertising_set(
+            parameters,
+            advertise_data,
+            scan_response,
+            periodic_parameters,
+            periodic_data,
+            duration,
+            max_ext_adv_events,
+            callback_id,
+        )
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     }
 
     fn stop_advertising_set(&mut self, advertiser_id: i32) {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
         let s = if let Some(s) = self.advertisers.get_by_advertiser_id(advertiser_id) {
             s.clone()
         } else {
@@ -2251,9 +2312,13 @@ impl IBluetoothGatt for BluetoothGatt {
             cb.on_advertising_set_stopped(advertiser_id);
         }
         self.advertisers.remove_by_advertiser_id(advertiser_id);
+=======
+        self.adv_manager.get_impl().stop_advertising_set(advertiser_id)
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     }
 
     fn get_own_address(&mut self, advertiser_id: i32) {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
         if self.advertisers.suspend_mode() != SuspendMode::Normal {
             return;
         }
@@ -2261,6 +2326,9 @@ impl IBluetoothGatt for BluetoothGatt {
         if let Some(s) = self.advertisers.get_by_advertiser_id(advertiser_id) {
             self.gatt.as_ref().unwrap().lock().unwrap().advertiser.get_own_address(s.adv_id());
         }
+=======
+        self.adv_manager.get_impl().get_own_address(advertiser_id);
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     }
 
     fn enable_advertising_set(
@@ -2270,6 +2338,7 @@ impl IBluetoothGatt for BluetoothGatt {
         duration: i32,
         max_ext_adv_events: i32,
     ) {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
         if self.advertisers.suspend_mode() != SuspendMode::Normal {
             return;
         }
@@ -2285,9 +2354,18 @@ impl IBluetoothGatt for BluetoothGatt {
                 adv_events,
             );
         }
+=======
+        self.adv_manager.get_impl().enable_advertising_set(
+            advertiser_id,
+            enable,
+            duration,
+            max_ext_adv_events,
+        );
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     }
 
     fn set_advertising_data(&mut self, advertiser_id: i32, data: AdvertiseData) {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
         if self.advertisers.suspend_mode() != SuspendMode::Normal {
             return;
         }
@@ -2306,9 +2384,13 @@ impl IBluetoothGatt for BluetoothGatt {
                 bytes,
             );
         }
+=======
+        self.adv_manager.get_impl().set_advertising_data(advertiser_id, data);
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     }
 
     fn set_raw_adv_data(&mut self, advertiser_id: i32, data: Vec<u8>) {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
         if self.advertisers.suspend_mode() != SuspendMode::Normal {
             return;
         }
@@ -2324,9 +2406,13 @@ impl IBluetoothGatt for BluetoothGatt {
                 data,
             );
         }
+=======
+        self.adv_manager.get_impl().set_raw_adv_data(advertiser_id, data);
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     }
 
     fn set_scan_response_data(&mut self, advertiser_id: i32, data: AdvertiseData) {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
         if self.advertisers.suspend_mode() != SuspendMode::Normal {
             return;
         }
@@ -2345,6 +2431,9 @@ impl IBluetoothGatt for BluetoothGatt {
                 bytes,
             );
         }
+=======
+        self.adv_manager.get_impl().set_scan_response_data(advertiser_id, data);
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     }
 
     fn set_advertising_parameters(
@@ -2352,6 +2441,7 @@ impl IBluetoothGatt for BluetoothGatt {
         advertiser_id: i32,
         parameters: AdvertisingSetParameters,
     ) {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
         if self.advertisers.suspend_mode() != SuspendMode::Normal {
             return;
         }
@@ -2384,6 +2474,9 @@ impl IBluetoothGatt for BluetoothGatt {
                 );
             }
         }
+=======
+        self.adv_manager.get_impl().set_advertising_parameters(advertiser_id, parameters);
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     }
 
     fn set_periodic_advertising_parameters(
@@ -2391,6 +2484,7 @@ impl IBluetoothGatt for BluetoothGatt {
         advertiser_id: i32,
         parameters: PeriodicAdvertisingParameters,
     ) {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
         if self.advertisers.suspend_mode() != SuspendMode::Normal {
             return;
         }
@@ -2406,9 +2500,13 @@ impl IBluetoothGatt for BluetoothGatt {
                 .advertiser
                 .set_periodic_advertising_parameters(s.adv_id(), params);
         }
+=======
+        self.adv_manager.get_impl().set_periodic_advertising_parameters(advertiser_id, parameters);
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     }
 
     fn set_periodic_advertising_data(&mut self, advertiser_id: i32, data: AdvertiseData) {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
         if self.advertisers.suspend_mode() != SuspendMode::Normal {
             return;
         }
@@ -2429,6 +2527,9 @@ impl IBluetoothGatt for BluetoothGatt {
                 .advertiser
                 .set_periodic_advertising_data(s.adv_id(), bytes);
         }
+=======
+        self.adv_manager.get_impl().set_periodic_advertising_data(advertiser_id, data);
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     }
 
     fn set_periodic_advertising_enable(
@@ -2437,6 +2538,7 @@ impl IBluetoothGatt for BluetoothGatt {
         enable: bool,
         include_adi: bool,
     ) {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
         if self.advertisers.suspend_mode() != SuspendMode::Normal {
             return;
         }
@@ -2447,6 +2549,13 @@ impl IBluetoothGatt for BluetoothGatt {
                 include_adi,
             );
         }
+=======
+        self.adv_manager.get_impl().set_periodic_advertising_enable(
+            advertiser_id,
+            enable,
+            include_adi,
+        );
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     }
 
     // GATT Client
@@ -4421,6 +4530,7 @@ impl BtifGattAdvCallbacks for BluetoothGatt {
         tx_power: i8,
         status: AdvertisingStatus,
     ) {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
         debug!(
             "on_advertising_set_started(): reg_id = {}, advertiser_id = {}, tx_power = {}, status = {:?}",
             reg_id, advertiser_id, tx_power, status
@@ -4445,9 +4555,18 @@ impl BtifGattAdvCallbacks for BluetoothGatt {
             );
             self.advertisers.remove_by_reg_id(reg_id);
         }
+=======
+        self.adv_manager.get_impl().on_advertising_set_started(
+            reg_id,
+            advertiser_id,
+            tx_power,
+            status,
+        );
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     }
 
     fn on_advertising_enabled(&mut self, adv_id: u8, enabled: bool, status: AdvertisingStatus) {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
         debug!(
             "on_advertising_enabled(): adv_id = {}, enabled = {}, status = {:?}",
             adv_id, enabled, status
@@ -4471,9 +4590,13 @@ impl BtifGattAdvCallbacks for BluetoothGatt {
                 self.advertisers.set_suspend_mode(SuspendMode::Suspended);
             }
         }
+=======
+        self.adv_manager.get_impl().on_advertising_enabled(adv_id, enabled, status);
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     }
 
     fn on_advertising_data_set(&mut self, adv_id: u8, status: AdvertisingStatus) {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
         debug!("on_advertising_data_set(): adv_id = {}, status = {:?}", adv_id, status);
 
         let advertiser_id: i32 = adv_id.into();
@@ -4485,9 +4608,13 @@ impl BtifGattAdvCallbacks for BluetoothGatt {
         if let Some(cb) = self.advertisers.get_callback(&s) {
             cb.on_advertising_data_set(advertiser_id, status);
         }
+=======
+        self.adv_manager.get_impl().on_advertising_data_set(adv_id, status);
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     }
 
     fn on_scan_response_data_set(&mut self, adv_id: u8, status: AdvertisingStatus) {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
         debug!("on_scan_response_data_set(): adv_id = {}, status = {:?}", adv_id, status);
 
         let advertiser_id: i32 = adv_id.into();
@@ -4499,6 +4626,9 @@ impl BtifGattAdvCallbacks for BluetoothGatt {
         if let Some(cb) = self.advertisers.get_callback(&s) {
             cb.on_scan_response_data_set(advertiser_id, status);
         }
+=======
+        self.adv_manager.get_impl().on_scan_response_data_set(adv_id, status);
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     }
 
     fn on_advertising_parameters_updated(
@@ -4507,6 +4637,7 @@ impl BtifGattAdvCallbacks for BluetoothGatt {
         tx_power: i8,
         status: AdvertisingStatus,
     ) {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
         debug!(
             "on_advertising_parameters_updated(): adv_id = {}, tx_power = {}, status = {:?}",
             adv_id, tx_power, status
@@ -4521,6 +4652,9 @@ impl BtifGattAdvCallbacks for BluetoothGatt {
         if let Some(cb) = self.advertisers.get_callback(&s) {
             cb.on_advertising_parameters_updated(advertiser_id, tx_power.into(), status);
         }
+=======
+        self.adv_manager.get_impl().on_advertising_parameters_updated(adv_id, tx_power, status);
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     }
 
     fn on_periodic_advertising_parameters_updated(
@@ -4528,6 +4662,7 @@ impl BtifGattAdvCallbacks for BluetoothGatt {
         adv_id: u8,
         status: AdvertisingStatus,
     ) {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
         debug!(
             "on_periodic_advertising_parameters_updated(): adv_id = {}, status = {:?}",
             adv_id, status
@@ -4542,9 +4677,13 @@ impl BtifGattAdvCallbacks for BluetoothGatt {
         if let Some(cb) = self.advertisers.get_callback(&s) {
             cb.on_periodic_advertising_parameters_updated(advertiser_id, status);
         }
+=======
+        self.adv_manager.get_impl().on_periodic_advertising_parameters_updated(adv_id, status);
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     }
 
     fn on_periodic_advertising_data_set(&mut self, adv_id: u8, status: AdvertisingStatus) {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
         debug!("on_periodic_advertising_data_set(): adv_id = {}, status = {:?}", adv_id, status);
 
         let advertiser_id: i32 = adv_id.into();
@@ -4556,6 +4695,9 @@ impl BtifGattAdvCallbacks for BluetoothGatt {
         if let Some(cb) = self.advertisers.get_callback(&s) {
             cb.on_periodic_advertising_data_set(advertiser_id, status);
         }
+=======
+        self.adv_manager.get_impl().on_periodic_advertising_data_set(adv_id, status);
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     }
 
     fn on_periodic_advertising_enabled(
@@ -4564,6 +4706,7 @@ impl BtifGattAdvCallbacks for BluetoothGatt {
         enabled: bool,
         status: AdvertisingStatus,
     ) {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
         debug!(
             "on_periodic_advertising_enabled(): adv_id = {}, enabled = {}, status = {:?}",
             adv_id, enabled, status
@@ -4578,9 +4721,13 @@ impl BtifGattAdvCallbacks for BluetoothGatt {
         if let Some(cb) = self.advertisers.get_callback(&s) {
             cb.on_periodic_advertising_enabled(advertiser_id, enabled, status);
         }
+=======
+        self.adv_manager.get_impl().on_periodic_advertising_enabled(adv_id, enabled, status);
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     }
 
     fn on_own_address_read(&mut self, adv_id: u8, addr_type: u8, address: RawAddress) {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
         debug!(
             "on_own_address_read(): adv_id = {}, addr_type = {}, address = {:?}",
             adv_id, addr_type, address
@@ -4595,6 +4742,9 @@ impl BtifGattAdvCallbacks for BluetoothGatt {
         if let Some(cb) = self.advertisers.get_callback(&s) {
             cb.on_own_address_read(advertiser_id, addr_type.into(), address.to_string());
         }
+=======
+        self.adv_manager.get_impl().on_own_address_read(adv_id, addr_type, address);
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     }
 }
 

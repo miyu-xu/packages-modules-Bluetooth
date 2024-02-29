@@ -10,6 +10,7 @@ use bt_topshim::btif::{
 use bt_topshim::{
     metrics,
     profiles::gatt::GattStatus,
+    profiles::hfp::EscoCodingFormat,
     profiles::hid_host::{
         BthhConnectionState, BthhHidInfo, BthhProtocolMode, BthhReportType, BthhStatus,
         HHCallbacks, HHCallbacksDispatcher, HidHost,
@@ -239,6 +240,15 @@ pub trait IBluetooth {
 
     /// Returns whether SWB is supported.
     fn is_swb_supported(&self) -> bool;
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
+=======
+
+    /// Returns a list of all the roles that are supported.
+    fn get_supported_roles(&self) -> Vec<BtAdapterRole>;
+
+    /// Returns whether the coding format is supported.
+    fn is_coding_format_supported(&self, coding_format: EscoCodingFormat) -> bool;
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
 }
 
 /// Adapter API for Bluetooth qualification and verification.
@@ -2765,6 +2775,30 @@ impl IBluetooth for Bluetooth {
     fn is_swb_supported(&self) -> bool {
         self.intf.lock().unwrap().get_swb_supported()
     }
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
+=======
+
+    fn get_supported_roles(&self) -> Vec<BtAdapterRole> {
+        let mut roles: Vec<BtAdapterRole> = vec![];
+
+        // See Core 5.3, Vol 4, Part E, 7.8.27 for detailed state information
+        if self.le_supported_states >> 35 & 1 == 1u64 {
+            roles.push(BtAdapterRole::Central);
+        }
+        if self.le_supported_states >> 38 & 1 == 1u64 {
+            roles.push(BtAdapterRole::Peripheral);
+        }
+        if self.le_supported_states >> 28 & 1 == 1u64 {
+            roles.push(BtAdapterRole::CentralPeripheral);
+        }
+
+        roles
+    }
+
+    fn is_coding_format_supported(&self, coding_format: EscoCodingFormat) -> bool {
+        self.intf.lock().unwrap().is_coding_format_supported(coding_format as u8)
+    }
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
 }
 
 impl BtifSdpCallbacks for Bluetooth {

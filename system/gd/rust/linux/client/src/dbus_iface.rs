@@ -10,7 +10,7 @@ use bt_topshim::profiles::a2dp::{
 };
 use bt_topshim::profiles::avrcp::PlayerMetadata;
 use bt_topshim::profiles::gatt::{AdvertisingStatus, GattStatus, LePhy};
-use bt_topshim::profiles::hfp::HfpCodecCapability;
+use bt_topshim::profiles::hfp::{EscoCodingFormat, HfpCodecBitId, HfpCodecFormat};
 use bt_topshim::profiles::hid_host::BthhReportType;
 use bt_topshim::profiles::sdp::{
     BtSdpDipRecord, BtSdpHeaderOverlay, BtSdpMasRecord, BtSdpMnsRecord, BtSdpMpsRecord,
@@ -434,13 +434,16 @@ impl_dbus_arg_from_into!(A2dpCodecSampleRate, i32);
 impl_dbus_arg_from_into!(A2dpCodecBitsPerSample, i32);
 impl_dbus_arg_from_into!(A2dpCodecChannelMode, i32);
 
-impl_dbus_arg_from_into!(HfpCodecCapability, i32);
+impl_dbus_arg_from_into!(EscoCodingFormat, u8);
+impl_dbus_arg_from_into!(HfpCodecBitId, i32);
+impl_dbus_arg_from_into!(HfpCodecFormat, i32);
+
 #[dbus_propmap(BluetoothAudioDevice)]
 pub struct BluetoothAudioDeviceDBus {
     address: String,
     name: String,
     a2dp_caps: Vec<A2dpCodecConfig>,
-    hfp_cap: HfpCodecCapability,
+    hfp_cap: HfpCodecFormat,
     absolute_volume: bool,
 }
 
@@ -995,6 +998,19 @@ impl IBluetooth for BluetoothDBus {
     fn is_swb_supported(&self) -> bool {
         dbus_generated!()
     }
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
+=======
+
+    #[dbus_method("GetSupportedRoles")]
+    fn get_supported_roles(&self) -> Vec<BtAdapterRole> {
+        dbus_generated!()
+    }
+
+    #[dbus_method("IsCodingFormatSupported")]
+    fn is_coding_format_supported(&self, coding_format: EscoCodingFormat) -> bool {
+        dbus_generated!()
+    }
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
 }
 
 pub(crate) struct BluetoothQALegacyDBus {
@@ -2650,7 +2666,7 @@ impl IBluetoothMedia for BluetoothMediaDBus {
         &mut self,
         address: String,
         sco_offload: bool,
-        disabled_codecs: HfpCodecCapability,
+        disabled_codecs: HfpCodecBitId,
     ) -> bool {
         dbus_generated!()
     }

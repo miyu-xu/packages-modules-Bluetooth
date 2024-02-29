@@ -1299,4 +1299,21 @@ void gatt_reset_bgdev_list(bool after_reset);
 // Initialize GATTS list of bonded device service change updates.
 void gatt_load_bonded(void);
 
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
+=======
+namespace fmt {
+template <>
+struct formatter<GattStatus> : enum_formatter<GattStatus> {};
+template <>
+struct formatter<tGATT_DISCONN_REASON> : enum_formatter<tGATT_DISCONN_REASON> {
+};
+template <>
+struct formatter<tGATTC_OPTYPE> : enum_formatter<tGATTC_OPTYPE> {};
+template <>
+struct formatter<tGATT_OP_CODE> : enum_formatter<tGATT_OP_CODE> {};
+template <>
+struct formatter<tGATT_DISC_TYPE> : enum_formatter<tGATT_DISC_TYPE> {};
+}  // namespace fmt
+
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
 #endif /* GATT_API_H */

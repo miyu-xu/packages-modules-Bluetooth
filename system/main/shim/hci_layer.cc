@@ -61,12 +61,15 @@ static const packet_fragmenter_t* packet_fragmenter;
 namespace {
 bool register_event_code(bluetooth::hci::EventCode event_code) {
   switch (event_code) {
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
     // Inquiry
     case bluetooth::hci::EventCode::INQUIRY_COMPLETE:
     case bluetooth::hci::EventCode::INQUIRY_RESULT:
     case bluetooth::hci::EventCode::INQUIRY_RESULT_WITH_RSSI:
     case bluetooth::hci::EventCode::EXTENDED_INQUIRY_RESULT:
 
+=======
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
     // SCO
     case bluetooth::hci::EventCode::SYNCHRONOUS_CONNECTION_COMPLETE:
     case bluetooth::hci::EventCode::SYNCHRONOUS_CONNECTION_CHANGED:

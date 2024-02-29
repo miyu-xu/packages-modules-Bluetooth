@@ -221,6 +221,17 @@ fn build_commands() -> HashMap<String, CommandOption> {
                 ),
                 String::from("gatt register-notification <address> <handle> <enable|disable>"),
                 String::from("gatt register-server"),
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
+=======
+                String::from("gatt unregister-server <server_id>"),
+                String::from("gatt server-connect <server_id> <client_address>"),
+                String::from("gatt server-disconnect <server_id> <client_address>"),
+                String::from("gatt server-add-heartrate-service <server_id>"),
+                String::from("gatt server-remove-service <server_id> <service_handle>"),
+                String::from("gatt server-clear-all-services <server_id>"),
+                String::from("gatt server-set-direct-connect <true|false>"),
+                String::from("gatt server-set-connect-transport <Bredr|LE|Auto>"),
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
             ],
             description: String::from("GATT tools"),
             function_pointer: CommandHandler::cmd_gatt,
@@ -1315,6 +1326,101 @@ impl CommandHandler {
                     false,
                 );
             }
+<<<<<<< HEAD   (9d3e18 Snap for 11435509 from aeaae719ca46ad36e6e95b106c9fc515041c3)
+=======
+            "unregister-server" => {
+                let server_id = String::from(get_arg(args, 1)?)
+                    .parse::<i32>()
+                    .or(Err("Failed parsing server id"))?;
+
+                self.lock_context().gatt_dbus.as_mut().unwrap().unregister_server(server_id);
+            }
+            "server-connect" => {
+                let server_id = String::from(get_arg(args, 1)?)
+                    .parse::<i32>()
+                    .or(Err("Failed to parse server_id"))?;
+                let client_addr = String::from(get_arg(args, 2)?);
+                let is_direct = self.lock_context().gatt_server_context.is_connect_direct;
+                let transport = self.lock_context().gatt_server_context.connect_transport;
+
+                if !self.lock_context().gatt_dbus.as_mut().unwrap().server_connect(
+                    server_id,
+                    client_addr.clone(),
+                    is_direct,
+                    transport,
+                ) {
+                    return Err("Connection was unsuccessful".into());
+                }
+            }
+            "server-disconnect" => {
+                let server_id = String::from(get_arg(args, 1)?)
+                    .parse::<i32>()
+                    .or(Err("Failed to parse server_id"))?;
+                let client_addr = String::from(get_arg(args, 2)?);
+
+                if !self
+                    .lock_context()
+                    .gatt_dbus
+                    .as_mut()
+                    .unwrap()
+                    .server_disconnect(server_id, client_addr.clone())
+                {
+                    return Err("Disconnection was unsuccessful".into());
+                }
+            }
+            "server-add-heartrate-service" => {
+                let uuid = Uuid::from(UuidHelper::from_string(HEART_RATE_SERVICE_UUID).unwrap());
+
+                let server_id = String::from(get_arg(args, 1)?)
+                    .parse::<i32>()
+                    .or(Err("Failed to parse server_id"))?;
+                let service = BluetoothGattService::new(
+                    uuid.into(),
+                    0, // libbluetooth assigns this handle once the service is added
+                    GattDbElementType::PrimaryService.into(),
+                );
+
+                self.lock_context().gatt_dbus.as_mut().unwrap().add_service(server_id, service);
+            }
+            "server-remove-service" => {
+                let server_id = String::from(get_arg(args, 1)?)
+                    .parse::<i32>()
+                    .or(Err("Failed to parse server_id"))?;
+                let service_handle = String::from(get_arg(args, 1)?)
+                    .parse::<i32>()
+                    .or(Err("Failed to parse service handle"))?;
+
+                self.lock_context()
+                    .gatt_dbus
+                    .as_mut()
+                    .unwrap()
+                    .remove_service(server_id, service_handle);
+            }
+            "server-clear-all-services" => {
+                let server_id = String::from(get_arg(args, 1)?)
+                    .parse::<i32>()
+                    .or(Err("Failed to parse server_id"))?;
+                self.lock_context().gatt_dbus.as_mut().unwrap().clear_services(server_id);
+            }
+            "server-set-direct-connect" => {
+                let is_direct = String::from(get_arg(args, 1)?)
+                    .parse::<bool>()
+                    .or(Err("Failed to parse is_direct"))?;
+
+                self.lock_context().gatt_server_context.is_connect_direct = is_direct;
+            }
+            "server-set-connect-transport" => {
+                let transport = match &get_arg(args, 1)?[..] {
+                    "Bredr" => BtTransport::Bredr,
+                    "LE" => BtTransport::Le,
+                    "Auto" => BtTransport::Auto,
+                    _ => {
+                        return Err("Failed to parse transport".into());
+                    }
+                };
+                self.lock_context().gatt_server_context.connect_transport = transport;
+            }
+>>>>>>> BRANCH (55df69 Merge "[RFCOMM] Reduce log levels of frequent events" into m)
             _ => return Err(CommandError::InvalidArgs),
         }
         Ok(())
