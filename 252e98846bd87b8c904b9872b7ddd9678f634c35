@@ -16,6 +16,24 @@
       "message": "Add a specialization for `char*\u0026` as well",
       "revId": "252e98846bd87b8c904b9872b7ddd9678f634c35",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9a0c1b8_c2a78688",
+        "filename": "system/log/include/bluetooth/log.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-02-29T17:43:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa6d5f38_ad6d20e1",
+      "revId": "252e98846bd87b8c904b9872b7ddd9678f634c35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
