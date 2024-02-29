@@ -1959,6 +1959,10 @@ class BluetoothManagerService {
                         mAdapter = null;
                         mAdapterLock.writeLock().unlock();
                         Log.e(TAG, "Reach maximum retry to restart Bluetooth!");
+                        persistBluetoothSetting(BLUETOOTH_OFF);
+                        mEnableExternal = false;
+                        sendDisableMsg(BluetoothProtoEnums.ENABLE_DISABLE_REASON_RESTARTED,
+                                         packageName);
                     }
                     break;
 
