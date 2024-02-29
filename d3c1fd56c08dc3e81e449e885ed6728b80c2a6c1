@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "158079b2_cf5fe960",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-02-29T21:31:08Z",
+      "side": 1,
+      "message": "if local a2dp is sink ; rc should be on the peer device right?\n\nI am just curious why btif_rc deals with Sink AV? I am sorry I am not a 100% well informed of this part of the codebase so just a clarifying question here.",
+      "range": {
+        "startLine": 575,
+        "startChar": 48,
+        "endLine": 575,
+        "endChar": 63
+      },
+      "revId": "d3c1fd56c08dc3e81e449e885ed6728b80c2a6c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
