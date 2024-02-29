@@ -105,6 +105,24 @@
       "parentUuid": "e87da06a_8361b473",
       "revId": "4e056503a998a317e899ff22342087f583d0e1e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3daacdae_d0d7d9dc",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 5831,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-02-29T17:59:54Z",
+      "side": 1,
+      "message": "Returning true might break non-DSA usecases if the DSA states were set wrong.",
+      "parentUuid": "59a019b8_d623e296",
+      "revId": "4e056503a998a317e899ff22342087f583d0e1e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
