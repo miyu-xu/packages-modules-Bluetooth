@@ -70,6 +70,30 @@
       },
       "revId": "af8ea39e1c88a1c5d30a5f86285c65a837730c5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8310c2b_73d870a7",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-29T19:16:21Z",
+      "side": 1,
+      "message": "Sadly this depends on some other changes yet to propagate...that, and or there is a missing patch 😞",
+      "parentUuid": "cc97340e_694e56cd",
+      "range": {
+        "startLine": 796,
+        "startChar": 41,
+        "endLine": 796,
+        "endChar": 51
+      },
+      "revId": "af8ea39e1c88a1c5d30a5f86285c65a837730c5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
