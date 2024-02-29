@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11ce0f35_c048ef7c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 992,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-29T17:57:17Z",
+      "side": 1,
+      "message": "We\u0027ll still want to start GATT service here even with flag enabled.\n\nThe behavior change for GATT service lifecycle can come behind a future flag.",
+      "range": {
+        "startLine": 992,
+        "startChar": 10,
+        "endLine": 992,
+        "endChar": 16
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b27d8ef_7c30bef3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1000,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-29T17:57:17Z",
+      "side": 1,
+      "message": "Same thing here - should also stop GATT for pure refactor.",
+      "range": {
+        "startLine": 1000,
+        "startChar": 8,
+        "endLine": 1000,
+        "endChar": 16
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "498dff0c_841ba251",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-29T17:57:17Z",
+      "side": 1,
+      "message": "Might be good to flag guard here so flag cleanup is a bit easier and at that point GATT service reference can be removed.",
+      "range": {
+        "startLine": 229,
+        "startChar": 8,
+        "endLine": 229,
+        "endChar": 35
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
