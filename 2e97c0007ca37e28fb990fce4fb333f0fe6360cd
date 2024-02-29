@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e876d395_7ef8dbb4",
+        "filename": "floss/pandora/floss/audio_utils.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2024-02-29T14:22:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a98f9a8_6d087e3e",
+      "range": {
+        "startLine": 96,
+        "startChar": 4,
+        "endLine": 96,
+        "endChar": 23
+      },
+      "revId": "2e97c0007ca37e28fb990fce4fb333f0fe6360cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45a98f18_6b301ed5",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be466b0f_b1125025",
+        "filename": "floss/pandora/floss/cras_utils.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2024-02-29T14:22:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45a98f18_6b301ed5",
+      "revId": "2e97c0007ca37e28fb990fce4fb333f0fe6360cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8397f5d8_1de0bdc6",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-02-27T10:49:30Z",
       "side": 1,
       "message": "@johnlai@google.com please provide the guidance of the error handling.",
+      "range": {
+        "startLine": 78,
+        "startChar": 20,
+        "endLine": 78,
+        "endChar": 38
+      },
+      "revId": "2e97c0007ca37e28fb990fce4fb333f0fe6360cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b359f8fc_0ab714a7",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2024-02-29T14:22:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8397f5d8_1de0bdc6",
       "range": {
         "startLine": 78,
         "startChar": 20,
