@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e72acb1_033726c5",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1367,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-02-29T18:53:01Z",
+      "side": 1,
+      "message": "Can I get a little more info on how we\u0027re going to be using this and why we are choosing to panic when we are trying to avoid panics in code",
+      "revId": "9544c285b28cedf0c3e177b0822fd16e07315945",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
