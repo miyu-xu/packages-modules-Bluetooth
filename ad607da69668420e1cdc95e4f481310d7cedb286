@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad360db9_f0e3178e",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-02-29T16:18:58Z",
+      "side": 1,
+      "message": "I guess this should be something like `socket_manager.FlossSocketManagerClient`. @johnlai@google.com could you help verify the linter?",
+      "range": {
+        "startLine": 117,
+        "startChar": 39,
+        "endLine": 117,
+        "endChar": 53
+      },
+      "revId": "ad607da69668420e1cdc95e4f481310d7cedb286",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a36f0e5_8a108db0",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-02-29T16:18:58Z",
+      "side": 1,
+      "message": "Hi mohammad.shawahneh@exalt.ps and @mohammad.kh.sabri@exalt.ps please make sure all the delivery has passed Exalt\u0027s internal code review.\n\nHi Rajaa, this clearly causes race conditions between multiple `on_outgoing_connection_result` instances and introduces unnecessary code complexity. Please clone `FlossSocketManagerClient.on_outgoing_connection_result` here. Basically `FlossSocketManagerClient` doesn\u0027t even need to handle any callbacks at all and I\u0027d suggest to remove them because ayncio is adopted in Pandora and the clients could handle them directly and easily.",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 46
+      },
+      "revId": "ad607da69668420e1cdc95e4f481310d7cedb286",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
