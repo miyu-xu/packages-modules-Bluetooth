@@ -44,8 +44,6 @@ import java.util.Map;
  * @hide
  */
 public class McpService extends ProfileService {
-    private static final boolean DBG = true;
-    private static final boolean VDBG = false;
     private static final String TAG = "BluetoothMcpService";
 
     private static McpService sMcpService;
@@ -66,9 +64,7 @@ public class McpService extends ProfileService {
     }
 
     private static synchronized void setMcpService(McpService instance) {
-        if (VDBG) {
-            Log.d(TAG, "setMcpService(): set to: " + instance);
-        }
+        Log.d(TAG, "setMcpService(): set to: " + instance);
         sMcpService = instance;
     }
 
@@ -102,9 +98,7 @@ public class McpService extends ProfileService {
 
     @Override
     public void start() {
-        if (DBG) {
-            Log.d(TAG, "start()");
-        }
+        Log.d(TAG, "start()");
 
         if (sMcpService != null) {
             throw new IllegalStateException("start() called twice");
@@ -134,9 +128,7 @@ public class McpService extends ProfileService {
 
     @Override
     public void stop() {
-        if (DBG) {
-            Log.d(TAG, "stop()");
-        }
+        Log.d(TAG, "stop()");
 
         if (sMcpService == null) {
             Log.w(TAG, "stop() called before start()");
@@ -162,9 +154,7 @@ public class McpService extends ProfileService {
 
     @Override
     public void cleanup() {
-        if (DBG) {
-            Log.d(TAG, "cleanup()");
-        }
+        Log.d(TAG, "cleanup()");
     }
 
     @Override
@@ -246,9 +236,7 @@ public class McpService extends ProfileService {
 
         if (leAudioService.getConnectionPolicy(device)
                 > BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
-            if (DBG) {
-                Log.d(TAG, "MCS authorization allowed based on supported LeAudio service");
-            }
+            Log.d(TAG, "MCS authorization allowed based on supported LeAudio service");
             setDeviceAuthorized(device, true);
             return BluetoothDevice.ACCESS_ALLOWED;
         }

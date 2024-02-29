@@ -2245,9 +2245,7 @@ public class BassClientStateMachine extends StateMachine {
 
     @Override
     protected void log(String msg) {
-        if (BassConstants.BASS_DBG) {
-            super.log(msg);
-        }
+        super.log(msg);
     }
 
     private static void logByteArray(String prefix, byte[] value, int offset, int count) {
