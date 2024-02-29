@@ -85,6 +85,23 @@
       "message": "Why not simply go back to 2M in the end of case for \n\n```\ncase GroupStreamStatus::CONFIGURED_AUTONOMOUS:\n        /* This state is notified only when\n         * groups stays into CONFIGURED state after\n         * STREAMING. Peer device uses cache. For the moment\n         * it is handled same as IDLE\n         */\n      case GroupStreamStatus::IDLE:\n```\n\n\nand avoid timer?",
       "revId": "3f6724ebd549195f100d7261cad1ec10b3204c6b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36843b83_1db61b85",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 5725,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-29T07:44:18Z",
+      "side": 1,
+      "message": "lets add unit test for that.",
+      "revId": "3f6724ebd549195f100d7261cad1ec10b3204c6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
