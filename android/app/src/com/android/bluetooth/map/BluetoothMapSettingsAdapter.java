@@ -42,8 +42,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class BluetoothMapSettingsAdapter extends BaseExpandableListAdapter {
-    private static final boolean D = BluetoothMapService.DEBUG;
-    private static final boolean V = BluetoothMapService.VERBOSE;
     private static final String TAG = "BluetoothMapSettingsAdapter";
     private boolean mCheckAll = true;
     public LayoutInflater mInflater;
@@ -182,9 +180,7 @@ public class BluetoothMapSettingsAdapter extends BaseExpandableListAdapter {
 
         holder.cb.setChecked(child.mIsChecked);
         holder.title.setText(child.getName());
-        if (D) {
-            Log.i("childs are", BluetoothMapSettingsDataHolder.sCheckedChilds.toString());
-        }
+        Log.i("childs are", BluetoothMapSettingsDataHolder.sCheckedChilds.toString());
         return convertView;
 
     }
@@ -311,10 +307,8 @@ public class BluetoothMapSettingsAdapter extends BaseExpandableListAdapter {
 
     public void updateAccount(BluetoothMapAccountItem account) {
         updateSlotCounter(account.mIsChecked);
-        if (D) {
-            Log.d(TAG, "Updating account settings for " + account.getName() + ". Value is:"
-                    + account.mIsChecked);
-        }
+        Log.d(TAG, "Updating account settings for " + account.getName() + ". Value is:"
+                + account.mIsChecked);
         ContentResolver mResolver = mActivity.getContentResolver();
         Uri uri =
                 Uri.parse(account.mBase_uri_no_account + "/" + BluetoothMapContract.TABLE_ACCOUNT);
