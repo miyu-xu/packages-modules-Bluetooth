@@ -824,8 +824,8 @@ static void bta_jv_start_discovery_cback(UNUSED_ATTR const RawAddress& bd_addr,
     tBTA_JV bta_jv;
     bta_jv.disc_comp = dcomp;
     bta_jv_cb.p_dm_cback(BTA_JV_DISCOVERY_COMP_EVT, &bta_jv, *p_rfcomm_slot_id);
-    osi_free(p_rfcomm_slot_id);
   }
+  osi_free(p_rfcomm_slot_id);
 }
 
 /* Discovers services on a remote device */
@@ -1914,3 +1914,12 @@ static void bta_jv_reset_sniff_timer(tBTA_JV_PM_CB* p_cb) {
   }
 }
 /******************************************************************************/
+
+namespace bluetooth::legacy::testing {
+
+void bta_jv_start_discovery_cback(const RawAddress& bd_addr, tSDP_RESULT result,
+                                  const void* user_data) {
+  ::bta_jv_start_discovery_cback(bd_addr, result, user_data);
+}
+
+}  // namespace bluetooth::legacy::testing
