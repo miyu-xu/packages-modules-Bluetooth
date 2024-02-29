@@ -291,7 +291,7 @@ public class ContextMap<C, T> {
     /**
      * Remove the context for a given application ID.
      */
-    protected void remove(int id) {
+    public void remove(int id) {
         boolean find = false;
         synchronized (mAppsLock) {
             Iterator<App> i = mApps.iterator();
@@ -369,7 +369,7 @@ public class ContextMap<C, T> {
     /**
      * Get an application context by ID.
      */
-    protected App getById(int id) {
+    public App getById(int id) {
         synchronized (mAppsLock) {
             Iterator<App> i = mApps.iterator();
             while (i.hasNext()) {
