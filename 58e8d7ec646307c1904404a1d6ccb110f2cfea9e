@@ -50,6 +50,69 @@
       "message": "Has this been approved by the necessary folks? I haven\u0027t seen the design doc either.",
       "revId": "58e8d7ec646307c1904404a1d6ccb110f2cfea9e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75a2927d_94eecbf1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-02-29T14:25:54Z",
+      "side": 1,
+      "message": "What do you think about establishing a \u0027doc\u0027 folder for Floss documentations? We can put glossary and more guidelines like this one there.",
+      "revId": "58e8d7ec646307c1904404a1d6ccb110f2cfea9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c62fe52_3c17aad5",
+        "filename": "system/gd/rust/linux/docs_style_guide.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-02-29T14:25:54Z",
+      "side": 1,
+      "message": "It\u0027ll be great if we have a Glossary for Bluetooth abbreviation and initialism. To start with, we may create one with this patch. Keep trace of citation of the specification would add maintanace effort as the spec evolves. Perhaps just the specification like Core, BAP or a broader category would be enough for reader to tell its context.\n\nA Bluetooth glossary would be a valuable resource. You might start one in this patch and provide a link to it. Broader specification references (e.g., Core, BAP) might be more sustainable than specific citations, as they provide enough context for readers and will be easier to maintain as these spec evolves.",
+      "range": {
+        "startLine": 19,
+        "startChar": 11,
+        "endLine": 20,
+        "endChar": 16
+      },
+      "revId": "58e8d7ec646307c1904404a1d6ccb110f2cfea9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a891ba1d_63e64b56",
+        "filename": "system/gd/rust/linux/docs_style_guide.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-02-29T14:25:54Z",
+      "side": 1,
+      "message": "please add one space",
+      "range": {
+        "startLine": 92,
+        "startChar": 3,
+        "endLine": 92,
+        "endChar": 5
+      },
+      "revId": "58e8d7ec646307c1904404a1d6ccb110f2cfea9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
