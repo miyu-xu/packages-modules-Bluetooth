@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7149cb19_db4929fe",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1442,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-02-29T21:01:19Z",
+      "side": 1,
+      "message": "Added the log lines here as well. I have retained the other warn log lines in order to identify which caller had issues with the method invocation.",
+      "parentUuid": "6eea7b32_ea95a43f",
+      "range": {
+        "startLine": 1429,
+        "startChar": 0,
+        "endLine": 1442,
+        "endChar": 1
+      },
+      "revId": "f43baf2c74df2877b89436732c27b9490e3392a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1f86efca_a5c071e5",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-29T18:43:49Z",
       "side": 1,
       "message": "Prefer to be consistent with the flag checks.  I\u0027d rather have them all with \u0027!\u0027 or not.  It will be easier when we remove the flag.",
+      "range": {
+        "startLine": 263,
+        "startChar": 6,
+        "endLine": 263,
+        "endChar": 7
+      },
+      "revId": "f43baf2c74df2877b89436732c27b9490e3392a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4c67801_99662778",
+        "filename": "system/btif/src/btif_a2dp_sink.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-02-29T21:01:19Z",
+      "side": 1,
+      "message": "I have tried to use the ! condition if it makes it easier to remove or improve readability.",
+      "parentUuid": "1f86efca_a5c071e5",
       "range": {
         "startLine": 263,
         "startChar": 6,
