@@ -229,9 +229,11 @@ public class GattService extends ProfileService {
                         AdvertiseManagerNativeInterface.getInstance(),
                         mAdvertiserMap);
 
-        HandlerThread thread = new HandlerThread("BluetoothScanManager");
-        thread.start();
-        mTransitionalScanHelper.start(thread.getLooper());
+        if (!Flags.scanManagerRefactor()) {
+            HandlerThread thread = new HandlerThread("BluetoothScanManager");
+            thread.start();
+            mTransitionalScanHelper.start(thread.getLooper());
+        }
         mDistanceMeasurementManager = GattObjectsFactory.getInstance()
                 .createDistanceMeasurementManager(mAdapterService);
 

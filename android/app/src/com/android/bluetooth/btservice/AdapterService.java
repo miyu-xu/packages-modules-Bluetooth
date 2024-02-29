@@ -135,6 +135,7 @@ import com.android.bluetooth.hid.HidDeviceService;
 import com.android.bluetooth.hid.HidHostService;
 import com.android.bluetooth.le_audio.LeAudioService;
 import com.android.bluetooth.le_scan.ScanManager;
+import com.android.bluetooth.le_scan.ScanManagerService;
 import com.android.bluetooth.map.BluetoothMapService;
 import com.android.bluetooth.mapclient.MapClientService;
 import com.android.bluetooth.mcp.McpService;
@@ -312,6 +313,7 @@ public class AdapterService extends Service {
     private BatteryService mBatteryService;
     private BluetoothQualityReportNativeInterface mBluetoothQualityReportNativeInterface;
     private GattService mGattService;
+    private ScanManagerService mScanManagerService;
 
     private volatile boolean mTestModeEnabled = false;
 
@@ -1007,10 +1009,16 @@ public class AdapterService extends Service {
                     "GATT is configured off but the stack assumes it to be enabled. Start anyway.");
         }
         startGattProfileService();
+        if (Flags.scanManagerRefactor()) {
+            startScanProfileService();
+        }
     }
 
     void bringDownBle() {
         stopGattProfileService();
+        if (Flags.scanManagerRefactor()) {
+            stopScanProfileService();
+        }
     }
 
     void stateChangeCallback(int status) {
@@ -1070,11 +1078,23 @@ public class AdapterService extends Service {
         onProfileServiceStateChanged(mGattService, BluetoothAdapter.STATE_ON);
     }
 
+    private void startScanProfileService() {
+        mScanManagerService = new ScanManagerService(this);
+
+        mStartedProfiles.put(BluetoothProfile.SCAN, mScanManagerService);
+        addProfile(mScanManagerService);
+        mScanManagerService.start();
+        mScanManagerService.setAvailable(true);
+        onProfileServiceStateChanged(mScanManagerService, BluetoothAdapter.STATE_ON);
+    }
+
     private void stopGattProfileService() {
-        mAdapterProperties.onBleDisable();
-        if (mRunningProfiles.size() == 0) {
-            debugLog("stopGattProfileService() - No profiles services to stop.");
-            mAdapterStateMachine.sendMessage(AdapterState.BLE_STOPPED);
+        if (!Flags.scanManagerRefactor()) {
+            mAdapterProperties.onBleDisable();
+            if (mRunningProfiles.size() == 0) {
+                debugLog("stopGattProfileService() - No profiles services to stop.");
+                mAdapterStateMachine.sendMessage(AdapterState.BLE_STOPPED);
+            }
         }
 
         mStartedProfiles.remove(BluetoothProfile.GATT);
@@ -1086,6 +1106,25 @@ public class AdapterService extends Service {
             mGattService.cleanup();
             mGattService.getBinder().cleanup();
             mGattService = null;
+        }
+    }
+
+    private void stopScanProfileService() {
+        mAdapterProperties.onBleDisable();
+        if (mRunningProfiles.size() == 0) {
+            debugLog("stopScanProfileService() - No profiles services to stop.");
+            mAdapterStateMachine.sendMessage(AdapterState.BLE_STOPPED);
+        }
+
+        mStartedProfiles.remove(BluetoothProfile.SCAN);
+        if (mScanManagerService != null) {
+            mScanManagerService.setAvailable(false);
+            onProfileServiceStateChanged(mScanManagerService, BluetoothAdapter.STATE_OFF);
+            mScanManagerService.stop();
+            removeProfile(mScanManagerService);
+            mScanManagerService.cleanup();
+            mScanManagerService.getBinder().cleanup();
+            mScanManagerService = null;
         }
     }
 
@@ -5375,6 +5414,23 @@ public class AdapterService extends Service {
             return service.getBluetoothGatt();
         }
 
+        @Override
+        public void getBluetoothScan(SynchronousResultReceiver receiver) {
+            try {
+                receiver.send(getBluetoothScan());
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+
+        private IBinder getBluetoothScan() {
+            AdapterService service = getService();
+            if (service == null) {
+                return null;
+            }
+            return service.getBluetoothScan();
+        }
+
         @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
         @Override
         public void unregAllGattClient(
@@ -7141,6 +7197,13 @@ public class AdapterService extends Service {
             return null;
         }
         return ((ProfileService) mGattService).getBinder();
+    }
+
+    IBinder getBluetoothScan() {
+        if (mScanManagerService == null) {
+            return null;
+        }
+        return mScanManagerService.getBinder();
     }
 
     void unregAllGattClient(AttributionSource source) {
