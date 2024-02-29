@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85629fd2_2c533136",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T22:10:29Z",
+      "side": 1,
+      "message": "Looks good to me.\n@siyuanh@google.com to validate as you did the readWriteLock implementation",
+      "revId": "48fa48988637860721782b5ac72c110fe36dfa54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8927297e_170f2460",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3782,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T22:10:29Z",
+      "side": 1,
+      "message": "Add a TODO on the flag bug ?",
+      "range": {
+        "startLine": 3782,
+        "startChar": 7,
+        "endLine": 3782,
+        "endChar": 11
+      },
+      "revId": "48fa48988637860721782b5ac72c110fe36dfa54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
