@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef1924fa_a59636cf",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 791,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-02-29T17:08:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f478b24_4364a260",
+      "range": {
+        "startLine": 791,
+        "startChar": 8,
+        "endLine": 791,
+        "endChar": 86
+      },
+      "revId": "05fdd6a617656a2239dd3ce4808bf5a77cf940e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eeb604e1_0994ac6a",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df3dd9c0_9070f1a8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-02-29T17:08:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eeb604e1_0994ac6a",
+      "revId": "05fdd6a617656a2239dd3ce4808bf5a77cf940e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "74e86bb5_e3b331b8",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-02-22T19:50:01Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Check Contents: Import specific classes instead of wildcard imports\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nImport specific classes instead of wildcard imports",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 19
+      },
+      "revId": "05fdd6a617656a2239dd3ce4808bf5a77cf940e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8e9df4f_9fccb120",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/map/BluetoothMapContentObserverTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-02-29T17:08:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74e86bb5_e3b331b8",
       "range": {
         "startLine": 55,
         "startChar": 0,
