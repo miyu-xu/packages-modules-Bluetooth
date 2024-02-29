@@ -15,6 +15,7 @@
  * limitations under the License.
  */
 
+#include <bluetooth/log.h>
 #include <com_android_bluetooth_flags.h>
 #include <flag_macros.h>
 #include <gmock/gmock.h>
@@ -146,7 +147,7 @@ bt_status_t do_in_main_thread(const base::Location& from_here,
                 num_async_tasks--;
               },
               std::move(task), std::ref(num_async_tasks)))) {
-    LOG(ERROR) << __func__ << ": failed from " << from_here.ToString();
+    bluetooth::log::error("failed from {}", from_here.ToString());
     return BT_STATUS_FAIL;
   }
   num_async_tasks++;
@@ -170,7 +171,7 @@ static void init_message_loop_thread() {
   }
 
   if (!message_loop_thread.EnableRealTimeScheduling())
-    LOG(ERROR) << "Unable to set real time scheduling";
+    bluetooth::log::error("Unable to set real time scheduling");
 
   message_loop_ = message_loop_thread.message_loop();
   if (message_loop_ == nullptr) FAIL() << "unable to get message loop.";
@@ -863,8 +864,8 @@ class UnicastTestNoInit : public Test {
 
               if (!group->Configure(context_type, metadata_context_types,
                                     ccid_lists)) {
-                LOG_ERROR(
-                    "Could not configure ASEs for group %d content type %d",
+                log::error(
+                    "Could not configure ASEs for group {} content type {}",
                     group->group_id_, int(context_type));
 
                 return false;
@@ -951,15 +952,13 @@ class UnicastTestNoInit : public Test {
                 stream_conf->stream_params.source.num_of_channels +=
                     core_config.GetChannelCountPerIsoStream();
 
-                LOG_INFO(
-                    " Added Source Stream Configuration. CIS Connection "
-                    "Handle: %d"
-                    ", Audio Channel Allocation: %d"
-                    ", Source Number Of Devices: %d"
-                    ", Source Number Of Channels: %d",
-                    +ase.cis_conn_hdl, +(*core_config.audio_channel_allocation),
-                    +stream_conf->stream_params.source.num_of_devices,
-                    +stream_conf->stream_params.source.num_of_channels);
+                log::info(
+                    "Added Source Stream Configuration. CIS Connection Handle: "
+                    "{}, Audio Channel Allocation: {}, Source Number Of "
+                    "Devices: {}, Source Number Of Channels: {}",
+                    ase.cis_conn_hdl, (*core_config.audio_channel_allocation),
+                    stream_conf->stream_params.source.num_of_devices,
+                    stream_conf->stream_params.source.num_of_channels);
               }
             } else {
               auto iter = std::find_if(
@@ -979,15 +978,13 @@ class UnicastTestNoInit : public Test {
                 stream_conf->stream_params.sink.num_of_channels +=
                     core_config.GetChannelCountPerIsoStream();
 
-                LOG_INFO(
-                    " Added Sink Stream Configuration. CIS Connection Handle: "
-                    "%d"
-                    ", Audio Channel Allocation: %d"
-                    ", Sink Number Of Devices: %d"
-                    ", Sink Number Of Channels: %d",
-                    +ase.cis_conn_hdl, +(*core_config.audio_channel_allocation),
-                    +stream_conf->stream_params.sink.num_of_devices,
-                    +stream_conf->stream_params.sink.num_of_channels);
+                log::info(
+                    "Added Sink Stream Configuration. CIS Connection Handle: "
+                    "{}, Audio Channel Allocation: {}, Sink Number Of Devices: "
+                    "{}, Sink Number Of Channels: {}",
+                    ase.cis_conn_hdl, (*core_config.audio_channel_allocation),
+                    stream_conf->stream_params.sink.num_of_devices,
+                    stream_conf->stream_params.sink.num_of_channels);
               }
             }
           }
@@ -1023,7 +1020,7 @@ class UnicastTestNoInit : public Test {
 
           if (!group->Configure(context_type, metadata_context_types,
                                 ccid_lists)) {
-            LOG(ERROR) << __func__ << ", failed to set ASE configuration";
+            log::error("failed to set ASE configuration");
             return false;
           }
 
@@ -1130,16 +1127,13 @@ class UnicastTestNoInit : public Test {
                                *core_config.codec_frames_blocks_per_sdu);
                   }
 
-                  LOG_INFO(
-                      " Added Source Stream Configuration. CIS Connection "
-                      "Handle: %d"
-                      ", Audio Channel Allocation: %d"
-                      ", Source Number Of Devices: %d"
-                      ", Source Number Of Channels: %d",
-                      +ase.cis_conn_hdl,
-                      +(*core_config.audio_channel_allocation),
-                      +stream_conf->stream_params.source.num_of_devices,
-                      +stream_conf->stream_params.source.num_of_channels);
+                  log::info(
+                      "Added Source Stream Configuration. CIS Connection "
+                      "Handle: {}, Audio Channel Allocation: {}, Source Number "
+                      "Of Devices: {}, Source Number Of Channels: {}",
+                      ase.cis_conn_hdl, (*core_config.audio_channel_allocation),
+                      stream_conf->stream_params.source.num_of_devices,
+                      stream_conf->stream_params.source.num_of_channels);
                 }
               } else {
                 auto iter = std::find_if(
@@ -1204,16 +1198,13 @@ class UnicastTestNoInit : public Test {
                                *core_config.codec_frames_blocks_per_sdu);
                   }
 
-                  LOG_INFO(
-                      " Added Sink Stream Configuration. CIS Connection "
-                      "Handle: %d"
-                      ", Audio Channel Allocation: %d"
-                      ", Sink Number Of Devices: %d"
-                      ", Sink Number Of Channels: %d",
-                      +ase.cis_conn_hdl,
-                      +(*core_config.audio_channel_allocation),
-                      +stream_conf->stream_params.sink.num_of_devices,
-                      +stream_conf->stream_params.sink.num_of_channels);
+                  log::info(
+                      "Added Sink Stream Configuration. CIS Connection Handle: "
+                      "{}, Audio Channel Allocation: {}, Sink Number Of "
+                      "Devices: {}, Sink Number Of Channels: {}",
+                      ase.cis_conn_hdl, (*core_config.audio_channel_allocation),
+                      stream_conf->stream_params.sink.num_of_devices,
+                      stream_conf->stream_params.sink.num_of_channels);
                 }
               }
             }
@@ -1285,11 +1276,11 @@ class UnicastTestNoInit : public Test {
                             ases.sink->codec_config.GetAsCoreCodecConfig()
                                 .GetChannelCountPerIsoStream();
 
-                        LOG_INFO(
-                            ", Source Number Of Devices: %d"
-                            ", Source Number Of Channels: %d",
-                            +stream_conf->stream_params.source.num_of_devices,
-                            +stream_conf->stream_params.source.num_of_channels);
+                        log::info(
+                            ", Source Number Of Devices: {}, Source Number Of "
+                            "Channels: {}",
+                            stream_conf->stream_params.source.num_of_devices,
+                            stream_conf->stream_params.source.num_of_channels);
                       }
                       return ases.sink;
                     }),
@@ -1308,11 +1299,11 @@ class UnicastTestNoInit : public Test {
                             ases.source->codec_config.GetAsCoreCodecConfig()
                                 .GetChannelCountPerIsoStream();
 
-                        LOG_INFO(
-                            ", Source Number Of Devices: %d"
-                            ", Source Number Of Channels: %d",
-                            +stream_conf->stream_params.source.num_of_devices,
-                            +stream_conf->stream_params.source.num_of_channels);
+                        log::info(
+                            ", Source Number Of Devices: {}, Source Number Of "
+                            "Channels: {}",
+                            stream_conf->stream_params.source.num_of_devices,
+                            stream_conf->stream_params.source.num_of_channels);
                       }
                       return ases.source;
                     }),
@@ -1355,21 +1346,21 @@ class UnicastTestNoInit : public Test {
                       auto ases =
                           leAudioDevice->GetAsesByCisConnHdl(pair.first);
 
-                      LOG_INFO(
-                          ", sink ase to delete. Cis handle: %d"
-                          ", ase pointer: %p",
-                          +(int)(pair.first), +ases.sink);
+                      log::info(
+                          ", sink ase to delete. Cis handle: {}, ase pointer: "
+                          "{}",
+                          (int)(pair.first), fmt::ptr(+ases.sink));
                       if (ases.sink) {
                         stream_conf->stream_params.sink.num_of_devices--;
                         stream_conf->stream_params.sink.num_of_channels -=
                             ases.sink->codec_config.GetAsCoreCodecConfig()
                                 .GetChannelCountPerIsoStream();
 
-                        LOG_INFO(
-                            " Sink Number Of Devices: %d"
-                            ", Sink Number Of Channels: %d",
-                            +stream_conf->stream_params.sink.num_of_devices,
-                            +stream_conf->stream_params.sink.num_of_channels);
+                        log::info(
+                            "Sink Number Of Devices: {}, Sink Number Of "
+                            "Channels: {}",
+                            stream_conf->stream_params.sink.num_of_devices,
+                            stream_conf->stream_params.sink.num_of_channels);
                       }
                       return ases.sink;
                     }),
@@ -1383,21 +1374,20 @@ class UnicastTestNoInit : public Test {
                       auto ases =
                           leAudioDevice->GetAsesByCisConnHdl(pair.first);
 
-                      LOG_INFO(
-                          ", source to delete. Cis handle: %d"
-                          ", ase pointer: %p",
-                          +(int)(pair.first), ases.source);
+                      log::info(
+                          ", source to delete. Cis handle: {}, ase pointer: {}",
+                          (int)(pair.first), fmt::ptr(ases.source));
                       if (ases.source) {
                         stream_conf->stream_params.source.num_of_devices--;
                         stream_conf->stream_params.source.num_of_channels -=
                             ases.source->codec_config.GetAsCoreCodecConfig()
                                 .GetChannelCountPerIsoStream();
 
-                        LOG_INFO(
-                            ", Source Number Of Devices: %d"
-                            ", Source Number Of Channels: %d",
-                            +stream_conf->stream_params.source.num_of_devices,
-                            +stream_conf->stream_params.source.num_of_channels);
+                        log::info(
+                            ", Source Number Of Devices: {}, Source Number Of "
+                            "Channels: {}",
+                            stream_conf->stream_params.source.num_of_devices,
+                            stream_conf->stream_params.source.num_of_channels);
                       }
                       return ases.source;
                     }),
@@ -1422,21 +1412,21 @@ class UnicastTestNoInit : public Test {
                       [device, &stream_conf](auto& pair) {
                         auto ases = device->GetAsesByCisConnHdl(pair.first);
 
-                        LOG_INFO(
-                            ", sink ase to delete. Cis handle: %d"
-                            ", ase pointer: %p",
-                            +(int)(pair.first), +ases.sink);
+                        log::info(
+                            ", sink ase to delete. Cis handle: {}, ase "
+                            "pointer: {}",
+                            (int)(pair.first), fmt::ptr(+ases.sink));
                         if (ases.sink) {
                           stream_conf->stream_params.sink.num_of_devices--;
                           stream_conf->stream_params.sink.num_of_channels -=
                               ases.sink->codec_config.GetAsCoreCodecConfig()
                                   .GetChannelCountPerIsoStream();
 
-                          LOG_INFO(
-                              " Sink Number Of Devices: %d"
-                              ", Sink Number Of Channels: %d",
-                              +stream_conf->stream_params.sink.num_of_devices,
-                              +stream_conf->stream_params.sink.num_of_channels);
+                          log::info(
+                              "Sink Number Of Devices: {}, Sink Number Of "
+                              "Channels: {}",
+                              stream_conf->stream_params.sink.num_of_devices,
+                              stream_conf->stream_params.sink.num_of_channels);
                         }
                         return ases.sink;
                       }),
@@ -1450,22 +1440,22 @@ class UnicastTestNoInit : public Test {
                       [device, &stream_conf](auto& pair) {
                         auto ases = device->GetAsesByCisConnHdl(pair.first);
 
-                        LOG_INFO(
-                            ", source to delete. Cis handle: %d"
-                            ", ase pointer: %p",
-                            +(int)(pair.first), +ases.source);
+                        log::info(
+                            ", source to delete. Cis handle: {}, ase pointer: "
+                            "{}",
+                            (int)(pair.first), fmt::ptr(+ases.source));
                         if (ases.source) {
                           stream_conf->stream_params.source.num_of_devices--;
                           stream_conf->stream_params.source.num_of_channels -=
                               ases.source->codec_config.GetAsCoreCodecConfig()
                                   .GetChannelCountPerIsoStream();
 
-                          LOG_INFO(
-                              ", Source Number Of Devices: %d"
-                              ", Source Number Of Channels: %d",
-                              +stream_conf->stream_params.source.num_of_devices,
-                              +stream_conf->stream_params.source
-                                   .num_of_channels);
+                          log::info(
+                              ", Source Number Of Devices: {}, Source Number "
+                              "Of Channels: {}",
+                              stream_conf->stream_params.source.num_of_devices,
+                              stream_conf->stream_params.source
+                                  .num_of_channels);
                         }
                         return ases.source;
                       }),
@@ -2788,7 +2778,7 @@ class UnicastTest : public UnicastTestNoInit {
               return conn_id;
             }
           }
-          LOG_ERROR("GetHCIConnHandle Mock: not a valid test device!");
+          log::error("GetHCIConnHandle Mock: not a valid test device!");
           return 0x00FE;
         });
     ON_CALL(mock_btm_interface_, AclDisconnectFromHandle(_, _))
