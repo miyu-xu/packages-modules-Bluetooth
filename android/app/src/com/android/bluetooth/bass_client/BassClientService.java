@@ -49,6 +49,7 @@ import android.util.Pair;
 
 import com.android.bluetooth.BluetoothEventLogger;
 import com.android.bluetooth.Utils;
+import com.android.bluetooth.audio_util.MediaPlayerList;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.btservice.ServiceFactory;
@@ -113,6 +114,7 @@ public class BassClientService extends ProfileService {
     private final Deque<AddSourceData> mPendingAddSources = new ArrayDeque<>();
     private final Map<Integer, HashSet<BluetoothDevice>> mLocalBroadcastReceivers =
             new ConcurrentHashMap<>();
+    private final Context mContext;
 
     private HandlerThread mStateMachinesThread;
     private HandlerThread mCallbackHandlerThread;
@@ -121,6 +123,7 @@ public class BassClientService extends ProfileService {
     private DatabaseManager mDatabaseManager;
     private BluetoothAdapter mBluetoothAdapter = null;
     private DialingOutTimeoutEvent mDialingOutTimeoutEvent = null;
+    private MediaPlayerList mMediaPlayerList;
 
     /* Caching the PeriodicAdvertisementResult from Broadcast source */
     /* This is stored at service so that each device state machine can access
@@ -150,6 +153,7 @@ public class BassClientService extends ProfileService {
 
     public BassClientService(Context ctx) {
         super(ctx);
+        mContext = ctx;
     }
 
     public static boolean isEnabled() {
@@ -411,6 +415,9 @@ public class BassClientService extends ProfileService {
         mSyncHandleToBaseDataMap = new HashMap<Integer, BaseData>();
         mSyncHandleToBroadcastIdMap = new HashMap<Integer, Integer>();
         mSearchScanCallback = null;
+
+        mMediaPlayerList = new MediaPlayerList(Looper.myLooper(), mContext);
+        mMediaPlayerList.init(null);
     }
 
     @Override
@@ -420,6 +427,11 @@ public class BassClientService extends ProfileService {
         }
 
         mUnicastSourceStreamStatus = Optional.empty();
+
+        if (mMediaPlayerList != null) {
+            mMediaPlayerList.cleanup();
+            mMediaPlayerList = null;
+        }
 
         if (mDialingOutTimeoutEvent != null) {
             mHandler.removeCallbacks(mDialingOutTimeoutEvent);
@@ -1494,6 +1506,11 @@ public class BassClientService extends ProfileService {
         }
 
         if (!isAllowedToAddSource()) {
+            /* Assistant was not active, inform about activation */
+            if (!mIsAssistantActive) {
+                handleAssistantActivation(sourceMetadata);
+            }
+
             Log.d(TAG, "Add source to pending list");
             mPendingAddSources.push(new AddSourceData(sink, sourceMetadata, isGroupOp));
 
@@ -1891,17 +1908,6 @@ public class BassClientService extends ProfileService {
         if (Flags.leaudioBroadcastAudioHandoverPolicies()) {
             /* Check if should wait for status update */
             if (mUnicastSourceStreamStatus.isEmpty()) {
-                /* Assistant was not active, inform about activation */
-                if (!mIsAssistantActive) {
-                    mIsAssistantActive = true;
-
-                    LeAudioService leAudioService = mServiceFactory.getLeAudioService();
-                    if (leAudioService != null) {
-                        leAudioService.activeBroadcastAssistantNotification(true);
-                    }
-
-                }
-
                 return false;
             }
 
@@ -1910,6 +1916,25 @@ public class BassClientService extends ProfileService {
 
         /* Don't block if this is not a handover case */
         return true;
+    }
+
+    private void handleAssistantActivation(BluetoothLeBroadcastMetadata sourceMetadata) {
+        mIsAssistantActive = true;
+
+        LeAudioService leAudioService = mServiceFactory.getLeAudioService();
+        if (leAudioService != null) {
+            leAudioService.activeBroadcastAssistantNotification(true);
+        }
+
+        /* Prepare to receive external broadcast */
+        if (!isLocalBroadcast(sourceMetadata)) {
+            /* Try to stop active player, to avoid Unicast being in foreground after
+             * trying to add external source.
+             */
+            if (mMediaPlayerList.getActivePlayer() != null) {
+                mMediaPlayerList.getActivePlayer().stopCurrent();
+            }
+        }
     }
 
     private boolean isAnyReceiverReceivingBroadcast() {
