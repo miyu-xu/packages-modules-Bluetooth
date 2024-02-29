@@ -46,6 +46,7 @@ import android.view.Display;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.BluetoothAdapterProxy;
+import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.gatt.FilterParams;
 import com.android.bluetooth.gatt.GattObjectsFactory;
@@ -123,8 +124,9 @@ public class ScanManager {
     @GuardedBy("mCurUsedTrackableAdvertisementsLock")
     private int mCurUsedTrackableAdvertisements = 0;
 
-    private final GattService mService;
-    private final AdapterService mAdapterService;
+    private GattService mGattService;
+    private ScanManagerService mScanManagerService;
+    private AdapterService mAdapterService;
     private BroadcastReceiver mBatchAlarmReceiver;
     private boolean mBatchAlarmReceiverRegistered;
     private ScanNative mScanNative;
@@ -168,16 +170,32 @@ public class ScanManager {
             AdapterService adapterService,
             BluetoothAdapterProxy bluetoothAdapterProxy,
             Looper looper) {
+        mGattService = service;
+        init(adapterService, bluetoothAdapterProxy, looper);
+    }
+
+    public ScanManager(
+            ScanManagerService service,
+            AdapterService adapterService,
+            BluetoothAdapterProxy bluetoothAdapterProxy,
+            Looper looper) {
+        mScanManagerService = service;
+        init(adapterService, bluetoothAdapterProxy, looper);
+    }
+
+    private void init(
+            AdapterService adapterService,
+            BluetoothAdapterProxy bluetoothAdapterProxy,
+            Looper looper) {
         mRegularScanClients =
                 Collections.newSetFromMap(new ConcurrentHashMap<ScanClient, Boolean>());
         mBatchClients = Collections.newSetFromMap(new ConcurrentHashMap<ScanClient, Boolean>());
         mSuspendedScanClients =
                 Collections.newSetFromMap(new ConcurrentHashMap<ScanClient, Boolean>());
-        mService = service;
         mAdapterService = adapterService;
         mScanNative = new ScanNative();
-        mDm = mService.getSystemService(DisplayManager.class);
-        mActivityManager = mService.getSystemService(ActivityManager.class);
+        mDm = getService().getSystemService(DisplayManager.class);
+        mActivityManager = getService().getSystemService(ActivityManager.class);
         mLocationManager = mAdapterService.getSystemService(LocationManager.class);
         mBluetoothAdapterProxy = bluetoothAdapterProxy;
         mIsConnecting = false;
@@ -204,7 +222,17 @@ public class ScanManager {
         }
         IntentFilter locationIntentFilter = new IntentFilter(LocationManager.MODE_CHANGED_ACTION);
         locationIntentFilter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
-        mService.registerReceiver(mLocationReceiver, locationIntentFilter);
+        getService().registerReceiver(mLocationReceiver, locationIntentFilter);
+    }
+
+    private ProfileService getService() {
+        if (mGattService != null) {
+            return mGattService;
+        }
+        if (mScanManagerService != null) {
+            return mScanManagerService;
+        }
+        return null;
     }
 
     public void cleanup() {
@@ -236,7 +264,7 @@ public class ScanManager {
         }
 
         try {
-            mService.unregisterReceiver(mLocationReceiver);
+            getService().unregisterReceiver(mLocationReceiver);
         } catch (IllegalArgumentException e) {
             Log.w(TAG, "exception when invoking unregisterReceiver(mLocationReceiver)", e);
         }
@@ -523,7 +551,15 @@ public class ScanManager {
                 if (DBG) {
                     Log.d(TAG, "app died, unregister scanner - " + client.scannerId);
                 }
-                mService.unregisterScanner(client.scannerId, mService.getAttributionSource());
+                if (Flags.scanManagerRefactor()) {
+                    mScanManagerService
+                            .unregisterScanner(client.scannerId,
+                                mScanManagerService.getAttributionSource());
+                } else {
+                    mGattService
+                            .unregisterScanner(client.scannerId,
+                                mGattService.getAttributionSource());
+                }
             }
         }
 
@@ -1023,9 +1059,9 @@ public class ScanManager {
             mFilterIndexStack = new ArrayDeque<Integer>();
             mClientFilterIndexMap = new HashMap<Integer, Deque<Integer>>();
 
-            mAlarmManager = mService.getSystemService(AlarmManager.class);
+            mAlarmManager = getService().getSystemService(AlarmManager.class);
             Intent batchIntent = new Intent(ACTION_REFRESH_BATCHED_SCAN, null);
-            mBatchScanIntervalIntent = PendingIntent.getBroadcast(mService, 0, batchIntent,
+            mBatchScanIntervalIntent = PendingIntent.getBroadcast(getService(), 0, batchIntent,
                     PendingIntent.FLAG_IMMUTABLE);
             IntentFilter filter = new IntentFilter();
             filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
@@ -1047,7 +1083,7 @@ public class ScanManager {
                     }
                 }
             };
-            mService.registerReceiver(mBatchAlarmReceiver, filter);
+            getService().registerReceiver(mBatchAlarmReceiver, filter);
             mBatchAlarmReceiverRegistered = true;
         }
 
@@ -1292,7 +1328,7 @@ public class ScanManager {
         // infrequently anyway. To avoid redefining paramete sets, map to the low duty cycle
         // parameter set as follows.
         private int getBatchScanWindowMillis(int scanMode) {
-            ContentResolver resolver = mService.getContentResolver();
+            ContentResolver resolver = getService().getContentResolver();
             switch (scanMode) {
                 case ScanSettings.SCAN_MODE_LOW_LATENCY:
                     return Settings.Global.getInt(
@@ -1310,7 +1346,7 @@ public class ScanManager {
         }
 
         private int getBatchScanIntervalMillis(int scanMode) {
-            ContentResolver resolver = mService.getContentResolver();
+            ContentResolver resolver = getService().getContentResolver();
             switch (scanMode) {
                 case ScanSettings.SCAN_MODE_LOW_LATENCY:
                     return Settings.Global.getInt(
@@ -1357,8 +1393,13 @@ public class ScanManager {
                         Log.e(TAG, "Error freeing for onfound/onlost filter resources "
                                 + entriesToFree);
                         try {
-                            mService.onScanManagerErrorCallback(client.scannerId,
+                            if (Flags.scanManagerRefactor()) {
+                                mScanManagerService.onScanManagerErrorCallback(client.scannerId,
                                     ScanCallback.SCAN_FAILED_INTERNAL_ERROR);
+                            } else {
+                                mGattService.onScanManagerErrorCallback(client.scannerId,
+                                    ScanCallback.SCAN_FAILED_INTERNAL_ERROR);
+                            }
                         } catch (RemoteException e) {
                             Log.e(TAG, "failed on onScanManagerCallback at freeing", e);
                         }
@@ -1480,7 +1521,7 @@ public class ScanManager {
             mAlarmManager.cancel(mBatchScanIntervalIntent);
             // Protect against multiple calls of cleanup.
             if (mBatchAlarmReceiverRegistered) {
-                mService.unregisterReceiver(mBatchAlarmReceiver);
+                getService().unregisterReceiver(mBatchAlarmReceiver);
             }
             mBatchAlarmReceiverRegistered = false;
         }
@@ -1547,8 +1588,13 @@ public class ScanManager {
                                     + trackEntries);
                             client.stats.recordTrackingHwFilterNotAvailableCountMetrics();
                             try {
-                                mService.onScanManagerErrorCallback(scannerId,
+                                if (Flags.scanManagerRefactor()) {
+                                    mScanManagerService.onScanManagerErrorCallback(scannerId,
                                         ScanCallback.SCAN_FAILED_INTERNAL_ERROR);
+                                } else {
+                                    mGattService.onScanManagerErrorCallback(scannerId,
+                                        ScanCallback.SCAN_FAILED_INTERNAL_ERROR);
+                                }
                             } catch (RemoteException e) {
                                 Log.e(TAG, "failed on onScanManagerCallback", e);
                             }
@@ -1706,7 +1752,7 @@ public class ScanManager {
         }
 
         private int getScanWindowMillis(ScanSettings settings) {
-            ContentResolver resolver = mService.getContentResolver();
+            ContentResolver resolver = getService().getContentResolver();
             if (settings == null) {
                 return Settings.Global.getInt(
                     resolver,
@@ -1744,7 +1790,7 @@ public class ScanManager {
         }
 
         private int getScanIntervalMillis(ScanSettings settings) {
-            ContentResolver resolver = mService.getContentResolver();
+            ContentResolver resolver = getService().getContentResolver();
             if (settings == null) {
                 return Settings.Global.getInt(
                     resolver,
@@ -1919,12 +1965,23 @@ public class ScanManager {
             new ActivityManager.OnUidImportanceListener() {
                 @Override
                 public void onUidImportance(final int uid, final int importance) {
-                    if (mService.mTransitionalScanHelper.getScannerMap().getAppScanStatsByUid(uid)
+                    if (Flags.scanManagerRefactor()) {
+                        if (mScanManagerService.mTransitionalScanHelper.getScannerMap()
+                            .getAppScanStatsByUid(uid) != null) {
+                                Message message = new Message();
+                                message.what = MSG_IMPORTANCE_CHANGE;
+                                message.obj = new UidImportance(uid, importance);
+                                mHandler.sendMessage(message);
+                        }
+                    } else {
+                        if (mGattService.mTransitionalScanHelper.getScannerMap().getAppScanStatsByUid(
+                            uid)
                             != null) {
-                        Message message = new Message();
-                        message.what = MSG_IMPORTANCE_CHANGE;
-                        message.obj = new UidImportance(uid, importance);
-                        mHandler.sendMessage(message);
+                            Message message = new Message();
+                            message.what = MSG_IMPORTANCE_CHANGE;
+                            message.obj = new UidImportance(uid, importance);
+                            mHandler.sendMessage(message);
+                        }
                     }
                 }
             };

@@ -24,6 +24,7 @@ import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.BluetoothAdapterProxy;
 import com.android.bluetooth.le_scan.PeriodicScanManager;
 import com.android.bluetooth.le_scan.ScanManager;
+import com.android.bluetooth.le_scan.ScanManagerService;
 import com.android.bluetooth.le_scan.ScanNativeInterface;
 
 /**
@@ -83,6 +84,14 @@ public class GattObjectsFactory {
      */
     public ScanManager createScanManager(
             GattService service,
+            AdapterService adapterService,
+            BluetoothAdapterProxy bluetoothAdapterProxy,
+            Looper looper) {
+        return new ScanManager(service, adapterService, bluetoothAdapterProxy, looper);
+    }
+
+    public ScanManager createScanManager(
+            ScanManagerService service,
             AdapterService adapterService,
             BluetoothAdapterProxy bluetoothAdapterProxy,
             Looper looper) {
