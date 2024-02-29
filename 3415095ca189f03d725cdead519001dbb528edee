@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3f86c69_ca034122",
+        "filename": "system/btif/src/btif_a2dp_control.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-02-29T00:14:16Z",
+      "side": 1,
+      "message": "gotcha.",
+      "parentUuid": "099f414a_22b987fa",
+      "revId": "3415095ca189f03d725cdead519001dbb528edee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6202a0c5_97a3a69e",

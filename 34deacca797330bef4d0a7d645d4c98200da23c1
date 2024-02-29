@@ -22,6 +22,30 @@
       },
       "revId": "34deacca797330bef4d0a7d645d4c98200da23c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56f078ea_d7db392e",
+        "filename": "system/btif/src/btif_a2dp.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-02-29T00:14:16Z",
+      "side": 0,
+      "message": "Good catch. Initially, I was trying to simplify it. Ideally, this should have been behind the flag and it skipped from my radar.",
+      "parentUuid": "5f1ce7a6_5c2a4ecb",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 0
+      },
+      "revId": "34deacca797330bef4d0a7d645d4c98200da23c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
