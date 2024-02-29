@@ -104,7 +104,6 @@ import java.util.Objects;
  */
 public class HeadsetService extends ProfileService {
     private static final String TAG = "HeadsetService";
-    private static final boolean DBG = false;
 
     /**
      * HFP AG owned/managed components
@@ -2334,9 +2333,7 @@ public class HeadsetService extends ProfileService {
     }
 
     private static void logD(String message) {
-        if (DBG) {
-            Log.d(TAG, message);
-        }
+        Log.d(TAG, message);
     }
 
     private Handler getStateMachinesThreadHandler() {
