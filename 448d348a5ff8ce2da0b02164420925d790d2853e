@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ba37bd0_d5374855",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T21:24:49Z",
+      "side": 1,
+      "message": "Shoould we remove the if but downgrad to verbose ?",
+      "range": {
+        "startLine": 677,
+        "startChar": 7,
+        "endLine": 678,
+        "endChar": 27
+      },
+      "revId": "448d348a5ff8ce2da0b02164420925d790d2853e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
