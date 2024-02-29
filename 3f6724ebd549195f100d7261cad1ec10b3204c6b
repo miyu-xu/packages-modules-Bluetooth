@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12b6c5b7_2456b1be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-29T07:40:50Z",
+      "side": 1,
+      "message": "Please add unit tests as well",
+      "revId": "3f6724ebd549195f100d7261cad1ec10b3204c6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e1930a1_3e893fca",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 5532,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-29T07:40:50Z",
+      "side": 1,
+      "message": "Ok, so here we make sure",
+      "revId": "3f6724ebd549195f100d7261cad1ec10b3204c6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a37d1747_9049cf0e",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 5697,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-29T07:40:50Z",
+      "side": 1,
+      "message": "Let\u0027s just pack it into special handler and I believe those two patches should be squashed to one.",
+      "revId": "3f6724ebd549195f100d7261cad1ec10b3204c6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "194f7df6_606f7d76",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 5720,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-29T07:40:50Z",
+      "side": 1,
+      "message": "Why not simply go back to 2M in the end of case for \n\n```\ncase GroupStreamStatus::CONFIGURED_AUTONOMOUS:\n        /* This state is notified only when\n         * groups stays into CONFIGURED state after\n         * STREAMING. Peer device uses cache. For the moment\n         * it is handled same as IDLE\n         */\n      case GroupStreamStatus::IDLE:\n```\n\n\nand avoid timer?",
+      "revId": "3f6724ebd549195f100d7261cad1ec10b3204c6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
