@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6649fa0b_a3a502a1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-02-29T08:02:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b2c7d297_9e3025a8",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 6
+      },
+      "revId": "5818aa209f98c6762ee30fb85c8c4a4c1b8c95d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5110b2b4_270ae38a",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-08-30T00:14:51Z",
       "side": 1,
       "message": "This should be on `looper` and not on `Looper.getMainLooper`.\n\nBy using the `Looper` you are making testLooper injection more difficult",
+      "range": {
+        "startLine": 159,
+        "startChar": 0,
+        "endLine": 159,
+        "endChar": 59
+      },
+      "revId": "5818aa209f98c6762ee30fb85c8c4a4c1b8c95d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "978092ee_6201d8c0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-02-29T08:02:52Z",
+      "side": 1,
+      "message": "I think you are already working on this with A2dp. Will work with you to add this here as well.",
+      "parentUuid": "5110b2b4_270ae38a",
       "range": {
         "startLine": 159,
         "startChar": 0,
