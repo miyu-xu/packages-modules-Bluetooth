@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa6d5f38_ad6d20e1",
+        "filename": "system/log/include/bluetooth/log.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-02-29T02:53:05Z",
+      "side": 1,
+      "message": "Add a specialization for `char*\u0026` as well",
+      "revId": "252e98846bd87b8c904b9872b7ddd9678f634c35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
