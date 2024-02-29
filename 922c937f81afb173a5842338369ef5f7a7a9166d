@@ -22,6 +22,30 @@
       },
       "revId": "922c937f81afb173a5842338369ef5f7a7a9166d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7012d6a_28fa0bfe",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceAndStateMachineTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 1249,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T18:50:42Z",
+      "side": 1,
+      "message": "Doing the change may require us to recreate the headsetService  after setting the flag (or only perfom a stop / set flag / start) to run the flag related code in the start",
+      "parentUuid": "61ca6706_c1edd1da",
+      "range": {
+        "startLine": 1249,
+        "startChar": 0,
+        "endLine": 1249,
+        "endChar": 58
+      },
+      "revId": "922c937f81afb173a5842338369ef5f7a7a9166d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
