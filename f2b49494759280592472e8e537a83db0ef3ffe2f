@@ -92,6 +92,54 @@
       },
       "revId": "f2b49494759280592472e8e537a83db0ef3ffe2f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abb0d155_875693ab",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 1967,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T22:01:53Z",
+      "side": 1,
+      "message": "If the warning is not valid, it could be supress.\nDocumentation indicate:\n```\nModifying a collection while iterating over it in a loop may cause a ConcurrentModificationException to be thrown or lead to undefined behavior.\n```\n\nsince you are using a ConcurrentHashMap, there is no throw of ConcurrentModificationException, and I do not know exactly what is the side effect of the \"lead to undefined behavior\".\n\n---\n\nOne option is to supressLint, the other is to remove on the iterator.\n\n\nI believe there can be a third solution using `forEach`",
+      "parentUuid": "c448b420_c0b501e3",
+      "range": {
+        "startLine": 1967,
+        "startChar": 0,
+        "endLine": 1967,
+        "endChar": 65
+      },
+      "revId": "f2b49494759280592472e8e537a83db0ef3ffe2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6861c52d_ce98ce7d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 1967,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T22:01:53Z",
+      "side": 1,
+      "message": "I believe so,",
+      "parentUuid": "c448b420_c0b501e3",
+      "range": {
+        "startLine": 1967,
+        "startChar": 0,
+        "endLine": 1967,
+        "endChar": 65
+      },
+      "revId": "f2b49494759280592472e8e537a83db0ef3ffe2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
