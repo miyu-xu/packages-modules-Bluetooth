@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c02543fd_1d44963e",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T21:21:53Z",
+      "side": 1,
+      "message": "Shouldn\u0027t it be :\n```suggestion\n      STREAM_TO_UINT32(bqr_link_quality_event_.rx_unreceived_packets, p_param_buf);\n      STREAM_TO_UINT16(bqr_link_quality_event_.coex_info_mask, p_param_buf);\n```\n\nand remove line 90 ?",
+      "range": {
+        "startLine": 109,
+        "startChar": 6,
+        "endLine": 111,
+        "endChar": 35
+      },
+      "revId": "a3e001cca1933a16f2b4f269f6fc718d40c8a273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b590f4d_ecdb8f8d",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 841,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T21:21:53Z",
+      "side": 1,
+      "message": "should be only for\nbrx_unreceived_packets and coex_info_mask ?",
+      "range": {
+        "startLine": 841,
+        "startChar": 0,
+        "endLine": 841,
+        "endChar": 61
+      },
+      "revId": "a3e001cca1933a16f2b4f269f6fc718d40c8a273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa34eb0f_d91d4a17",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T21:21:53Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we do both if ?\n\nMy understanding is that with this modification, when the version is 5, there will be 0 for the 5.0 parameters",
+      "range": {
+        "startLine": 834,
+        "startChar": 3,
+        "endLine": 846,
+        "endChar": 63
+      },
+      "revId": "a3e001cca1933a16f2b4f269f6fc718d40c8a273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
