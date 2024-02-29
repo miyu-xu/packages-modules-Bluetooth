@@ -38,6 +38,7 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.net.Uri;
+import android.sysprop.BluetoothProperties;
 
 import androidx.lifecycle.Lifecycle;
 import androidx.test.core.app.ActivityScenario;
@@ -50,6 +51,7 @@ import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.TestUtils;
 
 import org.junit.After;
+import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Rule;
@@ -78,6 +80,8 @@ public class BluetoothOppLauncherActivityTest {
 
     @Before
     public void setUp() throws Exception {
+        Assume.assumeTrue(BluetoothProperties.isProfileOppEnabled().orElse(false));
+
         MockitoAnnotations.initMocks(this);
         mTargetContext = spy(new ContextWrapper(
                 ApplicationProvider.getApplicationContext()));
