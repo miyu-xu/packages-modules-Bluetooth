@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "179da955_9b29730e",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1098,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-29T01:48:11Z",
+      "side": 0,
+      "message": "This cleans up quite a bit actually",
+      "revId": "7b891ce8134b8364555c4b2e3033e54c70230e4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
