@@ -68,6 +68,30 @@
       },
       "revId": "f2b49494759280592472e8e537a83db0ef3ffe2f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c448b420_c0b501e3",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 1967,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-02-29T09:02:54Z",
+      "side": 1,
+      "message": "Is this a valid warning for ConcurrentHashMap ?",
+      "parentUuid": "715e03ee_e95c1b24",
+      "range": {
+        "startLine": 1967,
+        "startChar": 0,
+        "endLine": 1967,
+        "endChar": 65
+      },
+      "revId": "f2b49494759280592472e8e537a83db0ef3ffe2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
