@@ -133,6 +133,28 @@ void BqrVseSubEvt::ParseBqrLinkQualityEvt(uint8_t length,
     }
   }
 
+  if (vendor_cap_supported_version >= kBqrVersion6_0) {
+    if (length < kLinkQualityParamTotalLen + kISOLinkQualityParamTotalLen +
+                     kVersion5_0ParamsTotalLen + kVersion6_0ParamsTotalLen) {
+      LOG(WARNING) << __func__
+                   << ": Parameter total length: " << std::to_string(length)
+                   << " is abnormal. "
+                   << "vendor_cap_supported_version: "
+                   << vendor_cap_supported_version << " "
+                   << " (>= "
+                   << "kBqrVersion6_0=" << kBqrVersion6_0 << "), "
+                   << "It should not be shorter than: "
+                   << std::to_string(kLinkQualityParamTotalLen +
+                                     kISOLinkQualityParamTotalLen +
+                                     kVersion5_0ParamsTotalLen +
+                                     kVersion6_0ParamsTotalLen);
+    } else {
+      STREAM_TO_UINT32(bqr_link_quality_event_.rx_unreceived_packets,
+                       p_param_buf);
+      STREAM_TO_UINT16(bqr_link_quality_event_.coex_info_mask, p_param_buf);
+    }
+  }
+
   const auto now = system_clock::to_time_t(system_clock::now());
   localtime_r(&now, &tm_timestamp_);
 }
@@ -319,10 +341,12 @@ void EnableBtQualityReport(bool is_enable) {
   char bqr_prop_interval_ms[PROPERTY_VALUE_MAX] = {0};
   char bqr_prop_vnd_quality_mask[PROPERTY_VALUE_MAX] = {0};
   char bqr_prop_vnd_trace_mask[PROPERTY_VALUE_MAX] = {0};
+  char bqr_prop_interval_multiple[PROPERTY_VALUE_MAX] = {0};
   osi_property_get(kpPropertyEventMask, bqr_prop_evtmask, "");
   osi_property_get(kpPropertyMinReportIntervalMs, bqr_prop_interval_ms, "");
   osi_property_get(kpPropertyVndQualityMask, bqr_prop_vnd_quality_mask, "");
   osi_property_get(kpPropertyVndTraceMask, bqr_prop_vnd_trace_mask, "");
+  osi_property_get(kpPropertyIntervalMultiple, bqr_prop_interval_multiple, "");
 
   if (strlen(bqr_prop_evtmask) == 0 || strlen(bqr_prop_interval_ms) == 0) {
     LOG(WARNING) << __func__ << ": Bluetooth Quality Report is disabled."
@@ -343,12 +367,15 @@ void EnableBtQualityReport(bool is_enable) {
         static_cast<uint32_t>(atoi(bqr_prop_vnd_quality_mask));
     bqr_config.vnd_trace_mask =
         static_cast<uint32_t>(atoi(bqr_prop_vnd_trace_mask));
+    bqr_config.report_interval_multiple =
+        static_cast<uint32_t>(atoi(bqr_prop_interval_multiple));
   } else {
     bqr_config.report_action = REPORT_ACTION_CLEAR;
     bqr_config.quality_event_mask = kQualityEventMaskAllOff;
     bqr_config.minimum_report_interval_ms = kMinReportIntervalNoLimit;
     bqr_config.vnd_quality_mask = 0;
     bqr_config.vnd_trace_mask = 0;
+    bqr_config.report_interval_multiple = 0;
   }
 
   tBTM_BLE_VSC_CB cmn_vsc_cb;
@@ -358,26 +385,30 @@ void EnableBtQualityReport(bool is_enable) {
   LOG(INFO) << __func__
             << ": Event Mask: " << loghex(bqr_config.quality_event_mask)
             << ", Interval: " << bqr_config.minimum_report_interval_ms
+            << ", Multiple: " << bqr_config.report_interval_multiple
             << ", vendor_cap_supported_version: "
             << vendor_cap_supported_version;
   ConfigureBqr(bqr_config);
 }
 
 void ConfigureBqr(const BqrConfiguration& bqr_config) {
-  if (bqr_config.report_action > REPORT_ACTION_CLEAR ||
+  if (bqr_config.report_action > REPORT_ACTION_QUERY ||
       bqr_config.quality_event_mask > kQualityEventMaskAll ||
-      bqr_config.minimum_report_interval_ms > kMinReportIntervalMaxMs) {
+      bqr_config.minimum_report_interval_ms > kMinReportIntervalMaxMs ||
+      bqr_config.report_interval_multiple > kReportIntervalMultipleMax) {
     LOG(FATAL) << __func__ << ": Invalid Parameter"
                << ", Action: " << bqr_config.report_action
                << ", Mask: " << loghex(bqr_config.quality_event_mask)
-               << ", Interval: " << bqr_config.minimum_report_interval_ms;
+               << ", Interval: " << bqr_config.minimum_report_interval_ms
+               << ", Multiple: " << bqr_config.report_interval_multiple;
     return;
   }
 
   LOG(INFO) << __func__ << ": Action: "
             << loghex(static_cast<uint8_t>(bqr_config.report_action))
             << ", Mask: " << loghex(bqr_config.quality_event_mask)
-            << ", Interval: " << bqr_config.minimum_report_interval_ms;
+            << ", Interval: " << bqr_config.minimum_report_interval_ms
+            << ", Multiple: " << bqr_config.report_interval_multiple;
 
   uint8_t param[sizeof(BqrConfiguration)];
   uint8_t* p_param = param;
@@ -387,6 +418,9 @@ void ConfigureBqr(const BqrConfiguration& bqr_config) {
   if (vendor_cap_supported_version >= kBqrVndLogVersion) {
     UINT32_TO_STREAM(p_param, bqr_config.vnd_quality_mask);
     UINT32_TO_STREAM(p_param, bqr_config.vnd_trace_mask);
+  }
+  if (vendor_cap_supported_version >= kBqrVersion6_0) {
+    UINT32_TO_STREAM(p_param, bqr_config.report_interval_multiple);
   }
 
   BTM_VendorSpecificCommand(HCI_CONTROLLER_BQR, p_param - param, param,
@@ -405,11 +439,14 @@ void BqrVscCompleteCallback(tBTM_VSC_CMPL* p_vsc_cmpl_params) {
   uint8_t command_complete_param_len = 5;
   uint32_t current_vnd_quality_mask = 0;
   uint32_t current_vnd_trace_mask = 0;
+  uint32_t bqr_report_interval = 0;
   // [Return Parameter]         | [Size]   | [Purpose]
   // Status                     | 1 octet  | Command complete status
   // Current_Quality_Event_Mask | 4 octets | Indicates current bit mask setting
   // Vendor_Specific_Quality_Mask | 4 octets | vendor quality bit mask setting
   // Vendor_Specific_Trace_Mask | 4 octets | vendor trace bit mask setting
+  // bqr_report_interval | 4 octets | report interval from controller setting
+
   STREAM_TO_UINT8(status, p_event_param_buf);
   if (status != HCI_SUCCESS) {
     LOG(ERROR) << __func__
@@ -419,6 +456,10 @@ void BqrVscCompleteCallback(tBTM_VSC_CMPL* p_vsc_cmpl_params) {
 
   if (vendor_cap_supported_version >= kBqrVndLogVersion) {
     command_complete_param_len = 13;
+  }
+
+  if (vendor_cap_supported_version >= kBqrVersion6_0) {
+    command_complete_param_len = 17;
   }
 
   if (p_vsc_cmpl_params->param_len != command_complete_param_len) {
@@ -436,10 +477,15 @@ void BqrVscCompleteCallback(tBTM_VSC_CMPL* p_vsc_cmpl_params) {
     STREAM_TO_UINT32(current_vnd_trace_mask, p_event_param_buf);
   }
 
+  if (vendor_cap_supported_version >= kBqrVersion6_0) {
+    STREAM_TO_UINT32(bqr_report_interval, p_event_param_buf);
+  }
+
   LOG(INFO) << __func__
             << ", current event mask: " << loghex(current_quality_event_mask)
             << ", vendor quality: " << loghex(current_vnd_quality_mask)
-            << ", vendor trace: " << loghex(current_vnd_trace_mask);
+            << ", vendor trace: " << loghex(current_vnd_trace_mask)
+            << ", report interval: " << loghex(bqr_report_interval);
 
   ConfigureBqrCmpl(current_quality_event_mask);
 }
