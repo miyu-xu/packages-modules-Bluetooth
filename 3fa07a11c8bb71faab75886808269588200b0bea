@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aced06ec_c0ad735a",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 826,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-02-29T07:46:10Z",
+      "side": 1,
+      "message": "is this the peer device a2dp_type or local device? Can we name this accordingly everywhere to know?\n\nThis applies for all functions in this file?",
+      "range": {
+        "startLine": 826,
+        "startChar": 56,
+        "endLine": 826,
+        "endChar": 65
+      },
+      "revId": "3fa07a11c8bb71faab75886808269588200b0bea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
