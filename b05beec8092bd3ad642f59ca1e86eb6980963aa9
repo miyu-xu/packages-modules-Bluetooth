@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7400470_1229001d",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-02-29T12:42:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43836dc0_509c5f44",
+      "range": {
+        "startLine": 502,
+        "startChar": 18,
+        "endLine": 502,
+        "endChar": 26
+      },
+      "revId": "b05beec8092bd3ad642f59ca1e86eb6980963aa9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4b8d23b7_c2a9dbd3",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-28T22:59:10Z",
       "side": 1,
       "message": "Nit: You can have an easier to read method by reducing nesting thanks to early return:\n\n```suggestion\n        protected void setAptxVoice(HeadsetCallState callState) {\n            if (!Flags.hfpCodecAptxVoice()) {\n                return;\n            }\n            if (!mHeadsetService.isSwbEnabled(\n                            HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX, mDevice)) {\n                return;\n            }\n            if (!mHeadsetService.isAptXSwbPmEnabled()) {\n                return;\n            }\n            \n            // Everything below can shift left now\n            \n                if (mHeadsetService.isVirtualCallStarted()) {\n                    stateLogD(\"CALL_STATE_CHANGED: enable AptX SWB for all voip calls \");\n                    mHeadsetService.enableSwbCodec(\n                            HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX, true, mDevice);\n                } else if ((callState.mCallState \u003d\u003d HeadsetHalConstants.CALL_STATE_DIALING)\n                        || (callState.mCallState \u003d\u003d HeadsetHalConstants.CALL_STATE_INCOMING)\n                        || ((callState.mCallState \u003d\u003d HeadsetHalConstants.CALL_STATE_IDLE)\n                                \u0026\u0026 (callState.mNumActive \u003e 0))) {\n                    if (!mSystemInterface.isHighDefCallInProgress()) {\n                        stateLogD(\"CALL_STATE_CHANGED: disable AptX SWB for non-HD call \");\n                        mHeadsetService.enableSwbCodec(\n                                HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX, false, mDevice);\n                        mHasSwbAptXEnabled \u003d false;\n                    } else {\n                        stateLogD(\"CALL_STATE_CHANGED: enable AptX SWB for HD call \");\n                        mHeadsetService.enableSwbCodec(\n                                HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX, true, mDevice);\n                        mHasSwbAptXEnabled \u003d true;\n                    }\n                }\n        }\n    }\n```",
+      "range": {
+        "startLine": 494,
+        "startChar": 8,
+        "endLine": 520,
+        "endChar": 5
+      },
+      "revId": "b05beec8092bd3ad642f59ca1e86eb6980963aa9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3708459c_f20f23b5",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-02-29T12:42:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b8d23b7_c2a9dbd3",
       "range": {
         "startLine": 494,
         "startChar": 8,
