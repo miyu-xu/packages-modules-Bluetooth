@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61ca6706_c1edd1da",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceAndStateMachineTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 1249,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-29T18:20:00Z",
+      "side": 1,
+      "message": "Since we are in the instrumentation test we have access to the setFlagRules.\nWe shouldn\u0027t need to skip test entirely. (actually... we must not)",
+      "range": {
+        "startLine": 1249,
+        "startChar": 0,
+        "endLine": 1249,
+        "endChar": 58
+      },
+      "revId": "922c937f81afb173a5842338369ef5f7a7a9166d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
