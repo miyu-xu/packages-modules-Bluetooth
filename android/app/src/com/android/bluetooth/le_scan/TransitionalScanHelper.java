@@ -1441,6 +1441,16 @@ public class TransitionalScanHelper {
         mPeriodicScanManager.transferSetInfo(bda, serviceData, advHandle, callback);
     }
 
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    public int numHwTrackFiltersAvailable(AttributionSource attributionSource) {
+        if (!Utils.checkConnectPermissionForDataDelivery(
+            mContext, attributionSource, "ScanHelper numHwTrackFiltersAvailable")) {
+            return 0;
+        }
+        return (AdapterService.getAdapterService().getTotalNumOfTrackableAdvertisements()
+                - getCurrentUsedTrackingAdvertisement());
+    }
+
     /**
      * DeathRecipient handler used to unregister applications that disconnect ungracefully (ie.
      * crash or forced close).
