@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b44a2d3_3881bea6",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-02-29T21:02:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "438e3143_a3eacbf7",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 65
+      },
+      "revId": "f8d0e334d2ac23730b115d33951af1921067dd08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b993694d_187f72a9",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-02-29T18:36:59Z",
       "side": 1,
       "message": "Then we\u0027ll have a lot fewer warnings from the checker, as well.\n```suggestion\n  clearCodecConfig();\n```",
+      "range": {
+        "startLine": 72,
+        "startChar": 1,
+        "endLine": 72,
+        "endChar": 49
+      },
+      "revId": "f8d0e334d2ac23730b115d33951af1921067dd08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf92ac25_198c7237",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-02-29T21:02:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b993694d_187f72a9",
       "range": {
         "startLine": 72,
         "startChar": 1,
