@@ -46,6 +46,30 @@
       },
       "revId": "1f0024d81c8f1bffa22943d31fc30081aefa95de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfc32448_319f3380",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattServiceConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-01T16:43:27Z",
+      "side": 0,
+      "message": "Changing the Log lines to Log.v should have the exact same behavior as the previous `if (VDBG) { Log.d(); }` lines, so this is what we should do.\n\nI\u0027ll have to edit my script to try to honor the level used in the if condition versus the actual log invocation though, so give me some time 😊",
+      "parentUuid": "74512182_74cb7af0",
+      "range": {
+        "startLine": 26,
+        "startChar": 32,
+        "endLine": 26,
+        "endChar": 44
+      },
+      "revId": "1f0024d81c8f1bffa22943d31fc30081aefa95de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
