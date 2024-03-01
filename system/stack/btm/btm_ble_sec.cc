@@ -26,6 +26,7 @@
 #include <cstdint>
 #include <optional>
 
+#include "btif/include/btif_config.h"
 #include "btif/include/btif_storage.h"
 #include "crypto_toolbox/crypto_toolbox.h"
 #include "device/include/controller.h"
@@ -1530,6 +1531,11 @@ void btm_ble_connected(const RawAddress& bda, uint16_t handle, uint8_t enc_mode,
   else
     log::warn(
         "Please do not update device record from anonymous le advertisement");
+  p_dev_rec->device_type |= BT_DEVICE_TYPE_BLE;
+  if (btif_config_set_int(bda.ToString(), "DevType",
+                          (int)p_dev_rec->device_type)) {
+    log::info("btm_ble_connected set device_type to config success");
+  }
 
   p_dev_rec->ble.pseudo_addr = bda;
   p_dev_rec->ble_hci_handle = handle;
