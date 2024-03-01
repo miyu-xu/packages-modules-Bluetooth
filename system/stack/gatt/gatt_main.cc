@@ -221,7 +221,8 @@ bool gatt_connect(const RawAddress& rem_bda, tBLE_ADDR_TYPE addr_type,
   if (gatt_get_ch_state(p_tcb) != GATT_CH_OPEN)
     gatt_set_ch_state(p_tcb, GATT_CH_CONN);
 
-  if (transport != BT_TRANSPORT_LE) {
+  log::info(" transport {}", transport);
+  if (transport == BT_TRANSPORT_BR_EDR) {
     p_tcb->att_lcid = L2CA_ConnectReq2(BT_PSM_ATT, rem_bda, BTM_SEC_NONE);
     return p_tcb->att_lcid != 0;
   }
