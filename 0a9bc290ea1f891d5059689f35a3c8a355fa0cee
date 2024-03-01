@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3725efd4_115ad272",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-01T17:34:13Z",
+      "side": 1,
+      "message": "This is exactly the next step to extend the secondary check in the response data.",
+      "revId": "0a9bc290ea1f891d5059689f35a3c8a355fa0cee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
