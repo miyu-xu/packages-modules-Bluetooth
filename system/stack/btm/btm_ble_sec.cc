@@ -26,6 +26,7 @@
 #include <cstdint>
 #include <optional>
 
+#include "btif/include/btif_config.h"
 #include "btif/include/btif_storage.h"
 #include "crypto_toolbox/crypto_toolbox.h"
 #include "device/include/controller.h"
@@ -1519,7 +1520,14 @@ void btm_ble_connected(const RawAddress& bda, uint16_t handle, uint8_t enc_mode,
                        bool addr_matched,
                        bool can_read_discoverable_characteristics) {
   tBTM_SEC_DEV_REC* p_dev_rec = btm_find_or_alloc_dev(bda);
-
+  /*peer is peripherals, Assuming it is a ble device*/
+  p_dev_rec->device_type = BT_DEVICE_TYPE_BLE;
+  if (btif_config_set_int(bda.ToString(), "DevType", (int)p_dev_rec->device_type)) {
+    BTM_TRACE_EVENT("btm_ble_connected set device_type to config success");
+  }
+  if (btif_config_set_int(bda.ToString(), "AddrType", (int)addr_type)) {
+    BTM_TRACE_EVENT("btm_ble_connected set AddrType to config success");
+  }
   log::info("Update timestamp for ble connection:{}",
             ADDRESS_TO_LOGGABLE_CSTR(bda));
   // TODO() Why is timestamp a counter ?

@@ -1415,7 +1415,11 @@ static void bta_dm_discover_device(const RawAddress& remote_bd_addr) {
             bta_dm_search_cb.p_btm_inq_info->results.device_type,
             bta_dm_search_cb.services_to_search);
       }
-
+      int device_type = 0;
+      if (btif_config_get_int(remote_bd_addr.ToString(), "DevType", &device_type)){
+        transport = device_type;
+        APPL_TRACE_DEBUG( "%s transport = %d", __func__, transport);
+      }
       if (transport == BT_TRANSPORT_LE) {
         if (bta_dm_search_cb.services_to_search & BTA_BLE_SERVICE_MASK) {
           LOG_INFO("bta_dm_discovery: starting GATT discovery on %s",

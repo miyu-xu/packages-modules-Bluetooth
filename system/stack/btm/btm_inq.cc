@@ -1666,7 +1666,11 @@ static void btm_process_inq_results_extended(const uint8_t* p,
     STREAM_TO_BDADDR(bda, p);
     STREAM_TO_UINT8(page_scan_rep_mode, p);
     STREAM_TO_UINT8(page_scan_per_mode, p);
-
+    int device_type = 0;
+    if (btif_config_get_int(bda.ToString(), "DevType", &device_type)) {
+      if (device_type == BT_DEVICE_TYPE_BLE)
+        return;
+    }
     if (inq_res_mode == BTM_INQ_RESULT_STANDARD) {
       STREAM_TO_UINT8(page_scan_mode, p);
     }
