@@ -22,6 +22,30 @@
       },
       "revId": "1f0024d81c8f1bffa22943d31fc30081aefa95de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74512182_74cb7af0",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattServiceConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-01T01:18:07Z",
+      "side": 0,
+      "message": "If there is log spamming concern, we should maybe switch the gattservice logs guard by VDBG to be verbose instead of debug ?",
+      "parentUuid": "7680680a_55372edf",
+      "range": {
+        "startLine": 26,
+        "startChar": 32,
+        "endLine": 26,
+        "endChar": 44
+      },
+      "revId": "1f0024d81c8f1bffa22943d31fc30081aefa95de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
