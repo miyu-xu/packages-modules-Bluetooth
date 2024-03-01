@@ -66,6 +66,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f7e50f96_6c7f78d9",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-03-01T01:42:50Z",
+      "side": 1,
+      "message": "There is some ongoing effort from Alice aosp/2953590.\nThe broadcast codec config is going to consider the quality suggested by application. \nI\u0027m seeing this can conflict with that change in those files, considering the scope of this change.\n\nShould we get that merged first and resolve the conflicts here? \nOr we can consider to absorb that change here if possible?",
+      "revId": "43fa1663d6beadbde138eb7c16bd15d8a0762184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c9ea4b49_07de83de",
         "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
         "patchSetId": 25
