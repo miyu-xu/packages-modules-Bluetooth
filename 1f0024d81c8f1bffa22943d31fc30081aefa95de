@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7680680a_55372edf",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattServiceConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-01T00:29:59Z",
+      "side": 0,
+      "message": "FYI this was hardcoded to false because GATT service logs were too noisy (we have upcoming work to assess and clean up the logging). \n\nIs there any concern with removing the VDBG guards in the interim since they mostly guard Log.d given this?",
+      "range": {
+        "startLine": 26,
+        "startChar": 32,
+        "endLine": 26,
+        "endChar": 44
+      },
+      "revId": "1f0024d81c8f1bffa22943d31fc30081aefa95de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
