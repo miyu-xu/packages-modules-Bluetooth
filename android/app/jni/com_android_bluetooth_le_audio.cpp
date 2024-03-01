@@ -721,6 +721,17 @@ static void setUnicastMonitorModeNative(JNIEnv* /* env */, jobject /* object */,
   sLeAudioClientInterface->SetUnicastMonitorMode(direction, enable);
 }
 
+static void setUnicastReleaseBehaviorNative(JNIEnv* /* env */,
+                                            jobject /* object */, jint action) {
+  std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
+  if (!sLeAudioClientInterface) {
+    log::error("Failed to get the Bluetooth LeAudio Interface");
+    return;
+  }
+
+  sLeAudioClientInterface->SetUnicastReleaseBehavior(action);
+}
+
 static void sendAudioProfilePreferencesNative(
     JNIEnv* /* env */, jint groupId, jboolean isOutputPreferenceLeAudio,
     jboolean isDuplexPreferenceLeAudio) {
@@ -1589,6 +1600,8 @@ int register_com_android_bluetooth_le_audio(JNIEnv* env) {
       {"setInCallNative", "(Z)V", (void*)setInCallNative},
       {"setUnicastMonitorModeNative", "(IZ)V",
        (void*)setUnicastMonitorModeNative},
+      {"setUnicastReleaseBehaviorNative", "(I)V",
+       (void*)setUnicastReleaseBehaviorNative},
       {"sendAudioProfilePreferencesNative", "(IZZ)V",
        (void*)sendAudioProfilePreferencesNative},
   };

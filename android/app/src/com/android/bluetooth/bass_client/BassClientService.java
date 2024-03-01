@@ -98,6 +98,9 @@ public class BassClientService extends ProfileService {
     /* 1 minute timeout for primary device reconnection in Private Broadcast case */
     private static final int DIALING_OUT_TIMEOUT_MS = 60000;
 
+    /** This is used to request native to change its behavior of release Unicast stream */
+    private static final int UNICAST_RELEASE_BEHAVIOR_ONE_TIME_QUICK = 0;
+
     private static BassClientService sService;
 
     private final Map<BluetoothDevice, BassClientStateMachine> mStateMachines = new HashMap<>();
@@ -1907,6 +1910,7 @@ public class BassClientService extends ProfileService {
             /* Try to stop active player, to avoid Unicast being in foreground after
              * trying to add external source.
              */
+            leAudioService.modifyUnicastReleaseBehavior(UNICAST_RELEASE_BEHAVIOR_ONE_TIME_QUICK);
             mMediaPlayerList.getActivePlayer().stopCurrent();
         }
     }
