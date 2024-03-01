@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d754b4b_4cc44fba",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 5269,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-01T00:32:53Z",
+      "side": 1,
+      "message": "I don\u0027t see the deletion of the code in parallel",
+      "range": {
+        "startLine": 5261,
+        "startChar": 12,
+        "endLine": 5269,
+        "endChar": 50
+      },
+      "revId": "b58b567a6048965598e226c94626f829a905420d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
