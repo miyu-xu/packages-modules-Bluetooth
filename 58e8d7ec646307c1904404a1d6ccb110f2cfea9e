@@ -188,6 +188,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1ebf16a_20365e17",
+        "filename": "system/gd/rust/linux/docs_style_guide.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-03-01T00:25:51Z",
+      "side": 1,
+      "message": "LGTM, thanks.",
+      "parentUuid": "d8b41351_06b1b412",
+      "range": {
+        "startLine": 19,
+        "startChar": 11,
+        "endLine": 20,
+        "endChar": 16
+      },
+      "revId": "58e8d7ec646307c1904404a1d6ccb110f2cfea9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a891ba1d_63e64b56",
