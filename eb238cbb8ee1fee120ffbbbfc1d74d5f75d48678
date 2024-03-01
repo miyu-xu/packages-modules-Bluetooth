@@ -46,6 +46,30 @@
       },
       "revId": "eb238cbb8ee1fee120ffbbbfc1d74d5f75d48678",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc5db9c4_a802e48c",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 963,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-03-01T08:51:31Z",
+      "side": 1,
+      "message": "added a patch for it\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2985431",
+      "parentUuid": "e39f2a72_99125bc9",
+      "range": {
+        "startLine": 963,
+        "startChar": 37,
+        "endLine": 963,
+        "endChar": 65
+      },
+      "revId": "eb238cbb8ee1fee120ffbbbfc1d74d5f75d48678",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
