@@ -22,6 +22,30 @@
       },
       "revId": "eb238cbb8ee1fee120ffbbbfc1d74d5f75d48678",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e39f2a72_99125bc9",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 963,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-03-01T07:26:24Z",
+      "side": 1,
+      "message": "Maybe we should return the OR value of btif_dm_get_resolved_connection_state and btif_dm_get_connection_state?\n\n```\nuint16_t btif_dm_get_connection_state_sync(const RawAddress\u0026 bd_addr) {\n  std::promise\u003cuint16_t\u003e promise;\n  std::future future \u003d promise.get_future();\n\n  ASSERT(BT_STATUS_SUCCESS \u003d\u003d\n         do_in_main_thread(\n             FROM_HERE,\n             base::BindOnce(\n                 [](const RawAddress bd_addr, std::promise\u003cuint16_t\u003e promise) {\n                   // Experiment to try with maybe resolved address\n                   int value \u003d btif_dm_get_resolved_connection_state({\n                       .type \u003d BLE_ADDR_RANDOM,\n                       .bda \u003d bd_addr,\n                   });\n                   promise.set_value(value | btif_dm_get_connection_state(bd_addr));\n                 },\n                 bd_addr, std::move(promise))));\n  return future.get();\n}\n```",
+      "parentUuid": "88b4fc0f_7b5dccb9",
+      "range": {
+        "startLine": 963,
+        "startChar": 37,
+        "endLine": 963,
+        "endChar": 65
+      },
+      "revId": "eb238cbb8ee1fee120ffbbbfc1d74d5f75d48678",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
