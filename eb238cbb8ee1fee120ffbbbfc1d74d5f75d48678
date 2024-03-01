@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88b4fc0f_7b5dccb9",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 963,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-03-01T07:03:25Z",
+      "side": 1,
+      "message": "Should we return value of btif_dm_get_resolved_connection_state here?",
+      "range": {
+        "startLine": 963,
+        "startChar": 37,
+        "endLine": 963,
+        "endChar": 65
+      },
+      "revId": "eb238cbb8ee1fee120ffbbbfc1d74d5f75d48678",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
