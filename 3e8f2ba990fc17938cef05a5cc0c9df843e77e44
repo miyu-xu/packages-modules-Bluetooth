@@ -22,6 +22,30 @@
       },
       "revId": "3e8f2ba990fc17938cef05a5cc0c9df843e77e44",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5747abb_d181f8b7",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1785,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-01T10:16:24Z",
+      "side": 1,
+      "message": "very small chances that logic is going to be added there. This is old code which is usually not touch. In case of such event we can always change that. I did it this way as when we will be removing flag I will just delete 3 lines here.\n\nLet\u0027s keep it as it is.",
+      "parentUuid": "91461422_cf81e45c",
+      "range": {
+        "startLine": 1784,
+        "startChar": 4,
+        "endLine": 1785,
+        "endChar": 68
+      },
+      "revId": "3e8f2ba990fc17938cef05a5cc0c9df843e77e44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
