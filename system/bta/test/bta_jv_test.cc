@@ -151,12 +151,12 @@ TEST_F(BtaJvTest,
   bta_jv_enable([](tBTA_JV_EVT event, tBTA_JV* p_data, uint32_t id) {
     switch (event) {
       case BTA_JV_DISCOVERY_COMP_EVT:
-        ASSERT_EQ(p_data->disc_comp.status, BTA_JV_FAILURE);
+        ASSERT_EQ(p_data->disc_comp.status, tBTA_JV_STATUS::FAILURE);
         ASSERT_EQ(kSlotId, id);
         break;
 
       case BTA_JV_ENABLE_EVT:
-        ASSERT_EQ(p_data->disc_comp.status, BTA_JV_SUCCESS);
+        ASSERT_EQ(p_data->disc_comp.status, tBTA_JV_STATUS::SUCCESS);
         ASSERT_EQ(0U, id);
         break;
 
@@ -197,13 +197,13 @@ TEST_F(BtaJvTest,
   bta_jv_enable([](tBTA_JV_EVT event, tBTA_JV* p_data, uint32_t id) {
     switch (event) {
       case BTA_JV_DISCOVERY_COMP_EVT:
-        ASSERT_EQ(BTA_JV_SUCCESS, p_data->disc_comp.status);
+        ASSERT_EQ(tBTA_JV_STATUS::SUCCESS, p_data->disc_comp.status);
         ASSERT_EQ(kScn, p_data->disc_comp.scn);
         ASSERT_EQ(kSlotId, id);
         break;
 
       case BTA_JV_ENABLE_EVT:
-        ASSERT_EQ(BTA_JV_SUCCESS, p_data->disc_comp.status);
+        ASSERT_EQ(tBTA_JV_STATUS::SUCCESS, p_data->disc_comp.status);
         ASSERT_EQ(0U, id);
         break;
 
@@ -223,12 +223,12 @@ TEST_F(BtaJvTest, bta_jv_start_discovery_cback__with_callback_failure) {
   bta_jv_enable([](tBTA_JV_EVT event, tBTA_JV* p_data, uint32_t id) {
     switch (event) {
       case BTA_JV_DISCOVERY_COMP_EVT:
-        ASSERT_EQ(BTA_JV_FAILURE, p_data->disc_comp.status);
+        ASSERT_EQ(tBTA_JV_STATUS::FAILURE, p_data->disc_comp.status);
         ASSERT_EQ(kSlotId, id);
         break;
 
       case BTA_JV_ENABLE_EVT:
-        ASSERT_EQ(BTA_JV_SUCCESS, p_data->disc_comp.status);
+        ASSERT_EQ(tBTA_JV_STATUS::SUCCESS, p_data->disc_comp.status);
         ASSERT_EQ(0U, id);
         break;
 
@@ -261,12 +261,12 @@ TEST_F(BtaJvTest, bta_jv_start_discovery__already_active) {
   bta_jv_enable([](tBTA_JV_EVT event, tBTA_JV* p_data, uint32_t id) {
     switch (event) {
       case BTA_JV_DISCOVERY_COMP_EVT:
-        ASSERT_EQ(BTA_JV_BUSY, p_data->disc_comp.status);
+        ASSERT_EQ(tBTA_JV_STATUS::BUSY, p_data->disc_comp.status);
         ASSERT_EQ(kSlotId, id);
         break;
 
       case BTA_JV_ENABLE_EVT:
-        ASSERT_EQ(BTA_JV_SUCCESS, p_data->disc_comp.status);
+        ASSERT_EQ(tBTA_JV_STATUS::SUCCESS, p_data->disc_comp.status);
         ASSERT_EQ(0U, id);
         break;
 

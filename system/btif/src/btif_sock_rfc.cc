@@ -372,10 +372,11 @@ bt_status_t btsock_rfc_connect(const RawAddress* bd_addr,
     tBTA_JV_STATUS ret =
         BTA_JvRfcommConnect(slot->security, slot->role, slot->scn, slot->addr,
                             rfcomm_cback, slot->id);
-    if (ret != BTA_JV_SUCCESS) {
+    if (ret != tBTA_JV_STATUS::SUCCESS) {
       LOG_ERROR(
-          "unable to initiate RFCOMM connection. status:%d, scn:%d, bd_addr:%s",
-          ret, slot->scn, ADDRESS_TO_LOGGABLE_CSTR(slot->addr));
+          "unable to initiate RFCOMM connection. status:%s, scn:%d, bd_addr:%s",
+          bta_jv_status_text(ret).c_str(), slot->scn,
+          ADDRESS_TO_LOGGABLE_CSTR(slot->addr));
       cleanup_rfc_slot(slot);
       return BT_STATUS_FAIL;
     }
@@ -506,11 +507,11 @@ static void on_cl_rfc_init(tBTA_JV_RFCOMM_CL_INIT* p_init, uint32_t id) {
   std::unique_lock<std::recursive_mutex> lock(slot_lock);
   rfc_slot_t* slot = find_rfc_slot_by_id(id);
   if (!slot) {
-    LOG_ERROR("RFCOMM slot with id %u not found. p_init->status=%u", id,
-              p_init->status);
-  } else if (p_init->status != BTA_JV_SUCCESS) {
-    LOG_WARN("INIT unsuccessful, status %u. Cleaning up slot with id %u",
-             p_init->status, slot->id);
+    LOG_ERROR("RFCOMM slot with id %u not found. p_init->status=%s", id,
+              bta_jv_status_text(p_init->status).c_str());
+  } else if (p_init->status != tBTA_JV_STATUS::SUCCESS) {
+    LOG_WARN("INIT unsuccessful, status %s. Cleaning up slot with id %u",
+             bta_jv_status_text(p_init->status).c_str(), slot->id);
     cleanup_rfc_slot(slot);
   } else {
     slot->rfc_handle = p_init->handle;
@@ -524,9 +525,9 @@ static void on_srv_rfc_listen_started(tBTA_JV_RFCOMM_START* p_start,
   if (!slot) {
     LOG_ERROR("RFCOMM slot with id %u not found", id);
     return;
-  } else if (p_start->status != BTA_JV_SUCCESS) {
-    LOG_WARN("START unsuccessful, status %u. Cleaning up slot with id %u",
-             p_start->status, slot->id);
+  } else if (p_start->status != tBTA_JV_STATUS::SUCCESS) {
+    LOG_WARN("START unsuccessful, status %s. Cleaning up slot with id %u",
+             bta_jv_status_text(p_start->status).c_str(), slot->id);
     cleanup_rfc_slot(slot);
     return;
   }
@@ -592,9 +593,9 @@ static void on_cli_rfc_connect(tBTA_JV_RFCOMM_OPEN* p_open, uint32_t id) {
     return;
   }
 
-  if (p_open->status != BTA_JV_SUCCESS) {
-    LOG_WARN("CONNECT unsuccessful, status %u. Cleaning up slot with id %u",
-             p_open->status, slot->id);
+  if (p_open->status != tBTA_JV_STATUS::SUCCESS) {
+    LOG_WARN("CONNECT unsuccessful, status %s. Cleaning up slot with id %u",
+             bta_jv_status_text(p_open->status).c_str(), slot->id);
     cleanup_rfc_slot(slot);
     return;
   }
@@ -642,7 +643,7 @@ static void on_rfc_close(UNUSED_ATTR tBTA_JV_RFCOMM_CLOSE* p_close,
 }
 
 static void on_rfc_write_done(tBTA_JV_RFCOMM_WRITE* p, uint32_t id) {
-  if (p->status != BTA_JV_SUCCESS) {
+  if (p->status != tBTA_JV_STATUS::SUCCESS) {
     LOG_ERROR("%s error writing to RFCOMM socket with slot %u.", __func__,
               p->req_id);
     return;
@@ -844,19 +845,20 @@ static void handle_discovery_comp(tBTA_JV_STATUS status, int scn, uint32_t id) {
     return;
   }
 
-  if (status != BTA_JV_SUCCESS || !scn) {
+  if (status != tBTA_JV_STATUS::SUCCESS || !scn) {
     LOG_ERROR(
         "SDP service discovery completed for slot id: %u with the result "
-        "status: %u, scn: %d",
-        id, status, scn);
+        "status: %s, scn: %d",
+        id, bta_jv_status_text(status).c_str(), scn);
     cleanup_rfc_slot(slot);
     return;
   }
 
   if (BTA_JvRfcommConnect(slot->security, slot->role, scn, slot->addr,
-                          rfcomm_cback, slot->id) != BTA_JV_SUCCESS) {
+                          rfcomm_cback, slot->id) != tBTA_JV_STATUS::SUCCESS) {
     LOG_WARN(
-        "BTA_JvRfcommConnect() returned BTA_JV_FAILURE for RFCOMM slot with "
+        "BTA_JvRfcommConnect() returned tBTA_JV_STATUS::FAILURE for RFCOMM "
+        "slot with "
         "id: %u",
         id);
     cleanup_rfc_slot(slot);
