@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fc84ad8_d159189a",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 5228,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-01T00:28:25Z",
+      "side": 1,
+      "message": "We keep repeating `xxxEnqueueCommand` `xxxBindOnce`.\nI know it is nit pit but can we factorize that ? something like\n\n```c\nstatic void send_cmd(auto toController, auto fromController) {\n  btm_sec_cb.hci_-\u003eEnqueueCommand(\n     toController,\n     get_main_thread()-\u003eBindOnce(fromController));\n}\n\nstatic void send_user_passkey_neg_reply(const RawAddress\u0026 bd_addr) {\n  send_cmd(\n  bluetooth::hci::UserPasskeyRequestNegativeReplyBuilder::Create(bluetooth::ToGdAddress(bd_addr)),\n  bluetooth::hci::check_complete\u003cbluetooth::hci::UserPasskeyRequestNegativeReplyCompleteView\u003e));\n}\n```\n\nWe could even gain some clarity if there was not so many time `bluetooth::hci`\n\n```\nstatic void send_user_passkey_neg_reply(const RawAddress\u0026 bd_addr) {\n  send_cmd(\n  UserPasskeyRequestNegativeReplyBuilder::Create(ToGdAddress(bd_addr)),\n  check_complete\u003cUserPasskeyRequestNegativeReplyCompleteView\u003e));\n}\n```",
+      "range": {
+        "startLine": 5221,
+        "startChar": 0,
+        "endLine": 5228,
+        "endChar": 1
+      },
+      "revId": "4a3f7e42f986bde721a3da593ed116f1843d57cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
