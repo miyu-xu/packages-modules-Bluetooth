@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e044ccb7_7a96f9f2",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 5152,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-01T00:18:13Z",
+      "side": 1,
+      "message": "hack ?",
+      "range": {
+        "startLine": 5152,
+        "startChar": 36,
+        "endLine": 5152,
+        "endChar": 40
+      },
+      "revId": "713266fcd0c0db2f7577c053c97dafb3725e9f70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c415df4c_ac1ab8b8",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 5153,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-01T00:18:13Z",
+      "side": 1,
+      "message": "go/TODO-style  \nadd bug number to track this and maybe an explanation on what / why this is happening ?",
+      "range": {
+        "startLine": 5153,
+        "startChar": 0,
+        "endLine": 5153,
+        "endChar": 51
+      },
+      "revId": "713266fcd0c0db2f7577c053c97dafb3725e9f70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ecbe4f5_7916d0cf",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 5161,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-01T00:18:13Z",
+      "side": 1,
+      "message": "The timing of this has changed from being done in the complete from withing the initial call.",
+      "range": {
+        "startLine": 5154,
+        "startChar": 1,
+        "endLine": 5161,
+        "endChar": 47
+      },
+      "revId": "713266fcd0c0db2f7577c053c97dafb3725e9f70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4094734_967f45d3",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 5167,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-01T00:18:13Z",
+      "side": 1,
+      "message": "should:\n```\n  /* if the create conn cancel cmd was issued by the bond cancel,\n  ** the application needs to be notified that bond cancel succeeded\n  */\n  switch (status) {\n    case HCI_SUCCESS:\n      btm_sec_bond_cancel_complete();\n      break;\n    case HCI_ERR_CONNECTION_EXISTS:\n    case HCI_ERR_NO_CONNECTION:\n    default:\n      /* Notify application of the error */\n      if (btm_sec_cb.api.p_bond_cancel_cmpl_callback)\n        btm_sec_cb.api.p_bond_cancel_cmpl_callback(BTM_ERR_PROCESSING);\n      break;\n  }\n```\n\nBe part of the completion here ?",
+      "range": {
+        "startLine": 5166,
+        "startChar": 10,
+        "endLine": 5167,
+        "endChar": 66
+      },
+      "revId": "713266fcd0c0db2f7577c053c97dafb3725e9f70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
