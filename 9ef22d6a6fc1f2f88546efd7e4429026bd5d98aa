@@ -237,6 +237,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5fca3fc2_6a9365bc",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-03-01T19:21:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eec28bf6_b56f1324",
+      "range": {
+        "startLine": 255,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 1
+      },
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b5615aa0_1c68ceb5",
         "filename": "system/stack/gap/gap_ble.cc",
         "patchSetId": 27
@@ -248,6 +272,30 @@
       "writtenOn": "2024-02-28T02:36:09Z",
       "side": 1,
       "message": "send_cl_read_request -\u003e send_cl_request\nIs this behavior change that need to be flagged ? (same a couple line below)",
+      "range": {
+        "startLine": 428,
+        "startChar": 9,
+        "endLine": 428,
+        "endChar": 24
+      },
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "649f8b32_75cc6323",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-03-01T19:21:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5615aa0_1c68ceb5",
       "range": {
         "startLine": 428,
         "startChar": 9,
@@ -307,6 +355,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a067f094_08ca3e19",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-03-01T19:21:59Z",
+      "side": 1,
+      "message": "William,  It seems that, Earlier  GAP module was not using GATTC_OPTYPE_WRITE / GATTC_OPTYPE_INDICATION\n\nAdded new API, API is guarded with flag",
+      "parentUuid": "ed4ae39a_e5f0947f",
+      "range": {
+        "startLine": 544,
+        "startChar": 0,
+        "endLine": 589,
+        "endChar": 3
+      },
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ef1ced8c_bb3d8a28",
         "filename": "system/stack/gap/gap_ble.cc",
         "patchSetId": 27
@@ -318,6 +390,30 @@
       "writtenOn": "2024-02-28T02:36:09Z",
       "side": 1,
       "message": "Is `6` the correct value here ? I believe it should stay 4",
+      "range": {
+        "startLine": 807,
+        "startChar": 34,
+        "endLine": 807,
+        "endChar": 35
+      },
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abe9dad8_b17ef6e1",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 807,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-03-01T19:21:59Z",
+      "side": 1,
+      "message": "Corrected",
+      "parentUuid": "ef1ced8c_bb3d8a28",
       "range": {
         "startLine": 807,
         "startChar": 34,
@@ -424,6 +520,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8ddbaecd_ce140f17",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-03-01T19:21:59Z",
+      "side": 1,
+      "message": "will guard with flag",
+      "parentUuid": "0f96feab_a1d8be29",
+      "range": {
+        "startLine": 582,
+        "startChar": 1,
+        "endLine": 586,
+        "endChar": 55
+      },
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9b13e070_f969a0ee",
         "filename": "system/stack/gatt/gatt_attr.cc",
         "patchSetId": 27
@@ -435,6 +555,30 @@
       "writtenOn": "2024-02-28T01:37:46Z",
       "side": 1,
       "message": "1/ Can we move within the if line 635 ? \n\n```c\n    if (status \u003d\u003d GATT_SUCCESS \u0026\u0026 (cl_op_uuid \u003d\u003d GATT_UUID_CLIENT_SUP_FEAT) \u0026\u0026\n        (IS_FLAG_ENABLED(encrypted_advertising_data))) {\n      tGATT_PROFILE_CLCB* p_clcb \u003d gatt_profile_find_clcb_by_conn_id(conn_id);\n      GAP_BleGetEncKeyMaterialInfo(p_clcb-\u003ebda);\n    }\n```\n\n2/ the method can return null. Should we have a null check or is it guarantee to be non null when reaching this code ?",
+      "range": {
+        "startLine": 623,
+        "startChar": 0,
+        "endLine": 623,
+        "endChar": 74
+      },
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e40d5a26_8fe26f1a",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-03-01T19:21:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b13e070_f969a0ee",
       "range": {
         "startLine": 623,
         "startChar": 0,
