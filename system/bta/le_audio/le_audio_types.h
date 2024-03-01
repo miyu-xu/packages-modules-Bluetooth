@@ -393,6 +393,10 @@ enum class LeAudioContextType : uint16_t {
   RFU = 0x1000,
 };
 
+enum class ReleaseBehaviorActions : int {
+  UNICAST_RELEASE_BEHAVIOR_ONE_TIME_QUICK,
+};
+
 class AudioContexts {
   using T = std::underlying_type<LeAudioContextType>::type;
   T mValue;

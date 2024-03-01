@@ -137,6 +137,9 @@ public class LeAudioService extends ProfileService {
     public static final String BLUETOOTH_LE_BROADCAST_FALLBACK_ACTIVE_GROUP_ID =
             "bluetooth_le_broadcast_fallback_active_group_id";
 
+    /** This is used to request native to change its behavior of release Unicast stream */
+    private static final int UNICAST_RELEASE_BEHAVIOR_ONE_TIME_QUICK = 0;
+
     /**
      * Per PBP 1.0 4.3. High Quality Public Broadcast Audio, Broadcast HIGH quality audio configs
      * are with sampling frequency 48khz
@@ -1288,6 +1291,19 @@ public class LeAudioService extends ProfileService {
             }
 
             mIsSourceStreamMonitorModeEnabled = false;
+        }
+    }
+
+    /** Modify release behavior of Unicast stream */
+    public void modifyUnicastReleaseBehavior(int action) {
+        switch (action) {
+            case UNICAST_RELEASE_BEHAVIOR_ONE_TIME_QUICK:
+                Log.d(TAG, "Requested release behavior: " + action);
+                mLeAudioNativeInterface.setUnicastReleaseBehavior(action);
+                break;
+            default:
+                Log.e(TAG, "Invalid release behavior action requested: " + action);
+                break;
         }
     }
 

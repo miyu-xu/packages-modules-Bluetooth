@@ -408,6 +408,18 @@ public class LeAudioNativeInterface {
     }
 
     /**
+     * Request change of active group Unicast release behavior
+     *
+     * @param action requested change action of release behavior
+     */
+    public void setUnicastReleaseBehavior(int action) {
+        if (DBG) {
+            Log.d(TAG, "setUnicastReleaseBehavior action: " + action);
+        }
+        setUnicastReleaseBehaviorNative(action);
+    }
+
+    /**
      * Sends the audio preferences for the groupId to the native stack.
      *
      * @param groupId is the groupId corresponding to the preferences
@@ -425,6 +437,7 @@ public class LeAudioNativeInterface {
                 isDuplexPreferenceLeAudio);
     }
 
+
     // Native methods that call into the JNI interface
     private native void initNative(BluetoothLeAudioCodecConfig[] codecConfigOffloading);
     private native void cleanupNative();
@@ -441,7 +454,8 @@ public class LeAudioNativeInterface {
     private native void setInCallNative(boolean inCall);
 
     private native void setUnicastMonitorModeNative(int direction, boolean enable);
-    private native void confirmUnicastStreamRequestNative();
+
+    private native void setUnicastReleaseBehaviorNative(int action);
     /*package*/
     private native void sendAudioProfilePreferencesNative(int groupId,
             boolean isOutputPreferenceLeAudio, boolean isDuplexPreferenceLeAudio);
