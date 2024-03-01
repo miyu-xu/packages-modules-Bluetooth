@@ -575,7 +575,7 @@ int osi_property_set(const char* key, const char* value) {
 }
 int32_t osi_property_get_int32(const char* key, int32_t default_value) {
   inc_func_call_count(__func__);
-  return 0;
+  return default_value;
 }
 
 bool wakelock_acquire(void) {

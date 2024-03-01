@@ -259,6 +259,18 @@ class LeAudioClientImpl : public LeAudioClient {
       reconnection_mode_ = BTM_BLE_BKG_CONNECT_ALLOW_LIST;
     }
 
+    if (osi_property_get_bool(kDualModeEnableProp, false)) {
+      LOG_INFO("Dual mode enabled, removing ISO timeout on suspend");
+      audio_suspend_keep_iso_alive_timeout_ms_ = 0;
+    } else {
+      /* Take prop configuration into account */
+      audio_suspend_keep_iso_alive_timeout_ms_ =
+          osi_property_get_int32(kAudioSuspendKeepIsoAliveTimeoutMsProp,
+                                 audio_suspend_keep_iso_alive_timeout_ms_);
+      LOG_INFO("ISO suspend timeout set to %ld ms",
+               audio_suspend_keep_iso_alive_timeout_ms_);
+    }
+
     if (IS_FLAG_ENABLED(leaudio_enable_health_based_actions)) {
       LOG_INFO("Loading health status module");
       leAudioHealthStatus_ = LeAudioHealthStatus::Get();
@@ -3992,9 +4004,11 @@ class LeAudioClientImpl : public LeAudioClient {
     }
 
     /* Group should tie in time to get requested status */
-    uint64_t timeoutMs = kAudioSuspentKeepIsoAliveTimeoutMs;
-    timeoutMs = osi_property_get_int32(kAudioSuspentKeepIsoAliveTimeoutMsProp,
-                                       timeoutMs);
+    uint64_t timeoutMs = audio_suspend_keep_iso_alive_timeout_ms_;
+    if (timeoutMs == 0) {
+      GroupStop(active_group_id_);
+      return;
+    }
 
     if (stack_config_get_interface()
             ->get_pts_le_audio_disable_ases_before_stopping()) {
@@ -5757,6 +5771,9 @@ class LeAudioClientImpl : public LeAudioClient {
   static constexpr char kNotifyUpperLayerAboutGroupBeingInIdleDuringCall[] =
       "persist.bluetooth.leaudio.notify.idle.during.call";
 
+  static constexpr char kDualModeEnableProp[] =
+      "persist.bluetooth.enable_dual_mode_audio";
+
   static constexpr uint16_t kBapMinimumAttMtu = 64;
 
   /* Current stream configuration */
@@ -5789,10 +5806,13 @@ class LeAudioClientImpl : public LeAudioClient {
   std::vector<uint8_t> encoded_data;
   std::unique_ptr<LeAudioSourceAudioHalClient> le_audio_source_hal_client_;
   std::unique_ptr<LeAudioSinkAudioHalClient> le_audio_sink_hal_client_;
-  static constexpr uint64_t kAudioSuspentKeepIsoAliveTimeoutMs = 5000;
-  static constexpr uint64_t kAudioDisableTimeoutMs = 3000;
-  static constexpr char kAudioSuspentKeepIsoAliveTimeoutMsProp[] =
+
+  static constexpr char kAudioSuspendKeepIsoAliveTimeoutMsProp[] =
       "persist.bluetooth.leaudio.audio.suspend.timeoutms";
+  uint64_t audio_suspend_keep_iso_alive_timeout_ms_ = 5000;
+
+  static constexpr uint64_t kAudioDisableTimeoutMs = 3000;
+
   alarm_t* close_vbc_timeout_;
   alarm_t* suspend_timeout_;
   alarm_t* disable_timer_;
