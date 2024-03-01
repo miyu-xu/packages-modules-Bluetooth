@@ -16,6 +16,24 @@
       "message": "nit: unrelated",
       "revId": "b13774b28fc95f085ded12e5cd2f867adfcd7f3a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce8e0731_67081e7c",
+        "filename": "system/bta/include/bta_hh_api.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-01T21:23:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f310e758_65cbeeb6",
+      "revId": "b13774b28fc95f085ded12e5cd2f867adfcd7f3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
