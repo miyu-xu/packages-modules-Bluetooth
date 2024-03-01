@@ -108,6 +108,11 @@ void BTM_SecAddBleDevice(const RawAddress& bd_addr, tBT_DEVICE_TYPE dev_type,
   } else {
     log::warn(
         "Please do not update device record from anonymous le advertisement");
+    p_dev_rec->device_type |= BT_DEVICE_TYPE_BLE;
+    if (btif_config_set_int(bda.ToString(), "DevType",
+                          (int)p_dev_rec->device_type)) {
+      log::info("btm_ble_connected set device_type to config success");
+    }
   }
 
   /* sync up with the Inq Data base*/
