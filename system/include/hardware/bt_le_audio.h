@@ -406,6 +406,9 @@ class LeAudioClientInterface {
   /* Set Sink listening mode flag */
   virtual void SetUnicastMonitorMode(uint8_t direction, bool enable) = 0;
 
+  /* Set Handover mode flag */
+  virtual void SetHandoverMode(bool active) = 0;
+
   /* Sends a preferred audio profiles change */
   virtual void SendAudioProfilePreferences(
       int group_id, bool is_output_preference_le_audio,

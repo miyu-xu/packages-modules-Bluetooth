@@ -1412,6 +1412,12 @@ public class LeAudioService extends ProfileService {
         }
     }
 
+    /** Active handover mode handler */
+    public void setHandoverMode(boolean active) {
+        Log.d(TAG, "setHandoverMode: " + active);
+        mNativeInterface.setHandoverMode(active);
+    }
+
     /** Return true if device is primary - is active or was active before switch to broadcast */
     public boolean isPrimaryDevice(BluetoothDevice device) {
         LeAudioDeviceDescriptor descriptor = mDeviceDescriptors.get(device);
@@ -2157,6 +2163,11 @@ public class LeAudioService extends ProfileService {
                 && groupId != LE_AUDIO_GROUP_ID_INVALID) {
             // If broadcast is ongoing and need to update unicast fallback active group
             // we need to update the cached group id and skip changing the active device
+            /* There would be no fallback device - handover mode is no longer active */
+            if (groupId == LE_AUDIO_GROUP_ID_INVALID) {
+                mNativeInterface.setHandoverMode(false);
+            }
+
             updateFallbackUnicastGroupIdForBroadcast(groupId);
             return true;
         }
@@ -2895,6 +2906,8 @@ public class LeAudioService extends ProfileService {
                         + ", with device: "
                         + unicastDevice);
 
+        mNativeInterface.setHandoverMode(true);
+
         updateFallbackUnicastGroupIdForBroadcast(LE_AUDIO_GROUP_ID_INVALID);
         setActiveDevice(unicastDevice);
     }
@@ -3441,6 +3454,14 @@ public class LeAudioService extends ProfileService {
                         if (bassClientService != null) {
                             bassClientService.resumeReceiversSourceSynchronization();
                         }
+                    }
+
+                    /* Unicast can't be active while broadcast is streaming - there is no need to
+                     * keep handover mode active.
+                     */
+                    if (mUnicastGroupIdDeactivatedForBroadcastTransition
+                            != LE_AUDIO_GROUP_ID_INVALID) {
+                        mNativeInterface.setHandoverMode(false);
                     }
 
                     // Notify audio manager

@@ -250,6 +250,7 @@ class LeAudioClientImpl : public LeAudioClient {
         sink_monitor_mode_(false),
         sink_monitor_notified_status_(std::nullopt),
         source_monitor_mode_(false),
+        handover_mode_(false),
         le_audio_source_hal_client_(nullptr),
         le_audio_sink_hal_client_(nullptr),
         close_vbc_timeout_(alarm_new("LeAudioCloseVbcTimeout")),
@@ -1085,6 +1086,19 @@ class LeAudioClientImpl : public LeAudioClient {
     } else {
       log::error("invalid direction: 0x{:02x} monitor mode set", direction);
     }
+  }
+
+  void SetHandoverMode(int active) override {
+    if (!com::android::bluetooth::flags::
+            leaudio_broadcast_audio_handover_policies()) {
+      log::warn(
+          "Broadcast handover is disabled, Set Handover mode request is "
+          "ignored");
+      return;
+    }
+
+    log::debug("active: {}", active);
+    handover_mode_ = active;
   }
 
   void SendAudioProfilePreferences(
@@ -3892,6 +3906,7 @@ class LeAudioClientImpl : public LeAudioClient {
     }
     dprintf(fd, "  Source monitor mode: %s\n",
             source_monitor_mode_ ? "true" : "false");
+    dprintf(fd, "  Handover mode: %s\n", handover_mode_ ? "true" : "false");
     dprintf(fd, "  Codec extensibility: %s\n",
             CodecManager::GetInstance()->IsUsingCodecExtensibility() ? "true"
                                                                      : "false");
@@ -4032,6 +4047,10 @@ class LeAudioClientImpl : public LeAudioClient {
 
     /* Group should tie in time to get requested status */
     uint64_t timeoutMs = kAudioSuspentKeepIsoAliveTimeoutMs;
+    if (handover_mode_) {
+      log::debug("Override Suspent timeout with Handover mode timeout");
+      timeoutMs = kAudioHandoverModeKeepIsoAliveTimeoutMs;
+    }
     timeoutMs = osi_property_get_int32(kAudioSuspentKeepIsoAliveTimeoutMsProp,
                                        timeoutMs);
 
@@ -4281,8 +4300,13 @@ class LeAudioClientImpl : public LeAudioClient {
           case AudioState::IDLE:
           case AudioState::READY_TO_RELEASE:
             /* Stream is up just restore it */
-            if (alarm_is_scheduled(suspend_timeout_))
-              alarm_cancel(suspend_timeout_);
+            if (handover_mode_ && (configuration_context_type_ ==
+                                   LeAudioContextType::SOUNDEFFECTS)) {
+              log::debug("Skip alarm cancel due to handover mode set");
+            } else {
+              if (alarm_is_scheduled(suspend_timeout_))
+                alarm_cancel(suspend_timeout_);
+            }
             ConfirmLocalAudioSourceStreamingRequest();
             bluetooth::le_audio::MetricsCollector::Get()->OnStreamStarted(
                 active_group_id_, configuration_context_type_);
@@ -4566,8 +4590,13 @@ class LeAudioClientImpl : public LeAudioClient {
           case AudioState::READY_TO_START:
           case AudioState::READY_TO_RELEASE:
             /* Stream is up just restore it */
-            if (alarm_is_scheduled(suspend_timeout_))
-              alarm_cancel(suspend_timeout_);
+            if (handover_mode_ && (configuration_context_type_ ==
+                                   LeAudioContextType::SOUNDEFFECTS)) {
+              log::debug("Skip alarm cancel due to handover mode set");
+            } else {
+              if (alarm_is_scheduled(suspend_timeout_))
+                alarm_cancel(suspend_timeout_);
+            }
             ConfirmLocalAudioSinkStreamingRequest();
             break;
           case AudioState::RELEASING:
@@ -5865,6 +5894,8 @@ class LeAudioClientImpl : public LeAudioClient {
   std::optional<UnicastMonitorModeStatus> sink_monitor_notified_status_;
   /* Listen for streaming status on Source stream */
   bool source_monitor_mode_;
+  /* Set if device is in handover mode (Broadcast->Unicast) */
+  bool handover_mode_;
 
   /* Reconnection mode */
   tBTM_BLE_CONN_TYPE reconnection_mode_;
@@ -5912,6 +5943,7 @@ class LeAudioClientImpl : public LeAudioClient {
   std::unique_ptr<LeAudioSourceAudioHalClient> le_audio_source_hal_client_;
   std::unique_ptr<LeAudioSinkAudioHalClient> le_audio_sink_hal_client_;
   static constexpr uint64_t kAudioSuspentKeepIsoAliveTimeoutMs = 5000;
+  static constexpr uint64_t kAudioHandoverModeKeepIsoAliveTimeoutMs = 300;
   static constexpr uint64_t kAudioDisableTimeoutMs = 3000;
   static constexpr char kAudioSuspentKeepIsoAliveTimeoutMsProp[] =
       "persist.bluetooth.leaudio.audio.suspend.timeoutms";

@@ -380,6 +380,16 @@ public class LeAudioNativeInterface {
     }
 
     /**
+     * Active handover mode handler
+     *
+     * @param active true if handover mode should be used
+     */
+    public void setHandoverMode(boolean active) {
+        Log.d(TAG, "setHandoverMode active: " + active);
+        setHandoverModeNative(active);
+    }
+
+    /**
      * Sends the audio preferences for the groupId to the native stack.
      *
      * @param groupId is the groupId corresponding to the preferences
@@ -448,7 +458,7 @@ public class LeAudioNativeInterface {
 
     private native void setUnicastMonitorModeNative(int direction, boolean enable);
 
-    private native void confirmUnicastStreamRequestNative();
+    private native void setHandoverModeNative(boolean active);
 
     /*package*/
     private native void sendAudioProfilePreferencesNative(
