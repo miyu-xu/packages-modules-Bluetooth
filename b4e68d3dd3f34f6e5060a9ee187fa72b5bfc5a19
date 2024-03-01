@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "969ff497_afd9469d",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 5216,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-01T00:22:14Z",
+      "side": 1,
+      "message": "This duplication is sad. Any way we can factorize pdl code ?",
+      "range": {
+        "startLine": 5201,
+        "startChar": 1,
+        "endLine": 5216,
+        "endChar": 3
+      },
+      "revId": "b4e68d3dd3f34f6e5060a9ee187fa72b5bfc5a19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
