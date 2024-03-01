@@ -121,6 +121,9 @@ public class BassClientService extends ProfileService {
     // 30 secs timeout for keeping PSYNC active when searching is stopped
     @VisibleForTesting static Duration sSyncActiveTimeout = Duration.ofSeconds(30);
 
+    /** This is used to request native to change its behavior of release Unicast stream */
+    private static final int UNICAST_RELEASE_BEHAVIOR_ONE_TIME_QUICK = 0;
+
     private static BassClientService sService;
 
     private final Map<BluetoothDevice, BassClientStateMachine> mStateMachines = new HashMap<>();
@@ -2234,8 +2237,8 @@ public class BassClientService extends ProfileService {
         }
 
         if (leaudioBroadcastAssistantPeripheralEntrustment()) {
+            LeAudioService leAudioService = mServiceFactory.getLeAudioService();
             if (isLocalBroadcast(sourceMetadata)) {
-                LeAudioService leAudioService = mServiceFactory.getLeAudioService();
                 if (leAudioService == null
                         || !leAudioService.isPlaying(sourceMetadata.getBroadcastId())) {
                     Log.w(TAG, "addSource: Local source can't be add");
@@ -2244,6 +2247,12 @@ public class BassClientService extends ProfileService {
                             sink,
                             sourceMetadata,
                             BluetoothStatusCodes.ERROR_LOCAL_NOT_ENOUGH_RESOURCES);
+                }
+
+            } else {
+                if (leAudioService != null) {
+                    leAudioService.modifyUnicastReleaseBehavior(
+                            UNICAST_RELEASE_BEHAVIOR_ONE_TIME_QUICK);
                 }
             }
         } else {
@@ -2726,7 +2735,6 @@ public class BassClientService extends ProfileService {
                     if (leAudioService != null) {
                         leAudioService.activeBroadcastAssistantNotification(true);
                     }
-
                 }
 
                 return false;

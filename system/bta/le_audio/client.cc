@@ -112,6 +112,7 @@ using bluetooth::le_audio::utils::GetAudioContextsFromSinkMetadata;
 using bluetooth::le_audio::utils::GetAudioContextsFromSourceMetadata;
 
 using namespace bluetooth;
+using le_audio::types::ReleaseBehaviorActions;
 
 /* Enums */
 enum class AudioReconfigurationResult {
@@ -1085,6 +1086,37 @@ class LeAudioClientImpl : public LeAudioClient {
       }
     } else {
       log::error("invalid direction: 0x{:02x} monitor mode set", direction);
+    }
+  }
+
+  void SetUnicastReleaseBehavior(int action) override {
+    if (!com::android::bluetooth::flags::
+            leaudio_broadcast_audio_handover_policies()) {
+      log::warn(
+          "Broadcast handover is disabled, Set Unicast Release behavior "
+          "is ignored");
+      return;
+    }
+
+    auto enum_action = static_cast<ReleaseBehaviorActions>(action);
+
+    switch (enum_action) {
+      case ReleaseBehaviorActions::UNICAST_RELEASE_BEHAVIOR_ONE_TIME_QUICK:
+        /* Immediately alarm cancel is already scheduled */
+        if (alarm_is_scheduled(suspend_timeout_) && instance) {
+          alarm_cancel(suspend_timeout_);
+          log::debug("Suspend alarm is scheduled, immediate active group stop");
+          instance->GroupStop(active_group_id_);
+          return;
+        }
+
+        /* Let's assume that quick would be 50 ms */
+        audio_suspend_one_time_iso_alive_timeout_request_ms_ = 50;
+
+        break;
+      default:
+        log::warn("Invalid release behavior action requested: {}", action);
+        return;
     }
   }
 
@@ -4008,7 +4040,13 @@ class LeAudioClientImpl : public LeAudioClient {
     }
 
     /* Group should tie in time to get requested status */
-    uint64_t timeoutMs = kAudioSuspentKeepIsoAliveTimeoutMs;
+    uint64_t timeoutMs;
+    if (audio_suspend_one_time_iso_alive_timeout_request_ms_ != 0) {
+      timeoutMs = audio_suspend_one_time_iso_alive_timeout_request_ms_;
+      audio_suspend_one_time_iso_alive_timeout_request_ms_ = 0;
+    } else {
+      timeoutMs = kAudioSuspentKeepIsoAliveTimeoutMs;
+    }
     timeoutMs = osi_property_get_int32(kAudioSuspentKeepIsoAliveTimeoutMsProp,
                                        timeoutMs);
 
@@ -5884,6 +5922,7 @@ class LeAudioClientImpl : public LeAudioClient {
   alarm_t* disable_timer_;
   static constexpr uint64_t kDeviceAttachDelayMs = 500;
 
+  uint64_t audio_suspend_one_time_iso_alive_timeout_request_ms_ = 0;
   uint32_t cached_channel_timestamp_ = 0;
   bluetooth::le_audio::CodecInterface* cached_channel_ = nullptr;
 
