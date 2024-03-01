@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "688f005a_baaacf5a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-03-01T19:52:54Z",
+      "side": 1,
+      "message": "we tried to format using above cmd(repo upload .). existing code formatting has been changed\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2748714/27..28/android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseHelperTest.java\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2748714/27..28/framework/java/android/bluetooth/le/AdvertiseData.java\n\nPlease let us know, if we have to keep previous formating for above file",
+      "parentUuid": "cd2d7a41_9107f724",
+      "revId": "7a6dd5aaf2de418c810c1bab4ed93c5fc0396a4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "24828a82_7e06f3b8",
         "filename": "framework/java/android/bluetooth/le/BluetoothLeAdvertiser.java",
         "patchSetId": 27
