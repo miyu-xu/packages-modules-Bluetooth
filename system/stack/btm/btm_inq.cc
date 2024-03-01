@@ -1373,6 +1373,13 @@ static void btm_process_inq_results_standard(bluetooth::hci::EventView event) {
     page_scan_per_mode = 0;  // reserved
     page_scan_mode = 0;      // reserved
 
+    int device_type = 0;
+    if (btif_config_get_int(bda.ToString(), "DevType", &device_type)) {
+        if (device_type == BT_DEVICE_TYPE_BLE)
+            return;
+        }
+    }
+
     dc[0] = response.class_of_device_.cod[2];
     dc[1] = response.class_of_device_.cod[1];
     dc[2] = response.class_of_device_.cod[0];
@@ -1493,6 +1500,12 @@ static void btm_process_inq_results_rssi(bluetooth::hci::EventView event) {
         static_cast<uint8_t>(response.page_scan_repetition_mode_);
     page_scan_per_mode = 0;  // reserved
     page_scan_mode = 0;      // reserved
+
+    int device_type = 0;
+    if (btif_config_get_int(bda.ToString(), "DevType", &device_type)) {
+        if (device_type == BT_DEVICE_TYPE_BLE)
+            return;
+    }
 
     dc[0] = response.class_of_device_.cod[2];
     dc[1] = response.class_of_device_.cod[1];
@@ -1635,6 +1648,12 @@ static void btm_process_inq_results_extended(bluetooth::hci::EventView event) {
     page_scan_rep_mode =
         static_cast<uint8_t>(extended_view.GetPageScanRepetitionMode());
     page_scan_per_mode = 0;  // reserved
+
+    int device_type = 0;
+    if (btif_config_get_int(bda.ToString(), "DevType", &device_type)) {
+        if (device_type == BT_DEVICE_TYPE_BLE)
+            return;
+    }
 
     dc[0] = extended_view.GetClassOfDevice().cod[2];
     dc[1] = extended_view.GetClassOfDevice().cod[1];
