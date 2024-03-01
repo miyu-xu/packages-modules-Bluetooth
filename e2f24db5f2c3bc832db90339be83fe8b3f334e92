@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4e23f77_1098b6ae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-01T00:29:54Z",
+      "side": 1,
+      "message": "Please have a quick look at aosp/2945777 comment before starting merging the chain",
+      "revId": "e2f24db5f2c3bc832db90339be83fe8b3f334e92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
