@@ -145,6 +145,30 @@
       },
       "revId": "d07175ddfff72bd4db86ccf7b365565f26a2256e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dd0de72_3b03cfdd",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-01T02:29:19Z",
+      "side": 1,
+      "message": "Agree with Alice\n\nA LE-only device is defined as a peripheral with only ASCS, no HFP/A2DP/ASHA profiles.",
+      "parentUuid": "c2f4c0a0_0f549142",
+      "range": {
+        "startLine": 215,
+        "startChar": 28,
+        "endLine": 215,
+        "endChar": 56
+      },
+      "revId": "d07175ddfff72bd4db86ccf7b365565f26a2256e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
