@@ -118,6 +118,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0ccb0a7d_85d3c21c",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-02T19:45:31Z",
+      "side": 1,
+      "message": "I don\u0027t recommend going in this direction. Clean-up will be harder, and the new service will inherit a bunch of logic that it doesn\u0027t need. Also, see go/tiktok-conformance-violations/SUBCLASSABLE_CLASS for detailed discussions on avoiding inheritance.",
+      "parentUuid": "748ff9ce_cbf4c682",
+      "range": {
+        "startLine": 37,
+        "startChar": 40,
+        "endLine": 37,
+        "endChar": 54
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7bede3f7_b064505e",
         "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
         "patchSetId": 5
@@ -129,6 +153,30 @@
       "writtenOn": "2024-02-29T20:07:29Z",
       "side": 1,
       "message": "Is this just a ContextMap with extra wrapper ?\n\nI fail to see the benefits of the double wrapper (in TransitionalScanHelper then in a blank ScannerMap)",
+      "range": {
+        "startLine": 46,
+        "startChar": 40,
+        "endLine": 46,
+        "endChar": 63
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dcc5d06_9d2b609e",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-02T19:45:31Z",
+      "side": 1,
+      "message": "WIP to move scanning code from GattService into this helper.",
+      "parentUuid": "7bede3f7_b064505e",
       "range": {
         "startLine": 46,
         "startChar": 40,
@@ -221,6 +269,30 @@
       "writtenOn": "2024-02-29T20:07:29Z",
       "side": 1,
       "message": "Please, do not create (yet) another thread.\n\nWe should jump on this occasion to use existing thread.\n\nI strongly recommand taking the looper in parameter of the constructor",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 73
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd67570f_f7845dbc",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-02T19:45:31Z",
+      "side": 1,
+      "message": "If I understand go/scan-manager-refactor correctly this phase is intended to be a pure code refactor with no logic changes. Changing the threading at this point introduces risk into the refactor.",
+      "parentUuid": "971e3787_1b95563b",
       "range": {
         "startLine": 66,
         "startChar": 0,
