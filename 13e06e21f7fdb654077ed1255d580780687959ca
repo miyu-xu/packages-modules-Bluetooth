@@ -305,6 +305,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "601813bf_8cf2cff0",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-02T21:55:04Z",
+      "side": 1,
+      "message": "This is still an important call-out, because it\u0027s possible to have 2 threads created (1 in the old profile and 1 in the new one). We should ensure that only 1 is created depending on the flag value.",
+      "parentUuid": "dd67570f_f7845dbc",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 73
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ea29f47_16b06957",
         "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
         "patchSetId": 5
