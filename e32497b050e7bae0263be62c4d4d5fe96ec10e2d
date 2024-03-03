@@ -128,6 +128,24 @@
       "parentUuid": "c9013bb1_b7a304a2",
       "revId": "e32497b050e7bae0263be62c4d4d5fe96ec10e2d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2c28093_97800dad",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2024-03-03T20:44:11Z",
+      "side": 1,
+      "message": "Based on John\u0027s suggestion, I\u0027ve removed the \"try, except Exception as e\" blocks around the utils functions. Is there an alternative method for managing exceptions in this context? Do you mean handle it inside utils function itself?",
+      "parentUuid": "c120e3c5_b6c10716",
+      "revId": "e32497b050e7bae0263be62c4d4d5fe96ec10e2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
