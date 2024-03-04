@@ -88,6 +88,24 @@
       "parentUuid": "4f1556e7_a44e5a19",
       "revId": "9544c285b28cedf0c3e177b0822fd16e07315945",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c553617_b8d370de",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1367,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-03-04T21:17:05Z",
+      "side": 1,
+      "message": "(3) - Yes. I wanted to do this in separate steps because it was less work to do it a little at a time and I hoped it would make it easier to get Dr. No approval easier.",
+      "parentUuid": "dee8673c_ed7a5d1a",
+      "revId": "9544c285b28cedf0c3e177b0822fd16e07315945",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
