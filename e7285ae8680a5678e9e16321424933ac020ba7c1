@@ -16,6 +16,24 @@
       "message": "Lint error\n\nTest: atest bluetooth_test_gd",
       "revId": "e7285ae8680a5678e9e16321424933ac020ba7c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3798915_101979a9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2024-03-04T09:12:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09bac788_f08e4f08",
+      "revId": "e7285ae8680a5678e9e16321424933ac020ba7c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
