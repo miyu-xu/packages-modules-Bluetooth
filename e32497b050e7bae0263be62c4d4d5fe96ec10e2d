@@ -146,6 +146,24 @@
       "parentUuid": "c120e3c5_b6c10716",
       "revId": "e32497b050e7bae0263be62c4d4d5fe96ec10e2d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db28dfd2_fceb3344",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-04T05:06:21Z",
+      "side": 1,
+      "message": "\u003e Based on John\u0027s suggestion, I\u0027ve removed the \"try, except Exception as e\" blocks around the utils functions.\n\nI believe you meant this thread: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2971138/comment/9d74dd0a_2c79fbab/\n\nThe situation has changed. We found that raising exceptions is not a good practice because that crashes the Pandora server and fails all later tests. Thus we should catch all of them or just don\u0027t raise.\n\nBTW I noticed a mistype in my previous suggestion. Please `except Exception` rather than `except ValueError`, thanks.",
+      "parentUuid": "e2c28093_97800dad",
+      "revId": "e32497b050e7bae0263be62c4d4d5fe96ec10e2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
