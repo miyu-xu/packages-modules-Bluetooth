@@ -46,6 +46,30 @@
       },
       "revId": "b4e68d3dd3f34f6e5060a9ee187fa72b5bfc5a19",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b70ebe68_2b506225",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 5216,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-04T19:39:57Z",
+      "side": 1,
+      "message": "maybe removing bluetooth::hci will be enough for readibility !",
+      "parentUuid": "299b5a62_a7247253",
+      "range": {
+        "startLine": 5201,
+        "startChar": 1,
+        "endLine": 5216,
+        "endChar": 3
+      },
+      "revId": "b4e68d3dd3f34f6e5060a9ee187fa72b5bfc5a19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
