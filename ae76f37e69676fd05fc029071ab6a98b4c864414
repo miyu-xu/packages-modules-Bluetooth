@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "607c52c0_3f0291ab",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1972977
+      },
+      "writtenOn": "2024-03-04T22:00:08Z",
+      "side": 1,
+      "message": "Strings are immutable and create a new object everytime for concatenation, leading to performance issues and usage of more memory.\nUse stringbuilder for this instead.\nAlso, toBeMatched variable name is no longer relevant. I would rename it to deviceNameCombination or something.",
+      "revId": "ae76f37e69676fd05fc029071ab6a98b4c864414",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56a6b10b_5112ae60",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1972977
+      },
+      "writtenOn": "2024-03-04T22:00:08Z",
+      "side": 1,
+      "message": "Variable name \u0027end\u0027 can be confusing. I would rename it to something like combinationIndex or something.",
+      "revId": "ae76f37e69676fd05fc029071ab6a98b4c864414",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3fb6b15_25ec7fe3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1972977
+      },
+      "writtenOn": "2024-03-04T22:00:08Z",
+      "side": 1,
+      "message": "This method is returning the matchedString, not sha256. Please rename accordingly.",
+      "revId": "ae76f37e69676fd05fc029071ab6a98b4c864414",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adf7954c_5b0dc40b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1972977
+      },
+      "writtenOn": "2024-03-04T22:00:08Z",
+      "side": 1,
+      "message": "Try to avoid returning null when possible, returning an empty string should be sufficient in this case.",
+      "revId": "ae76f37e69676fd05fc029071ab6a98b4c864414",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc14ff6f_d8c05a34",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1972977
+      },
+      "writtenOn": "2024-03-04T22:00:08Z",
+      "side": 1,
+      "message": "Nit - sha256OfMatchedString",
+      "revId": "ae76f37e69676fd05fc029071ab6a98b4c864414",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b804143_d3fa4f77",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1972977
+      },
+      "writtenOn": "2024-03-04T22:00:08Z",
+      "side": 1,
+      "message": "Do we really need this log statement?",
+      "revId": "ae76f37e69676fd05fc029071ab6a98b4c864414",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
