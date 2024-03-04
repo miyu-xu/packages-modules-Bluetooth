@@ -18,6 +18,8 @@ package com.android.pandora
 
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothLeAudio
+import android.bluetooth.BluetoothLeBroadcast
+import android.bluetooth.BluetoothLeBroadcastSettings
 import android.bluetooth.BluetoothManager
 import android.bluetooth.BluetoothProfile
 import android.content.Context
@@ -47,6 +49,7 @@ class LeAudio(val context: Context) : LeAudioImplBase(), Closeable {
 
     private val scope: CoroutineScope
     private val flow: Flow<Intent>
+    private val bluetoothLeBroadcastFlow: Flow<LeBroadcastCallback>
 
     private val audioManager = context.getSystemService(AudioManager::class.java)!!
 
@@ -54,6 +57,8 @@ class LeAudio(val context: Context) : LeAudioImplBase(), Closeable {
     private val bluetoothAdapter = bluetoothManager.adapter
     private val bluetoothLeAudio =
         getProfileProxy<BluetoothLeAudio>(context, BluetoothProfile.LE_AUDIO)
+    private val bluetoothLeBroadcast =
+        getProfileProxy<BluetoothLeBroadcast>(context, BluetoothProfile.LE_AUDIO_BROADCAST)
 
     init {
         scope = CoroutineScope(Dispatchers.Default)
@@ -61,6 +66,8 @@ class LeAudio(val context: Context) : LeAudioImplBase(), Closeable {
         intentFilter.addAction(BluetoothLeAudio.ACTION_LE_AUDIO_CONNECTION_STATE_CHANGED)
 
         flow = intentFlow(context, intentFilter, scope).shareIn(scope, SharingStarted.Eagerly)
+        bluetoothLeBroadcastFlow = flowFromBluetoothLeBroadcastCallbacks(scope, bluetoothLeBroadcast)
+          .shareIn(scope, SharingStarted.Eagerly)
     }
 
     override fun close() {
@@ -99,4 +106,30 @@ class LeAudio(val context: Context) : LeAudioImplBase(), Closeable {
             Empty.getDefaultInstance()
         }
     }
+
+    override fun startBroadcast(request: StartBroadcastRequest, responseObserver: StreamObserver<StartBroadcastResponse>) {
+      grpcUnary<StartBroadcastResponse>(scope, responseObserver) {
+        val contentMetadata = BluetoothLeAudioContentMetadata.Builder().build()
+        val subgroupSettings =  BluetoothLeBroadcastSubgroupSettings.Builder()
+          .setContentMetadata(contentMetadata)
+          .build()
+        val broadcastSettings = BluetoothLeBroadcastSettings.Builder()
+          .addSubgroupSettings(subgroupSettings)
+          .build()
+
+        bluetoothLeBroadcast.startBroadcast(broadcastSettings)
+        val broadcastStarted =
+          waitForLeBroadcastCallbackResult<LeBroadcastCallback.BroadcastStarted,
+                                           LeBroadcastCallback.BroadcastStartFailed>()
+            .valueOr { throw RuntimeException("start broadcast failed, reason: " + it.reason) }
+
+        StartBroadcastResponse.newBuilder().setBroadcastId(broadcastStarted.broadcastId).build()
+      }
+    }
+
+    private inline suspend fun <reified Success: LeBroadcastCallback, reified Failure: LeBroadcastCallback>
+      waitForLeBroadcastCallbackResult() =
+        LeBroadcastCallbackResult.wrap<Success, Failure>(
+          bluetoothLeBroadcastFlow.filter { it is Success || it is Failure }.first()
+        )
 }
