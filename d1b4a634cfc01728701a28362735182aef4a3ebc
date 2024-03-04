@@ -16,6 +16,24 @@
       "message": "Please apply repo hook recommendation regarding code format",
       "revId": "d1b4a634cfc01728701a28362735182aef4a3ebc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0fbd377_3524fdc8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2024-03-04T11:38:38Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2fd713da_ec68152c",
+      "revId": "d1b4a634cfc01728701a28362735182aef4a3ebc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
