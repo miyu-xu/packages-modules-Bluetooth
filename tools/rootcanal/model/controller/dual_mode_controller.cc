@@ -3141,8 +3141,19 @@ void DualModeController::LeApcf(CommandView command) {
       break;
     }
     default:
-      FATAL(id_, "unknown APCF opcode {}",
+      ERROR(id_, "unknown APCF opcode {}",
             static_cast<uint8_t>(command_view.GetApcfOpcode()));
+
+      send_event_(
+          bluetooth::hci::LeApcfCompleteBuilder::Create(
+              kNumCommandPackets, ErrorCode::INVALID_HCI_COMMAND_PARAMETERS,
+              command_view.GetApcfOpcode()));
+
+      invalid_packet_handler_(id_, InvalidPacketReason::kUnsupported,
+                              fmt::format("unsupported APCF opcode {}",
+                                          command_view.GetApcfOpcode()),
+                              command_view.bytes().bytes());
+
   }
 }
 
