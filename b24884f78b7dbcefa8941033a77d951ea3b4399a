@@ -22,6 +22,30 @@
       },
       "revId": "b24884f78b7dbcefa8941033a77d951ea3b4399a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5dab823_c130a164",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-04T22:10:36Z",
+      "side": 1,
+      "message": "Kindof but not really :/\n\nWithout the fix it crash, and with it, it returns before crashing.\n\nI meant that there is no extra method called.\nI am not sure how I should wrote these.\n\n(resolving and merging as I believe this comment was not to prevent submission 😊)",
+      "parentUuid": "665b25bb_d2c619ae",
+      "range": {
+        "startLine": 12,
+        "startChar": 25,
+        "endLine": 12,
+        "endChar": 48
+      },
+      "revId": "b24884f78b7dbcefa8941033a77d951ea3b4399a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
