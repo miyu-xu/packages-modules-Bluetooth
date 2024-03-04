@@ -434,6 +434,13 @@ static void cleanup_rfc_slot(rfc_slot_t* slot) {
   if (slot->fd != INVALID_FD) {
     shutdown(slot->fd, SHUT_RDWR);
     close(slot->fd);
+    log::info(
+        "address={}, state={}, role={}, server_name={}, scn={}",
+        ADDRESS_TO_LOGGABLE_CSTR(slot->addr),
+        (int)SOCKET_CONNECTION_STATE_DISCONNECTED,
+        (int)(slot->f.server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION),
+        slot->role ? slot->service_name : slot->service_uuid.ToString().c_str(),
+        slot->scn);
     btif_sock_connection_logger(
         SOCKET_CONNECTION_STATE_DISCONNECTED,
         slot->role ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION, slot->addr,
@@ -533,6 +540,13 @@ static void on_srv_rfc_listen_started(tBTA_JV_RFCOMM_START* p_start,
   }
 
   slot->rfc_handle = p_start->handle;
+  log::info(
+      "address={}, state={}, role={}, server_name={}, scn={}",
+      ADDRESS_TO_LOGGABLE_CSTR(slot->addr),
+      (int)SOCKET_CONNECTION_STATE_LISTENING,
+      (int)(slot->f.server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION),
+      slot->service_name,
+      slot->scn);
   btif_sock_connection_logger(
       SOCKET_CONNECTION_STATE_LISTENING,
       slot->role ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION, slot->addr,
@@ -561,6 +575,13 @@ static uint32_t on_srv_rfc_connect(tBTA_JV_RFCOMM_SRV_OPEN* p_open,
       srv_rs, &p_open->rem_bda, p_open->handle, p_open->new_listen_handle);
   if (!accept_rs) return 0;
 
+  log::info(
+      "address={}, state={}, role={}, server_name={}, scn={}",
+      ADDRESS_TO_LOGGABLE_CSTR(accept_rs->addr),
+      (int)SOCKET_CONNECTION_STATE_CONNECTED,
+      (int)(accept_rs->f.server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION),
+      accept_rs->service_name,
+      accept_rs->scn);
   btif_sock_connection_logger(
       SOCKET_CONNECTION_STATE_CONNECTED,
       accept_rs->role ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION,
@@ -603,6 +624,13 @@ static void on_cli_rfc_connect(tBTA_JV_RFCOMM_OPEN* p_open, uint32_t id) {
   slot->rfc_port_handle = BTA_JvRfcommGetPortHdl(p_open->handle);
   slot->addr = p_open->rem_bda;
 
+  log::info(
+      "address={}, state={}, role={}, server_name={}, scn={}",
+      ADDRESS_TO_LOGGABLE_CSTR(slot->addr),
+      (int)SOCKET_CONNECTION_STATE_CONNECTED,
+      (int)(slot->f.server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION),
+      slot->service_uuid.ToString().c_str(),
+      slot->scn);
   btif_sock_connection_logger(
       SOCKET_CONNECTION_STATE_CONNECTED,
       slot->role ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION, slot->addr,
