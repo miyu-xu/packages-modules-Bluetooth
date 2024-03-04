@@ -22,6 +22,30 @@
       },
       "revId": "d3c1fd56c08dc3e81e449e885ed6728b80c2a6c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bfeb019_e14ba1a1",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-03-04T19:41:40Z",
+      "side": 1,
+      "message": "This is for Control part of the sink profile. Peer device (phone) would have the AVRCP Target enabled.\n\nHistorically, I believe, btif_rc is overloaded with both control \u0026 target feature. New avrcp service also handles some of the target feature.",
+      "parentUuid": "158079b2_cf5fe960",
+      "range": {
+        "startLine": 575,
+        "startChar": 48,
+        "endLine": 575,
+        "endChar": 63
+      },
+      "revId": "d3c1fd56c08dc3e81e449e885ed6728b80c2a6c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
