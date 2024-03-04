@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a7cd0f5_39eec117",
+        "filename": "system/stack/include/gap_api.h",
+        "patchSetId": 29
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-04T19:52:56Z",
+      "side": 1,
+      "message": "Duplicated with line 73 and should be removed ? (I believe this is a rebase conflict issue)",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 55
+      },
+      "revId": "7bafacbbe3eebcf2a2cd7b4c1d133b6ac61afe7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
