@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d68032e3_b33644c4",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-04T23:05:03Z",
+      "side": 1,
+      "message": "Replaced with TODO",
+      "parentUuid": "93c9ab19_07c02d86",
+      "range": {
+        "startLine": 194,
+        "startChar": 23,
+        "endLine": 194,
+        "endChar": 29
+      },
+      "revId": "abd455a155de65248d2f11c8ad872be32188b7f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "71e9cd65_2d1a5540",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-20T23:05:10Z",
       "side": 1,
       "message": "let\u0027s not add unused parameters.",
+      "range": {
+        "startLine": 986,
+        "startChar": 63,
+        "endLine": 986,
+        "endChar": 83
+      },
+      "revId": "abd455a155de65248d2f11c8ad872be32188b7f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92483b1c_49103d2c",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 986,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-04T23:05:03Z",
+      "side": 1,
+      "message": "These will be used later to ignore the events for the transport which has been disabled. Added TODO.",
+      "parentUuid": "71e9cd65_2d1a5540",
       "range": {
         "startLine": 986,
         "startChar": 63,
