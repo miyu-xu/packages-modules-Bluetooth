@@ -106,6 +106,24 @@
       "parentUuid": "dee8673c_ed7a5d1a",
       "revId": "9544c285b28cedf0c3e177b0822fd16e07315945",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4aed7ec_2fbe2ad7",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1367,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-03-04T22:48:34Z",
+      "side": 1,
+      "message": "I see. Is there a reason why we don\u0027t just make this the default all at once?",
+      "parentUuid": "9c553617_b8d370de",
+      "revId": "9544c285b28cedf0c3e177b0822fd16e07315945",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
