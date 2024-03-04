@@ -162,9 +162,6 @@ void btif_sock_cleanup(void) {
 
 void btif_sock_connection_logger(int state, int role, const RawAddress& addr,
                                  int channel, const char* server_name) {
-  log::info("address={}, state={}, role={}, server_name={}, channel={}",
-            ADDRESS_TO_LOGGABLE_CSTR(addr), state, role, server_name, channel);
-
   uint8_t index = logger_index++ % SOCK_LOGGER_SIZE_MAX;
 
   connection_logger[index] = {
@@ -310,6 +307,11 @@ static bt_status_t btsock_listen(btsock_type_t type, const char* service_name,
       break;
   }
   if (status != BT_STATUS_SUCCESS) {
+    log::info(
+        "address={}, state={}, role={}, server_name={}, channel={}, type={}",
+        ADDRESS_TO_LOGGABLE_CSTR(RawAddress::kEmpty),
+        (int)SOCKET_CONNECTION_STATE_DISCONNECTED, (int)SOCKET_ROLE_LISTEN,
+        service_name, channel, type);
     btif_sock_connection_logger(SOCKET_CONNECTION_STATE_DISCONNECTED,
                                 SOCKET_ROLE_LISTEN, RawAddress::kEmpty, channel,
                                 service_name);
@@ -328,11 +330,14 @@ static bt_status_t btsock_connect(const RawAddress* bd_addr, btsock_type_t type,
   CHECK(bd_addr != NULL);
   CHECK(sock_fd != NULL);
 
-  log::info("");
-
   *sock_fd = INVALID_FD;
   bt_status_t status = BT_STATUS_FAIL;
 
+  log::info(
+      "address={}, state={}, role={}, server_name={}, channel={}, type='{}",
+      ADDRESS_TO_LOGGABLE_CSTR(*bd_addr),
+      (int)SOCKET_CONNECTION_STATE_CONNECTING, (int)SOCKET_ROLE_CONNECTION,
+      uuid->ToString().c_str(), channel, type);
   btif_sock_connection_logger(SOCKET_CONNECTION_STATE_CONNECTING,
                               SOCKET_ROLE_CONNECTION, *bd_addr, channel,
                               uuid->ToString().c_str());
@@ -380,6 +385,11 @@ static bt_status_t btsock_connect(const RawAddress* bd_addr, btsock_type_t type,
       break;
   }
   if (status != BT_STATUS_SUCCESS) {
+    log::info(
+        "address={}, state={}, role={}, server_name={}, channel={},type={}",
+        ADDRESS_TO_LOGGABLE_CSTR(*bd_addr),
+        (int)SOCKET_CONNECTION_STATE_DISCONNECTED, (int)SOCKET_ROLE_CONNECTION,
+        uuid->ToString().c_str(), channel, type);
     btif_sock_connection_logger(SOCKET_CONNECTION_STATE_DISCONNECTED,
                                 SOCKET_ROLE_CONNECTION, *bd_addr, channel,
                                 uuid->ToString().c_str());

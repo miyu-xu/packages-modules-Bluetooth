@@ -208,6 +208,11 @@ static void btsock_l2cap_free_l(l2cap_socket* sock) {
   if (!t) /* prever double-frees */
     return;
 
+  log::info("address={}, state={}, role={}, server_name={}, channel={}",
+            ADDRESS_TO_LOGGABLE_CSTR(sock->addr),
+            (int)SOCKET_CONNECTION_STATE_DISCONNECTED,
+            (int)(sock->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION),
+            sock->name, sock->channel);
   btif_sock_connection_logger(
       SOCKET_CONNECTION_STATE_DISCONNECTED,
       sock->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION, sock->addr,
@@ -414,6 +419,11 @@ static void on_srv_l2cap_listen_started(tBTA_JV_L2CAP_START* p_start,
 
   sock->handle = p_start->handle;
 
+  log::info("address={}, state={}, role={}, server_name={}, channel={}",
+            ADDRESS_TO_LOGGABLE_CSTR(sock->addr),
+            (int)(SOCKET_CONNECTION_STATE_LISTENING),
+            (int)(sock->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION),
+            sock->name, sock->channel);
   btif_sock_connection_logger(
       SOCKET_CONNECTION_STATE_LISTENING,
       sock->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION, sock->addr,
@@ -482,6 +492,12 @@ static void on_srv_l2cap_psm_connect_l(tBTA_JV_L2CAP_OPEN* p_open,
   accept_rs->id = sock->id;
   sock->id = new_listen_id;
 
+  log::info(
+      "address={}, state={}, role={}, server_name={}, channel={}",
+      ADDRESS_TO_LOGGABLE_CSTR(accept_rs->addr),
+      (int)SOCKET_CONNECTION_STATE_CONNECTED,
+      (int)(accept_rs->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION),
+      accept_rs->name, accept_rs->channel);
   btif_sock_connection_logger(
       SOCKET_CONNECTION_STATE_CONNECTED,
       accept_rs->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION,
@@ -527,6 +543,11 @@ static void on_cl_l2cap_psm_connect_l(tBTA_JV_L2CAP_OPEN* p_open,
     return;
   }
 
+  log::info("address={}, state={}, role={}, server_name={}, channel={}",
+            ADDRESS_TO_LOGGABLE_CSTR(sock->addr),
+            (int)SOCKET_CONNECTION_STATE_CONNECTED,
+            (int)(sock->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION),
+            sock->name, sock->channel);
   btif_sock_connection_logger(
       SOCKET_CONNECTION_STATE_CONNECTED,
       sock->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION, sock->addr,
@@ -584,6 +605,11 @@ static void on_l2cap_close(tBTA_JV_L2CAP_CLOSE* p_close, uint32_t id) {
     return;
   }
 
+  log::info("address={}, state={}, role={}, server_name={}, channel={}",
+            ADDRESS_TO_LOGGABLE_CSTR(sock->addr),
+            (int)SOCKET_CONNECTION_STATE_DISCONNECTING,
+            (int)(sock->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION),
+            sock->name, sock->channel);
   btif_sock_connection_logger(
       SOCKET_CONNECTION_STATE_DISCONNECTING,
       sock->server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION, sock->addr,
