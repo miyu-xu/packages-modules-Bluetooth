@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d94aa632_f8ccf3ea",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1114,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-03-04T19:28:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6025d1af_f506e839",
+      "range": {
+        "startLine": 1114,
+        "startChar": 20,
+        "endLine": 1114,
+        "endChar": 26
+      },
+      "revId": "caeaa6225ceef7e9afdf5b5eefdb094f2fbc5f6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "336a03e9_ae0cf894",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b6431af_3d3c57d5",
+        "filename": "system/btif/src/btif_a2dp_sink.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-03-04T19:28:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "336a03e9_ae0cf894",
+      "range": {
+        "startLine": 263,
+        "startChar": 6,
+        "endLine": 263,
+        "endChar": 7
+      },
+      "revId": "caeaa6225ceef7e9afdf5b5eefdb094f2fbc5f6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e5d3cac_dda4d966",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-02-29T22:15:40Z",
       "side": 1,
       "message": "this one makes sense, though...",
+      "range": {
+        "startLine": 541,
+        "startChar": 8,
+        "endLine": 541,
+        "endChar": 9
+      },
+      "revId": "caeaa6225ceef7e9afdf5b5eefdb094f2fbc5f6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8f22d15_8ef40548",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-03-04T19:28:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e5d3cac_dda4d966",
       "range": {
         "startLine": 541,
         "startChar": 8,
