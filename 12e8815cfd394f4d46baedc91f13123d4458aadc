@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc303828_70b5ee8c",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-03-04T04:23:04Z",
+      "side": 1,
+      "message": "This is a lazy way to store the char and only for testing purpose, please don\u0027t use it directly.",
+      "range": {
+        "startLine": 297,
+        "startChar": 0,
+        "endLine": 374,
+        "endChar": 5
+      },
+      "revId": "12e8815cfd394f4d46baedc91f13123d4458aadc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69cda215_cc4b36e8",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-03-04T04:23:04Z",
+      "side": 1,
+      "message": "This is a lazy way to store the char and only for testing purpose, please don\u0027t use it directly. You\u0027ll need to retrieve the char/descriptor with hande/uuid from a service. Please refer to android\u0027s implementation.",
+      "range": {
+        "startLine": 700,
+        "startChar": 0,
+        "endLine": 740,
+        "endChar": 0
+      },
+      "revId": "12e8815cfd394f4d46baedc91f13123d4458aadc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
