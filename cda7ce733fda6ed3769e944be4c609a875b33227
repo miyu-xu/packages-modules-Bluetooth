@@ -120,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "52fc63ed_f7312557",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-03-04T17:03:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58700156_d351d296",
+      "range": {
+        "startLine": 24,
+        "startChar": 39,
+        "endLine": 26,
+        "endChar": 20
+      },
+      "revId": "cda7ce733fda6ed3769e944be4c609a875b33227",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d57c2eb9_c78bc1ea",
         "filename": "system/stack/gap/gap_conn.cc",
         "patchSetId": 23
@@ -143,6 +167,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "58971865_a62ae942",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-03-04T17:03:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d57c2eb9_c78bc1ea",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 45
+      },
+      "revId": "cda7ce733fda6ed3769e944be4c609a875b33227",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cd45f157_a4d72225",
         "filename": "system/stack/gap/gap_conn.cc",
         "patchSetId": 23
@@ -154,6 +202,30 @@
       "writtenOn": "2024-02-28T02:37:03Z",
       "side": 1,
       "message": "not needed",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 27
+      },
+      "revId": "cda7ce733fda6ed3769e944be4c609a875b33227",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "251462f7_2a5bbbb8",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-03-04T17:03:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd45f157_a4d72225",
       "range": {
         "startLine": 30,
         "startChar": 0,

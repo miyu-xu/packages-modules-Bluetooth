@@ -16,6 +16,24 @@
       "message": "update aosp/2748039  instead",
       "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c64da845_0b06c126",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 989,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-03-04T17:03:22Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "c7bfa718_25e5f8c4",
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
