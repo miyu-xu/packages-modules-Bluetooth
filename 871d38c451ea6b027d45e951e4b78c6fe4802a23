@@ -22,6 +22,30 @@
       },
       "revId": "871d38c451ea6b027d45e951e4b78c6fe4802a23",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e407e4c_2cb51cb5",
+        "filename": "system/stack/test/sdp/stack_sdp_db_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-04T18:03:11Z",
+      "side": 1,
+      "message": "`test your new module` the stack::sdp::db is independent of the upper module.  It\u0027s an opaque backing store object owned by the top level but parsed/updated by stack::sdp.\n\n`writing tests against the legacy API at this point` I\u0027m not aware of any plan within the next short to medium timeframe that deprecates stack::sdp or any of the legacy APIs.",
+      "parentUuid": "446b2ccc_5a88592b",
+      "range": {
+        "startLine": 45,
+        "startChar": 6,
+        "endLine": 45,
+        "endChar": 30
+      },
+      "revId": "871d38c451ea6b027d45e951e4b78c6fe4802a23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
