@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07cd4612_156129c0",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-03-04T07:54:53Z",
+      "side": 1,
+      "message": "I think this is connection_map\u0027s description?",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 0
+      },
+      "revId": "3daaa699177c2b4d5e82c3899f16a464dadab687",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
