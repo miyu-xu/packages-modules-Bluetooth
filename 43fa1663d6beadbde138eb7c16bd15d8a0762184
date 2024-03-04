@@ -81,6 +81,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78f5ebac_ec2f2cbc",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-03-04T09:43:13Z",
+      "side": 1,
+      "message": "I think we could merge the aosp/2953590 first. It looks like after solving few conflicts it would fit with this change just fine.",
+      "parentUuid": "f7e50f96_6c7f78d9",
+      "revId": "43fa1663d6beadbde138eb7c16bd15d8a0762184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c9ea4b49_07de83de",
