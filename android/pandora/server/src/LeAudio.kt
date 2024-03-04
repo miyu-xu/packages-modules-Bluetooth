@@ -18,6 +18,8 @@ package com.android.pandora
 
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothLeAudio
+import android.bluetooth.BluetoothLeBroadcast
+import android.bluetooth.BluetoothLeBroadcastSettings
 import android.bluetooth.BluetoothManager
 import android.bluetooth.BluetoothProfile
 import android.content.Context
@@ -54,6 +56,8 @@ class LeAudio(val context: Context) : LeAudioImplBase(), Closeable {
     private val bluetoothAdapter = bluetoothManager.adapter
     private val bluetoothLeAudio =
         getProfileProxy<BluetoothLeAudio>(context, BluetoothProfile.LE_AUDIO)
+    private val bluetoothLeBroadcast =
+        getProfileProxy<BluetoothLeBroadcast>(context, BluetoothProfile.LE_AUDIO_BROADCAST)
 
     init {
         scope = CoroutineScope(Dispatchers.Default)
@@ -98,5 +102,12 @@ class LeAudio(val context: Context) : LeAudioImplBase(), Closeable {
 
             Empty.getDefaultInstance()
         }
+    }
+
+    override fun startBroadcast(request: StartBroadcastRequest, responseObserver: StreamObserver<StartBroadcastResponse>) {
+      grpcUnary<StartBroadcastResponse>(scope, responseObserver) {
+        bluetoothLeBroadcast.startBroadcast(BluetoothLeBroadcastSettings.Builder().build())
+        StartBroadcastResponse.getDefaultInstance()
+      }
     }
 }
