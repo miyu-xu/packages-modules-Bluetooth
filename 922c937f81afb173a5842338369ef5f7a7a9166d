@@ -70,6 +70,30 @@
       },
       "revId": "922c937f81afb173a5842338369ef5f7a7a9166d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b668794e_8a8414b0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceAndStateMachineTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 1249,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-04T18:39:36Z",
+      "side": 1,
+      "message": "Understood !\n\nI believe part of that can be do using \"reset mock\", or by using different mock...\nBut I agree it will make it looks like a bad hack.",
+      "parentUuid": "9e816527_11681b5c",
+      "range": {
+        "startLine": 1249,
+        "startChar": 0,
+        "endLine": 1249,
+        "endChar": 58
+      },
+      "revId": "922c937f81afb173a5842338369ef5f7a7a9166d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
