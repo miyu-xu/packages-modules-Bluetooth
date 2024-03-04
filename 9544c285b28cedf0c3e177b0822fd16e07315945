@@ -52,6 +52,24 @@
       "parentUuid": "5b2c7712_24a05f8e",
       "revId": "9544c285b28cedf0c3e177b0822fd16e07315945",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f1556e7_a44e5a19",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1367,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-03-04T20:05:50Z",
+      "side": 1,
+      "message": "Is this something that we want the entire daemon to crash on though? - we are already crashing the entire daemon in this scenario, we\u0027re just not bothering to catch it until it is accessed down the line. This shouldn\u0027t ever happen, which is why I described it as \"cleaning up\".\n\nOr does it make more sense to actually do the work of sanitizing it at each call site. - We could, but there\u0027s no course of action other than to intentionally panic (i.e. we\u0027re never going to run the daemon without one of the fundamental profiles) so I\u0027d rather consolidate that handling where we first know about it (in Rust code at least).\n\nAlso, why we are creating a new method instead of doing it in the current one? Mostly just for transition, we\u0027ll want to tear it down once we\u0027ve confirmed there are no scenarios in which we actually want to handle this differently.",
+      "parentUuid": "e5969260_ae921cbe",
+      "revId": "9544c285b28cedf0c3e177b0822fd16e07315945",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
