@@ -416,6 +416,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e0b3e2b4_c8d4dfe6",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-03-04T07:50:52Z",
+      "side": 1,
+      "message": "~~The data structure of l2cap and rfcomm service will be the same.~~",
+      "parentUuid": "3e7077d3_8905930c",
+      "range": {
+        "startLine": 116,
+        "startChar": 16,
+        "endLine": 116,
+        "endChar": 27
+      },
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "12db8ef6_0cdb80ec",
         "filename": "floss/pandora/server/l2cap.py",
         "patchSetId": 7
