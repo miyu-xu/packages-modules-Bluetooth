@@ -140,6 +140,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccac5829_abbdf1c8",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-04T21:56:00Z",
+      "side": 1,
+      "message": "Thanks for the links, Using the class  as an interface-like is indeed not such a great idea after all !",
+      "parentUuid": "0ccb0a7d_85d3c21c",
+      "range": {
+        "startLine": 37,
+        "startChar": 40,
+        "endLine": 37,
+        "endChar": 54
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7bede3f7_b064505e",
@@ -317,6 +341,30 @@
       "side": 1,
       "message": "This is still an important call-out, because it\u0027s possible to have 2 threads created (1 in the old profile and 1 in the new one). We should ensure that only 1 is created depending on the flag value.",
       "parentUuid": "dd67570f_f7845dbc",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 73
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70155f9c_43869180",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-04T21:56:00Z",
+      "side": 1,
+      "message": "I understand it differently.\nThe phase 1 is to create a new service in order to split scanning from the GattService.\nI believe we should do it properly without repeating the flaws of the previous one (aka thread).\n\n(I also strongly believe that none of this should be done in java, but directly in native)",
+      "parentUuid": "601813bf_8cf2cff0",
       "range": {
         "startLine": 66,
         "startChar": 0,
