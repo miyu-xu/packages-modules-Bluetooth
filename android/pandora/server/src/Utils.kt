@@ -20,6 +20,8 @@ import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
 import android.bluetooth.BluetoothProfile
+import android.bluetooth.BluetoothLeBroadcast
+import android.bluetooth.BluetoothLeBroadcastMetadata
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -39,6 +41,7 @@ import java.io.InputStreamReader
 import java.io.PrintWriter
 import java.io.StringWriter
 import java.util.concurrent.CancellationException
+import java.util.concurrent.Executor
 import java.util.stream.Collectors
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
@@ -386,4 +389,121 @@ fun buildAudioTrack(): AudioTrack? {
  */
 fun generateAlphanumericString(length: Int): String {
     return buildString { repeat(length) { append(alphanumeric.random()) } }
+}
+
+/** A sealed class representing the union of possible callbacks from a BluetoothLeBroadcast. */
+public sealed class LeBroadcastCallback {
+    public data class BroadcastStarted(val reason: Int, val broadcastId: Int) :
+        LeBroadcastCallback()
+
+    public data class BroadcastStartFailed(val reason: Int) : LeBroadcastCallback()
+
+    public data class BroadcastStopped(val reason: Int, val broadcastId: Int) :
+        LeBroadcastCallback()
+
+    public data class BroadcastStopFailed(val reason: Int) : LeBroadcastCallback()
+
+    public data class PlaybackStarted(val reason: Int, val broadcastId: Int) :
+        LeBroadcastCallback()
+
+    public data class PlaybackStopped(val reason: Int, val broadcastId: Int) :
+        LeBroadcastCallback()
+
+    public data class BroadcastUpdated(val reason: Int, val broadcastId: Int) :
+        LeBroadcastCallback()
+
+    public data class BroadcastUpdateFailed(val reason: Int, val broadcastId: Int) :
+        LeBroadcastCallback()
+
+    public data class BroadcastMetadataChanged(
+        val broadcastId: Int,
+        val metadata: BluetoothLeBroadcastMetadata
+    ) : LeBroadcastCallback()
+}
+
+/** Creates a coroutine flow from BluetoothLeBroadcast callbacks. */
+public fun flowFromBluetoothLeBroadcastCallbacks(
+    scope: CoroutineScope,
+    bluetoothLeBroadcast: BluetoothLeBroadcast
+): Flow<LeBroadcastCallback> = callbackFlow {
+    val callback =
+        object : BluetoothLeBroadcast.Callback {
+            override fun onBroadcastStarted(reason: Int, broadcastId: Int) {
+                scope.launch { send(LeBroadcastCallback.BroadcastStarted(reason, broadcastId)) }
+            }
+
+            override fun onBroadcastStartFailed(reason: Int) {
+                scope.launch { send(LeBroadcastCallback.BroadcastStartFailed(reason)) }
+            }
+
+            override fun onBroadcastStopped(reason: Int, broadcastId: Int) {
+                scope.launch { send(LeBroadcastCallback.BroadcastStopped(reason, broadcastId)) }
+            }
+
+            override fun onBroadcastStopFailed(reason: Int) {
+                scope.launch { send(LeBroadcastCallback.BroadcastStopFailed(reason)) }
+            }
+
+            override fun onPlaybackStarted(reason: Int, broadcastId: Int) {
+                scope.launch { send(LeBroadcastCallback.PlaybackStarted(reason, broadcastId)) }
+            }
+
+            override fun onPlaybackStopped(reason: Int, broadcastId: Int) {
+                scope.launch { send(LeBroadcastCallback.PlaybackStopped(reason, broadcastId)) }
+            }
+
+            override fun onBroadcastUpdated(reason: Int, broadcastId: Int) {
+                scope.launch { send(LeBroadcastCallback.BroadcastUpdated(reason, broadcastId)) }
+            }
+
+            override fun onBroadcastUpdateFailed(reason: Int, broadcastId: Int) {
+                scope.launch {
+                    send(LeBroadcastCallback.BroadcastUpdateFailed(reason, broadcastId))
+                }
+            }
+
+            override fun onBroadcastMetadataChanged(
+                broadcastId: Int,
+                metadata: BluetoothLeBroadcastMetadata
+            ) {
+                scope.launch {
+                    send(LeBroadcastCallback.BroadcastMetadataChanged(broadcastId, metadata))
+                }
+            }
+        }
+
+    bluetoothLeBroadcast.registerCallback(Executor { it.run() }, callback)
+    awaitClose { bluetoothLeBroadcast.unregisterCallback(callback) }
+}
+
+sealed class LeBroadcastCallbackResult<out T : LeBroadcastCallback, out E : LeBroadcastCallback> {
+
+    data class Success<T : LeBroadcastCallback>(val value: T) :
+        LeBroadcastCallbackResult<T, Nothing>()
+
+    data class Failure<E : LeBroadcastCallback>(val value: E) :
+        LeBroadcastCallbackResult<Nothing, E>()
+
+    val isSuccess
+        inline get() = this is Success<*>
+
+    val isFailure
+        inline get() = this is Failure<*>
+
+    inline fun <U> valueOr(block: (E) -> U) =
+        when (this) {
+            is Success<T> -> value
+            is Failure<E> -> block(value) as T
+        }
+
+    companion object {
+        inline fun <reified T : LeBroadcastCallback, reified E : LeBroadcastCallback> wrap(
+            result: LeBroadcastCallback
+        ) =
+            when {
+                result is T -> Success(result)
+                result is E -> Failure(result)
+                else -> throw IllegalArgumentException("Result is not an expected callback")
+            }
+    }
 }

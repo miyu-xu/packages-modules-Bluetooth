@@ -17,15 +17,25 @@ from mmi2grpc._helpers import assert_description
 from mmi2grpc._proxy import ProfileProxy
 from mmi2grpc._rootcanal import Dongle
 from pandora.host_grpc import Host
+from pandora_experimental.le_audio_grpc import LeAudio
 
 
 class BAPProxy(ProfileProxy):
     def __init__(self, channel, rootcanal):
         super().__init__(channel)
         self.host = Host(channel)
+        self.le_audio = LeAudio(channel)
         self.rootcanal = rootcanal
 
     def test_started(self, test: str, **kwargs):
         self.rootcanal.select_pts_dongle(Dongle.LAIRD_BL654)
+        return "OK"
+
+    @assert_description
+    def MMI_IUT_SEND_BROADCAST_AUDIO_ANNOUNCEMENT(self, pts_addr: bytes, **kwargs):
+        """
+        Please advertise with Broadcast Audio Announcement (0x1852) service data
+        """
+        self.le_audio.StartBroadcast()
         return "OK"
 
