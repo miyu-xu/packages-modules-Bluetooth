@@ -164,6 +164,24 @@
       "parentUuid": "e2c28093_97800dad",
       "revId": "e32497b050e7bae0263be62c4d4d5fe96ec10e2d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bc7338b_0e315f80",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-03-04T06:46:40Z",
+      "side": 1,
+      "message": "Hi Nagham,\nFor start_subprocess already catch the exception so I suggested to remove the unecessary try except there.\n\n```\n            try:\n                self._proc \u003d subprocess.Popen(proc_cmd)\n                logging.debug(\u0027Start %s %s on the DUT\u0027, proc_msg, filename)\n            except Exception as e:\n                logging.error(\u0027Failed to popen: %s (%s)\u0027, proc_msg, e)\n                return False\n```\n\nFor select_audio_output_node, we raise the Exception in the autotest\nhttps://source.corp.google.com/h/chromium/chromiumos/codesearch/+/factory-14162.B:src/third_party/autotest/files/server/cros/bluetooth/bluetooth_adapter_audio_tests.py;l\u003d220?q\u003dselect_audio_output_node, but this is not the case in here.\n\nThe code in src/third_party/autotest/files/server/cros/bluetooth/bluetooth_adapter_audio_tests.py is a `test client` and it will call the function through gRPC in the remote `test server (DUT)`. It raise the Exception to terminate the test with the result `test failed`.\n\nIn here, pandora server, is a `test server`. We need to pass the function\nresult to the `test client (mmi2grpc)` and let it determine the next step. select_audio_output_node should return False if it failed to select the output node. And pandora server should await context.abort when it get the False return value from select_audio_output_node.\n\n\n```\nif not audio_utils.select_audio_output_node():\n    await context.abort(grpc.StatusCode.UNKNOWN, \u0027Failed to select audio output node\u0027)\n```",
+      "parentUuid": "db28dfd2_fceb3344",
+      "revId": "e32497b050e7bae0263be62c4d4d5fe96ec10e2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

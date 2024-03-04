@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15fe553e_a28c39cd",
+        "filename": "floss/pandora/floss/audio_utils.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-03-04T06:46:40Z",
+      "side": 1,
+      "message": "```suggestion\n        return False\n```",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 61
+      },
+      "revId": "4b782adc51cca7c79fe45efb83af40ac66dd20cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6854093_ca5f8e98",
+        "filename": "floss/pandora/floss/audio_utils.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-03-04T06:46:40Z",
+      "side": 1,
+      "message": "Use try except to catch the TimeoutError and then return True or False.\n\n```suggestion\n    try:\n        utils.poll_for_condition(condition\u003dlambda: bluetooth_type_selected(node_type), timeout\u003d20, sleep_interval\u003d1,\n                                 desc\u003ddesc)\n    except utils.TimeoutError:\n        return False\n    return True\n```",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 0
+      },
+      "revId": "4b782adc51cca7c79fe45efb83af40ac66dd20cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62629649_7c8aba84",
+        "filename": "floss/pandora/floss/cras_utils.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-03-04T06:46:40Z",
+      "side": 1,
+      "message": "No longer needed.",
+      "range": {
+        "startLine": 235,
+        "startChar": 0,
+        "endLine": 237,
+        "endChar": 0
+      },
+      "revId": "4b782adc51cca7c79fe45efb83af40ac66dd20cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66b180b9_1ce0ec3f",
+        "filename": "floss/pandora/server/a2dp.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-03-04T06:46:40Z",
+      "side": 1,
+      "message": "When will it raise a ValueError?",
+      "range": {
+        "startLine": 256,
+        "startChar": 0,
+        "endLine": 260,
+        "endChar": 0
+      },
+      "revId": "4b782adc51cca7c79fe45efb83af40ac66dd20cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
