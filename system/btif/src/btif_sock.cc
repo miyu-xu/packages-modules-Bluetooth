@@ -162,9 +162,6 @@ void btif_sock_cleanup(void) {
 
 void btif_sock_connection_logger(int state, int role, const RawAddress& addr,
                                  int channel, const char* server_name) {
-  log::info("address={}, state={}, role={}, server_name={}, channel={}",
-            ADDRESS_TO_LOGGABLE_CSTR(addr), state, role, server_name, channel);
-
   uint8_t index = logger_index++ % SOCK_LOGGER_SIZE_MAX;
 
   connection_logger[index] = {
