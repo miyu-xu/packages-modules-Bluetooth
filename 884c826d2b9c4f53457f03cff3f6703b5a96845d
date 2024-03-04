@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c0ad3c7_d54862e4",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-04T17:18:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eba00371_dc72817f",
+      "revId": "884c826d2b9c4f53457f03cff3f6703b5a96845d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "251acd12_c9714692",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-03-04T17:16:58Z",
       "side": 1,
       "message": "Do we continue if SDP wasn\u0027t active?  Same thing below if the address doesn\u0027t match.",
+      "range": {
+        "startLine": 800,
+        "startChar": 7,
+        "endLine": 800,
+        "endChar": 16
+      },
+      "revId": "884c826d2b9c4f53457f03cff3f6703b5a96845d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "835c7cab_98fa3a4d",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 800,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-04T17:18:59Z",
+      "side": 1,
+      "message": "This is a new check and I\u0027m not sure what we should do in this case.  In theory it shouldn\u0027t happen but I\u0027m trying to surface this as we didn\u0027t catch this before.",
+      "parentUuid": "251acd12_c9714692",
       "range": {
         "startLine": 800,
         "startChar": 7,
