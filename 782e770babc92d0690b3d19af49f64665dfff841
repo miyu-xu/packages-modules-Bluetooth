@@ -70,6 +70,30 @@
       },
       "revId": "782e770babc92d0690b3d19af49f64665dfff841",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b701c5a_3c79f83d",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-04T19:45:53Z",
+      "side": 0,
+      "message": "Acknowledged",
+      "parentUuid": "0692197f_5986dec1",
+      "range": {
+        "startLine": 366,
+        "startChar": 2,
+        "endLine": 366,
+        "endChar": 77
+      },
+      "revId": "782e770babc92d0690b3d19af49f64665dfff841",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
