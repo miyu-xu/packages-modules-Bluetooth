@@ -259,6 +259,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0aece1b0_35ba7be1",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-04T19:44:35Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5fca3fc2_6a9365bc",
+      "range": {
+        "startLine": 255,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 1
+      },
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5615aa0_1c68ceb5",
@@ -296,6 +320,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "b5615aa0_1c68ceb5",
+      "range": {
+        "startLine": 428,
+        "startChar": 9,
+        "endLine": 428,
+        "endChar": 24
+      },
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d25e741e_69d5c7dd",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-04T19:44:35Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "649f8b32_75cc6323",
       "range": {
         "startLine": 428,
         "startChar": 9,
@@ -391,6 +439,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "a067f094_08ca3e19",
+      "range": {
+        "startLine": 544,
+        "startChar": 0,
+        "endLine": 589,
+        "endChar": 3
+      },
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a68167e7_26e9d77e",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-04T19:44:35Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8cb42180_3e321f35",
       "range": {
         "startLine": 544,
         "startChar": 0,
@@ -510,6 +582,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "6d53e991_50d10581",
+      "range": {
+        "startLine": 807,
+        "startChar": 34,
+        "endLine": 807,
+        "endChar": 35
+      },
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a334622e_9411ebde",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 807,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-04T19:44:35Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "45f6fb01_2836d9ea",
       "range": {
         "startLine": 807,
         "startChar": 34,
@@ -723,6 +819,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "9b13e070_f969a0ee",
+      "range": {
+        "startLine": 623,
+        "startChar": 0,
+        "endLine": 623,
+        "endChar": 74
+      },
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e96fb3af_961acf76",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-04T19:44:35Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e40d5a26_8fe26f1a",
       "range": {
         "startLine": 623,
         "startChar": 0,
