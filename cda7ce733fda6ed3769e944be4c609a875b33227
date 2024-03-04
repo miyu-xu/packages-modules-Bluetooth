@@ -142,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ddefddb_93652744",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-04T19:49:40Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "52fc63ed_f7312557",
+      "range": {
+        "startLine": 24,
+        "startChar": 39,
+        "endLine": 26,
+        "endChar": 20
+      },
+      "revId": "cda7ce733fda6ed3769e944be4c609a875b33227",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d57c2eb9_c78bc1ea",
@@ -226,6 +250,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "cd45f157_a4d72225",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 27
+      },
+      "revId": "cda7ce733fda6ed3769e944be4c609a875b33227",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be243a90_c1d0c059",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-04T19:49:40Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "251462f7_2a5bbbb8",
       "range": {
         "startLine": 30,
         "startChar": 0,
