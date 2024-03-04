@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33feed6c_232498a0",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-03-04T18:31:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48fbc10a_9919765c",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 32
+      },
+      "revId": "84c68c3a8f50dd523012b5acbe7bfb4fb43cb818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec994083_59d812b2",
@@ -65,6 +89,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05588cba_6e4dede8",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-03-04T18:31:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec994083_59d812b2",
+      "revId": "84c68c3a8f50dd523012b5acbe7bfb4fb43cb818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ba51554_8015f3fd",
@@ -78,6 +120,30 @@
       "writtenOn": "2024-02-28T22:40:01Z",
       "side": 1,
       "message": "This specific include was needed inside `le_periodic_sync_manager.h` as the other header was calling base:hexencode that require this dependency.\n\nLooks like the most recent patchset changed le_periodic_sync_manager and the header is not needed at all now. (TBC)",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 51
+      },
+      "revId": "84c68c3a8f50dd523012b5acbe7bfb4fb43cb818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f2ae39f_279f3f58",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-03-04T18:31:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ba51554_8015f3fd",
       "range": {
         "startLine": 18,
         "startChar": 0,
@@ -111,6 +177,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f69b0dc5_103ba4ff",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-03-04T18:31:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e8dbd66_07d37256",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 25
+      },
+      "revId": "84c68c3a8f50dd523012b5acbe7bfb4fb43cb818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a334c92c_c567b11e",
@@ -124,6 +214,30 @@
       "writtenOn": "2024-02-28T22:40:01Z",
       "side": 1,
       "message": "It build without adding the import. Please remove",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 33
+      },
+      "revId": "84c68c3a8f50dd523012b5acbe7bfb4fb43cb818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cd8d4ae_4c567435",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-03-04T18:31:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a334c92c_c567b11e",
       "range": {
         "startLine": 36,
         "startChar": 0,
@@ -181,6 +295,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e5baa2e_83c87fe8",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-03-04T18:31:25Z",
+      "side": 1,
+      "message": "Moved to original",
+      "parentUuid": "77b05a7e_18826adf",
+      "range": {
+        "startLine": 228,
+        "startChar": 31,
+        "endLine": 228,
+        "endChar": 48
+      },
+      "revId": "84c68c3a8f50dd523012b5acbe7bfb4fb43cb818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "edc1cc09_e45ccc3c",
@@ -218,6 +356,30 @@
       "side": 1,
       "message": "AFAIK the method this calls internally is the only existing one currently  (btm_identity_addr_to_random_pseudo). \n\nCouldn\u0027t we just use RawAddress type here though and remove the need for newly defined method?\n\nThis doesn\u0027t seem necessary.\n\nE.g. it is already used in BleScannerInterfaceImpl::OnPeriodicSyncStarted in le_scanning_manager.cc.",
       "parentUuid": "edc1cc09_e45ccc3c",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 60
+      },
+      "revId": "84c68c3a8f50dd523012b5acbe7bfb4fb43cb818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bfd448d_4006e8e1",
+        "filename": "system/main/shim/le_scanning_manager.h",
+        "patchSetId": 27
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-03-04T18:31:25Z",
+      "side": 1,
+      "message": "I think, we need random address to fetch details(eg. encrytion key) from storage. Do we have any API in GD stack to get random address from identity address.",
+      "parentUuid": "03f66755_a9fa8553",
       "range": {
         "startLine": 28,
         "startChar": 0,

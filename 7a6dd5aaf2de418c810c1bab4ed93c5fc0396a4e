@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78622ff0_c711f5c1",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-03-04T18:31:25Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "e8790637_775ee80e",
+      "range": {
+        "startLine": 45,
+        "startChar": 2,
+        "endLine": 53,
+        "endChar": 6
+      },
+      "revId": "7a6dd5aaf2de418c810c1bab4ed93c5fc0396a4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3000fef0_66837450",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-28T22:40:01Z",
       "side": 0,
       "message": "Removing the empty line are creating extra diff",
+      "range": {
+        "startLine": 221,
+        "startChar": 0,
+        "endLine": 227,
+        "endChar": 2
+      },
+      "revId": "7a6dd5aaf2de418c810c1bab4ed93c5fc0396a4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc0afaa3_97ba0e05",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-03-04T18:31:25Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "3000fef0_66837450",
       "range": {
         "startLine": 221,
         "startChar": 0,
