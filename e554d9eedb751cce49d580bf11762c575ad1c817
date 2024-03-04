@@ -16,6 +16,24 @@
       "message": "This has build issues. Can you look into it?",
       "revId": "e554d9eedb751cce49d580bf11762c575ad1c817",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f72933e8_fcf1ac98",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-03-04T20:56:19Z",
+      "side": 1,
+      "message": "Yup, some of the shared libraries might not have been updated. Locally, the build (along with net_* test) works fine. Probably, I am missing the instruction on how to build the failing library locally.",
+      "parentUuid": "8cfb0d6b_d2921313",
+      "revId": "e554d9eedb751cce49d580bf11762c575ad1c817",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
