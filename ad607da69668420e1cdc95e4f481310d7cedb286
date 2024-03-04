@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "df161c0c_c07691dd",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-03-04T07:30:39Z",
+      "side": 1,
+      "message": "Agree. Looks like I have same typos in host.py\n\n```\n        class ConnectionObserver(adapter_client.BluetoothConnectionCallbacks):\n            \"\"\"Observer to observe the connection state.\"\"\"\n\n            def __init__(self, client: adapter_client, task):\n                self.client \u003d client\n                self.task \u003d task\n```\n\nLet me see if there\u0027s a tool can check this.",
+      "parentUuid": "ad360db9_f0e3178e",
+      "range": {
+        "startLine": 117,
+        "startChar": 39,
+        "endLine": 117,
+        "endChar": 53
+      },
+      "revId": "ad607da69668420e1cdc95e4f481310d7cedb286",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1a36f0e5_8a108db0",
         "filename": "floss/pandora/server/l2cap.py",
         "patchSetId": 9
