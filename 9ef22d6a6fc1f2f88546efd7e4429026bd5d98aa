@@ -379,6 +379,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8cb42180_3e321f35",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-03-04T16:02:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a067f094_08ca3e19",
+      "range": {
+        "startLine": 544,
+        "startChar": 0,
+        "endLine": 589,
+        "endChar": 3
+      },
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ef1ced8c_bb3d8a28",
         "filename": "system/stack/gap/gap_ble.cc",
         "patchSetId": 27
@@ -462,6 +486,30 @@
       "side": 1,
       "message": "corrected to 4",
       "parentUuid": "78d05286_1c05f5d6",
+      "range": {
+        "startLine": 807,
+        "startChar": 34,
+        "endLine": 807,
+        "endChar": 35
+      },
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45f6fb01_2836d9ea",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 807,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-03-04T16:02:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d53e991_50d10581",
       "range": {
         "startLine": 807,
         "startChar": 34,
@@ -580,6 +628,30 @@
       "side": 1,
       "message": "will guard with flag",
       "parentUuid": "0f96feab_a1d8be29",
+      "range": {
+        "startLine": 582,
+        "startChar": 1,
+        "endLine": 586,
+        "endChar": 55
+      },
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20845926_47679844",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-03-04T16:02:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ddbaecd_ce140f17",
       "range": {
         "startLine": 582,
         "startChar": 1,
