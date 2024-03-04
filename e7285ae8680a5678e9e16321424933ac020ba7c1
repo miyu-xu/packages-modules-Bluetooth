@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09bac788_f08e4f08",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-03-04T07:04:28Z",
+      "side": 1,
+      "message": "Lint error\n\nTest: atest bluetooth_test_gd",
+      "revId": "e7285ae8680a5678e9e16321424933ac020ba7c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
