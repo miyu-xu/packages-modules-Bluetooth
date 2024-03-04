@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "92ce6468_13ae178a",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-03-04T18:03:37Z",
+      "side": 1,
+      "message": "You are correct about using the optional, but according to the D-Bus Iface it should be an unsigned integer so I changed it to \"u\"\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/gd/rust/linux/service/src/iface_bluetooth.rs;l\u003d926",
+      "parentUuid": "50ff3885_cc4c6013",
+      "range": {
+        "startLine": 251,
+        "startChar": 15,
+        "endLine": 251,
+        "endChar": 57
+      },
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dd1e2e42_24eb36d8",
         "filename": "floss/pandora/server/l2cap.py",
         "patchSetId": 7
@@ -438,6 +462,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44a20403_3fdd1dd0",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-03-04T18:03:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52436c85_3d10a845",
+      "range": {
+        "startLine": 116,
+        "startChar": 42,
+        "endLine": 116,
+        "endChar": 60
+      },
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e312e5c_77f02763",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-03-04T18:03:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0b3e2b4_c8d4dfe6",
+      "range": {
+        "startLine": 116,
+        "startChar": 16,
+        "endLine": 116,
+        "endChar": 27
+      },
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "12db8ef6_0cdb80ec",
@@ -793,6 +865,30 @@
       "side": 1,
       "message": "When I examined the `connection_streams`, I initiated and accepted two sockets using the same `connection_value`. This revealed that a single `connection_value` can be associated with multiple server sockets when executing more than one socket operation. Therefore, for `ReceiveData` and `SendData` methods based on connection_value, I used the most recently added socket object. This ensures that the socket handling data transmission is active.\n\nSimilarly, with `self.connection_server_sockets`, I observed that a `connection_value` can be linked to multiple listening socket objects. Hence, I\u0027ve treated the associated value as a list and appended new socket objects to it. For the `AcceptL2CAPChannel` method, I\u0027ll use the last socket added to this list, ensuring we\u0027re working with the most recent listening socket.",
       "parentUuid": "b998e041_c663530c",
+      "range": {
+        "startLine": 210,
+        "startChar": 16,
+        "endLine": 210,
+        "endChar": 56
+      },
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aba8b382_c2beb0d4",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-03-04T18:03:37Z",
+      "side": 1,
+      "message": "According to \"L2CAP/COS/ECFC/BV-03-C\" we can have multiple streams (multiple sockets connected).\nSo, as you suggested, I converted it to a list.\n\nplease advise if I got this point wrong, checking the test steps and the current L2CAP pandora \"Send\" and \"Receive\" requests, there is no way to select the needed socket in the same connection, and according to \"L2CAP/COS/ECFC/BV-03-C\" the data will be sent alternatively between the streams.\n\nI implemented \"_get_next_socket\" to manage the order of socket usage.",
+      "parentUuid": "84f6e6a4_5dba0843",
       "range": {
         "startLine": 210,
         "startChar": 16,
