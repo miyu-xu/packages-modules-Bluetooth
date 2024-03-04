@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eba00371_dc72817f",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-04T17:16:58Z",
+      "side": 1,
+      "message": "nit: this should go down with the other includes.",
+      "revId": "884c826d2b9c4f53457f03cff3f6703b5a96845d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "251acd12_c9714692",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 800,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-04T17:16:58Z",
+      "side": 1,
+      "message": "Do we continue if SDP wasn\u0027t active?  Same thing below if the address doesn\u0027t match.",
+      "range": {
+        "startLine": 800,
+        "startChar": 7,
+        "endLine": 800,
+        "endChar": 16
+      },
+      "revId": "884c826d2b9c4f53457f03cff3f6703b5a96845d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
