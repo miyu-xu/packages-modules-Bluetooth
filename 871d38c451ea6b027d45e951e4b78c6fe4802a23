@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "446b2ccc_5a88592b",
+        "filename": "system/stack/test/sdp/stack_sdp_db_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-04T17:25:28Z",
+      "side": 1,
+      "message": "I\u0027m surprised that we\u0027re writing tests against the legacy API at this point.  I was expecting the tests to be one level higher, so they would test your new module, as well.\n\nI\u0027m interested to know more about the plan.",
+      "range": {
+        "startLine": 45,
+        "startChar": 6,
+        "endLine": 45,
+        "endChar": 30
+      },
+      "revId": "871d38c451ea6b027d45e951e4b78c6fe4802a23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
