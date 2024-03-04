@@ -70,6 +70,24 @@
       "parentUuid": "e5969260_ae921cbe",
       "revId": "9544c285b28cedf0c3e177b0822fd16e07315945",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dee8673c_ed7a5d1a",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1367,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-03-04T20:50:48Z",
+      "side": 1,
+      "message": "Ack for 1 \u0026 2. \n\nStill a little confused about 3. Are you going to introduce this method to each call site separately in follow up CLs?",
+      "parentUuid": "4f1556e7_a44e5a19",
+      "revId": "9544c285b28cedf0c3e177b0822fd16e07315945",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
