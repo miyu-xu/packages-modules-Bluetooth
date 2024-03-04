@@ -34,6 +34,24 @@
       "parentUuid": "3e72acb1_033726c5",
       "revId": "9544c285b28cedf0c3e177b0822fd16e07315945",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5969260_ae921cbe",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1367,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-03-04T19:53:01Z",
+      "side": 1,
+      "message": "Is this something that we want the entire daemon to crash on though? Or does it make more sense to actually do the work of sanitizing it at each call site.\n\nAlso, why we are creating a new method instead of doing it in the current one? Are we eventually going to replace all calls to `get_profile_interface` with `get_profile_interface_or_panic`? Or are only certain methods going to call the panic variant?",
+      "parentUuid": "5b2c7712_24a05f8e",
+      "revId": "9544c285b28cedf0c3e177b0822fd16e07315945",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
