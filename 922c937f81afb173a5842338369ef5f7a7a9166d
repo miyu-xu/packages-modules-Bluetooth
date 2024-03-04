@@ -46,6 +46,30 @@
       },
       "revId": "922c937f81afb173a5842338369ef5f7a7a9166d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e816527_11681b5c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceAndStateMachineTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 1249,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-03-04T12:34:33Z",
+      "side": 1,
+      "message": "When I tried to stop headset service, set flag and start again it generated many issues, as some tests require no more interactions etc. I enabled the flag for unit tests, so now they all run instead of being ignored.",
+      "parentUuid": "e7012d6a_28fa0bfe",
+      "range": {
+        "startLine": 1249,
+        "startChar": 0,
+        "endLine": 1249,
+        "endChar": 58
+      },
+      "revId": "922c937f81afb173a5842338369ef5f7a7a9166d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
