@@ -130,7 +130,6 @@ class InternalHciCallbacks : public IBluetoothHciCallbacks_1_1 {
   Return<void> aclDataReceived(const hidl_vec<uint8_t>& data) override {
     common::StopWatch stop_watch(GetTimerText(__func__, data));
     std::vector<uint8_t> received_hci_packet(data.begin(), data.end());
-    link_clocker_->OnAclDataReceived(received_hci_packet);
     btsnoop_logger_->Capture(
         received_hci_packet, SnoopLogger::Direction::INCOMING, SnoopLogger::PacketType::ACL);
     {
@@ -233,7 +232,6 @@ class AidlHciCallbacks : public ::aidl::android::hardware::bluetooth::BnBluetoot
   ::ndk::ScopedAStatus aclDataReceived(const std::vector<uint8_t>& data) override {
     common::StopWatch stop_watch(GetTimerText(__func__, data));
     std::vector<uint8_t> received_hci_packet(data.begin(), data.end());
-    link_clocker_->OnAclDataReceived(received_hci_packet);
     btsnoop_logger_->Capture(
         received_hci_packet, SnoopLogger::Direction::INCOMING, SnoopLogger::PacketType::ACL);
     bool sent = false;
