@@ -392,6 +392,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3e7077d3_8905930c",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-03-04T07:46:12Z",
+      "side": 1,
+      "message": "It make sense to me that a client should handle the callback and maintain the data structure by itself if there are \u003e 1 clients hence FlossSocketManagerClient should not handle any callback. The data structure of l2cap and rfcomm service will be the same.",
+      "parentUuid": "e1bf9075_27dc7a62",
+      "range": {
+        "startLine": 116,
+        "startChar": 16,
+        "endLine": 116,
+        "endChar": 27
+      },
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "12db8ef6_0cdb80ec",
         "filename": "floss/pandora/server/l2cap.py",
         "patchSetId": 7
