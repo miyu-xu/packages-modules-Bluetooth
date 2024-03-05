@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "070a87d1_db822c39",
+        "filename": "system/stack/avct/avct_lcb_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-05T07:43:19Z",
+      "side": 1,
+      "message": "I believe this is a copy past of the parsing [here](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/avct/avct_lcb_act.cc;l\u003d670?q\u003davct_msg_ind_for_src_sink_coexist).\n\n\nLooks good to me. I wonder if flagging is necessary as this is pretty obvious this fix is correct since the packet has been already parsed.",
+      "range": {
+        "startLine": 726,
+        "startChar": 0,
+        "endLine": 726,
+        "endChar": 44
+      },
+      "revId": "d4a680046308a4adb247d2cf4a4c8b67a1886e47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
