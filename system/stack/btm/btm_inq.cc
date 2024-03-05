@@ -864,8 +864,11 @@ tBTM_STATUS BTM_CancelRemoteDeviceName(void) {
       /* Cancel remote name request for LE device, and process remote name
        * callback. */
       btm_inq_rmt_name_failed_cancelled();
-    } else
+    } else {
       btsnd_hcic_rmt_name_req_cancel(btm_cb.btm_inq_vars.remname_bda);
+      btm_process_remote_name(&btm_cb.btm_inq_vars.remname_bda,
+                              nullptr, 0, HCI_ERR_UNSPECIFIED);
+    }
     return (BTM_CMD_STARTED);
   } else
     return (BTM_WRONG_MODE);
