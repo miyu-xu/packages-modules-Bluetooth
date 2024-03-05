@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3544973_5e308265",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-03-05T18:15:18Z",
+      "side": 1,
+      "message": "pass to Bluetooth HAL DRI to take a look @mylesgw@google.com",
+      "revId": "58538e4a38bbe3522ad754f48672b5011f8d2264",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
