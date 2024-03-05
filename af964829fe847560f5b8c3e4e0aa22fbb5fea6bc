@@ -70,6 +70,30 @@
       },
       "revId": "af964829fe847560f5b8c3e4e0aa22fbb5fea6bc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb43a70a_d1c8f084",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-03-05T22:48:45Z",
+      "side": 0,
+      "message": "Added follow up changes to include dumpsys and metric related logging into the same function and moved it into its own helper library",
+      "parentUuid": "ad6fb7a6_7217bb52",
+      "range": {
+        "startLine": 165,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 79
+      },
+      "revId": "af964829fe847560f5b8c3e4e0aa22fbb5fea6bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
