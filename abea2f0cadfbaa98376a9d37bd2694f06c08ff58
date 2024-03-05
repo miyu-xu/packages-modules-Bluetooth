@@ -22,6 +22,30 @@
       },
       "revId": "abea2f0cadfbaa98376a9d37bd2694f06c08ff58",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc0ceca9_c1eb814f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-05T00:43:57Z",
+      "side": 1,
+      "message": "Is the flag being used anywhere in this CL?\n\nIf not, can just add the persistent connectable adv bug in addition to the one here, and \"Flag: EXEMPT \u003creason\u003e\" to commit (e.g. mechanical refactor, no logic change).",
+      "parentUuid": "fd4059c2_afac1a2c",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 14
+      },
+      "revId": "abea2f0cadfbaa98376a9d37bd2694f06c08ff58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
