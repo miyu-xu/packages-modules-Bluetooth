@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c358fc68_2f8b7c18",
+        "filename": "system/btif/src/btif_a2dp.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-05T14:24:56Z",
+      "side": 1,
+      "message": "Something like this would make it easier to remove the flag later.  The hope is that the flag doesn\u0027t live very long, but when I see flags with || and \u0026\u0026 I worry that we\u0027ll mess up the removal.\n\n```suggestion\n  if (!IS_FLAG_ENABLED(a2dp_concurrent_source_sink)) {\n    if (bluetooth::audio::a2dp::is_hal_enabled() ||\n        !btif_av_is_a2dp_offload_running()) {\n      btif_a2dp_source_on_stopped(p_av_suspend);\n    }\n  } else\n  /* Optional comment to point out that we should cut to this point */\n  if (peer_type_sep \u003d\u003d AVDT_TSEP_SNK) {\n    if (bluetooth::audio::a2dp::is_hal_enabled() ||\n        !btif_av_is_a2dp_offload_running()) {\n      btif_a2dp_source_on_stopped(p_av_suspend);\n    }\n  }\n```",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 3
+      },
+      "revId": "462b2989a79c4a997d58086305b04c0b7a796b25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a357939f_4ef2d3b9",
+        "filename": "system/btif/src/btif_a2dp.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-05T14:24:56Z",
+      "side": 1,
+      "message": "After the flag is removed, this will look like:\n\n```\n  if (peer_type_sep \u003d\u003d AVDT_TSEP_SRC) {\n    btif_a2dp_sink_on_suspended(p_av_suspend);\n    return;\n  }\n  if (peer_type_sep \u003d\u003d AVDT_TSEP_SNK) {\n    if (bluetooth::audio::a2dp::is_hal_enabled() ||\n        !btif_av_is_a2dp_offload_running()) {\n      btif_a2dp_source_on_suspended(p_av_suspend);\n    }\n  }\n```\n\n```suggestion\n  if (peer_type_sep \u003d\u003d AVDT_TSEP_SNK) {\n    /* Don\u0027t call on_suspended if \u003cSomething meaningful\u003e */\n    if (!bluetooth::audio::a2dp::is_hal_enabled() \u0026\u0026\n        btif_av_is_a2dp_offload_running()) {\n      return;\n    }\n  }\n  btif_a2dp_source_on_suspended(p_av_suspend);\n```",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 3
+      },
+      "revId": "462b2989a79c4a997d58086305b04c0b7a796b25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
