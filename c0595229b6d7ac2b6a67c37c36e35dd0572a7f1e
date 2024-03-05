@@ -22,6 +22,30 @@
       },
       "revId": "c0595229b6d7ac2b6a67c37c36e35dd0572a7f1e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1f7f6d3_825d3ff5",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1913,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-03-05T23:05:02Z",
+      "side": 1,
+      "message": "Overall logic is \n1. Telecom first let Bluetooth do phoneStateChanged.\n2. Then Telecom let Audio Framework to open the SCO, which is AIDL interface post a job to native main thread.\n\nWe want first item to be completed before the 2nd one reached Bluetooth. \nSo we block telecom here shortly, to ensure HeadsetStateMachine completes the task to queue the command to native.",
+      "parentUuid": "103d1c79_da719b12",
+      "range": {
+        "startLine": 1913,
+        "startChar": 0,
+        "endLine": 1913,
+        "endChar": 31
+      },
+      "revId": "c0595229b6d7ac2b6a67c37c36e35dd0572a7f1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
