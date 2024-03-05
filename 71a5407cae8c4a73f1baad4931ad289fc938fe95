@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ccff8f6_c2b004b6",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 822,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-03-05T23:05:53Z",
+      "side": 1,
+      "message": "nit: just wondering whether we need `preferred_phy` here. \nif `preferred_phy` is not 0, then `preferred_phy \u0026\u0026` is always true\nif `preferred_phy` is 0, then `anything \u0026 preferred_phy` is false.",
+      "range": {
+        "startLine": 822,
+        "startChar": 6,
+        "endLine": 822,
+        "endChar": 23
+      },
+      "revId": "71a5407cae8c4a73f1baad4931ad289fc938fe95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
