@@ -16,6 +16,24 @@
       "message": "Can you add a tag like so:\n```\nTag: #floss\n```\nAlso you can add a Test like so to remove the lint warning\n```\nTest: mmm packages/modules/Bluetooth\n```\nFinally, you\u0027ll need to add a FLAG stanza. I\u0027m not sure if this is exempt, but we can double check with the Android team\n```\nFlag: EXEMPT, floss change for ChromeOS only\n```",
       "revId": "579c57ed317b81cf38159a8b6b4932b3170efde6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3af51c3_ee478907",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 2058763
+      },
+      "writtenOn": "2024-03-05T20:40:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9dbfa533_b1719fea",
+      "revId": "579c57ed317b81cf38159a8b6b4932b3170efde6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
