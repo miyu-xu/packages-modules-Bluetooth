@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "103d1c79_da719b12",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1913,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-03-05T22:44:32Z",
+      "side": 1,
+      "message": "This seems to be a blocking call on the thread without a timeout. This doesn\u0027t seem to be a good practice.\n\nSince we are using a Handler anyway to post CALL_STATE_CHANGED; Can we not queue next actions on it or use some other method to ensure that this happen in a order??\n\nWhy is this blocking call necessary here?",
+      "range": {
+        "startLine": 1913,
+        "startChar": 0,
+        "endLine": 1913,
+        "endChar": 31
+      },
+      "revId": "c0595229b6d7ac2b6a67c37c36e35dd0572a7f1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
