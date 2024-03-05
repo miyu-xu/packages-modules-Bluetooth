@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7936df74_469b2245",
+        "filename": "system/btif/src/btif_a2dp.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-03-05T18:58:03Z",
+      "side": 1,
+      "message": "Logic to remove a flag can follow the rules. There could be 6 combinations of the flag.\nFlag condition:\n1) True:\na) Flag is the only condition \u003d\u003e Just remove the if check. i.e. \n```\nif(FLAG) \n   { // some code }\n else \n   { // else block code } \n```\n   will look like post flag removal \n```{ // some code } ```\n\nb) Flag with additional conditions:\ni) AND: e.g\n```\nif (FLAG \u0026\u0026 OTHER_CONDITION)\n  { // some code }\nelse\n  { // else block code }\n```\nwill result in\n```\nif (OTHER_CONDITION) \n  { // some code } \nelse\n  { // else block code }\n```\nii) OR condition\n```\nif ( FLAG || OTHER_CONDITION )\n { // some code }\nelse\n  { // else block code }\n```\nwill result in removal of the if check and the else block \u003d\u003e\n```\n{ // some code }\n```\n\n2) False :\na) Flag is the only condition \u003d\u003e Remove the entire code within the if block and the \n\n```\nif(!FLAG) \n   { // some code }\n else \n   { // else block code } \n```\n   will look like post flag removal \n```\n   { // else block code } \n```\nb) Flag with additional conditions:\ni) AND: e.g\n```\nif (!FLAG \u0026\u0026 OTHER_CONDITION)\n  { // some code }\nelse\n  { // else block code }\n```\nwill result in\n```\n   { // else block code } \n```\n\nii) OR condition\n\n```\nif ( !FLAG || OTHER_CONDITION )\n { // some code }\nelse\n  { // else block code }\n```\nwill result in removal of the if check and the else block\n```\nif (OTHER_CONDITION) \n  { // some code } \nelse\n  { // else block code }\n```\n\nThough, I agree if there are nested condition operators it can get confusing and error prone.\n\nI will go ahead and make the changes to reflect your request.",
+      "parentUuid": "c358fc68_2f8b7c18",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 3
+      },
+      "revId": "462b2989a79c4a997d58086305b04c0b7a796b25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a357939f_4ef2d3b9",
         "filename": "system/btif/src/btif_a2dp.cc",
         "patchSetId": 13
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-05T14:24:56Z",
       "side": 1,
       "message": "After the flag is removed, this will look like:\n\n```\n  if (peer_type_sep \u003d\u003d AVDT_TSEP_SRC) {\n    btif_a2dp_sink_on_suspended(p_av_suspend);\n    return;\n  }\n  if (peer_type_sep \u003d\u003d AVDT_TSEP_SNK) {\n    if (bluetooth::audio::a2dp::is_hal_enabled() ||\n        !btif_av_is_a2dp_offload_running()) {\n      btif_a2dp_source_on_suspended(p_av_suspend);\n    }\n  }\n```\n\n```suggestion\n  if (peer_type_sep \u003d\u003d AVDT_TSEP_SNK) {\n    /* Don\u0027t call on_suspended if \u003cSomething meaningful\u003e */\n    if (!bluetooth::audio::a2dp::is_hal_enabled() \u0026\u0026\n        btif_av_is_a2dp_offload_running()) {\n      return;\n    }\n  }\n  btif_a2dp_source_on_suspended(p_av_suspend);\n```",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 3
+      },
+      "revId": "462b2989a79c4a997d58086305b04c0b7a796b25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c7d24b5_eaa4f9eb",
+        "filename": "system/btif/src/btif_a2dp.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-03-05T18:58:03Z",
+      "side": 1,
+      "message": "Negating the condition to not suspend might be more complex to read rather than the suspend on meeting the condition. Also, it could allow additional logic to be added post a2dp source suspend if block\n```\nif (peer_type_sep \u003d\u003d AVDT_TSEP_SNK) {\n    if (bluetooth::audio::a2dp::is_hal_enabled() ||\n        !btif_av_is_a2dp_offload_running()) {\n      btif_a2dp_source_on_suspended(p_av_suspend);\n    }\n  }\n\n/**\nsome additional logic\n**/  \n```",
+      "parentUuid": "a357939f_4ef2d3b9",
       "range": {
         "startLine": 157,
         "startChar": 0,
