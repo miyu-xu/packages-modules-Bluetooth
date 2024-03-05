@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8334789f_a91656bd",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-03-05T00:12:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "607c52c0_3f0291ab",
+      "revId": "ae76f37e69676fd05fc029071ab6a98b4c864414",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56a6b10b_5112ae60",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-03-04T22:00:08Z",
       "side": 1,
       "message": "Variable name \u0027end\u0027 can be confusing. I would rename it to something like combinationIndex or something.",
+      "revId": "ae76f37e69676fd05fc029071ab6a98b4c864414",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc5c4b0d_5da4668e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-03-05T00:12:10Z",
+      "side": 1,
+      "message": "I believe we are extracting and joining words in order. The \n{start..end} notation indicates a range-based word combination",
+      "parentUuid": "56a6b10b_5112ae60",
       "revId": "ae76f37e69676fd05fc029071ab6a98b4c864414",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdfff204_3e27d765",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-03-05T00:12:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3fb6b15_25ec7fe3",
+      "revId": "ae76f37e69676fd05fc029071ab6a98b4c864414",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "adf7954c_5b0dc40b",
@@ -65,6 +119,24 @@
       "writtenOn": "2024-03-04T22:00:08Z",
       "side": 1,
       "message": "Try to avoid returning null when possible, returning an empty string should be sufficient in this case.",
+      "revId": "ae76f37e69676fd05fc029071ab6a98b4c864414",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98985ee5_d58b2786",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-03-05T00:12:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "adf7954c_5b0dc40b",
       "revId": "ae76f37e69676fd05fc029071ab6a98b4c864414",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "20e26712_403dc7fa",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-03-05T00:12:10Z",
+      "side": 1,
+      "message": "Since we\u0027re working with a single sha256 string, I think sha256 should be sufficient.",
+      "parentUuid": "dc14ff6f_d8c05a34",
+      "revId": "ae76f37e69676fd05fc029071ab6a98b4c864414",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3b804143_d3fa4f77",
@@ -99,6 +189,24 @@
       "writtenOn": "2024-03-04T22:00:08Z",
       "side": 1,
       "message": "Do we really need this log statement?",
+      "revId": "ae76f37e69676fd05fc029071ab6a98b4c864414",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bdd6863_271b07cf",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-03-05T00:12:10Z",
+      "side": 1,
+      "message": "This aids in the debugging process.",
+      "parentUuid": "3b804143_d3fa4f77",
       "revId": "ae76f37e69676fd05fc029071ab6a98b4c864414",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
