@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ab9279f_55b28a89",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-03-05T19:48:50Z",
+      "side": 1,
+      "message": "I\u0027m not quite sure if we would need some other changes to use MediaPlayerList or have a better way to handle the media player stop.\n\n@rlukasz@google.com could you also help to take a look from MCP\u0027s pov?\n\nBy looking at the usage in MediaControlProfile.java\n1. at start, do we mMediaPlayerList.init?\n2. at stop, do we need mMediaPlayerList.cleanup()?\n3. when using the active play at #1910, we might need to check null?\nmMediaPlayerList.getActivePlayer() !\u003d null",
+      "revId": "f305228879a9a734e03aee69fd6c25927d1fa726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
