@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3121c32_8dc5a376",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 1169,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-03-05T07:09:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb089272_c0c996c7",
+      "revId": "c1a2e75575769e4a2694f97c110d9f99bbcfe2a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ecd82114_f4c5226d",
@@ -48,6 +66,24 @@
       "writtenOn": "2024-02-28T12:53:38Z",
       "side": 1,
       "message": "Is this what we defined in AIDL? Is there any matching type in native for this?",
+      "revId": "c1a2e75575769e4a2694f97c110d9f99bbcfe2a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4c6bebb_69a39e10",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 1197,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-03-05T07:09:54Z",
+      "side": 1,
+      "message": "Yes, but lets maybe introduce the `codec_flags` a bit later, once we start using it.",
+      "parentUuid": "ecd82114_f4c5226d",
       "revId": "c1a2e75575769e4a2694f97c110d9f99bbcfe2a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
