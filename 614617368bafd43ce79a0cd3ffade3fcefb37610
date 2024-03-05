@@ -34,6 +34,24 @@
       "parentUuid": "52aeefe9_b64951ae",
       "revId": "614617368bafd43ce79a0cd3ffade3fcefb37610",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c05062f_193545c8",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-05T02:55:29Z",
+      "side": 0,
+      "message": "I believe the remaining issue should be addressed following b/327543670",
+      "parentUuid": "1c388ce5_65461852",
+      "revId": "614617368bafd43ce79a0cd3ffade3fcefb37610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
