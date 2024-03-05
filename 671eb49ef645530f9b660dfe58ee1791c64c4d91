@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b761b77_c95e8038",
+        "filename": "system/log/src/vlog_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-05T19:12:51Z",
+      "side": 1,
+      "message": "__FILE__ ?\n\nkFileName \u003d \"packages/modules/Bluetooth/system/log/src/vlog_test.cc\"; ?\n\n```suggestion\n               __FILE__ \":49 TestBody: verbose test\");\n}\n```",
+      "range": {
+        "startLine": 57,
+        "startChar": 16,
+        "endLine": 57,
+        "endChar": 70
+      },
+      "revId": "671eb49ef645530f9b660dfe58ee1791c64c4d91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
