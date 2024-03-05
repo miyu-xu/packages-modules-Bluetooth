@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c6972ca_e21e5bae",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-03-05T03:23:41Z",
+      "side": 1,
+      "message": "Yes, thanks. I moved RX_Unreceived_Packets and Coex_Info_Mask to the end of the link quality related event for version compatibility.",
+      "parentUuid": "c02543fd_1d44963e",
+      "range": {
+        "startLine": 109,
+        "startChar": 6,
+        "endLine": 111,
+        "endChar": 35
+      },
+      "revId": "a3e001cca1933a16f2b4f269f6fc718d40c8a273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b590f4d_ecdb8f8d",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dab220a4_ae0dd8bb",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 841,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-03-05T03:23:41Z",
+      "side": 1,
+      "message": "Yes, Thank you for reminder.\nThis patch only focus on Configure BQR for BQRv6\nthe modification for delivery BQR to app level will not include in this commit.",
+      "parentUuid": "7b590f4d_ecdb8f8d",
+      "range": {
+        "startLine": 841,
+        "startChar": 0,
+        "endLine": 841,
+        "endChar": 61
+      },
+      "revId": "a3e001cca1933a16f2b4f269f6fc718d40c8a273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa34eb0f_d91d4a17",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-02-29T21:21:53Z",
       "side": 1,
       "message": "Shouldn\u0027t we do both if ?\n\nMy understanding is that with this modification, when the version is 5, there will be 0 for the 5.0 parameters",
+      "range": {
+        "startLine": 834,
+        "startChar": 3,
+        "endLine": 846,
+        "endChar": 63
+      },
+      "revId": "a3e001cca1933a16f2b4f269f6fc718d40c8a273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36d8c98f_2a7a13b4",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-03-05T03:23:41Z",
+      "side": 1,
+      "message": "Thank you for reminder.\nThis patch only focus on Configure BQR for BQRv6\nthe modification for delivery BQR to app level will not include in this commit.",
+      "parentUuid": "aa34eb0f_d91d4a17",
       "range": {
         "startLine": 834,
         "startChar": 3,
