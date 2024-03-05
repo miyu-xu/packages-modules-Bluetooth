@@ -123,6 +123,24 @@
       "parentUuid": "59a019b8_d623e296",
       "revId": "4e056503a998a317e899ff22342087f583d0e1e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7782e8bb_74f6d426",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 5831,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-03-05T10:22:13Z",
+      "side": 1,
+      "message": "Seeing both arguments, it seems to me that we either interpret the DSA data as audio if callback is not registered but DSA mode enabled, or we interpret the audio data as DSA if DSA states were set wrong for the non-DSA usecase. If I understand correctly, in either case the behavior would be invalid due to potential logical error in the code (misconfiguration), so maybe we should assert if the two are misconfigured (callback vs DSA mode)?",
+      "parentUuid": "3daacdae_d0d7d9dc",
+      "revId": "4e056503a998a317e899ff22342087f583d0e1e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
