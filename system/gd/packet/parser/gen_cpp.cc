@@ -87,6 +87,8 @@ bool generate_cpp_headers_one_file(
 #include <string>
 #include <type_traits>
 
+#include <bluetooth/log.h>
+
 #include "packet/base_packet_builder.h"
 #include "packet/bit_inserter.h"
 #include "packet/custom_field_fixed_size_interface.h"
@@ -249,6 +251,25 @@ using ::bluetooth::packet::RawBuilder;
   }
 
   generate_namespace_close(namespace_list, out_file);
+
+  // Generate formatters for all enum declarations.
+  std::string namespace_prefix;
+  for (auto const& fragment : namespace_list) {
+    namespace_prefix += fragment;
+    namespace_prefix += "::";
+  }
+
+  out_file << "namespace fmt {" << std::endl;
+  for (const auto& e : decls.type_defs_queue_) {
+    if (e.second->GetDefinitionType() == TypeDef::Type::ENUM) {
+      const auto* enum_def = static_cast<const EnumDef*>(e.second);
+      out_file << "template <>" << std::endl;
+      out_file << "struct formatter<" << namespace_prefix << enum_def->name_ << ">"
+               << " : enum_formatter<" << namespace_prefix << enum_def->name_ << "> {};"
+               << std::endl;
+    }
+  }
+  out_file << "} // namespace fmt" << std::endl;
 
   out_file.close();
 
