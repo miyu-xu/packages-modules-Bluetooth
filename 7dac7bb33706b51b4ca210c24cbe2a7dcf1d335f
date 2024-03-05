@@ -46,6 +46,30 @@
       },
       "revId": "7dac7bb33706b51b4ca210c24cbe2a7dcf1d335f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c55c279a_4ddff32e",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-03-05T00:38:59Z",
+      "side": 1,
+      "message": "There is 1 call for dumpsys, one for logging into logcat and one for metrics. \n\nI plan to eventually put log_socket_connection_state in btif_sock_connection_logger to make sure we have 1 call for metrics and dumpsys.",
+      "parentUuid": "4a400969_0ff100bb",
+      "range": {
+        "startLine": 310,
+        "startChar": 0,
+        "endLine": 321,
+        "endChar": 72
+      },
+      "revId": "7dac7bb33706b51b4ca210c24cbe2a7dcf1d335f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

@@ -22,6 +22,30 @@
       },
       "revId": "af964829fe847560f5b8c3e4e0aa22fbb5fea6bc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "778a1557_b79c6c31",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-03-05T00:38:59Z",
+      "side": 0,
+      "message": "Well the function information logged here is `btif_sock_connection_logger` which usually takes a lot of information away from us regarding where the issue happened. Yes we can also pass __func__ here but I thought having more context specific logging would help in the long run.",
+      "parentUuid": "df116c49_796c2be6",
+      "range": {
+        "startLine": 165,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 79
+      },
+      "revId": "af964829fe847560f5b8c3e4e0aa22fbb5fea6bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
