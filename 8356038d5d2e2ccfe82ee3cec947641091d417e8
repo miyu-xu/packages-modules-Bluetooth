@@ -22,6 +22,30 @@
       },
       "revId": "8356038d5d2e2ccfe82ee3cec947641091d417e8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0186876a_44276f4f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppReceiverTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-03-05T01:01:44Z",
+      "side": 1,
+      "message": "Don\u0027t know yet. Since it is out of this CL\u0027s scope, I\u0027ll see after we merge this CL.",
+      "parentUuid": "866e3ebb_5b09ce77",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 26
+      },
+      "revId": "8356038d5d2e2ccfe82ee3cec947641091d417e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
