@@ -22,6 +22,30 @@
       },
       "revId": "faab031c4e1dc3d393254a2eb0236e1003e2c60b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5eea787_6bef422e",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-05T17:21:51Z",
+      "side": 1,
+      "message": "Correct.  Will be addressed in future clean up with white space re-ordering to put all statics up top releasing need for any forward declarations.",
+      "parentUuid": "68ba3afb_78a78062",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 53
+      },
+      "revId": "faab031c4e1dc3d393254a2eb0236e1003e2c60b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
