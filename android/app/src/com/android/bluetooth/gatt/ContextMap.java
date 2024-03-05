@@ -27,7 +27,6 @@ import android.os.UserHandle;
 import android.os.WorkSource;
 import android.util.Log;
 
-import androidx.annotation.VisibleForTesting;
 
 import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.le_scan.AppScanStats;
@@ -44,6 +43,7 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.UUID;
+import java.util.function.Predicate;
 
 /**
  * Helper class that keeps track of registered GATT applications.
@@ -314,9 +314,7 @@ public class ContextMap<C, T> {
     protected List<Integer> getAllAppsIds() {
         List<Integer> appIds = new ArrayList();
         synchronized (mAppsLock) {
-            Iterator<App> i = mApps.iterator();
-            while (i.hasNext()) {
-                App entry = i.next();
+            for (App entry : mApps) {
                 appIds.add(entry.id);
             }
         }
@@ -356,13 +354,19 @@ public class ContextMap<C, T> {
      */
     void removeConnectionsByAppId(int appId) {
         synchronized (mConnectionsLock) {
-            Iterator<Connection> i = mConnections.iterator();
-            while (i.hasNext()) {
-                Connection connection = i.next();
-                if (connection.appId == appId) {
-                    i.remove();
+            mConnections.removeIf(conn -> conn.appId == appId);
+        }
+    }
+
+    private App getAppByPredicate(Predicate<App> predicate) {
+        synchronized (mAppsLock) {
+            // Intentionally using a for-loop over a stream for performance.
+            for (App app : mApps) {
+                if (predicate.test(app)) {
+                    return app;
                 }
             }
+            return null;
         }
     }
 
@@ -370,68 +374,44 @@ public class ContextMap<C, T> {
      * Get an application context by ID.
      */
     protected App getById(int id) {
-        synchronized (mAppsLock) {
-            Iterator<App> i = mApps.iterator();
-            while (i.hasNext()) {
-                App entry = i.next();
-                if (entry.id == id) {
-                    return entry;
-                }
-            }
+        App app = getAppByPredicate(entry -> entry.id == id);
+        if (app == null) {
+            Log.e(TAG, "Context not found for ID " + id);
         }
-        Log.e(TAG, "Context not found for ID " + id);
-        return null;
+        return app;
     }
 
     /**
      * Get an application context by UUID.
      */
     protected App getByUuid(UUID uuid) {
-        synchronized (mAppsLock) {
-            Iterator<App> i = mApps.iterator();
-            while (i.hasNext()) {
-                App entry = i.next();
-                if (entry.uuid.equals(uuid)) {
-                    return entry;
-                }
-            }
+        App app = getAppByPredicate(entry -> entry.uuid.equals(uuid));
+        if (app == null) {
+            Log.e(TAG, "Context not found for UUID " + uuid);
         }
-        Log.e(TAG, "Context not found for UUID " + uuid);
-        return null;
+        return app;
     }
 
     /**
      * Get an application context by the calling Apps name.
      */
     public App getByName(String name) {
-        synchronized (mAppsLock) {
-            Iterator<App> i = mApps.iterator();
-            while (i.hasNext()) {
-                App entry = i.next();
-                if (entry.name.equals(name)) {
-                    return entry;
-                }
-            }
+        App app = getAppByPredicate(entry -> entry.name.equals(name));
+        if (app == null) {
+            Log.e(TAG, "Context not found for name " + name);
         }
-        Log.e(TAG, "Context not found for name " + name);
-        return null;
+        return app;
     }
 
     /**
      * Get an application context by the context info object.
      */
     protected App getByContextInfo(T contextInfo) {
-        synchronized (mAppsLock) {
-            Iterator<App> i = mApps.iterator();
-            while (i.hasNext()) {
-                App entry = i.next();
-                if (entry.info != null && entry.info.equals(contextInfo)) {
-                    return entry;
-                }
-            }
+        App app = getAppByPredicate(entry -> entry.info != null && entry.info.equals(contextInfo));
+        if (app == null) {
+            Log.e(TAG, "Context not found for info " + contextInfo);
         }
-        Log.e(TAG, "Context not found for info " + contextInfo);
-        return null;
+        return app;
     }
 
     /**
@@ -590,9 +570,7 @@ public class ContextMap<C, T> {
     Set<String> getConnectedDevices() {
         Set<String> addresses = new HashSet<String>();
         synchronized (mConnectionsLock) {
-            Iterator<Connection> i = mConnections.iterator();
-            while (i.hasNext()) {
-                Connection connection = i.next();
+            for (Connection connection : mConnections) {
                 addresses.add(connection.address);
             }
         }
@@ -605,9 +583,7 @@ public class ContextMap<C, T> {
     App getByConnId(int connId) {
         int appId = -1;
         synchronized (mConnectionsLock) {
-            Iterator<Connection> ii = mConnections.iterator();
-            while (ii.hasNext()) {
-                Connection connection = ii.next();
+            for (Connection connection : mConnections) {
                 if (connection.connId == connId) {
                     appId = connection.appId;
                     break;
@@ -629,9 +605,7 @@ public class ContextMap<C, T> {
             return null;
         }
         synchronized (mConnectionsLock) {
-            Iterator<Connection> i = mConnections.iterator();
-            while (i.hasNext()) {
-                Connection connection = i.next();
+            for (Connection connection : mConnections) {
                 if (connection.address.equalsIgnoreCase(address) && connection.appId == id) {
                     return connection.connId;
                 }
@@ -645,9 +619,7 @@ public class ContextMap<C, T> {
      */
     String addressByConnId(int connId) {
         synchronized (mConnectionsLock) {
-            Iterator<Connection> i = mConnections.iterator();
-            while (i.hasNext()) {
-                Connection connection = i.next();
+            for (Connection connection : mConnections) {
                 if (connection.connId == connId) {
                     return connection.address;
                 }
@@ -659,9 +631,7 @@ public class ContextMap<C, T> {
     public List<Connection> getConnectionByApp(int appId) {
         List<Connection> currentConnections = new ArrayList<Connection>();
         synchronized (mConnectionsLock) {
-            Iterator<Connection> i = mConnections.iterator();
-            while (i.hasNext()) {
-                Connection connection = i.next();
+            for (Connection connection : mConnections) {
                 if (connection.appId == appId) {
                     currentConnections.add(connection);
                 }
@@ -675,15 +645,13 @@ public class ContextMap<C, T> {
      */
     protected void clear() {
         synchronized (mAppsLock) {
-            Iterator<App> i = mApps.iterator();
-            while (i.hasNext()) {
-                App entry = i.next();
+            for (App entry : mApps) {
                 entry.unlinkToDeath();
                 if (entry.appScanStats != null) {
                     entry.appScanStats.isRegistered = false;
                 }
-                i.remove();
             }
+            mApps.clear();
         }
 
         synchronized (mConnectionsLock) {
@@ -714,12 +682,7 @@ public class ContextMap<C, T> {
      */
     protected void dump(StringBuilder sb) {
         sb.append("  Entries: " + mAppScanStats.size() + "\n\n");
-
-        Iterator<Map.Entry<Integer, AppScanStats>> it = mAppScanStats.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry<Integer, AppScanStats> entry = it.next();
-
-            AppScanStats appScanStats = entry.getValue();
+        for (AppScanStats appScanStats : mAppScanStats.values()) {
             appScanStats.dumpToString(sb);
         }
     }
