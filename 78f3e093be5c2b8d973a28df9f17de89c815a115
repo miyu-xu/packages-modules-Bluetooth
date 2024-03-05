@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d966916_fbe89418",
+        "filename": "system/btif/include/btif_sock_logging.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-05T23:27:40Z",
+      "side": 1,
+      "message": "😂 This still looks old to me, but closer.\n\n```suggestion\n * Copyright 2024 The Android Open Source Project\n```",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 16
+      },
+      "revId": "78f3e093be5c2b8d973a28df9f17de89c815a115",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
