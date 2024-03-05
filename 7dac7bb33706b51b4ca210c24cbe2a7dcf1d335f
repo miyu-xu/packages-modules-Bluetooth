@@ -22,6 +22,30 @@
       },
       "revId": "7dac7bb33706b51b4ca210c24cbe2a7dcf1d335f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a400969_0ff100bb",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-05T00:27:19Z",
+      "side": 1,
+      "message": "Maybe call log_socket_connection_state from btif_sock_connection_logger?",
+      "parentUuid": "1f803ef6_2ac8a3b3",
+      "range": {
+        "startLine": 310,
+        "startChar": 0,
+        "endLine": 321,
+        "endChar": 72
+      },
+      "revId": "7dac7bb33706b51b4ca210c24cbe2a7dcf1d335f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
