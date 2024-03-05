@@ -46,6 +46,30 @@
       },
       "revId": "671eb49ef645530f9b660dfe58ee1791c64c4d91",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ca98598_4649f04b",
+        "filename": "system/log/src/vlog_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-05T21:39:44Z",
+      "side": 1,
+      "message": "I\u0027d rather not fix it in many places when the path changes :)",
+      "parentUuid": "47b21d15_b8cd339a",
+      "range": {
+        "startLine": 57,
+        "startChar": 16,
+        "endLine": 57,
+        "endChar": 70
+      },
+      "revId": "671eb49ef645530f9b660dfe58ee1791c64c4d91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
