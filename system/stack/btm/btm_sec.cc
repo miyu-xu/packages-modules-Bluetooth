@@ -4491,6 +4491,13 @@ tBTM_STATUS btm_sec_execute_procedure(tBTM_SEC_DEV_REC* p_dev_rec) {
     }
 
     if (start_auth) {
+      if (alarm_is_scheduled(btm_sec_cb.sec_collision_timer) &&
+          (btm_sec_cb.p_collided_dev_rec->bd_addr == p_dev_rec->bd_addr)) {
+        log::debug(
+            "Security Manager: Authentication will be executed after collision "
+            "timer expired");
+        return (BTM_CMD_STARTED);
+      }
       log::debug("Security Manager: Start authentication");
 
       /*
