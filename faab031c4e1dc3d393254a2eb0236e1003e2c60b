@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68ba3afb_78a78062",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-05T17:19:40Z",
+      "side": 1,
+      "message": "No need for a forward declaration.  Its use is after its declaration.",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 53
+      },
+      "revId": "faab031c4e1dc3d393254a2eb0236e1003e2c60b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
