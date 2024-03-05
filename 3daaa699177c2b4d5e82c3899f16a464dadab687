@@ -22,6 +22,30 @@
       },
       "revId": "3daaa699177c2b4d5e82c3899f16a464dadab687",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b5c9b64_73664c47",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-03-05T11:21:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07cd4612_156129c0",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 0
+      },
+      "revId": "3daaa699177c2b4d5e82c3899f16a464dadab687",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
