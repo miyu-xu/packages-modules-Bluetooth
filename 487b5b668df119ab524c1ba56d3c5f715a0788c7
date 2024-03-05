@@ -170,6 +170,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb7feb91_b19f2310",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-03-05T07:08:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8cfa7cab_9cf02f6c",
+      "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4233bc81_0a34e22a",
@@ -301,6 +319,24 @@
       "side": 1,
       "message": "is this resolved?",
       "parentUuid": "4584622c_9a39c702",
+      "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2c4be30_4869d17c",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_test.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 901,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-03-05T07:08:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "687485d2_db6ce370",
       "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },

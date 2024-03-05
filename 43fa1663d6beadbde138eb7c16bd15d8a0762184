@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c5c1d76_4a87a64e",
+        "filename": "system/bta/le_audio/broadcaster/broadcast_configuration_provider.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-03-05T07:08:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "789aa711_d3a5a952",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "43fa1663d6beadbde138eb7c16bd15d8a0762184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5574222_b8053d0d",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-02-28T11:03:42Z",
       "side": 1,
       "message": "nit 2024",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "43fa1663d6beadbde138eb7c16bd15d8a0762184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39e2c450_1db696c2",
+        "filename": "system/bta/le_audio/broadcaster/broadcast_configuration_provider.h",
+        "patchSetId": 25
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-03-05T07:08:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5574222_b8053d0d",
       "range": {
         "startLine": 2,
         "startChar": 13,
@@ -134,6 +182,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "01fb28d3_21a3dca8",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-03-05T07:08:22Z",
+      "side": 1,
+      "message": "That would mean the API was used incorrectly, so we should probably assert here.",
+      "parentUuid": "c9ea4b49_07de83de",
+      "revId": "43fa1663d6beadbde138eb7c16bd15d8a0762184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e339c83_b0c6ee07",
@@ -157,6 +223,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9563a878_6f4747dd",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-03-05T07:08:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e339c83_b0c6ee07",
+      "range": {
+        "startLine": 212,
+        "startChar": 12,
+        "endLine": 212,
+        "endChar": 21
+      },
+      "revId": "43fa1663d6beadbde138eb7c16bd15d8a0762184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af20007e_283e2b30",
@@ -170,6 +260,24 @@
       "writtenOn": "2024-02-28T11:33:40Z",
       "side": 1,
       "message": "can we do early return here?\n\nif (GetCodecLocation() !\u003d types::CodecLocation::ADSP) {\n return ::le_audio::broadcaster::GetBroadcastConfig(subgroup_quality);\n}",
+      "revId": "43fa1663d6beadbde138eb7c16bd15d8a0762184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ff3aedf_9a6ccf3e",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-03-05T07:08:22Z",
+      "side": 1,
+      "message": "The last return from this function also handles case of `if (offload_config !\u003d nullptr)` condition failing in the ADSP case, but sure, we can do early returns in both cases explicitly.",
+      "parentUuid": "af20007e_283e2b30",
       "revId": "43fa1663d6beadbde138eb7c16bd15d8a0762184",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
