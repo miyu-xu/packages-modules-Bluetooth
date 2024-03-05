@@ -16,6 +16,24 @@
       "message": "These copyright notices look out of date.  I expected Android Open Source instead of Google.  I also prefer no asterisks, but I can\u0027t remember where the example headers are to give you a link.",
       "revId": "8ce346f215cd42611f2de9f79e93006a06ed1129",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca47deaf_c0aca976",
+        "filename": "system/btif/include/btif_sock_logging.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-03-05T23:23:14Z",
+      "side": 1,
+      "message": "Found the newer ones and updated it.",
+      "parentUuid": "d09c801d_6191a77a",
+      "revId": "8ce346f215cd42611f2de9f79e93006a06ed1129",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
