@@ -215,9 +215,6 @@ class BluetoothManagerService {
     // TODO(b/309033118): remove BluetoothAirplaneModeListener once use_new_airplane_mode ship
     private final BluetoothAirplaneModeListener mBluetoothAirplaneModeListener;
 
-    // TODO(b/303552318): remove BluetoothNotificationManager once airplane_ressources_in_app ship
-    private BluetoothNotificationManager mBluetoothNotificationManager;
-
     // TODO(b/289584302): remove BluetoothSatelliteModeListener once use_new_satellite_mode ship
     private BluetoothSatelliteModeListener mBluetoothSatelliteModeListener;
 
@@ -670,10 +667,6 @@ class BluetoothManagerService {
         // Observe BLE scan only mode settings change.
         registerForBleScanModeChange();
 
-        if (!mFeatureFlags.airplaneRessourcesInApp() && !mFeatureFlags.useNewAirplaneMode()) {
-            mBluetoothNotificationManager = new BluetoothNotificationManager(mContext);
-        }
-
         // Disable ASHA if BLE is not supported, overriding any system property
         if (!isBleSupported(mContext)) {
             mIsHearingAidProfileSupported = false;
@@ -738,8 +731,7 @@ class BluetoothManagerService {
             mBluetoothAirplaneModeListener = null;
         } else {
             mBluetoothAirplaneModeListener =
-                    new BluetoothAirplaneModeListener(
-                            this, mLooper, mContext, mBluetoothNotificationManager, mFeatureFlags);
+                    new BluetoothAirplaneModeListener(this, mLooper, mContext, mFeatureFlags);
         }
 
         // Caching is necessary to prevent caller requiring the READ_DEVICE_CONFIG permission
@@ -1972,9 +1964,6 @@ class BluetoothManagerService {
                     UserHandle userTo = (UserHandle) msg.obj;
                     Log.d(TAG, "MESSAGE_USER_SWITCHED: userTo=" + userTo);
                     mHandler.removeMessages(MESSAGE_USER_SWITCHED);
-                    if (!mFeatureFlags.airplaneRessourcesInApp() && !mUseNewAirplaneMode) {
-                        mBluetoothNotificationManager.createNotificationChannels();
-                    }
 
                     AutoOnFeature.pause();
 
