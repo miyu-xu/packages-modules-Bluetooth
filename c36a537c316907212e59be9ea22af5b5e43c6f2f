@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a7443ef_58fc167f",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-05T21:11:49Z",
+      "side": 1,
+      "message": "Can we revert the condition to have shortest if branch first",
+      "range": {
+        "startLine": 221,
+        "startChar": 0,
+        "endLine": 221,
+        "endChar": 55
+      },
+      "revId": "c36a537c316907212e59be9ea22af5b5e43c6f2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b1bbc60_1c680602",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-05T21:11:49Z",
+      "side": 1,
+      "message": "```suggestion\n      log::error(\"unable to set device ID record error {}.\", status);\n```",
+      "range": {
+        "startLine": 234,
+        "startChar": 6,
+        "endLine": 234,
+        "endChar": 15
+      },
+      "revId": "c36a537c316907212e59be9ea22af5b5e43c6f2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
