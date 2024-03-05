@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d09c801d_6191a77a",
+        "filename": "system/btif/include/btif_sock_logging.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-05T22:52:28Z",
+      "side": 1,
+      "message": "These copyright notices look out of date.  I expected Android Open Source instead of Google.  I also prefer no asterisks, but I can\u0027t remember where the example headers are to give you a link.",
+      "revId": "8ce346f215cd42611f2de9f79e93006a06ed1129",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
