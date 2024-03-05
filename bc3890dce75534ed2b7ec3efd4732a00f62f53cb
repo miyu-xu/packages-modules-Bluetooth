@@ -46,6 +46,30 @@
       },
       "revId": "bc3890dce75534ed2b7ec3efd4732a00f62f53cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a46c3043_561dee69",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceAndStateMachineTest.java",
+        "patchSetId": 28
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2024-03-05T06:18:32Z",
+      "side": 1,
+      "message": "We ideally should run the UT with and without the sysprop to test both flows. Is it possible to invoke the flag in a different call and default the setup() to have the flag disabled?",
+      "parentUuid": "83fefa13_24455653",
+      "range": {
+        "startLine": 235,
+        "startChar": 8,
+        "endLine": 237,
+        "endChar": 9
+      },
+      "revId": "bc3890dce75534ed2b7ec3efd4732a00f62f53cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
