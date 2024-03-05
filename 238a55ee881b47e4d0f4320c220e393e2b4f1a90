@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0092f807_9811bb3e",
+        "filename": "system/gd/hci/hci_interface.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-05T22:26:04Z",
+      "side": 1,
+      "message": "2024 ?",
+      "revId": "238a55ee881b47e4d0f4320c220e393e2b4f1a90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7a43b54_4ceaebcc",
+        "filename": "system/gd/hci/hci_interface.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-05T22:26:04Z",
+      "side": 1,
+      "message": "nit: space after closing class/paren before closing out namespaces",
+      "revId": "238a55ee881b47e4d0f4320c220e393e2b4f1a90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
