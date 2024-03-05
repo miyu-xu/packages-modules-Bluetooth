@@ -16,6 +16,24 @@
       "message": "Do you think it\u0027s necessary to check the invalid index here?\n\n```suggestion\n    if (broadcast_target_config \u003d\u003d -1 || supported_broadcast_config.empty()) {\n      LOG_ERROR(\"There is no valid broadcast offload config\");\n      return;\n    }\n    \n    auto broadcast_config \u003d supported_broadcast_config[broadcast_target_config];\n```",
       "revId": "8ce86366182d026b7289e91da1b35d9b5916b0ef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aefc6473_de074311",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-03-05T02:36:51Z",
+      "side": 1,
+      "message": "Thanks for the comment. Done.",
+      "parentUuid": "3225ebfc_ac563a5f",
+      "revId": "8ce86366182d026b7289e91da1b35d9b5916b0ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
