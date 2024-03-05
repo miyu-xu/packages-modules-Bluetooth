@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca4395da_4f755e25",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapContentObserver.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-03-05T05:56:04Z",
+      "side": 1,
+      "message": "Intentionally not including the exact duration in the variable name, as it could change.",
+      "parentUuid": "a02acfef_7ae2e15c",
+      "range": {
+        "startLine": 98,
+        "startChar": 45,
+        "endLine": 98,
+        "endChar": 65
+      },
+      "revId": "390806a048ad5a479806b310bb7a30f60e478d6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62354358_d0b597a6",
