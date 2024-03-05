@@ -377,6 +377,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bd8f69c1_eb4fb24e",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-05T06:37:02Z",
+      "side": 1,
+      "message": "I suggest that we discuss this more offline. Logic changes are generally out of scope for this effort.",
+      "parentUuid": "70155f9c_43869180",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 73
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ea29f47_16b06957",
         "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
         "patchSetId": 5
@@ -388,6 +412,30 @@
       "writtenOn": "2024-02-29T20:07:29Z",
       "side": 1,
       "message": "Why do we need a factory for ? Can we call the constructor directly ?",
+      "range": {
+        "startLine": 69,
+        "startChar": 12,
+        "endLine": 69,
+        "endChar": 30
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18c8226f_cbc30f10",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-05T06:37:02Z",
+      "side": 1,
+      "message": "It\u0027s used to set the instance in unit tests. There are other ways to accomplish that though.",
+      "parentUuid": "9ea29f47_16b06957",
       "range": {
         "startLine": 69,
         "startChar": 12,
@@ -480,6 +528,30 @@
       "writtenOn": "2024-02-29T20:07:29Z",
       "side": 1,
       "message": "Please, split the aidl, it will defnitily help to have better limitation between the Gatt and the scan",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 85
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae45bd9d_8d51e6b3",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-05T06:37:02Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "a211bb64_496fe66b",
       "range": {
         "startLine": 139,
         "startChar": 0,
