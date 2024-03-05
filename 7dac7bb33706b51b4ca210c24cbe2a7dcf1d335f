@@ -94,6 +94,30 @@
       },
       "revId": "7dac7bb33706b51b4ca210c24cbe2a7dcf1d335f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adc0cd85_54959e6a",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-05T23:28:57Z",
+      "side": 1,
+      "message": "That\u0027s fine with me.",
+      "parentUuid": "716aa0b1_a9ccde54",
+      "range": {
+        "startLine": 310,
+        "startChar": 0,
+        "endLine": 321,
+        "endChar": 72
+      },
+      "revId": "7dac7bb33706b51b4ca210c24cbe2a7dcf1d335f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
