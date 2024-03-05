@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90a3058f_93bf0dfc",
+        "filename": "system/btif/src/btif_a2dp.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-03-05T19:25:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7936df74_469b2245",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 3
+      },
+      "revId": "462b2989a79c4a997d58086305b04c0b7a796b25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a357939f_4ef2d3b9",
@@ -109,6 +133,30 @@
       "side": 1,
       "message": "If you don\u0027t want any code added after the call, could you add a return after line 165?",
       "parentUuid": "1c7d24b5_eaa4f9eb",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 3
+      },
+      "revId": "462b2989a79c4a997d58086305b04c0b7a796b25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1014cf9a_f4ab4037",
+        "filename": "system/btif/src/btif_a2dp.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-03-05T19:25:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5544ae07_ec607317",
       "range": {
         "startLine": 157,
         "startChar": 0,
