@@ -16,6 +16,24 @@
       "message": "not sure if this is real todo :P",
       "revId": "d4bfe878ae7ec511a7cc9a9c0e5edf901d7febbb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7cb1d38_827d1edd",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-03-05T07:06:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5f388c3_a0e884e7",
+      "revId": "d4bfe878ae7ec511a7cc9a9c0e5edf901d7febbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
