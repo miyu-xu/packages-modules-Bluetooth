@@ -52,6 +52,24 @@
       "parentUuid": "8d7a4dd5_bb8a98cc",
       "revId": "f305228879a9a734e03aee69fd6c25927d1fa726",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7c456c0_c2b3f738",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-03-06T18:00:00Z",
+      "side": 1,
+      "message": "I\u0027ve pinged @chelseahao@google.com offline, she will double check this part. \n\nGrzegorz, could you please help to create a bug to track this request? then UI team will evaluate if and how to support this.",
+      "parentUuid": "14aac536_f6704c3b",
+      "revId": "f305228879a9a734e03aee69fd6c25927d1fa726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
