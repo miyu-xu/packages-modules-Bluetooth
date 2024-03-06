@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "48e445fd_d6b5080f",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-06T02:29:08Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "92ce6468_13ae178a",
+      "range": {
+        "startLine": 251,
+        "startChar": 15,
+        "endLine": 251,
+        "endChar": 57
+      },
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dd1e2e42_24eb36d8",
@@ -889,6 +913,30 @@
       "side": 1,
       "message": "According to \"L2CAP/COS/ECFC/BV-03-C\" we can have multiple streams (multiple sockets connected).\nSo, as you suggested, I converted it to a list.\n\nplease advise if I got this point wrong, checking the test steps and the current L2CAP pandora \"Send\" and \"Receive\" requests, there is no way to select the needed socket in the same connection, and according to \"L2CAP/COS/ECFC/BV-03-C\" the data will be sent alternatively between the streams.\n\nI implemented \"_get_next_socket\" to manage the order of socket usage.",
       "parentUuid": "84f6e6a4_5dba0843",
+      "range": {
+        "startLine": 210,
+        "startChar": 16,
+        "endLine": 210,
+        "endChar": 56
+      },
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27062f0e_ffa80589",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-06T02:29:08Z",
+      "side": 1,
+      "message": "`_get_next_socket` is too tricky. @johnlai@google.com please verify why Android could always overwrite the connection map https://cs.android.com/android/platform/superproject/+/main:packages/modules/Bluetooth/android/pandora/server/src/L2cap.kt;l\u003d110-111;drc\u003db8d6ec806f83e9e6ebf1cb64dd2ebb743b80d97f",
+      "parentUuid": "aba8b382_c2beb0d4",
       "range": {
         "startLine": 210,
         "startChar": 16,
