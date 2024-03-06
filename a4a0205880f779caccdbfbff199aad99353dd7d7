@@ -16,6 +16,23 @@
       "message": "Add LE connection area DRI to take a look",
       "revId": "a4a0205880f779caccdbfbff199aad99353dd7d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "809625f3_c09082ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-03-06T20:29:32Z",
+      "side": 1,
+      "message": "hi @hallstrom@google.com could you also help to take a look from scanning\u0027s pov? thanks.\nas I\u0027m aware of, LEA broadcast is the only client of periodic sync manager at this moment.",
+      "revId": "a4a0205880f779caccdbfbff199aad99353dd7d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
