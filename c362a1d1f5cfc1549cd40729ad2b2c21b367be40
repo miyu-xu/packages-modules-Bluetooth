@@ -41,6 +41,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "96bf1ffc_24c966c2",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-03-06T23:41:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e26481dc_224842b1",
+      "revId": "c362a1d1f5cfc1549cd40729ad2b2c21b367be40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "beeb5894_8012d770",
@@ -54,6 +72,24 @@
       "writtenOn": "2024-03-06T21:24:10Z",
       "side": 1,
       "message": "Same space",
+      "revId": "c362a1d1f5cfc1549cd40729ad2b2c21b367be40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01a91c9a_bf51eb9e",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-03-06T23:41:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "beeb5894_8012d770",
       "revId": "c362a1d1f5cfc1549cd40729ad2b2c21b367be40",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
