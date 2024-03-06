@@ -887,6 +887,9 @@ static void bta_dm_search_cmpl() {
           "through");
     } else {
       log::info("No BLE connection, processing classic results");
+      /* Trigger this event with empty result to make sure UUIDs are send up to
+       * Java */
+      bta_dm_search_cb.p_search_cback(BTA_DM_GATT_OVER_LE_RES_EVT, &result);
     }
   } else {
     btgatt_db_element_t* db = NULL;
