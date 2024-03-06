@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e26481dc_224842b1",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-06T21:24:10Z",
+      "side": 1,
+      "message": "nit: space after `break;`",
+      "revId": "c362a1d1f5cfc1549cd40729ad2b2c21b367be40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "beeb5894_8012d770",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-06T21:24:10Z",
+      "side": 1,
+      "message": "Same space",
+      "revId": "c362a1d1f5cfc1549cd40729ad2b2c21b367be40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
