@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "47bffbc2_7d9228fd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-06T00:33:43Z",
+      "side": 1,
+      "message": "nit: normally, we just say what we\u0027re doing in the first line.\n\nMove L2CAP Coc specific code to btif_sock_l2cap\n\nKeeping the flag reading and setting in the same file helps with reading and debugging.",
+      "revId": "c962a2e3cede7907324c64f2ea6c6f486fe38b57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b07c2cd9_91364825",
         "filename": "system/btif/src/btif_sock.cc",
         "patchSetId": 3
