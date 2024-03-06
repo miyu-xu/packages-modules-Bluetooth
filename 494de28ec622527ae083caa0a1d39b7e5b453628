@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44a2928c_5122a5b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-03-06T08:30:14Z",
+      "side": 1,
+      "message": "Just figure out I cannot approve by myself. Need your approval here.",
+      "revId": "494de28ec622527ae083caa0a1d39b7e5b453628",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
