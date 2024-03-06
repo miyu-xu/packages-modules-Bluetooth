@@ -16,6 +16,24 @@
       "message": "What is the difference for this change ? Looks like new code would do the same ?\nWhy not use this function in new #302 line ?",
       "revId": "ebe3489f0518dd97bf659f83e48d93daa02f6e7f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b34f09fc_de71a118",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-03-06T15:05:03Z",
+      "side": 0,
+      "message": "Originally, periodic_syncs_.erase was used directly 3 times and 1 time via RemoveSyncRequest function. Because there is nothing more in this function than removing, so I changed this one place to direct removing too, that code is consistent right now.",
+      "parentUuid": "79af8aad_2226da41",
+      "revId": "ebe3489f0518dd97bf659f83e48d93daa02f6e7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
