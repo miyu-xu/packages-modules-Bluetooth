@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "148babbb_dd2e5f4e",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 887,
+      "author": {
+        "id": 1650409
+      },
+      "writtenOn": "2024-03-06T10:22:28Z",
+      "side": 1,
+      "message": "For this case, we do not need to send UUIDs to Java, right?",
+      "range": {
+        "startLine": 885,
+        "startChar": 0,
+        "endLine": 887,
+        "endChar": 21
+      },
+      "revId": "4afe0264ea0eb43eb06d029a9f4610bd44c78515",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
