@@ -286,13 +286,6 @@ static bt_status_t btsock_listen(btsock_type_t type, const char* service_name,
           btsock_l2cap_listen(service_name, channel, sock_fd, flags, app_uid);
       break;
     case BTSOCK_L2CAP_LE:
-      if (flags & BTSOCK_FLAG_NO_SDP) {
-        /* Set channel to zero so that it will be assigned */
-        channel = 0;
-      } else if (channel <= 0) {
-        log::error("type BTSOCK_L2CAP_LE: invalid channel={}", channel);
-        break;
-      }
       flags |= BTSOCK_FLAG_LE_COC;
       log::info(
           "type=BTSOCK_L2CAP_LE, channel=0x{:x}, original=0x{:x}, flags=0x{:x}",
