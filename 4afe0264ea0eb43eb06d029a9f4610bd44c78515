@@ -22,6 +22,30 @@
       },
       "revId": "4afe0264ea0eb43eb06d029a9f4610bd44c78515",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "835d4a24_cae06bfa",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 887,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-06T14:24:08Z",
+      "side": 1,
+      "message": "This is not our case. (issue described in the bug)\n\nBut in general it might be an issue if we are not call this callback here.\n\nI see there is a flag in 876 which covers some part, but I believe, we should just always call this callback.\n\nI created b/328373237 for that.",
+      "parentUuid": "148babbb_dd2e5f4e",
+      "range": {
+        "startLine": 885,
+        "startChar": 0,
+        "endLine": 887,
+        "endChar": 21
+      },
+      "revId": "4afe0264ea0eb43eb06d029a9f4610bd44c78515",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
