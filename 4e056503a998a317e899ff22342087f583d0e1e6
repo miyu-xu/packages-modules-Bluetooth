@@ -141,6 +141,24 @@
       "parentUuid": "3daacdae_d0d7d9dc",
       "revId": "4e056503a998a317e899ff22342087f583d0e1e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e742d06a_0b5bda61",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 5831,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-06T01:27:03Z",
+      "side": 1,
+      "message": "IMO assert should be used only when the system cannot be recovered from the error.\n\nThat aside, I want to take a step back and go through all the concerns raised here.\n\n1. Should we fail earlier by moving the check for the iso_data_callback earlier?\nMissing callback when DSA was active is an error which should be logged. We will be aware of this error only when we have confirmed that the DSA was active. So I think this is an appropriate place for this check.\n\n2. Should we return true if DSA is active?\nIf DSA was mistakenly active, it may be possible that the iso callback is missing and audio data is lost.\nIf DSA was mistakenly not active, the receiver state check will prevent the headtracking data from getting treated as audio data. This is the condition, that led this cl.\n\n\nIrrespective of which way one may lean, I don\u0027t think these concerns should block this cl. We can improve this logic later.",
+      "parentUuid": "7782e8bb_74f6d426",
+      "revId": "4e056503a998a317e899ff22342087f583d0e1e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
