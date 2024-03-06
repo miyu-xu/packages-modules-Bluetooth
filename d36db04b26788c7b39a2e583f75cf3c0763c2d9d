@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b5024c7_7979bc66",
+        "filename": "system/btif/src/btif_sock_l2cap.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-06T01:22:28Z",
+      "side": 1,
+      "message": "nit: I\u0027d rather use correct includes.  Forward declarations means that someone took a shortcut :)",
+      "range": {
+        "startLine": 42,
+        "startChar": 5,
+        "endLine": 42,
+        "endChar": 36
+      },
+      "revId": "d36db04b26788c7b39a2e583f75cf3c0763c2d9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
