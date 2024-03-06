@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79af8aad_2226da41",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-03-06T15:00:00Z",
+      "side": 0,
+      "message": "What is the difference for this change ? Looks like new code would do the same ?\nWhy not use this function in new #302 line ?",
+      "revId": "ebe3489f0518dd97bf659f83e48d93daa02f6e7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
