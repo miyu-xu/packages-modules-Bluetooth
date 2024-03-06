@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6c36c65_bb90c682",
+        "filename": "system/gd/hci/hci_interface.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-06T00:09:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0092f807_9811bb3e",
+      "revId": "238a55ee881b47e4d0f4320c220e393e2b4f1a90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c7a43b54_4ceaebcc",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-03-05T22:26:04Z",
       "side": 1,
       "message": "nit: space after closing class/paren before closing out namespaces",
+      "revId": "238a55ee881b47e4d0f4320c220e393e2b4f1a90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30d29f68_26c84afe",
+        "filename": "system/gd/hci/hci_interface.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-06T00:09:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7a43b54_4ceaebcc",
       "revId": "238a55ee881b47e4d0f4320c220e393e2b4f1a90",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
