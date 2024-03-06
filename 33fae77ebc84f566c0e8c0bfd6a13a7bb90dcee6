@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87b78889_1c61cf90",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 758,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-06T02:38:31Z",
+      "side": 1,
+      "message": "Nit, should the log be updated to `id`  and not `rs-\u003eid`",
+      "range": {
+        "startLine": 758,
+        "startChar": 50,
+        "endLine": 758,
+        "endChar": 64
+      },
+      "revId": "33fae77ebc84f566c0e8c0bfd6a13a7bb90dcee6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {

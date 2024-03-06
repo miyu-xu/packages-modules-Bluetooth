@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d982fa5a_5d03bce4",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-06T02:38:31Z",
+      "side": 0,
+      "message": "This check is present in the code for so long (2014...)\nRemoving it looks suspicious.\n\nI feel like we are removing the cause of a crash without knowing / understanding why there is a race condition.",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 17
+      },
+      "revId": "c2533d40a79d7d7214e6f2a870b89516aa0ab392",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
