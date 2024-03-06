@@ -388,6 +388,30 @@
       },
       "revId": "84c68c3a8f50dd523012b5acbe7bfb4fb43cb818",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c60d346b_e5e8c07f",
+        "filename": "system/main/shim/le_scanning_manager.h",
+        "patchSetId": 27
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-03-06T16:00:47Z",
+      "side": 1,
+      "message": "we explored \u0026 tried with below change\nauto device \u003d storage_module_-\u003eGetDeviceByLeIdentityAddress(address);\nAddress pseudo_address \u003d *device.Le().GetLegacyPseudoAddress();\nbut assert is coming \u0027assertion \u0027device_type\u0027 failed\u0027\napex/com.android.btservices/lib64/libbluetooth_jni.so (bluetooth::storage::Device::Le()+188). can you please suggest, if there is any other api",
+      "parentUuid": "4bfd448d_4006e8e1",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 60
+      },
+      "revId": "84c68c3a8f50dd523012b5acbe7bfb4fb43cb818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
