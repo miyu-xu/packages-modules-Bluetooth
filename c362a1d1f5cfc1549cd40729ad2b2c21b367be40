@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "079521cb_27d2808e",
+        "filename": "system/btif/include/btif_dm.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-06T22:20:16Z",
+      "side": 1,
+      "message": "nit: Check doesn\u0027t sound like it will be added.  The name of this function is odd to me, but I\u0027m not sure what it should be.\n```suggestion\nvoid btif_dm_add_device_if_in_inquiry_db(const RawAddress\u0026 address);\n```",
+      "range": {
+        "startLine": 100,
+        "startChar": 10,
+        "endLine": 100,
+        "endChar": 15
+      },
+      "revId": "c362a1d1f5cfc1549cd40729ad2b2c21b367be40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e26481dc_224842b1",
