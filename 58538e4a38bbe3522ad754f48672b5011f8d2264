@@ -52,6 +52,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8395280a_99a7f1d2",
+        "filename": "system/btif/include/btif_bqr.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-03-06T12:54:18Z",
+      "side": 1,
+      "message": "Modified it, Thank you for your reminder.",
+      "parentUuid": "3d65c448_53cacd76",
+      "revId": "58538e4a38bbe3522ad754f48672b5011f8d2264",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "079fd1d5_e5ae75ec",
@@ -69,6 +87,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "798933ec_83fa905f",
+        "filename": "system/btif/include/btif_bqr.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-03-06T12:54:18Z",
+      "side": 1,
+      "message": "fixed it, Thank you for your reminder.",
+      "parentUuid": "079fd1d5_e5ae75ec",
+      "revId": "58538e4a38bbe3522ad754f48672b5011f8d2264",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ed9da011_a3d4f631",
@@ -82,6 +118,24 @@
       "writtenOn": "2024-03-06T07:49:34Z",
       "side": 1,
       "message": "Better to add no_limit define OR add a comment that value 0 implies no limit here ?\nstatic constexpr uint32_t kReportIntervalMultipleNoLimit \u003d 0;",
+      "revId": "58538e4a38bbe3522ad754f48672b5011f8d2264",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4590225_00a49766",
+        "filename": "system/btif/include/btif_bqr.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-03-06T12:54:18Z",
+      "side": 1,
+      "message": "Thank you for your suggestion, I added the description and kReportIntervalMultipleNoLimit \u003d 0.",
+      "parentUuid": "ed9da011_a3d4f631",
       "revId": "58538e4a38bbe3522ad754f48672b5011f8d2264",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -217,6 +271,24 @@
       "writtenOn": "2024-03-06T07:49:34Z",
       "side": 1,
       "message": "Shouldn\u0027t we check if vendor_cap_supported_version \u003e\u003d kBqrVersion6_0\n then check bqr_config.report_action \u003e REPORT_ACTION_QUERY\n otherwise \n bqr_config.report_action \u003e REPORT_ACTION_CLEAR ?",
+      "revId": "58538e4a38bbe3522ad754f48672b5011f8d2264",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6216a2f_092cdd7e",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-03-06T12:54:18Z",
+      "side": 1,
+      "message": "Modified it, thank you for your suggestion",
+      "parentUuid": "49054773_68bc47a1",
       "revId": "58538e4a38bbe3522ad754f48672b5011f8d2264",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
