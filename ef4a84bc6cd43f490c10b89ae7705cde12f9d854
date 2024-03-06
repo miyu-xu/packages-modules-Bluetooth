@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f14ca445_7b73f9d0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-03-06T18:38:39Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we have a method such as `getDeviceNameSha` to encapsulate this? This would be the same method we use in our `getRemoteDeviceInformation` later on",
+      "range": {
+        "startLine": 320,
+        "startChar": 8,
+        "endLine": 330,
+        "endChar": 9
+      },
+      "revId": "ef4a84bc6cd43f490c10b89ae7705cde12f9d854",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
