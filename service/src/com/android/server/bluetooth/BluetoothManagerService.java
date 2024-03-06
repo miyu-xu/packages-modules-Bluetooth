@@ -83,6 +83,8 @@ import com.android.server.BluetoothManagerServiceDumpProto;
 import com.android.server.bluetooth.airplane.AirplaneModeListener;
 import com.android.server.bluetooth.satellite.SatelliteModeListener;
 
+import libcore.util.SneakyThrow;
+
 import kotlin.Unit;
 import kotlin.time.TimeSource;
 
@@ -102,6 +104,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
@@ -2704,31 +2709,51 @@ class BluetoothManagerService {
                 mLooper, mCurrentUserContext, mState, this::enableFromAutoOn);
     }
 
+    private boolean postBlockingTask(FutureTask<Boolean> task) {
+        mHandler.post(task);
+        try {
+            return task.get(1, TimeUnit.SECONDS);
+        } catch (TimeoutException | InterruptedException e) {
+            SneakyThrow.sneakyThrow(e);
+        } catch (ExecutionException e) {
+            SneakyThrow.sneakyThrow(e.getCause());
+        }
+        return false;
+    }
+
     boolean isAutoOnSupported() {
-        return mDeviceConfigAllowAutoOn
-                && AutoOnFeature.isUserSupported(mCurrentUserContext.getContentResolver());
+        FutureTask<Boolean> task =
+                new FutureTask(
+                        () ->
+                                AutoOnFeature.isUserSupported(
+                                        mCurrentUserContext.getContentResolver()));
+        return mDeviceConfigAllowAutoOn && postBlockingTask(task);
     }
 
     boolean isAutoOnEnabled() {
         if (!mDeviceConfigAllowAutoOn) {
             throw new IllegalStateException("AutoOnFeature is not supported in current config");
         }
-        return AutoOnFeature.isUserEnabled(mCurrentUserContext);
+        FutureTask<Boolean> task =
+                new FutureTask(() -> AutoOnFeature.isUserEnabled(mCurrentUserContext));
+        return postBlockingTask(task);
     }
 
     void setAutoOnEnabled(boolean status) {
         if (!mDeviceConfigAllowAutoOn) {
             throw new IllegalStateException("AutoOnFeature is not supported in current config");
         }
-        // Call coming from binder thread need to be posted before exec
-        mHandler.post(
-                () ->
-                        AutoOnFeature.setUserEnabled(
-                                mLooper,
-                                mCurrentUserContext,
-                                mState,
-                                status,
-                                this::enableFromAutoOn));
+        FutureTask<Boolean> task =
+                new FutureTask(
+                        () ->
+                                AutoOnFeature.setUserEnabled(
+                                        mLooper,
+                                        mCurrentUserContext,
+                                        mState,
+                                        status,
+                                        this::enableFromAutoOn),
+                        null);
+        postBlockingTask(task);
     }
 
     /**
