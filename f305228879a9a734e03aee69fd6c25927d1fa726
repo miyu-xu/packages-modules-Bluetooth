@@ -34,6 +34,24 @@
       "parentUuid": "7ab9279f_55b28a89",
       "revId": "f305228879a9a734e03aee69fd6c25927d1fa726",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14aac536_f6704c3b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-03-06T12:18:11Z",
+      "side": 1,
+      "message": "Yes, I think UI would be the most reasonable place to handle this IMHO. This is why I\u0027ve separated this CL from Unicast release timeout actions CL.\n\nWould be it possible to move this to UI ? Should I do that ?\n\nExcept that I\u0027ve add missing things that you\u0027ve pointed here.",
+      "parentUuid": "8d7a4dd5_bb8a98cc",
+      "revId": "f305228879a9a734e03aee69fd6c25927d1fa726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
