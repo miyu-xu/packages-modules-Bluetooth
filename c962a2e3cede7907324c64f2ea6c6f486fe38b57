@@ -39,6 +39,30 @@
       },
       "revId": "c962a2e3cede7907324c64f2ea6c6f486fe38b57",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56e6f5d5_cf443a64",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-06T00:36:43Z",
+      "side": 1,
+      "message": "Another option:\n```suggestion\n    case BTSOCK_L2CAP:\n      status \u003d\n          btsock_l2cap_listen(service_name, channel, sock_fd, flags, app_uid);\n      break;\n    case BTSOCK_L2CAP_LE:\n      status \u003d\n          btsock_l2cap_listen(service_name, channel, sock_fd, flags | BTSOCK_FLAG_LE_COC, app_uid);\n\n```",
+      "parentUuid": "b07c2cd9_91364825",
+      "range": {
+        "startLine": 283,
+        "startChar": 0,
+        "endLine": 290,
+        "endChar": 78
+      },
+      "revId": "c962a2e3cede7907324c64f2ea6c6f486fe38b57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
