@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e36e27d3_b73e3e44",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-03-06T18:21:25Z",
+      "side": 1,
+      "message": "Add LE connection area DRI to take a look",
+      "revId": "a4a0205880f779caccdbfbff199aad99353dd7d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
