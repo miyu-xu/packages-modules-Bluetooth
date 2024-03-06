@@ -22,6 +22,30 @@
       },
       "revId": "fb61b6ea3ba2a4980216ed2eefe66a49af5350e5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a211950a_d8f659a0",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ContextMap.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-06T18:02:47Z",
+      "side": 1,
+      "message": "Reverting this part of the change to preserve the same behavior. Otherwise I believe the change would need to be flagged.\n\nIt does appear the intention is to remove a connection based on app and connection IDs. If there is more than one connection with the same connection ID the behavior here is nondeterministic - only 1 will be removed and the underlying HashSet maintains no ordering.",
+      "parentUuid": "6b904830_07ec5b71",
+      "range": {
+        "startLine": 341,
+        "startChar": 25,
+        "endLine": 341,
+        "endChar": 33
+      },
+      "revId": "fb61b6ea3ba2a4980216ed2eefe66a49af5350e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
