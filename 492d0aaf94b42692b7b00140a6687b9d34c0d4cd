@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea5df372_0e694195",
+        "filename": "system/test/mock/mock_bta_gattc_api.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-06T22:32:01Z",
+      "side": 1,
+      "message": "/* fd */\n```suggestion\nvoid bta_dump(int /* fd */) { inc_func_call_count(__func__); }\n```",
+      "range": {
+        "startLine": 191,
+        "startChar": 18,
+        "endLine": 191,
+        "endChar": 20
+      },
+      "revId": "492d0aaf94b42692b7b00140a6687b9d34c0d4cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
