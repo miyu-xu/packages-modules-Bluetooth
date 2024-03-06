@@ -118,6 +118,30 @@
       },
       "revId": "7dac7bb33706b51b4ca210c24cbe2a7dcf1d335f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30271e88_073bcf3a",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-03-06T20:59:45Z",
+      "side": 1,
+      "message": "I looked into this again -- my current thoughts are that we are duplicating logging efforts here (relogging the same stuff in dumpsys and logcat). Having the a timesheet of when connect attempts were made or changed in dumpsys should be sufficient.",
+      "parentUuid": "adc0cd85_54959e6a",
+      "range": {
+        "startLine": 310,
+        "startChar": 0,
+        "endLine": 321,
+        "endChar": 72
+      },
+      "revId": "7dac7bb33706b51b4ca210c24cbe2a7dcf1d335f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
