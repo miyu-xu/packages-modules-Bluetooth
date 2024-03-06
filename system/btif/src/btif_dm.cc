@@ -1960,13 +1960,15 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
       RawAddress static_addr_copy = pairing_cb.static_bdaddr;
       bool lea_supported =
           is_le_audio_capable_during_service_discovery(bd_addr);
+      bool is_gatt_service_discovery_post_bonding =
+          btif_is_gatt_service_discovery_post_pairing(bd_addr);
 
       if (event == BTA_DM_GATT_OVER_LE_RES_EVT) {
         log::info("New GATT over LE UUIDs for {}:",
                   ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
         BTM_LogHistory(kBtmLogTag, bd_addr,
                        "Discovered GATT services using LE transport");
-        if (btif_is_gatt_service_discovery_post_pairing(bd_addr)) {
+        if (is_gatt_service_discovery_post_bonding) {
           pairing_cb.gatt_over_le =
               btif_dm_pairing_cb_t::ServiceDiscoveryState::FINISHED;
 
@@ -2024,7 +2026,8 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
 
         if (lea_supported) {
           if (bluetooth::common::init_flags::
-                  sdp_return_classic_services_when_le_discovery_fails_is_enabled()) {
+                  sdp_return_classic_services_when_le_discovery_fails_is_enabled() &&
+              is_gatt_service_discovery_post_bonding) {
             log::info(
                 "Will return Classic SDP results, if done, to unblock bonding");
           } else {
