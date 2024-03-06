@@ -39,6 +39,8 @@
 #include "stack/include/bt_hdr.h"
 #include "types/raw_address.h"
 
+void btif_check_device_in_inquiry_db(const RawAddress& address);
+
 using namespace bluetooth;
 
 struct packet {
@@ -786,14 +788,19 @@ static bt_status_t btsock_l2cap_listen_or_connect(const char* name,
                                                   int channel, int* sock_fd,
                                                   int flags, char listen,
                                                   int app_uid) {
+  if (!is_inited()) return BT_STATUS_NOT_READY;
+
   bool is_le_coc = (flags & BTSOCK_FLAG_LE_COC) != 0;
+
+  if (is_le_coc) {
+    // Ensure device is in inquiry database during L2CAP CoC connection
+    btif_check_device_in_inquiry_db(*addr);
+  }
 
   if (!sock_fd) {
     log::info("Invalid socket descriptor");
     return BT_STATUS_PARM_INVALID;
   }
-
-  if (!is_inited()) return BT_STATUS_NOT_READY;
 
   // TODO: This is kind of bad to lock here, but it is needed for the current
   // design.
