@@ -16,6 +16,24 @@
       "message": "btm_iso_test.cc needs to be updated.",
       "revId": "253f06aed13f648cc71c25cfb58bfc87b0352629",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fa32c89_d8a9efbf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-06T00:12:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d452c2f3_e1ef50e6",
+      "revId": "253f06aed13f648cc71c25cfb58bfc87b0352629",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
