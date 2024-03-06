@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fbe3b4e3_58608d6e",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-03-06T12:24:14Z",
+      "side": 1,
+      "message": "Hi Hsin-chen, thanks for your comments and help.\nDo you advice to remove all methods/callback from socket manager(which use these parameters) that we did not use in l2cap/rfcomm?",
+      "parentUuid": "7afa7df6_52d0da9e",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 36
+      },
+      "revId": "476972318a620db9086cda196d5e9bcb18fc7c33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8bf5be18_0f09f805",
         "filename": "floss/pandora/server/l2cap.py",
         "patchSetId": 11
@@ -60,6 +84,30 @@
       "writtenOn": "2024-03-06T02:29:08Z",
       "side": 1,
       "message": "Should not return. Set proper value to the future and handle this error outside.",
+      "range": {
+        "startLine": 137,
+        "startChar": 20,
+        "endLine": 137,
+        "endChar": 26
+      },
+      "revId": "476972318a620db9086cda196d5e9bcb18fc7c33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de89d3f2_59b4a367",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-03-06T12:24:14Z",
+      "side": 1,
+      "message": "Thanks for your note, \nJust to make sure we are on the same page\nwhat exactly do you mean by \"handle this error outside\"\nDo you mean,return the \u0027fd\u0027 as None when the check fail ?\n```\nif not socket\n    future \u003d self.task[\u0027create_l2cap_channel\u0027]\n    future.get_loop().call_soon_threadsafe(future.set_result, (result, None))\noptional_fd \u003d socket[\u0027optional_value\u0027][\u0027fd\u0027]\nif not optional_fd:\n    future \u003d self.task[\u0027create_l2cap_channel\u0027]\n    future.get_loop().call_soon_threadsafe(future.set_result, (result, None))\n\nif not dbus_unix_fd_list or dbus_unix_fd_list.get_length() \u003c 1:\n    logging.error(\u0027on_outgoing_connection_result: Empty fd list\u0027)\n    future \u003d self.task[\u0027create_l2cap_channel\u0027]\n    future.get_loop().call_soon_threadsafe(future.set_result, (result, None))\n     .\n     .\n\n```\nor\nwe do not check the socket here, and await\"socket\" and then do all socket checks and get fd outside the callback ? \n```\nfuture \u003d self.task[\u0027create_l2cap_channel\u0027]\nfuture.get_loop().call_soon_threadsafe(future.set_result, (result, socket))\n.\n.\n.\n\nstatus, socket \u003d await asyncio.wait_for(l2cap_channel_creation[\u0027create_l2cap_channel\u0027], timeout\u003d5)\nif not socket:\n     await context.abort(grpc.StatusCode.INTERNAL,...\nif not optional_fd:\n     await context.abort(grpc.StatusCode.INTERNA,..\nif not dbus_unix_fd_list or dbus_unix_fd_list.get_length() \u003c 1\n     await context.abort(grpc.StatusCode.INTERNA, ...\n    .\n    .\n    .\n```",
+      "parentUuid": "523351cc_2cad4ac3",
       "range": {
         "startLine": 137,
         "startChar": 20,
