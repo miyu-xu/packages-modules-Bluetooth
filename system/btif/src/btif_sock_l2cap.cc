@@ -26,6 +26,7 @@
 #include <cstring>
 
 #include "bta/include/bta_jv_api.h"
+#include "btif/include/btif_dm.h"
 #include "btif/include/btif_metrics_logging.h"
 #include "btif/include/btif_sock.h"
 #include "btif/include/btif_sock_thread.h"
@@ -786,14 +787,19 @@ static bt_status_t btsock_l2cap_listen_or_connect(const char* name,
                                                   int channel, int* sock_fd,
                                                   int flags, char listen,
                                                   int app_uid) {
+  if (!is_inited()) return BT_STATUS_NOT_READY;
+
   bool is_le_coc = (flags & BTSOCK_FLAG_LE_COC) != 0;
+
+  if (is_le_coc && !listen) {
+    // Ensure device is in inquiry database during L2CAP CoC connection
+    btif_check_device_in_inquiry_db(*addr);
+  }
 
   if (!sock_fd) {
     log::info("Invalid socket descriptor");
     return BT_STATUS_PARM_INVALID;
   }
-
-  if (!is_inited()) return BT_STATUS_NOT_READY;
 
   // TODO: This is kind of bad to lock here, but it is needed for the current
   // design.
