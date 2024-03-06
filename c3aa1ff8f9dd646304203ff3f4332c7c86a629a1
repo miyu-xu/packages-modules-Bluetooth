@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3baa75bb_31a60726",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1276,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-03-06T08:31:58Z",
+      "side": 0,
+      "message": "To be clear, these kinds of checks are unnecessary in current telephony design. Because we no longer need to maintain call sources from CRAS and HID. We have only one call source which is coming from HID.",
+      "range": {
+        "startLine": 1276,
+        "startChar": 45,
+        "endLine": 1276,
+        "endChar": 76
+      },
+      "revId": "c3aa1ff8f9dd646304203ff3f4332c7c86a629a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
