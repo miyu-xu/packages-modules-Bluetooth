@@ -159,6 +159,24 @@
       "parentUuid": "7782e8bb_74f6d426",
       "revId": "4e056503a998a317e899ff22342087f583d0e1e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5aa11901_750b1159",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 5831,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-06T07:42:28Z",
+      "side": 1,
+      "message": "Offline agreed with Jakub T. that we should merge it and we will improve it later on",
+      "parentUuid": "e742d06a_0b5bda61",
+      "revId": "4e056503a998a317e899ff22342087f583d0e1e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
