@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e2cecf10_a0cf1b1c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-06T17:54:43Z",
+      "side": 1,
+      "message": "This function is called in many conditions. It will end up generating empty GATT service discovery event when it was not requested in the first place.\n\nMaybe a better fix would be to wait for GATT service discovery when processing `BTA_DM_DISC_RES_EVT` in `bitf_dm` only if it was scheduled. https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/btif/src/btif_dm.cc;drc\u003d8ada29f71baea25f539ac188bd38eb8bf6e7a4e4;l\u003d1864",
+      "revId": "4afe0264ea0eb43eb06d029a9f4610bd44c78515",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "148babbb_dd2e5f4e",
         "filename": "system/bta/dm/bta_dm_disc.cc",
         "patchSetId": 1
