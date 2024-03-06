@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1e76a4ff_e87baabd",
+        "filename": "floss/pandora/server/bluetooth.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-06T03:07:04Z",
+      "side": 1,
+      "message": "I\u0027d suggest:\n1. Query from known_devices\n2. If unknown, leave it empty",
+      "parentUuid": "c68b42ee_5395b335",
+      "range": {
+        "startLine": 391,
+        "startChar": 16,
+        "endLine": 391,
+        "endChar": 27
+      },
+      "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "042c2310_e4443901",
         "filename": "floss/pandora/server/rfcomm.py",
         "patchSetId": 2
