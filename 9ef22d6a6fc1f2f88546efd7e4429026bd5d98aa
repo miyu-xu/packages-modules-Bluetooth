@@ -34,6 +34,24 @@
       "parentUuid": "c7bfa718_25e5f8c4",
       "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76fbb97c_4ac6b6cd",
+        "filename": "system/stack/gap/gap_conn.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 989,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-03-06T15:55:56Z",
+      "side": 0,
+      "message": "Acknowledged",
+      "parentUuid": "c64da845_0b06c126",
+      "revId": "9ef22d6a6fc1f2f88546efd7e4429026bd5d98aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
