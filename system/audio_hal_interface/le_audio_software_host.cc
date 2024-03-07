@@ -148,10 +148,15 @@ void SinkMetadataChanged(const sink_metadata_v7_t& metadata) {
   host::le_audio::LeAudioSinkTransport::instance->SinkMetadataChanged(metadata);
 }
 
-std::vector<::bluetooth::le_audio::set_configurations::AudioSetConfiguration>
+std::array<
+    std::vector<bluetooth::le_audio::set_configurations::AudioSetConfiguration>,
+    2>
 get_offload_capabilities() {
-  return std::vector<
-      ::bluetooth::le_audio::set_configurations::AudioSetConfiguration>(0);
+  return {
+      std::vector<
+          bluetooth::le_audio::set_configurations::AudioSetConfiguration>(0),
+      std::vector<
+          bluetooth::le_audio::set_configurations::AudioSetConfiguration>(0)};
 }
 
 int GetAidlInterfaceVersion() { return 0; }
