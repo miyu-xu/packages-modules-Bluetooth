@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "18f6ad8b_c31016df",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-03-07T08:11:48Z",
+      "side": 1,
+      "message": "Thank you, I use PeriodicSyncManagerTest only to test regression but this case was not covered. I added such case.\nhandle_advertising_sync_established_after_error_test",
+      "parentUuid": "a9e66cb6_76e37285",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 5
+      },
+      "revId": "a4a0205880f779caccdbfbff199aad99353dd7d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "e36e27d3_b73e3e44",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
@@ -71,6 +95,24 @@
       "writtenOn": "2024-03-07T00:23:23Z",
       "side": 1,
       "message": "Should this fix be flagged? If not, please add exemption reason to commit message.",
+      "revId": "a4a0205880f779caccdbfbff199aad99353dd7d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58bfbdfd_b5aa05b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-03-07T08:11:48Z",
+      "side": 1,
+      "message": "As far as I know, not because this is new a feature under testing. Could anyone confirm that?",
+      "parentUuid": "374c0806_582b6a7b",
       "revId": "a4a0205880f779caccdbfbff199aad99353dd7d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
