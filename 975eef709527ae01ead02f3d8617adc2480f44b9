@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3ae2f11e_5fa521b5",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-07T17:14:04Z",
+      "side": 1,
+      "message": "include order.",
+      "range": {
+        "startLine": 34,
+        "startChar": 10,
+        "endLine": 34,
+        "endChar": 22
+      },
+      "revId": "975eef709527ae01ead02f3d8617adc2480f44b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "63945924_121c3c3b",
         "filename": "system/stack/acl/btm_acl.cc",
         "patchSetId": 3
@@ -14,6 +37,24 @@
       "writtenOn": "2024-02-29T03:13:08Z",
       "side": 1,
       "message": "Unsure what dev_class this returns when unintialized",
+      "revId": "975eef709527ae01ead02f3d8617adc2480f44b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39499758_3b94f110",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1330,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-07T17:14:04Z",
+      "side": 1,
+      "message": "It looks like it gets either the current class of device, or if it allocates a new one, it gets the class of device from the inquiry database or the currently connecting device ...\n\n```\n  p_inq_info \u003d BTM_InqDbRead(bd_addr);\n  if (p_inq_info !\u003d NULL) {\n    p_dev_rec-\u003edev_class \u003d p_inq_info-\u003eresults.dev_class; \u003c-----\n\n    p_dev_rec-\u003edevice_type \u003d p_inq_info-\u003eresults.device_type;\n    if (is_ble_addr_type_known(p_inq_info-\u003eresults.ble_addr_type))\n      p_dev_rec-\u003eble.SetAddressType(p_inq_info-\u003eresults.ble_addr_type);\n    else\n      log::warn(\n          \"Please do not update device record from anonymous le advertisement\");\n  } else if (bd_addr \u003d\u003d btm_sec_cb.connecting_bda)\n    p_dev_rec-\u003edev_class \u003d btm_sec_cb.connecting_dc;     \u003c-------\n```",
+      "parentUuid": "63945924_121c3c3b",
       "revId": "975eef709527ae01ead02f3d8617adc2480f44b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
