@@ -142,6 +142,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "21d232f4_07124ef9",
+        "filename": "system/btif/include/btif_bqr.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1296588
+      },
+      "writtenOn": "2024-03-07T04:00:05Z",
+      "side": 1,
+      "message": "Can the comment be updated to something like below?\n\n// Bitmask to indicate various coex related information",
+      "revId": "58538e4a38bbe3522ad754f48672b5011f8d2264",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c2658ba3_013f6e1a",
         "filename": "system/btif/src/btif_bqr.cc",
         "patchSetId": 7
