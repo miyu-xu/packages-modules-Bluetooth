@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0658b87c_e5bdad0b",
+        "filename": "system/gd/hci/le_scanning_manager_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-07T21:34:58Z",
+      "side": 1,
+      "message": "One thing that stands out is that every time you call GetCommand, you\u0027ll get a new command.  It should only be called once.",
+      "range": {
+        "startLine": 462,
+        "startChar": 69,
+        "endLine": 462,
+        "endChar": 82
+      },
+      "revId": "86e3417f7afe4e9396f7a1639dbe830901ced1f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7c783a0f_7b9eab55",
         "filename": "system/gd/hci/le_scanning_manager_test.cc",
         "patchSetId": 7
