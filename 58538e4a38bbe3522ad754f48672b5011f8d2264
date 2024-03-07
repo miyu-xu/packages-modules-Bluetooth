@@ -270,6 +270,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35d304f2_9296e1c5",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-07T15:47:15Z",
+      "side": 1,
+      "message": "Yes, it really added fields in the middle :(",
+      "parentUuid": "3e4144b5_e5a1ad72",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 1
+      },
+      "revId": "58538e4a38bbe3522ad754f48672b5011f8d2264",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "501d4b68_e7b9273a",
