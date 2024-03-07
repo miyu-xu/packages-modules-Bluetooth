@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cac2a565_64fc5420",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-07T14:20:19Z",
+      "side": 1,
+      "message": "Can we use size_t instead?  I like using unsigned types for array indices.\n```suggestion\n  for (size_t i \u003d 0; i \u003c BTA_GATTC_CLCB_MAX; i++) {\n```",
+      "range": {
+        "startLine": 251,
+        "startChar": 7,
+        "endLine": 251,
+        "endChar": 10
+      },
+      "revId": "dc2de2864654f06438e7851b2b588024941e66a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
