@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9e66cb6_76e37285",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-07T00:23:23Z",
+      "side": 1,
+      "message": "Specifically which test covers this? \n\nCan you also please add more info to manual test instruction? How to force sync status 62?",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 5
+      },
+      "revId": "a4a0205880f779caccdbfbff199aad99353dd7d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "e36e27d3_b73e3e44",
@@ -31,6 +54,23 @@
       "writtenOn": "2024-03-06T20:29:32Z",
       "side": 1,
       "message": "hi @hallstrom@google.com could you also help to take a look from scanning\u0027s pov? thanks.\nas I\u0027m aware of, LEA broadcast is the only client of periodic sync manager at this moment.",
+      "revId": "a4a0205880f779caccdbfbff199aad99353dd7d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "374c0806_582b6a7b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-07T00:23:23Z",
+      "side": 1,
+      "message": "Should this fix be flagged? If not, please add exemption reason to commit message.",
       "revId": "a4a0205880f779caccdbfbff199aad99353dd7d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
