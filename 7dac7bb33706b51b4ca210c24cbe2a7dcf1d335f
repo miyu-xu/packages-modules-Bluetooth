@@ -142,6 +142,30 @@
       },
       "revId": "7dac7bb33706b51b4ca210c24cbe2a7dcf1d335f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82eaa4e9_8ca3e5b7",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-03-07T00:51:55Z",
+      "side": 1,
+      "message": "@henrichataing@google.com Thanks for sinking offline on this. Added alternative logs which are more context specific and help with additional debugging.",
+      "parentUuid": "30271e88_073bcf3a",
+      "range": {
+        "startLine": 310,
+        "startChar": 0,
+        "endLine": 321,
+        "endChar": 72
+      },
+      "revId": "7dac7bb33706b51b4ca210c24cbe2a7dcf1d335f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
