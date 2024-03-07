@@ -16,6 +16,24 @@
       "message": "I would name this\n\n`bta_gatt_client_dump` just to differentiate from other potential new dumpsys functions.  The name reflects the",
       "revId": "1812fe4330f1a3b8c471e66ee7beabb7b62db353",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4ffd55e_4c0426f3",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-07T08:45:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e50d1f82_5c8c1b91",
+      "revId": "1812fe4330f1a3b8c471e66ee7beabb7b62db353",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
