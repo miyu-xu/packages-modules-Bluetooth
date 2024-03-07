@@ -99,6 +99,18 @@ pub mod ffi {
         pub pattern: Vec<u8>,
     }
 
+    #[derive(Debug, Clone)]
+    pub struct RustMsftAdvMonitorAddress {
+        pub addr_type: u8,
+        pub bd_addr: RawAddress,
+    }
+
+    #[derive(Debug, Clone)]
+    pub struct RustMsftAdvMonitorUuid {
+        pub uuid_type: u8,
+        pub uuid: Vec<u8>,
+    }
+
     // Defined in C++ and needs a translation in shim.
     #[derive(Debug, Clone)]
     pub struct RustMsftAdvMonitor {
@@ -106,7 +118,11 @@ pub mod ffi {
         pub rssi_low_threshold: u8,
         pub rssi_low_timeout: u8,
         pub rssi_sampling_period: u8,
+        pub condition_type: u8,
         pub patterns: Vec<RustMsftAdvMonitorPattern>,
+        pub uuid: RustMsftAdvMonitorUuid,
+        pub irk: Vec<u8>,
+        pub addr_info: RustMsftAdvMonitorAddress,
     }
 
     #[derive(Debug, Clone)]
@@ -429,6 +445,9 @@ pub type GattFilterParam = ffi::RustGattFilterParam;
 pub type ApcfCommand = ffi::RustApcfCommand;
 pub type MsftAdvMonitor = ffi::RustMsftAdvMonitor;
 pub type MsftAdvMonitorPattern = ffi::RustMsftAdvMonitorPattern;
+pub type MsftAdvMonitorAddress = ffi::RustMsftAdvMonitorAddress;
+pub type MsftAdvMonitorUuid = ffi::RustMsftAdvMonitorUuid;
+
 pub type AdvertiseParameters = ffi::RustAdvertiseParameters;
 pub type PeriodicAdvertisingParameters = ffi::RustPeriodicAdvertisingParameters;
 

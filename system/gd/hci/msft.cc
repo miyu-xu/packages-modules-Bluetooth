@@ -142,6 +142,97 @@ struct MsftExtensionManager::impl {
       LOG_WARN("Disallowed as MSFT extension is not supported.");
       return;
     }
+    LOG_INFO(
+        "%s:%d, opcode=0x%x, monitor.condition_type=%d",
+        __func__,
+        __LINE__,
+        msft_.opcode.value(),
+        monitor.condition_type);
+
+    if (monitor.condition_type == MSFT_CONDITION_TYPE_ALL) {
+      return;
+    }
+    if (monitor.condition_type == MSFT_CONDITION_TYPE_ADDRESS) {
+      msft_adv_monitor_add_cb_ = cb;
+      Address addr;
+      Address::FromString(monitor.addr_info.bd_addr.ToString(), addr);
+      hci_layer_->EnqueueCommand(
+          MsftLeMonitorAdvConditionAddressBuilder::Create(
+              static_cast<OpCode>(msft_.opcode.value()),
+              monitor.rssi_threshold_high,
+              monitor.rssi_threshold_low,
+              monitor.rssi_threshold_low_time_interval,
+              monitor.rssi_sampling_period,
+              monitor.addr_info.addr_type,
+              addr),
+          module_handler_->BindOnceOn(this, &impl::on_msft_adv_monitor_add_complete));
+      return;
+    } else if (monitor.condition_type == MSFT_CONDITION_TYPE_UUID) {
+      msft_adv_monitor_add_cb_ = cb;
+      switch (monitor.uuid.uuid_type) {
+        // refer to
+        // https://learn.microsoft.com/en-us/windows-hardware/drivers/bluetooth/microsoft-defined-bluetooth-hci-commands-and-events#hci_vs_msft_le_monitor_device_event
+        // if uuid type is 0x01, means 2 octets in the data field, if uuid type is 0x02, means 4
+        // octets, type is 0x03, 16 octets
+        case MSFT_CONDITION_UUID_TYPE_16_BIT:
+          if (monitor.uuid.uuid_data.size() != 2) {
+            LOG_ERROR(
+                "%s:%d, uuid type is 16 bits, but data size didn't match", __func__, __LINE__);
+            return;
+          }
+          std::array<uint8_t, 2> arr2;
+          std::copy(monitor.uuid.uuid_data.begin(), monitor.uuid.uuid_data.end(), arr2.begin());
+          hci_layer_->EnqueueCommand(
+              MsftLeMonitorAdvConditionUuid2Builder::Create(
+                  static_cast<OpCode>(msft_.opcode.value()),
+                  monitor.rssi_threshold_high,
+                  monitor.rssi_threshold_low,
+                  monitor.rssi_threshold_low_time_interval,
+                  monitor.rssi_sampling_period,
+                  arr2),
+              module_handler_->BindOnceOn(this, &impl::on_msft_adv_monitor_add_complete));
+          break;
+        case MSFT_CONDITION_UUID_TYPE_32_BIT:
+          if (monitor.uuid.uuid_data.size() != 4) {
+            LOG_ERROR(
+                "%s:%d, uuid type is 32 bits, but data size didn't match", __func__, __LINE__);
+            return;
+          }
+          std::array<uint8_t, 4> arr4;
+          std::copy(monitor.uuid.uuid_data.begin(), monitor.uuid.uuid_data.end(), arr4.begin());
+          hci_layer_->EnqueueCommand(
+              MsftLeMonitorAdvConditionUuid4Builder::Create(
+                  static_cast<OpCode>(msft_.opcode.value()),
+                  monitor.rssi_threshold_high,
+                  monitor.rssi_threshold_low,
+                  monitor.rssi_threshold_low_time_interval,
+                  monitor.rssi_sampling_period,
+                  arr4),
+              module_handler_->BindOnceOn(this, &impl::on_msft_adv_monitor_add_complete));
+          break;
+        case MSFT_CONDITION_UUID_TYPE_128_BIT:
+          if (monitor.uuid.uuid_data.size() != 16) {
+            LOG_ERROR(
+                "%s:%d, uuid type is 128 bits, but data size didn't match", __func__, __LINE__);
+            return;
+          }
+          std::array<uint8_t, 16> arr16;
+          std::copy(monitor.uuid.uuid_data.begin(), monitor.uuid.uuid_data.end(), arr16.begin());
+          hci_layer_->EnqueueCommand(
+              MsftLeMonitorAdvConditionUuid16Builder::Create(
+                  static_cast<OpCode>(msft_.opcode.value()),
+                  monitor.rssi_threshold_high,
+                  monitor.rssi_threshold_low,
+                  monitor.rssi_threshold_low_time_interval,
+                  monitor.rssi_sampling_period,
+                  arr16),
+              module_handler_->BindOnceOn(this, &impl::on_msft_adv_monitor_add_complete));
+          break;
+      }
+      return;
+    } else if (monitor.condition_type == MSFT_CONDITION_TYPE_IRK_RESOLUTION) {
+      // reserved for furture use
+    }
 
     std::vector<MsftLeMonitorAdvConditionPattern> patterns;
     MsftLeMonitorAdvConditionPattern pattern;
