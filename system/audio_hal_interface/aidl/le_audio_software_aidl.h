@@ -63,7 +63,7 @@ bool hal_ucast_capability_to_stack_format(
 AudioConfiguration offload_config_to_hal_audio_config(
     const ::bluetooth::le_audio::offload_config& offload_config);
 
-std::vector<AudioSetConfiguration> get_offload_capabilities();
+std::array<std::vector<AudioSetConfiguration>, 2> get_offload_capabilities();
 
 class LeAudioTransport {
  public:
