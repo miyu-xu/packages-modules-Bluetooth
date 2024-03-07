@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0cfc42ef_a4949cac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-07T08:39:26Z",
+      "side": 1,
+      "message": "I rely on the log which somehow defines the path. Are you saying that this log is not reliable?\n\n\nplease note that flag `always_send_services_if_gatt_disc_done` is already enabled by default which means, empty uuids goes up in all cases, but not this one.\n\nHowever, I agree that processing empty uuids in btif_dm should be done only in the bonding context, so I did small improvement of my patch.",
+      "parentUuid": "e2cecf10_a0cf1b1c",
+      "revId": "4afe0264ea0eb43eb06d029a9f4610bd44c78515",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "148babbb_dd2e5f4e",
         "filename": "system/bta/dm/bta_dm_disc.cc",
         "patchSetId": 1
