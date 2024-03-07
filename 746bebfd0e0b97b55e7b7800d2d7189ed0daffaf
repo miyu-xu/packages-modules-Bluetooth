@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28dd8889_a30b9a15",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2712,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-07T21:42:00Z",
+      "side": 1,
+      "message": "Take a Callable in argument and create the FutureTask inside this function (+ nit: rename postBlocking)",
+      "revId": "746bebfd0e0b97b55e7b7800d2d7189ed0daffaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
