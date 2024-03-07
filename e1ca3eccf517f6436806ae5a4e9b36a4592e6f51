@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8e6e7434_1ecd1f70",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-07T17:47:38Z",
+      "side": 1,
+      "message": "I know, I will use AdapterService instead.",
+      "parentUuid": "e17b1e7b_6c26094f",
+      "revId": "e1ca3eccf517f6436806ae5a4e9b36a4592e6f51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ba1c158_826470c8",
         "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
         "patchSetId": 1
