@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "47b3d98b_22f533cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-07T16:44:24Z",
+      "side": 1,
+      "message": "Maybe I misunderstood the intention here.\n\nThe problem we saw in b/327757265 is that we mistook a non-LE audio device to be an LE audio device. While handling SDP results (`BTA_DM_DISC_RES_EVT`) we decided to wait for the GATT service discovery to complete which was never requested.\n\nThis cl will generate GATT service discovery results even if it was not requested. In b/327757265, BR/EDR pairing was performed without CTKD. So GATT service discovery was never requested.\n\nI felt that it may be better to not wait for GATT service discovery if it was never requested.\n```\n      if (a2dp_sink_capable \u0026\u0026\n          pairing_cb.gatt_over_le \u003d\u003d\n              btif_dm_pairing_cb_t::ServiceDiscoveryState::SCHEDULED \u0026\u0026\n          is_le_audio_capable_during_service_discovery(bd_addr)) {\n        skip_reporting_wait_for_le \u003d true;\n      }\n```",
+      "parentUuid": "0cfc42ef_a4949cac",
+      "revId": "4afe0264ea0eb43eb06d029a9f4610bd44c78515",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "148babbb_dd2e5f4e",
         "filename": "system/bta/dm/bta_dm_disc.cc",
         "patchSetId": 1
