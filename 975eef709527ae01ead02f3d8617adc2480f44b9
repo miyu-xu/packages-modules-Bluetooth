@@ -26,6 +26,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d7c099d0_c6b8f436",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1328,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-07T19:44:25Z",
+      "side": 1,
+      "message": "This should also not use uint32_t but a real DEV_CLASS and later compare the bits using standard CoD function/methods",
+      "revId": "975eef709527ae01ead02f3d8617adc2480f44b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "63945924_121c3c3b",
         "filename": "system/stack/acl/btm_acl.cc",
         "patchSetId": 3
