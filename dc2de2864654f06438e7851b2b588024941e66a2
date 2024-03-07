@@ -22,6 +22,30 @@
       },
       "revId": "dc2de2864654f06438e7851b2b588024941e66a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5d7c67c_655f85bd",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-07T15:45:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cac2a565_64fc5420",
+      "range": {
+        "startLine": 251,
+        "startChar": 7,
+        "endLine": 251,
+        "endChar": 10
+      },
+      "revId": "dc2de2864654f06438e7851b2b588024941e66a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
