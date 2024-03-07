@@ -49,6 +49,7 @@ import com.android.bluetooth.pan.PanService;
 import com.android.bluetooth.vc.VolumeControlService;
 import com.android.internal.annotations.VisibleForTesting;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -582,17 +583,32 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
             return;
         }
 
-        if (!isLeAudioOnlyGroup(device)) {
-            /* Log no needed as above function will log on error. */
-            return;
-        }
+        List<BluetoothDevice> groupDevices = new ArrayList<>();
+        boolean isAnyOtherGroupMemberAlreadyAllowed = false;
 
         CsipSetCoordinatorService csipSetCoordinatorService =
                 mFactory.getCsipSetCoordinatorService();
-        /* Since isLeAudioOnlyGroup return true it means csipSetCoordinatorService is valid */
-        List<BluetoothDevice> groupDevices =
-                csipSetCoordinatorService.getGroupDevicesOrdered(
-                        csipSetCoordinatorService.getGroupId(device, BluetoothUuid.CAP));
+        if (csipSetCoordinatorService != null) {
+            /* Since isLeAudioOnlyGroup return true it means csipSetCoordinatorService is valid */
+            groupDevices =
+                    csipSetCoordinatorService.getGroupDevicesOrdered(
+                            csipSetCoordinatorService.getGroupId(device, BluetoothUuid.CAP));
+
+            if (Flags.leaudioQuickLeaudioToggleSwitchFix()) {
+                for (BluetoothDevice dev : groupDevices) {
+                    if (leAudioService.getConnectionPolicy(dev)
+                            == BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
+                        isAnyOtherGroupMemberAlreadyAllowed = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (!isAnyOtherGroupMemberAlreadyAllowed && !isLeAudioOnlyGroup(device)) {
+            /* Log no needed as above function will log on error. */
+            return;
+        }
 
         debugLog("handleLeAudioOnlyDeviceAfterCsipConnect: enabling LeAudioOnlyDevice");
         for (BluetoothDevice dev : groupDevices) {
@@ -612,9 +628,15 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     private void processProfileStateChanged(BluetoothDevice device, int profileId, int nextState,
             int prevState) {
-        debugLog("processProfileStateChanged, device=" + device + ", profile="
-                + BluetoothProfile.getProfileName(profileId) + ", " + prevState + " -> "
-                + nextState);
+        debugLog(
+                "processProfileStateChanged, device="
+                        + device
+                        + ", profile="
+                        + BluetoothProfile.getProfileName(profileId)
+                        + ", "
+                        + prevState
+                        + " -> "
+                        + nextState);
         if (((profileId == BluetoothProfile.A2DP)
                 || (profileId == BluetoothProfile.HEADSET)
                 || (profileId == BluetoothProfile.LE_AUDIO)
