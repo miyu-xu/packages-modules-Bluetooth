@@ -16,6 +16,24 @@
       "message": "We should not disable selinux on the device",
       "revId": "3fa7a1a1ffa5a5e133ce26521dcee4a37e902afd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4a568c7_35dac45e",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-03-07T07:57:17Z",
+      "side": 1,
+      "message": "Hi David, What is the formal way to handle this for a test app? \nIs giving this app the selinux permission a right direction here?",
+      "parentUuid": "45f57b9f_bbea8e46",
+      "revId": "3fa7a1a1ffa5a5e133ce26521dcee4a37e902afd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
