@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35d427ae_c4183c8f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-03-07T03:29:57Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we directly implement the method to retrieve the rdi and provide it in the RFCOMM metrics?",
+      "revId": "fe7b2b2aaca06d0d168f59ecf38923ec1b4a5ffa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
