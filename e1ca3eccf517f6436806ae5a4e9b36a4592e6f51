@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e17b1e7b_6c26094f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-07T15:51:07Z",
+      "side": 1,
+      "message": "I tried but there is a problem with mocks on BluetoothDevice operations like getType \n\nI have test ready it does not work due to this.",
+      "parentUuid": "96b9984a_0f625c99",
+      "revId": "e1ca3eccf517f6436806ae5a4e9b36a4592e6f51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ba1c158_826470c8",
         "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
         "patchSetId": 1
@@ -31,6 +49,30 @@
       "writtenOn": "2024-03-07T00:23:20Z",
       "side": 1,
       "message": "I guess not connect LE Audio if not CONNECTION_POLICY_ALLOWED, so `!\u003d`?",
+      "range": {
+        "startLine": 579,
+        "startChar": 24,
+        "endLine": 579,
+        "endChar": 26
+      },
+      "revId": "e1ca3eccf517f6436806ae5a4e9b36a4592e6f51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b011da53_40ef25a3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-07T15:51:07Z",
+      "side": 1,
+      "message": "no, it is actually correct. If policy is already set to ALLOWED for the device, there is nothing to do here. \n\nWe are interested to move on when device is not ALLOWED and we want to check if it should be.",
+      "parentUuid": "9ba1c158_826470c8",
       "range": {
         "startLine": 579,
         "startChar": 24,
