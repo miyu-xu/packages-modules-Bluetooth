@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4da43f48_10685a92",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-07T22:45:00Z",
+      "side": 1,
+      "message": "I just change the code so it is now prepared for unit test. WIll add it next week.\n\nI can do it in followup CL if you agree.",
+      "parentUuid": "8e6e7434_1ecd1f70",
+      "revId": "e1ca3eccf517f6436806ae5a4e9b36a4592e6f51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c40f0b2_d29ce4c7",
