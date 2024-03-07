@@ -16,6 +16,24 @@
       "message": "Shouldn\u0027t we directly implement the method to retrieve the rdi and provide it in the RFCOMM metrics?",
       "revId": "fe7b2b2aaca06d0d168f59ecf38923ec1b4a5ffa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fb57976_1c1031dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-03-07T17:35:31Z",
+      "side": 1,
+      "message": "Here the objective is to prevent compilation errors when logging the RFCOMM atom. Logging the rdi would require further steps and would be handled in later CL\u0027s.",
+      "parentUuid": "35d427ae_c4183c8f",
+      "revId": "fe7b2b2aaca06d0d168f59ecf38923ec1b4a5ffa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
