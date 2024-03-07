@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "faaeb683_7f800d12",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-07T22:03:14Z",
+      "side": 1,
+      "message": "We should not focus here if the device was correctly or not correctly considered as LeAudio device.\n\nWe can assume for a moment that it was correctly categorized as LeAudio BUT BLE was not created and we end up with device discovery with no result.\n\nIn this moment, we have SDP results and we should not hesitate to send it up. This patch fixes that.",
+      "parentUuid": "47b3d98b_22f533cc",
+      "revId": "4afe0264ea0eb43eb06d029a9f4610bd44c78515",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "148babbb_dd2e5f4e",
         "filename": "system/bta/dm/bta_dm_disc.cc",
         "patchSetId": 1
