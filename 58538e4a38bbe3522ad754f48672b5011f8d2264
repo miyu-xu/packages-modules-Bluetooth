@@ -157,6 +157,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45f64a7f_1db4a3bf",
+        "filename": "system/btif/include/btif_bqr.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-03-07T08:49:34Z",
+      "side": 1,
+      "message": "Modified it, thank you for your suggestion",
+      "parentUuid": "21d232f4_07124ef9",
+      "revId": "58538e4a38bbe3522ad754f48672b5011f8d2264",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2658ba3_013f6e1a",
