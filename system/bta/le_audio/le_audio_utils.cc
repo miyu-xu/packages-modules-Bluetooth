@@ -418,5 +418,18 @@ bool IsCodecUsingLtvFormat(const types::LeAudioCodecId& codec_id) {
   }
   return false;
 }
+
+types::LeAudioConfigurationStrategy GetStrategyFromAseConfig(
+    const std::vector<le_audio::set_configurations::AseConfiguration>& cfgs) {
+  if (cfgs.size() == 1) {
+    if ((cfgs.at(0).codec.GetChannelCountPerIsoStream() == 2)) {
+      return types::LeAudioConfigurationStrategy::STEREO_ONE_CIS_PER_DEVICE;
+    } else {
+      return types::LeAudioConfigurationStrategy::MONO_ONE_CIS_PER_DEVICE;
+    }
+  } else {
+    return types::LeAudioConfigurationStrategy::STEREO_TWO_CISES_PER_DEVICE;
+  }
+}
 }  // namespace utils
 }  // namespace bluetooth::le_audio

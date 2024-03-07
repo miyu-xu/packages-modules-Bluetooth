@@ -84,10 +84,13 @@ class CodecManager {
                      types::LeAudioContextType context_type,
                      const set_configurations::AudioSetConfigurations* confs)>
                      non_vendor_config_matcher);
-
   virtual bool CheckCodecConfigIsBiDirSwb(
       const ::bluetooth::le_audio::set_configurations::AudioSetConfiguration&
           config) const;
+  virtual bool CheckCodecConfigIsDualBiDirSwb(
+      const bluetooth::le_audio::set_configurations::AudioSetConfiguration&
+          config,
+      uint8_t device_cnt) const;
   virtual std::unique_ptr<broadcaster::BroadcastConfiguration>
   GetBroadcastConfig(
       const std::vector<
