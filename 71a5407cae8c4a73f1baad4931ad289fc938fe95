@@ -22,6 +22,30 @@
       },
       "revId": "71a5407cae8c4a73f1baad4931ad289fc938fe95",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df160767_0e98c17c",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 822,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-03-07T15:40:11Z",
+      "side": 1,
+      "message": "Yep, It seems that `if (phy_bitmask \u0026 preferred_phy)` would suffice.",
+      "parentUuid": "6ccff8f6_c2b004b6",
+      "range": {
+        "startLine": 822,
+        "startChar": 6,
+        "endLine": 822,
+        "endChar": 23
+      },
+      "revId": "71a5407cae8c4a73f1baad4931ad289fc938fe95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
