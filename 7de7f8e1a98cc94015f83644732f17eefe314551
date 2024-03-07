@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49f09947_8b350742",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapContentObserver.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-07T00:19:21Z",
+      "side": 1,
+      "message": "Can you please consider more descriptive object name? i.e. something that specifies that this is the duration after which messages are ignored",
+      "range": {
+        "startLine": 98,
+        "startChar": 45,
+        "endLine": 98,
+        "endChar": 65
+      },
+      "revId": "7de7f8e1a98cc94015f83644732f17eefe314551",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
