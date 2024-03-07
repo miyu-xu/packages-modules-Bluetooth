@@ -22,6 +22,30 @@
       },
       "revId": "2a87b4f9a5f3ac15db3284901b7618988f972b95",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be2ec384_bcc567a2",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-03-07T16:14:19Z",
+      "side": 1,
+      "message": "Thank you for pointing out, this condition I remove when handling the merge conflict at patch 7",
+      "parentUuid": "7f552d2e_e19fe3f2",
+      "range": {
+        "startLine": 481,
+        "startChar": 45,
+        "endLine": 481,
+        "endChar": 64
+      },
+      "revId": "2a87b4f9a5f3ac15db3284901b7618988f972b95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

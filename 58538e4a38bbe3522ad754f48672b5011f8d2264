@@ -294,6 +294,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "43e73445_e03b1af5",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 2060472
+      },
+      "writtenOn": "2024-03-07T16:14:19Z",
+      "side": 1,
+      "message": "Yes, the BQRv5 add fields (BdAddr \u0026 Cal_Failed_Item_Count) in the middle of the event. that is the reason the parse will separate into three parts.",
+      "parentUuid": "3e4144b5_e5a1ad72",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 1
+      },
+      "revId": "58538e4a38bbe3522ad754f48672b5011f8d2264",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "501d4b68_e7b9273a",
