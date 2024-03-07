@@ -945,6 +945,30 @@
       },
       "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "519e88b3_2b499ff1",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-03-07T03:02:25Z",
+      "side": 1,
+      "message": "Maybe it just because android has no such test case has multiple steam for a connection. L2CAP/COS/ECFC/BV-03-C is skipped according to https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/pandora/server/configs/pts_bot_tests_config.json?q\u003dL2CAP%2FCOS%2FECFC%2FBV-03-C",
+      "parentUuid": "27062f0e_ffa80589",
+      "range": {
+        "startLine": 210,
+        "startChar": 16,
+        "endLine": 210,
+        "endChar": 56
+      },
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
