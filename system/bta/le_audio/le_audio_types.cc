@@ -43,28 +43,6 @@ using types::kLeAudioDirectionSink;
 using types::kLeAudioDirectionSource;
 using types::LeAudioCoreCodecConfig;
 
-static uint8_t min_req_devices_cnt(
-    const AudioSetConfiguration* audio_set_conf) {
-  ASSERT_LOG(
-      audio_set_conf->topology_info.has_value(),
-      "No topology info, which is required to properly configure the ASEs");
-  return std::max(audio_set_conf->topology_info->device_count.sink,
-                  audio_set_conf->topology_info->device_count.source);
-}
-
-static uint8_t min_req_devices_cnt(
-    const AudioSetConfigurations* audio_set_confs) {
-  uint8_t curr_min_req_devices_cnt = 0xff;
-
-  for (auto ent : *audio_set_confs) {
-    uint8_t req_devices_cnt = min_req_devices_cnt(ent);
-    if (req_devices_cnt < curr_min_req_devices_cnt)
-      curr_min_req_devices_cnt = req_devices_cnt;
-  }
-
-  return curr_min_req_devices_cnt;
-}
-
 void get_cis_count(LeAudioContextType context_type, int expected_device_cnt,
                    types::LeAudioConfigurationStrategy strategy,
                    int avail_group_ase_snk_cnt, int avail_group_ase_src_count,
@@ -135,33 +113,9 @@ void get_cis_count(LeAudioContextType context_type, int expected_device_cnt,
       out_cis_count_unidir_source);
 }
 
-bool check_if_may_cover_scenario(const AudioSetConfigurations* audio_set_confs,
-                                 uint8_t group_size) {
-  if (!audio_set_confs) {
-    LOG(ERROR) << __func__ << ", no audio requirements for group";
-    return false;
-  }
-
-  return group_size >= min_req_devices_cnt(audio_set_confs);
-}
-
-bool check_if_may_cover_scenario(const AudioSetConfiguration* audio_set_conf,
-                                 uint8_t group_size) {
-  if (!audio_set_conf) {
-    LOG(ERROR) << __func__ << ", no audio requirement for group";
-    return false;
-  }
-
-  return group_size >= min_req_devices_cnt(audio_set_conf);
-}
-
-uint8_t get_num_of_devices_in_configuration(
-    const AudioSetConfiguration* audio_set_conf) {
-  return min_req_devices_cnt(audio_set_conf);
-}
-
 static bool IsCodecConfigCoreSupported(const types::LeAudioLtvMap& pacs,
-                                       const types::LeAudioLtvMap& reqs) {
+                                       const types::LeAudioLtvMap& reqs,
+                                       uint8_t channel_cnt_per_ase) {
   auto caps = pacs.GetAsCoreCodecCapabilities();
   auto config = reqs.GetAsCoreCodecConfig();
 
@@ -181,10 +135,8 @@ static bool IsCodecConfigCoreSupported(const types::LeAudioLtvMap& pacs,
   }
 
   /* Channel counts */
-  if (!caps.IsAudioChannelCountsSupported(
-          config.GetChannelCountPerIsoStream())) {
-    LOG_DEBUG("Cfg: Allocated channel count= 0x%04x",
-              config.GetChannelCountPerIsoStream());
+  if (!caps.IsAudioChannelCountsSupported(channel_cnt_per_ase)) {
+    LOG_DEBUG("Cfg: Allocated channel count= 0x%04x", channel_cnt_per_ase);
     LOG_DEBUG("Cap: Supported channel counts= 0x%04x",
               caps.supported_audio_channel_counts.value_or(1));
     LOG_DEBUG("Channel count not supported");
@@ -236,8 +188,9 @@ bool IsCodecConfigSettingSupported(
   if (utils::IsCodecUsingLtvFormat(codec_id)) {
     ASSERT_LOG(!pac.codec_spec_caps.IsEmpty(),
                "Codec specific capabilities are not parsed approprietly.");
-    return IsCodecConfigCoreSupported(pac.codec_spec_caps,
-                                      codec_config_setting.params);
+    return IsCodecConfigCoreSupported(
+        pac.codec_spec_caps, codec_config_setting.params,
+        codec_config_setting.GetChannelCountPerIsoStream());
   }
 
   LOG_ERROR("Codec %s, seems to be not supported here.",

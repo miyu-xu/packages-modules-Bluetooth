@@ -61,6 +61,12 @@ class MockCodecManager {
       (const bluetooth::le_audio::set_configurations::AudioSetConfiguration&),
       (const));
   MOCK_METHOD(
+      (bool), CheckCodecConfigIsDualBiDirSwb,
+      (const bluetooth::le_audio::set_configurations::AudioSetConfiguration&
+           config,
+       uint8_t device_cnt),
+      (const));
+  MOCK_METHOD(
       (std::unique_ptr<
           bluetooth::le_audio::broadcaster::BroadcastConfiguration>),
       GetBroadcastConfig,

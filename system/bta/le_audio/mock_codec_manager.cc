@@ -17,6 +17,7 @@
 #include "mock_codec_manager.h"
 
 #include "broadcaster/broadcast_configuration_provider.h"
+#include "le_audio/codec_manager.h"
 
 MockCodecManager* mock_codec_manager_pimpl_;
 MockCodecManager* MockCodecManager::GetInstance() {
@@ -87,6 +88,14 @@ bool CodecManager::CheckCodecConfigIsBiDirSwb(
         config) const {
   if (!pimpl_) return false;
   return pimpl_->CheckCodecConfigIsBiDirSwb(config);
+}
+
+bool CodecManager::CheckCodecConfigIsDualBiDirSwb(
+    const bluetooth::le_audio::set_configurations::AudioSetConfiguration&
+        config,
+    uint8_t device_cnt) const {
+  if (!pimpl_) return false;
+  return pimpl_->CheckCodecConfigIsDualBiDirSwb(config, device_cnt);
 }
 
 std::vector<bluetooth::le_audio::btle_audio_codec_config_t>
