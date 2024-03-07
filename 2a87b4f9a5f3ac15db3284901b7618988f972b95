@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f552d2e_e19fe3f2",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-07T15:37:26Z",
+      "side": 1,
+      "message": "Isn\u0027t this always 0?  I expected to see something like:\n```\nif (vendor_cap_supported_version \u003e\u003d kBqrVersion6_0) {\n  STREAM_TO_UINT32(bqr_report_interval, p_event_param_buf);\n}\n```",
+      "range": {
+        "startLine": 481,
+        "startChar": 45,
+        "endLine": 481,
+        "endChar": 64
+      },
+      "revId": "2a87b4f9a5f3ac15db3284901b7618988f972b95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
