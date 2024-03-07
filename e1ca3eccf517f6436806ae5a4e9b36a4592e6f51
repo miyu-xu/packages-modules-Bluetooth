@@ -79,6 +79,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e88f7bf2_01e50635",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-07T22:09:59Z",
+      "side": 1,
+      "message": "THis is handled of CSIP service which is connecting always.\n\nWhen service is connected we have full picture of the group.\n\nNote that this handled is mostly used only during bonding.\n\nAfter devcie is bonded, all the logic happens in the processInitProfilePriorities",
+      "parentUuid": "2c40f0b2_d29ce4c7",
+      "range": {
+        "startLine": 573,
+        "startChar": 4,
+        "endLine": 573,
+        "endChar": 74
+      },
+      "revId": "e1ca3eccf517f6436806ae5a4e9b36a4592e6f51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ba1c158_826470c8",
         "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
         "patchSetId": 1
