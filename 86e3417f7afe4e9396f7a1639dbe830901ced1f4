@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c7a17783_6ed1d0d0",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1713,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-07T18:45:22Z",
+      "side": 1,
+      "message": "Are we planning on defaulting to 1?  Can we use a constant that\u0027s defined in PDL?",
+      "range": {
+        "startLine": 1713,
+        "startChar": 2,
+        "endLine": 1713,
+        "endChar": 18
+      },
+      "revId": "86e3417f7afe4e9396f7a1639dbe830901ced1f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7c783a0f_7b9eab55",
         "filename": "system/gd/hci/le_scanning_manager_test.cc",
         "patchSetId": 7
