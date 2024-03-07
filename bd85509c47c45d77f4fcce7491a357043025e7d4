@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e17fa4a6_82f6365f",
+        "filename": "system/bta/dm/bta_dm_main.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 3211944
+      },
+      "writtenOn": "2024-03-07T03:03:51Z",
+      "side": 0,
+      "message": "This was added in https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2680155, but missed in bta_dm_disc.cc after this change. Is this intentional? Can we add this back?",
+      "range": {
+        "startLine": 217,
+        "startChar": 13,
+        "endLine": 218,
+        "endChar": 70
+      },
+      "revId": "bd85509c47c45d77f4fcce7491a357043025e7d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
