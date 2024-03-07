@@ -412,6 +412,30 @@
       },
       "revId": "84c68c3a8f50dd523012b5acbe7bfb4fb43cb818",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df56a5f5_174b4696",
+        "filename": "system/main/shim/le_scanning_manager.h",
+        "patchSetId": 27
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-07T00:27:36Z",
+      "side": 1,
+      "message": "Please check my previous comment, I pointed to where there is an example of getting random address from identity address.",
+      "parentUuid": "c60d346b_e5e8c07f",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 60
+      },
+      "revId": "84c68c3a8f50dd523012b5acbe7bfb4fb43cb818",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
