@@ -49,6 +49,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeoutException;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
 
 /**
@@ -68,7 +69,10 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
     private CloseGuard mCloseGuard;
 
     @GuardedBy("mCallbackExecutorMap")
-    private final Map<Callback, Executor> mCallbackExecutorMap = new HashMap<>();
+    private final Map<MyAwesomeCallback2, Executor> mCallbackExecutorMap = new HashMap<>();
+
+    private final Map<Callback, MyAwesomeCallback2> mCallbackToAwesomeCallback =
+            new ConcurrentHashMap<>();
 
     /**
      * This class provides a callback that is invoked when volume offset value changes on the remote
@@ -80,6 +84,7 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
      *
      * @hide
      */
+    @Deprecated
     @SystemApi
     public interface Callback {
         /**
@@ -92,10 +97,39 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
          * @deprecated Use new callback which give information about a VOCS instance ID
          * @hide
          */
-        @Deprecated
         @SystemApi
+        @Deprecated
         void onVolumeOffsetChanged(
                 @NonNull BluetoothDevice device, @IntRange(from = -255, to = 255) int volumeOffset);
+    }
+    /**
+     * This class provides a callback that is invoked when volume offset value changes on the remote
+     * device.
+     *
+     * <p>In order to balance volume on the group of Le Audio devices, Volume Offset Control Service
+     * (VOCS) shall be used. User can verify if the remote device supports VOCS by calling {@link
+     * #isVolumeOffsetAvailable(device)}.
+     *
+     * @hide
+     */
+    @SystemApi
+    @FlaggedApi(Flags.FLAG_LEAUDIO_MULTIPLE_VOCS_INSTANCES_API)
+    public interface MyAwesomeCallback2 extends Callback { // TODO put a better name Ah ah ah ah
+        /**
+         * Callback invoked when callback is registered and when volume offset changes on the remote
+         * device. Change can be triggered autonomously by the remote device or after volume offset
+         * change on the user request done by calling {@link #setVolumeOffset(device, volumeOffset)}
+         *
+         * @param device remote device whose volume offset changed
+         * @param volumeOffset latest volume offset for this device
+         * @deprecated Use new callback which give information about a VOCS instance ID
+         * @hide
+         */
+        @Override
+        @Deprecated
+        default void onVolumeOffsetChanged(
+                @NonNull BluetoothDevice device,
+                @IntRange(from = -255, to = 255) int volumeOffset) {}
 
         /**
          * Callback invoked when callback is registered and when volume offset changes on the remote
@@ -108,12 +142,11 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
          * @param volumeOffset latest volume offset for this VOCS instance
          * @hide
          */
-        @FlaggedApi(Flags.FLAG_LEAUDIO_MULTIPLE_VOCS_INSTANCES_API)
         @SystemApi
-        default void onVolumeOffsetChanged(
+        void onVolumeOffsetChanged(
                 @NonNull BluetoothDevice device,
                 @IntRange(from = 1, to = 255) int instanceId,
-                @IntRange(from = -255, to = 255) int volumeOffset) {}
+                @IntRange(from = -255, to = 255) int volumeOffset);
 
         /**
          * Callback invoked when callback is registered and when audio location changes on the
@@ -124,7 +157,6 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
          * @param audioLocation latest audio location for this VOCS instance
          * @hide
          */
-        @FlaggedApi(Flags.FLAG_LEAUDIO_MULTIPLE_VOCS_INSTANCES_API)
         @SystemApi
         default void onVolumeOffsetAudioLocationChanged(
                 @NonNull BluetoothDevice device,
@@ -140,7 +172,6 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
          * @param audioDescription latest audio description for this VOCS instance
          * @hide
          */
-        @FlaggedApi(Flags.FLAG_LEAUDIO_MULTIPLE_VOCS_INSTANCES_API)
         @SystemApi
         default void onVolumeOffsetAudioDescriptionChanged(
                 @NonNull BluetoothDevice device,
@@ -157,7 +188,6 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
          * @param volume level
          * @hide
          */
-        @FlaggedApi(Flags.FLAG_LEAUDIO_BROADCAST_VOLUME_CONTROL_FOR_CONNECTED_DEVICES)
         @SystemApi
         default void onDeviceVolumeChanged(
                 @NonNull BluetoothDevice device, @IntRange(from = 0, to = 255) int volume) {}
@@ -168,13 +198,13 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
             new VolumeControlNotifyCallback(mCallbackExecutorMap);
 
     private class VolumeControlNotifyCallback extends IBluetoothVolumeControlCallback.Stub {
-        private final Map<Callback, Executor> mCallbackMap;
+        private final Map<MyAwesomeCallback2, Executor> mCallbackMap;
 
-        VolumeControlNotifyCallback(Map<Callback, Executor> callbackMap) {
+        VolumeControlNotifyCallback(Map<MyAwesomeCallback2, Executor> callbackMap) {
             mCallbackMap = callbackMap;
         }
 
-        private void forEach(Consumer<BluetoothVolumeControl.Callback> consumer) {
+        private void forEach(Consumer<MyAwesomeCallback2> consumer) {
             synchronized (mCallbackMap) {
                 mCallbackMap.forEach(
                         (callback, executor) -> executor.execute(() -> consumer.accept(callback)));
@@ -435,6 +465,7 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
      * @hide
      */
     @SystemApi
+    @Deprecated
     @RequiresBluetoothConnectPermission
     @RequiresPermission(
             allOf = {
@@ -443,6 +474,44 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
             })
     public void registerCallback(
             @NonNull @CallbackExecutor Executor executor, @NonNull Callback callback) {
+        Objects.requireNonNull(executor, "executor cannot be null");
+        Objects.requireNonNull(callback, "callback cannot be null");
+        MyAwesomeCallback2 awesomeCallback =
+                new MyAwesomeCallback2() {
+                    @Override
+                    public void onVolumeOffsetChanged(
+                            @NonNull BluetoothDevice device, int instanceId, int volumeOffset) {
+                        if (instanceId == 1) {
+                            callback.onVolumeOffsetChanged(device, volumeOffset);
+                        }
+                    }
+                };
+        mCallbackToAwesomeCallback.put(callback, awesomeCallback);
+        registerCallback(executor, awesomeCallback);
+    }
+
+    /**
+     * Register a {@link Callback} that will be invoked during the operation of this profile.
+     *
+     * <p>Repeated registration of the same <var>callback</var> object will have no effect after the
+     * first call to this method, even when the <var>executor</var> is different. API caller would
+     * have to call {@link #unregisterCallback(Callback)} with the same callback object before
+     * registering it again.
+     *
+     * @param executor an {@link Executor} to execute given callback
+     * @param callback user implementation of the {@link Callback}
+     * @throws IllegalArgumentException if a null executor, sink, or callback is given
+     * @hide
+     */
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
+    public void registerCallback(
+            @NonNull @CallbackExecutor Executor executor, @NonNull MyAwesomeCallback2 callback) {
         Objects.requireNonNull(executor, "executor cannot be null");
         Objects.requireNonNull(callback, "callback cannot be null");
         if (DBG) log("registerCallback");
@@ -506,6 +575,7 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
      * @hide
      */
     @SystemApi
+    @Deprecated
     @RequiresBluetoothConnectPermission
     @RequiresPermission(
             allOf = {
@@ -513,6 +583,30 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
                 android.Manifest.permission.BLUETOOTH_PRIVILEGED,
             })
     public void unregisterCallback(@NonNull Callback callback) {
+        Objects.requireNonNull(callback, "callback cannot be null");
+        MyAwesomeCallback2 awesomeCallback = mCallbackToAwesomeCallback.remove(callback);
+        unregisterCallback(awesomeCallback);
+    }
+    /**
+     * Unregister the specified {@link Callback}.
+     *
+     * <p>The same {@link Callback} object used when calling {@link #registerCallback(Executor,
+     * Callback)} must be used.
+     *
+     * <p>Callbacks are automatically unregistered when application process goes away
+     *
+     * @param callback user implementation of the {@link Callback}
+     * @throws IllegalArgumentException when callback is null or when no callback is registered
+     * @hide
+     */
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
+    public void unregisterCallback(@NonNull MyAwesomeCallback2 callback) {
         Objects.requireNonNull(callback, "callback cannot be null");
         if (DBG) log("unregisterCallback");
         synchronized (mCallbackExecutorMap) {
