@@ -22,6 +22,30 @@
       },
       "revId": "bd85509c47c45d77f4fcce7491a357043025e7d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "933acd4f_834a30c1",
+        "filename": "system/bta/dm/bta_dm_main.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-07T19:33:46Z",
+      "side": 0,
+      "message": "Do you have a bug report or scenario in which this is useful ?\n\nThis uses `init` flags which are no longer supported.",
+      "parentUuid": "e17fa4a6_82f6365f",
+      "range": {
+        "startLine": 217,
+        "startChar": 13,
+        "endLine": 218,
+        "endChar": 70
+      },
+      "revId": "bd85509c47c45d77f4fcce7491a357043025e7d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
