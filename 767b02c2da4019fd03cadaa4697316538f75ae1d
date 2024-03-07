@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d712b175_5cb71dd8",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 734,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-07T08:52:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8713c59_a7bb5469",
+      "revId": "767b02c2da4019fd03cadaa4697316538f75ae1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be8fda5e_956c4b40",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-03-07T00:33:08Z",
       "side": 1,
       "message": "number",
+      "revId": "767b02c2da4019fd03cadaa4697316538f75ae1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9ff9427_b79a76d0",
+        "filename": "system/bta/gatt/bta_gattc_int.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-07T08:52:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be8fda5e_956c4b40",
       "revId": "767b02c2da4019fd03cadaa4697316538f75ae1d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0dfd920_c7c2f6fa",
+        "filename": "system/bta/gatt/bta_gattc_int.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-07T08:52:09Z",
+      "side": 1,
+      "message": "No it cannot be zero.\n\nand yes, dumpsys has this \n\n```\n-\u003eclcb (BTA_GATTC_CLCB_MAX\u003d22)\n```",
+      "parentUuid": "1346eac8_801b7f72",
+      "revId": "767b02c2da4019fd03cadaa4697316538f75ae1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5adb5b3b_11d1d54e",
@@ -65,6 +119,24 @@
       "writtenOn": "2024-03-07T00:33:08Z",
       "side": 1,
       "message": "nit: `for (int i \u003d 0\u0027...",
+      "revId": "767b02c2da4019fd03cadaa4697316538f75ae1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a5e6ff4_5ce471f8",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-07T08:52:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5adb5b3b_11d1d54e",
       "revId": "767b02c2da4019fd03cadaa4697316538f75ae1d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d630d408_c9eaf21c",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-07T08:52:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4dab2ac_6d1ab32e",
+      "revId": "767b02c2da4019fd03cadaa4697316538f75ae1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29e20e20_70d446ae",
@@ -99,6 +189,24 @@
       "writtenOn": "2024-03-07T00:33:08Z",
       "side": 1,
       "message": "```\nfor (int i_clcb \u003d 0;\n```",
+      "revId": "767b02c2da4019fd03cadaa4697316538f75ae1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b64bd85d_77d20f38",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-07T08:52:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29e20e20_70d446ae",
       "revId": "767b02c2da4019fd03cadaa4697316538f75ae1d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
