@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8713c59_a7bb5469",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 734,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-07T00:33:08Z",
+      "side": 1,
+      "message": "May as well do...\n```\nfor (int i...\n```",
+      "revId": "767b02c2da4019fd03cadaa4697316538f75ae1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be8fda5e_956c4b40",
+        "filename": "system/bta/gatt/bta_gattc_int.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-07T00:33:08Z",
+      "side": 1,
+      "message": "number",
+      "revId": "767b02c2da4019fd03cadaa4697316538f75ae1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1346eac8_801b7f72",
+        "filename": "system/bta/gatt/bta_gattc_int.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-07T00:33:08Z",
+      "side": 1,
+      "message": "Can `GATT_MAX_PHY_CHANNEL` ever be zero ?\n\nIs there a `dumpsys` line indicating the value of `BTA_GATTC_CLCB_MAX` ?",
+      "revId": "767b02c2da4019fd03cadaa4697316538f75ae1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5adb5b3b_11d1d54e",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-07T00:33:08Z",
+      "side": 1,
+      "message": "nit: `for (int i \u003d 0\u0027...",
+      "revId": "767b02c2da4019fd03cadaa4697316538f75ae1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4dab2ac_6d1ab32e",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-07T00:33:08Z",
+      "side": 1,
+      "message": "nit: `for (int i \u003d 0\u0027...",
+      "revId": "767b02c2da4019fd03cadaa4697316538f75ae1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29e20e20_70d446ae",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-07T00:33:08Z",
+      "side": 1,
+      "message": "```\nfor (int i_clcb \u003d 0;\n```",
+      "revId": "767b02c2da4019fd03cadaa4697316538f75ae1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
