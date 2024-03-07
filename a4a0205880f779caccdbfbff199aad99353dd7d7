@@ -115,6 +115,24 @@
       "parentUuid": "374c0806_582b6a7b",
       "revId": "a4a0205880f779caccdbfbff199aad99353dd7d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e13e6425_3da7f635",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-07T08:21:08Z",
+      "side": 1,
+      "message": "There\u0027s hidden API for periodic sync that may be used elsewhere on AOSP. It would be best to flag this.",
+      "parentUuid": "58bfbdfd_b5aa05b8",
+      "revId": "a4a0205880f779caccdbfbff199aad99353dd7d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
