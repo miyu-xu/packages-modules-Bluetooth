@@ -871,12 +871,6 @@ static void bta_dm_search_cmpl() {
   strlcpy((char*)result.disc_ble_res.bd_name, bta_dm_get_remname(),
           BD_NAME_LEN + 1);
 
-  bool send_gatt_results =
-      bluetooth::common::init_flags::
-              always_send_services_if_gatt_disc_done_is_enabled()
-          ? bta_dm_search_cb.gatt_disc_active
-          : false;
-
   /* no BLE connection, i.e. Classic service discovery end */
   if (conn_id == GATT_INVALID_CONN_ID) {
     if (bta_dm_search_cb.gatt_disc_active) {
@@ -885,9 +879,6 @@ static void bta_dm_search_cmpl() {
           "through");
     } else {
       log::info("No BLE connection, processing classic results");
-      /* Trigger this event with empty result to make sure UUIDs are send up to
-       * Java */
-      bta_dm_search_cb.p_search_cback(BTA_DM_GATT_OVER_LE_RES_EVT, &result);
     }
   } else {
     btgatt_db_element_t* db = NULL;
@@ -905,17 +896,13 @@ static void bta_dm_search_cmpl() {
       log::info(
           "GATT services discovered using LE Transport, will always send to "
           "upper layer");
-      send_gatt_results = true;
     } else {
       log::warn("Empty GATT database - no BLE services discovered");
     }
   }
 
-  // send all result back to app
-  if (send_gatt_results) {
-    log::info("Sending GATT results to upper layer");
-    bta_dm_search_cb.p_search_cback(BTA_DM_GATT_OVER_LE_RES_EVT, &result);
-  }
+  log::info("Sending GATT results to upper layer");
+  bta_dm_search_cb.p_search_cback(BTA_DM_GATT_OVER_LE_RES_EVT, &result);
 
   bta_dm_search_cb.p_search_cback(BTA_DM_DISC_CMPL_EVT, nullptr);
   bta_dm_search_cb.gatt_disc_active = false;
