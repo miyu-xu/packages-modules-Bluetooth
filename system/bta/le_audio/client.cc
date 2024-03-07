@@ -3115,11 +3115,7 @@ class LeAudioClientImpl : public LeAudioClient {
       return;
     }
 
-    auto num_of_devices =
-        get_num_of_devices_in_configuration(stream_conf->conf.get());
-
-    if (num_of_devices < group->NumOfConnected() &&
-        !group->IsAudioSetConfigurationSupported(leAudioDevice,
+    if (!group->IsAudioSetConfigurationSupported(leAudioDevice,
                                                  stream_conf->conf.get())) {
       /* Reconfigure if newly connected member device cannot support current
        * codec configuration */

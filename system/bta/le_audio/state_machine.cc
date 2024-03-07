@@ -1342,11 +1342,10 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
     ASSERT_LOG(iter == params.stream_locations.end(),
                "Stream is already there 0x%04x", cis_conn_hdl);
 
-    auto core_config = ase->codec_config.GetAsCoreCodecConfig();
-
     params.num_of_devices++;
-    params.num_of_channels += core_config.GetChannelCountPerIsoStream();
+    params.num_of_channels += ase->channel_count;
 
+    auto core_config = ase->codec_config.GetAsCoreCodecConfig();
     if (!core_config.audio_channel_allocation.has_value()) {
       LOG_WARN("ASE has invalid audio location");
     }
