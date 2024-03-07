@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// test log
 #define LOG_TAG "stack_power_tel"
 
 #include "osi/include/stack_power_telemetry.h"
