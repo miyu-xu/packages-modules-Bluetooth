@@ -66,7 +66,9 @@ struct StreamCallbacks {
   std::function<bool(const sink_metadata_v7_t&)> on_sink_metadata_update_;
 };
 
-std::vector<::bluetooth::le_audio::set_configurations::AudioSetConfiguration>
+std::array<
+    std::vector<bluetooth::le_audio::set_configurations::AudioSetConfiguration>,
+    2>
 get_offload_capabilities();
 
 class LeAudioClientInterface {
