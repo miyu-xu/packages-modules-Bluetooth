@@ -304,6 +304,30 @@
       },
       "revId": "c00039f62386729bb0ac9955a7576b4ed619558a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8f88a5e_11be515a",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1049,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-08T23:46:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5bd3b523_0b22d19e",
+      "range": {
+        "startLine": 1048,
+        "startChar": 0,
+        "endLine": 1049,
+        "endChar": 77
+      },
+      "revId": "c00039f62386729bb0ac9955a7576b4ed619558a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
