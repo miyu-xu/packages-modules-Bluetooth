@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bcc3120_7d78fb4e",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-08T17:47:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79adc9fb_bad88b3d",
+      "range": {
+        "startLine": 135,
+        "startChar": 68,
+        "endLine": 135,
+        "endChar": 70
+      },
+      "revId": "c00039f62386729bb0ac9955a7576b4ed619558a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7fef94b_05ef8ff8",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-08T17:29:44Z",
       "side": 1,
       "message": "fix",
+      "range": {
+        "startLine": 176,
+        "startChar": 60,
+        "endLine": 176,
+        "endChar": 62
+      },
+      "revId": "c00039f62386729bb0ac9955a7576b4ed619558a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b60aae4_510c7cd5",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-08T17:47:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7fef94b_05ef8ff8",
       "range": {
         "startLine": 176,
         "startChar": 60,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "36f36aac_c007b6c5",
+        "filename": "system/gd/hci/acl_manager/round_robin_scheduler.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-08T17:47:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d78da4e_b6101dbd",
+      "range": {
+        "startLine": 246,
+        "startChar": 62,
+        "endLine": 246,
+        "endChar": 63
+      },
+      "revId": "c00039f62386729bb0ac9955a7576b4ed619558a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e9a8e39_3ce9c779",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-03-08T17:29:44Z",
       "side": 1,
       "message": "fix",
+      "range": {
+        "startLine": 255,
+        "startChar": 65,
+        "endLine": 255,
+        "endChar": 66
+      },
+      "revId": "c00039f62386729bb0ac9955a7576b4ed619558a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea169528_56b2a50e",
+        "filename": "system/gd/hci/acl_manager/round_robin_scheduler.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-08T17:47:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e9a8e39_3ce9c779",
       "range": {
         "startLine": 255,
         "startChar": 65,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2214987a_8c121838",
+        "filename": "system/gd/hci/acl_manager_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-08T17:47:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6d1d815_ac027a2d",
+      "range": {
+        "startLine": 391,
+        "startChar": 56,
+        "endLine": 391,
+        "endChar": 58
+      },
+      "revId": "c00039f62386729bb0ac9955a7576b4ed619558a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5fb9c551_dafc4cda",
@@ -129,6 +249,30 @@
       "writtenOn": "2024-03-08T17:29:44Z",
       "side": 1,
       "message": "fix",
+      "range": {
+        "startLine": 255,
+        "startChar": 45,
+        "endLine": 255,
+        "endChar": 47
+      },
+      "revId": "c00039f62386729bb0ac9955a7576b4ed619558a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a4be2c8_22b8d867",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-08T17:47:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5fb9c551_dafc4cda",
       "range": {
         "startLine": 255,
         "startChar": 45,
