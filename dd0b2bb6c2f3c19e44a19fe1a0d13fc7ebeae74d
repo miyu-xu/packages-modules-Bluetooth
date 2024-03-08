@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4eda27ef_1e2d0e7a",
+        "filename": "system/gd/hal/hci_hal_host_rootcanal.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-08T05:03:38Z",
+      "side": 1,
+      "message": "I think this should be with the rest of the \u003c.h\u003e s",
+      "range": {
+        "startLine": 17,
+        "startChar": 10,
+        "endLine": 17,
+        "endChar": 19
+      },
+      "revId": "dd0b2bb6c2f3c19e44a19fe1a0d13fc7ebeae74d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
