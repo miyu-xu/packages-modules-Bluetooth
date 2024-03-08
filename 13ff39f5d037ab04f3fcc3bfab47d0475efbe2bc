@@ -22,6 +22,30 @@
       },
       "revId": "13ff39f5d037ab04f3fcc3bfab47d0475efbe2bc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c5cea0c_c79163fd",
+        "filename": "service/src/com/android/server/bluetooth/AdapterBinder.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-08T23:19:43Z",
+      "side": 1,
+      "message": "Good finding.\nSince init is no longer done on this call but is post on the main handler. Making this extension not necessary anymore.\n\nRemoved.",
+      "parentUuid": "54cdd0f8_e8bbbdf6",
+      "range": {
+        "startLine": 51,
+        "startChar": 62,
+        "endLine": 51,
+        "endChar": 63
+      },
+      "revId": "13ff39f5d037ab04f3fcc3bfab47d0475efbe2bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
