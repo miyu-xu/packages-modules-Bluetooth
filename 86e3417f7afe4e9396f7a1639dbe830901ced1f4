@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9393fd02_a58c146e",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1713,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2024-03-08T00:09:50Z",
+      "side": 1,
+      "message": "I\u0027m planning on defaulting to 1, yes; prior to this patch 1 was the only valid value.  How would this be defined in PDL?",
+      "parentUuid": "c7a17783_6ed1d0d0",
+      "range": {
+        "startLine": 1713,
+        "startChar": 2,
+        "endLine": 1713,
+        "endChar": 18
+      },
+      "revId": "86e3417f7afe4e9396f7a1639dbe830901ced1f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0658b87c_e5bdad0b",
         "filename": "system/gd/hci/le_scanning_manager_test.cc",
         "patchSetId": 7
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-07T21:34:58Z",
       "side": 1,
       "message": "One thing that stands out is that every time you call GetCommand, you\u0027ll get a new command.  It should only be called once.",
+      "range": {
+        "startLine": 462,
+        "startChar": 69,
+        "endLine": 462,
+        "endChar": 82
+      },
+      "revId": "86e3417f7afe4e9396f7a1639dbe830901ced1f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62ff6de8_8a02d296",
+        "filename": "system/gd/hci/le_scanning_manager_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2024-03-08T00:09:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0658b87c_e5bdad0b",
       "range": {
         "startLine": 462,
         "startChar": 69,
@@ -60,6 +108,30 @@
       "writtenOn": "2024-03-07T18:42:38Z",
       "side": 1,
       "message": "It will make it easier to read if you use the features of PDL to parse the packets.  (No compiler used, so there are probably some typos)\n\n```suggestion\n  auto command_view \u003d LeSetExtendedScanParametersView::Create(\n    LeScanningCommandView::Create(test_hci_layer_-\u003eGetCommand()));\n  ASSERT_TRUE(command_view.IsValid());\n  ASSERT_EQ(command_view.GetScanPhy(), scan_phy);\n```",
+      "range": {
+        "startLine": 462,
+        "startChar": 0,
+        "endLine": 467,
+        "endChar": 34
+      },
+      "revId": "86e3417f7afe4e9396f7a1639dbe830901ced1f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b8c8130_7ece5499",
+        "filename": "system/gd/hci/le_scanning_manager_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2024-03-08T00:09:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c783a0f_7b9eab55",
       "range": {
         "startLine": 462,
         "startChar": 0,
