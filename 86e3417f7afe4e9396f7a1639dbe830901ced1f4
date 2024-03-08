@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7092569c_5b389b16",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1713,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2024-03-08T02:57:43Z",
+      "side": 1,
+      "message": "Done.  Kept the stored value as a uint8 to minimize code delta, but we initialize with the PhyType now.",
+      "parentUuid": "9ac9bee9_55082047",
+      "range": {
+        "startLine": 1713,
+        "startChar": 2,
+        "endLine": 1713,
+        "endChar": 18
+      },
+      "revId": "86e3417f7afe4e9396f7a1639dbe830901ced1f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0658b87c_e5bdad0b",
