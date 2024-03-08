@@ -1510,28 +1510,33 @@ static void bta_hh_le_srvc_search_cmpl(tBTA_GATTC_SEARCH_CMPL* p_data) {
   const std::list<gatt::Service>* services = BTA_GATTC_GetServices(p_data->conn_id);
   const gatt::Service* gap_service = nullptr;
   const gatt::Service* scp_service = nullptr;
+  const gatt::Service* hog_service = nullptr;
 
   bool have_hid = false;
   for (const gatt::Service& service : *services) {
     if (service.uuid == Uuid::From16Bit(UUID_SERVCLASS_LE_HID) &&
-        service.is_primary && !have_hid) {
-      have_hid = true;
-
-      /* found HID primamry service */
-      p_dev_cb->hid_srvc.state = BTA_HH_SERVICE_DISCOVERED;
-      p_dev_cb->hid_srvc.srvc_inst_id = service.handle;
-      p_dev_cb->hid_srvc.proto_mode_handle = 0;
-      p_dev_cb->hid_srvc.control_point_handle = 0;
-
-      bta_hh_le_search_hid_chars(p_dev_cb, &service);
-
-      log::verbose("have HID service inst_id={}",
-                   p_dev_cb->hid_srvc.srvc_inst_id);
+        service.is_primary) {
+      hog_service = &service;
     } else if (service.uuid == Uuid::From16Bit(UUID_SERVCLASS_SCAN_PARAM)) {
       scp_service = &service;
     } else if (service.uuid == Uuid::From16Bit(UUID_SERVCLASS_GAP_SERVER)) {
       gap_service = &service;
     }
+  }
+
+  if (hog_service) {
+    have_hid = true;
+
+    /* found HID primamry service */
+    p_dev_cb->hid_srvc.state = BTA_HH_SERVICE_DISCOVERED;
+    p_dev_cb->hid_srvc.srvc_inst_id = hog_service->handle;
+    p_dev_cb->hid_srvc.proto_mode_handle = 0;
+    p_dev_cb->hid_srvc.control_point_handle = 0;
+
+    bta_hh_le_search_hid_chars(p_dev_cb, hog_service);
+
+    log::verbose("have HID service inst_id={}",
+                 p_dev_cb->hid_srvc.srvc_inst_id);
   }
 
   if (!have_hid) {
