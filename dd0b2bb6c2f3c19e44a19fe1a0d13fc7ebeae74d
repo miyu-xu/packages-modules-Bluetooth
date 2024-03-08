@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7af6707_db0dd547",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1098,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-08T18:16:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f12c672c_424d5707",
+      "range": {
+        "startLine": 1098,
+        "startChar": 90,
+        "endLine": 1098,
+        "endChar": 97
+      },
+      "revId": "dd0b2bb6c2f3c19e44a19fe1a0d13fc7ebeae74d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f196eb9_a67d806a",
@@ -94,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "946c6bc6_f8f9d14c",
+        "filename": "system/gd/hal/snoop_logger_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-08T18:16:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f196eb9_a67d806a",
+      "range": {
+        "startLine": 176,
+        "startChar": 44,
+        "endLine": 176,
+        "endChar": 47
+      },
+      "revId": "dd0b2bb6c2f3c19e44a19fe1a0d13fc7ebeae74d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42c5ac55_183d3591",
@@ -107,6 +155,30 @@
       "writtenOn": "2024-03-08T18:04:54Z",
       "side": 1,
       "message": "fix",
+      "range": {
+        "startLine": 212,
+        "startChar": 47,
+        "endLine": 212,
+        "endChar": 49
+      },
+      "revId": "dd0b2bb6c2f3c19e44a19fe1a0d13fc7ebeae74d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86de2c1d_c37452ef",
+        "filename": "system/gd/hal/snoop_logger_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-08T18:16:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42c5ac55_183d3591",
       "range": {
         "startLine": 212,
         "startChar": 47,
