@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8ca0ac3c_053a4a64",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-08T12:38:16Z",
+      "side": 1,
+      "message": "Yes. The callbacks might still be useful for printing logs so I\u0027d suggest to keep them but only leave a `logging.debug` line.\nThe `wait_for_xxx` and `xxx_sync` functions would not be helpful in Pandora so let\u0027s remove them.",
+      "parentUuid": "fbe3b4e3_58608d6e",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 36
+      },
+      "revId": "476972318a620db9086cda196d5e9bcb18fc7c33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8bf5be18_0f09f805",
         "filename": "floss/pandora/server/l2cap.py",
         "patchSetId": 11
@@ -108,6 +132,30 @@
       "side": 1,
       "message": "Thanks for your note, \nJust to make sure we are on the same page\nwhat exactly do you mean by \"handle this error outside\"\nDo you mean,return the \u0027fd\u0027 as None when the check fail ?\n```\nif not socket\n    future \u003d self.task[\u0027create_l2cap_channel\u0027]\n    future.get_loop().call_soon_threadsafe(future.set_result, (result, None))\noptional_fd \u003d socket[\u0027optional_value\u0027][\u0027fd\u0027]\nif not optional_fd:\n    future \u003d self.task[\u0027create_l2cap_channel\u0027]\n    future.get_loop().call_soon_threadsafe(future.set_result, (result, None))\n\nif not dbus_unix_fd_list or dbus_unix_fd_list.get_length() \u003c 1:\n    logging.error(\u0027on_outgoing_connection_result: Empty fd list\u0027)\n    future \u003d self.task[\u0027create_l2cap_channel\u0027]\n    future.get_loop().call_soon_threadsafe(future.set_result, (result, None))\n     .\n     .\n\n```\nor\nwe do not check the socket here, and await\"socket\" and then do all socket checks and get fd outside the callback ? \n```\nfuture \u003d self.task[\u0027create_l2cap_channel\u0027]\nfuture.get_loop().call_soon_threadsafe(future.set_result, (result, socket))\n.\n.\n.\n\nstatus, socket \u003d await asyncio.wait_for(l2cap_channel_creation[\u0027create_l2cap_channel\u0027], timeout\u003d5)\nif not socket:\n     await context.abort(grpc.StatusCode.INTERNAL,...\nif not optional_fd:\n     await context.abort(grpc.StatusCode.INTERNA,..\nif not dbus_unix_fd_list or dbus_unix_fd_list.get_length() \u003c 1\n     await context.abort(grpc.StatusCode.INTERNA, ...\n    .\n    .\n    .\n```",
       "parentUuid": "523351cc_2cad4ac3",
+      "range": {
+        "startLine": 137,
+        "startChar": 20,
+        "endLine": 137,
+        "endChar": 26
+      },
+      "revId": "476972318a620db9086cda196d5e9bcb18fc7c33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aee44d8c_0fa85a20",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-08T12:38:16Z",
+      "side": 1,
+      "message": "`dbus_unix_fd_list` shouldn\u0027t be leaked to the outer function. Please set a `None` fd for this case.\n\nYou might consider using the same approach here when result !\u003d success so the future doesn\u0027t need to be a tuple and could be a \"fd or None\" instead.",
+      "parentUuid": "de89d3f2_59b4a367",
       "range": {
         "startLine": 137,
         "startChar": 20,
