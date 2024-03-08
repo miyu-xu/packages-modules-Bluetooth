@@ -16,6 +16,57 @@
       "message": "overall logic looks good to me, pass to Rongxuan to look at Broadcast specific parameters",
       "revId": "f15f2146b28ba5642a62f812253017724c3ae0d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce9b0053_c3037fd2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-03-08T00:55:35Z",
+      "side": 1,
+      "message": "Overall, lgtm, +2\u0027ed. \nConsider the scope of this change, I\u0027d suggest to complete some broadcast sanity tests before merging.\n\nIn the latest build including aosp/2953590, you can config different audio quality from audio sharing UI. Turn on \u0027Improve compatibility\u0027 will choose 24_2, and OFF will choose \u002748_*\u0027. Could you help to validate both configs are okay with audio sharing a few times? Just to avoid any regression before UPF, thank you.\n  \nPlease feel free to mark this as resolved once sanity testing is fine.",
+      "revId": "f15f2146b28ba5642a62f812253017724c3ae0d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1beea74_8247a57b",
+        "filename": "system/bta/le_audio/broadcaster/broadcast_configuration_provider.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-03-08T00:55:35Z",
+      "side": 1,
+      "message": "for now, I think it\u0027s fine, but I\u0027d suggest to create a task to track those TODOs here.",
+      "revId": "f15f2146b28ba5642a62f812253017724c3ae0d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "866ed741_16eb75df",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_test.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-03-08T00:55:35Z",
+      "side": 1,
+      "message": "nit, this 24_2 is not HIGH(48_*) as spec defined.",
+      "revId": "f15f2146b28ba5642a62f812253017724c3ae0d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
