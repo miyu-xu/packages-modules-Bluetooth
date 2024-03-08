@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cf4f04c_5d1cabf6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 34
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1930931
+      },
+      "writtenOn": "2024-03-08T15:42:30Z",
+      "side": 1,
+      "message": "William, host variant (linux_glibc_x86 \u0026 linux_glibc_x86_64) compilation is falling for net_test_btif, I am still checking to fix below issue.   can you please suggest how to fix this issue for host variant, any linux flag need to be used, it\u0027s properly compiling for android(arm64)?\n\n out/soong/.intermediates/packages/modules/Bluetooth/system/main/libbluetooth-for-tests/linux_glibc_x86_static/libbluetooth-for-tests.a\nclang++: error: linker command failed with exit code 1 (use -v to see invocation)\n[ 31% 10/32 1m32s remaining] //packages/modules/Bluetooth/system/btif:net_test_btif link net_test_btif64 \nld.lld: error: undefined symbol: _ZTIN9bluetooth3hci22EncKeyMaterialCallbackE\n\u003e\u003e\u003e referenced by le_advertising_manager.cc\n\u003e\u003e\u003e               le_advertising_manager.o:(_ZTIN9bluetooth4shim27EncKeyMaterialInterfaceImplE) in archive out/soong/.intermediates/packages/modules/Bluetooth/system/main/libbluetooth-for-tests/linux_glibc_x86_64_static/libbluetooth-for-tests.a\nclang++: error: linker command failed with exit code 1 (use -v to see invocation)",
+      "revId": "1d157c57d5df07c8502776af17e9b17d36d90769",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
