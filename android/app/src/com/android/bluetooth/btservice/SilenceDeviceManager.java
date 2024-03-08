@@ -60,8 +60,7 @@ public class SilenceDeviceManager {
 
     private final AdapterService mAdapterService;
     private final ServiceFactory mFactory;
-    private Handler mHandler = null;
-    private Looper mLooper = null;
+    private final Handler mHandler;
 
     private final Map<BluetoothDevice, Boolean> mSilenceDevices = new HashMap<>();
     private final List<BluetoothDevice> mA2dpConnectedDevices = new ArrayList<>();
@@ -119,6 +118,7 @@ public class SilenceDeviceManager {
     }
 
     class SilenceDeviceManagerHandler extends Handler {
+
         SilenceDeviceManagerHandler(Looper looper) {
             super(looper);
         }
@@ -204,14 +204,7 @@ public class SilenceDeviceManager {
     SilenceDeviceManager(AdapterService service, ServiceFactory factory, Looper looper) {
         mAdapterService = service;
         mFactory = factory;
-        mLooper = looper;
-    }
-
-    void start() {
-        if (VERBOSE) {
-            Log.v(TAG, "start()");
-        }
-        mHandler = new SilenceDeviceManagerHandler(mLooper);
+        mHandler = new SilenceDeviceManagerHandler(looper);
     }
 
     void cleanup() {
@@ -223,14 +216,13 @@ public class SilenceDeviceManager {
 
     @VisibleForTesting
     boolean setSilenceMode(BluetoothDevice device, boolean silence) {
-        if (mHandler == null) {
-            Log.e(TAG, "setSilenceMode() mHandler is null!");
-            return false;
-        }
         Log.d(TAG, "setSilenceMode: " + device + ", " + silence);
-        Message message = mHandler.obtainMessage(MSG_SILENCE_DEVICE_STATE_CHANGED,
-                silence ? ENABLE_SILENCE : DISABLE_SILENCE, 0, device);
-        mHandler.sendMessage(message);
+        mHandler.obtainMessage(
+                        MSG_SILENCE_DEVICE_STATE_CHANGED,
+                        silence ? ENABLE_SILENCE : DISABLE_SILENCE,
+                        0,
+                        device)
+                .sendToTarget();
         return true;
     }
 
@@ -245,7 +237,7 @@ public class SilenceDeviceManager {
                 // Device is disconnected, resume all silenced profiles.
                 state = false;
             } else {
-                Log.d(TAG, "Deivce is not connected to any Bluetooth audio.");
+                Log.d(TAG, "Device is not connected to any Bluetooth audio.");
                 return;
             }
         }
@@ -264,7 +256,7 @@ public class SilenceDeviceManager {
         broadcastSilenceStateChange(device, state);
     }
 
-    void broadcastSilenceStateChange(BluetoothDevice device, boolean state) {
+    private void broadcastSilenceStateChange(BluetoothDevice device, boolean state) {
         Intent intent = new Intent(BluetoothDevice.ACTION_SILENCE_MODE_CHANGED);
         intent.putExtra(BluetoothDevice.EXTRA_DEVICE, device);
         mAdapterService.sendBroadcastAsUser(intent, UserHandle.ALL, BLUETOOTH_CONNECT,
@@ -281,7 +273,7 @@ public class SilenceDeviceManager {
         return state;
     }
 
-    void addConnectedDevice(BluetoothDevice device, int profile) {
+    private void addConnectedDevice(BluetoothDevice device, int profile) {
         if (VERBOSE) {
             Log.d(TAG, "addConnectedDevice: " + device + ", profile:"
                     + BluetoothProfile.getProfileName(profile));
@@ -300,7 +292,7 @@ public class SilenceDeviceManager {
         }
     }
 
-    void removeConnectedDevice(BluetoothDevice device, int profile) {
+    private void removeConnectedDevice(BluetoothDevice device, int profile) {
         if (VERBOSE) {
             Log.d(TAG, "removeConnectedDevice: " + device + ", profile:"
                     + BluetoothProfile.getProfileName(profile));
@@ -319,7 +311,7 @@ public class SilenceDeviceManager {
         }
     }
 
-    boolean isBluetoothAudioConnected(BluetoothDevice device) {
+    private boolean isBluetoothAudioConnected(BluetoothDevice device) {
         return (mA2dpConnectedDevices.contains(device) || mHfpConnectedDevices.contains(device));
     }
 
@@ -327,7 +319,7 @@ public class SilenceDeviceManager {
         writer.println("\nSilenceDeviceManager:");
         writer.println("  Address            | Is silenced?");
         for (BluetoothDevice device : mSilenceDevices.keySet()) {
-            writer.println("  " + device+ "  | " + getSilenceMode(device));
+            writer.println("  " + device + "  | " + getSilenceMode(device));
         }
     }
 }
