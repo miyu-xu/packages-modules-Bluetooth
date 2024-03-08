@@ -102,7 +102,6 @@ public class PhonePolicyTest {
         TestUtils.setAdapterService(mAdapterService);
         // Configure the maximum connected audio devices
         doReturn(MAX_CONNECTED_AUDIO_DEVICES).when(mAdapterService).getMaxConnectedAudioDevices();
-        doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
         // Setup the mocked factory to return mocked services
         doReturn(mHeadsetService).when(mServiceFactory).getHeadsetService();
         doReturn(mA2dpService).when(mServiceFactory).getA2dpService();
@@ -114,15 +113,18 @@ public class PhonePolicyTest {
         // Start handler thread for this test
         mHandlerThread = new HandlerThread("PhonePolicyTestHandlerThread");
         mHandlerThread.start();
-        // Mock the looper
-        when(mAdapterService.getMainLooper()).thenReturn(mHandlerThread.getLooper());
         // Tell the AdapterService that it is a mock (see isMock documentation)
         doReturn(true).when(mAdapterService).isMock();
         // Must be called to initialize services
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         PhonePolicy.sConnectOtherProfilesTimeoutMillis = CONNECT_OTHER_PROFILES_TIMEOUT_MILLIS;
 
-        mPhonePolicy = new PhonePolicy(mAdapterService, mServiceFactory);
+        mPhonePolicy =
+                new PhonePolicy(
+                        mAdapterService,
+                        mHandlerThread.getLooper(),
+                        mDatabaseManager,
+                        mServiceFactory);
         mOriginalDualModeState = Utils.isDualModeAudioEnabled();
     }
 
@@ -1049,7 +1051,12 @@ public class PhonePolicyTest {
                         .build();
         DatabaseManager db = new DatabaseManager(mAdapterService);
         doReturn(db).when(mAdapterService).getDatabase();
-        PhonePolicy phonePolicy = new PhonePolicy(mAdapterService, mServiceFactory);
+        PhonePolicy phonePolicy =
+                new PhonePolicy(
+                        mAdapterService,
+                        mHandlerThread.getLooper(),
+                        mDatabaseManager,
+                        mServiceFactory);
 
         db.start(mDatabase);
         TestUtils.waitForLooperToFinishScheduledTask(db.getHandlerLooper());
@@ -1087,7 +1094,12 @@ public class PhonePolicyTest {
                         .build();
         DatabaseManager db = new DatabaseManager(mAdapterService);
         doReturn(db).when(mAdapterService).getDatabase();
-        PhonePolicy phonePolicy = new PhonePolicy(mAdapterService, mServiceFactory);
+        PhonePolicy phonePolicy =
+                new PhonePolicy(
+                        mAdapterService,
+                        mHandlerThread.getLooper(),
+                        mDatabaseManager,
+                        mServiceFactory);
 
         db.start(mDatabase);
         TestUtils.waitForLooperToFinishScheduledTask(db.getHandlerLooper());
@@ -1131,7 +1143,12 @@ public class PhonePolicyTest {
                         .build();
         DatabaseManager db = new DatabaseManager(mAdapterService);
         doReturn(db).when(mAdapterService).getDatabase();
-        PhonePolicy phonePolicy = new PhonePolicy(mAdapterService, mServiceFactory);
+        PhonePolicy phonePolicy =
+                new PhonePolicy(
+                        mAdapterService,
+                        mHandlerThread.getLooper(),
+                        mDatabaseManager,
+                        mServiceFactory);
 
         db.start(mDatabase);
         TestUtils.waitForLooperToFinishScheduledTask(db.getHandlerLooper());
