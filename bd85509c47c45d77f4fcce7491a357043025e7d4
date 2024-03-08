@@ -46,6 +46,30 @@
       },
       "revId": "bd85509c47c45d77f4fcce7491a357043025e7d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65f6d1e7_db0e0c44",
+        "filename": "system/bta/dm/bta_dm_main.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 3211944
+      },
+      "writtenOn": "2024-03-08T01:20:11Z",
+      "side": 0,
+      "message": "Yes, this is useful change. The scenario is like this, during SDP process for pairing device A, if cancel discovery is called and search statemachine is set to CANCELLING, the SDP procedure for A actually is not ended, but after A\u0027s SDP is completed successfully, since state machine has changed, the SDP results could not be correctly pass to BTIF layer, causing the BTIF layer to remain in BONDING state and unable to pair with other devices anymore.\nSo, we should not change search state machine here to let the on going process continue.",
+      "parentUuid": "933acd4f_834a30c1",
+      "range": {
+        "startLine": 217,
+        "startChar": 13,
+        "endLine": 218,
+        "endChar": 70
+      },
+      "revId": "bd85509c47c45d77f4fcce7491a357043025e7d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
