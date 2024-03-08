@@ -1397,8 +1397,10 @@ public class HeadsetService extends ProfileService {
             // Calling this before any other active related calls has the same effect as
             // a classic active device switch.
             BluetoothDevice fallbackDevice = getFallbackDevice();
-            if (fallbackDevice != null && mActiveDevice != null
-                    && getConnectionState(mActiveDevice) != BluetoothProfile.STATE_CONNECTED) {
+            if (fallbackDevice != null
+                && mActiveDevice != null
+                && getConnectionState(fallbackDevice) == BluetoothProfile.STATE_CONNECTED) {
+                Log.i(TAG, "removeActiveDevice and set active to fallbackDevice=" + fallbackDevice);
                 setActiveDevice(fallbackDevice);
                 return;
             }
