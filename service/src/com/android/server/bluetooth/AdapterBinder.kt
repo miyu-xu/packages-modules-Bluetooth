@@ -47,7 +47,8 @@ class AdapterBinder(rawBinder: IBinder) {
     fun enable(quietMode: Boolean, source: AttributionSource): Boolean {
         val recv: SynchronousResultReceiver<Boolean> = SynchronousResultReceiver.get()
         adapterBinder.enable(quietMode, source, recv)
-        return recv.awaitResultNoInterrupt(SYNC_TIMEOUT).getValue(false)
+        // Enable will init native and load the hal. Some form factor may take more than 3 sec
+        return recv.awaitResultNoInterrupt(Duration.ofSeconds(5)).getValue(false)
     }
 
     @Throws(RemoteException::class, TimeoutException::class)
