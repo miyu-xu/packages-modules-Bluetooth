@@ -23,7 +23,6 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothUuid;
-import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -50,7 +49,7 @@ import com.android.internal.annotations.VisibleForTesting;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
+import java.util.Set;
 
 // Describes the phone policy
 //
@@ -83,13 +82,13 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
     // Timeouts
     @VisibleForTesting static int sConnectOtherProfilesTimeoutMillis = 6000; // 6s
 
-    private DatabaseManager mDatabaseManager;
+    private final DatabaseManager mDatabaseManager;
     private final AdapterService mAdapterService;
     private final ServiceFactory mFactory;
     private final Handler mHandler;
-    private final HashSet<BluetoothDevice> mHeadsetRetrySet = new HashSet<>();
-    private final HashSet<BluetoothDevice> mA2dpRetrySet = new HashSet<>();
-    private final HashSet<BluetoothDevice> mConnectOtherProfilesDeviceSet = new HashSet<>();
+    private final Set<BluetoothDevice> mHeadsetRetrySet = new HashSet<>();
+    private final Set<BluetoothDevice> mA2dpRetrySet = new HashSet<>();
+    private final Set<BluetoothDevice> mConnectOtherProfilesDeviceSet = new HashSet<>();
     @VisibleForTesting boolean mAutoConnectProfilesSupported;
     @VisibleForTesting boolean mLeAudioEnabledByDefault;
 
@@ -156,13 +155,21 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
 
     ;
 
-    // Policy API functions for lifecycle management (protected)
-    public void start() {
-        mAdapterService.registerBluetoothStateCallback((command) -> mHandler.post(command), this);
+    PhonePolicy(
+            AdapterService service,
+            Looper looper,
+            DatabaseManager databaseManager,
+            ServiceFactory factory) {
+        mAdapterService = service;
+        mDatabaseManager = databaseManager;
+        mFactory = factory;
+        mHandler = new PhonePolicyHandler(looper);
+        mAutoConnectProfilesSupported =
+                SystemProperties.getBoolean(AUTO_CONNECT_PROFILES_PROPERTY, false);
+        mLeAudioEnabledByDefault =
+                SystemProperties.getBoolean(LE_AUDIO_CONNECTION_BY_DEFAULT_PROPERTY, true);
 
-        IntentFilter filter = new IntentFilter();
-        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
-        filter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED);
+        mAdapterService.registerBluetoothStateCallback((command) -> mHandler.post(command), this);
     }
 
     public void cleanup() {
@@ -170,17 +177,6 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
         resetStates();
     }
 
-    PhonePolicy(AdapterService service, ServiceFactory factory) {
-        mAdapterService = service;
-        mDatabaseManager = Objects.requireNonNull(mAdapterService.getDatabase(),
-                "DatabaseManager cannot be null when PhonePolicy starts");
-        mFactory = factory;
-        mHandler = new PhonePolicyHandler(service.getMainLooper());
-        mAutoConnectProfilesSupported =
-                SystemProperties.getBoolean(AUTO_CONNECT_PROFILES_PROPERTY, false);
-        mLeAudioEnabledByDefault =
-                SystemProperties.getBoolean(LE_AUDIO_CONNECTION_BY_DEFAULT_PROPERTY, true);
-    }
 
     // Policy implementation, all functions MUST be private
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
@@ -569,8 +565,8 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
         A2dpService a2dpService = mFactory.getA2dpService();
         PanService panService = mFactory.getPanService();
         LeAudioService leAudioService = mFactory.getLeAudioService();
-        CsipSetCoordinatorService csipSetCooridnatorService =
-        mFactory.getCsipSetCoordinatorService();
+        CsipSetCoordinatorService csipSetCoordinatorService =
+                mFactory.getCsipSetCoordinatorService();
 
         if (hsService != null) {
             List<BluetoothDevice> hsConnDevList = hsService.getConnectedDevices();
@@ -582,8 +578,8 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
             allProfilesEmpty &= a2dpConnDevList.isEmpty();
             atLeastOneProfileConnectedForDevice |= a2dpConnDevList.contains(device);
         }
-        if (csipSetCooridnatorService != null) {
-            List<BluetoothDevice> csipConnDevList = csipSetCooridnatorService.getConnectedDevices();
+        if (csipSetCoordinatorService != null) {
+            List<BluetoothDevice> csipConnDevList = csipSetCoordinatorService.getConnectedDevices();
             allProfilesEmpty &= csipConnDevList.isEmpty();
             atLeastOneProfileConnectedForDevice |= csipConnDevList.contains(device);
         }
@@ -770,8 +766,8 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
         A2dpService a2dpService = mFactory.getA2dpService();
         PanService panService = mFactory.getPanService();
         LeAudioService leAudioService = mFactory.getLeAudioService();
-        CsipSetCoordinatorService csipSetCooridnatorService =
-            mFactory.getCsipSetCoordinatorService();
+        CsipSetCoordinatorService csipSetCoordinatorService =
+                mFactory.getCsipSetCoordinatorService();
         VolumeControlService volumeControlService =
             mFactory.getVolumeControlService();
         BatteryService batteryService = mFactory.getBatteryService();
@@ -821,14 +817,15 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
                 leAudioService.connect(device);
             }
         }
-        if (csipSetCooridnatorService != null) {
-            List<BluetoothDevice> csipConnDevList = csipSetCooridnatorService.getConnectedDevices();
-            if (!csipConnDevList.contains(device) && (csipSetCooridnatorService.getConnectionPolicy(device)
-                    == BluetoothProfile.CONNECTION_POLICY_ALLOWED)
-                    && (csipSetCooridnatorService.getConnectionState(device)
-                    == BluetoothProfile.STATE_DISCONNECTED)) {
+        if (csipSetCoordinatorService != null) {
+            List<BluetoothDevice> csipConnDevList = csipSetCoordinatorService.getConnectedDevices();
+            if (!csipConnDevList.contains(device)
+                    && (csipSetCoordinatorService.getConnectionPolicy(device)
+                            == BluetoothProfile.CONNECTION_POLICY_ALLOWED)
+                    && (csipSetCoordinatorService.getConnectionState(device)
+                            == BluetoothProfile.STATE_DISCONNECTED)) {
                 debugLog("Retrying connection to CSIP with device " + device);
-                csipSetCooridnatorService.connect(device);
+                csipSetCoordinatorService.connect(device);
             }
         }
         if (volumeControlService != null) {
