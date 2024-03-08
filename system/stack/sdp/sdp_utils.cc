@@ -1478,11 +1478,7 @@ void sdpu_set_avrc_target_version(const tSDP_ATTRIBUTE* p_attr,
   }
 
   uint16_t dut_avrcp_version =
-      (bluetooth::common::init_flags::
-           dynamic_avrcp_version_enhancement_is_enabled())
-          ? GetInterfaceToProfiles()
-                ->profileSpecific_HACK->AVRC_GetProfileVersion()
-          : avrcp_version;
+      GetInterfaceToProfiles()->profileSpecific_HACK->AVRC_GetProfileVersion();
 
   log::info("Current DUT AVRCP Version {:x}", dut_avrcp_version);
   // Some remote devices will have interoperation issue when receive higher
@@ -1541,12 +1537,6 @@ void sdpu_set_avrc_target_version(const tSDP_ATTRIBUTE* p_attr,
         "cached AVRC Controller version {:x} of {} is not valid. Reply default "
         "AVRC Target version {:x}.",
         cached_version, ADDRESS_TO_LOGGABLE_CSTR(*bdaddr), avrcp_version);
-    return;
-  }
-
-  if (!bluetooth::common::init_flags::
-          dynamic_avrcp_version_enhancement_is_enabled() &&
-      dut_avrcp_version <= cached_version) {
     return;
   }
 

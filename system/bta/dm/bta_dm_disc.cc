@@ -715,9 +715,7 @@ static void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
       } while (p_sdp_rec);
     }
 
-    if (bluetooth::common::init_flags::
-            dynamic_avrcp_version_enhancement_is_enabled() &&
-        bta_dm_search_cb.services_to_search == 0) {
+    if (bta_dm_search_cb.services_to_search == 0) {
       bta_dm_store_audio_profiles_version();
     }
 
