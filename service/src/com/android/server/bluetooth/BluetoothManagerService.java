@@ -1355,7 +1355,7 @@ class BluetoothManagerService {
                     mQuietEnableExternal,
                     BluetoothProtoEnums.ENABLE_DISABLE_REASON_SYSTEM_BOOT,
                     mContext.getPackageName());
-        } else if (!isNameAndAddressSet()) {
+        } else if (!Flags.removeOneTimeGetNameAndAddress() && !isNameAndAddressSet()) {
             Log.i(TAG, "internalHandleOnBootPhase: Getting adapter name and address");
             mHandler.sendEmptyMessage(MESSAGE_GET_NAME_AND_ADDRESS);
         } else {
@@ -1546,6 +1546,10 @@ class BluetoothManagerService {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case MESSAGE_GET_NAME_AND_ADDRESS:
+                    if (Flags.removeOneTimeGetNameAndAddress()) {
+                        Log.e(TAG, "MESSAGE_GET_NAME_AND_ADDRESS is not supported anymore");
+                        break;
+                    }
                     Log.d(TAG, "MESSAGE_GET_NAME_AND_ADDRESS");
                     mAdapterLock.writeLock().lock();
                     try {
@@ -1788,10 +1792,12 @@ class BluetoothManagerService {
                         int foregroundUserId = ActivityManager.getCurrentUser();
                         propagateForegroundUserId(foregroundUserId);
 
-                        if (!isNameAndAddressSet()) {
-                            mHandler.sendEmptyMessage(MESSAGE_GET_NAME_AND_ADDRESS);
-                            if (mGetNameAddressOnly) {
-                                return;
+                        if (!Flags.removeOneTimeGetNameAndAddress()) {
+                            if (!isNameAndAddressSet()) {
+                                mHandler.sendEmptyMessage(MESSAGE_GET_NAME_AND_ADDRESS);
+                                if (mGetNameAddressOnly) {
+                                    return;
+                                }
                             }
                         }
 
