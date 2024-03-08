@@ -730,8 +730,6 @@ public class AdapterService extends Service {
         }
         mActiveDeviceManager.start();
 
-        mSilenceDeviceManager.start();
-
         mBtCompanionManager = new CompanionManager(this, new ServiceFactory());
 
         mBluetoothSocketManagerBinder = new BluetoothSocketManagerBinder(this);
