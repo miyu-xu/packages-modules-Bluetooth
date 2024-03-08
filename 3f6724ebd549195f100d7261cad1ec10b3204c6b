@@ -70,6 +70,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a0e1ef4_89d17d2f",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 5697,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-03-08T12:12:03Z",
+      "side": 1,
+      "message": "Sure. I merged two patch to the single one.",
+      "parentUuid": "a37d1747_9049cf0e",
+      "revId": "3f6724ebd549195f100d7261cad1ec10b3204c6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "194f7df6_606f7d76",
@@ -87,6 +105,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53390cc1_655a5079",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 5720,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-03-08T12:12:03Z",
+      "side": 1,
+      "message": "Good suggestion. Thanks. Done.",
+      "parentUuid": "194f7df6_606f7d76",
+      "revId": "3f6724ebd549195f100d7261cad1ec10b3204c6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36843b83_1db61b85",
@@ -100,6 +136,24 @@
       "writtenOn": "2024-02-29T07:44:18Z",
       "side": 1,
       "message": "lets add unit test for that.",
+      "revId": "3f6724ebd549195f100d7261cad1ec10b3204c6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "606f8170_d0203342",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 5725,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-03-08T12:12:03Z",
+      "side": 1,
+      "message": "client.cc doesn\u0027t have the unit test at all. It might need the time to add the unit test for this patch. Could we consider the unit test later?",
+      "parentUuid": "36843b83_1db61b85",
       "revId": "3f6724ebd549195f100d7261cad1ec10b3204c6b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
