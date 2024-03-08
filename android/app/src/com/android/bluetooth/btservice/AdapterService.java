@@ -338,7 +338,6 @@ public class AdapterService extends Service {
     private boolean mCleaningUp;
     private final HashMap<BluetoothDevice, ArrayList<IBluetoothMetadataListener>>
             mMetadataListeners = new HashMap<>();
-    private final HashMap<String, Integer> mProfileServicesState = new HashMap<String, Integer>();
     private Set<IBluetoothConnectionCallback> mBluetoothConnectionCallbacks = new HashSet<>();
     private RemoteCallbackList<IBluetoothPreferredAudioProfilesCallback>
             mPreferredAudioProfilesCallbacks;
@@ -1400,10 +1399,6 @@ public class AdapterService extends Service {
 
         if (mActiveDeviceManager != null) {
             mActiveDeviceManager.cleanup();
-        }
-
-        if (mProfileServicesState != null) {
-            mProfileServicesState.clear();
         }
 
         if (mBluetoothSocketManagerBinder != null) {
