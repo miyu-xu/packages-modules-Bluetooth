@@ -72,6 +72,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "09e804fa_006b3b9e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-03-08T21:16:07Z",
+      "side": 1,
+      "message": "Permission added back.\n\n                android.Manifest.permission.BLUETOOTH_CONNECT,\n                android.Manifest.permission.BLUETOOTH_PRIVILEGED,",
+      "parentUuid": "ad81e7ed_7523b297",
+      "revId": "0e71b72fdfbf5f93d204c0164eb11c6da33b305a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51ab8cba_9ab94577",
