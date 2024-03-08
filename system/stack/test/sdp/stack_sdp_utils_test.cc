@@ -50,15 +50,6 @@ bool sdp_dynamic_change_hfp_version(const tSDP_ATTRIBUTE* p_attr,
                                     const RawAddress& remote_address);
 void hfp_fallback(bool& is_hfp_fallback, const tSDP_ATTRIBUTE* p_attr);
 
-const char* test_flags_feature_disabled[] = {
-    "INIT_dynamic_avrcp_version_enhancement=false",
-    nullptr,
-};
-
-const char* test_flags_feature_enabled[] = {
-    "INIT_dynamic_avrcp_version_enhancement=true",
-    nullptr,
-};
 const char* hfp_test_flags_feature_disabled[] = {
     "INIT_hfp_dynamic_version=false",
     nullptr,
@@ -237,7 +228,6 @@ class StackSdpUtilsTest : public ::testing::Test {
  protected:
   void SetUp() override {
     bluetooth::common::InitFlags::Load(hfp_test_flags_feature_disabled);
-    bluetooth::common::InitFlags::Load(test_flags_feature_disabled);
     GetInterfaceToProfiles()->profileSpecific_HACK->AVRC_GetProfileVersion =
         AVRC_GetProfileVersion;
     test::mock::btif_config::btif_config_get_bin.body =
@@ -274,26 +264,6 @@ class StackSdpUtilsTest : public ::testing::Test {
   bluetooth::manager::MockBtifConfigInterface btif_config_interface_;
 };
 
-TEST_F(StackSdpUtilsTest,
-       sdpu_set_avrc_target_version_device_in_iop_table_versoin_1_4) {
-  RawAddress bdaddr;
-  EXPECT_CALL(*localIopMock, InteropMatchAddr(INTEROP_AVRCP_1_4_ONLY, &bdaddr))
-      .WillOnce(Return(true));
-  sdpu_set_avrc_target_version(&avrcp_attr, &bdaddr);
-  ASSERT_EQ(get_avrc_target_version(&avrcp_attr), AVRC_REV_1_4);
-}
-
-TEST_F(StackSdpUtilsTest,
-       sdpu_set_avrc_target_version_device_in_iop_table_versoin_1_3) {
-  RawAddress bdaddr;
-  EXPECT_CALL(*localIopMock, InteropMatchAddr(INTEROP_AVRCP_1_4_ONLY, &bdaddr))
-      .WillOnce(Return(false));
-  EXPECT_CALL(*localIopMock, InteropMatchAddr(INTEROP_AVRCP_1_3_ONLY, &bdaddr))
-      .WillOnce(Return(true));
-  sdpu_set_avrc_target_version(&avrcp_attr, &bdaddr);
-  ASSERT_EQ(get_avrc_target_version(&avrcp_attr), AVRC_REV_1_3);
-}
-
 TEST_F(StackSdpUtilsTest, sdpu_set_avrc_target_version_wrong_len) {
   RawAddress bdaddr;
   set_avrcp_attr(5, ATTR_ID_BT_PROFILE_DESC_LIST,
@@ -318,116 +288,7 @@ TEST_F(StackSdpUtilsTest, sdpu_set_avrc_target_version_wrong_uuid) {
   ASSERT_EQ(get_avrc_target_version(&avrcp_attr), AVRC_REV_1_5);
 }
 
-// device's controller version older than our target version
-TEST_F(StackSdpUtilsTest, sdpu_set_avrc_target_version_device_older_version) {
-  RawAddress bdaddr;
-  uint8_t config_0104[2] = {0x04, 0x01};
-  EXPECT_CALL(*localIopMock, InteropMatchAddr(INTEROP_AVRCP_1_4_ONLY, &bdaddr))
-      .WillOnce(Return(false));
-  EXPECT_CALL(*localIopMock, InteropMatchAddr(INTEROP_AVRCP_1_3_ONLY, &bdaddr))
-      .WillOnce(Return(false));
-  EXPECT_CALL(btif_config_interface_, GetBinLength(bdaddr.ToString(), _))
-      .WillOnce(Return(2));
-  EXPECT_CALL(btif_config_interface_, GetBin(bdaddr.ToString(), _, _, _))
-      .WillOnce(DoAll(SetArrayArgument<2>(config_0104, config_0104 + 2),
-                      Return(true)));
-  sdpu_set_avrc_target_version(&avrcp_attr, &bdaddr);
-  ASSERT_EQ(get_avrc_target_version(&avrcp_attr), AVRC_REV_1_4);
-}
-
-// device's controller version same as our target version
-TEST_F(StackSdpUtilsTest, sdpu_set_avrc_target_version_device_same_version) {
-  RawAddress bdaddr;
-  uint8_t config_0105[2] = {0x05, 0x01};
-  EXPECT_CALL(*localIopMock, InteropMatchAddr(INTEROP_AVRCP_1_4_ONLY, &bdaddr))
-      .WillOnce(Return(false));
-  EXPECT_CALL(*localIopMock, InteropMatchAddr(INTEROP_AVRCP_1_3_ONLY, &bdaddr))
-      .WillOnce(Return(false));
-  EXPECT_CALL(btif_config_interface_, GetBinLength(bdaddr.ToString(), _))
-      .WillOnce(Return(2));
-  EXPECT_CALL(btif_config_interface_, GetBin(bdaddr.ToString(), _, _, _))
-      .WillOnce(DoAll(SetArrayArgument<2>(config_0105, config_0105 + 2),
-                      Return(true)));
-  sdpu_set_avrc_target_version(&avrcp_attr, &bdaddr);
-  ASSERT_EQ(get_avrc_target_version(&avrcp_attr), AVRC_REV_1_5);
-}
-
-// device's controller version higher than our target version
-TEST_F(StackSdpUtilsTest, sdpu_set_avrc_target_version_device_newer_version) {
-  RawAddress bdaddr;
-  uint8_t config_0106[2] = {0x06, 0x01};
-  EXPECT_CALL(*localIopMock, InteropMatchAddr(INTEROP_AVRCP_1_4_ONLY, &bdaddr))
-      .WillOnce(Return(false));
-  EXPECT_CALL(*localIopMock, InteropMatchAddr(INTEROP_AVRCP_1_3_ONLY, &bdaddr))
-      .WillOnce(Return(false));
-  EXPECT_CALL(btif_config_interface_, GetBinLength(bdaddr.ToString(), _))
-      .WillOnce(Return(2));
-  EXPECT_CALL(btif_config_interface_, GetBin(bdaddr.ToString(), _, _, _))
-      .WillOnce(DoAll(SetArrayArgument<2>(config_0106, config_0106 + 2),
-                      Return(true)));
-  sdpu_set_avrc_target_version(&avrcp_attr, &bdaddr);
-  ASSERT_EQ(get_avrc_target_version(&avrcp_attr), AVRC_REV_1_5);
-}
-
-// cannot read device's controller version from bt_config
-TEST_F(StackSdpUtilsTest, sdpu_set_avrc_target_version_no_config_value) {
-  RawAddress bdaddr;
-  EXPECT_CALL(*localIopMock, InteropMatchAddr(INTEROP_AVRCP_1_4_ONLY, &bdaddr))
-      .WillOnce(Return(false));
-  EXPECT_CALL(*localIopMock, InteropMatchAddr(INTEROP_AVRCP_1_3_ONLY, &bdaddr))
-      .WillOnce(Return(false));
-  EXPECT_CALL(btif_config_interface_, GetBinLength(bdaddr.ToString(), _))
-      .WillOnce(Return(0));
-  sdpu_set_avrc_target_version(&avrcp_attr, &bdaddr);
-  ASSERT_EQ(get_avrc_target_version(&avrcp_attr), AVRC_REV_1_5);
-}
-
-// read device's controller version from bt_config return only 1 byte
-TEST_F(StackSdpUtilsTest, sdpu_set_avrc_target_version_config_value_1_byte) {
-  RawAddress bdaddr;
-  EXPECT_CALL(*localIopMock, InteropMatchAddr(INTEROP_AVRCP_1_4_ONLY, &bdaddr))
-      .WillOnce(Return(false));
-  EXPECT_CALL(*localIopMock, InteropMatchAddr(INTEROP_AVRCP_1_3_ONLY, &bdaddr))
-      .WillOnce(Return(false));
-  EXPECT_CALL(btif_config_interface_, GetBinLength(bdaddr.ToString(), _))
-      .WillOnce(Return(1));
-  sdpu_set_avrc_target_version(&avrcp_attr, &bdaddr);
-  ASSERT_EQ(get_avrc_target_version(&avrcp_attr), AVRC_REV_1_5);
-}
-
-// read device's controller version from bt_config return 3 bytes
-TEST_F(StackSdpUtilsTest, sdpu_set_avrc_target_version_config_value_3_bytes) {
-  RawAddress bdaddr;
-  EXPECT_CALL(*localIopMock, InteropMatchAddr(INTEROP_AVRCP_1_4_ONLY, &bdaddr))
-      .WillOnce(Return(false));
-  EXPECT_CALL(*localIopMock, InteropMatchAddr(INTEROP_AVRCP_1_3_ONLY, &bdaddr))
-      .WillOnce(Return(false));
-  EXPECT_CALL(btif_config_interface_, GetBinLength(bdaddr.ToString(), _))
-      .WillOnce(Return(3));
-  sdpu_set_avrc_target_version(&avrcp_attr, &bdaddr);
-  ASSERT_EQ(get_avrc_target_version(&avrcp_attr), AVRC_REV_1_5);
-}
-
-// cached controller version is not valid
-TEST_F(StackSdpUtilsTest, sdpu_set_avrc_target_version_config_value_not_valid) {
-  RawAddress bdaddr;
-  uint8_t config_not_valid[2] = {0x12, 0x34};
-  EXPECT_CALL(*localIopMock, InteropMatchAddr(INTEROP_AVRCP_1_4_ONLY, &bdaddr))
-      .WillOnce(Return(false));
-  EXPECT_CALL(*localIopMock, InteropMatchAddr(INTEROP_AVRCP_1_3_ONLY, &bdaddr))
-      .WillOnce(Return(false));
-  EXPECT_CALL(btif_config_interface_, GetBinLength(bdaddr.ToString(), _))
-      .WillOnce(Return(2));
-  EXPECT_CALL(btif_config_interface_, GetBin(bdaddr.ToString(), _, _, _))
-      .WillOnce(
-          DoAll(SetArrayArgument<2>(config_not_valid, config_not_valid + 2),
-                Return(true)));
-  sdpu_set_avrc_target_version(&avrcp_attr, &bdaddr);
-  ASSERT_EQ(get_avrc_target_version(&avrcp_attr), AVRC_REV_1_5);
-}
-
 TEST_F(StackSdpUtilsTest, sdpu_set_avrc_target_feature_wrong_len) {
-  bluetooth::common::InitFlags::Load(test_flags_feature_enabled);
   RawAddress bdaddr;
   set_avrcp_attr(8, ATTR_ID_BT_PROFILE_DESC_LIST,
                  UUID_SERVCLASS_AV_REMOTE_CONTROL, AVRC_REV_1_5);
@@ -440,7 +301,6 @@ TEST_F(StackSdpUtilsTest, sdpu_set_avrc_target_feature_wrong_len) {
 }
 
 TEST_F(StackSdpUtilsTest, sdpu_set_avrc_target_feature_wrong_attribute_id) {
-  bluetooth::common::InitFlags::Load(test_flags_feature_enabled);
   RawAddress bdaddr;
   set_avrcp_attr(8, ATTR_ID_BT_PROFILE_DESC_LIST,
                  UUID_SERVCLASS_AV_REMOTE_CONTROL, AVRC_REV_1_5);
@@ -454,7 +314,6 @@ TEST_F(StackSdpUtilsTest, sdpu_set_avrc_target_feature_wrong_attribute_id) {
 
 TEST_F(StackSdpUtilsTest,
        sdpu_set_avrc_target_feature_device_in_iop_table_versoin_1_4) {
-  bluetooth::common::InitFlags::Load(test_flags_feature_enabled);
   RawAddress bdaddr;
   uint8_t feature_0105[2] = {0xC1, 0x00};
   EXPECT_CALL(*localAvrcpVersionMock, AvrcpProfileVersionMock())
@@ -476,7 +335,6 @@ TEST_F(StackSdpUtilsTest,
 
 TEST_F(StackSdpUtilsTest,
        sdpu_set_avrc_target_feature_device_in_iop_table_versoin_1_3) {
-  bluetooth::common::InitFlags::Load(test_flags_feature_enabled);
   RawAddress bdaddr;
   uint8_t feature_0105[2] = {0xC1, 0x00};
   EXPECT_CALL(*localAvrcpVersionMock, AvrcpProfileVersionMock())
@@ -500,7 +358,6 @@ TEST_F(StackSdpUtilsTest,
 
 // cannot read device's controller feature from bt_config
 TEST_F(StackSdpUtilsTest, sdpu_set_avrc_target_feature_no_config_value) {
-  bluetooth::common::InitFlags::Load(test_flags_feature_enabled);
   RawAddress bdaddr;
   EXPECT_CALL(*localAvrcpVersionMock, AvrcpProfileVersionMock())
       .WillOnce(Return(AVRC_REV_1_5));
@@ -516,7 +373,6 @@ TEST_F(StackSdpUtilsTest, sdpu_set_avrc_target_feature_no_config_value) {
 
 // read device's controller feature from bt_config return only 1 byte
 TEST_F(StackSdpUtilsTest, sdpu_set_avrc_target_feature_config_value_1_byte) {
-  bluetooth::common::InitFlags::Load(test_flags_feature_enabled);
   RawAddress bdaddr;
   EXPECT_CALL(*localAvrcpVersionMock, AvrcpProfileVersionMock())
       .WillOnce(Return(AVRC_REV_1_5));
@@ -531,7 +387,6 @@ TEST_F(StackSdpUtilsTest, sdpu_set_avrc_target_feature_config_value_1_byte) {
 }
 
 TEST_F(StackSdpUtilsTest, sdpu_set_avrc_target_feature_device_versoin_1_6) {
-  bluetooth::common::InitFlags::Load(test_flags_feature_enabled);
   RawAddress bdaddr;
   uint8_t config_0106[2] = {0x06, 0x01};
   uint8_t feature_0106[2] = {0xC1, 0x01};
