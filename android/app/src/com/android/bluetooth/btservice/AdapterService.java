@@ -717,7 +717,6 @@ public class AdapterService extends Service {
         mActiveDeviceManager.start();
 
         mSilenceDeviceManager = new SilenceDeviceManager(this, new ServiceFactory(), mLooper);
-        mSilenceDeviceManager.start();
 
         mBtCompanionManager = new CompanionManager(this, new ServiceFactory());
 
