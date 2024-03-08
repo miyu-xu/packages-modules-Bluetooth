@@ -721,8 +721,7 @@ public class AdapterService extends Service {
          */
         if (!isAutomotiveDevice && getResources().getBoolean(R.bool.enable_phone_policy)) {
             Log.i(TAG, "Phone policy enabled");
-            mPhonePolicy = new PhonePolicy(this, new ServiceFactory());
-            mPhonePolicy.start();
+            mPhonePolicy = new PhonePolicy(this, mLooper, mDatabaseManager, new ServiceFactory());
         } else {
             Log.i(TAG, "Phone policy disabled");
         }
