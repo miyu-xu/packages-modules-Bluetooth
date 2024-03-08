@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73d6849e_026af073",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-08T18:39:49Z",
+      "side": 1,
+      "message": "nit: static_cast\u003cuint8_t\u003e() is safer than a c-style cast.",
+      "range": {
+        "startLine": 215,
+        "startChar": 13,
+        "endLine": 215,
+        "endChar": 22
+      },
+      "revId": "a474c40316cc79e66a6c5c54d2e96e1d8f34d91b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
