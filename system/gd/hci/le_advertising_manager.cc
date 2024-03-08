@@ -78,6 +78,7 @@ struct Advertiser {
   uint16_t duration;
   uint8_t max_extended_advertising_events;
   bool started = false;
+  bool is_legacy = false;
   bool connectable = false;
   bool discoverable = false;
   bool directed = false;
@@ -449,8 +450,8 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
       common::Callback<void(ErrorCode, uint8_t, uint8_t)> set_terminated_callback,
       os::Handler* handler) {
     // check advertising data is valid before start advertising
-    if (!check_advertising_data(config.advertisement, config.connectable && config.discoverable) ||
-        !check_advertising_data(config.scan_response, false)) {
+    if (!check_advertising_data(id, config.advertisement, config.connectable && config.discoverable) ||
+        !check_advertising_data(id, config.scan_response, false)) {
       advertising_callbacks_->OnAdvertisingSetStarted(
           reg_id, id, le_physical_channel_tx_power_, AdvertisingCallback::AdvertisingStatus::DATA_TOO_LARGE);
       return;
@@ -585,8 +586,8 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
 
     // check extended advertising data is valid before start advertising
     if (!check_extended_advertising_data(
-            config.advertisement, config.connectable && config.discoverable) ||
-        !check_extended_advertising_data(config.scan_response, false)) {
+            id, config.advertisement, config.connectable && config.discoverable) ||
+        !check_extended_advertising_data(id, config.scan_response, false)) {
       advertising_callbacks_->OnAdvertisingSetStarted(
           reg_id, id, le_physical_channel_tx_power_, AdvertisingCallback::AdvertisingStatus::DATA_TOO_LARGE);
       return;
@@ -791,6 +792,7 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
 
   void set_parameters(AdvertiserId advertiser_id, AdvertisingConfig config) {
     config.tx_power = get_tx_power_after_calibration(static_cast<int8_t>(config.tx_power));
+    advertising_sets_[advertiser_id].is_legacy = config.legacy_pdus;
     advertising_sets_[advertiser_id].connectable = config.connectable;
     advertising_sets_[advertiser_id].discoverable = config.discoverable;
     advertising_sets_[advertiser_id].tx_power = config.tx_power;
@@ -921,7 +923,7 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
     return false;
   }
 
-  bool check_advertising_data(std::vector<GapData> data, bool include_flag) {
+  bool check_advertising_data(AdvertiserId advertiser_id, std::vector<GapData> data, bool include_flag) {
     uint16_t data_len = 0;
     // check data size
     for (size_t i = 0; i < data.size(); i++) {
@@ -935,17 +937,21 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
       data_len += kLenOfFlags;
     }
 
-    if (data_len > le_maximum_advertising_data_length_) {
+    int legacy_max_advertising_data_length = 31;
+    int maxDataLength = advertising_sets_[advertiser_id].is_legacy ? legacy_max_advertising_data_length :
+                        le_maximum_advertising_data_length_;
+
+    if (data_len > maxDataLength) {
       LOG_WARN(
-          "advertising data len %d exceeds le_maximum_advertising_data_length_ %d",
+          "(XXX - VERSION 1) advertising data len %d exceeds le_maximum_advertising_data_length_ %d",
           data_len,
-          le_maximum_advertising_data_length_);
+          maxDataLength);
       return false;
     }
     return true;
   };
 
-  bool check_extended_advertising_data(std::vector<GapData> data, bool include_flag) {
+  bool check_extended_advertising_data(AdvertiserId advertiser_id, std::vector<GapData> data, bool include_flag) {
     uint16_t data_len = 0;
     uint16_t data_limit = IS_FLAG_ENABLED(divide_long_single_gap_data) ? kLeMaximumGapDataLength
                                                                        : kLeMaximumFragmentLength;
@@ -965,13 +971,18 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
       data_len += kLenOfFlags;
     }
 
-    if (data_len > le_maximum_advertising_data_length_) {
-      LOG_WARN(
-          "advertising data len %d exceeds le_maximum_advertising_data_length_ %d",
-          data_len,
-          le_maximum_advertising_data_length_);
-      return false;
+    int legacy_max_advertising_data_length = 31;
+    int maxDataLength = advertising_sets_[advertiser_id].is_legacy ? legacy_max_advertising_data_length :
+                        le_maximum_advertising_data_length_;
+
+    if (data_len > maxDataLength) {
+        LOG_WARN(
+                "(XXX - VERSION 2) advertising data len %d exceeds le_maximum_advertising_data_length_ %d",
+                data_len,
+                maxDataLength);
+        return false;
     }
+
     return true;
   };
 
@@ -998,7 +1009,7 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
       }
     }
 
-    if (advertising_api_type_ != AdvertisingApiType::EXTENDED && !check_advertising_data(data, false)) {
+    if (advertising_api_type_ != AdvertisingApiType::EXTENDED && !check_advertising_data(advertiser_id, data, false)) {
       if (set_scan_rsp) {
         advertising_callbacks_->OnScanResponseDataSet(
             advertiser_id, AdvertisingCallback::AdvertisingStatus::DATA_TOO_LARGE);
@@ -1065,10 +1076,14 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
           data_len += data[i].size();
         }
 
-        if (data_len > le_maximum_advertising_data_length_) {
+        int legacy_max_advertising_data_length = 31;
+        int maxDataLength = advertising_sets_[advertiser_id].is_legacy ? legacy_max_advertising_data_length :
+                            le_maximum_advertising_data_length_;
+
+        if (data_len > maxDataLength) {
           LOG_WARN(
-              "advertising data len exceeds le_maximum_advertising_data_length_ %d",
-              le_maximum_advertising_data_length_);
+              "(XXX - VERSION 3) advertising data len exceeds le_maximum_advertising_data_length_ %d",
+              maxDataLength);
           if (advertising_callbacks_ != nullptr) {
             if (set_scan_rsp) {
               advertising_callbacks_->OnScanResponseDataSet(
