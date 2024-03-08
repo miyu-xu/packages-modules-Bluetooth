@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9ac9bee9_55082047",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1713,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-08T00:18:14Z",
+      "side": 1,
+      "message": "enum PhyType : 8 {\n  LE_1M \u003d 0x01,\n  LE_2M \u003d 0x02,\n  LE_CODED \u003d 0x03,\n}\n\nPhyType::LE_1M;\n\nSomewhere I would expect that it\u0027s getting cast to PhyType before the packet is sent to HCI.",
+      "parentUuid": "9393fd02_a58c146e",
+      "range": {
+        "startLine": 1713,
+        "startChar": 2,
+        "endLine": 1713,
+        "endChar": 18
+      },
+      "revId": "86e3417f7afe4e9396f7a1639dbe830901ced1f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0658b87c_e5bdad0b",
         "filename": "system/gd/hci/le_scanning_manager_test.cc",
         "patchSetId": 7
