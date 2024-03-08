@@ -619,6 +619,10 @@ public class AdapterService extends Service {
     public void onCreate() {
         super.onCreate();
         debugLog("onCreate()");
+        if (Flags.fastBindToApp()) {
+            mBinder = new AdapterServiceBinder(this);
+            return;
+        }
         init();
     }
 
@@ -641,7 +645,9 @@ public class AdapterService extends Service {
         mRemoteDevices = new RemoteDevices(this, mLooper);
         mRemoteDevices.init();
         clearDiscoveringPackages();
-        mBinder = new AdapterServiceBinder(this);
+        if (!Flags.fastBindToApp()) {
+            mBinder = new AdapterServiceBinder(this);
+        }
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         mAdapterProperties = new AdapterProperties(this);
         mAdapterStateMachine = new AdapterState(this, mLooper);
@@ -5904,6 +5910,9 @@ public class AdapterService extends Service {
                 UserManager.DISALLOW_BLUETOOTH, UserHandle.SYSTEM)) {
             debugLog("enable() called when Bluetooth was disallowed");
             return false;
+        }
+        if (Flags.fastBindToApp()) {
+            init();
         }
 
         debugLog("enable() - Enable called with quiet mode status =  " + quietMode);
