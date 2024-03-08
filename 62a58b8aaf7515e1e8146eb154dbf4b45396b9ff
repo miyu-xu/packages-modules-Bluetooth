@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10963cb0_333414bb",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 5507,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-03-08T12:08:25Z",
+      "side": 1,
+      "message": "Thanks for the suggestion. I have another idea. The group stream status is not important for acl phy setting, so I created a flag per device to record the asymmetric acl setting status to avoid set the same configuration multiple times.",
+      "parentUuid": "1ff54034_b8c35e43",
+      "revId": "62a58b8aaf7515e1e8146eb154dbf4b45396b9ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3671137b_5f5239b1",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-02-29T07:38:51Z",
       "side": 1,
       "message": "ok so here we make sure that for bidirecational case, PHY will go back to 2M. Right?\n\nIf so, can we make a comment around that?",
+      "revId": "62a58b8aaf7515e1e8146eb154dbf4b45396b9ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c2fa0f5_5934f45e",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 5510,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-03-08T12:08:25Z",
+      "side": 1,
+      "message": "Is line#5496 ~ line#5498 more clear than the previous one?",
+      "parentUuid": "3671137b_5f5239b1",
       "revId": "62a58b8aaf7515e1e8146eb154dbf4b45396b9ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
