@@ -1511,11 +1511,21 @@ static void bta_hh_le_srvc_search_cmpl(tBTA_GATTC_SEARCH_CMPL* p_data) {
   const gatt::Service* gap_service = nullptr;
   const gatt::Service* scp_service = nullptr;
 
-  bool have_hid = false;
+  int num_hid_service = 0;
   for (const gatt::Service& service : *services) {
     if (service.uuid == Uuid::From16Bit(UUID_SERVCLASS_LE_HID) &&
-        service.is_primary && !have_hid) {
-      have_hid = true;
+        service.is_primary) {
+      num_hid_service++;
+
+      if (interop_match_vendor_product_ids(
+              INTEROP_MULTIPLE_HOGP_SERVICE_CHOOSE_SECOND,
+              p_dev_cb->dscp_info.vendor_id, p_dev_cb->dscp_info.product_id)) {
+        if (num_hid_service < 2) {
+          continue;
+        }
+      } else if (num_hid_service > 1) {
+        continue;
+      }
 
       /* found HID primamry service */
       p_dev_cb->hid_srvc.state = BTA_HH_SERVICE_DISCOVERED;
@@ -1534,7 +1544,7 @@ static void bta_hh_le_srvc_search_cmpl(tBTA_GATTC_SEARCH_CMPL* p_data) {
     }
   }
 
-  if (!have_hid) {
+  if (!num_hid_service) {
     log::error("HID service not found");
     p_dev_cb->status = BTA_HH_ERR_SDP;
     bta_hh_le_api_disc_act(p_dev_cb);
