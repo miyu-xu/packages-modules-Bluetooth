@@ -110,6 +110,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b73a0f6e_3ddd3e14",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-09T22:27:35Z",
+      "side": 1,
+      "message": "If we want to check permission before accessing the data, we should store the channel inside the BluetoothSocketManagerBinder.\n\nThis version of the CL does not prevent any malicious app to get the data by reflexion, bypassing the permission check",
+      "parentUuid": "08b10a3a_ac2db10a",
+      "revId": "0e71b72fdfbf5f93d204c0164eb11c6da33b305a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "51ab8cba_9ab94577",
         "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
         "patchSetId": 12
