@@ -70,6 +70,30 @@
       },
       "revId": "ef4a84bc6cd43f490c10b89ae7705cde12f9d854",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e33d132_237fceb9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-03-09T01:59:46Z",
+      "side": 1,
+      "message": "I think it could still be worth separating logging from identifying",
+      "parentUuid": "0e8e9e4d_8a2535c4",
+      "range": {
+        "startLine": 320,
+        "startChar": 8,
+        "endLine": 330,
+        "endChar": 9
+      },
+      "revId": "ef4a84bc6cd43f490c10b89ae7705cde12f9d854",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
