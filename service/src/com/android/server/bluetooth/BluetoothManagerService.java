@@ -1139,7 +1139,7 @@ class BluetoothManagerService {
                 mAdapter.stopBle(mContext.getAttributionSource());
                 return;
             }
-            if (isBluetoothPersistedStateOnBluetooth() || !isBleAppPresent()) {
+            if (isBluetoothPersistedStateOnBluetooth() || !isBleAppPresent() || mEnableExternal) {
                 Log.i(TAG, "continueFromBleOnState: Starting br edr");
                 // This triggers transition to STATE_ON
                 mAdapter.startBrEdr(mContext.getAttributionSource());
