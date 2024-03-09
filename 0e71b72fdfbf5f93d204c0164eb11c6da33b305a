@@ -90,6 +90,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08b10a3a_ac2db10a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-03-09T07:57:04Z",
+      "side": 1,
+      "message": "checked the permission through BluetoothSocketManagerBinder.",
+      "parentUuid": "09e804fa_006b3b9e",
+      "revId": "0e71b72fdfbf5f93d204c0164eb11c6da33b305a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51ab8cba_9ab94577",
