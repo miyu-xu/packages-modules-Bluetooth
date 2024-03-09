@@ -521,7 +521,8 @@ class BluetoothManagerService {
                             BluetoothProtoEnums.ENABLE_DISABLE_REASON_AIRPLANE_MODE,
                             mContext.getPackageName());
                 }
-            } else if (mEnableExternal) {
+            } else if (mEnableExternal && st != STATE_ON && isBluetoothPersistedStateOn()) {
+                // Restart if Bluetooth is not ON and if the persisted state require it to be ON
                 sendEnableMsg(
                         mQuietEnableExternal,
                         BluetoothProtoEnums.ENABLE_DISABLE_REASON_AIRPLANE_MODE,
