@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71ddfb8c_0c9b6174",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-09T22:39:52Z",
+      "side": 1,
+      "message": "We are trying to enforce formatting everywhere but this hasn\u0027t been always the case and there are still some CL going it without proper format.\n\nIt is perfectly fine by me to have some more extra lines changes not related to yours just because the formatter asked.\n\nThank you very much !",
+      "parentUuid": "688f005a_baaacf5a",
+      "revId": "7a6dd5aaf2de418c810c1bab4ed93c5fc0396a4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24828a82_7e06f3b8",
