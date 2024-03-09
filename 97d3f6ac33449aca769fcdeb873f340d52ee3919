@@ -22,6 +22,30 @@
       },
       "revId": "97d3f6ac33449aca769fcdeb873f340d52ee3919",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fc0085e_c3dab298",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1036,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-09T23:59:12Z",
+      "side": 1,
+      "message": "Yes, while re-ordering the variable I followed some good practice to list the generic types instead of forcing using more specific types.\nBecause of that there are a bit extra change.\n\nNone of that is making a logical change, it should only make it easier for further development",
+      "parentUuid": "db98cb7a_327d2c5e",
+      "range": {
+        "startLine": 1036,
+        "startChar": 14,
+        "endLine": 1036,
+        "endChar": 18
+      },
+      "revId": "97d3f6ac33449aca769fcdeb873f340d52ee3919",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
