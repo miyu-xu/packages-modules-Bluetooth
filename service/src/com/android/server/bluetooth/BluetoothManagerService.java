@@ -1134,6 +1134,13 @@ class BluetoothManagerService {
                 Log.e(TAG, "continueFromBleOnState: Adapter is null");
                 return;
             }
+            if (mAddress == null || mName == null) {
+                storeNameAndAddress(
+                        mName == null ? mAdapter.getName(mContext.getAttributionSource()) : null,
+                        mAddress == null
+                                ? mAdapter.getAddress(mContext.getAttributionSource())
+                                : null);
+            }
             if (!mEnableExternal && !isBleAppPresent()) {
                 // TODO(b/262605980): this code is unlikely to be trigger and will never be once
                 // enableBle & disableBle are executed on the handler
