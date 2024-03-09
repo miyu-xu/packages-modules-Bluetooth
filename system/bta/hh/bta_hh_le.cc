@@ -1511,11 +1511,25 @@ static void bta_hh_le_srvc_search_cmpl(tBTA_GATTC_SEARCH_CMPL* p_data) {
   const gatt::Service* gap_service = nullptr;
   const gatt::Service* scp_service = nullptr;
 
+  int num_hid_service = 0;
   bool have_hid = false;
   for (const gatt::Service& service : *services) {
     if (service.uuid == Uuid::From16Bit(UUID_SERVCLASS_LE_HID) &&
         service.is_primary && !have_hid) {
-      have_hid = true;
+
+      // TODO(b/286413526): The current implementation connects to the first HID
+      // service, in the case of multiple HID services being present. As a
+      // temporary mitigation, connect to the third HID service for some
+      // particular devices. The long-term fix should refactor HID stack to
+      // connect to multiple HID services simultaneously.
+      if (interop_match_vendor_product_ids(
+              INTEROP_MULTIPLE_HOGP_SERVICE_CHOOSE_THIRD,
+              p_dev_cb->dscp_info.vendor_id, p_dev_cb->dscp_info.product_id)) {
+        if (num_hid_service != 3) {
+          num_hid_service++;
+          continue;
+        }
+      }
 
       /* found HID primamry service */
       p_dev_cb->hid_srvc.state = BTA_HH_SERVICE_DISCOVERED;
