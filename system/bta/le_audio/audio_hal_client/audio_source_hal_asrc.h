@@ -21,7 +21,7 @@
 #include <memory>
 #include <vector>
 
-namespace bluetooth::audio::asrc {
+namespace le_audio {
 
 class SourceAudioHalAsrc {
  public:
@@ -89,4 +89,4 @@ class SourceAudioHalAsrc {
   friend class SourceAudioHalAsrcTest;
 };
 
-}  // namespace bluetooth::audio::asrc
+}  // namespace le_audio

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#include "asrc_resampler.h"
+#include "audio_source_hal_asrc.h"
 
 #include <base/logging.h>
 #include <base/strings/stringprintf.h>
@@ -25,7 +25,7 @@
 #include "asrc_tables.h"
 #include "hal/nocp_iso_clocker.h"
 
-namespace bluetooth::audio::asrc {
+namespace le_audio {
 
 class SourceAudioHalAsrc::ClockRecovery : ::bluetooth::hal::NocpIsoHandler {
   const int interval_;
@@ -621,4 +621,4 @@ SourceAudioHalAsrc::Run(const std::vector<uint8_t>& in) {
   return out;
 }
 
-}  // namespace bluetooth::audio::asrc
+}  // namespace le_audio

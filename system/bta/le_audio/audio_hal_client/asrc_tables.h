@@ -18,7 +18,7 @@
 
 #include <cstdint>
 
-namespace bluetooth::audio::asrc {
+namespace le_audio::asrc {
 
 extern const struct ResamplerTables {
   static const int KERNEL_Q = 512;
@@ -31,4 +31,4 @@ extern const struct ResamplerTables {
 
 } resampler_tables;
 
-}  // namespace bluetooth::audio::asrc
+}  // namespace le_audio::asrc
