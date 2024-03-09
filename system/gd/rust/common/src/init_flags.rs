@@ -232,7 +232,6 @@ init_flags!(
         bta_dm_stop_discovery_on_search_cancel,
         classic_discovery_only,
         device_iot_config_logging,
-        gatt_robust_caching_client = true,
         gatt_robust_caching_server,
         hci_adapter: i32,
         hfp_dynamic_version = true,
