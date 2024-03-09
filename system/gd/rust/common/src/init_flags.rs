@@ -231,8 +231,11 @@ init_flags!(
         btm_dm_flush_discovery_queue_on_search_cancel,
         classic_discovery_only,
         device_iot_config_logging,
+<<<<<<< PATCH SET (d1bc1f Remove gatt_robust_caching_client flag)
+=======
         dynamic_avrcp_version_enhancement = true,
         gatt_robust_caching_client = true,
+>>>>>>> BASE      (30bd48 Merge "gatt: Fix handling GATT connect timeout" into main)
         gatt_robust_caching_server,
         hci_adapter: i32,
         hfp_dynamic_version = true,

@@ -18,8 +18,11 @@ mod ffi {
         fn btm_dm_flush_discovery_queue_on_search_cancel_is_enabled() -> bool;
         fn classic_discovery_only_is_enabled() -> bool;
         fn device_iot_config_logging_is_enabled() -> bool;
+<<<<<<< PATCH SET (d1bc1f Remove gatt_robust_caching_client flag)
+=======
         fn dynamic_avrcp_version_enhancement_is_enabled() -> bool;
         fn gatt_robust_caching_client_is_enabled() -> bool;
+>>>>>>> BASE      (30bd48 Merge "gatt: Fix handling GATT connect timeout" into main)
         fn gatt_robust_caching_server_is_enabled() -> bool;
         fn get_hci_adapter() -> i32;
         fn get_asha_packet_drop_frequency_threshold() -> i32;
