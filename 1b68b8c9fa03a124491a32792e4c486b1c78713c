@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "20a0a920_152ff31f",
+        "filename": "floss/pandora/server/bluetooth.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-03-10T13:26:31Z",
+      "side": 1,
+      "message": "Great suggestion, thanks!\n\nbut maybe it is better to query it from \"dbus\" using \u0027get_remote_property\u0027 ?\n\ntake this case as an example : device A and B are connected, device A have the name of device B in the \u0027know_devices\u0027\n\nDevice B change its name, in that case when we use \u0027known_device\u0027 we will get the cached name not the current one.\n\nwe have two options here:\n1- implements \u0027on_device_properties_changed\u0027 to update the \u0027known_devics\u0027 list when device B update its properties.\n\n2- use get_remote_property, which query the name from device.\n\nwhat do you think ?",
+      "parentUuid": "1e76a4ff_e87baabd",
+      "range": {
+        "startLine": 391,
+        "startChar": 16,
+        "endLine": 391,
+        "endChar": 27
+      },
+      "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "042c2310_e4443901",
         "filename": "floss/pandora/server/rfcomm.py",
         "patchSetId": 2
