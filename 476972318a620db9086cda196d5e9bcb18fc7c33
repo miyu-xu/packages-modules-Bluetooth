@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62db5e89_5cc07107",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-03-10T15:47:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ca0ac3c_053a4a64",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 36
+      },
+      "revId": "476972318a620db9086cda196d5e9bcb18fc7c33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8bf5be18_0f09f805",
@@ -85,6 +109,30 @@
       "writtenOn": "2024-03-06T02:29:08Z",
       "side": 1,
       "message": "Only need to store the socket in the Pandora server. Remove this",
+      "range": {
+        "startLine": 134,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 93
+      },
+      "revId": "476972318a620db9086cda196d5e9bcb18fc7c33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb7b9e56_c8f96930",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-03-10T15:47:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8bf5be18_0f09f805",
       "range": {
         "startLine": 134,
         "startChar": 0,
@@ -166,6 +214,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab8bca93_d27a9637",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-03-10T15:47:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aee44d8c_0fa85a20",
+      "range": {
+        "startLine": 137,
+        "startChar": 20,
+        "endLine": 137,
+        "endChar": 26
+      },
+      "revId": "476972318a620db9086cda196d5e9bcb18fc7c33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8a45777_b60fef9c",
@@ -179,6 +251,30 @@
       "writtenOn": "2024-03-06T02:29:08Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 141,
+        "startChar": 20,
+        "endLine": 141,
+        "endChar": 26
+      },
+      "revId": "476972318a620db9086cda196d5e9bcb18fc7c33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cb3a207_8ddaa3c3",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-03-10T15:47:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8a45777_b60fef9c",
       "range": {
         "startLine": 141,
         "startChar": 20,
@@ -212,6 +308,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "552c2f4c_349dbe47",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-03-10T15:47:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aea3880f_eab417f2",
+      "range": {
+        "startLine": 145,
+        "startChar": 20,
+        "endLine": 145,
+        "endChar": 26
+      },
+      "revId": "476972318a620db9086cda196d5e9bcb18fc7c33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8dbe4361_db248f58",
@@ -225,6 +345,30 @@
       "writtenOn": "2024-03-06T02:29:08Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 150,
+        "startChar": 20,
+        "endLine": 150,
+        "endChar": 26
+      },
+      "revId": "476972318a620db9086cda196d5e9bcb18fc7c33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e66eb719_69759cd2",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-03-10T15:47:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8dbe4361_db248f58",
       "range": {
         "startLine": 150,
         "startChar": 20,
@@ -258,6 +402,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbbde50b_8bef005f",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-03-10T15:47:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11566f14_d664ad60",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 95
+      },
+      "revId": "476972318a620db9086cda196d5e9bcb18fc7c33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38bcdb01_e604e5af",
@@ -271,6 +439,30 @@
       "writtenOn": "2024-03-06T02:29:08Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 214,
+        "startChar": 20,
+        "endLine": 214,
+        "endChar": 26
+      },
+      "revId": "476972318a620db9086cda196d5e9bcb18fc7c33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8463a845_2851f210",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-03-10T15:47:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38bcdb01_e604e5af",
       "range": {
         "startLine": 214,
         "startChar": 20,
@@ -304,6 +496,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d21db239_fcdd4d7a",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-03-10T15:47:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d37b7ac_1a30e4a8",
+      "range": {
+        "startLine": 218,
+        "startChar": 20,
+        "endLine": 218,
+        "endChar": 26
+      },
+      "revId": "476972318a620db9086cda196d5e9bcb18fc7c33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73114362_a5f3acbc",
@@ -327,6 +543,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e0526db_da5f94ad",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-03-10T15:47:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73114362_a5f3acbc",
+      "range": {
+        "startLine": 223,
+        "startChar": 20,
+        "endLine": 223,
+        "endChar": 26
+      },
+      "revId": "476972318a620db9086cda196d5e9bcb18fc7c33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "71f16032_63c541ee",
@@ -340,6 +580,30 @@
       "writtenOn": "2024-03-06T02:29:08Z",
       "side": 1,
       "message": "remove this",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 227,
+        "endChar": 94
+      },
+      "revId": "476972318a620db9086cda196d5e9bcb18fc7c33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5673326a_0634fb31",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-03-10T15:47:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71f16032_63c541ee",
       "range": {
         "startLine": 227,
         "startChar": 0,
