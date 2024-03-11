@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e45bac8d_3f880e89",
+        "filename": "system/gd/crypto_toolbox/crypto_toolbox.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-11T18:14:44Z",
+      "side": 1,
+      "message": "Why didn\u0027t this get formatted?  I would have expected #if not to affect formatting.",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 81
+      },
+      "revId": "db9423dd653b31bede05127cc3ba33d1162f4fdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
