@@ -35,6 +35,7 @@
 
 #include <cstdint>
 
+#include "bta_api.h"
 #include "bta_hh_co.h"
 #include "bta_sec_api.h"
 #include "btif/include/btif_common.h"
@@ -159,6 +160,8 @@ void bta_hh_co_send_hid_info(btif_hh_device_t* p_dev, const char* dev_name,
 void bta_hh_co_write(int fd, uint8_t* rpt, uint16_t len);
 static void bte_hh_evt(tBTA_HH_EVT event, tBTA_HH* p_data);
 void btif_dm_hh_open_failed(RawAddress* bdaddr);
+bool bta_dm_check_if_only_hh_connected(const RawAddress& peer_addr);
+tBTM_STATUS btm_remove_acl(const RawAddress& bd_addr, tBT_TRANSPORT transport);
 void btif_hd_service_registration();
 void btif_hh_timer_timeout(void* data);
 
@@ -1027,6 +1030,12 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
               "Removing cached descriptor due to service change, handle = {}",
               p_data->dev_status.handle);
           btif_storage_remove_hid_info(p_dev->link_spec);
+        } else if (p_data->dev_status.status == BTA_HH_OK) {
+          if (BTA_DmGetConnectionState(p_dev->link_spec.addrt.bda) &&
+              bta_dm_check_if_only_hh_connected(p_dev->link_spec.addrt.bda)) {
+            btm_remove_acl(p_dev->link_spec.addrt.bda,
+                           p_dev->link_spec.transport);
+          }
         }
 
         btif_hh_cb.status = (BTIF_HH_STATUS)BTIF_HH_DEV_DISCONNECTED;
