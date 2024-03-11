@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae3b9c04_63b2f8bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-11T18:40:13Z",
+      "side": 1,
+      "message": "Indeed.\nI noticed this pattern in LeAudio profiles only and I am glad we are removing it !",
+      "revId": "fbf822d0d0b7f87ca5dd51971ee37daed7b33ba9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
