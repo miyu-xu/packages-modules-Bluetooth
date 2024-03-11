@@ -22,6 +22,30 @@
       },
       "revId": "e2f03ee60e85a915d1c91ba517c432f56279d9b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ff0db7d_dc9f416c",
+        "filename": "system/osi/test/alarm_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-11T18:31:42Z",
+      "side": 1,
+      "message": "Good question.\n\nDISABLE is a soft fix; test removal is a hard fix.\n\nI guess a policy needs to be adopted before proceeding.\n\nI\u0027m going to shelve this for now until decided.",
+      "parentUuid": "629ca2fe_8cbdb1f1",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 28
+      },
+      "revId": "e2f03ee60e85a915d1c91ba517c432f56279d9b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
