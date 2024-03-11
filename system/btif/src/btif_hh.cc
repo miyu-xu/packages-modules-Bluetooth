@@ -40,6 +40,7 @@
 #include "btif/include/btif_profile_storage.h"
 #include "btif/include/btif_storage.h"
 #include "btif/include/btif_util.h"
+#include "btif_dm.h"
 #include "include/hardware/bt_hh.h"
 #include "main/shim/dumpsys.h"
 #include "os/log.h"
@@ -134,6 +135,7 @@ static void bte_hh_evt(tBTA_HH_EVT event, tBTA_HH* p_data);
 void btif_dm_hh_open_failed(RawAddress* bdaddr);
 void btif_hd_service_registration();
 void btif_hh_timer_timeout(void* data);
+bool btif_get_device_type(const RawAddress& bda, int* p_device_type);
 
 /*******************************************************************************
  *  Functions
@@ -864,6 +866,9 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
               "Removing cached descriptor due to service change, handle = {}",
               p_data->dev_status.handle);
           btif_storage_remove_hid_info(p_dev->link_spec.addrt.bda);
+          int device_type = 0;
+          btif_get_device_type(p_dev->bd_addr, &device_type);
+          BTA_DmCloseACL(p_dev->bd_addr, false, device_type);
         }
 
         btif_hh_cb.status = (BTIF_HH_STATUS)BTIF_HH_DEV_DISCONNECTED;
