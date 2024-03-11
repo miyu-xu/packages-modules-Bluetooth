@@ -856,7 +856,10 @@ public class BassClientStateMachine extends StateMachine {
             byte sourceAddressType = receiverState[BassConstants
                     .BCAST_RCVR_STATE_SRC_ADDR_TYPE_IDX];
             BassUtils.reverse(sourceAddress);
-            BluetoothDevice device = mAdapterService.getDeviceFromByte(sourceAddress);
+            String address = Utils.getAddressStringFromByte(sourceAddress);
+            BluetoothDevice device =
+                    BluetoothMethodProxy.getInstance()
+                            .getDefaultAdapterRemoteLeDevice(address, sourceAddressType);
             byte sourceAdvSid = receiverState[BassConstants.BCAST_RCVR_STATE_SRC_ADV_SID_IDX];
             recvState = new BluetoothLeBroadcastReceiveState(
                     sourceId,

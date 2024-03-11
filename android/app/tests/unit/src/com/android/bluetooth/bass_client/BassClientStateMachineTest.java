@@ -162,14 +162,17 @@ public class BassClientStateMachineTest {
                 .when(mAdapterService)
                 .getDeviceFromByte(Utils.getBytesFromAddress(EMPTY_BLUETOOTH_DEVICE_ADDRESS));
         doReturn(mTestDevice)
-                .when(mAdapterService)
-                .getDeviceFromByte(Utils.getBytesFromAddress(mTestDevice.getAddress()));
+                .when(mMethodProxy)
+                .getDefaultAdapterRemoteLeDevice(
+                        mTestDevice.getAddress(), mTestDevice.getAddressType());
         doReturn(mSourceTestDevice)
-                .when(mAdapterService)
-                .getDeviceFromByte(Utils.getBytesFromAddress(mSourceTestDevice.getAddress()));
+                .when(mMethodProxy)
+                .getDefaultAdapterRemoteLeDevice(
+                        mSourceTestDevice.getAddress(), mSourceTestDevice.getAddressType());
         doReturn(mEmptyTestDevice)
-                .when(mAdapterService)
-                .getDeviceFromByte(Utils.getBytesFromAddress(mEmptyTestDevice.getAddress()));
+                .when(mMethodProxy)
+                .getDefaultAdapterRemoteLeDevice(
+                        mEmptyTestDevice.getAddress(), mEmptyTestDevice.getAddressType());
 
         // Set up thread and looper
         mHandlerThread = new HandlerThread("BassClientStateMachineTestHandlerThread");
