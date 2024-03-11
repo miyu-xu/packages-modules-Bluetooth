@@ -4603,11 +4603,10 @@ public class LeAudioService extends ProfileService {
 
                 LeAudioService service = getService(source);
                 int result = BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
-                if (service == null) {
-                    throw new IllegalStateException("service is null");
+                if (service != null) {
+                    enforceBluetoothPrivilegedPermission(service);
+                    result = service.getConnectionPolicy(device);
                 }
-                enforceBluetoothPrivilegedPermission(service);
-                result = service.getConnectionPolicy(device);
                 receiver.send(result);
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
@@ -4624,11 +4623,10 @@ public class LeAudioService extends ProfileService {
                 Objects.requireNonNull(receiver, "receiver cannot be null");
 
                 LeAudioService service = getService(source);
-                if (service == null) {
-                    throw new IllegalStateException("service is null");
+                if (service != null) {
+                    enforceBluetoothPrivilegedPermission(service);
+                    service.setCcidInformation(userUuid, ccid, contextType);
                 }
-                enforceBluetoothPrivilegedPermission(service);
-                service.setCcidInformation(userUuid, ccid, contextType);
                 receiver.send(null);
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
@@ -4645,10 +4643,9 @@ public class LeAudioService extends ProfileService {
 
                 LeAudioService service = getService(source);
                 int result = LE_AUDIO_GROUP_ID_INVALID;
-                if (service == null) {
-                    throw new IllegalStateException("service is null");
+                if (service != null) {
+                    result = service.getGroupId(device);
                 }
-                result = service.getGroupId(device);
                 receiver.send(result);
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
@@ -4665,11 +4662,10 @@ public class LeAudioService extends ProfileService {
 
                 LeAudioService service = getService(source);
                 boolean result = false;
-                if (service == null) {
-                    throw new IllegalStateException("service is null");
+                if (service != null) {
+                    enforceBluetoothPrivilegedPermission(service);
+                    result = service.groupAddNode(group_id, device);
                 }
-                enforceBluetoothPrivilegedPermission(service);
-                result = service.groupAddNode(group_id, device);
                 receiver.send(result);
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
@@ -4684,11 +4680,10 @@ public class LeAudioService extends ProfileService {
                 Objects.requireNonNull(receiver, "receiver cannot be null");
 
                 LeAudioService service = getService(source);
-                if (service == null) {
-                    throw new IllegalStateException("service is null");
+                if (service != null) {
+                    enforceBluetoothPrivilegedPermission(service);
+                    service.setInCall(inCall);
                 }
-                enforceBluetoothPrivilegedPermission(service);
-                service.setInCall(inCall);
                 receiver.send(null);
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
@@ -4704,11 +4699,10 @@ public class LeAudioService extends ProfileService {
                 Objects.requireNonNull(receiver, "receiver cannot be null");
 
                 LeAudioService service = getService(source);
-                if (service == null) {
-                    throw new IllegalStateException("service is null");
+                if (service != null) {
+                    enforceBluetoothPrivilegedPermission(service);
+                    service.setInactiveForHfpHandover(hfpHandoverDevice);
                 }
-                enforceBluetoothPrivilegedPermission(service);
-                service.setInactiveForHfpHandover(hfpHandoverDevice);
                 receiver.send(null);
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
@@ -4725,11 +4719,10 @@ public class LeAudioService extends ProfileService {
 
                 LeAudioService service = getService(source);
                 boolean result = false;
-                if (service == null) {
-                    throw new IllegalStateException("service is null");
+                if (service != null) {
+                    enforceBluetoothPrivilegedPermission(service);
+                    result = service.groupRemoveNode(groupId, device);
                 }
-                enforceBluetoothPrivilegedPermission(service);
-                result = service.groupRemoveNode(groupId, device);
                 receiver.send(result);
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
@@ -4745,7 +4738,8 @@ public class LeAudioService extends ProfileService {
 
                 LeAudioService service = getService(source);
                 if (service == null) {
-                    throw new IllegalStateException("service is null");
+                    receiver.send(null);
+                    return;
                 }
                 enforceBluetoothPrivilegedPermission(service);
                 receiver.send(null);
