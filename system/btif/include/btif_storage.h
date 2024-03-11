@@ -436,6 +436,45 @@ bt_status_t btif_storage_remove_hidd(RawAddress* remote_bd_addr);
 // |BTM_MAX_REM_BD_NAME_LEN|.
 bool btif_storage_get_stored_remote_name(const RawAddress& bd_addr, char* name);
 
+/*******************************************************************************
+ *
+ * Function         btif_storage_set_hid_connection_policy
+ *
+ * Description      Stores connection policy info in nvram.
+ *
+ * Returns          BT_STATUS_SUCCESS
+ *
+ ******************************************************************************/
+
+bt_status_t btif_storage_set_hid_connection_policy(
+    const tAclLinkSpec* link_spec, bool reconnect_allowed);
+
+/*******************************************************************************
+ *
+ * Function         btif_storage_get_hid_connection_policy
+ *
+ * Description      Get connection policy info from nvram.
+ *
+ * Returns          BT_STATUS_SUCCESS
+ *
+ ******************************************************************************/
+
+bt_status_t btif_storage_get_hid_connection_policy(
+    const tAclLinkSpec* link_spec, bool* reconnect_allowed);
+
+/*******************************************************************************
+ *
+ * Function         btif_storage_clear_hid_connection_policy
+ *
+ * Description      Removes connection policy info from nvram.
+ *
+ * Returns          BT_STATUS_SUCCESS
+ *
+ ******************************************************************************/
+
+bt_status_t btif_storage_clear_hid_connection_policy(
+    const tAclLinkSpec* link_spec);
+
 /******************************************************************************
  * Exported for unit tests
  *****************************************************************************/

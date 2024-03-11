@@ -120,7 +120,7 @@ tBTA_HH_DEV_CB* bta_hh_get_cb(const tAclLinkSpec& link_spec) {
 void bta_hh_clean_up_kdev(tBTA_HH_DEV_CB* p_cb) {
   uint8_t index;
 
-  if (p_cb->is_le_device) {
+  if (p_cb->link_spec.transport == BT_TRANSPORT_LE) {
     uint8_t le_hid_handle = BTA_HH_GET_LE_CB_IDX(p_cb->hid_handle);
     if (le_hid_handle >= BTA_HH_LE_MAX_KNOWN) {
       log::warn("Invalid LE hid_handle {}", p_cb->hid_handle);
