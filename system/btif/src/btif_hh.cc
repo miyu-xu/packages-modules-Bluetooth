@@ -513,8 +513,7 @@ void btif_hh_remove_device(const tAclLinkSpec& link_spec) {
         HAL_CBACK(bt_hh_callbacks, connection_state_cb, &bd_addr, dev_type,
                   transport, BTHH_CONN_STATE_DISCONNECTED);
       },
-      p_dev->link_spec.addrt.bda, p_dev->link_spec.addrt.type,
-      p_dev->link_spec.transport));
+      link_spec.addrt.bda, link_spec.addrt.type, link_spec.transport));
 
   p_dev->dev_status = BTHH_CONN_STATE_UNKNOWN;
   p_dev->dev_handle = BTA_HH_INVALID_HANDLE;
@@ -597,8 +596,7 @@ bt_status_t btif_hh_virtual_unplug(const tAclLinkSpec* link_spec) {
             HAL_CBACK(bt_hh_callbacks, connection_state_cb, &bd_addrcb,
                       dev_type, transport, BTHH_CONN_STATE_DISCONNECTED);
           },
-          p_dev->link_spec.addrt.bda, p_dev->link_spec.addrt.type,
-          p_dev->link_spec.transport));
+          link_spec->addrt.bda, link_spec->addrt.type, link_spec->transport));
     }
     return BT_STATUS_FAIL;
   }
@@ -1384,7 +1382,8 @@ static bt_status_t connect(RawAddress* bd_addr, tBLE_ADDR_TYPE addr_type,
  *
  ******************************************************************************/
 static bt_status_t disconnect(RawAddress* bd_addr, tBLE_ADDR_TYPE addr_type,
-                              tBT_TRANSPORT transport) {
+                              tBT_TRANSPORT transport,
+                              bool /* reconnect_allowed */) {
   CHECK_BTHH_INIT();
   log::verbose("BTHH");
   btif_hh_device_t* p_dev;
