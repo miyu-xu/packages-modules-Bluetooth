@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1ba810f_0afc21cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-11T14:58:59Z",
+      "side": 1,
+      "message": "I think it would be fine either way.  There\u0027s only one real usage, the rest are logging.",
+      "revId": "b4fe8291efb40ea318862ba479692e5742a9a24a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
