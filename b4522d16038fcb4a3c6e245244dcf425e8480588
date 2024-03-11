@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43d52c1a_ce08f9c2",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-11T22:00:16Z",
+      "side": 1,
+      "message": "Just curious, what is the effect if someone tries to modify the entries returned by an unmodifiable map, is it just that one cannot insert or delete from unmodifiable map, but can modify entries within the map?",
+      "range": {
+        "startLine": 294,
+        "startChar": 24,
+        "endLine": 294,
+        "endChar": 39
+      },
+      "revId": "b4522d16038fcb4a3c6e245244dcf425e8480588",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a92e82a_45a7acb7",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3147,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-11T22:00:16Z",
+      "side": 1,
+      "message": "Please update this comment reflecting that when the flag is disabled `mGroupWriteLock \u003d\u003d mGroupReadLock` so that the reader of this code is not confused.",
+      "range": {
+        "startLine": 3147,
+        "startChar": 44,
+        "endLine": 3147,
+        "endChar": 79
+      },
+      "revId": "b4522d16038fcb4a3c6e245244dcf425e8480588",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
