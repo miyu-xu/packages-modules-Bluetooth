@@ -89,6 +89,8 @@ public class HidHostService extends ProfileService {
     private static final int MESSAGE_ON_GET_IDLE_TIME = 15;
     private static final int MESSAGE_SET_IDLE_TIME = 16;
 
+    private static final int CONN_STATE_ACCEPTING = 4;
+
     public HidHostService(Context ctx) {
         super(ctx);
         mNativeInterface = requireNonNull(HidHostNativeInterface.getInstance());
@@ -207,11 +209,16 @@ public class HidHostService extends ProfileService {
                 break;
                 case MESSAGE_DISCONNECT: {
                     BluetoothDevice device = (BluetoothDevice) msg.obj;
+                    boolean reconnectAllowed = false;
+                    if (getConnectionPolicy(device) == BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
+                            reconnectAllowed = true;
+                    }
                     // TODO: b/324094542 Use the preferred transport
                     if (!mNativeInterface.disconnectHid(
                         getByteAddress(device),
                         BluetoothDevice.ADDRESS_TYPE_PUBLIC,
-                        BluetoothDevice.TRANSPORT_AUTO)) {
+                        BluetoothDevice.TRANSPORT_AUTO,
+                        reconnectAllowed)) {
                         broadcastConnectionState(
                             device, BluetoothProfile.STATE_DISCONNECTING);
                         broadcastConnectionState(
@@ -235,6 +242,11 @@ public class HidHostService extends ProfileService {
                             "MESSAGE_CONNECT_STATE_CHANGED"
                                 + (" newState=" + state)
                                 + (" prevState=" + prevState));
+                    }
+                    if (state == CONN_STATE_ACCEPTING
+                        && getConnectionPolicy(device) != BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
+                      mDatabaseManager.setProfileConnectionPolicy(device, BluetoothProfile.HID_HOST,
+                          BluetoothProfile.CONNECTION_POLICY_ALLOWED);
                     }
                     if (state == BluetoothProfile.STATE_CONNECTED
                         && prevState == BluetoothProfile.STATE_DISCONNECTED

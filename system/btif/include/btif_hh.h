@@ -102,6 +102,7 @@ typedef struct {
   fixed_queue_t* set_rpt_id_queue;
 #endif // ENABLE_UHID_SET_REPORT
   bool local_vup;  // Indicated locally initiated VUP
+  bool reconnect_allowed;  // Connection policy
 } btif_hh_device_t;
 
 /* Control block to maintain properties of devices */
@@ -142,6 +143,8 @@ void btif_hh_senddata(btif_hh_device_t* p_dev, uint16_t size, uint8_t* report);
 void btif_hh_getreport(btif_hh_device_t* p_dev, bthh_report_type_t r_type,
                        uint8_t reportId, uint16_t bufferSize);
 void btif_hh_service_registration(bool enable);
+
+void btif_hh_set_connection_state(const tAclLinkSpec& link_spec);
 
 void DumpsysHid(int fd);
 
