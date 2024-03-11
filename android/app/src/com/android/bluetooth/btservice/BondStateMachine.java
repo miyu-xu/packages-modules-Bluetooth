@@ -47,8 +47,8 @@ import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.util.State;
 import com.android.internal.util.StateMachine;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
@@ -584,8 +584,9 @@ final class BondStateMachine extends StateMachine {
         if (bdDevice == null) {
             mRemoteDevices.addDeviceProperties(address);
         }
+        String nameStr = new String(name, StandardCharsets.UTF_8).trim();
         infoLog("sspRequestCallback: " + Utils.getRedactedAddressStringFromByte(address)
-                + " name: " + Arrays.toString(name)
+                + " name: " + nameStr
                 + " cod: " + cod
                 + " pairingVariant " + pairingVariant
                 + " passkey: " + (Build.isDebuggable() ? passkey : "******"));
