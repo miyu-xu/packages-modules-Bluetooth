@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "22745bdb_2fee7597",
+        "filename": "system/stack/test/btm/bt_name_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-11T18:35:42Z",
+      "side": 1,
+      "message": "yes but that is not done.",
+      "parentUuid": "0b2e92d0_a1851269",
+      "range": {
+        "startLine": 34,
+        "startChar": 2,
+        "endLine": 34,
+        "endChar": 9
+      },
+      "revId": "08116ed68dcd9b993699382e78709f67f6fb4f60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3c71a1f_8513f7f9",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-11T15:58:59Z",
       "side": 1,
       "message": "Is there code we could test that copies names?",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 71
+      },
+      "revId": "08116ed68dcd9b993699382e78709f67f6fb4f60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "209ae644_310d10c2",
+        "filename": "system/stack/test/btm/bt_name_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-11T18:35:42Z",
+      "side": 1,
+      "message": "We can certainly extend this test",
+      "parentUuid": "c3c71a1f_8513f7f9",
       "range": {
         "startLine": 39,
         "startChar": 4,
