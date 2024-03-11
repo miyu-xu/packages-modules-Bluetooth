@@ -22,6 +22,30 @@
       },
       "revId": "9944c3409c2459e1f01cb456f624d6ef5c18b5ea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0423696_369eeab5",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 2625,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-11T19:29:39Z",
+      "side": 1,
+      "message": "This matches the other registration functions, where if REGISTER_NATIVE_METHODS fails they will return the non-zero error code. Otherwise they will continue to do GET_JAVA_METHODS on the interface.",
+      "parentUuid": "c42f6e9e_0fd959d6",
+      "range": {
+        "startLine": 2623,
+        "startChar": 0,
+        "endLine": 2625,
+        "endChar": 3
+      },
+      "revId": "9944c3409c2459e1f01cb456f624d6ef5c18b5ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
