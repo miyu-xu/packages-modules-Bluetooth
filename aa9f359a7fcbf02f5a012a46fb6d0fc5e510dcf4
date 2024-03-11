@@ -16,6 +16,24 @@
       "message": "this seems to be important, and I guess should be part of some previous patch, isn\u0027t ?",
       "revId": "aa9f359a7fcbf02f5a012a46fb6d0fc5e510dcf4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85511fa1_5f2d496f",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1471,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-03-11T15:54:30Z",
+      "side": 1,
+      "message": "Ok, I\u0027ll squash this with the other one.",
+      "parentUuid": "a76b7e59_0a0955db",
+      "revId": "aa9f359a7fcbf02f5a012a46fb6d0fc5e510dcf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
