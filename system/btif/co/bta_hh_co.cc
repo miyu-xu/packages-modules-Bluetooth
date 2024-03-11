@@ -18,6 +18,7 @@
 
 #include "bta_hh_co.h"
 
+#include <android_bluetooth_flags.h>
 #include <base/logging.h>
 #include <fcntl.h>
 #include <linux/uhid.h>
@@ -416,6 +417,24 @@ bool bta_hh_co_open(uint8_t dev_handle, uint8_t sub_class,
       if (!uhid_fd_open(p_dev)) {
         return false;
       }
+      break;
+    } else if (IS_FLAG_ENABLED(allow_switching_hid_and_hogp) &&
+               p_dev->dev_status == BTHH_CONN_STATE_ACCEPTING &&
+               p_dev->dev_handle == BTA_HH_INVALID_HANDLE) {
+      p_dev->fd = -1;
+      p_dev->hh_keep_polling = 0;
+      // This is a new device, open the uhid driver now.
+      if (!uhid_fd_open(p_dev)) {
+        return false;
+      }
+
+      p_dev->dev_handle = dev_handle;
+      p_dev->attr_mask = attr_mask;
+      p_dev->sub_class = sub_class;
+      p_dev->app_id = app_id;
+      p_dev->local_vup = false;
+
+      btif_hh_cb.device_num++;
       break;
     }
     p_dev = NULL;
