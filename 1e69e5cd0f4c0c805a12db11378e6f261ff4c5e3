@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4eca5a2b_7d8c477f",
+        "filename": "system/bta/hd/bta_hd_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-11T18:17:38Z",
+      "side": 1,
+      "message": "Yes indeed, I miss-read the condition, nice catch!",
+      "parentUuid": "4a43b695_4372f033",
+      "revId": "1e69e5cd0f4c0c805a12db11378e6f261ff4c5e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "26535635_57b5d131",
         "filename": "system/btif/src/btif_hd.cc",
         "patchSetId": 1
