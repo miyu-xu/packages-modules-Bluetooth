@@ -24,6 +24,7 @@
 
 #define LOG_TAG "bt_bta_hh"
 
+#include <android_bluetooth_flags.h>
 #include <bluetooth/log.h>
 
 #include <cstdint>
@@ -488,21 +489,22 @@ static void bta_hh_bredr_conn(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) 
 
 /*******************************************************************************
  *
- * Function         bta_hh_connect
+ * Function         bta_hh_transport_select
  *
- * Description      Start HID host connection.
+ * Description      Select HID transport based on services available.
  *
  * Returns          void
  *
  ******************************************************************************/
-void bta_hh_connect(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
+void bta_hh_transport_select(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
   bool hid_available = false;
   bool hogp_available = false;
+  bool is_le_device = false;
   bluetooth::Uuid remote_uuids[BT_MAX_NUM_UUIDS] = {};
   bt_property_t remote_properties = {BT_PROPERTY_UUIDS, sizeof(remote_uuids),
                                      &remote_uuids};
   const RawAddress& bd_addr = p_data->api_conn.link_spec.addrt.bda;
-  p_cb->link_spec = p_data->api_conn.link_spec;
+
   // Find the device type
   tBT_DEVICE_TYPE dev_type;
   tBLE_ADDR_TYPE addr_type;
@@ -533,37 +535,52 @@ void bta_hh_connect(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
 
   /* Decide whether to connect HID or HOGP */
   if (bredr && hid_available) {
-    p_cb->is_le_device = false;
+    is_le_device = false;
   } else if (le_acl && hogp_available) {
-    p_cb->is_le_device = true;
+    is_le_device = true;
   } else if (hid_available) {
-    p_cb->is_le_device = false;
+    is_le_device = false;
   } else if (hogp_available) {
-    p_cb->is_le_device = true;
+    is_le_device = true;
   } else if (bredr) {
-    p_cb->is_le_device = false;
+    is_le_device = false;
   } else if (le_acl || dev_type == BT_DEVICE_TYPE_BLE) {
-    p_cb->is_le_device = true;
+    is_le_device = true;
   } else {
-    p_cb->is_le_device = false;
+    is_le_device = false;
   }
 
   log::debug(
       "bd_addr:{}, bredr:{}, hid_available:{}, le_acl:{}, hogp_available:{}, "
       "dev_type:{}, is_le_device:{}",
       ADDRESS_TO_LOGGABLE_CSTR(bd_addr), bredr, hid_available, le_acl,
-      hogp_available, dev_type, p_cb->is_le_device);
-
-  // TODO: Use requested address type and transport
-  p_cb->link_spec.addrt.type = addr_type;
-  p_cb->link_spec.transport =
-      p_cb->is_le_device ? BT_TRANSPORT_LE : BT_TRANSPORT_BR_EDR;
+      hogp_available, dev_type, is_le_device);
 
   p_cb->mode = p_data->api_conn.mode;
   bta_hh_cb.p_cur = p_cb;
+  p_cb->link_spec.transport = p_cb->link_spec.transport == BT_TRANSPORT_LE
+                                  ? BT_TRANSPORT_LE
+                                  : BT_TRANSPORT_BR_EDR;
+}
 
+/*******************************************************************************
+ *
+ * Function         bta_hh_connect
+ *
+ * Description      Start HID host connection.
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+void bta_hh_connect(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
+  p_cb->link_spec = p_data->api_conn.link_spec;
+
+  if (!IS_FLAG_ENABLED(allow_switching_hid_and_hogp) ||
+      p_data->api_conn.link_spec.transport == BT_TRANSPORT_AUTO) {
+    bta_hh_transport_select(p_cb, p_data);
+  }
   // Initiate HID host connection
-  if (p_cb->is_le_device) {
+  if (p_cb->link_spec.transport == BT_TRANSPORT_LE) {
     bta_hh_le_open_conn(p_cb, p_data->api_conn.link_spec);
   } else {
     bta_hh_bredr_conn(p_cb, p_data);
@@ -584,7 +601,7 @@ void btif_hh_remove_device(tAclLinkSpec link_spec);
 void bta_hh_api_disc_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
   CHECK(p_cb != nullptr);
 
-  if (p_cb->is_le_device) {
+  if (p_cb->link_spec.transport == BT_TRANSPORT_LE) {
     log::debug("Host initiating close to le device:{}",
                ADDRESS_TO_LOGGABLE_CSTR(p_cb->link_spec));
 
@@ -635,18 +652,20 @@ void bta_hh_open_cmpl_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
   bta_hh_cb.cnt_num++;
 
   conn.status = p_cb->status;
-  conn.le_hid = p_cb->is_le_device;
+  conn.le_hid = p_cb->link_spec.transport;
   conn.scps_supported = p_cb->scps_supported;
   conn.sub_class = p_cb->sub_class;
   conn.attr_mask = p_cb->attr_mask;
   conn.app_id = p_cb->app_id;
 
-  BTM_LogHistory(kBtmLogTag, p_cb->link_spec.addrt.bda, "Opened",
-                 base::StringPrintf(
-                     "%s initiator:%s", (p_cb->is_le_device) ? "le" : "classic",
-                     (p_cb->incoming_conn) ? "remote" : "local"));
+  BTM_LogHistory(
+      kBtmLogTag, p_cb->link_spec.addrt.bda, "Opened",
+      base::StringPrintf(
+          "%s initiator:%s",
+          (p_cb->link_spec.transport == BT_TRANSPORT_LE) ? "le" : "classic",
+          (p_cb->incoming_conn) ? "remote" : "local"));
 
-  if (!p_cb->is_le_device) {
+  if (p_cb->link_spec.transport != BT_TRANSPORT_LE) {
     /* inform role manager */
     bta_sys_conn_open(BTA_ID_HH, p_cb->app_id, p_cb->link_spec.addrt.bda);
 
@@ -928,11 +947,12 @@ void bta_hh_close_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
       base::StringPrintf("%s %s %s", (l2cap_conn_fail) ? "l2cap_conn_fail" : "",
                          (l2cap_req_fail) ? "l2cap_req_fail" : "",
                          (l2cap_cfg_fail) ? "l2cap_cfg_fail" : "");
-  BTM_LogHistory(kBtmLogTag, p_cb->link_spec.addrt.bda, "Closed",
-                 base::StringPrintf("%s reason %s %s",
-                                    (p_cb->is_le_device) ? "le" : "classic",
-                                    hid_status_text(hid_status).c_str(),
-                                    overlay_fail.c_str()));
+  BTM_LogHistory(
+      kBtmLogTag, p_cb->link_spec.addrt.bda, "Closed",
+      base::StringPrintf(
+          "%s reason %s %s",
+          (p_cb->link_spec.transport == BT_TRANSPORT_LE) ? "le" : "classic",
+          hid_status_text(hid_status).c_str(), overlay_fail.c_str()));
 
   /* inform role manager */
   bta_sys_conn_close(BTA_ID_HH, p_cb->app_id, p_cb->link_spec.addrt.bda);
@@ -975,7 +995,7 @@ void bta_hh_close_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
  ******************************************************************************/
 void bta_hh_get_dscp_act(tBTA_HH_DEV_CB* p_cb,
                          UNUSED_ATTR const tBTA_HH_DATA* p_data) {
-  if (p_cb->is_le_device) {
+  if (p_cb->link_spec.transport == BT_TRANSPORT_LE) {
     if (p_cb->hid_srvc.state >= BTA_HH_SERVICE_DISCOVERED) {
       p_cb->dscp_info.hid_handle = p_cb->hid_handle;
     }
@@ -1009,9 +1029,10 @@ void bta_hh_maint_dev_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
       dev_info.link_spec = p_dev_info->link_spec;
       /* initialize callback data */
       if (p_cb->hid_handle == BTA_HH_INVALID_HANDLE) {
-        if (BTM_UseLeLink(p_data->api_maintdev.link_spec.addrt.bda)) {
+        if ((IS_FLAG_ENABLED(allow_switching_hid_and_hogp) &&
+             p_data->api_maintdev.link_spec.transport == BT_TRANSPORT_LE) ||
+            BTM_UseLeLink(p_data->api_maintdev.link_spec.addrt.bda)) {
           p_cb->link_spec.transport = BT_TRANSPORT_LE;
-          p_cb->is_le_device = true;
           dev_info.handle = bta_hh_le_add_device(p_cb, p_dev_info);
           if (dev_info.handle != BTA_HH_INVALID_HANDLE)
             dev_info.status = BTA_HH_OK;
@@ -1022,6 +1043,7 @@ void bta_hh_maint_dev_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
                                &dev_handle) == HID_SUCCESS) {
           dev_info.handle = dev_handle;
           dev_info.status = BTA_HH_OK;
+          p_cb->link_spec.transport = BT_TRANSPORT_BR_EDR;
 
           /* update DI information */
           bta_hh_update_di_info(
@@ -1050,7 +1072,7 @@ void bta_hh_maint_dev_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
       dev_info.handle = (uint8_t)p_dev_info->hdr.layer_specific;
       dev_info.link_spec = p_cb->link_spec;
 
-      if (p_cb->is_le_device) {
+      if (p_cb->link_spec.transport == BT_TRANSPORT_LE) {
         bta_hh_le_remove_dev_bg_conn(p_cb);
         bta_hh_sm_execute(p_cb, BTA_HH_API_CLOSE_EVT, NULL);
         bta_hh_clean_up_kdev(p_cb);
@@ -1094,7 +1116,7 @@ void bta_hh_write_dev_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
   uint16_t event =
       (p_data->api_sndcmd.t_type - HID_TRANS_GET_REPORT) + BTA_HH_GET_RPT_EVT;
 
-  if (p_cb->is_le_device)
+  if (p_cb->link_spec.transport == BT_TRANSPORT_LE)
     bta_hh_le_write_dev_act(p_cb, p_data);
   else {
     /* match up BTE/BTA report/boot mode def */
