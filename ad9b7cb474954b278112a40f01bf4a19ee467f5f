@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "921f328c_01cbbcc1",
+        "filename": "system/gd/proto/bluetooth/metrics/bluetooth.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-03-11T23:52:04Z",
+      "side": 1,
+      "message": "Btw, why use `string` here instead of `bytes`?",
+      "range": {
+        "startLine": 306,
+        "startChar": 2,
+        "endLine": 306,
+        "endChar": 39
+      },
+      "revId": "ad9b7cb474954b278112a40f01bf4a19ee467f5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
