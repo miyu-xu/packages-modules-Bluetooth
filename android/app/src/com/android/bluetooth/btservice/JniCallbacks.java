@@ -50,7 +50,7 @@ class JniCallbacks {
         throw new CloneNotSupportedException();
     }
 
-    void sspRequestCallback(byte[] address, byte[] name, int cod, int pairingVariant, int passkey) {
+    void sspRequestCallback(byte[] address, String name, int cod, int pairingVariant, int passkey) {
         mBondStateMachine.sspRequestCallback(address, name, cod, pairingVariant, passkey);
     }
 
@@ -62,7 +62,7 @@ class JniCallbacks {
         mRemoteDevices.deviceFoundCallback(address);
     }
 
-    void pinRequestCallback(byte[] address, byte[] name, int cod, boolean min16Digits) {
+    void pinRequestCallback(byte[] address, String name, int cod, boolean min16Digits) {
         mBondStateMachine.pinRequestCallback(address, name, cod, min16Digits);
     }
 

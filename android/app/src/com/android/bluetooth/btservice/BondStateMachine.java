@@ -47,8 +47,8 @@ import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.util.State;
 import com.android.internal.util.StateMachine;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
@@ -578,15 +578,15 @@ final class BondStateMachine extends StateMachine {
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-    void sspRequestCallback(byte[] address, byte[] name, int cod, int pairingVariant, int passkey) {
+    void sspRequestCallback(byte[] address, String name, int cod, int pairingVariant, int passkey) {
         //TODO(BT): Get wakelock and update name and cod
         BluetoothDevice bdDevice = mRemoteDevices.getDevice(address);
         if (bdDevice == null) {
             mRemoteDevices.addDeviceProperties(address);
         }
         infoLog("sspRequestCallback: " + Utils.getRedactedAddressStringFromByte(address)
-                + " name: " + Arrays.toString(name)
-                + " cod: " + cod
+                + " name: \"" + name
+                + "\" cod: " + cod
                 + " pairingVariant " + pairingVariant
                 + " passkey: " + (Build.isDebuggable() ? passkey : "******"));
         int variant;
@@ -640,7 +640,7 @@ final class BondStateMachine extends StateMachine {
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-    void pinRequestCallback(byte[] address, byte[] name, int cod, boolean min16Digits) {
+    void pinRequestCallback(byte[] address, String name, int cod, boolean min16Digits) {
         //TODO(BT): Get wakelock and update name and cod
 
         BluetoothDevice bdDevice = mRemoteDevices.getDevice(address);
@@ -654,8 +654,11 @@ final class BondStateMachine extends StateMachine {
                 BluetoothDevice.BOND_BONDING,
                 BluetoothProtoEnums.BOND_SUB_STATE_LOCAL_PIN_REQUESTED, 0);
 
+        if (name == null || name.isEmpty()) {
+            name = Utils.getName(bdDevice);
+        }
         infoLog("pinRequestCallback: " + bdDevice
-                + " name:" + Utils.getName(bdDevice) + " cod:" + new BluetoothClass(cod));
+                + " name:" + name + " cod:" + new BluetoothClass(cod));
 
         Message msg = obtainMessage(PIN_REQUEST);
         msg.obj = bdDevice;

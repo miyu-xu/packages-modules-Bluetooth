@@ -486,15 +486,18 @@ static void pin_request_callback(RawAddress* bd_addr, bt_bdname_t* bdname,
   sCallbackEnv->SetByteArrayRegion(addr.get(), 0, sizeof(RawAddress),
                                    (jbyte*)bd_addr);
 
-  ScopedLocalRef<jbyteArray> devname(
-      sCallbackEnv.get(), sCallbackEnv->NewByteArray(sizeof(bt_bdname_t)));
+  const char* name = "";
+  if (bdname != nullptr) {
+    bdname->name[sizeof(bdname->name) - 1] =
+        '\0';  // Ensure that name is null terminated
+    name = (const char*)&bdname->name[0];
+  }
+  ScopedLocalRef<jstring> devname(sCallbackEnv.get(),
+                                  sCallbackEnv->NewStringUTF(name));
   if (!devname.get()) {
     log::error("Error while allocating");
     return;
   }
-
-  sCallbackEnv->SetByteArrayRegion(devname.get(), 0, sizeof(bt_bdname_t),
-                                   (jbyte*)bdname);
 
   sCallbackEnv->CallVoidMethod(sJniCallbacksObj, method_pinRequestCallback,
                                addr.get(), devname.get(), cod, min_16_digits);
@@ -527,15 +530,18 @@ static void ssp_request_callback(RawAddress* bd_addr, bt_bdname_t* bdname,
   sCallbackEnv->SetByteArrayRegion(addr.get(), 0, sizeof(RawAddress),
                                    (jbyte*)bd_addr);
 
-  ScopedLocalRef<jbyteArray> devname(
-      sCallbackEnv.get(), sCallbackEnv->NewByteArray(sizeof(bt_bdname_t)));
+  const char* name = "";
+  if (bdname != nullptr) {
+    bdname->name[sizeof(bdname->name) - 1] =
+        '\0';  // Ensure that name is null terminated
+    name = (const char*)&bdname->name[0];
+  }
+  ScopedLocalRef<jstring> devname(sCallbackEnv.get(),
+                                  sCallbackEnv->NewStringUTF(name));
   if (!devname.get()) {
     log::error("Error while allocating");
     return;
   }
-
-  sCallbackEnv->SetByteArrayRegion(devname.get(), 0, sizeof(bt_bdname_t),
-                                   (jbyte*)bdname);
 
   sCallbackEnv->CallVoidMethod(sJniCallbacksObj, method_sspRequestCallback,
                                addr.get(), devname.get(), cod,
@@ -2226,8 +2232,10 @@ int register_com_android_bluetooth_btservice_AdapterService(JNIEnv* env) {
       {"devicePropertyChangedCallback", "([B[I[[B)V",
        &method_devicePropertyChangedCallback},
       {"deviceFoundCallback", "([B)V", &method_deviceFoundCallback},
-      {"pinRequestCallback", "([B[BIZ)V", &method_pinRequestCallback},
-      {"sspRequestCallback", "([B[BIII)V", &method_sspRequestCallback},
+      {"pinRequestCallback", "([BLjava/lang/String;IZ)V",
+       &method_pinRequestCallback},
+      {"sspRequestCallback", "([BLjava/lang/String;III)V",
+       &method_sspRequestCallback},
       {"bondStateChangeCallback", "(I[BII)V", &method_bondStateChangeCallback},
       {"addressConsolidateCallback", "([B[B)V",
        &method_addressConsolidateCallback},
