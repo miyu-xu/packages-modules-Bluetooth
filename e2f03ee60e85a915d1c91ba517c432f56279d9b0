@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "629ca2fe_8cbdb1f1",
+        "filename": "system/osi/test/alarm_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-11T15:46:11Z",
+      "side": 1,
+      "message": "Should we just remove it instead of disabling it?",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 28
+      },
+      "revId": "e2f03ee60e85a915d1c91ba517c432f56279d9b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
