@@ -36,6 +36,8 @@
 #include "stack/include/bt_hdr.h"
 #include "types/raw_address.h"
 
+extern bool btif_av_src_sink_coexist_enabled(void);
+
 using namespace bluetooth;
 
 /* callback function declarations */
@@ -146,7 +148,8 @@ void avct_l2c_connect_ind_cback(const RawAddress& bd_addr, uint16_t lcid,
 
   /* if result ok, proceed with connection */
   if (result == L2CAP_CONN_OK) {
-    if (GET_SYSPROP(A2dp, src_sink_coexist, false)) {
+    if (btif_av_src_sink_coexist_enabled() ||
+        GET_SYSPROP(A2dp, src_sink_coexist, false)) {
       tAVCT_CCB* p_ccb = &avct_cb.ccb[0];
       for (int i = 0; i < AVCT_NUM_CONN; i++, p_ccb++) {
         if (p_ccb && p_ccb->allocated && (p_ccb->p_lcb == NULL) &&

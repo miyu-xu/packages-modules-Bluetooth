@@ -39,6 +39,8 @@
 
 using namespace bluetooth;
 
+extern bool btif_av_src_sink_coexist_enabled(void);
+
 /* packet header length lookup table */
 const uint8_t avct_lcb_pkt_type_len[] = {AVCT_HDR_LEN_SINGLE,
                                          AVCT_HDR_LEN_START, AVCT_HDR_LEN_CONT,
@@ -227,7 +229,8 @@ void avct_lcb_open_ind(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data) {
   int i;
   bool bind = false;
 
-  if (GET_SYSPROP(A2dp, src_sink_coexist, false)) {
+  if (btif_av_src_sink_coexist_enabled() ||
+      GET_SYSPROP(A2dp, src_sink_coexist, false)) {
     bool is_originater = false;
 
     for (i = 0; i < AVCT_NUM_CONN; i++, p_ccb++) {
@@ -680,7 +683,8 @@ void avct_lcb_msg_ind(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data) {
   }
 
   bool bind = false;
-  if (GET_SYSPROP(A2dp, src_sink_coexist, false)) {
+  if (btif_av_src_sink_coexist_enabled() ||
+      GET_SYSPROP(A2dp, src_sink_coexist, false)) {
     bind = avct_msg_ind_for_src_sink_coexist(p_lcb, p_data, label, cr_ipid);
     osi_free_and_reset((void**)&p_data->p_buf);
     if (bind) return;

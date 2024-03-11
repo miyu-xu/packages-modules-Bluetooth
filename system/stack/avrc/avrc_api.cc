@@ -42,6 +42,8 @@
 #include "storage/config_keys.h"
 #include "types/raw_address.h"
 
+extern bool btif_av_src_sink_coexist_enabled(void);
+
 using namespace bluetooth;
 
 /*****************************************************************************
@@ -1191,7 +1193,8 @@ uint16_t AVRC_MsgReq(uint8_t handle, uint8_t label, uint8_t ctype,
   log::verbose("handle = {} label = {} ctype = {} len = {}", handle, label,
                ctype, p_pkt->len);
   /* Handle for AVRCP fragment */
-  if (!GET_SYSPROP(A2dp, src_sink_coexist, false))
+  if (btif_av_src_sink_coexist_enabled() ||
+      GET_SYSPROP(A2dp, src_sink_coexist, false))
     is_new_avrcp =
         osi_property_get_bool("bluetooth.profile.avrcp.target.enabled", false);
   if (ctype >= AVRC_RSP_NOT_IMPL) cr = AVCT_RSP;

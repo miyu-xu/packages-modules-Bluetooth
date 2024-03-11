@@ -41,6 +41,8 @@
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_types.h"
 
+extern bool btif_av_src_sink_coexist_enabled(void);
+
 using namespace bluetooth;
 
 /* action function list */
@@ -550,7 +552,8 @@ void avct_bcb_msg_ind(tAVCT_BCB* p_bcb, tAVCT_LCB_EVT* p_data) {
   }
 
   bool bind = false;
-  if (GET_SYSPROP(A2dp, src_sink_coexist, false)) {
+  if (btif_av_src_sink_coexist_enabled() ||
+      GET_SYSPROP(A2dp, src_sink_coexist, false)) {
     bind = avct_msg_ind_for_src_sink_coexist(p_lcb, p_data, label, cr_ipid);
     osi_free_and_reset((void**)&p_data->p_buf);
     if (bind) return;
