@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a43b695_4372f033",
+        "filename": "system/bta/hd/bta_hd_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-11T04:39:07Z",
+      "side": 1,
+      "message": "Should this be removed entirely?",
+      "revId": "1e69e5cd0f4c0c805a12db11378e6f261ff4c5e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26535635_57b5d131",
+        "filename": "system/btif/src/btif_hd.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-11T04:39:07Z",
+      "side": 1,
+      "message": "Should this be removed entirely?",
+      "revId": "1e69e5cd0f4c0c805a12db11378e6f261ff4c5e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
