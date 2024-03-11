@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd7b69f3_43e75c8a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-03-11T17:14:02Z",
+      "side": 1,
+      "message": "should this `device` be `dev`? From the logic, I guess you are trying to set members in the group to be `CONNECTION_POLICY_ALLOWED`",
+      "range": {
+        "startLine": 599,
+        "startChar": 51,
+        "endLine": 599,
+        "endChar": 57
+      },
+      "revId": "ac31005b3143fac12c87eed9c77b16a953c9ef2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
