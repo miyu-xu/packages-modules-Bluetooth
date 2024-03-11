@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b2e92d0_a1851269",
+        "filename": "system/stack/test/btm/bt_name_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-11T15:58:59Z",
+      "side": 1,
+      "message": "If we changed this to a std::array, would we get the checking for free?\n\n```suggestion\n  std::array\u003cuint8_t, BD_NAME_LEN + 1\u003e mem{0xff};\n```\n\nAre you checking more than",
+      "range": {
+        "startLine": 34,
+        "startChar": 2,
+        "endLine": 34,
+        "endChar": 9
+      },
+      "revId": "08116ed68dcd9b993699382e78709f67f6fb4f60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3c71a1f_8513f7f9",
+        "filename": "system/stack/test/btm/bt_name_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-11T15:58:59Z",
+      "side": 1,
+      "message": "Is there code we could test that copies names?",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 71
+      },
+      "revId": "08116ed68dcd9b993699382e78709f67f6fb4f60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
