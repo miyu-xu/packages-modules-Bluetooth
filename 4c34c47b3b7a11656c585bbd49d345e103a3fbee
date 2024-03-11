@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71c4684a_dd414b64",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-11T23:52:46Z",
+      "side": 1,
+      "message": "Unmaintained code that is not running neither in post nor pre-submit.",
+      "revId": "4c34c47b3b7a11656c585bbd49d345e103a3fbee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
