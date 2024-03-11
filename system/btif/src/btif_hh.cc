@@ -35,6 +35,7 @@
 
 #include <cstdint>
 
+#include "bta_api.h"
 #include "bta_hh_co.h"
 #include "bta_sec_api.h"
 #include "btif/include/btif_common.h"
@@ -1027,6 +1028,12 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
               "Removing cached descriptor due to service change, handle = {}",
               p_data->dev_status.handle);
           btif_storage_remove_hid_info(p_dev->link_spec);
+        } else if (p_data->dev_status.status == BTA_HH_OK) {
+          if (BTA_DmGetConnectionState(p_dev->link_spec.addrt.bda) &&
+              bta_dm_check_if_only_hh_connected(p_dev->link_spec.addrt.bda)) {
+            BTA_DmCloseACL(p_dev->link_spec.addrt.bda, false,
+                           p_dev->link_spec.transport);
+          }
         }
 
         btif_hh_cb.status = (BTIF_HH_STATUS)BTIF_HH_DEV_DISCONNECTED;

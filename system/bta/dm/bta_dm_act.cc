@@ -1442,6 +1442,21 @@ bool bta_dm_check_if_only_hd_connected(const RawAddress& peer_addr) {
   return true;
 }
 
+bool bta_dm_check_if_only_hh_connected(const RawAddress& peer_addr) {
+  log::verbose("count({})", bta_dm_conn_srvcs.count);
+
+  for (uint8_t j = 0; j < bta_dm_conn_srvcs.count; j++) {
+    // Check if profiles other than hid are connected
+    if ((bta_dm_conn_srvcs.conn_srvc[j].id != BTA_ID_HH) &&
+        bta_dm_conn_srvcs.conn_srvc[j].peer_bdaddr == peer_addr) {
+      log::verbose("Another profile (id={}) is connected",
+                   bta_dm_conn_srvcs.conn_srvc[j].id);
+      return false;
+    }
+  }
+
+  return true;
+}
 /** This function set the preferred connection parameters */
 void bta_dm_ble_set_conn_params(const RawAddress& bd_addr,
                                 uint16_t conn_int_min, uint16_t conn_int_max,
