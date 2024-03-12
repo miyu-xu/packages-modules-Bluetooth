@@ -46,6 +46,30 @@
       },
       "revId": "9944c3409c2459e1f01cb456f624d6ef5c18b5ea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08b13b5b_fc6a0b8f",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 2625,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-12T00:09:28Z",
+      "side": 1,
+      "message": "Thanks for the confirmation! Just wanted to call out since some behavior change but LGTM since matches other existing logic pattern.",
+      "parentUuid": "c0423696_369eeab5",
+      "range": {
+        "startLine": 2623,
+        "startChar": 0,
+        "endLine": 2625,
+        "endChar": 3
+      },
+      "revId": "9944c3409c2459e1f01cb456f624d6ef5c18b5ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
