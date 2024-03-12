@@ -18,6 +18,7 @@
 
 #include <base/strings/stringprintf.h>
 #include <bluetooth/log.h>
+#include <android_bluetooth_flags.h>
 
 #include <cstdint>
 #include <memory>
@@ -41,6 +42,8 @@
 #include "os/alarm.h"
 #include "os/handler.h"
 #include "os/system_properties.h"
+#include "storage/config_keys.h"
+#include "storage/storage_module.h"
 
 namespace bluetooth {
 namespace hci {
@@ -70,6 +73,8 @@ constexpr bool kEnableBleOnlyInit1mPhy = false;
 
 static const std::string kPropertyMinConnInterval = "bluetooth.core.le.min_connection_interval";
 static const std::string kPropertyMaxConnInterval = "bluetooth.core.le.max_connection_interval";
+static const std::string kPropertyLeaMinConnInterval = "bluetooth.core.le.lea_min_connection_interval";
+static const std::string kPropertyLeaMaxConnInterval = "bluetooth.core.le.lea_max_connection_interval";
 static const std::string kPropertyConnLatency = "bluetooth.core.le.connection_latency";
 static const std::string kPropertyConnSupervisionTimeout = "bluetooth.core.le.connection_supervision_timeout";
 static const std::string kPropertyDirectConnTimeout = "bluetooth.core.le.direct_connection_timeout";
@@ -121,12 +126,15 @@ struct le_acl_connection {
 struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   le_impl(
       HciLayer* hci_layer,
+      storage::StorageModule* storage_module,
       Controller* controller,
       os::Handler* handler,
       RoundRobinScheduler* round_robin_scheduler,
       bool crash_on_unknown_handle)
-      : hci_layer_(hci_layer), controller_(controller), round_robin_scheduler_(round_robin_scheduler) {
+      : hci_layer_(hci_layer), storage_module_(storage_module), controller_(controller),
+        round_robin_scheduler_(round_robin_scheduler) {
     hci_layer_ = hci_layer;
+    storage_module_ = storage_module;
     controller_ = controller;
     handler_ = handler;
     connections.crash_on_unknown_handle_ = crash_on_unknown_handle;
@@ -807,6 +815,9 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
           "Ignored request to re-arm le connection state machine when filter accept list is empty");
       return;
     }
+    log::info("connectability_state_(%s), accept_list.size(%d), connecting_le_.size(%d)",
+        connectability_state_machine_text(connectability_state_).c_str(),
+        accept_list.size(), connecting_le_.size());
     AddressWithType empty(Address::kEmpty, AddressType::RANDOM_DEVICE_ADDRESS);
     connectability_state_ = ConnectabilityState::ARMING;
     connecting_le_ = accept_list;
@@ -836,6 +847,43 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     uint16_t conn_interval_max = os::GetSystemPropertyUint32(kPropertyMaxConnInterval, kConnIntervalMax);
     uint16_t conn_latency = os::GetSystemPropertyUint32(kPropertyConnLatency, kConnLatency);
     uint16_t supervision_timeout = os::GetSystemPropertyUint32(kPropertyConnSupervisionTimeout, kSupervisionTimeout);
+
+    if (IS_FLAG_ENABLED(leaudio_use_lea_connection_interval)) {
+      if (storage_module_ != nullptr) {
+        uint32_t min_ret = 0, max_ret = 0;
+        min_ret = os::GetSystemPropertyUint32(kPropertyLeaMinConnInterval, min_ret);
+        max_ret = os::GetSystemPropertyUint32(kPropertyLeaMaxConnInterval, max_ret);
+        if ((min_ret != 0) && (max_ret != 0)) { //if not 0, get the value from prop successfully
+          uint8_t lea_dev_num = 0;
+          std::string service_key = BTIF_STORAGE_KEY_REMOTE_SERVICE;
+          //if found ASCS/BASS UUID in database cache, it is lea device and reconnection scenario
+          for (auto it = accept_list.begin(); it != accept_list.end(); ++it) {
+            std::string dev_sec = it->GetAddress().ToStringForLogging();
+            auto get_service_ret = storage_module_->GetProperty(dev_sec, service_key);
+            if (get_service_ret) {
+              std::string service = *get_service_ret;
+              if ((service.find("184e") != std::string::npos) ||
+                  (service.find("184E") != std::string::npos) ||
+                  (service.find("184f") != std::string::npos) ||
+                  (service.find("184F") != std::string::npos)) {
+                lea_dev_num += 1;
+              }
+            }
+          }
+          if (lea_dev_num == accept_list.size()) {
+            LOG_INFO("All lea device, use lea connection interval, min(%d), max(%d)",
+                min_ret, max_ret);
+            conn_interval_min = min_ret;
+            conn_interval_max = max_ret;
+          }
+        } else {
+          LOG_WARN("fail to get kPropertyLeaMinConnInterval/kPropertyLeaMaxConnInterval");
+        }
+      } else {
+          LOG_WARN("storage_module_ is nullptr");
+      }
+    }
+
     ASSERT(check_connection_parameters(conn_interval_min, conn_interval_max, conn_latency, supervision_timeout));
 
     AddressWithType address_with_type = connection_peer_address_with_type_;
@@ -1207,6 +1255,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   HciLayer* hci_layer_ = nullptr;
+  storage::StorageModule* storage_module_ = nullptr;
   Controller* controller_ = nullptr;
   os::Handler* handler_ = nullptr;
   RoundRobinScheduler* round_robin_scheduler_ = nullptr;

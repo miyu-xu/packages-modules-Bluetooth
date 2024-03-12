@@ -44,6 +44,10 @@ namespace hci {
 class AclManager;
 }
 
+namespace hci::acl_manager {
+struct le_impl;
+}
+
 namespace storage {
 
 class StorageModule : public bluetooth::Module {
@@ -121,6 +125,7 @@ class StorageModule : public bluetooth::Module {
 
   friend shim::BtifConfigInterface;
   friend hci::AclManager;
+  friend hci::acl_manager::le_impl;
   friend security::internal::SecurityManagerImpl;
   // For unit test only
   ConfigCache* GetMemoryOnlyConfigCache();

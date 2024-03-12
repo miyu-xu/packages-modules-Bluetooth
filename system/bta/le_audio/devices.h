@@ -124,6 +124,8 @@ class LeAudioDevice {
   alarm_t* link_quality_timer;
   uint16_t link_quality_timer_data;
 
+  alarm_t* update_default_con_intval_timer;
+
   LeAudioDevice(const RawAddress& address_, DeviceConnectState state,
                 int group_id = bluetooth::groups::kGroupUnknown)
       : address_(address_),
@@ -143,6 +145,7 @@ class LeAudioDevice {
         allowlist_flag_(false),
         acl_asymmetric_(false),
         link_quality_timer(nullptr),
+        update_default_con_intval_timer(alarm_new("update_lea_conn_params_to_default")),
         dsa_({{DsaMode::DISABLED},
               types::DataPathState::IDLE,
               GATT_INVALID_CONN_ID}) {}
