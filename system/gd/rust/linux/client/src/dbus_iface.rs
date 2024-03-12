@@ -907,6 +907,11 @@ impl IBluetooth for BluetoothDBus {
         dbus_generated!()
     }
 
+    #[dbus_method("GetRemoteClassByAddress")]
+    fn get_remote_class_by_address(&self, address: String) -> u32 {
+        dbus_generated!()
+    }
+
     #[dbus_method("GetRemoteAppearance")]
     fn get_remote_appearance(&self, device: BluetoothDevice) -> u16 {
         dbus_generated!()

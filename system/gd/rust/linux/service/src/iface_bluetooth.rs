@@ -618,6 +618,11 @@ impl IBluetooth for IBluetoothDBus {
         dbus_generated!()
     }
 
+    #[dbus_method("GetRemoteClassByAddress", DBusLog::Disable)]
+    fn get_remote_class_by_address(&self, _address: String) -> u32 {
+        dbus_generated!()
+    }
+
     #[dbus_method("GetRemoteAppearance", DBusLog::Disable)]
     fn get_remote_appearance(&self, _device: BluetoothDevice) -> u16 {
         dbus_generated!()

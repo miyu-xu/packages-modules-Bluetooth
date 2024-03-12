@@ -193,6 +193,9 @@ pub trait IBluetooth {
     /// Gets the class of the remote device.
     fn get_remote_class(&self, device: BluetoothDevice) -> u32;
 
+    /// Gets the class of the remote device by address.
+    fn get_remote_class_by_address(&self, address: String) -> u32;
+
     /// Gets the appearance of the remote device.
     fn get_remote_appearance(&self, device: BluetoothDevice) -> u16;
 
@@ -2389,6 +2392,10 @@ impl IBluetooth for Bluetooth {
             Some(BluetoothProperty::ClassOfDevice(class)) => return class,
             _ => 0,
         }
+    }
+
+    fn get_remote_class_by_address(&self, address: String) -> u32 {
+        return self.get_remote_class(BluetoothDevice::new(address, "".to_string()));
     }
 
     fn get_remote_appearance(&self, device: BluetoothDevice) -> u16 {
