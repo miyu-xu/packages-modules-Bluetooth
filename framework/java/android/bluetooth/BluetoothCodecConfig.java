@@ -860,9 +860,8 @@ public final class BluetoothCodecConfig implements Parcelable {
          * @return the same Builder instance
          */
         @FlaggedApi(Flags.FLAG_A2DP_OFFLOAD_CODEC_EXTENSIBILITY)
-        public @NonNull Builder setCodecType(@Nullable BluetoothCodecType codecType) {
-            mCodecType = codecType;
-            return this;
+        public @NonNull Builder setExtendedCodecType(@Nullable BluetoothCodecType codecType) {
+            return setCodecType(codecType);
         }
 
         /**
