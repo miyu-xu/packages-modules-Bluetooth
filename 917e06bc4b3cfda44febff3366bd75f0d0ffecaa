@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65d3d344_115f5ccc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-12T21:38:50Z",
+      "side": 1,
+      "message": "I\u0027d rather not do this.  There\u0027s only one place where it gets converted, and we don\u0027t need to null-terminate an array.  When we make it into a string, then we should null-terminate it.",
+      "revId": "917e06bc4b3cfda44febff3366bd75f0d0ffecaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
