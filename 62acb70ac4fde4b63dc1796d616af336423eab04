@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "340b3970_c1e33d39",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-12T17:37:12Z",
+      "side": 1,
+      "message": "Adding `Bug: 315241296` will provide you with a DrNo review for this CL",
+      "revId": "62acb70ac4fde4b63dc1796d616af336423eab04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
