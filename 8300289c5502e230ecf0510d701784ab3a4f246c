@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e8bda46_30987893",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-03-12T13:25:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3cf246fb_8d30e11d",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 35
+      },
+      "revId": "8300289c5502e230ecf0510d701784ab3a4f246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "197507f8_d2d967a6",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "60b00c4a_bc8cc203",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-03-12T13:25:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "197507f8_d2d967a6",
+      "revId": "8300289c5502e230ecf0510d701784ab3a4f246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "57e21a6f_6a2f7139",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-03-12T08:51:15Z",
       "side": 1,
       "message": "```suggestion\n            stream \u003d socket_module.fromfd(fd, socket_module.AF_UNIX, socket_module.SOCK_STREAM)\n            self.outgoing_connections[connection_value] \u003d stream\n```",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 90
+      },
+      "revId": "8300289c5502e230ecf0510d701784ab3a4f246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abb07224_6b792b04",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-03-12T13:25:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57e21a6f_6a2f7139",
       "range": {
         "startLine": 186,
         "startChar": 0,
@@ -87,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9005d8e1_66f0e697",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-03-12T13:25:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98c03497_ad448ab2",
+      "range": {
+        "startLine": 234,
+        "startChar": 15,
+        "endLine": 234,
+        "endChar": 65
+      },
+      "revId": "8300289c5502e230ecf0510d701784ab3a4f246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53281eff_f4bd9fd1",
@@ -100,6 +190,30 @@
       "writtenOn": "2024-03-12T08:51:15Z",
       "side": 1,
       "message": "```suggestion\n                stream \u003d socket_module.fromfd(fd, socket_module.AF_UNIX, socket_module.SOCK_STREAM)\n                incoming_streams.append(stream)\n```",
+      "range": {
+        "startLine": 260,
+        "startChar": 0,
+        "endLine": 261,
+        "endChar": 94
+      },
+      "revId": "8300289c5502e230ecf0510d701784ab3a4f246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29e8a27a_9b446cc0",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-03-12T13:25:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53281eff_f4bd9fd1",
       "range": {
         "startLine": 260,
         "startChar": 0,
@@ -133,6 +247,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c538f40_8d5ef152",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-03-12T13:25:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52457640_2449a2dd",
+      "range": {
+        "startLine": 267,
+        "startChar": 0,
+        "endLine": 277,
+        "endChar": 29
+      },
+      "revId": "8300289c5502e230ecf0510d701784ab3a4f246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93c02299_9c9804cf",
@@ -156,6 +294,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f88209c6_722eb454",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-03-12T13:25:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93c02299_9c9804cf",
+      "range": {
+        "startLine": 282,
+        "startChar": 24,
+        "endLine": 282,
+        "endChar": 63
+      },
+      "revId": "8300289c5502e230ecf0510d701784ab3a4f246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8538eca0_7c6c4663",
@@ -169,6 +331,30 @@
       "writtenOn": "2024-03-12T08:51:15Z",
       "side": 1,
       "message": "```suggestion\n        input_stream \u003d self.outgoing_connections.get(connection_value)\n        if input_stream is None:\n            input_stream \u003d self._interleave_get_incoming_stream(connection_value)\n```",
+      "range": {
+        "startLine": 296,
+        "startChar": 28,
+        "endLine": 296,
+        "endChar": 44
+      },
+      "revId": "8300289c5502e230ecf0510d701784ab3a4f246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70948a30_f2b0497c",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-03-12T13:25:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8538eca0_7c6c4663",
       "range": {
         "startLine": 296,
         "startChar": 28,
