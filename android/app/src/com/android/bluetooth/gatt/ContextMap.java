@@ -30,6 +30,7 @@ import android.util.Log;
 
 
 import com.android.bluetooth.BluetoothMethodProxy;
+import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.le_scan.AppScanStats;
 import com.android.bluetooth.le_scan.TransitionalScanHelper;
 import com.android.bluetooth.le_scan.TransitionalScanHelper.PendingIntentInfo;
@@ -336,6 +337,10 @@ public class ContextMap<C, T> {
      */
     void removeConnection(int id, int connId) {
         synchronized (mConnectionsLock) {
+            if (Flags.bleContextMapRemoveFix()) {
+                mConnections.removeIf(conn -> conn.appId == id && conn.connId == connId);
+                return;
+            }
             Iterator<Connection> i = mConnections.iterator();
             while (i.hasNext()) {
                 Connection connection = i.next();
