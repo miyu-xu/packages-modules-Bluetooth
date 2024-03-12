@@ -193,7 +193,7 @@ struct ControllerProperties {
       supported_phys |= 0x2;
     }
     if (SupportsLLFeature(bluetooth::hci::LLFeaturesBits::LE_CODED_PHY)) {
-      supported_phys |= 0x4;
+      supported_phys |= 0xc;
     }
     return supported_phys;
   }
