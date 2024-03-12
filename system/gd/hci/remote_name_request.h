@@ -27,13 +27,16 @@
 namespace bluetooth {
 namespace hci {
 
+/* Bluetooth mandates 248 bytes, we add extra byte for null termination */
+constexpr uint8_t NAME_NULL_TERMINATED_LENGTH = 249;
+using RemoteName = std::array<uint8_t, NAME_NULL_TERMINATED_LENGTH>;
+
 // The RemoteNameRequestModule handles Remote Name Requests, which produce both Remote Name Request
 // Completed events, and Remote Host Supported Features Notification events.
 
 using CompletionCallback = common::ContextualOnceCallback<void(ErrorCode)>;
 using RemoteHostSupportedFeaturesCallback = common::ContextualOnceCallback<void(uint64_t)>;
-using RemoteNameCallback =
-    common::ContextualOnceCallback<void(ErrorCode, std::array<uint8_t, 248>)>;
+using RemoteNameCallback = common::ContextualOnceCallback<void(ErrorCode, RemoteName)>;
 
 // Historical note: This class is intended to provide a shim at the *HCI* layer, so legacy Remote
 // Name Requests can interoperate with the GD ACL scheduler. Thus, we intentionally do not merge
