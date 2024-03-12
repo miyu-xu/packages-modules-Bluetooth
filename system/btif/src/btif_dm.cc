@@ -26,6 +26,7 @@
  *
  ******************************************************************************/
 
+#include "bt_name.h"
 #define LOG_TAG "bt_btif_dm"
 
 #include "btif_dm.h"
@@ -2155,7 +2156,7 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
         }
         bt_property_t properties[] = {{
             .type = BT_PROPERTY_BDNAME,
-            .len = (int)strlen((char*)disc_res.bd_name),
+            .len = (int)strnlen((char*)disc_res.bd_name, BD_NAME_LEN),
             .val = (void*)disc_res.bd_name,
         }};
         const bt_status_t status = btif_storage_set_remote_device_property(
