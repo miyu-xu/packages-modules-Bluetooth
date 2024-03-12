@@ -1,0 +1,197 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ace4afe7_895af530",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-12T22:18:34Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Test Validation: \"Test: m \u003ctarget\u003e\" or \"Test: atest \u003cautomated-test\u003e\" is required to be in the commit message.\n\nAnalyzer Description: Validates that commit messages indicate how changes were tested\nOwner: ayeaye-team@google.com\n\n\"Test: m \u003ctarget\u003e\" or \"Test: atest \u003cautomated-test\u003e\" is required to be in the commit message.",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "b63f3c5d1622001b88737bc1290e1b4f86c2ca1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "700d29e8_2190bc77",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-12T22:18:34Z",
+      "side": 1,
+      "message": "Limit the length of title and body to 72 characters",
+      "revId": "b63f3c5d1622001b88737bc1290e1b4f86c2ca1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f216210_41492059",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1422,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-12T22:18:34Z",
+      "side": 1,
+      "message": "Device type is not same as transport",
+      "revId": "b63f3c5d1622001b88737bc1290e1b4f86c2ca1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d159f8bd_7048d3f2",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1423,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-12T22:18:34Z",
+      "side": 1,
+      "message": "Use new logging function\n```suggestion\n        log::debug(\"transport\u003d{}\", transport);\n```",
+      "revId": "b63f3c5d1622001b88737bc1290e1b4f86c2ca1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "755c5116_e768d9ca",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1536,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-12T22:18:34Z",
+      "side": 1,
+      "message": "LE connection does not mean that BR/EDR is not supported",
+      "revId": "b63f3c5d1622001b88737bc1290e1b4f86c2ca1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80a3f525_fc42d9cf",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1538,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-12T22:18:34Z",
+      "side": 1,
+      "message": "Use new logging functions",
+      "revId": "b63f3c5d1622001b88737bc1290e1b4f86c2ca1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdead2a3_64d836e0",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1541,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-12T22:18:34Z",
+      "side": 1,
+      "message": "Use new logging functions",
+      "revId": "b63f3c5d1622001b88737bc1290e1b4f86c2ca1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f1d116b_a6b2a253",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1379,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-12T22:18:34Z",
+      "side": 1,
+      "message": "We cannot ignore inquiry results irrespective whether LE is supported or not",
+      "revId": "b63f3c5d1622001b88737bc1290e1b4f86c2ca1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13718975_863209ef",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1507,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-12T22:18:34Z",
+      "side": 1,
+      "message": "We cannot ignore inquiry results irrespective whether LE is supported or not",
+      "revId": "b63f3c5d1622001b88737bc1290e1b4f86c2ca1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8347ad1e_b8b972b2",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1655,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-12T22:18:34Z",
+      "side": 1,
+      "message": "We cannot ignore inquiry results irrespective whether LE is supported or not",
+      "revId": "b63f3c5d1622001b88737bc1290e1b4f86c2ca1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ba7be35_e088bcb6",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-12T22:18:34Z",
+      "side": 1,
+      "message": "Use newer logging function\n```suggestion\n  log::info(\" transport {}\", transport);\n```",
+      "revId": "b63f3c5d1622001b88737bc1290e1b4f86c2ca1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
