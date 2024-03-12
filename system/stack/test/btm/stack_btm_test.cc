@@ -229,14 +229,14 @@ void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr,
 struct {
   RawAddress bd_addr;
   DEV_CLASS dc;
-  tBTM_BD_NAME bd_name;
+  BD_NAME bd_name;
 } btm_test;
 
 TEST_F(StackBtmWithInitFreeTest, btm_sec_rmt_name_request_complete) {
   bluetooth::common::InitFlags::SetAllForTesting();
 
   ASSERT_TRUE(BTM_SecAddRmtNameNotifyCallback(
-      [](const RawAddress& bd_addr, DEV_CLASS dc, tBTM_BD_NAME bd_name) {
+      [](const RawAddress& bd_addr, DEV_CLASS dc, BD_NAME bd_name) {
         btm_test.bd_addr = bd_addr;
         btm_test.dc = dc;
         memcpy(btm_test.bd_name, bd_name, BD_NAME_LEN);
