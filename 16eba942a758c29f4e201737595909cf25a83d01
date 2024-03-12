@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14b1a9e2_5917b3ec",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3489,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-03-12T00:31:43Z",
+      "side": 1,
+      "message": "Will remove the info log. Missed applying the patch from internal repo to aosp repo.",
+      "revId": "16eba942a758c29f4e201737595909cf25a83d01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
