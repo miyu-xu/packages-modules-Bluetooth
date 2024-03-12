@@ -2601,6 +2601,25 @@ class LeAudioClientImpl : public LeAudioClient {
       BTA_GATTC_ServiceSearchRequest(
           leAudioDevice->conn_id_,
           &le_audio::uuid::kPublishedAudioCapabilityServiceUuid);
+    else if (IS_FLAG_ENABLED(leaudio_use_lea_connection_interval)) {
+      //set timer to update the connectio interval to default
+      LOG_INFO("address %s, create timer to update ACL interval to default",
+          ADDRESS_TO_LOGGABLE_CSTR(address));
+      alarm_set_on_mloop(
+          leAudioDevice->update_default_con_intval_timer,
+          2000,
+          [](void* data) {
+              LeAudioDevice *lea_dev = (LeAudioDevice *)data;
+              if (lea_dev != nullptr) {
+                LOG_INFO("address %s, update_default_con_intval_timer timeout",
+                    ADDRESS_TO_LOGGABLE_CSTR(lea_dev->address_));
+                L2CA_UpdateBleConnParams(lea_dev->address_,
+                  BTM_BLE_CONN_INT_MIN_DEF, BTM_BLE_CONN_INT_MAX_DEF,
+                  BTM_BLE_CONN_PERIPHERAL_LATENCY_DEF, BTM_BLE_CONN_TIMEOUT_DEF, 0, 0);
+              }
+          },
+          leAudioDevice);
+    }
   }
 
   void disconnectInvalidDevice(LeAudioDevice* leAudioDevice,
