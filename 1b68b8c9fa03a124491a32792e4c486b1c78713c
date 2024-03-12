@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "28416ba5_5c2c5738",
+        "filename": "floss/pandora/server/bluetooth.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-12T08:57:08Z",
+      "side": 1,
+      "message": "Please use `get_remote_property(address, \u0027Name\u0027)`",
+      "parentUuid": "20a0a920_152ff31f",
+      "range": {
+        "startLine": 391,
+        "startChar": 16,
+        "endLine": 391,
+        "endChar": 27
+      },
+      "revId": "1b68b8c9fa03a124491a32792e4c486b1c78713c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "042c2310_e4443901",
         "filename": "floss/pandora/server/rfcomm.py",
         "patchSetId": 2
