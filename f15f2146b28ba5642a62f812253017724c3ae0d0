@@ -55,6 +55,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "fed88fc6_3f0c6f6a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-03-12T16:29:09Z",
+      "side": 1,
+      "message": "we can fix that separately. thanks for confirming this.",
+      "parentUuid": "d0307ab3_ad702185",
+      "revId": "f15f2146b28ba5642a62f812253017724c3ae0d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "f1beea74_8247a57b",
         "filename": "system/bta/le_audio/broadcaster/broadcast_configuration_provider.cc",
         "patchSetId": 27
