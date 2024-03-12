@@ -294,3 +294,9 @@ class BluetoothAudioSourceClientInterface
 }  // namespace hidl
 }  // namespace audio
 }  // namespace bluetooth
+
+namespace fmt {
+template <>
+struct formatter<bluetooth::audio::hidl::BluetoothAudioCtrlAck>
+    : enum_formatter<bluetooth::audio::hidl::BluetoothAudioCtrlAck> {};
+}  // namespace fmt
