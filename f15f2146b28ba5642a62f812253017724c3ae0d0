@@ -37,6 +37,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "d0307ab3_ad702185",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 27
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-03-12T13:17:32Z",
+      "side": 1,
+      "message": "There is a regression in aosp/2953590, but with a proper fix and this change, I did not see any regression so far. I verified manually with the compatibility switch in both positions.",
+      "parentUuid": "ce9b0053_c3037fd2",
+      "revId": "f15f2146b28ba5642a62f812253017724c3ae0d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "f1beea74_8247a57b",
         "filename": "system/bta/le_audio/broadcaster/broadcast_configuration_provider.cc",
         "patchSetId": 27
