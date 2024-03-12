@@ -1485,7 +1485,7 @@ bool btif_storage_get_stored_remote_name(const RawAddress& bd_addr,
                                          char* name) {
   bt_property_t property;
   property.type = BT_PROPERTY_BDNAME;
-  property.len = BTM_MAX_REM_BD_NAME_LEN;
+  property.len = BD_NAME_LEN;
   property.val = name;
 
   return (btif_storage_get_remote_device_property(&bd_addr, &property) ==
