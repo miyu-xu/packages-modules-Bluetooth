@@ -46,6 +46,30 @@
       },
       "revId": "a5877e2d7a8667d4dd15f23f7309706242d35836",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1419e8f_b0948bab",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3393,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2024-03-12T21:04:31Z",
+      "side": 1,
+      "message": "Ah, good point.\n\nUp to you if you want to check the controller properties. I don\u0027t think it will affect my tests.",
+      "parentUuid": "4a801cd2_0bb48bf6",
+      "range": {
+        "startLine": 3381,
+        "startChar": 0,
+        "endLine": 3393,
+        "endChar": 3
+      },
+      "revId": "a5877e2d7a8667d4dd15f23f7309706242d35836",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
