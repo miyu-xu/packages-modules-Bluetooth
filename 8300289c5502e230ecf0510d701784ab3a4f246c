@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cf246fb_8d30e11d",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-12T08:51:15Z",
+      "side": 1,
+      "message": "1. One server socket could associate to multiple incoming streams\n2. One client socket MUST associate to exactly one stream\n3. Rename `current_index` to better describe its purpose\n\n```suggestion\n        # key \u003d connection_value, val \u003d (socket_id, [stream])\n        self.incoming_connections \u003d dict()\n\n        # key \u003d connection_value, val \u003d current_index\n        # In L2CAP/COS/ECFC/BV-03-C an incoming connection_value could be associated with multiple streams and the\n        # streams would be used in an interleave manner. This dict records the current index and would be updated each\n        # time SendData and ReceiveData are called.\n        self.interleave_connection_current_index \u003d dict()\n\n        # key \u003d connection_value, val \u003d stream\n        self.outgoing_connections \u003d dict()\n```",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 35
+      },
+      "revId": "8300289c5502e230ecf0510d701784ab3a4f246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "197507f8_d2d967a6",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-12T08:51:15Z",
+      "side": 1,
+      "message": "```suggestion\n            self.incoming_connections[request.connection.cookie.value] \u003d (socket[\u0027id\u0027], [])\n```",
+      "revId": "8300289c5502e230ecf0510d701784ab3a4f246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57e21a6f_6a2f7139",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-12T08:51:15Z",
+      "side": 1,
+      "message": "```suggestion\n            stream \u003d socket_module.fromfd(fd, socket_module.AF_UNIX, socket_module.SOCK_STREAM)\n            self.outgoing_connections[connection_value] \u003d stream\n```",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 90
+      },
+      "revId": "8300289c5502e230ecf0510d701784ab3a4f246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98c03497_ad448ab2",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-12T08:51:15Z",
+      "side": 1,
+      "message": "If this condition is false then we shouldn\u0027t call `unregister_callback_observer` in the `finally:` block. Consider:\n\n```\nsocket_tuple \u003d self.incoming_connections.get(connection_value)\nif socket_tuple is None:\n    return empty_pb2.Empty()\n\ntry:\n    socket_id, incoming_streams \u003d socket_tuple\n    ...\nfinally:\n    self.bluetooth.socket_manager.unregister_callback_observer(name, observer)\n\nreturn empty_pb2.Empty()\n```",
+      "range": {
+        "startLine": 234,
+        "startChar": 15,
+        "endLine": 234,
+        "endChar": 65
+      },
+      "revId": "8300289c5502e230ecf0510d701784ab3a4f246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53281eff_f4bd9fd1",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-12T08:51:15Z",
+      "side": 1,
+      "message": "```suggestion\n                stream \u003d socket_module.fromfd(fd, socket_module.AF_UNIX, socket_module.SOCK_STREAM)\n                incoming_streams.append(stream)\n```",
+      "range": {
+        "startLine": 260,
+        "startChar": 0,
+        "endLine": 261,
+        "endChar": 94
+      },
+      "revId": "8300289c5502e230ecf0510d701784ab3a4f246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52457640_2449a2dd",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-12T08:51:15Z",
+      "side": 1,
+      "message": "```suggestion\n    def _interleave_get_incoming_stream(self, connection_value):\n        \"\"\"Gets the incoming stream in an interleave manner.\"\"\"\n        socket_tuple \u003d self.incoming_connections.get(connection_value)\n        if socket_tuple is None:\n            logging.error(\u0027Invalid connection_value: %s\u0027, connection_value)\n            return None\n\n        _, streams \u003d socket_tuple\n        if not streams:\n            logging.error(\u0027No incoming stream available for connection_value: %s\u0027, connection_value)\n            return None\n\n        current_index \u003d self.interleave_connection_current_index.get(connection_value, 0)\n        self.interleave_connection_current_index[connection_value] \u003d (current_index + 1) % len(streams)\n        return streams[current_index]\n```",
+      "range": {
+        "startLine": 267,
+        "startChar": 0,
+        "endLine": 277,
+        "endChar": 29
+      },
+      "revId": "8300289c5502e230ecf0510d701784ab3a4f246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93c02299_9c9804cf",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-12T08:51:15Z",
+      "side": 1,
+      "message": "```suggestion\n        output_stream \u003d self.outgoing_connections.get(connection_value)\n        if output_stream is None:\n            output_stream \u003d self._interleave_get_incoming_stream(connection_value)\n```",
+      "range": {
+        "startLine": 282,
+        "startChar": 24,
+        "endLine": 282,
+        "endChar": 63
+      },
+      "revId": "8300289c5502e230ecf0510d701784ab3a4f246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8538eca0_7c6c4663",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-12T08:51:15Z",
+      "side": 1,
+      "message": "```suggestion\n        input_stream \u003d self.outgoing_connections.get(connection_value)\n        if input_stream is None:\n            input_stream \u003d self._interleave_get_incoming_stream(connection_value)\n```",
+      "range": {
+        "startLine": 296,
+        "startChar": 28,
+        "endLine": 296,
+        "endChar": 44
+      },
+      "revId": "8300289c5502e230ecf0510d701784ab3a4f246c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

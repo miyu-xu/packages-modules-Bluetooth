@@ -969,6 +969,30 @@
       },
       "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91a85732_84a5e651",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-12T08:51:15Z",
+      "side": 1,
+      "message": "Acknowledged. Let\u0027s revise it a bit",
+      "parentUuid": "519e88b3_2b499ff1",
+      "range": {
+        "startLine": 210,
+        "startChar": 16,
+        "endLine": 210,
+        "endChar": 56
+      },
+      "revId": "e0e8d4410383426be345acdf925303701aba6f8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
