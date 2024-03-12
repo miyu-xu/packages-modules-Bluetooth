@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33ad0fbc_6f70d32c",
+        "filename": "tools/rootcanal/packets/link_layer_packets.pdl",
+        "patchSetId": 5
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-12T23:06:57Z",
+      "side": 0,
+      "message": "I liked the two types separate.  I thought it reflected the spec more accurately.  For Rust, doesn\u0027t this make you handle impossible cases?",
+      "range": {
+        "startLine": 153,
+        "startChar": 5,
+        "endLine": 153,
+        "endChar": 19
+      },
+      "revId": "7a78a729e5fd5e3ebd061bc5c4a87724eaa31900",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
