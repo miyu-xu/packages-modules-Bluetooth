@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc6dbdb4_edbb5abd",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostNativeInterface.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-12T02:59:24Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 101
+      },
+      "revId": "eb2c3db9eff6d28cf2eadadaf2d8916510a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b2a6da9_4c5e2274",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostNativeInterface.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-12T02:59:24Z",
+      "side": 1,
+      "message": "This should be DISCONNECTED state\n```suggestion\n                return BluetoothProfile.STATE_DISCONNECTED;\n```",
+      "revId": "eb2c3db9eff6d28cf2eadadaf2d8916510a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c68104bc_81a9e847",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostNativeInterface.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-12T02:59:24Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 123
+      },
+      "revId": "eb2c3db9eff6d28cf2eadadaf2d8916510a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
