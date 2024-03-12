@@ -46,6 +46,30 @@
       },
       "revId": "4b323199e35496cb85b842111046d59b8d83a88f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86642dc7_49afc2ec",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-12T22:03:10Z",
+      "side": 1,
+      "message": "floss topshim doesn\u0027t use our JNI it uses the old libhardware abstraction.",
+      "parentUuid": "f94fd92f_9a505a15",
+      "range": {
+        "startLine": 587,
+        "startChar": 65,
+        "endLine": 587,
+        "endChar": 72
+      },
+      "revId": "4b323199e35496cb85b842111046d59b8d83a88f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
