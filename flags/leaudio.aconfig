@@ -212,3 +212,10 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "leaudio_use_lea_connection_interval"
+    namespace: "bluetooth"
+    description: "use the connection interval set for lea"
+    bug: "319505322"
+}

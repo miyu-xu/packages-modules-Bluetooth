@@ -66,6 +66,7 @@ struct AclManager::impl {
 
   void Start() {
     hci_layer_ = acl_manager_.GetDependency<HciLayer>();
+    storage_module_ = acl_manager_.GetDependency<storage::StorageModule>();
     handler_ = acl_manager_.GetHandler();
     controller_ = acl_manager_.GetDependency<Controller>();
     round_robin_scheduler_ = new RoundRobinScheduler(handler_, controller_, hci_layer_->GetAclQueueEnd());
@@ -84,7 +85,13 @@ struct AclManager::impl {
           crash_on_unknown_handle,
           acl_scheduler_,
           remote_name_request_module_);
-      le_impl_ = new le_impl(hci_layer_, controller_, handler_, round_robin_scheduler_, crash_on_unknown_handle);
+      le_impl_ = new le_impl(
+          hci_layer_,
+          storage_module_,
+          controller_,
+          handler_,
+          round_robin_scheduler_,
+          crash_on_unknown_handle);
     }
 
     hci_queue_end_ = hci_layer_->GetAclQueueEnd();
@@ -113,6 +120,7 @@ struct AclManager::impl {
     hci_queue_end_ = nullptr;
     handler_ = nullptr;
     hci_layer_ = nullptr;
+    storage_module_ = nullptr;
     acl_scheduler_ = nullptr;
   }
 
@@ -192,6 +200,7 @@ struct AclManager::impl {
   os::Handler* handler_ = nullptr;
   Controller* controller_ = nullptr;
   HciLayer* hci_layer_ = nullptr;
+  storage::StorageModule* storage_module_ = nullptr;
   RoundRobinScheduler* round_robin_scheduler_ = nullptr;
   common::BidiQueueEnd<AclBuilder, AclView>* hci_queue_end_ = nullptr;
   std::atomic_bool enqueue_registered_ = false;
