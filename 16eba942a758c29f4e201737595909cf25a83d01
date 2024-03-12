@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c232a224_c35a42d8",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3477,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-12T17:45:58Z",
+      "side": 1,
+      "message": "```suggestion\n#else\n  return false;\n#endif\n```",
+      "range": {
+        "startLine": 3476,
+        "startChar": 0,
+        "endLine": 3477,
+        "endChar": 15
+      },
+      "revId": "16eba942a758c29f4e201737595909cf25a83d01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "14b1a9e2_5917b3ec",
         "filename": "system/btif/src/btif_av.cc",
         "patchSetId": 1
@@ -36,6 +59,52 @@
         "startChar": 0,
         "endLine": 44,
         "endChar": 6
+      },
+      "revId": "16eba942a758c29f4e201737595909cf25a83d01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed094188_f8235761",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-12T17:45:58Z",
+      "side": 1,
+      "message": "Remove the GET_SYSPROP here (already checked in the method you called)",
+      "range": {
+        "startLine": 556,
+        "startChar": 6,
+        "endLine": 556,
+        "endChar": 48
+      },
+      "revId": "16eba942a758c29f4e201737595909cf25a83d01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ad165e6_0373f6ba",
+        "filename": "system/stack/avct/avct_l2c.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-12T17:45:58Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 152,
+        "startChar": 8,
+        "endLine": 152,
+        "endChar": 50
       },
       "revId": "16eba942a758c29f4e201737595909cf25a83d01",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
