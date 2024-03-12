@@ -66,6 +66,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0c0ffd6b_1b07d9ab",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostNativeInterface.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-12T03:17:26Z",
+      "side": 1,
+      "message": "return HidHostService.STATE_ACCEPTING;",
+      "parentUuid": "0b2a6da9_4c5e2274",
+      "revId": "eb2c3db9eff6d28cf2eadadaf2d8916510a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c68104bc_81a9e847",
         "filename": "android/app/src/com/android/bluetooth/hid/HidHostNativeInterface.java",
         "patchSetId": 1
@@ -83,6 +101,40 @@
         "endLine": 183,
         "endChar": 123
       },
+      "revId": "eb2c3db9eff6d28cf2eadadaf2d8916510a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ce94320_91020e83",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-12T03:17:26Z",
+      "side": 1,
+      "message": "public static final int STATE_DISCONNECTED \u003d BluetoothProfile.STATE_DISCONNECTED;\n\n...\n\n\npublic static final int STATE_ACCEPTING \u003d BluetoothProfile.STATE_DISCONNECTING + 1;",
+      "revId": "eb2c3db9eff6d28cf2eadadaf2d8916510a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23d40d1d_0d35760a",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-12T03:17:26Z",
+      "side": 1,
+      "message": "if (state \u003d\u003d accepting) {\n  // save preferred_transport\n  state \u003d DISCONNECTED;\n}",
       "revId": "eb2c3db9eff6d28cf2eadadaf2d8916510a02623",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
