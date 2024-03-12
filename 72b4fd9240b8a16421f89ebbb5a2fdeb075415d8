@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01f60f45_11485812",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 33
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-12T02:55:19Z",
+      "side": 1,
+      "message": "This would be a logical change.",
+      "revId": "72b4fd9240b8a16421f89ebbb5a2fdeb075415d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "701ed9a9_d7bf1630",
+        "filename": "system/btif/include/btif_storage.h",
+        "patchSetId": 33
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-12T02:55:19Z",
+      "side": 1,
+      "message": "Rename the parameter to link_spec\n```suggestion\n    tAclLinkSpec* link_spec, uint16_t attr_mask, uint8_t sub_class,\n```",
+      "revId": "72b4fd9240b8a16421f89ebbb5a2fdeb075415d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b66e023_ceb2966d",
+        "filename": "system/btif/include/btif_storage.h",
+        "patchSetId": 33
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-12T02:55:19Z",
+      "side": 1,
+      "message": "rename the parameter to link_spec\n```suggestion\nbt_status_t btif_storage_remove_hid_info(const tAclLinkSpec\u0026 link_spec);\n```",
+      "revId": "72b4fd9240b8a16421f89ebbb5a2fdeb075415d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
