@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0630fdaa_f86b1c59",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-12T04:14:50Z",
+      "side": 1,
+      "message": "I like this implementation better than the reference counting that was initially done.\n\nI still prefer the test to register all the intent at the beginning and check All the intent received, as that mean we are having a control of the total chain.\nReducing the intent we are looking at while \"testing\" that these intent works seems to be a bit contradictory.\nBut I understand you don\u0027t want to test the full scenario here and are only focusing on smaller step at a time.",
+      "revId": "c0e82d3a26851300cf4631c93877a1608c15d7d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ae6e4ac_8841d53b",
