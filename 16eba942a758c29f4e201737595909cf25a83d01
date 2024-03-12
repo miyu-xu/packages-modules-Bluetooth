@@ -16,6 +16,29 @@
       "message": "Will remove the info log. Missed applying the patch from internal repo to aosp repo.",
       "revId": "16eba942a758c29f4e201737595909cf25a83d01",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02fa3543_ee27374b",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-12T17:28:33Z",
+      "side": 1,
+      "message": "Do you need \"extern\" for a forward declaration?\n\nNeeding forward declarations usually means that there\u0027s a shortcut being taken.\n```suggestion\nbool btif_av_src_sink_coexist_enabled(void);\n```",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 6
+      },
+      "revId": "16eba942a758c29f4e201737595909cf25a83d01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
