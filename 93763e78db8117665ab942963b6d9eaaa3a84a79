@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4ad5144_c6aa6210",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-12T14:38:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "addff214_bfa4e0cf",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "93763e78db8117665ab942963b6d9eaaa3a84a79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5087cbf_380858c3",
@@ -79,6 +103,24 @@
       "side": 1,
       "message": "This is quite small and trivial fix. IMHO no no need to make bug for such trivial patches.",
       "parentUuid": "e5087cbf_380858c3",
+      "revId": "93763e78db8117665ab942963b6d9eaaa3a84a79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "681e6a78_4f73586f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-12T14:38:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76fff994_fb74cf86",
       "revId": "93763e78db8117665ab942963b6d9eaaa3a84a79",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
