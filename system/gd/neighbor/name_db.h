@@ -22,12 +22,12 @@
 #include "common/bind.h"
 #include "hci/address.h"
 #include "hci/hci_packets.h"
+#include "hci/remote_name_request.h"
 #include "module.h"
 
 namespace bluetooth {
 namespace neighbor {
-
-using RemoteName = std::array<uint8_t, 248>;
+using RemoteName = bluetooth::hci::RemoteName;
 using ReadRemoteNameDbCallback = common::OnceCallback<void(hci::Address address, bool success)>;
 
 class NameDbModule : public bluetooth::Module {

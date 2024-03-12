@@ -36,6 +36,8 @@
 #include "types/ble_address_with_type.h"
 #include "types/raw_address.h"
 
+using bluetooth::hci::RemoteName;
+
 void bluetooth::shim::ACL_CreateClassicConnection(
     const RawAddress& raw_address) {
   auto address = ToGdAddress(raw_address);
@@ -220,13 +222,12 @@ void bluetooth::shim::ACL_RemoteNameRequest(const RawAddress& addr,
           },
           addr),
       GetGdShimHandler()->BindOnce(
-          [](RawAddress addr, hci::ErrorCode status,
-             std::array<uint8_t, 248> name) {
+          [](RawAddress addr, hci::ErrorCode status, RemoteName name) {
             do_in_main_thread(
                 FROM_HERE,
                 base::BindOnce(
                     [](RawAddress addr, hci::ErrorCode status,
-                       std::array<uint8_t, 248> name) {
+                       RemoteName name) {
                       btm_process_remote_name(&addr, name.data(), name.size(),
                                               static_cast<tHCI_STATUS>(status));
                       btm_sec_rmt_name_request_complete(

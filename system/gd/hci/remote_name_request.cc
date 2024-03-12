@@ -202,7 +202,15 @@ struct RemoteNameRequestModule::impl {
           "Received REMOTE_NAME_REQUEST_COMPLETE from {}",
           packet.GetBdAddr().ToRedactedStringForLogging());
       pending_ = false;
-      on_remote_name_complete_.Invoke(packet.GetStatus(), packet.GetRemoteName());
+
+      /* Bluetooth mandates that name is a UTF-8, maximum 248 bytes. It doesn't mandate null
+       * termination. Add extra byte for null termination. */
+      RemoteName null_terminated_name;
+      std::array<uint8_t, 248> name_from_pkt = packet.GetRemoteName();
+      std::copy(name_from_pkt.begin(), name_from_pkt.end(), null_terminated_name.begin());
+      null_terminated_name[null_terminated_name.size()] = 0;
+
+      on_remote_name_complete_.Invoke(packet.GetStatus(), null_terminated_name);
       acl_scheduler_->ReportRemoteNameRequestCompletion(packet.GetBdAddr());
     } else {
       log::error(
