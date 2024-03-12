@@ -3378,9 +3378,19 @@ void LinkLayerController::ScanIncomingLeExtendedAdvertisingPdu(
   bool scannable_advertising = pdu.GetScannable();
   bool connectable_advertising = pdu.GetConnectable();
   bool directed_advertising = pdu.GetDirected();
+  auto primary_phy = pdu.GetPrimaryPhy();
 
-  // TODO: check originating PHY, compare against active scanning PHYs
-  // (scanner_.le_1m_phy or scanner_.le_coded_phy).
+  // Check originating primary PHY, compare against active scanning PHYs.
+  if ((primary_phy == model::packets::PhyType::LE_1M &&
+       !scanner_.le_1m_phy.enabled) ||
+      (primary_phy == model::packets::PhyType::LE_CODED_S8 &&
+       !scanner_.le_coded_phy.enabled)) {
+    DEBUG(id_,
+          "Extended adverising ignored because the scanner is not scanning on "
+          "the phy type {}",
+          model::packets::PhyTypeText(primary_phy));
+    return;
+  }
 
   // When a scanner receives an advertising packet that contains a resolvable
   // private address for the advertiser’s device address (AdvA field) and
@@ -3477,8 +3487,10 @@ void LinkLayerController::ScanIncomingLeExtendedAdvertisingPdu(
         static_cast<bluetooth::hci::DirectAdvertisingAddressType>(
             resolved_advertising_address.GetAddressType());
     response.address_ = resolved_advertising_address.GetAddress();
-    response.primary_phy_ = bluetooth::hci::PrimaryPhyType::LE_1M;
-    response.secondary_phy_ = bluetooth::hci::SecondaryPhyType::NO_PACKETS;
+    response.primary_phy_ =
+        static_cast<bluetooth::hci::PrimaryPhyType>(pdu.GetPrimaryPhy());
+    response.secondary_phy_ =
+        static_cast<bluetooth::hci::SecondaryPhyType>(pdu.GetSecondaryPhy());
     response.advertising_sid_ = pdu.GetSid();
     response.tx_power_ = pdu.GetTxPower();
     response.rssi_ = rssi;
