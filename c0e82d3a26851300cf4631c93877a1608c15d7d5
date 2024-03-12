@@ -49,6 +49,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7bf912a5_2bfde2b8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-12T04:11:18Z",
+      "side": 1,
+      "message": "final ?",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 50
+      },
+      "revId": "c0e82d3a26851300cf4631c93877a1608c15d7d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbe604d1_72ee4a11",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-12T04:11:18Z",
+      "side": 1,
+      "message": "I didn\u0027t see where this was used.",
+      "range": {
+        "startLine": 75,
+        "startChar": 38,
+        "endLine": 75,
+        "endChar": 52
+      },
+      "revId": "c0e82d3a26851300cf4631c93877a1608c15d7d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8130cc12_b4d74221",
         "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
         "patchSetId": 7
@@ -65,6 +111,98 @@
         "startChar": 16,
         "endLine": 93,
         "endChar": 22
+      },
+      "revId": "c0e82d3a26851300cf4631c93877a1608c15d7d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1e27f2b_755aa922",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-12T04:11:18Z",
+      "side": 1,
+      "message": "Move to constructor and put as final ?",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 9
+      },
+      "revId": "c0e82d3a26851300cf4631c93877a1608c15d7d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d52ff7f4_bac264a7",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-12T04:11:18Z",
+      "side": 1,
+      "message": "I believe this should be done inside the constructor and only once ?",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 38
+      },
+      "revId": "c0e82d3a26851300cf4631c93877a1608c15d7d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "098ea53b_c603090b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-12T04:11:18Z",
+      "side": 1,
+      "message": "Why not using a [Function](https://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html) instead of a custom type ? (plus this will solve error prone)",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 33
+      },
+      "revId": "c0e82d3a26851300cf4631c93877a1608c15d7d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b05b84c5_ed5613bb",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/TestStep.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-12T04:11:18Z",
+      "side": 1,
+      "message": "Why this is in a custom file while the intentListener is not ?",
+      "range": {
+        "startLine": 21,
+        "startChar": 17,
+        "endLine": 21,
+        "endChar": 25
       },
       "revId": "c0e82d3a26851300cf4631c93877a1608c15d7d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
