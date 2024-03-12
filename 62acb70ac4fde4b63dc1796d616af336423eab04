@@ -16,6 +16,24 @@
       "message": "Adding `Bug: 315241296` will provide you with a DrNo review for this CL",
       "revId": "62acb70ac4fde4b63dc1796d616af336423eab04",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6eb94ad_65db7b7b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-12T17:38:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "340b3970_c1e33d39",
+      "revId": "62acb70ac4fde4b63dc1796d616af336423eab04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
