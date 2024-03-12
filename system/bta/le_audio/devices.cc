@@ -344,6 +344,7 @@ void LeAudioDevice::ClearPACs(void) {
 
 LeAudioDevice::~LeAudioDevice(void) {
   alarm_free(link_quality_timer);
+  alarm_free(update_default_con_intval_timer);
   for (auto& ase : ases_) {
     alarm_free(ase.autonomous_operation_timer_);
   }
