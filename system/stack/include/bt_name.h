@@ -24,12 +24,6 @@
 #include <string.h>
 #endif
 
-// NOTE: Shared with internal_include/bt_target.h
-/* Maximum device name length used in btm database. */
-#ifndef BTM_MAX_REM_BD_NAME_LEN
-#define BTM_MAX_REM_BD_NAME_LEN 248
-#endif
-
 /* Maximum local device name length stored btm database */
 #ifndef BTM_MAX_LOC_BD_NAME_LEN
 #define BTM_MAX_LOC_BD_NAME_LEN 248
@@ -39,7 +33,7 @@
 typedef uint8_t BD_NAME[BD_NAME_LEN + 1]; /* Device name */
 
 /* Device name of peer (may be truncated to save space in BTM database) */
-typedef uint8_t tBTM_BD_NAME[BTM_MAX_REM_BD_NAME_LEN + 1];
+typedef uint8_t tBTM_BD_NAME[BD_NAME_LEN + 1];
 
 typedef uint8_t tBTM_LOC_BD_NAME[BTM_MAX_LOC_BD_NAME_LEN + 1];
 
