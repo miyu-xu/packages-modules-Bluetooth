@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f35bf28_d4cefe7d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-12T15:35:13Z",
+      "side": 1,
+      "message": "Should we put it in \u003c\u003c\u003c \u003e\u003e\u003e\u003e ? or quotes ?",
+      "range": {
+        "startLine": 589,
+        "startChar": 30,
+        "endLine": 589,
+        "endChar": 37
+      },
+      "revId": "66b6edd9f67ae9b46d7f58fbc86897dd6291177a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
