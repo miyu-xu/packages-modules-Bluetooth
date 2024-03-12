@@ -196,3 +196,10 @@ flag {
     description: "Enable Le Audio for LeAudio only devices"
     bug: "328471369"
 }
+
+flag {
+    name: "leaudio_use_lea_connection_interval"
+    namespace: "bluetooth"
+    description: "use the connection interval set for lea"
+    bug: "319505322"
+}
