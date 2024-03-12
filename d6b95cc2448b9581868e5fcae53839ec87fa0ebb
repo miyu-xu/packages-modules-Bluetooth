@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3871d6b5_e289d25f",
+        "filename": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1226,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-12T20:53:15Z",
+      "side": 1,
+      "message": "This can be null and therefor the next line will crash",
+      "range": {
+        "startLine": 1226,
+        "startChar": 21,
+        "endLine": 1226,
+        "endChar": 29
+      },
+      "revId": "d6b95cc2448b9581868e5fcae53839ec87fa0ebb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37e43ac9_6b9feae2",
+        "filename": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1227,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-12T20:53:15Z",
+      "side": 1,
+      "message": "This is not using the same pattern as all the other method.\nCan we change it ?",
+      "range": {
+        "startLine": 1220,
+        "startChar": 15,
+        "endLine": 1227,
+        "endChar": 50
+      },
+      "revId": "d6b95cc2448b9581868e5fcae53839ec87fa0ebb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
