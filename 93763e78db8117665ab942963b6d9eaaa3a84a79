@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "addff214_bfa4e0cf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-12T14:38:02Z",
+      "side": 1,
+      "message": "This is quite small and trivial fix. IMHO no no need to make bug for such trivial patches.",
+      "parentUuid": "352dd4ef_f2cef05c",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "93763e78db8117665ab942963b6d9eaaa3a84a79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e5087cbf_380858c3",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -37,6 +61,24 @@
       "writtenOn": "2024-03-11T16:31:09Z",
       "side": 1,
       "message": "Please create a new bug for this fix.",
+      "revId": "93763e78db8117665ab942963b6d9eaaa3a84a79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76fff994_fb74cf86",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-12T14:38:02Z",
+      "side": 1,
+      "message": "This is quite small and trivial fix. IMHO no no need to make bug for such trivial patches.",
+      "parentUuid": "e5087cbf_380858c3",
       "revId": "93763e78db8117665ab942963b6d9eaaa3a84a79",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
