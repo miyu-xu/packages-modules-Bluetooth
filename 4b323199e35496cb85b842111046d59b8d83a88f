@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b558f990_f1a2181a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-12T17:23:30Z",
+      "side": 1,
+      "message": "I don\u0027t think the `trim` should be done here. WDYT about properly sizing the byte array in the caller https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp;l\u003d503;drc\u003d71c806d9f13939dda9ac9648171bb20849cf96f6.\n\nI think it would be best also to make the caller pass a String instead of a byte array for the name (via [NewString](https://docs.oracle.com/javase/8/docs/technotes/guides/jni/spec/functions.html#NewString))",
+      "range": {
+        "startLine": 587,
+        "startChar": 65,
+        "endLine": 587,
+        "endChar": 72
+      },
+      "revId": "4b323199e35496cb85b842111046d59b8d83a88f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
