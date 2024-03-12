@@ -16,6 +16,24 @@
       "message": "We have no way to test this - since the denylist has been rolled out to devices already - seems safe enough.",
       "revId": "0d4e4c88df1b023fde9fad7950386f39e7895658",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e18382e9_99808f44",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3346688
+      },
+      "writtenOn": "2024-03-12T19:03:36Z",
+      "side": 1,
+      "message": "Thanks, Roopa! Do I need a +1 from DrNo as well? If so, how do I get it? Otherwise, could you please exempt this CL.",
+      "parentUuid": "50199239_92d79840",
+      "revId": "0d4e4c88df1b023fde9fad7950386f39e7895658",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
