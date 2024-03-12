@@ -22,6 +22,30 @@
       },
       "revId": "ad9b7cb474954b278112a40f01bf4a19ee467f5f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90c6bee6_14424c4d",
+        "filename": "system/gd/proto/bluetooth/metrics/bluetooth.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-03-12T00:08:51Z",
+      "side": 1,
+      "message": "You\u0027re right! Using bytes would be perfectly valid in this scenario. My guess is that strings often simplify handling on the server.",
+      "parentUuid": "921f328c_01cbbcc1",
+      "range": {
+        "startLine": 306,
+        "startChar": 2,
+        "endLine": 306,
+        "endChar": 39
+      },
+      "revId": "ad9b7cb474954b278112a40f01bf4a19ee467f5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
