@@ -1574,6 +1574,12 @@ tBTM_STATUS btm_proc_smp_cback(tSMP_EVT event, const RawAddress& bd_addr,
           p_dev_rec = btm_find_dev(bd_addr);
           if (p_dev_rec == NULL) {
             log::error("p_dev_rec is NULL");
+
+            if (bd_addr == btm_sec_cb.pairing_bda) {
+              btm_sec_cb.pairing_bda = RawAddress::kAny;
+              btm_sec_cb.pairing_state = BTM_PAIR_STATE_IDLE;
+              btm_sec_cb.pairing_flags = 0;
+            }
             return BTM_SUCCESS;
           }
           log::verbose("before update sec_level=0x{:x} sec_flags=0x{:x}", p_data->cmplt.sec_level,
