@@ -22,6 +22,30 @@
       },
       "revId": "4b323199e35496cb85b842111046d59b8d83a88f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f94fd92f_9a505a15",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-12T21:59:03Z",
+      "side": 1,
+      "message": "That would require changes in the floss topshim as well. There is some work going on consolidating the similar data types for device names (https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/include/bt_name.h) in the native stack.  We should probably wait for it to conclude before changing the JNI interfaces.",
+      "parentUuid": "b558f990_f1a2181a",
+      "range": {
+        "startLine": 587,
+        "startChar": 65,
+        "endLine": 587,
+        "endChar": 72
+      },
+      "revId": "4b323199e35496cb85b842111046d59b8d83a88f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
