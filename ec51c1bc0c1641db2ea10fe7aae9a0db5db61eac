@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2236a555_09206959",
+        "filename": "system/gd/common/testing/host/log_capture_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-13T20:50:30Z",
+      "side": 1,
+      "message": "revert changes to this file",
+      "revId": "ec51c1bc0c1641db2ea10fe7aae9a0db5db61eac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
