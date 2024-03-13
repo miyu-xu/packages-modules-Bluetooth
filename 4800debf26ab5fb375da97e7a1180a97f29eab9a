@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e07d5fe4_a25079f7",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ContextMap.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-13T20:47:33Z",
+      "side": 1,
+      "message": "Will this logic be removed after the flag is enabled? \n\nIt appears to be trying to do the same thing (though yes ID is currently unused). Wondering if it makes sense to remove the ID param altogether versus this change. WDYT?",
+      "range": {
+        "startLine": 344,
+        "startChar": 12,
+        "endLine": 351,
+        "endChar": 13
+      },
+      "revId": "4800debf26ab5fb375da97e7a1180a97f29eab9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
