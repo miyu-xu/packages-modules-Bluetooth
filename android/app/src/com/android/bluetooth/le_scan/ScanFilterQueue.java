@@ -253,7 +253,16 @@ import java.util.UUID;
                 Arrays.fill(serviceDataMask, (byte) 0xFF);
             }
             serviceData = concate(serviceDataUuid, serviceData);
-            serviceDataMask = concate(serviceDataUuid, serviceDataMask);
+
+            if (serviceData != null) {
+                byte[] concatedMask = new byte[serviceData.length];
+                Arrays.fill(concatedMask, (byte) 0xFF);
+                // Keep uuid mask as 0xFF and copy over the serviceDataMask
+                System.arraycopy(serviceDataMask, 0, concatedMask,
+                        concatedMask.length - serviceDataMask.length, serviceDataMask.length);
+                serviceDataMask = concatedMask;
+            }
+
             if (serviceData != null && serviceDataMask != null) {
                 addServiceData(serviceData, serviceDataMask);
             }
