@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "561e90b9_fa168033",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1042,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-13T03:36:06Z",
+      "side": 1,
+      "message": "Just use the local transport\n```suggestion\n        } else if (transport \u003d\u003d BT_TRANSPORT_BR_EDR) {\n          if (HID_HostAddDev(p_dev_info-\u003elink_spec.addrt.bda,\n```",
+      "revId": "8095bc4612c0bcd8129fbdcb8eeb5cc88e20df96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0ca9c08_8b91ac68",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1067,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-13T03:36:06Z",
+      "side": 1,
+      "message": "nit: single word\n```suggestion\n          log::error(\"unexpected BT transport\");\n```",
+      "revId": "8095bc4612c0bcd8129fbdcb8eeb5cc88e20df96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07960d8a_19cf2fc8",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-13T03:36:06Z",
+      "side": 1,
+      "message": "nit: rename as btif_hh_load_bonded_dev",
+      "revId": "8095bc4612c0bcd8129fbdcb8eeb5cc88e20df96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d5ac21d_75f41cd6",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-13T03:36:06Z",
+      "side": 1,
+      "message": "db_version should be retrieved first.\n\nif (db_version \u003d\u003d 0) {\n // old behaviour\n} else {\n // Get HID keys and load HID device\n // Get HOGP keys and load HOGP device.\n}",
+      "revId": "8095bc4612c0bcd8129fbdcb8eeb5cc88e20df96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa857d19_4b270e88",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-13T03:36:06Z",
+      "side": 1,
+      "message": "reconnect_allowed should be true by default",
+      "revId": "8095bc4612c0bcd8129fbdcb8eeb5cc88e20df96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

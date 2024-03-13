@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53a485c3_50229007",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-13T03:36:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b85d96e7_2b32561e",
+      "revId": "153616836efdb73908a38c14fbad38e15048f6cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "21564d42_64b1cea3",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-03-12T04:05:31Z",
       "side": 1,
       "message": "transport \u003d is_le_device? LE : BREDR;\n```suggestion\n  p_cb-\u003elink_spec.transport \u003d is_le_device ? BT_TRANSPORT_LE\n                                           : BT_TRANSPORT_BR_EDR;\n}\n```",
+      "revId": "153616836efdb73908a38c14fbad38e15048f6cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84ad3c9d_d8a1975b",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-13T03:36:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21564d42_64b1cea3",
       "revId": "153616836efdb73908a38c14fbad38e15048f6cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "271fcefa_2ed61f17",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1032,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-13T03:36:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5fd872bc_6fc3df28",
+      "revId": "153616836efdb73908a38c14fbad38e15048f6cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c238405f_34638b2b",
@@ -65,6 +119,24 @@
       "writtenOn": "2024-03-12T04:05:31Z",
       "side": 1,
       "message": "Below logic should be absorbed within this function",
+      "revId": "153616836efdb73908a38c14fbad38e15048f6cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d648a77e_563277d1",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-13T03:36:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c238405f_34638b2b",
       "revId": "153616836efdb73908a38c14fbad38e15048f6cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b0b5b77_40636319",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 697,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-13T03:36:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a98cf34e_adfa0d3a",
+      "revId": "153616836efdb73908a38c14fbad38e15048f6cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c4bdf55_93b5fd9d",
@@ -99,6 +189,24 @@
       "writtenOn": "2024-03-12T04:05:31Z",
       "side": 1,
       "message": "Completely ignore this for LE transport",
+      "revId": "153616836efdb73908a38c14fbad38e15048f6cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab6a8b86_25a89ee3",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1151,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-13T03:36:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c4bdf55_93b5fd9d",
       "revId": "153616836efdb73908a38c14fbad38e15048f6cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -120,6 +228,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec32b19a_a8823cda",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1423,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-13T03:36:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e046492_47885080",
+      "revId": "153616836efdb73908a38c14fbad38e15048f6cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "287f94d3_c71d4381",
@@ -133,6 +259,24 @@
       "writtenOn": "2024-03-12T04:05:31Z",
       "side": 1,
       "message": "Use { } for if blocks",
+      "revId": "153616836efdb73908a38c14fbad38e15048f6cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "938766d6_a7013882",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1458,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-13T03:36:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "287f94d3_c71d4381",
       "revId": "153616836efdb73908a38c14fbad38e15048f6cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -154,6 +298,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "377d7694_01326c90",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-13T03:36:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d287688_f7bd7776",
+      "revId": "153616836efdb73908a38c14fbad38e15048f6cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06693046_d7200534",
@@ -167,6 +329,24 @@
       "writtenOn": "2024-03-12T04:05:31Z",
       "side": 1,
       "message": "This function should be extended to include reconnect_allowed and other parameters that BTA_HhAddDev() requires. It should call BTA_HhAddDev() rather than the storage module.",
+      "revId": "153616836efdb73908a38c14fbad38e15048f6cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61610f27_f8a8b297",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-13T03:36:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06693046_d7200534",
       "revId": "153616836efdb73908a38c14fbad38e15048f6cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
