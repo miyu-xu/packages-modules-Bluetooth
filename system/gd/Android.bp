@@ -323,9 +323,9 @@ cc_binary {
         "libcom.android.sysprop.bluetooth.wrapped",
         "libflatbuffers-cpp",
         "libosi",
+        "libPlatformProperties",
     ],
     shared_libs: [
-        "libPlatformProperties",
         "libbase",
         "libcrypto",
         "libgrpc++",
