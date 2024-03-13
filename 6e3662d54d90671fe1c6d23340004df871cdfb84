@@ -140,6 +140,23 @@
       "message": "I think `name` can not be null here, I would prefer to remove the check.",
       "revId": "6e3662d54d90671fe1c6d23340004df871cdfb84",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39192fdb_6f499d0a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-13T00:45:24Z",
+      "side": 1,
+      "message": "Is there cases where the device name is not known by native?\n\nAre we not always doing a Remote Name Request?",
+      "revId": "6e3662d54d90671fe1c6d23340004df871cdfb84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
