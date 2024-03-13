@@ -593,6 +593,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f3b3b1d7_ba3784dc",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-13T04:57:06Z",
+      "side": 1,
+      "message": "FYI: My latest patch still has this new thread creation. I\u0027m looking for the best way to do this which as I understand from the comments is either:\n\n\n\u003e 1 [thread] in the old profile and 1 [thread] in the new one\n\nor\n\n\u003e use existing thread.\n\nAs Omair mentioned, I\u0027m not sure which way would be the most appropriate no-logic-change way.",
+      "parentUuid": "bd8f69c1_eb4fb24e",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 73
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ea29f47_16b06957",
         "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
         "patchSetId": 5
