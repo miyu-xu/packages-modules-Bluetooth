@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc2af0aa_c278a576",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-13T00:19:25Z",
+      "side": 1,
+      "message": "It seems that bdname can not be null https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/btif/src/bluetooth.cc;l\u003d1339;drc\u003d15978b577cc30ad2c5b8f5e9d1cd5986ea7f09ae",
+      "revId": "6e3662d54d90671fe1c6d23340004df871cdfb84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ceb361b1_57e9901c",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-13T00:19:25Z",
+      "side": 1,
+      "message": "Looking at the definition of `bdname` it\u0027s an array of `249` byte, so 1 more than the Bluetooth limit.\n\nAre we sure it can be not null terminated?",
+      "revId": "6e3662d54d90671fe1c6d23340004df871cdfb84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
