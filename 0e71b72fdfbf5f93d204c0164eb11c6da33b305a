@@ -126,6 +126,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "754a4778_76d2cfcf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-03-13T06:17:20Z",
+      "side": 1,
+      "message": "Currently there is no way to utilize l2cap channel ID from 3P app. As suggested, we can consider to store the data into BluetoothSocketManagerBinder as SocketProperties or to read the l2cap channel ids from native stack through BluetoothSocketManagerBinder. I would like that proposal to be handled by someone in a separate CL.",
+      "parentUuid": "b73a0f6e_3ddd3e14",
+      "revId": "0e71b72fdfbf5f93d204c0164eb11c6da33b305a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51ab8cba_9ab94577",
