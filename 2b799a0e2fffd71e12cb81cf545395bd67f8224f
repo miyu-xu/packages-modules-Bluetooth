@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57899e6a_5fe1f041",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-13T18:26:36Z",
+      "side": 1,
+      "message": "Some test was actually broken, presubmits failed on this patch, so don\u0027t be nervous!",
+      "parentUuid": "1ba9af8a_3d2bbc0f",
+      "revId": "2b799a0e2fffd71e12cb81cf545395bd67f8224f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e0da0899_922a3636",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-03-12T22:25:58Z",
       "side": 1,
       "message": "I think we still need this copy.\n```suggestion\n    rem_name.bd_addr \u003d bd_addr;\n    bd_name_copy(rem_name.remote_bd_name, bd_name);\n```",
+      "range": {
+        "startLine": 1564,
+        "startChar": 0,
+        "endLine": 1564,
+        "endChar": 31
+      },
+      "revId": "2b799a0e2fffd71e12cb81cf545395bd67f8224f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1a2f60a_aa85a0db",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1564,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-13T18:26:36Z",
+      "side": 1,
+      "message": "Good catch!",
+      "parentUuid": "e0da0899_922a3636",
       "range": {
         "startLine": 1564,
         "startChar": 0,
