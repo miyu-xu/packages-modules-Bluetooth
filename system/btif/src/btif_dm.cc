@@ -1780,11 +1780,12 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
                                         tBTA_DM_SEARCH* p_data) {
   switch (event) {
     case BTA_DM_DISC_RES_EVT: {
-      bt_property_t prop;
+      bt_property_t prop[2];
       uint32_t i = 0;
       std::vector<uint8_t> property_value;
       std::set<Uuid> uuids;
       bool a2dp_sink_capable = false;
+      int num_properties = 0;
 
       RawAddress& bd_addr = p_data->disc_res.bd_addr;
 
@@ -1815,8 +1816,9 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
             btif_dm_pairing_cb_t::ServiceDiscoveryState::FINISHED;
       }
 
-      prop.type = BT_PROPERTY_UUIDS;
-      prop.len = 0;
+      prop[0].type = BT_PROPERTY_UUIDS;
+      prop[0].len = 0;
+      num_properties++;
       if ((p_data->disc_res.result == BTA_SUCCESS) &&
           (p_data->disc_res.num_uuids > 0)) {
         log::info("New UUIDs for {}:", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
@@ -1850,8 +1852,8 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
             a2dp_sink_capable = true;
           }
         }
-        prop.val = (void*)property_value.data();
-        prop.len = Uuid::kNumBytes128 * uuids.size();
+        prop[0].val = (void*)property_value.data();
+        prop[0].len = Uuid::kNumBytes128 * uuids.size();
       }
 
       bool skip_reporting_wait_for_le = false;
@@ -1893,12 +1895,17 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
             eir_uuids_cache.erase(uuids_iter);
           }
           if (num_eir_uuids > 0) {
-            prop.val = (void*)property_value.data();
-            prop.len = num_eir_uuids * Uuid::kNumBytes128;
+            prop[0].val = (void*)property_value.data();
+            prop[0].len = num_eir_uuids * Uuid::kNumBytes128;
+            prop[1].type = BT_PROPERTY_BDNAME;
+            prop[1].val = p_data->disc_res.bd_name;
+            prop[1].len = strnlen((char*)p_data->disc_res.bd_name, BD_NAME_LEN);
+            btif_storage_set_remote_device_property(&bd_addr, &prop[1]);
+            num_properties++;
           } else {
             log::warn("SDP failed and we have no EIR UUIDs to report either");
-            prop.val = &uuid;
-            prop.len = Uuid::kNumBytes128;
+            prop[0].val = &uuid;
+            prop[0].len = Uuid::kNumBytes128;
           }
         }
 
@@ -1920,7 +1927,7 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
       if (p_data->disc_res.num_uuids != 0 || num_eir_uuids != 0) {
         /* Also write this to the NVRAM */
         const bt_status_t ret =
-            btif_storage_set_remote_device_property(&bd_addr, &prop);
+            btif_storage_set_remote_device_property(&bd_addr, &prop[0]);
         ASSERTC(ret == BT_STATUS_SUCCESS, "storing remote services failed",
                 ret);
 
@@ -1938,7 +1945,7 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
 
         /* Send the event to the BTIF */
         GetInterfaceToProfiles()->events->invoke_remote_device_properties_cb(
-            BT_STATUS_SUCCESS, bd_addr, 1, &prop);
+            BT_STATUS_SUCCESS, bd_addr, num_properties, prop);
       }
     } break;
 
