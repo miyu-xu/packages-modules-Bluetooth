@@ -16,6 +16,24 @@
       "message": "Not sure to understand why this is tagged as \"trivial\" instead of \"no-op\"",
       "revId": "2add9703bbd6054563fe14e5aba5080aeb53f935",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "270689b5_c28d36de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-13T18:47:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c4e1a7b_b0f0b904",
+      "revId": "2add9703bbd6054563fe14e5aba5080aeb53f935",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
