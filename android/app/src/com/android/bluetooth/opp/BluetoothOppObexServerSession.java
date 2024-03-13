@@ -53,6 +53,7 @@ import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.MetricsLogger;
 import com.android.bluetooth.content_profiles.ContentProfileErrorReportUtils;
+import com.android.bluetooth.flags.Flags;
 import com.android.obex.HeaderSet;
 import com.android.obex.ObexTransport;
 import com.android.obex.Operation;
@@ -74,8 +75,8 @@ public class BluetoothOppObexServerSession extends ServerRequestHandler
         implements BluetoothOppObexSession {
 
     private static final String TAG = "BtOppObexServer";
-    private static final boolean D = Constants.DEBUG;
-    private static final boolean V = Constants.VERBOSE;
+    private static final boolean D = true;
+    private static final boolean V = true;
 
     @VisibleForTesting
     public ObexTransport mTransport;
@@ -461,6 +462,18 @@ public class BluetoothOppObexServerSession extends ServerRequestHandler
                     mInfo.mStatus = status;
                     msg.obj = mInfo;
                     msg.sendToTarget();
+                }
+
+                if (Flags.oppRemoveIncompleteDownload() && mFileInfo.mInsertUri != null) {
+                    if (D) {
+                        Log.d(TAG, "Removing incomplete download. Uri=" + mFileInfo.mInsertUri);
+                    }
+                    BluetoothMethodProxy.getInstance()
+                            .contentResolverDelete(
+                                    mContext.getContentResolver(),
+                                    mFileInfo.mInsertUri,
+                                    null,
+                                    null);
                 }
             }
         } else if (mAccepted == BluetoothShare.USER_CONFIRMATION_DENIED
