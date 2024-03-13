@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f8befe9_48fa9c8f",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2024-03-13T17:13:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c7f7e98_3d124da9",
+      "range": {
+        "startLine": 536,
+        "startChar": 27,
+        "endLine": 536,
+        "endChar": 28
+      },
+      "revId": "1503125a7170750ef47f699d4a3acb60c3ded66b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb61e4ee_d72c1f01",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-12T21:53:41Z",
       "side": 1,
       "message": "BTM_BLE_DEFAULT_PHYS",
+      "range": {
+        "startLine": 1944,
+        "startChar": 21,
+        "endLine": 1944,
+        "endChar": 22
+      },
+      "revId": "1503125a7170750ef47f699d4a3acb60c3ded66b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14ba4a31_386770e5",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1944,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2024-03-13T17:13:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb61e4ee_d72c1f01",
       "range": {
         "startLine": 1944,
         "startChar": 21,
