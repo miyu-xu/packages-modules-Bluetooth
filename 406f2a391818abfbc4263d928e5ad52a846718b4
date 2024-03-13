@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04ec4fb8_7ac6b247",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BluetoothSocketManagerBinder.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-03-13T16:36:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7224096f_1e5c3680",
+      "range": {
+        "startLine": 103,
+        "startChar": 12,
+        "endLine": 103,
+        "endChar": 20
+      },
+      "revId": "406f2a391818abfbc4263d928e5ad52a846718b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ffdcdc17_c7d4822f",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-13T09:19:11Z",
       "side": 1,
       "message": "I do not know the difference with `checkConnectPermissionForDataDelivery` and `checkConnectPermission`.\nAre we using the correct one ?",
+      "range": {
+        "startLine": 106,
+        "startChar": 26,
+        "endLine": 106,
+        "endChar": 63
+      },
+      "revId": "406f2a391818abfbc4263d928e5ad52a846718b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f19b5fde_5bd837cd",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BluetoothSocketManagerBinder.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-03-13T16:36:09Z",
+      "side": 1,
+      "message": "Currently, `checkConnectPermissionForDataDelivery` is the only API used for BLUETOOTH_CONNECT with data delivery. There is no `checkConnectPermission` API.\n\nAs per `PermissionChecker.java`, checkConnectPermissionForDataDelivery seems correct one for BluetoothSocket because it is basically for data transmission.\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:frameworks/base/core/java/android/content/PermissionChecker.java\n```\n * Since there are two types of app op\n * checks, one that does not leave a record an action was performed and\n * another the does, one needs to call the preflight flavor of the checks\n * named xxxForPreflight only if no private data is being delivered but\n * a permission check is what is needed and the xxxForDataDelivery where\n * the permission check is right before private data delivery.\n```",
+      "parentUuid": "ffdcdc17_c7d4822f",
       "range": {
         "startLine": 106,
         "startChar": 26,
