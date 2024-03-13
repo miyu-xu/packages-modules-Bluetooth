@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7450307_aa1e3a12",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-13T15:12:43Z",
+      "side": 1,
+      "message": "Add a helper function for this. And let\u0027s name it `stream_id` to avoid ambiguity.\n\n```\n        # Used by new_stream_id() to generate IDs for the RPC client to specify the stream.\n        self.current_stream_id \u003d 0x12FC0\n\n        ...\n\n    def new_stream_id(self) -\u003e int:\n        id \u003d self.current_stream_id\n        self.current_stream_id +\u003d 1\n        return id\n```",
+      "range": {
+        "startLine": 46,
+        "startChar": 13,
+        "endLine": 46,
+        "endChar": 27
+      },
+      "revId": "a8f6aef0b88af62936eb63ae0aef4b313488ad22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b07c721_0051e0ee",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-13T15:12:43Z",
+      "side": 1,
+      "message": "I don\u0027t think this is ever needed because the server socket ID is passed to the RPC client.\n\nUnless we have any cleanup code for tearing down the Pandora server (which I don\u0027t see any), we could just remove it.",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 32
+      },
+      "revId": "a8f6aef0b88af62936eb63ae0aef4b313488ad22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "749c5e71_aaf47efc",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-13T15:12:43Z",
+      "side": 1,
+      "message": "```suggestion\n        # key \u003d stream_id, val \u003d stream\n        self.streams \u003d dict()\n```",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 36
+      },
+      "revId": "a8f6aef0b88af62936eb63ae0aef4b313488ad22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f89f894_84e05407",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-13T15:12:43Z",
+      "side": 1,
+      "message": "```suggestion\n            stream_id \u003d self.new_stream_id()\n            stream \u003d socket_module.fromfd(fd, socket_module.AF_UNIX, socket_module.SOCK_STREAM)\n            self.streams[stream_id] \u003d stream\n        finally:\n            self.bluetooth.socket_manager.unregister_callback_observer(name, observer)\n\n        return rfcomm_pb2.ConnectionResponse(connection\u003drfcomm_pb2.RfcommConnection(id\u003dstream_id))\n```",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 127,
+        "endChar": 105
+      },
+      "revId": "a8f6aef0b88af62936eb63ae0aef4b313488ad22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a23e002b_06547a83",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-13T15:12:43Z",
+      "side": 1,
+      "message": "`stream_id`",
+      "range": {
+        "startLine": 132,
+        "startChar": 8,
+        "endLine": 132,
+        "endChar": 21
+      },
+      "revId": "a8f6aef0b88af62936eb63ae0aef4b313488ad22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "193d056f_452d63c2",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-13T15:12:43Z",
+      "side": 1,
+      "message": "```suggestion\n                listener_id \u003d socket[\u0027id\u0027]\n                if listener_id !\u003d self.task[\u0027socket_id\u0027]:\n                    return\n\n                future \u003d self.task[\u0027start_rfcomm_server\u0027]\n                if status is None or floss_enums.BtStatus(status) !\u003d floss_enums.BtStatus.SUCCESS:\n                    logging.error(\u0027Failed listening to RFCOMM channel with socket_id: %s. Status: %s\u0027, socket_id,\n                                  status)\n                    future.get_loop().call_soon_threadsafe(future.set_result, None)\n                else:\n                    future.get_loop().call_soon_threadsafe(future.set_result, listener_id)\n```",
+      "range": {
+        "startLine": 205,
+        "startChar": 0,
+        "endLine": 214,
+        "endChar": 102
+      },
+      "revId": "a8f6aef0b88af62936eb63ae0aef4b313488ad22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab9c3642_57869d23",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-13T15:12:43Z",
+      "side": 1,
+      "message": "`listener_id`",
+      "range": {
+        "startLine": 230,
+        "startChar": 12,
+        "endLine": 230,
+        "endChar": 37
+      },
+      "revId": "a8f6aef0b88af62936eb63ae0aef4b313488ad22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86a8d614_ff52c3e4",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-13T15:12:43Z",
+      "side": 1,
+      "message": "```suggestion\n            stream_id \u003d self.new_stream_id()\n            stream \u003d socket_module.fromfd(fd, socket_module.AF_UNIX, socket_module.SOCK_STREAM)\n            self.streams[stream_id] \u003d stream\n\n        except asyncio.TimeoutError as e:\n            logging.error(\u0027AcceptConnection: asyncio.TimeoutError %s\u0027, e)\n            return rfcomm_pb2.AcceptConnectionResponse(connection\u003drfcomm_pb2.RfcommConnection(id\u003dNone))\n        finally:\n            self.bluetooth.socket_manager.unregister_callback_observer(name, observer)\n\n        return rfcomm_pb2.AcceptConnectionResponse(connection\u003drfcomm_pb2.RfcommConnection(id\u003dstream_id))\n```",
+      "range": {
+        "startLine": 305,
+        "startChar": 0,
+        "endLine": 316,
+        "endChar": 111
+      },
+      "revId": "a8f6aef0b88af62936eb63ae0aef4b313488ad22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9843c78_392b9cc5",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-13T15:12:43Z",
+      "side": 1,
+      "message": "`stream_id`",
+      "range": {
+        "startLine": 319,
+        "startChar": 8,
+        "endLine": 319,
+        "endChar": 21
+      },
+      "revId": "a8f6aef0b88af62936eb63ae0aef4b313488ad22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f8c81ea_a8be48cc",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-13T15:12:43Z",
+      "side": 1,
+      "message": "`stream_id`",
+      "range": {
+        "startLine": 333,
+        "startChar": 8,
+        "endLine": 333,
+        "endChar": 21
+      },
+      "revId": "a8f6aef0b88af62936eb63ae0aef4b313488ad22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
