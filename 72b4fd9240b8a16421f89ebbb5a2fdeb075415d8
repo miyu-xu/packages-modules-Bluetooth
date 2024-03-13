@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12f9ce1e_4761c6fc",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 33
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-13T02:49:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01f60f45_11485812",
+      "revId": "72b4fd9240b8a16421f89ebbb5a2fdeb075415d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "701ed9a9_d7bf1630",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2aad4998_8824a631",
+        "filename": "system/btif/include/btif_storage.h",
+        "patchSetId": 33
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-13T02:49:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "701ed9a9_d7bf1630",
+      "revId": "72b4fd9240b8a16421f89ebbb5a2fdeb075415d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b66e023_ceb2966d",
@@ -48,6 +84,24 @@
       "writtenOn": "2024-03-12T02:55:19Z",
       "side": 1,
       "message": "rename the parameter to link_spec\n```suggestion\nbt_status_t btif_storage_remove_hid_info(const tAclLinkSpec\u0026 link_spec);\n```",
+      "revId": "72b4fd9240b8a16421f89ebbb5a2fdeb075415d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3ae2b49_59e98d88",
+        "filename": "system/btif/include/btif_storage.h",
+        "patchSetId": 33
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-13T02:49:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b66e023_ceb2966d",
       "revId": "72b4fd9240b8a16421f89ebbb5a2fdeb075415d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
