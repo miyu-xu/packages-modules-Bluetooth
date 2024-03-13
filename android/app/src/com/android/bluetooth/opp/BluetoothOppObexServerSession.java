@@ -461,6 +461,11 @@ public class BluetoothOppObexServerSession extends ServerRequestHandler
                     mInfo.mStatus = status;
                     msg.obj = mInfo;
                     msg.sendToTarget();
+                } else {
+                    if (mFileInfo.mInsertUri != null) {
+                        Log.w(TAG,"session stopped, delete incomplete receiving file");
+                        mContext.getContentResolver().delete(mFileInfo.mInsertUri, null, null);
+                    }
                 }
             }
         } else if (mAccepted == BluetoothShare.USER_CONFIRMATION_DENIED
