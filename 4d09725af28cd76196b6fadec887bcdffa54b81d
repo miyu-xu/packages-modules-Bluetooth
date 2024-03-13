@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59a405de_8426f421",
+        "filename": "system/gd/dumpsys/filter.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-13T20:59:32Z",
+      "side": 1,
+      "message": "fix",
+      "range": {
+        "startLine": 184,
+        "startChar": 60,
+        "endLine": 184,
+        "endChar": 61
+      },
+      "revId": "4d09725af28cd76196b6fadec887bcdffa54b81d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "830b9349_72da5dfd",
+        "filename": "system/gd/dumpsys/internal/filter_internal.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-13T20:59:32Z",
+      "side": 1,
+      "message": "fix",
+      "range": {
+        "startLine": 161,
+        "startChar": 87,
+        "endLine": 161,
+        "endChar": 88
+      },
+      "revId": "4d09725af28cd76196b6fadec887bcdffa54b81d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c061d97_e297ba50",
+        "filename": "system/gd/iso/internal/iso_manager_impl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-13T20:59:32Z",
+      "side": 1,
+      "message": "fix",
+      "range": {
+        "startLine": 264,
+        "startChar": 15,
+        "endLine": 264,
+        "endChar": 20
+      },
+      "revId": "4d09725af28cd76196b6fadec887bcdffa54b81d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
