@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3edbc1c0_4741332a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 992,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-13T04:48:34Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "11ce0f35_c048ef7c",
+      "range": {
+        "startLine": 992,
+        "startChar": 10,
+        "endLine": 992,
+        "endChar": 16
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b27d8ef_7c30bef3",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfe68523_82d56360",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1000,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-13T04:48:34Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "0b27d8ef_7c30bef3",
+      "range": {
+        "startLine": 1000,
+        "startChar": 8,
+        "endLine": 1000,
+        "endChar": 16
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "498dff0c_841ba251",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-02-29T17:57:17Z",
       "side": 1,
       "message": "Might be good to flag guard here so flag cleanup is a bit easier and at that point GATT service reference can be removed.",
+      "range": {
+        "startLine": 229,
+        "startChar": 8,
+        "endLine": 229,
+        "endChar": 35
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ffda32d_d74ae314",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-13T04:48:34Z",
+      "side": 1,
+      "message": "Thanks to the change from @okamil@google.com, this change in `ScanManager` is no longer necessary. Thank you.",
+      "parentUuid": "498dff0c_841ba251",
       "range": {
         "startLine": 229,
         "startChar": 8,
@@ -166,6 +238,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2aaa19d6_1c7d7f77",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-13T04:48:34Z",
+      "side": 1,
+      "message": "\u003e Is this class a ScanManagerManager ? 😂\n\n😄 This thought did pass my mind\n\n\u003e there are only one service in Bluetooth: the AdapterService.\n\u003e Everything else is a local instance.\n\nYeah. Thank you for this context. Not sure if we should renamed this to something else i.e. other than `Service` but to keep it consistent with other `ProfileService` s (which I know are not `Service` as well), perhaps this could also be kept as this proposal? @hallstrom@google.com any thoughts on this?",
+      "parentUuid": "daad1b79_f09edfce",
+      "range": {
+        "startLine": 37,
+        "startChar": 13,
+        "endLine": 37,
+        "endChar": 31
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7bede3f7_b064505e",
         "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
         "patchSetId": 5
@@ -211,6 +307,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83f0afb6_cfdc07ae",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-13T04:48:34Z",
+      "side": 1,
+      "message": "Thank you for the CLs @okamil@google.com. Using `TransitionalScanHelper` for `ScanManager` related stuff. Thank you.",
+      "parentUuid": "6dcc5d06_9d2b609e",
+      "range": {
+        "startLine": 46,
+        "startChar": 40,
+        "endLine": 46,
+        "endChar": 63
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "777ec2cd_f4f2b72c",
@@ -224,6 +344,30 @@
       "writtenOn": "2024-02-29T20:07:29Z",
       "side": 1,
       "message": "```suggestion\n    public ScanManagerService(AdapterService adapterService) {\n        super(ctx);\n        mAdapterService \u003d adapterService;\n    }\n```",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 5
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8c06a4d_6411bec9",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-13T04:48:34Z",
+      "side": 1,
+      "message": "Due to the changes in the previous CLs, we may not need `adapterService` so removed for now. Thank you.",
+      "parentUuid": "777ec2cd_f4f2b72c",
       "range": {
         "startLine": 48,
         "startChar": 4,
@@ -257,6 +401,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce5cef55_8a407225",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-13T04:48:34Z",
+      "side": 1,
+      "message": "That did work. Done, thank you.",
+      "parentUuid": "e9d56f4c_958eb10b",
+      "range": {
+        "startLine": 54,
+        "startChar": 19,
+        "endLine": 54,
+        "endChar": 37
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4b1d5b4a_0fce41b4",
@@ -270,6 +438,30 @@
       "writtenOn": "2024-02-29T20:07:29Z",
       "side": 1,
       "message": "remove and use instead `private final AdapterService mAdapterService` and set it in constructor",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 38
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5536fc63_c5a7b0fc",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-13T04:48:34Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "4b1d5b4a_0fce41b4",
       "range": {
         "startLine": 63,
         "startChar": 0,
@@ -446,6 +638,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a280cc5e_04a2987e",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-13T04:48:34Z",
+      "side": 1,
+      "message": "Using `ScanManager` from `TransitionalScanHelper` so this is removed for now. Thank you.",
+      "parentUuid": "18c8226f_cbc30f10",
+      "range": {
+        "startLine": 69,
+        "startChar": 12,
+        "endLine": 69,
+        "endChar": 30
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f0633d5_25f47388",
@@ -492,6 +708,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7184bc31_25fdc530",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-13T04:48:34Z",
+      "side": 1,
+      "message": "`sendErrorByPendingIntent` is moved to `TransitionalScanHelper` so no longer in this CL. Thank you William for the guidance.",
+      "parentUuid": "c55fa8e5_e5f8d956",
+      "range": {
+        "startLine": 120,
+        "startChar": 29,
+        "endLine": 120,
+        "endChar": 46
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29fc101e_89315fba",
@@ -505,6 +745,30 @@
       "writtenOn": "2024-02-29T20:07:29Z",
       "side": 1,
       "message": "I believe we can put that final and never set it to null.\n\n@licorne@google.com, on always on service like that, I think this make a lot of sens and facilitate the check in the futur. Am I missing something obvious ?",
+      "range": {
+        "startLine": 128,
+        "startChar": 36,
+        "endLine": 128,
+        "endChar": 44
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2dcaf69_94209e30",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-13T04:48:34Z",
+      "side": 1,
+      "message": "The `GattService` class has it set up like this as well. https://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/gatt/GattService.java;l\u003d415\n\nShould I still go ahead and make it final?",
+      "parentUuid": "29fc101e_89315fba",
       "range": {
         "startLine": 128,
         "startChar": 36,
@@ -562,6 +826,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5240a3f3_7b845f43",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-13T04:48:34Z",
+      "side": 1,
+      "message": "I\u0027ve created a new AIDL for only scan related functions. Please take a look. Thank you!",
+      "parentUuid": "ae45bd9d_8d51e6b3",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 85
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "31732b02_0cecb34b",
@@ -575,6 +863,30 @@
       "writtenOn": "2024-02-29T20:07:29Z",
       "side": 1,
       "message": "I really doesn\u0027t like adding profile here that are not profile.\nI believe you are doing this in order to put that in the mStartedProfile list, right ?\n\n(With recent modification around the config I believe it will be very easy to no long use it in the started profile...)",
+      "range": {
+        "startLine": 245,
+        "startChar": 0,
+        "endLine": 245,
+        "endChar": 18
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a415666_fd18da4f",
+        "filename": "framework/java/android/bluetooth/BluetoothProfile.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-13T04:48:34Z",
+      "side": 1,
+      "message": "\u003e I believe you are doing this in order to put that in the mStartedProfile list, right ?\n\nYes correct.\n\n\u003e (With recent modification around the config I believe it will be very easy to no long use it in the started profile...)\n\nIs it possible to do this at the moment? I\u0027d love to skip adding this int as I do not want an API change as well.",
+      "parentUuid": "31732b02_0cecb34b",
       "range": {
         "startLine": 245,
         "startChar": 0,
