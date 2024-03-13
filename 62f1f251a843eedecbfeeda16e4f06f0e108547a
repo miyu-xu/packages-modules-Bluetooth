@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b13305b_1b3fb3ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-13T22:44:57Z",
+      "side": 1,
+      "message": "Got the concern from Himanshu, need to handle that.",
+      "revId": "62f1f251a843eedecbfeeda16e4f06f0e108547a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
