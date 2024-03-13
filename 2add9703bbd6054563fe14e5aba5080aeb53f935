@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c4e1a7b_b0f0b904",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-03-13T18:27:47Z",
+      "side": 1,
+      "message": "Not sure to understand why this is tagged as \"trivial\" instead of \"no-op\"",
+      "revId": "2add9703bbd6054563fe14e5aba5080aeb53f935",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
