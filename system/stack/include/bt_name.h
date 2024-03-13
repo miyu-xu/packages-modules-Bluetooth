@@ -49,8 +49,12 @@ inline bool bd_name_is_empty(const BD_NAME bd_name) {
 inline void bd_name_from_char_pointer(BD_NAME bd_name_dest,
                                       const char* bd_name_char) {
   if (bd_name_char != nullptr) {
-    strlcpy(reinterpret_cast<char*>(bd_name_dest), bd_name_char,
-            kBdNameLength + 1);
+    size_t src_len = strlcpy(reinterpret_cast<char*>(bd_name_dest),
+                             bd_name_char, kBdNameLength + 1);
+    if (src_len < kBdNameLength) {
+      /* Zero the remaining destination memory */
+      memset(bd_name_dest + src_len, 0, kBdNameLength + 1 - src_len);
+    }
   }
 }
 inline bool bd_name_is_equal(const BD_NAME bd_name1, const BD_NAME bd_name2) {
