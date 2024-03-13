@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7224096f_1e5c3680",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BluetoothSocketManagerBinder.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-13T09:19:11Z",
+      "side": 1,
+      "message": "if cleanup is called asynchronously, you can have a race condition where this mService is not null, but it will be null one line below.\nCan you do\n```\nAdapterService service \u003d mService;\n```\n\nand then use service for all other check (null / permission /... )",
+      "range": {
+        "startLine": 103,
+        "startChar": 12,
+        "endLine": 103,
+        "endChar": 20
+      },
+      "revId": "406f2a391818abfbc4263d928e5ad52a846718b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffdcdc17_c7d4822f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BluetoothSocketManagerBinder.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-13T09:19:11Z",
+      "side": 1,
+      "message": "I do not know the difference with `checkConnectPermissionForDataDelivery` and `checkConnectPermission`.\nAre we using the correct one ?",
+      "range": {
+        "startLine": 106,
+        "startChar": 26,
+        "endLine": 106,
+        "endChar": 63
+      },
+      "revId": "406f2a391818abfbc4263d928e5ad52a846718b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
