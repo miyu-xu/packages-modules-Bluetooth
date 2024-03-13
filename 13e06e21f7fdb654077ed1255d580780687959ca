@@ -805,6 +805,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "94d432f9_a482e342",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-13T06:47:46Z",
+      "side": 1,
+      "message": "The only benefit of making it nullable that I can think of is that calls after cleanup will be no-ops. But we\u0027re already checking isAvailable() and shouldn\u0027t need 2 checks.",
+      "parentUuid": "f2dcaf69_94209e30",
+      "range": {
+        "startLine": 128,
+        "startChar": 36,
+        "endLine": 128,
+        "endChar": 44
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a211bb64_496fe66b",
         "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
         "patchSetId": 5

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "380af599_0ad7c669",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-13T06:47:46Z",
+      "side": 1,
+      "message": "The separate private methods don\u0027t really add anything here. I think it would be easier to read if the logic in these private methods were moved into the public methods.",
+      "range": {
+        "startLine": 116,
+        "startChar": 22,
+        "endLine": 116,
+        "endChar": 37
+      },
+      "revId": "1a4c3bee2a3c2a8e7af6651e02686d686f9596ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
