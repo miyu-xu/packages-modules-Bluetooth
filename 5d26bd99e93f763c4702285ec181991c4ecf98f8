@@ -46,6 +46,30 @@
       },
       "revId": "5d26bd99e93f763c4702285ec181991c4ecf98f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3522ae7e_06f3634c",
+        "filename": "system/stack/include/bt_name.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-13T18:56:04Z",
+      "side": 1,
+      "message": "I didn\u0027t realize that these are only used in tests.  I guess I don\u0027t care that much.  I don\u0027t care about the performance in tests, either.",
+      "parentUuid": "cf143777_a60f1bfb",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 5
+      },
+      "revId": "5d26bd99e93f763c4702285ec181991c4ecf98f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
