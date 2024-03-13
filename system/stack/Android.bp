@@ -2170,5 +2170,4 @@ cc_test {
         "liblog",
     ],
     header_libs: ["libbluetooth_headers"],
-    cflags: ["-Wno-unused-parameter"],
 }
