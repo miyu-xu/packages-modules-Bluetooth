@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ba1888f0_7d2a1137",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-13T00:36:09Z",
+      "side": 1,
+      "message": "Please don\u0027t mark a comment as resolved if you disagree with it.\n\n\u003e That does not really prevent someone from making a mistake.\n\nYes indeed, but I prefer it to crash loudly than silently hide the mistake.\n\ngo/error-handling-smells#defensive-programming\n\n\u003e Another way could be to use the reference instead of the pointer.\n\nWorks for me, but this sounds like a bigger change.",
+      "parentUuid": "a6ad50b9_ce088235",
+      "revId": "6e3662d54d90671fe1c6d23340004df871cdfb84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ceb361b1_57e9901c",
         "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
         "patchSetId": 3
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/btif/src/btif_dm.cc?q\u003dsymbol%3A%5Cbbtif_dm_ssp_cfm_req_evt%5Cb%20case%3Ayes\n\nIt is possible that the string is not null terminated.\n\nHere I am trying to make sure that we don\u0027t run into problems due to mistakes in other places.",
       "parentUuid": "ceb361b1_57e9901c",
+      "revId": "6e3662d54d90671fe1c6d23340004df871cdfb84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c928d12_dec01a12",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-13T00:36:09Z",
+      "side": 1,
+      "message": "This sounds like a bug, especially since `BD_NAME_LEN` is `248`, so the last byte value is undefined.",
+      "parentUuid": "0350cc85_3f1d794a",
       "revId": "6e3662d54d90671fe1c6d23340004df871cdfb84",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
