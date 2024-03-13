@@ -105,6 +105,24 @@
       "parentUuid": "0350cc85_3f1d794a",
       "revId": "6e3662d54d90671fe1c6d23340004df871cdfb84",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ab2d853_65f98d22",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-13T00:36:50Z",
+      "side": 1,
+      "message": "If you want to check it, I would prefer for you to add an assert instead and make the stack crash if `bdname-\u003ename` is not null terminated`",
+      "parentUuid": "5c928d12_dec01a12",
+      "revId": "6e3662d54d90671fe1c6d23340004df871cdfb84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
