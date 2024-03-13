@@ -262,6 +262,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b85e489d_2819a4b2",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-13T20:55:09Z",
+      "side": 1,
+      "message": "Is the feedback on the naming here? Or the way the class is started?\n\nThe goal is to keep consistent with the rest of the service, as Omer mentioned, to make the scope of this change as small as possible. So I suggest keeping consistent with other existing \"services\" (that aren\u0027t services) and addressing that separately from this refactor.",
+      "parentUuid": "2aaa19d6_1c7d7f77",
+      "range": {
+        "startLine": 37,
+        "startChar": 13,
+        "endLine": 37,
+        "endChar": 31
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7bede3f7_b064505e",
         "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
         "patchSetId": 5
@@ -605,6 +629,30 @@
       "side": 1,
       "message": "FYI: My latest patch still has this new thread creation. I\u0027m looking for the best way to do this which as I understand from the comments is either:\n\n\n\u003e 1 [thread] in the old profile and 1 [thread] in the new one\n\nor\n\n\u003e use existing thread.\n\nAs Omair mentioned, I\u0027m not sure which way would be the most appropriate no-logic-change way.",
       "parentUuid": "bd8f69c1_eb4fb24e",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 73
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d87e6dd_f7463d4d",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-13T20:55:09Z",
+      "side": 1,
+      "message": "The flags of the previous service will be easier to address once this flag is launched. Due to size of refactor I think keeping consistent with how currently implemented is safest, and we can make follow up improvements after the flag is launched. \n\nThus +1 to no logic changes as part of this phase of refactor. \n\n@Omer can you please fork a bug to consider threading and then resolve this comment?",
+      "parentUuid": "f3b3b1d7_ba3784dc",
       "range": {
         "startLine": 66,
         "startChar": 0,
@@ -983,6 +1031,30 @@
       "side": 1,
       "message": "\u003e I believe you are doing this in order to put that in the mStartedProfile list, right ?\n\nYes correct.\n\n\u003e (With recent modification around the config I believe it will be very easy to no long use it in the started profile...)\n\nIs it possible to do this at the moment? I\u0027d love to skip adding this int as I do not want an API change as well.",
       "parentUuid": "31732b02_0cecb34b",
+      "range": {
+        "startLine": 245,
+        "startChar": 0,
+        "endLine": 245,
+        "endChar": 18
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6c896b8_5a957152",
+        "filename": "framework/java/android/bluetooth/BluetoothProfile.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-13T20:55:09Z",
+      "side": 1,
+      "message": "Is this within scope of this refactor? I notice many other things here that are not profiles.",
+      "parentUuid": "6a415666_fd18da4f",
       "range": {
         "startLine": 245,
         "startChar": 0,
