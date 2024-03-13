@@ -709,6 +709,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f833969c_3fed9568",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-13T08:21:33Z",
+      "side": 1,
+      "message": "All `registerScanner` and similar functions that require permission checks are being called through `mTransitionalScanHelper` which has the annotation `@RequiresPermission(android.Manifest.permission.BLUETOOTH_SCAN)`. I believe that is sufficient but PLMK if not. Thank you.",
+      "parentUuid": "9f0633d5_25f47388",
+      "range": {
+        "startLine": 88,
+        "startChar": 19,
+        "endLine": 88,
+        "endChar": 53
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c55fa8e5_e5f8d956",
