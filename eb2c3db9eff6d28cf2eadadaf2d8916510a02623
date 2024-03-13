@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a67fb857_d7aa87f5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-13T03:15:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13ea804c_ba8e0386",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "eb2c3db9eff6d28cf2eadadaf2d8916510a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc6dbdb4_edbb5abd",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-12T02:59:24Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 101
+      },
+      "revId": "eb2c3db9eff6d28cf2eadadaf2d8916510a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b79c09ea_f663d829",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostNativeInterface.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-13T03:15:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc6dbdb4_edbb5abd",
       "range": {
         "startLine": 67,
         "startChar": 0,
@@ -82,6 +130,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd3c51f7_73f0843c",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostNativeInterface.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-13T03:15:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c0ffd6b_1b07d9ab",
+      "revId": "eb2c3db9eff6d28cf2eadadaf2d8916510a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c68104bc_81a9e847",
@@ -95,6 +161,30 @@
       "writtenOn": "2024-03-12T02:59:24Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 123
+      },
+      "revId": "eb2c3db9eff6d28cf2eadadaf2d8916510a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e9d6882_15ea8782",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostNativeInterface.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-13T03:15:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c68104bc_81a9e847",
       "range": {
         "startLine": 183,
         "startChar": 0,
@@ -122,6 +212,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "473da3ca_98549136",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-13T03:15:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ce94320_91020e83",
+      "revId": "eb2c3db9eff6d28cf2eadadaf2d8916510a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "23d40d1d_0d35760a",
@@ -135,6 +243,24 @@
       "writtenOn": "2024-03-12T03:17:26Z",
       "side": 1,
       "message": "if (state \u003d\u003d accepting) {\n  // save preferred_transport\n  state \u003d DISCONNECTED;\n}",
+      "revId": "eb2c3db9eff6d28cf2eadadaf2d8916510a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cba3915f_c911160c",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-13T03:15:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23d40d1d_0d35760a",
       "revId": "eb2c3db9eff6d28cf2eadadaf2d8916510a02623",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
