@@ -653,7 +653,7 @@ public class VolumeControlService extends ProfileService {
 
         /* Note: AudioService keeps volume levels for each stream and for each device type,
          * however it stores the mute state only for the stream type but not for each individual
-         * device type. When active device changes, it's volume level gets aplied, but mute state
+         * device type. When active device changes, it's volume level gets applied, but mute state
          * is not, but can be either derived from the volume level or just unmuted like for A2DP.
          * Also setting volume level > 0 to audio system will implicitly unmute the stream.
          * However LeAudio devices can keep their volume level high, while keeping it mute so we
@@ -783,6 +783,7 @@ public class VolumeControlService extends ProfileService {
                                     + (", location: " + location)
                                     + (", description: " + description));
                 }
+
                 try {
                     callback.onVolumeOffsetChanged(device, id, offset);
                     if (mFeatureFlags.leaudioMultipleVocsInstancesApi()) {
@@ -800,9 +801,10 @@ public class VolumeControlService extends ProfileService {
             // without making any extra modification
             RemoteCallbackList<IBluetoothVolumeControlCallback> tempCallbackList =
                     new RemoteCallbackList<>();
-
             tempCallbackList.register(callback);
+
             notifyDevicesVolumeChanged(tempCallbackList, getDevices(), Optional.empty());
+
             tempCallbackList.unregister(callback);
         }
     }
@@ -813,8 +815,6 @@ public class VolumeControlService extends ProfileService {
         }
         /* Here we keep all the user callbacks */
         mCallbacks.register(callback);
-
-        notifyNewCallbackOfKnownVolumeInfo(callback);
     }
 
     void notifyNewRegisteredCallback(IBluetoothVolumeControlCallback callback) {
