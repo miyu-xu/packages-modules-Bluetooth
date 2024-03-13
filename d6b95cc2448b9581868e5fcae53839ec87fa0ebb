@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f57eb4b9_d97a172d",
+        "filename": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1226,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-13T07:49:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3871d6b5_e289d25f",
+      "range": {
+        "startLine": 1226,
+        "startChar": 21,
+        "endLine": 1226,
+        "endChar": 29
+      },
+      "revId": "d6b95cc2448b9581868e5fcae53839ec87fa0ebb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37e43ac9_6b9feae2",
