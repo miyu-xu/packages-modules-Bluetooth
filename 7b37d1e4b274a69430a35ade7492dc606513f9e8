@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aeb9265d_4ed8b285",
+        "filename": "system/gd/metrics/metrics_state.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-13T22:20:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a833988_dee8445f",
+      "range": {
+        "startLine": 78,
+        "startChar": 85,
+        "endLine": 78,
+        "endChar": 86
+      },
+      "revId": "7b37d1e4b274a69430a35ade7492dc606513f9e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc80bfb4_7afbbf88",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-13T20:54:37Z",
       "side": 1,
       "message": "fix",
+      "range": {
+        "startLine": 155,
+        "startChar": 73,
+        "endLine": 155,
+        "endChar": 74
+      },
+      "revId": "7b37d1e4b274a69430a35ade7492dc606513f9e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84484d44_588862d5",
+        "filename": "system/gd/metrics/metrics_state.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-13T22:20:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc80bfb4_7afbbf88",
       "range": {
         "startLine": 155,
         "startChar": 73,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f739e99a_8da0e844",
+        "filename": "system/gd/metrics/metrics_state.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-13T22:20:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "666bb852_8bb4a945",
+      "range": {
+        "startLine": 169,
+        "startChar": 97,
+        "endLine": 169,
+        "endChar": 98
+      },
+      "revId": "7b37d1e4b274a69430a35ade7492dc606513f9e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e8978a1a_c204505c",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-03-13T20:54:37Z",
       "side": 1,
       "message": "fix",
+      "range": {
+        "startLine": 177,
+        "startChar": 80,
+        "endLine": 177,
+        "endChar": 81
+      },
+      "revId": "7b37d1e4b274a69430a35ade7492dc606513f9e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34ada9e7_87cd8aaa",
+        "filename": "system/gd/metrics/metrics_state.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-13T22:20:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8978a1a_c204505c",
       "range": {
         "startLine": 177,
         "startChar": 80,
