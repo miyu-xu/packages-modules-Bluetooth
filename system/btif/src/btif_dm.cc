@@ -1699,10 +1699,11 @@ static void btif_on_service_discovery_results(
     RawAddress bd_addr, tBTA_SERVICE_MASK services,
     const std::vector<bluetooth::Uuid>& uuids_param, tBTA_STATUS result,
     tHCI_STATUS hci_status) {
-  bt_property_t prop;
+  bt_property_t prop[2];
   std::vector<uint8_t> property_value;
   std::set<Uuid> uuids;
   bool a2dp_sink_capable = false;
+  int num_properties = 0;
 
   log::verbose("result=0x{:x}, services 0x{:x}", result, services);
   if (result != BTA_SUCCESS && pairing_cb.state == BT_BOND_STATE_BONDED &&
@@ -1727,8 +1728,9 @@ static void btif_on_service_discovery_results(
         btif_dm_pairing_cb_t::ServiceDiscoveryState::FINISHED;
   }
 
-  prop.type = BT_PROPERTY_UUIDS;
-  prop.len = 0;
+  prop[0].type = BT_PROPERTY_UUIDS;
+  prop[0].len = 0;
+  num_properties++;
   if ((result == BTA_SUCCESS) && !uuids_param.empty()) {
     log::info("New UUIDs for {}:", bd_addr);
     for (const auto& uuid : uuids_param) {
@@ -1760,8 +1762,8 @@ static void btif_on_service_discovery_results(
         a2dp_sink_capable = true;
       }
     }
-    prop.val = (void*)property_value.data();
-    prop.len = Uuid::kNumBytes128 * uuids.size();
+    prop[0].val = (void*)property_value.data();
+    prop[0].len = Uuid::kNumBytes128 * uuids.size();
   }
 
   bool skip_reporting_wait_for_le = false;
@@ -1802,12 +1804,17 @@ static void btif_on_service_discovery_results(
         eir_uuids_cache.erase(uuids_iter);
       }
       if (num_eir_uuids > 0) {
-        prop.val = (void*)property_value.data();
-        prop.len = num_eir_uuids * Uuid::kNumBytes128;
+        prop[0].val = (void*)property_value.data();
+        prop[0].len = num_eir_uuids * Uuid::kNumBytes128;
+        prop[1].type = BT_PROPERTY_BDNAME;
+        prop[1].val = p_data->disc_res.bd_name;
+        prop[1].len = strnlen((char*)p_data->disc_res.bd_name, BD_NAME_LEN);
+        btif_storage_set_remote_device_property(&bd_addr, &prop[1]);
+        num_properties++;
       } else {
         log::warn("SDP failed and we have no EIR UUIDs to report either");
-        prop.val = &uuid;
-        prop.len = Uuid::kNumBytes128;
+        prop[0].val = &uuid;
+        prop[0].len = Uuid::kNumBytes128;
       }
     }
 
@@ -1828,7 +1835,7 @@ static void btif_on_service_discovery_results(
   if (!uuids_param.empty() || num_eir_uuids != 0) {
     /* Also write this to the NVRAM */
     const bt_status_t ret =
-        btif_storage_set_remote_device_property(&bd_addr, &prop);
+        btif_storage_set_remote_device_property(&bd_addr, &prop[0]);
     ASSERTC(ret == BT_STATUS_SUCCESS, "storing remote services failed", ret);
 
     if (skip_reporting_wait_for_le) {
@@ -1845,7 +1852,7 @@ static void btif_on_service_discovery_results(
 
     /* Send the event to the BTIF */
     GetInterfaceToProfiles()->events->invoke_remote_device_properties_cb(
-        BT_STATUS_SUCCESS, bd_addr, 1, &prop);
+        BT_STATUS_SUCCESS, bd_addr, num_properties, prop);
   }
 }
 
