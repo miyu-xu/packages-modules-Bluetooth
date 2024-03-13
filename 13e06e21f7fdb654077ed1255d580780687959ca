@@ -827,6 +827,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5dbc80e_ab67ffff",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-13T08:16:35Z",
+      "side": 1,
+      "message": "Good point. I\u0027ve made it final and removed the null check (leaving only `isAvailable). Thank you.",
+      "parentUuid": "94d432f9_a482e342",
+      "range": {
+        "startLine": 128,
+        "startChar": 36,
+        "endLine": 128,
+        "endChar": 44
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a211bb64_496fe66b",
