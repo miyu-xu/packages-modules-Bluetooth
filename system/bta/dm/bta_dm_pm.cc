@@ -80,6 +80,8 @@ static std::recursive_mutex pm_timer_schedule_mutex;
 static std::recursive_mutex pm_timer_state_mutex;
 
 /* Sysprop paths for sniff parameters */
+static const char kPropertyBtaDmPmSniffMaxIntervalConfig] =
+    "bluetooth.core.classic.bta_dm_pm_sniff_max_interval.config";
 static const char kPropertySniffMaxIntervals[] =
     "bluetooth.core.classic.sniff_max_intervals";
 static const char kPropertySniffMinIntervals[] =
@@ -812,6 +814,8 @@ static tBTM_PM_PWR_MD get_sniff_entry(uint8_t index) {
       osi_property_get_uintlist(kPropertySniffAttempts, invalid_list);
   std::vector<uint32_t> timeout =
       osi_property_get_uintlist(kPropertySniffTimeouts, invalid_list);
+  uint16_t bta_dm_pm_sniff_max_interval_config = uint16_t(
+      osi_property_get_int32(kPropertyBtaDmPmSniffMaxIntervalConfig, 0));
 
   // If any of the sysprops are malformed or don't exist, use default table
   // value
@@ -830,6 +834,10 @@ static tBTM_PM_PWR_MD get_sniff_entry(uint8_t index) {
           static_cast<uint16_t>(attempt[i]), static_cast<uint16_t>(timeout[i]),
           BTM_PM_MD_SNIFF});
     }
+  }
+
+  if (bta_dm_pm_sniff_max_interval_config > 0) {
+    pwr_mds_cache[0].max = bta_dm_pm_sniff_max_interval_config;
   }
 
   if (index >= BTA_DM_PM_PARK_IDX) {
