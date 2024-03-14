@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75f895fa_a7c4b183",
+        "filename": "system/stack/include/sdpdefs.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-14T17:57:47Z",
+      "side": 1,
+      "message": "```suggestion\n#define NIL_DESC_TYPE 0\n#define UINT_DESC_TYPE 1\n```",
+      "revId": "8104b44374162d88a26b61934ec2b36c4d08e79e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b03af8b_be9aed4f",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 997,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-14T17:57:47Z",
+      "side": 1,
+      "message": "```suggestion\n        if (type \u003d\u003d NIL_DESC_TYPE) {\n          *p_len \u003d 0;\n          return nullptr;  \u003c--- Not sure about this one\n        } else {\n          p_len \u003d sizeof(uint8_t);\n        }\n```",
+      "range": {
+        "startLine": 997,
+        "startChar": 8,
+        "endLine": 997,
+        "endChar": 51
+      },
+      "revId": "8104b44374162d88a26b61934ec2b36c4d08e79e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a767a17_f0465344",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1661,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-14T17:57:47Z",
+      "side": 1,
+      "message": "Are we expecting to use these in the code?  Otherwise, they could be included in a test helper somewhere.",
+      "revId": "8104b44374162d88a26b61934ec2b36c4d08e79e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
