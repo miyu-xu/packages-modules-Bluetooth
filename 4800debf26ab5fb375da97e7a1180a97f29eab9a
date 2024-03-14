@@ -46,6 +46,30 @@
       },
       "revId": "4800debf26ab5fb375da97e7a1180a97f29eab9a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f221e38_d3ddc5c9",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ContextMap.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-14T19:21:33Z",
+      "side": 1,
+      "message": "sg - as a nit, can we make this a bit more explicit by moving 344-351 into an else branch?",
+      "parentUuid": "a4d9ae4e_c1ef3496",
+      "range": {
+        "startLine": 344,
+        "startChar": 12,
+        "endLine": 351,
+        "endChar": 13
+      },
+      "revId": "4800debf26ab5fb375da97e7a1180a97f29eab9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
