@@ -70,6 +70,30 @@
       },
       "revId": "bd85509c47c45d77f4fcce7491a357043025e7d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48f6fce9_99c0fd7b",
+        "filename": "system/bta/dm/bta_dm_main.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-14T14:57:04Z",
+      "side": 0,
+      "message": "Ok we\u0027ve moved away from init flags and are using another flag system.\n\nI can add a flag from the new system for this.\n\nb/329642681",
+      "parentUuid": "65f6d1e7_db0e0c44",
+      "range": {
+        "startLine": 217,
+        "startChar": 13,
+        "endLine": 218,
+        "endChar": 70
+      },
+      "revId": "bd85509c47c45d77f4fcce7491a357043025e7d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
