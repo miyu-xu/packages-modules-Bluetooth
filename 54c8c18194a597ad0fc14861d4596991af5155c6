@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "921f8949_fc28a714",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1527,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-03-14T05:20:00Z",
+      "side": 1,
+      "message": "Yes see https://chromium-review.googlesource.com/c/chromiumos/overlays/chromiumos-overlay/+/5357941",
+      "parentUuid": "1322b664_99629cb6",
+      "revId": "54c8c18194a597ad0fc14861d4596991af5155c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "9c32b766_4de2ec00",
         "filename": "system/bta/hh/bta_hh_le.cc",
         "patchSetId": 5
