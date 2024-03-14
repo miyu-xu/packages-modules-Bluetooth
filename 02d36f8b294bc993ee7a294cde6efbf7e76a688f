@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f5fa34c_9e0cb87d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-14T17:11:37Z",
+      "side": 1,
+      "message": "This is a trunk stable flag to replace an older init flag",
+      "revId": "02d36f8b294bc993ee7a294cde6efbf7e76a688f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
