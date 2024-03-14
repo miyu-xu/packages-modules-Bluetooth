@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "828afb24_323eedbd",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1531,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-14T23:55:51Z",
+      "side": 1,
+      "message": "nit: is \u003c clearer?  I know there\u0027s not a functional difference here.\n```suggestion\n        if (num_hid_service \u003c HID_PREFERRED_SERVICE_INDEX_3) {\n```",
+      "range": {
+        "startLine": 1531,
+        "startChar": 28,
+        "endLine": 1531,
+        "endChar": 30
+      },
+      "revId": "448e40fe0fc17db8a6bc25390e69f1a28465f0c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
