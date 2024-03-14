@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bf893d3_fbb477b9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-03-14T11:50:33Z",
+      "side": 1,
+      "message": "Thanks. I\u0027ll resolve this in the next patch set.",
+      "parentUuid": "72dcb2a3_31478e07",
+      "revId": "5bad3afc4f4f8a4e900989c12a1fb67ca98b4e9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "04f01da9_f1b78c6b",
@@ -35,6 +53,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4138345_caaf4a4c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-03-14T11:50:33Z",
+      "side": 1,
+      "message": "Remaining comments will be resolved later:",
+      "revId": "5bad3afc4f4f8a4e900989c12a1fb67ca98b4e9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee3d8f49_4cd6bfd3",
@@ -48,6 +83,30 @@
       "writtenOn": "2024-03-14T09:03:48Z",
       "side": 1,
       "message": "FLAG_BLE_CHECK_DATA_LENGTH_ON_LEGACY_ADVERTISING?",
+      "range": {
+        "startLine": 53,
+        "startChar": 32,
+        "endLine": 53,
+        "endChar": 74
+      },
+      "revId": "5bad3afc4f4f8a4e900989c12a1fb67ca98b4e9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d3d0281_53038c9f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeLegacyAdvertisingTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-03-14T11:50:33Z",
+      "side": 1,
+      "message": "It\u0027s because the flag is not merged yet - I left this comment when adding reviewers:\n\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2994511/comments/04f01da9_f1b78c6b",
+      "parentUuid": "ee3d8f49_4cd6bfd3",
       "range": {
         "startLine": 53,
         "startChar": 32,
@@ -104,6 +163,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "058febc7_0e1546e6",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-03-14T11:50:33Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "13ad8b3b_0375424b",
+      "range": {
+        "startLine": 944,
+        "startChar": 41,
+        "endLine": 944,
+        "endChar": 78
+      },
+      "revId": "5bad3afc4f4f8a4e900989c12a1fb67ca98b4e9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b22ecd6_e9f73916",
@@ -140,6 +223,24 @@
       "writtenOn": "2024-03-14T09:03:48Z",
       "side": 1,
       "message": "We need to check the length for EXTENDED api type as well.",
+      "revId": "5bad3afc4f4f8a4e900989c12a1fb67ca98b4e9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d4d8a37_676dba04",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-03-14T11:50:33Z",
+      "side": 1,
+      "message": "EXTENDED api type is checked in L1080.",
+      "parentUuid": "d0408155_b60bfced",
       "revId": "5bad3afc4f4f8a4e900989c12a1fb67ca98b4e9d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
