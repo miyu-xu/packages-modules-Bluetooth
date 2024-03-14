@@ -689,6 +689,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "35b26321_cbc75eac",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-14T22:53:29Z",
+      "side": 1,
+      "message": "This CL does not introduce new complexity (only a copy of existing code), so that shouldn\u0027t apply.\n\nOn the subject of threading, I think we need a proper design to address that across the Java side of our code. There are multiple options that need to be evaluated (for example main thread vs single background thread vs background thread pool) and the design process is the proper way to address that.",
+      "parentUuid": "f9d80ca8_edf0e359",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 73
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ea29f47_16b06957",
         "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
         "patchSetId": 5

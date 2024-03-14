@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6e2b9b90_9a362d61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-14T22:53:29Z",
+      "side": 1,
+      "message": "Please add a change in GattService#start that doesn\u0027t create a thread or start the scan helper if the refactor flag is on:\n\nif (!Flags.scanManagerRefactor()) {\n    HandlerThread thread \u003d new HandlerThread(\"BluetoothScanManager\");\n    thread.start();\n    mTransitionalScanHelper.start(thread.getLooper());\n}",
+      "revId": "eb6ec35d942eb8632143bb278dc69607b0d4c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "754a2db6_1073796e",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
         "patchSetId": 11
@@ -96,6 +113,30 @@
       "side": 1,
       "message": "We could do this as 2 flags or 1.\n\nSingle flag (scanManagerRefactor) when on would:\n1. Start/stop ScanManagerService in bringUpBle/bringDownBle (with appropriate renaming). When off it would continue to start/stop GattService only\n2. When starting/stopping all profiles start GattService as well\n3. Don\u0027t start a scan helper instance within GattService\n\nFor two flags (scanManagerRefactor, let\u0027s call the other one for now scanOnOnly) - scanManagerRefactor when on would:\n1. Bring up both GattService and ScanManagerService in bringUpBle/bringDownBle\n2. Don\u0027t start a scan helper instance within GattService\nscanOnOnly when on would:\n1. Stop bringing up/down GattService in bringUpBle/bringDownBle\n2. When starting/stopping all profiles start GattService as well\n\nWith 2 flags the 2nd one would be dependent on the first.",
       "parentUuid": "c8afb45b_68f38621",
+      "range": {
+        "startLine": 1016,
+        "startChar": 6,
+        "endLine": 1019,
+        "endChar": 9
+      },
+      "revId": "eb6ec35d942eb8632143bb278dc69607b0d4c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54eef8a3_d39013e1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1019,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-14T22:53:29Z",
+      "side": 1,
+      "message": "To move this CL forward let\u0027s go with the 2nd approach, where this flag controls:\n\n1. Bring up both GattService and ScanManagerService in bringUpBle/bringDownBle\n2. Don\u0027t start a scan helper instance within GattService\n\nMaking the behavioral change (either under this same flag or a new one) can be addressed in the next CL.",
+      "parentUuid": "4639eb5a_28019c92",
       "range": {
         "startLine": 1016,
         "startChar": 6,
