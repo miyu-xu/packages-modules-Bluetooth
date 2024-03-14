@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "219d698f_880527df",
+        "filename": "system/stack/include/bt_name.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-14T16:03:48Z",
+      "side": 1,
+      "message": "Does this really zero the whole thing?  This could be another CL.\n\n```suggestion\ninline void bd_name_clear(BD_NAME bd_name) {\n  memset(bd_name, 0, kBdNameLength + 1);\n}\n```",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 62
+      },
+      "revId": "1a1422dbaa8875bc2c8ec3e99528cd893362b3a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
