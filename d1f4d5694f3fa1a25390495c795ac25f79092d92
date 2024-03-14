@@ -71,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f486cda8_65600d2c",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1522,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-03-14T18:41:42Z",
+      "side": 1,
+      "message": "Main is inaccurate. Use Logitech Casa as an example, the other two services are also main but serving for different OSes.",
+      "parentUuid": "147614cb_8d9f6eff",
+      "revId": "d1f4d5694f3fa1a25390495c795ac25f79092d92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "864265a1_8baecb62",
