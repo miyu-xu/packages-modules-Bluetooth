@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eb060ffc_8b2cdbbd",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1516,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-03-14T18:39:50Z",
+      "side": 1,
+      "message": "I preferred Myles\u0027s suggestion as it is less invasive serve the purpose of this quirk. You suggestion added additional complex by introducing new data type (vec/lis/array) which I think better to be behind a flag.",
+      "parentUuid": "6ac16646_3e714f9a",
+      "revId": "d1f4d5694f3fa1a25390495c795ac25f79092d92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4590bc4d_2bc36789",
         "filename": "system/bta/hh/bta_hh_le.cc",
         "patchSetId": 6
@@ -31,6 +49,24 @@
       "writtenOn": "2024-03-14T17:16:29Z",
       "side": 1,
       "message": "Should we rephrase it in terms of \"main\" service?\n\nAlso, instead of using literal, we can define a macro like\n#define HID_PREFERRED_SERVICE_INDEX 3",
+      "revId": "d1f4d5694f3fa1a25390495c795ac25f79092d92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "147614cb_8d9f6eff",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1522,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-03-14T18:39:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4590bc4d_2bc36789",
       "revId": "d1f4d5694f3fa1a25390495c795ac25f79092d92",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -48,6 +84,30 @@
       "writtenOn": "2024-03-14T17:38:01Z",
       "side": 1,
       "message": "Since this fix is going into the Android code, please add the interop database entry for the affected devices.",
+      "range": {
+        "startLine": 1526,
+        "startChar": 14,
+        "endLine": 1526,
+        "endChar": 56
+      },
+      "revId": "d1f4d5694f3fa1a25390495c795ac25f79092d92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d014c75e_de946524",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1526,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-03-14T18:39:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "864265a1_8baecb62",
       "range": {
         "startLine": 1526,
         "startChar": 14,
@@ -81,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70a435f3_d832b20c",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1533,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-03-14T18:39:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2a4c25f_614973d0",
+      "range": {
+        "startLine": 1514,
+        "startChar": 0,
+        "endLine": 1533,
+        "endChar": 7
+      },
+      "revId": "d1f4d5694f3fa1a25390495c795ac25f79092d92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dbd1906c_d1749454",
@@ -94,6 +178,30 @@
       "writtenOn": "2024-03-14T17:38:01Z",
       "side": 1,
       "message": "```suggestion\n  if (!have_hid) {\n```",
+      "range": {
+        "startLine": 1552,
+        "startChar": 6,
+        "endLine": 1552,
+        "endChar": 26
+      },
+      "revId": "d1f4d5694f3fa1a25390495c795ac25f79092d92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b54a48c5_09d9cd93",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1552,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-03-14T18:39:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dbd1906c_d1749454",
       "range": {
         "startLine": 1552,
         "startChar": 6,
