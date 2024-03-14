@@ -36,6 +36,7 @@
 #include "internal_include/bt_target.h"
 #include "macros.h"
 #include "os/log.h"
+#include "osi/include/properties.h"
 #include "stack/btm/power_mode.h"
 #include "stack/include/bt_device_type.h"
 #include "stack/include/bt_name.h"
@@ -425,7 +426,8 @@ enum {
  * must insure that order is maintained.
  */
 #ifndef BTA_DM_PM_SNIFF_MAX
-#define BTA_DM_PM_SNIFF_MAX 800
+#define BTA_DM_PM_SNIFF_MAX \
+  uint16_t(osi_property_get_int32("bluetooth.bta_sniff_max_slots.config", 800))
 #define BTA_DM_PM_SNIFF_MIN 400
 #define BTA_DM_PM_SNIFF_ATTEMPT 4
 #define BTA_DM_PM_SNIFF_TIMEOUT 1
