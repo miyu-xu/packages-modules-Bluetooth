@@ -43,6 +43,10 @@ typedef enum {
   // timeouts are received during pairing.
   INTEROP_AUTO_RETRY_PAIRING,
 
+  // Some HID devices may not work well with multitple link control commands
+  // Serialize link control commands for HID acl connection
+  INTEROP_SERIALIZE_LINK_CONTROL_COMMANDS,
+
   // Devices requiring this workaround do not handle Bluetooth Absolute Volume
   // control correctly, leading to undesirable (potentially harmful) volume
   // levels or general lack of controlability.

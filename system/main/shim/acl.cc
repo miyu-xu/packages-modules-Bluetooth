@@ -36,6 +36,7 @@
 #include <vector>
 
 #include "common/bind.h"
+#include "device/include/interop.h"
 #include "common/strings.h"
 #include "common/sync_map_count.h"
 #include "hci/acl_manager.h"
@@ -503,8 +504,13 @@ public:
   void RegisterCallbacks() override { connection_->RegisterCallbacks(this, handler_); }
 
   void ReadRemoteControllerInformation() override {
-    connection_->ReadRemoteVersionInformation();
-    connection_->ReadRemoteSupportedFeatures();
+    RawAddress peer_address = ToRawAddress(connection_->GetAddress());
+    if (interop_match_addr(INTEROP_SERIALIZE_LINK_CONTROL_COMMANDS, &peer_address)) {
+        connection_->ReadClockOffset();
+    } else {
+        connection_->ReadRemoteVersionInformation();
+        connection_->ReadRemoteSupportedFeatures();
+    }
   }
 
   void OnConnectionPacketTypeChanged(uint16_t packet_type) override {
@@ -526,8 +532,15 @@ public:
     TRY_POSTING_ON_MAIN(interface_.on_change_connection_link_key_complete);
   }
 
-  void OnReadClockOffsetComplete(uint16_t /* clock_offset */) override {
-    log::info("UNIMPLEMENTED");
+  void OnReadClockOffsetComplete(uint16_t hci_handle, uint16_t clock_offset) override {
+    RawAddress peer_address = ToRawAddress(connection_->GetAddress());
+    if (interop_match_addr(INTEROP_SERIALIZE_LINK_CONTROL_COMMANDS, &peer_address)) {
+      log::info("OnReadClockOffsetComplete");
+      connection_->ReadRemoteVersionInformation();
+      TRY_POSTING_ON_MAIN(interface_.on_read_clock_offset_complete, hci_handle, clock_offset);
+    } else {
+      log::info("UNIMPLEMENTED");
+    }
   }
 
   void OnModeChange(hci::ErrorCode status, hci::Mode current_mode, uint16_t interval) override {
@@ -617,9 +630,13 @@ public:
   void OnReadRemoteVersionInformationComplete(hci::ErrorCode hci_status, uint8_t lmp_version,
                                               uint16_t manufacturer_name,
                                               uint16_t sub_version) override {
+    RawAddress peer_address = ToRawAddress(connection_->GetAddress());
     TRY_POSTING_ON_MAIN(interface_.on_read_remote_version_information_complete,
                         ToLegacyHciErrorCode(hci_status), handle_, lmp_version, manufacturer_name,
                         sub_version);
+    if (interop_match_addr(INTEROP_SERIALIZE_LINK_CONTROL_COMMANDS, &peer_address)) {
+      connection_->ReadRemoteSupportedFeatures();
+    }
   }
 
   void OnReadRemoteSupportedFeaturesComplete(uint64_t features) override {
