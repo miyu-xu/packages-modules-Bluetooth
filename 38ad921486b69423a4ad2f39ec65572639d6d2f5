@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be632c02_93e98bb2",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 36
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-14T04:27:35Z",
+      "side": 1,
+      "message": "Was this changed from p_data-\u003emaintdev -\u003e p_data-\u003eapi_conn on purpose?\n```suggestion\n        if (BTM_UseLeLink(p_data-\u003eapi_conn.link_spec.addrt.bda)) {\n```",
+      "range": {
+        "startLine": 1012,
+        "startChar": 0,
+        "endLine": 1012,
+        "endChar": 70
+      },
+      "revId": "38ad921486b69423a4ad2f39ec65572639d6d2f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "566b8a25_03a9341d",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 36
+      },
+      "lineNbr": 1343,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-14T04:27:35Z",
+      "side": 1,
+      "message": "not for this CL, but I think it would be nice to have the declarations closer to the usage.\n\nMaybe something like this:\ntAclLinkSpec link_spec{.addrt \u003d {\n                              .bda \u003d *bd_addr,\n                              .type \u003d addr_type\n                             },\n                       .transport \u003d transport };",
+      "range": {
+        "startLine": 1343,
+        "startChar": 0,
+        "endLine": 1343,
+        "endChar": 25
+      },
+      "revId": "38ad921486b69423a4ad2f39ec65572639d6d2f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa63299d_47cef226",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 36
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-14T04:27:35Z",
+      "side": 1,
+      "message": "It would be nice to have two cases here:\n- HID info was saved before this changed, figure out reasonable defaults\n- HID info was saved after this change, so use the information that was stored.\n\nLeave a TODO?",
+      "revId": "38ad921486b69423a4ad2f39ec65572639d6d2f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ccf5e95_b0e88506",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 36
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-14T04:27:35Z",
+      "side": 1,
+      "message": "It would be nice to log the whole linkspec here, and log it after it\u0027s filled.\n\n```suggestion\n    link_spec.addrt.bda \u003d bd_addr;\n\n    link_spec.addrt.type \u003d BLE_ADDR_PUBLIC;\n    link_spec.transport \u003d BT_TRANSPORT_AUTO;\n    \n    log::verbose(\"Remote device:{}\", ADDRESS_TO_LOGGABLE_CSTR(link_spec));\n\n```",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 0
+      },
+      "revId": "38ad921486b69423a4ad2f39ec65572639d6d2f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
