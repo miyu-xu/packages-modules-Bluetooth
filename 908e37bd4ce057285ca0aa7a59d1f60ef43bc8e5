@@ -117,6 +117,30 @@
       },
       "revId": "908e37bd4ce057285ca0aa7a59d1f60ef43bc8e5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba072052_46a39019",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 2001,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-14T21:54:19Z",
+      "side": 1,
+      "message": "Why can\u0027t we use the same constant like kBdNameLength?",
+      "parentUuid": "cf414f80_5d528a10",
+      "range": {
+        "startLine": 2001,
+        "startChar": 30,
+        "endLine": 2001,
+        "endChar": 43
+      },
+      "revId": "908e37bd4ce057285ca0aa7a59d1f60ef43bc8e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

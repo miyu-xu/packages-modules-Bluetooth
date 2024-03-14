@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdc106c9_497a2078",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1997,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-14T21:54:19Z",
+      "side": 0,
+      "message": "Could you clarify on how this work if we don\u0027t zero the byte just after the name, but only the last byte? \n\nAre we assuming there is no garbage in the array?\n\nIn that case, why not zero everything after evt_len?",
+      "range": {
+        "startLine": 1997,
+        "startChar": 25,
+        "endLine": 1997,
+        "endChar": 72
+      },
+      "revId": "1a1422dbaa8875bc2c8ec3e99528cd893362b3a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
