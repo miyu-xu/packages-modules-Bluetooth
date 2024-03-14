@@ -448,6 +448,9 @@ static std::pair<uint32_t, uint32_t> ToProfileConnectionState(uint32_t profile, 
         case BthhConnectionState::BTHH_CONN_STATE_DISCONNECTING:
           output.second = (uint32_t)ProfilesConnectionState::DISCONNECTING;
           break;
+        case BthhConnectionState::BTHH_CONN_STATE_ACCEPTING:
+          output.second = (uint32_t)ProfilesConnectionState::ACCEPTING;
+          break;
         case BthhConnectionState::BTHH_CONN_STATE_UNKNOWN:
           output.second = (uint32_t)ProfilesConnectionState::UNKNOWN;
           break;
