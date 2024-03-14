@@ -520,7 +520,7 @@ struct classic_impl {
     uint16_t handle = complete_view.GetConnectionHandle();
     connections.execute(handle, [=](ConnectionManagementCallbacks* callbacks) {
       uint16_t clock_offset = complete_view.GetClockOffset();
-      callbacks->OnReadClockOffsetComplete(clock_offset);
+      callbacks->OnReadClockOffsetComplete(handle, clock_offset);
     });
   }
 
