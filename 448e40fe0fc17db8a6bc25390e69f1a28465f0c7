@@ -22,6 +22,30 @@
       },
       "revId": "448e40fe0fc17db8a6bc25390e69f1a28465f0c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edd9b993_1170a94d",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1531,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-03-14T23:59:38Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "828afb24_323eedbd",
+      "range": {
+        "startLine": 1531,
+        "startChar": 28,
+        "endLine": 1531,
+        "endChar": 30
+      },
+      "revId": "448e40fe0fc17db8a6bc25390e69f1a28465f0c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
