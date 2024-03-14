@@ -557,8 +557,7 @@ public:
   void RegisterCallbacks() override { connection_->RegisterCallbacks(this, handler_); }
 
   void ReadRemoteControllerInformation() override {
-    connection_->ReadRemoteVersionInformation();
-    connection_->ReadRemoteSupportedFeatures();
+    connection_->ReadClockOffset();
   }
 
   void OnConnectionPacketTypeChanged(uint16_t packet_type) override {
@@ -580,8 +579,10 @@ public:
     TRY_POSTING_ON_MAIN(interface_.on_change_connection_link_key_complete);
   }
 
-  void OnReadClockOffsetComplete(uint16_t /* clock_offset */) override {
-    log::info("UNIMPLEMENTED");
+  void OnReadClockOffsetComplete(uint16_t hci_handle, uint16_t clock_offset) override {
+    log::info("OnReadClockOffsetComplete");
+    connection_->ReadRemoteVersionInformation();
+    TRY_POSTING_ON_MAIN(interface_.on_read_clock_offset_complete, hci_handle, clock_offset);
   }
 
   void OnModeChange(hci::ErrorCode status, hci::Mode current_mode, uint16_t interval) override {
@@ -675,6 +676,7 @@ public:
     TRY_POSTING_ON_MAIN(interface_.on_read_remote_version_information_complete,
                         ToLegacyHciErrorCode(hci_status), handle_, lmp_version, manufacturer_name,
                         sub_version);
+    connection_->ReadRemoteSupportedFeatures();
   }
 
   void OnReadRemoteSupportedFeaturesComplete(uint64_t features) override {

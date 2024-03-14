@@ -416,11 +416,6 @@ void btm_acl_created(const RawAddress& bda, uint16_t hci_handle, tHCI_ROLE link_
   // save remote properties to iot conf file
   btm_iot_save_remote_properties(p_acl);
 
-  /* if BR/EDR do something more */
-  if (transport == BT_TRANSPORT_BR_EDR) {
-    btsnd_hcic_read_rmt_clk_offset(hci_handle);
-  }
-
   if (transport == BT_TRANSPORT_LE) {
     btm_ble_get_acl_remote_addr(hci_handle, p_acl->active_remote_addr,
                                 &p_acl->active_remote_addr_type);

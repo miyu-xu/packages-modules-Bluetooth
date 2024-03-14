@@ -434,7 +434,7 @@ public:
       log::info("OnChangeConnectionLinkKeyComplete");
     }
 
-    void OnReadClockOffsetComplete(uint16_t clock_offset) override {
+    void OnReadClockOffsetComplete(uint16_t handle, uint16_t clock_offset) override {
       log::info("OnReadClockOffsetComplete clock_offset:{}", clock_offset);
     }
 
