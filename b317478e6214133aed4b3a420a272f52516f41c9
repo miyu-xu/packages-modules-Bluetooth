@@ -72,6 +72,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "213a99b9_8f011a6e",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-14T21:33:04Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ca81ce33_9ae2314a",
+      "revId": "b317478e6214133aed4b3a420a272f52516f41c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee686d9c_f4b620b7",
@@ -109,6 +127,30 @@
       "side": 1,
       "message": "If I use this code, I would never log when proper CoD value is provided, i.e. 44.\nI would log just if CoD is cleared or set to unclassified",
       "parentUuid": "ee686d9c_f4b620b7",
+      "range": {
+        "startLine": 699,
+        "startChar": 0,
+        "endLine": 710,
+        "endChar": 28
+      },
+      "revId": "b317478e6214133aed4b3a420a272f52516f41c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae7d6631_eee05c51",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-14T21:33:04Z",
+      "side": 1,
+      "message": "```suggestion\n\n  uint32_t old_cod \u003d get_cod(\u0026bdaddr);\n\n  /* class of device */\n  cod \u003d devclass2uint(dev_class);\n  if ((cod \u003d\u003d 0 || cod \u003d\u003d COD_UNCLASSIFIED) \u0026\u0026 old_cod !\u003d 0) {\n    log::info(\"{} CoD: 0x{:06x} -\u003e 0x{:06x}\", ADDRESS_TO_LOGGABLE_CSTR(bdaddr),\n              old_cod, cod);\n    cod \u003d old_cod;\n  } else if (old_cod !\u003d cod) {\n    log::info(\"{} CoD: 0x{:06x} -\u003e 0x{:06x}\", ADDRESS_TO_LOGGABLE_CSTR(bdaddr),\n              old_cod, cod);\n  }\n```",
+      "parentUuid": "a7f8b0aa_e966cdc3",
       "range": {
         "startLine": 699,
         "startChar": 0,
