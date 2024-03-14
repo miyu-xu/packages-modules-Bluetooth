@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "2c2e7ddf_b1b0f271",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1042,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-14T02:30:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "561e90b9_fa168033",
+      "revId": "8095bc4612c0bcd8129fbdcb8eeb5cc88e20df96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "d0ca9c08_8b91ac68",
         "filename": "system/bta/hh/bta_hh_act.cc",
         "patchSetId": 4
@@ -65,6 +83,24 @@
       "writtenOn": "2024-03-13T03:36:06Z",
       "side": 1,
       "message": "db_version should be retrieved first.\n\nif (db_version \u003d\u003d 0) {\n // old behaviour\n} else {\n // Get HID keys and load HID device\n // Get HOGP keys and load HOGP device.\n}",
+      "revId": "8095bc4612c0bcd8129fbdcb8eeb5cc88e20df96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10b218d8_9bd66021",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-14T02:30:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d5ac21d_75f41cd6",
       "revId": "8095bc4612c0bcd8129fbdcb8eeb5cc88e20df96",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },

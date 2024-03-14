@@ -1,0 +1,220 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fd48077_cabce341",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-14T02:30:36Z",
+      "side": 1,
+      "message": "We need to compare the complete link_spec",
+      "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11fe3af4_8426aa1d",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-14T02:30:36Z",
+      "side": 1,
+      "message": "We need to compare the complete link_spec",
+      "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4a97cb6_9ba6f127",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-14T02:30:36Z",
+      "side": 1,
+      "message": "We should not break here anymore. We may have more than one instance which is supported here.",
+      "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cec97e5f_9091e8f8",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-14T02:30:36Z",
+      "side": 1,
+      "message": "We have to ensure that both HID and HOGP instances are removed",
+      "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d02772e_56c3825d",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1186,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-14T02:30:36Z",
+      "side": 1,
+      "message": "This removes the HOGP connection instance as well. We need to remove just the HID connection instance.",
+      "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "300236f0_4d3b61c1",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-14T02:30:36Z",
+      "side": 1,
+      "message": "It may be easier to read/maintain if it was formatted as\n\nif (!flag enabled) {\n  old behaviour\n  return success\n}\n\nsave db_version\nsave other common keys\nif (transport \u003d\u003d BREDR) {\n  save HID keys\n} else {\n  save HOGP keys\n}",
+      "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4f66c74_c8b8b060",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-14T02:30:36Z",
+      "side": 1,
+      "message": "This should be done only once in btif_storage_load_bonded_hid_info()",
+      "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ddbf3e8_0771c770",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-14T02:30:36Z",
+      "side": 1,
+      "message": "```suggestion\n  tBTA_HH_DEV_DSCP_INFO dscp_info \u003d {};\n\n```",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 43
+      },
+      "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d9ee2da_5a5b8b9c",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-14T02:30:36Z",
+      "side": 1,
+      "message": "This decision can be made outside of this function. Then we don\u0027t have to pass db_version parameter.",
+      "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f31183ef_1a98e24c",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-14T02:30:36Z",
+      "side": 1,
+      "message": "```suggestion\n  tBTA_HH_DEV_DSCP_INFO dscp_info \u003d {};\n\n```",
+      "range": {
+        "startLine": 229,
+        "startChar": 0,
+        "endLine": 230,
+        "endChar": 43
+      },
+      "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd338939_f115b4b3",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-14T02:30:36Z",
+      "side": 1,
+      "message": "For consistency with the previous comment, we can move this decision to the caller.",
+      "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efee4ef3_9c56ccc0",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-14T02:30:36Z",
+      "side": 1,
+      "message": "Retrieve db_version only if the feature is enabled",
+      "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
