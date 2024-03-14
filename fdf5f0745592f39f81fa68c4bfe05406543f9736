@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a37654a_11eb2949",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-03-14T18:38:19Z",
+      "side": 1,
+      "message": "Q) Why don\u0027t we change the return value from the service directly?",
+      "range": {
+        "startLine": 211,
+        "startChar": 41,
+        "endLine": 211,
+        "endChar": 59
+      },
+      "revId": "fdf5f0745592f39f81fa68c4bfe05406543f9736",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
