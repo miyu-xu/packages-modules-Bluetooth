@@ -325,6 +325,11 @@ public class MediaPlayerList {
         if (Utils.isPtsTestMode()) {
             d("PTS test mode: getPlayerRoot");
             BrowsedPlayerWrapper wrapper = mBrowsablePlayers.get(BLUETOOTH_PLAYER_ID + 1);
+            if (wrapper == null) {
+                wrapper = mBrowsablePlayers.values().iterator().next();
+                Log.i(TAG, "PTS test mode: got " + Util.getDisplayName(mContext,
+                            wrapper.getPackageName()));
+            }
             String itemId = wrapper.getRootId();
 
             wrapper.getFolderItems(itemId, (status, id, results) -> {
@@ -556,6 +561,11 @@ public class MediaPlayerList {
         if (Utils.isPtsTestMode()) {
             d("PTS test mode: getFolderItems");
             BrowsedPlayerWrapper wrapper = mBrowsablePlayers.get(BLUETOOTH_PLAYER_ID + 1);
+            if (wrapper == null) {
+                wrapper = mBrowsablePlayers.values().iterator().next();
+                Log.i(TAG, "PTS test mode: got " + Util.getDisplayName(mContext,
+                            wrapper.getPackageName()));
+            }
             String itemId = mediaId;
             if (mediaId.equals("")) {
                 itemId = wrapper.getRootId();
