@@ -22,6 +22,30 @@
       },
       "revId": "a918c9c6c8ff6d9a62638ffba49f8a2b9aa5efdc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9fc6d2a_39dab29a",
+        "filename": "system/stack/Android.bp",
+        "patchSetId": 10
+      },
+      "lineNbr": 2151,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-14T20:52:08Z",
+      "side": 1,
+      "message": "Ack.\n\nThis may be updated once osi_malloc/calloc are removed.",
+      "parentUuid": "1ca5b60d_ad01dc99",
+      "range": {
+        "startLine": 2151,
+        "startChar": 10,
+        "endLine": 2151,
+        "endChar": 21
+      },
+      "revId": "a918c9c6c8ff6d9a62638ffba49f8a2b9aa5efdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

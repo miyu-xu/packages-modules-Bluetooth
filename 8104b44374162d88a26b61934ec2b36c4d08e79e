@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5120c3f_0318556e",
+        "filename": "system/stack/include/sdpdefs.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-14T20:52:08Z",
+      "side": 1,
+      "message": "I had this in a later CL but will pull into this one.",
+      "parentUuid": "75f895fa_a7c4b183",
+      "revId": "8104b44374162d88a26b61934ec2b36c4d08e79e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5b03af8b_be9aed4f",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0d11d1d_bcaee81d",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 997,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-14T20:52:08Z",
+      "side": 1,
+      "message": "If this returns nullptr it is treated as a failure and aborts processing.\n\nThe fix is intended to not abort processing and allow processing to continue.\n\nI have updated the function description to reflect this intent.",
+      "parentUuid": "5b03af8b_be9aed4f",
+      "range": {
+        "startLine": 997,
+        "startChar": 8,
+        "endLine": 997,
+        "endChar": 51
+      },
+      "revId": "8104b44374162d88a26b61934ec2b36c4d08e79e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a767a17_f0465344",
@@ -54,6 +96,24 @@
       "writtenOn": "2024-03-14T17:57:47Z",
       "side": 1,
       "message": "Are we expecting to use these in the code?  Otherwise, they could be included in a test helper somewhere.",
+      "revId": "8104b44374162d88a26b61934ec2b36c4d08e79e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb4ff9d4_65289488",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1661,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-14T20:52:08Z",
+      "side": 1,
+      "message": "Yes, a future follow-on includes an SDP_Dumpsys(fd) function which will take advantage of these helper functions.\n\nI can also pull that in too, as the tests also use this, but want to minimize changes",
+      "parentUuid": "9a767a17_f0465344",
       "revId": "8104b44374162d88a26b61934ec2b36c4d08e79e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
