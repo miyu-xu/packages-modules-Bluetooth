@@ -25,11 +25,11 @@
 #ifndef SDP_DEFS_H
 #define SDP_DEFS_H
 
-#include <cstdint>
 /* Define the service attribute IDs.
 */
 #define ATTR_ID_SERVICE_RECORD_HDL 0x0000
 #define ATTR_ID_SERVICE_CLASS_ID_LIST 0x0001
+#define ATTR_ID_SERVICE_RECORD_STATE 0x0002
 #define ATTR_ID_SERVICE_ID 0x0003
 #define ATTR_ID_PROTOCOL_DESC_LIST 0x0004
 #define ATTR_ID_BROWSE_GROUP_LIST 0x0005
