@@ -120,6 +120,24 @@
       "message": "reconnect_allowed should be true by default",
       "revId": "8095bc4612c0bcd8129fbdcb8eeb5cc88e20df96",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "288a5553_a9c9725c",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-14T06:02:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa857d19_4b270e88",
+      "revId": "8095bc4612c0bcd8129fbdcb8eeb5cc88e20df96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

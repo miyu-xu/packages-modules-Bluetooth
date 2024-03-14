@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0724c75d_670a3e8b",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-14T06:02:28Z",
+      "side": 1,
+      "message": "Use ToRedactedStringForLogging() instead of ToString()\n```suggestion\n  log::info(\"transport \u003d {}\", link_spec.ToRedactedStringForLogging());\n```",
+      "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c4a97cb6_9ba6f127",
         "filename": "system/btif/src/btif_hh.cc",
         "patchSetId": 7
