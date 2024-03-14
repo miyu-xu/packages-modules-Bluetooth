@@ -152,6 +152,30 @@
       },
       "revId": "efce36a22a52b15bbbf7d9df6cdb9460f775e9f3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3d2fd4c_a0226279",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 3013946
+      },
+      "writtenOn": "2024-03-14T14:46:33Z",
+      "side": 1,
+      "message": "Thanks a lot! There will be more :)",
+      "parentUuid": "d8165119_695742b4",
+      "range": {
+        "startLine": 15,
+        "startChar": 5,
+        "endLine": 15,
+        "endChar": 9
+      },
+      "revId": "efce36a22a52b15bbbf7d9df6cdb9460f775e9f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
