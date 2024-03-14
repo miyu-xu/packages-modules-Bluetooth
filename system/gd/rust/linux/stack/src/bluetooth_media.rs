@@ -1290,7 +1290,7 @@ impl BluetoothMedia {
         };
 
         debug!("[{}]: UHID: Telephony use: {}", DisplayAddress(&addr), state);
-        if state == false {
+        if state == false && self.phone_state.num_active > 0 {
             // As there's a HID call for each WebHID call, even if it has been answered in the app
             // or pre-exists, and that an app which disconnects from WebHID may not have trigger
             // the UHID_OUTPUT_NONE, we need to remove all pending HID calls on telephony use
