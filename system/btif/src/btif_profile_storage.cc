@@ -285,10 +285,10 @@ bt_status_t btif_storage_load_bonded_hid_info(void) {
     link_spec.addrt.bda = bd_addr;
     int db_version = 0;
 
-    log::verbose("Remote device:{}", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
-
     link_spec.addrt.type = BLE_ADDR_PUBLIC;
     link_spec.transport = BT_TRANSPORT_AUTO;
+
+    log::verbose("Remote device:{}", link_spec.ToRedactedStringForLogging());
 
     if (IS_FLAG_ENABLED(allow_switching_hid_and_hogp)) {
       btif_config_get_int(name, BTIF_STORAGE_KEY_HID_DB_VERSION, &db_version);
