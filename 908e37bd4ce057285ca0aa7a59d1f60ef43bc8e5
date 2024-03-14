@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66abea83_cf20a715",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1606,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-14T16:11:21Z",
+      "side": 1,
+      "message": "nit: I would just remove the length here.",
+      "range": {
+        "startLine": 1606,
+        "startChar": 20,
+        "endLine": 1606,
+        "endChar": 29
+      },
+      "revId": "908e37bd4ce057285ca0aa7a59d1f60ef43bc8e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f777b4a5_2392f6d3",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 2001,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-14T16:11:21Z",
+      "side": 1,
+      "message": "BD_NAME_LEN (previous file) vs kBdNameLength ?",
+      "range": {
+        "startLine": 2001,
+        "startChar": 30,
+        "endLine": 2001,
+        "endChar": 43
+      },
+      "revId": "908e37bd4ce057285ca0aa7a59d1f60ef43bc8e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
