@@ -22,6 +22,30 @@
       },
       "revId": "4800debf26ab5fb375da97e7a1180a97f29eab9a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4d9ae4e_c1ef3496",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ContextMap.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-14T01:20:34Z",
+      "side": 1,
+      "message": "Yes the idea would be to remove the iterator logic once the flag is enabled.\n\nGetting rid of the ID param would preserve the existing behavior. But the flag-guarded behavior seems to be the intended one based on what I understand of the code.",
+      "parentUuid": "e07d5fe4_a25079f7",
+      "range": {
+        "startLine": 344,
+        "startChar": 12,
+        "endLine": 351,
+        "endChar": 13
+      },
+      "revId": "4800debf26ab5fb375da97e7a1180a97f29eab9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
