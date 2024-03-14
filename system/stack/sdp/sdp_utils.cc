@@ -23,7 +23,7 @@
  *  This file contains SDP utility functions
  *
  ******************************************************************************/
-
+#include <android_bluetooth_flags.h>
 #include <base/logging.h>
 #include <bluetooth/log.h>
 #include <log/log.h>
@@ -992,7 +992,12 @@ uint8_t* sdpu_get_len_from_type(uint8_t* p, uint8_t* p_end, uint8_t type,
 
   switch (type & 7) {
     case SIZE_ONE_BYTE:
-      *p_len = 1;
+      if (IS_FLAG_ENABLED(stack_sdp_detect_nil_property_type)) {
+        // Return NIL type if appropriate
+        *p_len = (type == 0) ? 0 : sizeof(uint8_t);
+      } else {
+        *p_len = 1;
+      }
       break;
     case SIZE_TWO_BYTES:
       *p_len = 2;
@@ -1651,4 +1656,24 @@ void sdpu_set_avrc_target_features(const tSDP_ATTRIBUTE* p_attr,
     p_attr->value_ptr[AVRCP_SUPPORTED_FEATURES_POSITION - 1] |=
         AVRCP_CA_SUPPORT_BITMASK;
   }
+}
+
+size_t sdp_get_num_records(const tSDP_DISCOVERY_DB& db) {
+  size_t num_sdp_records{0};
+  const tSDP_DISC_REC* p_rec = db.p_first_rec;
+  while (p_rec != nullptr) {
+    num_sdp_records++;
+    p_rec = p_rec->p_next_rec;
+  }
+  return num_sdp_records;
+}
+
+size_t sdp_get_num_attributes(const tSDP_DISC_REC& sdp_disc_rec) {
+  size_t num_sdp_attributes{0};
+  tSDP_DISC_ATTR* p_attr = sdp_disc_rec.p_first_attr;
+  while (p_attr != nullptr) {
+    num_sdp_attributes++;
+    p_attr = p_attr->p_next_attr;
+  }
+  return num_sdp_attributes;
 }
