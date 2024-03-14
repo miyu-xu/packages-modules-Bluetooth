@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ca5b60d_ad01dc99",
+        "filename": "system/stack/Android.bp",
+        "patchSetId": 10
+      },
+      "lineNbr": 2151,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-14T17:44:53Z",
+      "side": 1,
+      "message": "What happens if we use the actual libosi?  I didn\u0027t see anywhere that you\u0027re using the mock in the test.",
+      "range": {
+        "startLine": 2151,
+        "startChar": 10,
+        "endLine": 2151,
+        "endChar": 21
+      },
+      "revId": "a918c9c6c8ff6d9a62638ffba49f8a2b9aa5efdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
