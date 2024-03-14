@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ca81ce33_9ae2314a",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-14T21:23:00Z",
+      "side": 1,
+      "message": "0 is specieal, because that\u0027s what get_cod() returns on unsuccessfull read.\n\nThis method is for updating existing device properties.\nSome of BTIF callbacks, like btif_dm_ble_sec_req_evt, would call it with CoD always set to empty, because they don\u0027t know new CoD, and want to keep existing value.\n\nSo if this method is called with empty or unclassified CoD, we should keep existing value.\n\nThis method however always sets the CoD value (fixed size of \"properties\"), so we must read it to put it back in it\u0027s place.\n\nSo the logic is: if there was CoD (old_cod!\u003d0), and no new CoD is provided, write old value. Otherwise write new value.",
+      "parentUuid": "ec39e684_d2799854",
+      "revId": "b317478e6214133aed4b3a420a272f52516f41c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ee686d9c_f4b620b7",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 1
@@ -67,6 +85,30 @@
       "writtenOn": "2024-03-14T20:56:31Z",
       "side": 1,
       "message": "```suggestion\n\n  /* class of device */\n  cod \u003d devclass2uint(dev_class);\n  if ((cod \u003d\u003d 0 || cod \u003d\u003d COD_UNCLASSIFIED)) {\n    uint32_t old_cod \u003d get_cod(\u0026bdaddr);\n    if (old_cod !\u003d cod) {\n      log::info(\"{} CoD: 0x{:06x} -\u003e 0x{:06x}\", ADDRESS_TO_LOGGABLE_CSTR(bdaddr),\n                old_cod, cod);\n      cod \u003d old_cod;\n    }\n  }\n```",
+      "range": {
+        "startLine": 699,
+        "startChar": 0,
+        "endLine": 710,
+        "endChar": 28
+      },
+      "revId": "b317478e6214133aed4b3a420a272f52516f41c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7f8b0aa_e966cdc3",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-14T21:23:00Z",
+      "side": 1,
+      "message": "If I use this code, I would never log when proper CoD value is provided, i.e. 44.\nI would log just if CoD is cleared or set to unclassified",
+      "parentUuid": "ee686d9c_f4b620b7",
       "range": {
         "startLine": 699,
         "startChar": 0,
