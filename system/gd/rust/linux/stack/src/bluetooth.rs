@@ -2793,6 +2793,7 @@ impl IBluetooth for Bluetooth {
                                     &mut addr.unwrap(),
                                     BtAddrType::Public,
                                     BtTransport::Auto,
+                                    /*reconnect_allowed=*/ true,
                                 );
                             }
 
@@ -2970,7 +2971,12 @@ impl BtifHHCallbacks for Bluetooth {
                 "[{}]: Rejecting a unbonded device's attempt to connect to HID/HOG profiles",
                 DisplayAddress(&address)
             );
-            self.hh.as_ref().unwrap().disconnect(&mut address, address_type, transport);
+            self.hh.as_ref().unwrap().disconnect(
+                &mut address,
+                address_type,
+                transport,
+                /*reconnect_allowed=*/ true,
+            );
         }
     }
 
