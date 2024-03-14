@@ -535,6 +535,9 @@ tBTA_DM_PM_TYPE_QUALIFIER tBTA_DM_PM_SPEC* get_bta_dm_pm_spec() {
  * lowest latency will
  * be selected.
  */
+const uint16_t bta_dm_pm_sniff_max = uint16_t(osi_property_get_int32(
+    "bluetooth.bta_sniff_max_slots.config", BTA_DM_PM_SNIFF_MAX));
+
 tBTA_DM_PM_TYPE_QUALIFIER tBTM_PM_PWR_MD bta_dm_pm_md[] = {
     /*
      * More sniff parameter entries can be added for
@@ -549,7 +552,7 @@ tBTA_DM_PM_TYPE_QUALIFIER tBTM_PM_PWR_MD bta_dm_pm_md[] = {
      * services, the setting with lowest latency wins.
      */
     /* sniff modes: max interval, min interval, attempt, timeout */
-    {BTA_DM_PM_SNIFF_MAX, BTA_DM_PM_SNIFF_MIN, BTA_DM_PM_SNIFF_ATTEMPT,
+    {bta_dm_pm_sniff_max, BTA_DM_PM_SNIFF_MIN, BTA_DM_PM_SNIFF_ATTEMPT,
      BTA_DM_PM_SNIFF_TIMEOUT, BTM_PM_MD_SNIFF}, /* for BTA_DM_PM_SNIFF - A2DP */
     {BTA_DM_PM_SNIFF1_MAX, BTA_DM_PM_SNIFF1_MIN, BTA_DM_PM_SNIFF1_ATTEMPT,
      BTA_DM_PM_SNIFF1_TIMEOUT, BTM_PM_MD_SNIFF}, /* for BTA_DM_PM_SNIFF1 */
@@ -581,11 +584,11 @@ tBTA_DM_PM_TYPE_QUALIFIER tBTM_PM_PWR_MD bta_dm_pm_md[] = {
        */
     ,
     {0}, /* CONN_OPEN/SCO_CLOSE power mode settings for pm_spec USER_DEFINED_0
-            */
+          */
     {0}, /* SCO_OPEN power mode settings for pm_spec USER_DEFINED_0 */
 
     {0}, /* CONN_OPEN/SCO_CLOSE power mode settings for pm_spec USER_DEFINED_1
-            */
+          */
     {0}  /* SCO_OPEN power mode settings for pm_spec USER_DEFINED_1 */
 #endif   /* BTE_SIM_APP */
 };
