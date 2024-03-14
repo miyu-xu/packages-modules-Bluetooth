@@ -42,6 +42,7 @@ typedef enum {
   // experience for those devices, automatically re-try pairing if page
   // timeouts are received during pairing.
   INTEROP_AUTO_RETRY_PAIRING,
+  INTEROP_DISABLE_HID,
 
   // Devices requiring this workaround do not handle Bluetooth Absolute Volume
   // control correctly, leading to undesirable (potentially harmful) volume
