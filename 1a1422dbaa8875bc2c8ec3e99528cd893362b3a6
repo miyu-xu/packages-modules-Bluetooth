@@ -22,6 +22,29 @@
       },
       "revId": "1a1422dbaa8875bc2c8ec3e99528cd893362b3a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c55c70f_d2cdde39",
+        "filename": "system/stack/btm/neighbor_inquiry.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-14T22:07:25Z",
+      "side": 0,
+      "message": "to confirm, this is removed because, BD_NAME now is guaranteed to be null terminated?",
+      "range": {
+        "startLine": 220,
+        "startChar": 0,
+        "endLine": 220,
+        "endChar": 18
+      },
+      "revId": "1a1422dbaa8875bc2c8ec3e99528cd893362b3a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
