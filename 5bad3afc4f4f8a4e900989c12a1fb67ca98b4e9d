@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04f01da9_f1b78c6b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-03-14T06:29:09Z",
+      "side": 1,
+      "message": "Two things to note before reviewing:\n\n1. Used flag `FLAG_OPP_FIX_MULTIPLE_NOTIFICATIONS_ISSUES` as the flag CL is not merged yet (aosp/2997356). This will be fixed by the newer patch set.\n\n2. Used CheckFlagsRule instead of SetFlagsRule since the latter seems not working in Bumble BT tests. \n\nPlease review except above things. Thank you 😊",
+      "revId": "5bad3afc4f4f8a4e900989c12a1fb67ca98b4e9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
