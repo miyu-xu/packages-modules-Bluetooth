@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1a9357dc_9f6d6616",
+        "filename": "system/stack/include/bt_name.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-14T21:32:33Z",
+      "side": 1,
+      "message": "I didn\u0027t introduce that, but I think it\u0027s about reducing number of compiler warnings about casting int to size_t.\nSo some C++ code uses kBdNameLength, old C code uses BD_NAME_LEN.\n\nI can get rid of that in next patch if you want.",
+      "parentUuid": "a9942c9a_218c60cf",
+      "range": {
+        "startLine": 33,
+        "startChar": 17,
+        "endLine": 33,
+        "endChar": 30
+      },
+      "revId": "1a1422dbaa8875bc2c8ec3e99528cd893362b3a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "219d698f_880527df",
         "filename": "system/stack/include/bt_name.h",
         "patchSetId": 10
@@ -94,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb2ab450_a8e91e69",
+        "filename": "system/stack/include/bt_name.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-14T21:32:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c08ae47_9a8e1788",
+      "range": {
+        "startLine": 53,
+        "startChar": 27,
+        "endLine": 53,
+        "endChar": 44
+      },
+      "revId": "1a1422dbaa8875bc2c8ec3e99528cd893362b3a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "571f0e19_10c2c622",
@@ -107,6 +155,30 @@
       "writtenOn": "2024-03-14T21:21:31Z",
       "side": 1,
       "message": "why can\u0027t this be sizeof(bd_name_dest) to avoid having random numbers here?\n```suggestion\n    memset(bd_name_dest + src_len, 0, sizeof(bd_name_dest) - src_len);\n```",
+      "range": {
+        "startLine": 56,
+        "startChar": 38,
+        "endLine": 56,
+        "endChar": 55
+      },
+      "revId": "1a1422dbaa8875bc2c8ec3e99528cd893362b3a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02ca7f38_8d54cb97",
+        "filename": "system/stack/include/bt_name.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-14T21:32:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "571f0e19_10c2c622",
       "range": {
         "startLine": 56,
         "startChar": 38,
