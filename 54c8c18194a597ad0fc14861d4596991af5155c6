@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1322b664_99629cb6",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1527,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-14T05:16:42Z",
+      "side": 1,
+      "message": "Are the vendor ID and product ID compared?",
+      "revId": "54c8c18194a597ad0fc14861d4596991af5155c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c32b766_4de2ec00",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1552,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-14T05:16:42Z",
+      "side": 1,
+      "message": "Nit: Let\u0027s not treat the integer as boolean.",
+      "revId": "54c8c18194a597ad0fc14861d4596991af5155c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
