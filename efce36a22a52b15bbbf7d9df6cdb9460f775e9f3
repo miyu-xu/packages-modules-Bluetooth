@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fb50482_b00bcf6c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3013946
+      },
+      "writtenOn": "2024-03-14T14:24:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51b98aa5_e22acd62",
+      "revId": "efce36a22a52b15bbbf7d9df6cdb9460f775e9f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a47f924b_6946c620",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be0e442f_f162c01a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 3013946
+      },
+      "writtenOn": "2024-03-14T14:24:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a47f924b_6946c620",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 13
+      },
+      "revId": "efce36a22a52b15bbbf7d9df6cdb9460f775e9f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5dbc4aca_81d7eadb",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-03-14T14:15:14Z",
       "side": 1,
       "message": "A bug should be added, as this is automaatically used when generating the release note.\nFor changes like this I often use a generic \"placeholder\" bug",
+      "range": {
+        "startLine": 15,
+        "startChar": 5,
+        "endLine": 15,
+        "endChar": 9
+      },
+      "revId": "efce36a22a52b15bbbf7d9df6cdb9460f775e9f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "360719a2_2fbc94ad",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 3013946
+      },
+      "writtenOn": "2024-03-14T14:24:11Z",
+      "side": 1,
+      "message": "I can\u0027t create or see bugs :), if you feel like creating one for me like \"Add AVRCP Java documentation\" and give me the bug number that would be awesome!",
+      "parentUuid": "5dbc4aca_81d7eadb",
       "range": {
         "startLine": 15,
         "startChar": 5,
