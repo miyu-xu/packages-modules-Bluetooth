@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f225f16_bba1c2ef",
+        "filename": "system/gd/iso/internal/iso_manager_impl.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-14T16:26:23Z",
+      "side": 0,
+      "message": "?",
+      "range": {
+        "startLine": 261,
+        "startChar": 1,
+        "endLine": 261,
+        "endChar": 41
+      },
+      "revId": "cb0fb5056d4f5135e78d7cce971884f3c91d20a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
