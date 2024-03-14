@@ -532,7 +532,7 @@ void btif_hh_remove_device(const tAclLinkSpec& link_spec) {
   btif_hh_device_t* p_dev;
   btif_hh_added_device_t* p_added_dev;
 
-  log::info("transport = {}", link_spec.ToString());
+  log::info("transport = {}", link_spec.ToRedactedStringForLogging());
 
   for (i = 0; i < BTIF_HH_MAX_ADDED_DEV; i++) {
     p_added_dev = &btif_hh_cb.added_devices[i];
@@ -1468,7 +1468,8 @@ static void btif_hh_transport_select(tAclLinkSpec& link_spec) {
 static bt_status_t connect(RawAddress* bd_addr, tBLE_ADDR_TYPE addr_type,
                            tBT_TRANSPORT transport) {
   btif_hh_device_t* p_dev;
-  tAclLinkSpec link_spec;
+  tAclLinkSpec link_spec = {.addrt = {.type = addr_type, .bda = *bd_addr},
+                            .transport = transport};
 
   if (btif_hh_cb.status == BTIF_HH_DEV_CONNECTING) {
     log::warn("Error, HH status = {}", btif_hh_cb.status);
@@ -1478,9 +1479,6 @@ static bt_status_t connect(RawAddress* bd_addr, tBLE_ADDR_TYPE addr_type,
     log::warn("Error, HH status = {}", btif_hh_cb.status);
     return BT_STATUS_NOT_READY;
   }
-  link_spec.addrt.bda = *bd_addr;
-  link_spec.addrt.type = addr_type;
-  link_spec.transport = transport;
 
   p_dev = btif_hh_find_connected_dev_by_link_spec(link_spec);
   if (p_dev) {
@@ -1525,7 +1523,8 @@ static bt_status_t disconnect(RawAddress* bd_addr, tBLE_ADDR_TYPE addr_type,
   CHECK_BTHH_INIT();
   log::verbose("BTHH");
   btif_hh_device_t* p_dev;
-  tAclLinkSpec link_spec;
+  tAclLinkSpec link_spec = {.addrt = {.type = addr_type, .bda = *bd_addr},
+                            .transport = transport};
 
   if (btif_hh_cb.status == BTIF_HH_DISABLED ||
       btif_hh_cb.status == BTIF_HH_DISABLING) {
@@ -1533,6 +1532,8 @@ static bt_status_t disconnect(RawAddress* bd_addr, tBLE_ADDR_TYPE addr_type,
     return BT_STATUS_UNHANDLED;
   }
 
+<<<<<<< PATCH SET (3f75ec HID link spec logging changes)
+=======
   link_spec.addrt.bda = *bd_addr;
   link_spec.addrt.type = addr_type;
   link_spec.transport = transport;
@@ -1541,6 +1542,7 @@ static bt_status_t disconnect(RawAddress* bd_addr, tBLE_ADDR_TYPE addr_type,
     btif_hh_transport_select(link_spec);
   }
 
+>>>>>>> BASE      (5651b9 Added logical changes for transport selection)
   if (IS_FLAG_ENABLED(allow_switching_hid_and_hogp) && !reconnect_allowed) {
     btif_hh_device_t* dev = btif_hh_find_dev_by_link_spec(link_spec);
     if (dev) {
