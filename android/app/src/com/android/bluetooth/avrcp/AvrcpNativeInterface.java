@@ -26,6 +26,7 @@ import com.android.bluetooth.audio_util.PlayStatus;
 import com.android.bluetooth.audio_util.PlayerInfo;
 import com.android.bluetooth.audio_util.PlayerSettingsManager.PlayerSettingsValues;
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.flags.Flags;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 
@@ -94,7 +95,10 @@ public class AvrcpNativeInterface {
     }
 
     void setBipClientStatus(String bdaddr, boolean connected) {
-        String identityAddress = mAdapterService.getIdentityAddress(bdaddr);
+        String identityAddress =
+                Flags.identityAddressNullIfUnknown()
+                        ? Utils.getBrEdrAddress(bdaddr)
+                        : mAdapterService.getIdentityAddress(bdaddr);
         setBipClientStatusNative(identityAddress, connected);
     }
 
@@ -219,13 +223,19 @@ public class AvrcpNativeInterface {
     }
 
     boolean connectDevice(String bdaddr) {
-        String identityAddress = mAdapterService.getIdentityAddress(bdaddr);
+        String identityAddress =
+                Flags.identityAddressNullIfUnknown()
+                        ? Utils.getBrEdrAddress(bdaddr)
+                        : mAdapterService.getIdentityAddress(bdaddr);
         d("connectDevice: identityAddress=" + identityAddress);
         return connectDeviceNative(identityAddress);
     }
 
     boolean disconnectDevice(String bdaddr) {
-        String identityAddress = mAdapterService.getIdentityAddress(bdaddr);
+        String identityAddress =
+                Flags.identityAddressNullIfUnknown()
+                        ? Utils.getBrEdrAddress(bdaddr)
+                        : mAdapterService.getIdentityAddress(bdaddr);
         d("disconnectDevice: identityAddress=" + identityAddress);
         return disconnectDeviceNative(identityAddress);
     }
@@ -260,7 +270,10 @@ public class AvrcpNativeInterface {
 
     void sendVolumeChanged(String bdaddr, int volume) {
         d("sendVolumeChanged: volume=" + volume);
-        String identityAddress = mAdapterService.getIdentityAddress(bdaddr);
+        String identityAddress =
+                Flags.identityAddressNullIfUnknown()
+                        ? Utils.getBrEdrAddress(bdaddr)
+                        : mAdapterService.getIdentityAddress(bdaddr);
         sendVolumeChangedNative(identityAddress, volume);
     }
 
