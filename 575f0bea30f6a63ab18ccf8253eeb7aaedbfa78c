@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "16cdb020_efc62fa5",
+        "filename": "system/internal_include/bt_target.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-14T18:07:06Z",
+      "side": 1,
+      "message": "I think it would be a pretty large change to move everything that references this to heap allocation. I agree that it wouldn\u0027t be feasible for V.",
+      "parentUuid": "877797c2_e4cf7da8",
+      "range": {
+        "startLine": 403,
+        "startChar": 26,
+        "endLine": 403,
+        "endChar": 56
+      },
+      "revId": "575f0bea30f6a63ab18ccf8253eeb7aaedbfa78c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "68cb075f_fd13bf53",
         "filename": "system/internal_include/bt_target.h",
         "patchSetId": 2
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b38eecab_26b9e35b",
+        "filename": "system/internal_include/bt_target.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-14T18:07:06Z",
+      "side": 1,
+      "message": "The HID module can\u0027t support more than 14 LE HID devices. I talked through this with Myles, we think you won\u0027t be able to connect a 15th LE HID device but it should be fine otherwise. Additional logic is here that limits it to 14 - https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/include/bta_hh_api.h;l\u003d86;drc\u003db757ea57637cc1de45d307c437d618e1111d498b",
+      "parentUuid": "68cb075f_fd13bf53",
+      "range": {
+        "startLine": 406,
+        "startChar": 29,
+        "endLine": 406,
+        "endChar": 31
+      },
+      "revId": "575f0bea30f6a63ab18ccf8253eeb7aaedbfa78c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8ddf2886_ead940ae",
         "filename": "system/internal_include/bt_target.h",
         "patchSetId": 2
@@ -60,6 +108,30 @@
       "writtenOn": "2024-03-14T17:44:45Z",
       "side": 1,
       "message": "This should be updated to 8 per the CDD.",
+      "range": {
+        "startLine": 409,
+        "startChar": 33,
+        "endLine": 409,
+        "endChar": 34
+      },
+      "revId": "575f0bea30f6a63ab18ccf8253eeb7aaedbfa78c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79234fac_0e223f08",
+        "filename": "system/internal_include/bt_target.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-14T18:07:06Z",
+      "side": 1,
+      "message": "I\u0027m OK with 8, but that would be a change in behavior from the current 7 and not easily flag-guardable. What do you think?",
+      "parentUuid": "8ddf2886_ead940ae",
       "range": {
         "startLine": 409,
         "startChar": 33,
