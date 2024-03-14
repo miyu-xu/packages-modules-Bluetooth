@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "877797c2_e4cf7da8",
+        "filename": "system/internal_include/bt_target.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-14T17:44:45Z",
+      "side": 1,
+      "message": "Do we really need static allocation of resources? In theory I think we could move to heap based allocation, but that may be a bigger change outside of scope that is feasible for V.",
+      "range": {
+        "startLine": 403,
+        "startChar": 26,
+        "endLine": 403,
+        "endChar": 56
+      },
+      "revId": "575f0bea30f6a63ab18ccf8253eeb7aaedbfa78c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68cb075f_fd13bf53",
+        "filename": "system/internal_include/bt_target.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-14T17:44:45Z",
+      "side": 1,
+      "message": "I\u0027ve seen some comments that indicate this couldn\u0027t be \u003e15, though I\u0027m not sure the context (eg: https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/hh/bta_hh_int.h;l\u003d195?q\u003dGATT_MAX_PHY_CHANNEL\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%2Fmain%20b:main ).\n\nWhy did we land on 32?",
+      "range": {
+        "startLine": 406,
+        "startChar": 29,
+        "endLine": 406,
+        "endChar": 31
+      },
+      "revId": "575f0bea30f6a63ab18ccf8253eeb7aaedbfa78c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ddf2886_ead940ae",
+        "filename": "system/internal_include/bt_target.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-14T17:44:45Z",
+      "side": 1,
+      "message": "This should be updated to 8 per the CDD.",
+      "range": {
+        "startLine": 409,
+        "startChar": 33,
+        "endLine": 409,
+        "endChar": 34
+      },
+      "revId": "575f0bea30f6a63ab18ccf8253eeb7aaedbfa78c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
