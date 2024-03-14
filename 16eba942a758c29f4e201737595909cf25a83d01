@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aac00dcb_8bd77aba",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3473,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-03-14T14:41:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42c10cd4_a0bb9313",
+      "range": {
+        "startLine": 3473,
+        "startChar": 0,
+        "endLine": 3473,
+        "endChar": 18
+      },
+      "revId": "16eba942a758c29f4e201737595909cf25a83d01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c232a224_c35a42d8",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-12T17:45:58Z",
       "side": 1,
       "message": "```suggestion\n#else\n  return false;\n#endif\n```",
+      "range": {
+        "startLine": 3476,
+        "startChar": 0,
+        "endLine": 3477,
+        "endChar": 15
+      },
+      "revId": "16eba942a758c29f4e201737595909cf25a83d01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "825b8905_71c3151f",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3477,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-03-14T14:41:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c232a224_c35a42d8",
       "range": {
         "startLine": 3476,
         "startChar": 0,
@@ -64,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bf288b4_fbc58d19",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3489,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-03-14T14:41:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14b1a9e2_5917b3ec",
+      "revId": "16eba942a758c29f4e201737595909cf25a83d01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "02fa3543_ee27374b",
@@ -77,6 +143,30 @@
       "writtenOn": "2024-03-12T17:28:33Z",
       "side": 1,
       "message": "Do you need \"extern\" for a forward declaration?\n\nNeeding forward declarations usually means that there\u0027s a shortcut being taken.\n```suggestion\nbool btif_av_src_sink_coexist_enabled(void);\n```",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 6
+      },
+      "revId": "16eba942a758c29f4e201737595909cf25a83d01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "866d2e1d_6fedf026",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-03-14T14:41:32Z",
+      "side": 1,
+      "message": "Thanks for the suggestion. This was a pattern in usage of this method in other parts of the codebase. If build passes, I will create a separate CL to move the other methods usage to include the \"btif_av\" headers. \n\nIdeally, this should be in some sort of utils package but it looks like it doesn\u0027t exist in bt stack. Where do we keep all such common utility function in the project?",
+      "parentUuid": "02fa3543_ee27374b",
       "range": {
         "startLine": 44,
         "startChar": 0,
@@ -110,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c09c7852_f41aaefe",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-03-14T14:41:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed094188_f8235761",
+      "range": {
+        "startLine": 556,
+        "startChar": 6,
+        "endLine": 556,
+        "endChar": 48
+      },
+      "revId": "16eba942a758c29f4e201737595909cf25a83d01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ad165e6_0373f6ba",
@@ -123,6 +237,30 @@
       "writtenOn": "2024-03-12T17:45:58Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 152,
+        "startChar": 8,
+        "endLine": 152,
+        "endChar": 50
+      },
+      "revId": "16eba942a758c29f4e201737595909cf25a83d01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f0ac986_ea1d52e0",
+        "filename": "system/stack/avct/avct_l2c.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-03-14T14:41:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ad165e6_0373f6ba",
       "range": {
         "startLine": 152,
         "startChar": 8,
