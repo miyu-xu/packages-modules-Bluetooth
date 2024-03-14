@@ -16,6 +16,75 @@
       "message": "Should we rephrase it in terms of \"main\" service?\n\nAlso, instead of using literal, we can define a macro like\n#define HID_PREFERRED_SERVICE_INDEX 3",
       "revId": "d1f4d5694f3fa1a25390495c795ac25f79092d92",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "864265a1_8baecb62",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1526,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-14T17:38:01Z",
+      "side": 1,
+      "message": "Since this fix is going into the Android code, please add the interop database entry for the affected devices.",
+      "range": {
+        "startLine": 1526,
+        "startChar": 14,
+        "endLine": 1526,
+        "endChar": 56
+      },
+      "revId": "d1f4d5694f3fa1a25390495c795ac25f79092d92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2a4c25f_614973d0",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1533,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-14T17:38:01Z",
+      "side": 1,
+      "message": "Can we simplify this and make it more obvious that the original behavior didn\u0027t change?\n```suggestion\n  int num_hid_service \u003d 0;\n  bool have_hid \u003d false;\n  for (const gatt::Service\u0026 service : *services) {\n    if (service.uuid \u003d\u003d Uuid::From16Bit(UUID_SERVCLASS_LE_HID) \u0026\u0026\n        service.is_primary \u0026\u0026 !have_hid) {\n\n      // TODO(b/286413526): The current implementation connects to the first HID\n      // service, in the case of multiple HID services being present. As a\n      // temporary mitigation, connect to the third HID service for some\n      // particular devices. The long-term fix should refactor HID stack to\n      // connect to multiple HID services simultaneously.\n      if (interop_match_vendor_product_ids(\n              INTEROP_MULTIPLE_HOGP_SERVICE_CHOOSE_THIRD,\n              p_dev_cb-\u003edscp_info.vendor_id, p_dev_cb-\u003edscp_info.product_id)) {\n        if (num_hid_service !\u003d 3) {\n          num_hid_service++;\n          continue;\n        }\n      }\n```",
+      "range": {
+        "startLine": 1514,
+        "startChar": 0,
+        "endLine": 1533,
+        "endChar": 7
+      },
+      "revId": "d1f4d5694f3fa1a25390495c795ac25f79092d92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbd1906c_d1749454",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1552,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-14T17:38:01Z",
+      "side": 1,
+      "message": "```suggestion\n  if (!have_hid) {\n```",
+      "range": {
+        "startLine": 1552,
+        "startChar": 6,
+        "endLine": 1552,
+        "endChar": 26
+      },
+      "revId": "d1f4d5694f3fa1a25390495c795ac25f79092d92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
