@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6ac16646_3e714f9a",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1516,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-14T18:28:33Z",
+      "side": 1,
+      "message": "Can we change this whole logic to something like this? This will additionally restrict the fix for only the devices which support multiple LE-HID service instances.\n\n\nPseudo code\n```\nlist hid_services \u003d {};\n\nfor (...) {\n  if (service.UUID \u003d\u003d LE_HID) {\n    hid_services.append(service);\n  } else ...\n    ...\n  }\n}\n\nif (hid_services.count() \u003e 0) {\n  int preferred_le_hid_service_index \u003d 0;\n\n  if (hid_services.count() \u003e 1 \u0026\u0026 interop(LOGITECH)) {\n    if (LOGITECH_MAIN_HID_SERVICE_INDEX \u003c hid_services.count()) {\n      preferred_le_hid_service_index \u003d LOGITECH_MAIN_HID_SERVICE_INDEX;\n    }\n  }\n\n\n  selectedHidService \u003d hid_services[preferred_le_hid_service_index];\n\n  p_dev_cb-\u003ehid_srvc.state \u003d BTA_HH_SERVICE_DISCOVERED;\n  p_dev_cb-\u003ehid_srvc.srvc_inst_id \u003d selectedHidService.handle;\n  p_dev_cb-\u003ehid_srvc.proto_mode_handle \u003d 0;\n  p_dev_cb-\u003ehid_srvc.control_point_handle \u003d 0;\n\n  bta_hh_le_search_hid_chars(p_dev_cb, \u0026selectedHidService);\n} else {\n  // LE HID not found\n  ...\n}\n```",
+      "revId": "d1f4d5694f3fa1a25390495c795ac25f79092d92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4590bc4d_2bc36789",
         "filename": "system/bta/hh/bta_hh_le.cc",
         "patchSetId": 6
