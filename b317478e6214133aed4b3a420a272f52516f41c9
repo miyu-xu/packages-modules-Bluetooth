@@ -38,6 +38,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ec39e684_d2799854",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-14T20:56:31Z",
+      "side": 1,
+      "message": "I\u0027m wondering why we need to check old_cod at all.  If we do need to check it, should we also check it against COD_UNCLASSIFIED.",
+      "parentUuid": "6cdf1e99_13a038a2",
+      "revId": "b317478e6214133aed4b3a420a272f52516f41c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee686d9c_f4b620b7",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-14T20:56:31Z",
+      "side": 1,
+      "message": "```suggestion\n\n  /* class of device */\n  cod \u003d devclass2uint(dev_class);\n  if ((cod \u003d\u003d 0 || cod \u003d\u003d COD_UNCLASSIFIED)) {\n    uint32_t old_cod \u003d get_cod(\u0026bdaddr);\n    if (old_cod !\u003d cod) {\n      log::info(\"{} CoD: 0x{:06x} -\u003e 0x{:06x}\", ADDRESS_TO_LOGGABLE_CSTR(bdaddr),\n                old_cod, cod);\n      cod \u003d old_cod;\n    }\n  }\n```",
+      "range": {
+        "startLine": 699,
+        "startChar": 0,
+        "endLine": 710,
+        "endChar": 28
+      },
+      "revId": "b317478e6214133aed4b3a420a272f52516f41c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c66883eb_1d141b3f",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 1
@@ -73,6 +114,30 @@
       "side": 1,
       "message": "This code is for adding new device, and it didn\u0027t have the check for unclassified.\nI would prefer to not modify this logic, just add more complete logging",
       "parentUuid": "c66883eb_1d141b3f",
+      "range": {
+        "startLine": 1535,
+        "startChar": 19,
+        "endLine": 1535,
+        "endChar": 20
+      },
+      "revId": "b317478e6214133aed4b3a420a272f52516f41c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f18f2b5_ed714026",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1535,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-14T20:56:31Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "259c6252_5753674f",
       "range": {
         "startLine": 1535,
         "startChar": 19,
