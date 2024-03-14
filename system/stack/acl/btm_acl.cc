@@ -460,11 +460,6 @@ void btm_acl_created(const RawAddress& bda, uint16_t hci_handle,
   // save remote properties to iot conf file
   btm_iot_save_remote_properties(p_acl);
 
-  /* if BR/EDR do something more */
-  if (transport == BT_TRANSPORT_BR_EDR) {
-    btsnd_hcic_read_rmt_clk_offset(hci_handle);
-  }
-
   if (transport == BT_TRANSPORT_LE) {
     btm_ble_get_acl_remote_addr(hci_handle, p_acl->active_remote_addr,
                                 &p_acl->active_remote_addr_type);
@@ -806,6 +801,24 @@ void BTM_default_block_role_switch() {
 
 extern void bta_gattc_continue_discovery_if_needed(const RawAddress& bd_addr,
                                                    uint16_t acl_handle);
+
+/*******************************************************************************
+ *
+ * Function         btm_process_clk_off_comp_evt
+ *
+ * Description      This function is called when clock offset command completes.
+ *
+ * Input Parms      hci_handle - connection handle associated with the change
+ *                  clock offset
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+void btm_process_clk_off_comp_evt(uint16_t hci_handle, uint16_t clock_offset) {
+  LOG_WARN("btm_process_clk_off_comp_evt");
+  btm_sec_update_clock_offset(hci_handle, clock_offset);
+}
+
 
 /*******************************************************************************
  *
