@@ -22,6 +22,30 @@
       },
       "revId": "cb0fb5056d4f5135e78d7cce971884f3c91d20a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5582aae_80a8ddfd",
+        "filename": "system/gd/iso/internal/iso_manager_impl.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-14T16:35:37Z",
+      "side": 0,
+      "message": "What is this supposed to log? %c prints as a character, the output is likely going to be garbage.",
+      "parentUuid": "7f225f16_bba1c2ef",
+      "range": {
+        "startLine": 261,
+        "startChar": 1,
+        "endLine": 261,
+        "endChar": 41
+      },
+      "revId": "cb0fb5056d4f5135e78d7cce971884f3c91d20a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
