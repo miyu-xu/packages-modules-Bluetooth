@@ -581,11 +581,11 @@ tBTA_DM_PM_TYPE_QUALIFIER tBTM_PM_PWR_MD bta_dm_pm_md[] = {
        */
     ,
     {0}, /* CONN_OPEN/SCO_CLOSE power mode settings for pm_spec USER_DEFINED_0
-            */
+          */
     {0}, /* SCO_OPEN power mode settings for pm_spec USER_DEFINED_0 */
 
     {0}, /* CONN_OPEN/SCO_CLOSE power mode settings for pm_spec USER_DEFINED_1
-            */
+          */
     {0}  /* SCO_OPEN power mode settings for pm_spec USER_DEFINED_1 */
 #endif   /* BTE_SIM_APP */
 };
