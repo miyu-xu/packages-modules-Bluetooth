@@ -84,6 +84,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4639eb5a_28019c92",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1019,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-14T21:13:16Z",
+      "side": 1,
+      "message": "We could do this as 2 flags or 1.\n\nSingle flag (scanManagerRefactor) when on would:\n1. Start/stop ScanManagerService in bringUpBle/bringDownBle (with appropriate renaming). When off it would continue to start/stop GattService only\n2. When starting/stopping all profiles start GattService as well\n3. Don\u0027t start a scan helper instance within GattService\n\nFor two flags (scanManagerRefactor, let\u0027s call the other one for now scanOnOnly) - scanManagerRefactor when on would:\n1. Bring up both GattService and ScanManagerService in bringUpBle/bringDownBle\n2. Don\u0027t start a scan helper instance within GattService\nscanOnOnly when on would:\n1. Stop bringing up/down GattService in bringUpBle/bringDownBle\n2. When starting/stopping all profiles start GattService as well\n\nWith 2 flags the 2nd one would be dependent on the first.",
+      "parentUuid": "c8afb45b_68f38621",
+      "range": {
+        "startLine": 1016,
+        "startChar": 6,
+        "endLine": 1019,
+        "endChar": 9
+      },
+      "revId": "eb6ec35d942eb8632143bb278dc69607b0d4c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3cd95e32_e6c9f660",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
         "patchSetId": 11
