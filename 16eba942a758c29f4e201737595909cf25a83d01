@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7782a7a3_1b767efe",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3473,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-14T15:03:41Z",
+      "side": 1,
+      "message": "`__ANDROID__`",
+      "parentUuid": "c5338617_24161bba",
+      "range": {
+        "startLine": 3473,
+        "startChar": 0,
+        "endLine": 3473,
+        "endChar": 18
+      },
+      "revId": "16eba942a758c29f4e201737595909cf25a83d01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c232a224_c35a42d8",
         "filename": "system/btif/src/btif_av.cc",
         "patchSetId": 1
