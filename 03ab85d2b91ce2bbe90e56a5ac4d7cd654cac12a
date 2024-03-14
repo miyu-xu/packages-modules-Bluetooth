@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0098e12c_52ac6932",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1386,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-14T05:29:46Z",
+      "side": 1,
+      "message": "nit: Prefer commenting it out\n```suggestion\n                              bool /* reconnect_allowed */) {\n```",
+      "range": {
+        "startLine": 1386,
+        "startChar": 30,
+        "endLine": 1386,
+        "endChar": 64
+      },
+      "revId": "03ab85d2b91ce2bbe90e56a5ac4d7cd654cac12a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
