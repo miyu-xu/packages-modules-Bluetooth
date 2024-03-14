@@ -3,6 +3,86 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "afb1e7d0_848b7315",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-14T01:50:34Z",
+      "side": 1,
+      "message": "There is no usage of the binder inside framework.\n\nThat mean that for now, this is \"deadCode\".",
+      "revId": "eb6ec35d942eb8632143bb278dc69607b0d4c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "754a2db6_1073796e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-14T01:50:34Z",
+      "side": 1,
+      "message": "I belive you should return something like :\n```\n    IBinder getBluetoothScan() {\n        if (mScanManagerService \u003d\u003d null) {\n            return null;\n        }\n        return mScanManagerService.mBinder;\n    }\n```",
+      "revId": "eb6ec35d942eb8632143bb278dc69607b0d4c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9b26284_2639d63a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1019,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-14T01:50:34Z",
+      "side": 1,
+      "message": "Isn\u0027t the objectif to not start the whole gattservice with the refactor ? \nI believe gatt should no longer be started",
+      "range": {
+        "startLine": 1016,
+        "startChar": 6,
+        "endLine": 1019,
+        "endChar": 9
+      },
+      "revId": "eb6ec35d942eb8632143bb278dc69607b0d4c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cd95e32_e6c9f660",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1093,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-14T01:50:34Z",
+      "side": 1,
+      "message": "```suggestion\n        mScanManagerService \u003d new ScanManagerService(this);\n        onProfileServiceStateChanged(mScanManagerService, BluetoothAdapter.STATE_ON);\n```",
+      "range": {
+        "startLine": 1087,
+        "startChar": 8,
+        "endLine": 1093,
+        "endChar": 84
+      },
+      "revId": "eb6ec35d942eb8632143bb278dc69607b0d4c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3f87a53b_8f95ad8d",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
         "patchSetId": 11

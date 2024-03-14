@@ -665,6 +665,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f9d80ca8_edf0e359",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-14T01:50:34Z",
+      "side": 1,
+      "message": "Since we are implementing all of that from scratch I am strongly pushing back against this.\n\n\u003e we can make follow up improvements after the flag is launched.\n\ngo/review-pushback#later Experienced show that this will be here for a long time if not addressed now.\n\"If a CL introduces new complexity, it must be cleaned up before submission unless it is an emergency.\"\nThere is no emergency here.",
+      "parentUuid": "9d87e6dd_f7463d4d",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 73
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ea29f47_16b06957",
         "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
         "patchSetId": 5
@@ -771,6 +795,30 @@
       "side": 1,
       "message": "All `registerScanner` and similar functions that require permission checks are being called through `mTransitionalScanHelper` which has the annotation `@RequiresPermission(android.Manifest.permission.BLUETOOTH_SCAN)`. I believe that is sufficient but PLMK if not. Thank you.",
       "parentUuid": "9f0633d5_25f47388",
+      "range": {
+        "startLine": 88,
+        "startChar": 19,
+        "endLine": 88,
+        "endChar": 53
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36613f8f_c35e50a2",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-14T01:50:34Z",
+      "side": 1,
+      "message": "It would be better to contain the permission check within the binder call, and make the threading adjustment here.\n\nYou could do something like:\n\n```\nclass Binder {\n  @Override registerScanner() {\n    verifyInputParameter()\n    enforcePermission()\n    mHandler.post(() -\u003e mTransacitonal.registerScanner())\n  }\n}\n```\n```\nTransactionalHelper {\n  void registerScanner() {\n    if (!Flags.NewScanner()) {\n      enforcePermission\n    }\n    /* do the stuff*/\n  }\n}\n```\n\n\nThis way the code is way much cleaner and safer once the flag is removed both from a permission point of view than a threading point of view",
+      "parentUuid": "f833969c_3fed9568",
       "range": {
         "startLine": 88,
         "startChar": 19,
@@ -923,6 +971,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "36fa0dc7_2be1d042",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-14T01:50:34Z",
+      "side": 1,
+      "message": "For profiles, the stack \"can\" be up while the binder is cleanup, because the bluetooth is not going to exit but stay in ble_on.\n\nFor scan and gatt this is not possible, when the service is cleanup, the bluetooth is OFF and the binder die. \nCaller we got a RemoteException if performing a binder call then",
+      "parentUuid": "a5dbc80e_ab67ffff",
+      "range": {
+        "startLine": 128,
+        "startChar": 36,
+        "endLine": 128,
+        "endChar": 44
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a211bb64_496fe66b",
@@ -1055,6 +1127,30 @@
       "side": 1,
       "message": "Is this within scope of this refactor? I notice many other things here that are not profiles.",
       "parentUuid": "6a415666_fd18da4f",
+      "range": {
+        "startLine": 245,
+        "startChar": 0,
+        "endLine": 245,
+        "endChar": 18
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dc9e097_30fb5224",
+        "filename": "framework/java/android/bluetooth/BluetoothProfile.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-14T01:50:34Z",
+      "side": 1,
+      "message": "I believe we do not need it for this change. cf comment about how to \"start\" the scan manager service",
+      "parentUuid": "b6c896b8_5a957152",
       "range": {
         "startLine": 245,
         "startChar": 0,
