@@ -36,6 +36,7 @@
 #include <vector>
 
 #include "common/bind.h"
+#include "device/include/interop.h"
 #include "common/strings.h"
 #include "common/sync_map_count.h"
 #include "hci/acl_manager.h"
@@ -190,6 +191,8 @@ constexpr char kWakelockTimeoutMsSysprop[] = "bluetooth.core.acl.wakelock_timeou
 
 using SendDataUpwards = void (*const)(BT_HDR*);
 using OnDisconnect = std::function<void(HciHandle, hci::ErrorCode reason)>;
+
+RawAddress peer_address;
 
 constexpr char kConnectionDescriptorTimeFormat[] = "%Y-%m-%d %H:%M:%S";
 
@@ -503,8 +506,12 @@ public:
   void RegisterCallbacks() override { connection_->RegisterCallbacks(this, handler_); }
 
   void ReadRemoteControllerInformation() override {
-    connection_->ReadRemoteVersionInformation();
-    connection_->ReadRemoteSupportedFeatures();
+    if(interop_match_addr(INTEROP_DISABLE_HID, &peer_address)) {
+        connection_->ReadClockOffset();
+    } else {
+        connection_->ReadRemoteVersionInformation();
+        connection_->ReadRemoteSupportedFeatures();
+    }
   }
 
   void OnConnectionPacketTypeChanged(uint16_t packet_type) override {
@@ -526,8 +533,14 @@ public:
     TRY_POSTING_ON_MAIN(interface_.on_change_connection_link_key_complete);
   }
 
-  void OnReadClockOffsetComplete(uint16_t /* clock_offset */) override {
-    log::info("UNIMPLEMENTED");
+  void OnReadClockOffsetComplete(uint16_t hci_handle, uint16_t clock_offset) override {
+    if(interop_match_addr(INTEROP_DISABLE_HID, &peer_address)) {
+      log::info("OnReadClockOffsetComplete");
+      connection_->ReadRemoteVersionInformation();
+      TRY_POSTING_ON_MAIN(interface_.on_read_clock_offset_complete, hci_handle, clock_offset);
+    } else {
+      log::info("UNIMPLEMENTED");
+    }
   }
 
   void OnModeChange(hci::ErrorCode status, hci::Mode current_mode, uint16_t interval) override {
@@ -620,6 +633,9 @@ public:
     TRY_POSTING_ON_MAIN(interface_.on_read_remote_version_information_complete,
                         ToLegacyHciErrorCode(hci_status), handle_, lmp_version, manufacturer_name,
                         sub_version);
+    if(interop_match_addr(INTEROP_DISABLE_HID, &peer_address)) {
+      connection_->ReadRemoteSupportedFeatures();
+    }
   }
 
   void OnReadRemoteSupportedFeaturesComplete(uint64_t features) override {
@@ -1431,6 +1447,7 @@ void shim::Acl::OnConnectSuccess(
                       locally_initiated);
   log::debug("Connection successful classic remote:{} handle:{} initiator:{}", remote_address,
              handle, (locally_initiated) ? "local" : "remote");
+  peer_address = bd_addr;
   metrics::LogAclCompletionEvent(remote_address, hci::ErrorCode::SUCCESS, locally_initiated);
   BTM_LogHistory(kBtmLogTag, ToRawAddress(remote_address), "Connection successful",
                  (locally_initiated) ? "classic Local initiated" : "classic Remote initiated");
