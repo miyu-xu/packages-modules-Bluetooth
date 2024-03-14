@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "72dcb2a3_31478e07",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-03-14T09:03:48Z",
+      "side": 1,
+      "message": "Bug: 329011868 ?",
+      "revId": "5bad3afc4f4f8a4e900989c12a1fb67ca98b4e9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "04f01da9_f1b78c6b",
@@ -14,6 +31,115 @@
       "writtenOn": "2024-03-14T06:29:09Z",
       "side": 1,
       "message": "Two things to note before reviewing:\n\n1. Used flag `FLAG_OPP_FIX_MULTIPLE_NOTIFICATIONS_ISSUES` as the flag CL is not merged yet (aosp/2997356). This will be fixed by the newer patch set.\n\n2. Used CheckFlagsRule instead of SetFlagsRule since the latter seems not working in Bumble BT tests. \n\nPlease review except above things. Thank you 😊",
+      "revId": "5bad3afc4f4f8a4e900989c12a1fb67ca98b4e9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee3d8f49_4cd6bfd3",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeLegacyAdvertisingTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-03-14T09:03:48Z",
+      "side": 1,
+      "message": "FLAG_BLE_CHECK_DATA_LENGTH_ON_LEGACY_ADVERTISING?",
+      "range": {
+        "startLine": 53,
+        "startChar": 32,
+        "endLine": 53,
+        "endChar": 74
+      },
+      "revId": "5bad3afc4f4f8a4e900989c12a1fb67ca98b4e9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fad1e9c_e4feded0",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 929,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-03-14T09:03:48Z",
+      "side": 1,
+      "message": "This function seems to be called only with legacy advertisers so we don\u0027t need to check if it\u0027s legacy or not.\n\n(It could be dead code unless there is any \"native\" client as BluetoothLeAdvertiser always create an extended advertiser.)",
+      "range": {
+        "startLine": 929,
+        "startChar": 7,
+        "endLine": 929,
+        "endChar": 29
+      },
+      "revId": "5bad3afc4f4f8a4e900989c12a1fb67ca98b4e9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13ad8b3b_0375424b",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-03-14T09:03:48Z",
+      "side": 1,
+      "message": "ble_check_data_length_on_legacy_advertising?",
+      "range": {
+        "startLine": 944,
+        "startChar": 41,
+        "endLine": 944,
+        "endChar": 78
+      },
+      "revId": "5bad3afc4f4f8a4e900989c12a1fb67ca98b4e9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b22ecd6_e9f73916",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 957,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-03-14T09:03:48Z",
+      "side": 1,
+      "message": "Q) Can we just accept a boolean parameter `is_legacy`?",
+      "range": {
+        "startLine": 957,
+        "startChar": 6,
+        "endLine": 957,
+        "endChar": 32
+      },
+      "revId": "5bad3afc4f4f8a4e900989c12a1fb67ca98b4e9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0408155_b60bfced",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-03-14T09:03:48Z",
+      "side": 1,
+      "message": "We need to check the length for EXTENDED api type as well.",
       "revId": "5bad3afc4f4f8a4e900989c12a1fb67ca98b4e9d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
