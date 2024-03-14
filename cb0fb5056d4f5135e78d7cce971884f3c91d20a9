@@ -142,6 +142,30 @@
       },
       "revId": "cb0fb5056d4f5135e78d7cce971884f3c91d20a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b28f9b94_03f4b143",
+        "filename": "system/gd/iso/internal/iso_manager_impl.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-14T22:50:55Z",
+      "side": 0,
+      "message": "It looks like this is in code which isn\u0027t used, so I was a little too pedantic about it 😊\n\nI like the idea of putting improvements in separate CLs from \"mechanical changes\" because they should be reviewed more carefully.  This one is fine, but it takes a lot more work to review things that aren\u0027t obviously scripted.",
+      "parentUuid": "5013f84f_c0513651",
+      "range": {
+        "startLine": 261,
+        "startChar": 1,
+        "endLine": 261,
+        "endChar": 41
+      },
+      "revId": "cb0fb5056d4f5135e78d7cce971884f3c91d20a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
