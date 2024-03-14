@@ -70,6 +70,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ba40e1b_acfdef1b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-14T21:25:35Z",
+      "side": 1,
+      "message": "You can also base this CL on top of the CL that adds the flag in order to use it before submit.",
+      "parentUuid": "04f01da9_f1b78c6b",
+      "revId": "5bad3afc4f4f8a4e900989c12a1fb67ca98b4e9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee3d8f49_4cd6bfd3",
