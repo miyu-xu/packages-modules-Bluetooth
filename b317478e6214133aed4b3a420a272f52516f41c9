@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6cdf1e99_13a038a2",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-14T20:26:20Z",
+      "side": 1,
+      "message": "Can you please provide exact cod and old_cod values that would cause bad result here ?\n\nAs I read through it, it should work exactly as old code did.",
+      "parentUuid": "639dca4e_a8da23c4",
+      "revId": "b317478e6214133aed4b3a420a272f52516f41c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c66883eb_1d141b3f",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 1
@@ -31,6 +49,30 @@
       "writtenOn": "2024-03-14T16:15:05Z",
       "side": 1,
       "message": "Also check for unclassified?",
+      "range": {
+        "startLine": 1535,
+        "startChar": 19,
+        "endLine": 1535,
+        "endChar": 20
+      },
+      "revId": "b317478e6214133aed4b3a420a272f52516f41c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "259c6252_5753674f",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1535,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-14T20:26:20Z",
+      "side": 1,
+      "message": "This code is for adding new device, and it didn\u0027t have the check for unclassified.\nI would prefer to not modify this logic, just add more complete logging",
+      "parentUuid": "c66883eb_1d141b3f",
       "range": {
         "startLine": 1535,
         "startChar": 19,
