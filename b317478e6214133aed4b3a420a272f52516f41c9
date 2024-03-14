@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "639dca4e_a8da23c4",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-14T16:15:05Z",
+      "side": 1,
+      "message": "Do we need to check old_cod here?  Should it be (old_cod !\u003d 0 \u0026\u0026 old_cod !\u003d COD_UNCLASSIFIED) ?",
+      "revId": "b317478e6214133aed4b3a420a272f52516f41c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c66883eb_1d141b3f",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1535,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-14T16:15:05Z",
+      "side": 1,
+      "message": "Also check for unclassified?",
+      "range": {
+        "startLine": 1535,
+        "startChar": 19,
+        "endLine": 1535,
+        "endChar": 20
+      },
+      "revId": "b317478e6214133aed4b3a420a272f52516f41c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
