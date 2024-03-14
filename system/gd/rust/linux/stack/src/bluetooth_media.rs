@@ -1295,7 +1295,9 @@ impl BluetoothMedia {
             // or pre-exists, and that an app which disconnects from WebHID may not have trigger
             // the UHID_OUTPUT_NONE, we need to remove all pending HID calls on telephony use
             // release to keep lower HF layer in sync and not prevent A2DP streaming
-            self.hangup_call_impl();
+            if !self.hangup_call_impl() {
+                return;
+            }
             self.phone_state_change("".into());
         }
         self.telephony_callbacks.lock().unwrap().for_all_callbacks(|callback| {
@@ -1969,6 +1971,10 @@ impl BluetoothMedia {
     }
 
     fn hangup_call_impl(&mut self) -> bool {
+        if self.call_list.is_empty() {
+            return false;
+        }
+
         if self.mps_qualification_enabled {
             match self.phone_state.state {
                 CallState::Idle if self.phone_state.num_active > 0 => {
