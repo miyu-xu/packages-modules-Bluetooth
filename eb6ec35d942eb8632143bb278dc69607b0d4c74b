@@ -58,6 +58,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8afb45b_68f38621",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1019,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-14T19:25:13Z",
+      "side": 1,
+      "message": "GATT still needs to be started with this phase as decision was made to make this pure refactor with no behavior change to reduce risk of large code movement. \n\nPlanned behavior changes will be addressed behind a separate flag.",
+      "parentUuid": "d9b26284_2639d63a",
+      "range": {
+        "startLine": 1016,
+        "startChar": 6,
+        "endLine": 1019,
+        "endChar": 9
+      },
+      "revId": "eb6ec35d942eb8632143bb278dc69607b0d4c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3cd95e32_e6c9f660",
