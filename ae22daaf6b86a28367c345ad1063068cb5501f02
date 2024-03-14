@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22a215e1_ea94e8be",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-14T16:47:05Z",
+      "side": 1,
+      "message": "clean up and unregister.",
+      "range": {
+        "startLine": 166,
+        "startChar": 4,
+        "endLine": 166,
+        "endChar": 21
+      },
+      "revId": "ae22daaf6b86a28367c345ad1063068cb5501f02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
