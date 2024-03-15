@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "312620f2_fdbdb1ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-15T20:49:49Z",
+      "side": 1,
+      "message": "FYI this will conflict with aosp/3005881\nYou could have put CL in a relation chain to avoid that",
+      "revId": "1abe20879d56db17de9b73a270802a40fe9ba65e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
