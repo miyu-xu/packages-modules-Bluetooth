@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "735787f5_e6717764",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-15T23:17:34Z",
+      "side": 1,
+      "message": "` isLeAudioOnlyDevice` for non CSIP devices, will just check type but for CSIP device it will check the group. Group is LeOnly only when all memebers are LeOnly",
+      "parentUuid": "137bb116_35b5e584",
+      "range": {
+        "startLine": 585,
+        "startChar": 12,
+        "endLine": 585,
+        "endChar": 31
+      },
+      "revId": "ac31005b3143fac12c87eed9c77b16a953c9ef2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fd7b69f3_43e75c8a",
         "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-11T17:14:02Z",
       "side": 1,
       "message": "should this `device` be `dev`? From the logic, I guess you are trying to set members in the group to be `CONNECTION_POLICY_ALLOWED`",
+      "range": {
+        "startLine": 599,
+        "startChar": 51,
+        "endLine": 599,
+        "endChar": 57
+      },
+      "revId": "ac31005b3143fac12c87eed9c77b16a953c9ef2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a04f350b_059a820e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-15T23:17:34Z",
+      "side": 1,
+      "message": "thanks, good catch",
+      "parentUuid": "fd7b69f3_43e75c8a",
       "range": {
         "startLine": 599,
         "startChar": 51,
