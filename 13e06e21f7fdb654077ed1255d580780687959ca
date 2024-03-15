@@ -286,6 +286,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "06dc3179_a58bc778",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-15T00:35:40Z",
+      "side": 1,
+      "message": "Can just call it ScanManager, but that\u0027s a nit.",
+      "parentUuid": "b85e489d_2819a4b2",
+      "range": {
+        "startLine": 37,
+        "startChar": 13,
+        "endLine": 37,
+        "endChar": 31
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7bede3f7_b064505e",
         "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
         "patchSetId": 5
@@ -843,6 +867,30 @@
       "side": 1,
       "message": "It would be better to contain the permission check within the binder call, and make the threading adjustment here.\n\nYou could do something like:\n\n```\nclass Binder {\n  @Override registerScanner() {\n    verifyInputParameter()\n    enforcePermission()\n    mHandler.post(() -\u003e mTransacitonal.registerScanner())\n  }\n}\n```\n```\nTransactionalHelper {\n  void registerScanner() {\n    if (!Flags.NewScanner()) {\n      enforcePermission\n    }\n    /* do the stuff*/\n  }\n}\n```\n\n\nThis way the code is way much cleaner and safer once the flag is removed both from a permission point of view than a threading point of view",
       "parentUuid": "f833969c_3fed9568",
+      "range": {
+        "startLine": 88,
+        "startChar": 19,
+        "endLine": 88,
+        "endChar": 53
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6536e94_64b9d707",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-15T00:35:40Z",
+      "side": 1,
+      "message": "There are multiple permission checks in the TransitionalScanHelper, and that code is being used by both GattService and this new manager (intentionally, so as not to have copies of the code). Changing it is out of scope of this effort where the exact same logic is intended to be used. Changing the thread is also out of scope. I think an FR to move permission checks into binder code is worthwhile.",
+      "parentUuid": "36613f8f_c35e50a2",
       "range": {
         "startLine": 88,
         "startChar": 19,

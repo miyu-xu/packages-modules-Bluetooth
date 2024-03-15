@@ -54,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0298133d_d66ca6c5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-15T00:35:40Z",
+      "side": 1,
+      "message": "Agreed, the binder for this will need to be surfaced in the same way as GattService\u0027s.",
+      "parentUuid": "754a2db6_1073796e",
+      "revId": "eb6ec35d942eb8632143bb278dc69607b0d4c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d9b26284_2639d63a",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
         "patchSetId": 11
@@ -183,6 +201,30 @@
       "writtenOn": "2024-03-13T20:55:09Z",
       "side": 1,
       "message": "Will this be sent twice with flag enabled? Is that intended?",
+      "range": {
+        "startLine": 1119,
+        "startChar": 12,
+        "endLine": 1119,
+        "endChar": 71
+      },
+      "revId": "eb6ec35d942eb8632143bb278dc69607b0d4c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38972ba7_5d8dbe98",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1119,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-15T00:35:40Z",
+      "side": 1,
+      "message": "It\u0027s probably best to guard onBleDisable() as well, if the flag is off these steps shouldn\u0027t be done.",
+      "parentUuid": "3f87a53b_8f95ad8d",
       "range": {
         "startLine": 1119,
         "startChar": 12,
