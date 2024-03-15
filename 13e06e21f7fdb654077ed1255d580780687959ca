@@ -807,6 +807,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a67ca292_3ff9c9e5",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-15T18:10:46Z",
+      "side": 1,
+      "message": "@wescande the design for scan manager refactor was already done and approved for adding as new ProfileService to match current logic. \n\nPlease set up a discussion if you prefer an alternative solution.",
+      "parentUuid": "362b341a_92722324",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 73
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ea29f47_16b06957",
