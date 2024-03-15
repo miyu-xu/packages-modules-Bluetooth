@@ -62,6 +62,7 @@ import androidx.annotation.VisibleForTesting;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.RemoteDevices.DeviceProperties;
+import com.android.bluetooth.flags.Flags;
 import com.android.modules.utils.build.SdkLevel;
 
 import com.google.common.collect.EvictingQueue;
@@ -671,7 +672,10 @@ class AdapterProperties {
 
     void cleanupPrevBondRecordsFor(BluetoothDevice currentDevice) {
         String currentAddress = currentDevice.getAddress();
-        String currentIdentityAddress = mService.getIdentityAddress(currentAddress);
+        String currentIdentityAddress =
+                Flags.identityAddressNullIfUnknown()
+                        ? Utils.getBrEdrAddress(currentDevice)
+                        : mService.getIdentityAddress(currentAddress);
         debugLog("cleanupPrevBondRecordsFor: " + currentDevice);
         if (currentIdentityAddress == null) {
             return;
@@ -679,7 +683,10 @@ class AdapterProperties {
 
         for (BluetoothDevice device : mBondedDevices) {
             String address = device.getAddress();
-            String identityAddress = mService.getIdentityAddress(address);
+            String identityAddress =
+                    Flags.identityAddressNullIfUnknown()
+                            ? Utils.getBrEdrAddress(device)
+                            : mService.getIdentityAddress(address);
             if (currentIdentityAddress.equals(identityAddress) && !currentAddress.equals(address)) {
                 if (mService.getNative()
                         .removeBond(Utils.getBytesFromAddress(device.getAddress()))) {
@@ -1239,7 +1246,10 @@ class AdapterProperties {
         StringBuilder sb = new StringBuilder();
         for (BluetoothDevice device : mBondedDevices) {
             String address = device.getAddress();
-            String identityAddress = mService.getIdentityAddress(address);
+            String identityAddress =
+                    Flags.identityAddressNullIfUnknown()
+                            ? Utils.getBrEdrAddress(device)
+                            : mService.getIdentityAddress(address);
             if (identityAddress.equals(address)) {
                 writer.println("    " + address
                             + " [" + dumpDeviceType(device.getType()) + "] "
