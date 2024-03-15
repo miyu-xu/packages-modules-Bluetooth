@@ -860,7 +860,6 @@ impl Bluetooth {
         }
     }
 
-    // TODO(b/328675014): Add BtAddrType and BtTransport parameters
     pub(crate) fn get_hid_report_internal(
         &mut self,
         addr: String,
@@ -868,20 +867,12 @@ impl Bluetooth {
         report_id: u8,
     ) -> BtStatus {
         if let Some(mut addr) = RawAddress::from_string(addr) {
-            self.hh.as_mut().unwrap().get_report(
-                &mut addr,
-                BtAddrType::Public,
-                BtTransport::Auto,
-                report_type,
-                report_id,
-                128,
-            )
+            self.hh.as_mut().unwrap().get_report(&mut addr, report_type, report_id, 128)
         } else {
             BtStatus::InvalidParam
         }
     }
 
-    // TODO(b/328675014): Add BtAddrType and BtTransport parameters
     pub(crate) fn set_hid_report_internal(
         &mut self,
         addr: String,
@@ -890,28 +881,16 @@ impl Bluetooth {
     ) -> BtStatus {
         if let Some(mut addr) = RawAddress::from_string(addr) {
             let mut rb = report.clone().into_bytes();
-            self.hh.as_mut().unwrap().set_report(
-                &mut addr,
-                BtAddrType::Public,
-                BtTransport::Auto,
-                report_type,
-                rb.as_mut_slice(),
-            )
+            self.hh.as_mut().unwrap().set_report(&mut addr, report_type, rb.as_mut_slice())
         } else {
             BtStatus::InvalidParam
         }
     }
 
-    // TODO(b/328675014): Add BtAddrType and BtTransport parameters
     pub(crate) fn send_hid_data_internal(&mut self, addr: String, data: String) -> BtStatus {
         if let Some(mut addr) = RawAddress::from_string(addr) {
             let mut rb = data.clone().into_bytes();
-            self.hh.as_mut().unwrap().send_data(
-                &mut addr,
-                BtAddrType::Public,
-                BtTransport::Auto,
-                rb.as_mut_slice(),
-            )
+            self.hh.as_mut().unwrap().send_data(&mut addr, rb.as_mut_slice())
         } else {
             BtStatus::InvalidParam
         }
@@ -1271,62 +1250,22 @@ pub(crate) trait BtifBluetoothCallbacks {
 #[btif_callbacks_dispatcher(dispatch_hid_host_callbacks, HHCallbacks)]
 pub(crate) trait BtifHHCallbacks {
     #[btif_callback(ConnectionState)]
-    fn connection_state(
-        &mut self,
-        address: RawAddress,
-        address_type: BtAddrType,
-        transport: BtTransport,
-        state: BthhConnectionState,
-    );
+    fn connection_state(&mut self, address: RawAddress, state: BthhConnectionState);
 
     #[btif_callback(HidInfo)]
-    fn hid_info(
-        &mut self,
-        address: RawAddress,
-        address_type: BtAddrType,
-        transport: BtTransport,
-        info: BthhHidInfo,
-    );
+    fn hid_info(&mut self, address: RawAddress, info: BthhHidInfo);
 
     #[btif_callback(ProtocolMode)]
-    fn protocol_mode(
-        &mut self,
-        address: RawAddress,
-        address_type: BtAddrType,
-        transport: BtTransport,
-        status: BthhStatus,
-        mode: BthhProtocolMode,
-    );
+    fn protocol_mode(&mut self, address: RawAddress, status: BthhStatus, mode: BthhProtocolMode);
 
     #[btif_callback(IdleTime)]
-    fn idle_time(
-        &mut self,
-        address: RawAddress,
-        address_type: BtAddrType,
-        transport: BtTransport,
-        status: BthhStatus,
-        idle_rate: i32,
-    );
+    fn idle_time(&mut self, address: RawAddress, status: BthhStatus, idle_rate: i32);
 
     #[btif_callback(GetReport)]
-    fn get_report(
-        &mut self,
-        address: RawAddress,
-        address_type: BtAddrType,
-        transport: BtTransport,
-        status: BthhStatus,
-        data: Vec<u8>,
-        size: i32,
-    );
+    fn get_report(&mut self, address: RawAddress, status: BthhStatus, data: Vec<u8>, size: i32);
 
     #[btif_callback(Handshake)]
-    fn handshake(
-        &mut self,
-        address: RawAddress,
-        address_type: BtAddrType,
-        transport: BtTransport,
-        status: BthhStatus,
-    );
+    fn handshake(&mut self, address: RawAddress, status: BthhStatus);
 }
 
 #[btif_callbacks_dispatcher(dispatch_sdp_callbacks, SdpCallbacks)]
@@ -2663,14 +2602,7 @@ impl IBluetooth for Bluetooth {
                         match p {
                             Profile::Hid | Profile::Hogp => {
                                 has_supported_profile = true;
-                                // TODO(b/328675014): Use BtAddrType
-                                // and BtTransport from
-                                // BluetoothDevice instead of default
-                                let status = self.hh.as_ref().unwrap().connect(
-                                    &mut addr,
-                                    BtAddrType::Public,
-                                    BtTransport::Auto,
-                                );
+                                let status = self.hh.as_ref().unwrap().connect(&mut addr);
                                 metrics::profile_connection_state_changed(
                                     addr,
                                     p as u32,
@@ -2786,14 +2718,7 @@ impl IBluetooth for Bluetooth {
                     if UuidHelper::is_profile_supported(&p) {
                         match p {
                             Profile::Hid | Profile::Hogp => {
-                                // TODO(b/328675014): Use BtAddrType
-                                // and BtTransport from
-                                // BluetoothDevice instead of default
-                                self.hh.as_ref().unwrap().disconnect(
-                                    &mut addr.unwrap(),
-                                    BtAddrType::Public,
-                                    BtTransport::Auto,
-                                );
+                                self.hh.as_ref().unwrap().disconnect(&mut addr.unwrap());
                             }
 
                             Profile::A2dpSink
@@ -2929,13 +2854,7 @@ impl BtifSdpCallbacks for Bluetooth {
 }
 
 impl BtifHHCallbacks for Bluetooth {
-    fn connection_state(
-        &mut self,
-        mut address: RawAddress,
-        address_type: BtAddrType,
-        transport: BtTransport,
-        state: BthhConnectionState,
-    ) {
+    fn connection_state(&mut self, mut address: RawAddress, state: BthhConnectionState) {
         debug!(
             "Hid host connection state updated: Address({}) State({:?})",
             DisplayAddress(&address),
@@ -2970,89 +2889,43 @@ impl BtifHHCallbacks for Bluetooth {
                 "[{}]: Rejecting a unbonded device's attempt to connect to HID/HOG profiles",
                 DisplayAddress(&address)
             );
-            self.hh.as_ref().unwrap().disconnect(&mut address, address_type, transport);
+            self.hh.as_ref().unwrap().disconnect(&mut address);
         }
     }
 
-    fn hid_info(
-        &mut self,
-        address: RawAddress,
-        address_type: BtAddrType,
-        transport: BtTransport,
-        info: BthhHidInfo,
-    ) {
-        debug!(
-            "Hid host info updated: Address({}) AddressType({:?}) Transport({:?}) Info({:?})",
-            DisplayAddress(&address),
-            address_type,
-            transport,
-            info
-        );
+    fn hid_info(&mut self, address: RawAddress, info: BthhHidInfo) {
+        debug!("Hid host info updated: Address({}) Info({:?})", DisplayAddress(&address), info);
     }
 
-    fn protocol_mode(
-        &mut self,
-        address: RawAddress,
-        address_type: BtAddrType,
-        transport: BtTransport,
-        status: BthhStatus,
-        mode: BthhProtocolMode,
-    ) {
+    fn protocol_mode(&mut self, address: RawAddress, status: BthhStatus, mode: BthhProtocolMode) {
         debug!(
-            "Hid host protocol mode updated: Address({}) AddressType({:?}) Transport({:?}) Status({:?}) Mode({:?})",
-            DisplayAddress(&address), address_type, transport,
+            "Hid host protocol mode updated: Address({}) Status({:?}) Mode({:?})",
+            DisplayAddress(&address),
             status,
             mode
         );
     }
 
-    fn idle_time(
-        &mut self,
-        address: RawAddress,
-        address_type: BtAddrType,
-        transport: BtTransport,
-        status: BthhStatus,
-        idle_rate: i32,
-    ) {
+    fn idle_time(&mut self, address: RawAddress, status: BthhStatus, idle_rate: i32) {
         debug!(
-            "Hid host idle time updated: Address({}) AddressType({:?}) Transport({:?}) Status({:?}) Idle Rate({:?})",
-            DisplayAddress(&address), address_type, transport,
+            "Hid host idle time updated: Address({}) Status({:?}) Idle Rate({:?})",
+            DisplayAddress(&address),
             status,
             idle_rate
         );
     }
 
-    fn get_report(
-        &mut self,
-        address: RawAddress,
-        address_type: BtAddrType,
-        transport: BtTransport,
-        status: BthhStatus,
-        _data: Vec<u8>,
-        size: i32,
-    ) {
+    fn get_report(&mut self, address: RawAddress, status: BthhStatus, _data: Vec<u8>, size: i32) {
         debug!(
-            "Hid host got report: Address({}) AddressType({:?}) Transport({:?}) Status({:?}) Report Size({:?})",
-            DisplayAddress(&address), address_type, transport,
+            "Hid host got report: Address({}) Status({:?}) Report Size({:?})",
+            DisplayAddress(&address),
             status,
             size
         );
     }
 
-    fn handshake(
-        &mut self,
-        address: RawAddress,
-        address_type: BtAddrType,
-        transport: BtTransport,
-        status: BthhStatus,
-    ) {
-        debug!(
-            "Hid host handshake: Address({}) AddressType({:?}) Transport({:?}) Status({:?})",
-            DisplayAddress(&address),
-            address_type,
-            transport,
-            status
-        );
+    fn handshake(&mut self, address: RawAddress, status: BthhStatus) {
+        debug!("Hid host handshake: Address({}) Status({:?})", DisplayAddress(&address), status);
     }
 }
 
