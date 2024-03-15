@@ -16,6 +16,24 @@
       "message": "I believe this is managed per device with a system property.\nWhy is there a need to change the default value ?\n\n\nWill this change break any existing devices ? is there any feature controller side or everything is HOST side ?",
       "revId": "bf3aeb3218ace3ba2efb989f86352f0239af2b91",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9d742b9_e0086019",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2033875
+      },
+      "writtenOn": "2024-03-15T19:49:09Z",
+      "side": 1,
+      "message": "AVRCP 1.4 was already withdrawn. Default to this version will cause unnecessary lab concerns.",
+      "parentUuid": "54d2f21d_1a3b64af",
+      "revId": "bf3aeb3218ace3ba2efb989f86352f0239af2b91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
