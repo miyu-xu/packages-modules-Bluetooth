@@ -1370,6 +1370,16 @@ public class LeAudioService extends ProfileService {
                 .allMatch(d -> d.mState.equals(LeAudioStackEvent.BROADCAST_STATE_STOPPED));
     }
 
+    private boolean isAnyBroadcastStreaming() {
+        if (mBroadcastDescriptors == null) {
+            Log.e(TAG, "areBroadcastsAllStopped: Invalid Broadcast Descriptors");
+            return false;
+        }
+
+        return mBroadcastDescriptors.values().stream()
+                .anyMatch(d -> d.mState.equals(LeAudioStackEvent.BROADCAST_STATE_STREAMING));
+    }
+
     private Optional<Integer> getFirstNotStoppedBroadcastId() {
         if (mBroadcastDescriptors == null) {
             Log.e(TAG, "getFirstNotStoppedBroadcastId: Invalid Broadcast Descriptors");
@@ -2316,7 +2326,9 @@ public class LeAudioService extends ProfileService {
             case LeAudioStackEvent.HEALTH_RECOMMENDATION_ACTION_INACTIVATE_GROUP:
                 if (Flags.leaudioUnicastInactivateDeviceBasedOnContext()) {
                     LeAudioGroupDescriptor groupDescriptor = getGroupDescriptor(groupId);
-                    if (groupDescriptor != null && groupDescriptor.isActive()) {
+                    if (groupDescriptor != null
+                            && groupDescriptor.isActive()
+                            && !isAnyBroadcastStreaming()) {
                         Log.i(
                                 TAG,
                                 "Group "
@@ -3066,12 +3078,7 @@ public class LeAudioService extends ProfileService {
                         transitionFromBroadcastToUnicast();
                     } else {
                         // Notify audio manager
-                        if (mBroadcastDescriptors.values().stream()
-                                .noneMatch(
-                                        d ->
-                                                d.mState.equals(
-                                                        LeAudioStackEvent
-                                                                .BROADCAST_STATE_STREAMING))) {
+                        if (!isAnyBroadcastStreaming()) {
                             updateBroadcastActiveDevice(null, mActiveBroadcastAudioDevice, false);
                         }
                     }
@@ -3102,12 +3109,7 @@ public class LeAudioService extends ProfileService {
                         transitionFromBroadcastToUnicast();
                     } else {
                         // Notify audio manager
-                        if (mBroadcastDescriptors.values().stream()
-                                .noneMatch(
-                                        d ->
-                                                d.mState.equals(
-                                                        LeAudioStackEvent
-                                                                .BROADCAST_STATE_STREAMING))) {
+                        if (!isAnyBroadcastStreaming()) {
                             updateBroadcastActiveDevice(null, mActiveBroadcastAudioDevice, false);
                         }
                     }
@@ -3131,11 +3133,7 @@ public class LeAudioService extends ProfileService {
                     }
 
                     // Notify audio manager
-                    if (mBroadcastDescriptors.values().stream()
-                            .anyMatch(
-                                    d ->
-                                            d.mState.equals(
-                                                    LeAudioStackEvent.BROADCAST_STATE_STREAMING))) {
+                    if (isAnyBroadcastStreaming()) {
                         if (!Objects.equals(device, mActiveBroadcastAudioDevice)) {
                             updateBroadcastActiveDevice(device, mActiveBroadcastAudioDevice, true);
                         }
