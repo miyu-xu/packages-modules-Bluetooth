@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd782ef8_ebf427b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-15T23:58:07Z",
+      "side": 1,
+      "message": "Tested on Pixel 8 and was able to connect 8 devices.",
+      "revId": "575f0bea30f6a63ab18ccf8253eeb7aaedbfa78c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "877797c2_e4cf7da8",
@@ -204,6 +221,30 @@
       "side": 1,
       "message": "Should be fine since this is what is already supposed to be enforced per the CDD: ```[GMS-VSR-5.3.14-012] MUST support at least eight LE concurrent connections with three in peripheral role.```\n\nI don\u0027t think a flag guard should be needed in this scenario given that.",
       "parentUuid": "79234fac_0e223f08",
+      "range": {
+        "startLine": 409,
+        "startChar": 33,
+        "endLine": 409,
+        "endChar": 34
+      },
+      "revId": "575f0bea30f6a63ab18ccf8253eeb7aaedbfa78c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "818caec7_59202401",
+        "filename": "system/internal_include/bt_target.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-15T23:58:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0b6a10_c4319226",
       "range": {
         "startLine": 409,
         "startChar": 33,
