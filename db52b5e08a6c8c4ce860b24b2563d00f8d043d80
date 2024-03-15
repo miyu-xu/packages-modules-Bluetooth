@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3570e331_a6acc5b6",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 1386,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-15T11:00:07Z",
+      "side": 1,
+      "message": "This looks like it got changed as part of a rebase.\n\n```suggestion\n                              bool /* reconnect allowed */) {\n```",
+      "range": {
+        "startLine": 1386,
+        "startChar": 30,
+        "endLine": 1386,
+        "endChar": 64
+      },
+      "revId": "db52b5e08a6c8c4ce860b24b2563d00f8d043d80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
