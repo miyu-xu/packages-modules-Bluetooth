@@ -53,8 +53,7 @@ constexpr uint16_t kSsrMaxLatency = 18; /* slots * 0.625ms */
  *
  * Function         bta_hh_find_cb
  *
- * Description      Find best available control block according to ACL link
- *                  specification.
+ * Description      Find best available control block according to BD address.
  *
  *
  * Returns          void
