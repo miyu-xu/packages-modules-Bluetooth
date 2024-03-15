@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2cedfcf_139f08d9",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 942,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-03-15T03:30:26Z",
+      "side": 1,
+      "message": "kLeMaximumLegacyAdvertisingDataLength",
+      "range": {
+        "startLine": 942,
+        "startChar": 19,
+        "endLine": 942,
+        "endChar": 54
+      },
+      "revId": "7aa676d270519567c5b332eab543265c9ffa5b40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
