@@ -38,6 +38,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "b99be5d4_3dd0a74b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-03-15T02:38:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5bf893d3_fbb477b9",
+      "revId": "5bad3afc4f4f8a4e900989c12a1fb67ca98b4e9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "04f01da9_f1b78c6b",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 8
@@ -176,6 +194,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e4ef78e_6f77e7c8",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 929,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-03-15T02:38:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8fad1e9c_e4feded0",
+      "range": {
+        "startLine": 929,
+        "startChar": 7,
+        "endLine": 929,
+        "endChar": 29
+      },
+      "revId": "5bad3afc4f4f8a4e900989c12a1fb67ca98b4e9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13ad8b3b_0375424b",
@@ -236,6 +278,30 @@
       "writtenOn": "2024-03-14T09:03:48Z",
       "side": 1,
       "message": "Q) Can we just accept a boolean parameter `is_legacy`?",
+      "range": {
+        "startLine": 957,
+        "startChar": 6,
+        "endLine": 957,
+        "endChar": 32
+      },
+      "revId": "5bad3afc4f4f8a4e900989c12a1fb67ca98b4e9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aed4e458_395e0fcf",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 957,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-03-15T02:38:47Z",
+      "side": 1,
+      "message": "Reverted the method signature changes, as this CL is now only changing for EXTENDED case.",
+      "parentUuid": "6b22ecd6_e9f73916",
       "range": {
         "startLine": 957,
         "startChar": 6,
