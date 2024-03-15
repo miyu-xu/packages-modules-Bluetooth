@@ -16,6 +16,24 @@
       "message": "I created a bug since I need to land a Google3 CL b/329854995",
       "revId": "740aa778ee5be77698b143c1451049bc1cda2a73",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d288ea6_3ad3ac54",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-15T18:54:40Z",
+      "side": 1,
+      "message": "Looks like CL has landed !\nThanks you for anticipating that",
+      "parentUuid": "c41b51be_2871f7e0",
+      "revId": "740aa778ee5be77698b143c1451049bc1cda2a73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
