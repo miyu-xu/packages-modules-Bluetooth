@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fded8eb_c6eafd88",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1707594
+      },
+      "writtenOn": "2024-03-15T08:37:05Z",
+      "side": 1,
+      "message": "Hi sir, we only do the manual test for this issue. I\u0027m not sure which test should we do. Would you have some suggestions? Thanks.",
+      "parentUuid": "ace4afe7_895af530",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "b63f3c5d1622001b88737bc1290e1b4f86c2ca1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "700d29e8_2190bc77",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-03-12T22:18:34Z",
       "side": 1,
       "message": "Limit the length of title and body to 72 characters",
+      "revId": "b63f3c5d1622001b88737bc1290e1b4f86c2ca1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1977fc1a_2a8a8492",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1707594
+      },
+      "writtenOn": "2024-03-15T08:37:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "700d29e8_2190bc77",
       "revId": "b63f3c5d1622001b88737bc1290e1b4f86c2ca1e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5736c95a_8eff7b2f",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1422,
+      "author": {
+        "id": 1707594
+      },
+      "writtenOn": "2024-03-15T08:37:05Z",
+      "side": 1,
+      "message": "Has removed.",
+      "parentUuid": "3f216210_41492059",
+      "revId": "b63f3c5d1622001b88737bc1290e1b4f86c2ca1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d159f8bd_7048d3f2",
@@ -71,6 +131,24 @@
       "writtenOn": "2024-03-12T22:18:34Z",
       "side": 1,
       "message": "Use new logging function\n```suggestion\n        log::debug(\"transport\u003d{}\", transport);\n```",
+      "revId": "b63f3c5d1622001b88737bc1290e1b4f86c2ca1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2062b7d7_8898c42b",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1423,
+      "author": {
+        "id": 1707594
+      },
+      "writtenOn": "2024-03-15T08:37:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d159f8bd_7048d3f2",
       "revId": "b63f3c5d1622001b88737bc1290e1b4f86c2ca1e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -92,6 +170,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45d72769_4b644f8d",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1536,
+      "author": {
+        "id": 1707594
+      },
+      "writtenOn": "2024-03-15T08:37:05Z",
+      "side": 1,
+      "message": "Yes, we have changed the solution. Please help to review. thanks.",
+      "parentUuid": "755c5116_e768d9ca",
+      "revId": "b63f3c5d1622001b88737bc1290e1b4f86c2ca1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80a3f525_fc42d9cf",
@@ -105,6 +201,24 @@
       "writtenOn": "2024-03-12T22:18:34Z",
       "side": 1,
       "message": "Use new logging functions",
+      "revId": "b63f3c5d1622001b88737bc1290e1b4f86c2ca1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7df379b4_f15820c4",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1538,
+      "author": {
+        "id": 1707594
+      },
+      "writtenOn": "2024-03-15T08:37:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80a3f525_fc42d9cf",
       "revId": "b63f3c5d1622001b88737bc1290e1b4f86c2ca1e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -126,6 +240,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "42a89a5b_ad51e998",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1541,
+      "author": {
+        "id": 1707594
+      },
+      "writtenOn": "2024-03-15T08:37:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdead2a3_64d836e0",
+      "revId": "b63f3c5d1622001b88737bc1290e1b4f86c2ca1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f1d116b_a6b2a253",
@@ -139,6 +271,24 @@
       "writtenOn": "2024-03-12T22:18:34Z",
       "side": 1,
       "message": "We cannot ignore inquiry results irrespective whether LE is supported or not",
+      "revId": "b63f3c5d1622001b88737bc1290e1b4f86c2ca1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f26f11c6_5f05af99",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1379,
+      "author": {
+        "id": 1707594
+      },
+      "writtenOn": "2024-03-15T08:37:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f1d116b_a6b2a253",
       "revId": "b63f3c5d1622001b88737bc1290e1b4f86c2ca1e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -160,6 +310,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e8fdc64_018087a4",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1507,
+      "author": {
+        "id": 1707594
+      },
+      "writtenOn": "2024-03-15T08:37:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13718975_863209ef",
+      "revId": "b63f3c5d1622001b88737bc1290e1b4f86c2ca1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8347ad1e_b8b972b2",
@@ -177,6 +345,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75afab39_90fa9421",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1655,
+      "author": {
+        "id": 1707594
+      },
+      "writtenOn": "2024-03-15T08:37:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8347ad1e_b8b972b2",
+      "revId": "b63f3c5d1622001b88737bc1290e1b4f86c2ca1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7ba7be35_e088bcb6",
@@ -190,6 +376,24 @@
       "writtenOn": "2024-03-12T22:18:34Z",
       "side": 1,
       "message": "Use newer logging function\n```suggestion\n  log::info(\" transport {}\", transport);\n```",
+      "revId": "b63f3c5d1622001b88737bc1290e1b4f86c2ca1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5c60bb0_446695c8",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1707594
+      },
+      "writtenOn": "2024-03-15T08:37:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ba7be35_e088bcb6",
       "revId": "b63f3c5d1622001b88737bc1290e1b4f86c2ca1e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
