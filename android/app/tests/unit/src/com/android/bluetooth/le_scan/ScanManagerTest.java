@@ -322,6 +322,8 @@ public class ScanManagerTest {
         ScanSettings scanSettings = createScanSettingsWithPhy(scanMode, phy);
 
         ScanClient client = new ScanClient(id, scanSettings, scanFilterList);
+        client.stats = mMockAppScanStats;
+        client.stats.recordScanStart(scanSettings, scanFilterList, isFiltered, false, id);
         return client;
     }
 
