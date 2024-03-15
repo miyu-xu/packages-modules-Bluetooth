@@ -34,6 +34,24 @@
       "parentUuid": "54d2f21d_1a3b64af",
       "revId": "bf3aeb3218ace3ba2efb989f86352f0239af2b91",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2cb25ee_1c8692a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-15T20:21:22Z",
+      "side": 1,
+      "message": "Acknowledged, that make sens\nSee follow-up question on the bug",
+      "parentUuid": "f9d742b9_e0086019",
+      "revId": "bf3aeb3218ace3ba2efb989f86352f0239af2b91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
