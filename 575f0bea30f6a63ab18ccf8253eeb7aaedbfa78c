@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "013d8ab6_da3a2e77",
+        "filename": "system/internal_include/bt_target.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-15T00:01:16Z",
+      "side": 1,
+      "message": "sg, agree okay to track that as a separate follow up.",
+      "parentUuid": "16cdb020_efc62fa5",
+      "range": {
+        "startLine": 403,
+        "startChar": 26,
+        "endLine": 403,
+        "endChar": 56
+      },
+      "revId": "575f0bea30f6a63ab18ccf8253eeb7aaedbfa78c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68cb075f_fd13bf53",
@@ -95,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b83d39c_50d15028",
+        "filename": "system/internal_include/bt_target.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-15T00:01:16Z",
+      "side": 1,
+      "message": "Thanks for looking into it!",
+      "parentUuid": "b38eecab_26b9e35b",
+      "range": {
+        "startLine": 406,
+        "startChar": 29,
+        "endLine": 406,
+        "endChar": 31
+      },
+      "revId": "575f0bea30f6a63ab18ccf8253eeb7aaedbfa78c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8ddf2886_ead940ae",
@@ -132,6 +180,30 @@
       "side": 1,
       "message": "I\u0027m OK with 8, but that would be a change in behavior from the current 7 and not easily flag-guardable. What do you think?",
       "parentUuid": "8ddf2886_ead940ae",
+      "range": {
+        "startLine": 409,
+        "startChar": 33,
+        "endLine": 409,
+        "endChar": 34
+      },
+      "revId": "575f0bea30f6a63ab18ccf8253eeb7aaedbfa78c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa0b6a10_c4319226",
+        "filename": "system/internal_include/bt_target.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-15T00:01:16Z",
+      "side": 1,
+      "message": "Should be fine since this is what is already supposed to be enforced per the CDD: ```[GMS-VSR-5.3.14-012] MUST support at least eight LE concurrent connections with three in peripheral role.```\n\nI don\u0027t think a flag guard should be needed in this scenario given that.",
+      "parentUuid": "79234fac_0e223f08",
       "range": {
         "startLine": 409,
         "startChar": 33,
