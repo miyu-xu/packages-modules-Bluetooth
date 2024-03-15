@@ -115,6 +115,8 @@ static void cleanup_message_loop_thread() {
   message_loop_thread.ShutDown();
 }
 
+bool LeAudioClient::IsLeAudioClientRunning(void) { return false; }
+
 namespace le_audio {
 class MockAudioHalClientEndpoint;
 MockAudioHalClientEndpoint* mock_audio_source_;
