@@ -34,6 +34,24 @@
       "parentUuid": "c41b51be_2871f7e0",
       "revId": "740aa778ee5be77698b143c1451049bc1cda2a73",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d0090dd_e98bc3c7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-15T19:02:47Z",
+      "side": 1,
+      "message": "I put this comment for you to change the bug in your CL x), so that we tie the two CLs.",
+      "parentUuid": "0d288ea6_3ad3ac54",
+      "revId": "740aa778ee5be77698b143c1451049bc1cda2a73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
