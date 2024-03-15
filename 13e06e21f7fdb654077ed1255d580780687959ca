@@ -308,6 +308,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3101eec3_fbca3fff",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-15T08:40:47Z",
+      "side": 1,
+      "message": "`ScanManager` class already exists and as Christine mentioned, to keep it consistent with the rest of the other services (that are not really services), let\u0027s keep this `ScanManagerService`. Thank you!",
+      "parentUuid": "06dc3179_a58bc778",
+      "range": {
+        "startLine": 37,
+        "startChar": 13,
+        "endLine": 37,
+        "endChar": 31
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7bede3f7_b064505e",
@@ -735,6 +759,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f04b8173_0f2b9eae",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-15T08:40:47Z",
+      "side": 1,
+      "message": "Filed b/329799045 for this. Will follow up with a CL there. Thank you.",
+      "parentUuid": "35b26321_cbc75eac",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 73
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ea29f47_16b06957",
@@ -891,6 +939,30 @@
       "side": 1,
       "message": "There are multiple permission checks in the TransitionalScanHelper, and that code is being used by both GattService and this new manager (intentionally, so as not to have copies of the code). Changing it is out of scope of this effort where the exact same logic is intended to be used. Changing the thread is also out of scope. I think an FR to move permission checks into binder code is worthwhile.",
       "parentUuid": "36613f8f_c35e50a2",
+      "range": {
+        "startLine": 88,
+        "startChar": 19,
+        "endLine": 88,
+        "endChar": 53
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa263942_a4b10d51",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-15T08:40:47Z",
+      "side": 1,
+      "message": "Filed b/329798093 for this. Will follow up with a CL there. Thank you.",
+      "parentUuid": "e6536e94_64b9d707",
       "range": {
         "startLine": 88,
         "startChar": 19,
@@ -1223,6 +1295,30 @@
       "side": 1,
       "message": "I believe we do not need it for this change. cf comment about how to \"start\" the scan manager service",
       "parentUuid": "b6c896b8_5a957152",
+      "range": {
+        "startLine": 245,
+        "startChar": 0,
+        "endLine": 245,
+        "endChar": 18
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ade8319_cff3ee85",
+        "filename": "framework/java/android/bluetooth/BluetoothProfile.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-15T08:40:47Z",
+      "side": 1,
+      "message": "Filed b/329799050 for this. Will follow up with a CL there. Thank you.",
+      "parentUuid": "8dc9e097_30fb5224",
       "range": {
         "startLine": 245,
         "startChar": 0,

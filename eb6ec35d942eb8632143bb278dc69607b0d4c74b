@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "74a656ec_91d6cc3c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-15T08:40:47Z",
+      "side": 1,
+      "message": "Yes. This is intended. Thank you.\nIn subsequent CLs, in places where the scan manager binder is called from gatt service, the new one will be called via the flag.",
+      "parentUuid": "afb1e7d0_848b7315",
+      "revId": "eb6ec35d942eb8632143bb278dc69607b0d4c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6e2b9b90_9a362d61",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-03-14T22:53:29Z",
       "side": 1,
       "message": "Please add a change in GattService#start that doesn\u0027t create a thread or start the scan helper if the refactor flag is on:\n\nif (!Flags.scanManagerRefactor()) {\n    HandlerThread thread \u003d new HandlerThread(\"BluetoothScanManager\");\n    thread.start();\n    mTransitionalScanHelper.start(thread.getLooper());\n}",
+      "revId": "eb6ec35d942eb8632143bb278dc69607b0d4c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e52c8e3_65b1f8d3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-15T08:40:47Z",
+      "side": 1,
+      "message": "I\u0027ve changed `GattService#start` so the thread is only created if the flag is not enabled. PTAL. Thank you.",
+      "parentUuid": "6e2b9b90_9a362d61",
       "revId": "eb6ec35d942eb8632143bb278dc69607b0d4c74b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -66,6 +102,24 @@
       "side": 1,
       "message": "Agreed, the binder for this will need to be surfaced in the same way as GattService\u0027s.",
       "parentUuid": "754a2db6_1073796e",
+      "revId": "eb6ec35d942eb8632143bb278dc69607b0d4c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f74d7371_b7f93828",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-15T08:40:47Z",
+      "side": 1,
+      "message": "Got it. I\u0027ve added `getBluetoothScan` to `IBluetooth.aidl` and the required relevant functions. PTAL. Thank you.",
+      "parentUuid": "0298133d_d66ca6c5",
       "revId": "eb6ec35d942eb8632143bb278dc69607b0d4c74b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -165,6 +219,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "affc1d8b_6ea825e1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1019,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-15T08:40:47Z",
+      "side": 1,
+      "message": "Filed b/329798171 for this. Will follow up with a CL there. Thank you.",
+      "parentUuid": "54eef8a3_d39013e1",
+      "range": {
+        "startLine": 1016,
+        "startChar": 6,
+        "endLine": 1019,
+        "endChar": 9
+      },
+      "revId": "eb6ec35d942eb8632143bb278dc69607b0d4c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3cd95e32_e6c9f660",
@@ -178,6 +256,30 @@
       "writtenOn": "2024-03-14T01:50:34Z",
       "side": 1,
       "message": "```suggestion\n        mScanManagerService \u003d new ScanManagerService(this);\n        onProfileServiceStateChanged(mScanManagerService, BluetoothAdapter.STATE_ON);\n```",
+      "range": {
+        "startLine": 1087,
+        "startChar": 8,
+        "endLine": 1093,
+        "endChar": 84
+      },
+      "revId": "eb6ec35d942eb8632143bb278dc69607b0d4c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13c59730_77560705",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1093,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-15T08:40:47Z",
+      "side": 1,
+      "message": "Wouldn\u0027t not having `start()` and `setAvailable(true)` calls change the logic in this? And not having it in `mStartedProfiles` also looks like it\u0027ll have a significant change in the rest of the file?\n\nUsing the same filed bug b/329799050 for this. Will follow up with a CL there. Thank you.",
+      "parentUuid": "3cd95e32_e6c9f660",
       "range": {
         "startLine": 1087,
         "startChar": 8,
@@ -225,6 +327,30 @@
       "side": 1,
       "message": "It\u0027s probably best to guard onBleDisable() as well, if the flag is off these steps shouldn\u0027t be done.",
       "parentUuid": "3f87a53b_8f95ad8d",
+      "range": {
+        "startLine": 1119,
+        "startChar": 12,
+        "endLine": 1119,
+        "endChar": 71
+      },
+      "revId": "eb6ec35d942eb8632143bb278dc69607b0d4c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbbc3da3_4752f07b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1119,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-15T08:40:47Z",
+      "side": 1,
+      "message": "I\u0027ve done both changes; 1) With the flag enabled, it won\u0027t be sent twice. Only from `stopScanProfileService` and 2) Same for the call to `mAdapterProperties.onBleDisable()`. PTAL. Thank you.",
+      "parentUuid": "38972ba7_5d8dbe98",
       "range": {
         "startLine": 1119,
         "startChar": 12,
