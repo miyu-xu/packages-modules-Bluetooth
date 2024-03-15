@@ -22,6 +22,30 @@
       },
       "revId": "7aa676d270519567c5b332eab543265c9ffa5b40",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecee84f3_64207103",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 942,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-03-15T09:08:37Z",
+      "side": 1,
+      "message": "As you mentioned in previous comment, this method is called in legacy advertisers so that I\u0027ll not change this line.",
+      "parentUuid": "e2cedfcf_139f08d9",
+      "range": {
+        "startLine": 942,
+        "startChar": 19,
+        "endLine": 942,
+        "endChar": 54
+      },
+      "revId": "7aa676d270519567c5b332eab543265c9ffa5b40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
