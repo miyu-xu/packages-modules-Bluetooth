@@ -1084,7 +1084,12 @@ public class ScanManager {
                     mNativeInterface.gattSetScanParameters(
                             client.scannerId, scanInterval, scanWindow, scanPhyMask);
                     mNativeInterface.gattClientScan(true);
-                    if (!AppScanStats.recordScanRadioStart(curScanSetting)) {
+                    if (!AppScanStats.recordScanRadioStart(
+                            curScanSetting,
+                            client.scannerId,
+                            client.stats,
+                            scanWindowMs,
+                            scanIntervalMs)) {
                         Log.w(TAG, "Scan radio already started");
                     }
                     mLastConfiguredScanSetting = curScanSetting;
@@ -1122,8 +1127,15 @@ public class ScanManager {
                     && client.settings.getScanMode() != ScanSettings.SCAN_MODE_OPPORTUNISTIC) {
                 Log.d(TAG, "start gattClientScanNative from startRegularScan()");
                 mNativeInterface.gattClientScan(true);
-                if (!AppScanStats.recordScanRadioStart(client.settings.getScanMode())) {
-                    Log.w(TAG, "Scan radio already started");
+                if (!Flags.bleScanAdvMetricsRedesign()) {
+                    if (!AppScanStats.recordScanRadioStart(
+                            client.settings.getScanMode(),
+                            client.scannerId,
+                            client.stats,
+                            getScanWindowMillis(client.settings),
+                            getScanIntervalMillis(client.settings))) {
+                        Log.w(TAG, "Scan radio already started");
+                    }
                 }
             }
         }
@@ -1373,7 +1385,8 @@ public class ScanManager {
                 }
                 if (client.stats != null) {
                     client.stats.setScanTimeout(client.scannerId);
-                    client.stats.recordScanTimeoutCountMetrics();
+                    client.stats.recordScanTimeoutCountMetrics(
+                            client.scannerId, mAdapterService.getScanTimeoutMillis());
                 }
             }
 
@@ -1518,7 +1531,10 @@ public class ScanManager {
                                     "No hardware resources for onfound/onlost filter "
                                             + trackEntries);
                             if (client.stats != null) {
-                                client.stats.recordTrackingHwFilterNotAvailableCountMetrics();
+                                client.stats.recordTrackingHwFilterNotAvailableCountMetrics(
+                                        client.scannerId,
+                                        AdapterService.getAdapterService()
+                                                .getTotalNumOfTrackableAdvertisements());
                             }
                             try {
                                 mScanHelper.onScanManagerErrorCallback(
@@ -1619,7 +1635,10 @@ public class ScanManager {
             }
             if (client.filters.size() > mFilterIndexStack.size()) {
                 if (client.stats != null) {
-                    client.stats.recordHwFilterNotAvailableCountMetrics();
+                    client.stats.recordHwFilterNotAvailableCountMetrics(
+                            client.scannerId,
+                            AdapterService.getAdapterService()
+                                    .getNumOfOffloadedScanFilterSupported());
                 }
                 return true;
             }
