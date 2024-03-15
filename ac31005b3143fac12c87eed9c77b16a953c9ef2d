@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "08060524_cfd4f2aa",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-03-15T23:24:04Z",
+      "side": 1,
+      "message": "So for devices like DUAL (A) + LE Only (B), we not connect LEA profile A, but for B, we will not connect its LEA profile as well?\n\n I thought in `isLeAudioOnlyDevice` of `processInitProfilePriorities` will still make LEA allow only for B and thus we will connect it.",
+      "parentUuid": "735787f5_e6717764",
+      "range": {
+        "startLine": 585,
+        "startChar": 12,
+        "endLine": 585,
+        "endChar": 31
+      },
+      "revId": "ac31005b3143fac12c87eed9c77b16a953c9ef2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fd7b69f3_43e75c8a",
         "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
         "patchSetId": 2
