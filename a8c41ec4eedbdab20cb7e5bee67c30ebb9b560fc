@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9960ca9_e68c9d48",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-15T02:22:39Z",
+      "side": 1,
+      "message": "If the flag is enabled, should we save `db_version` when `transport \u003d\u003d auto`? Should `transport \u003d\u003d auto` be considered an error?",
+      "revId": "a8c41ec4eedbdab20cb7e5bee67c30ebb9b560fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

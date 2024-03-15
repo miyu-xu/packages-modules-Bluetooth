@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a12ad35b_892a319d",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-15T02:22:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0fd48077_cabce341",
+      "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "11fe3af4_8426aa1d",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-03-14T02:30:36Z",
       "side": 1,
       "message": "We need to compare the complete link_spec",
+      "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c229cc7e_eb9831ed",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-15T02:22:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11fe3af4_8426aa1d",
       "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7085c52_81ea4383",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-15T02:22:39Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0724c75d_670a3e8b",
+      "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4a97cb6_9ba6f127",
@@ -65,6 +119,24 @@
       "writtenOn": "2024-03-14T02:30:36Z",
       "side": 1,
       "message": "We should not break here anymore. We may have more than one instance which is supported here.",
+      "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3992f6df_1e7c42c4",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-15T02:22:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4a97cb6_9ba6f127",
       "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f291c967_342336df",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-15T02:22:39Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "cec97e5f_9091e8f8",
+      "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d02772e_56c3825d",
@@ -99,6 +189,24 @@
       "writtenOn": "2024-03-14T02:30:36Z",
       "side": 1,
       "message": "This removes the HOGP connection instance as well. We need to remove just the HID connection instance.",
+      "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45f6f200_c03877b3",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1186,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-15T02:22:39Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4d02772e_56c3825d",
       "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -120,6 +228,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f95a0f32_e9f51664",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-15T02:22:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "300236f0_4d3b61c1",
+      "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d4f66c74_c8b8b060",
@@ -133,6 +259,24 @@
       "writtenOn": "2024-03-14T02:30:36Z",
       "side": 1,
       "message": "This should be done only once in btif_storage_load_bonded_hid_info()",
+      "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ebe3495_66fb871f",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-15T02:22:39Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d4f66c74_c8b8b060",
       "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -160,6 +304,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c71da423_6d6f0a51",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-15T02:22:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ddbf3e8_0771c770",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 43
+      },
+      "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d9ee2da_5a5b8b9c",
@@ -173,6 +341,24 @@
       "writtenOn": "2024-03-14T02:30:36Z",
       "side": 1,
       "message": "This decision can be made outside of this function. Then we don\u0027t have to pass db_version parameter.",
+      "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1af66ce7_c9860b41",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-15T02:22:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d9ee2da_5a5b8b9c",
       "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -200,6 +386,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c35de1b7_12cb8c29",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-15T02:22:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f31183ef_1a98e24c",
+      "range": {
+        "startLine": 229,
+        "startChar": 0,
+        "endLine": 230,
+        "endChar": 43
+      },
+      "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cd338939_f115b4b3",
@@ -217,6 +427,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b47c1bc_9edd242d",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-15T02:22:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd338939_f115b4b3",
+      "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "efee4ef3_9c56ccc0",
@@ -230,6 +458,24 @@
       "writtenOn": "2024-03-14T02:30:36Z",
       "side": 1,
       "message": "Retrieve db_version only if the feature is enabled",
+      "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4540c6b_7d8959e6",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-15T02:22:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "efee4ef3_9c56ccc0",
       "revId": "12b3ea4cb5fe6e61be39786af2f822274b249730",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
