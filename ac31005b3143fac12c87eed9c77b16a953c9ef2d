@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "137bb116_35b5e584",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-03-15T18:08:28Z",
+      "side": 1,
+      "message": "I have a question, \n\nIf 2 devices `A (DUAL)` and `B (LE Only)` in csip group, for each device when it is connected, we process `processInitProfilePriorities` to check if it is LE Only. \n\n\nFirst device `A` process `processInitProfilePriorities` and not connect LEA profle since it is not LE Only and execute `handleLeAudioOnlyDeviceAfterCsipConnect` but not gonnoa work since group is not completed.\n\ndevice `B` is connected, process `processInitProfilePriorities` and find it is LE Only, currently, `isLeAudioProfileAllowed ` is `true` since device `B` is LE Only, but when device `B` process `handleLeAudioOnlyDeviceAfterCsipConnect` after CSIP profile connected, it found its leader is dual mode, not LE only, It just do nothing and return since `isLeAudioOnlyGroup(device)` is false. \n\nBut in this scenario, isn\u0027t the device `B(LE Only)` will still connect LEA profile after CSIP connected? should we process the logic that if one of its group members is not le only, then setting all device that its LEA profile allowed to be disalloed? (like `B`)? So that we would not connect `B`\u0027s LEA prOfile as CSIP profle always prior to LEA profile to be connected. We set LEA profile to not allowed just right before we connect LEA profile for device `B`.\n\nand worse scenario is 3 devices, `A(DUAL)`, `B(LE Only)`, and `C(LE Only)`\n\nfor `B` we will connect its LEA profile and for `C` we will still connect its LEA profile.\n\n1.\n\n```\nif (!isLeAudioOnlyGroup(device)) {\n  // check again for its device group even if group is not completed\n  // set all LE only device not allow to connect LEA profile \n  // if any of its member is dual (like `A`).\n}\n```\n\nPlease correct me if i am wrong.",
+      "range": {
+        "startLine": 585,
+        "startChar": 12,
+        "endLine": 585,
+        "endChar": 31
+      },
+      "revId": "ac31005b3143fac12c87eed9c77b16a953c9ef2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fd7b69f3_43e75c8a",
         "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
         "patchSetId": 2
