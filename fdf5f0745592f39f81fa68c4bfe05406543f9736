@@ -22,6 +22,29 @@
       },
       "revId": "fdf5f0745592f39f81fa68c4bfe05406543f9736",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ba6ac35_63d688ac",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpNativeInterface.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-15T00:04:39Z",
+      "side": 1,
+      "message": "Why not change this method to take in the BluetoothDevice and then can use Util method already added for BR/EDR address?\n\nBluetoothDevice is already imported in this class anyways.",
+      "range": {
+        "startLine": 97,
+        "startChar": 28,
+        "endLine": 97,
+        "endChar": 41
+      },
+      "revId": "fdf5f0745592f39f81fa68c4bfe05406543f9736",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
