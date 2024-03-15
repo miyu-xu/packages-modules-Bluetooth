@@ -589,6 +589,7 @@ public class TransitionalScanHelper {
             return;
         }
         client.appDied = true;
+        client.stats.isAppDead = true;
         stopScan(client.scannerId, mContext.getAttributionSource());
     }
 
@@ -1429,6 +1430,7 @@ public class TransitionalScanHelper {
                     handleDeadScanClient(client);
                 } else {
                     client.appDied = true;
+                    client.stats.isAppDead = true;
                     stopScan(client.scannerId, mContext.getAttributionSource());
                 }
             }
