@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61639327_545a3c70",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-03-15T01:41:34Z",
+      "side": 1,
+      "message": "So the initial problem was that BluetoothDevice#getIdentityAddress API was returning mAddress field if identity address was not available. This was technically wrong and causing problems in DCK implementation, so the API was fixed to return null when identity address was not available. (Changed in aosp/2883070)\n\nThen this CL is trying to fix the existing functions that use the API to expect a null return value.",
+      "parentUuid": "2a37654a_11eb2949",
+      "range": {
+        "startLine": 211,
+        "startChar": 41,
+        "endLine": 211,
+        "endChar": 59
+      },
+      "revId": "fdf5f0745592f39f81fa68c4bfe05406543f9736",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ba6ac35_63d688ac",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-15T00:04:39Z",
       "side": 1,
       "message": "Why not change this method to take in the BluetoothDevice and then can use Util method already added for BR/EDR address?\n\nBluetoothDevice is already imported in this class anyways.",
+      "range": {
+        "startLine": 97,
+        "startChar": 28,
+        "endLine": 97,
+        "endChar": 41
+      },
+      "revId": "fdf5f0745592f39f81fa68c4bfe05406543f9736",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2aca11d_6cbb9087",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpNativeInterface.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-03-15T01:41:34Z",
+      "side": 1,
+      "message": "That makes sense. Removed the new util method and changed the functions to take in BluetoothDevice and use the existing util method.",
+      "parentUuid": "0ba6ac35_63d688ac",
       "range": {
         "startLine": 97,
         "startChar": 28,
