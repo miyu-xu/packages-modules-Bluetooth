@@ -100,6 +100,9 @@ java_sdk_library {
     lint: {
         strict_updatability_linting: true,
     },
+    aconfig_declarations: [
+        "bluetooth_aconfig_flags",
+    ],
 }
 
 // defaults for tests that need to build against framework-bluetooths's @hide APIs

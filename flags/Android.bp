@@ -10,6 +10,9 @@ aconfig_declarations {
     srcs: [
         "**/*.aconfig",
     ],
+    visibility: [
+        "//packages/modules/Bluetooth/framework",
+    ],
 }
 
 java_aconfig_library {
