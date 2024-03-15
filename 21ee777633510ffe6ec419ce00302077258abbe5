@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd561076_0307f8ac",
+        "filename": "android/app/aidl/android/bluetooth/IBluetooth.aidl",
+        "patchSetId": 12
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-15T17:54:00Z",
+      "side": 1,
+      "message": "Does this need to be accessible from system_server ?\nIf not, `oneway` should not be necessary.\n```suggestion\n    IBinder getBluetoothScan();\n```",
+      "range": {
+        "startLine": 312,
+        "startChar": 0,
+        "endLine": 312,
+        "endChar": 72
+      },
+      "revId": "21ee777633510ffe6ec419ce00302077258abbe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa7da880_82b73042",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1014,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-15T17:54:00Z",
+      "side": 1,
+      "message": "Should be done before startGattProfileService",
+      "range": {
+        "startLine": 1012,
+        "startChar": 0,
+        "endLine": 1014,
+        "endChar": 9
+      },
+      "revId": "21ee777633510ffe6ec419ce00302077258abbe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2b0c5f0_02ebe830",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-15T17:54:00Z",
+      "side": 1,
+      "message": "You can remove 99% of the code you are adding in the adapterService by having this here:\n\n```suggestion\n        } else {\n            mScanManagerService \u003d new ScanManagerService\n        }\n```\n\nAnd then you will be close to a no-op refactoring CL",
+      "range": {
+        "startLine": 236,
+        "startChar": 0,
+        "endLine": 236,
+        "endChar": 9
+      },
+      "revId": "21ee777633510ffe6ec419ce00302077258abbe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

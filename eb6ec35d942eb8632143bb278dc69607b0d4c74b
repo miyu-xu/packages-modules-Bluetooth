@@ -292,6 +292,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6eadab4f_37d4b81d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1093,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-15T17:54:00Z",
+      "side": 1,
+      "message": "You are adding an entry to mStartedProfiles that is not used.\n\nThis \"profile\" is always supported and must not be disabled (or else the stack doesn\u0027t work).\n\nConsolidating start and setAvailable in the constructor does not change the logic.\n\nI also believe you don\u0027t want to call onProfileServiceStateChanged as this will duplicate with Gatt one",
+      "parentUuid": "13c59730_77560705",
+      "range": {
+        "startLine": 1087,
+        "startChar": 8,
+        "endLine": 1093,
+        "endChar": 84
+      },
+      "revId": "eb6ec35d942eb8632143bb278dc69607b0d4c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3f87a53b_8f95ad8d",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
         "patchSetId": 11
