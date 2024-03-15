@@ -64,6 +64,11 @@ class DistanceMeasurementCallbacks {
       int altitude_angle,
       int error_altitude_angle,
       DistanceMeasurementMethod method) = 0;
+  virtual void OnChannelSoundingSubevent(
+      Address address,
+      uint16_t procedure_counter,
+      uint8_t procedure_done_status,
+      std::vector<uint8_t> raw_data) = 0;
 };
 
 class DistanceMeasurementManager : public bluetooth::Module {

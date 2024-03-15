@@ -31,6 +31,7 @@
 #include "os/handler.h"
 #include "os/log.h"
 #include "os/repeating_alarm.h"
+#include "os/system_properties.h"
 #include "packet/packet_view.h"
 
 namespace bluetooth {
@@ -198,6 +199,20 @@ struct DistanceMeasurementManager::impl {
     cs_trackers_[connection_handle].interval_ms = interval;
     cs_trackers_[connection_handle].waiting_for_start_callback = true;
 
+    if (os::GetSystemPropertyBool("bluetooth.core.cs.ras_use_fake_data", true)) {
+      log::info("CYDBG RAS, use fake data");
+      cs_trackers_[connection_handle].waiting_for_start_callback = false;
+      distance_measurement_callbacks_->OnDistanceMeasurementStartFail(
+          cs_trackers_[connection_handle].address, REASON_INTERNAL_ERROR, METHOD_CS);
+
+      send_fake_on_demand_data(connection_handle);
+      cs_trackers_[connection_handle].repeating_alarm->Schedule(
+          common::Bind(
+              &impl::send_fake_on_demand_data, common::Unretained(this), connection_handle),
+          std::chrono::milliseconds(1500));
+      return;
+    }
+
     if (!cs_trackers_[connection_handle].setup_complete) {
       send_le_cs_read_remote_supported_capabilities(connection_handle);
       return;
@@ -218,6 +233,21 @@ struct DistanceMeasurementManager::impl {
             connection_handle,
             Enable::ENABLED),
         std::chrono::milliseconds(cs_trackers_[connection_handle].interval_ms));
+  }
+
+  void send_fake_on_demand_data(uint16_t connection_handle) {
+    uint16_t counter = cs_trackers_[connection_handle].fake_cs_data[1];
+    log::info("CYDBG RAS, counter:{}", counter);
+    distance_measurement_callbacks_->OnChannelSoundingSubevent(
+        cs_trackers_[connection_handle].address,
+        counter,
+        (uint8_t)CsProcedureDoneStatus::ALL_RESULTS_COMPLETE,
+        cs_trackers_[connection_handle].fake_cs_data);
+    cs_trackers_[connection_handle].fake_cs_data[1]++;
+    if (cs_trackers_[connection_handle].fake_cs_data[1] >= 5) {
+      cs_trackers_[connection_handle].fake_cs_data[1] = 0;
+      cs_trackers_[connection_handle].repeating_alarm->Cancel();
+    }
   }
 
   void stop_distance_measurement(const Address& address, DistanceMeasurementMethod method) {
@@ -1003,6 +1033,21 @@ struct DistanceMeasurementManager::impl {
     uint16_t interval_ms;
     bool waiting_for_start_callback = false;
     std::unique_ptr<os::RepeatingAlarm> repeating_alarm;
+    // RAS test
+    std::vector<uint8_t> fake_cs_data = {
+        0x03, 0x00, 0x00, 0x14, 0xed, 0x01, 0xfc, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x13, 0x00,
+        0x00, 0xc5, 0x02, 0x00, 0x00, 0xc2, 0x02, 0x00, 0x00, 0xc1, 0x02, 0x02, 0x00, 0x11, 0xe0,
+        0xff, 0x00, 0xfd, 0x1f, 0x00, 0x13, 0x02, 0x00, 0x0f, 0xb0, 0x00, 0x00, 0x0d, 0xa0, 0x00,
+        0x20, 0x02, 0x00, 0xea, 0xff, 0x00, 0x00, 0xe8, 0xff, 0x00, 0x13, 0x02, 0x00, 0xe9, 0xaf,
+        0xff, 0x00, 0x00, 0xe0, 0xff, 0x20, 0x02, 0x00, 0xe4, 0xef, 0x00, 0x00, 0xe5, 0xef, 0x00,
+        0x13, 0x02, 0x00, 0xf5, 0x2f, 0x01, 0x00, 0x03, 0x10, 0x00, 0x13, 0x02, 0x00, 0x0c, 0x10,
+        0x01, 0x00, 0x0c, 0x00, 0x01, 0x13, 0x02, 0x00, 0x0e, 0x80, 0xff, 0x00, 0x00, 0x20, 0x00,
+        0x20, 0x02, 0x00, 0x12, 0x80, 0xff, 0x00, 0x00, 0x00, 0x00, 0x20, 0x02, 0x00, 0x08, 0x00,
+        0xff, 0x00, 0x09, 0x20, 0xff, 0x13, 0x02, 0x00, 0x13, 0x10, 0xff, 0x00, 0x12, 0x10, 0xff,
+        0x13, 0x02, 0x00, 0x04, 0x40, 0x01, 0x00, 0x00, 0x10, 0x00, 0x20, 0x02, 0x00, 0xfb, 0x9f,
+        0xfe, 0x00, 0xfa, 0x8f, 0xfe, 0x13, 0x02, 0x00, 0x14, 0xe0, 0xff, 0x00, 0x12, 0xc0, 0xff,
+        0x13, 0x02, 0x00, 0xef, 0x4f, 0x00, 0x00, 0xe7, 0x8f, 0xff, 0x20, 0x02, 0x00, 0xfb, 0x9f,
+        0x00, 0x00, 0x00, 0x50, 0x00, 0x20};
   };
 
   os::Handler* handler_;
