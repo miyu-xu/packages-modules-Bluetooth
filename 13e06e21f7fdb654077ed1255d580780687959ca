@@ -833,6 +833,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c6f8782a_542f2c20",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-15T18:34:49Z",
+      "side": 1,
+      "message": "It may have been approved (despite no approver on the doc), I am telling you this is a mistake.\n\nI feel like I have to add that I don\u0027t want you to think I am against this refactor as I really think we should have a \"ScanManager\" that is separated from the whole gatt.\n\nBut I believe the current decision is not correct and will bring more issue than it will solve.",
+      "parentUuid": "a67ca292_3ff9c9e5",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 73
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ea29f47_16b06957",
         "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
         "patchSetId": 5
