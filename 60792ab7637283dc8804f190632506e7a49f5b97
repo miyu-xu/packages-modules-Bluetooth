@@ -16,6 +16,120 @@
       "message": "Removing WIP to attract attention.",
       "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e283b2c_70638110",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-15T12:11:17Z",
+      "side": 1,
+      "message": "Haven\u0027t finish my review, was busy with the Casa and ARC stuff.",
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce7ce439_dd221030",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-15T12:11:17Z",
+      "side": 1,
+      "message": "nit: future",
+      "range": {
+        "startLine": 234,
+        "startChar": 22,
+        "endLine": 234,
+        "endChar": 29
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37dd78db_8f0d8c2a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1290,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-15T12:11:17Z",
+      "side": 1,
+      "message": "nit: Update comment, this is now implemented.",
+      "range": {
+        "startLine": 1290,
+        "startChar": 22,
+        "endLine": 1290,
+        "endChar": 39
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0e4017d_9cdda548",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1321,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-15T12:11:17Z",
+      "side": 1,
+      "message": "nit: remove extraneous newline",
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3851dcf0_3e3853b0",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2016,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-15T12:11:17Z",
+      "side": 1,
+      "message": "add comment explaining what these variables do",
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3c294c8_57c6412b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2201,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-15T12:11:17Z",
+      "side": 1,
+      "message": "nit: remove comment",
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
