@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b56b9929_a5f93263",
+        "filename": "system/stack/include/bt_name.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-15T19:18:27Z",
+      "side": 1,
+      "message": "this does not zero the rest of the array, only the 1st char, shouldn\u0027t we zero everything following what you want to do for this CL?",
+      "range": {
+        "startLine": 40,
+        "startChar": 44,
+        "endLine": 40,
+        "endChar": 60
+      },
+      "revId": "a84d21ac70580c1a5860a5f1a299e2c38328168e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
