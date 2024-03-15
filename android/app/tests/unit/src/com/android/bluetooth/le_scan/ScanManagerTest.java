@@ -75,7 +75,6 @@ import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.BluetoothAdapterProxy;
 import com.android.bluetooth.btservice.MetricsLogger;
-import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.gatt.GattNativeInterface;
 import com.android.bluetooth.gatt.GattObjectsFactory;
 import com.android.bluetooth.gatt.GattService;
@@ -323,6 +322,8 @@ public class ScanManagerTest {
         ScanSettings scanSettings = createScanSettingsWithPhy(scanMode, phy);
 
         ScanClient client = new ScanClient(id, scanSettings, scanFilterList);
+        client.stats = mMockAppScanStats;
+        client.stats.recordScanStart(scanSettings, scanFilterList, isFiltered, false, id);
         return client;
     }
 
