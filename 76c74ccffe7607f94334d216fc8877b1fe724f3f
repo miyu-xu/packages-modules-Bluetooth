@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1044efd4_6bab483b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-15T00:58:17Z",
+      "side": 1,
+      "message": "This is a nice cleanup. Glad to see `AdapterService` variables in proper order. Thank you!",
+      "revId": "76c74ccffe7607f94334d216fc8877b1fe724f3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
