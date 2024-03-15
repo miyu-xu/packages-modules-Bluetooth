@@ -340,6 +340,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d649db0d_2c051dcf",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1093,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-15T20:49:59Z",
+      "side": 1,
+      "message": "Agree, more changes are needed to get this to work with the flag on (although with the flag off it should be OK for the most part).\n\nTo move forward, I suggest removing most changes from this file in this CL. It will be easier to address all the necessary changes in AdapterService in the next CL. Generally it\u0027s best to have small CLs anyway to facilitate the code review process.\n\nLet\u0027s keep the getBluetoothScan methods and the mScanManagerService member, and move everything else to a separate CL that is focused on the logic changes in this class.",
+      "parentUuid": "a1c3ccd5_88dabe7c",
+      "range": {
+        "startLine": 1087,
+        "startChar": 8,
+        "endLine": 1093,
+        "endChar": 84
+      },
+      "revId": "eb6ec35d942eb8632143bb278dc69607b0d4c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3f87a53b_8f95ad8d",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
         "patchSetId": 11

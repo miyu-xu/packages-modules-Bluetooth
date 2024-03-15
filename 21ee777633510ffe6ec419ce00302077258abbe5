@@ -72,6 +72,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "774ac92d_f4d3d9a2",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-15T20:49:59Z",
+      "side": 1,
+      "message": "True, but unfortunately that doesn\u0027t take us closer to the end goal of separating the lifecycle of the scanning code from the GattService lifecycle. We will need to have the branching logic (and more than is there at the moment in this CL) in AdapterService before rolling out the flag.",
+      "parentUuid": "a2b0c5f0_02ebe830",
+      "range": {
+        "startLine": 236,
+        "startChar": 0,
+        "endLine": 236,
+        "endChar": 9
+      },
+      "revId": "21ee777633510ffe6ec419ce00302077258abbe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5c52aa47_eac643f3",
         "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
         "patchSetId": 12
