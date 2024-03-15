@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78f782ff_fca91ee2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-15T18:31:23Z",
+      "side": 1,
+      "message": "CP was not clean; I may try to do manually and abandon this.",
+      "revId": "13a22d30a6c42b2928dd314b1aeb0b44c9b246dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
