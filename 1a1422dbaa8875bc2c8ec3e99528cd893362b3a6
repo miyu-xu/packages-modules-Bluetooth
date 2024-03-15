@@ -119,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "646bfc66_d4ebd86b",
+        "filename": "system/stack/include/bt_name.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-15T19:19:32Z",
+      "side": 1,
+      "message": "Yes, please.",
+      "parentUuid": "633c1811_1b3df9e0",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 62
+      },
+      "revId": "1a1422dbaa8875bc2c8ec3e99528cd893362b3a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c08ae47_9a8e1788",
