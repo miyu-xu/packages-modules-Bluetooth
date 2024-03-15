@@ -1106,7 +1106,12 @@ public class ScanManager {
                     mNativeInterface.gattSetScanParameters(client.scannerId, scanInterval,
                             scanWindow);
                     mNativeInterface.gattClientScan(true);
-                    if (!AppScanStats.recordScanRadioStart(curScanSetting)) {
+                    if (!AppScanStats.recordScanRadioStart(
+                            curScanSetting,
+                            client.scannerId,
+                            client.stats,
+                            scanWindowMs,
+                            scanIntervalMs)) {
                         Log.w(TAG, "Scan radio already started");
                     }
                     mLastConfiguredScanSetting = curScanSetting;
@@ -1148,7 +1153,12 @@ public class ScanManager {
                     Log.d(TAG, "start gattClientScanNative from startRegularScan()");
                 }
                 mNativeInterface.gattClientScan(true);
-                if (!AppScanStats.recordScanRadioStart(client.settings.getScanMode())) {
+                if (!AppScanStats.recordScanRadioStart(
+                        client.settings.getScanMode(),
+                        client.scannerId,
+                        client.stats,
+                        getScanWindowMillis(client.settings),
+                        getScanIntervalMillis(client.settings))) {
                     Log.w(TAG, "Scan radio already started");
                 }
             }
@@ -1407,7 +1417,8 @@ public class ScanManager {
                     client.updateScanMode(getMinScanMode(scanMode, maxScanMode));
                 }
                 client.stats.setScanTimeout(client.scannerId);
-                client.stats.recordScanTimeoutCountMetrics();
+                client.stats.recordScanTimeoutCountMetrics(
+                        client.scannerId, mAdapterService.getScanTimeoutMillis());
             }
 
             // The scan should continue for background scans
@@ -1551,7 +1562,10 @@ public class ScanManager {
                         if (!manageAllocationOfTrackingAdvertisement(trackEntries, true)) {
                             Log.e(TAG, "No hardware resources for onfound/onlost filter "
                                     + trackEntries);
-                            client.stats.recordTrackingHwFilterNotAvailableCountMetrics();
+                            client.stats.recordTrackingHwFilterNotAvailableCountMetrics(
+                                    client.scannerId,
+                                    AdapterService.getAdapterService()
+                                            .getTotalNumOfTrackableAdvertisements());
                             try {
                                 mScanHelper.onScanManagerErrorCallback(
                                         scannerId, ScanCallback.SCAN_FAILED_INTERNAL_ERROR);
@@ -1650,7 +1664,9 @@ public class ScanManager {
                 return true;
             }
             if (client.filters.size() > mFilterIndexStack.size()) {
-                client.stats.recordHwFilterNotAvailableCountMetrics();
+                client.stats.recordHwFilterNotAvailableCountMetrics(
+                        client.scannerId,
+                        AdapterService.getAdapterService().getNumOfOffloadedScanFilterSupported());
                 return true;
             }
             return false;
