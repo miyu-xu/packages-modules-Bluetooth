@@ -785,6 +785,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "362b341a_92722324",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-15T18:01:51Z",
+      "side": 1,
+      "message": "This CL is the current state is adding a new \"profile\", this is a added complexity.\n\nI keep repeating that we should not mess with the startedProfiles. nor add the scan manager as a profile.\n\n\nSo yes I agree with you, we should have a proper design being done and not simply move things around.\nFor the threading, yes we should have a design doc.\n\nThank you for saying that. I belive that without design doc we should postpone merging these change",
+      "parentUuid": "f04b8173_0f2b9eae",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 73
+      },
+      "revId": "13e06e21f7fdb654077ed1255d580780687959ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ea29f47_16b06957",
         "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
         "patchSetId": 5

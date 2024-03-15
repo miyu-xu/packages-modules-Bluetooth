@@ -316,6 +316,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a1c3ccd5_88dabe7c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1093,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-15T18:01:51Z",
+      "side": 1,
+      "message": "FYI:\n\nThis CL **does not work**, for example, you will face issue when turning off the bluetooth \n```\n if ((mRunningProfiles.size() \u003d\u003d 1\n                            \u0026\u0026 (GattService.class\n                                    .getSimpleName()\n                                    .equals(mRunningProfiles.get(0).getName())))) {\n```\n\nNow this check fail.\n\nTrust me, there are other consideration than just that.",
+      "parentUuid": "6eadab4f_37d4b81d",
+      "range": {
+        "startLine": 1087,
+        "startChar": 8,
+        "endLine": 1093,
+        "endChar": 84
+      },
+      "revId": "eb6ec35d942eb8632143bb278dc69607b0d4c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3f87a53b_8f95ad8d",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
         "patchSetId": 11
