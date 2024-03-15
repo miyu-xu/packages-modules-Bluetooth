@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "748ce8b8_bd7a8947",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-15T16:26:55Z",
+      "side": 1,
+      "message": "Use new logging function",
+      "revId": "735e21cf8025dd8b9634409fe2c3ec2da2971c3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
