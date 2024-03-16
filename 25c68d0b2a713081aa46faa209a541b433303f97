@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9349f56_8c8a6dc8",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-16T00:25:24Z",
+      "side": 1,
+      "message": "Already declared here",
+      "revId": "25c68d0b2a713081aa46faa209a541b433303f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
