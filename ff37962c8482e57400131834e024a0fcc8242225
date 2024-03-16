@@ -1370,6 +1370,30 @@
       },
       "revId": "ff37962c8482e57400131834e024a0fcc8242225",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d0ef2cc_63e62cac",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-16T07:15:16Z",
+      "side": 1,
+      "message": "The unflagged version is handled earlier and returns early.",
+      "parentUuid": "8256f109_ac3ece5e",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 3
+      },
+      "revId": "ff37962c8482e57400131834e024a0fcc8242225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
