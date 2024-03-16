@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30ab8b63_31f7a786",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-16T05:56:28Z",
+      "side": 1,
+      "message": "Need to guard the logical changes",
+      "revId": "1dcb6cc3f7e868dd62a85e1bbfce5cd1d368ccc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
