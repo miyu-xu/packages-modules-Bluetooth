@@ -25,10 +25,20 @@
 #include <string>
 
 #include "gtest/gtest.h"
+#include "hci/include/packet_fragmenter.h"
 #include "module.h"
 #include "os/handler.h"
+#include "stack/btm/btm_int_types.h"
+#include "stack/btm/btm_sec_cb.h"
 
 using namespace bluetooth;
+
+tBTM_CB btm_cb;
+tBTM_SEC_CB btm_sec_cb;
+const packet_fragmenter_t* packet_fragmenter_get_interface() {
+  return nullptr;
+}
+bluetooth::common::TimestamperInMilliseconds timestamper_in_milliseconds;
 
 namespace {
 constexpr int sync_timeout_in_ms = 3000;
