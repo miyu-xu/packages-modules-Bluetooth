@@ -20,11 +20,11 @@
 
 #include <csignal>
 #include <cstring>
-#include <memory>
 #include <optional>
 #include <string>
 #include <thread>
 
+#include "hci/include/packet_fragmenter.h"
 #include "stack_manager.h"
 
 // clang-format off
@@ -40,12 +40,20 @@
 #include "os/log.h"
 #include "os/parameter_provider.h"
 #include "os/system_properties.h"
+#include "stack/btm/btm_int_types.h"
+#include "stack/btm/btm_sec_cb.h"
 
 using ::bluetooth::ModuleList;
 using ::bluetooth::StackManager;
 using ::bluetooth::hal::HciHalHostRootcanalConfig;
 using ::bluetooth::os::Thread;
 using namespace bluetooth;
+
+tBTM_CB btm_cb;
+tBTM_SEC_CB btm_sec_cb;
+const packet_fragmenter_t* packet_fragmenter_get_interface() {
+  return nullptr;
+}
 
 extern "C" const char* __asan_default_options() {
   return "detect_container_overflow=0";
