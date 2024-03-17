@@ -52,8 +52,7 @@ typedef struct {
   // The reader must read using a buffer of at least this size to avoid
   // loosing data. (L2CAP only)
   unsigned short max_rx_packet_size;
-  unsigned short l2cap_lcid;
-  unsigned short l2cap_rcid;
+  uint32_t id;
 } __attribute__((packed)) sock_connect_signal_t;
 
 typedef struct {
@@ -108,6 +107,16 @@ typedef struct {
    * device address.
    */
   bt_status_t (*disconnect_all)(const RawAddress* bd_addr);
+
+  /**
+   * Get L2CAP local channel ID with the associated socket id.
+   */
+  bt_status_t (*get_l2cap_local_cid)(uint32_t id, uint16_t* cid);
+
+  /**
+   * Get L2CAP remote channel ID with the associated socket id.
+   */
+  bt_status_t (*get_l2cap_remote_cid)(uint32_t id, uint16_t* cid);
 
 } btsock_interface_t;
 
