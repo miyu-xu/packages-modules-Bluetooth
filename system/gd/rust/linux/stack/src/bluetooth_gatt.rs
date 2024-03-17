@@ -1388,7 +1388,6 @@ impl GattAsyncIntf {
                 scan_type,
                 scan_interval,
                 scan_window,
-                1,
             );
         }
         self.gatt.as_ref().unwrap().lock().unwrap().scanner.start_scan();

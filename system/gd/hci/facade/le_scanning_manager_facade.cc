@@ -84,11 +84,7 @@ class LeScanningManagerFacadeService : public LeScanningManagerFacade::Service, 
       ::google::protobuf::Empty* /* response */) override {
     auto scan_type = static_cast<hci::LeScanType>(request->scan_type());
     le_scanning_manager_->SetScanParameters(
-        request->scanner_id(),
-        scan_type,
-        request->scan_interval(),
-        request->scan_window(),
-        request->scan_phy());
+        request->scanner_id(), scan_type, request->scan_interval(), request->scan_window());
     return ::grpc::Status::OK;
   }
 

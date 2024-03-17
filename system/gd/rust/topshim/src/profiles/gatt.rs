@@ -202,7 +202,6 @@ pub mod ffi {
             scan_type: u8,
             scan_interval: u16,
             scan_window: u16,
-            scan_phy: u8,
         );
 
         fn BatchscanConfigStorage(
@@ -1548,17 +1547,8 @@ impl BleScanner {
         scan_type: u8,
         scan_interval: u16,
         scan_window: u16,
-        scan_phy: u8,
     ) {
-        mutcxxcall!(
-            self,
-            SetScanParameters,
-            scanner_id,
-            scan_type,
-            scan_interval,
-            scan_window,
-            scan_phy
-        );
+        mutcxxcall!(self, SetScanParameters, scanner_id, scan_type, scan_interval, scan_window);
     }
 
     pub fn batchscan_config_storage(

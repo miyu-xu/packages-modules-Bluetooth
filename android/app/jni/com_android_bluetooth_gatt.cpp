@@ -1546,12 +1546,11 @@ void set_scan_params_cmpl_cb(int client_if, uint8_t status) {
 
 static void gattSetScanParametersNative(JNIEnv* /* env */, jobject /* object */,
                                         jint client_if, jint scan_interval_unit,
-                                        jint scan_window_unit, jint scan_phy) {
+                                        jint scan_window_unit) {
   if (!sGattIf) return;
   sGattIf->scanner->SetScanParameters(
       client_if, /* use active scan */ 0x01, scan_interval_unit,
-      scan_window_unit, scan_phy,
-      base::Bind(&set_scan_params_cmpl_cb, client_if));
+      scan_window_unit, base::Bind(&set_scan_params_cmpl_cb, client_if));
 }
 
 void scan_filter_param_cb(uint8_t client_if, uint8_t avbl_space, uint8_t action,
@@ -2616,7 +2615,7 @@ static int register_com_android_bluetooth_gatt_scan(JNIEnv* env) {
        (void*)gattClientScanFilterClearNative},
       {"gattClientScanFilterEnableNative", "(IZ)V",
        (void*)gattClientScanFilterEnableNative},
-      {"gattSetScanParametersNative", "(IIII)V",
+      {"gattSetScanParametersNative", "(III)V",
        (void*)gattSetScanParametersNative},
   };
   const int result = REGISTER_NATIVE_METHODS(
