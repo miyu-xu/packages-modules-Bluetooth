@@ -47,6 +47,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f9f1666_fc8f7568",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-17T04:03:28Z",
+      "side": 1,
+      "message": "Renamed to `mSelectedTransport`",
+      "parentUuid": "ade5a184_2873337e",
+      "range": {
+        "startLine": 67,
+        "startChar": 19,
+        "endLine": 67,
+        "endChar": 29
+      },
+      "revId": "35b6dae5d6f07c10831a8bb1a9a1493bf17d66eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4557800b_6a55a302",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-17T04:03:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee0343eb_45c11ef7",
+      "range": {
+        "startLine": 67,
+        "startChar": 8,
+        "endLine": 67,
+        "endChar": 14
+      },
+      "revId": "35b6dae5d6f07c10831a8bb1a9a1493bf17d66eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ab1cdaa_fbd2f19d",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-03-17T00:50:48Z",
       "side": 1,
       "message": "no need to define new function, just use okToConnect and copy this content there",
+      "range": {
+        "startLine": 361,
+        "startChar": 20,
+        "endLine": 361,
+        "endChar": 37
+      },
+      "revId": "35b6dae5d6f07c10831a8bb1a9a1493bf17d66eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cb2b3e4_575ac21a",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-17T04:03:28Z",
+      "side": 1,
+      "message": "I didn\u0027t like the name `okToConnect`. I was trying to refactor the logic to reject the connection. I rewrote it multiple times. It finally reached this stage which looked cleaner but then it was just a straightforward function name change. `okToConnect` is exposed to tests, so changing its name would mean touching test files as well. I will probably do that in a separate cl if I don\u0027t revert this refactor.",
+      "parentUuid": "9ab1cdaa_fbd2f19d",
       "range": {
         "startLine": 361,
         "startChar": 20,
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "217d90d9_59996f90",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-17T04:03:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a47b713_262a747d",
+      "range": {
+        "startLine": 394,
+        "startChar": 0,
+        "endLine": 394,
+        "endChar": 14
+      },
+      "revId": "35b6dae5d6f07c10831a8bb1a9a1493bf17d66eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f4a4dcbd_746fb963",
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe72400a_fd7b0dc7",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-17T04:03:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4a4dcbd_746fb963",
+      "range": {
+        "startLine": 550,
+        "startChar": 16,
+        "endLine": 550,
+        "endChar": 23
+      },
+      "revId": "35b6dae5d6f07c10831a8bb1a9a1493bf17d66eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f77caf3c_57769e46",
@@ -129,6 +249,30 @@
       "writtenOn": "2024-03-17T00:50:48Z",
       "side": 1,
       "message": "similarly, you may want Log.i or Log.d",
+      "range": {
+        "startLine": 580,
+        "startChar": 12,
+        "endLine": 580,
+        "endChar": 13
+      },
+      "revId": "35b6dae5d6f07c10831a8bb1a9a1493bf17d66eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "009b1e21_a2c04f37",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 580,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-17T04:03:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f77caf3c_57769e46",
       "range": {
         "startLine": 580,
         "startChar": 12,
@@ -164,6 +308,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d18a4466_e089b77f",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1309,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-17T04:03:28Z",
+      "side": 1,
+      "message": "I don\u0027t like that mInputDevices is being accessed here from the binder thread. It should be restricted to the handler thread. I started on an attempt to synchronize the access but it started becoming ugly. I ended up removing those but forgot to add a TODO here.\nI would prefer to add protection later in another cl. For now I will add a TODO here.",
+      "parentUuid": "94135fad_406e21f5",
+      "range": {
+        "startLine": 1303,
+        "startChar": 0,
+        "endLine": 1309,
+        "endChar": 5
+      },
+      "revId": "35b6dae5d6f07c10831a8bb1a9a1493bf17d66eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e598fc59_52f06ccd",
         "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
         "patchSetId": 3
@@ -175,6 +343,30 @@
       "writtenOn": "2024-03-17T00:50:48Z",
       "side": 1,
       "message": "Log.v does not work well, either Log.d or Log.i",
+      "range": {
+        "startLine": 1544,
+        "startChar": 16,
+        "endLine": 1544,
+        "endChar": 17
+      },
+      "revId": "35b6dae5d6f07c10831a8bb1a9a1493bf17d66eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a615011_c518e9b6",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1544,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-17T04:03:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e598fc59_52f06ccd",
       "range": {
         "startLine": 1544,
         "startChar": 16,
@@ -198,6 +390,30 @@
       "writtenOn": "2024-03-17T00:50:48Z",
       "side": 1,
       "message": "if `okToConnect` \u003d\u003d `connectionAllowed`, why define two methods? \n\nIf put your content in `okToConnect` ?",
+      "range": {
+        "startLine": 1647,
+        "startChar": 0,
+        "endLine": 1648,
+        "endChar": 41
+      },
+      "revId": "35b6dae5d6f07c10831a8bb1a9a1493bf17d66eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a676999_3b3b0976",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1648,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-17T04:03:28Z",
+      "side": 1,
+      "message": "I will leave a TODO here for now to rename this function as `connectionAllowed` in a later cl.",
+      "parentUuid": "1a4a9b98_02e39a22",
       "range": {
         "startLine": 1647,
         "startChar": 0,
