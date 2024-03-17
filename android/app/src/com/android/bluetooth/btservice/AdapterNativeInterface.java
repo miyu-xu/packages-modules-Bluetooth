@@ -246,6 +246,14 @@ public class AdapterNativeInterface {
         return isLogRedactionEnabledNative();
     }
 
+    int getSocketL2capLocalChannelId(long id) {
+        return getSocketL2capLocalChannelIdNative(id);
+    }
+
+    int getSocketL2capRemoteChannelId(long id) {
+        return getSocketL2capRemoteChannelIdNative(id);
+    }
+
     /**********************************************************************************************/
     /*********************************** callbacks from native ************************************/
     /**********************************************************************************************/
@@ -352,4 +360,8 @@ public class AdapterNativeInterface {
     private native boolean pbapPseDynamicVersionUpgradeIsEnabledNative();
 
     private native boolean isLogRedactionEnabledNative();
+
+    private native int getSocketL2capLocalChannelIdNative(long id);
+
+    private native int getSocketL2capRemoteChannelIdNative(long id);
 }
