@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee0343eb_45c11ef7",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-17T00:50:48Z",
+      "side": 1,
+      "message": "if I am not wrong, there is no need to delcar \"public\" here as the class is already private static and default access already allow parent class. \n\nThe ASFP IDE should be able to highlight this",
+      "range": {
+        "startLine": 67,
+        "startChar": 8,
+        "endLine": 67,
+        "endChar": 14
+      },
+      "revId": "35b6dae5d6f07c10831a8bb1a9a1493bf17d66eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ade5a184_2873337e",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-17T00:50:48Z",
+      "side": 1,
+      "message": "better naming is mCurrentTransport or mPreferrredTransport so that it is not too confused when people see two states below.",
+      "range": {
+        "startLine": 67,
+        "startChar": 19,
+        "endLine": 67,
+        "endChar": 29
+      },
+      "revId": "35b6dae5d6f07c10831a8bb1a9a1493bf17d66eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ab1cdaa_fbd2f19d",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-17T00:50:48Z",
+      "side": 1,
+      "message": "no need to define new function, just use okToConnect and copy this content there",
+      "range": {
+        "startLine": 361,
+        "startChar": 20,
+        "endLine": 361,
+        "endChar": 37
+      },
+      "revId": "35b6dae5d6f07c10831a8bb1a9a1493bf17d66eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a47b713_262a747d",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-17T00:50:48Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Build Warnings: [EmptyBlockTag] A block tag (@param, @return, @throws, @deprecated) has an empty description. Block tags without descriptions don\u0027t add much value for future readers of the code; consider removing the tag entirely or adding a description.\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    [EmptyBlockTag] A block tag (@param, @return, @throws, @deprecated) has an empty description. Block tags without descriptions don\u0027t add much value for future readers of the code; consider removing the tag entirely or adding a description.\n         * @return\n           ^\n        (see https://google.github.io/styleguide/javaguide.html#s7.1.3-javadoc-block-tags)\n      Did you mean \u0027*\u0027?\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P71710767/targets/errorprone-trunk_staging, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the git_main branch.",
+      "range": {
+        "startLine": 394,
+        "startChar": 0,
+        "endLine": 394,
+        "endChar": 14
+      },
+      "revId": "35b6dae5d6f07c10831a8bb1a9a1493bf17d66eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4a4dcbd_746fb963",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-17T00:50:48Z",
+      "side": 1,
+      "message": "what allowed? could you name this better?",
+      "range": {
+        "startLine": 550,
+        "startChar": 16,
+        "endLine": 550,
+        "endChar": 23
+      },
+      "revId": "35b6dae5d6f07c10831a8bb1a9a1493bf17d66eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f77caf3c_57769e46",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 580,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-17T00:50:48Z",
+      "side": 1,
+      "message": "similarly, you may want Log.i or Log.d",
+      "range": {
+        "startLine": 580,
+        "startChar": 12,
+        "endLine": 580,
+        "endChar": 13
+      },
+      "revId": "35b6dae5d6f07c10831a8bb1a9a1493bf17d66eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94135fad_406e21f5",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1309,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-17T00:50:48Z",
+      "side": 1,
+      "message": "similarly, you can just move the content of getTransport() here and call `getPreferredTransport` internally",
+      "range": {
+        "startLine": 1303,
+        "startChar": 0,
+        "endLine": 1309,
+        "endChar": 5
+      },
+      "revId": "35b6dae5d6f07c10831a8bb1a9a1493bf17d66eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e598fc59_52f06ccd",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1544,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-17T00:50:48Z",
+      "side": 1,
+      "message": "Log.v does not work well, either Log.d or Log.i",
+      "range": {
+        "startLine": 1544,
+        "startChar": 16,
+        "endLine": 1544,
+        "endChar": 17
+      },
+      "revId": "35b6dae5d6f07c10831a8bb1a9a1493bf17d66eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a4a9b98_02e39a22",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1648,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-17T00:50:48Z",
+      "side": 1,
+      "message": "if `okToConnect` \u003d\u003d `connectionAllowed`, why define two methods? \n\nIf put your content in `okToConnect` ?",
+      "range": {
+        "startLine": 1647,
+        "startChar": 0,
+        "endLine": 1648,
+        "endChar": 41
+      },
+      "revId": "35b6dae5d6f07c10831a8bb1a9a1493bf17d66eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
