@@ -161,8 +161,7 @@ public final class BluetoothSocket implements Closeable {
     private ByteBuffer mL2capBuffer = null;
     private int mMaxTxPacketSize = 0; // The l2cap maximum packet size supported by the peer.
     private int mMaxRxPacketSize = 0; // The l2cap maximum packet size that can be received.
-    private int mL2capLocalCid = 0;
-    private int mL2capRemoteCid = 0;
+    private long mSocketId = 0;
 
     private long mSocketCreationTimeNanos = 0;
     private long mSocketCreationLatencyNanos = 0;
@@ -299,8 +298,7 @@ public final class BluetoothSocket implements Closeable {
         mOutputStream = new BluetoothOutputStream(this);
         mMaxRxPacketSize = s.mMaxRxPacketSize;
         mMaxTxPacketSize = s.mMaxTxPacketSize;
-        mL2capLocalCid = s.mL2capLocalCid;
-        mL2capRemoteCid = s.mL2capRemoteCid;
+        mSocketId = s.mSocketId;
 
         mServiceName = s.mServiceName;
         mExcludeSdp = s.mExcludeSdp;
@@ -743,6 +741,7 @@ public final class BluetoothSocket implements Closeable {
                     mPfd.close();
                     mPfd = null;
                 }
+                mSocketId = 0;
             }
         }
     }
@@ -856,6 +855,10 @@ public final class BluetoothSocket implements Closeable {
                 android.Manifest.permission.BLUETOOTH_PRIVILEGED,
             })
     public int getL2capLocalChannelId() throws IOException {
+        if (mType != TYPE_L2CAP_LE) {
+            throw new BluetoothSocketException(BluetoothSocketException.L2CAP_UNKNOWN);
+        }
+        int cid;
         IBluetooth bluetoothProxy = BluetoothAdapter.getDefaultAdapter().getBluetoothService();
         if (bluetoothProxy == null) {
             throw new BluetoothSocketException(BluetoothSocketException.BLUETOOTH_OFF_FAILURE);
@@ -865,22 +868,20 @@ public final class BluetoothSocket implements Closeable {
             if (socketManager == null) {
                 throw new BluetoothSocketException(BluetoothSocketException.SOCKET_MANAGER_FAILURE);
             }
-            if (!socketManager.checkPermissionForL2capChannelInfo(
-                    AttributionSource.myAttributionSource())) {
-                throw new SecurityException(
-                    "Need BLUETOOTH_CONNECT and BLUETOOTH_PRIVILEGED Permission");
+            cid =
+                    socketManager.getL2capLocalChannelId(
+                            mSocketId, AttributionSource.myAttributionSource());
+            if (cid == -1) {
+                throw new BluetoothSocketException(BluetoothSocketException.SOCKET_CLOSED);
             }
         } catch (RemoteException e) {
             Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
             throw new IOException("unable to send RPC: " + e.getMessage());
         }
-        if (mType != TYPE_L2CAP_LE) {
-            throw new BluetoothSocketException(BluetoothSocketException.L2CAP_UNKNOWN);
-        }
         if (mSocketState != SocketState.CONNECTED) {
             throw new BluetoothSocketException(BluetoothSocketException.SOCKET_CLOSED);
         }
-        return mL2capLocalCid;
+        return cid;
     }
 
     /**
@@ -898,6 +899,10 @@ public final class BluetoothSocket implements Closeable {
                 android.Manifest.permission.BLUETOOTH_PRIVILEGED,
             })
     public int getL2capRemoteChannelId() throws IOException {
+        if (mType != TYPE_L2CAP_LE) {
+            throw new BluetoothSocketException(BluetoothSocketException.L2CAP_UNKNOWN);
+        }
+        int cid;
         IBluetooth bluetoothProxy = BluetoothAdapter.getDefaultAdapter().getBluetoothService();
         if (bluetoothProxy == null) {
             throw new BluetoothSocketException(BluetoothSocketException.BLUETOOTH_OFF_FAILURE);
@@ -907,22 +912,20 @@ public final class BluetoothSocket implements Closeable {
             if (socketManager == null) {
                 throw new BluetoothSocketException(BluetoothSocketException.SOCKET_MANAGER_FAILURE);
             }
-            if (!socketManager.checkPermissionForL2capChannelInfo(
-                    AttributionSource.myAttributionSource())) {
-                throw new SecurityException(
-                    "Need BLUETOOTH_CONNECT and BLUETOOTH_PRIVILEGED Permission");
+            cid =
+                    socketManager.getL2capRemoteChannelId(
+                            mSocketId, AttributionSource.myAttributionSource());
+            if (cid == -1) {
+                throw new BluetoothSocketException(BluetoothSocketException.SOCKET_CLOSED);
             }
         } catch (RemoteException e) {
             Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
             throw new IOException("unable to send RPC: " + e.getMessage());
         }
-        if (mType != TYPE_L2CAP_LE) {
-            throw new BluetoothSocketException(BluetoothSocketException.L2CAP_UNKNOWN);
-        }
         if (mSocketState != SocketState.CONNECTED) {
             throw new BluetoothSocketException(BluetoothSocketException.SOCKET_CLOSED);
         }
-        return mL2capRemoteCid;
+        return cid;
     }
 
     /** @hide */
@@ -961,8 +964,7 @@ public final class BluetoothSocket implements Closeable {
         int status = bb.getInt();
         mMaxTxPacketSize = (bb.getShort() & 0xffff); // Convert to unsigned value
         mMaxRxPacketSize = (bb.getShort() & 0xffff); // Convert to unsigned value
-        mL2capLocalCid = (bb.getShort() & 0xffff); // Convert to unsigned value
-        mL2capRemoteCid = (bb.getShort() & 0xffff); // Convert to unsigned value
+        mSocketId = (bb.getInt() & 0xffffffff); // Convert to unsigned value
         String RemoteAddr = convertAddr(addr);
         if (VDBG) {
             Log.d(
@@ -979,10 +981,8 @@ public final class BluetoothSocket implements Closeable {
                             + mMaxRxPacketSize
                             + " MaxTxPktSize: "
                             + mMaxTxPacketSize
-                            + " mL2capLocalCid: "
-                            + String.format("0x%04x", mL2capLocalCid)
-                            + " mL2capRemoteCid: "
-                            + String.format("0x%04x", mL2capRemoteCid));
+                            + " mSocketId: "
+                            + mSocketId);
         }
         if (status != 0) {
             throw new IOException("Connection failure, status: " + status);

@@ -59,6 +59,7 @@ namespace android {
 #define BLE_ADDR_RANDOM 0x01
 
 const jint INVALID_FD = -1;
+const jint INVALID_CID = -1;
 
 static jmethodID method_oobDataReceivedCallback;
 static jmethodID method_stateChangeCallback;
@@ -2139,6 +2140,36 @@ static jboolean pbapPseDynamicVersionUpgradeIsEnabledNative(JNIEnv* /* env */,
              : JNI_FALSE;
 }
 
+static jint getSocketL2capLocalChannelIdNative(JNIEnv* /* env */,
+                                               jobject /* obj */, jlong id) {
+  log::verbose("");
+
+  if (!sBluetoothSocketInterface) {
+    return INVALID_CID;
+  }
+  uint16_t cid;
+  if (sBluetoothSocketInterface->get_l2cap_local_cid(
+          static_cast<uint32_t>(id), &cid) != BT_STATUS_SUCCESS) {
+    return INVALID_CID;
+  }
+  return (jint)cid;
+}
+
+static jint getSocketL2capRemoteChannelIdNative(JNIEnv* /* env */,
+                                                jobject /* obj */, jlong id) {
+  log::verbose("");
+
+  if (!sBluetoothSocketInterface) {
+    return INVALID_CID;
+  }
+  uint16_t cid;
+  if (sBluetoothSocketInterface->get_l2cap_remote_cid(
+          static_cast<uint32_t>(id), &cid) != BT_STATUS_SUCCESS) {
+    return INVALID_CID;
+  }
+  return (jint)cid;
+}
+
 int register_com_android_bluetooth_btservice_AdapterService(JNIEnv* env) {
   const JNINativeMethod methods[] = {
       {"initNative", "(ZZI[Ljava/lang/String;ZLjava/lang/String;)Z",
@@ -2201,6 +2232,10 @@ int register_com_android_bluetooth_btservice_AdapterService(JNIEnv* env) {
        (void*)getRemotePbapPceVersionNative},
       {"pbapPseDynamicVersionUpgradeIsEnabledNative", "()Z",
        (void*)pbapPseDynamicVersionUpgradeIsEnabledNative},
+      {"getSocketL2capLocalChannelIdNative", "(J)I",
+       (void*)getSocketL2capLocalChannelIdNative},
+      {"getSocketL2capRemoteChannelIdNative", "(J)I",
+       (void*)getSocketL2capRemoteChannelIdNative},
   };
   const int result = REGISTER_NATIVE_METHODS(
       env, "com/android/bluetooth/btservice/AdapterNativeInterface", methods);

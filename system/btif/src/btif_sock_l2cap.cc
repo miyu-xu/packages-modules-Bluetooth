@@ -376,8 +376,7 @@ static bool send_app_err_code(l2cap_socket* sock, tBTA_JV_L2CAP_REASON code) {
 
 static bool send_app_connect_signal(int fd, const RawAddress* addr, int channel,
                                     int status, int send_fd, uint16_t rx_mtu,
-                                    uint16_t tx_mtu, uint16_t local_cid,
-                                    uint16_t remote_cid) {
+                                    uint16_t tx_mtu, uint32_t id) {
   sock_connect_signal_t cs;
   cs.size = sizeof(cs);
   cs.bd_addr = *addr;
@@ -385,8 +384,7 @@ static bool send_app_connect_signal(int fd, const RawAddress* addr, int channel,
   cs.status = status;
   cs.max_rx_packet_size = rx_mtu;
   cs.max_tx_packet_size = tx_mtu;
-  cs.l2cap_lcid = local_cid;
-  cs.l2cap_rcid = remote_cid;
+  cs.id = id;
   if (send_fd != -1) {
     if (sock_send_fd(fd, (const uint8_t*)&cs, sizeof(cs), send_fd) ==
         sizeof(cs))
@@ -505,7 +503,7 @@ static void on_srv_l2cap_psm_connect_l(tBTA_JV_L2CAP_OPEN* p_open,
                        accept_rs->id);
   send_app_connect_signal(sock->our_fd, &accept_rs->addr, sock->channel, 0,
                           accept_rs->app_fd, sock->rx_mtu, p_open->tx_mtu,
-                          accept_rs->local_cid, accept_rs->remote_cid);
+                          accept_rs->id);
   accept_rs->app_fd =
       -1;  // The fd is closed after sent to app in send_app_connect_signal()
   // But for some reason we still leak a FD - either the server socket
@@ -527,8 +525,7 @@ static void on_cl_l2cap_psm_connect_l(tBTA_JV_L2CAP_OPEN* p_open,
   }
 
   if (!send_app_connect_signal(sock->our_fd, &sock->addr, sock->channel, 0, -1,
-                               sock->rx_mtu, p_open->tx_mtu, sock->local_cid,
-                               sock->remote_cid)) {
+                               sock->rx_mtu, p_open->tx_mtu, sock->id)) {
     log::error("Unable to connect l2cap socket to application socket_id:{}",
                sock->id);
     return;
@@ -993,5 +990,31 @@ bt_status_t btsock_l2cap_disconnect(const RawAddress* bd_addr) {
     sock = next;
   }
 
+  return BT_STATUS_SUCCESS;
+}
+
+bt_status_t btsock_l2cap_get_l2cap_local_cid(uint32_t id, uint16_t* cid) {
+  l2cap_socket* sock;
+
+  std::unique_lock<std::mutex> lock(state_lock);
+  sock = btsock_l2cap_find_by_id_l(id);
+  if (!sock) {
+    log::error("Unable to find l2cap socket with socket_id:{}", id);
+    return BT_STATUS_FAIL;
+  }
+  *cid = sock->local_cid;
+  return BT_STATUS_SUCCESS;
+}
+
+bt_status_t btsock_l2cap_get_l2cap_remote_cid(uint32_t id, uint16_t* cid) {
+  l2cap_socket* sock;
+
+  std::unique_lock<std::mutex> lock(state_lock);
+  sock = btsock_l2cap_find_by_id_l(id);
+  if (!sock) {
+    log::error("Unable to find l2cap socket with socket_id:{}", id);
+    return BT_STATUS_FAIL;
+  }
+  *cid = sock->remote_cid;
   return BT_STATUS_SUCCESS;
 }

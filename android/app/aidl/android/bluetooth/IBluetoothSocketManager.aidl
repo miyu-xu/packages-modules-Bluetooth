@@ -34,5 +34,7 @@ interface IBluetoothSocketManager
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
     void requestMaximumTxDataLength(in BluetoothDevice device);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT,android.Manifest.permission.BLUETOOTH_PRIVILEGED})")
-    boolean checkPermissionForL2capChannelInfo(in AttributionSource attributionSource);
+    int getL2capLocalChannelId(long id, in AttributionSource attributionSource);
+    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT,android.Manifest.permission.BLUETOOTH_PRIVILEGED})")
+    int getL2capRemoteChannelId(long id, in AttributionSource attributionSource);
 }
