@@ -67,6 +67,23 @@
       "message": "@richgomez527 please don\u0027t add so many people as a reviewer. There\u0027s no need to occupy so much resource on a cl. Thanks.",
       "revId": "0b205f96dd036899eb457051ef589d6b2a39a20a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62187e87_7a68ce10",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-03-18T11:06:25Z",
+      "side": 1,
+      "message": "Probably don\u0027t need this cl. Found that there\u0027s a property called bluetooth.core.classic.sniff_max_intervals may be the same logic I want to make. Will test it tomorrow.",
+      "revId": "0b205f96dd036899eb457051ef589d6b2a39a20a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
