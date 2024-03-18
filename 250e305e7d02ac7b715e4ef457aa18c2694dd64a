@@ -1,5 +1,40 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b04c94b5_435ee167",
+        "filename": "service/src/AutoOnFeature.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1001986
+      },
+      "writtenOn": "2024-03-18T21:24:26Z",
+      "side": 1,
+      "message": "Consider making this broadcast deferrable so that you don\u0027t unfreeze apps that are currently frozen, to deliver this broadcast.",
+      "revId": "250e305e7d02ac7b715e4ef457aa18c2694dd64a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68915edf_0aba173d",
+        "filename": "service/src/AutoOnFeature.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1001986
+      },
+      "writtenOn": "2024-03-18T21:24:26Z",
+      "side": 1,
+      "message": "You are requiring BLUETOOTH_PRIVILEGED here, but the documentation says requires BLUETOOTH_CONNECT",
+      "revId": "250e305e7d02ac7b715e4ef457aa18c2694dd64a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
