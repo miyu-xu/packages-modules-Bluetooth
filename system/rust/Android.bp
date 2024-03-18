@@ -44,6 +44,7 @@ rust_defaults {
         // needed to work around duplicate symbols
         // caused by bug in Soong
         "libbt_shim",
+        "libcrust_loader",
     ],
     whole_static_libs: [
         "libbluetooth_core_rs_bridge",
@@ -85,6 +86,9 @@ rust_ffi_static {
     name: "libbluetooth_core_rs",
     crate_name: "bluetooth_core",
     defaults: ["libbluetooth_core_rs_defaults"],
+    include_dirs: [
+        ":crust_loader_headers",
+    ],
     rustlibs: [
         "libtokio",
     ],
