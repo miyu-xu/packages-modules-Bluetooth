@@ -121,10 +121,9 @@ void TestEnvironment::SetUpHciServer(
       test_model_.AddHciConnection(device);
 
       if (enable_hci_sniffer_) {
-        auto filename = device->GetAddress().ToString() + ".pcap";
+        auto filename = "rootcanal_" + std::to_string(device.id) + "_" + device->GetAddress().ToString() + ".pcap";
         for (auto i = 0; std::filesystem::exists(filename); i++) {
-          filename =
-              device->GetAddress().ToString() + "_" + std::to_string(i) + ".pcap";
+          filename = "rootcanal_" + std::to_string(device.id) + "_" + device->GetAddress().ToString() + "_" + std::to_string(i) + ".pcap";
         }
         auto file = std::make_shared<std::ofstream>(filename, std::ios::binary);
         auto sniffer = std::static_pointer_cast<HciSniffer>(transport);
