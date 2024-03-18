@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "362bdb44_cc02b9d9",
+        "filename": "service/src/AutoOnFeature.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-18T22:30:06Z",
+      "side": 1,
+      "message": "In progress with aosp/3005904 I have some trouble making the test pass due to\n```\njava.lang.NoSuchMethodError: \u0027android.app.BroadcastOptions android.app.BroadcastOptions.setDeferralPolicy(int)\u0027\n\n```",
+      "parentUuid": "b04c94b5_435ee167",
+      "revId": "250e305e7d02ac7b715e4ef457aa18c2694dd64a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68915edf_0aba173d",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-03-18T21:24:26Z",
       "side": 1,
       "message": "You are requiring BLUETOOTH_PRIVILEGED here, but the documentation says requires BLUETOOTH_CONNECT",
+      "revId": "250e305e7d02ac7b715e4ef457aa18c2694dd64a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5334b298_afc60280",
+        "filename": "service/src/AutoOnFeature.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-18T22:30:06Z",
+      "side": 1,
+      "message": "Thanks.\nUpdated documentation to privileged in aosp/3005979",
+      "parentUuid": "68915edf_0aba173d",
       "revId": "250e305e7d02ac7b715e4ef457aa18c2694dd64a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
