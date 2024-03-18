@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "98f3aa8d_32fdd14f",
+        "filename": "system/bta/ag/bta_ag_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-03-18T22:43:16Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "7fde9107_8ab081d1",
+      "range": {
+        "startLine": 446,
+        "startChar": 16,
+        "endLine": 446,
+        "endChar": 23
+      },
+      "revId": "a99d5cd559933c77934ba05b7b6af7d2629da914",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "76da53c4_1c212503",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-03-18T22:41:34Z",
       "side": 1,
       "message": "nit: manage\n```suggestion\n * \u003cp\u003eWhen set to false, Bluetooth will manage the start and end of the SCO.\n```",
+      "revId": "a99d5cd559933c77934ba05b7b6af7d2629da914",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17caf639_cd4ac27a",
+        "filename": "system/bta/ag/bta_ag_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-03-18T22:43:16Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "76da53c4_1c212503",
       "revId": "a99d5cd559933c77934ba05b7b6af7d2629da914",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
