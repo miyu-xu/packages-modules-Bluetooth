@@ -65,6 +65,7 @@
 #define BTA_HH_DATA_EVT 15
 #define BTA_HH_API_ERR_EVT 16     /* API error is caught */
 #define BTA_HH_UPDATE_SCPP_EVT 17 /* update scan paramter complete */
+#define BTA_HH_RPT_DATA_EVT 18    /* LE report data callback */
 
 typedef uint16_t tBTA_HH_EVT;
 
@@ -323,6 +324,19 @@ typedef struct {
 
 } tBTA_HH_HSDATA;
 
+/* le report data */
+typedef struct {
+  uint8_t* p_buf;
+  uint16_t len;
+  bool need_free_buf;
+
+  uint8_t hid_handle;          /* device handle            */
+  tBTA_HH_PROTO_MODE mode;     /* protocol mode */
+  uint8_t ctry_code;           /* Country Code.*/
+  tAclLinkSpec spec;           /* acl link spec.*/
+  uint8_t app_id;              /* application ID for this connection */
+} tBTA_HH_RPT_DATA;
+
 /* union of data associated with HD callback */
 typedef union {
   tBTA_HH_DEV_INFO dev_info; /* BTA_HH_ADD_DEV_EVT, BTA_HH_RMV_DEV_EVT   */
@@ -339,6 +353,7 @@ typedef union {
                                       BTA_HH_GET_RPT_EVT
                                       BTA_HH_GET_PROTO_EVT
                                       BTA_HH_GET_IDLE_EVT */
+  tBTA_HH_RPT_DATA rpt_data;       /* BTA_HH_RPT_DATA_EVT */
 } tBTA_HH;
 
 /* BTA HH callback function */
