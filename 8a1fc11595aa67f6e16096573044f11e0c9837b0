@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da4d126d_cad7845f",
+        "filename": "system/main/test/main_shim_stack_dumpsys_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-18T22:44:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e9e0359c_c461bf01",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 19
+      },
+      "revId": "8a1fc11595aa67f6e16096573044f11e0c9837b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29c1f305_5a3ea97e",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-18T16:22:53Z",
       "side": 1,
       "message": "Remove?",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 38
+      },
+      "revId": "8a1fc11595aa67f6e16096573044f11e0c9837b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35bdebc7_40552100",
+        "filename": "system/main/test/main_shim_stack_dumpsys_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-18T22:44:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29c1f305_5a3ea97e",
       "range": {
         "startLine": 66,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e19d3dec_6133b0fd",
+        "filename": "system/main/test/main_shim_stack_dumpsys_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-18T22:44:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de14bf78_128ea428",
+      "range": {
+        "startLine": 493,
+        "startChar": 1,
+        "endLine": 493,
+        "endChar": 71
+      },
+      "revId": "8a1fc11595aa67f6e16096573044f11e0c9837b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e29975b_5d8e4944",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-03-18T16:22:53Z",
       "side": 1,
       "message": "clients_.size() ?",
+      "range": {
+        "startLine": 545,
+        "startChar": 37,
+        "endLine": 545,
+        "endChar": 52
+      },
+      "revId": "8a1fc11595aa67f6e16096573044f11e0c9837b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "102b2606_906c947b",
+        "filename": "system/main/test/main_shim_stack_dumpsys_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-18T22:44:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e29975b_5d8e4944",
       "range": {
         "startLine": 545,
         "startChar": 37,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da9f18d5_55168fdb",
+        "filename": "system/main/test/main_shim_stack_dumpsys_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-18T22:44:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6598e14_f5911e76",
+      "range": {
+        "startLine": 563,
+        "startChar": 42,
+        "endLine": 563,
+        "endChar": 44
+      },
+      "revId": "8a1fc11595aa67f6e16096573044f11e0c9837b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f925f11_a0df2845",
@@ -129,6 +249,30 @@
       "writtenOn": "2024-03-18T16:22:53Z",
       "side": 1,
       "message": "nit: There are a few of these\n```suggestion\n  // Ensure the dumpsys instance is in the stack\n```",
+      "range": {
+        "startLine": 574,
+        "startChar": 33,
+        "endLine": 574,
+        "endChar": 36
+      },
+      "revId": "8a1fc11595aa67f6e16096573044f11e0c9837b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f48e916d_0c582adc",
+        "filename": "system/main/test/main_shim_stack_dumpsys_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-18T22:44:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f925f11_a0df2845",
       "range": {
         "startLine": 574,
         "startChar": 33,
