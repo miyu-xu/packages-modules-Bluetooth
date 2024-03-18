@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a9d9b80_532ccf9f",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-03-18T22:28:55Z",
+      "side": 1,
+      "message": "java-format should have ideally formatted these statements.\n```suggestion\n                Log.d(TAG, \"Send battery level update BIEV(2,\" + batteryLevel + \") command\");\n\n```",
+      "revId": "d03962723a094f96b8f3acb70afd9636a88eb5ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75d500ac_7d4b79f7",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2233,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-03-18T22:28:55Z",
+      "side": 1,
+      "message": "The downside of using methods is the line no. (if enabled) will be displayed incorrectly. Sometimes the line no. directly helps in differentiating \"duplicate\" log lines.",
+      "revId": "d03962723a094f96b8f3acb70afd9636a88eb5ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
