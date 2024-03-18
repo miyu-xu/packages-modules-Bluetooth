@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "927e7ec3_ce3e2274",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-03-18T17:37:13Z",
+      "side": 0,
+      "message": "Instance start state log missing here?",
+      "revId": "fcafdfd9c633048a6523ea546be6aae906e6da58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f75d25d_4159382c",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-03-18T17:37:13Z",
+      "side": 0,
+      "message": "same comment.",
+      "revId": "fcafdfd9c633048a6523ea546be6aae906e6da58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
