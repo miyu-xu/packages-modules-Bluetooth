@@ -16,6 +16,24 @@
       "message": "device information missing from the logs.\n```suggestion\n        debug(\"State machine created for \" + mDevice);\n```",
       "revId": "1f3a4bd82daaa08f41b141176cea3cd568889f31",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8c1d63d_943b875e",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-18T20:13:45Z",
+      "side": 1,
+      "message": "The updated debug function now prints the device as part of the log line, i.e.\n```\nAvrcpControllerStateMachine: [AA:BB:CC:DD:EE:FF] State machine created\n```\n\nThat way, if we continue to use those functions then we\u0027ll never need to remember to print which device events are associated with. The default toString() of the device should also handle making the device printable with privacy of MAC addresses in mind.",
+      "parentUuid": "c73670b3_1ded6dad",
+      "revId": "1f3a4bd82daaa08f41b141176cea3cd568889f31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
