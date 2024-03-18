@@ -16,6 +16,24 @@
       "message": "Adding only goldfish seems suspicious to me, but I do not know the device target enough to vote on this CL\n\nAdding @licorne@google.com for the build part and @henrichataing@google.com for the emulator part.\nCan you review this change ?",
       "revId": "d28d2cae015f3ce93d69736747e205fb5395b498",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbfade34_3ce06b81",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2024-03-18T15:43:43Z",
+      "side": 1,
+      "message": "`android.hardware.audio@7.1-impl.ranchu` is the only module that is adding `audio.bluetooth.default` to its `required` property. See the search [1].\n\n[1] https://cs.android.com/search?q\u003df:%5C.bp%20audio.bluetooth.default%20required\u0026ss\u003dandroid%2Fplatform%2Fsuperproject%2Fmain",
+      "parentUuid": "5af51dc2_efa63f25",
+      "revId": "d28d2cae015f3ce93d69736747e205fb5395b498",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
