@@ -44,6 +44,7 @@ rust_defaults {
         // needed to work around duplicate symbols
         // caused by bug in Soong
         "libbt_shim",
+        "libcrust_loader",
     ],
     whole_static_libs: [
         "libbluetooth_core_rs_bridge",
@@ -118,6 +119,7 @@ cc_library_static {
     include_dirs: [
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
+        "packages/modules/Bluetooth/system/gd/rust/topshim/src/crust",
         "packages/modules/Bluetooth/system/include",
         "packages/modules/Bluetooth/system/stack/include",
         "packages/modules/Bluetooth/system/types",

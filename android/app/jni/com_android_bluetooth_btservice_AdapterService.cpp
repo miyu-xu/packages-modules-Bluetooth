@@ -35,6 +35,8 @@
 #include "utils/Log.h"
 #include "utils/misc.h"
 
+#include "crust_loader.h"
+
 using bluetooth::Uuid;
 #ifndef DYNAMIC_LOAD_BLUETOOTH
 extern bt_interface_t bluetoothInterface;
@@ -2264,6 +2266,9 @@ int register_com_android_bluetooth_btservice_AdapterService(JNIEnv* env) {
 }
 
 } /* namespace android */
+
+// TODO - Replace with flag.
+static const bool g_use_rust_jni = true;
 
 /*
  * JNI Initialization
