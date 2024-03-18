@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28269b11_b975ee82",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-03-18T06:48:05Z",
+      "side": 1,
+      "message": "```suggestion\n                            warn!(\n```",
+      "range": {
+        "startLine": 726,
+        "startChar": 28,
+        "endLine": 726,
+        "endChar": 33
+      },
+      "revId": "902044c43c4454471fe68b34ec824edd53b0be6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e2e536e_6ee39de0",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 793,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-03-18T06:48:05Z",
+      "side": 1,
+      "message": "Suggest directly empty the entire list.",
+      "range": {
+        "startLine": 793,
+        "startChar": 28,
+        "endLine": 793,
+        "endChar": 46
+      },
+      "revId": "902044c43c4454471fe68b34ec824edd53b0be6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afc57e8b_92a74d79",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1027,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-03-18T06:48:05Z",
+      "side": 1,
+      "message": "Suggest moving this section to `hangup_call_impl`",
+      "range": {
+        "startLine": 1019,
+        "startChar": 15,
+        "endLine": 1027,
+        "endChar": 17
+      },
+      "revId": "902044c43c4454471fe68b34ec824edd53b0be6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cafd054_07137429",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1975,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-03-18T06:48:05Z",
+      "side": 1,
+      "message": "```suggestion\nif self.mps_qualification_enabled || !should_insert_call_when_sco_start(addr) {\n        match self.phone_state.state {\n```",
+      "revId": "902044c43c4454471fe68b34ec824edd53b0be6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fec09cb4_b859c8b5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1991,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-03-18T06:48:05Z",
+      "side": 1,
+      "message": "replace `balabala` to some message show that AT+CHUP cannot work because the if statement.\n\n```suggestion\n        });\n        } else {\n          info!(\"balabala\")\n        }\n```",
+      "range": {
+        "startLine": 1991,
+        "startChar": 7,
+        "endLine": 1991,
+        "endChar": 11
+      },
+      "revId": "902044c43c4454471fe68b34ec824edd53b0be6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
