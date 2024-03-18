@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de372521_3977db7a",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 1684,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-18T16:15:01Z",
+      "side": 1,
+      "message": "I still think we don\u0027t need to check for TRANSPORT_LE in this function.\n```suggestion\n  if (p_cb-\u003estatus !\u003d BTA_HH_ERR_SDP) {\n```",
+      "range": {
+        "startLine": 1682,
+        "startChar": 0,
+        "endLine": 1684,
+        "endChar": 39
+      },
+      "revId": "996253e1386a7b7256968f862ea47241ff104f7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1806415c_4d2fd09d",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-18T16:15:01Z",
+      "side": 1,
+      "message": "I don\u0027t think \"update_device\" should be incrementing the number of devices.",
+      "range": {
+        "startLine": 402,
+        "startChar": 0,
+        "endLine": 402,
+        "endChar": 26
+      },
+      "revId": "996253e1386a7b7256968f862ea47241ff104f7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac5506d2_250d420f",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-18T16:15:01Z",
+      "side": 1,
+      "message": "If you remove the increment from update_device, don\u0027t forget to add it back here.\n```suggestion\n        btif_hh_cb.device_num++;\n        break;\n```",
+      "range": {
+        "startLine": 461,
+        "startChar": 0,
+        "endLine": 461,
+        "endChar": 14
+      },
+      "revId": "996253e1386a7b7256968f862ea47241ff104f7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
