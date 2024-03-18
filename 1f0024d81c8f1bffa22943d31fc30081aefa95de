@@ -94,6 +94,30 @@
       },
       "revId": "1f0024d81c8f1bffa22943d31fc30081aefa95de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b6129d2_bf956379",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattServiceConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-18T22:17:13Z",
+      "side": 0,
+      "message": "Turns out there were very few places (well, relatively 😊 Should be just `GattService` and `TraditionalScanHelper`, correct?) that used the VDBG variable, so I went ahead and did it by hand. I think we should be good to go here!",
+      "parentUuid": "da40b992_2b0b0cfd",
+      "range": {
+        "startLine": 26,
+        "startChar": 32,
+        "endLine": 26,
+        "endChar": 44
+      },
+      "revId": "1f0024d81c8f1bffa22943d31fc30081aefa95de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
