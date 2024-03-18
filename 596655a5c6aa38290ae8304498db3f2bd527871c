@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3955cfcd_6ccba800",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1069898
+      },
+      "writtenOn": "2024-03-18T04:50:09Z",
+      "side": 1,
+      "message": "PTAL, this CL broke bertha_x86_64 build as confirmed by https://android-build.corp.google.com/abtd/run/L43600030002569468",
+      "revId": "596655a5c6aa38290ae8304498db3f2bd527871c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
