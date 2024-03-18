@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c73670b3_1ded6dad",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-03-18T17:59:17Z",
+      "side": 1,
+      "message": "device information missing from the logs.\n```suggestion\n        debug(\"State machine created for \" + mDevice);\n```",
+      "revId": "1f3a4bd82daaa08f41b141176cea3cd568889f31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
