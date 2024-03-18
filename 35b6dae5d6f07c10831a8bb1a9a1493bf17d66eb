@@ -142,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fed64912_3be7b25e",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-18T10:49:44Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3cb2b3e4_575ac21a",
+      "range": {
+        "startLine": 361,
+        "startChar": 20,
+        "endLine": 361,
+        "endChar": 37
+      },
+      "revId": "35b6dae5d6f07c10831a8bb1a9a1493bf17d66eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a47b713_262a747d",
@@ -414,6 +438,30 @@
       "side": 1,
       "message": "I will leave a TODO here for now to rename this function as `connectionAllowed` in a later cl.",
       "parentUuid": "1a4a9b98_02e39a22",
+      "range": {
+        "startLine": 1647,
+        "startChar": 0,
+        "endLine": 1648,
+        "endChar": 41
+      },
+      "revId": "35b6dae5d6f07c10831a8bb1a9a1493bf17d66eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2dce6ff7_174f3c92",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1648,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-18T10:49:44Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3a676999_3b3b0976",
       "range": {
         "startLine": 1647,
         "startChar": 0,
