@@ -16,6 +16,24 @@
       "message": "PTAL, this CL broke bertha_x86_64 build as confirmed by https://android-build.corp.google.com/abtd/run/L43600030002569468",
       "revId": "596655a5c6aa38290ae8304498db3f2bd527871c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a7c0520_afe2407e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115439
+      },
+      "writtenOn": "2024-03-18T05:24:25Z",
+      "side": 1,
+      "message": "This is caused by ARC-specific override doesn\u0027t get updated. We usually fix this kind of errors in our side. I\u0027m working on the fix now.",
+      "parentUuid": "3955cfcd_6ccba800",
+      "revId": "596655a5c6aa38290ae8304498db3f2bd527871c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
