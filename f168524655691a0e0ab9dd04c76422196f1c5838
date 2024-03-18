@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "159ecf0b_a323b883",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-03-18T04:56:53Z",
+      "side": 1,
+      "message": "Got it. Done!",
+      "parentUuid": "f96c097c_8e8edd97",
+      "range": {
+        "startLine": 675,
+        "startChar": 22,
+        "endLine": 675,
+        "endChar": 30
+      },
+      "revId": "f168524655691a0e0ab9dd04c76422196f1c5838",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b6c39cf9_b7dd8435",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-15T17:59:16Z",
       "side": 1,
       "message": "Same here.",
+      "range": {
+        "startLine": 88,
+        "startChar": 19,
+        "endLine": 88,
+        "endChar": 34
+      },
+      "revId": "f168524655691a0e0ab9dd04c76422196f1c5838",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c414b77_d7795951",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppHandoverReceiver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-03-18T04:56:53Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "b6c39cf9_b7dd8435",
       "range": {
         "startLine": 88,
         "startChar": 19,
