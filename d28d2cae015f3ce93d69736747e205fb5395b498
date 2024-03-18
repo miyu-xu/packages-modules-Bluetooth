@@ -52,6 +52,24 @@
       "parentUuid": "fbfade34_3ce06b81",
       "revId": "d28d2cae015f3ce93d69736747e205fb5395b498",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd25c335_712e6e18",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2024-03-18T16:16:58Z",
+      "side": 1,
+      "message": "Yeah, the reason is unknown to me as well. However, I\u0027d like to respect whatever we have, land the Soong change, and then remove the \"required\" dep if it\u0027s found to be unnecessary.",
+      "parentUuid": "c44e716d_174144be",
+      "revId": "d28d2cae015f3ce93d69736747e205fb5395b498",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
