@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2c61f18_88216930",
+        "filename": "flags/sdp.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-18T21:18:38Z",
+      "side": 1,
+      "message": "Oops, sorry to not have caught that.",
+      "revId": "ac9adce5bf07e34190da9744b2b46725e428927f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
