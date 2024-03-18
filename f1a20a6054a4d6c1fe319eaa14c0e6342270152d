@@ -34,6 +34,24 @@
       "parentUuid": "66066a67_289d7a39",
       "revId": "f1a20a6054a4d6c1fe319eaa14c0e6342270152d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ee56ce3_963359eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-03-18T23:54:49Z",
+      "side": 1,
+      "message": "A couple of comments/questions:\n\n\u003e A different approach besides not being approved in design review.\n\nAs well as https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2984392/comment/971e3787_1b95563b/\n\nI don\u0027t think design review sessions have ever been used to fully approve a design right now to be honest and I also don\u0027t see a formal list of approvers on the related doc. And even it is was the case, implementation details may not be always reflected and thus may be subject to discussion later during the implementation. So I don\u0027t think this is a good enough justification for pushing back any of the comments.\n\n\n\u003e this entire effort is a mechanical refactor, except for 1 logic change (to come in a later CL)\n\nIf the current CL is simply a mechanical refactor without any logic change, then it should not be flagged.\n\n\n\u003e the area TL has weighed in, so closing those comments are appropriate.\n\nI think this CL goes a bit beyond the TL area since it is tightly coupled with the overall Bluetooth services handling process, on which William has made considerable contributions.\n\n\u003e Uploading an entire chain of CLs would negate most of the benefits of go/small-cls\n\nI think this also depends on the context. Here we are trying to merge a \"mechanical\" refactor not providing any fix nor new feature and which, from the reviewer perspective, is only adding additional technical debt to the stack. Asking to see how this refactor would actually help solving the related issue in a following CL seems to be a fair ask here. Adding technical debt for the purpose of a short term fix can be a valid answer, but it\u0027s a tradeoff that should be carefully studied (thus the reviewer ask).\n\nTypically if there is no urgency to address the related issue, I would argue that addressing the reviewer comments (even if they require a deeper refactor and weren\u0027t discussed during the design review) should be done. There is no point of merging something that isn\u0027t critical and isn\u0027t unrisking part of a global change (the advantage of go/small-cls is to split the risk across multiple CLs) if it increases technical debt.",
+      "parentUuid": "cf73bcd3_922660ca",
+      "revId": "f1a20a6054a4d6c1fe319eaa14c0e6342270152d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
