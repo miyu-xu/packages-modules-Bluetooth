@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9790ec5_18471107",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-03-18T07:16:40Z",
+      "side": 1,
+      "message": "This file is behind the flag `channel_sounding_in_stack`, how about splitting the change?\nIf a change on this file is rolled back (from this change or another flag), BluetoothSocketManagerBinder could be affected.",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 9
+      },
+      "revId": "f952c861d4307025889215c8feecb0bf2734a809",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
