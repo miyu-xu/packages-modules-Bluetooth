@@ -102,6 +102,8 @@ typedef struct {
   fixed_queue_t* set_rpt_id_queue;
 #endif // ENABLE_UHID_SET_REPORT
   bool local_vup;  // Indicated locally initiated VUP
+  std::mutex* uhid_event_mutex;
+  fixed_queue_t* uhid_event_queue;
 } btif_hh_device_t;
 
 /* Control block to maintain properties of devices */

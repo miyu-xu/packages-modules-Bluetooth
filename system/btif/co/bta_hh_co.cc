@@ -37,10 +37,15 @@
 #include "osi/include/allocator.h"
 #include "osi/include/compat.h"
 #include "osi/include/osi.h"
+#include "osi/include/properties.h"
 #include "storage/config_keys.h"
 #include "types/raw_address.h"
 
 const char* dev_path = "/dev/uhid";
+static const char kPropertyHogpFixInitialMissingKeys[] =
+  "bluetooth.core.hogp.fix_initial_missing_keys";
+static const char kPropertyWaitUsAfterUhidOpen[] =
+  "bluetooth.core.hogp.wait_us_after_uhid_open";
 
 #include "btif_config.h"
 #define BTA_HH_NV_LOAD_MAX 16
@@ -51,6 +56,7 @@ static tBTA_HH_RPT_CACHE_ENTRY sReportCache[BTA_HH_NV_LOAD_MAX];
 #define BTA_HH_UHID_POLL_PERIOD_MS 50
 /* Max number of polling interrupt allowed */
 #define BTA_HH_UHID_INTERRUPT_COUNT_MAX 100
+#define BTA_HH_DEFAULT_WAIT_US_AFTER_UHID_OPEN 30000
 
 using namespace bluetooth;
 
@@ -58,6 +64,19 @@ static const bthh_report_type_t map_rtype_uhid_hh[] = {
     BTHH_FEATURE_REPORT, BTHH_OUTPUT_REPORT, BTHH_INPUT_REPORT};
 
 static void* btif_hh_poll_event_thread(void* arg);
+
+static bool is_fix_initial_missing_keys() {
+  static bool feature_enabled = osi_property_get_bool(
+      kPropertyHogpFixInitialMissingKeys, false);
+  return feature_enabled;
+}
+
+static int32_t get_wait_us_after_uhid_open() {
+  static int32_t wait_us = osi_property_get_int32(
+      kPropertyWaitUsAfterUhidOpen,
+      BTA_HH_DEFAULT_WAIT_US_AFTER_UHID_OPEN);
+  return wait_us;
+}
 
 void uhid_set_non_blocking(int fd) {
   int opts = fcntl(fd, F_GETFL);
@@ -163,19 +182,45 @@ static int uhid_read_event(btif_hh_device_t* p_dev) {
   switch (ev.type) {
     case UHID_START:
       log::verbose("UHID_START from uhid-dev\n");
-      p_dev->ready_for_data = true;
+      if (is_fix_initial_missing_keys()) {
+        std::lock_guard<std::mutex> lock(*p_dev->uhid_event_mutex);
+        p_dev->ready_for_data = false;
+      } else {
+        p_dev->ready_for_data = true;
+      }
       break;
     case UHID_STOP:
       log::verbose("UHID_STOP from uhid-dev\n");
-      p_dev->ready_for_data = false;
+      if (is_fix_initial_missing_keys()) {
+        std::lock_guard<std::mutex> lock(*p_dev->uhid_event_mutex);
+        p_dev->ready_for_data = false;
+      } else {
+        p_dev->ready_for_data = false;
+      }
       break;
     case UHID_OPEN:
       log::verbose("UHID_OPEN from uhid-dev\n");
-      p_dev->ready_for_data = true;
+      if (is_fix_initial_missing_keys()) {
+        usleep(get_wait_us_after_uhid_open());
+        std::lock_guard<std::mutex> lock(*p_dev->uhid_event_mutex);
+        struct uhid_event *p_ev = nullptr;
+        while ((p_ev = (struct uhid_event*)fixed_queue_try_dequeue(p_dev->uhid_event_queue))) {
+          uhid_write(p_dev->fd, p_ev);
+          osi_free(p_ev);
+        }
+        p_dev->ready_for_data = true;
+      } else {
+        p_dev->ready_for_data = true;
+      }
       break;
     case UHID_CLOSE:
       log::verbose("UHID_CLOSE from uhid-dev\n");
-      p_dev->ready_for_data = false;
+      if (is_fix_initial_missing_keys()) {
+        std::lock_guard<std::mutex> lock(*p_dev->uhid_event_mutex);
+        p_dev->ready_for_data = false;
+      } else {
+        p_dev->ready_for_data = false;
+      }
       break;
     case UHID_OUTPUT:
       if (ret < (ssize_t)(sizeof(ev.type) + sizeof(ev.u.output))) {
@@ -290,6 +335,17 @@ static bool uhid_fd_open(btif_hh_device_t* p_dev) {
 
   if (p_dev->hh_keep_polling == 0) {
     p_dev->hh_keep_polling = 1;
+
+    if (is_fix_initial_missing_keys()) {
+      LOG_INFO("Apply hogp initial missing key fix");
+      p_dev->uhid_event_mutex = new std::mutex;
+      CHECK(p_dev->uhid_event_mutex);
+
+      p_dev->uhid_event_queue = fixed_queue_new(SIZE_MAX);
+      CHECK(p_dev->uhid_event_queue);
+    } else {
+      p_dev->uhid_event_mutex = nullptr;
+    }
     p_dev->hh_poll_thread_id = create_thread(btif_hh_poll_event_thread, p_dev);
   }
   return true;
@@ -404,8 +460,36 @@ static void* btif_hh_poll_event_thread(void* arg) {
   return 0;
 }
 
-int bta_hh_co_write(int fd, uint8_t* rpt, uint16_t len) {
-  log::verbose("UHID write {}", len);
+int bta_hh_co_write(btif_hh_device_t* p_dev, uint8_t* rpt, uint16_t len) {
+  log::verbose("%s: UHID write %d", __func__, len);
+
+  if (is_fix_initial_missing_keys()) {
+    std::lock_guard<std::mutex> lock(*p_dev->uhid_event_mutex);
+
+    if  (!p_dev->ready_for_data) {
+      struct uhid_event *p_ev = (struct uhid_event *)osi_malloc(sizeof(struct uhid_event));
+      if (!p_ev) {
+        log::error("allocate uhid_event failed");
+          return -2;
+      }
+      memset(p_ev, 0, sizeof(*p_ev));
+      p_ev->type = UHID_INPUT;
+      p_ev->u.input.size = len;
+      if (len > sizeof(p_ev->u.input.data)) {
+        log::error("{}: Report size greater than allowed size", __func__);
+        osi_free(p_ev);
+        return -ENOMEM;
+      }
+      memcpy(p_ev->u.input.data, rpt, len);
+
+      if (!fixed_queue_try_enqueue(p_dev->uhid_event_queue, (void*)p_ev)) {
+        osi_free(p_ev);
+        log::error("uhid_event_queue is full, dropping event");
+        return -1;
+      }
+      return 0;
+    }
+  }
 
   struct uhid_event ev;
   memset(&ev, 0, sizeof(ev));
@@ -417,7 +501,7 @@ int bta_hh_co_write(int fd, uint8_t* rpt, uint16_t len) {
   }
   memcpy(ev.u.input.data, rpt, len);
 
-  return uhid_write(fd, &ev);
+  return uhid_write(p_dev->fd, &ev);
 }
 
 /*******************************************************************************
@@ -519,6 +603,15 @@ void bta_hh_co_close(btif_hh_device_t* p_dev) {
     p_dev->hh_keep_polling = 0;
     pthread_join(p_dev->hh_poll_thread_id, NULL);
     p_dev->hh_poll_thread_id = -1;
+
+    if (is_fix_initial_missing_keys()) {
+      fixed_queue_flush(p_dev->uhid_event_queue, osi_free);
+      fixed_queue_free(p_dev->uhid_event_queue, nullptr);
+      p_dev->uhid_event_queue = nullptr;
+
+      delete p_dev->uhid_event_mutex;
+      p_dev->uhid_event_mutex = nullptr;
+    }
   }
   /* UHID file descriptor is closed by the polling thread */
 }
@@ -556,6 +649,13 @@ void bta_hh_co_data(uint8_t dev_handle, uint8_t* p_rpt, uint16_t len,
     return;
   }
 
+  if (is_fix_initial_missing_keys()) {
+    if (bta_hh_co_write(p_dev, p_rpt, len) < 0) {
+      LOG_WARN("%s: Error: len = %d", __func__, len);
+    }
+    return;
+  }
+
   // Wait a maximum of MAX_POLLING_ATTEMPTS x POLLING_SLEEP_DURATION in case
   // device creation is pending.
   if (p_dev->fd >= 0) {
@@ -568,7 +668,7 @@ void bta_hh_co_data(uint8_t dev_handle, uint8_t* p_rpt, uint16_t len,
 
   // Send the HID data to the kernel.
   if ((p_dev->fd >= 0) && p_dev->ready_for_data) {
-    bta_hh_co_write(p_dev->fd, p_rpt, len);
+    bta_hh_co_write(p_dev, p_rpt, len);
   } else {
     log::warn("Error: fd = {}, ready {}, len = {}", p_dev->fd,
               p_dev->ready_for_data, len);
