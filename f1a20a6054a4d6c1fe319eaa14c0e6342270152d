@@ -16,6 +16,24 @@
       "message": "I have several concerns about approving this CL in its current state:\n\n1. **Unresolved Comments:** It seems open issues were closed with \"follow up in later CL.\"\nPer go/review-pushback#later, it\u0027s preferable to address them now. Could we revisit those discussions?\n\n2. **Inheritance Pattern:** While the \"design review\" may have had a different outcome, I don\u0027t believe extending ProfileService is the most suitable pattern in this case.\nCan we discuss alternative approaches that might be more appropriate?  \nIs there a specific reason why extending ProfileService was chosen?\n\n3. **Code Utilization:**  The current code appears to be unused without the consuming code in the framework and other locations.\nFor clarity and maintainability, it would be better to merge once we have a clearer picture of how this code will be integrated.\nCan you upload the whole chain of CL making usage of this ?",
       "revId": "f1a20a6054a4d6c1fe319eaa14c0e6342270152d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf73bcd3_922660ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-18T22:56:18Z",
+      "side": 1,
+      "message": "Comments for each of these:\n\n1. See go/review-standard#conflicts. There is disagreement between reviewers in whether or not this CL introduces new complexity. The link describes how to deal with this type of disagreement. hallstrom@ as the area TL has weighed in, so closing those comments are appropriate. Please feel free to utilize other avenues for further discussion that are described at the link. Regarding adding complexity, my opinion is this clearly does not meet the threshold required - this entire effort is a mechanical refactor, except for 1 logic change (to come in a later CL) in modifying the lifecycle of GattService with ScanManagerService taking its place. The rest of the changes involve code being moved from GattService to other classes (copied first, then the original deleted after flag flip). \n2. A different approach besides not being approved in design review would significantly increase the complexity and risk associated with the changes. Now I wasn\u0027t here during the design review process, but to me it\u0027s clear that the goal is to split GattService into a scanning serving and the remainder of the functionality (eventually it would be good to split out more things such as advertising) to solve a specific lifecycle bug. Extending ProfileService maintains the current code flow where special handling of GattService in AdapterService can be applied to the new scan service instead. Other approaches would require more changes in AdapterService that would be additional surfaces for bugs to be introduced in this refactor.\n3. Lack of code utilization is extremely common in the development process. In fact it\u0027s a natural result of go/small-cls. Uploading an entire chain of CLs would negate most of the benefits of go/small-cls, and you might as well do a very large CL instead since it would be easier to review than a chain of individual CLs.",
+      "parentUuid": "66066a67_289d7a39",
+      "revId": "f1a20a6054a4d6c1fe319eaa14c0e6342270152d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
