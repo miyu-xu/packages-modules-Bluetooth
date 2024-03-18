@@ -56,6 +56,19 @@ void bta_hh_co_data(uint8_t dev_handle, uint8_t* p_rpt, uint16_t len,
 
 /*******************************************************************************
  *
+ * Function         bta_hh_co_rpt_data
+ *
+ * Description      This callout function is executed by HH when data is
+ *                  received in interrupt channel.
+ *
+ *
+ * Returns          void.
+ *
+ ******************************************************************************/
+void bta_hh_co_rpt_data(tBTA_HH_RPT_DATA& rpt_data);
+
+/*******************************************************************************
+ *
  * Function         bta_hh_co_open
  *
  * Description      This callout function is executed by HH when connection is
