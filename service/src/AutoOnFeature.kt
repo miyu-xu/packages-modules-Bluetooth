@@ -18,6 +18,7 @@
 
 package com.android.server.bluetooth
 
+import android.app.BroadcastOptions
 import android.bluetooth.BluetoothAdapter.ACTION_AUTO_ON_STATE_CHANGED
 import android.bluetooth.BluetoothAdapter.AUTO_ON_STATE_DISABLED
 import android.bluetooth.BluetoothAdapter.AUTO_ON_STATE_ENABLED
@@ -288,6 +289,9 @@ private fun setFeatureEnabledForUserUnchecked(context: Context, status: Boolean)
                     if (status) AUTO_ON_STATE_ENABLED else AUTO_ON_STATE_DISABLED
                 ),
             android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            BroadcastOptions.makeBasic()
+                .setDeferralPolicy(BroadcastOptions.DEFERRAL_POLICY_UNTIL_ACTIVE)
+                .toBundle(),
         )
     }
     return ret
