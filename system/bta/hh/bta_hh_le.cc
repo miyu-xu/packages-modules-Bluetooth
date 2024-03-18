@@ -33,6 +33,7 @@
 #include "device/include/interop.h"
 #include "osi/include/allocator.h"
 #include "osi/include/osi.h"    // ARRAY_SIZE
+#include "osi/include/properties.h"
 #include "stack/btm/btm_sec.h"  // BTM_
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_types.h"
@@ -51,6 +52,9 @@ using namespace bluetooth;
 /* TODO: b/329720661 Remove this namespace entirely when
  * prevent_hogp_reconnect_when_connected flag is shipped */
 namespace {
+static const char kPropertyHogpFixInitialMissingKeys[] =
+  "bluetooth.core.hogp.fix_initial_missing_keys";
+
 #ifndef BTA_HH_LE_RECONN
 constexpr bool kBTA_HH_LE_RECONN = true;
 #else
@@ -79,6 +83,7 @@ static const uint16_t bta_hh_uuid_to_rtp_type[BTA_LE_HID_RTP_UUID_MAX][2] = {
     {GATT_UUID_HID_BT_MOUSE_INPUT, BTA_HH_RPTT_INPUT},
     {GATT_UUID_BATTERY_LEVEL, BTA_HH_RPTT_INPUT}};
 
+static bool bta_hh_is_fix_initial_missing_keys();
 static void bta_hh_gattc_callback(tBTA_GATTC_EVT event, tBTA_GATTC* p_data);
 static void bta_hh_le_add_dev_bg_conn(tBTA_HH_DEV_CB* p_cb);
 static void bta_hh_process_cache_rpt(tBTA_HH_DEV_CB* p_cb,
@@ -90,6 +95,22 @@ static bool bta_hh_le_iso_data_callback(const RawAddress& addr,
 
 static const char* bta_hh_le_rpt_name[4] = {"UNKNOWN", "INPUT", "OUTPUT",
                                             "FEATURE"};
+
+/*******************************************************************************
+ *
+ * Function         bta_hh_is_fix_initial_missing_keys
+ *
+ * Description      check if the logic is enabled to fix the initial missing
+ *                  keys after connection.
+ *
+ * Returns          True if the logic needs to be enabled.
+ *
+ ******************************************************************************/
+static bool bta_hh_is_fix_initial_missing_keys() {
+  static bool feature_enabled = osi_property_get_bool(
+      kPropertyHogpFixInitialMissingKeys, false);
+  return feature_enabled;
+}
 
 /*******************************************************************************
  *
@@ -1645,6 +1666,26 @@ static void bta_hh_le_input_rpt_notify(tBTA_GATTC_NOTIFY* p_data) {
     ++p_data->len;
   } else {
     p_buf = p_data->value;
+  }
+
+  if (bta_hh_is_fix_initial_missing_keys()) {
+    tBTA_HH data = {
+      .rpt_data =
+      {
+        .p_buf = p_buf,
+        .len = p_data->len,
+        .need_free_buf = (p_buf != p_data->value),
+        .hid_handle = (uint8_t)p_dev_cb->hid_handle,
+        .mode = p_dev_cb->mode,
+        .ctry_code = p_dev_cb->dscp_info.ctry_code,
+        .spec = p_dev_cb->link_spec,
+        .app_id = app_id,
+      },
+    };
+
+    /* LE report data event */
+    (*bta_hh_cb.p_cback)(BTA_HH_RPT_DATA_EVT, &data);
+    return;
   }
 
   bta_hh_co_data((uint8_t)p_dev_cb->hid_handle, p_buf, p_data->len,
