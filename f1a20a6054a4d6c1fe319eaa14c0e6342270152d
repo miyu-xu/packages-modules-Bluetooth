@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66066a67_289d7a39",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-18T16:45:21Z",
+      "side": 1,
+      "message": "I have several concerns about approving this CL in its current state:\n\n1. **Unresolved Comments:** It seems open issues were closed with \"follow up in later CL.\"\nPer go/review-pushback#later, it\u0027s preferable to address them now. Could we revisit those discussions?\n\n2. **Inheritance Pattern:** While the \"design review\" may have had a different outcome, I don\u0027t believe extending ProfileService is the most suitable pattern in this case.\nCan we discuss alternative approaches that might be more appropriate?  \nIs there a specific reason why extending ProfileService was chosen?\n\n3. **Code Utilization:**  The current code appears to be unused without the consuming code in the framework and other locations.\nFor clarity and maintainability, it would be better to merge once we have a clearer picture of how this code will be integrated.\nCan you upload the whole chain of CL making usage of this ?",
+      "revId": "f1a20a6054a4d6c1fe319eaa14c0e6342270152d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
