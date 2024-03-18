@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73b595da_5cff8d94",
+        "filename": "system/device/include/controller.h",
+        "patchSetId": 21
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-18T23:39:48Z",
+      "side": 1,
+      "message": "Impressed",
+      "revId": "bf3a77994212eee07a8bf5d11805f01e64877c8a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdde1825_dfe8c611",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-18T23:39:48Z",
+      "side": 1,
+      "message": "This is related ?",
+      "revId": "bf3a77994212eee07a8bf5d11805f01e64877c8a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "503e50e4_e849cf95",
+        "filename": "system/stack/btm/btm_ble_privacy.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-18T23:39:48Z",
+      "side": 1,
+      "message": "I guess not possible to set resolving list max size",
+      "revId": "bf3a77994212eee07a8bf5d11805f01e64877c8a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
