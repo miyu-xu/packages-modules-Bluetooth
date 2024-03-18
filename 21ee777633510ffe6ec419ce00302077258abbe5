@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fd22133_734a65c6",
+        "filename": "android/app/aidl/android/bluetooth/IBluetooth.aidl",
+        "patchSetId": 12
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-18T03:22:38Z",
+      "side": 1,
+      "message": "Fixed. Thank you for the suggestion!",
+      "parentUuid": "bd561076_0307f8ac",
+      "range": {
+        "startLine": 312,
+        "startChar": 0,
+        "endLine": 312,
+        "endChar": 72
+      },
+      "revId": "21ee777633510ffe6ec419ce00302077258abbe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa7da880_82b73042",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-15T17:54:00Z",
       "side": 1,
       "message": "Should be done before startGattProfileService",
+      "range": {
+        "startLine": 1012,
+        "startChar": 0,
+        "endLine": 1014,
+        "endChar": 9
+      },
+      "revId": "21ee777633510ffe6ec419ce00302077258abbe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79a268c8_93c2d439",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1014,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-18T03:22:38Z",
+      "side": 1,
+      "message": "Will do in the follow up CL. Thank you.",
+      "parentUuid": "fa7da880_82b73042",
       "range": {
         "startLine": 1012,
         "startChar": 0,
@@ -84,6 +132,30 @@
       "side": 1,
       "message": "True, but unfortunately that doesn\u0027t take us closer to the end goal of separating the lifecycle of the scanning code from the GattService lifecycle. We will need to have the branching logic (and more than is there at the moment in this CL) in AdapterService before rolling out the flag.",
       "parentUuid": "a2b0c5f0_02ebe830",
+      "range": {
+        "startLine": 236,
+        "startChar": 0,
+        "endLine": 236,
+        "endChar": 9
+      },
+      "revId": "21ee777633510ffe6ec419ce00302077258abbe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a63d6b0_a50da6d4",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-18T03:22:38Z",
+      "side": 1,
+      "message": "Will follow up with another CL. Thank you.",
+      "parentUuid": "774ac92d_f4d3d9a2",
       "range": {
         "startLine": 236,
         "startChar": 0,

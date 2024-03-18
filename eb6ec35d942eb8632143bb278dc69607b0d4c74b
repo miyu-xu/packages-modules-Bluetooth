@@ -362,6 +362,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f090448d_cc925a85",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1093,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-18T03:22:38Z",
+      "side": 1,
+      "message": "\u003e Let\u0027s keep the getBluetoothScan methods and the mScanManagerService member, and move everything else to a separate CL that is focused on the logic changes in this class.\n\nDone. Will follow up with another CL. Thank you.",
+      "parentUuid": "d649db0d_2c051dcf",
+      "range": {
+        "startLine": 1087,
+        "startChar": 8,
+        "endLine": 1093,
+        "endChar": 84
+      },
+      "revId": "eb6ec35d942eb8632143bb278dc69607b0d4c74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f87a53b_8f95ad8d",
