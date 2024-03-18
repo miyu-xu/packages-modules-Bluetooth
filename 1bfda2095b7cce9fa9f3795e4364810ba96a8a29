@@ -74,6 +74,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "b710f338_de514254",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2024-03-18T00:59:33Z",
+      "side": 1,
+      "message": "Step 1. Unit test.\nStep 2. Manual test by myself\nStep 3. Test request to the testing team for finding regressions.\n\nThanks,",
+      "parentUuid": "d2c0b46d_df2a4fcf",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 51
+      },
+      "revId": "1bfda2095b7cce9fa9f3795e4364810ba96a8a29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "44c65478_80e9f654",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
