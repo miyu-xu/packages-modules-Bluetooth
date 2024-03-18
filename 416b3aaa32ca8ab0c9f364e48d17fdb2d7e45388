@@ -68,6 +68,30 @@
       },
       "revId": "416b3aaa32ca8ab0c9f364e48d17fdb2d7e45388",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8f36acc_f3cdb609",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 883,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-03-18T17:00:23Z",
+      "side": 1,
+      "message": "I agree. I wanted to move this condition to the front. Currently, it seems there is no way to make the socket connected in CTS test. Then, we may not perform the permission test in CTS test.",
+      "parentUuid": "2936c6f6_be065ede",
+      "range": {
+        "startLine": 881,
+        "startChar": 0,
+        "endLine": 883,
+        "endChar": 9
+      },
+      "revId": "416b3aaa32ca8ab0c9f364e48d17fdb2d7e45388",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
