@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aad8cd95_c3d5ef89",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-18T16:51:42Z",
+      "side": 1,
+      "message": "Is this sensitive information ? If yes we are back to initial problem. If not (is only an identifier) then we are good.\n\nIf this information can be used for more than identify a client...\n\nWhat do you think about generating an UUID in the native code and send it threw the socket.\n\nOn the framework side, we will only store an UUID that is useless on its own.",
+      "range": {
+        "startLine": 301,
+        "startChar": 0,
+        "endLine": 301,
+        "endChar": 30
+      },
+      "revId": "416b3aaa32ca8ab0c9f364e48d17fdb2d7e45388",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "213b023d_a136f318",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 876,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-18T16:51:42Z",
+      "side": 1,
+      "message": "Move outside of try catch block ?",
+      "range": {
+        "startLine": 874,
+        "startChar": 0,
+        "endLine": 876,
+        "endChar": 13
+      },
+      "revId": "416b3aaa32ca8ab0c9f364e48d17fdb2d7e45388",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2936c6f6_be065ede",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 883,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-18T16:51:42Z",
+      "side": 1,
+      "message": "Should we check that earlier in the method ? or is this intended to be check this late so we can enforce the permission before giving the information of this socket being closed or not",
+      "range": {
+        "startLine": 881,
+        "startChar": 0,
+        "endLine": 883,
+        "endChar": 9
+      },
+      "revId": "416b3aaa32ca8ab0c9f364e48d17fdb2d7e45388",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
