@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "61858617_d08bc6c3",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-18T20:21:38Z",
+      "side": 0,
+      "message": "I did our A2DP/AVRCP logging part by hand, part by script. I removed this and the below log on purpose as I thought they were really verbose, and totally unnecessary. I didn\u0027t think we needed the entire dump contents of the state machines as a log line when connecting and disconnecting, even as a verbose line. I\u0027ve never once needed that while debugging, myself. Live reproing can just use a `dumpsys bluetooth_manager` as well. Open to a different opinion too though!",
+      "parentUuid": "927e7ec3_ce3e2274",
+      "revId": "fcafdfd9c633048a6523ea546be6aae906e6da58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4f75d25d_4159382c",
         "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2024-03-18T17:37:13Z",
       "side": 0,
       "message": "same comment.",
+      "revId": "fcafdfd9c633048a6523ea546be6aae906e6da58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "618cfc50_adb7e7b0",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-18T20:21:38Z",
+      "side": 0,
+      "message": "See above 😊",
+      "parentUuid": "4f75d25d_4159382c",
       "revId": "fcafdfd9c633048a6523ea546be6aae906e6da58",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
