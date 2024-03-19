@@ -1,0 +1,242 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0541655_8685ce50",
+        "filename": "floss/pandora/floss/floss_enums.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 2056461
+      },
+      "writtenOn": "2024-03-19T10:04:24Z",
+      "side": 1,
+      "message": "please write the doc string for this class.",
+      "revId": "b972dac41f9fe39eeb3e72e2aa85b389423ed344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c358419c_ba969272",
+        "filename": "floss/pandora/floss/floss_enums.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 2056461
+      },
+      "writtenOn": "2024-03-19T10:04:24Z",
+      "side": 1,
+      "message": "please write the doc string for this class.",
+      "revId": "b972dac41f9fe39eeb3e72e2aa85b389423ed344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "978fae19_f543e363",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 2056461
+      },
+      "writtenOn": "2024-03-19T10:04:24Z",
+      "side": 1,
+      "message": "please remove",
+      "revId": "b972dac41f9fe39eeb3e72e2aa85b389423ed344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1301ef83_fee236df",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 2056461
+      },
+      "writtenOn": "2024-03-19T10:04:24Z",
+      "side": 1,
+      "message": "single quotation \u0027\u0027",
+      "revId": "b972dac41f9fe39eeb3e72e2aa85b389423ed344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54632f10_8a56144d",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 2056461
+      },
+      "writtenOn": "2024-03-19T10:04:24Z",
+      "side": 1,
+      "message": "single quotation \u0027\u0027",
+      "revId": "b972dac41f9fe39eeb3e72e2aa85b389423ed344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb2c7020_9065bdef",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 2056461
+      },
+      "writtenOn": "2024-03-19T10:04:24Z",
+      "side": 1,
+      "message": "single quotation \u0027\u0027",
+      "revId": "b972dac41f9fe39eeb3e72e2aa85b389423ed344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7615c09c_3d4c2eb9",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 765,
+      "author": {
+        "id": 2056461
+      },
+      "writtenOn": "2024-03-19T10:04:24Z",
+      "side": 1,
+      "message": "single quotation \u0027\u0027",
+      "revId": "b972dac41f9fe39eeb3e72e2aa85b389423ed344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39ca3f8e_3b17a6df",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 2056461
+      },
+      "writtenOn": "2024-03-19T10:04:24Z",
+      "side": 1,
+      "message": "add . plz",
+      "revId": "b972dac41f9fe39eeb3e72e2aa85b389423ed344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a912794_fd3bf8e2",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 2056461
+      },
+      "writtenOn": "2024-03-19T10:04:24Z",
+      "side": 1,
+      "message": "add . plz",
+      "revId": "b972dac41f9fe39eeb3e72e2aa85b389423ed344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72305649_0ffcf329",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 945,
+      "author": {
+        "id": 2056461
+      },
+      "writtenOn": "2024-03-19T10:04:24Z",
+      "side": 1,
+      "message": "add . plz",
+      "revId": "b972dac41f9fe39eeb3e72e2aa85b389423ed344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e85a12cf_08ebc0e2",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 955,
+      "author": {
+        "id": 2056461
+      },
+      "writtenOn": "2024-03-19T10:04:24Z",
+      "side": 1,
+      "message": "add . plz",
+      "revId": "b972dac41f9fe39eeb3e72e2aa85b389423ed344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7efb71b_7deee88e",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 956,
+      "author": {
+        "id": 2056461
+      },
+      "writtenOn": "2024-03-19T10:04:24Z",
+      "side": 1,
+      "message": "add . plz",
+      "revId": "b972dac41f9fe39eeb3e72e2aa85b389423ed344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e8409d6_c5d9aae0",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 980,
+      "author": {
+        "id": 2056461
+      },
+      "writtenOn": "2024-03-19T10:04:24Z",
+      "side": 1,
+      "message": "add . plz",
+      "revId": "b972dac41f9fe39eeb3e72e2aa85b389423ed344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e740ba6_b07aa747",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 2056461
+      },
+      "writtenOn": "2024-03-19T10:04:24Z",
+      "side": 1,
+      "message": "please move it 4 spaces backward",
+      "revId": "b972dac41f9fe39eeb3e72e2aa85b389423ed344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
