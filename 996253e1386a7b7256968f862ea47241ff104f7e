@@ -34,6 +34,24 @@
       "parentUuid": "d7fd02fc_d6703f34",
       "revId": "996253e1386a7b7256968f862ea47241ff104f7e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d04d64be_e3900f7e",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-19T18:51:53Z",
+      "side": 0,
+      "message": "aosp/3000854 refactored the cases into separate handler functions",
+      "parentUuid": "5470b657_de37fbdf",
+      "revId": "996253e1386a7b7256968f862ea47241ff104f7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
