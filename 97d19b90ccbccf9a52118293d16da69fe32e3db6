@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "688f1584_2c5054a1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-03-19T16:45:58Z",
+      "side": 1,
+      "message": "Can you replace `Flag: continue_service_discovery_when_cancel_device_discovery` by `Bug: \u003cflag-tracking-bug\u003e`?\n\nUsing the flag stanza as you did here is actually how it is planned to evolve, but this is not yet supported 😄",
+      "revId": "97d19b90ccbccf9a52118293d16da69fe32e3db6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
