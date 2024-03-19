@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73b2bceb_1b0e30f4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2024-03-19T18:15:48Z",
+      "side": 1,
+      "message": "Thanks!",
+      "revId": "5a4be4ed7689a4017d2d79f5a90e1511340e2407",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0fb53f91_cef795b7",
@@ -32,6 +49,24 @@
       "side": 1,
       "message": "There are a couple of LL tests that would apply, but it is quite labor intensive to implement them 😞 I will come around to add them a bit later",
       "parentUuid": "0fb53f91_cef795b7",
+      "revId": "5a4be4ed7689a4017d2d79f5a90e1511340e2407",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96244cdf_105e0a17",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2024-03-19T18:15:48Z",
+      "side": 1,
+      "message": "Okay. At least we will have an Avatar test soon.",
+      "parentUuid": "7a52b1bf_ba0c3998",
       "revId": "5a4be4ed7689a4017d2d79f5a90e1511340e2407",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
