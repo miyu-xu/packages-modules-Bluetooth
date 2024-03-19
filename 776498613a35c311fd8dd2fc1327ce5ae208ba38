@@ -94,6 +94,30 @@
       },
       "revId": "776498613a35c311fd8dd2fc1327ce5ae208ba38",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec24b549_524948b4",
+        "filename": "system/stack/test/a2dp/a2dp_aac_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-19T22:31:20Z",
+      "side": 0,
+      "message": "Acknowledged",
+      "parentUuid": "03470ae8_bd3748d7",
+      "range": {
+        "startLine": 171,
+        "startChar": 16,
+        "endLine": 171,
+        "endChar": 36
+      },
+      "revId": "776498613a35c311fd8dd2fc1327ce5ae208ba38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
