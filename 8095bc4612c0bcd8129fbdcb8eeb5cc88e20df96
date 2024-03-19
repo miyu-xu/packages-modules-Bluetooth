@@ -38,6 +38,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "71e03c70_69a132b4",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1042,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-03-19T05:33:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "561e90b9_fa168033",
+      "revId": "8095bc4612c0bcd8129fbdcb8eeb5cc88e20df96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "d0ca9c08_8b91ac68",
         "filename": "system/bta/hh/bta_hh_act.cc",
         "patchSetId": 4
@@ -105,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce307fbd_18997405",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-03-19T05:33:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d5ac21d_75f41cd6",
+      "revId": "8095bc4612c0bcd8129fbdcb8eeb5cc88e20df96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa857d19_4b270e88",
@@ -133,6 +169,24 @@
         "id": 1882530
       },
       "writtenOn": "2024-03-14T06:02:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa857d19_4b270e88",
+      "revId": "8095bc4612c0bcd8129fbdcb8eeb5cc88e20df96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b49253d_84cc8cbd",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-03-19T05:33:23Z",
       "side": 1,
       "message": "Done",
       "parentUuid": "aa857d19_4b270e88",

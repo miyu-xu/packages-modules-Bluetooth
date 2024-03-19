@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ce5b205_a3026032",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 1684,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-03-19T05:33:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de372521_3977db7a",
+      "range": {
+        "startLine": 1682,
+        "startChar": 0,
+        "endLine": 1684,
+        "endChar": 39
+      },
+      "revId": "996253e1386a7b7256968f862ea47241ff104f7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1806415c_4d2fd09d",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a25f92e_fbe40691",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-03-19T05:33:23Z",
+      "side": 1,
+      "message": "This is needed for allow_switching_hid_and_hogp enabled case as well . so number of devices incrementing here",
+      "parentUuid": "1806415c_4d2fd09d",
+      "range": {
+        "startLine": 402,
+        "startChar": 0,
+        "endLine": 402,
+        "endChar": 26
+      },
+      "revId": "996253e1386a7b7256968f862ea47241ff104f7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ac5506d2_250d420f",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-03-18T16:15:01Z",
       "side": 1,
       "message": "If you remove the increment from update_device, don\u0027t forget to add it back here.\n```suggestion\n        btif_hh_cb.device_num++;\n        break;\n```",
+      "range": {
+        "startLine": 461,
+        "startChar": 0,
+        "endLine": 461,
+        "endChar": 14
+      },
+      "revId": "996253e1386a7b7256968f862ea47241ff104f7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a03ba2f7_2bdce4f3",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-03-19T05:33:23Z",
+      "side": 1,
+      "message": "This is needed for allow_switching_hid_and_hogp enabled case as well . so moved to common function hh_co_update_device",
+      "parentUuid": "ac5506d2_250d420f",
       "range": {
         "startLine": 461,
         "startChar": 0,
