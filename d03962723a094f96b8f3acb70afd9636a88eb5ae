@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "521e7fe2_61d7cb6b",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-19T23:30:53Z",
+      "side": 1,
+      "message": "My script just removed the if and keep the indentation the way it was. We can run the formatter on all the code at some point to clean all the violations up, as I\u0027m sure this isn\u0027t the only one that java-format will take issue with.",
+      "parentUuid": "7a9d9b80_532ccf9f",
+      "revId": "d03962723a094f96b8f3acb70afd9636a88eb5ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "75d500ac_7d4b79f7",
         "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
         "patchSetId": 6
@@ -31,6 +49,24 @@
       "writtenOn": "2024-03-18T22:28:55Z",
       "side": 1,
       "message": "The downside of using methods is the line no. (if enabled) will be displayed incorrectly. Sometimes the line no. directly helps in differentiating \"duplicate\" log lines.",
+      "revId": "d03962723a094f96b8f3acb70afd9636a88eb5ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3fd578f_c2a07c9c",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2233,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-19T23:30:53Z",
+      "side": 1,
+      "message": "In this case, I kind of think the trade off of consistent log line output with device identifiers is worth it. We make one of these per device and support connections with multiple devices. Debugging is next to impossible if we can\u0027t associate events with the device they came from. Plus, we can ensure our messages are unique enough that we can be rather sure of the place in code they came from.",
+      "parentUuid": "75d500ac_7d4b79f7",
       "revId": "d03962723a094f96b8f3acb70afd9636a88eb5ae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
