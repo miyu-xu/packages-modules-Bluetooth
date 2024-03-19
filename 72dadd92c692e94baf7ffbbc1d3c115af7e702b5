@@ -55,6 +55,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "adda10b9_57aa0b39",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-19T21:22:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9db3f2b5_6f7a2d89",
+      "revId": "72dadd92c692e94baf7ffbbc1d3c115af7e702b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "001eca1d_bd699a4b",
         "filename": "system/stack/btm/btm_inq.cc",
         "patchSetId": 21
