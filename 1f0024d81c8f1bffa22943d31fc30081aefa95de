@@ -118,6 +118,30 @@
       },
       "revId": "1f0024d81c8f1bffa22943d31fc30081aefa95de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66c58af4_f10327d1",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattServiceConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-19T18:43:27Z",
+      "side": 0,
+      "message": "Thanks! LGTM.",
+      "parentUuid": "6b6129d2_bf956379",
+      "range": {
+        "startLine": 26,
+        "startChar": 32,
+        "endLine": 26,
+        "endChar": 44
+      },
+      "revId": "1f0024d81c8f1bffa22943d31fc30081aefa95de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
