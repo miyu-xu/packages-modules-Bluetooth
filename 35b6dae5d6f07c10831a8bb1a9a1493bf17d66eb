@@ -378,6 +378,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7114414_d597f6b7",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1309,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-19T17:31:06Z",
+      "side": 1,
+      "message": "Already using synchronized map.",
+      "parentUuid": "061e10c9_29457c34",
+      "range": {
+        "startLine": 1303,
+        "startChar": 0,
+        "endLine": 1309,
+        "endChar": 5
+      },
+      "revId": "35b6dae5d6f07c10831a8bb1a9a1493bf17d66eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e598fc59_52f06ccd",

@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bcfcf64_7b610021",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-19T17:31:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be83f27e_bd9031ee",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 34
+      },
+      "revId": "7c78e4fea09293b5115547daf1e92e8827c22b2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c92e156_aebc21de",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-19T12:00:00Z",
       "side": 1,
       "message": "it should be initialized here and marked as `final`, then you can `synchronize` using this final object. \n\nMoreover, you can add `@GuardedBy()` annotation to help IDE identity if any access  is not protected\n\nIf you decide to do synchronized access, then you won\u0027t need `synchronizedMap`",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 60
+      },
+      "revId": "7c78e4fea09293b5115547daf1e92e8827c22b2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "794c0c8d_e5e16150",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-19T17:31:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c92e156_aebc21de",
       "range": {
         "startLine": 101,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45f9d2d8_f0f088e4",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-19T17:31:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abd68541_49546cd0",
+      "range": {
+        "startLine": 158,
+        "startChar": 24,
+        "endLine": 158,
+        "endChar": 51
+      },
+      "revId": "7c78e4fea09293b5115547daf1e92e8827c22b2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "252f7ad5_5a3db94b",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-03-19T12:00:00Z",
       "side": 1,
       "message": "is this line needed? doesn\u0027t java always return a reference? \n\nbeing picky here because I want to reduce the number of access to `mInputDevices`",
+      "range": {
+        "startLine": 248,
+        "startChar": 0,
+        "endLine": 248,
+        "endChar": 36
+      },
+      "revId": "7c78e4fea09293b5115547daf1e92e8827c22b2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4e36a1e_57816cc7",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-19T17:31:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "252f7ad5_5a3db94b",
       "range": {
         "startLine": 248,
         "startChar": 0,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "01ee9687_cd97782e",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-19T17:31:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42855024_873c31c8",
+      "range": {
+        "startLine": 258,
+        "startChar": 24,
+        "endLine": 258,
+        "endChar": 38
+      },
+      "revId": "7c78e4fea09293b5115547daf1e92e8827c22b2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c238258_3abf3e45",
@@ -129,6 +249,30 @@
       "writtenOn": "2024-03-19T12:00:00Z",
       "side": 1,
       "message": "Replace with:\n\n```\nreturn mInputDevices.computeIfAbsent(device, k -\u003e new InputDevice());\n```\n\nthis makes the access in one method",
+      "range": {
+        "startLine": 259,
+        "startChar": 0,
+        "endLine": 265,
+        "endChar": 27
+      },
+      "revId": "7c78e4fea09293b5115547daf1e92e8827c22b2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28d907a9_07613085",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-19T17:31:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c238258_3abf3e45",
       "range": {
         "startLine": 259,
         "startChar": 0,
@@ -156,6 +300,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6901ea97_efc9835c",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-19T17:31:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18d55ee3_6d71ec60",
+      "revId": "7c78e4fea09293b5115547daf1e92e8827c22b2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8da81967_d850a38f",
@@ -169,6 +331,30 @@
       "writtenOn": "2024-03-19T12:00:00Z",
       "side": 1,
       "message": "Could you move this method down to a place next to `okToConnect`? \n\nOr just use `okToConnect` and rename it later. \n\nAsking this because this \"new\" method created a big diff in the code base and you were just copying the same code from `okToConnect` to here. \n\nRenaming from `okToConnect` to `connectionAllowed` could happen in a later CL topic if you need to modify the tests. \n\nFor this CL, I think it would be easier to reduce the scope by just keep using `okToConnect`",
+      "range": {
+        "startLine": 382,
+        "startChar": 0,
+        "endLine": 416,
+        "endChar": 5
+      },
+      "revId": "7c78e4fea09293b5115547daf1e92e8827c22b2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6a71da3_141b1917",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-19T17:31:06Z",
+      "side": 1,
+      "message": "Removed `connectionAllowed()`, reinstated `okToConnect()`.",
+      "parentUuid": "8da81967_d850a38f",
       "range": {
         "startLine": 382,
         "startChar": 0,
@@ -202,6 +388,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f6bf642_d3e4869e",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-19T17:31:06Z",
+      "side": 1,
+      "message": "There are already few on\u003caction\u003e functions which are of different nature. They don\u0027t return anything.\n\nI intentionally named it different to keep the distinction.",
+      "parentUuid": "c59252db_65adfe5b",
+      "range": {
+        "startLine": 424,
+        "startChar": 20,
+        "endLine": 424,
+        "endChar": 37
+      },
+      "revId": "7c78e4fea09293b5115547daf1e92e8827c22b2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "57746874_1f548033",
@@ -215,6 +425,30 @@
       "writtenOn": "2024-03-19T12:00:00Z",
       "side": 1,
       "message": "InputDevice inputDevice \u003d mInputDevices.computeIfAbsent(device, k -\u003e new InputDevice(transport)});\n\nCreate a new constructor\n\nInputDevice(int transport) {\n  mSelectedTransport \u003d transport;\n}",
+      "range": {
+        "startLine": 601,
+        "startChar": 0,
+        "endLine": 605,
+        "endChar": 9
+      },
+      "revId": "7c78e4fea09293b5115547daf1e92e8827c22b2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19554d96_2b5bf92a",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-19T17:31:06Z",
+      "side": 1,
+      "message": "Replaced with `getOrCreateInputDevice()` for better readability. Also, transport needs to be always set. So I moved it out.",
+      "parentUuid": "57746874_1f548033",
       "range": {
         "startLine": 601,
         "startChar": 0,
@@ -248,6 +482,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce7b87b7_b8081b34",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 620,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-19T17:31:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ccee6567_a66eb7e8",
+      "range": {
+        "startLine": 620,
+        "startChar": 0,
+        "endLine": 620,
+        "endChar": 45
+      },
+      "revId": "7c78e4fea09293b5115547daf1e92e8827c22b2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95ce882f_b27808a2",
@@ -261,6 +519,30 @@
       "writtenOn": "2024-03-19T12:00:00Z",
       "side": 1,
       "message": "remove the `if (DBG)` check as it is unnecessary",
+      "range": {
+        "startLine": 1162,
+        "startChar": 8,
+        "endLine": 1162,
+        "endChar": 16
+      },
+      "revId": "7c78e4fea09293b5115547daf1e92e8827c22b2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5aa3987f_11ece21f",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 1162,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-19T17:31:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95ce882f_b27808a2",
       "range": {
         "startLine": 1162,
         "startChar": 8,
@@ -294,6 +576,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "841ee20e_96c54a41",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 1198,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-19T17:31:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df8478b4_37602fa4",
+      "range": {
+        "startLine": 1187,
+        "startChar": 0,
+        "endLine": 1198,
+        "endChar": 23
+      },
+      "revId": "7c78e4fea09293b5115547daf1e92e8827c22b2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6e3cc131_8e937d1a",
@@ -307,6 +613,30 @@
       "writtenOn": "2024-03-19T12:00:00Z",
       "side": 1,
       "message": "why assigning it here if `prevState` is always assigned to something else later on.\n\nthe problem is `getState` has an internal access to `mInputDevices`",
+      "range": {
+        "startLine": 1483,
+        "startChar": 0,
+        "endLine": 1483,
+        "endChar": 52
+      },
+      "revId": "7c78e4fea09293b5115547daf1e92e8827c22b2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53e203ed_8fcda59f",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 1483,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-19T17:31:06Z",
+      "side": 1,
+      "message": "Keeping it for sanity",
+      "parentUuid": "6e3cc131_8e937d1a",
       "range": {
         "startLine": 1483,
         "startChar": 0,
@@ -340,6 +670,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d98bb00_12658e59",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 1519,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-19T17:31:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "305d4020_db880be7",
+      "range": {
+        "startLine": 1513,
+        "startChar": 0,
+        "endLine": 1519,
+        "endChar": 13
+      },
+      "revId": "7c78e4fea09293b5115547daf1e92e8827c22b2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a5809c4_16ac74ba",
@@ -363,6 +717,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f460638_14408a13",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 1551,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-19T17:31:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a5809c4_16ac74ba",
+      "range": {
+        "startLine": 1549,
+        "startChar": 0,
+        "endLine": 1551,
+        "endChar": 53
+      },
+      "revId": "7c78e4fea09293b5115547daf1e92e8827c22b2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26f5c005_4018b95c",
@@ -376,6 +754,30 @@
       "writtenOn": "2024-03-19T12:00:00Z",
       "side": 1,
       "message": "mInputDevices.forEach((k, v) -\u003e sb.append(\"  \" + entry.getKey().getAddressForLogging() + \" : \" + entry.getValue()));",
+      "range": {
+        "startLine": 1654,
+        "startChar": 0,
+        "endLine": 1656,
+        "endChar": 9
+      },
+      "revId": "7c78e4fea09293b5115547daf1e92e8827c22b2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23758524_eb5887d3",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 1656,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-19T17:31:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26f5c005_4018b95c",
       "range": {
         "startLine": 1654,
         "startChar": 0,
