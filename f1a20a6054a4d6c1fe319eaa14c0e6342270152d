@@ -105,6 +105,29 @@
       "message": "a",
       "revId": "f1a20a6054a4d6c1fe319eaa14c0e6342270152d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1d6025b_b8083423",
+        "filename": "android/app/aidl/android/bluetooth/IBluetoothScan.aidl",
+        "patchSetId": 13
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-19T18:46:18Z",
+      "side": 1,
+      "message": "I think numHwTrackFiltersAvailable should also be here, as it\u0027s scan related and uses the TransitionalScanHelper code.\n\nSame with registerSync, transferSync, transferSetInfo, and unregisterSync",
+      "range": {
+        "startLine": 33,
+        "startChar": 17,
+        "endLine": 33,
+        "endChar": 31
+      },
+      "revId": "f1a20a6054a4d6c1fe319eaa14c0e6342270152d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
