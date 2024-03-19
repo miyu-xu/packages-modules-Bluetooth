@@ -25,12 +25,20 @@
 
 #else
 
-// FLOSS does not yet support android aconfig flags
-#define IS_FLAG_ENABLED(flag_name) false
+#include "os/system_properties.h"
+
+#define IS_FLAG_ENABLED(flag_name) \
+  com::android::bluetooth::flags::IsFlossFlagEnabled(#flag_name)
 #define IS_FLAG_ENABLED_P(provider, flag_name) false
 
 namespace com::android::bluetooth::flags {
 struct flag_provider_interface {};
+
+inline bool IsFlossFlagEnabled(const char* flag_name) {
+  const char* prefix = "persist.device_config.aconfig_flags.bluetooth.";
+  std::string prop_name = std::string(prefix) + flag_name;
+  return ::bluetooth::os::GetSystemPropertyBool(prop_name, false);
+}
 }  // namespace com::android::bluetooth::flags
 
 #endif
