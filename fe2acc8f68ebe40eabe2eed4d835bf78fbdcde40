@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7547a9be_4c666a81",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 831,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-19T15:49:41Z",
+      "side": 1,
+      "message": "You are logging the value here (times BTA_DM_PM_PARK_IDX) ...",
+      "range": {
+        "startLine": 831,
+        "startChar": 0,
+        "endLine": 831,
+        "endChar": 71
+      },
+      "revId": "fe2acc8f68ebe40eabe2eed4d835bf78fbdcde40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0324b07d_d6669a98",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 842,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-19T15:49:41Z",
+      "side": 1,
+      "message": "I don\u0027t understand what is the consequence of that. Why only changing the first item and not all of them.\n\nHence I would like code owner to review.",
+      "range": {
+        "startLine": 842,
+        "startChar": 0,
+        "endLine": 842,
+        "endChar": 63
+      },
+      "revId": "fe2acc8f68ebe40eabe2eed4d835bf78fbdcde40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78ac8ae6_32bc8bd9",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 847,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-19T15:49:41Z",
+      "side": 1,
+      "message": "and you are logging it here too (times BTA_DM_PM_PARK_IDX)...\n\n\nCan you consolidate all the logging you are adding in order to only log the information once and on one line ?\n\nSomething like a string stream and then you add:\n`[1]\u003dpwr_mds_cache[1].max, [2]\u003dpwr_mds_cache[2].max`",
+      "range": {
+        "startLine": 845,
+        "startChar": 0,
+        "endLine": 847,
+        "endChar": 3
+      },
+      "revId": "fe2acc8f68ebe40eabe2eed4d835bf78fbdcde40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
