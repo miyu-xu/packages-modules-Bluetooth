@@ -22,6 +22,30 @@
       },
       "revId": "928868f22fe73d8ccc18c58fb09304a4141e895d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0da35457_93e39b4a",
+        "filename": "system/stack/test/a2dp/a2dp_aac_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-19T22:22:07Z",
+      "side": 1,
+      "message": "I could, but I would rather have the same pattern for all tests.\nUnfortunately I could not use MockFunction, but this is the closest I could get.",
+      "parentUuid": "e2858061_c5c6c3af",
+      "range": {
+        "startLine": 156,
+        "startChar": 4,
+        "endLine": 156,
+        "endChar": 28
+      },
+      "revId": "928868f22fe73d8ccc18c58fb09304a4141e895d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
