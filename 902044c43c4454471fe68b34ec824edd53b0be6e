@@ -142,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "afeb9a6e_4031dafc",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1027,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-03-19T08:09:08Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d346d4f7_933041a1",
+      "range": {
+        "startLine": 1019,
+        "startChar": 15,
+        "endLine": 1027,
+        "endChar": 17
+      },
+      "revId": "902044c43c4454471fe68b34ec824edd53b0be6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6cafd054_07137429",
@@ -173,6 +197,24 @@
       "side": 1,
       "message": "The `hangup_call_impl()` method haven\u0027t access to the remote address.\nAdding the address to the method interface will make it inconsistent with the other `*_call_impl()` methods, and will need to change the `hangup_call()` method.",
       "parentUuid": "6cafd054_07137429",
+      "revId": "902044c43c4454471fe68b34ec824edd53b0be6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "107c2bfa_88d12d9d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1975,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-03-19T08:09:08Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "13e6ec8c_99c250bd",
       "revId": "902044c43c4454471fe68b34ec824edd53b0be6e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
