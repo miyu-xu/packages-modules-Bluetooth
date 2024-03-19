@@ -70,6 +70,41 @@
       "parentUuid": "5ee56ce3_963359eb",
       "revId": "f1a20a6054a4d6c1fe319eaa14c0e6342270152d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02942d32_ebdf11e3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966998
+      },
+      "writtenOn": "2024-03-19T18:29:41Z",
+      "side": 1,
+      "message": "Let\u0027s create a meeting, invite Christine and myself along with folks on this thread to go over the pros and cons. \n\nFew points to add clarity and to address this situation: \n- Our current design review process covers the problem statement and general solution approach. Currently, design docs doesn\u0027t include specific details around implementation - this is a gap. The goal is to ensure the broader team is aware and aligned with the high level approach taken.\n- The Area DRI is accountable for ensuring the implementation achieves the goals defined in the design document. Additionally, they must be aware of future plans within the area to guarantee long-term alignment.\n- If proposed code changes impact areas beyond the original scope, affected sub-area DRIs have the right to voice concerns and open comments. The CL owner should consider and address this feedback.\n- Internal discussions are the best way to resolve disagreements about a specific design approach. If these disagreements persist, and the changes don\u0027t introduce broader logical inconsistencies, the relevant DRI should make the final decision.",
+      "parentUuid": "567654e5_b3fa9644",
+      "revId": "f1a20a6054a4d6c1fe319eaa14c0e6342270152d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba9c8ef9_a0ed75b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966998
+      },
+      "writtenOn": "2024-03-19T18:29:41Z",
+      "side": 1,
+      "message": "a",
+      "revId": "f1a20a6054a4d6c1fe319eaa14c0e6342270152d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
