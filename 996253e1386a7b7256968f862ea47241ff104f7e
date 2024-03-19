@@ -16,6 +16,24 @@
       "message": "It would be easier to review if handleMessage* methods were added in a CL by themselves.\n\nI would like it better if it was consistent.  Why are only three messages handled in separate functions?",
       "revId": "996253e1386a7b7256968f862ea47241ff104f7e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5470b657_de37fbdf",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-19T06:49:39Z",
+      "side": 0,
+      "message": "I would like to refactor all of them into separate functions. I can do the rest of them in a separate cl.\nI chose to refactor only these three messages, because they have more logic than others.",
+      "parentUuid": "d7fd02fc_d6703f34",
+      "revId": "996253e1386a7b7256968f862ea47241ff104f7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
