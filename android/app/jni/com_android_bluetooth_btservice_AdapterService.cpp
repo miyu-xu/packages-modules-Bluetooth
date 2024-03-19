@@ -35,6 +35,8 @@
 #include "utils/Log.h"
 #include "utils/misc.h"
 
+#include "src/loader.rs.h"
+
 using bluetooth::Uuid;
 #ifndef DYNAMIC_LOAD_BLUETOOTH
 extern bt_interface_t bluetoothInterface;
@@ -2306,6 +2308,10 @@ jint JNI_OnLoad(JavaVM* jvm, void* /* reserved */) {
   if (jvm->GetEnv((void**)&e, JNI_VERSION_1_6)) {
     log::error("JNI version mismatch error");
     return JNI_ERR;
+  }
+
+  if (!bluetooth::crust::loader::load_initial_crust_jni()) {
+    log::error("Crust JNI failed to load");
   }
 
   status = android::register_com_android_bluetooth_btservice_AdapterService(e);
