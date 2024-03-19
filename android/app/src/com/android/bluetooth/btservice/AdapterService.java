@@ -6191,9 +6191,14 @@ public class AdapterService extends Service {
     int getConnectionState(BluetoothDevice device) {
         if (Flags.apiGetConnectionStateUsingIdentityAddress()) {
             final String identityAddress = device.getIdentityAddress();
-            return (identityAddress == null)
-                    ? mNativeInterface.getConnectionState(getBytesFromAddress(device.getAddress()))
-                    : mNativeInterface.getConnectionState(getBytesFromAddress(identityAddress));
+            int originalAddressState =
+                    mNativeInterface.getConnectionState(getBytesFromAddress(device.getAddress()));
+            int identityAddressState = 0;
+            if (identityAddress != null) {
+                identityAddressState =
+                        mNativeInterface.getConnectionState(getBytesFromAddress(identityAddress));
+            }
+            return (originalAddressState | identityAddressState);
         }
         return mNativeInterface.getConnectionState(getBytesFromAddress(device.getAddress()));
     }
