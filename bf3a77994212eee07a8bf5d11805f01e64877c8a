@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2e075ca_5b9a9aee",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-19T16:52:10Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d02cb99b_4ec174d8",
+      "revId": "bf3a77994212eee07a8bf5d11805f01e64877c8a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "275f8fed_225fee18",
@@ -66,6 +84,24 @@
       "writtenOn": "2024-03-19T00:02:06Z",
       "side": 1,
       "message": "Here\u0027s the tie-in 😊",
+      "revId": "bf3a77994212eee07a8bf5d11805f01e64877c8a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b17140f_438cc0bb",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 3234,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-19T16:52:10Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "275f8fed_225fee18",
       "revId": "bf3a77994212eee07a8bf5d11805f01e64877c8a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -101,6 +137,24 @@
       "side": 1,
       "message": "Correct :)\n\npackages/modules/Bluetooth/system/main/shim/controller.cc\n```\nstatic void set_ble_resolving_list_max_size(int /* resolving_list_max_size */) {\n  LOG_DEBUG(\"UNSUPPORTED\");\n}\n```",
       "parentUuid": "503e50e4_e849cf95",
+      "revId": "bf3a77994212eee07a8bf5d11805f01e64877c8a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "253537e5_d5390980",
+        "filename": "system/stack/btm/btm_ble_privacy.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-19T16:52:10Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a54ad0d7_069d66ce",
       "revId": "bf3a77994212eee07a8bf5d11805f01e64877c8a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
