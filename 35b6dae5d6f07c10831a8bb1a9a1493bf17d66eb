@@ -356,6 +356,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "061e10c9_29457c34",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1309,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-19T12:00:00Z",
+      "side": 1,
+      "message": "I see. In this case, I wish `getPreferredTransport` is a callback instead of a getter. \n\nIf concurrency cannot be avoided, then you do need to protect `mInputDevices` by making it final and synchronize to it, or use a Read-Write lock similar to what we did in LeAudioService.java\n\nFor this version of code, what would happen if you try to modify `mInputDevices` while trying to read it? Wouldn\u0027t this lead to corrupted state? \n\nSince it is known that you are going to have multi-thread access `mInputDevices`, I would prefer we handle it now instead of doing a follow-up fix.\n\nI know you are using `synchronizedMap`, I need to double check if the current access pattern is indeed safe. You might want to do do certain accesses in atomic manner.",
+      "parentUuid": "d18a4466_e089b77f",
+      "range": {
+        "startLine": 1303,
+        "startChar": 0,
+        "endLine": 1309,
+        "endChar": 5
+      },
+      "revId": "35b6dae5d6f07c10831a8bb1a9a1493bf17d66eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e598fc59_52f06ccd",
         "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
         "patchSetId": 3
