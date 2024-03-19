@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc982f93_d622a847",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 29
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-19T12:18:06Z",
+      "side": 1,
+      "message": "why was this function modified? is this the auto formatter? \n\nif so, could you use `git add -p` to put this in a separate change?",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 34
+      },
+      "revId": "f3824a98b8b4eaee44c4a60c1014d2b816fdc22a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e52baa24_db8aaedd",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 1515,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-19T12:18:06Z",
+      "side": 1,
+      "message": "nit: dev !\u003d nullptr\n\ndo not use pointer as boolean",
+      "range": {
+        "startLine": 1515,
+        "startChar": 8,
+        "endLine": 1515,
+        "endChar": 11
+      },
+      "revId": "f3824a98b8b4eaee44c4a60c1014d2b816fdc22a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
