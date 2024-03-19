@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fb53f91_cef795b7",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2024-03-19T18:12:13Z",
+      "side": 1,
+      "message": "Is it possible to add/modify a test for this change?",
+      "revId": "5a4be4ed7689a4017d2d79f5a90e1511340e2407",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
