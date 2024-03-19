@@ -16,6 +16,23 @@
       "message": "WIP: design review and sco linking issue after enable aflags macros",
       "revId": "1f6944a861dbf6cb5b45a23f881917631575ee1b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fda52fc3_74985248",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-19T22:46:26Z",
+      "side": 1,
+      "message": "`IS_FLAG_ENABLED` macro is not design in the mindset to stay forever and is only there to workaround floss.\n\nWe want to remove it entirely.\n\nI believe the list of `.aconfig` should be use to generate the function in the correct namespace and seamlessly use the code for both FLOSS and Android.\n\nThe only difference would be the library being linked between android and FLOSS.",
+      "revId": "1f6944a861dbf6cb5b45a23f881917631575ee1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
