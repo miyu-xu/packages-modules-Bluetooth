@@ -16,6 +16,24 @@
       "message": "Instant +2 !\n\ncan we promote this as error in presubmit too ?",
       "revId": "748a5297a4a2e98e234f1a6dcb2c773b7b00c52d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6f449de_d6565ca0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1535516
+      },
+      "writtenOn": "2024-03-19T22:55:51Z",
+      "side": 1,
+      "message": "Yeah, I\u0027m going to promote this and some other issues to errors after all the fix cls are in.",
+      "parentUuid": "cce1192a_aec00a0b",
+      "revId": "748a5297a4a2e98e234f1a6dcb2c773b7b00c52d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
