@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d775eab2_b632ccf6",
+        "filename": "system/stack/test/a2dp/a2dp_aac_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-19T22:19:37Z",
+      "side": 0,
+      "message": "I don\u0027t see where you\u0027re waiting, now.  Was the wait never needed?  Otherwise, I expect this to become a flaky test.\n\nYou could put a promise in the read_cb to wait on.",
+      "range": {
+        "startLine": 171,
+        "startChar": 16,
+        "endLine": 171,
+        "endChar": 36
+      },
+      "revId": "776498613a35c311fd8dd2fc1327ce5ae208ba38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

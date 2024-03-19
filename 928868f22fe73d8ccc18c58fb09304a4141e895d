@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2858061_c5c6c3af",
+        "filename": "system/stack/test/a2dp/a2dp_aac_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-19T22:19:37Z",
+      "side": 1,
+      "message": "nit: FAIL()\n\nThen you could remove enqueue_cb_invoked",
+      "range": {
+        "startLine": 156,
+        "startChar": 4,
+        "endLine": 156,
+        "endChar": 28
+      },
+      "revId": "928868f22fe73d8ccc18c58fb09304a4141e895d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
