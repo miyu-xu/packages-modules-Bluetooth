@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "adf26d5e_93e9ef72",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1707594
+      },
+      "writtenOn": "2024-03-19T05:27:42Z",
+      "side": 1,
+      "message": "Hi sir, we only do the manual test for this issue. I\u0027m not sure which test should we do. Would you have some suggestions? Thanks.",
+      "parentUuid": "ee6c7b52_9b17f160",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "f8a7cccacd6b76b3fea6987524a9eb32df757af9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "853110d7_a23334d7",
@@ -54,6 +78,42 @@
       "writtenOn": "2024-03-12T22:05:38Z",
       "side": 1,
       "message": "This change needs to be guarded by a flag",
+      "revId": "f8a7cccacd6b76b3fea6987524a9eb32df757af9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdb0c6b7_17e01699",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 871,
+      "author": {
+        "id": 1707594
+      },
+      "writtenOn": "2024-03-19T05:27:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "caadab8b_c8a6ca7a",
+      "revId": "f8a7cccacd6b76b3fea6987524a9eb32df757af9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c47706d_9c966928",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 871,
+      "author": {
+        "id": 1707594
+      },
+      "writtenOn": "2024-03-19T05:27:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "853110d7_a23334d7",
       "revId": "f8a7cccacd6b76b3fea6987524a9eb32df757af9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
