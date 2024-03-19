@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f51370db_c2dbe59e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-19T17:10:10Z",
+      "side": 1,
+      "message": "This *is* the money shot",
+      "revId": "72dadd92c692e94baf7ffbbc1d3c115af7e702b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdff8269_8000d791",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-19T17:10:10Z",
+      "side": 1,
+      "message": "bad merge ?",
+      "revId": "72dadd92c692e94baf7ffbbc1d3c115af7e702b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "001eca1d_bd699a4b",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-19T17:10:10Z",
+      "side": 1,
+      "message": "no checks ? I\u0027m ok with that",
+      "revId": "72dadd92c692e94baf7ffbbc1d3c115af7e702b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b18e81e_013b7f0d",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-19T17:10:10Z",
+      "side": 1,
+      "message": "Wouldn\u0027t the next check below (BTM_DeleteStoredLinkKey) also do the same ?\n\nAll these checks for controller accessible are a bit much",
+      "revId": "72dadd92c692e94baf7ffbbc1d3c115af7e702b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
