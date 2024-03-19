@@ -46,6 +46,30 @@
       },
       "revId": "776498613a35c311fd8dd2fc1327ce5ae208ba38",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01a406c9_6bbe2037",
+        "filename": "system/stack/test/a2dp/a2dp_aac_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-19T22:25:18Z",
+      "side": 0,
+      "message": "I mean the \"Wait\" part of \"WaitUntilLogContains\"... Did it never actually wait?",
+      "parentUuid": "7b6cf3a3_52e6d396",
+      "range": {
+        "startLine": 171,
+        "startChar": 16,
+        "endLine": 171,
+        "endChar": 36
+      },
+      "revId": "776498613a35c311fd8dd2fc1327ce5ae208ba38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
