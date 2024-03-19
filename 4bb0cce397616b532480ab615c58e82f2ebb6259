@@ -47,6 +47,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a9b0b6b_4d0609c8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 6194,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-03-19T12:25:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ceef455b_0e862183",
+      "range": {
+        "startLine": 6194,
+        "startChar": 16,
+        "endLine": 6194,
+        "endChar": 29
+      },
+      "revId": "4bb0cce397616b532480ab615c58e82f2ebb6259",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85fa81d3_7b5ae06b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 6194,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-03-19T12:25:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a9a57e8_2021b96c",
+      "range": {
+        "startLine": 6194,
+        "startChar": 16,
+        "endLine": 6194,
+        "endChar": 23
+      },
+      "revId": "4bb0cce397616b532480ab615c58e82f2ebb6259",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "11312a5a_a69fea43",
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ea3c97c_02816035",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 6196,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-03-19T12:25:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11312a5a_a69fea43",
+      "range": {
+        "startLine": 6196,
+        "startChar": 16,
+        "endLine": 6196,
+        "endChar": 30
+      },
+      "revId": "4bb0cce397616b532480ab615c58e82f2ebb6259",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "54d100a5_ed8941a3",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-03-19T12:20:51Z",
       "side": 1,
       "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"orignal\" -- should it be \"original\"?\n\nAnalyzer Description: Linter for catching common typos motivated by go/todo-fail and go/lol-codesearch. Shared with google3 common typos library go/common-typos.\nOwner: ayeaye-team@google.com\n\nCommon typo found: \"orignal\" -- should it be \"original\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 6201,
+        "startChar": 20,
+        "endLine": 6201,
+        "endChar": 27
+      },
+      "revId": "4bb0cce397616b532480ab615c58e82f2ebb6259",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d2e24a9_6188cb4f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 6201,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-03-19T12:25:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54d100a5_ed8941a3",
       "range": {
         "startLine": 6201,
         "startChar": 20,
