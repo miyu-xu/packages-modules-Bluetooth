@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "967b2e24_97ba3049",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-19T11:11:27Z",
+      "side": 0,
+      "message": "not fore reviewers, bd_name_from_char_pointer takes care of null check",
+      "range": {
+        "startLine": 173,
+        "startChar": 4,
+        "endLine": 173,
+        "endChar": 25
+      },
+      "revId": "bfe2ae569a50b32c2636bb5c717701fad74f4ef1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
