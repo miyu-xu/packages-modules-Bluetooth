@@ -288,6 +288,7 @@ static void btif_dm_ble_passkey_req_evt(tBTA_DM_PIN_REQ* p_pin_req);
 static void btif_dm_ble_key_nc_req_evt(tBTA_DM_SP_KEY_NOTIF* p_notif_req);
 static void btif_dm_ble_oob_req_evt(tBTA_DM_SP_RMT_OOB* req_oob_type);
 static void btif_dm_ble_sc_oob_req_evt(tBTA_DM_SP_RMT_OOB* req_oob_type);
+static uint16_t btif_dm_get_resolved_connection_state(tBLE_BD_ADDR ble_bd_addr);
 
 static const char* btif_get_default_local_name();
 
@@ -916,6 +917,14 @@ uint16_t btif_dm_get_connection_state(const RawAddress& bd_addr) {
   } else {
     log::info("Acl is not connected to peer:{}",
               ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+  }
+
+  if (IS_FLAG_ENABLED(api_get_connection_state_using_identity_address)) {
+    uint16_t resolved_connection_state = btif_dm_get_resolved_connection_state({
+        .type = BLE_ADDR_RANDOM,
+        .bda = bd_addr,
+    });
+    rc |= resolved_connection_state;
   }
 
   BTM_LogHistory(
