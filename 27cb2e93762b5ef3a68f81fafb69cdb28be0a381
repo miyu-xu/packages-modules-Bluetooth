@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9be3bf12_bbd35857",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 1408,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-19T23:30:39Z",
+      "side": 1,
+      "message": "future CL: consistency :)",
+      "range": {
+        "startLine": 1408,
+        "startChar": 72,
+        "endLine": 1408,
+        "endChar": 79
+      },
+      "revId": "27cb2e93762b5ef3a68f81fafb69cdb28be0a381",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
