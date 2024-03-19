@@ -16,6 +16,24 @@
       "message": "Please push for floss to support flag instead.",
       "revId": "53fa7324ff4756449f777c1f139474c0690383de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba7c1910_e1aafb4e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-19T15:11:43Z",
+      "side": 1,
+      "message": "Offline talk. There are support incoming… soon …",
+      "parentUuid": "c7ca47c3_e51c27d7",
+      "revId": "53fa7324ff4756449f777c1f139474c0690383de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
