@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0eca7e55_1f2a6879",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322530
+      },
+      "writtenOn": "2024-03-19T08:54:18Z",
+      "side": 1,
+      "message": "LGTM, fix guard with flag which will try to resolved the address and update the connection state.",
+      "revId": "076a8eea65ec5c6f0c45b6928e9614c99a04a9bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
