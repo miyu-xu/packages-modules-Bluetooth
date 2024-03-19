@@ -33,6 +33,24 @@
       "message": "`IS_FLAG_ENABLED` macro is not design in the mindset to stay forever and is only there to workaround floss.\n\nWe want to remove it entirely.\n\nI believe the list of `.aconfig` should be use to generate the function in the correct namespace and seamlessly use the code for both FLOSS and Android.\n\nThe only difference would be the library being linked between android and FLOSS.",
       "revId": "1f6944a861dbf6cb5b45a23f881917631575ee1b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff2b0551_6e5eaeb6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-19T22:53:23Z",
+      "side": 1,
+      "message": "One way to do it is to use the same tool than android uses https://cs.android.com/android/platform/superproject/main/+/main:build/make/tools/aconfig/aconfig/Cargo.toml and use it in gn to generate the required code.\n\nI did something like this a while back for the sysprop tool https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2442199/5 (The patchset is important)",
+      "parentUuid": "fda52fc3_74985248",
+      "revId": "1f6944a861dbf6cb5b45a23f881917631575ee1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
