@@ -46,6 +46,30 @@
       },
       "revId": "dea968c2edb122313d4b2513d8e20536a4a94a53",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9b38c27_40e2c6ff",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1461,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-03-19T23:29:17Z",
+      "side": 1,
+      "message": "Done, added it in `Utils.isScoManagedByAudioEnabled()` function",
+      "parentUuid": "d764c34b_8936fba9",
+      "range": {
+        "startLine": 1461,
+        "startChar": 67,
+        "endLine": 1461,
+        "endChar": 80
+      },
+      "revId": "dea968c2edb122313d4b2513d8e20536a4a94a53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
