@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e8873e5_d2596768",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-03-19T15:02:25Z",
+      "side": 1,
+      "message": "I think we need to add else here?\n\n```suggestion\n      } else {\n        ... high quality\n      }\n```\n\notherwise, for this config,\npreferred quality STANDARD -\u003e 1st entry has 48000u and 120 -\u003e we will break from line.325?\nbut we should expect to select 16_2.",
+      "revId": "0cd7b69d7d6ac43b00053f0f0f44d75cbf37b1f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
