@@ -22,6 +22,30 @@
       },
       "revId": "f952c861d4307025889215c8feecb0bf2734a809",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19260c99_ff7142a6",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-03-19T09:48:52Z",
+      "side": 1,
+      "message": "Thanks for the suggestion Kyunglyul, I split the change.",
+      "parentUuid": "b9790ec5_18471107",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 9
+      },
+      "revId": "f952c861d4307025889215c8feecb0bf2734a809",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
