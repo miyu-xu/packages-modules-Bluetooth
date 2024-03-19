@@ -32,6 +32,7 @@
 #include "com_android_bluetooth.h"
 #include "hardware/bt_sock.h"
 #include "os/logging/log_adapter.h"
+#include "src/loader.rs.h"
 #include "utils/Log.h"
 #include "utils/misc.h"
 
@@ -2306,6 +2307,10 @@ jint JNI_OnLoad(JavaVM* jvm, void* /* reserved */) {
   if (jvm->GetEnv((void**)&e, JNI_VERSION_1_6)) {
     log::error("JNI version mismatch error");
     return JNI_ERR;
+  }
+
+  if (!bluetooth::crust::loader::load_initial_crust_jni()) {
+    log::error("Crust JNI failed to load");
   }
 
   status = android::register_com_android_bluetooth_btservice_AdapterService(e);

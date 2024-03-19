@@ -132,6 +132,7 @@ cc_library_shared {
         "libbtif-core",
         "libc++fs",
         "libchrome",
+        "libcrust_bridge",
         "libcutils",
         "libevent",
         "libflatbuffers-cpp",

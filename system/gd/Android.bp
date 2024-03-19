@@ -181,6 +181,7 @@ cc_defaults {
         "libbt_shim_bridge",
         "libbt_shim_ffi",
         "libcom.android.sysprop.bluetooth.wrapped",
+        "libcrust_rust_interop",
         "libosi",
         "server_configurable_flags",
     ],
@@ -188,7 +189,10 @@ cc_defaults {
         "packages/modules/Bluetooth/system/include",
         "packages/modules/Bluetooth/system/types",
     ],
-    export_static_lib_headers: ["libbluetooth_rust_interop"],
+    export_static_lib_headers: [
+        "libbluetooth_rust_interop",
+        "libcrust_rust_interop",
+    ],
 }
 
 cc_library {
