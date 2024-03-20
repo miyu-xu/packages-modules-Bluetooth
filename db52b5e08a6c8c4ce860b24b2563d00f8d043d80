@@ -46,6 +46,30 @@
       },
       "revId": "db52b5e08a6c8c4ce860b24b2563d00f8d043d80",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8ab70e4_6d4d95b5",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 1386,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-03-20T07:16:25Z",
+      "side": 1,
+      "message": "yes . it got changes as part of rebase . I will correct it",
+      "parentUuid": "3570e331_a6acc5b6",
+      "range": {
+        "startLine": 1386,
+        "startChar": 30,
+        "endLine": 1386,
+        "endChar": 64
+      },
+      "revId": "db52b5e08a6c8c4ce860b24b2563d00f8d043d80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
