@@ -46,6 +46,30 @@
       },
       "revId": "44ba073c92363a8de20a4de1d4116f845b6a6376",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d471757a_7f7d85dd",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-20T17:46:16Z",
+      "side": 1,
+      "message": "\u003e the override of `initBinder`, `start`, `stop`, and `cleanup` will have to be removed. \n\nYes, this will simplify a lot this class\n\n\u003e `mService.isAvailable()` will also not be available.\n\nYou can still have it as a private method (or field) \n\n\u003e `BluetoothScanManagerBinder` will also not implement from `IProfileServiceBinder`.\nPerfect as `IProfileServiceBinder` force you to implement `cleanup` and this currently is an empty method (and should stay like this)\n\n\u003e `TransitionalScanHelper` is expecting a boolean value from `isTestModeEnabled` which comes from ProfileService\n\nthe testModeEnabled is passed as a lambda, since you currently have no test mode support in the ScanManager, you can pass a lambda that return false always ?\n\nThe only unit test using that is `testDump_doesNotCrash` which seems it doesn\u0027t care what the test mode is as long at is doesn\u0027t crash...\nOther test are external ones (permissionUI test O_o / pairing_test) and doesn\u0027t seems to rely on our behavior neither (but I may be wrong here! )\n\n\u003e so I guess we\u0027ll also have to add a mContext to this class?\n\nHaving a Context looks good to me",
+      "parentUuid": "27402050_cadd8789",
+      "range": {
+        "startLine": 40,
+        "startChar": 32,
+        "endLine": 40,
+        "endChar": 39
+      },
+      "revId": "44ba073c92363a8de20a4de1d4116f845b6a6376",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
