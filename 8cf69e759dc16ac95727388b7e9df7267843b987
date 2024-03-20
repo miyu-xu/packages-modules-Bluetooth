@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c2cb24f_15425198",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-20T00:21:21Z",
+      "side": 0,
+      "message": "It seems this logic is correct as is, no?\n\n(Perhaps identityAddress object name not quite right but the logic on the right will end up doing essentially the same thing. brEdrAddress isn\u0027t quite correct here as DistanceMeasurementManager is typically used over LE transport AFAIK).\n\nThus could just rename to address or add clarifying comment to line 163 (why setting identityAddress to device#getAddress when identityAddress is null).",
+      "range": {
+        "startLine": 161,
+        "startChar": 8,
+        "endLine": 166,
+        "endChar": 71
+      },
+      "revId": "8cf69e759dc16ac95727388b7e9df7267843b987",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
