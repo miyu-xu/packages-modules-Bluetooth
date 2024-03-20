@@ -754,6 +754,13 @@ void bta_hh_ctrl_dat_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
     osi_free_and_reset((void**)&pdata);
     return;
   }
+
+  if (IS_FLAG_ENABLED(allow_switching_hid_and_hogp) &&
+      p_cb->w4_evt == BTA_HH_ENABLE_EVT) {
+    osi_free_and_reset((void**)&pdata);
+    return;
+  }
+
   hs_data.status = BTA_HH_OK;
   hs_data.handle = p_cb->hid_handle;
 
