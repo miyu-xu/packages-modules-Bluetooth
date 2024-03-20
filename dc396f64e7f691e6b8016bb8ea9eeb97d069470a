@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a01f8149_d2e1606d",
+        "filename": "system/btif/include/btif_jni_task.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-20T21:13:02Z",
+      "side": 1,
+      "message": "nit: get_jni() ?\n\nIt\u0027s going to take the form get_jni()-\u003eBindOnce(...);\n```suggestion\nbluetooth::common::PostableContext* get_jni();\n```",
+      "range": {
+        "startLine": 60,
+        "startChar": 36,
+        "endLine": 60,
+        "endChar": 52
+      },
+      "revId": "dc396f64e7f691e6b8016bb8ea9eeb97d069470a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f071d3e_86526ae1",
+        "filename": "system/gd/common/postable_context.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-20T21:13:02Z",
+      "side": 1,
+      "message": "```suggestion\n#pragma once\n\n```",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 0
+      },
+      "revId": "dc396f64e7f691e6b8016bb8ea9eeb97d069470a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0badc446_227b0be8",
+        "filename": "system/gd/common/postable_context.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-20T21:13:02Z",
+      "side": 1,
+      "message": "Include common/bind.h ?\n```suggestion\n#include \"common/bind.h\"\n#include \"common/contextual_callback.h\"\n```",
+      "revId": "dc396f64e7f691e6b8016bb8ea9eeb97d069470a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
