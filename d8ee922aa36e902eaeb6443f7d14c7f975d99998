@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6152f24_89bb8306",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1298,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2024-03-20T15:19:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fbf4cebb_10985490",
+      "range": {
+        "startLine": 1298,
+        "startChar": 12,
+        "endLine": 1298,
+        "endChar": 34
+      },
+      "revId": "d8ee922aa36e902eaeb6443f7d14c7f975d99998",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5edeab45_5916bc5c",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-20T11:29:29Z",
       "side": 1,
       "message": "check if `self.call_list` is empty. if it is empty then return false here.",
+      "range": {
+        "startLine": 1971,
+        "startChar": 7,
+        "endLine": 1971,
+        "endChar": 23
+      },
+      "revId": "d8ee922aa36e902eaeb6443f7d14c7f975d99998",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb542ee7_65209de0",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1971,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2024-03-20T15:19:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5edeab45_5916bc5c",
       "range": {
         "startLine": 1971,
         "startChar": 7,
