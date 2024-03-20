@@ -22,6 +22,30 @@
       },
       "revId": "8cf69e759dc16ac95727388b7e9df7267843b987",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fff9cbf_cbeaf3a0",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-03-20T02:47:10Z",
+      "side": 0,
+      "message": "Understood. I noticed the logic was already doing the same thing as our Util function, but uploaded the CL just in case we wanted to still use the Util function. Simply renamed to address instead!",
+      "parentUuid": "4c2cb24f_15425198",
+      "range": {
+        "startLine": 161,
+        "startChar": 8,
+        "endLine": 166,
+        "endChar": 71
+      },
+      "revId": "8cf69e759dc16ac95727388b7e9df7267843b987",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
