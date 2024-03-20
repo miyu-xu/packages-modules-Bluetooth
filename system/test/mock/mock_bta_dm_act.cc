@@ -137,10 +137,6 @@ void bta_dm_add_blekey(const RawAddress& bd_addr, tBTA_LE_KEY_VALUE blekey,
   inc_func_call_count(__func__);
   test::mock::bta_dm_act::bta_dm_add_blekey(bd_addr, blekey, key_type);
 }
-void bta_dm_add_device(std::unique_ptr<tBTA_DM_API_ADD_DEVICE> msg) {
-  inc_func_call_count(__func__);
-  test::mock::bta_dm_act::bta_dm_add_device(std::move(msg));
-}
 void bta_dm_ble_config_local_privacy(bool privacy_enable) {
   inc_func_call_count(__func__);
   test::mock::bta_dm_act::bta_dm_ble_config_local_privacy(privacy_enable);

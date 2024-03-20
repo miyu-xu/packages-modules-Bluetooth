@@ -135,22 +135,10 @@ void bta_dm_remote_key_missing(const RawAddress bd_addr) {
  *                  It is normally called during host startup to restore all
  *                  required information stored in the NVRAM.
  ******************************************************************************/
-void bta_dm_add_device(std::unique_ptr<tBTA_DM_API_ADD_DEVICE> msg) {
-  DEV_CLASS dc = kDevClassEmpty;
-  LinkKey* p_lc = NULL;
-
-  /* If not all zeros, the device class has been specified */
-  if (msg->dc_known) dc = msg->dc;
-
-  if (msg->link_key_known) p_lc = &msg->link_key;
-
-  auto add_result = get_btm_client_interface().security.BTM_SecAddDevice(
-      msg->bd_addr, dc, msg->bd_name, nullptr, p_lc, msg->key_type,
-      msg->pin_length);
-  if (!add_result) {
-    log::error("Error adding device:{}",
-               ADDRESS_TO_LOGGABLE_CSTR(msg->bd_addr));
-  }
+void bta_dm_add_device(const RawAddress& bd_addr, DEV_CLASS dev_class,
+                       LinkKey link_key, uint8_t key_type, uint8_t pin_length) {
+  get_btm_client_interface().security.BTM_SecAddDevice(
+      bd_addr, dev_class, nullptr, &link_key, key_type, pin_length);
 }
 
 /** Bonds with peer device */
