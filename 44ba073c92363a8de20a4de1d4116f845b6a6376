@@ -94,6 +94,30 @@
       },
       "revId": "44ba073c92363a8de20a4de1d4116f845b6a6376",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdc74bec_c7cc6376",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-20T20:48:30Z",
+      "side": 1,
+      "message": "\u003e You can still have it as a private method (or field)\n\nDone.\n\n\u003e you can pass a lambda that return false always ?\n\nGood idea, done.\n\n\n\u003e Having a Context looks good to me\n\nOn second thought, passing it over to the `TransitionalScanHelper` looks sufficient for now without creating an extra `mContext`. Done. Thank you!\n\n\u003e  But some methods aren\u0027t necessary. cleanup() for instance is already called in stop(), so you can remove cleanup().\n\nDone\n\n\u003e (currently initBinder, but could be getBinder or something else) being the concrete BluetoothScanManagerBinder.\n\nDone.\n\n\u003e For the context you are already getting a context in the ScanManagerService constructor. Initialize mTransitionalScanHelper in the constructor and give it that context.\n\nDone. Thank you.\n\nPTAL. Thank you.\n\nnit: In this case, we may end up not having the `Service` suffix. What should I name this class though given that we already have `ScanManager`?",
+      "parentUuid": "f081cf75_083374bf",
+      "range": {
+        "startLine": 40,
+        "startChar": 32,
+        "endLine": 40,
+        "endChar": 39
+      },
+      "revId": "44ba073c92363a8de20a4de1d4116f845b6a6376",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
