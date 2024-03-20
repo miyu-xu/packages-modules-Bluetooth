@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "25515799_25cf638e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-20T14:12:00Z",
+      "side": 1,
+      "message": "Correct. That\u0027s the intention.\nAny testing much appreciated.",
+      "parentUuid": "08060524_cfd4f2aa",
+      "range": {
+        "startLine": 585,
+        "startChar": 12,
+        "endLine": 585,
+        "endChar": 31
+      },
+      "revId": "ac31005b3143fac12c87eed9c77b16a953c9ef2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fd7b69f3_43e75c8a",
         "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
         "patchSetId": 2
