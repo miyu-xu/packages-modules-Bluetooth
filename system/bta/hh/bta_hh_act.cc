@@ -101,6 +101,9 @@ void bta_hh_api_enable(tBTA_HH_CBACK* p_cback, bool enable_hid, bool enable_hogp
     bta_hh_cb.kdev[xx].state = BTA_HH_IDLE_ST;
     bta_hh_cb.kdev[xx].hid_handle = BTA_HH_INVALID_HANDLE;
     bta_hh_cb.kdev[xx].index = xx;
+    bta_hh_cb.kdev[xx].w4_evt = IS_FLAG_ENABLED(allow_switching_hid_and_hogp)
+                                    ? BTA_HH_EMPTY_EVT
+                                    : BTA_HH_ENABLE_EVT;
   }
 
   /* initialize control block map */
@@ -697,7 +700,9 @@ void bta_hh_handsk_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
       if (bta_hh.hs_data.status == BTA_HH_OK)
         bta_hh.hs_data.status = BTA_HH_HS_TRANS_NOT_SPT;
       (*bta_hh_cb.p_cback)(p_cb->w4_evt, &bta_hh);
-      p_cb->w4_evt = 0;
+      p_cb->w4_evt = IS_FLAG_ENABLED(allow_switching_hid_and_hogp)
+                         ? BTA_HH_EMPTY_EVT
+                         : BTA_HH_ENABLE_EVT;
       break;
 
     /* acknoledgement from HID device for SET_ transaction */
@@ -708,7 +713,9 @@ void bta_hh_handsk_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
       bta_hh.dev_status.status =
           bta_hh_get_trans_status(p_data->hid_cback.data);
       (*bta_hh_cb.p_cback)(p_cb->w4_evt, &bta_hh);
-      p_cb->w4_evt = 0;
+      p_cb->w4_evt = IS_FLAG_ENABLED(allow_switching_hid_and_hogp)
+                         ? BTA_HH_EMPTY_EVT
+                         : BTA_HH_ENABLE_EVT;
       break;
 
     /* SET_PROTOCOL when open connection */
@@ -719,7 +726,9 @@ void bta_hh_handsk_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
       bta_hh.conn.link_spec = p_cb->link_spec;
       (*bta_hh_cb.p_cback)(p_cb->w4_evt, &bta_hh);
       bta_hh_trace_dev_db();
-      p_cb->w4_evt = 0;
+      p_cb->w4_evt = IS_FLAG_ENABLED(allow_switching_hid_and_hogp)
+                         ? BTA_HH_EMPTY_EVT
+                         : BTA_HH_ENABLE_EVT;
       break;
 
     default:
@@ -750,7 +759,9 @@ void bta_hh_ctrl_dat_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
   log::verbose("Ctrl DATA received w4: event[{}]",
                bta_hh_get_w4_event(p_cb->w4_evt));
   if (pdata->len == 0) {
-    p_cb->w4_evt = 0;
+    p_cb->w4_evt = IS_FLAG_ENABLED(allow_switching_hid_and_hogp)
+                       ? BTA_HH_EMPTY_EVT
+                       : BTA_HH_ENABLE_EVT;
     osi_free_and_reset((void**)&pdata);
     return;
   }
@@ -793,7 +804,9 @@ void bta_hh_ctrl_dat_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
 
   (*bta_hh_cb.p_cback)(p_cb->w4_evt, (tBTA_HH*)&hs_data);
 
-  p_cb->w4_evt = 0;
+  p_cb->w4_evt = IS_FLAG_ENABLED(allow_switching_hid_and_hogp)
+                     ? BTA_HH_EMPTY_EVT
+                     : BTA_HH_ENABLE_EVT;
   osi_free_and_reset((void**)&pdata);
 }
 
@@ -825,7 +838,9 @@ void bta_hh_open_failure(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
   bta_hh_trace_dev_db();
   /* clean up control block, but retain SDP info and device handle */
   p_cb->vp = false;
-  p_cb->w4_evt = 0;
+  p_cb->w4_evt = IS_FLAG_ENABLED(allow_switching_hid_and_hogp)
+                     ? BTA_HH_EMPTY_EVT
+                     : BTA_HH_ENABLE_EVT;
 
   /* if no connection is active and HH disable is signaled, disable service */
   if (bta_hh_cb.cnt_num == 0 && bta_hh_cb.w4_disable) {
@@ -892,7 +907,9 @@ void bta_hh_close_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
 
   /* clean up control block, but retain SDP info and device handle */
   p_cb->vp = false;
-  p_cb->w4_evt = 0;
+  p_cb->w4_evt = IS_FLAG_ENABLED(allow_switching_hid_and_hogp)
+                     ? BTA_HH_EMPTY_EVT
+                     : BTA_HH_ENABLE_EVT;
 
   /* if no connection is active and HH disable is signaled, disable service */
   if (bta_hh_cb.cnt_num == 0 && bta_hh_cb.w4_disable) {
