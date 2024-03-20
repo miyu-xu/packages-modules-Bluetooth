@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fef673e_470279cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-20T16:37:08Z",
+      "side": 1,
+      "message": "IMO, there are 3 changes merged into one:\n\n1. Remove msg packeting for BTM add name\n2. Remove name from BTM add device\n3. Change link_key to value and do not check if it exists\n\nCould you split the changes instead so that it is easier for us to review, merged, and revert if needed?",
+      "revId": "6fb548f38ef659f4e361d7a0d18f64acfb9b1fa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c895158_03609bd4",
+        "filename": "system/bta/dm/bta_dm_sec_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-20T16:37:08Z",
+      "side": 1,
+      "message": "nit: could you name this a bit better? like `task`?",
+      "range": {
+        "startLine": 143,
+        "startChar": 7,
+        "endLine": 143,
+        "endChar": 12
+      },
+      "revId": "6fb548f38ef659f4e361d7a0d18f64acfb9b1fa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f8712f4_a68acb48",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-20T16:37:08Z",
+      "side": 1,
+      "message": "is this parameter used anywhere in this function?",
+      "range": {
+        "startLine": 89,
+        "startChar": 31,
+        "endLine": 89,
+        "endChar": 39
+      },
+      "revId": "6fb548f38ef659f4e361d7a0d18f64acfb9b1fa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dbf1459_99ccb0ca",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-20T16:37:08Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Inclusive Language: Prefer to use inclusive terms like \u0027on-path attacker\u0027; see https://source.android.com/setup/contribute/respectful-code for more details. In the case of a false positive add BYPASS_INCLUSIVE_LANGUAGE_REASON\u003dmy_reason_here to your commit mess...\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: inclusive-language-in-code@google.com\n\nPrefer to use inclusive terms like \u0027on-path attacker\u0027; see https://source.android.com/setup/contribute/respectful-code for more details. In the case of a false positive add BYPASS_INCLUSIVE_LANGUAGE_REASON\u003dmy_reason_here to your commit message to disable this check.",
+      "range": {
+        "startLine": 137,
+        "startChar": 14,
+        "endLine": 137,
+        "endChar": 18
+      },
+      "revId": "6fb548f38ef659f4e361d7a0d18f64acfb9b1fa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

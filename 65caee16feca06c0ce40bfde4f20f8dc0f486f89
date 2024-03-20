@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "977212ca_49e89a1b",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-20T16:37:08Z",
+      "side": 0,
+      "message": "these logic was removed, why?",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 49
+      },
+      "revId": "65caee16feca06c0ce40bfde4f20f8dc0f486f89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0370101a_fde5582e",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-20T16:37:08Z",
+      "side": 0,
+      "message": "I am a bit concerned when this flag is not set, where do we use `BTM_SEC_NAME_KNOWN`?",
+      "range": {
+        "startLine": 132,
+        "startChar": 32,
+        "endLine": 132,
+        "endChar": 54
+      },
+      "revId": "65caee16feca06c0ce40bfde4f20f8dc0f486f89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
