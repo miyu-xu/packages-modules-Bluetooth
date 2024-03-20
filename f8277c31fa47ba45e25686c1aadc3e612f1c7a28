@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2715ccaf_a60a4954",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-20T18:24:24Z",
+      "side": 1,
+      "message": "exempt, no logical change, plus logging changes",
+      "range": {
+        "startLine": 16,
+        "startChar": 6,
+        "endLine": 16,
+        "endChar": 31
+      },
+      "revId": "f8277c31fa47ba45e25686c1aadc3e612f1c7a28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7374179_e98daa82",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-20T18:24:24Z",
+      "side": 1,
+      "message": "I am not sure on this one, you already did `fmt::join(dev_class, \"\")` then why do you still need `{:02x}`?",
+      "range": {
+        "startLine": 105,
+        "startChar": 42,
+        "endLine": 105,
+        "endChar": 66
+      },
+      "revId": "f8277c31fa47ba45e25686c1aadc3e612f1c7a28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
