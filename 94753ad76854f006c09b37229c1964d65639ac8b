@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8ec1c5c_1b5dc6f9",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeLegacyAdvertisingTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-03-20T01:10:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b3adf5c_eebd4245",
+      "range": {
+        "startLine": 81,
+        "startChar": 54,
+        "endLine": 81,
+        "endChar": 61
+      },
+      "revId": "94753ad76854f006c09b37229c1964d65639ac8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8503ee5f_46270677",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-20T00:17:57Z",
       "side": 1,
       "message": "Could we set this data in this initial builder? Or does it need to be done in onAdvertisingSetStarted?\n\nIf the former then we could use a mock for the AdvertisingSetCallback and avoid using the CountdownLatch (instead just use verify).",
+      "range": {
+        "startLine": 82,
+        "startChar": 24,
+        "endLine": 83,
+        "endChar": 93
+      },
+      "revId": "94753ad76854f006c09b37229c1964d65639ac8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc0f8e08_41f1ee27",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeLegacyAdvertisingTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-03-20T01:10:14Z",
+      "side": 1,
+      "message": "Setting it in initial builder throws an Java exception, so it needs to be set here to test the native code change.\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/le/BluetoothLeAdvertiser.java;drc\u003d69574b75cfbe856ed88282ca5d9a74e3f1d5eb66;l\u003d514",
+      "parentUuid": "8503ee5f_46270677",
       "range": {
         "startLine": 82,
         "startChar": 24,
