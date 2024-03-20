@@ -93,6 +93,98 @@
       },
       "revId": "abd455a155de65248d2f11c8ad872be32188b7f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f787e90_e6506aa9",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-03-20T07:16:03Z",
+      "side": 1,
+      "message": "This is logical change . looks like we should not modified in this CL",
+      "range": {
+        "startLine": 328,
+        "startChar": 0,
+        "endLine": 328,
+        "endChar": 55
+      },
+      "revId": "abd455a155de65248d2f11c8ad872be32188b7f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "976e735c_1e12315c",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-03-20T07:16:03Z",
+      "side": 1,
+      "message": "This is logical change . looks like we should not modified in this CL",
+      "range": {
+        "startLine": 349,
+        "startChar": 0,
+        "endLine": 349,
+        "endChar": 55
+      },
+      "revId": "abd455a155de65248d2f11c8ad872be32188b7f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "212c858a_7b3c33e1",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 1422,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-03-20T07:16:03Z",
+      "side": 1,
+      "message": "These lines are redundant. This variables are updated in line 1424",
+      "range": {
+        "startLine": 1419,
+        "startChar": 0,
+        "endLine": 1422,
+        "endChar": 42
+      },
+      "revId": "abd455a155de65248d2f11c8ad872be32188b7f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "110cba7f_67023a9b",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-03-20T07:16:03Z",
+      "side": 1,
+      "message": "link_spec.addrt.bda is not assigned with bd_addr",
+      "range": {
+        "startLine": 181,
+        "startChar": 3,
+        "endLine": 184,
+        "endChar": 0
+      },
+      "revId": "abd455a155de65248d2f11c8ad872be32188b7f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
