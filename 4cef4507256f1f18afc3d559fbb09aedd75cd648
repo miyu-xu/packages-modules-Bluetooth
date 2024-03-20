@@ -66,6 +66,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b6c30478_fd180c72",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeLegacyAdvertisingTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-03-20T18:15:21Z",
+      "side": 1,
+      "message": "I am struggling about the used of the `CountDownLatch` here instead of a `Future`. I understand it is really simple to use but I would prefer using a `Future` for couple of reasons:\n* Consistency across the tests\n* Future let\u0027s you send Data, which mean we can perform the `if` logic directly within the assert alongside the timeout.",
+      "revId": "4cef4507256f1f18afc3d559fbb09aedd75cd648",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c5280a4b_49511c3b",
         "filename": "framework/tests/bumble/src/android/bluetooth/LeLegacyAdvertisingTest.java",
         "patchSetId": 12
