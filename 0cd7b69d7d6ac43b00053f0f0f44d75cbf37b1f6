@@ -34,6 +34,41 @@
       "parentUuid": "5e8873e5_d2596768",
       "revId": "0cd7b69d7d6ac43b00053f0f0f44d75cbf37b1f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35a47504_aec5ce55",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-03-20T12:00:15Z",
+      "side": 1,
+      "message": "oh, I thought 316 and 318 are together. thanks for clarifying this.",
+      "parentUuid": "f23d81fa_3711f7d3",
+      "revId": "0cd7b69d7d6ac43b00053f0f0f44d75cbf37b1f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abc78987_4fe0ae44",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-03-20T12:00:15Z",
+      "side": 1,
+      "message": "I didn\u0027t find this in the 1st review. But should we change it to this? \nOtherwise, if the broadcast_target_config chose 48_2 first, it might be overwritten here by 24_2 later when QUALITY_HIGH is preferred.\n\n```suggestion\n            (supported_broadcast_config[broadcast_target_config].sampling_rate \u003d\u003d\n             16000u))  // 24_2 \u003e 16_2\n```",
+      "revId": "0cd7b69d7d6ac43b00053f0f0f44d75cbf37b1f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
