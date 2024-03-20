@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "227fec1e_fae258b2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-20T16:48:34Z",
+      "side": 1,
+      "message": "What do we need to try this out?",
+      "revId": "b6944ca7a419497a0c725f9b184e2f98f0bc0984",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "968803c8_2092c849",
@@ -102,6 +119,30 @@
       "side": 1,
       "message": "I tried this and that\u0027s when I found out it doesn\u0027t work b/c it\u0027s used *within* `ContextualCallback`.  Otherwise that would work.\n\n\n```\ntemplate \u003ctypename R, typename... Args\u003e\nclass ContextualOnceCallback\u003cR(Args...)\u003e {\n...\n private:\n  common::OnceCallback\u003cR(Args...)\u003e callback_;\n  IPostableContext* context_;\n};\n\ntemplate \u003ctypename R, typename... Args\u003e\nclass ContextualCallback\u003cR(Args...)\u003e {\n...\n private:\n  common::Callback\u003cR(Args...)\u003e callback_;\n  IPostableContext* context_;\n};\n```",
       "parentUuid": "db1537b2_7f2012be",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 47
+      },
+      "revId": "b6944ca7a419497a0c725f9b184e2f98f0bc0984",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41f43c30_c6d2c1f9",
+        "filename": "system/gd/common/i_bindable_context.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-20T16:48:34Z",
+      "side": 1,
+      "message": "Good point.",
+      "parentUuid": "481c5821_646d6f7c",
       "range": {
         "startLine": 29,
         "startChar": 0,
