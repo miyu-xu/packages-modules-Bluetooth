@@ -154,6 +154,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5465d552_960472b1",
+        "filename": "system/bta/dm/bta_dm_sec_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-20T17:23:18Z",
+      "side": 1,
+      "message": "I have to copy all parameters into lambda, and got some build errors.\nIt was due to BTM layer API accepting pointer, but liked the BTA change too.",
+      "parentUuid": "622579ac_e67c481e",
+      "range": {
+        "startLine": 141,
+        "startChar": 21,
+        "endLine": 141,
+        "endChar": 31
+      },
+      "revId": "6fb548f38ef659f4e361d7a0d18f64acfb9b1fa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c895158_03609bd4",
