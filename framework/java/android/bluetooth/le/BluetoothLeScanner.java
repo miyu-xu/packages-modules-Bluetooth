@@ -29,6 +29,7 @@ import android.bluetooth.Attributable;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.IBluetoothGatt;
+import android.bluetooth.IBluetoothScan;
 import android.bluetooth.annotations.RequiresBluetoothLocationPermission;
 import android.bluetooth.annotations.RequiresBluetoothScanPermission;
 import android.bluetooth.annotations.RequiresLegacyBluetoothAdminPermission;
@@ -39,6 +40,7 @@ import android.os.RemoteException;
 import android.os.WorkSource;
 import android.util.Log;
 
+import com.android.bluetooth.flags.Flags;
 import com.android.modules.utils.SynchronousResultReceiver;
 
 import java.util.ArrayList;
@@ -279,6 +281,18 @@ public final class BluetoothLeScanner {
                         new BleScanCallbackWrapper(gatt, filters, settings, workSource, callback);
                 wrapper.startRegistration();
             } else {
+                if (Flags.scanManagerRefactor()) {
+                    IBluetoothScan scan = mBluetoothAdapter.getBluetoothScan();
+                    if (scan == null) { // can it be implemented in a way where it is not possible to return null for getBluetoothScan
+                        return postCallbackErrorOrReturn(callback, ScanCallback.SCAN_FAILED_INTERNAL_ERROR);
+                    }
+                    try {
+                        scan.startScanForIntent(callbackIntent, settings, filters, mAttributionSource);
+                        return ScanCallback.NO_ERROR;
+                    } catch (RemoteException e) {
+                        return ScanCallback.SCAN_FAILED_INTERNAL_ERROR;
+                    }
+                }
                 try {
                     final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
                     gatt.startScanForIntent(

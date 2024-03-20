@@ -4400,6 +4400,25 @@ public final class BluetoothAdapter {
         return defaultValue;
     }
 
+    /**
+     * Return a binder to Scan"Service"
+     *
+     * @hide
+     */
+    public IBluetoothScan getBluetoothScan() {
+        mServiceLock.readLock().lock();
+        try {
+            if (mService != null) {
+                return IBluetoothScan.Stub.asInterface(mService.getBluetoothScan());
+            }
+        } catch (RemoteException e) {
+            Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+        } finally {
+            mServiceLock.readLock().unlock();
+        }
+        return null;
+    }
+
     /** Return a binder to a Profile service */
     private @Nullable IBinder getProfile(int profile) {
         IBinder defaultValue = null;

@@ -82,6 +82,7 @@ import com.android.bluetooth.btservice.MetricsLogger;
 import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.le_scan.TransitionalScanHelper;
+import com.android.bluetooth.le_scan.ScanManagerService;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.SynchronousResultReceiver;
 
@@ -189,6 +190,7 @@ public class GattService extends ProfileService {
     private Handler mTestModeHandler;
     private ActivityManager mActivityManager;
     private PackageManager mPackageManager;
+    public ScanManagerService mScanManagerService;
     private final Object mTestModeLock = new Object();
 
     public GattService(Context ctx) {
@@ -231,7 +233,13 @@ public class GattService extends ProfileService {
 
         HandlerThread thread = new HandlerThread("BluetoothScanManager");
         thread.start();
-        mTransitionalScanHelper.start(thread.getLooper());
+
+        if (Flags.scanManagerRefactor()) {
+            mScanManagerService = new ScanManagerService(this, thread.getLooper());
+        } else {
+            mTransitionalScanHelper.start(thread.getLooper());
+        }
+
         mDistanceMeasurementManager = GattObjectsFactory.getInstance()
                 .createDistanceMeasurementManager(mAdapterService);
 
@@ -244,7 +252,9 @@ public class GattService extends ProfileService {
         if (DBG) {
             Log.d(TAG, "stop()");
         }
-        mTransitionalScanHelper.stop();
+        if (!Flags.scanManagerRefactor()) {
+            mTransitionalScanHelper.stop();
+        }
         mAdvertiserMap.clear();
         mClientMap.clear();
         if (Flags.gattCleanupRestrictedHandles()) {
@@ -271,7 +281,11 @@ public class GattService extends ProfileService {
         if (mDistanceMeasurementManager != null) {
             mDistanceMeasurementManager.cleanup();
         }
-        mTransitionalScanHelper.cleanup();
+        if (Flags.scanManagerRefactor()) {
+            mScanManagerService.cleanup();
+        } else {
+            mTransitionalScanHelper.cleanup();
+        }
     }
 
     TransitionalScanHelper getTransitionalScanHelper() {

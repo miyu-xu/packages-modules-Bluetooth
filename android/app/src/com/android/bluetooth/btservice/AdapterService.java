@@ -135,6 +135,7 @@ import com.android.bluetooth.hid.HidDeviceService;
 import com.android.bluetooth.hid.HidHostService;
 import com.android.bluetooth.le_audio.LeAudioService;
 import com.android.bluetooth.le_scan.ScanManager;
+import com.android.bluetooth.le_scan.ScanManagerService;
 import com.android.bluetooth.map.BluetoothMapService;
 import com.android.bluetooth.mapclient.MapClientService;
 import com.android.bluetooth.mcp.McpService;
@@ -5373,6 +5374,24 @@ public class AdapterService extends Service {
                 return null;
             }
             return service.getBluetoothGatt();
+        }
+
+        @Override
+        public IBinder getBluetoothScan() {
+            // Very ugly check flow here, To be improved
+            AdapterService service = getService();
+            if (service == null) {
+                return null;
+            }
+            GattService gattService = service.mGattService;
+            if (gattService == null) {
+                return null;
+            }
+            ScanManagerService scanService = gattService.mScanManagerService;
+            if (scanService == null) {
+                return null;
+            }
+            return scanService.mBinder;
         }
 
         @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
