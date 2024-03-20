@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c3ef9c7_f83cf7eb",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-03-20T03:02:02Z",
+      "side": 1,
+      "message": "If we use bluetooth.core.classic.sniff_max_intervals, we have to specify bluetooth.core.classic.sniff_max_intervals \u0026 bluetooth.core.classic.sniff_min_intervals \u0026 bluetooth.core.classic.sniff_attempts \u0026 bluetooth.core.classic.sniff_timeouts. \n\n```\n[Here\u0027s the comment]\n// If any of the sysprops are malformed or don\u0027t exist, use default table\n  // value\n```\n\nAlso need to specify the whole table. But in that IOP bug, we just need to modify the one of the value.\nSo the current design makes no sense to me.",
+      "parentUuid": "b4e0acf5_140330fc",
+      "revId": "fe2acc8f68ebe40eabe2eed4d835bf78fbdcde40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7547a9be_4c666a81",
