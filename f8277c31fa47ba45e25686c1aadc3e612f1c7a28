@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "e6203eeb_8d285d40",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-20T18:49:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2715ccaf_a60a4954",
+      "range": {
+        "startLine": 16,
+        "startChar": 6,
+        "endLine": 16,
+        "endChar": 31
+      },
+      "revId": "f8277c31fa47ba45e25686c1aadc3e612f1c7a28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "30fdfd2d_da5e065e",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 4
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf8fec93_23962fdd",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-20T18:49:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54a11321_c8a984eb",
+      "range": {
+        "startLine": 91,
+        "startChar": 68,
+        "endLine": 91,
+        "endChar": 74
+      },
+      "revId": "f8277c31fa47ba45e25686c1aadc3e612f1c7a28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5312a311_984b56e6",
@@ -77,6 +125,30 @@
       "writtenOn": "2024-03-20T18:44:35Z",
       "side": 1,
       "message": "`0x{:x}` would be nicer",
+      "range": {
+        "startLine": 92,
+        "startChar": 24,
+        "endLine": 92,
+        "endChar": 28
+      },
+      "revId": "f8277c31fa47ba45e25686c1aadc3e612f1c7a28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b8019f5_221c96b4",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-20T18:49:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5312a311_984b56e6",
       "range": {
         "startLine": 92,
         "startChar": 24,
@@ -128,6 +200,54 @@
         "startChar": 9,
         "endLine": 104,
         "endChar": 15
+      },
+      "revId": "f8277c31fa47ba45e25686c1aadc3e612f1c7a28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a610189_71af9c37",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-20T18:49:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1b5488b_1a1d36ce",
+      "range": {
+        "startLine": 104,
+        "startChar": 9,
+        "endLine": 104,
+        "endChar": 15
+      },
+      "revId": "f8277c31fa47ba45e25686c1aadc3e612f1c7a28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3893b4f4_5814e485",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-20T18:49:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0f7ee31_2bc1a629",
+      "range": {
+        "startLine": 104,
+        "startChar": 32,
+        "endLine": 104,
+        "endChar": 36
       },
       "revId": "f8277c31fa47ba45e25686c1aadc3e612f1c7a28",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
