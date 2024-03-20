@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4339ea5_8114d404",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-20T04:46:30Z",
+      "side": 1,
+      "message": "I really like how it got factored out.  Thanks!\n\nI\u0027m still thinking about naming, but that\u0027s always the hardest part.",
+      "revId": "b6944ca7a419497a0c725f9b184e2f98f0bc0984",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "968803c8_2092c849",
+        "filename": "system/btif/src/btif_jni_task.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-20T04:46:30Z",
+      "side": 1,
+      "message": "get_jni_context?",
+      "range": {
+        "startLine": 129,
+        "startChar": 45,
+        "endLine": 129,
+        "endChar": 53
+      },
+      "revId": "b6944ca7a419497a0c725f9b184e2f98f0bc0984",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
