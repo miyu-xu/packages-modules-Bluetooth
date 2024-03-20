@@ -3,6 +3,138 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b7d0f007_abff64a8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-20T15:19:44Z",
+      "side": 1,
+      "message": "remove unnecessary empty lines",
+      "revId": "ac31005b3143fac12c87eed9c77b16a953c9ef2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57c82eb1_0fe20523",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-20T15:19:44Z",
+      "side": 1,
+      "message": "what if the device do not use CSIP?",
+      "range": {
+        "startLine": 202,
+        "startChar": 12,
+        "endLine": 202,
+        "endChar": 67
+      },
+      "revId": "ac31005b3143fac12c87eed9c77b16a953c9ef2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd038d0d_efb64384",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-20T15:19:44Z",
+      "side": 1,
+      "message": "Should we also check if each group member has LE_AUDIO profile? \n\nA LE-only device is defined as a peripheral with only ASCS, no HFP/A2DP/ASHA profiles.",
+      "range": {
+        "startLine": 221,
+        "startChar": 0,
+        "endLine": 221,
+        "endChar": 47
+      },
+      "revId": "ac31005b3143fac12c87eed9c77b16a953c9ef2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20cb61fd_c049ce80",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-20T15:19:44Z",
+      "side": 1,
+      "message": "the logic can be simpler if you check for le type first\n\n```\nif (device.getType() !\u003d BluetoothDevice.DEVICE_TYPE_LE) {\n  // Any BR/EDR transport will prevent this device from being treated as LE only\n  // log\n  return false;\n}\nif (Utils.arrayContains(uuids, BluetoothUuid.HEARING_AID)) {\n   debugLog(\"isLeAudioOnlyDevice: \" + device + \" supports ASHA\");\n   return false;\n}\nif (Utils.arrayContains(uuids, BluetoothUuid.COORDINATED_SET)) {\n  // log\n  return isLeAudioOnlyGroup(device);\n}\nreturn true;\n```",
+      "range": {
+        "startLine": 252,
+        "startChar": 9,
+        "endLine": 256,
+        "endChar": 0
+      },
+      "revId": "ac31005b3143fac12c87eed9c77b16a953c9ef2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c5ddd7b_11c051e2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-20T15:19:44Z",
+      "side": 1,
+      "message": "Also by doing this, we do not allow Dual Mode devices that use RFCOMM + LE audio with no A2DP nor HFP. \n\nIt is fine, but just want to make sure this is our intention.",
+      "range": {
+        "startLine": 257,
+        "startChar": 0,
+        "endLine": 257,
+        "endChar": 67
+      },
+      "revId": "ac31005b3143fac12c87eed9c77b16a953c9ef2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "998dd510_1d13aad7",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-20T15:19:44Z",
+      "side": 1,
+      "message": "Are we sure when device type is LE, A2DP and HFP is not there? i.e. is there any check the device type is bugging? (I guess we should fix that bug if this happens)\n\nThat being said should we check for A2DP/HFP as well?",
+      "range": {
+        "startLine": 257,
+        "startChar": 12,
+        "endLine": 257,
+        "endChar": 64
+      },
+      "revId": "ac31005b3143fac12c87eed9c77b16a953c9ef2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "137bb116_35b5e584",
         "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
         "patchSetId": 2
@@ -98,6 +230,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7178bb5e_4876adfe",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-20T15:19:44Z",
+      "side": 1,
+      "message": "Typo?\n\nPlease fix this WARNING reported by Error Prone: [UnusedVariable] The local variable \u0027dev\u0027 is never read.\n\nAnalyzer Description: Warnings generated by errorprone.\nOwner: farivar@google.com\n\n    [UnusedVariable] The local variable \u0027dev\u0027 is never read.\n            for (BluetoothDevice dev : groupDevices) {\n                                 ^\n        (see https://errorprone.info/bugpattern/UnusedVariable)\n      Did you mean \u0027for (BluetoothDevice unused : groupDevices) {\u0027?\n\nUse `m RUN_ERROR_PRONE\u003dtrue MyModule` to reproduce locally.\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P71325087/targets/errorprone-trunk_staging, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the git_main branch.",
+      "range": {
+        "startLine": 598,
+        "startChar": 0,
+        "endLine": 598,
+        "endChar": 50
+      },
+      "revId": "ac31005b3143fac12c87eed9c77b16a953c9ef2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fd7b69f3_43e75c8a",
         "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
         "patchSetId": 2
@@ -133,6 +288,30 @@
       "side": 1,
       "message": "thanks, good catch",
       "parentUuid": "fd7b69f3_43e75c8a",
+      "range": {
+        "startLine": 599,
+        "startChar": 51,
+        "endLine": 599,
+        "endChar": 57
+      },
+      "revId": "ac31005b3143fac12c87eed9c77b16a953c9ef2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55d27e3c_607e8c9b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-20T15:19:44Z",
+      "side": 1,
+      "message": "+1, have you tested locally for this?",
+      "parentUuid": "a04f350b_059a820e",
       "range": {
         "startLine": 599,
         "startChar": 51,
