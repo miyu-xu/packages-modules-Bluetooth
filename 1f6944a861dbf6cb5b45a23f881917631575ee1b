@@ -51,6 +51,24 @@
       "parentUuid": "fda52fc3_74985248",
       "revId": "1f6944a861dbf6cb5b45a23f881917631575ee1b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12411de3_06924997",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-03-20T10:25:14Z",
+      "side": 1,
+      "message": "David, thanks for the pointers. I agree that code generate solution would be ideal for run time performance. To expedite the adapption of aflags on Floss, I\u0027d like to start with a simple implementation and then working toward to the code-gen solution. \n\nWilliam, would you be open to the two-phase solution?",
+      "parentUuid": "ff2b0551_6e5eaeb6",
+      "revId": "1f6944a861dbf6cb5b45a23f881917631575ee1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
