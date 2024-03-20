@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a283acd_0cdcfe62",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeLegacyAdvertisingTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-03-20T16:41:26Z",
+      "side": 1,
+      "message": "If the condition is not fulfill the advertising will not be stopped. You may consider using a `try {} finally{}` block on the assert",
+      "revId": "4cef4507256f1f18afc3d559fbb09aedd75cd648",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5280a4b_49511c3b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeLegacyAdvertisingTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-03-20T16:41:26Z",
+      "side": 1,
+      "message": "Same here, may need to use the `try {} finally {}` block",
+      "revId": "4cef4507256f1f18afc3d559fbb09aedd75cd648",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2294a556_1b5604dc",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeLegacyAdvertisingTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-03-20T16:41:26Z",
+      "side": 1,
+      "message": "nit: You can use the GoogleOne:\n\nhttps://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothAssignedNumbers.java;l\u003d1155?q\u003dBluetoothAssignedNumbers\u0026sq\u003drepo:android%2Fplatform%2Fsuperproject%2Fmain%20b:main\n```suggestion\n        int manufacturerId \u003d 13;\n        int manufacturerId \u003d BluetoothAssignedNumbers.GOOGLE;\n```",
+      "revId": "4cef4507256f1f18afc3d559fbb09aedd75cd648",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
