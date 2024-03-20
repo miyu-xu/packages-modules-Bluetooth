@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#include <android_bluetooth_flags.h>
+#include <flag_macros.h>
 #include <gtest/gtest.h>
 
 #include <array>
@@ -25,6 +27,8 @@
 #include "osi/include/allocator.h"
 #include "test/common/mock_functions.h"
 #include "test/mock/mock_osi_allocator.h"
+
+#define BT_FLAG_PACKAGE com::android::bluetooth::flags
 
 namespace {
 std::array<uint8_t, 32> data32 = {
@@ -63,7 +67,7 @@ class BtaHhTest : public ::testing::Test {
 
 TEST_F(BtaHhTest, simple) {}
 
-TEST_F(BtaHhTest, bta_hh_ctrl_dat_act__BTA_HH_GET_RPT_EVT) {
+void bta_hh_ctrl_dat_act__BTA_HH_GET_RPT_EVT_common(uint16_t w4_evt) {
   tBTA_HH_DEV_CB cb = {
       .w4_evt = BTA_HH_GET_RPT_EVT,
   };
@@ -104,5 +108,17 @@ TEST_F(BtaHhTest, bta_hh_ctrl_dat_act__BTA_HH_GET_RPT_EVT) {
   };
 
   bta_hh_ctrl_dat_act(&cb, &data);
-  ASSERT_EQ(cb.w4_evt, 0);
+  ASSERT_EQ(cb.w4_evt, w4_evt);
+}
+
+TEST_F_WITH_FLAGS(BtaHhTest, bta_hh_ctrl_dat_act__BTA_HH_GET_RPT_EVT0,
+                  REQUIRES_FLAGS_DISABLED(ACONFIG_FLAG(
+                      BT_FLAG_PACKAGE, allow_switching_hid_and_hogp))) {
+  bta_hh_ctrl_dat_act__BTA_HH_GET_RPT_EVT_common(BTA_HH_ENABLE_EVT);
+}
+
+TEST_F_WITH_FLAGS(BtaHhTest, bta_hh_ctrl_dat_act__BTA_HH_GET_RPT_EVT1,
+                  REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(
+                      BT_FLAG_PACKAGE, allow_switching_hid_and_hogp))) {
+  bta_hh_ctrl_dat_act__BTA_HH_GET_RPT_EVT_common(BTA_HH_EMPTY_EVT);
 }

@@ -1314,6 +1314,7 @@ cc_test {
         "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libevent",
+        "libflagtest",
         "libgmock",
         "libosi",
     ],
