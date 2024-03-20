@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cb3fe96d_e66363c0",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1997,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-20T09:58:21Z",
+      "side": 0,
+      "message": "We don\u0027t need to zero the last byte at all, strlcpy inside bd_name_copy takes care of that now.\n\nWhen the BD_NAME is created using bd_name_from_char_pointer, we do zero remaining memory.\n\n\nSo this should create a closed circuit, where BD_NAME \"creation\" and passing is always safe.\n\nBTW. in UTF8, you can have code point 0 in middle of string and it\u0027s valid. \n\n\nMy next step would be to turn BD_NAME into a POD class, and have either copy constructor, or constructor that takes string as argument, and no default constructor (if possible), to have the safety of passing it verified during compilation.",
+      "parentUuid": "bdc106c9_497a2078",
+      "range": {
+        "startLine": 1997,
+        "startChar": 25,
+        "endLine": 1997,
+        "endChar": 72
+      },
+      "revId": "1a1422dbaa8875bc2c8ec3e99528cd893362b3a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2c55c70f_d2cdde39",
         "filename": "system/stack/btm/neighbor_inquiry.h",
         "patchSetId": 11
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-14T22:07:25Z",
       "side": 0,
       "message": "to confirm, this is removed because, BD_NAME now is guaranteed to be null terminated?",
+      "range": {
+        "startLine": 220,
+        "startChar": 0,
+        "endLine": 220,
+        "endChar": 18
+      },
+      "revId": "1a1422dbaa8875bc2c8ec3e99528cd893362b3a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ae9e6ba_5e176b1c",
+        "filename": "system/stack/btm/neighbor_inquiry.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-20T09:58:21Z",
+      "side": 0,
+      "message": "it\u0027s guaranteed to be null terminated, and also always BD_NAME_LEN+1 in length.\n\nbd_name_copy and bd_name_from_char_pointer guarantee to always add null at end of name.",
+      "parentUuid": "2c55c70f_d2cdde39",
       "range": {
         "startLine": 220,
         "startChar": 0,
