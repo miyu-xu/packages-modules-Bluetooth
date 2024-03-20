@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a23c0bbe_a471668d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-20T19:28:48Z",
+      "side": 1,
+      "message": "The `repo upload` command should provide you prompt to run the bpfmt tool to automatically reformat bp files.",
+      "revId": "eee74ab22f7ec14213ab885a69b6b0cc26a7e768",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
