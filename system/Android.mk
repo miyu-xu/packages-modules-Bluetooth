@@ -24,9 +24,6 @@ LOCAL_host_python_hci_packets_library := \
 LOCAL_host_python_smp_packets_library := \
 	$(SOONG_OUT_DIR)/.intermediates/packages/modules/Bluetooth/system/pdl/security/gd_smp_packets_python3_gen/gen/smp_packets.py
 
-LOCAL_host_python_extension_libraries := \
-	$(HOST_OUT_SHARED_LIBRARIES)/bluetooth_packets_python3.so
-
 LOCAL_host_libraries := \
 	$(HOST_OUT_SHARED_LIBRARIES)/libbase.so \
 	$(HOST_OUT_SHARED_LIBRARIES)/libbinder.so \
