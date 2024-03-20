@@ -18,6 +18,8 @@
 
 #include "main/shim/controller.h"
 
+#include <bluetooth/log.h>
+
 #include "btcore/include/module.h"
 #include "hci/controller.h"
 #include "hci/controller_interface.h"
@@ -30,6 +32,7 @@
 #include "types/raw_address.h"
 
 using ::bluetooth::shim::GetController;
+using namespace bluetooth;
 
 constexpr int kMaxSupportedCodecs = 8;  // MAX_LOCAL_SUPPORTED_CODECS_SIZE
 
@@ -58,7 +61,7 @@ struct {
 } data_;
 
 static future_t* start_up(void) {
-  LOG_INFO("%s Starting up", __func__);
+  log::info("Starting up");
   data_.ready = true;
 
   std::string string_address = GetController()->GetMacAddress().ToString();
@@ -77,7 +80,7 @@ static future_t* start_up(void) {
   data_.bt_version.lmp_subversion = local_version_info.lmp_subversion_;
   data_.bt_version.manufacturer = local_version_info.manufacturer_name_;
 
-  LOG_INFO("Mac address:%s", ADDRESS_TO_LOGGABLE_CSTR(data_.raw_address));
+  log::info("Mac address:{}", ADDRESS_TO_LOGGABLE_CSTR(data_.raw_address));
 
   data_.phy = kPhyLe1M;
 
@@ -140,7 +143,7 @@ FORWARD_GETTER(uint8_t, get_le_connect_list_size,
                GetController()->GetLeFilterAcceptListSize())
 
 static void set_ble_resolving_list_max_size(int /* resolving_list_max_size */) {
-  LOG_DEBUG("UNSUPPORTED");
+  log::debug("UNSUPPORTED");
 }
 
 static uint8_t get_le_resolving_list_size(void) {
@@ -150,13 +153,13 @@ static uint8_t get_le_resolving_list_size(void) {
 static uint8_t get_le_all_initiating_phys() { return data_.phy; }
 
 static uint8_t controller_clear_event_filter() {
-  LOG_VERBOSE("Called!");
+  log::verbose("Called!");
   bluetooth::shim::GetController()->SetEventFilterClearAll();
   return BTM_SUCCESS;
 }
 
 static uint8_t controller_clear_event_mask() {
-  LOG_VERBOSE("Called!");
+  log::verbose("Called!");
   bluetooth::shim::GetController()->SetEventMask(0);
   bluetooth::shim::GetController()->LeSetEventMask(0);
   return BTM_SUCCESS;
