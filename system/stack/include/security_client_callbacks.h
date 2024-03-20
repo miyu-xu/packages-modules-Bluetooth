@@ -97,10 +97,9 @@ typedef struct {
   void (*BTM_BleLoadLocalKeys)(uint8_t key_type, tBTM_BLE_LOCAL_KEYS* p_key);
 
   // Update/Query in-memory device records
-  bool (*BTM_SecAddDevice)(const RawAddress& bd_addr, const DEV_CLASS dev_class,
-                           const BD_NAME& bd_name, uint8_t* features,
-                           LinkKey* link_key, uint8_t key_type,
-                           uint8_t pin_length);
+  void (*BTM_SecAddDevice)(const RawAddress& bd_addr, const DEV_CLASS dev_class,
+                           uint8_t* features, LinkKey link_key,
+                           uint8_t key_type, uint8_t pin_length);
   void (*BTM_SecAddBleDevice)(const RawAddress& bd_addr,
                               tBT_DEVICE_TYPE dev_type,
                               tBLE_ADDR_TYPE addr_type);
