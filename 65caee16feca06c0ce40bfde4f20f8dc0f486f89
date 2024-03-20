@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25dc4978_35a3e995",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-20T17:14:41Z",
+      "side": 0,
+      "message": "In bta_dm_sec_api I removed the logic generating this values:\n\n```\n  /* Load device class if specified */\n  if (dev_class !\u003d kDevClassEmpty) {\n    msg-\u003edc_known \u003d true;\n    msg-\u003edc \u003d dev_class;\n  }\n ```\n \n Please notice that kDevClassEmpty is kDevClassEmpty by default in this function. It make this just a passtrhough argument.",
+      "parentUuid": "977212ca_49e89a1b",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 49
+      },
+      "revId": "65caee16feca06c0ce40bfde4f20f8dc0f486f89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0370101a_fde5582e",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-20T16:37:08Z",
       "side": 0,
       "message": "I am a bit concerned when this flag is not set, where do we use `BTM_SEC_NAME_KNOWN`?",
+      "range": {
+        "startLine": 132,
+        "startChar": 32,
+        "endLine": 132,
+        "endChar": 54
+      },
+      "revId": "65caee16feca06c0ce40bfde4f20f8dc0f486f89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "607de6ae_063d2c19",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-20T17:14:41Z",
+      "side": 0,
+      "message": "we were never passing bd_name to this function, so this code is currently never executed.\nOn quick look, it\u0027s used in code around service discovery, to mark wether device name was discovered, so this shouldn\u0027t break anything.",
+      "parentUuid": "0370101a_fde5582e",
       "range": {
         "startLine": 132,
         "startChar": 32,
