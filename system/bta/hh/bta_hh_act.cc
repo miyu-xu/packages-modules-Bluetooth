@@ -927,6 +927,100 @@ void bta_hh_get_dscp_act(tBTA_HH_DEV_CB* p_cb,
 
 /*******************************************************************************
  *
+ * Function         bta_hh_add_dev
+ *
+ * Description      Adds a new device
+ *
+ * Returns          Device information
+ *
+ ******************************************************************************/
+static tBTA_HH_DEV_INFO bta_hh_add_dev(tBTA_HH_DEV_CB* p_cb,
+                                       const tBTA_HH_MAINT_DEV& maint_dev) {
+  tBTA_HH_DEV_INFO dev_info = {};
+  dev_info.status = BTA_HH_ERR;
+  dev_info.handle = BTA_HH_INVALID_HANDLE;
+  dev_info.link_spec = maint_dev.link_spec;
+
+  /* initialize callback data */
+  if (p_cb->hid_handle == BTA_HH_INVALID_HANDLE) {
+    tBT_TRANSPORT transport = maint_dev.link_spec.transport;
+    if (!IS_FLAG_ENABLED(allow_switching_hid_and_hogp)) {
+      transport = BTM_UseLeLink(maint_dev.link_spec.addrt.bda)
+                      ? BT_TRANSPORT_LE
+                      : BT_TRANSPORT_BR_EDR;
+    }
+    if (transport == BT_TRANSPORT_LE) {
+      p_cb->link_spec.transport = BT_TRANSPORT_LE;
+      dev_info.handle = bta_hh_le_add_device(p_cb, &maint_dev);
+      if (dev_info.handle != BTA_HH_INVALID_HANDLE) dev_info.status = BTA_HH_OK;
+    } else if (transport == BT_TRANSPORT_BR_EDR) {
+      uint8_t dev_handle;
+      if (HID_HostAddDev(maint_dev.link_spec.addrt.bda, maint_dev.attr_mask,
+                         &dev_handle) == HID_SUCCESS) {
+        dev_info.handle = dev_handle;
+        dev_info.status = BTA_HH_OK;
+        p_cb->link_spec.transport = BT_TRANSPORT_BR_EDR;
+
+        /* update DI information */
+        bta_hh_update_di_info(
+            p_cb, maint_dev.dscp_info.vendor_id, maint_dev.dscp_info.product_id,
+            maint_dev.dscp_info.version, maint_dev.dscp_info.flag,
+            maint_dev.dscp_info.ctry_code);
+
+        /* add to BTA device list */
+        bta_hh_add_device_to_list(
+            p_cb, dev_handle, maint_dev.attr_mask,
+            &maint_dev.dscp_info.descriptor, maint_dev.sub_class,
+            maint_dev.dscp_info.ssr_max_latency,
+            maint_dev.dscp_info.ssr_min_tout, maint_dev.app_id);
+        /* update cb_index[] map */
+        bta_hh_cb.cb_index[dev_handle] = p_cb->index;
+      }
+    } else {
+      log::error("unexpected BT transport: {}",
+                 bt_transport_text(transport).c_str());
+    }
+  } else { /* device already been added */
+    dev_info.handle = p_cb->hid_handle;
+    dev_info.status = BTA_HH_OK;
+  }
+  bta_hh_trace_dev_db();
+
+  return dev_info;
+}
+
+/*******************************************************************************
+ *
+ * Function         bta_hh_rmv_dev
+ *
+ * Description      Removes an added device
+ *
+ * Returns          Device information
+ *
+ ******************************************************************************/
+static tBTA_HH_DEV_INFO bta_hh_rmv_dev(tBTA_HH_DEV_CB* p_cb,
+                                       const tBTA_HH_MAINT_DEV& maint_dev) {
+  tBTA_HH_DEV_INFO dev_info = {};
+  dev_info.handle = (uint8_t)maint_dev.hdr.layer_specific;
+  dev_info.link_spec = p_cb->link_spec;
+
+  if (p_cb->link_spec.transport == BT_TRANSPORT_LE) {
+    bta_hh_le_remove_dev_bg_conn(p_cb);
+    bta_hh_sm_execute(p_cb, BTA_HH_API_CLOSE_EVT, NULL);
+    bta_hh_clean_up_kdev(p_cb);
+  } else {
+    if (HID_HostRemoveDev(dev_info.handle) == HID_SUCCESS) {
+      dev_info.status = BTA_HH_OK;
+
+      /* remove from known device list in BTA */
+      bta_hh_clean_up_kdev(p_cb);
+    }
+  }
+  return dev_info;
+}
+
+/*******************************************************************************
+ *
  * Function         bta_hh_maint_dev_act
  *
  * Description      HID Host maintain device list.
@@ -936,89 +1030,25 @@ void bta_hh_get_dscp_act(tBTA_HH_DEV_CB* p_cb,
  *
  ******************************************************************************/
 void bta_hh_maint_dev_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
-  const tBTA_HH_MAINT_DEV* p_dev_info = &p_data->api_maintdev;
-  tBTA_HH_DEV_INFO dev_info;
-  uint8_t dev_handle;
+  const tBTA_HH_MAINT_DEV& maint_dev = p_data->api_maintdev;
+  tBTA_HH_DEV_INFO dev_info = {};
 
   dev_info.status = BTA_HH_ERR;
   dev_info.handle = BTA_HH_INVALID_HANDLE;
 
-  switch (p_dev_info->sub_event) {
+  switch (maint_dev.sub_event) {
     case BTA_HH_ADD_DEV_EVT: /* add a device */
-      dev_info.link_spec = p_dev_info->link_spec;
-      /* initialize callback data */
-      if (p_cb->hid_handle == BTA_HH_INVALID_HANDLE) {
-        tBT_TRANSPORT transport = p_data->api_maintdev.link_spec.transport;
-        if (!IS_FLAG_ENABLED(allow_switching_hid_and_hogp)) {
-          transport = BTM_UseLeLink(p_data->api_maintdev.link_spec.addrt.bda)
-                          ? BT_TRANSPORT_LE
-                          : BT_TRANSPORT_BR_EDR;
-        }
-        if (transport == BT_TRANSPORT_LE) {
-          p_cb->link_spec.transport = BT_TRANSPORT_LE;
-          dev_info.handle = bta_hh_le_add_device(p_cb, p_dev_info);
-          if (dev_info.handle != BTA_HH_INVALID_HANDLE)
-            dev_info.status = BTA_HH_OK;
-        } else if (transport == BT_TRANSPORT_BR_EDR) {
-          if (HID_HostAddDev(p_dev_info->link_spec.addrt.bda,
-                             p_dev_info->attr_mask,
-                             &dev_handle) == HID_SUCCESS) {
-            dev_info.handle = dev_handle;
-            dev_info.status = BTA_HH_OK;
-            p_cb->link_spec.transport = BT_TRANSPORT_BR_EDR;
-
-            /* update DI information */
-            bta_hh_update_di_info(
-                p_cb, p_dev_info->dscp_info.vendor_id,
-                p_dev_info->dscp_info.product_id, p_dev_info->dscp_info.version,
-                p_dev_info->dscp_info.flag, p_dev_info->dscp_info.ctry_code);
-
-            /* add to BTA device list */
-            bta_hh_add_device_to_list(
-                p_cb, dev_handle, p_dev_info->attr_mask,
-                &p_dev_info->dscp_info.descriptor, p_dev_info->sub_class,
-                p_dev_info->dscp_info.ssr_max_latency,
-                p_dev_info->dscp_info.ssr_min_tout, p_dev_info->app_id);
-            /* update cb_index[] map */
-            bta_hh_cb.cb_index[dev_handle] = p_cb->index;
-          }
-        } else {
-          log::error("unexpected BT transport: {}",
-                     bt_transport_text(transport).c_str());
-          break;
-        }
-      } else /* device already been added */
-      {
-        dev_info.handle = p_cb->hid_handle;
-        dev_info.status = BTA_HH_OK;
-      }
-      bta_hh_trace_dev_db();
-
+      dev_info = bta_hh_add_dev(p_cb, maint_dev);
       break;
     case BTA_HH_RMV_DEV_EVT: /* remove device */
-      dev_info.handle = (uint8_t)p_dev_info->hdr.layer_specific;
-      dev_info.link_spec = p_cb->link_spec;
-
-      if (p_cb->link_spec.transport == BT_TRANSPORT_LE) {
-        bta_hh_le_remove_dev_bg_conn(p_cb);
-        bta_hh_sm_execute(p_cb, BTA_HH_API_CLOSE_EVT, NULL);
-        bta_hh_clean_up_kdev(p_cb);
-      } else {
-        if (HID_HostRemoveDev(dev_info.handle) == HID_SUCCESS) {
-          dev_info.status = BTA_HH_OK;
-
-          /* remove from known device list in BTA */
-          bta_hh_clean_up_kdev(p_cb);
-        }
-      }
+      dev_info = bta_hh_rmv_dev(p_cb, maint_dev);
       break;
-
     default:
-      log::verbose("invalid command");
+      log::warn("invalid event: {}", maint_dev.sub_event);
       break;
   }
 
-  (*bta_hh_cb.p_cback)(p_dev_info->sub_event, (tBTA_HH*)&dev_info);
+  (*bta_hh_cb.p_cback)(maint_dev.sub_event, (tBTA_HH*)&dev_info);
 }
 /*******************************************************************************
  *
