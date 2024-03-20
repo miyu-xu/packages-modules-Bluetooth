@@ -17,6 +17,7 @@
  ******************************************************************************/
 #define LOG_TAG "bt_bta_hh"
 
+#include <android_bluetooth_flags.h>
 #include <bluetooth/log.h>
 #include <string.h>  // memset
 
@@ -146,6 +147,9 @@ void bta_hh_clean_up_kdev(tBTA_HH_DEV_CB* p_cb) {
   p_cb->index = index; /* Restore index for this control block */
   p_cb->state = BTA_HH_IDLE_ST;
   p_cb->hid_handle = BTA_HH_INVALID_HANDLE;
+  p_cb->w4_evt = IS_FLAG_ENABLED(allow_switching_hid_and_hogp)
+                     ? BTA_HH_EMPTY_EVT
+                     : BTA_HH_ENABLE_EVT;
 }
 /*******************************************************************************
  *
