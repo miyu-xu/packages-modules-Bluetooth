@@ -128,6 +128,30 @@
       },
       "revId": "f1a20a6054a4d6c1fe319eaa14c0e6342270152d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d84c0e88_250e3b59",
+        "filename": "android/app/aidl/android/bluetooth/IBluetoothScan.aidl",
+        "patchSetId": 13
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-20T05:33:47Z",
+      "side": 1,
+      "message": "Added them all, thank you.\nI\u0027ve also moved the relevant fucntion for `numHwTrackFiltersAvailable` from `GattService` to  `TransitionalScanHelper`.",
+      "parentUuid": "c1d6025b_b8083423",
+      "range": {
+        "startLine": 33,
+        "startChar": 17,
+        "endLine": 33,
+        "endChar": 31
+      },
+      "revId": "f1a20a6054a4d6c1fe319eaa14c0e6342270152d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
