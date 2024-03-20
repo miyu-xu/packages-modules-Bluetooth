@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "200d600c_802d8e04",
+        "filename": "system/btif/include/btif_jni_task.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-20T22:08:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42a8a3db_f4465368",
+      "range": {
+        "startLine": 60,
+        "startChar": 36,
+        "endLine": 60,
+        "endChar": 52
+      },
+      "revId": "dc396f64e7f691e6b8016bb8ea9eeb97d069470a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f071d3e_86526ae1",
