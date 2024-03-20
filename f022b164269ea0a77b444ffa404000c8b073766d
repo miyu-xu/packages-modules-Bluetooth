@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c608f8ec_0e7cb4df",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-20T17:40:22Z",
+      "side": 1,
+      "message": "Could you add log for dev_class as well? And pin_length. \n\nAlso, how often is this API called, if not as often, use log::info?",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 52
+      },
+      "revId": "f022b164269ea0a77b444ffa404000c8b073766d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee30766e_62659c94",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-20T17:40:22Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 101,
+        "startChar": 4,
+        "endLine": 104,
+        "endChar": 0
+      },
+      "revId": "f022b164269ea0a77b444ffa404000c8b073766d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee489939_a131bbd9",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-20T17:40:22Z",
+      "side": 1,
+      "message": "if you don\u0027t want to log above, logging here is also fine",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 68
+      },
+      "revId": "f022b164269ea0a77b444ffa404000c8b073766d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
