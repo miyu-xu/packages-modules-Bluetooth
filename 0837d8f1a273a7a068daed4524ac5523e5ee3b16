@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0f89a28_fd6d2d1f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-20T10:07:27Z",
+      "side": 1,
+      "message": "```\nFloss: Pandora GATT: Implement GATT server\n\n\u003cBriefly describe which functionalities are implemented\u003e\n```",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 28
+      },
+      "revId": "0837d8f1a273a7a068daed4524ac5523e5ee3b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "635bdfa4_3240d139",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1200,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-20T10:07:27Z",
+      "side": 1,
+      "message": "```suggestion\n            self.write_requests.clear()\n```",
+      "revId": "0837d8f1a273a7a068daed4524ac5523e5ee3b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15631efe_6f1b6c5d",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1207,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-20T10:07:27Z",
+      "side": 1,
+      "message": "Could it ever be None?",
+      "range": {
+        "startLine": 1206,
+        "startChar": 0,
+        "endLine": 1207,
+        "endChar": 26
+      },
+      "revId": "0837d8f1a273a7a068daed4524ac5523e5ee3b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "318914fc_c1bd2ae4",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1213,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-20T10:07:27Z",
+      "side": 1,
+      "message": "How about:\n```\nwrite_requests, self.write_requests \u003d self.write_requests, deque([])\nfor request in write_requests:\n    addr, trans_id2, offset2, length, is_prep, need_rsp2, handle2, value2 \u003d request\n    ...\n```",
+      "range": {
+        "startLine": 1203,
+        "startChar": 0,
+        "endLine": 1213,
+        "endChar": 25
+      },
+      "revId": "0837d8f1a273a7a068daed4524ac5523e5ee3b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c540ad65_4d5be6b7",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1217,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-20T10:07:27Z",
+      "side": 1,
+      "message": "`0, []`\n\nI don\u0027t know why they are dropped but if the test passed then LGTM",
+      "range": {
+        "startLine": 1217,
+        "startChar": 74,
+        "endLine": 1217,
+        "endChar": 92
+      },
+      "revId": "0837d8f1a273a7a068daed4524ac5523e5ee3b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
