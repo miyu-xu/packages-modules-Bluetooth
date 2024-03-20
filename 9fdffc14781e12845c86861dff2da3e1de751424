@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f5a93063_4ec283b2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-20T10:10:45Z",
+      "side": 1,
+      "message": "```\nFloss: Pandora GATT: Fix ReadCharacteristicsFromUuid\n\n\u003cExplain what you fixed, if this can be short then merge this to the title\u003e\n\nThis patch also:\n-Replaces raise with context.abort\n-Fixes typo\n```",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 0
+      },
+      "revId": "9fdffc14781e12845c86861dff2da3e1de751424",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca8c138e_ff166ddc",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-20T10:10:45Z",
+      "side": 1,
+      "message": "Do we still need these try blocks?",
+      "range": {
+        "startLine": 106,
+        "startChar": 8,
+        "endLine": 106,
+        "endChar": 11
+      },
+      "revId": "9fdffc14781e12845c86861dff2da3e1de751424",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "03f4ce99_665b7b50",
         "filename": "floss/pandora/server/gatt.py",
         "patchSetId": 2
