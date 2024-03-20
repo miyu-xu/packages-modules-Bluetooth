@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afe8b93c_151900f1",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-03-20T07:13:54Z",
+      "side": 1,
+      "message": "update as BT_TRANSPORT_LE",
+      "revId": "a3475720e101b82a8a4ebe17a5ac98f829f06666",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c28fc30d_9ff2cd69",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1127,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-03-20T07:13:54Z",
+      "side": 1,
+      "message": "else case for un expected transport",
+      "range": {
+        "startLine": 1124,
+        "startChar": 4,
+        "endLine": 1127,
+        "endChar": 3
+      },
+      "revId": "a3475720e101b82a8a4ebe17a5ac98f829f06666",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

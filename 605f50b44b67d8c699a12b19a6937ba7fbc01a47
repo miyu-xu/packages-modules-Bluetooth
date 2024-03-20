@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a81dbd5_431df081",
+        "filename": "android/app/jni/com_android_bluetooth_hid_host.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-03-20T07:13:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7b9bc0f_b823250d",
+      "revId": "605f50b44b67d8c699a12b19a6937ba7fbc01a47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1516f80f_870f9ede",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-02-28T04:55:15Z",
       "side": 1,
       "message": "Set the transport to BR/EDR in the else block",
+      "revId": "605f50b44b67d8c699a12b19a6937ba7fbc01a47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "756086ff_636d80c6",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1037,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-03-20T07:13:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1516f80f_870f9ede",
       "revId": "605f50b44b67d8c699a12b19a6937ba7fbc01a47",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -69,6 +105,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c80f3025_ebef5ef8",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-03-20T07:13:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9383de8c_c35824ae",
+      "revId": "605f50b44b67d8c699a12b19a6937ba7fbc01a47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e73417c6_9e911380",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-03-20T07:13:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8adf7f5a_5fa2efe0",
+      "revId": "605f50b44b67d8c699a12b19a6937ba7fbc01a47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a50b96e2_ccccf412",
@@ -82,6 +154,24 @@
       "writtenOn": "2024-02-28T04:55:15Z",
       "side": 1,
       "message": "Save it only if the reconnect_allow is false.",
+      "revId": "605f50b44b67d8c699a12b19a6937ba7fbc01a47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05272d7a_a90c202e",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1458,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-03-20T07:13:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a50b96e2_ccccf412",
       "revId": "605f50b44b67d8c699a12b19a6937ba7fbc01a47",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -120,6 +210,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75d382fa_b53d159a",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-03-20T07:13:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59c79d7b_cebd7423",
+      "revId": "605f50b44b67d8c699a12b19a6937ba7fbc01a47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "63568235_b75bbf6a",
@@ -133,6 +241,24 @@
       "writtenOn": "2024-02-28T04:55:15Z",
       "side": 1,
       "message": "Check for DB version before attempting to read this key",
+      "revId": "605f50b44b67d8c699a12b19a6937ba7fbc01a47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bbcb72c_ded94b93",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-03-20T07:13:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63568235_b75bbf6a",
       "revId": "605f50b44b67d8c699a12b19a6937ba7fbc01a47",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -156,6 +282,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "96d45f22_2f61681b",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-03-20T07:13:54Z",
+      "side": 1,
+      "message": "only Descriptor is separated for HID and HOGP . still need to revisit this",
+      "parentUuid": "982d1ab1_f862b44f",
+      "revId": "605f50b44b67d8c699a12b19a6937ba7fbc01a47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f49080de_2edb8198",
         "filename": "system/btif/src/btif_profile_storage.cc",
         "patchSetId": 9
@@ -167,6 +311,24 @@
       "writtenOn": "2024-02-28T04:55:15Z",
       "side": 1,
       "message": "Only change connection policy for the requested transport",
+      "revId": "605f50b44b67d8c699a12b19a6937ba7fbc01a47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c87c989_f8e25d54",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1123,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-03-20T07:13:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f49080de_2edb8198",
       "revId": "605f50b44b67d8c699a12b19a6937ba7fbc01a47",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -184,6 +346,24 @@
       "writtenOn": "2024-02-28T04:55:15Z",
       "side": 1,
       "message": "The connection instance will go into the accepting state on disconnection if the connection policy allows reconnections.",
+      "revId": "605f50b44b67d8c699a12b19a6937ba7fbc01a47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb8a6ae3_08a7ef5a",
+        "filename": "system/include/hardware/bt_hh.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-03-20T07:13:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab14a8e0_d1e2ee90",
       "revId": "605f50b44b67d8c699a12b19a6937ba7fbc01a47",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

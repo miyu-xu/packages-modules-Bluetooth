@@ -68,6 +68,30 @@
       },
       "revId": "fdacadb17953cbbda042a296ce2b1402f302cc13",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f953087_7b4ceab9",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1015,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-03-20T07:13:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf55efd3_57a2b489",
+      "range": {
+        "startLine": 1015,
+        "startChar": 13,
+        "endLine": 1015,
+        "endChar": 68
+      },
+      "revId": "fdacadb17953cbbda042a296ce2b1402f302cc13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
