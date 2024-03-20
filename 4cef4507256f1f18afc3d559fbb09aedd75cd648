@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "93cadcc5_6659db2a",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeLegacyAdvertisingTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-03-20T16:55:54Z",
+      "side": 1,
+      "message": "nit) Large",
+      "range": {
+        "startLine": 73,
+        "startChar": 36,
+        "endLine": 73,
+        "endChar": 42
+      },
+      "revId": "4cef4507256f1f18afc3d559fbb09aedd75cd648",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7a283acd_0cdcfe62",
         "filename": "framework/tests/bumble/src/android/bluetooth/LeLegacyAdvertisingTest.java",
         "patchSetId": 12
@@ -14,6 +37,29 @@
       "writtenOn": "2024-03-20T16:41:26Z",
       "side": 1,
       "message": "If the condition is not fulfill the advertising will not be stopped. You may consider using a `try {} finally{}` block on the assert",
+      "revId": "4cef4507256f1f18afc3d559fbb09aedd75cd648",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3e0a90a_3e366ea2",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeLegacyAdvertisingTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-03-20T16:55:54Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 119,
+        "startChar": 36,
+        "endLine": 119,
+        "endChar": 42
+      },
       "revId": "4cef4507256f1f18afc3d559fbb09aedd75cd648",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
