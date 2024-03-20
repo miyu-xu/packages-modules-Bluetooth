@@ -146,7 +146,9 @@ class PeriodicSyncManager {
       le_scanning_interface_->EnqueueCommand(
           hci::LePeriodicAdvertisingCreateSyncCancelBuilder::Create(),
           handler_->BindOnceOn(this, &PeriodicSyncManager::HandlePeriodicAdvertisingCreateSyncCancelStatus));
-    } else if (periodic_sync->sync_state == PERIODIC_SYNC_STATE_IDLE) {
+    }
+    if ((IS_FLAG_ENABLED(leaudio_broadcast_assistant_force_queue_advance)) ||
+        (periodic_sync->sync_state == PERIODIC_SYNC_STATE_IDLE)) {
       log::debug("[PSync]: Removing Sync request from queue");
       CleanUpRequest(adv_sid, address);
     }
@@ -287,7 +289,12 @@ class PeriodicSyncManager {
             hci::LePeriodicAdvertisingTerminateSyncBuilder::Create(event_view.GetSyncHandle()),
             handler_->BindOnce(check_complete<LePeriodicAdvertisingTerminateSyncCompleteView>));
       }
-      AdvanceRequest();
+      if ((IS_FLAG_ENABLED(leaudio_broadcast_assistant_force_queue_advance)) &&
+          (event_view.GetStatus() == ErrorCode::OPERATION_CANCELLED_BY_HOST)) {
+        HandleNextRequest();
+      } else {
+        AdvanceRequest();
+      }
       return;
     }
     periodic_sync->sync_handle = event_view.GetSyncHandle();
@@ -406,6 +413,9 @@ class PeriodicSyncManager {
     callbacks_->OnPeriodicSyncStarted(
         sync->request_id, status, 0, sync->advertiser_sid, request.address_with_type, 0, 0);
     periodic_syncs_.erase(sync);
+    if (IS_FLAG_ENABLED(leaudio_broadcast_assistant_force_queue_advance)) {
+      AdvanceRequest();
+    }
   }
 
   void HandleLeBigInfoAdvertisingReport(LeBigInfoAdvertisingReportView event_view) {
