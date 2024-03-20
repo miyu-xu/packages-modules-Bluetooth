@@ -45,6 +45,30 @@
       },
       "revId": "f8277c31fa47ba45e25686c1aadc3e612f1c7a28",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "789ea14d_645c2832",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-20T18:27:11Z",
+      "side": 1,
+      "message": "nvm, DEV_CLASS is `std::array\u003cuint8_t, 3\u003e` and need to be joined and printed into 2 digit hex",
+      "parentUuid": "d7374179_e98daa82",
+      "range": {
+        "startLine": 105,
+        "startChar": 42,
+        "endLine": 105,
+        "endChar": 66
+      },
+      "revId": "f8277c31fa47ba45e25686c1aadc3e612f1c7a28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
