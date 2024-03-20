@@ -880,7 +880,7 @@ static void bta_hh_le_get_protocol_mode(tBTA_HH_DEV_CB* p_cb) {
   hs_data.status = BTA_HH_OK;
   hs_data.handle = p_cb->hid_handle;
   hs_data.rsp_data.proto_mode = BTA_HH_PROTO_RPT_MODE;
-  p_cb->w4_evt = 0;
+  p_cb->w4_evt = BTA_HH_EMPTY_EVT;
   (*bta_hh_cb.p_cback)(BTA_HH_GET_PROTO_EVT, (tBTA_HH*)&hs_data);
 }
 
