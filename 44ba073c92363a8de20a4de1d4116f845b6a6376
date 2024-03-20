@@ -70,6 +70,30 @@
       },
       "revId": "44ba073c92363a8de20a4de1d4116f845b6a6376",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f081cf75_083374bf",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-20T18:11:44Z",
+      "side": 1,
+      "message": "You can keep the methods and remove @Override. But some methods aren\u0027t necessary. cleanup() for instance is already called in stop(), so you can remove cleanup().\n\nThere\u0027s nothing stopping you from continuing to implement the IProfileServiceBinder interface, but it provides no value. Better to have the return type of whatever binder getter you end up with (currently initBinder, but could be getBinder or something else) being the concrete BluetoothScanManagerBinder.\n\nFor the context you are already getting a context in the ScanManagerService constructor. Initialize mTransitionalScanHelper in the constructor and give it that context.\n\nFor test mode you can manage that state on its own instead of inheriting from ProfileService. This is assuming that test mode actually provides some value.",
+      "parentUuid": "d471757a_7f7d85dd",
+      "range": {
+        "startLine": 40,
+        "startChar": 32,
+        "endLine": 40,
+        "endChar": 39
+      },
+      "revId": "44ba073c92363a8de20a4de1d4116f845b6a6376",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
