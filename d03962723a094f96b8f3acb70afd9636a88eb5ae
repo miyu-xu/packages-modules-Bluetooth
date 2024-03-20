@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "522ca544_09a50ac4",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-03-20T16:56:49Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "521e7fe2_61d7cb6b",
+      "revId": "d03962723a094f96b8f3acb70afd9636a88eb5ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75d500ac_7d4b79f7",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "In this case, I kind of think the trade off of consistent log line output with device identifiers is worth it. We make one of these per device and support connections with multiple devices. Debugging is next to impossible if we can\u0027t associate events with the device they came from. Plus, we can ensure our messages are unique enough that we can be rather sure of the place in code they came from.",
       "parentUuid": "75d500ac_7d4b79f7",
+      "revId": "d03962723a094f96b8f3acb70afd9636a88eb5ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9f98950_1a4c2a84",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2233,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-03-20T16:56:49Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e3fd578f_c2a07c9c",
       "revId": "d03962723a094f96b8f3acb70afd9636a88eb5ae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
