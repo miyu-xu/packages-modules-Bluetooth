@@ -22,6 +22,30 @@
       },
       "revId": "44ba073c92363a8de20a4de1d4116f845b6a6376",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27402050_cadd8789",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-20T09:18:23Z",
+      "side": 1,
+      "message": "In that case, the `IProfileServiceBinder` logic, the override of `initBinder`, `start`, `stop`, and `cleanup` will have to be removed. The `mService.isAvailable()` will also not be available. The internal class `BluetoothScanManagerBinder` will also not implement from `IProfileServiceBinder`.\n\nAdditionally, `TransitionalScanHelper` is expecting a boolean value from `isTestModeEnabled` which comes from `ProfileService`. It also requires a `Context` which was also coming from `ProfileService` as it is a `ContextWrapper` so I guess we\u0027ll also have to add a `mContext` to this class?\n\nI\u0027m a little confused with the implementation of that.",
+      "parentUuid": "1eace8b7_dc4c0f5a",
+      "range": {
+        "startLine": 40,
+        "startChar": 32,
+        "endLine": 40,
+        "endChar": 39
+      },
+      "revId": "44ba073c92363a8de20a4de1d4116f845b6a6376",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
