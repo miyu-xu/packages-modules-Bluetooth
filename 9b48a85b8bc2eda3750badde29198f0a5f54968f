@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b3e2bef_88fc13fe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-20T01:22:22Z",
+      "side": 1,
+      "message": "part3\n\npart2 has meged https://r.android.com/2888967",
+      "range": {
+        "startLine": 7,
+        "startChar": 39,
+        "endLine": 7,
+        "endChar": 44
+      },
+      "revId": "9b48a85b8bc2eda3750badde29198f0a5f54968f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6166b66f_a376d79a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-20T01:22:22Z",
+      "side": 1,
+      "message": "Move bug fixes to another CL",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 10
+      },
+      "revId": "9b48a85b8bc2eda3750badde29198f0a5f54968f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
