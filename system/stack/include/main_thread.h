@@ -20,6 +20,7 @@
 #include <base/location.h>
 #include <base/threading/thread.h>
 
+#include "common/i_bindable_context.h"
 #include "common/message_loop_thread.h"
 #include "include/hardware/bluetooth.h"
 
@@ -27,6 +28,8 @@ using BtMainClosure = std::function<void()>;
 using bluetooth::common::MessageLoopThread;
 
 bluetooth::common::MessageLoopThread* get_main_thread();
+bluetooth::common::IBindableContext* get_main_bindable();
+
 bt_status_t do_in_main_thread(const base::Location& from_here,
                               base::OnceClosure task);
 bt_status_t do_in_main_thread_delayed(const base::Location& from_here,

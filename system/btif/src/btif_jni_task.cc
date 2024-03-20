@@ -25,6 +25,7 @@
 #include <cstdint>
 #include <utility>
 
+#include "common/i_bindable_context.h"
 #include "common/message_loop_thread.h"
 #include "include/hardware/bluetooth.h"
 #include "osi/include/allocator.h"
@@ -123,4 +124,8 @@ void post_on_bt_jni(BtJniClosure closure) {
   ASSERT(do_in_jni_thread(FROM_HERE, base::BindOnce(do_post_on_bt_jni,
                                                     std::move(closure))) ==
          BT_STATUS_SUCCESS);
+}
+
+bluetooth::common::IBindableContext* get_jni_bindable() {
+  return jni_thread.Bindable();
 }
