@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f84cb01a_638fab70",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1256,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-20T18:43:50Z",
+      "side": 1,
+      "message": "Add it here, as well?  Maybe just use dump_hh_event?\n```suggestion\n  return dump_hh_event(event);\n```",
+      "range": {
+        "startLine": 1237,
+        "startChar": 0,
+        "endLine": 1256,
+        "endChar": 1
+      },
+      "revId": "d7f44e97845f8aa814f90a9e4f28efc78410f992",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
