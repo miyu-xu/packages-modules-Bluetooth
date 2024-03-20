@@ -864,28 +864,3 @@ cc_defaults {
     },
     allow_undefined_symbols: true,
 }
-
-cc_library_host_shared {
-    name: "bluetooth_packets_python3",
-    defaults: [
-        "bluetooth_py3_native_extension_defaults",
-        "gd_defaults",
-    ],
-    srcs: [
-        ":BluetoothPacketSources",
-        "common/strings.cc",
-        "packet/python3_module.cc",
-
-    ],
-    header_libs: [
-        "pybind11_headers",
-    ],
-    static_libs: [
-        "libbase",
-        "libbluetooth_log",
-    ],
-    cflags: [
-        "-fexceptions",
-    ],
-    rtti: true,
-}
