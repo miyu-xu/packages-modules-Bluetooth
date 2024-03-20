@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "687e5a98_472d9c1a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-20T16:43:14Z",
+      "side": 1,
+      "message": "nit: rid",
+      "range": {
+        "startLine": 9,
+        "startChar": 44,
+        "endLine": 9,
+        "endChar": 47
+      },
+      "revId": "6fb548f38ef659f4e361d7a0d18f64acfb9b1fa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6fef673e_470279cb",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
@@ -14,6 +37,29 @@
       "writtenOn": "2024-03-20T16:37:08Z",
       "side": 1,
       "message": "IMO, there are 3 changes merged into one:\n\n1. Remove msg packeting for BTM add name\n2. Remove name from BTM add device\n3. Change link_key to value and do not check if it exists\n\nCould you split the changes instead so that it is easier for us to review, merged, and revert if needed?",
+      "revId": "6fb548f38ef659f4e361d7a0d18f64acfb9b1fa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f172163d_67130e93",
+        "filename": "system/bta/dm/bta_dm_sec_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-20T16:43:14Z",
+      "side": 1,
+      "message": "Why change the parameter type?  The rest of the file still uses const RawAddress\u0026\n\n```suggestion\nvoid BTA_DmAddDevice(const RawAddress\u0026 bd_addr, DEV_CLASS dev_class, LinkKey link_key,\n```",
+      "range": {
+        "startLine": 141,
+        "startChar": 21,
+        "endLine": 141,
+        "endChar": 31
+      },
       "revId": "6fb548f38ef659f4e361d7a0d18f64acfb9b1fa1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
