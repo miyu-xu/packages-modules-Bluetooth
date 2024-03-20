@@ -16,6 +16,23 @@
       "message": "Can anyone +2 this?",
       "revId": "8a43d334d41f767ff033f21e060c23de132f472e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c52e95a_5f95531c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2024-03-20T05:53:34Z",
+      "side": 1,
+      "message": "Thanks. Let me land this prior to other CLs in the topic.",
+      "revId": "8a43d334d41f767ff033f21e060c23de132f472e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
