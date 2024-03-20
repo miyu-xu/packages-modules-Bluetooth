@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4335de11_69f70996",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1997,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-20T10:09:47Z",
+      "side": 0,
+      "message": "Acknowledged",
+      "parentUuid": "cb3fe96d_e66363c0",
+      "range": {
+        "startLine": 1997,
+        "startChar": 25,
+        "endLine": 1997,
+        "endChar": 72
+      },
+      "revId": "1a1422dbaa8875bc2c8ec3e99528cd893362b3a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c55c70f_d2cdde39",
@@ -85,6 +109,30 @@
       "side": 0,
       "message": "it\u0027s guaranteed to be null terminated, and also always BD_NAME_LEN+1 in length.\n\nbd_name_copy and bd_name_from_char_pointer guarantee to always add null at end of name.",
       "parentUuid": "2c55c70f_d2cdde39",
+      "range": {
+        "startLine": 220,
+        "startChar": 0,
+        "endLine": 220,
+        "endChar": 18
+      },
+      "revId": "1a1422dbaa8875bc2c8ec3e99528cd893362b3a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a364ecc9_9f9de16c",
+        "filename": "system/stack/btm/neighbor_inquiry.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-20T10:09:47Z",
+      "side": 0,
+      "message": "Acknowledged",
+      "parentUuid": "5ae9e6ba_5e176b1c",
       "range": {
         "startLine": 220,
         "startChar": 0,
