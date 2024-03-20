@@ -130,6 +130,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "622579ac_e67c481e",
+        "filename": "system/bta/dm/bta_dm_sec_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-20T17:17:19Z",
+      "side": 1,
+      "message": "I agree, I was just curious why you chose to change it here.",
+      "parentUuid": "b1b96c7a_9d414b93",
+      "range": {
+        "startLine": 141,
+        "startChar": 21,
+        "endLine": 141,
+        "endChar": 31
+      },
+      "revId": "6fb548f38ef659f4e361d7a0d18f64acfb9b1fa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c895158_03609bd4",
