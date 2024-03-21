@@ -127,6 +127,7 @@ public class HidHostService extends ProfileService {
     private static final int MESSAGE_ON_GET_IDLE_TIME = 15;
     private static final int MESSAGE_SET_IDLE_TIME = 16;
     private static final int MESSAGE_SET_PREFERRED_TRANSPORT = 17;
+    private static final int MESSAGE_SEND_DATA = 18;
 
     public static final int STATE_DISCONNECTED = BluetoothProfile.STATE_DISCONNECTED;
     public static final int STATE_CONNECTING = BluetoothProfile.STATE_CONNECTING;
@@ -433,9 +434,27 @@ public class HidHostService extends ProfileService {
                         case MESSAGE_SET_PREFERRED_TRANSPORT:
                             handleMessageSetPreferredTransport(msg);
                             break;
+                        case MESSAGE_SEND_DATA:
+                            handleMessageSendData(msg);
+                            break;
                     }
                 }
             };
+
+    private void handleMessageSendData(Message msg) {
+        if (!Flags.allowSwitchingHidAndHogp()) {
+            return;
+        }
+        BluetoothDevice device = mAdapterService.getDeviceFromByte((byte[]) msg.obj);
+
+        Bundle data = msg.getData();
+        String report = data.getString(BluetoothHidHost.EXTRA_REPORT);
+
+        if (!mNativeInterface.sendData(
+                getByteAddress(device), getAddressType(device), getTransport(device), report)) {
+            Log.e(TAG, "handleMessageSendData: Failed to send data");
+        }
+    }
 
     private void handleMessageSetPreferredTransport(Message msg) {
         BluetoothDevice device = (BluetoothDevice) msg.obj;
@@ -1323,8 +1342,25 @@ public class HidHostService extends ProfileService {
             return false;
         }
 
+<<<<<<< PATCH SET (cd1f76 HidHost: Use handler thread to send data)
+        if (!Flags.allowSwitchingHidAndHogp()) {
+            return mNativeInterface.sendData(
+                    getByteAddress(device),
+                    (byte) BluetoothDevice.ADDRESS_TYPE_PUBLIC,
+                    (byte) BluetoothDevice.TRANSPORT_AUTO,
+                    report);
+        }
+
+        Message msg = mHandler.obtainMessage(MESSAGE_SEND_DATA, device);
+        Bundle data = new Bundle();
+        data.putString(BluetoothHidHost.EXTRA_REPORT, report);
+        msg.setData(data);
+        mHandler.sendMessage(msg);
+        return true;
+=======
         return mNativeInterface.sendData(
                 getByteAddress(device), getAddressType(device), getTransport(device), report);
+>>>>>>> BASE      (bb2d42 Merge "HidHost: Use correct device instance for opening uhid)
     }
 
     boolean getIdleTime(BluetoothDevice device) {
