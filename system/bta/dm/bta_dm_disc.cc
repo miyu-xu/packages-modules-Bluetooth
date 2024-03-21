@@ -274,7 +274,7 @@ static void bta_dm_search_start(tBTA_DM_MSG* p_data) {
 
   get_btm_client_interface().db.BTM_ClearInqDb(nullptr);
   /* save search params */
-  bta_dm_search_cb.p_search_cback = p_data->search.p_cback;
+  bta_dm_search_cb.p_device_search_cback = p_data->search.p_cback;
   bta_dm_search_cb.services = p_data->search.services;
 
   const tBTM_STATUS btm_status =
@@ -341,7 +341,7 @@ static void bta_dm_discover(tBTA_DM_MSG* p_data) {
 
   bta_dm_gattc_register();
 
-  bta_dm_search_cb.p_search_cback = p_data->discover.p_cback;
+  bta_dm_search_cb.p_service_search_cback = p_data->discover.p_cback;
   bta_dm_search_cb.services_to_search = bta_dm_search_cb.services;
   bta_dm_search_cb.service_index = 0;
   bta_dm_search_cb.services_found = 0;
