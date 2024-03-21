@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fb36416_df9a38b8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-03-21T04:54:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0f89a28_fd6d2d1f",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 28
+      },
+      "revId": "0837d8f1a273a7a068daed4524ac5523e5ee3b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "635bdfa4_3240d139",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08f37d1f_ac8422cc",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1200,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-03-21T04:54:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "635bdfa4_3240d139",
+      "revId": "0837d8f1a273a7a068daed4524ac5523e5ee3b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15631efe_6f1b6c5d",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-03-20T10:07:27Z",
       "side": 1,
       "message": "Could it ever be None?",
+      "range": {
+        "startLine": 1206,
+        "startChar": 0,
+        "endLine": 1207,
+        "endChar": 26
+      },
+      "revId": "0837d8f1a273a7a068daed4524ac5523e5ee3b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "387af84f_8b07a86b",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1207,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-03-21T04:54:05Z",
+      "side": 1,
+      "message": "you are right, no",
+      "parentUuid": "15631efe_6f1b6c5d",
       "range": {
         "startLine": 1206,
         "startChar": 0,
@@ -87,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "094a2a04_14f9cf58",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1213,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-03-21T04:54:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "318914fc_c1bd2ae4",
+      "range": {
+        "startLine": 1203,
+        "startChar": 0,
+        "endLine": 1213,
+        "endChar": 25
+      },
+      "revId": "0837d8f1a273a7a068daed4524ac5523e5ee3b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c540ad65_4d5be6b7",
@@ -100,6 +190,30 @@
       "writtenOn": "2024-03-20T10:07:27Z",
       "side": 1,
       "message": "`0, []`\n\nI don\u0027t know why they are dropped but if the test passed then LGTM",
+      "range": {
+        "startLine": 1217,
+        "startChar": 74,
+        "endLine": 1217,
+        "endChar": 92
+      },
+      "revId": "0837d8f1a273a7a068daed4524ac5523e5ee3b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "876c578d_05e1a900",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1217,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-03-21T04:54:05Z",
+      "side": 1,
+      "message": "Actually no clear answer from my side \nI also noticed that Adnroid implemntation reset them \nhttps://cs.android.com/android/platform/superproject/main/+/main:cts/apps/CtsVerifier/src/com/android/cts/verifier/bluetooth/BleServerService.java;l\u003d1251\nand yes the tests passed",
+      "parentUuid": "c540ad65_4d5be6b7",
       "range": {
         "startLine": 1217,
         "startChar": 74,
