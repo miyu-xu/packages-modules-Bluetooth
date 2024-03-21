@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6ecd926_4d700b41",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 5386,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-21T06:39:48Z",
+      "side": 1,
+      "message": "Nit: Can collapse into one line -\n\nreturn service \u003d\u003d null ? null : service.getBluetoothScan();",
+      "range": {
+        "startLine": 5383,
+        "startChar": 12,
+        "endLine": 5386,
+        "endChar": 46
+      },
+      "revId": "aa811e0832068a094337fe63952b8aae78bf49aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04284d8f_ea45383f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 7165,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-21T06:39:48Z",
+      "side": 1,
+      "message": "Nit: same here\n\nreturn mScanManagerService \u003d\u003d null ? null : mScanManagerService.getBinder();",
+      "range": {
+        "startLine": 7162,
+        "startChar": 8,
+        "endLine": 7165,
+        "endChar": 47
+      },
+      "revId": "aa811e0832068a094337fe63952b8aae78bf49aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20685dda_93056f72",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-21T06:39:48Z",
+      "side": 1,
+      "message": "Not in this CL (so please feel free to resolve after reading this), but it would be good to see if we really need a start() method or if the constructor is sufficient.",
+      "revId": "aa811e0832068a094337fe63952b8aae78bf49aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
