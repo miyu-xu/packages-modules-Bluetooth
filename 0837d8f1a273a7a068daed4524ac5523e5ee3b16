@@ -85,6 +85,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d7b55d01_bdaf56f9",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1200,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-21T08:38:36Z",
+      "side": 1,
+      "message": "You didn\u0027t fix it.",
+      "parentUuid": "08f37d1f_ac8422cc",
+      "revId": "0837d8f1a273a7a068daed4524ac5523e5ee3b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "15631efe_6f1b6c5d",
         "filename": "floss/pandora/floss/gatt_server.py",
         "patchSetId": 2
@@ -214,6 +232,30 @@
       "side": 1,
       "message": "Actually no clear answer from my side \nI also noticed that Adnroid implemntation reset them \nhttps://cs.android.com/android/platform/superproject/main/+/main:cts/apps/CtsVerifier/src/com/android/cts/verifier/bluetooth/BleServerService.java;l\u003d1251\nand yes the tests passed",
       "parentUuid": "c540ad65_4d5be6b7",
+      "range": {
+        "startLine": 1217,
+        "startChar": 74,
+        "endLine": 1217,
+        "endChar": 92
+      },
+      "revId": "0837d8f1a273a7a068daed4524ac5523e5ee3b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bca87bb5_e4cdade4",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1217,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-21T08:38:36Z",
+      "side": 1,
+      "message": "Please simply `0, []` here.\n```suggestion\n        self.proxy().SendResponse(self.server_id, addr, trans_id, status, 0, [])\n```",
+      "parentUuid": "876c578d_05e1a900",
       "range": {
         "startLine": 1217,
         "startChar": 74,

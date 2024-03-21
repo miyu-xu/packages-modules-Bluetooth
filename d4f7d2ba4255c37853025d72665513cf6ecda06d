@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a9459c4_06c060a9",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1208,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-21T08:38:36Z",
+      "side": 1,
+      "message": "No need to `clear()` as it already becomes empty at line #1203.",
+      "revId": "d4f7d2ba4255c37853025d72665513cf6ecda06d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
