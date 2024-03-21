@@ -437,7 +437,7 @@ static bool bta_dm_read_remote_device_name(const RawAddress& bd_addr,
  * Returns          void
  *
  ******************************************************************************/
-static void bta_dm_inq_cmpl(uint8_t num) {
+static void bta_dm_inq_cmpl(UNUSED_ATTR uint8_t num) {
   if (bta_dm_search_get_state() == BTA_DM_SEARCH_CANCELLING) {
     bta_dm_search_set_state(BTA_DM_SEARCH_IDLE);
     bta_dm_execute_queued_request();
@@ -448,12 +448,7 @@ static void bta_dm_inq_cmpl(uint8_t num) {
     return;
   }
 
-  tBTA_DM_SEARCH data;
-
   log::verbose("bta_dm_inq_cmpl");
-
-  data.inq_cmpl.num_resps = num;
-  bta_dm_search_cb.p_search_cback(BTA_DM_INQ_CMPL_EVT, &data);
 
   bta_dm_search_cb.p_btm_inq_info =
       get_btm_client_interface().db.BTM_InqDbFirst();
