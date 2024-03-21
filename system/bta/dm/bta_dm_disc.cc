@@ -448,12 +448,7 @@ static void bta_dm_inq_cmpl(uint8_t num) {
     return;
   }
 
-  tBTA_DM_SEARCH data;
-
   log::verbose("bta_dm_inq_cmpl");
-
-  data.inq_cmpl.num_resps = num;
-  bta_dm_search_cb.p_search_cback(BTA_DM_INQ_CMPL_EVT, &data);
 
   bta_dm_search_cb.p_btm_inq_info =
       get_btm_client_interface().db.BTM_InqDbFirst();
