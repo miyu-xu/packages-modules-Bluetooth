@@ -16,6 +16,24 @@
       "message": "```suggestion\nTag: #floss\nFlag: EXEMPT, no behavior change on Android; Floss-only changes\n```",
       "revId": "3f48285bbadd44c938a49ff5bb53243040b61994",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92e368a1_58ddbbc1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2024-03-21T07:50:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84e30c39_0fbb53aa",
+      "revId": "3f48285bbadd44c938a49ff5bb53243040b61994",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
