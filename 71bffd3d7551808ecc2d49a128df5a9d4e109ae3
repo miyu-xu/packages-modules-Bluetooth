@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f45084c7_d3a0f1b3",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-21T00:36:51Z",
+      "side": 1,
+      "message": "TODO remove in follow-up",
+      "range": {
+        "startLine": 499,
+        "startChar": 2,
+        "endLine": 501,
+        "endChar": 5
+      },
+      "revId": "71bffd3d7551808ecc2d49a128df5a9d4e109ae3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2027cbcf_ca0f7c69",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2245,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-21T00:36:51Z",
+      "side": 1,
+      "message": "TODO remove in follow-up",
+      "range": {
+        "startLine": 2242,
+        "startChar": 3,
+        "endLine": 2245,
+        "endChar": 5
+      },
+      "revId": "71bffd3d7551808ecc2d49a128df5a9d4e109ae3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d781938_af629237",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-21T00:36:51Z",
+      "side": 1,
+      "message": "TODO remove",
+      "range": {
+        "startLine": 49,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 5
+      },
+      "revId": "71bffd3d7551808ecc2d49a128df5a9d4e109ae3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5da7aaa7_67b518f2",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/PeriodicAdvertisementResult.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-21T00:36:51Z",
+      "side": 1,
+      "message": "Rrrreeeeemmmmoooovvvveeeee",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 5
+      },
+      "revId": "71bffd3d7551808ecc2d49a128df5a9d4e109ae3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c2c6a1b_7d0feedc",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/PublicBroadcastData.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-21T00:36:51Z",
+      "side": 1,
+      "message": "Yep same thing",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 5
+      },
+      "revId": "71bffd3d7551808ecc2d49a128df5a9d4e109ae3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2e70467_31269d73",
+        "filename": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-21T00:36:51Z",
+      "side": 1,
+      "message": "Mmmmm...",
+      "range": {
+        "startLine": 581,
+        "startChar": 2,
+        "endLine": 584,
+        "endChar": 5
+      },
+      "revId": "71bffd3d7551808ecc2d49a128df5a9d4e109ae3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32246dac_ddfd7142",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-21T00:36:51Z",
+      "side": 1,
+      "message": "I start to wonder if people knows the state machine has a setDbg to handle verbosity...",
+      "range": {
+        "startLine": 209,
+        "startChar": 1,
+        "endLine": 212,
+        "endChar": 5
+      },
+      "revId": "71bffd3d7551808ecc2d49a128df5a9d4e109ae3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d864bf2_8038c61a",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 580,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-21T00:36:51Z",
+      "side": 1,
+      "message": "De-de-de-de-delete !",
+      "range": {
+        "startLine": 577,
+        "startChar": 1,
+        "endLine": 580,
+        "endChar": 5
+      },
+      "revId": "71bffd3d7551808ecc2d49a128df5a9d4e109ae3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b4b8b82_eb1af457",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-21T00:36:51Z",
+      "side": 1,
+      "message": "rm",
+      "range": {
+        "startLine": 566,
+        "startChar": 1,
+        "endLine": 569,
+        "endChar": 5
+      },
+      "revId": "71bffd3d7551808ecc2d49a128df5a9d4e109ae3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
