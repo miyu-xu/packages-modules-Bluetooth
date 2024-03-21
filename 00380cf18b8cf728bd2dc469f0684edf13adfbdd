@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60d7f606_29d2f2e0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-21T08:33:45Z",
+      "side": 1,
+      "message": "@whalechang@google.com If this is really a race condition in LibBluetooth then it\u0027d be better to let the Android team know. Please collect logs and file a bug. You could file it in ChromeOS BT component and assign it to me; I\u0027ll do an initial triage.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 13
+      },
+      "revId": "00380cf18b8cf728bd2dc469f0684edf13adfbdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a6a970a_9bbe2853",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1301,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-21T08:33:45Z",
+      "side": 1,
+      "message": "If you return early here then `on_telephony_use` callback won\u0027t be called. Is this expected?",
+      "range": {
+        "startLine": 1298,
+        "startChar": 0,
+        "endLine": 1301,
+        "endChar": 47
+      },
+      "revId": "00380cf18b8cf728bd2dc469f0684edf13adfbdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f74b41b3_0b794a19",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1977,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-21T08:33:45Z",
+      "side": 1,
+      "message": "I think after https://r.android.com/3000176 this function would imply this and we don\u0027t need to add anything here.",
+      "range": {
+        "startLine": 1974,
+        "startChar": 0,
+        "endLine": 1977,
+        "endChar": 0
+      },
+      "revId": "00380cf18b8cf728bd2dc469f0684edf13adfbdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
