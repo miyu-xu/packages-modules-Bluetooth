@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84b5aff6_e81f36a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-21T17:46:07Z",
+      "side": 1,
+      "message": "Please make sure to also remove the flag declaration itself (I assume this can be done in the same CL?)",
+      "revId": "e8b681c674a082a1197de48a87cd6564b8958385",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
