@@ -21,7 +21,6 @@
 
 #include "com_android_bluetooth.h"
 #include "hardware/bt_pan.h"
-#include "utils/Log.h"
 
 namespace android {
 

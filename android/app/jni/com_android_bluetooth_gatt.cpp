@@ -32,7 +32,6 @@
 #include "rust/cxx.h"
 #include "rust/src/gatt/ffi/gatt_shim.h"
 #include "src/gatt/ffi.rs.h"
-#include "utils/Log.h"
 
 using bluetooth::Uuid;
 
