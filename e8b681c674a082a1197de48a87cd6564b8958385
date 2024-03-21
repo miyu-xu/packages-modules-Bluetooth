@@ -33,6 +33,24 @@
       "message": "@girardier@google.com What is the goto for removing flag.\nCan we do it already ?",
       "revId": "e8b681c674a082a1197de48a87cd6564b8958385",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "917c4414_cf1ebe17",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-21T17:56:54Z",
+      "side": 1,
+      "message": "Yes, ideally we should remove from the declaration too. Thanks for catching that",
+      "parentUuid": "84b5aff6_e81f36a6",
+      "revId": "e8b681c674a082a1197de48a87cd6564b8958385",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
