@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5a3d80dd_b79b979b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-21T06:15:59Z",
+      "side": 1,
+      "message": "line length limit is 72 for git commit",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 74
+      },
+      "revId": "23129d31902bc4ced5c41090269b43b8450f397a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8ec5e346_b9081e4d",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
@@ -14,6 +37,69 @@
       "writtenOn": "2024-03-21T05:08:56Z",
       "side": 1,
       "message": "```suggestion\nTag: #floss\nFlag: EXEMPT, no behavior change on Android; Floss-only changes\n```",
+      "revId": "23129d31902bc4ced5c41090269b43b8450f397a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68bfeeda_4e874ab7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-21T06:15:59Z",
+      "side": 1,
+      "message": "Generally LGTM. Only some nits",
+      "revId": "23129d31902bc4ced5c41090269b43b8450f397a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac7dc970_8a9e329c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-21T06:15:59Z",
+      "side": 1,
+      "message": "I guess it doesn\u0027t need to be at `warn` level. Let\u0027s use `info`.",
+      "range": {
+        "startLine": 726,
+        "startChar": 28,
+        "endLine": 726,
+        "endChar": 32
+      },
+      "revId": "23129d31902bc4ced5c41090269b43b8450f397a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a51f9b35_a8e2d528",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1996,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-21T06:15:59Z",
+      "side": 1,
+      "message": "```suggestion\n        if !self.phone_ops_enabled \u0026\u0026 !self.mps_qualification_enabled {\n            return false;\n        }\n\n        match self.phone_state.state {\n            CallState::Idle if self.phone_state.num_active \u003e 0 \u003d\u003e {\n                self.phone_state.num_active -\u003d 1;\n            }\n            CallState::Incoming | CallState::Dialing | CallState::Alerting \u003d\u003e {\n                self.phone_state.state \u003d CallState::Idle;\n            }\n            _ \u003d\u003e return false,\n        }\n        // At this point, there must be exactly one incoming/dialing/alerting/active call to be\n        // removed.\n        self.call_list.retain(|x| match x.state {\n            CallState::Active\n            | CallState::Incoming\n            | CallState::Dialing\n            | CallState::Alerting \u003d\u003e false,\n            _ \u003d\u003e true,\n        });\n\n        true\n```",
+      "range": {
+        "startLine": 1972,
+        "startChar": 0,
+        "endLine": 1996,
+        "endChar": 13
+      },
       "revId": "23129d31902bc4ced5c41090269b43b8450f397a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
