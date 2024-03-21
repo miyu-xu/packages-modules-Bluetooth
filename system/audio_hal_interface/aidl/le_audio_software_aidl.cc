@@ -15,6 +15,7 @@
  * limitations under the License.
  */
 
+#include <bitset>
 #define LOG_TAG "BTAudioLeAudioAIDL"
 
 #include "le_audio_software_aidl.h"
@@ -726,9 +727,10 @@ bool hal_bcast_capability_to_stack_format(
   return true;
 }
 
-std::vector<AudioSetConfiguration> get_offload_capabilities() {
+std::array<std::vector<AudioSetConfiguration>, 2> get_offload_capabilities() {
   log::info("");
   std::vector<AudioSetConfiguration> offload_capabilities;
+  std::vector<AudioSetConfiguration> broadcast_offload_capabilities;
   std::vector<AudioCapabilities> le_audio_hal_capabilities =
       BluetoothAudioSinkClientInterface::GetAudioCapabilities(
           SessionType::LE_AUDIO_HARDWARE_OFFLOAD_ENCODING_DATAPATH);
@@ -766,14 +768,18 @@ std::vector<AudioSetConfiguration> get_offload_capabilities() {
       str_capability_log += " Decode Capability: " + hal_decode_cap.toString();
     }
 
-    audio_set_config.topology_info = {
-        {{static_cast<uint8_t>(hal_decode_cap.deviceCount),
-          static_cast<uint8_t>(hal_encode_cap.deviceCount)}}};
-
     if (hal_bcast_capability_to_stack_format(hal_bcast_cap, bcast_cap)) {
-      // Set device_cnt, ase_cnt to zero to ignore these fields for broadcast
-      audio_set_config.topology_info = {{{0, 0}}};
-      audio_set_config.confs.sink.push_back(AseConfiguration(bcast_cap));
+      AudioSetConfiguration audio_set_config = {
+          .name = "broadcast offload capability"};
+      // Note: The offloader config supports multiple channels per stream
+      //       (subgroup), corresponding to the number of BISes, where each BIS
+      //       has a single channel.
+      bcast_cap.channel_count_per_iso_stream = 1;
+      auto bis_cnt = hal_bcast_cap.channelCountPerStream;
+      while (bis_cnt--) {
+        audio_set_config.confs.sink.push_back(AseConfiguration(bcast_cap));
+      }
+      broadcast_offload_capabilities.push_back(audio_set_config);
       str_capability_log +=
           " Broadcast Capability: " + hal_bcast_cap.toString();
     }
@@ -788,7 +794,7 @@ std::vector<AudioSetConfiguration> get_offload_capabilities() {
     }
   }
 
-  return offload_capabilities;
+  return {offload_capabilities, broadcast_offload_capabilities};
 }
 
 AudioConfiguration offload_config_to_hal_audio_config(

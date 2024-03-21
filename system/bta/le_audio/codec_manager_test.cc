@@ -107,8 +107,8 @@ const stack_config_t* stack_config_get_interface(void) {
 namespace bluetooth {
 namespace audio {
 namespace le_audio {
-std::vector<AudioSetConfiguration> get_offload_capabilities() {
-  return *offload_capabilities;
+std::array<std::vector<AudioSetConfiguration>, 2> get_offload_capabilities() {
+  return {*offload_capabilities, *offload_capabilities};
 }
 }  // namespace le_audio
 }  // namespace audio
@@ -183,6 +183,8 @@ static constexpr char kPropLeAudioOffloadSupported[] =
     "ro.bluetooth.leaudio_offload.supported";
 static constexpr char kPropLeAudioOffloadDisabled[] =
     "persist.bluetooth.leaudio_offload.disabled";
+static constexpr char kPropLeAudioBidirSwbSupported[] =
+    "bluetooth.leaudio.dual_bidirection_swb.supported";
 
 class CodecManagerTestBase : public Test {
  public:
@@ -216,6 +218,9 @@ class CodecManagerTestAdsp : public CodecManagerTestBase {
     // Enable the HW offloader
     osi_property_set_bool(kPropLeAudioOffloadSupported, true);
     osi_property_set_bool(kPropLeAudioOffloadDisabled, false);
+
+    // Allow for bidir SWB configurations
+    osi_property_set_bool(kPropLeAudioBidirSwbSupported, true);
 
     CodecManagerTestBase::SetUp();
   }
@@ -390,7 +395,7 @@ TEST_F(CodecManagerTestAdsp, test_capabilities_none) {
   codec_manager->Start(offloading_preference);
 
   auto match_first_config =
-      [](types::LeAudioContextType context_type,
+      [](const CodecManager::UnicastConfigurationRequirements& requirements,
          const set_configurations::AudioSetConfigurations* confs)
       -> const set_configurations::AudioSetConfiguration* {
     if (confs && confs->size()) {
@@ -404,8 +409,11 @@ TEST_F(CodecManagerTestAdsp, test_capabilities_none) {
   // Verify every context
   for (::bluetooth::le_audio::types::LeAudioContextType ctx_type :
        ::bluetooth::le_audio::types::kLeAudioContextAllTypesArray) {
+    CodecManager::UnicastConfigurationRequirements requirements = {
+        .audio_context_type = ctx_type,
+    };
     ASSERT_EQ(nullptr,
-              codec_manager->GetCodecConfig(ctx_type, match_first_config));
+              codec_manager->GetCodecConfig(requirements, match_first_config));
   }
 }
 
@@ -435,7 +443,7 @@ TEST_F(CodecManagerTestAdsp, test_capabilities) {
     size_t available_configs_size = 0;
     auto match_first_config =
         [&available_configs_size](
-            types::LeAudioContextType context_type,
+            const CodecManager::UnicastConfigurationRequirements& requirements,
             const set_configurations::AudioSetConfigurations* confs)
         -> const set_configurations::AudioSetConfiguration* {
       if (confs && confs->size()) {
@@ -447,8 +455,12 @@ TEST_F(CodecManagerTestAdsp, test_capabilities) {
       return nullptr;
     };
 
-    auto cfg = codec_manager->GetCodecConfig(test_context, match_first_config);
+    CodecManager::UnicastConfigurationRequirements requirements = {
+        .audio_context_type = test_context,
+    };
+    auto cfg = codec_manager->GetCodecConfig(requirements, match_first_config);
     ASSERT_NE(nullptr, cfg);
+    // Note: These should be equal when dual bidir SWB is supported
     ASSERT_EQ(offload_capabilities.size(), available_configs_size);
 
     // Clean up the before testing any other offload capabilities.
@@ -457,11 +469,12 @@ TEST_F(CodecManagerTestAdsp, test_capabilities) {
 }
 
 TEST_F(CodecManagerTestAdsp, test_broadcast_config) {
-  std::vector<AudioSetConfiguration> offload_capabilities = {
-      {.name = "Test_Broadcast_Config_No_Dev_lc3_48_2",
-       .confs = {.sink = {set_configurations::AseConfiguration(lc3_48_2)},
-                 .source = {}},
-       .topology_info = {{{0, 0}}}}};
+  std::vector<AudioSetConfiguration> offload_capabilities = {{
+      .name = "Test_Broadcast_Config_No_Dev_lc3_48_2",
+      .confs = {.sink = {set_configurations::AseConfiguration(lc3_48_2),
+                         set_configurations::AseConfiguration(lc3_48_2)},
+                .source = {}},
+  }};
   set_mock_offload_capabilities(offload_capabilities);
 
   const std::vector<bluetooth::le_audio::btle_audio_codec_config_t>
@@ -469,8 +482,9 @@ TEST_F(CodecManagerTestAdsp, test_broadcast_config) {
           {.codec_type = bluetooth::le_audio::LE_AUDIO_CODEC_INDEX_SOURCE_LC3}};
   codec_manager->Start(offloading_preference);
 
-  auto cfg = codec_manager->GetBroadcastConfig(
-      {{types::LeAudioContextType::MEDIA, 1}}, std::nullopt);
+  CodecManager::BroadcastConfigurationRequirements requirements = {
+      .subgroup_quality = {{types::LeAudioContextType::MEDIA, 1}}};
+  auto cfg = codec_manager->GetBroadcastConfig(requirements);
   ASSERT_EQ(2, cfg->GetNumBisTotal());
   ASSERT_EQ(2, cfg->GetNumChannelsMax());
   ASSERT_EQ(48000u, cfg->GetSamplingFrequencyHzMax());
@@ -482,10 +496,12 @@ TEST_F(CodecManagerTestAdsp, test_broadcast_config) {
 }
 
 TEST_F(CodecManagerTestAdsp, test_update_broadcast_offloader) {
-  std::vector<AudioSetConfiguration> offload_capabilities = {
-      {.confs = {.sink = {set_configurations::AseConfiguration(lc3_48_2)},
-                 .source = {}},
-       .topology_info = {{{0, 0}}}}};
+  std::vector<AudioSetConfiguration> offload_capabilities = {{
+      .name = "Test_Broadcast_Config_For_Offloader",
+      .confs = {.sink = {set_configurations::AseConfiguration(lc3_48_2),
+                         set_configurations::AseConfiguration(lc3_48_2)},
+                .source = {}},
+  }};
   set_mock_offload_capabilities(offload_capabilities);
 
   const std::vector<bluetooth::le_audio::btle_audio_codec_config_t>
@@ -493,8 +509,9 @@ TEST_F(CodecManagerTestAdsp, test_update_broadcast_offloader) {
           {.codec_type = bluetooth::le_audio::LE_AUDIO_CODEC_INDEX_SOURCE_LC3}};
   codec_manager->Start(offloading_preference);
 
-  codec_manager->GetBroadcastConfig({{types::LeAudioContextType::MEDIA, 1}},
-                                    std::nullopt);
+  CodecManager::BroadcastConfigurationRequirements requirements = {
+      .subgroup_quality = {{types::LeAudioContextType::MEDIA, 1}}};
+  codec_manager->GetBroadcastConfig(requirements);
 
   bool was_called = false;
   bluetooth::le_audio::broadcast_offload_config bcast_config;
@@ -571,122 +588,122 @@ TEST_F(CodecManagerTestHost, test_non_bidir_swb) {
                  .source = {}}}};
 
   // NON-SWB configs
-  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
-      {.confs = {.sink = {set_configurations::AseConfiguration(lc3_16_2),
-                          set_configurations::AseConfiguration(lc3_16_2)},
-                 .source = {set_configurations::AseConfiguration(lc3_16_2),
-                            set_configurations::AseConfiguration(lc3_16_2)}},
-       .topology_info = {{{1, 1}}}}));
-  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
-      {.confs = {.sink = {set_configurations::AseConfiguration(lc3_24_2),
-                          set_configurations::AseConfiguration(lc3_24_2)},
-                 .source = {set_configurations::AseConfiguration(lc3_16_2),
-                            set_configurations::AseConfiguration(lc3_16_2)}},
-       .topology_info = {{{1, 1}}}}));
-  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
-      {.confs = {.sink = {set_configurations::AseConfiguration(lc3_16_2),
-                          set_configurations::AseConfiguration(lc3_16_2)},
-                 .source = {set_configurations::AseConfiguration(lc3_24_2),
-                            set_configurations::AseConfiguration(lc3_24_2)}},
-       .topology_info = {{{1, 1}}}}));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsDualBiDirSwb({
+      .confs = {.sink = {set_configurations::AseConfiguration(lc3_16_2),
+                         set_configurations::AseConfiguration(lc3_16_2)},
+                .source = {set_configurations::AseConfiguration(lc3_16_2),
+                           set_configurations::AseConfiguration(lc3_16_2)}},
+  }));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsDualBiDirSwb({
+      .confs = {.sink = {set_configurations::AseConfiguration(lc3_24_2),
+                         set_configurations::AseConfiguration(lc3_24_2)},
+                .source = {set_configurations::AseConfiguration(lc3_16_2),
+                           set_configurations::AseConfiguration(lc3_16_2)}},
+  }));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsDualBiDirSwb({
+      .confs = {.sink = {set_configurations::AseConfiguration(lc3_16_2),
+                         set_configurations::AseConfiguration(lc3_16_2)},
+                .source = {set_configurations::AseConfiguration(lc3_24_2),
+                           set_configurations::AseConfiguration(lc3_24_2)}},
+  }));
 
-  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
-      {.confs = {.sink = {set_configurations::AseConfiguration(lc3_16_2),
-                          set_configurations::AseConfiguration(lc3_16_2)},
-                 .source = {set_configurations::AseConfiguration(lc3_32_2),
-                            set_configurations::AseConfiguration(lc3_32_2)}},
-       .topology_info = {{{1, 1}}}}));
-  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
-      {.confs = {.sink = {set_configurations::AseConfiguration(lc3_32_2),
-                          set_configurations::AseConfiguration(lc3_32_2)},
-                 .source = {set_configurations::AseConfiguration(lc3_16_2),
-                            set_configurations::AseConfiguration(lc3_16_2)}},
-       .topology_info = {{{1, 1}}}}));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsDualBiDirSwb({
+      .confs = {.sink = {set_configurations::AseConfiguration(lc3_16_2),
+                         set_configurations::AseConfiguration(lc3_16_2)},
+                .source = {set_configurations::AseConfiguration(lc3_32_2),
+                           set_configurations::AseConfiguration(lc3_32_2)}},
+  }));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsDualBiDirSwb({
+      .confs = {.sink = {set_configurations::AseConfiguration(lc3_32_2),
+                         set_configurations::AseConfiguration(lc3_32_2)},
+                .source = {set_configurations::AseConfiguration(lc3_16_2),
+                           set_configurations::AseConfiguration(lc3_16_2)}},
+  }));
 
-  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
-      {.confs = {.sink = {set_configurations::AseConfiguration(lc3_24_2),
-                          set_configurations::AseConfiguration(lc3_24_2)},
-                 .source = {set_configurations::AseConfiguration(lc3_24_2),
-                            set_configurations::AseConfiguration(lc3_24_2)}},
-       .topology_info = {{{1, 1}}}}));
-  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
-      {.confs = {.sink = {set_configurations::AseConfiguration(lc3_24_2),
-                          set_configurations::AseConfiguration(lc3_24_2)},
-                 .source = {set_configurations::AseConfiguration(lc3_32_2),
-                            set_configurations::AseConfiguration(lc3_32_2)}},
-       .topology_info = {{{1, 1}}}}));
-  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
-      {.confs = {.sink = {set_configurations::AseConfiguration(lc3_32_2),
-                          set_configurations::AseConfiguration(lc3_32_2)},
-                 .source = {set_configurations::AseConfiguration(lc3_24_2),
-                            set_configurations::AseConfiguration(lc3_24_2)}},
-       .topology_info = {{{1, 1}}}}));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsDualBiDirSwb({
+      .confs = {.sink = {set_configurations::AseConfiguration(lc3_24_2),
+                         set_configurations::AseConfiguration(lc3_24_2)},
+                .source = {set_configurations::AseConfiguration(lc3_24_2),
+                           set_configurations::AseConfiguration(lc3_24_2)}},
+  }));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsDualBiDirSwb({
+      .confs = {.sink = {set_configurations::AseConfiguration(lc3_24_2),
+                         set_configurations::AseConfiguration(lc3_24_2)},
+                .source = {set_configurations::AseConfiguration(lc3_32_2),
+                           set_configurations::AseConfiguration(lc3_32_2)}},
+  }));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsDualBiDirSwb({
+      .confs = {.sink = {set_configurations::AseConfiguration(lc3_32_2),
+                         set_configurations::AseConfiguration(lc3_32_2)},
+                .source = {set_configurations::AseConfiguration(lc3_24_2),
+                           set_configurations::AseConfiguration(lc3_24_2)}},
+  }));
 
-  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
-      {.confs = {.sink = {set_configurations::AseConfiguration(lc3_16_2),
-                          set_configurations::AseConfiguration(lc3_16_2)}},
-       .topology_info = {{{1, 0}}}}));
-  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
-      {.confs = {.source = {set_configurations::AseConfiguration(lc3_16_2),
-                            set_configurations::AseConfiguration(lc3_16_2)}},
-       .topology_info = {{{0, 1}}}}));
-  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
-      {.confs = {.sink = {set_configurations::AseConfiguration(lc3_24_2),
-                          set_configurations::AseConfiguration(lc3_24_2)}},
-       .topology_info = {{{1, 0}}}}));
-  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
-      {.confs = {.source = {set_configurations::AseConfiguration(lc3_24_2),
-                            set_configurations::AseConfiguration(lc3_24_2)}},
-       .topology_info = {{{0, 1}}}}));
-  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
-      {.confs = {.sink = {set_configurations::AseConfiguration(lc3_32_2),
-                          set_configurations::AseConfiguration(lc3_32_2)}},
-       .topology_info = {{{1, 0}}}}));
-  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
-      {.confs = {.source = {set_configurations::AseConfiguration(lc3_32_2),
-                            set_configurations::AseConfiguration(lc3_32_2)}},
-       .topology_info = {{{0, 1}}}}));
-  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
-      {.confs = {.sink = {set_configurations::AseConfiguration(lc3_48_2),
-                          set_configurations::AseConfiguration(lc3_48_2)}},
-       .topology_info = {{{1, 0}}}}));
-  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
-      {.confs = {.source = {set_configurations::AseConfiguration(lc3_48_2),
-                            set_configurations::AseConfiguration(lc3_48_2)}},
-       .topology_info = {{{0, 1}}}}));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsDualBiDirSwb({
+      .confs = {.sink = {set_configurations::AseConfiguration(lc3_16_2),
+                         set_configurations::AseConfiguration(lc3_16_2)}},
+  }));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsDualBiDirSwb({
+      .confs = {.source = {set_configurations::AseConfiguration(lc3_16_2),
+                           set_configurations::AseConfiguration(lc3_16_2)}},
+  }));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsDualBiDirSwb({
+      .confs = {.sink = {set_configurations::AseConfiguration(lc3_24_2),
+                         set_configurations::AseConfiguration(lc3_24_2)}},
+  }));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsDualBiDirSwb({
+      .confs = {.source = {set_configurations::AseConfiguration(lc3_24_2),
+                           set_configurations::AseConfiguration(lc3_24_2)}},
+  }));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsDualBiDirSwb({
+      .confs = {.sink = {set_configurations::AseConfiguration(lc3_32_2),
+                         set_configurations::AseConfiguration(lc3_32_2)}},
+  }));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsDualBiDirSwb({
+      .confs = {.source = {set_configurations::AseConfiguration(lc3_32_2),
+                           set_configurations::AseConfiguration(lc3_32_2)}},
+  }));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsDualBiDirSwb({
+      .confs = {.sink = {set_configurations::AseConfiguration(lc3_48_2),
+                         set_configurations::AseConfiguration(lc3_48_2)}},
+  }));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsDualBiDirSwb({
+      .confs = {.source = {set_configurations::AseConfiguration(lc3_48_2),
+                           set_configurations::AseConfiguration(lc3_48_2)}},
+  }));
 }
 
-TEST_F(CodecManagerTestHost, test_bidir_swb) {
+TEST_F(CodecManagerTestHost, test_dual_bidir_swb) {
   const std::vector<bluetooth::le_audio::btle_audio_codec_config_t>
       offloading_preference = {
           {.codec_type = bluetooth::le_audio::LE_AUDIO_CODEC_INDEX_SOURCE_LC3}};
   codec_manager->Start(offloading_preference);
 
-  // SWB configs
-  ASSERT_TRUE(codec_manager->CheckCodecConfigIsBiDirSwb(
-      {.confs = {.sink = {set_configurations::AseConfiguration(lc3_32_2),
-                          set_configurations::AseConfiguration(lc3_32_2)},
-                 .source = {set_configurations::AseConfiguration(lc3_32_2),
-                            set_configurations::AseConfiguration(lc3_32_2)}},
-       .topology_info = {{{1, 1}}}}));
-  ASSERT_TRUE(codec_manager->CheckCodecConfigIsBiDirSwb(
-      {.confs = {.sink = {set_configurations::AseConfiguration(lc3_48_2),
-                          set_configurations::AseConfiguration(lc3_48_2)},
-                 .source = {set_configurations::AseConfiguration(lc3_32_2),
-                            set_configurations::AseConfiguration(lc3_32_2)}},
-       .topology_info = {{{1, 1}}}}));
-  ASSERT_TRUE(codec_manager->CheckCodecConfigIsBiDirSwb(
-      {.confs = {.sink = {set_configurations::AseConfiguration(lc3_32_2),
-                          set_configurations::AseConfiguration(lc3_32_2)},
-                 .source = {set_configurations::AseConfiguration(lc3_48_2),
-                            set_configurations::AseConfiguration(lc3_48_2)}},
-       .topology_info = {{{1, 1}}}}));
-  ASSERT_TRUE(codec_manager->CheckCodecConfigIsBiDirSwb(
-      {.confs = {.sink = {set_configurations::AseConfiguration(lc3_48_2),
-                          set_configurations::AseConfiguration(lc3_48_2)},
-                 .source = {set_configurations::AseConfiguration(lc3_48_2),
-                            set_configurations::AseConfiguration(lc3_48_2)}},
-       .topology_info = {{{1, 1}}}}));
+  // Single Dev BiDir SWB configs
+  ASSERT_TRUE(codec_manager->CheckCodecConfigIsDualBiDirSwb({
+      .confs = {.sink = {set_configurations::AseConfiguration(lc3_32_2),
+                         set_configurations::AseConfiguration(lc3_32_2)},
+                .source = {set_configurations::AseConfiguration(lc3_32_2),
+                           set_configurations::AseConfiguration(lc3_32_2)}},
+  }));
+  ASSERT_TRUE(codec_manager->CheckCodecConfigIsDualBiDirSwb({
+      .confs = {.sink = {set_configurations::AseConfiguration(lc3_48_2),
+                         set_configurations::AseConfiguration(lc3_48_2)},
+                .source = {set_configurations::AseConfiguration(lc3_32_2),
+                           set_configurations::AseConfiguration(lc3_32_2)}},
+  }));
+  ASSERT_TRUE(codec_manager->CheckCodecConfigIsDualBiDirSwb({
+      .confs = {.sink = {set_configurations::AseConfiguration(lc3_32_2),
+                         set_configurations::AseConfiguration(lc3_32_2)},
+                .source = {set_configurations::AseConfiguration(lc3_48_2),
+                           set_configurations::AseConfiguration(lc3_48_2)}},
+  }));
+  ASSERT_TRUE(codec_manager->CheckCodecConfigIsDualBiDirSwb({
+      .confs = {.sink = {set_configurations::AseConfiguration(lc3_48_2),
+                         set_configurations::AseConfiguration(lc3_48_2)},
+                .source = {set_configurations::AseConfiguration(lc3_48_2),
+                           set_configurations::AseConfiguration(lc3_48_2)}},
+  }));
 }
 
 TEST_F(CodecManagerTestHost, test_dont_update_broadcast_offloader) {

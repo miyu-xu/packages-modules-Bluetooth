@@ -17,6 +17,7 @@
 #include "mock_codec_manager.h"
 
 #include "broadcaster/broadcast_configuration_provider.h"
+#include "le_audio/codec_manager.h"
 
 MockCodecManager* mock_codec_manager_pimpl_;
 MockCodecManager* MockCodecManager::GetInstance() {
@@ -60,33 +61,29 @@ void CodecManager::UpdateActiveAudioConfig(
 
 std::unique_ptr<set_configurations::AudioSetConfiguration>
 CodecManager::GetCodecConfig(
-    types::LeAudioContextType ctx_type,
-    std::function<const le_audio::set_configurations::AudioSetConfiguration*(
-        le_audio::types::LeAudioContextType context_type,
-        const le_audio::set_configurations::AudioSetConfigurations* confs)>
-        non_vendor_config_matcher) {
+    const CodecManager::UnicastConfigurationRequirements& requirements,
+    CodecManager::UnicastConfigurationVerifier verifier) {
   if (!pimpl_) return nullptr;
-  return pimpl_->GetCodecConfig(ctx_type, non_vendor_config_matcher);
+  return pimpl_->GetCodecConfig(requirements, verifier);
 }
 
 std::unique_ptr<::bluetooth::le_audio::broadcaster::BroadcastConfiguration>
 CodecManager::GetBroadcastConfig(
-    const std::vector<std::pair<bluetooth::le_audio::types::LeAudioContextType,
-                                uint8_t>>& subgroup_quality,
-    std::optional<const bluetooth::le_audio::types::PublishedAudioCapabilities*>
-        pacs) const {
+    const bluetooth::le_audio::CodecManager::BroadcastConfigurationRequirements&
+        requirements) const {
   if (!pimpl_)
     return std::make_unique<
         bluetooth::le_audio::broadcaster::BroadcastConfiguration>(
-        bluetooth::le_audio::broadcaster::GetBroadcastConfig(subgroup_quality));
-  return pimpl_->GetBroadcastConfig(subgroup_quality, pacs);
+        bluetooth::le_audio::broadcaster::GetBroadcastConfig(
+            requirements.subgroup_quality));
+  return pimpl_->GetBroadcastConfig(requirements);
 }
 
-bool CodecManager::CheckCodecConfigIsBiDirSwb(
+bool CodecManager::CheckCodecConfigIsDualBiDirSwb(
     const bluetooth::le_audio::set_configurations::AudioSetConfiguration&
         config) const {
   if (!pimpl_) return false;
-  return pimpl_->CheckCodecConfigIsBiDirSwb(config);
+  return pimpl_->CheckCodecConfigIsDualBiDirSwb(config);
 }
 
 std::vector<bluetooth::le_audio::btle_audio_codec_config_t>
