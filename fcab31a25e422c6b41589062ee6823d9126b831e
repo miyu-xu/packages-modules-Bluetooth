@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f677fd33_6719a140",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-21T22:39:16Z",
+      "side": 1,
+      "message": "this comment does not align with logic, currently the logic is\n\nif both HIG and HOGP are available, prefer HID",
+      "range": {
+        "startLine": 227,
+        "startChar": 16,
+        "endLine": 227,
+        "endChar": 62
+      },
+      "revId": "fcab31a25e422c6b41589062ee6823d9126b831e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e92d9790_2dae2811",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-21T22:39:16Z",
+      "side": 1,
+      "message": "we never check if HOGP is available \n\nwhat if both profiles are not available?",
+      "range": {
+        "startLine": 230,
+        "startChar": 16,
+        "endLine": 230,
+        "endChar": 60
+      },
+      "revId": "fcab31a25e422c6b41589062ee6823d9126b831e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
