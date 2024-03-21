@@ -1685,9 +1685,6 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event,
       }
     } break;
 
-    case BTA_DM_INQ_CMPL_EVT: {
-      /* do nothing */
-    } break;
     case BTA_DM_DISC_CMPL_EVT: {
       GetInterfaceToProfiles()->events->invoke_discovery_state_changed_cb(
           BT_DISCOVERY_STOPPED);
