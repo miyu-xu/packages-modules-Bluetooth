@@ -1704,9 +1704,7 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event,
             BT_DISCOVERY_STOPPED);
       }
     } break;
-    case BTA_DM_GATT_OVER_LE_RES_EVT:
     case BTA_DM_DID_RES_EVT:
-    case BTA_DM_GATT_OVER_SDP_RES_EVT:
     default:
       log::warn("Unhandled event:{}", bta_dm_search_evt_text(event));
       break;

@@ -659,8 +659,8 @@ static void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
                                     bta_dm_get_remname());
 
           result.disc_ble_res.services = &gatt_uuids;
-          bta_dm_search_cb.p_search_cback(BTA_DM_GATT_OVER_SDP_RES_EVT,
-                                          &result);
+          bta_dm_search_cb.p_service_search_cback(BTA_DM_GATT_OVER_SDP_RES_EVT,
+                                                  &result);
         }
       } else {
         /* SDP_DB_FULL means some records with the
@@ -905,7 +905,10 @@ static void bta_dm_search_cmpl() {
   // send all result back to app
   if (send_gatt_results) {
     log::info("Sending GATT results to upper layer");
-    bta_dm_search_cb.p_search_cback(BTA_DM_GATT_OVER_LE_RES_EVT, &result);
+    if (bta_dm_search_cb.p_service_search_cback) {
+      bta_dm_search_cb.p_service_search_cback(BTA_DM_GATT_OVER_LE_RES_EVT,
+                                              &result);
+    }
   }
 
   bta_dm_search_cb.p_search_cback(BTA_DM_DISC_CMPL_EVT, nullptr);
