@@ -1930,10 +1930,6 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
       }
     } break;
 
-    case BTA_DM_DISC_CMPL_EVT:
-      /* fixme */
-      break;
-
     case BTA_DM_SEARCH_CANCEL_CMPL_EVT:
       /* no-op */
       break;
