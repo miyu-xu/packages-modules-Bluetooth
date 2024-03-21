@@ -21,10 +21,12 @@
 #include <vector>
 
 #include "common/init_flags.h"
+#include "common/strings.h"
 #include "hci/hci_layer_mock.h"
 #include "internal_include/bt_target.h"
 #include "stack/btm/btm_ble_sec.h"
 #include "stack/btm/btm_dev.h"
+#include "stack/btm/btm_int_types.h"
 #include "stack/btm/btm_sec.h"
 #include "stack/btm/btm_sec_cb.h"
 #include "stack/btm/security_device_record.h"
@@ -32,8 +34,18 @@
 #include "test/mock/mock_main_shim_entry.h"
 #include "types/raw_address.h"
 
+extern tBTM_CB btm_cb;
+
+using namespace bluetooth;
+
 using testing::Return;
 using testing::Test;
+
+namespace {
+const RawAddress kRawAddress = RawAddress({0x11, 0x22, 0x33, 0x44, 0x55, 0x66});
+const uint8_t kBdName[] = "kBdName";
+constexpr char kTimeFormat[] = "%Y-%m-%d %H:%M:%S";
+}  // namespace
 
 namespace bluetooth {
 namespace testing {
@@ -268,4 +280,33 @@ TEST_F(StackBtmSecWithInitFreeTest, wipe_secrets_and_remove) {
   device_record->ble_hci_handle = ble_handle;
 
   wipe_secrets_and_remove(device_record);
+}
+
+TEST_F(StackBtmSecTest, btm_sec_rmt_name_request_complete) {
+  btm_cb.history_ = std::make_shared<TimestampedStringCircularBuffer>(
+      kBtmLogHistoryBufferSize);
+  BTM_Sec_Init();
+
+  btm_sec_rmt_name_request_complete(&kRawAddress, kBdName, HCI_SUCCESS);
+  btm_sec_rmt_name_request_complete(nullptr, nullptr, HCI_SUCCESS);
+  btm_sec_rmt_name_request_complete(nullptr, kBdName, HCI_SUCCESS);
+  btm_sec_rmt_name_request_complete(&kRawAddress, nullptr, HCI_SUCCESS);
+
+  btm_sec_rmt_name_request_complete(&kRawAddress, kBdName, HCI_ERR_HW_FAILURE);
+  btm_sec_rmt_name_request_complete(nullptr, nullptr, HCI_ERR_HW_FAILURE);
+  btm_sec_rmt_name_request_complete(nullptr, kBdName, HCI_ERR_HW_FAILURE);
+  btm_sec_rmt_name_request_complete(&kRawAddress, nullptr, HCI_ERR_HW_FAILURE);
+
+  std::vector<common::TimestampedEntry<std::string>> history =
+      btm_cb.history_->Pull();
+  for (auto& record : history) {
+    time_t then = record.timestamp / 1000;
+    struct tm tm;
+    localtime_r(&then, &tm);
+    auto s2 = common::StringFormatTime(kTimeFormat, tm);
+    LOG_INFO(" %s.%03u %s", s2.c_str(),
+             static_cast<unsigned int>(record.timestamp % 1000),
+             record.entry.c_str());
+  }
+  ASSERT_EQ(8U, history.size());
 }
