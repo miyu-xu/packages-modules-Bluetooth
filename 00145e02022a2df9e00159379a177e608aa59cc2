@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63d7e1e7_afd84faf",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 700,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-21T14:22:36Z",
+      "side": 1,
+      "message": "Have a flag to switch between BTA_HH_EMPTY_EVT and BTA_HH_ENABLE_EVT?\n\nSo that we can verify whether the new value will hurt something",
+      "range": {
+        "startLine": 700,
+        "startChar": 6,
+        "endLine": 700,
+        "endChar": 38
+      },
+      "revId": "00145e02022a2df9e00159379a177e608aa59cc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2303d23_50427021",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 711,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-21T14:22:36Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 711,
+        "startChar": 0,
+        "endLine": 711,
+        "endChar": 38
+      },
+      "revId": "00145e02022a2df9e00159379a177e608aa59cc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6369cd59_5bb21d34",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 722,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-21T14:22:36Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 722,
+        "startChar": 0,
+        "endLine": 722,
+        "endChar": 38
+      },
+      "revId": "00145e02022a2df9e00159379a177e608aa59cc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88a5a5d2_a002cad5",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 753,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-21T14:22:36Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 753,
+        "startChar": 0,
+        "endLine": 753,
+        "endChar": 36
+      },
+      "revId": "00145e02022a2df9e00159379a177e608aa59cc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "096c2def_45ed8e2a",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-21T14:22:36Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 796,
+        "startChar": 0,
+        "endLine": 796,
+        "endChar": 34
+      },
+      "revId": "00145e02022a2df9e00159379a177e608aa59cc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "147743f3_522a12c4",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 828,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-21T14:22:36Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 828,
+        "startChar": 0,
+        "endLine": 828,
+        "endChar": 34
+      },
+      "revId": "00145e02022a2df9e00159379a177e608aa59cc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dde6ad2_f58a9e2c",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 895,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-21T14:22:36Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 895,
+        "startChar": 0,
+        "endLine": 895,
+        "endChar": 34
+      },
+      "revId": "00145e02022a2df9e00159379a177e608aa59cc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3e78958_b07959e9",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 883,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-21T14:22:36Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 883,
+        "startChar": 0,
+        "endLine": 883,
+        "endChar": 34
+      },
+      "revId": "00145e02022a2df9e00159379a177e608aa59cc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
