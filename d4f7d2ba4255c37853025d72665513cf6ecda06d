@@ -16,6 +16,24 @@
       "message": "No need to `clear()` as it already becomes empty at line #1203.",
       "revId": "d4f7d2ba4255c37853025d72665513cf6ecda06d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7886cc0_7ee39ba8",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1208,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-03-21T09:12:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a9459c4_06c060a9",
+      "revId": "d4f7d2ba4255c37853025d72665513cf6ecda06d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

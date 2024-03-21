@@ -101,6 +101,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "58ab8d45_b2a9423b",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1200,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-03-21T09:12:14Z",
+      "side": 1,
+      "message": "Sorry, I mixed up with different line",
+      "parentUuid": "d7b55d01_bdaf56f9",
+      "revId": "0837d8f1a273a7a068daed4524ac5523e5ee3b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15631efe_6f1b6c5d",
@@ -256,6 +274,30 @@
       "side": 1,
       "message": "Please simply `0, []` here.\n```suggestion\n        self.proxy().SendResponse(self.server_id, addr, trans_id, status, 0, [])\n```",
       "parentUuid": "876c578d_05e1a900",
+      "range": {
+        "startLine": 1217,
+        "startChar": 74,
+        "endLine": 1217,
+        "endChar": 92
+      },
+      "revId": "0837d8f1a273a7a068daed4524ac5523e5ee3b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce7f4775_b906674a",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1217,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-03-21T09:12:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bca87bb5_e4cdade4",
       "range": {
         "startLine": 1217,
         "startChar": 74,
