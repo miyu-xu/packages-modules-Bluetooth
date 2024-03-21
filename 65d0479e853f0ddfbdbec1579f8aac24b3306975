@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8df8a481_49c50713",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1205,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-21T21:00:21Z",
+      "side": 1,
+      "message": "We normally prefer returning early in the error case.  That looks like a big change, but It was mostly adding the null check earlier.\n```suggestion\n      p_dev \u003d btif_hh_find_connected_dev_by_handle(p_data-\u003edev_status.handle);\n\n      if (p_dev \u003d\u003d NULL) {\n        log::error(\"BTA_HH_VC_UNPLUG_EVT: device not found handle {}\",\n                   p_data-\u003edev_status.handle);\n        return;\n      }\n\n      if (p_dev-\u003elink_spec.transport \u003d\u003d BT_TRANSPORT_LE) {\n        log::error(\"BTA_HH_VC_UNPLUG_EVT: not expected for {}\",\n                   p_dev-\u003elink_spec.ToRedactedStringForLogging());\n        return;\n      }\n      btif_hh_cb.status \u003d (BTIF_HH_STATUS)BTIF_HH_DEV_DISCONNECTED;\n      log::verbose(\"BTA_HH_VC_UNPLUG_EVT: link_spec \u003d {}\",\n                   p_dev-\u003elink_spec.ToRedactedStringForLogging());\n\n      /* Stop the VUP timer */\n      btif_hh_stop_vup_timer(p_dev-\u003elink_spec);\n      p_dev-\u003edev_status \u003d p_dev-\u003ereconnect_allowed\n                              ? BTHH_CONN_STATE_ACCEPTING\n                              : BTHH_CONN_STATE_DISCONNECTED;\n      log::verbose(\"--Sending connection state change\");\n      BTHH_STATE_UPDATE(p_dev-\u003elink_spec, p_dev-\u003edev_status);\n      log::verbose(\"--Removing HID bond\");\n      /* If it is locally initiated VUP or remote device has its major COD as\n      Peripheral removed the bond.*/\n      if (p_dev-\u003elocal_vup || check_cod_hid(\u0026(p_dev-\u003elink_spec.addrt.bda))) {\n        p_dev-\u003elocal_vup \u003d false;\n        BTA_DmRemoveDevice(p_dev-\u003elink_spec.addrt.bda);\n      } else {\n        btif_hh_remove_device(p_dev-\u003elink_spec);\n      }\n      HAL_CBACK(bt_hh_callbacks, virtual_unplug_cb,\n                \u0026(p_dev-\u003elink_spec.addrt.bda), p_dev-\u003elink_spec.addrt.type,\n                p_dev-\u003elink_spec.transport,\n                (bthh_status_t)p_data-\u003edev_status.status);\n      break;\n```",
+      "range": {
+        "startLine": 1172,
+        "startChar": 0,
+        "endLine": 1205,
+        "endChar": 12
+      },
+      "revId": "65d0479e853f0ddfbdbec1579f8aac24b3306975",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
