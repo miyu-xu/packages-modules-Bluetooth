@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2f4b09c_71354891",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeLegacyAdvertisingTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-03-21T04:34:21Z",
+      "side": 1,
+      "message": "Removed the latch. Thanks for catching BTW!",
+      "parentUuid": "93cadcc5_6659db2a",
+      "range": {
+        "startLine": 73,
+        "startChar": 36,
+        "endLine": 73,
+        "endChar": 42
+      },
+      "revId": "4cef4507256f1f18afc3d559fbb09aedd75cd648",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a283acd_0cdcfe62",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-03-20T16:41:26Z",
       "side": 1,
       "message": "If the condition is not fulfill the advertising will not be stopped. You may consider using a `try {} finally{}` block on the assert",
+      "revId": "4cef4507256f1f18afc3d559fbb09aedd75cd648",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a65ed56c_bff029dd",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeLegacyAdvertisingTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-03-21T04:34:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a283acd_0cdcfe62",
       "revId": "4cef4507256f1f18afc3d559fbb09aedd75cd648",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -81,6 +123,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e094f3a3_8ee6ec34",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeLegacyAdvertisingTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-03-21T04:34:21Z",
+      "side": 1,
+      "message": "Thanks for the tip! Done.",
+      "parentUuid": "b6c30478_fd180c72",
+      "revId": "4cef4507256f1f18afc3d559fbb09aedd75cd648",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcb9c887_165d8e34",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeLegacyAdvertisingTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-03-21T04:34:21Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "b3e0a90a_3e366ea2",
+      "range": {
+        "startLine": 119,
+        "startChar": 36,
+        "endLine": 119,
+        "endChar": 42
+      },
+      "revId": "4cef4507256f1f18afc3d559fbb09aedd75cd648",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c5280a4b_49511c3b",
@@ -98,6 +182,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f66551cf_99294256",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeLegacyAdvertisingTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-03-21T04:34:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5280a4b_49511c3b",
+      "revId": "4cef4507256f1f18afc3d559fbb09aedd75cd648",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2294a556_1b5604dc",
@@ -111,6 +213,24 @@
       "writtenOn": "2024-03-20T16:41:26Z",
       "side": 1,
       "message": "nit: You can use the GoogleOne:\n\nhttps://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothAssignedNumbers.java;l\u003d1155?q\u003dBluetoothAssignedNumbers\u0026sq\u003drepo:android%2Fplatform%2Fsuperproject%2Fmain%20b:main\n```suggestion\n        int manufacturerId \u003d 13;\n        int manufacturerId \u003d BluetoothAssignedNumbers.GOOGLE;\n```",
+      "revId": "4cef4507256f1f18afc3d559fbb09aedd75cd648",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e372baeb_f46483f7",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeLegacyAdvertisingTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-03-21T04:34:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2294a556_1b5604dc",
       "revId": "4cef4507256f1f18afc3d559fbb09aedd75cd648",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
