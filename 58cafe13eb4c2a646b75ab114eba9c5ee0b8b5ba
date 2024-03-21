@@ -22,6 +22,30 @@
       },
       "revId": "58cafe13eb4c2a646b75ab114eba9c5ee0b8b5ba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0d80e2f_aefb434b",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-21T17:21:13Z",
+      "side": 1,
+      "message": "Not really.\nIt hold the exception if one was thrown on the other side",
+      "parentUuid": "34147714_a70fd598",
+      "range": {
+        "startLine": 303,
+        "startChar": 61,
+        "endLine": 303,
+        "endChar": 76
+      },
+      "revId": "58cafe13eb4c2a646b75ab114eba9c5ee0b8b5ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
