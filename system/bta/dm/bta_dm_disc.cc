@@ -909,7 +909,7 @@ static void bta_dm_search_cmpl() {
                                             &result);
   }
 
-  bta_dm_search_cb.p_search_cback(BTA_DM_DISC_CMPL_EVT, nullptr);
+  bta_dm_search_cb.p_device_search_cback(BTA_DM_DISC_CMPL_EVT, nullptr);
   bta_dm_search_cb.gatt_disc_active = false;
 
 #if TARGET_FLOSS
