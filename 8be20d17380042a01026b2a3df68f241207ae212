@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eb755a29_c6113fec",
+        "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-03-21T17:59:00Z",
+      "side": 1,
+      "message": "To work with `repo upload` I have renames this to sLock",
+      "parentUuid": "6bd26765_411ca959",
+      "range": {
+        "startLine": 179,
+        "startChar": 22,
+        "endLine": 179,
+        "endChar": 28
+      },
+      "revId": "8be20d17380042a01026b2a3df68f241207ae212",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5506befc_286d3eda",
         "filename": "android/app/src/com/android/bluetooth/btservice/MetricsLogger.java",
         "patchSetId": 16
