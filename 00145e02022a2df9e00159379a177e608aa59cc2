@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3b0af809_08b71c09",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 700,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-21T23:00:45Z",
+      "side": 1,
+      "message": "Could this be\n\n```\np_cb-\u003ew4_evt \u003d IS_FLAG_ENABLED(hid_add_empty_event) ? BTA_HH_EMPTY_EVT : BTA_HH_ENABLE_EVT;\n```\n\nthen you can do everything in one line or two",
+      "parentUuid": "37a59477_05745c88",
+      "range": {
+        "startLine": 700,
+        "startChar": 6,
+        "endLine": 700,
+        "endChar": 38
+      },
+      "revId": "00145e02022a2df9e00159379a177e608aa59cc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c2303d23_50427021",
         "filename": "system/bta/hh/bta_hh_act.cc",
         "patchSetId": 2
