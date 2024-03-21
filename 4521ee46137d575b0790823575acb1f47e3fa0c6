@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c66556ab_bad31d7a",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-21T00:27:33Z",
+      "side": 1,
+      "message": "TODO in follow up, delete this now un-necessary method",
+      "range": {
+        "startLine": 469,
+        "startChar": 24,
+        "endLine": 469,
+        "endChar": 28
+      },
+      "revId": "4521ee46137d575b0790823575acb1f47e3fa0c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cab91921_d9aca77c",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattServiceConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-21T00:27:33Z",
+      "side": 1,
+      "message": "I believe we are close to 100% deleting this file 😊",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 1
+      },
+      "revId": "4521ee46137d575b0790823575acb1f47e3fa0c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
