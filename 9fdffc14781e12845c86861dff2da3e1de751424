@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "727d9b57_1683d7e6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-03-21T09:13:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5a93063_4ec283b2",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 0
+      },
+      "revId": "9fdffc14781e12845c86861dff2da3e1de751424",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca8c138e_ff166ddc",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-20T10:10:45Z",
       "side": 1,
       "message": "Do we still need these try blocks?",
+      "range": {
+        "startLine": 106,
+        "startChar": 8,
+        "endLine": 106,
+        "endChar": 11
+      },
+      "revId": "9fdffc14781e12845c86861dff2da3e1de751424",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7ca3bb4_5866e513",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-03-21T09:13:27Z",
+      "side": 1,
+      "message": "prefer to keep it, in case any exception happened we need to be sure that the observer is removed\n\nwhat do you think ?",
+      "parentUuid": "ca8c138e_ff166ddc",
       "range": {
         "startLine": 106,
         "startChar": 8,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "606c4fd7_5a06fcf6",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-03-21T09:13:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03f4ce99_665b7b50",
+      "range": {
+        "startLine": 372,
+        "startChar": 0,
+        "endLine": 374,
+        "endChar": 0
+      },
+      "revId": "9fdffc14781e12845c86861dff2da3e1de751424",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "91a5152a_7cc2645a",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e7b5bf2_68b018cc",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-03-21T09:13:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91a5152a_7cc2645a",
+      "range": {
+        "startLine": 500,
+        "startChar": 0,
+        "endLine": 502,
+        "endChar": 0
+      },
+      "revId": "9fdffc14781e12845c86861dff2da3e1de751424",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e12e451_75af7856",
@@ -106,6 +202,30 @@
       "writtenOn": "2024-03-20T08:28:08Z",
       "side": 1,
       "message": "Return the status to the client.",
+      "range": {
+        "startLine": 663,
+        "startChar": 0,
+        "endLine": 665,
+        "endChar": 0
+      },
+      "revId": "9fdffc14781e12845c86861dff2da3e1de751424",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8620f92f_f2023f9c",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-03-21T09:13:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e12e451_75af7856",
       "range": {
         "startLine": 663,
         "startChar": 0,
