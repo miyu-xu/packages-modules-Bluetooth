@@ -16,6 +16,23 @@
       "message": "Please make sure to also remove the flag declaration itself (I assume this can be done in the same CL?)",
       "revId": "e8b681c674a082a1197de48a87cd6564b8958385",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b15c79c8_681b6136",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-21T17:56:25Z",
+      "side": 1,
+      "message": "@girardier@google.com What is the goto for removing flag.\nCan we do it already ?",
+      "revId": "e8b681c674a082a1197de48a87cd6564b8958385",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
