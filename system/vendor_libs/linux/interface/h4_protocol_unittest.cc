@@ -20,7 +20,6 @@
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
-#include <log/log.h>
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <unistd.h>
@@ -31,7 +30,6 @@
 #include <vector>
 
 #include "async_fd_watcher.h"
-#include "log/log.h"
 
 using android::hardware::bluetooth::async::AsyncFdWatcher;
 using android::hardware::bluetooth::hci::H4Protocol;
