@@ -1516,8 +1516,8 @@ static void bta_dm_inq_results_cb(tBTM_INQ_RESULTS* p_inq, const uint8_t* p_eir,
     result.inq_res.remt_name_not_required = false;
   }
 
-  if (bta_dm_search_cb.p_search_cback)
-    bta_dm_search_cb.p_search_cback(BTA_DM_INQ_RES_EVT, &result);
+  if (bta_dm_search_cb.p_device_search_cback)
+    bta_dm_search_cb.p_device_search_cback(BTA_DM_INQ_RES_EVT, &result);
 
   if (p_inq_info) {
     /* application indicates if it knows the remote name, inside the callback
