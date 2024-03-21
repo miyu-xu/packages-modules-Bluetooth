@@ -945,8 +945,8 @@ static void bta_dm_disc_result(tBTA_DM_MSG* p_data) {
   if (!is_gatt_over_ble && (bta_dm_search_cb.services &
                             ((BTA_ALL_SERVICE_MASK | BTA_USER_SERVICE_MASK) &
                              ~BTA_BLE_SERVICE_MASK)))
-    bta_dm_search_cb.p_search_cback(BTA_DM_DISC_RES_EVT,
-                                    &p_data->disc_result.result);
+    bta_dm_search_cb.p_service_search_cback(BTA_DM_DISC_RES_EVT,
+                                            &p_data->disc_result.result);
 
   get_gatt_interface().BTA_GATTC_CancelOpen(0, bta_dm_search_cb.peer_bdaddr,
                                             true);
@@ -972,9 +972,9 @@ static void bta_dm_search_result(tBTA_DM_MSG* p_data) {
   if ((!bta_dm_search_cb.services) ||
       ((bta_dm_search_cb.services) &&
        (p_data->disc_result.result.disc_res.services))) {
-    if (bta_dm_search_cb.p_search_cback) {
-      bta_dm_search_cb.p_search_cback(BTA_DM_DISC_RES_EVT,
-                                      &p_data->disc_result.result);
+    if (bta_dm_search_cb.p_service_search_cback) {
+      bta_dm_search_cb.p_service_search_cback(BTA_DM_DISC_RES_EVT,
+                                              &p_data->disc_result.result);
     } else {
       log::warn("Received search result without valid callback");
     }
