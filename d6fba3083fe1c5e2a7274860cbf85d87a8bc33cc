@@ -22,6 +22,30 @@
       },
       "revId": "d6fba3083fe1c5e2a7274860cbf85d87a8bc33cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18c63d25_9615b969",
+        "filename": "android/app/src/com/android/bluetooth/ObexServerSockets.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-21T23:50:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "737a1a28_3a4146fa",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 27
+      },
+      "revId": "d6fba3083fe1c5e2a7274860cbf85d87a8bc33cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
