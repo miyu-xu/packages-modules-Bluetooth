@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "37a59477_05745c88",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 700,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-21T16:42:41Z",
+      "side": 1,
+      "message": "Flagging the change would look like this\n\n```\nif (IS_FLAG_ENABLED(allow_switching_hid_and_hogp)) {\n  p_cb-\u003ew4_evt \u003d BTA_HH_EMPTY_EVT;\n} else {\n  p_cb-\u003ew4_evt \u003d BTA_HH_ENABLE_EVT;\n}\n```\n\n\nWe have two options here regarding the values assigned to the events.\n1. EMPTY\u003d0, ENABLE\u003d1\n```\nif (IS_FLAG_ENABLED(allow_switching_hid_and_hogp)) {\n  p_cb-\u003ew4_evt \u003d 0;\n} else {\n  p_cb-\u003ew4_evt \u003d 1;\n}\n```\nWhen the flag is disabled, we would be sending a non-zero value which is not same as what was happening earlier.\n\n2. ENABLE\u003d0, EMPTY\u003d17\n```\nif (IS_FLAG_ENABLED(allow_switching_hid_and_hogp)) {\n  p_cb-\u003ew4_evt \u003d 17;\n} else {\n  p_cb-\u003ew4_evt \u003d 0;\n}\n```\nWhen the flag is enabled, we would be sending a non-zero value which may be risky since 0 is generally accepted to be illegal/invalid value. Our cl footprint may increase to safeguard against other potential issues.\n\nNeither of these approaches improve upon the concerns raised here. I feel the existing state of change is safer than flagging it.",
+      "parentUuid": "63d7e1e7_afd84faf",
+      "range": {
+        "startLine": 700,
+        "startChar": 6,
+        "endLine": 700,
+        "endChar": 38
+      },
+      "revId": "00145e02022a2df9e00159379a177e608aa59cc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c2303d23_50427021",
         "filename": "system/bta/hh/bta_hh_act.cc",
         "patchSetId": 2
