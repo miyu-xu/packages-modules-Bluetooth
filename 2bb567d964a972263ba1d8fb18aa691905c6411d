@@ -34,6 +34,24 @@
       "parentUuid": "c534694d_bd6a0ffb",
       "revId": "2bb567d964a972263ba1d8fb18aa691905c6411d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7e69f51_f4a73e73",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-21T16:12:53Z",
+      "side": 1,
+      "message": "This change trades a command that is used once for a command that is used hundreds of times in the stack.  This sequence is run every time the stack is started, and has 100% test coverage.  I don\u0027t feel that it is risky.",
+      "parentUuid": "f6e8ebe1_aef907c6",
+      "revId": "2bb567d964a972263ba1d8fb18aa691905c6411d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
