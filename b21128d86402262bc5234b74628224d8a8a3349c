@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79ef055a_e065b114",
+        "filename": "system/audio_hal_interface/hidl/client_interface_hidl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-21T17:33:25Z",
+      "side": 1,
+      "message": "```suggestion\n  } else if (!mDataMQ-\u003eisValid()) {\n```",
+      "range": {
+        "startLine": 598,
+        "startChar": 2,
+        "endLine": 599,
+        "endChar": 17
+      },
+      "revId": "b21128d86402262bc5234b74628224d8a8a3349c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ec0533c_2f6eec82",
+        "filename": "system/audio_hal_interface/hidl/client_interface_hidl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-21T17:33:25Z",
+      "side": 1,
+      "message": "```suggestion\n  } else if (!mDataMQ-\u003eisValid()) {\n```",
+      "range": {
+        "startLine": 660,
+        "startChar": 2,
+        "endLine": 661,
+        "endChar": 14
+      },
+      "revId": "b21128d86402262bc5234b74628224d8a8a3349c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
