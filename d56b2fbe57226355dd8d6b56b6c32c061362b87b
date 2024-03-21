@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0356bb5_f45e83f9",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-21T00:40:28Z",
+      "side": 1,
+      "message": "Remove in follow-up",
+      "range": {
+        "startLine": 582,
+        "startChar": 3,
+        "endLine": 584,
+        "endChar": 8
+      },
+      "revId": "d56b2fbe57226355dd8d6b56b6c32c061362b87b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
