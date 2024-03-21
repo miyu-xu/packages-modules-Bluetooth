@@ -22,6 +22,30 @@
       },
       "revId": "04f4629ecc4d74e05b6e0b2c56ba5b62360a1f48",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4650eefb_dd75e7de",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-21T23:17:37Z",
+      "side": 0,
+      "message": "p_search_cback is set to either btif_dm_search_services_evt or\nbtif_dm_search_devices_evt.\nIn both of those functions, the handlers ignore this event, so I could remove it from p_search_cback.\n\nIf BTA_DM_INQ_CMPL_EVT is sent through something else than p_search_cback, then it can actually be used.",
+      "parentUuid": "c93fdbec_6291d4c4",
+      "range": {
+        "startLine": 456,
+        "startChar": 19,
+        "endLine": 456,
+        "endChar": 33
+      },
+      "revId": "04f4629ecc4d74e05b6e0b2c56ba5b62360a1f48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
