@@ -1170,14 +1170,14 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
       log::verbose("BTA_HH_VC_UNPLUG_EVT: status = {}, handle = {}",
                    p_data->dev_status.status, p_data->dev_status.handle);
       p_dev = btif_hh_find_connected_dev_by_handle(p_data->dev_status.handle);
-      if (p_dev->link_spec.transport == BT_TRANSPORT_LE) {
-        log::error("BTA_HH_VC_UNPLUG_EVT: not expected for {}",
-                   p_dev->link_spec.ToRedactedStringForLogging());
-        return;
-      }
 
       btif_hh_cb.status = (BTIF_HH_STATUS)BTIF_HH_DEV_DISCONNECTED;
       if (p_dev != NULL) {
+        if (p_dev->link_spec.transport == BT_TRANSPORT_LE) {
+          log::error("BTA_HH_VC_UNPLUG_EVT: not expected for {}",
+                     p_dev->link_spec.ToRedactedStringForLogging());
+          return;
+        }
         log::verbose("BTA_HH_VC_UNPLUG_EVT: link_spec = {}",
                      p_dev->link_spec.ToRedactedStringForLogging());
 
