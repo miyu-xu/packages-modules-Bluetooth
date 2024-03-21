@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84e30c39_0fbb53aa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-03-21T05:07:32Z",
+      "side": 1,
+      "message": "```suggestion\nTag: #floss\nFlag: EXEMPT, no behavior change on Android; Floss-only changes\n```",
+      "revId": "3f48285bbadd44c938a49ff5bb53243040b61994",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
