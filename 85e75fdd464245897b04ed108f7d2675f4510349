@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78ee66ee_011ba4f1",
+        "filename": "tools/lint/checks/src/com/android/bluetooth/lint/GuardedLogLineDetector.kt",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-21T23:55:23Z",
+      "side": 1,
+      "message": "Note to self - We can downgrade an isLoggable() call to a warning since we\u0027re using it so far twice in the stack. Or, we can figure out how to add an annotation for a branch statement (not sure if that\u0027s possible)",
+      "range": {
+        "startLine": 123,
+        "startChar": 20,
+        "endLine": 123,
+        "endChar": 35
+      },
+      "revId": "85e75fdd464245897b04ed108f7d2675f4510349",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
