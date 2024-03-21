@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04d1f150_31e8775d",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-21T17:48:16Z",
+      "side": 0,
+      "message": "Can we remove BTA_DM_INQ_CMPL_EVT first in a separate CL.  I feel like there are quite a few more things that can be removed once this is gone.  I can do that if you just want to rebase this stack on that CL.",
+      "range": {
+        "startLine": 456,
+        "startChar": 34,
+        "endLine": 456,
+        "endChar": 53
+      },
+      "revId": "41e5d0245ec98f0af29747b7f6af88575800fae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
