@@ -22,6 +22,30 @@
       },
       "revId": "3e612085f36d22373559561f95a4abc3926c61a0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "204798d5_0ff49327",
+        "filename": "system/audio/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-21T17:45:27Z",
+      "side": 1,
+      "message": "It is linked as shared in most of the declarations",
+      "parentUuid": "e5baf5db_ea71daab",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 18
+      },
+      "revId": "3e612085f36d22373559561f95a4abc3926c61a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
