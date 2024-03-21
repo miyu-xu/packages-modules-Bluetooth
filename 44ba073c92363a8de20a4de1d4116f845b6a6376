@@ -118,6 +118,30 @@
       },
       "revId": "44ba073c92363a8de20a4de1d4116f845b6a6376",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ab3bd84_8b4ef4fb",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-21T00:25:50Z",
+      "side": 1,
+      "message": "re: naming, in follow up cleanup when cleaning up TransitionalScanHelper, etc. it would be good to figure out what the proper class structure is between existing ScanManager and this class, so in the interim IMO something like BluetoothScanManager or ScanManagerManager (though redundant, temporary) is fine, though also happy to defer to any other opinions on this one. In either case let\u0027s make sure there\u0027s a bug tracking the follow up work there so it isn\u0027t lost.",
+      "parentUuid": "bdc74bec_c7cc6376",
+      "range": {
+        "startLine": 40,
+        "startChar": 32,
+        "endLine": 40,
+        "endChar": 39
+      },
+      "revId": "44ba073c92363a8de20a4de1d4116f845b6a6376",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
