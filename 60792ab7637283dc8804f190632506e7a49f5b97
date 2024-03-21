@@ -37,6 +37,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "36be590c_5f3bc9f4",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-21T10:13:55Z",
+      "side": 1,
+      "message": "When is this used? The MSFT document doesn\u0027t mention about it. \nIf it\u0027s unused, please remove all occurrences.",
+      "range": {
+        "startLine": 152,
+        "startChar": 8,
+        "endLine": 152,
+        "endChar": 57
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce7ce439_dd221030",
         "filename": "system/gd/hci/msft.cc",
         "patchSetId": 1
@@ -100,6 +123,167 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "16c9278a_dac25813",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1742,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-21T10:13:55Z",
+      "side": 1,
+      "message": "Let\u0027s improve the naming, how about `add_child_monitor`? Likewise, maybe change `cancel_monitor` to `remove_child_monitor`?",
+      "range": {
+        "startLine": 1742,
+        "startChar": 7,
+        "endLine": 1742,
+        "endChar": 21
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8da0ed70_af3bdb37",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1752,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-21T10:13:55Z",
+      "side": 1,
+      "message": "There is only monitor add operation in this function, please update the comment.\nI guess it\u0027s still easier to reuse the gatt_async flow so feel free to keep the lock.",
+      "range": {
+        "startLine": 1752,
+        "startChar": 19,
+        "endLine": 1752,
+        "endChar": 83
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1620450f_20fe7938",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1762,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-21T10:13:55Z",
+      "side": 1,
+      "message": "nit: this comment is unnecessary. Also the same comment some lines below.",
+      "range": {
+        "startLine": 1762,
+        "startChar": 88,
+        "endLine": 1762,
+        "endChar": 159
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47693d92_1630527e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1769,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-21T10:13:55Z",
+      "side": 1,
+      "message": "Let\u0027s combine this and the if block above, to a single if statement, in order to avoid too much indentation.\nOr maybe just remove this if statement by making the parameter filter to be ScanFilter, instead of an Option. In any case, you have unwrap that in line 1761 without any check.",
+      "range": {
+        "startLine": 1769,
+        "startChar": 16,
+        "endLine": 1769,
+        "endChar": 44
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d423cc8e_04782535",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1783,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-21T10:13:55Z",
+      "side": 1,
+      "message": "Let\u0027s keep `monitor_handle` to store the handle of the pattern monitor instead of the latest monitor. Unless you have other usage of it?",
+      "range": {
+        "startLine": 1783,
+        "startChar": 24,
+        "endLine": 1783,
+        "endChar": 70
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4fc5ab0_9561f106",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1800,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-21T10:13:55Z",
+      "side": 1,
+      "message": "There is no update scan here, please update comment.",
+      "range": {
+        "startLine": 1800,
+        "startChar": 57,
+        "endLine": 1800,
+        "endChar": 68
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe0e962d_602b7090",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1857,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-21T10:13:55Z",
+      "side": 1,
+      "message": "A lot of the logic is about checking whether this is a pattern filter or an address filter, and currently it\u0027s done by checking whether the handle maps to a None or some address.\n\nHow about never insert the pattern handle to `monitor_handle_map` instead? This way we can check:\nif `monitor_handle \u003d\u003d handle` --\u003e pattern filter\nelse if `monitor_handle_map.contains_key(handle)` --\u003e address filter\nelse --\u003e bad handle\n\nHopefully that can simplify a lot of the logic? e.g. if it\u0027s an address filter, we skip the check whether it\u0027s already added to the handle_map.",
+      "range": {
+        "startLine": 1857,
+        "startChar": 24,
+        "endLine": 1857,
+        "endChar": 80
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3851dcf0_3e3853b0",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
         "patchSetId": 1
@@ -117,6 +301,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0b89309e_ecd92fbf",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2016,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-21T10:13:55Z",
+      "side": 1,
+      "message": "Will the key of address_filter_map ever be `Option::None`? If not, just directly use `String`, e.g. `Hashmap\u003cString, bool\u003e`",
+      "range": {
+        "startLine": 2016,
+        "startChar": 32,
+        "endLine": 2016,
+        "endChar": 46
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f3c294c8_57c6412b",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
         "patchSetId": 1
@@ -128,6 +335,311 @@
       "writtenOn": "2024-03-15T12:11:17Z",
       "side": 1,
       "message": "nit: remove comment",
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dc0be4b_b1cb4553",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2201,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-21T10:13:55Z",
+      "side": 1,
+      "message": "Also to other commented logs in this patch",
+      "parentUuid": "f3c294c8_57c6412b",
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3edf8b1e_7403e5e6",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2250,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-21T10:13:55Z",
+      "side": 1,
+      "message": "Why we don\u0027t stop the pattern monitor? Shouldn\u0027t we remove that as well?",
+      "range": {
+        "startLine": 2250,
+        "startChar": 71,
+        "endLine": 2250,
+        "endChar": 88
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38b92552_911baa1f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2254,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-21T10:13:55Z",
+      "side": 1,
+      "message": "To return the handles with non-null addresses, perhaps this works?\n```\nlet handles: Vec\u003c_\u003e \u003d scanner.monitor_handle_map\n  .filter_map(|(handle, addr)| addr.map(|_| handle))\n  .collect();\n```",
+      "range": {
+        "startLine": 2248,
+        "startChar": 0,
+        "endLine": 2254,
+        "endChar": 23
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c65f808_d9149b39",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 4292,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-21T10:13:55Z",
+      "side": 1,
+      "message": "might potentially be too noisy. Could you check how often this is printed? If it\u0027s no more than every 30 secs I am OK with it, otherwise please remove.\n\nLikewise for every log::info you have.",
+      "range": {
+        "startLine": 4292,
+        "startChar": 8,
+        "endLine": 4292,
+        "endChar": 48
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d516870_3415db31",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 4299,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-21T10:13:55Z",
+      "side": 1,
+      "message": "please use either `address_monitor_succeed \u003d false;` or `is_address_monitor_succeed \u003d false;`",
+      "range": {
+        "startLine": 4299,
+        "startChar": 16,
+        "endLine": 4299,
+        "endChar": 60
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e55cb1a_9268476e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 4300,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-21T10:13:55Z",
+      "side": 1,
+      "message": "Not every controller needs the logic to separate the pattern monitor and the address monitor.\nTherefore, could we hide the logic about whether to spawn the address monitor or not behind a quirk (could be just some bool now for simplicity)?",
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87e04ab8_c5f1fd8a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 4306,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-21T10:13:55Z",
+      "side": 1,
+      "message": "just use `unwrap`?",
+      "range": {
+        "startLine": 4306,
+        "startChar": 24,
+        "endLine": 4306,
+        "endChar": 30
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ab82105_92942bd6",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 4316,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-21T10:13:55Z",
+      "side": 1,
+      "message": "Will this ever be reached?\nIIUC whenever `address_filter_map[addr]` is set to false, you take the corresponding handle out from `monitor_handle_map`, so the check on `monitor_handle_map` above should be necessary.\nIf that\u0027s the case, let\u0027s just remove the member `address_filter_map` from the struct.",
+      "range": {
+        "startLine": 4316,
+        "startChar": 20,
+        "endLine": 4316,
+        "endChar": 28
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88bace13_641e238b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 4321,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-21T10:13:55Z",
+      "side": 1,
+      "message": "Maybe no need to mut?\nOr maybe just `let mut saved_filter` and use that instead of using the `scan_filter`?",
+      "range": {
+        "startLine": 4321,
+        "startChar": 16,
+        "endLine": 4321,
+        "endChar": 19
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88f1fb20_11e073fd",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 4329,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-21T10:13:55Z",
+      "side": 1,
+      "message": "Perhaps no need to clone here?",
+      "range": {
+        "startLine": 4329,
+        "startChar": 52,
+        "endLine": 4329,
+        "endChar": 71
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49e1ca56_2b14e5fd",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 4335,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-21T10:13:55Z",
+      "side": 1,
+      "message": "`update_monitor()` never returns fail, so we don\u0027t need this else arm here.\nIf cancel is needed, it should be done inside the async part of `update_monitor()`.",
+      "range": {
+        "startLine": 4334,
+        "startChar": 16,
+        "endLine": 4335,
+        "endChar": 79
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a79739d0_6fc48ef0",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 4341,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-21T10:13:55Z",
+      "side": 1,
+      "message": "Perhaps just compare if the `track_adv_info.monitor_handle \u003d\u003d corresponding_scanner_monitor_handle` to know whether it is the pattern handle or not?",
+      "range": {
+        "startLine": 4339,
+        "startChar": 12,
+        "endLine": 4341,
+        "endChar": 76
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "724bbf81_e9d65713",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 4374,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-21T10:13:55Z",
+      "side": 1,
+      "message": "No need to specify `\u003d\u003d true` since the variable is a bool.\n\nAlthough, shouldn\u0027t we report found/lost only on the address monitors (not the pattern monitor)?",
+      "range": {
+        "startLine": 4374,
+        "startChar": 59,
+        "endLine": 4374,
+        "endChar": 97
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7e56476_89d07451",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 7199,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-21T10:13:55Z",
+      "side": 1,
+      "message": "Please use a proper example of byte sequence that indicates MSFT monitor for address.",
       "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
