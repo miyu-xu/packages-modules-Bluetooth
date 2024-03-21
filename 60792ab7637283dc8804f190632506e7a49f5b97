@@ -101,6 +101,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ad2844de_7fa57875",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1275,
+      "author": {
+        "id": 1962420
+      },
+      "writtenOn": "2024-03-21T23:34:45Z",
+      "side": 1,
+      "message": "We can remove this here and in the rest of the code as Condition Type UUID and IRK won\u0027t be used.",
+      "range": {
+        "startLine": 1274,
+        "startChar": 0,
+        "endLine": 1275,
+        "endChar": 41
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "37dd78db_8f0d8c2a",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
         "patchSetId": 1
