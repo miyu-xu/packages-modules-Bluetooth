@@ -144,6 +144,7 @@ static tHID_KB_LIST hid_kb_numlock_on_list[] = {{LOGITECH_KB_MX5500_PRODUCT_ID,
  *  Static functions
  ******************************************************************************/
 
+static void btif_hh_transport_select(tAclLinkSpec& link_spec);
 /*******************************************************************************
  *  Externs
  ******************************************************************************/
@@ -520,9 +521,26 @@ void btif_hh_load_bonded_dev(const tAclLinkSpec& link_spec,
                              bool reconnect_allowed) {
   btif_hh_device_t* p_dev;
   uint8_t i;
+  tAclLinkSpec dev_link_spec = link_spec;
 
-  if (hh_add_device(link_spec, attr_mask)) {
-    BTA_HhAddDev(link_spec, attr_mask, sub_class, app_id, dscp_info);
+  if (IS_FLAG_ENABLED(allow_switching_hid_and_hogp) &&
+      dev_link_spec.transport == BT_TRANSPORT_AUTO) {
+    log::warn("BT transport is AUTO . Resolving transport to BREDR/LE");
+    btif_hh_transport_select(dev_link_spec);
+    reconnect_allowed = true;
+
+    // remove and re-write the hid info
+    btif_storage_remove_hid_info(dev_link_spec);
+    bt_status_t ret = btif_storage_add_hid_device_info(
+        dev_link_spec, attr_mask, sub_class, app_id, dscp_info.vendor_id,
+        dscp_info.product_id, dscp_info.version, dscp_info.ctry_code,
+        dscp_info.ssr_max_latency, dscp_info.ssr_min_tout,
+        dscp_info.descriptor.dl_len, dscp_info.descriptor.dsc_list);
+    ASSERTC(ret == BT_STATUS_SUCCESS, "storing hid info failed", ret);
+  }
+
+  if (hh_add_device(dev_link_spec, attr_mask)) {
+    BTA_HhAddDev(dev_link_spec, attr_mask, sub_class, app_id, dscp_info);
   }
   if (IS_FLAG_ENABLED(allow_switching_hid_and_hogp)) {
     // BT power cycle case, find the empty slot and update device state
@@ -530,7 +548,7 @@ void btif_hh_load_bonded_dev(const tAclLinkSpec& link_spec,
       if (btif_hh_cb.devices[i].dev_status == BTHH_CONN_STATE_UNKNOWN) {
         p_dev = &btif_hh_cb.devices[i];
         p_dev->reconnect_allowed = reconnect_allowed;
-        p_dev->link_spec = link_spec;
+        p_dev->link_spec = dev_link_spec;
         p_dev->dev_handle = BTA_HH_INVALID_HANDLE;
 
         if (reconnect_allowed) {
