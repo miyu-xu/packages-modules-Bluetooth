@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "631ae866_c628aee5",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapContentObserver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1184,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-21T23:52:46Z",
+      "side": 1,
+      "message": "Resolved -- I\u0027m just using the default toString() function via concatenation for the enum, which is equivalent to name() when not overriden, and works with null values",
+      "parentUuid": "8f1aab77_ab8f6933",
+      "range": {
+        "startLine": 1184,
+        "startChar": 40,
+        "endLine": 1184,
+        "endChar": 59
+      },
+      "revId": "f76c830983ec432abc8f375dd3d25cbe720b0a22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d25b569_ba4a50c3",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-20T23:52:59Z",
       "side": 1,
       "message": "Note to self, the test failing didn\u0027t actually do anything in the past and now throws an error when actually running the debug logic.\n\nThe test doesn\u0027t move the cursor to the first spot, so this code fails because the position is before the start.",
+      "range": {
+        "startLine": 124,
+        "startChar": 23,
+        "endLine": 124,
+        "endChar": 34
+      },
+      "revId": "f76c830983ec432abc8f375dd3d25cbe720b0a22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c27f4d5_5460f87d",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-21T23:52:46Z",
+      "side": 1,
+      "message": "I fixed the test so it moves the cursor and added some defensive code here",
+      "parentUuid": "2d25b569_ba4a50c3",
       "range": {
         "startLine": 124,
         "startChar": 23,
