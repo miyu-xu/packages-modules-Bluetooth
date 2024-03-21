@@ -726,7 +726,7 @@ static void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
       result.did_res.vendor_id = di_record.rec.vendor;
       result.did_res.product_id = di_record.rec.product;
       result.did_res.version = di_record.rec.version;
-      bta_dm_search_cb.p_search_cback(BTA_DM_DID_RES_EVT, &result);
+      bta_dm_search_cb.p_service_search_cback(BTA_DM_DID_RES_EVT, &result);
     }
 #endif
 
@@ -838,7 +838,7 @@ static void bta_dm_read_dis_cmpl(const RawAddress& addr,
     result.did_res.vendor_id = p_dis_value->pnp_id.vendor_id;
     result.did_res.product_id = p_dis_value->pnp_id.product_id;
     result.did_res.version = p_dis_value->pnp_id.product_version;
-    bta_dm_search_cb.p_search_cback(BTA_DM_DID_RES_EVT, &result);
+    bta_dm_search_cb.p_service_search_cback(BTA_DM_DID_RES_EVT, &result);
   }
 
   bta_dm_execute_queued_request();
