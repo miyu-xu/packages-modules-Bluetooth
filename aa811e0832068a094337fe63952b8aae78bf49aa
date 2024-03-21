@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55f3b1d3_3f75995c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 5386,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-21T07:51:54Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "e6ecd926_4d700b41",
+      "range": {
+        "startLine": 5383,
+        "startChar": 12,
+        "endLine": 5386,
+        "endChar": 46
+      },
+      "revId": "aa811e0832068a094337fe63952b8aae78bf49aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04284d8f_ea45383f",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9a41f82_810d961c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 7165,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-21T07:51:54Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "04284d8f_ea45383f",
+      "range": {
+        "startLine": 7162,
+        "startChar": 8,
+        "endLine": 7165,
+        "endChar": 47
+      },
+      "revId": "aa811e0832068a094337fe63952b8aae78bf49aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20685dda_93056f72",
@@ -60,6 +108,24 @@
       "writtenOn": "2024-03-21T06:39:48Z",
       "side": 1,
       "message": "Not in this CL (so please feel free to resolve after reading this), but it would be good to see if we really need a start() method or if the constructor is sufficient.",
+      "revId": "aa811e0832068a094337fe63952b8aae78bf49aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea0f1e8d_f81ab03b",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManagerService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-21T07:51:54Z",
+      "side": 1,
+      "message": "Good point. If it\u0027ll always be `isAvailable\u0027, then the constructor will surely be sufficient and a lot of `isAvailable` would be cleaned up. I\u0027ll investigate this. Thank you.",
+      "parentUuid": "20685dda_93056f72",
       "revId": "aa811e0832068a094337fe63952b8aae78bf49aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
