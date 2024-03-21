@@ -22,6 +22,30 @@
       },
       "revId": "6d5c32bc5b8683df147b17cf4328288e07583f57",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9e0e5f0_96aeab92",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 760,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-21T17:20:08Z",
+      "side": 1,
+      "message": "Correct.\nBut the RemoteException mean that the client is dead.\nIf you fail on the first, you will fail on the other ones as well",
+      "parentUuid": "90a0e27a_3853868e",
+      "range": {
+        "startLine": 756,
+        "startChar": 20,
+        "endLine": 760,
+        "endChar": 21
+      },
+      "revId": "6d5c32bc5b8683df147b17cf4328288e07583f57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
