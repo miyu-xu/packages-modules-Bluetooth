@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6a05fb9_733f91fe",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 914,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-22T11:33:34Z",
+      "side": 1,
+      "message": "same here, why we are not sure about whether this callback is null?\n\nShould this callback ever be null here?",
+      "range": {
+        "startLine": 914,
+        "startChar": 0,
+        "endLine": 914,
+        "endChar": 47
+      },
+      "revId": "0e7ce34e6109738658b1329d138b9fccdcf5d951",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
