@@ -22,6 +22,30 @@
       },
       "revId": "f94438fca529f3e3926a114c192fbb30a725df1d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2f66936_f894b114",
+        "filename": "system/bta/dm/bta_dm_disc_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-22T14:27:09Z",
+      "side": 1,
+      "message": "Yes. From the commit message:\n ```Each occurence of p_search_cback will be split in separate patch, to\nease reviewers. Therefore, this patch alone does not compile.```",
+      "parentUuid": "75a6fe22_107bb256",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 158,
+        "endChar": 47
+      },
+      "revId": "f94438fca529f3e3926a114c192fbb30a725df1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
