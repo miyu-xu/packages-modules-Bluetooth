@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75aeb6b3_f8e597bc",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-22T15:56:40Z",
+      "side": 1,
+      "message": "what if both p_device_search_cback and p_service_search_cback are not null? why do we prefer p_device_search_cback?",
+      "range": {
+        "startLine": 508,
+        "startChar": 3,
+        "endLine": 514,
+        "endChar": 5
+      },
+      "revId": "30b320bdd069e020bfc1a8c33fdd61dc3a5aa634",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87331704_b1bdf395",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-22T15:56:40Z",
+      "side": 1,
+      "message": "e.g. here why we sent BTA_DM_GATT_OVER_LE_RES_EVT to p_service_search_cback and BTA_DM_DISC_CMPL_EVT to p_device_search_cback ?",
+      "range": {
+        "startLine": 916,
+        "startChar": 1,
+        "endLine": 925,
+        "endChar": 3
+      },
+      "revId": "30b320bdd069e020bfc1a8c33fdd61dc3a5aa634",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a3b66b5_92b138ba",
+        "filename": "system/bta/dm/bta_dm_disc_int.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-22T15:56:40Z",
+      "side": 1,
+      "message": "it is not clear what events interest which callback and some changes in this CL seems arbitrary, could you clarify the differences in terms of events for each callback?",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 158,
+        "endChar": 47
+      },
+      "revId": "30b320bdd069e020bfc1a8c33fdd61dc3a5aa634",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
