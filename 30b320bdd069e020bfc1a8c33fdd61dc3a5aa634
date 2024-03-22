@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0e95534b_f2e27f16",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-22T16:07:02Z",
+      "side": 1,
+      "message": "Because I checked the logic in btif_dm_search_services_evt and\nbtif_dm_search_devices_evt, and they both do almost same thing.\n\nService search callback just sends name up to Java.\nDevice search callback also looks up CoD and sends it to Java.\n\nService search callback was added recently, and was under a flag, to ensure name is passed, so my guess was they missed CoD when implementing that recently. Therefore I decided device search callback should be preferred.",
+      "parentUuid": "75aeb6b3_f8e597bc",
+      "range": {
+        "startLine": 508,
+        "startChar": 3,
+        "endLine": 514,
+        "endChar": 5
+      },
+      "revId": "30b320bdd069e020bfc1a8c33fdd61dc3a5aa634",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "87331704_b1bdf395",
         "filename": "system/bta/dm/bta_dm_disc.cc",
         "patchSetId": 1
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a15fac64_1a66f22f",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-22T16:07:02Z",
+      "side": 1,
+      "message": "Because\nBTA_DM_GATT_OVER_LE_RES_EVT is handled only in btif_dm_search_services_evt \nand\nBTA_DM_DISC_CMPL_EVT  is handled only in btif_dm_search_devices_evt",
+      "parentUuid": "87331704_b1bdf395",
+      "range": {
+        "startLine": 916,
+        "startChar": 1,
+        "endLine": 925,
+        "endChar": 3
+      },
+      "revId": "30b320bdd069e020bfc1a8c33fdd61dc3a5aa634",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4a3b66b5_92b138ba",
         "filename": "system/bta/dm/bta_dm_disc_int.h",
         "patchSetId": 1
@@ -60,6 +108,30 @@
       "writtenOn": "2024-03-22T15:56:40Z",
       "side": 1,
       "message": "it is not clear what events interest which callback and some changes in this CL seems arbitrary, could you clarify the differences in terms of events for each callback?",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 158,
+        "endChar": 47
+      },
+      "revId": "30b320bdd069e020bfc1a8c33fdd61dc3a5aa634",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d94f84d2_babbd096",
+        "filename": "system/bta/dm/bta_dm_disc_int.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-22T16:07:02Z",
+      "side": 1,
+      "message": "That\u0027s why we have unsquashed version, where each event is cleaned up separately.\n\nOnce again, as commit message says:\n\n```\nWether device or service search is interested in given event is\ndetermined by checking the btif_dm_search_services_evt and\nbtif_dm_search_devices_evt.\n````",
+      "parentUuid": "4a3b66b5_92b138ba",
       "range": {
         "startLine": 157,
         "startChar": 0,
