@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b991eac4_156af5f9",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-22T23:54:23Z",
+      "side": 0,
+      "message": "I don\u0027t love this. Calling dump behind a debug flag should be frowned upon.",
+      "range": {
+        "startLine": 221,
+        "startChar": 12,
+        "endLine": 231,
+        "endChar": 13
+      },
+      "revId": "f918d35bdb5307e8e747a9e08f0d7451dc72803e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
