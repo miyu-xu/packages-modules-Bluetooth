@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6991a2fc_e7d283d4",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-22T21:54:26Z",
+      "side": 0,
+      "message": "Do you need to remove the method in BluetoothUtils ?",
+      "range": {
+        "startLine": 19,
+        "startChar": 47,
+        "endLine": 19,
+        "endChar": 61
+      },
+      "revId": "ba94f6131245e595784717438b5871fd6dac3241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

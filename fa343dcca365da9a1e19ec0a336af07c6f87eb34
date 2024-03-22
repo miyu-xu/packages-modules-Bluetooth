@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bd2d1ed3_3bf35e19",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementSession.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-22T21:54:26Z",
+      "side": 1,
+      "message": "Can this error still be emitted ?",
+      "range": {
+        "startLine": 165,
+        "startChar": 41,
+        "endLine": 165,
+        "endChar": 54
+      },
+      "revId": "fa343dcca365da9a1e19ec0a336af07c6f87eb34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e3a2d603_867b8e2b",
         "filename": "service/src/com/android/server/bluetooth/AdapterBinder.kt",
         "patchSetId": 11
