@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1637234_0d0261a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-22T15:46:24Z",
+      "side": 1,
+      "message": "Looks like the the new GD api is avaliable directly to anyone.\nDoes that mean that additional guarantees that l2cble_start_conn_update provides i.e. locking parameters during service discovery, or ensuring that we don\u0027t let remote modify parameters while doing service discovery, are no longer enforced for other users of this API ?",
+      "revId": "d87b4611d41f12cdc8b6048cda8eca4f36849462",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
