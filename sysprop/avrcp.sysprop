@@ -9,3 +9,10 @@ prop {
     prop_name: "bluetooth.avrcp.absolute_volume.enabled"
 }
 
+prop {
+    api_name: "sink_absolute_volume"
+    type: Boolean
+    scope: Internal
+    access: Readonly
+    prop_name: "bluetooth.avrcp.sink.absolute_volume.enabled"
+}

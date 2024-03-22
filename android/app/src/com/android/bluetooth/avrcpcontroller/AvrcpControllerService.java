@@ -28,6 +28,7 @@ import android.content.AttributionSource;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
+import android.os.SystemProperties;
 import android.support.v4.media.MediaBrowserCompat.MediaItem;
 import android.sysprop.BluetoothProperties;
 import android.util.Log;
@@ -63,6 +64,10 @@ public class AvrcpControllerService extends ProfileService {
     private static final String ON_ERROR_SETTINGS_ACTIVITY =
             BluetoothPrefs.class.getCanonicalName();
     private static final String COVER_ART_PROVIDER = AvrcpCoverArtProvider.class.getCanonicalName();
+
+    /** Is absolute volume enabled for sink profile. */
+    private static final boolean IS_SINK_AVRCP_ABSOLUTE_VOLUME_ENABLED =
+            SystemProperties.getBoolean("bluetooth.avrcp.sink.absolute_volume.enabled", false);
 
     /* Folder/Media Item scopes.
      * Keep in sync with AVRCP 1.6 sec. 6.10.1
@@ -750,7 +755,8 @@ public class AvrcpControllerService extends ProfileService {
 
     protected AvrcpControllerStateMachine getOrCreateStateMachine(BluetoothDevice device) {
         AvrcpControllerStateMachine newStateMachine =
-                new AvrcpControllerStateMachine(device, this, mNativeInterface);
+                new AvrcpControllerStateMachine(
+                        device, this, mNativeInterface, IS_SINK_AVRCP_ABSOLUTE_VOLUME_ENABLED);
         AvrcpControllerStateMachine existingStateMachine =
                 mDeviceStateMap.putIfAbsent(device, newStateMachine);
         // Given null is not a valid value in our map, ConcurrentHashMap will return null if the
