@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "630cfa6a_13684d84",
+        "filename": "flags/metric.aconfig",
+        "patchSetId": 44
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-22T03:15:13Z",
+      "side": 1,
+      "message": "You need to add a container :\n```\ncontainer: \"com.android.btservices\"\n```\n\nYes, this is new...",
+      "revId": "a7159ad036d760180208797112a857d14f7a8058",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
