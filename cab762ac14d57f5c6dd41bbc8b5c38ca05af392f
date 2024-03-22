@@ -22,6 +22,30 @@
       },
       "revId": "cab762ac14d57f5c6dd41bbc8b5c38ca05af392f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c97f5894_b3fe731f",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-22T15:39:17Z",
+      "side": 1,
+      "message": "See comment above:\n\n// Both device and service search callbacks end up sending event to java.\n    // It\u0027s enough to send callback to just one of them.",
+      "parentUuid": "478c045c_63888531",
+      "range": {
+        "startLine": 508,
+        "startChar": 4,
+        "endLine": 514,
+        "endChar": 5
+      },
+      "revId": "cab762ac14d57f5c6dd41bbc8b5c38ca05af392f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
