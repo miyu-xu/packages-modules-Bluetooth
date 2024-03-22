@@ -58,6 +58,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94e15c9e_4832536a",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-03-22T20:33:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba66aeb4_21a64153",
+      "range": {
+        "startLine": 151,
+        "startChar": 22,
+        "endLine": 151,
+        "endChar": 26
+      },
+      "revId": "b2c5ab4c4796bc0dbb398b66546dcbc670718298",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15c213b9_c68b2cfa",
@@ -71,6 +95,30 @@
       "writtenOn": "2024-03-22T19:46:22Z",
       "side": 1,
       "message": "The convention I\u0027d prefer to follow for sysprops would be something like:\n```\n\"bluetooth.profile.avrcp.controller.absolute_volume.enabled\"\n```\n\nSo we use the profile \"namespace\" so there\u0027s some affordance in the name about the layer this belongs to, and the proper role name, per the specs.\n\nI admit, the old sysprop (less of a fan of), does leave out the `profile` part. I\u0027m fine following that precedent too.",
+      "range": {
+        "startLine": 17,
+        "startChar": 16,
+        "endLine": 17,
+        "endChar": 60
+      },
+      "revId": "b2c5ab4c4796bc0dbb398b66546dcbc670718298",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d21f3cb4_bd650b7a",
+        "filename": "sysprop/avrcp.sysprop",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-03-22T20:33:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15c213b9_c68b2cfa",
       "range": {
         "startLine": 17,
         "startChar": 16,
