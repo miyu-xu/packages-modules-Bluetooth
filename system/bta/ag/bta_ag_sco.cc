@@ -182,6 +182,72 @@ static void bta_ag_sco_conn_cback(uint16_t sco_idx) {
 
 /*******************************************************************************
  *
+ * Function         select_next_settings
+ *
+ * Description      Select the next preferred settings if any
+ *
+ *
+ * Returns          bool   - true if there is next preferred setting to select
+ *
+ ******************************************************************************/
+static bool select_next_settings() {
+  const bool aptx_voice =
+      is_hfp_aptx_voice_enabled() &&
+      (bta_ag_cb.sco.p_curr_scb->is_aptx_swb_codec == true) &&
+      (bta_ag_cb.sco.p_curr_scb->inuse_codec ==
+       BTA_AG_SCO_APTX_SWB_SETTINGS_Q0);
+  log::verbose("aptx_voice={}, inuse_codec={:#x}", logbool(aptx_voice),
+               bta_ag_cb.sco.p_curr_scb->inuse_codec);
+  /* If SCO open was initiated by AG and failed, try 'safe setting' of the in
+   * used codec. If 'safe setting' is already in used, fallback to CVSD unless
+   * CVSD is in used, which means no more things to try.
+   */
+  if (bta_ag_cb.sco.p_curr_scb->inuse_codec == UUID_CODEC_LC3) {
+    if (bta_ag_cb.sco.p_curr_scb->codec_lc3_settings ==
+        BTA_AG_SCO_LC3_SETTINGS_T2) {
+      log::warn("eSCO/SCO failed to open, falling back to LC3 T1 settings");
+      bta_ag_cb.sco.p_curr_scb->codec_lc3_settings = BTA_AG_SCO_LC3_SETTINGS_T1;
+    } else {
+      log::warn("eSCO/SCO failed to open, falling back to CVSD settings");
+      bta_ag_cb.sco.p_curr_scb->inuse_codec = UUID_CODEC_CVSD;
+      bta_ag_cb.sco.p_curr_scb->codec_fallback = true;
+    }
+  } else if (bta_ag_cb.sco.p_curr_scb->inuse_codec == UUID_CODEC_MSBC) {
+    if (bta_ag_cb.sco.p_curr_scb->codec_msbc_settings ==
+        BTA_AG_SCO_MSBC_SETTINGS_T2) {
+      log::warn("eSCO/SCO failed to open, falling back to mSBC T1 settings");
+      bta_ag_cb.sco.p_curr_scb->codec_msbc_settings =
+          BTA_AG_SCO_MSBC_SETTINGS_T1;
+
+    } else {
+      log::warn("eSCO/SCO failed to open, falling back to CVSD");
+      bta_ag_cb.sco.p_curr_scb->inuse_codec = UUID_CODEC_CVSD;
+      bta_ag_cb.sco.p_curr_scb->codec_fallback = true;
+    }
+  } else if (aptx_voice) {
+    log::warn("eSCO/SCO failed to open, falling back to CVSD");
+    bta_ag_cb.sco.p_curr_scb->inuse_codec = UUID_CODEC_CVSD;
+    bta_ag_cb.sco.p_curr_scb->codec_fallback = true;
+  } else if (IS_FLAG_ENABLED(retry_esco_with_zero_retransmission_effort) &&
+             bta_ag_cb.sco.p_curr_scb->retransmission_effort_retries == 0) {
+    bta_ag_cb.sco.p_curr_scb->retransmission_effort_retries++;
+    log::warn("eSCO/SCO failed to open, retry with retransmission_effort");
+  } else {  // inuse_codec == UUID_CODEC_CVSD} {
+    if (bta_ag_cb.sco.p_curr_scb->codec_cvsd_settings !=
+        BTA_AG_SCO_CVSD_SETTINGS_S1) {
+      log::warn("eSCO/SCO failed to open, falling back to CVSD S1 settings");
+      bta_ag_cb.sco.p_curr_scb->codec_cvsd_settings =
+          BTA_AG_SCO_CVSD_SETTINGS_S1;
+    } else {
+      return false;
+    }
+  }
+  bta_ag_cb.sco.p_curr_scb->state = BTA_AG_SCO_CODEC_ST;
+  return true;
+}
+
+/*******************************************************************************
+ *
  * Function         bta_ag_sco_disc_cback
  *
  * Description      BTM SCO disconnection callback.
@@ -220,58 +286,19 @@ static void bta_ag_sco_disc_cback(uint16_t sco_idx) {
     log::verbose("aptx_voice={}, inuse_codec={:#x}", logbool(aptx_voice),
                  bta_ag_cb.sco.p_curr_scb->inuse_codec);
 
-    /* Restore settings */
-    if (bta_ag_cb.sco.p_curr_scb->inuse_codec == UUID_CODEC_MSBC ||
-        bta_ag_cb.sco.p_curr_scb->inuse_codec == UUID_CODEC_LC3 || aptx_voice) {
-      /* Bypass vendor specific and voice settings if enhanced eSCO supported */
-      if (!(bluetooth::shim::GetController()->IsSupported(
-              bluetooth::hci::OpCode::ENHANCED_SETUP_SYNCHRONOUS_CONNECTION))) {
-        BTM_WriteVoiceSettings(BTM_VOICE_SETTING_CVSD);
-      }
+    /* Bypass vendor specific and voice settings if enhanced eSCO supported */
+    if (bta_ag_cb.sco.p_curr_scb->inuse_codec != UUID_CODEC_CVSD &&
+        !(controller_get_interface()
+              ->supports_enhanced_setup_synchronous_connection())) {
+      BTM_WriteVoiceSettings(BTM_VOICE_SETTING_CVSD);
+    }
 
-      /* If SCO open was initiated by AG and failed for mSBC T2, try mSBC T1
-       * 'Safe setting' first. If T1 also fails, try CVSD
-       * same operations for LC3 settings */
-      if (bta_ag_sco_is_opening(bta_ag_cb.sco.p_curr_scb)) {
-        bta_ag_cb.sco.p_curr_scb->state = BTA_AG_SCO_CODEC_ST;
-        if (bta_ag_cb.sco.p_curr_scb->inuse_codec == UUID_CODEC_LC3) {
-          if (bta_ag_cb.sco.p_curr_scb->codec_lc3_settings ==
-              BTA_AG_SCO_LC3_SETTINGS_T2) {
-            log::warn(
-                "eSCO/SCO failed to open, falling back to LC3 T1 settings");
-            bta_ag_cb.sco.p_curr_scb->codec_lc3_settings =
-                BTA_AG_SCO_LC3_SETTINGS_T1;
-          } else {
-            log::warn("eSCO/SCO failed to open, falling back to CVSD settings");
-            bta_ag_cb.sco.p_curr_scb->inuse_codec = UUID_CODEC_CVSD;
-            bta_ag_cb.sco.p_curr_scb->codec_fallback = true;
-          }
-        } else {
-          if (bta_ag_cb.sco.p_curr_scb->codec_msbc_settings ==
-              BTA_AG_SCO_MSBC_SETTINGS_T2) {
-            log::warn(
-                "eSCO/SCO failed to open, falling back to mSBC T1 settings");
-            bta_ag_cb.sco.p_curr_scb->codec_msbc_settings =
-                BTA_AG_SCO_MSBC_SETTINGS_T1;
-
-          } else {
-            log::warn("eSCO/SCO failed to open, falling back to CVSD");
-            bta_ag_cb.sco.p_curr_scb->inuse_codec = UUID_CODEC_CVSD;
-            bta_ag_cb.sco.p_curr_scb->codec_fallback = true;
-          }
-        }
-      }
-    } else if (bta_ag_sco_is_opening(bta_ag_cb.sco.p_curr_scb)) {
-      if (IS_FLAG_ENABLED(retry_esco_with_zero_retransmission_effort) &&
-          bta_ag_cb.sco.p_curr_scb->retransmission_effort_retries == 0) {
-        bta_ag_cb.sco.p_curr_scb->retransmission_effort_retries++;
-        bta_ag_cb.sco.p_curr_scb->state = BTA_AG_SCO_CODEC_ST;
-        log::warn("eSCO/SCO failed to open, retry with retransmission_effort");
-      } else {
-        log::error("eSCO/SCO failed to open, no more fall back");
-        if (bta_ag_is_sco_managed_by_audio()) {
-          hfp_offload_interface->CancelStreamingRequest();
-        }
+    /* Try next setting if we are AG */
+    if (bta_ag_sco_is_opening(bta_ag_cb.sco.p_curr_scb) &&
+        !select_next_settings()) {
+      log::error("eSCO/SCO failed to open, no more fall back");
+      if (bta_ag_is_sco_managed_by_audio()) {
+        hfp_offload_interface->CancelStreamingRequest();
       }
     }
 
@@ -457,6 +484,8 @@ void bta_ag_create_sco(tBTA_AG_SCB* p_scb, bool is_orig) {
     p_scb->codec_fallback = false;
     /* Force AG to send +BCS for the next audio connection. */
     p_scb->codec_updated = true;
+    /* reset to CVSD S4 settings as the preferred */
+    p_scb->codec_cvsd_settings = BTA_AG_SCO_CVSD_SETTINGS_S4;
     /* Reset mSBC settings to T2 for the next audio connection */
     p_scb->codec_msbc_settings = BTA_AG_SCO_MSBC_SETTINGS_T2;
     /* Reset LC3 settings to T2 for the next audio connection */
@@ -497,13 +526,17 @@ void bta_ag_create_sco(tBTA_AG_SCB* p_scb, bool is_orig) {
       params = esco_parameters_for_codec(ESCO_CODEC_SWB_Q0, true);
     }
   } else {
-    if ((p_scb->features & BTA_AG_FEAT_ESCO_S4) &&
-        (p_scb->peer_features & BTA_AG_PEER_FEAT_ESCO_S4)) {
-      // HFP >=1.7 eSCO
-      params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S4, offload);
+    if (p_scb->codec_cvsd_settings != BTA_AG_SCO_CVSD_SETTINGS_S1) {
+      if ((p_scb->features & BTA_AG_FEAT_ESCO_S4) &&
+          (p_scb->peer_features & BTA_AG_PEER_FEAT_ESCO_S4)) {
+        // HFP >=1.7 eSCO
+        params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S4, offload);
+      } else {
+        // HFP <=1.6 eSCO
+        params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S3, offload);
+      }
     } else {
-      // HFP <=1.6 eSCO
-      params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S3, offload);
+      params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S1, offload);
     }
   }
 
@@ -622,13 +655,17 @@ void bta_ag_create_pending_sco(tBTA_AG_SCB* p_scb, bool is_local) {
         params = esco_parameters_for_codec(ESCO_CODEC_MSBC_T1, offload);
       }
     } else {
-      if ((p_scb->features & BTA_AG_FEAT_ESCO_S4) &&
-          (p_scb->peer_features & BTA_AG_PEER_FEAT_ESCO_S4)) {
-        // HFP >=1.7 eSCO
-        params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S4, offload);
+      if (p_scb->codec_cvsd_settings != BTA_AG_SCO_CVSD_SETTINGS_S1) {
+        if ((p_scb->features & BTA_AG_FEAT_ESCO_S4) &&
+            (p_scb->peer_features & BTA_AG_PEER_FEAT_ESCO_S4)) {
+          // HFP >=1.7 eSCO
+          params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S4, offload);
+        } else {
+          // HFP <=1.6 eSCO
+          params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S3, offload);
+        }
       } else {
-        // HFP <=1.6 eSCO
-        params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S3, offload);
+        params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S1, offload);
       }
     }
 
@@ -1491,6 +1528,8 @@ void bta_ag_sco_conn_open(tBTA_AG_SCB* p_scb,
 
   /* reset retransmission_effort_retries*/
   p_scb->retransmission_effort_retries = 0;
+  /* reset to CVSD S4 settings as the preferred */
+  p_scb->codec_cvsd_settings = BTA_AG_SCO_CVSD_SETTINGS_S4;
   /* reset to mSBC T2 settings as the preferred */
   p_scb->codec_msbc_settings = BTA_AG_SCO_MSBC_SETTINGS_T2;
   /* reset to LC3 T2 settings as the preferred */
@@ -1523,15 +1562,7 @@ void bta_ag_sco_conn_close(tBTA_AG_SCB* p_scb,
   /* codec_fallback is set when AG is initiator and connection failed for mSBC.
    * OR if codec is msbc and T2 settings failed, then retry Safe T1 settings
    * same operations for LC3 settings */
-  if (p_scb->svc_conn &&
-      (p_scb->codec_fallback ||
-       (p_scb->sco_codec == BTM_SCO_CODEC_MSBC &&
-        p_scb->codec_msbc_settings == BTA_AG_SCO_MSBC_SETTINGS_T1) ||
-       (p_scb->sco_codec == BTM_SCO_CODEC_LC3 &&
-        p_scb->codec_lc3_settings == BTA_AG_SCO_LC3_SETTINGS_T1) ||
-       (IS_FLAG_ENABLED(retry_esco_with_zero_retransmission_effort) &&
-        p_scb->retransmission_effort_retries == 1) ||
-       aptx_voice)) {
+  if (p_scb->svc_conn && bta_ag_cb.sco.state == BTA_AG_SCO_CODEC_ST) {
     bta_ag_sco_event(p_scb, BTA_AG_SCO_REOPEN_E);
   } else {
     /* Indicate if the closing of audio is because of transfer */
@@ -1549,6 +1580,7 @@ void bta_ag_sco_conn_close(tBTA_AG_SCB* p_scb,
 
     /* call app callback */
     bta_ag_cback_sco(p_scb, BTA_AG_AUDIO_CLOSE_EVT);
+    p_scb->codec_cvsd_settings = BTA_AG_SCO_CVSD_SETTINGS_S4;
     p_scb->codec_msbc_settings = BTA_AG_SCO_MSBC_SETTINGS_T2;
     p_scb->codec_lc3_settings = BTA_AG_SCO_LC3_SETTINGS_T2;
     p_scb->codec_aptx_settings = BTA_AG_SCO_APTX_SWB_SETTINGS_Q0;
