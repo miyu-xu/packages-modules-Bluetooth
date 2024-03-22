@@ -22,6 +22,30 @@
       },
       "revId": "41e5d0245ec98f0af29747b7f6af88575800fae4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7707ca3_cb6a84f1",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-22T07:50:02Z",
+      "side": 0,
+      "message": "Yes, there is more, and I will do that, but would prefer to get this patches merged first please.\n\nI see you already prepared aosp/3006637 , so closing this comment.",
+      "parentUuid": "04d1f150_31e8775d",
+      "range": {
+        "startLine": 456,
+        "startChar": 34,
+        "endLine": 456,
+        "endChar": 53
+      },
+      "revId": "41e5d0245ec98f0af29747b7f6af88575800fae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
