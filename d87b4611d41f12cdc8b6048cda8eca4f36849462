@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcda3e81_998446ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-22T20:14:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07054c2a_78661ab3",
+      "revId": "d87b4611d41f12cdc8b6048cda8eca4f36849462",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e8c012b2_e05b61a0",
@@ -49,6 +67,30 @@
       "writtenOn": "2024-03-22T16:35:09Z",
       "side": 1,
       "message": "We\u0027re still using l2cble_start_conn_update",
+      "range": {
+        "startLine": 206,
+        "startChar": 5,
+        "endLine": 206,
+        "endChar": 29
+      },
+      "revId": "d87b4611d41f12cdc8b6048cda8eca4f36849462",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7180085_89392625",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-22T20:14:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8c012b2_e05b61a0",
       "range": {
         "startLine": 206,
         "startChar": 5,
