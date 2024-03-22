@@ -116,6 +116,24 @@
       "parentUuid": "853110d7_a23334d7",
       "revId": "f8a7cccacd6b76b3fea6987524a9eb32df757af9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39baf8c7_6d4c1754",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 871,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-22T18:09:14Z",
+      "side": 1,
+      "message": "I don\u0027t see the flag in the new patch",
+      "parentUuid": "fdb0c6b7_17e01699",
+      "revId": "f8a7cccacd6b76b3fea6987524a9eb32df757af9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
