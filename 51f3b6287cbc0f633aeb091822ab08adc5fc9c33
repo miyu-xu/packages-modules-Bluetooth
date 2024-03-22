@@ -49,6 +49,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "cf186e4c_78e1274e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BluetoothSocketManagerBinder.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-03-22T22:10:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41f7a4ac_edd17514",
+      "range": {
+        "startLine": 116,
+        "startChar": 24,
+        "endLine": 116,
+        "endChar": 48
+      },
+      "revId": "51f3b6287cbc0f633aeb091822ab08adc5fc9c33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "30110522_1e867954",
         "filename": "system/btif/src/btif_sock_l2cap.cc",
         "patchSetId": 5
