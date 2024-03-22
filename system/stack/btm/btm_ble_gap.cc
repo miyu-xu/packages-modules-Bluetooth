@@ -2354,62 +2354,128 @@ static void btm_ble_update_inq_result(tINQ_DB_ENT* p_i, uint8_t addr_type,
       btm_cb.btm_inq_vars.inq_counter; /* Mark entry for current inquiry */
 
   bool has_advertising_flags = false;
-  if (!data.empty()) {
-    const uint8_t* p_flag =
-        AdvertiseDataParser::GetFieldByType(data, BTM_BLE_AD_TYPE_FLAG, &len);
-    if (p_flag != NULL && len != 0) {
-      has_advertising_flags = true;
-      p_cur->flag = *p_flag;
-    }
-
-    p_cur->dev_class = btm_ble_get_appearance_as_cod(data);
-
-    const uint8_t* p_rsi =
-        AdvertiseDataParser::GetFieldByType(data, BTM_BLE_AD_TYPE_RSI, &len);
-    if (p_rsi != nullptr && len == 6) {
-      STREAM_TO_BDADDR(p_cur->ble_ad_rsi, p_rsi);
-    }
-
-    const uint8_t* p_service_data = data.data();
-    uint8_t service_data_len = 0;
-
-    while ((p_service_data = AdvertiseDataParser::GetFieldByType(
-                p_service_data + service_data_len,
-                data.size() - (p_service_data - data.data()) - service_data_len,
-                BTM_BLE_AD_TYPE_SERVICE_DATA_TYPE, &service_data_len))) {
-      uint16_t uuid;
-      const uint8_t* p_uuid = p_service_data;
-      if (service_data_len < 2) {
-        continue;
+  if (IS_FLAG_ENABLED(ensure_valid_adv_flag)) {
+    if (!data.empty()) {
+      uint8_t local_flag = 0;
+      const uint8_t* p_flag =
+          AdvertiseDataParser::GetFieldByType(data, BTM_BLE_AD_TYPE_FLAG, &len);
+      if (p_flag != NULL && len != 0) {
+        has_advertising_flags = true;
+        p_cur->flag = *p_flag;
+        local_flag = *p_flag;
       }
-      STREAM_TO_UINT16(uuid, p_uuid);
 
-      if (uuid == 0x184E /* Audio Stream Control service */ ||
-          uuid == 0x184F /* Broadcast Audio Scan service */ ||
-          uuid == 0x1850 /* Published Audio Capabilities service */ ||
-          uuid == 0x1853 /* Common Audio service */) {
-        p_cur->ble_ad_is_le_audio_capable = true;
-        break;
+      btm_ble_get_appearance_as_cod(data, p_cur->dev_class);
+
+      const uint8_t* p_rsi =
+          AdvertiseDataParser::GetFieldByType(data, BTM_BLE_AD_TYPE_RSI, &len);
+      if (p_rsi != nullptr && len == 6) {
+        STREAM_TO_BDADDR(p_cur->ble_ad_rsi, p_rsi);
       }
-    }
-  }
 
-  // Non-connectable packets may omit flags entirely, in which case nothing
-  // should be assumed about their values (CSSv10, 1.3.1). Thus, do not
-  // interpret the device type unless this packet has the flags set or is
-  // connectable.
-  bool should_process_flags =
-      has_advertising_flags || ble_evt_type_is_connectable(evt_type);
-  if (should_process_flags && (p_cur->flag & BTM_BLE_BREDR_NOT_SPT) == 0 &&
-      !ble_evt_type_is_directed(evt_type)) {
-    if (p_cur->ble_addr_type != BLE_ADDR_RANDOM) {
-      log::verbose("NOT_BR_EDR support bit not set, treat device as DUMO");
-      p_cur->device_type |= BT_DEVICE_TYPE_DUMO;
-    } else {
-      log::verbose("Random address, treat device as LE only");
+      const uint8_t* p_service_data = data.data();
+      uint8_t service_data_len = 0;
+
+      while (
+          (p_service_data = AdvertiseDataParser::GetFieldByType(
+               p_service_data + service_data_len,
+               data.size() - (p_service_data - data.data()) - service_data_len,
+               BTM_BLE_AD_TYPE_SERVICE_DATA_TYPE, &service_data_len))) {
+        uint16_t uuid;
+        const uint8_t* p_uuid = p_service_data;
+        if (service_data_len < 2) {
+          continue;
+        }
+        STREAM_TO_UINT16(uuid, p_uuid);
+
+        if (uuid == 0x184E /* Audio Stream Control service */ ||
+            uuid == 0x184F /* Broadcast Audio Scan service */ ||
+            uuid == 0x1850 /* Published Audio Capabilities service */ ||
+            uuid == 0x1853 /* Common Audio service */) {
+          p_cur->ble_ad_is_le_audio_capable = true;
+          break;
+        }
+      }
+
+      // Non-connectable packets may omit flags entirely, in which case nothing
+      // should be assumed about their values (CSSv10, 1.3.1). Thus, do not
+      // interpret the device type unless this packet has the flags set or is
+      // connectable.
+      if (ble_evt_type_is_connectable(evt_type) && !has_advertising_flags) {
+        // Assume that all-zero flags were received
+        has_advertising_flags = true;
+        local_flag = 0;
+      }
+      if (has_advertising_flags && (local_flag & BTM_BLE_BREDR_NOT_SPT) == 0) {
+        if (p_cur->ble_addr_type != BLE_ADDR_RANDOM) {
+          LOG_VERBOSE("NOT_BR_EDR support bit not set, treat device as DUMO");
+          p_cur->device_type |= BT_DEVICE_TYPE_DUMO;
+        } else {
+          LOG_VERBOSE("Random address, treat device as LE only");
+        }
+      } else {
+        LOG_VERBOSE("NOT_BR/EDR support bit set, treat device as LE only");
+      }
     }
   } else {
-    log::verbose("NOT_BR/EDR support bit set, treat device as LE only");
+    if (!data.empty()) {
+      const uint8_t* p_flag =
+          AdvertiseDataParser::GetFieldByType(data, BTM_BLE_AD_TYPE_FLAG, &len);
+      if (p_flag != NULL && len != 0) {
+        has_advertising_flags = true;
+        p_cur->flag = *p_flag;
+      }
+
+      p_cur->dev_class = btm_ble_get_appearance_as_cod(data);
+
+      const uint8_t* p_rsi =
+          AdvertiseDataParser::GetFieldByType(data, BTM_BLE_AD_TYPE_RSI, &len);
+      if (p_rsi != nullptr && len == 6) {
+        STREAM_TO_BDADDR(p_cur->ble_ad_rsi, p_rsi);
+      }
+
+      const uint8_t* p_service_data = data.data();
+      uint8_t service_data_len = 0;
+
+      while (
+          (p_service_data = AdvertiseDataParser::GetFieldByType(
+               p_service_data + service_data_len,
+               data.size() - (p_service_data - data.data()) - service_data_len,
+               BTM_BLE_AD_TYPE_SERVICE_DATA_TYPE, &service_data_len))) {
+        uint16_t uuid;
+        const uint8_t* p_uuid = p_service_data;
+        if (service_data_len < 2) {
+          continue;
+        }
+        STREAM_TO_UINT16(uuid, p_uuid);
+
+        if (uuid == 0x184E /* Audio Stream Control service */ ||
+            uuid == 0x184F /* Broadcast Audio Scan service */ ||
+            uuid == 0x1850 /* Published Audio Capabilities service */ ||
+            uuid == 0x1853 /* Common Audio service */) {
+          p_cur->ble_ad_is_le_audio_capable = true;
+          break;
+        }
+      }
+    }
+
+    // Non-connectable packets may omit flags entirely, in which case nothing
+    // should be assumed about their values (CSSv10, 1.3.1). Thus, do not
+    // interpret the device type unless this packet has the flags set or is
+    // connectable.
+    bool should_process_flags =
+        has_advertising_flags || ble_evt_type_is_connectable(evt_type);
+    if (should_process_flags && (p_cur->flag & BTM_BLE_BREDR_NOT_SPT) == 0 &&
+        !ble_evt_type_is_directed(evt_type)) {
+      if (p_cur->ble_addr_type != BLE_ADDR_RANDOM) {
+        log::verbose("NOT_BR_EDR support bit not set, treat device as DUMO");
+        p_cur->device_type |= BT_DEVICE_TYPE_DUMO;
+      } else {
+        log::verbose("Random address, treat device as LE only");
+      }
+    } else {
+      log::verbose("NOT_BR/EDR support bit set, treat device as LE only");
+    }
   }
 }
 
