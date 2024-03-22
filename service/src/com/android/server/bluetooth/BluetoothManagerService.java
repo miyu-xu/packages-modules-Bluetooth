@@ -350,17 +350,23 @@ class BluetoothManagerService {
                         BluetoothProtoEnums.ENABLE_DISABLE_REASON_FACTORY_RESET,
                         mContext.getPackageName(),
                         false);
-                mAdapter.stopBle(source);
+                mAdapter.stopBle(
+                        new AttributionSource.Builder(mContext.getAttributionSource())
+                                .setNext(source)
+                                .build());
                 return true;
             } else if (state == STATE_ON) {
                 addActiveLog(
                         BluetoothProtoEnums.ENABLE_DISABLE_REASON_FACTORY_RESET,
                         mContext.getPackageName(),
                         false);
-                mAdapter.disable(source);
+                mAdapter.disable(
+                        new AttributionSource.Builder(mContext.getAttributionSource())
+                                .setNext(source)
+                                .build());
                 return true;
             }
-        } catch (RemoteException | TimeoutException e) {
+        } catch (RemoteException e) {
             Log.e(TAG, "Unable to shutdown Bluetooth", e);
         } finally {
             mAdapterLock.readLock().unlock();
@@ -518,7 +524,7 @@ class BluetoothManagerService {
                             mEnable = false;
                             mEnableExternal = false;
                         }
-                    } catch (RemoteException | TimeoutException e) {
+                    } catch (RemoteException e) {
                         Log.e(TAG, "Unable to call stopBle", e);
                     } finally {
                         mAdapterLock.readLock().unlock();
@@ -636,7 +642,7 @@ class BluetoothManagerService {
                             } else if (mAdapter != null && mState.oneOf(STATE_ON)) {
                                 mAdapter.disable(mContext.getAttributionSource());
                             }
-                        } catch (RemoteException | TimeoutException e) {
+                        } catch (RemoteException e) {
                             Log.e(TAG, "Unable to shutdown Bluetooth", e);
                         } finally {
                             mAdapterLock.readLock().unlock();
@@ -983,7 +989,7 @@ class BluetoothManagerService {
                                         false);
                                 mAdapter.stopBle(mContext.getAttributionSource());
                             }
-                        } catch (RemoteException | TimeoutException e) {
+                        } catch (RemoteException e) {
                             Log.e(TAG, "error when disabling bluetooth", e);
                         } finally {
                             mAdapterLock.readLock().unlock();
@@ -1147,7 +1153,7 @@ class BluetoothManagerService {
             } else {
                 Log.i(TAG, "continueFromBleOnState: Staying in BLE_ON");
             }
-        } catch (RemoteException | TimeoutException e) {
+        } catch (RemoteException e) {
             Log.e(TAG, "Unable to call onServiceUp", e);
         } finally {
             mAdapterLock.readLock().unlock();
@@ -1173,12 +1179,18 @@ class BluetoothManagerService {
             if (isBleAppPresent()) {
                 // Need to stay at BLE ON. Disconnect all Gatt connections
                 Log.i(TAG, "sendBrEdrDownCallback: Staying in BLE_ON");
-                mAdapter.unregAllGattClient(source);
+                mAdapter.unregAllGattClient(
+                        new AttributionSource.Builder(mContext.getAttributionSource())
+                                .setNext(source)
+                                .build());
             } else {
                 Log.i(TAG, "sendBrEdrDownCallback: Stopping ble");
-                mAdapter.stopBle(source);
+                mAdapter.stopBle(
+                        new AttributionSource.Builder(mContext.getAttributionSource())
+                                .setNext(source)
+                                .build());
             }
-        } catch (RemoteException | TimeoutException e) {
+        } catch (RemoteException e) {
             Log.e(TAG, "sendBrEdrDownCallback: Call to mAdapter failed.", e);
         } finally {
             mAdapterLock.readLock().unlock();
@@ -1293,7 +1305,7 @@ class BluetoothManagerService {
                 try {
                     mAdapter.unregisterCallback(
                             mBluetoothCallback, mContext.getAttributionSource());
-                } catch (RemoteException | TimeoutException e) {
+                } catch (RemoteException e) {
                     Log.e(TAG, "Unable to unregister BluetoothCallback", e);
                 }
                 mAdapter = null;
@@ -1469,9 +1481,12 @@ class BluetoothManagerService {
         mAdapterLock.readLock().lock();
         try {
             if (mAdapter != null) {
-                return mAdapter.getAddress(source);
+                return mAdapter.getAddress(
+                        new AttributionSource.Builder(mContext.getAttributionSource())
+                                .setNext(source)
+                                .build());
             }
-        } catch (RemoteException | TimeoutException e) {
+        } catch (RemoteException e) {
             Log.e(
                     TAG,
                     "getAddress(): Unable to retrieve address remotely. Returning cached address",
@@ -1490,9 +1505,12 @@ class BluetoothManagerService {
         mAdapterLock.readLock().lock();
         try {
             if (mAdapter != null) {
-                return mAdapter.getName(source);
+                return mAdapter.getName(
+                        new AttributionSource.Builder(mContext.getAttributionSource())
+                                .setNext(source)
+                                .build());
             }
-        } catch (RemoteException | TimeoutException e) {
+        } catch (RemoteException e) {
             Log.e(TAG, "getName(): Unable to retrieve name remotely. Returning cached name", e);
         } finally {
             mAdapterLock.readLock().unlock();
@@ -1564,7 +1582,7 @@ class BluetoothManagerService {
                                 storeNameAndAddress(
                                         mAdapter.getName(mContext.getAttributionSource()),
                                         mAdapter.getAddress(mContext.getAttributionSource()));
-                            } catch (RemoteException | TimeoutException e) {
+                            } catch (RemoteException e) {
                                 Log.e(TAG, "Unable to grab names", e);
                             }
                             if (mGetNameAddressOnly && !mEnable) {
@@ -1628,7 +1646,7 @@ class BluetoothManagerService {
                             }
                             if (isHandled) break;
                         }
-                    } catch (RemoteException | TimeoutException e) {
+                    } catch (RemoteException e) {
                         Log.e(TAG, "", e);
                     } finally {
                         mAdapterLock.readLock().unlock();
@@ -1797,7 +1815,7 @@ class BluetoothManagerService {
                         try {
                             mAdapter.registerCallback(
                                     mBluetoothCallback, mContext.getAttributionSource());
-                        } catch (RemoteException | TimeoutException e) {
+                        } catch (RemoteException e) {
                             Log.e(TAG, "Unable to register BluetoothCallback", e);
                         }
                         // Inform BluetoothAdapter instances that service is up
@@ -1809,7 +1827,7 @@ class BluetoothManagerService {
                         try {
                             mSupportedProfileList =
                                     mAdapter.getSupportedProfiles(mContext.getAttributionSource());
-                        } catch (RemoteException | TimeoutException e) {
+                        } catch (RemoteException e) {
                             Log.e(TAG, "Unable to get the supported profiles list", e);
                         }
 
@@ -1818,7 +1836,7 @@ class BluetoothManagerService {
                             if (!mAdapter.enable(mQuietEnable, mContext.getAttributionSource())) {
                                 Log.e(TAG, "IBluetooth.enable() returned false");
                             }
-                        } catch (RemoteException | TimeoutException e) {
+                        } catch (RemoteException e) {
                             Log.e(TAG, "Unable to call enable()", e);
                         }
                         if (Flags.fastBindToApp()) {
@@ -2019,7 +2037,7 @@ class BluetoothManagerService {
                     mAdapter.unregisterCallback(
                             mBluetoothCallback, mContext.getAttributionSource());
                 }
-            } catch (RemoteException | TimeoutException e) {
+            } catch (RemoteException e) {
                 Log.e(TAG, "Unable to unregister", e);
             } finally {
                 mAdapterLock.readLock().unlock();
@@ -2093,7 +2111,7 @@ class BluetoothManagerService {
                     if (!mAdapter.enable(mQuietEnable, mContext.getAttributionSource())) {
                         Log.e(TAG, "IBluetooth.enable() returned false");
                     }
-                } catch (RemoteException | TimeoutException e) {
+                } catch (RemoteException e) {
                     Log.e(TAG, "Unable to call enable()", e);
                 }
             }
@@ -2122,7 +2140,7 @@ class BluetoothManagerService {
                     Log.e(TAG, "IBluetooth.disable() returned false");
                 }
             }
-        } catch (RemoteException | TimeoutException e) {
+        } catch (RemoteException e) {
             Log.e(TAG, "Unable to call disable()", e);
         } finally {
             mAdapterLock.readLock().unlock();
@@ -2292,7 +2310,7 @@ class BluetoothManagerService {
                 // Unregister callback object
                 mAdapter.unregisterCallback(mBluetoothCallback, mContext.getAttributionSource());
             }
-        } catch (RemoteException | TimeoutException e) {
+        } catch (RemoteException e) {
             Log.e(TAG, "Unable to unregister", e);
         } finally {
             mAdapterLock.readLock().unlock();
