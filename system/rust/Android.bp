@@ -24,6 +24,7 @@ rust_defaults {
     static_libs: [
         "libbt_shim_bridge",
         "libbt_shim_ffi",
+        "libcrust_ffi",
 
         "libchrome",
         "libevent",
@@ -44,6 +45,7 @@ rust_defaults {
         // needed to work around duplicate symbols
         // caused by bug in Soong
         "libbt_shim",
+        "libcrust",
     ],
     whole_static_libs: [
         "libbluetooth_core_rs_bridge",
@@ -129,6 +131,7 @@ cc_library_static {
         "libbt_shim_bridge",
         "libbt_shim_ffi",
         "libchrome",
+        "libcrust_ffi",
         "libflatbuffers-cpp",
     ],
     generated_headers: [
