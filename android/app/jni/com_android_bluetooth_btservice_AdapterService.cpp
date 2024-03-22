@@ -31,6 +31,7 @@
 
 #include "com_android_bluetooth.h"
 #include "hardware/bt_sock.h"
+#include "jni_uuid.h"
 #include "os/logging/log_adapter.h"
 #include "utils/misc.h"
 
@@ -2473,6 +2474,8 @@ jint JNI_OnLoad(JavaVM* jvm, void* /* reserved */) {
     log::error("jni bluetooth quality report registration failure: {}", status);
     return JNI_ERR;
   }
+
+  uuid_init(e);
 
   return JNI_VERSION_1_6;
 }
