@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ec0beafb_2ee43b32",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-03-22T01:12:04Z",
+      "side": 1,
+      "message": "Sure thing! will do maybe later next week.",
+      "parentUuid": "60d7f606_29d2f2e0",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 13
+      },
+      "revId": "00380cf18b8cf728bd2dc469f0684edf13adfbdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5a6a970a_9bbe2853",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-21T08:33:45Z",
       "side": 1,
       "message": "If you return early here then `on_telephony_use` callback won\u0027t be called. Is this expected?",
+      "range": {
+        "startLine": 1298,
+        "startChar": 0,
+        "endLine": 1301,
+        "endChar": 47
+      },
+      "revId": "00380cf18b8cf728bd2dc469f0684edf13adfbdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caf15a11_2389a3e5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1301,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-03-22T01:12:04Z",
+      "side": 1,
+      "message": "Good catch! This is a bug! How about\n\n```suggestion\n            if self.hangup_call_impl() {\n                self.phone_state_change(\"\".into());\n            }\n```",
+      "parentUuid": "5a6a970a_9bbe2853",
       "range": {
         "startLine": 1298,
         "startChar": 0,
