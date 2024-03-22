@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f40f1ef4_9b4cd057",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-22T03:43:36Z",
+      "side": 1,
+      "message": "nit: rename the parameter to link_spec_ref or something similar and rename auto variable as link_spec",
+      "revId": "5b434cafc7da87f4c91bc71b623768aa6bbf0ecf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a72fda90_b2876b31",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-22T03:43:36Z",
+      "side": 1,
+      "message": "Log link_spec as well",
+      "revId": "5b434cafc7da87f4c91bc71b623768aa6bbf0ecf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2c3e7e4_b554c5ef",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-22T03:43:36Z",
+      "side": 1,
+      "message": "Update it in the storage as well",
+      "revId": "5b434cafc7da87f4c91bc71b623768aa6bbf0ecf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0703b8ed_ec68ae17",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-22T03:43:36Z",
+      "side": 1,
+      "message": "It\u0027s not a fatal error. No need to assert.",
+      "revId": "5b434cafc7da87f4c91bc71b623768aa6bbf0ecf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
