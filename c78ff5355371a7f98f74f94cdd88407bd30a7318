@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd85f83d_c7cf9cf1",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-22T04:08:31Z",
+      "side": 1,
+      "message": "This will match any loaded HID devices which are not connected. At the time of loading, `link_spec`, `reconnect_allowed` and `dev_handle` (`BTA_HH_INVALID_HANDLE`) are stored in the connection instances. Choosing wrong instance at this time will apply the wrong connection policy.",
+      "revId": "c78ff5355371a7f98f74f94cdd88407bd30a7318",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
