@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6547938f_ec8799e4",
+        "filename": "service/src/com/android/server/bluetooth/AdapterBinder.kt",
+        "patchSetId": 11
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-22T21:38:27Z",
+      "side": 1,
+      "message": "Nit: Remove TimeoutException",
+      "revId": "fa343dcca365da9a1e19ec0a336af07c6f87eb34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
