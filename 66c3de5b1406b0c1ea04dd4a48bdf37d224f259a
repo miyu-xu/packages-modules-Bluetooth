@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8acdaad5_9188fa7c",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-03-22T03:55:06Z",
+      "side": 1,
+      "message": "no need to try... except here.",
+      "range": {
+        "startLine": 211,
+        "startChar": 0,
+        "endLine": 217,
+        "endChar": 0
+      },
+      "revId": "66c3de5b1406b0c1ea04dd4a48bdf37d224f259a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15d45c25_8b7be227",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-03-22T03:55:06Z",
+      "side": 1,
+      "message": "Please make the comment clear.",
+      "revId": "66c3de5b1406b0c1ea04dd4a48bdf37d224f259a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ea6f9c3_55f95917",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-03-22T03:55:06Z",
+      "side": 1,
+      "message": "There are several variables unused. Please only add necessary variables.",
+      "range": {
+        "startLine": 234,
+        "startChar": 0,
+        "endLine": 261,
+        "endChar": 0
+      },
+      "revId": "66c3de5b1406b0c1ea04dd4a48bdf37d224f259a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6694ceb_15fa702f",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-03-22T03:55:06Z",
+      "side": 1,
+      "message": "Can we define the value in the char class and retrieve it from there? Then we don\u0027t need the map `uuid_to_value`. We can simply get the char from handle and then get the value.",
+      "range": {
+        "startLine": 666,
+        "startChar": 0,
+        "endLine": 669,
+        "endChar": 0
+      },
+      "revId": "66c3de5b1406b0c1ea04dd4a48bdf37d224f259a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
