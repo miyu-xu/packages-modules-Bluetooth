@@ -16,6 +16,69 @@
       "message": "Hello, sending the CL out for review before the pre-submit finishes to get it in time for Monday pre-submit deadline.",
       "revId": "b2c5ab4c4796bc0dbb398b66546dcbc670718298",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9d14f5a_c4f875a2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-22T19:46:22Z",
+      "side": 1,
+      "message": "I\u0027m comfortable with this. I mainly have nits on naming convention aligning with the profile role.\n\nI\u0027ll leave discussion on if the sysprop usages should require a flag or not to the group.\n\nFWIW, the `AudioManager#isVolumeFixed()` is a terrible choice for what we\u0027re doing, and really does need to be removed/replaced. That determines if the local device supports changing the volume or not. It isn\u0027t meant to infer what our volume strategy is for Bluetooth, namely relative or absolute volume. It also isn\u0027t meant to determine if our absolute volume implementation follows the spirit of the specification, or does what we usually do in cars where we use absolutely volume to get line level audio, but _pretend_ we\u0027re always at 100% volume.\n\nWe probably need a \"volume strategy\" configuration or property in the future that\u0027s a bit more than a boolean. We should also complete the absolute volume implementation. But this will suffice for now I think.",
+      "revId": "b2c5ab4c4796bc0dbb398b66546dcbc670718298",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba66aeb4_21a64153",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-22T19:46:22Z",
+      "side": 1,
+      "message": "You can probably omit the `Sink` parts, as the controller role is implied by virtue of the object/code location.\n```suggestion\n            boolean isAbsoluteVolumeEnabled) {\n```",
+      "range": {
+        "startLine": 151,
+        "startChar": 22,
+        "endLine": 151,
+        "endChar": 26
+      },
+      "revId": "b2c5ab4c4796bc0dbb398b66546dcbc670718298",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15c213b9_c68b2cfa",
+        "filename": "sysprop/avrcp.sysprop",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-22T19:46:22Z",
+      "side": 1,
+      "message": "The convention I\u0027d prefer to follow for sysprops would be something like:\n```\n\"bluetooth.profile.avrcp.controller.absolute_volume.enabled\"\n```\n\nSo we use the profile \"namespace\" so there\u0027s some affordance in the name about the layer this belongs to, and the proper role name, per the specs.\n\nI admit, the old sysprop (less of a fan of), does leave out the `profile` part. I\u0027m fine following that precedent too.",
+      "range": {
+        "startLine": 17,
+        "startChar": 16,
+        "endLine": 17,
+        "endChar": 60
+      },
+      "revId": "b2c5ab4c4796bc0dbb398b66546dcbc670718298",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
