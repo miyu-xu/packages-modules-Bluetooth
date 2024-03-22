@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b7547e9_3fec4888",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcast.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-22T23:01:10Z",
+      "side": 0,
+      "message": "Done, I believe this should be removed in the futur",
+      "parentUuid": "976994f7_376cbd7d",
+      "range": {
+        "startLine": 462,
+        "startChar": 40,
+        "endLine": 462,
+        "endChar": 61
+      },
+      "revId": "ba94f6131245e595784717438b5871fd6dac3241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eba72080_543002b6",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-22T22:16:03Z",
       "side": 0,
       "message": "This one does not seem to be linked to a sync remote receiver",
+      "range": {
+        "startLine": 448,
+        "startChar": 46,
+        "endLine": 448,
+        "endChar": 62
+      },
+      "revId": "ba94f6131245e595784717438b5871fd6dac3241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc87782d_ff105038",
+        "filename": "framework/java/android/bluetooth/BluetoothMap.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-22T23:01:10Z",
+      "side": 0,
+      "message": "It is removed as part of the cached query",
+      "parentUuid": "eba72080_543002b6",
       "range": {
         "startLine": 448,
         "startChar": 46,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d333bbc9_45b708bd",
+        "filename": "framework/java/android/bluetooth/BluetoothPbapClient.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-22T23:01:10Z",
+      "side": 0,
+      "message": "Sounds good to fix that and the default value as well",
+      "parentUuid": "a7d67adc_22448c1c",
+      "range": {
+        "startLine": 225,
+        "startChar": 16,
+        "endLine": 228,
+        "endChar": 28
+      },
+      "revId": "ba94f6131245e595784717438b5871fd6dac3241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "32e238ff_883288c4",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-03-22T22:00:47Z",
       "side": 0,
       "message": "Can this exception still be raised ?",
+      "range": {
+        "startLine": 535,
+        "startChar": 17,
+        "endLine": 535,
+        "endChar": 38
+      },
+      "revId": "ba94f6131245e595784717438b5871fd6dac3241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81a0fe78_803e5698",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-22T23:01:10Z",
+      "side": 0,
+      "message": "Yes, I believe this is an error...\nBut this cl is not intended from behavior change so I put it back",
+      "parentUuid": "32e238ff_883288c4",
       "range": {
         "startLine": 535,
         "startChar": 17,
