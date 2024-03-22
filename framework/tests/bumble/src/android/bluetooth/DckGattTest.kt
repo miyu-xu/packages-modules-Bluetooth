@@ -28,6 +28,7 @@ import com.google.common.collect.Sets
 import com.google.common.truth.Truth.assertThat
 import com.google.protobuf.Empty
 import io.grpc.Deadline
+import io.grpc.stub.CallStreamObserver
 import java.util.UUID
 import java.util.concurrent.TimeUnit
 import org.junit.After
@@ -78,7 +79,7 @@ public class DckGattTest(private val connected: Boolean) {
     @Before
     fun setUp() {
         if (connected) {
-            advertiseWithBumble()
+            val advertiseStreamObersver = advertiseWithBumble()
 
             // Connect DUT to Ref as prerequisite
             val device =
@@ -93,6 +94,7 @@ public class DckGattTest(private val connected: Boolean) {
                     eq(BluetoothGatt.GATT_SUCCESS),
                     eq(BluetoothProfile.STATE_CONNECTED)
                 )
+            advertiseStreamObserver.cancel()
         }
 
         clearInvocations(gattCallbackMock)
@@ -219,7 +221,7 @@ public class DckGattTest(private val connected: Boolean) {
         assumeFalse(connected)
 
         // Start advertisement on Ref
-        advertiseWithBumble()
+        val advertiseStreamObserver = advertiseWithBumble()
 
         // Start IRK scan for Ref on DUT
         val scanSettings =
@@ -258,6 +260,7 @@ public class DckGattTest(private val connected: Boolean) {
 
         // Stop scan on DUT after GATT connect
         leScanner.stopScan(scanCallbackMock)
+        advertiseStreamObserver.cancel()
     }
 
     /*
@@ -302,7 +305,7 @@ public class DckGattTest(private val connected: Boolean) {
             )
     }
 
-    private fun advertiseWithBumble(withUuid: Boolean = false) {
+    private fun advertiseWithBumble(withUuid: Boolean = false): ClientCallStreamObserver<AdvertiseRequest> {
         val requestBuilder =
             AdvertiseRequest.newBuilder()
                 .setLegacy(true)
@@ -315,7 +318,8 @@ public class DckGattTest(private val connected: Boolean) {
                     .addCompleteServiceClassUuids128(CCC_DK_UUID.toString())
                     .build()
         }
-        mBumble.hostBlocking().advertise(requestBuilder.build())
+        ClientCallStreamObserver<AdvertiseRequest> streamObserver = mBumble.hostBlocking().advertise(requestBuilder.build())
+        return streamObserver
     }
 
     companion object {
