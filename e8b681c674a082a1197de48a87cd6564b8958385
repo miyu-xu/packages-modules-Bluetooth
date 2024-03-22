@@ -87,6 +87,24 @@
       "parentUuid": "15fa9434_43e3ba2f",
       "revId": "e8b681c674a082a1197de48a87cd6564b8958385",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fcb6d0e_d6d8ab72",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-03-22T18:58:36Z",
+      "side": 1,
+      "message": "In general it is better to wait for the release (here 24Q2) to be shipped. But fine to remove if there is no risk of rollback anyway. Will let @kihoonseong@google.com to decide",
+      "parentUuid": "b15c79c8_681b6136",
+      "revId": "e8b681c674a082a1197de48a87cd6564b8958385",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
