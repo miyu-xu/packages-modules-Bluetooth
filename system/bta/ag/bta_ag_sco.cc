@@ -220,7 +220,15 @@ static void bta_ag_sco_disc_cback(uint16_t sco_idx) {
 
     /* Restore settings */
     if (bta_ag_cb.sco.p_curr_scb->inuse_codec == UUID_CODEC_MSBC ||
-        bta_ag_cb.sco.p_curr_scb->inuse_codec == UUID_CODEC_LC3 || aptx_voice) {
+        bta_ag_cb.sco.p_curr_scb->inuse_codec == UUID_CODEC_LC3 || aptx_voice ||
+#if TARGET_FLOSS
+        (true &&
+#else
+        (IS_FLAG_ENABLED(fix_hfp_qual_1_9) &&
+#endif
+         bta_ag_cb.sco.p_curr_scb->inuse_codec == UUID_CODEC_CVSD &&
+         bta_ag_cb.sco.p_curr_scb->codec_cvsd_settings !=
+             BTA_AG_SCO_CVSD_SETTINGS_S1)) {
       /* Bypass vendor specific and voice settings if enhanced eSCO supported */
       if (!(bluetooth::shim::GetController()->IsSupported(
               bluetooth::hci::OpCode::ENHANCED_SETUP_SYNCHRONOUS_CONNECTION))) {
@@ -256,7 +264,7 @@ static void bta_ag_sco_disc_cback(uint16_t sco_idx) {
             bta_ag_cb.sco.p_curr_scb->inuse_codec = UUID_CODEC_CVSD;
             bta_ag_cb.sco.p_curr_scb->codec_fallback = true;
           }
-        } else {
+        } else if (bta_ag_cb.sco.p_curr_scb->inuse_codec == UUID_CODEC_MSBC) {
           if (bta_ag_cb.sco.p_curr_scb->codec_msbc_settings ==
               BTA_AG_SCO_MSBC_SETTINGS_T2) {
             log::warn(
@@ -269,6 +277,15 @@ static void bta_ag_sco_disc_cback(uint16_t sco_idx) {
             bta_ag_cb.sco.p_curr_scb->inuse_codec = UUID_CODEC_CVSD;
             bta_ag_cb.sco.p_curr_scb->codec_fallback = true;
           }
+        } else {
+          // Entering this block implies
+          // - |fix_hfp_qual_1_9| is enabled or is in Floss, AND
+          // - we just failed CVSD S2+.
+          log::warn(
+              "eSCO/SCO failed to open, falling back to CVSD S1 settings");
+          bta_ag_cb.sco.p_curr_scb->codec_cvsd_settings =
+              BTA_AG_SCO_CVSD_SETTINGS_S1;
+          bta_ag_cb.sco.p_curr_scb->trying_cvsd_safe_settings = true;
         }
       }
     } else if (bta_ag_sco_is_opening(bta_ag_cb.sco.p_curr_scb) &&
@@ -475,10 +492,14 @@ void bta_ag_create_sco(tBTA_AG_SCB* p_scb, bool is_orig) {
     esco_codec = UUID_CODEC_LC3;
   }
 
+  p_scb->trying_cvsd_safe_settings = false;
+
   if (p_scb->codec_fallback) {
     p_scb->codec_fallback = false;
     /* Force AG to send +BCS for the next audio connection. */
     p_scb->codec_updated = true;
+    /* reset to CVSD S4 settings as the preferred */
+    p_scb->codec_cvsd_settings = BTA_AG_SCO_CVSD_SETTINGS_S4;
     /* Reset mSBC settings to T2 for the next audio connection */
     p_scb->codec_msbc_settings = BTA_AG_SCO_MSBC_SETTINGS_T2;
     /* Reset LC3 settings to T2 for the next audio connection */
@@ -519,13 +540,22 @@ void bta_ag_create_sco(tBTA_AG_SCB* p_scb, bool is_orig) {
       params = esco_parameters_for_codec(ESCO_CODEC_SWB_Q0, true);
     }
   } else {
-    if ((p_scb->features & BTA_AG_FEAT_ESCO_S4) &&
-        (p_scb->peer_features & BTA_AG_PEER_FEAT_ESCO_S4)) {
-      // HFP >=1.7 eSCO
-      params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S4, offload);
+#if TARGET_FLOSS
+    if (true &&
+#else
+    if (IS_FLAG_ENABLED(fix_hfp_qual_1_9) &&
+#endif
+        p_scb->codec_cvsd_settings == BTA_AG_SCO_CVSD_SETTINGS_S1) {
+      params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S1, offload);
     } else {
-      // HFP <=1.6 eSCO
-      params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S3, offload);
+      if ((p_scb->features & BTA_AG_FEAT_ESCO_S4) &&
+          (p_scb->peer_features & BTA_AG_PEER_FEAT_ESCO_S4)) {
+        // HFP >=1.7 eSCO
+        params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S4, offload);
+      } else {
+        // HFP <=1.6 eSCO
+        params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S3, offload);
+      }
     }
   }
 
@@ -644,13 +674,22 @@ void bta_ag_create_pending_sco(tBTA_AG_SCB* p_scb, bool is_local) {
         params = esco_parameters_for_codec(ESCO_CODEC_MSBC_T1, offload);
       }
     } else {
-      if ((p_scb->features & BTA_AG_FEAT_ESCO_S4) &&
-          (p_scb->peer_features & BTA_AG_PEER_FEAT_ESCO_S4)) {
-        // HFP >=1.7 eSCO
-        params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S4, offload);
+#if TARGET_FLOSS
+      if (true &&
+#else
+      if (IS_FLAG_ENABLED(fix_hfp_qual_1_9) &&
+#endif
+          p_scb->codec_cvsd_settings == BTA_AG_SCO_CVSD_SETTINGS_S1) {
+        params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S1, offload);
       } else {
-        // HFP <=1.6 eSCO
-        params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S3, offload);
+        if ((p_scb->features & BTA_AG_FEAT_ESCO_S4) &&
+            (p_scb->peer_features & BTA_AG_PEER_FEAT_ESCO_S4)) {
+          // HFP >=1.7 eSCO
+          params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S4, offload);
+        } else {
+          // HFP <=1.6 eSCO
+          params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S3, offload);
+        }
       }
     }
 
@@ -1548,7 +1587,21 @@ void bta_ag_sco_conn_close(tBTA_AG_SCB* p_scb, const tBTA_AG_DATA& /* data */) {
         p_scb->codec_lc3_settings == BTA_AG_SCO_LC3_SETTINGS_T1) ||
        (IS_FLAG_ENABLED(retry_esco_with_zero_retransmission_effort) &&
         p_scb->retransmission_effort_retries == 1) ||
-       aptx_voice)) {
+       aptx_voice ||
+#if TARGET_FLOSS
+       (true &&
+#else
+       (IS_FLAG_ENABLED(fix_hfp_qual_1_9) &&
+#endif
+        p_scb->sco_codec == BTM_SCO_CODEC_CVSD &&
+        p_scb->codec_cvsd_settings == BTA_AG_SCO_CVSD_SETTINGS_S1 &&
+        p_scb->trying_cvsd_safe_settings))) {
+#if TARGET_FLOSS
+    if (true)
+#else
+    if (IS_FLAG_ENABLED(fix_hfp_qual_1_9))
+#endif
+      bta_ag_cb.sco.state = BTA_AG_SCO_OPENING_ST;
     bta_ag_sco_event(p_scb, BTA_AG_SCO_REOPEN_E);
   } else {
     /* Indicate if the closing of audio is because of transfer */
@@ -1566,6 +1619,7 @@ void bta_ag_sco_conn_close(tBTA_AG_SCB* p_scb, const tBTA_AG_DATA& /* data */) {
 
     /* call app callback */
     bta_ag_cback_sco(p_scb, BTA_AG_AUDIO_CLOSE_EVT);
+    p_scb->codec_cvsd_settings = BTA_AG_SCO_CVSD_SETTINGS_S4;
     p_scb->codec_msbc_settings = BTA_AG_SCO_MSBC_SETTINGS_T2;
     p_scb->codec_lc3_settings = BTA_AG_SCO_LC3_SETTINGS_T2;
     p_scb->codec_aptx_settings = BTA_AG_SCO_APTX_SWB_SETTINGS_Q0;
