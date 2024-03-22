@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1be40e00_01473812",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-03-22T13:52:05Z",
+      "side": 1,
+      "message": "Thanks for the suggestion. Made native stack generate random uuid for the connection so that framework can read l2cap channel IDs through server.",
+      "parentUuid": "aad8cd95_c3d5ef89",
+      "range": {
+        "startLine": 301,
+        "startChar": 0,
+        "endLine": 301,
+        "endChar": 30
+      },
+      "revId": "416b3aaa32ca8ab0c9f364e48d17fdb2d7e45388",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "213b023d_a136f318",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-18T16:51:42Z",
       "side": 1,
       "message": "Move outside of try catch block ?",
+      "range": {
+        "startLine": 874,
+        "startChar": 0,
+        "endLine": 876,
+        "endChar": 13
+      },
+      "revId": "416b3aaa32ca8ab0c9f364e48d17fdb2d7e45388",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4bfca4e_0487e41b",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 876,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-03-22T13:52:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "213b023d_a136f318",
       "range": {
         "startLine": 874,
         "startChar": 0,
@@ -84,6 +132,30 @@
       "side": 1,
       "message": "I agree. I wanted to move this condition to the front. Currently, it seems there is no way to make the socket connected in CTS test. Then, we may not perform the permission test in CTS test.",
       "parentUuid": "2936c6f6_be065ede",
+      "range": {
+        "startLine": 881,
+        "startChar": 0,
+        "endLine": 883,
+        "endChar": 9
+      },
+      "revId": "416b3aaa32ca8ab0c9f364e48d17fdb2d7e45388",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b73c45b_a56ad15f",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 883,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-03-22T13:52:05Z",
+      "side": 1,
+      "message": "It looks better to pre-check the socket type and connection state first. Then, there was no way to make the socket connected in unit test so that I had to remove the permission enforcement check in CTS test case but it was verified in the previous patchset.",
+      "parentUuid": "d8f36acc_f3cdb609",
       "range": {
         "startLine": 881,
         "startChar": 0,
