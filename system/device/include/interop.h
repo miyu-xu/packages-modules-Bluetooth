@@ -350,6 +350,11 @@ typedef enum {
   // Some LE HID devices contain more than one HOGP service.
   INTEROP_MULTIPLE_HOGP_SERVICE_CHOOSE_THIRD,
 
+  // Some devices response slowly after setting non zero latency.
+  // To avoid slowing down profile connection set latency to 0.
+  // Peer can request proper latency based on its power state later.
+  INTEROP_HID_PREF_CONN_ZERO_LATENCY,
+
   END_OF_INTEROP_LIST
 } interop_feature_t;
 
