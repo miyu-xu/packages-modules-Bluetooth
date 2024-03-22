@@ -61,7 +61,6 @@ import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.content_profiles.ContentProfileErrorReportUtils;
 import com.android.internal.annotations.VisibleForTesting;
-import com.android.modules.utils.SynchronousResultReceiver;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -1349,210 +1348,114 @@ public class BluetoothMapService extends ProfileService {
         }
 
         @Override
-        public void getState(AttributionSource source, SynchronousResultReceiver receiver) {
+        public int getState(AttributionSource source) {
             if (VERBOSE) {
                 Log.v(TAG, "getState()");
             }
-            try {
-                BluetoothMapService service = getService(source);
-                int result = BluetoothMap.STATE_DISCONNECTED;
-                if (service != null) {
-                    result = service.getState();
-                }
-                receiver.send(result);
-            } catch (RuntimeException e) {
-                ContentProfileErrorReportUtils.report(
-                        BluetoothProfile.MAP,
-                        BluetoothProtoEnums.BLUETOOTH_MAP_SERVICE,
-                        BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED__TYPE__EXCEPTION,
-                        16);
-                receiver.propagateException(e);
+            BluetoothMapService service = getService(source);
+            if (service == null) {
+                return BluetoothMap.STATE_DISCONNECTED;
             }
+            return service.getState();
         }
 
         @Override
-        public void getClient(AttributionSource source, SynchronousResultReceiver receiver) {
+        public BluetoothDevice getClient(AttributionSource source) {
             if (VERBOSE) {
                 Log.v(TAG, "getClient()");
             }
-            try {
-                BluetoothMapService service = getService(source);
-                BluetoothDevice client = null;
-                if (service != null) {
-                    client = BluetoothMapService.getRemoteDevice();
-                }
-                if (VERBOSE) {
-                    Log.v(TAG, "getClient() - returning " + client);
-                }
-                receiver.send(client);
-            } catch (RuntimeException e) {
-                ContentProfileErrorReportUtils.report(
-                        BluetoothProfile.MAP,
-                        BluetoothProtoEnums.BLUETOOTH_MAP_SERVICE,
-                        BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED__TYPE__EXCEPTION,
-                        17);
-                receiver.propagateException(e);
+            BluetoothMapService service = getService(source);
+            if (service == null) {
+                Log.v(TAG, "getClient() - no service - returning " + null);
+                return null;
             }
+            BluetoothDevice client = BluetoothMapService.getRemoteDevice();
+            if (VERBOSE) {
+                Log.v(TAG, "getClient() - returning " + client);
+            }
+            return client;
         }
 
         @Override
-        public void isConnected(
-                BluetoothDevice device,
-                AttributionSource source,
-                SynchronousResultReceiver receiver) {
+        public boolean isConnected(BluetoothDevice device, AttributionSource source) {
             if (VERBOSE) {
                 Log.v(TAG, "isConnected()");
             }
-            try {
-                BluetoothMapService service = getService(source);
-                boolean result = false;
-                if (service != null) {
-                    result = service.getConnectionState(device)
-                        == BluetoothProfile.STATE_CONNECTED;
-                }
-                receiver.send(result);
-            } catch (RuntimeException e) {
-                ContentProfileErrorReportUtils.report(
-                        BluetoothProfile.MAP,
-                        BluetoothProtoEnums.BLUETOOTH_MAP_SERVICE,
-                        BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED__TYPE__EXCEPTION,
-                        18);
-                receiver.propagateException(e);
+            BluetoothMapService service = getService(source);
+            if (service == null) {
+                return false;
             }
+            return service.getConnectionState(device) == BluetoothProfile.STATE_CONNECTED;
         }
 
         @Override
-        public void disconnect(BluetoothDevice device, AttributionSource source,
-                SynchronousResultReceiver receiver) {
+        public boolean disconnect(BluetoothDevice device, AttributionSource source) {
             if (VERBOSE) {
                 Log.v(TAG, "disconnect()");
             }
-            try {
-                BluetoothMapService service = getService(source);
-                boolean result = false;
-                if (service != null) {
-                    service.disconnect(device);
-                    result = true;
-                }
-                receiver.send(result);
-            } catch (RuntimeException e) {
-                ContentProfileErrorReportUtils.report(
-                        BluetoothProfile.MAP,
-                        BluetoothProtoEnums.BLUETOOTH_MAP_SERVICE,
-                        BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED__TYPE__EXCEPTION,
-                        19);
-                receiver.propagateException(e);
+            BluetoothMapService service = getService(source);
+            if (service == null) {
+                return false;
             }
+            service.disconnect(device);
+            return true;
         }
 
         @Override
-        public void getConnectedDevices(AttributionSource source,
-                SynchronousResultReceiver receiver) {
+        public List<BluetoothDevice> getConnectedDevices(AttributionSource source) {
             if (VERBOSE) {
                 Log.v(TAG, "getConnectedDevices()");
             }
-            try {
-                BluetoothMapService service = getService(source);
-                List<BluetoothDevice> connectedDevices = new ArrayList<>(0);
-                if (service != null) {
-                    enforceBluetoothPrivilegedPermission(service);
-                    connectedDevices = service.getConnectedDevices();
-                }
-                receiver.send(connectedDevices);
-            } catch (RuntimeException e) {
-                ContentProfileErrorReportUtils.report(
-                        BluetoothProfile.MAP,
-                        BluetoothProtoEnums.BLUETOOTH_MAP_SERVICE,
-                        BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED__TYPE__EXCEPTION,
-                        20);
-                receiver.propagateException(e);
+            BluetoothMapService service = getService(source);
+            if (service == null) {
+                return new ArrayList<>(0);
             }
+            enforceBluetoothPrivilegedPermission(service);
+            return service.getConnectedDevices();
         }
 
         @Override
-        public void getDevicesMatchingConnectionStates(
-                int[] states, AttributionSource source, SynchronousResultReceiver receiver) {
+        public List<BluetoothDevice> getDevicesMatchingConnectionStates(
+                int[] states, AttributionSource source) {
             if (VERBOSE) {
                 Log.v(TAG, "getDevicesMatchingConnectionStates()");
             }
-            try {
-                BluetoothMapService service = getService(source);
-                List<BluetoothDevice> devices = new ArrayList<>(0);
-                if (service != null) {
-                    devices = service.getDevicesMatchingConnectionStates(states);
-                }
-                receiver.send(devices);
-            } catch (RuntimeException e) {
-                ContentProfileErrorReportUtils.report(
-                        BluetoothProfile.MAP,
-                        BluetoothProtoEnums.BLUETOOTH_MAP_SERVICE,
-                        BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED__TYPE__EXCEPTION,
-                        21);
-                receiver.propagateException(e);
+            BluetoothMapService service = getService(source);
+            if (service == null) {
+                return new ArrayList<>(0);
             }
+            return service.getDevicesMatchingConnectionStates(states);
         }
 
         @Override
-        public void getConnectionState(BluetoothDevice device, AttributionSource source,
-                SynchronousResultReceiver receiver) {
+        public int getConnectionState(BluetoothDevice device, AttributionSource source) {
             if (VERBOSE) {
                 Log.v(TAG, "getConnectionState()");
             }
-            try {
-                BluetoothMapService service = getService(source);
-                int state = BluetoothProfile.STATE_DISCONNECTED;
-                if (service != null) {
-                    state = service.getConnectionState(device);
-                }
-                receiver.send(state);
-            } catch (RuntimeException e) {
-                ContentProfileErrorReportUtils.report(
-                        BluetoothProfile.MAP,
-                        BluetoothProtoEnums.BLUETOOTH_MAP_SERVICE,
-                        BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED__TYPE__EXCEPTION,
-                        22);
-                receiver.propagateException(e);
+            BluetoothMapService service = getService(source);
+            if (service == null) {
+                return BluetoothProfile.STATE_DISCONNECTED;
             }
+            return service.getConnectionState(device);
         }
 
         @Override
-        public void setConnectionPolicy(BluetoothDevice device, int connectionPolicy,
-                AttributionSource source, SynchronousResultReceiver receiver) {
-            try {
-                BluetoothMapService service = getService(source);
-                boolean result = false;
-                if (service != null) {
-                    result = service.setConnectionPolicy(device, connectionPolicy);
-                }
-                receiver.send(result);
-            } catch (RuntimeException e) {
-                ContentProfileErrorReportUtils.report(
-                        BluetoothProfile.MAP,
-                        BluetoothProtoEnums.BLUETOOTH_MAP_SERVICE,
-                        BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED__TYPE__EXCEPTION,
-                        23);
-                receiver.propagateException(e);
+        public boolean setConnectionPolicy(
+                BluetoothDevice device, int connectionPolicy, AttributionSource source) {
+            BluetoothMapService service = getService(source);
+            if (service == null) {
+                return false;
             }
+            return service.setConnectionPolicy(device, connectionPolicy);
         }
 
         @Override
-        public void getConnectionPolicy(BluetoothDevice device, AttributionSource source,
-                SynchronousResultReceiver receiver) {
-            try {
-                BluetoothMapService service = getService(source);
-                int policy = BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
-                if (service != null) {
-                    policy = service.getConnectionPolicy(device);
-                }
-                receiver.send(policy);
-            } catch (RuntimeException e) {
-                ContentProfileErrorReportUtils.report(
-                        BluetoothProfile.MAP,
-                        BluetoothProtoEnums.BLUETOOTH_MAP_SERVICE,
-                        BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED__TYPE__EXCEPTION,
-                        24);
-                receiver.propagateException(e);
+        public int getConnectionPolicy(BluetoothDevice device, AttributionSource source) {
+            BluetoothMapService service = getService(source);
+            if (service == null) {
+                return BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
             }
+            return service.getConnectionPolicy(device);
         }
     }
 
