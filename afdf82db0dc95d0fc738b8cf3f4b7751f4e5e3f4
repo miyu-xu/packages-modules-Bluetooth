@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccf1a9c5_bdced486",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1707,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-22T11:31:36Z",
+      "side": 0,
+      "message": "Are BTA_DM_GATT_OVER_LE_RES_EVT and BTA_DM_GATT_OVER_SDP_RES_EVT received by this method? \n\nIf you remove these two lines, does it mean, these events will be ignored in \"unhandled event\" below?",
+      "range": {
+        "startLine": 1707,
+        "startChar": 9,
+        "endLine": 1707,
+        "endChar": 36
+      },
+      "revId": "afdf82db0dc95d0fc738b8cf3f4b7751f4e5e3f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
