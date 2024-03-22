@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4873426_67c8eadc",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-22T20:39:26Z",
+      "side": 1,
+      "message": "I think this is problematic.  If the flag is disabled, this will set w4_evt to 0.  The other assignments for ENABLE will be 1.\n\nI\u0027d rather make sure that the values are consistent.",
+      "range": {
+        "startLine": 95,
+        "startChar": 2,
+        "endLine": 95,
+        "endChar": 8
+      },
+      "revId": "65a4d9a3882e3019aca66e5d39fd413b2f33cb3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
