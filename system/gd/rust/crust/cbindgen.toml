@@ -1,0 +1,4 @@
+# Run with cbindgen --config cbindgen.toml --crate crust -o include/loader.rs.h
+language = "C++"
+
+include_guard = "CRUST_LOADER_H"

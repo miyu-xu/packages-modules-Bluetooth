@@ -186,7 +186,9 @@ cc_defaults {
         "packages/modules/Bluetooth/system/include",
         "packages/modules/Bluetooth/system/types",
     ],
-    export_static_lib_headers: ["libbluetooth_rust_interop"],
+    export_static_lib_headers: [
+        "libbluetooth_rust_interop",
+    ],
 }
 
 cc_library {

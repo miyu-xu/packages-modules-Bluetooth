@@ -1,0 +1,33 @@
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "system_bt_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["system_bt_license"],
+}
+
+rust_defaults {
+    name: "libcrust_defaults",
+    crate_name: "crust",
+    srcs: ["src/lib.rs"],
+    rustlibs: [
+        "libjni",
+    ],
+    apex_available: [
+        "com.android.btservices",
+    ],
+    min_sdk_version: "33",
+    host_supported: true,
+}
+
+rust_library_rlib {
+    name: "libcrust",
+    defaults: ["libcrust_defaults"],
+}
+
+rust_ffi_static {
+    name: "libcrust_ffi",
+    defaults: ["libcrust_defaults"],
+    include_dirs: ["include"],
+}
