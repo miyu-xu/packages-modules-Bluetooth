@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a49ba0df_a6638e17",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 3428,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-22T23:03:45Z",
+      "side": 0,
+      "message": "Done on purpose. Thanks for noticing 😊",
+      "parentUuid": "4d5016b0_dc170dc7",
+      "range": {
+        "startLine": 3428,
+        "startChar": 12,
+        "endLine": 3428,
+        "endChar": 54
+      },
+      "revId": "ba94f6131245e595784717438b5871fd6dac3241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "976994f7_376cbd7d",
