@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8129f880_51deb890",
+        "filename": "system/bta/ag/bta_ag_at.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-22T14:57:06Z",
+      "side": 1,
+      "message": "Is this really Floss-specific?",
+      "range": {
+        "startLine": 142,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 16
+      },
+      "revId": "1b6028ee89ea595fd144eb4808e2d7692feefe13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
