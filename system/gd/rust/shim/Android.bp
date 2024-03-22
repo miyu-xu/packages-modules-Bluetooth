@@ -33,6 +33,7 @@ rust_defaults {
     srcs: ["src/lib.rs"],
     rustlibs: [
         "libbt_common",
+        "libcrust",
         "libcxx",
     ],
     proc_macros: [

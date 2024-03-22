@@ -1,0 +1,12 @@
+[package]
+name = "crust"
+version = "0.0.1"
+edition = "2021"
+
+[dependencies]
+cxx = { version = "1.0.42", features = ["c++17"] }
+jni = "*"
+
+[lib]
+path = "src/lib.rs"
+

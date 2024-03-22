@@ -31,6 +31,7 @@
 
 #include "com_android_bluetooth.h"
 #include "hardware/bt_sock.h"
+#include "loader.rs.h"
 #include "os/logging/log_adapter.h"
 #include "utils/misc.h"
 
@@ -2318,6 +2319,7 @@ int register_com_android_bluetooth_btservice_AdapterService(JNIEnv* env) {
  * JNI Initialization
  */
 jint JNI_OnLoad(JavaVM* jvm, void* /* reserved */) {
+  log::error("melhuishj: huge error");
   /* Set the default logging level for the process using the tag
    *  "log.tag.bluetooth" and/or "persist.log.tag.bluetooth" via the android
    * logging framework.
@@ -2355,6 +2357,12 @@ jint JNI_OnLoad(JavaVM* jvm, void* /* reserved */) {
   if (jvm->GetEnv((void**)&e, JNI_VERSION_1_6)) {
     log::error("JNI version mismatch error");
     return JNI_ERR;
+  }
+
+  if (!load_initial_crust_jni(e)) {
+    log::error("Crust JNI failed to load");
+  } else {
+    log::info("Crust JNI loader registered");
   }
 
   status = android::register_com_android_bluetooth_btservice_AdapterService(e);
