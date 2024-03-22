@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "478c045c_63888531",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-22T11:35:34Z",
+      "side": 1,
+      "message": "what if both of them are not null? here, you are preferring `p_device_search_cback` over `p_service_search_cback`, why is that?",
+      "range": {
+        "startLine": 508,
+        "startChar": 4,
+        "endLine": 514,
+        "endChar": 5
+      },
+      "revId": "cab762ac14d57f5c6dd41bbc8b5c38ca05af392f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
