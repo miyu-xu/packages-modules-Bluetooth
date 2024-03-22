@@ -139,6 +139,18 @@ void bta_ag_process_at(tBTA_AG_AT_CB* p_cb, char* p_end) {
       if (arg_type == BTA_AG_AT_SET &&
           p_cb->p_at_tbl[idx].fmt == BTA_AG_AT_INT) {
         int_arg = utl_str2int(p_arg);
+#if TARGET_FLOSS
+        // Per HFP v1.9 BRSF could be 32-bit integer and we should ignore all
+        // reserved bits rather than responding ERROR.
+        if (int_arg < 0 &&
+            p_cb->p_at_tbl[idx].command_id == BTA_AG_LOCAL_EVT_BRSF) {
+          uint32_t uint32_arg;
+          if (utl_str2uint32(p_arg, &uint32_arg)) {
+            // 0xfff because there are 12 defined bits
+            int_arg = static_cast<int16_t>(uint32_arg & 0xfff);
+          }
+        }
+#endif
         if (int_arg < (int16_t)p_cb->p_at_tbl[idx].min ||
             int_arg > (int16_t)p_cb->p_at_tbl[idx].max) {
           /* arg out of range; error */
