@@ -9,7 +9,7 @@ package {
 
 rust_defaults {
     name: "libbluetooth_core_rs_defaults",
-    min_sdk_version: "Tiramisu",
+    min_sdk_version: "33",
     dylib: {
         enabled: false,
     },
@@ -24,6 +24,7 @@ rust_defaults {
     static_libs: [
         "libbt_shim_bridge",
         "libbt_shim_ffi",
+        "libcrust_ffi",
 
         "libchrome",
         "libevent",
@@ -44,6 +45,7 @@ rust_defaults {
         // needed to work around duplicate symbols
         // caused by bug in Soong
         "libbt_shim",
+        "libcrust",
     ],
     whole_static_libs: [
         "libbluetooth_core_rs_bridge",
@@ -118,6 +120,7 @@ cc_library_static {
     include_dirs: [
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
+        "packages/modules/Bluetooth/system/gd/rust/crust/include",
         "packages/modules/Bluetooth/system/include",
         "packages/modules/Bluetooth/system/stack/include",
         "packages/modules/Bluetooth/system/types",
@@ -129,6 +132,7 @@ cc_library_static {
         "libbt_shim_bridge",
         "libbt_shim_ffi",
         "libchrome",
+        "libcrust_ffi",
         "libflatbuffers-cpp",
     ],
     generated_headers: [
@@ -144,7 +148,7 @@ cc_library_static {
     host_supported: true,
     generated_sources: ["libbluetooth_core_rs_bridge_codegen"],
     apex_available: ["com.android.btservices"],
-    min_sdk_version: "Tiramisu",
+    min_sdk_version: "33",
     // Bug: 286537287 this library gets linked with Rust objects but cross-language LTO
     // isn't supported yet.
     lto: {

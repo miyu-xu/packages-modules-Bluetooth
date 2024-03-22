@@ -1,0 +1,3 @@
+language = "C++"
+
+include_guard = "CRUST_LOADER_H"

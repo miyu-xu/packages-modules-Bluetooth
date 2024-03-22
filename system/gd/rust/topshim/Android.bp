@@ -150,5 +150,6 @@ rust_bindgen {
     header_libs: [
         "libbluetooth_headers",
         "libbluetooth_system_headers",
+        "libcrust_headers",
     ],
 }
