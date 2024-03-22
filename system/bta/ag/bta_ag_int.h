@@ -215,6 +215,12 @@ typedef struct {
 } tBTA_AG_PROFILE;
 
 typedef enum {
+  BTA_AG_SCO_CVSD_SETTINGS_S4 = 0, /* preferred/default when codec is CVSD */
+  BTA_AG_SCO_CVSD_SETTINGS_S3,
+  BTA_AG_SCO_CVSD_SETTINGS_S1,
+} tBTA_AG_SCO_CVSD_SETTINGS;
+
+typedef enum {
   BTA_AG_SCO_MSBC_SETTINGS_T2 = 0, /* preferred/default when codec is mSBC */
   BTA_AG_SCO_MSBC_SETTINGS_T1,
 } tBTA_AG_SCO_MSBC_SETTINGS;
@@ -291,6 +297,8 @@ struct tBTA_AG_SCB {
                                                     impending eSCO on WB */
   tBTA_AG_SCO_LC3_SETTINGS codec_lc3_settings;   /* settings to be used for the
                                                     impending eSCO on SWB */
+  tBTA_AG_SCO_CVSD_SETTINGS codec_cvsd_settings; /* settings to be used for the
+                                                    impending eSCO on CVSD */
   tBTA_AG_SCO_APTX_SWB_SETTINGS
       codec_aptx_settings; /* settings to be used for the
                               aptX Voice SWB eSCO */
