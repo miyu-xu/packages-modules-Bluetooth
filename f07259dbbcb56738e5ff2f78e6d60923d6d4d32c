@@ -16,6 +16,24 @@
       "message": "@wescande@google.com\n\nOh, I forgot about this one.\n\nI\u0027m not sure what to do here. I\u0027m not sure we should be committing peoples messages to disk anyway, nor should we have been using the log level to do so.\n\nI can wrap this in an isLoggable(), or we can delete it all.",
       "revId": "f07259dbbcb56738e5ff2f78e6d60923d6d4d32c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68c318d3_b305788d",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapbMessage.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-22T23:19:30Z",
+      "side": 0,
+      "message": "I did, so far, make the judgement call to just remove it. There are other ways to see what messages left a device, like snoop logs or the MMS/SMS database",
+      "parentUuid": "ca831b21_cce12ce6",
+      "revId": "f07259dbbcb56738e5ff2f78e6d60923d6d4d32c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
