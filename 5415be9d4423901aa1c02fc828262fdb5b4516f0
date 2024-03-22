@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3431a850_93fd384f",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dp.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-22T22:43:42Z",
+      "side": 1,
+      "message": "type unnecessary ?",
+      "range": {
+        "startLine": 402,
+        "startChar": 29,
+        "endLine": 402,
+        "endChar": 44
+      },
+      "revId": "5415be9d4423901aa1c02fc828262fdb5b4516f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1caab076_e3967134",
         "filename": "framework/java/android/bluetooth/BluetoothHidDevice.java",
         "patchSetId": 13
