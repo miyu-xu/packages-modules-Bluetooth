@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75a6fe22_107bb256",
+        "filename": "system/bta/dm/bta_dm_disc_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-22T11:27:48Z",
+      "side": 1,
+      "message": "in this CL, only assignments to the callbacks are changed, but users of the callbacks are not changed, does it mean if this CL is submitted by itself, the build will be broken?",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 158,
+        "endChar": 47
+      },
+      "revId": "f94438fca529f3e3926a114c192fbb30a725df1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
