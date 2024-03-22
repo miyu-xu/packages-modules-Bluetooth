@@ -16,6 +16,47 @@
       "message": "Looks like the the new GD api is avaliable directly to anyone.\nDoes that mean that additional guarantees that l2cble_start_conn_update provides i.e. locking parameters during service discovery, or ensuring that we don\u0027t let remote modify parameters while doing service discovery, are no longer enforced for other users of this API ?",
       "revId": "d87b4611d41f12cdc8b6048cda8eca4f36849462",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07054c2a_78661ab3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-22T16:35:09Z",
+      "side": 1,
+      "message": "This CL just removes the old HCI path.  l2cble_start_conn_update is the same as it was before.",
+      "parentUuid": "d1637234_0d0261a7",
+      "revId": "d87b4611d41f12cdc8b6048cda8eca4f36849462",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8c012b2_e05b61a0",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-22T16:35:09Z",
+      "side": 1,
+      "message": "We\u0027re still using l2cble_start_conn_update",
+      "range": {
+        "startLine": 206,
+        "startChar": 5,
+        "endLine": 206,
+        "endChar": 29
+      },
+      "revId": "d87b4611d41f12cdc8b6048cda8eca4f36849462",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
