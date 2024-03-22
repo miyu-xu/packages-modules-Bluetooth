@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ac516dc_35ec60de",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-22T21:37:37Z",
+      "side": 1,
+      "message": "`complete_event_builder-\u003eSerializeToBytes();`",
+      "range": {
+        "startLine": 230,
+        "startChar": 21,
+        "endLine": 232,
+        "endChar": 43
+      },
+      "revId": "206dd46df801426b4134790104acbdcbcd1094f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
