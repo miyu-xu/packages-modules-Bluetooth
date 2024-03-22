@@ -552,4 +552,50 @@ public class GattClientTest {
             disconnectAndWaitDisconnection(gatt, gattCallback);
         }
     }
+
+    @Test
+    public void disconnectIndirectClient_doesNotDisconnectDirectClient() {
+        BluetoothGattCallback indirectGattCallback = mock(BluetoothGattCallback.class);
+        BluetoothDevice device =
+                mAdapter.getRemoteLeDevice(
+                        Utils.BUMBLE_RANDOM_ADDRESS, BluetoothDevice.ADDRESS_TYPE_RANDOM);
+
+        BluetoothGatt indirectGatt = device.connectGatt(mContext, true, indirectGattCallback);
+
+        BluetoothGattCallback directGattCallback = mock(BluetoothGattCallback.class);
+        BluetoothGatt directGatt = connectGattAndWaitConnection(directGattCallback);
+        try {
+            verify(indirectGattCallback, timeout(10000))
+                    .onConnectionStateChange(
+                            eq(indirectGatt),
+                            eq(BluetoothGatt.GATT_SUCCESS),
+                            eq(BluetoothGatt.STATE_CONNECTED));
+            // workaround for b/330902261, wait for services being discovered
+            indirectGatt.discoverServices();
+            verify(indirectGattCallback, timeout(10000))
+                    .onServicesDiscovered(any(), eq(BluetoothGatt.GATT_SUCCESS));
+
+            // disconnect indirect connection
+            disconnectAndWaitDisconnection(indirectGatt, indirectGattCallback);
+
+            verify(directGattCallback, never())
+                    .onConnectionStateChange(
+                            eq(directGatt), anyInt(), eq(BluetoothGatt.STATE_DISCONNECTED));
+
+            // make sure still connected and able to read a characteristic
+            directGatt.discoverServices();
+            verify(directGattCallback, timeout(10000))
+                    .onServicesDiscovered(any(), eq(BluetoothGatt.GATT_SUCCESS));
+
+            BluetoothGattService firstService = directGatt.getServices().get(0);
+            BluetoothGattCharacteristic firstCharacteristic =
+                    firstService.getCharacteristics().get(0);
+            directGatt.readCharacteristic(firstCharacteristic);
+
+            verify(directGattCallback, timeout(5000))
+                    .onCharacteristicRead(any(), any(), any(), anyInt());
+        } finally {
+            disconnectAndWaitDisconnection(directGatt, directGattCallback);
+        }
+    }
 }
