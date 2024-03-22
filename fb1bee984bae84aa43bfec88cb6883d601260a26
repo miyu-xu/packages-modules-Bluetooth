@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc03864f_f86c4fab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 47
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-03-22T16:09:15Z",
+      "side": 1,
+      "message": "In the future, please split flag declaration and implementation in two separate CLs (see https://g3doc.corp.google.com/company/teams/android-bluetooth/contribution-guide/create-a-flag.md)",
+      "revId": "fb1bee984bae84aa43bfec88cb6883d601260a26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
