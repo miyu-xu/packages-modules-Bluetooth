@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ee2d779_bf5a2a2e",
+        "filename": "service/src/com/android/server/bluetooth/AdapterBinder.kt",
+        "patchSetId": 11
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-22T22:02:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3a2d603_867b8e2b",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 16
+      },
+      "revId": "fa343dcca365da9a1e19ec0a336af07c6f87eb34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6547938f_ec8799e4",
@@ -60,6 +84,24 @@
       "writtenOn": "2024-03-22T21:38:27Z",
       "side": 1,
       "message": "Nit: Remove TimeoutException",
+      "revId": "fa343dcca365da9a1e19ec0a336af07c6f87eb34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3732022e_caecc589",
+        "filename": "service/src/com/android/server/bluetooth/AdapterBinder.kt",
+        "patchSetId": 11
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-22T22:02:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6547938f_ec8799e4",
       "revId": "fa343dcca365da9a1e19ec0a336af07c6f87eb34",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
