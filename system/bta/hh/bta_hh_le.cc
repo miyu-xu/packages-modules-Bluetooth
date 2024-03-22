@@ -1404,6 +1404,9 @@ static void read_pref_conn_params_cb(uint16_t conn_id, tGATT_STATUS status,
     if (timeout < 300) timeout = 300;
   }
 
+  // Set latency to 0 to avoid slowing down profile connection.
+  // Peer can request proper latency based on its power state later.
+  latency = 0;
   BTM_BleSetPrefConnParams(p_dev_cb->link_spec.addrt.bda, min_interval,
                            max_interval, latency, timeout);
   L2CA_UpdateBleConnParams(p_dev_cb->link_spec.addrt.bda, min_interval,
