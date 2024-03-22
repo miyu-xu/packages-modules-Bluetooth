@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6541b14a_f81e6c5e",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1680,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-22T21:09:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "431e4dbb_a41ed7b4",
+      "revId": "64807d9d9a19b2788d9c8c5278f7535491297902",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "63d2e39b_a3483dcc",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a324ad18_4efed2bf",
+        "filename": "framework/java/android/bluetooth/BluetoothHeadsetClient.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 762,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-22T21:09:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63d2e39b_a3483dcc",
+      "revId": "64807d9d9a19b2788d9c8c5278f7535491297902",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b00f1c8_328e05fb",
@@ -48,6 +84,24 @@
       "writtenOn": "2024-03-22T21:05:55Z",
       "side": 1,
       "message": "nit: Remove",
+      "revId": "64807d9d9a19b2788d9c8c5278f7535491297902",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "525a6eca_0136c28b",
+        "filename": "framework/java/android/bluetooth/BluetoothHeadsetClient.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-22T21:09:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b00f1c8_328e05fb",
       "revId": "64807d9d9a19b2788d9c8c5278f7535491297902",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
