@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b045fd6_1720afe8",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 2227,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "So, this doesn\u0027t work?",
+      "range": {
+        "startLine": 2225,
+        "startChar": 16,
+        "endLine": 2227,
+        "endChar": 31
+      },
+      "revId": "33fbc9228df6e03841188768aa244e2b862becd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5c1fc12_5dd6df68",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 4279,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "Not every controller needs the logic to separate the pattern monitor and the address monitor.\nTherefore, could we hide the logic about whether to spawn the address monitor or not behind a quirk (could be just some bool now for simplicity)?",
+      "range": {
+        "startLine": 4279,
+        "startChar": 8,
+        "endLine": 4279,
+        "endChar": 50
+      },
+      "revId": "33fbc9228df6e03841188768aa244e2b862becd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f9f5940_00ccefc3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 4303,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "Will this ever be reached?\nIIUC whenever `address_filter_map[addr]` is set to false, you take the corresponding handle out from `monitor_handle_map`, so the check on `monitor_handle_map` above should be necessary.\nIf that\u0027s the case, let\u0027s just remove the member `address_filter_map` from the struct.",
+      "range": {
+        "startLine": 4303,
+        "startChar": 20,
+        "endLine": 4303,
+        "endChar": 26
+      },
+      "revId": "33fbc9228df6e03841188768aa244e2b862becd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57701153_335962ee",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 4325,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "Perhaps just compare if the `track_adv_info.monitor_handle \u003d\u003d corresponding_scanner_monitor_handle` to know whether it is the pattern handle or not?",
+      "range": {
+        "startLine": 4324,
+        "startChar": 12,
+        "endLine": 4325,
+        "endChar": 76
+      },
+      "revId": "33fbc9228df6e03841188768aa244e2b862becd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cff416bd_1964f61f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 4362,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "Doesn\u0027t this report both the address monitor and the pattern monitor?\n\nIn the BlueZ kernel implementation IIUC we only report found on the address monitor.",
+      "revId": "33fbc9228df6e03841188768aa244e2b862becd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d792212_4b25cbbf",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 7198,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "Hi, please have the whole byte sequence for the HCI command.\nTake example from the `MsftLeMonitorAdvConditionPatterns` above:\n\n`\\x1e\\xfc\\x0e\\x03\\x10\\x05...`\n`\\x1e\\xfc` --\u003e the HCI opcode\n`\\x0e` --\u003e the length of the data\n`\\x03` --\u003e the subcommand opcode for add monitor\n`\\x10` --\u003e RSSI high\netc",
+      "range": {
+        "startLine": 7198,
+        "startChar": 5,
+        "endLine": 7198,
+        "endChar": 9
+      },
+      "revId": "33fbc9228df6e03841188768aa244e2b862becd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

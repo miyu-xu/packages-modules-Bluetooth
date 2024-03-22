@@ -76,6 +76,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "01971662_7e3993ed",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36be590c_5f3bc9f4",
+      "range": {
+        "startLine": 152,
+        "startChar": 8,
+        "endLine": 152,
+        "endChar": 57
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce7ce439_dd221030",
@@ -89,6 +113,30 @@
       "writtenOn": "2024-03-15T12:11:17Z",
       "side": 1,
       "message": "nit: future",
+      "range": {
+        "startLine": 234,
+        "startChar": 22,
+        "endLine": 234,
+        "endChar": 29
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec71146d_accc7e9b",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce7ce439_dd221030",
       "range": {
         "startLine": 234,
         "startChar": 22,
@@ -122,6 +170,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "24b6d194_1ad78782",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1275,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad2844de_7fa57875",
+      "range": {
+        "startLine": 1274,
+        "startChar": 0,
+        "endLine": 1275,
+        "endChar": 41
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37dd78db_8f0d8c2a",
@@ -135,6 +207,30 @@
       "writtenOn": "2024-03-15T12:11:17Z",
       "side": 1,
       "message": "nit: Update comment, this is now implemented.",
+      "range": {
+        "startLine": 1290,
+        "startChar": 22,
+        "endLine": 1290,
+        "endChar": 39
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d675f5c_be6bc8bc",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1290,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37dd78db_8f0d8c2a",
       "range": {
         "startLine": 1290,
         "startChar": 22,
@@ -162,6 +258,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a63ecd4_4885d7bf",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1321,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0e4017d_9cdda548",
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16c9278a_dac25813",
@@ -175,6 +289,30 @@
       "writtenOn": "2024-03-21T10:13:55Z",
       "side": 1,
       "message": "Let\u0027s improve the naming, how about `add_child_monitor`? Likewise, maybe change `cancel_monitor` to `remove_child_monitor`?",
+      "range": {
+        "startLine": 1742,
+        "startChar": 7,
+        "endLine": 1742,
+        "endChar": 21
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "822c928f_0c02099e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1742,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16c9278a_dac25813",
       "range": {
         "startLine": 1742,
         "startChar": 7,
@@ -208,6 +346,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fa660fc_c5dc54df",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1752,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8da0ed70_af3bdb37",
+      "range": {
+        "startLine": 1752,
+        "startChar": 19,
+        "endLine": 1752,
+        "endChar": 83
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1620450f_20fe7938",
@@ -231,6 +393,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab685232_f6e55b64",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1762,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1620450f_20fe7938",
+      "range": {
+        "startLine": 1762,
+        "startChar": 88,
+        "endLine": 1762,
+        "endChar": 159
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "47693d92_1630527e",
@@ -244,6 +430,30 @@
       "writtenOn": "2024-03-21T10:13:55Z",
       "side": 1,
       "message": "Let\u0027s combine this and the if block above, to a single if statement, in order to avoid too much indentation.\nOr maybe just remove this if statement by making the parameter filter to be ScanFilter, instead of an Option. In any case, you have unwrap that in line 1761 without any check.",
+      "range": {
+        "startLine": 1769,
+        "startChar": 16,
+        "endLine": 1769,
+        "endChar": 44
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "118ea222_bd1408cf",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1769,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "I mean, just directly unwrap e.g. `let filter \u003d filter.unwrap()` because this must be true (otherwise we would have crashed in `let filter_copy \u003d filter.clone().unwrap();`)\n\nAlso, the function parameter `filter: Option\u003cScanFilter\u003e` doesn\u0027t look like it can be None (can it?). If so, just remove the Option part so we don\u0027t need to unwrap anything.",
+      "parentUuid": "47693d92_1630527e",
       "range": {
         "startLine": 1769,
         "startChar": 16,
@@ -387,6 +597,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6565fcde_6af343db",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2016,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3851dcf0_3e3853b0",
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24239c26_5be35199",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2016,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b89309e_ecd92fbf",
+      "range": {
+        "startLine": 2016,
+        "startChar": 32,
+        "endLine": 2016,
+        "endChar": 46
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3c294c8_57c6412b",
@@ -418,6 +670,24 @@
       "side": 1,
       "message": "Also to other commented logs in this patch",
       "parentUuid": "f3c294c8_57c6412b",
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ffc96b3_3f72725b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2201,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3dc0be4b_b1cb4553",
       "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -468,6 +738,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f53f08ce_4a8d973b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2254,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38b92552_911baa1f",
+      "range": {
+        "startLine": 2248,
+        "startChar": 0,
+        "endLine": 2254,
+        "endChar": 23
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c65f808_d9149b39",
@@ -481,6 +775,30 @@
       "writtenOn": "2024-03-21T10:13:55Z",
       "side": 1,
       "message": "might potentially be too noisy. Could you check how often this is printed? If it\u0027s no more than every 30 secs I am OK with it, otherwise please remove.\n\nLikewise for every log::info you have.",
+      "range": {
+        "startLine": 4292,
+        "startChar": 8,
+        "endLine": 4292,
+        "endChar": 48
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae38cdc6_8b748786",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 4292,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c65f808_d9149b39",
       "range": {
         "startLine": 4292,
         "startChar": 8,
@@ -514,6 +832,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "589c62db_b05e9516",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 4299,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d516870_3415db31",
+      "range": {
+        "startLine": 4299,
+        "startChar": 16,
+        "endLine": 4299,
+        "endChar": 60
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e55cb1a_9268476e",
@@ -531,6 +873,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8782799c_0caf0974",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 4300,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "Moved to PS#2",
+      "parentUuid": "5e55cb1a_9268476e",
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87e04ab8_c5f1fd8a",
@@ -544,6 +904,30 @@
       "writtenOn": "2024-03-21T10:13:55Z",
       "side": 1,
       "message": "just use `unwrap`?",
+      "range": {
+        "startLine": 4306,
+        "startChar": 24,
+        "endLine": 4306,
+        "endChar": 30
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d21f56c_8b375f14",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 4306,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87e04ab8_c5f1fd8a",
       "range": {
         "startLine": 4306,
         "startChar": 24,
@@ -577,6 +961,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "09160e22_64a2ea3f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 4316,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "Moved to PS#2.",
+      "parentUuid": "3ab82105_92942bd6",
+      "range": {
+        "startLine": 4316,
+        "startChar": 20,
+        "endLine": 4316,
+        "endChar": 28
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88bace13_641e238b",
@@ -590,6 +998,30 @@
       "writtenOn": "2024-03-21T10:13:55Z",
       "side": 1,
       "message": "Maybe no need to mut?\nOr maybe just `let mut saved_filter` and use that instead of using the `scan_filter`?",
+      "range": {
+        "startLine": 4321,
+        "startChar": 16,
+        "endLine": 4321,
+        "endChar": 19
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f658986_d5e6e49a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 4321,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88bace13_641e238b",
       "range": {
         "startLine": 4321,
         "startChar": 16,
@@ -623,6 +1055,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53f1d230_0c07a052",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 4329,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88f1fb20_11e073fd",
+      "range": {
+        "startLine": 4329,
+        "startChar": 52,
+        "endLine": 4329,
+        "endChar": 71
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49e1ca56_2b14e5fd",
@@ -636,6 +1092,30 @@
       "writtenOn": "2024-03-21T10:13:55Z",
       "side": 1,
       "message": "`update_monitor()` never returns fail, so we don\u0027t need this else arm here.\nIf cancel is needed, it should be done inside the async part of `update_monitor()`.",
+      "range": {
+        "startLine": 4334,
+        "startChar": 16,
+        "endLine": 4335,
+        "endChar": 79
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fc61a10_6dbe19af",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 4335,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49e1ca56_2b14e5fd",
       "range": {
         "startLine": 4334,
         "startChar": 16,
@@ -669,6 +1149,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0069392f_42eb0b6b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 4341,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "Moved to PS#2",
+      "parentUuid": "a79739d0_6fc48ef0",
+      "range": {
+        "startLine": 4339,
+        "startChar": 12,
+        "endLine": 4341,
+        "endChar": 76
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "724bbf81_e9d65713",
@@ -692,6 +1196,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "def545b8_d64d83dd",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 4374,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "1st part done, 2nd part moved to PS#2",
+      "parentUuid": "724bbf81_e9d65713",
+      "range": {
+        "startLine": 4374,
+        "startChar": 59,
+        "endLine": 4374,
+        "endChar": 97
+      },
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e7e56476_89d07451",
@@ -705,6 +1233,24 @@
       "writtenOn": "2024-03-21T10:13:55Z",
       "side": 1,
       "message": "Please use a proper example of byte sequence that indicates MSFT monitor for address.",
+      "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e1d3905_f3a32de4",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 7199,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-22T10:45:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7e56476_89d07451",
       "revId": "60792ab7637283dc8804f190632506e7a49f5b97",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
