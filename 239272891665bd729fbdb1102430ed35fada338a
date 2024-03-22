@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "670e7c72_384cfe5e",
+        "filename": "system/osi/Android.bp",
+        "patchSetId": 37
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-03-22T02:55:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96d3a5f5_6fcf35e8",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 32
+      },
+      "revId": "239272891665bd729fbdb1102430ed35fada338a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7d700b3a_271426dd",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-21T17:08:05Z",
       "side": 1,
       "message": "Should it be `true` by default on all devices ?",
+      "range": {
+        "startLine": 158,
+        "startChar": 61,
+        "endLine": 158,
+        "endChar": 65
+      },
+      "revId": "239272891665bd729fbdb1102430ed35fada338a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6ffe873_95dae205",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 37
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-03-22T02:55:21Z",
+      "side": 1,
+      "message": "Yes. This should benefit all devices by showing detailed bluetooth information in dumpsys.",
+      "parentUuid": "7d700b3a_271426dd",
       "range": {
         "startLine": 158,
         "startChar": 61,
