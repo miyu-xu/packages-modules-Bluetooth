@@ -83,8 +83,9 @@ public class GattClientTest {
 
     private static final UUID TEST_SERVICE_UUID =
             UUID.fromString("00000000-0000-0000-0000-00000000000");
+
     private static final UUID TEST_CHARACTERISTIC_UUID =
-            UUID.fromString("00010001-0000-0000-0000-000000000000");
+            UUID.fromString("00010001-0000-0000-0000-000000000001");
     @ClassRule public static final AdoptShellPermissionsRule PERM = new AdoptShellPermissionsRule();
 
     @Rule public final PandoraDevice mBumble = new PandoraDevice();
@@ -96,6 +97,8 @@ public class GattClientTest {
     private final BluetoothManager mManager = mContext.getSystemService(BluetoothManager.class);
     private final BluetoothAdapter mAdapter = mManager.getAdapter();
     private final BluetoothLeScanner mLeScanner = mAdapter.getBluetoothLeScanner();
+
+    private boolean mServiceRegistered = false;
 
     @Test
     public void directConnectGattAfterClose() throws Exception {
@@ -207,7 +210,7 @@ public class GattClientTest {
 
     @Test
     public void clientGattWriteCharacteristic() throws Exception {
-        registerWritableGattService();
+        registerGattService();
 
         BluetoothGattCallback gattCallback = mock(BluetoothGattCallback.class);
         BluetoothGatt gatt = connectGattAndWaitConnection(gattCallback);
@@ -302,7 +305,7 @@ public class GattClientTest {
     public void consecutiveWriteCharacteristicFails_thenSuccess() throws Exception {
         Assume.assumeTrue(Flags.gattFixDeviceBusy());
 
-        registerWritableGattService();
+        registerGattService();
 
         BluetoothGattCallback gattCallback = mock(BluetoothGattCallback.class);
         BluetoothGattCallback gattCallback2 = mock(BluetoothGattCallback.class);
@@ -360,9 +363,15 @@ public class GattClientTest {
         }
     }
 
-    private void registerWritableGattService() {
+    private void registerGattService() {
+        // Prevent duplicate service registration.
+        if (mServiceRegistered) {
+            return;
+        }
+        mServiceRegistered = true;
         GattCharacteristicParams characteristicParams =
                 GattCharacteristicParams.newBuilder()
+                        .setProperties(BluetoothGattCharacteristic.PROPERTY_READ)
                         .setProperties(BluetoothGattCharacteristic.PROPERTY_WRITE)
                         .setUuid(TEST_CHARACTERISTIC_UUID.toString())
                         .build();
@@ -550,6 +559,54 @@ public class GattClientTest {
             }
         } finally {
             disconnectAndWaitDisconnection(gatt, gattCallback);
+        }
+    }
+
+    @Test
+    public void disconnectIndirectClient_doesNotDisconnectDirectClient() {
+        registerGattService();
+
+        BluetoothGattCallback backgroundGattCallback = mock(BluetoothGattCallback.class);
+        BluetoothDevice device =
+                mAdapter.getRemoteLeDevice(
+                        Utils.BUMBLE_RANDOM_ADDRESS, BluetoothDevice.ADDRESS_TYPE_RANDOM);
+
+        BluetoothGatt backgroundGatt = device.connectGatt(mContext, true, backgroundGattCallback);
+
+        BluetoothGattCallback foregroundGattCallback = mock(BluetoothGattCallback.class);
+        BluetoothGatt foregroundGatt = connectGattAndWaitConnection(foregroundGattCallback);
+        try {
+            verify(backgroundGattCallback, timeout(10000))
+                    .onConnectionStateChange(
+                            eq(backgroundGatt),
+                            eq(BluetoothGatt.GATT_SUCCESS),
+                            eq(BluetoothGatt.STATE_CONNECTED));
+            // TODO(b/330902261): Remove this once the bug is resolved.
+            backgroundGatt.discoverServices();
+            verify(backgroundGattCallback, timeout(10000))
+                    .onServicesDiscovered(any(), eq(BluetoothGatt.GATT_SUCCESS));
+
+            // disconnect indirect connection
+            disconnectAndWaitDisconnection(backgroundGatt, backgroundGattCallback);
+
+            verify(foregroundGattCallback, never())
+                    .onConnectionStateChange(
+                            eq(foregroundGatt), anyInt(), eq(BluetoothGatt.STATE_DISCONNECTED));
+
+            // make sure still connected and able to read a characteristic
+            foregroundGatt.discoverServices();
+            verify(foregroundGattCallback, timeout(10000))
+                    .onServicesDiscovered(any(), eq(BluetoothGatt.GATT_SUCCESS));
+
+            BluetoothGattService service = foregroundGatt.getService(TEST_SERVICE_UUID);
+            BluetoothGattCharacteristic readableCharacteristic =
+                    service.getCharacteristic(TEST_CHARACTERISTIC_UUID);
+            foregroundGatt.readCharacteristic(readableCharacteristic);
+
+            verify(foregroundGattCallback, timeout(5000))
+                    .onCharacteristicRead(any(), any(), any(), anyInt());
+        } finally {
+            disconnectAndWaitDisconnection(foregroundGatt, foregroundGattCallback);
         }
     }
 }
