@@ -24,6 +24,7 @@ rust_defaults {
     static_libs: [
         "libbt_shim_bridge",
         "libbt_shim_ffi",
+        "libcrust_ffi",
 
         "libchrome",
         "libevent",
@@ -44,6 +45,7 @@ rust_defaults {
         // needed to work around duplicate symbols
         // caused by bug in Soong
         "libbt_shim",
+        "libcrust",
     ],
     whole_static_libs: [
         "libbluetooth_core_rs_bridge",
@@ -85,6 +87,7 @@ rust_ffi_static {
     name: "libbluetooth_core_rs",
     crate_name: "bluetooth_core",
     defaults: ["libbluetooth_core_rs_defaults"],
+    include_dirs: ["packages/modules/Bluetooth/system/gd/rust/crust/include"],
     rustlibs: [
         "libtokio",
     ],
@@ -118,6 +121,7 @@ cc_library_static {
     include_dirs: [
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
+        "packages/modules/Bluetooth/system/gd/rust/crust/include",
         "packages/modules/Bluetooth/system/include",
         "packages/modules/Bluetooth/system/stack/include",
         "packages/modules/Bluetooth/system/types",
@@ -129,6 +133,7 @@ cc_library_static {
         "libbt_shim_bridge",
         "libbt_shim_ffi",
         "libchrome",
+        "libcrust_ffi",
         "libflatbuffers-cpp",
     ],
     generated_headers: [
