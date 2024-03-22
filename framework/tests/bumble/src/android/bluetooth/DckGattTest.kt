@@ -27,7 +27,9 @@ import com.android.compatibility.common.util.AdoptShellPermissionsRule
 import com.google.common.collect.Sets
 import com.google.common.truth.Truth.assertThat
 import com.google.protobuf.Empty
+import io.grpc.Context as GrpcContext
 import io.grpc.Deadline
+import io.grpc.stub.StreamObserver
 import java.util.UUID
 import java.util.concurrent.TimeUnit
 import org.junit.After
@@ -78,7 +80,7 @@ public class DckGattTest(private val connected: Boolean) {
     @Before
     fun setUp() {
         if (connected) {
-            advertiseWithBumble()
+            val advertiseContext = advertiseWithBumble()
 
             // Connect DUT to Ref as prerequisite
             val device =
@@ -93,6 +95,7 @@ public class DckGattTest(private val connected: Boolean) {
                     eq(BluetoothGatt.GATT_SUCCESS),
                     eq(BluetoothProfile.STATE_CONNECTED)
                 )
+            advertiseContext.cancel(null)
         }
 
         clearInvocations(gattCallbackMock)
@@ -219,7 +222,7 @@ public class DckGattTest(private val connected: Boolean) {
         assumeFalse(connected)
 
         // Start advertisement on Ref
-        advertiseWithBumble()
+        val advertiseStreamObserver = advertiseWithBumble()
 
         // Start IRK scan for Ref on DUT
         val scanSettings =
@@ -258,6 +261,7 @@ public class DckGattTest(private val connected: Boolean) {
 
         // Stop scan on DUT after GATT connect
         leScanner.stopScan(scanCallbackMock)
+        advertiseStreamObserver.cancel(null)
     }
 
     /*
@@ -302,21 +306,28 @@ public class DckGattTest(private val connected: Boolean) {
             )
     }
 
-    private fun advertiseWithBumble(withUuid: Boolean = false) {
-        val requestBuilder =
-            AdvertiseRequest.newBuilder()
-                .setLegacy(true)
-                .setConnectable(true)
-                .setOwnAddressType(OwnAddressType.RANDOM)
+    private fun advertiseWithBumble(withUuid: Boolean = false): GrpcContext.CancellableContext {
+        val requestBuilder = AdvertiseRequest.newBuilder()
+            .setLegacy(true)
+            .setConnectable(true)
+            .setOwnAddressType(OwnAddressType.RANDOM)
 
         if (withUuid) {
-            requestBuilder.data =
-                HostProto.DataTypes.newBuilder()
-                    .addCompleteServiceClassUuids128(CCC_DK_UUID.toString())
-                    .build()
+            requestBuilder.data = HostProto.DataTypes.newBuilder()
+                .addCompleteServiceClassUuids128(CCC_DK_UUID.toString())
+                .build()
         }
-        mBumble.hostBlocking().advertise(requestBuilder.build())
+
+        val cancellableContext = GrpcContext.current().withCancellation()
+        with(cancellableContext) {
+            run {
+                mBumble.hostBlocking().advertise(requestBuilder.build())
+            }
+        }
+
+        return cancellableContext
     }
+
 
     companion object {
         private const val TAG = "DckTest"
