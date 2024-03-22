@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "948204d8_224cc727",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-03-22T19:29:07Z",
+      "side": 1,
+      "message": "Hello, sending the CL out for review before the pre-submit finishes to get it in time for Monday pre-submit deadline.",
+      "revId": "b2c5ab4c4796bc0dbb398b66546dcbc670718298",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
