@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "505efb19_08bb973e",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2418,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-22T22:48:10Z",
+      "side": 1,
+      "message": "We can make this a function and just guard its invocation for either value of the flags\n\n```\nif () {\n  ...\n  if (IS_FLAG_ENABLED()) {\n    // process flag\n  }\n}\n\nif (!IS_FLAG_ENABLED()) {\n  // process flag\n}\n```",
+      "range": {
+        "startLine": 2400,
+        "startChar": 0,
+        "endLine": 2418,
+        "endChar": 7
+      },
+      "revId": "bf9d76585efb3f5006fcf7fbeb8d944a77732aff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
