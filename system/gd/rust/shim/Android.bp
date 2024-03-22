@@ -33,6 +33,7 @@ rust_defaults {
     srcs: ["src/lib.rs"],
     rustlibs: [
         "libbt_common_only_init_flags",
+        "libcrust",
         "libcxx",
     ],
     proc_macros: [
