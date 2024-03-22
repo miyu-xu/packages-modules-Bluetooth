@@ -22,6 +22,30 @@
       },
       "revId": "bf9d76585efb3f5006fcf7fbeb8d944a77732aff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ad96249_3704a764",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2418,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-22T23:31:56Z",
+      "side": 1,
+      "message": "Good idea, thanks! Is much cleaner that way; done.",
+      "parentUuid": "505efb19_08bb973e",
+      "range": {
+        "startLine": 2400,
+        "startChar": 0,
+        "endLine": 2418,
+        "endChar": 7
+      },
+      "revId": "bf9d76585efb3f5006fcf7fbeb8d944a77732aff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
