@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a46693e8_915e1089",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-23T06:15:59Z",
+      "side": 1,
+      "message": "Remove the import here\n\n```suggestion\nimport android.os.HandlerThread;\n```",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 32
+      },
+      "revId": "431a645045b2a5d4a1022dc4dd6df8d79963b4f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
