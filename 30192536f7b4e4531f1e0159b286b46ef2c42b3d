@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0b838ef_91dd333c",
+        "filename": "system/log/src/vlog_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-23T01:24:25Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Include only the public GTest/GMock headers: \u003cgtest/gtest.h\u003e, \u003cgtest/gtest-spi.h\u003e, \u003cgmock/gmock.h\u003e. All other headers are implementation details.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nInclude only the public GTest/GMock headers: \u003cgtest/gtest.h\u003e, \u003cgtest/gtest-spi.h\u003e, \u003cgmock/gmock.h\u003e. All other headers are implementation details.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 25
+      },
+      "revId": "30192536f7b4e4531f1e0159b286b46ef2c42b3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
