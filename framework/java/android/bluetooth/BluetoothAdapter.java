@@ -2920,6 +2920,14 @@ public final class BluetoothAdapter {
             return false;
         }
         try {
+            if (Flags.scanManagerRefactor()) {
+                IBluetoothScan scan = getBluetoothScan();
+                if (scan == null) {
+                    // BLE is not supported
+                    return false;
+                }
+                return scan.numHwTrackFiltersAvailable(mAttributionSource) != 0;
+            } else {
             IBluetoothGatt iGatt = getBluetoothGatt();
             if (iGatt == null) {
                 // BLE is not supported
@@ -2928,6 +2936,7 @@ public final class BluetoothAdapter {
             final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
             iGatt.numHwTrackFiltersAvailable(mAttributionSource, recv);
             return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(0) != 0;
+            }
         } catch (TimeoutException | RemoteException e) {
             Log.e(TAG, "", e);
         }
@@ -4398,6 +4407,25 @@ public final class BluetoothAdapter {
             mServiceLock.readLock().unlock();
         }
         return defaultValue;
+    }
+
+    /**
+     * Return a binder to BluetoothScan
+     *
+     * @hide
+     */
+    public @Nullable IBluetoothScan getBluetoothScan() {
+        mServiceLock.readLock().lock();
+        try {
+            if (mService != null) {
+                return IBluetoothScan.Stub.asInterface(mService.getBluetoothScan());
+            }
+        } catch (RemoteException e) {
+            Log.e(TAG, e + "\n" + Log.getStackTraceString(new Throwable()));
+        } finally {
+            mServiceLock.readLock().unlock();
+        }
+        return null;
     }
 
     /** Return a binder to a Profile service */

@@ -29,6 +29,7 @@ import android.bluetooth.Attributable;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.IBluetoothGatt;
+import android.bluetooth.IBluetoothScan;
 import android.bluetooth.annotations.RequiresBluetoothLocationPermission;
 import android.bluetooth.annotations.RequiresBluetoothScanPermission;
 import android.bluetooth.annotations.RequiresLegacyBluetoothAdminPermission;
@@ -39,6 +40,7 @@ import android.os.RemoteException;
 import android.os.WorkSource;
 import android.util.Log;
 
+import com.android.bluetooth.flags.Flags;
 import com.android.modules.utils.SynchronousResultReceiver;
 
 import java.util.ArrayList;
@@ -262,6 +264,10 @@ public final class BluetoothLeScanner {
             if (gatt == null) {
                 return postCallbackErrorOrReturn(callback, ScanCallback.SCAN_FAILED_INTERNAL_ERROR);
             }
+            IBluetoothScan scan = mBluetoothAdapter.getBluetoothScan();
+            if (scan == null) {
+                return postCallbackErrorOrReturn(callback, ScanCallback.SCAN_FAILED_INTERNAL_ERROR);
+            }
             if (!isSettingsConfigAllowedForScan(settings)) {
                 return postCallbackErrorOrReturn(
                         callback, ScanCallback.SCAN_FAILED_FEATURE_UNSUPPORTED);
@@ -276,14 +282,20 @@ public final class BluetoothLeScanner {
             }
             if (callback != null) {
                 BleScanCallbackWrapper wrapper =
-                        new BleScanCallbackWrapper(gatt, filters, settings, workSource, callback);
+                        new BleScanCallbackWrapper(gatt, scan, filters, settings, workSource,
+                                callback);
                 wrapper.startRegistration();
             } else {
                 try {
+                    if (Flags.scanManagerRefactor()) {
+                        scan.startScanForIntent(callbackIntent, settings, filters,
+                                mAttributionSource);
+                    } else {
                     final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
                     gatt.startScanForIntent(
                             callbackIntent, settings, filters, mAttributionSource, recv);
                     recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
+                    }
                 } catch (TimeoutException | RemoteException e) {
                     return ScanCallback.SCAN_FAILED_INTERNAL_ERROR;
                 }
@@ -324,6 +336,14 @@ public final class BluetoothLeScanner {
     public void stopScan(PendingIntent callbackIntent) {
         BluetoothLeUtils.checkAdapterStateOn(mBluetoothAdapter);
         try {
+            if (Flags.scanManagerRefactor()) {
+                IBluetoothScan scan = mBluetoothAdapter.getBluetoothScan();
+                if (scan == null) {
+                    Log.w(TAG, "stopScan called after bluetooth has been turned off");
+                    return;
+                }
+                scan.stopScanForIntent(callbackIntent, mAttributionSource);
+            } else {
             IBluetoothGatt gatt = mBluetoothAdapter.getBluetoothGatt();
             if (gatt == null) {
                 Log.w(TAG, "stopScan called after bluetooth has been turned off");
@@ -332,6 +352,7 @@ public final class BluetoothLeScanner {
             final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
             gatt.stopScanForIntent(callbackIntent, mAttributionSource, recv);
             recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
+            }
         } catch (TimeoutException | RemoteException e) {
             Log.e(TAG, "Failed to stop scan", e);
         }
@@ -404,6 +425,7 @@ public final class BluetoothLeScanner {
         private final WorkSource mWorkSource;
         private ScanSettings mSettings;
         private IBluetoothGatt mBluetoothGatt;
+        private IBluetoothScan mBluetoothScan;
 
         // mLeHandle 0: not registered
         // -2: registration failed because app is scanning to frequently
@@ -413,11 +435,13 @@ public final class BluetoothLeScanner {
 
         public BleScanCallbackWrapper(
                 IBluetoothGatt bluetoothGatt,
+                IBluetoothScan bluetoothScan,
                 List<ScanFilter> filters,
                 ScanSettings settings,
                 WorkSource workSource,
                 ScanCallback scanCallback) {
             mBluetoothGatt = bluetoothGatt;
+            mBluetoothScan = bluetoothScan;
             mFilters = filters;
             mSettings = settings;
             mWorkSource = workSource;
@@ -431,9 +455,13 @@ public final class BluetoothLeScanner {
                 // Scan stopped.
                 if (mScannerId == -1 || mScannerId == -2) return;
                 try {
+                    if (Flags.scanManagerRefactor()) {
+                        mBluetoothScan.registerScanner(this, mWorkSource, mAttributionSource);
+                    } else {
                     final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
                     mBluetoothGatt.registerScanner(this, mWorkSource, mAttributionSource, recv);
                     recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
+                    }
                     wait(REGISTRATION_CALLBACK_TIMEOUT_MILLIS);
                 } catch (TimeoutException | InterruptedException | RemoteException e) {
                     Log.e(TAG, "application registration exception", e);
@@ -464,6 +492,10 @@ public final class BluetoothLeScanner {
                     return;
                 }
                 try {
+                    if (Flags.scanManagerRefactor()) {
+                        mBluetoothScan.stopScan(mScannerId, mAttributionSource);
+                        mBluetoothScan.unregisterScanner(mScannerId, mAttributionSource);
+                    } else {
                     final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
                     mBluetoothGatt.stopScan(mScannerId, mAttributionSource, recv);
                     recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
@@ -471,6 +503,7 @@ public final class BluetoothLeScanner {
                     final SynchronousResultReceiver recv2 = SynchronousResultReceiver.get();
                     mBluetoothGatt.unregisterScanner(mScannerId, mAttributionSource, recv2);
                     recv2.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
+                    }
                 } catch (TimeoutException | RemoteException e) {
                     Log.e(TAG, "Failed to stop scan and unregister", e);
                 }
@@ -486,9 +519,13 @@ public final class BluetoothLeScanner {
                     return;
                 }
                 try {
+                    if (Flags.scanManagerRefactor()) {
+                        mBluetoothScan.flushPendingBatchResults(mScannerId, mAttributionSource);
+                    } else {
                     final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
                     mBluetoothGatt.flushPendingBatchResults(mScannerId, mAttributionSource, recv);
                     recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
+                    }
                 } catch (TimeoutException | RemoteException e) {
                     Log.e(TAG, "Failed to get pending scan results", e);
                 }
@@ -512,11 +549,20 @@ public final class BluetoothLeScanner {
                         final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
                         if (mScannerId == -1) {
                             // Registration succeeds after timeout, unregister scanner.
+                            if (Flags.scanManagerRefactor()) {
+                                mBluetoothScan.unregisterScanner(scannerId, mAttributionSource);
+                            } else {
                             mBluetoothGatt.unregisterScanner(scannerId, mAttributionSource, recv);
+                            }
                         } else {
                             mScannerId = scannerId;
+                            if (Flags.scanManagerRefactor()) {
+                                mBluetoothScan.startScan(mScannerId, mSettings, mFilters,
+                                        mAttributionSource);
+                            } else {
                             mBluetoothGatt.startScan(
                                     mScannerId, mSettings, mFilters, mAttributionSource, recv);
+                            }
                         }
                         recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
                     } catch (TimeoutException | RemoteException e) {
