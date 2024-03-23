@@ -41,7 +41,6 @@ import android.bluetooth.IBluetooth;
 import android.bluetooth.IBluetoothCallback;
 import android.bluetooth.IBluetoothManager;
 import android.bluetooth.IBluetoothManagerCallback;
-import android.content.AttributionSource;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.ContentResolver;
@@ -326,7 +325,7 @@ class BluetoothManagerService {
         }
     }
 
-    boolean onFactoryReset(AttributionSource source) {
+    boolean onFactoryReset() {
         // Wait for stable state if bluetooth is temporary state.
         int state = getState();
         if (state == STATE_BLE_TURNING_ON
@@ -350,20 +349,14 @@ class BluetoothManagerService {
                         BluetoothProtoEnums.ENABLE_DISABLE_REASON_FACTORY_RESET,
                         mContext.getPackageName(),
                         false);
-                mAdapter.stopBle(
-                        new AttributionSource.Builder(mContext.getAttributionSource())
-                                .setNext(source)
-                                .build());
+                mAdapter.stopBle(mContext.getAttributionSource());
                 return true;
             } else if (state == STATE_ON) {
                 addActiveLog(
                         BluetoothProtoEnums.ENABLE_DISABLE_REASON_FACTORY_RESET,
                         mContext.getPackageName(),
                         false);
-                mAdapter.disable(
-                        new AttributionSource.Builder(mContext.getAttributionSource())
-                                .setNext(source)
-                                .build());
+                mAdapter.disable(mContext.getAttributionSource());
                 return true;
             }
         } catch (RemoteException e) {
@@ -1080,10 +1073,10 @@ class BluetoothManagerService {
         return true;
     }
 
-    boolean disableBle(AttributionSource source, String packageName, IBinder token) {
+    boolean disableBle(String packageName, IBinder token) {
         Log.i(
                 TAG,
-                ("disableBle(" + source + ", " + packageName + ", " + token + "):")
+                ("disableBle(" + packageName + ", " + token + "):")
                         + (" mAdapter=" + mAdapter)
                         + (" isBinding=" + isBinding())
                         + (" mState=" + mState));
@@ -1109,7 +1102,7 @@ class BluetoothManagerService {
                         BluetoothProtoEnums.ENABLE_DISABLE_REASON_APPLICATION_REQUEST,
                         packageName,
                         false);
-                sendBrEdrDownCallback(source);
+                sendBrEdrDownCallback();
             }
         }
         return true;
@@ -1169,7 +1162,7 @@ class BluetoothManagerService {
                 android.Manifest.permission.BLUETOOTH_CONNECT,
                 android.Manifest.permission.BLUETOOTH_PRIVILEGED,
             })
-    private void sendBrEdrDownCallback(AttributionSource source) {
+    private void sendBrEdrDownCallback() {
         mAdapterLock.readLock().lock();
         try {
             if (mAdapter == null) {
@@ -1179,16 +1172,10 @@ class BluetoothManagerService {
             if (isBleAppPresent()) {
                 // Need to stay at BLE ON. Disconnect all Gatt connections
                 Log.i(TAG, "sendBrEdrDownCallback: Staying in BLE_ON");
-                mAdapter.unregAllGattClient(
-                        new AttributionSource.Builder(mContext.getAttributionSource())
-                                .setNext(source)
-                                .build());
+                mAdapter.unregAllGattClient(mContext.getAttributionSource());
             } else {
                 Log.i(TAG, "sendBrEdrDownCallback: Stopping ble");
-                mAdapter.stopBle(
-                        new AttributionSource.Builder(mContext.getAttributionSource())
-                                .setNext(source)
-                                .build());
+                mAdapter.stopBle(mContext.getAttributionSource());
             }
         } catch (RemoteException e) {
             Log.e(TAG, "sendBrEdrDownCallback: Call to mAdapter failed.", e);
@@ -1477,14 +1464,11 @@ class BluetoothManagerService {
         }
     }
 
-    String getAddress(AttributionSource source) {
+    String getAddress() {
         mAdapterLock.readLock().lock();
         try {
             if (mAdapter != null) {
-                return mAdapter.getAddress(
-                        new AttributionSource.Builder(mContext.getAttributionSource())
-                                .setNext(source)
-                                .build());
+                return mAdapter.getAddress(mContext.getAttributionSource());
             }
         } catch (RemoteException e) {
             Log.e(
@@ -1501,14 +1485,11 @@ class BluetoothManagerService {
         return mAddress;
     }
 
-    String getName(AttributionSource source) {
+    String getName() {
         mAdapterLock.readLock().lock();
         try {
             if (mAdapter != null) {
-                return mAdapter.getName(
-                        new AttributionSource.Builder(mContext.getAttributionSource())
-                                .setNext(source)
-                                .build());
+                return mAdapter.getName(mContext.getAttributionSource());
             }
         } catch (RemoteException e) {
             Log.e(TAG, "getName(): Unable to retrieve name remotely. Returning cached name", e);
@@ -2211,7 +2192,7 @@ class BluetoothManagerService {
         if (prevBrEdrState != newBrEdrState) { // Only broadcast when there is a BrEdr state change.
             if (newBrEdrState == STATE_OFF) {
                 sendBluetoothOffCallback();
-                sendBrEdrDownCallback(mContext.getAttributionSource());
+                sendBrEdrDownCallback();
             }
             broadcastIntentStateChange(
                     BluetoothAdapter.ACTION_STATE_CHANGED, prevBrEdrState, newBrEdrState);
