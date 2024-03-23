@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "18fd27a2_4231bb86",
+        "filename": "framework/java/android/bluetooth/BluetoothAvrcpController.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-23T00:17:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36bfb1c9_05ed610b",
+      "range": {
+        "startLine": 230,
+        "startChar": 16,
+        "endLine": 230,
+        "endChar": 23
+      },
+      "revId": "47d2cbd5433fc3db4840e140577c6626da9c7624",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf1b1f3f_4e9de5a2",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-23T00:03:43Z",
       "side": 1,
       "message": "there used to be no return here\nBut I do acknowledge it looks like it was a bug",
+      "range": {
+        "startLine": 911,
+        "startChar": 16,
+        "endLine": 911,
+        "endChar": 22
+      },
+      "revId": "47d2cbd5433fc3db4840e140577c6626da9c7624",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b344f609_5786f3ee",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 911,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-23T00:17:16Z",
+      "side": 1,
+      "message": "Fixing it within this CL sounds good to me",
+      "parentUuid": "cf1b1f3f_4e9de5a2",
       "range": {
         "startLine": 911,
         "startChar": 16,
