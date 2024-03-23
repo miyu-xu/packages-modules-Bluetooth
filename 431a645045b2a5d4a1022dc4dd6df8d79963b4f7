@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d191a887_fdbfa606",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-23T07:01:35Z",
+      "side": 1,
+      "message": "Good call. Done. Thank you.",
+      "parentUuid": "1d660cf3_973b89c4",
+      "revId": "431a645045b2a5d4a1022dc4dd6df8d79963b4f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a46693e8_915e1089",
@@ -49,6 +67,30 @@
       "writtenOn": "2024-03-23T06:15:59Z",
       "side": 1,
       "message": "Remove the import here\n\n```suggestion\nimport android.os.HandlerThread;\n```",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 32
+      },
+      "revId": "431a645045b2a5d4a1022dc4dd6df8d79963b4f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "363c19c8_c7c57a7d",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-23T07:01:35Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "a46693e8_915e1089",
       "range": {
         "startLine": 29,
         "startChar": 0,
