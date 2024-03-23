@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30b6a018_58b0d9d5",
+        "filename": "framework/java/android/bluetooth/BluetoothAvrcpController.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-23T00:19:43Z",
+      "side": 1,
+      "message": "On purpose, the code is not implemented.\nI have opened a bug to track remove that",
+      "parentUuid": "18fd27a2_4231bb86",
+      "range": {
+        "startLine": 230,
+        "startChar": 16,
+        "endLine": 230,
+        "endChar": 23
+      },
+      "revId": "47d2cbd5433fc3db4840e140577c6626da9c7624",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf1b1f3f_4e9de5a2",
