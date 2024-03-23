@@ -350,20 +350,20 @@ class BluetoothManagerService {
                         BluetoothProtoEnums.ENABLE_DISABLE_REASON_FACTORY_RESET,
                         mContext.getPackageName(),
                         false);
-                mAdapter.stopBle(
-                        new AttributionSource.Builder(mContext.getAttributionSource())
-                                .setNext(source)
-                                .build());
+                mAdapter.stopBle(mContext.getAttributionSource());
+                        // new AttributionSource.Builder(mContext.getAttributionSource())
+                        //         .setNext(source)
+                        //         .build());
                 return true;
             } else if (state == STATE_ON) {
                 addActiveLog(
                         BluetoothProtoEnums.ENABLE_DISABLE_REASON_FACTORY_RESET,
                         mContext.getPackageName(),
                         false);
-                mAdapter.disable(
-                        new AttributionSource.Builder(mContext.getAttributionSource())
-                                .setNext(source)
-                                .build());
+                mAdapter.disable(mContext.getAttributionSource());
+                        // new AttributionSource.Builder(mContext.getAttributionSource())
+                        //         .setNext(source)
+                        //         .build());
                 return true;
             }
         } catch (RemoteException e) {
@@ -1179,16 +1179,16 @@ class BluetoothManagerService {
             if (isBleAppPresent()) {
                 // Need to stay at BLE ON. Disconnect all Gatt connections
                 Log.i(TAG, "sendBrEdrDownCallback: Staying in BLE_ON");
-                mAdapter.unregAllGattClient(
-                        new AttributionSource.Builder(mContext.getAttributionSource())
-                                .setNext(source)
-                                .build());
+                mAdapter.unregAllGattClient(mContext.getAttributionSource());
+                        // new AttributionSource.Builder(mContext.getAttributionSource())
+                        //         .setNext(source)
+                        //         .build());
             } else {
                 Log.i(TAG, "sendBrEdrDownCallback: Stopping ble");
-                mAdapter.stopBle(
-                        new AttributionSource.Builder(mContext.getAttributionSource())
-                                .setNext(source)
-                                .build());
+                mAdapter.stopBle(mContext.getAttributionSource());
+                        // new AttributionSource.Builder(mContext.getAttributionSource())
+                        //         .setNext(source)
+                        //         .build());
             }
         } catch (RemoteException e) {
             Log.e(TAG, "sendBrEdrDownCallback: Call to mAdapter failed.", e);
@@ -1481,10 +1481,10 @@ class BluetoothManagerService {
         mAdapterLock.readLock().lock();
         try {
             if (mAdapter != null) {
-                return mAdapter.getAddress(
-                        new AttributionSource.Builder(mContext.getAttributionSource())
-                                .setNext(source)
-                                .build());
+                return mAdapter.getAddress(mContext.getAttributionSource());
+                        // new AttributionSource.Builder(mContext.getAttributionSource())
+                        //         .setNext(source)
+                        //         .build());
             }
         } catch (RemoteException e) {
             Log.e(
@@ -1505,10 +1505,10 @@ class BluetoothManagerService {
         mAdapterLock.readLock().lock();
         try {
             if (mAdapter != null) {
-                return mAdapter.getName(
-                        new AttributionSource.Builder(mContext.getAttributionSource())
-                                .setNext(source)
-                                .build());
+                return mAdapter.getName(mContext.getAttributionSource());
+                        // new AttributionSource.Builder(mContext.getAttributionSource())
+                        //         .setNext(source)
+                        //         .build());
             }
         } catch (RemoteException e) {
             Log.e(TAG, "getName(): Unable to retrieve name remotely. Returning cached name", e);
