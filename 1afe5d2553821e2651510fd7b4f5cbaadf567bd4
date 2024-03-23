@@ -22,6 +22,30 @@
       },
       "revId": "1afe5d2553821e2651510fd7b4f5cbaadf567bd4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9b7cd08_4ae4db9b",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-23T03:29:22Z",
+      "side": 1,
+      "message": "Due to this CL\u0027s multiple file change and the fear of a potential merge conflict (which could take ~2 work days due to timezone difference), I\u0027ll submit this and remove it in a follow up CL. Thank you.",
+      "parentUuid": "55798e3d_dd0c9fa0",
+      "range": {
+        "startLine": 38,
+        "startChar": 33,
+        "endLine": 38,
+        "endChar": 36
+      },
+      "revId": "1afe5d2553821e2651510fd7b4f5cbaadf567bd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
