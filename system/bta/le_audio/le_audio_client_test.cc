@@ -2808,8 +2808,9 @@ class UnicastTest : public UnicastTestNoInit {
         framework_encode_preference;
     BtaAppRegisterCallback app_register_callback;
     EXPECT_CALL(mock_gatt_interface_, AppRegister(_, _, _))
-        .WillOnce(DoAll(SaveArg<0>(&gatt_callback),
-                        SaveArg<1>(&app_register_callback)));
+        .WillOnce(DoAll(SaveArg<0>(&gatt_callback), WithArg<1>([&](auto arg) {
+                          app_register_callback = std::move(arg);
+                        })));
     LeAudioClient::Initialize(
         &mock_audio_hal_client_callbacks_,
         base::Bind([](MockFunction<void()>* foo) { foo->Call(); },
@@ -2822,7 +2823,7 @@ class UnicastTest : public UnicastTestNoInit {
     ASSERT_TRUE(gatt_callback);
     ASSERT_TRUE(group_callbacks_);
     ASSERT_TRUE(app_register_callback);
-    app_register_callback.Run(gatt_if, GATT_SUCCESS);
+    std::move(app_register_callback).Run(gatt_if, GATT_SUCCESS);
     Mock::VerifyAndClearExpectations(&mock_gatt_interface_);
   }
 
@@ -2891,8 +2892,10 @@ TEST_F(UnicastTestNoInit, InitializeNoHal_2_1) {
 
   BtaAppRegisterCallback app_register_callback;
   ON_CALL(mock_gatt_interface_, AppRegister(_, _, _))
-      .WillByDefault(DoAll(SaveArg<0>(&gatt_callback),
-                           SaveArg<1>(&app_register_callback)));
+      .WillByDefault(
+          DoAll(SaveArg<0>(&gatt_callback), WithArg<1>([&](auto arg) {
+                  app_register_callback = std::move(arg);
+                })));
   std::vector<::bluetooth::le_audio::btle_audio_codec_config_t>
       framework_encode_preference;
 
@@ -3646,8 +3649,10 @@ TEST_F(UnicastTestNoInit, ConnectFailedDueToInvalidParameters) {
   // Initialize
   BtaAppRegisterCallback app_register_callback;
   ON_CALL(mock_gatt_interface_, AppRegister(_, _, _))
-      .WillByDefault(DoAll(SaveArg<0>(&gatt_callback),
-                           SaveArg<1>(&app_register_callback)));
+      .WillByDefault(
+          DoAll(SaveArg<0>(&gatt_callback), WithArg<1>([&](auto arg) {
+                  app_register_callback = std::move(arg);
+                })));
   LeAudioClient::Initialize(
       &mock_audio_hal_client_callbacks_,
       base::Bind([](MockFunction<void()>* foo) { foo->Call(); },
@@ -3655,7 +3660,8 @@ TEST_F(UnicastTestNoInit, ConnectFailedDueToInvalidParameters) {
       base::Bind([](MockFunction<bool()>* foo) { return foo->Call(); },
                  &mock_hal_2_1_verifier),
       framework_encode_preference);
-  if (app_register_callback) app_register_callback.Run(gatt_if, GATT_SUCCESS);
+  if (app_register_callback)
+    std::move(app_register_callback).Run(gatt_if, GATT_SUCCESS);
 
   // We need to wait for the storage callback before verifying stuff
   SyncOnMainLoop();
@@ -3768,8 +3774,10 @@ TEST_F(UnicastTestNoInit, LoadStoredEarbudsBroakenStorage) {
   // Initialize
   BtaAppRegisterCallback app_register_callback;
   ON_CALL(mock_gatt_interface_, AppRegister(_, _, _))
-      .WillByDefault(DoAll(SaveArg<0>(&gatt_callback),
-                           SaveArg<1>(&app_register_callback)));
+      .WillByDefault(
+          DoAll(SaveArg<0>(&gatt_callback), WithArg<1>([&](auto arg) {
+                  app_register_callback = std::move(arg);
+                })));
   LeAudioClient::Initialize(
       &mock_audio_hal_client_callbacks_,
       base::Bind([](MockFunction<void()>* foo) { foo->Call(); },
@@ -3777,7 +3785,8 @@ TEST_F(UnicastTestNoInit, LoadStoredEarbudsBroakenStorage) {
       base::Bind([](MockFunction<bool()>* foo) { return foo->Call(); },
                  &mock_hal_2_1_verifier),
       framework_encode_preference);
-  if (app_register_callback) app_register_callback.Run(gatt_if, GATT_SUCCESS);
+  if (app_register_callback)
+    std::move(app_register_callback).Run(gatt_if, GATT_SUCCESS);
 
   // We need to wait for the storage callback before verifying stuff
   SyncOnMainLoop();
@@ -3925,8 +3934,10 @@ TEST_F(UnicastTestNoInit, LoadStoredEarbudsCsisGrouped) {
   // Initialize
   BtaAppRegisterCallback app_register_callback;
   ON_CALL(mock_gatt_interface_, AppRegister(_, _, _))
-      .WillByDefault(DoAll(SaveArg<0>(&gatt_callback),
-                           SaveArg<1>(&app_register_callback)));
+      .WillByDefault(
+          DoAll(SaveArg<0>(&gatt_callback), WithArg<1>([&](auto arg) {
+                  app_register_callback = std::move(arg);
+                })));
   LeAudioClient::Initialize(
       &mock_audio_hal_client_callbacks_,
       base::Bind([](MockFunction<void()>* foo) { foo->Call(); },
@@ -3934,7 +3945,8 @@ TEST_F(UnicastTestNoInit, LoadStoredEarbudsCsisGrouped) {
       base::Bind([](MockFunction<bool()>* foo) { return foo->Call(); },
                  &mock_hal_2_1_verifier),
       framework_encode_preference);
-  if (app_register_callback) app_register_callback.Run(gatt_if, GATT_SUCCESS);
+  if (app_register_callback)
+    std::move(app_register_callback).Run(gatt_if, GATT_SUCCESS);
 
   // We need to wait for the storage callback before verifying stuff
   SyncOnMainLoop();
@@ -4078,8 +4090,10 @@ TEST_F(UnicastTestNoInit, ServiceChangedBeforeServiceIsConnected) {
   // Initialize
   BtaAppRegisterCallback app_register_callback;
   ON_CALL(mock_gatt_interface_, AppRegister(_, _, _))
-      .WillByDefault(DoAll(SaveArg<0>(&gatt_callback),
-                           SaveArg<1>(&app_register_callback)));
+      .WillByDefault(
+          DoAll(SaveArg<0>(&gatt_callback), WithArg<1>([&](auto arg) {
+                  app_register_callback = std::move(arg);
+                })));
   LeAudioClient::Initialize(
       &mock_audio_hal_client_callbacks_,
       base::Bind([](MockFunction<void()>* foo) { foo->Call(); },
@@ -4087,7 +4101,8 @@ TEST_F(UnicastTestNoInit, ServiceChangedBeforeServiceIsConnected) {
       base::Bind([](MockFunction<bool()>* foo) { return foo->Call(); },
                  &mock_hal_2_1_verifier),
       framework_encode_preference);
-  if (app_register_callback) app_register_callback.Run(gatt_if, GATT_SUCCESS);
+  if (app_register_callback)
+    std::move(app_register_callback).Run(gatt_if, GATT_SUCCESS);
 
   // We need to wait for the storage callback before verifying stuff
   SyncOnMainLoop();
@@ -4221,8 +4236,10 @@ TEST_F(UnicastTestNoInit, LoadStoredEarbudsCsisGroupedDifferently) {
   // Initialize
   BtaAppRegisterCallback app_register_callback;
   ON_CALL(mock_gatt_interface_, AppRegister(_, _, _))
-      .WillByDefault(DoAll(SaveArg<0>(&gatt_callback),
-                           SaveArg<1>(&app_register_callback)));
+      .WillByDefault(
+          DoAll(SaveArg<0>(&gatt_callback), WithArg<1>([&](auto arg) {
+                  app_register_callback = std::move(arg);
+                })));
   std::vector<::bluetooth::le_audio::btle_audio_codec_config_t>
       framework_encode_preference;
   LeAudioClient::Initialize(
@@ -4232,7 +4249,8 @@ TEST_F(UnicastTestNoInit, LoadStoredEarbudsCsisGroupedDifferently) {
       base::Bind([](MockFunction<bool()>* foo) { return foo->Call(); },
                  &mock_hal_2_1_verifier),
       framework_encode_preference);
-  if (app_register_callback) app_register_callback.Run(gatt_if, GATT_SUCCESS);
+  if (app_register_callback)
+    std::move(app_register_callback).Run(gatt_if, GATT_SUCCESS);
 
   // We need to wait for the storage callback before verifying stuff
   SyncOnMainLoop();

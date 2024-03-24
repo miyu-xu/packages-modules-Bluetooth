@@ -75,7 +75,7 @@ gatt_interface_t default_gatt_interface = {
           gatt_history_.Push(base::StringPrintf("%-32s eatt_support:%c",
                                                 "GATTC_AppRegister",
                                                 (eatt_support) ? 'T' : 'F'));
-          BTA_GATTC_AppRegister(p_client_cb, cb, eatt_support);
+          BTA_GATTC_AppRegister(p_client_cb, std::move(cb), eatt_support);
         },
     .BTA_GATTC_Close =
         [](uint16_t conn_id) {
