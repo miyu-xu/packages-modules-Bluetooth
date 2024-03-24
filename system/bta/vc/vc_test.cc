@@ -320,7 +320,7 @@ class VolumeControlTest : public ::testing::Test {
     VolumeControl::Initialize(callbacks.get(), base::DoNothing());
     ASSERT_TRUE(gatt_callback);
     ASSERT_TRUE(app_register_callback);
-    app_register_callback.Run(gatt_if, GATT_SUCCESS);
+    std::move(app_register_callback).Run(gatt_if, GATT_SUCCESS);
     ASSERT_TRUE(VolumeControl::IsVolumeControlRunning());
   }
 
@@ -531,7 +531,7 @@ TEST_F(VolumeControlTest, test_initialize) {
                  &init_cb_called));
   ASSERT_TRUE(gatt_callback);
   ASSERT_TRUE(app_register_callback);
-  app_register_callback.Run(gatt_if, GATT_SUCCESS);
+  std::move(app_register_callback).Run(gatt_if, GATT_SUCCESS);
   ASSERT_TRUE(init_cb_called);
 
   ASSERT_TRUE(VolumeControl::IsVolumeControlRunning());

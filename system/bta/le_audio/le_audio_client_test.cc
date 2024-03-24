@@ -2822,7 +2822,7 @@ class UnicastTest : public UnicastTestNoInit {
     ASSERT_TRUE(gatt_callback);
     ASSERT_TRUE(group_callbacks_);
     ASSERT_TRUE(app_register_callback);
-    app_register_callback.Run(gatt_if, GATT_SUCCESS);
+    std::move(app_register_callback).Run(gatt_if, GATT_SUCCESS);
     Mock::VerifyAndClearExpectations(&mock_gatt_interface_);
   }
 
@@ -3655,7 +3655,8 @@ TEST_F(UnicastTestNoInit, ConnectFailedDueToInvalidParameters) {
       base::Bind([](MockFunction<bool()>* foo) { return foo->Call(); },
                  &mock_hal_2_1_verifier),
       framework_encode_preference);
-  if (app_register_callback) app_register_callback.Run(gatt_if, GATT_SUCCESS);
+  if (app_register_callback)
+    std::move(app_register_callback).Run(gatt_if, GATT_SUCCESS);
 
   // We need to wait for the storage callback before verifying stuff
   SyncOnMainLoop();
@@ -3777,7 +3778,8 @@ TEST_F(UnicastTestNoInit, LoadStoredEarbudsBroakenStorage) {
       base::Bind([](MockFunction<bool()>* foo) { return foo->Call(); },
                  &mock_hal_2_1_verifier),
       framework_encode_preference);
-  if (app_register_callback) app_register_callback.Run(gatt_if, GATT_SUCCESS);
+  if (app_register_callback)
+    std::move(app_register_callback).Run(gatt_if, GATT_SUCCESS);
 
   // We need to wait for the storage callback before verifying stuff
   SyncOnMainLoop();
@@ -3934,7 +3936,8 @@ TEST_F(UnicastTestNoInit, LoadStoredEarbudsCsisGrouped) {
       base::Bind([](MockFunction<bool()>* foo) { return foo->Call(); },
                  &mock_hal_2_1_verifier),
       framework_encode_preference);
-  if (app_register_callback) app_register_callback.Run(gatt_if, GATT_SUCCESS);
+  if (app_register_callback)
+    std::move(app_register_callback).Run(gatt_if, GATT_SUCCESS);
 
   // We need to wait for the storage callback before verifying stuff
   SyncOnMainLoop();
@@ -4087,7 +4090,8 @@ TEST_F(UnicastTestNoInit, ServiceChangedBeforeServiceIsConnected) {
       base::Bind([](MockFunction<bool()>* foo) { return foo->Call(); },
                  &mock_hal_2_1_verifier),
       framework_encode_preference);
-  if (app_register_callback) app_register_callback.Run(gatt_if, GATT_SUCCESS);
+  if (app_register_callback)
+    std::move(app_register_callback).Run(gatt_if, GATT_SUCCESS);
 
   // We need to wait for the storage callback before verifying stuff
   SyncOnMainLoop();
@@ -4232,7 +4236,8 @@ TEST_F(UnicastTestNoInit, LoadStoredEarbudsCsisGroupedDifferently) {
       base::Bind([](MockFunction<bool()>* foo) { return foo->Call(); },
                  &mock_hal_2_1_verifier),
       framework_encode_preference);
-  if (app_register_callback) app_register_callback.Run(gatt_if, GATT_SUCCESS);
+  if (app_register_callback)
+    std::move(app_register_callback).Run(gatt_if, GATT_SUCCESS);
 
   // We need to wait for the storage callback before verifying stuff
   SyncOnMainLoop();

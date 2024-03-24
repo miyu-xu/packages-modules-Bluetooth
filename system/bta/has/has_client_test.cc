@@ -773,7 +773,7 @@ class HasClientTestBase : public ::testing::Test {
     HasClient::Initialize(callbacks.get(), base::DoNothing());
     ASSERT_TRUE(gatt_callback);
     ASSERT_TRUE(app_register_callback);
-    app_register_callback.Run(gatt_if, GATT_SUCCESS);
+    std::move(app_register_callback).Run(gatt_if, GATT_SUCCESS);
     ASSERT_TRUE(HasClient::IsHasClientRunning());
     Mock::VerifyAndClearExpectations(&gatt_interface);
   }

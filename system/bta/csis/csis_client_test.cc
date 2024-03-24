@@ -511,7 +511,7 @@ class CsisClientTest : public ::testing::Test {
                            Bind(&btif_storage_load_bonded_csis_devices));
     ASSERT_TRUE(gatt_callback);
     ASSERT_TRUE(app_register_callback);
-    app_register_callback.Run(gatt_if, GATT_SUCCESS);
+    std::move(app_register_callback).Run(gatt_if, GATT_SUCCESS);
     ASSERT_TRUE(CsisClient::IsCsisClientRunning());
   }
 
