@@ -4,6 +4,7 @@ filegroup {
         "device/bt_property.cc",
         "device/data_parser.cc",
         "device/eir_data.cc",
+        "device/manager.cc",
     ],
 }
 
