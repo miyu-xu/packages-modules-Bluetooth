@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62518635_8041bd5d",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-03-24T10:59:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8acdaad5_9188fa7c",
+      "range": {
+        "startLine": 211,
+        "startChar": 0,
+        "endLine": 217,
+        "endChar": 0
+      },
+      "revId": "66c3de5b1406b0c1ea04dd4a48bdf37d224f259a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15d45c25_8b7be227",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-03-22T03:55:06Z",
       "side": 1,
       "message": "Please make the comment clear.",
+      "revId": "66c3de5b1406b0c1ea04dd4a48bdf37d224f259a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb04445d_57b6b50f",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-03-24T10:59:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15d45c25_8b7be227",
       "revId": "66c3de5b1406b0c1ea04dd4a48bdf37d224f259a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "893ced2b_81f35fb3",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-03-24T10:59:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ea6f9c3_55f95917",
+      "range": {
+        "startLine": 234,
+        "startChar": 0,
+        "endLine": 261,
+        "endChar": 0
+      },
+      "revId": "66c3de5b1406b0c1ea04dd4a48bdf37d224f259a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b6694ceb_15fa702f",
@@ -77,6 +143,30 @@
       "writtenOn": "2024-03-22T03:55:06Z",
       "side": 1,
       "message": "Can we define the value in the char class and retrieve it from there? Then we don\u0027t need the map `uuid_to_value`. We can simply get the char from handle and then get the value.",
+      "range": {
+        "startLine": 666,
+        "startChar": 0,
+        "endLine": 669,
+        "endChar": 0
+      },
+      "revId": "66c3de5b1406b0c1ea04dd4a48bdf37d224f259a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba9fa942_f0f9d8a2",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-03-24T10:59:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6694ceb_15fa702f",
       "range": {
         "startLine": 666,
         "startChar": 0,
