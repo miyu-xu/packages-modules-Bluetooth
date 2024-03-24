@@ -37,12 +37,12 @@ namespace btif_avrcp_service {
 
 // Shared state between mocked functions and tests
 // Name: do_in_avrcp_jni
-// Params: const base::Closure& task
+// Params: base::OnceClosure task
 // Return: void
 struct do_in_avrcp_jni {
-  std::function<void(const base::Closure& task)> body{
-      [](const base::Closure& /* task */) {}};
-  void operator()(const base::Closure& task) { body(task); };
+  std::function<void(base::OnceClosure task)> body{
+      [](base::OnceClosure /* task */) {}};
+  void operator()(base::OnceClosure task) { body(std::move(task)); };
 };
 extern struct do_in_avrcp_jni do_in_avrcp_jni;
 

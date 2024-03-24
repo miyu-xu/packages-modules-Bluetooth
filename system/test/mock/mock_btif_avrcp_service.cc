@@ -59,9 +59,9 @@ namespace btif_avrcp_service {}  // namespace btif_avrcp_service
 }  // namespace test
 
 // Mocked functions, if any
-void do_in_avrcp_jni(const base::Closure& task) {
+void do_in_avrcp_jni(base::OncClosure task) {
   inc_func_call_count(__func__);
-  test::mock::btif_avrcp_service::do_in_avrcp_jni(task);
+  test::mock::btif_avrcp_service::do_in_avrcp_jni(std::move(task));
 }
 // Mocked functions complete
 // END mockcify generation
