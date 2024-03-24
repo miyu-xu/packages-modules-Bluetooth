@@ -26,7 +26,7 @@ class VolumeControl {
   virtual ~VolumeControl() = default;
 
   static void Initialize(bluetooth::vc::VolumeControlCallbacks* callbacks,
-                         const base::Closure& initCb);
+                         base::OnceClosure initCb);
   static void CleanUp();
   static VolumeControl* Get();
   static void DebugDump(int fd);

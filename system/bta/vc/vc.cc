@@ -85,12 +85,12 @@ class VolumeControlImpl : public VolumeControl {
   ~VolumeControlImpl() override = default;
 
   VolumeControlImpl(bluetooth::vc::VolumeControlCallbacks* callbacks,
-                    const base::Closure& initCb)
+                    base::OnceClosure initCb)
       : gatt_if_(0), callbacks_(callbacks), latest_operation_id_(0) {
     BTA_GATTC_AppRegister(
         gattc_callback_static,
         base::BindOnce(
-            [](const base::Closure& initCb, uint8_t client_id, uint8_t status) {
+            [](base::OnceClosure initCb, uint8_t client_id, uint8_t status) {
               if (status != GATT_SUCCESS) {
                 log::error(
                     "Can't start Volume Control profile - no gatt clients "
@@ -98,9 +98,9 @@ class VolumeControlImpl : public VolumeControl {
                 return;
               }
               instance->gatt_if_ = client_id;
-              initCb.Run();
+              std::move(initCb).Run();
             },
-            initCb),
+            std::move(initCb)),
         true);
   }
 
@@ -1248,14 +1248,14 @@ class VolumeControlImpl : public VolumeControl {
 }  // namespace
 
 void VolumeControl::Initialize(bluetooth::vc::VolumeControlCallbacks* callbacks,
-                               const base::Closure& initCb) {
+                               base::OnceClosure initCb) {
   std::scoped_lock<std::mutex> lock(instance_mutex);
   if (instance) {
     log::error("Already initialized!");
     return;
   }
 
-  instance = new VolumeControlImpl(callbacks, initCb);
+  instance = new VolumeControlImpl(callbacks, std::move(initCb));
 }
 
 bool VolumeControl::IsVolumeControlRunning() { return instance; }
