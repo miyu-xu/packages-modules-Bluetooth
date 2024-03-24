@@ -529,8 +529,8 @@ TEST_F(VolumeControlTest, test_initialize) {
                       })));
   VolumeControl::Initialize(
       callbacks.get(),
-      base::Bind([](bool* init_cb_called) { *init_cb_called = true; },
-                 &init_cb_called));
+      base::BindOnce([](bool* init_cb_called) { *init_cb_called = true; },
+                     &init_cb_called));
   ASSERT_TRUE(gatt_callback);
   ASSERT_TRUE(app_register_callback);
   std::move(app_register_callback).Run(gatt_if, GATT_SUCCESS);
