@@ -84,6 +84,20 @@ static_library("libbluetooth_gd") {
   ]
 }
 
+static_library("libbluetooth_gdx") {
+  sources = [
+    ":BluetoothDiscoverySources",
+    ":BluetoothShimSources",
+  ]
+
+  include_dirs = [ "." ]
+  configs += [ ":gd_defaults" ]
+  deps = [
+    "//bt/system/gd/shim:BluetoothShimSources",
+    "//bt/system/pdl:BluetoothGeneratedPackets_h",
+  ]
+}
+
 flatbuffer("BluetoothGeneratedDumpsysDataSchema_h") {
   sources = [
     "common/init_flags.fbs",
