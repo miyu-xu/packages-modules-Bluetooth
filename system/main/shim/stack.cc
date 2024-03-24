@@ -18,6 +18,7 @@
 
 #include "main/shim/stack.h"
 
+#include <android_bluetooth_flags.h>
 #include <bluetooth/log.h>
 #include <fcntl.h>
 #include <stdio.h>
@@ -27,6 +28,7 @@
 
 #include "common/init_flags.h"
 #include "common/strings.h"
+#include "discovery/device/manager.h"
 #include "hal/hci_hal.h"
 #include "hci/acl_manager.h"
 #include "hci/acl_manager/acl_scheduler.h"
@@ -97,6 +99,9 @@ void Stack::StartEverything() {
 #endif
   modules.add<hci::LeScanningManager>();
   modules.add<hci::DistanceMeasurementManager>();
+  if (IS_FLAG_ENABLED(gdx_device_discovery)) {
+    modules.add<discovery::device::Manager>();
+  }
   Start(&modules);
   is_running_ = true;
   // Make sure the leaf modules are started

@@ -62,6 +62,7 @@
 #include "bta/include/bta_le_audio_broadcaster_api.h"
 #include "bta/include/bta_vc_api.h"
 #include "btif/avrcp/avrcp_service.h"
+#include "btif/include/btif_jni_task.h"
 #include "btif/include/btif_sock.h"
 #include "btif/include/btif_sock_logging.h"
 #include "btif/include/core_callbacks.h"
@@ -92,8 +93,10 @@
 #include "device/include/esco_parameters.h"
 #include "device/include/interop.h"
 #include "device/include/interop_config.h"
+#include "discovery/device/manager.h"
 #include "internal_include/bt_target.h"
 #include "main/shim/dumpsys.h"
+#include "main/shim/stack.h"
 #include "os/log.h"
 #include "os/parameter_provider.h"
 #include "osi/include/alarm.h"
@@ -594,14 +597,52 @@ int get_remote_services(RawAddress* remote_addr, int transport) {
 static int start_discovery(void) {
   if (!interface_ready()) return BT_STATUS_NOT_READY;
 
-  do_in_main_thread(FROM_HERE, base::BindOnce(btif_dm_start_discovery));
+  if (IS_FLAG_ENABLED(gdx_device_discovery)) {
+    return bluetooth::shim::Stack::GetInstance()
+                   ->CallOnModule<
+                       bluetooth::discovery::device::Manager>([](auto* mod) {
+                     auto device_state =
+                         get_jni()->Bind([](bt_discovery_state_t state) {
+                           HAL_CBACK(bt_hal_cbacks, discovery_state_changed_cb,
+                                     state);
+                         });
+                     auto device_found_cb = get_jni()->Bind(
+                         [](std::vector<std::shared_ptr<property::BtProperty>>
+                                bt_properties) {
+                           auto properties =
+                               property::BtPropertyLegacy(bt_properties);
+                           HAL_CBACK(bt_hal_cbacks, device_found_cb,
+                                     properties.Len(), properties.Ptr());
+                         });
+                     mod->StartDiscovery(device_state, device_found_cb);
+                   })
+               ? BT_STATUS_SUCCESS
+               : BT_STATUS_NOT_READY;
+  } else {
+    do_in_main_thread(FROM_HERE, base::BindOnce(btif_dm_start_discovery));
+  }
   return BT_STATUS_SUCCESS;
 }
 
 static int cancel_discovery(void) {
   if (!interface_ready()) return BT_STATUS_NOT_READY;
 
-  do_in_main_thread(FROM_HERE, base::BindOnce(btif_dm_cancel_discovery));
+  if (IS_FLAG_ENABLED(gdx_device_discovery)) {
+    return bluetooth::shim::Stack::GetInstance()
+                   ->CallOnModule<bluetooth::discovery::device::Manager>(
+                       [](auto* mgr) {
+                         auto device_state =
+                             get_jni()->Bind([](bt_discovery_state_t state) {
+                               HAL_CBACK(bt_hal_cbacks,
+                                         discovery_state_changed_cb, state);
+                             });
+                         mgr->CancelDiscovery(device_state);
+                       })
+               ? BT_STATUS_SUCCESS
+               : BT_STATUS_NOT_READY;
+  } else {
+    do_in_main_thread(FROM_HERE, base::BindOnce(btif_dm_cancel_discovery));
+  }
   return BT_STATUS_SUCCESS;
 }
 
