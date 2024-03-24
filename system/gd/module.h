@@ -124,6 +124,7 @@ class Module {
   }
 
   virtual DumpsysDataFinisher GetDumpsysData(flatbuffers::FlatBufferBuilder* builder) const;
+  virtual void GetDumpsysData(int fd) const;
 
  private:
   Module* GetDependency(const ModuleFactory* module) const;
