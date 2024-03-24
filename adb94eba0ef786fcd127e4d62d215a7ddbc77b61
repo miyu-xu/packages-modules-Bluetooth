@@ -16,6 +16,24 @@
       "message": "We need to add ras to packages/modules/Bluetooth/system/pdl/BUILD.gn",
       "revId": "adb94eba0ef786fcd127e4d62d215a7ddbc77b61",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91963413_38c7ad37",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-03-24T03:48:47Z",
+      "side": 1,
+      "message": "Got it, thanks!",
+      "parentUuid": "2ccd3b74_aed0c36f",
+      "revId": "adb94eba0ef786fcd127e4d62d215a7ddbc77b61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
