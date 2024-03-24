@@ -49,6 +49,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0525655b_53790726",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 4290,
+      "author": {
+        "id": 1962420
+      },
+      "writtenOn": "2024-03-24T16:14:18Z",
+      "side": 1,
+      "message": "Do we need to break here and continue executing so that we can propagate the DEVICE_FOUND event if necessary?",
+      "range": {
+        "startLine": 4290,
+        "startChar": 20,
+        "endLine": 4290,
+        "endChar": 26
+      },
+      "revId": "33fbc9228df6e03841188768aa244e2b862becd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7f9f5940_00ccefc3",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
         "patchSetId": 2
@@ -66,6 +89,46 @@
         "endLine": 4303,
         "endChar": 26
       },
+      "revId": "33fbc9228df6e03841188768aa244e2b862becd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c3c4234_aa210972",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 4304,
+      "author": {
+        "id": 1962420
+      },
+      "writtenOn": "2024-03-24T16:14:18Z",
+      "side": 1,
+      "message": "The DEVICE_FOUND event is received only once per device when it is first found. So this may not be required.",
+      "range": {
+        "startLine": 4298,
+        "startChar": 0,
+        "endLine": 4304,
+        "endChar": 17
+      },
+      "revId": "33fbc9228df6e03841188768aa244e2b862becd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4883648_e2ff30cb",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 4321,
+      "author": {
+        "id": 1962420
+      },
+      "writtenOn": "2024-03-24T16:14:18Z",
+      "side": 1,
+      "message": "Once we add the child monitor, I think we can return here as we don\u0027t want to propagate the DEVICE_FOUND for the pattern monitor. We only propagate that for the address monitor.",
       "revId": "33fbc9228df6e03841188768aa244e2b862becd7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
