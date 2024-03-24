@@ -45,8 +45,8 @@ namespace avrcp {
 AvrcpService* AvrcpService::instance_ = nullptr;
 AvrcpService::ServiceInterfaceImpl* AvrcpService::service_interface_ = nullptr;
 
-void do_in_avrcp_jni(const base::Closure& task) {
-  do_in_jni_thread(FROM_HERE, task);
+void do_in_avrcp_jni(base::OnceClosure task) {
+  do_in_jni_thread(FROM_HERE, std::move(task));
 }
 
 class A2dpInterfaceImpl : public A2dpInterface {
@@ -61,9 +61,7 @@ class AvrcpInterfaceImpl : public AvrcpInterface {
  public:
   uint16_t GetAvrcpControlVersion() { return AVRC_GetControlProfileVersion(); }
 
-  uint16_t GetAvrcpVersion() {
-    return AVRC_GetProfileVersion();
-  }
+  uint16_t GetAvrcpVersion() { return AVRC_GetProfileVersion(); }
 
   uint16_t AddRecord(uint16_t service_uuid, const char* p_service_name,
                      const char* p_provider_name, uint16_t categories,
@@ -158,8 +156,8 @@ class MediaInterfaceWrapper : public MediaInterface {
   MediaInterfaceWrapper(MediaInterface* cb) : wrapped_(cb){};
 
   void SendKeyEvent(uint8_t key, KeyState state) override {
-    do_in_avrcp_jni(base::Bind(&MediaInterface::SendKeyEvent,
-                               base::Unretained(wrapped_), key, state));
+    do_in_avrcp_jni(base::BindOnce(&MediaInterface::SendKeyEvent,
+                                   base::Unretained(wrapped_), key, state));
   }
 
   void GetSongInfo(SongInfoCallback info_cb) override {
@@ -169,8 +167,8 @@ class MediaInterfaceWrapper : public MediaInterface {
 
     auto bound_cb = base::Bind(cb_lambda, info_cb);
 
-    do_in_avrcp_jni(base::Bind(&MediaInterface::GetSongInfo,
-                               base::Unretained(wrapped_), bound_cb));
+    do_in_avrcp_jni(base::BindOnce(&MediaInterface::GetSongInfo,
+                                   base::Unretained(wrapped_), bound_cb));
   }
 
   void GetPlayStatus(PlayStatusCallback status_cb) override {
@@ -180,8 +178,8 @@ class MediaInterfaceWrapper : public MediaInterface {
 
     auto bound_cb = base::Bind(cb_lambda, status_cb);
 
-    do_in_avrcp_jni(base::Bind(&MediaInterface::GetPlayStatus,
-                               base::Unretained(wrapped_), bound_cb));
+    do_in_avrcp_jni(base::BindOnce(&MediaInterface::GetPlayStatus,
+                                   base::Unretained(wrapped_), bound_cb));
   }
 
   void GetNowPlayingList(NowPlayingCallback now_playing_cb) override {
@@ -193,8 +191,8 @@ class MediaInterfaceWrapper : public MediaInterface {
 
     auto bound_cb = base::Bind(cb_lambda, now_playing_cb);
 
-    do_in_avrcp_jni(base::Bind(&MediaInterface::GetNowPlayingList,
-                               base::Unretained(wrapped_), bound_cb));
+    do_in_avrcp_jni(base::BindOnce(&MediaInterface::GetNowPlayingList,
+                                   base::Unretained(wrapped_), bound_cb));
   }
 
   void GetMediaPlayerList(MediaListCallback list_cb) override {
@@ -206,8 +204,8 @@ class MediaInterfaceWrapper : public MediaInterface {
 
     auto bound_cb = base::Bind(cb_lambda, list_cb);
 
-    do_in_avrcp_jni(base::Bind(&MediaInterface::GetMediaPlayerList,
-                               base::Unretained(wrapped_), bound_cb));
+    do_in_avrcp_jni(base::BindOnce(&MediaInterface::GetMediaPlayerList,
+                                   base::Unretained(wrapped_), bound_cb));
   }
 
   void GetFolderItems(uint16_t player_id, std::string media_id,
@@ -219,9 +217,9 @@ class MediaInterfaceWrapper : public MediaInterface {
 
     auto bound_cb = base::Bind(cb_lambda, folder_cb);
 
-    do_in_avrcp_jni(base::Bind(&MediaInterface::GetFolderItems,
-                               base::Unretained(wrapped_), player_id, media_id,
-                               bound_cb));
+    do_in_avrcp_jni(base::BindOnce(&MediaInterface::GetFolderItems,
+                                   base::Unretained(wrapped_), player_id,
+                                   media_id, bound_cb));
   }
 
   void SetBrowsedPlayer(uint16_t player_id,
@@ -234,21 +232,21 @@ class MediaInterfaceWrapper : public MediaInterface {
 
     auto bound_cb = base::Bind(cb_lambda, browse_cb);
 
-    do_in_avrcp_jni(base::Bind(&MediaInterface::SetBrowsedPlayer,
-                               base::Unretained(wrapped_), player_id,
-                               bound_cb));
+    do_in_avrcp_jni(base::BindOnce(&MediaInterface::SetBrowsedPlayer,
+                                   base::Unretained(wrapped_), player_id,
+                                   bound_cb));
   }
 
   void PlayItem(uint16_t player_id, bool now_playing,
                 std::string media_id) override {
-    do_in_avrcp_jni(base::Bind(&MediaInterface::PlayItem,
-                               base::Unretained(wrapped_), player_id,
-                               now_playing, media_id));
+    do_in_avrcp_jni(base::BindOnce(&MediaInterface::PlayItem,
+                                   base::Unretained(wrapped_), player_id,
+                                   now_playing, media_id));
   }
 
   void SetActiveDevice(const RawAddress& address) override {
-    do_in_avrcp_jni(base::Bind(&MediaInterface::SetActiveDevice,
-                               base::Unretained(wrapped_), address));
+    do_in_avrcp_jni(base::BindOnce(&MediaInterface::SetActiveDevice,
+                                   base::Unretained(wrapped_), address));
   }
 
   void RegisterUpdateCallback(MediaCallbacks* callback) override {
@@ -270,10 +268,10 @@ class VolumeInterfaceWrapper : public VolumeInterface {
   VolumeInterfaceWrapper(VolumeInterface* interface) : wrapped_(interface){};
 
   void DeviceConnected(const RawAddress& bdaddr) override {
-    do_in_avrcp_jni(
-        base::Bind(static_cast<void (VolumeInterface::*)(const RawAddress&)>(
-                       &VolumeInterface::DeviceConnected),
-                   base::Unretained(wrapped_), bdaddr));
+    do_in_avrcp_jni(base::BindOnce(
+        static_cast<void (VolumeInterface::*)(const RawAddress&)>(
+            &VolumeInterface::DeviceConnected),
+        base::Unretained(wrapped_), bdaddr));
   }
 
   void DeviceConnected(const RawAddress& bdaddr, VolumeChangedCb cb) override {
@@ -283,20 +281,21 @@ class VolumeInterfaceWrapper : public VolumeInterface {
 
     auto bound_cb = base::Bind(cb_lambda, cb);
 
-    do_in_avrcp_jni(base::Bind(static_cast<void (VolumeInterface::*)(
-                                   const RawAddress&, VolumeChangedCb)>(
-                                   &VolumeInterface::DeviceConnected),
-                               base::Unretained(wrapped_), bdaddr, bound_cb));
+    do_in_avrcp_jni(base::BindOnce(static_cast<void (VolumeInterface::*)(
+                                       const RawAddress&, VolumeChangedCb)>(
+                                       &VolumeInterface::DeviceConnected),
+                                   base::Unretained(wrapped_), bdaddr,
+                                   bound_cb));
   }
 
   void DeviceDisconnected(const RawAddress& bdaddr) override {
-    do_in_avrcp_jni(base::Bind(&VolumeInterface::DeviceDisconnected,
-                               base::Unretained(wrapped_), bdaddr));
+    do_in_avrcp_jni(base::BindOnce(&VolumeInterface::DeviceDisconnected,
+                                   base::Unretained(wrapped_), bdaddr));
   }
 
   void SetVolume(int8_t volume) override {
-    do_in_avrcp_jni(base::Bind(&VolumeInterface::SetVolume,
-                               base::Unretained(wrapped_), volume));
+    do_in_avrcp_jni(base::BindOnce(&VolumeInterface::SetVolume,
+                                   base::Unretained(wrapped_), volume));
   }
 
  private:
@@ -318,8 +317,8 @@ class PlayerSettingsInterfaceWrapper : public PlayerSettingsInterface {
 
     auto bound_cb = base::Bind(cb_lambda, cb);
 
-    do_in_avrcp_jni(base::Bind(&PlayerSettingsInterface::ListPlayerSettings,
-                               base::Unretained(wrapped_), bound_cb));
+    do_in_avrcp_jni(base::BindOnce(&PlayerSettingsInterface::ListPlayerSettings,
+                                   base::Unretained(wrapped_), bound_cb));
   }
 
   void ListPlayerSettingValues(PlayerAttribute setting,
@@ -333,8 +332,8 @@ class PlayerSettingsInterfaceWrapper : public PlayerSettingsInterface {
     auto bound_cb = base::Bind(cb_lambda, cb);
 
     do_in_avrcp_jni(
-        base::Bind(&PlayerSettingsInterface::ListPlayerSettingValues,
-                   base::Unretained(wrapped_), setting, bound_cb));
+        base::BindOnce(&PlayerSettingsInterface::ListPlayerSettingValues,
+                       base::Unretained(wrapped_), setting, bound_cb));
   }
 
   void GetCurrentPlayerSettingValue(
@@ -349,7 +348,7 @@ class PlayerSettingsInterfaceWrapper : public PlayerSettingsInterface {
 
     auto bound_cb = base::Bind(cb_lambda, cb);
 
-    do_in_avrcp_jni(base::Bind(
+    do_in_avrcp_jni(base::BindOnce(
         &PlayerSettingsInterface::GetCurrentPlayerSettingValue,
         base::Unretained(wrapped_), std::move(attributes), bound_cb));
   }
@@ -363,7 +362,7 @@ class PlayerSettingsInterfaceWrapper : public PlayerSettingsInterface {
 
     auto bound_cb = base::Bind(cb_lambda, cb);
 
-    do_in_avrcp_jni(base::Bind(
+    do_in_avrcp_jni(base::BindOnce(
         &PlayerSettingsInterface::SetPlayerSettings, base::Unretained(wrapped_),
         std::move(attributes), std::move(values), bound_cb));
   }
@@ -382,10 +381,9 @@ void AvrcpService::Init(MediaInterface* media_interface,
   uint16_t supported_features = GetSupportedFeatures(profile_version);
   sdp_record_handle = get_legacy_stack_sdp_api()->handle.SDP_CreateRecord();
 
-  avrcp_interface_.AddRecord(UUID_SERVCLASS_AV_REM_CTRL_TARGET,
-                             "AV Remote Control Target", NULL,
-                             supported_features, sdp_record_handle, true,
-                             profile_version, 0);
+  avrcp_interface_.AddRecord(
+      UUID_SERVCLASS_AV_REM_CTRL_TARGET, "AV Remote Control Target", NULL,
+      supported_features, sdp_record_handle, true, profile_version, 0);
   bta_sys_add_uuid(UUID_SERVCLASS_AV_REM_CTRL_TARGET);
 
   ct_sdp_record_handle = get_legacy_stack_sdp_api()->handle.SDP_CreateRecord();
@@ -460,13 +458,12 @@ void AvrcpService::RegisterBipServer(int psm) {
   log::info("AVRCP Target Service has registered a BIP OBEX server, psm={}",
             psm);
   avrcp_interface_.RemoveRecord(sdp_record_handle);
-  uint16_t supported_features
-      = GetSupportedFeatures(profile_version) | AVRC_SUPF_TG_PLAYER_COVER_ART;
+  uint16_t supported_features =
+      GetSupportedFeatures(profile_version) | AVRC_SUPF_TG_PLAYER_COVER_ART;
   sdp_record_handle = get_legacy_stack_sdp_api()->handle.SDP_CreateRecord();
-  avrcp_interface_.AddRecord(UUID_SERVCLASS_AV_REM_CTRL_TARGET,
-                             "AV Remote Control Target", NULL,
-                             supported_features, sdp_record_handle, true,
-                             profile_version, psm);
+  avrcp_interface_.AddRecord(
+      UUID_SERVCLASS_AV_REM_CTRL_TARGET, "AV Remote Control Target", NULL,
+      supported_features, sdp_record_handle, true, profile_version, psm);
 }
 
 void AvrcpService::UnregisterBipServer() {
@@ -474,10 +471,9 @@ void AvrcpService::UnregisterBipServer() {
   avrcp_interface_.RemoveRecord(sdp_record_handle);
   uint16_t supported_features = GetSupportedFeatures(profile_version);
   sdp_record_handle = get_legacy_stack_sdp_api()->handle.SDP_CreateRecord();
-  avrcp_interface_.AddRecord(UUID_SERVCLASS_AV_REM_CTRL_TARGET,
-                             "AV Remote Control Target", NULL,
-                             supported_features, sdp_record_handle, true,
-                             profile_version, 0);
+  avrcp_interface_.AddRecord(
+      UUID_SERVCLASS_AV_REM_CTRL_TARGET, "AV Remote Control Target", NULL,
+      supported_features, sdp_record_handle, true, profile_version, 0);
 }
 
 AvrcpService* AvrcpService::Get() {
