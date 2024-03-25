@@ -171,9 +171,10 @@ class SourceAudioHalAsrc::ClockRecovery
   }
 
  public:
-  ClockRecovery() : state_{.id = StateId::RESET}, reference_timing_{0, 0, 0} {
+  ClockRecovery(bluetooth::common::MessageLoopThread* thread)
+      : state_{.id = StateId::RESET}, reference_timing_{0, 0, 0} {
     read_clock_timer_.SchedulePeriodic(
-        get_main_thread()->GetWeakPtr(), FROM_HERE,
+        thread->GetWeakPtr(), FROM_HERE,
         base::BindRepeating(
             [](void*) {
               bluetooth::shim::GetHciLayer()->EnqueueCommand(
@@ -415,10 +416,9 @@ inline int32_t SourceAudioHalAsrc::Resampler::Filter(const int32_t* in,
 
 #endif
 
-SourceAudioHalAsrc::SourceAudioHalAsrc(int channels, int sample_rate,
-                                       int bit_depth, int interval_us,
-                                       int num_burst_buffers,
-                                       int burst_delay_ms)
+SourceAudioHalAsrc::SourceAudioHalAsrc(
+    bluetooth::common::MessageLoopThread* thread, int channels, int sample_rate,
+    int bit_depth, int interval_us, int num_burst_buffers, int burst_delay_ms)
     : sample_rate_(sample_rate),
       bit_depth_(bit_depth),
       interval_us_(interval_us),
@@ -457,7 +457,7 @@ SourceAudioHalAsrc::SourceAudioHalAsrc(int channels, int sample_rate,
   // Setup modules, the 32 bits resampler is choosed over the 16 bits resampler
   // when the PCM bit_depth is higher than 16 bits.
 
-  clock_recovery_ = std::make_unique<ClockRecovery>();
+  clock_recovery_ = std::make_unique<ClockRecovery>(thread);
   resamplers_ = std::make_unique<std::vector<Resampler>>(channels, bit_depth_);
 
   // Deduct from the PCM stream characteristics, the size of the pool buffers
