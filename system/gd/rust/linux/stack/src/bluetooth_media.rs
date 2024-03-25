@@ -12,6 +12,9 @@ use bt_topshim::profiles::a2dp::{
 use bt_topshim::profiles::avrcp::{
     Avrcp, AvrcpCallbacks, AvrcpCallbacksDispatcher, PlayerMetadata,
 };
+use bt_topshim::profiles::csis::{
+    BtCsisConnectionState, CsisClient, CsisClientCallbacks, CsisClientCallbacksDispatcher,
+};
 use bt_topshim::profiles::hfp::interop_insert_call_when_sco_start;
 use bt_topshim::profiles::hfp::{
     BthfAudioState, BthfConnectionState, CallHoldCommand, CallInfo, CallState, EscoCodingFormat,
@@ -23,6 +26,9 @@ use bt_topshim::profiles::le_audio::{
     BtLeAudioGroupStatus, BtLeAudioGroupStreamStatus, BtLeAudioSource,
     BtLeAudioUnicastMonitorModeStatus, BtLeAudioUsage, BtLePcmConfig, LeAudioClient,
     LeAudioClientCallbacks, LeAudioClientCallbacksDispatcher, SinkMetadata, SourceMetadata,
+};
+use bt_topshim::profiles::vc::{
+    BtVcConnectionState, VolumeControl, VolumeControlCallbacks, VolumeControlCallbacksDispatcher,
 };
 use bt_topshim::profiles::ProfileConnectionState;
 use bt_topshim::{metrics, sysprop, topstack};
@@ -77,7 +83,7 @@ const MEDIA_CLASSIC_AUDIO_PROFILES: &[uuid::Profile] =
     &[uuid::Profile::A2dpSink, uuid::Profile::Hfp, uuid::Profile::AvrcpController];
 
 const MEDIA_LE_AUDIO_PROFILES: &[uuid::Profile] =
-    &[uuid::Profile::LeAudio];
+    &[uuid::Profile::LeAudio, uuid::Profile::VolumeControl, uuid::Profile::CoordinatedSet];
 
 pub trait IBluetoothMedia {
     ///
@@ -98,6 +104,10 @@ pub trait IBluetoothMedia {
 
     fn connect_le(&mut self, address: String);
     fn disconnect_le(&mut self, address: String);
+    fn connect_vc(&mut self, address: String);
+    fn disconnect_vc(&mut self, address: String);
+    fn connect_csis(&mut self, address: String);
+    fn disconnect_csis(&mut self, address: String);
 
     // Set the device as the active A2DP device
     fn set_active_device(&mut self, address: String);
@@ -181,6 +191,9 @@ pub trait IBluetoothMedia {
         direction: BtLeAudioDirection,
     ) -> BtLeAudioUnicastMonitorModeStatus;
     fn get_group_stream_status(&mut self, group_id: i32) -> BtLeAudioGroupStreamStatus;
+
+    /// Valid volume range is [0, 255], see 2.3.1.1, VCS v1.
+    fn set_group_volume(&mut self, group_id: i32, volume: u8);
 }
 
 pub trait IBluetoothMediaCallback: RPCProxy {
@@ -331,6 +344,10 @@ pub enum MediaActions {
 
     ConnectLe(String),
     DisconnectLe(String),
+    ConnectVc(String),
+    DisconnectVc(String),
+    ConnectCsis(String),
+    DisconnectCsis(String),
 }
 
 #[derive(Debug, Clone, PartialEq)]
@@ -391,6 +408,10 @@ pub struct BluetoothMedia {
     le_audio_states: HashMap<RawAddress, BtLeAudioConnectionState>,
     le_audio_unicast_monitor_mode_status: HashMap<i32, BtLeAudioUnicastMonitorModeStatus>,
     le_audio_group_stream_status: HashMap<i32, BtLeAudioGroupStreamStatus>,
+    vc: Option<VolumeControl>,
+    vc_states: HashMap<RawAddress, BtVcConnectionState>,
+    csis: Option<CsisClient>,
+    csis_states: HashMap<RawAddress, BtCsisConnectionState>,
 }
 
 impl BluetoothMedia {
@@ -451,6 +472,10 @@ impl BluetoothMedia {
             le_audio_states: HashMap::new(),
             le_audio_unicast_monitor_mode_status: HashMap::new(),
             le_audio_group_stream_status: HashMap::new(),
+            vc: None,
+            vc_states: HashMap::new(),
+            csis: None,
+            csis_states: HashMap::new(),
         }
     }
 
@@ -525,6 +550,16 @@ impl BluetoothMedia {
                     le_audio.enable();
                 }
             }
+            &Profile::VolumeControl => {
+                if let Some(vc) = &mut self.vc {
+                    vc.enable();
+                }
+            }
+            &Profile::CoordinatedSet => {
+                if let Some(csis) = &mut self.csis {
+                    csis.enable();
+                }
+            }
             _ => {
                 warn!("Tried to enable {} in bluetooth_media", profile);
                 return;
@@ -560,6 +595,16 @@ impl BluetoothMedia {
                     le_audio.disable();
                 }
             }
+            &Profile::VolumeControl => {
+                if let Some(vc) = &mut self.vc {
+                    vc.disable();
+                }
+            }
+            &Profile::CoordinatedSet => {
+                if let Some(csis) = &mut self.csis {
+                    csis.disable();
+                }
+            }
             _ => {
                 warn!("Tried to disable {} in bluetooth_media", profile);
                 return;
@@ -581,9 +626,127 @@ impl BluetoothMedia {
             &Profile::LeAudio => {
                 Some(self.le_audio.as_ref().map_or(false, |le_audio| le_audio.is_enabled()))
             }
+            &Profile::VolumeControl => Some(self.vc.as_ref().map_or(false, |vc| vc.is_enabled())),
+            &Profile::CoordinatedSet => {
+                Some(self.csis.as_ref().map_or(false, |csis| csis.is_enabled()))
+            }
             _ => {
                 warn!("Tried to query enablement status of {} in bluetooth_media", profile);
                 None
+            }
+        }
+    }
+
+    pub fn dispatch_csis_callbacks(&mut self, cb: CsisClientCallbacks) {
+        match cb {
+            CsisClientCallbacks::ConnectionState(addr, state) => {
+                if !self.csis_states.get(&addr).is_none()
+                    && state == *self.csis_states.get(&addr).unwrap()
+                {
+                    return;
+                }
+
+                info!("[{}]: csis connection state {:?}", DisplayAddress(&addr), state);
+                match state {
+                    BtCsisConnectionState::Connected => {
+                        // TODO
+
+                        self.csis_states.insert(addr, state);
+                    }
+                    BtCsisConnectionState::Disconnected => {
+                        self.csis_states.remove(&addr);
+                    }
+                    _ => {
+                        self.csis_states.insert(addr, state);
+                    }
+                }
+            }
+            CsisClientCallbacks::DeviceAvailable(addr, group_id, group_size, rank, uuid) => {
+                info!(
+                    "[{}]: csis group_id={:?}, group_size={:?}, rank={:?}, uuid={:?}",
+                    DisplayAddress(&addr),
+                    group_id,
+                    group_size,
+                    rank,
+                    uuid
+                );
+            }
+            CsisClientCallbacks::SetMemberAvailable(addr, group_id) => {
+                info!("[{}]: csis group_id={:?}", DisplayAddress(&addr), group_id);
+            }
+            CsisClientCallbacks::GroupLockChanged(group_id, locked, status) => {
+                info!("csis group_id={:?}, locked={:?}, status={:?}", group_id, locked, status);
+            }
+        }
+    }
+
+    pub fn dispatch_vc_callbacks(&mut self, cb: VolumeControlCallbacks) {
+        match cb {
+            VolumeControlCallbacks::ConnectionState(state, addr) => {
+                if !self.vc_states.get(&addr).is_none()
+                    && state == *self.vc_states.get(&addr).unwrap()
+                {
+                    return;
+                }
+
+                info!("[{}]: vc connection state {:?}", DisplayAddress(&addr), state);
+                match state {
+                    BtVcConnectionState::Connected => {
+                        self.vc_states.insert(addr, state);
+                    }
+                    BtVcConnectionState::Disconnected => {
+                        self.vc_states.remove(&addr);
+                    }
+                    _ => {
+                        self.vc_states.insert(addr, state);
+                    }
+                }
+            }
+            VolumeControlCallbacks::VolumeState(addr, volume, mute, is_autonomous) => {
+                info!(
+                    "[{}]: vc volume state volume={:?}, mute={:?}, is_autonomous={:?}",
+                    DisplayAddress(&addr),
+                    volume,
+                    mute,
+                    is_autonomous
+                );
+            }
+            VolumeControlCallbacks::GroupVolumeState(group_id, volume, mute, is_autonomous) => {
+                info!(
+                    "[{}]: vc volume state volume={:?}, mute={:?}, is_autonomous={:?}",
+                    group_id, volume, mute, is_autonomous
+                );
+            }
+            VolumeControlCallbacks::DeviceAvailable(addr, num_offset) => {
+                info!(
+                    "[{}]: vc device available num_offset={:?}",
+                    DisplayAddress(&addr),
+                    num_offset
+                );
+            }
+            VolumeControlCallbacks::ExtAudioOutVolume(addr, ext_output_id, offset) => {
+                info!(
+                    "[{}]: vc ext_audio_out_volume ext_output_id={:?}, offset={:?}",
+                    DisplayAddress(&addr),
+                    ext_output_id,
+                    offset
+                );
+            }
+            VolumeControlCallbacks::ExtAudioOutLocation(addr, ext_output_id, location) => {
+                info!(
+                    "[{}]: vc ext_audio_out_location ext_output_id={:?}, location={:?}",
+                    DisplayAddress(&addr),
+                    ext_output_id,
+                    location
+                );
+            }
+            VolumeControlCallbacks::ExtAudioOutDescription(addr, ext_output_id, descr) => {
+                info!(
+                    "[{}]: vc ext_audio_out_description ext_output_id={:?}, descr={:?}",
+                    DisplayAddress(&addr),
+                    ext_output_id,
+                    descr
+                );
             }
         }
     }
@@ -993,6 +1156,10 @@ impl BluetoothMedia {
 
             MediaActions::ConnectLe(address) => self.connect_le(address),
             MediaActions::DisconnectLe(address) => self.disconnect_le(address),
+            MediaActions::ConnectVc(address) => self.connect_vc(address),
+            MediaActions::DisconnectVc(address) => self.disconnect_vc(address),
+            MediaActions::ConnectCsis(address) => self.connect_csis(address),
+            MediaActions::DisconnectCsis(address) => self.disconnect_csis(address),
         }
     }
 
@@ -2517,6 +2684,28 @@ fn get_le_audio_dispatcher(tx: Sender<Message>) -> LeAudioClientCallbacksDispatc
     }
 }
 
+fn get_vc_dispatcher(tx: Sender<Message>) -> VolumeControlCallbacksDispatcher {
+    VolumeControlCallbacksDispatcher {
+        dispatch: Box::new(move |cb| {
+            let txl = tx.clone();
+            topstack::get_runtime().spawn(async move {
+                let _ = txl.send(Message::VolumeControl(cb)).await;
+            });
+        }),
+    }
+}
+
+fn get_csis_dispatcher(tx: Sender<Message>) -> CsisClientCallbacksDispatcher {
+    CsisClientCallbacksDispatcher {
+        dispatch: Box::new(move |cb| {
+            let txl = tx.clone();
+            topstack::get_runtime().spawn(async move {
+                let _ = txl.send(Message::CsisClient(cb)).await;
+            });
+        }),
+    }
+}
+
 impl IBluetoothMedia for BluetoothMedia {
     fn register_callback(&mut self, callback: Box<dyn IBluetoothMediaCallback + Send>) -> bool {
         let _id = self.callbacks.lock().unwrap().add_callback(callback);
@@ -2548,6 +2737,16 @@ impl IBluetoothMedia for BluetoothMedia {
         let le_audio_dispatcher = get_le_audio_dispatcher(self.tx.clone());
         self.le_audio = Some(LeAudioClient::new(&self.intf.lock().unwrap()));
         self.le_audio.as_mut().unwrap().initialize(le_audio_dispatcher);
+
+        // VC
+        let vc_dispatcher = get_vc_dispatcher(self.tx.clone());
+        self.vc = Some(VolumeControl::new(&self.intf.lock().unwrap()));
+        self.vc.as_mut().unwrap().initialize(vc_dispatcher);
+
+        // CSIS
+        let csis_dispatcher = get_csis_dispatcher(self.tx.clone());
+        self.csis = Some(CsisClient::new(&self.intf.lock().unwrap()));
+        self.csis.as_mut().unwrap().initialize(csis_dispatcher);
 
         for profile in self.delay_enable_profiles.clone() {
             self.enable_profile(&profile);
@@ -2586,6 +2785,8 @@ impl IBluetoothMedia for BluetoothMedia {
                 warn!("Uninitialized LeAudio to connect {}", DisplayAddress(&addr));
             }
         };
+
+        self.connect_vc(address);
     }
 
     fn disconnect_le(&mut self, address: String) {
@@ -2606,6 +2807,113 @@ impl IBluetoothMedia for BluetoothMedia {
             }
             None => {
                 warn!("Uninitialized LeAudio to disconnect {}", DisplayAddress(&addr));
+            }
+        };
+    }
+
+    fn connect_vc(&mut self, address: String) {
+        if !sysprop::get_bool(sysprop::PropertyBool::LeAudioEnableLeAudioOnly) {
+            warn!("LE audio is not enabled, shall not connect to VC");
+            return;
+        }
+
+        let addr = match RawAddress::from_string(address.clone()) {
+            None => {
+                warn!("Invalid device address for connecting");
+                return;
+            }
+            Some(addr) => addr,
+        };
+
+        let available_profiles = self.adapter_get_le_audio_profiles(addr);
+
+        info!(
+            "[{}]: Connecting to device, available profiles: {:?}.",
+            DisplayAddress(&addr),
+            available_profiles
+        );
+
+        match self.vc.as_mut() {
+            Some(vc) => {
+                vc.connect(addr);
+            }
+            None => {
+                warn!("Uninitialized Vc to connect {}", DisplayAddress(&addr));
+            }
+        };
+        self.connect_csis(address);
+    }
+
+    fn disconnect_vc(&mut self, address: String) {
+        let addr = match RawAddress::from_string(address.clone()) {
+            None => {
+                warn!("Invalid device address for connecting");
+                return;
+            }
+            Some(addr) => addr,
+        };
+
+        info!("[{}]: Disconnecting VC", DisplayAddress(&addr),);
+
+        match self.vc.as_mut() {
+            Some(vc) => {
+                vc.disconnect(addr);
+            }
+            None => {
+                warn!("Uninitialized Vc to disconnect {}", DisplayAddress(&addr));
+            }
+        };
+    }
+
+    fn connect_csis(&mut self, address: String) {
+        if !sysprop::get_bool(sysprop::PropertyBool::LeAudioEnableLeAudioOnly) {
+            warn!("LE audio is not enabled, shall not connect to CSIS");
+            return;
+        }
+
+        let addr = match RawAddress::from_string(address.clone()) {
+            None => {
+                warn!("Invalid device address for connecting");
+                return;
+            }
+            Some(addr) => addr,
+        };
+
+        let available_profiles = self.adapter_get_le_audio_profiles(addr);
+
+        info!(
+            "[{}]: Connecting to device, available profiles: {:?}.",
+            DisplayAddress(&addr),
+            available_profiles
+        );
+
+        match self.csis.as_mut() {
+            Some(csis) => {
+                csis.connect(addr);
+            }
+            None => {
+                warn!("Uninitialized Csis to connect {}", DisplayAddress(&addr));
+            }
+        };
+    }
+
+    fn disconnect_csis(&mut self, address: String) {
+        let addr = match RawAddress::from_string(address.clone()) {
+            None => {
+                warn!("Invalid device address for connecting");
+                return;
+            }
+            Some(addr) => addr,
+        };
+
+        info!("[{}]: Disconnecting Csis", DisplayAddress(&addr),);
+
+        match self.csis.as_mut() {
+            Some(csis) => {
+                csis.disconnect(addr);
+            }
+            None => {
+                warn!("Uninitialized Csis to disconnect {}", DisplayAddress(&addr));
             }
         };
     }
@@ -3365,6 +3673,15 @@ impl IBluetoothMedia for BluetoothMedia {
             .le_audio_group_stream_status
             .get(&group_id)
             .unwrap_or(&BtLeAudioGroupStreamStatus::Idle)
+    }
+
+    fn set_group_volume(&mut self, group_id: i32, volume: u8) {
+        match self.vc.as_mut() {
+            Some(vc) => {
+                vc.set_volume(group_id, volume);
+            }
+            None => warn!("Uninitialized VC to set volume"),
+        };
     }
 }
 
