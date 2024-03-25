@@ -1,0 +1,16 @@
+package: "com.android.bluetooth.flags"
+container: "com.android.btservices"
+
+flag {
+    name: "enable_bluetooth_bug_report"
+    namespace: "bluetooth"
+    description: "Enable bug reporting in Bluetooth framework for debugging observed issues."
+    bug: "331261596"
+}
+
+flag {
+    name: "enable_auto_bug_report_upload_if_user_consent"
+    namespace: "bluetooth"
+    description: "Enable auto upload of bug reports if user consent is given."
+    bug: "331275388"
+}
