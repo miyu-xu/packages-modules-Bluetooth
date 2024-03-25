@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de947dac_87cdb88c",
+        "filename": "system/log/src/vlog_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-25T18:35:39Z",
+      "side": 1,
+      "message": "death test has a specific name to show it is a death test\ncf go/gunitadvanced#death-test-naming",
+      "range": {
+        "startLine": 121,
+        "startChar": 5,
+        "endLine": 121,
+        "endChar": 24
+      },
+      "revId": "bbaf43e248a563962efe84c7d36d7840797eba68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
