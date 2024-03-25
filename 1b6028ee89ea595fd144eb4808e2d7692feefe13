@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2e2ac963_a3ac080e",
+        "filename": "system/bta/ag/bta_ag_at.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-25T00:45:19Z",
+      "side": 1,
+      "message": "PTS simply sends something greater than `1 \u003c\u003c 31` during the test. The current implementation responds `ERROR` while they should be ignored.\n\n\u003e HFP/AG/SLC/BI-01-C [AG Ignores RFU BRSF Bits]\n\u003e\n\u003e Pass verdict\n\u003e\n\u003e The IUT ignores the received RFU bits set to 0b1 and successfully completes the SLC establishment.",
+      "parentUuid": "d8212886_5e699f11",
+      "range": {
+        "startLine": 143,
+        "startChar": 11,
+        "endLine": 143,
+        "endChar": 77
+      },
+      "revId": "1b6028ee89ea595fd144eb4808e2d7692feefe13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6c1c5af9_023de677",
         "filename": "system/bta/ag/bta_ag_at.cc",
         "patchSetId": 1
