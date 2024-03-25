@@ -70,6 +70,22 @@ int16_t utl_str2int(const char* p_s);
 
 /*******************************************************************************
  *
+ * Function         utl_str2uint32
+ *
+ * Description      This utility function converts a character string to an
+ *                  integer and stores it in the provided pointer.  Acceptable
+ *                  values in string are 0-9.  If invalid pointer, invalid
+ *                  string, or string value too large, false is returned.
+ *                  Leading spaces are skipped.
+ *
+ *
+ * Returns          true on success or false on error.
+ *
+ ******************************************************************************/
+bool utl_str2uint32(const char* p_s, uint32_t* p_res);
+
+/*******************************************************************************
+ *
  * Function         utl_strucmp
  *
  * Description      This utility function compares two strings in uppercase.
