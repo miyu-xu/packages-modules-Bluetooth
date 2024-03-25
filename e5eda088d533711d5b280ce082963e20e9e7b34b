@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60681f2b_de23c771",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-25T23:06:46Z",
+      "side": 1,
+      "message": "FWIW, `BluetoothMediaBrowserService` has all it\u0027s resources in `packages/modules/Bluetooth/android/app/res/values/strings.xml`, so we\u0027re definitely good deleting all of this.\n\nGood find!",
+      "revId": "e5eda088d533711d5b280ce082963e20e9e7b34b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
