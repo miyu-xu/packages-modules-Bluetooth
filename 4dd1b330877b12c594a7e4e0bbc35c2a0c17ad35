@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d80f08a9_a058f5e9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-03-25T09:01:28Z",
+      "side": 1,
+      "message": "John advice to rebase on A2DP to avoid any conflict",
+      "revId": "4dd1b330877b12c594a7e4e0bbc35c2a0c17ad35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
