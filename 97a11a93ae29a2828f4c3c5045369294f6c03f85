@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b882705f_131ca598",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1759,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-25T09:14:29Z",
+      "side": 1,
+      "message": "Let\u0027s directly use scan_filter, we don\u0027t need to assign to another variable here.",
+      "range": {
+        "startLine": 1759,
+        "startChar": 16,
+        "endLine": 1759,
+        "endChar": 45
+      },
+      "revId": "97a11a93ae29a2828f4c3c5045369294f6c03f85",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5644ac92_e4b6ba37",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 4267,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-25T09:14:29Z",
+      "side": 1,
+      "message": "Please rename to `address_monitor_succeed`",
+      "range": {
+        "startLine": 4267,
+        "startChar": 16,
+        "endLine": 4267,
+        "endChar": 46
+      },
+      "revId": "97a11a93ae29a2828f4c3c5045369294f6c03f85",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "351013d9_484fc618",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 4269,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-25T09:14:29Z",
+      "side": 1,
+      "message": "No need to specify `\u003d\u003d true` when checking a boolean",
+      "range": {
+        "startLine": 4269,
+        "startChar": 60,
+        "endLine": 4269,
+        "endChar": 67
+      },
+      "revId": "97a11a93ae29a2828f4c3c5045369294f6c03f85",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "342ebc35_8ac397d6",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 4301,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-25T09:14:29Z",
+      "side": 1,
+      "message": "This else block is executed regardless of the value of `controller_need_seperate_pattern_and_address`, please fix.\nProbably you can just switch the order of this two if blocks\n```\n        if track_adv_info.advertiser_state \u003d\u003d 0x01 {\n            if controller_need_seperate_pattern_and_address \u003d\u003d true {\n```\nto become\n```\n        if controller_need_seperate_pattern_and_address \u003d\u003d true {\n            if track_adv_info.advertiser_state \u003d\u003d 0x01 {\n                ...\n            } else {\n                ...\n            }\n```",
+      "range": {
+        "startLine": 4301,
+        "startChar": 10,
+        "endLine": 4301,
+        "endChar": 14
+      },
+      "revId": "97a11a93ae29a2828f4c3c5045369294f6c03f85",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "322b97a7_5915bc9f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 4340,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-25T09:14:29Z",
+      "side": 1,
+      "message": "The additional condition should only be checked when `controller_need_seperate_pattern_and_address` is true",
+      "range": {
+        "startLine": 4340,
+        "startChar": 55,
+        "endLine": 4340,
+        "endChar": 96
+      },
+      "revId": "97a11a93ae29a2828f4c3c5045369294f6c03f85",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
