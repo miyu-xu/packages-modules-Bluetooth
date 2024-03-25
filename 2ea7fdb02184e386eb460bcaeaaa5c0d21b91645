@@ -34,6 +34,24 @@
       "parentUuid": "c47844ba_ebb0c0d0",
       "revId": "2ea7fdb02184e386eb460bcaeaaa5c0d21b91645",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c97c693_cccfb9e3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-03-25T18:30:38Z",
+      "side": 1,
+      "message": "I think you can consider that as a bugfix, this will speed up the rollout process as well.",
+      "parentUuid": "c9db1745_451c5b8f",
+      "revId": "2ea7fdb02184e386eb460bcaeaaa5c0d21b91645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
