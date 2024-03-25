@@ -436,8 +436,10 @@ static void hh_open_handler(tBTA_HH_CONN& conn) {
                           BTIF_HH_DEV_DISCONNECTED);
       return;
     }
+  } else {
+    BTHH_STATE_UPDATE(conn.link_spec, BTHH_CONN_STATE_CONNECTING);
   }
-  BTHH_STATE_UPDATE(conn.link_spec, BTHH_CONN_STATE_CONNECTING);
+
   btif_hh_cb.pending_link_spec = {};
 
   if (conn.status != BTA_HH_OK) {
