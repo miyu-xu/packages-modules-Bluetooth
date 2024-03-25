@@ -546,6 +546,7 @@ bool LeAudioSourceTransport::IsRequestCompletedAfterUpdate(
 }
 
 StartRequestState LeAudioSourceTransport::GetStartRequestState(void) {
+  std::lock_guard<std::mutex> guard(start_request_state_mutex_);
   return transport_->GetStartRequestState();
 }
 void LeAudioSourceTransport::ClearStartRequestState(void) {
