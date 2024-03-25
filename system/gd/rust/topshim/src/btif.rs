@@ -830,6 +830,7 @@ pub enum SupportedProfiles {
     AvrcpCtrl,
     LeAudio,
     VolumeControl,
+    CoordinatedSet,
 }
 
 impl From<SupportedProfiles> for Vec<u8> {
@@ -845,6 +846,7 @@ impl From<SupportedProfiles> for Vec<u8> {
             SupportedProfiles::AvrcpCtrl => "avrcp_ctrl",
             SupportedProfiles::LeAudio => "le_audio",
             SupportedProfiles::VolumeControl => "volume_control",
+            SupportedProfiles::CoordinatedSet => "csis_client",
         }
         .bytes()
         .chain("\0".bytes())
