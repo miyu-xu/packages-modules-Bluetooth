@@ -22,6 +22,30 @@
       },
       "revId": "40c6a530eeae9a16fc2a7271fed8480fe71a895a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ade4f41d_b1abf4c0",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-25T13:31:42Z",
+      "side": 1,
+      "message": "I tried it, but I get this warning:\n\nMoving a temporary object prevents copy elision (fix available)clang(-Wpessimizing-move)",
+      "parentUuid": "bd893dda_edef27f9",
+      "range": {
+        "startLine": 230,
+        "startChar": 54,
+        "endLine": 230,
+        "endChar": 96
+      },
+      "revId": "40c6a530eeae9a16fc2a7271fed8480fe71a895a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
