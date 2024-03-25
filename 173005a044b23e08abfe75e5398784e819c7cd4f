@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93ccfed2_b3aec8b2",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-25T18:13:07Z",
+      "side": 1,
+      "message": "shouldn\u0027t this be accepting if we don\u0027t have a record of the device?\n\nThe default without the flag is accepting (line 430)",
+      "range": {
+        "startLine": 438,
+        "startChar": 11,
+        "endLine": 438,
+        "endChar": 39
+      },
+      "revId": "173005a044b23e08abfe75e5398784e819c7cd4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cdf19f0_3a81fe9f",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-25T18:13:07Z",
+      "side": 1,
+      "message": "Do we need a different name?  on_disconnect in open is odd.",
+      "range": {
+        "startLine": 482,
+        "startChar": 26,
+        "endLine": 482,
+        "endChar": 52
+      },
+      "revId": "173005a044b23e08abfe75e5398784e819c7cd4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "176a323f_10bca000",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 748,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-25T18:13:07Z",
+      "side": 1,
+      "message": "This seems like an odd place to change the policy.",
+      "range": {
+        "startLine": 748,
+        "startChar": 6,
+        "endLine": 748,
+        "endChar": 42
+      },
+      "revId": "173005a044b23e08abfe75e5398784e819c7cd4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
