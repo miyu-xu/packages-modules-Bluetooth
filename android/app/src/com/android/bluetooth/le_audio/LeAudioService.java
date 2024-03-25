@@ -170,7 +170,13 @@ public class LeAudioService extends ProfileService {
     boolean mLeAudioNativeIsInitialized = false;
     boolean mLeAudioInbandRingtoneSupportedByPlatform = true;
     boolean mBluetoothEnabled = false;
+
+    /** HFP device that is going to connect SCO after LE Audio CIS tear down */
     BluetoothDevice mHfpHandoverDevice = null;
+
+    /** LE audio active device that was removed from active because of HFP handover */
+    BluetoothDevice mLeAudioDeviceInactivatedForHfpHandover = null;
+
     LeAudioBroadcasterNativeInterface mLeAudioBroadcasterNativeInterface = null;
     private DialingOutTimeoutEvent mDialingOutTimeoutEvent = null;
     @VisibleForTesting
@@ -506,6 +512,7 @@ public class LeAudioService extends ProfileService {
         mLeAudioNativeIsInitialized = false;
         mBluetoothEnabled = false;
         mHfpHandoverDevice = null;
+        mLeAudioDeviceInactivatedForHfpHandover = null;
 
         mActiveAudioOutDevice = null;
         mActiveAudioInDevice = null;
@@ -3499,7 +3506,11 @@ public class LeAudioService extends ProfileService {
     }
 
     /**
-     * Set Inactive by HFP during handover
+     * Set Inactive by HFP during handover This is a work around to handle controllers that cannot
+     * have SCO and CIS at the same time. So remove active device to tear down CIS, and re-connect
+     * the SCO in {@link LeAudioService#handleGroupIdleDuringCall()}
+     *
+     * @param hfpHandoverDevice is the hfp device that was set to active
      */
     public void setInactiveForHfpHandover(BluetoothDevice hfpHandoverDevice) {
         if (!mLeAudioNativeIsInitialized) {
@@ -3508,7 +3519,26 @@ public class LeAudioService extends ProfileService {
         }
         if (getActiveGroupId() != LE_AUDIO_GROUP_ID_INVALID) {
             mHfpHandoverDevice = hfpHandoverDevice;
+            if (Flags.leaudioResumeActiveAfterHfpHandover()) {
+                // record the lead device
+                mLeAudioDeviceInactivatedForHfpHandover = mExposedActiveDevice;
+            }
             removeActiveDevice(true);
+        }
+    }
+
+    /** Resume prior active device after HFP phone call hand over */
+    public void setActiveAfterHfpHandover() {
+        if (!mLeAudioNativeIsInitialized) {
+            Log.e(TAG, "Le Audio not initialized properly.");
+            return;
+        }
+        if (mLeAudioDeviceInactivatedForHfpHandover != null) {
+            Log.i(TAG, "handover to LE audio device=" + mLeAudioDeviceInactivatedForHfpHandover);
+            setActiveDevice(mLeAudioDeviceInactivatedForHfpHandover);
+            mLeAudioDeviceInactivatedForHfpHandover = null;
+        } else {
+            Log.d(TAG, "nothing to hand over back");
         }
     }
 
@@ -4774,6 +4804,10 @@ public class LeAudioService extends ProfileService {
                 + mBroadcastIdDeactivatedForUnicastTransition);
         ProfileService.println(sb, "  mExposedActiveDevice: " + mExposedActiveDevice);
         ProfileService.println(sb, "  mHfpHandoverDevice:" + mHfpHandoverDevice);
+        ProfileService.println(
+                sb,
+                " mLeAudioDeviceInactivatedForHfpHandover:"
+                        + mLeAudioDeviceInactivatedForHfpHandover);
         ProfileService.println(sb, "  mLeAudioIsInbandRingtoneSupported:"
                                 + mLeAudioInbandRingtoneSupportedByPlatform);
 
