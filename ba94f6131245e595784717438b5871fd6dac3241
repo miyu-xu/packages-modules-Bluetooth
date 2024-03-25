@@ -3,6 +3,98 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "69d9108c_9022bc84",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1602,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-25T17:00:23Z",
+      "side": 0,
+      "message": "Check removed ?",
+      "range": {
+        "startLine": 1599,
+        "startChar": 20,
+        "endLine": 1602,
+        "endChar": 21
+      },
+      "revId": "ba94f6131245e595784717438b5871fd6dac3241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0b1ffba_1ced13bb",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1621,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-25T17:00:23Z",
+      "side": 0,
+      "message": "Check removed ?",
+      "range": {
+        "startLine": 1618,
+        "startChar": 20,
+        "endLine": 1621,
+        "endChar": 21
+      },
+      "revId": "ba94f6131245e595784717438b5871fd6dac3241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5eb86b7_546c60cb",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 2240,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-25T17:00:23Z",
+      "side": 0,
+      "message": "Annotation removed ?\nSame for other methods in this file.",
+      "range": {
+        "startLine": 2235,
+        "startChar": 7,
+        "endLine": 2240,
+        "endChar": 18
+      },
+      "revId": "ba94f6131245e595784717438b5871fd6dac3241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "495a2742_dde0cead",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 3529,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-25T17:00:23Z",
+      "side": 0,
+      "message": "Removed metric",
+      "range": {
+        "startLine": 3528,
+        "startChar": 16,
+        "endLine": 3529,
+        "endChar": 83
+      },
+      "revId": "ba94f6131245e595784717438b5871fd6dac3241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4d5016b0_dc170dc7",
         "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
         "patchSetId": 13
