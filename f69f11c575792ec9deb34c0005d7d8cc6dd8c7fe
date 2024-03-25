@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a3363b4_0f36e419",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-25T21:52:28Z",
+      "side": 1,
+      "message": "ACK that this is the same logic when the `allowSwitchingHidAndHogp` flag is disabled",
+      "range": {
+        "startLine": 208,
+        "startChar": 8,
+        "endLine": 217,
+        "endChar": 0
+      },
+      "revId": "f69f11c575792ec9deb34c0005d7d8cc6dd8c7fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "139a1ea4_31c79104",
@@ -32,6 +55,24 @@
       "side": 1,
       "message": "There is a change in logic when the flag is enabled.\n\nConsider a case where the remote device has both HID and HOGP and is using RPA in bondable mode. Pseudo address would an RPA.\nSince the remote device has HOGP profile, it will always use RPA which does not work with HID profile.",
       "parentUuid": "139a1ea4_31c79104",
+      "revId": "f69f11c575792ec9deb34c0005d7d8cc6dd8c7fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54b4761d_3ae31a49",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-25T21:52:28Z",
+      "side": 1,
+      "message": "So to clarify, the native stack always expect pseudo address for HOGP, and public address / identity address for HID for dual mode devices paired via LE -\u003e Classic CTKD with RPA used on LE?",
+      "parentUuid": "a248b456_a42b4849",
       "revId": "f69f11c575792ec9deb34c0005d7d8cc6dd8c7fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
