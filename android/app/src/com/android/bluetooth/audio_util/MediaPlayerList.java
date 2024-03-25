@@ -195,7 +195,7 @@ public class MediaPlayerList {
         Log.v(TAG, "Initializing MediaPlayerList");
         mCallback = callback;
 
-        if (!SystemProperties.getBoolean("bluetooth.avrcp.browsable_media_player.enabled", true)) {
+        if (!SystemProperties.getBoolean("bluetooth.avrcp.browsable_media_player.enabled", false)) {
             // Allow to disable BrowsablePlayerConnector with systemproperties.
             // This is useful when for watches because:
             //   1. It is not a regular use case
