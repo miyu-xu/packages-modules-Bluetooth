@@ -16,6 +16,24 @@
       "message": "Since it is a bug fix, please follow go/trunk-stable-bug-fix#how-to-specify-a-flag-is-a-bug-fix-aconfig-flag. Thanks!",
       "revId": "2ea7fdb02184e386eb460bcaeaaa5c0d21b91645",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9db1745_451c5b8f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-25T18:28:47Z",
+      "side": 1,
+      "message": "this is specification errata, so not sure it is bugfix.",
+      "parentUuid": "c47844ba_ebb0c0d0",
+      "revId": "2ea7fdb02184e386eb460bcaeaaa5c0d21b91645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
