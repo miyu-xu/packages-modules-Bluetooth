@@ -22,6 +22,30 @@
       },
       "revId": "f918d35bdb5307e8e747a9e08f0d7451dc72803e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56228b92_377b7854",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-25T21:52:41Z",
+      "side": 0,
+      "message": "The OPP team should just use a toString() and add the desired info to that, and print it as needed. I\u0027ll leave that as an exercise for them.",
+      "parentUuid": "b991eac4_156af5f9",
+      "range": {
+        "startLine": 221,
+        "startChar": 12,
+        "endLine": 231,
+        "endChar": 13
+      },
+      "revId": "f918d35bdb5307e8e747a9e08f0d7451dc72803e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
