@@ -337,6 +337,9 @@
     },
     {
       "name": "asrc_resampler_test"
+    },
+    {
+      "name": "net_test_main_dumpsys"
     }
   ]
 }
