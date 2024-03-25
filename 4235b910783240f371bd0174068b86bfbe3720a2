@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5286daa_d09d0251",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-25T11:13:41Z",
+      "side": 1,
+      "message": "This is just a constant, so IMHO no need for flag for that.",
+      "range": {
+        "startLine": 381,
+        "startChar": 4,
+        "endLine": 381,
+        "endChar": 56
+      },
+      "revId": "4235b910783240f371bd0174068b86bfbe3720a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
