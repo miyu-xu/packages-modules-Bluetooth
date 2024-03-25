@@ -72,6 +72,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e803d292_111d433b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 4290,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-25T04:29:23Z",
+      "side": 1,
+      "message": "IIUC this `return` here is executed when:\n(1) the pattern monitor reports an already monitored address.\n(2) the address monitor reports a peer again when it\u0027s not yet lost (shouldn\u0027t happen on normal circumstances).\n\nOn both cases above, the device_found is not supposed to be propagated, so I think we can just return here.",
+      "parentUuid": "0525655b_53790726",
+      "range": {
+        "startLine": 4290,
+        "startChar": 20,
+        "endLine": 4290,
+        "endChar": 26
+      },
+      "revId": "33fbc9228df6e03841188768aa244e2b862becd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7f9f5940_00ccefc3",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
         "patchSetId": 2
