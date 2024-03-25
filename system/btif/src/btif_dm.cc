@@ -922,13 +922,6 @@ uint16_t btif_dm_get_connection_state(const RawAddress& bd_addr) {
     log::info("Acl is not connected to peer:{}",
               ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
   }
-
-  BTM_LogHistory(
-      kBtmLogTag, bd_addr, "Get connection state",
-      base::StringPrintf("connected:%c classic_encrypted:%c le_encrypted:%c",
-                         (rc & (int)true) ? 'T' : 'F',
-                         (rc & ENCRYPTED_BREDR) ? 'T' : 'F',
-                         (rc & ENCRYPTED_LE) ? 'T' : 'F'));
   return rc;
 }
 
