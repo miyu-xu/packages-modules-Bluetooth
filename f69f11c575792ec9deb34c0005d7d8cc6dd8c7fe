@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "139a1ea4_31c79104",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-25T21:19:40Z",
+      "side": 1,
+      "message": "This looks different than the original logic.  It was just \"If I have HOGP, use pseudo address, otherwise use identity\"\n\nWhen allowSwitchingHidAndHogp goes live, this will all be removed, shouldn\u0027t it be the same as the old logic until then?",
+      "revId": "f69f11c575792ec9deb34c0005d7d8cc6dd8c7fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
