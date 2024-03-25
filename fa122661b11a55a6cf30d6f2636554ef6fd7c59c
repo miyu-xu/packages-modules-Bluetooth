@@ -46,6 +46,30 @@
       },
       "revId": "fa122661b11a55a6cf30d6f2636554ef6fd7c59c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4153171e_2755baa8",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-25T21:33:27Z",
+      "side": 1,
+      "message": "This should be a separate block from \n```\nif (IS_FLAG_ENABLED(allow_switching_hid_and_hogp) \u0026\u0026\n      conn.link_spec.transport !\u003d BT_TRANSPORT_AUTO)\n      ```",
+      "parentUuid": "f2b4c7ca_3bb9198f",
+      "range": {
+        "startLine": 439,
+        "startChar": 4,
+        "endLine": 439,
+        "endChar": 8
+      },
+      "revId": "fa122661b11a55a6cf30d6f2636554ef6fd7c59c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
