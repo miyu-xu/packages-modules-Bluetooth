@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7eaa600f_5c6d3258",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-25T06:25:21Z",
+      "side": 1,
+      "message": "LGTM. Defer to John\u0027s +2",
+      "revId": "9fbfcbc38dff750760e419d0538b6a11e23aaf66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
