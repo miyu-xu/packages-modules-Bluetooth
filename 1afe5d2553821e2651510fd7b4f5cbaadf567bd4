@@ -3,6 +3,63 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d4a0dfad_3369896f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-25T18:56:03Z",
+      "side": 1,
+      "message": "This import was not properly ordered and has generated error in follow-up CL on adapter service.\n\nPlease use repo hook to apply formatting",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 52
+      },
+      "revId": "1afe5d2553821e2651510fd7b4f5cbaadf567bd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d71ad52e_29212d56",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-25T18:56:03Z",
+      "side": 1,
+      "message": "It appear that this file is not properly formatted.\n\nPlease use repo hook when uploading CLs in the future. It will automatically propose to reformat files\n\nAnd please fix the format on this file in follow-up\nI believe the command should be something like\n```\ngoogle-java-format --aosp -i android/app/src/com/android/bluetooth/le_scan/ScanController.java\n```",
+      "revId": "1afe5d2553821e2651510fd7b4f5cbaadf567bd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14638caf_13930fca",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-25T18:56:03Z",
+      "side": 1,
+      "message": "It appear that this file is not properly formatted",
+      "revId": "1afe5d2553821e2651510fd7b4f5cbaadf567bd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "55798e3d_dd0c9fa0",
         "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
         "patchSetId": 20
