@@ -73,7 +73,7 @@ impl BluetoothAdmin {
         let mut admin = BluetoothAdmin {
             path,
             adapter: None,
-            allowed_services: HashSet::new(), //empty means allowed all services
+            allowed_services: HashSet::new(), // empty means allowed all services
             callbacks: Callbacks::new(tx.clone(), Message::AdminCallbackDisconnected),
             device_policy_affect_cache: HashMap::new(),
             tx: tx.clone(),

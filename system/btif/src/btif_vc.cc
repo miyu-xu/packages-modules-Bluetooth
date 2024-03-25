@@ -283,6 +283,7 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
       return;
     }
 
+
     do_in_main_thread(FROM_HERE, Bind(&VolumeControl::SetExtAudioOutDescription,
                                       Unretained(VolumeControl::Get()), address,
                                       ext_output_id, descr));
