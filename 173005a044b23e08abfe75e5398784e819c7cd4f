@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6f2bb0a2_ff46bf9f",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-25T19:52:53Z",
+      "side": 1,
+      "message": "The `ACCEPTING` state after the flag is equivalent to `DISCONNECTED` state before the flag.\n\nAfter the flag is enabled, we don\u0027t want to allow unknown incoming connections.",
+      "parentUuid": "93ccfed2_b3aec8b2",
+      "range": {
+        "startLine": 438,
+        "startChar": 11,
+        "endLine": 438,
+        "endChar": 39
+      },
+      "revId": "173005a044b23e08abfe75e5398784e819c7cd4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7cdf19f0_3a81fe9f",
         "filename": "system/btif/src/btif_hh.cc",
         "patchSetId": 1
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "506f3bca_20187f4d",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-25T19:52:53Z",
+      "side": 1,
+      "message": "I don\u0027t like this name either. Do you have a suggestion?",
+      "parentUuid": "7cdf19f0_3a81fe9f",
+      "range": {
+        "startLine": 482,
+        "startChar": 26,
+        "endLine": 482,
+        "endChar": 52
+      },
+      "revId": "173005a044b23e08abfe75e5398784e819c7cd4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "176a323f_10bca000",
         "filename": "system/btif/src/btif_hh.cc",
         "patchSetId": 1
@@ -60,6 +108,30 @@
       "writtenOn": "2024-03-25T18:13:07Z",
       "side": 1,
       "message": "This seems like an odd place to change the policy.",
+      "range": {
+        "startLine": 748,
+        "startChar": 6,
+        "endLine": 748,
+        "endChar": 42
+      },
+      "revId": "173005a044b23e08abfe75e5398784e819c7cd4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76e7ed26_ba1d34ac",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 748,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-25T19:52:53Z",
+      "side": 1,
+      "message": "Once an outgoing connection has been requested, HID host will allow incoming reconnections as well until connection policy forbids it again.",
+      "parentUuid": "176a323f_10bca000",
       "range": {
         "startLine": 748,
         "startChar": 6,
