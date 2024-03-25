@@ -1,0 +1,30 @@
+package: "com.android.bluetooth.flags"
+container: "com.android.btservices"
+
+flag {
+    name: "enable_bluetooth_bug_report"
+    namespace: "bluetooth"
+    description: "Enable bug reporting in Bluetooth framework for debugging observed issues."
+    bug: "331261596"
+}
+
+flag {
+    name: "enable_auto_bug_report_upload_if_user_consent"
+    namespace: "bluetooth"
+    description: "Enable auto upload of bug reports if user consent is given."
+    bug: "331261596"
+}
+
+flag {
+    name: "min_time_between_bug_reports"
+    namespace: "bluetooth"
+    description: "Minimum time the framework should wait to trigger a given bug scenario."
+    bug: "331261596"
+}
+
+flag {
+    name: "max_bug_reports_per_day_by_type"
+    namespace: "bluetooth"
+    description: "Max bug reports per day the framework should upload per type."
+    bug: "331261596"
+}
