@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c5f8c5f_d5d3aedf",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-25T21:28:06Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "597d0298_03e461b7",
+      "range": {
+        "startLine": 508,
+        "startChar": 3,
+        "endLine": 514,
+        "endChar": 5
+      },
+      "revId": "30b320bdd069e020bfc1a8c33fdd61dc3a5aa634",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87331704_b1bdf395",
@@ -119,6 +143,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0aa0a39_4047a903",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-25T21:28:06Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a15fac64_1a66f22f",
+      "range": {
+        "startLine": 916,
+        "startChar": 1,
+        "endLine": 925,
+        "endChar": 3
+      },
+      "revId": "30b320bdd069e020bfc1a8c33fdd61dc3a5aa634",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a3b66b5_92b138ba",
@@ -156,6 +204,30 @@
       "side": 1,
       "message": "That\u0027s why we have unsquashed version, where each event is cleaned up separately.\n\nOnce again, as commit message says:\n\n```\nWether device or service search is interested in given event is\ndetermined by checking the btif_dm_search_services_evt and\nbtif_dm_search_devices_evt.\n````",
       "parentUuid": "4a3b66b5_92b138ba",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 158,
+        "endChar": 47
+      },
+      "revId": "30b320bdd069e020bfc1a8c33fdd61dc3a5aa634",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90e79751_93b979a3",
+        "filename": "system/bta/dm/bta_dm_disc_int.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-25T21:28:06Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d94f84d2_babbd096",
       "range": {
         "startLine": 157,
         "startChar": 0,
