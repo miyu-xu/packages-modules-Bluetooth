@@ -56,6 +56,7 @@ import libcore.util.SneakyThrow;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -1470,7 +1471,7 @@ public class VolumeControlService extends ProfileService {
 
             VolumeControlService service = getService(source);
             if (service == null) {
-                return new ArrayList<>();
+                return Collections.emptyList();
             }
 
             enforceBluetoothPrivilegedPermission(service);
@@ -1484,7 +1485,7 @@ public class VolumeControlService extends ProfileService {
 
             VolumeControlService service = getService(source);
             if (service == null) {
-                return new ArrayList<>();
+                return Collections.emptyList();
             }
 
             return service.getDevicesMatchingConnectionStates(states);
