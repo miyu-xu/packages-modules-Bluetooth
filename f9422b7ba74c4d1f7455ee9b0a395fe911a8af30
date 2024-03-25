@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84e08b14_c40c3852",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-25T23:25:28Z",
+      "side": 1,
+      "message": "shouldn\u0027t this be gated behind a flag?",
+      "range": {
+        "startLine": 303,
+        "startChar": 0,
+        "endLine": 303,
+        "endChar": 48
+      },
+      "revId": "f9422b7ba74c4d1f7455ee9b0a395fe911a8af30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
