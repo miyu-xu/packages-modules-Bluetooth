@@ -196,7 +196,7 @@ bool LeAudioTransport::GetPresentationPosition(uint64_t* remote_delay_report_ns,
 }
 
 void LeAudioTransport::MetadataChanged(
-    const source_metadata_t& source_metadata) {
+    const source_metadata_v7_t& source_metadata) {
   auto track_count = source_metadata.track_count;
 
   if (track_count == 0) {
@@ -319,7 +319,7 @@ bool LeAudioSinkTransport::GetPresentationPosition(
 }
 
 void LeAudioSinkTransport::MetadataChanged(
-    const source_metadata_t& source_metadata) {
+    const source_metadata_v7_t& source_metadata) {
   transport_->MetadataChanged(source_metadata);
 }
 
@@ -400,7 +400,7 @@ bool LeAudioSourceTransport::GetPresentationPosition(
 }
 
 void LeAudioSourceTransport::MetadataChanged(
-    const source_metadata_t& source_metadata) {
+    const source_metadata_v7_t& source_metadata) {
   transport_->MetadataChanged(source_metadata);
 }
 

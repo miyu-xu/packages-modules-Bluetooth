@@ -272,6 +272,7 @@ static void bta_ag_sco_disc_cback(uint16_t sco_idx) {
         if (bta_ag_is_sco_managed_by_audio()) {
           hfp_offload_interface->CancelStreamingRequest();
         }
+#endif
       }
     }
 
@@ -572,6 +573,7 @@ void updateCodecParametersFromProviderInfo(tBTA_AG_PEER_CODEC esco_codec,
       params.output_bandwidth = TXRX_64KBITS_RATE;
     }
   }
+#endif
 }
 
 /*******************************************************************************
@@ -1485,6 +1487,7 @@ void bta_ag_sco_conn_open(tBTA_AG_SCB* p_scb,
     };
     hfp_offload_interface->UpdateAudioConfigToHal(config);
   }
+#endif
 
   /* call app callback */
   bta_ag_cback_sco(p_scb, BTA_AG_AUDIO_OPEN_EVT);
@@ -1621,6 +1624,7 @@ void bta_clear_active_device() {
       hfp_offload_interface->StopSession();
     }
   }
+#endif
   active_device_addr = RawAddress::kEmpty;
 }
 
@@ -1654,5 +1658,6 @@ void bta_ag_api_set_active_device(const RawAddress& new_active_device) {
       }
     }
   }
+#endif
   active_device_addr = new_active_device;
 }

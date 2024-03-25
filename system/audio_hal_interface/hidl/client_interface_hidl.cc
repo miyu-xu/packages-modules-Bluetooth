@@ -147,7 +147,7 @@ class BluetoothAudioPortImpl : public IBluetoothAudioPort {
           .gain = metadata.gain,
       });
     }
-    const source_metadata_t source_metadata = {
+    const source_metadata_v7_t source_metadata = {
         .track_count = metadata_vec.size(), .tracks = metadata_vec.data()};
     transport_instance_->MetadataChanged(source_metadata);
     return Void();

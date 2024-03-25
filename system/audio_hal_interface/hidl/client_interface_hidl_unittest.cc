@@ -165,7 +165,7 @@ class TestSinkTransport
     return true;
   }
   void MetadataChanged(
-      const source_metadata_t& source_metadata __unused) override {}
+      const source_metadata_v7_t& source_metadata __unused) override {}
   void ResetPresentationPosition() override{};
   void LogBytesRead(size_t bytes_readed __unused) override{};
 };
@@ -204,7 +204,7 @@ class TestSourceTransport
     return true;
   }
   void MetadataChanged(
-      const source_metadata_t& source_metadata __unused) override {}
+      const source_metadata_v7_t& source_metadata __unused) override {}
   void ResetPresentationPosition() override{};
   void LogBytesWritten(size_t bytes_written __unused) override{};
 };

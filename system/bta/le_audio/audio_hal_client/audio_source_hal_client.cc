@@ -393,11 +393,15 @@ void SourceImpl::ConfirmStreamingRequest() {
   }
 
   LOG_INFO();
+#ifndef TARGET_FLOSS
   if (IS_FLAG_ENABLED(leaudio_start_stream_race_fix)) {
     halSinkInterface_->ConfirmStreamingRequestV2();
   } else {
     halSinkInterface_->ConfirmStreamingRequest();
   }
+#else
+  halSinkInterface_->ConfirmStreamingRequest();
+#endif
   if (CodecManager::GetInstance()->GetCodecLocation() !=
       types::CodecLocation::HOST)
     return;
@@ -441,11 +445,15 @@ void SourceImpl::CancelStreamingRequest() {
   }
 
   LOG_INFO();
+#ifndef TARGET_FLOSS
   if (IS_FLAG_ENABLED(leaudio_start_stream_race_fix)) {
     halSinkInterface_->CancelStreamingRequestV2();
   } else {
     halSinkInterface_->CancelStreamingRequest();
   }
+#else
+  halSinkInterface_->CancelStreamingRequest();
+#endif
 }
 
 void SourceImpl::UpdateRemoteDelay(uint16_t remote_delay_ms) {

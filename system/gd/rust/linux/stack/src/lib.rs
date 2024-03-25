@@ -49,6 +49,7 @@ use bt_topshim::{
     profiles::{
         a2dp::A2dpCallbacks,
         avrcp::AvrcpCallbacks,
+        csis::CsisClientCallbacks,
         gatt::GattAdvCallbacks,
         gatt::GattAdvInbandCallbacks,
         gatt::GattClientCallbacks,
@@ -57,7 +58,9 @@ use bt_topshim::{
         gatt::GattServerCallbacks,
         hfp::HfpCallbacks,
         hid_host::{BthhReportType, HHCallbacks},
+        le_audio::LeAudioClientCallbacks,
         sdp::SdpCallbacks,
+        vc::VolumeControlCallbacks,
     },
 };
 
@@ -79,6 +82,7 @@ pub enum Message {
     Base(BaseCallbacks),
     GattClient(GattClientCallbacks),
     GattServer(GattServerCallbacks),
+    LeAudioClient(LeAudioClientCallbacks),
     LeScanner(GattScannerCallbacks),
     LeScannerInband(GattScannerInbandCallbacks),
     LeAdvInband(GattAdvInbandCallbacks),
@@ -86,6 +90,8 @@ pub enum Message {
     HidHost(HHCallbacks),
     Hfp(HfpCallbacks),
     Sdp(SdpCallbacks),
+    VolumeControl(VolumeControlCallbacks),
+    CsisClient(CsisClientCallbacks),
 
     // Actions within the stack
     Media(MediaActions),
@@ -264,6 +270,18 @@ impl Stack {
 
                 Message::GattServer(m) => {
                     dispatch_gatt_server_callbacks(bluetooth_gatt.lock().unwrap().as_mut(), m);
+                }
+
+                Message::LeAudioClient(a) => {
+                    bluetooth_media.lock().unwrap().dispatch_le_audio_callbacks(a);
+                }
+
+                Message::VolumeControl(a) => {
+                    bluetooth_media.lock().unwrap().dispatch_vc_callbacks(a);
+                }
+
+                Message::CsisClient(a) => {
+                    bluetooth_media.lock().unwrap().dispatch_csis_callbacks(a);
                 }
 
                 Message::LeScanner(m) => {

@@ -131,7 +131,7 @@ class VolumeControlDevice : public bluetooth::common::IRedactableLoggable {
                               void* cb_data);
   void GetExtAudioOutDescription(uint8_t ext_output_id, GATT_READ_OP_CB cb,
                                  void* cb_data);
-  void SetExtAudioOutDescription(uint8_t ext_output_id, std::string& descr);
+  // void SetExtAudioOutDescription(uint8_t ext_output_id, std::string& descr);
   void ExtAudioOutControlPointOperation(uint8_t ext_output_id, uint8_t opcode,
                                         const std::vector<uint8_t>* arg,
                                         GATT_WRITE_OP_CB cb, void* cb_data);
