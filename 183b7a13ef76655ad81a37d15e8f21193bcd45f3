@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8cc4985_0ec80496",
+        "filename": "TEST_MAPPING",
+        "patchSetId": 2
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-25T22:30:12Z",
+      "side": 1,
+      "message": "Would it make sense to merge this target with `net_test_main_shim`?\n\nAdding more test targets is not free and looking at the code this seems to be testing the shim.",
+      "revId": "183b7a13ef76655ad81a37d15e8f21193bcd45f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
