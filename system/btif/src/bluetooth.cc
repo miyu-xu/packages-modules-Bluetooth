@@ -836,6 +836,7 @@ static void dump(int fd, const char** arguments) {
   HearingAid::DebugDump(fd);
   LeAudioClient::DebugDump(fd);
   LeAudioBroadcaster::DebugDump(fd);
+  LeAudioClient::DebugDump(fd);
   VolumeControl::DebugDump(fd);
   connection_manager::dump(fd);
   bluetooth::bqr::DebugDump(fd);
@@ -929,6 +930,9 @@ static const void* get_profile_interface(const char* profile_id) {
 
   if (is_profile(profile_id, BT_PROFILE_LE_AUDIO_BROADCASTER_ID))
     return btif_le_audio_broadcaster_get_interface();
+
+  if (is_profile(profile_id, BT_PROFILE_LE_AUDIO_ID))
+    return btif_le_audio_get_interface();
 
   if (is_profile(profile_id, BT_PROFILE_VC_ID))
     return btif_volume_control_get_interface();
