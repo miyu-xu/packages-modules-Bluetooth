@@ -16,6 +16,24 @@
       "message": "This looks different than the original logic.  It was just \"If I have HOGP, use pseudo address, otherwise use identity\"\n\nWhen allowSwitchingHidAndHogp goes live, this will all be removed, shouldn\u0027t it be the same as the old logic until then?",
       "revId": "f69f11c575792ec9deb34c0005d7d8cc6dd8c7fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a248b456_a42b4849",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-25T21:23:49Z",
+      "side": 1,
+      "message": "There is a change in logic when the flag is enabled.\n\nConsider a case where the remote device has both HID and HOGP and is using RPA in bondable mode. Pseudo address would an RPA.\nSince the remote device has HOGP profile, it will always use RPA which does not work with HID profile.",
+      "parentUuid": "139a1ea4_31c79104",
+      "revId": "f69f11c575792ec9deb34c0005d7d8cc6dd8c7fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
