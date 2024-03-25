@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73f29024_99864494",
+        "filename": "system/bta/ag/bta_ag_at.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-25T06:35:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdad8b47_613de454",
+      "range": {
+        "startLine": 142,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 16
+      },
+      "revId": "1b6028ee89ea595fd144eb4808e2d7692feefe13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d8212886_5e699f11",
@@ -132,6 +156,30 @@
       "writtenOn": "2024-03-22T14:57:38Z",
       "side": 1,
       "message": "I would prefer not to add more of these utility functions.",
+      "range": {
+        "startLine": 148,
+        "startChar": 14,
+        "endLine": 148,
+        "endChar": 28
+      },
+      "revId": "1b6028ee89ea595fd144eb4808e2d7692feefe13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8ac1afc_0b41a67b",
+        "filename": "system/bta/ag/bta_ag_at.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-25T06:35:16Z",
+      "side": 1,
+      "message": "To better protect the functionalities when the flag is disabled, I\u0027d like to keep the `utl_str2int` function and define a new one. Or could you suggest an uint32 / int64 converter utility?",
+      "parentUuid": "6c1c5af9_023de677",
       "range": {
         "startLine": 148,
         "startChar": 14,
