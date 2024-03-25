@@ -58,6 +58,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd103a02_3dea8026",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-25T18:57:58Z",
+      "side": 1,
+      "message": ".",
+      "parentUuid": "14638caf_13930fca",
+      "revId": "1afe5d2553821e2651510fd7b4f5cbaadf567bd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "55798e3d_dd0c9fa0",
