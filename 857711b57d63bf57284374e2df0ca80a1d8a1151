@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b355e75_188a5102",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-25T19:27:37Z",
+      "side": 1,
+      "message": "If uhid_fd_open() fails, device count should not be incremented if it was a new device.",
+      "parentUuid": "f4114ef1_dad9d398",
+      "range": {
+        "startLine": 398,
+        "startChar": 7,
+        "endLine": 398,
+        "endChar": 17
+      },
+      "revId": "857711b57d63bf57284374e2df0ca80a1d8a1151",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e2046e06_42886eaa",
@@ -61,6 +85,30 @@
       "writtenOn": "2024-03-25T18:24:05Z",
       "side": 1,
       "message": "I can\u0027t tell that this is the same.  It looks like we always call uhid_fd_open.",
+      "range": {
+        "startLine": 433,
+        "startChar": 7,
+        "endLine": 433,
+        "endChar": 19
+      },
+      "revId": "857711b57d63bf57284374e2df0ca80a1d8a1151",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e91f891_49a08e9f",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-25T19:27:37Z",
+      "side": 1,
+      "message": "`uhid_fd_open()` is called in either case. If it fails, the device instance should not be reserved.\nIt would be easier to compare if you check the version before HID/HoGP switch changes.",
+      "parentUuid": "e2046e06_42886eaa",
       "range": {
         "startLine": 433,
         "startChar": 7,
