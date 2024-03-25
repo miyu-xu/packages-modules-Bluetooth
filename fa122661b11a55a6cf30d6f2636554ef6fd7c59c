@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f04a0e54_7f84082b",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-25T17:17:45Z",
+      "side": 1,
+      "message": "What happens once the flag is removed?\n\nIf the transport isn\u0027t auto, check to see if we should reject.  If we don\u0027t reject, don\u0027t update the state? (since the state update is only in the else)",
+      "range": {
+        "startLine": 439,
+        "startChar": 4,
+        "endLine": 439,
+        "endChar": 8
+      },
+      "revId": "fa122661b11a55a6cf30d6f2636554ef6fd7c59c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
