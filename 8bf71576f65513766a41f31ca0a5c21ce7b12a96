@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97fd6b28_0c6123d3",
+        "filename": "android/app/src/com/android/bluetooth/sap/SapMessage.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-25T21:52:29Z",
+      "side": 0,
+      "message": "Probably for a different CL, but this is a dangerous pattern",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 45
+      },
+      "revId": "8bf71576f65513766a41f31ca0a5c21ce7b12a96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
