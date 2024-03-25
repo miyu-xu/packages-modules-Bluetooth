@@ -1089,22 +1089,36 @@ public class GattService extends ProfileService {
         }
 
         @Override
-        public void serverConnect(int serverIf, String address, boolean isDirect, int transport,
-                AttributionSource attributionSource, SynchronousResultReceiver receiver) {
+        public void serverConnect(
+                int serverIf,
+                String address,
+                int addressType,
+                boolean isDirect,
+                int transport,
+                AttributionSource attributionSource,
+                SynchronousResultReceiver receiver) {
             try {
-                serverConnect(serverIf, address, isDirect, transport, attributionSource);
+                serverConnect(
+                        serverIf, address, addressType, isDirect, transport, attributionSource);
                 receiver.send(null);
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
             }
         }
-        private void serverConnect(int serverIf, String address, boolean isDirect, int transport,
+
+        private void serverConnect(
+                int serverIf,
+                String address,
+                int addressType,
+                boolean isDirect,
+                int transport,
                 AttributionSource attributionSource) {
             GattService service = getService();
             if (service == null) {
                 return;
             }
-            service.serverConnect(serverIf, address, isDirect, transport, attributionSource);
+            service.serverConnect(
+                    serverIf, address, addressType, isDirect, transport, attributionSource);
         }
 
         @Override
@@ -3412,7 +3426,12 @@ public class GattService extends ProfileService {
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-    void serverConnect(int serverIf, String address, boolean isDirect, int transport,
+    void serverConnect(
+            int serverIf,
+            String address,
+            int addressType,
+            boolean isDirect,
+            int transport,
             AttributionSource attributionSource) {
         if (!Utils.checkConnectPermissionForDataDelivery(
                 this, attributionSource, "GattService serverConnect")) {
@@ -3425,7 +3444,7 @@ public class GattService extends ProfileService {
 
         logServerForegroundInfo(attributionSource.getUid(), isDirect);
 
-        mNativeInterface.gattServerConnect(serverIf, address, isDirect, transport);
+        mNativeInterface.gattServerConnect(serverIf, address, addressType, isDirect, transport);
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
