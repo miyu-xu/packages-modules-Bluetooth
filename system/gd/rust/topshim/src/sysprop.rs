@@ -67,6 +67,9 @@ pub fn get_i32(prop: PropertyI32) -> i32 {
 pub enum PropertyBool {
     // bluetooth.core.le
     LeAdvMonRtlQuirk,
+
+    // bluetooth.le_audio
+    LeAudioEnableLeAudioOnly,
 }
 
 impl Into<(Vec<u8>, bool)> for PropertyBool {
@@ -74,6 +77,9 @@ impl Into<(Vec<u8>, bool)> for PropertyBool {
     fn into(self) -> (Vec<u8>, bool) {
         let (key, default_value) = match self {
             PropertyBool::LeAdvMonRtlQuirk => ("bluetooth.core.le.adv_mon_rtl_quirk", false),
+            PropertyBool::LeAudioEnableLeAudioOnly => {
+                ("bluetooth.le_audio.enable_le_audio_only", false)
+            }
         };
 
         (key.bytes().chain("\0".bytes()).collect::<Vec<u8>>(), default_value)
