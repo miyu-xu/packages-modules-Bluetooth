@@ -22,6 +22,30 @@
       },
       "revId": "4b8627be1bed6609b5aeaf147c6d1f98c6380077",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df24ddac_0bf88573",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-25T16:17:25Z",
+      "side": 1,
+      "message": "Previously, when you either started scanning through settings, or bonded with a device, callback pointed to a proper method (maybe not the proper method for current action, but proper as it was ok to call it and not cause crash).\n\nNow, i.e. if you pair, but don\u0027t go through scanning in settings first, the device search callback is not set, and we need some null checks.\nThis will eventually go away in couple patches.",
+      "parentUuid": "e1823099_63c47aaa",
+      "range": {
+        "startLine": 915,
+        "startChar": 0,
+        "endLine": 925,
+        "endChar": 3
+      },
+      "revId": "4b8627be1bed6609b5aeaf147c6d1f98c6380077",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
