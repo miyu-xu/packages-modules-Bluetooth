@@ -132,6 +132,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ee2f69db_1d90e699",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-25T23:00:16Z",
+      "side": 1,
+      "message": "What if the device has CSIP, but no ASCS?",
+      "parentUuid": "196b85eb_bb27416b",
+      "range": {
+        "startLine": 221,
+        "startChar": 0,
+        "endLine": 221,
+        "endChar": 47
+      },
+      "revId": "ac31005b3143fac12c87eed9c77b16a953c9ef2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "20cb61fd_c049ce80",
         "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
         "patchSetId": 2
