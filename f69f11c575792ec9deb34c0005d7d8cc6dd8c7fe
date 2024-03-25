@@ -75,6 +75,24 @@
       "parentUuid": "a248b456_a42b4849",
       "revId": "f69f11c575792ec9deb34c0005d7d8cc6dd8c7fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6428dc2_2791a37c",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-25T22:17:33Z",
+      "side": 1,
+      "message": "If the remote device uses RPA for LE pairing, HID host cannot correctly determine if the BR/EDR ACL is connected or not. Specifically, `BTM_IsAclConnectionUp()` claims that the pseudo address is not connected over BR/EDR. I am not sure if it is true for when LE ACL status is requested for the identity address.\n\nOne way to fix this problem would have been to ensure that the whole native core stack is able to match both IA and pseudo addresses properly.\nI found that it was less risky to select the address to use in HidHostService since it already made the transport selection as well. Also there was a precedent for selecting address in HidHostService.",
+      "parentUuid": "54b4761d_3ae31a49",
+      "revId": "f69f11c575792ec9deb34c0005d7d8cc6dd8c7fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
