@@ -339,6 +339,7 @@ bool LeAudioTransport::IsRequestCompletedAfterUpdate(
 }
 
 StartRequestState LeAudioTransport::GetStartRequestState(void) {
+  std::lock_guard<std::mutex> guard(start_request_state_mutex_);
   return start_request_state_;
 }
 void LeAudioTransport::ClearStartRequestState(void) {
