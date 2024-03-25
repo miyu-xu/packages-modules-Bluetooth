@@ -23,6 +23,7 @@ from floss.pandora.floss import manager_client
 from floss.pandora.floss import qa_client
 from floss.pandora.floss import scanner_client
 from floss.pandora.floss import socket_manager
+from floss.pandora.floss import telephony_client
 from floss.pandora.floss import gatt_client
 from floss.pandora.floss import gatt_server
 from floss.pandora.floss import floss_enums
@@ -69,6 +70,7 @@ class Bluetooth(object):
         self.gatt_client = gatt_client.FlossGattClient(self.bus, self.DEFAULT_ADAPTER)
         self.gatt_server = gatt_server.FlossGattServer(self.bus, self.DEFAULT_ADAPTER)
         self.socket_manager = socket_manager.FlossSocketManagerClient(self.bus, self.DEFAULT_ADAPTER)
+        self.telephony_client = telephony_client.FlossTelephonyClient(self.bus, self.DEFAULT_ADAPTER)
 
     def __del__(self):
         if not self.is_clean:
@@ -142,6 +144,9 @@ class Bluetooth(object):
         if not self.socket_manager.register_callbacks():
             logging.error('scanner_client: Failed to register callbacks')
             return False
+        if not self.telephony_client.register_telephony_callback():
+            logging.error('telephony_client: Failed to register callbacks')
+            return False
         return True
 
     def is_bluetoothd_proxy_valid(self):
@@ -155,7 +160,8 @@ class Bluetooth(object):
             self.qa_client.has_proxy(),
             self.gatt_client.has_proxy(),
             self.gatt_server.has_proxy(),
-            self.socket_manager.has_proxy()
+            self.socket_manager.has_proxy(),
+            self.telephony_client.has_proxy()
         ])
 
         if not proxy_ready:
@@ -192,6 +198,7 @@ class Bluetooth(object):
             self.gatt_client = gatt_client.FlossGattClient(self.bus, default_adapter)
             self.gatt_server = gatt_server.FlossGattServer(self.bus, default_adapter)
             self.socket_manager = socket_manager.FlossSocketManagerClient(self.bus, default_adapter)
+            self.telephony_client = telephony_client.FlossTelephonyClient(self.bus, default_adapter)
 
             try:
                 utils.poll_for_condition(
@@ -397,3 +404,6 @@ class Bluetooth(object):
 
     def close_socket(self, socket_id):
         return self.socket_manager.close(socket_id)
+
+    def incoming_call(self, number):
+        return self.telephony_client.incoming_call(number)
