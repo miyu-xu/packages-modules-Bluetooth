@@ -74,6 +74,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c7acb62f_0c71b423",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-25T21:59:13Z",
+      "side": 1,
+      "message": "This should be moved to the common assignments",
+      "revId": "857711b57d63bf57284374e2df0ca80a1d8a1151",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e2046e06_42886eaa",
         "filename": "system/btif/co/bta_hh_co.cc",
         "patchSetId": 1
