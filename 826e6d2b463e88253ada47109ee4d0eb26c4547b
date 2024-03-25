@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9969715c_08458155",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-25T20:15:26Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Bug Validation: \"Bug: \u003cbug_id\u003e\" is required to be in the commit message.\n\nAnalyzer Description: Validates that commit messages contains the required bug information.\nOwner: ayeaye-team@google.com\n\n\"Bug: \u003cbug_id\u003e\" is required to be in the commit message.",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "826e6d2b463e88253ada47109ee4d0eb26c4547b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99127b2a_790b431c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-25T20:15:26Z",
+      "side": 1,
+      "message": "This change needs to be flagged.",
+      "revId": "826e6d2b463e88253ada47109ee4d0eb26c4547b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
