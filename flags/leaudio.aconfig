@@ -196,3 +196,10 @@ flag {
     description: "Enable Le Audio for LeAudio only devices"
     bug: "328471369"
 }
+
+flag {
+    name: "leaudio_broadcast_assistant_force_queue_advance"
+    namespace: "bluetooth"
+    description: "Queue advance immediately after create sync cancel"
+    bug: "331167629"
+}
