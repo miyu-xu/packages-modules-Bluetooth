@@ -16,6 +16,24 @@
       "message": "For API review, can you please get confirmation of release team approved exception?\n\nhttps://g3doc.corp.google.com/company/teams/android/releasing/calendar/calendar-glossary.md?cl\u003dhead#api-freeze",
       "revId": "86813926bb2c5e37d39d26a4434bd48fca3dd3af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2550b4d9_ebf50588",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-25T18:52:15Z",
+      "side": 1,
+      "message": "(since deprecations can\u0027t be flagged)",
+      "parentUuid": "27a7923e_1a347287",
+      "revId": "86813926bb2c5e37d39d26a4434bd48fca3dd3af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
