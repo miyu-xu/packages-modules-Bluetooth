@@ -900,7 +900,7 @@ struct shim::legacy::Acl::impl {
     if (IsClassicAcl(handle)) {
       handle_to_classic_connection_map_[handle]->Flush();
     } else {
-      LOG_ERROR("handle %d is not a classic connection", handle);
+      log::error("handle {} is not a classic connection", handle);
     }
   }
 
