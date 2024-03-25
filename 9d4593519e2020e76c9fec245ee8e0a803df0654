@@ -206,6 +206,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae1e1f81_b7863757",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-25T19:01:07Z",
+      "side": 1,
+      "message": "Actually it does inside the service.\n\nBut I agree, permission should be enforced within the binder not within the service to keep clarity.",
+      "parentUuid": "0ab7ae8a_91ab9e4b",
+      "revId": "9d4593519e2020e76c9fec245ee8e0a803df0654",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db12c626_57721960",
@@ -364,6 +382,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb85b6d3_f722343e",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-25T19:01:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e01116f1_7412753b",
+      "revId": "9d4593519e2020e76c9fec245ee8e0a803df0654",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f47781d0_d0a4d76f",
@@ -387,6 +423,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b895c71_3938883c",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1511,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-25T19:01:07Z",
+      "side": 1,
+      "message": "Yes, the method is not private only because it is used in test directly.\nI added the annotation to make it explicit as while revieweing the interface I would have expect this to be private and not package private",
+      "parentUuid": "f47781d0_d0a4d76f",
+      "range": {
+        "startLine": 1511,
+        "startChar": 4,
+        "endLine": 1511,
+        "endChar": 22
+      },
+      "revId": "9d4593519e2020e76c9fec245ee8e0a803df0654",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3a8773f2_45446558",
@@ -400,6 +460,30 @@
       "writtenOn": "2024-03-25T17:33:41Z",
       "side": 1,
       "message": "Added annotation ?",
+      "range": {
+        "startLine": 1781,
+        "startChar": 5,
+        "endLine": 1781,
+        "endChar": 22
+      },
+      "revId": "9d4593519e2020e76c9fec245ee8e0a803df0654",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ba6526d_bf8665f9",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1781,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-25T19:01:07Z",
+      "side": 1,
+      "message": "Yes, the method is not private only because it is used in test directly.\nI added the annotation to make it explicit as while revieweing the interface I would have expect this to be private and not package private",
+      "parentUuid": "3a8773f2_45446558",
       "range": {
         "startLine": 1781,
         "startChar": 5,
@@ -527,6 +611,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1efaf7b_9f3a9d17",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-25T19:01:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ae7f1cd_284c4537",
+      "range": {
+        "startLine": 383,
+        "startChar": 12,
+        "endLine": 387,
+        "endChar": 13
+      },
+      "revId": "9d4593519e2020e76c9fec245ee8e0a803df0654",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f48b1fd_1c4eef5c",
@@ -540,6 +648,30 @@
       "writtenOn": "2024-03-25T17:53:33Z",
       "side": 1,
       "message": "```\n            if (service \u003d\u003d null) {\n                Log.w(TAG, \"Service handle is null for getAudioRouteAllowed!\");\n                return false;\n            }\n            \n            return service.getAudioRouteAllowed(device);\n```",
+      "range": {
+        "startLine": 393,
+        "startChar": 12,
+        "endLine": 398,
+        "endChar": 25
+      },
+      "revId": "9d4593519e2020e76c9fec245ee8e0a803df0654",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7062ef1d_d25d0ee3",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-25T19:01:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f48b1fd_1c4eef5c",
       "range": {
         "startLine": 393,
         "startChar": 12,
@@ -761,6 +893,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "51fd3fb1_7828cbdf",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1363,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-25T19:01:07Z",
+      "side": 1,
+      "message": "Sorry 😕\n\nClosing the comment as this is a bit unrelated to the change",
+      "parentUuid": "4f964d04_7d864984",
+      "range": {
+        "startLine": 1363,
+        "startChar": 16,
+        "endLine": 1363,
+        "endChar": 46
+      },
+      "revId": "9d4593519e2020e76c9fec245ee8e0a803df0654",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "622c1dd0_75344101",
@@ -774,6 +930,30 @@
       "writtenOn": "2024-03-25T17:53:33Z",
       "side": 1,
       "message": "nit: log before getService",
+      "range": {
+        "startLine": 538,
+        "startChar": 11,
+        "endLine": 540,
+        "endChar": 0
+      },
+      "revId": "9d4593519e2020e76c9fec245ee8e0a803df0654",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cb1d33c_691001e1",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MapClientService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-25T19:01:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "622c1dd0_75344101",
       "range": {
         "startLine": 538,
         "startChar": 11,
@@ -807,6 +987,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2c1b8a1_e5c05979",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-25T19:01:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9452421c_52f04ecf",
+      "range": {
+        "startLine": 98,
+        "startChar": 20,
+        "endLine": 100,
+        "endChar": 91
+      },
+      "revId": "9d4593519e2020e76c9fec245ee8e0a803df0654",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c9acd8bd_bdac1b6b",
@@ -820,6 +1024,24 @@
       "writtenOn": "2024-03-25T17:33:41Z",
       "side": 1,
       "message": "nit: log before getService,\nno idea if it matters",
+      "revId": "9d4593519e2020e76c9fec245ee8e0a803df0654",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5379a110_295232ad",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-25T19:01:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9acd8bd_bdac1b6b",
       "revId": "9d4593519e2020e76c9fec245ee8e0a803df0654",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },

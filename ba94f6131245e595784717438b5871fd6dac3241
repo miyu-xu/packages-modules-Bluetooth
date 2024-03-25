@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e57d0997_1adc45df",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1602,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-25T19:01:07Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "69d9108c_9022bc84",
+      "range": {
+        "startLine": 1599,
+        "startChar": 20,
+        "endLine": 1602,
+        "endChar": 21
+      },
+      "revId": "ba94f6131245e595784717438b5871fd6dac3241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a0b1ffba_1ced13bb",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-25T17:00:23Z",
       "side": 0,
       "message": "Check removed ?",
+      "range": {
+        "startLine": 1618,
+        "startChar": 20,
+        "endLine": 1621,
+        "endChar": 21
+      },
+      "revId": "ba94f6131245e595784717438b5871fd6dac3241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54d6b5b4_e90b1aa6",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1621,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-25T19:01:07Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "a0b1ffba_1ced13bb",
       "range": {
         "startLine": 1618,
         "startChar": 20,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "614bf875_484b10c9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 2240,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-25T19:01:07Z",
+      "side": 0,
+      "message": "This is done on purpose.\nThe method above inherit the requiresPermission from the aidl by using an override",
+      "parentUuid": "c5eb86b7_546c60cb",
+      "range": {
+        "startLine": 2235,
+        "startChar": 7,
+        "endLine": 2240,
+        "endChar": 18
+      },
+      "revId": "ba94f6131245e595784717438b5871fd6dac3241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "495a2742_dde0cead",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-03-25T17:00:23Z",
       "side": 0,
       "message": "Removed metric",
+      "range": {
+        "startLine": 3528,
+        "startChar": 16,
+        "endLine": 3529,
+        "endChar": 83
+      },
+      "revId": "ba94f6131245e595784717438b5871fd6dac3241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5633e0a1_a9cb9680",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 3529,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-25T19:01:07Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "495a2742_dde0cead",
       "range": {
         "startLine": 3528,
         "startChar": 16,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddb9209f_f1822972",
+        "filename": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1153,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-25T19:01:07Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "6f4a0b7f_2184de17",
+      "range": {
+        "startLine": 1152,
+        "startChar": 16,
+        "endLine": 1153,
+        "endChar": 72
+      },
+      "revId": "ba94f6131245e595784717438b5871fd6dac3241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a753973_05b32842",
@@ -129,6 +249,30 @@
       "writtenOn": "2024-03-25T17:06:46Z",
       "side": 0,
       "message": "Removed check",
+      "range": {
+        "startLine": 1173,
+        "startChar": 16,
+        "endLine": 1174,
+        "endChar": 72
+      },
+      "revId": "ba94f6131245e595784717438b5871fd6dac3241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea9c1100_3c71e230",
+        "filename": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1174,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-25T19:01:07Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "6a753973_05b32842",
       "range": {
         "startLine": 1173,
         "startChar": 16,
@@ -162,6 +306,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3ca1ce7_da75e639",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 4629,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-25T19:01:07Z",
+      "side": 0,
+      "message": "Yes... \n\nI am keeping the call as oneway to keep the asynchronous behavior then.\n\nBut I believe this was done accidentally.",
+      "parentUuid": "8a3dfd0f_cbcc3092",
+      "range": {
+        "startLine": 4628,
+        "startChar": 0,
+        "endLine": 4629,
+        "endChar": 42
+      },
+      "revId": "ba94f6131245e595784717438b5871fd6dac3241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d3e7996_eddbf8ae",
@@ -175,6 +343,30 @@
       "writtenOn": "2024-03-25T17:33:41Z",
       "side": 0,
       "message": "Removed checks",
+      "range": {
+        "startLine": 1621,
+        "startChar": 16,
+        "endLine": 1622,
+        "endChar": 72
+      },
+      "revId": "ba94f6131245e595784717438b5871fd6dac3241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9961146f_31a53863",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1622,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-25T19:01:07Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "0d3e7996_eddbf8ae",
       "range": {
         "startLine": 1621,
         "startChar": 16,
