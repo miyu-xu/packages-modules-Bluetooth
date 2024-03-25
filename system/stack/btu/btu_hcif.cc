@@ -38,6 +38,7 @@
 #include "common/init_flags.h"
 #include "common/metrics.h"
 #include "hci/controller_interface.h"
+#include "hci/hci_packets.h"
 #include "include/check.h"
 #include "internal_include/bt_target.h"
 #include "internal_include/bt_trace.h"
@@ -587,6 +588,8 @@ void btu_hcif_send_cmd(UNUSED_ATTR uint8_t controller_id, const BT_HDR* p_buf) {
   const uint8_t* stream = p_buf->data + p_buf->offset;
 
   STREAM_TO_UINT16(opcode, stream);
+  LOG_WARN("%d %s", opcode,
+           OpCodeText(static_cast<bluetooth::hci::OpCode>(opcode)).c_str());
 
   // Skip parameter length before logging
   stream++;
@@ -737,6 +740,8 @@ static void btu_hcif_command_status_evt_with_cb(uint8_t status, BT_HDR* command,
 void btu_hcif_send_cmd_with_cb(const base::Location& posted_from,
                                uint16_t opcode, uint8_t* params,
                                uint8_t params_len, hci_cmd_cb cb) {
+  LOG_WARN("%d %s", opcode,
+           OpCodeText(static_cast<bluetooth::hci::OpCode>(opcode)).c_str());
   BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
   uint8_t* pp = (uint8_t*)(p + 1);
 

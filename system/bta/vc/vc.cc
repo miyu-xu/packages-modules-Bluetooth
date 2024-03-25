@@ -1077,18 +1077,18 @@ class VolumeControlImpl : public VolumeControl {
                                       nullptr);
   }
 
-  void SetExtAudioOutDescription(const RawAddress& address,
-                                 uint8_t ext_output_id,
-                                 std::string descr) override {
-    VolumeControlDevice* device =
-        volume_control_devices_.FindByAddress(address);
-    if (!device) {
-      log::error("no such device!");
-      return;
-    }
+  // void SetExtAudioOutDescription(const RawAddress& address,
+  //                                uint8_t ext_output_id,
+  //                                std::string descr) override {
+  //   VolumeControlDevice* device =
+  //       volume_control_devices_.FindByAddress(address);
+  //   if (!device) {
+  //     LOG(ERROR) << __func__ << ", no such device!";
+  //     return;
+  //   }
 
-    device->SetExtAudioOutDescription(ext_output_id, descr);
-  }
+  //   device->SetExtAudioOutDescription(ext_output_id, descr);
+  // }
 
   void CleanUp() {
     log::info("");

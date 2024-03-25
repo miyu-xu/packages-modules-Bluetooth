@@ -59,7 +59,7 @@ class VolumeControl {
                                       uint8_t ext_output_id) = 0;
   virtual void GetExtAudioOutDescription(const RawAddress& address,
                                          uint8_t ext_output_id) = 0;
-  virtual void SetExtAudioOutDescription(const RawAddress& address,
-                                         uint8_t ext_output_id,
-                                         std::string descr) = 0;
+  // virtual void SetExtAudioOutDescription(const RawAddress& address,
+  //                                        uint8_t ext_output_id,
+  //                                        std::string descr) = 0;
 };

@@ -273,20 +273,22 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
                                       ext_output_id));
   }
 
-  void SetExtAudioOutDescription(const RawAddress& address,
-                                 uint8_t ext_output_id,
-                                 std::string descr) override {
-    if (!initialized || !VolumeControl::IsVolumeControlRunning()) {
-      log::verbose(
-          "call ignored, due to already started cleanup procedure or service "
-          "being not read");
-      return;
-    }
+  // void SetExtAudioOutDescription(const RawAddress& address,
+  //                                uint8_t ext_output_id,
+  //                                std::string descr) override {
+  //   if (!initialized || !VolumeControl::IsVolumeControlRunning()) {
+  //     VLOG(1) << __func__
+  //             << " call ignored, due to already started cleanup procedure or
+  //             "
+  //                "service being not read";
+  //     return;
+  //   }
 
-    do_in_main_thread(FROM_HERE, Bind(&VolumeControl::SetExtAudioOutDescription,
-                                      Unretained(VolumeControl::Get()), address,
-                                      ext_output_id, descr));
-  }
+  //   do_in_main_thread(FROM_HERE,
+  //   Bind(&VolumeControl::SetExtAudioOutDescription,
+  //                                     Unretained(VolumeControl::Get()),
+  //                                     address, ext_output_id, descr));
+  // }
 
   void Cleanup(void) override {
     if (!initialized || !VolumeControl::IsVolumeControlRunning()) {

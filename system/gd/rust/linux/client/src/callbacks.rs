@@ -13,6 +13,10 @@ use crate::{console_red, console_yellow, print_error, print_info};
 use bt_topshim::btif::{BtBondState, BtPropertyType, BtSspVariant, BtStatus, Uuid128Bit};
 use bt_topshim::profiles::gatt::{AdvertisingStatus, GattStatus, LePhy};
 use bt_topshim::profiles::hfp::HfpCodecId;
+use bt_topshim::profiles::le_audio::{
+    BtLeAudioDirection, BtLeAudioGroupNodeStatus, BtLeAudioGroupStatus, BtLeAudioGroupStreamStatus,
+    BtLeAudioUnicastMonitorModeStatus,
+};
 use bt_topshim::profiles::sdp::BtSdpRecord;
 use btstack::battery_manager::{BatterySet, IBatteryManagerCallback};
 use btstack::bluetooth::{
@@ -1341,6 +1345,32 @@ fn timestamp_to_string(ts_in_us: u64) -> String {
 }
 
 impl IBluetoothMediaCallback for MediaCallback {
+    fn ble_on_bluetooth_audio_device_added(&mut self, _device: BluetoothAudioDevice) {}
+    fn ble_on_bluetooth_audio_device_removed(&mut self, _addr: String) {}
+    fn ble_on_group_status(&mut self, _group_id: i32, _status: BtLeAudioGroupStatus) {}
+    fn ble_on_group_node_status(
+        &mut self,
+        _addr: String,
+        _group_id: i32,
+        _status: BtLeAudioGroupNodeStatus,
+    ) {
+    }
+    fn ble_on_audio_conf(
+        &mut self,
+        _direction: u8,
+        _group_id: i32,
+        _snk_audio_location: u32,
+        _src_audio_location: u32,
+        _avail_cont: u16,
+    ) {
+    }
+    fn ble_on_unicast_monitor_mode_status(
+        &mut self,
+        _direction: BtLeAudioDirection,
+        _status: BtLeAudioUnicastMonitorModeStatus,
+    ) {
+    }
+    fn ble_on_group_stream_status(&mut self, group_id: i32, status: BtLeAudioGroupStreamStatus) {}
     fn on_bluetooth_audio_device_added(&mut self, _device: BluetoothAudioDevice) {}
     fn on_bluetooth_audio_device_removed(&mut self, _addr: String) {}
     fn on_absolute_volume_supported_changed(&mut self, _supported: bool) {}

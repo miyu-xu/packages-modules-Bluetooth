@@ -19,6 +19,7 @@
 #ifdef TARGET_FLOSS
 #include <signal.h>
 #endif
+#include <base/logging.h>
 #include <bluetooth/log.h>
 
 #include <map>
@@ -210,6 +211,9 @@ struct HciLayer::impl {
         OpCodeText(waiting_command_).c_str(),
         op_code,
         OpCodeText(op_code).c_str());
+
+    // TODO: remove this after PoC is clear
+    LOG_WARN("%s %d %s %s", __func__, op_code, OpCodeText(op_code).c_str(), logging_id.c_str());
 
     bool is_vendor_specific = static_cast<int>(op_code) & (0x3f << 10);
     CommandStatusView status_view = CommandStatusView::Create(event);
