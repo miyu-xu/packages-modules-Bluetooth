@@ -46,6 +46,30 @@
       },
       "revId": "03f01cbc61c9eb4372821e564bd23723437c5db7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fe2e362_6bd8571e",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-25T17:20:35Z",
+      "side": 1,
+      "message": "Actually, it is already consistent. Upstream messages have addresses while the downstream messages are BluetoothDevice.",
+      "parentUuid": "62652f5c_524ed695",
+      "range": {
+        "startLine": 462,
+        "startChar": 49,
+        "endLine": 462,
+        "endChar": 66
+      },
+      "revId": "03f01cbc61c9eb4372821e564bd23723437c5db7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
