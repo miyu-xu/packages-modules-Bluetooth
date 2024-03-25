@@ -88,6 +88,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public final class Utils {
@@ -1342,4 +1344,7 @@ public final class Utils {
         }
         return str;
     }
+
+    /** Thread pool to handle background and outgoing blocking task */
+    public static ExecutorService BackgroundThreadPool = Executors.newFixedThreadPool(1);
 }
