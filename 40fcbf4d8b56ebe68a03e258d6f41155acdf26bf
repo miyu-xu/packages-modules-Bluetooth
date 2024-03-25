@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d41f0f9_a0d78cb5",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapVcardManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 800,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-25T21:52:05Z",
+      "side": 0,
+      "message": "Note: Stuff like this looks weird and is absolutely a bad pattern, but note its used only for debug output below with a rough latency",
+      "range": {
+        "startLine": 797,
+        "startChar": 8,
+        "endLine": 800,
+        "endChar": 9
+      },
+      "revId": "40fcbf4d8b56ebe68a03e258d6f41155acdf26bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf6e329f_96b36a59",
+        "filename": "android/app/src/com/android/bluetooth/pbap/PbapStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-25T21:52:05Z",
+      "side": 0,
+      "message": "This is no longer needed if we `setDbg(true)` in the constructor.\n\nThe `StateMachine` parent class uses Log.d() by default, with the name set as the state machine \"name\" (set as `TAG`) in the constructor. We can either use the parent `log` function, or the plain `Log.d()` (preferred) and they should function effectively the same way. The parent `log` function doesn\u0027t add any special formatting, so there\u0027s no advantage in using it.",
+      "range": {
+        "startLine": 481,
+        "startChar": 4,
+        "endLine": 486,
+        "endChar": 5
+      },
+      "revId": "40fcbf4d8b56ebe68a03e258d6f41155acdf26bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
