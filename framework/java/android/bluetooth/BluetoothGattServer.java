@@ -734,6 +734,7 @@ public final class BluetoothGattServer implements BluetoothProfile {
             mService.serverConnect(
                     mServerIf,
                     device.getAddress(),
+                    device.getAddressType(),
                     !autoConnect,
                     mTransport,
                     mAttributionSource,
