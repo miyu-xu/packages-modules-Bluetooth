@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f29bb4b_0d9825ca",
+        "filename": "system/bta/test/bta_disc_test.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-25T20:39:39Z",
+      "side": 1,
+      "message": "I took too many out? :)",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 48
+      },
+      "revId": "d1c3db1839ab0e5c7356796af4bf17da5e334cc8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efba65ad_12e055b8",
+        "filename": "system/bta/test/bta_test_fixtures.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-25T20:39:39Z",
+      "side": 1,
+      "message": "requisite nit 😊: 2024\n```suggestion\n * Copyright 2024 The Android Open Source Project\n```",
+      "range": {
+        "startLine": 2,
+        "startChar": 16,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "d1c3db1839ab0e5c7356796af4bf17da5e334cc8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
