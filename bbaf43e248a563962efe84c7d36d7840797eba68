@@ -22,6 +22,30 @@
       },
       "revId": "bbaf43e248a563962efe84c7d36d7840797eba68",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81234ae3_6a7f879d",
+        "filename": "system/log/src/vlog_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-25T18:38:52Z",
+      "side": 1,
+      "message": "Will address in follow up CL 👍",
+      "parentUuid": "de947dac_87cdb88c",
+      "range": {
+        "startLine": 121,
+        "startChar": 5,
+        "endLine": 121,
+        "endChar": 24
+      },
+      "revId": "bbaf43e248a563962efe84c7d36d7840797eba68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
