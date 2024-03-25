@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "970d78ac_c111b276",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-25T21:50:22Z",
+      "side": 1,
+      "message": "This seems like a high number of flags. Is there multiple features here?\n\nIf not, I would recomend only using one flag.",
+      "revId": "c3493c7347ec7211f93318e5c4723faf6872cfb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51ad09f3_603537a0",
+        "filename": "flags/bug_report.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-25T21:50:22Z",
+      "side": 1,
+      "message": "You should have one tracking bug per flag.",
+      "revId": "c3493c7347ec7211f93318e5c4723faf6872cfb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6c9aa1b_68c7c7a0",
+        "filename": "flags/bug_report.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-25T21:50:22Z",
+      "side": 1,
+      "message": "Flags can only take boolean values, the description seems to suggest a numeric value. Am I missing something here?",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 0
+      },
+      "revId": "c3493c7347ec7211f93318e5c4723faf6872cfb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
