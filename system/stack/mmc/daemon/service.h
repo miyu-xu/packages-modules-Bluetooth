@@ -80,7 +80,7 @@ class Service final {
   scoped_refptr<dbus::Bus> bus_;
   dbus::ExportedObject* exported_object_;  // Owned by the Bus object.
 
-  std::vector<std::pair<std::unique_ptr<bluetooth::common::MessageLoopThread>,
+  std::vector<std::pair<std::shared_ptr<bluetooth::common::MessageLoopThread>,
                         std::unique_ptr<std::future<void>>>>
       thread_pool_;
 

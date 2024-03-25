@@ -59,9 +59,9 @@ class btsemaphore {
 };
 static btsemaphore semaphore;
 static int cb_counter;
-static MessageLoopThread* thread = new MessageLoopThread("fake main thread");
+static std::shared_ptr<MessageLoopThread> thread = MessageLoopThread::Create("fake main thread");
 
-bluetooth::common::MessageLoopThread* get_main_thread() { return thread; }
+bluetooth::common::MessageLoopThread* get_main_thread() { return thread.get(); }
 
 static void cb(void* data) {
   ++cb_counter;

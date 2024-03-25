@@ -35,13 +35,15 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
   osi_property_set("persist.bluetooth.a2dp_offload.disabled",
                    fdp.PickValueInArray({"true", "false"}));
   std::string name = fdp.ConsumeRandomLengthString(kRandomStringLength);
-  bluetooth::common::MessageLoopThread messageLoopThread(name);
-  messageLoopThread.StartUp();
-  messageLoopThread.DoInThread(FROM_HERE, base::BindOnce(&source_init_delayed));
+  std::shared_ptr<bluetooth::common::MessageLoopThread> message_loop_thread =
+      MessageLoopThread::Create(kRandomStringLength);
+
+  message_loop_thread->StartUp();
+  message_loop_thread->DoInThread(FROM_HERE, base::BindOnce(&source_init_delayed));
 
   uint16_t delay = fdp.ConsumeIntegral<uint16_t>();
   bluetooth::audio::hearing_aid::set_remote_delay(delay);
 
-  messageLoopThread.ShutDown();
+  message_loop_thread->ShutDown();
   return 0;
 }

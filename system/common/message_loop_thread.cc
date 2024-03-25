@@ -55,6 +55,10 @@ MessageLoopThread::MessageLoopThread(const std::string& thread_name)
       weak_ptr_factory_(this),
       shutting_down_(false) {}
 
+std::shared_ptr<MessageLoopThread> MessageLoopThread::Create(const std::string& thread_name) {
+  return std::make_shared<MessageLoopThread>(thread_name);
+}
+
 MessageLoopThread::~MessageLoopThread() { ShutDown(); }
 
 void MessageLoopThread::StartUp() {
@@ -178,9 +182,8 @@ bool MessageLoopThread::EnableRealTimeScheduling() {
   return true;
 }
 
-base::WeakPtr<MessageLoopThread> MessageLoopThread::GetWeakPtr() {
-  std::lock_guard<std::recursive_mutex> api_lock(api_mutex_);
-  return weak_ptr_factory_.GetWeakPtr();
+std::weak_ptr<MessageLoopThread> MessageLoopThread::GetWeakPtr() {
+  return std::weak_from_this();
 }
 
 void MessageLoopThread::Run(std::promise<void> start_up_promise) {

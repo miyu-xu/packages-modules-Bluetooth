@@ -19,9 +19,9 @@
 #include <cstdio>
 #include <iostream>
 
-bluetooth::common::MessageLoopThread message_loop_thread("main message loop");
+std::shared_ptr<bluetooth::common::MessageLoopThread> message_loop_thread = MessageLoopThread::Create("main message loop");
 bluetooth::common::MessageLoopThread* get_main_thread() {
-  return &message_loop_thread;
+  return message_loop_thread.get();
 }
 
 namespace bluetooth::hal {

@@ -329,7 +329,7 @@ class BM_MessageLooopThread : public BM_ThreadPerformance {
     BM_ThreadPerformance::SetUp(st);
     std::future<void> set_up_future = set_up_promise_->get_future();
     message_loop_thread_ =
-        new MessageLoopThread("BM_MessageLooopThread thread");
+        MessageLoopThread::Create("BM_MessageLooopThread thread");
     message_loop_thread_->StartUp();
     message_loop_thread_->DoInThread(
         FROM_HERE, base::BindOnce(&std::promise<void>::set_value,
@@ -339,12 +339,11 @@ class BM_MessageLooopThread : public BM_ThreadPerformance {
 
   void TearDown(State& st) override {
     message_loop_thread_->ShutDown();
-    delete message_loop_thread_;
     message_loop_thread_ = nullptr;
     BM_ThreadPerformance::TearDown(st);
   }
 
-  MessageLoopThread* message_loop_thread_ = nullptr;
+  std::shared_ptr<MessageLoopThread> message_loop_thread_ = nullptr;
 };
 
 BENCHMARK_F(BM_MessageLooopThread, batch_enque_dequeue)(State& state) {

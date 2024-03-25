@@ -24,7 +24,6 @@
 #include "time_util.h"
 
 namespace bluetooth {
-
 namespace common {
 
 constexpr std::chrono::microseconds kMinimumPeriod =
@@ -33,14 +32,15 @@ constexpr std::chrono::microseconds kMinimumPeriod =
 // This runs on user thread
 RepeatingTimer::~RepeatingTimer() {
   std::lock_guard<std::recursive_mutex> api_lock(api_mutex_);
-  if (message_loop_thread_ != nullptr && message_loop_thread_->IsRunning()) {
+  std::shared_ptr<MessageLoopThread> scheduled_thread = message_loop_thread_.lock();
+  if (scheduled_thread != nullptr && scheduled_thread->IsRunning()) {
     CancelAndWait();
   }
 }
 
 // This runs on user thread
 bool RepeatingTimer::SchedulePeriodic(
-    const base::WeakPtr<MessageLoopThread>& thread,
+    const std::weak_ptr<MessageLoopThread>& thread,
     const base::Location& from_here, base::RepeatingClosure task,
     std::chrono::microseconds period) {
   if (period < kMinimumPeriod) {
@@ -94,7 +94,7 @@ void RepeatingTimer::CancelAndWait() {
 // This runs on user thread
 void RepeatingTimer::CancelHelper(std::promise<void> promise) {
   std::lock_guard<std::recursive_mutex> api_lock(api_mutex_);
-  MessageLoopThread* scheduled_thread = message_loop_thread_.get();
+  std::shared_ptr<MessageLoopThread> scheduled_thread = message_loop_thread_.lock();
   if (scheduled_thread == nullptr) {
     promise.set_value();
     return;
@@ -125,16 +125,18 @@ void RepeatingTimer::CancelClosure(std::promise<void> promise) {
 // This runs on user thread
 bool RepeatingTimer::IsScheduled() const {
   std::lock_guard<std::recursive_mutex> api_lock(api_mutex_);
-  return message_loop_thread_ != nullptr && message_loop_thread_->IsRunning();
+  std::shared_ptr<MessageLoopThread> scheduled_thread = message_loop_thread_.lock();
+  return scheduled_thread != nullptr && scheduled_thread->IsRunning();
 }
 
 // This runs on message loop thread
 void RepeatingTimer::RunTask() {
-  if (message_loop_thread_ == nullptr || !message_loop_thread_->IsRunning()) {
+  std::shared_ptr<MessageLoopThread> scheduled_thread = message_loop_thread_.lock();
+  if (scheduled_thread == nullptr || !scheduled_thread->IsRunning()) {
     log::error("message_loop_thread_ is null or is not running");
     return;
   }
-  CHECK_EQ(message_loop_thread_->GetThreadId(),
+  CHECK_EQ(scheduled_thread->GetThreadId(),
            base::PlatformThread::CurrentId())
       << ": task must run on message loop thread";
 
@@ -147,7 +149,7 @@ void RepeatingTimer::RunTask() {
     // multiple of period
     remaining_time_us = (remaining_time_us % period_us + period_us) % period_us;
   }
-  message_loop_thread_->DoInThreadDelayed(
+  scheduled_thread->DoInThreadDelayed(
       FROM_HERE, task_wrapper_.callback(),
       std::chrono::microseconds(remaining_time_us));
 
@@ -165,5 +167,4 @@ void RepeatingTimer::RunTask() {
 }
 
 }  // namespace common
-
 }  // namespace bluetooth

@@ -75,13 +75,14 @@ class RepeatingTimerTest : public ::testing::Test {
   void VerifyMultipleDelayedTasks(int scheduled_tasks, int task_length_ms,
                                   int interval_between_tasks_ms) {
     std::string name = "test_thread";
-    MessageLoopThread message_loop_thread(name);
-    message_loop_thread.StartUp();
-    message_loop_thread.EnableRealTimeScheduling();
+    std::shared_ptr<MessageLoopThread> message_loop_thread =
+        MessageLoopThread::Create(name);
+    message_loop_thread->StartUp();
+    message_loop_thread->EnableRealTimeScheduling();
     auto future = promise_->get_future();
     auto start_time = std::chrono::steady_clock::now();
     timer_->SchedulePeriodic(
-        message_loop_thread.GetWeakPtr(), FROM_HERE,
+        message_loop_thread->GetWeakPtr(), FROM_HERE,
         base::BindRepeating(&RepeatingTimerTest::VerifyDelayTimeAndSleep,
                             base::Unretained(this), start_time,
                             interval_between_tasks_ms, scheduled_tasks,
@@ -123,8 +124,9 @@ TEST_F(RepeatingTimerTest, initial_is_not_scheduled) {
 
 TEST_F(RepeatingTimerTest, cancel_without_scheduling) {
   std::string name = "test_thread";
-  MessageLoopThread message_loop_thread(name);
-  message_loop_thread.StartUp();
+  std::shared_ptr<MessageLoopThread> message_loop_thread =
+      MessageLoopThread::Create(name);
+  message_loop_thread->StartUp();
 
   EXPECT_FALSE(timer_->IsScheduled());
   timer_->CancelAndWait();
@@ -133,14 +135,16 @@ TEST_F(RepeatingTimerTest, cancel_without_scheduling) {
 
 TEST_F(RepeatingTimerTest, periodic_run) {
   std::string name = "test_thread";
-  MessageLoopThread message_loop_thread(name);
-  message_loop_thread.StartUp();
+  std::shared_ptr<MessageLoopThread> message_loop_thread =
+      MessageLoopThread::Create(name);
+  message_loop_thread->StartUp();
+
   auto future = promise_->get_future();
   uint32_t delay_ms = 5;
   int num_tasks = 200;
 
   timer_->SchedulePeriodic(
-      message_loop_thread.GetWeakPtr(), FROM_HERE,
+      message_loop_thread->GetWeakPtr(), FROM_HERE,
       base::BindRepeating(&RepeatingTimerTest::IncreaseTaskCounter,
                           base::Unretained(this), num_tasks, promise_),
       std::chrono::milliseconds(delay_ms));
@@ -151,12 +155,14 @@ TEST_F(RepeatingTimerTest, periodic_run) {
 
 TEST_F(RepeatingTimerTest, schedule_periodic_task_zero_interval) {
   std::string name = "test_thread";
-  MessageLoopThread message_loop_thread(name);
-  message_loop_thread.StartUp();
+  std::shared_ptr<MessageLoopThread> message_loop_thread =
+      MessageLoopThread::Create(name);
+  message_loop_thread->StartUp();
+
   uint32_t interval_ms = 0;
 
   ASSERT_FALSE(timer_->SchedulePeriodic(
-      message_loop_thread.GetWeakPtr(), FROM_HERE,
+      message_loop_thread->GetWeakPtr(), FROM_HERE,
       base::BindRepeating(&RepeatingTimerTest::ShouldNotHappen,
                           base::Unretained(this)),
       std::chrono::milliseconds(interval_ms)));
@@ -166,11 +172,13 @@ TEST_F(RepeatingTimerTest, schedule_periodic_task_zero_interval) {
 // Verify that deleting the timer without cancelling it will cancel the task
 TEST_F(RepeatingTimerTest, periodic_delete_without_cancel) {
   std::string name = "test_thread";
-  MessageLoopThread message_loop_thread(name);
-  message_loop_thread.StartUp();
+  std::shared_ptr<MessageLoopThread> message_loop_thread =
+      MessageLoopThread::Create(name);
+  message_loop_thread->StartUp();
+
   uint32_t delay_ms = 5;
   timer_->SchedulePeriodic(
-      message_loop_thread.GetWeakPtr(), FROM_HERE,
+      message_loop_thread->GetWeakPtr(), FROM_HERE,
       base::BindRepeating(&RepeatingTimerTest::ShouldNotHappen,
                           base::Unretained(this)),
       std::chrono::milliseconds(delay_ms));
@@ -181,10 +189,12 @@ TEST_F(RepeatingTimerTest, periodic_delete_without_cancel) {
 
 TEST_F(RepeatingTimerTest, cancel_single_task_near_fire_no_race_condition) {
   std::string name = "test_thread";
-  MessageLoopThread message_loop_thread(name);
-  message_loop_thread.StartUp();
+  std::shared_ptr<MessageLoopThread> message_loop_thread =
+      MessageLoopThread::Create(name);
+  message_loop_thread->StartUp();
+
   uint32_t delay_ms = 5;
-  timer_->SchedulePeriodic(message_loop_thread.GetWeakPtr(), FROM_HERE,
+  timer_->SchedulePeriodic(message_loop_thread->GetWeakPtr(), FROM_HERE,
                            base::DoNothing(),
                            std::chrono::milliseconds(delay_ms));
   std::this_thread::sleep_for(std::chrono::milliseconds(delay_ms));
@@ -193,14 +203,16 @@ TEST_F(RepeatingTimerTest, cancel_single_task_near_fire_no_race_condition) {
 
 TEST_F(RepeatingTimerTest, cancel_periodic_task) {
   std::string name = "test_thread";
-  MessageLoopThread message_loop_thread(name);
-  message_loop_thread.StartUp();
+  std::shared_ptr<MessageLoopThread> message_loop_thread =
+      MessageLoopThread::Create(name);
+  message_loop_thread->StartUp();
+
   uint32_t delay_ms = 5;
   int num_tasks = 5;
   auto future = promise_->get_future();
 
   timer_->SchedulePeriodic(
-      message_loop_thread.GetWeakPtr(), FROM_HERE,
+      message_loop_thread->GetWeakPtr(), FROM_HERE,
       base::BindRepeating(&RepeatingTimerTest::IncreaseTaskCounter,
                           base::Unretained(this), num_tasks, promise_),
       std::chrono::milliseconds(delay_ms));
@@ -229,20 +241,22 @@ TEST_F(RepeatingTimerTest, schedule_multiple_delayed_slow_tasks) {
 TEST_F(RepeatingTimerTest,
        message_loop_thread_down_cancel_scheduled_periodic_task) {
   std::string name = "test_thread";
-  MessageLoopThread message_loop_thread(name);
-  message_loop_thread.StartUp();
+  std::shared_ptr<MessageLoopThread> message_loop_thread =
+      MessageLoopThread::Create(name);
+  message_loop_thread->StartUp();
+
   std::string my_name;
   auto future = promise_->get_future();
   uint32_t delay_ms = 5;
   int num_tasks = 5;
 
   timer_->SchedulePeriodic(
-      message_loop_thread.GetWeakPtr(), FROM_HERE,
+      message_loop_thread->GetWeakPtr(), FROM_HERE,
       base::BindRepeating(&RepeatingTimerTest::IncreaseTaskCounter,
                           base::Unretained(this), num_tasks, promise_),
       std::chrono::milliseconds(delay_ms));
   future.wait();
-  message_loop_thread.ShutDown();
+  message_loop_thread->ShutDown();
   std::this_thread::sleep_for(
       std::chrono::milliseconds(delay_ms + delay_error_ms));
   int counter = counter_;

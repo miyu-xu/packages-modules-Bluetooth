@@ -39,13 +39,14 @@ TEST_F(FutureTest, test_future_non_immediate) {
   future_t* future = future_new();
   ASSERT_TRUE(future != NULL);
 
-  MessageLoopThread worker_thread("worker_thread");
-  worker_thread.StartUp();
-  worker_thread.DoInThread(FROM_HERE, base::BindOnce(post_to_future, future));
+  std::shared_ptr<MessageLoopThread> worker_thread =
+      MessageLoopThread::Create("worker_thread");
+  worker_thread->StartUp();
+  worker_thread->DoInThread(FROM_HERE, base::BindOnce(post_to_future, future));
 
   EXPECT_EQ(pass_back_data0, future_await(future));
 
-  worker_thread.ShutDown();
+  worker_thread->ShutDown();
 }
 
 TEST_F(FutureTest, test_future_immediate) {

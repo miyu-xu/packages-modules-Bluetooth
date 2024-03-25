@@ -22,9 +22,9 @@
 
 #include <chrono>
 #include <future>
+#include <memory>
 
 namespace bluetooth {
-
 namespace common {
 
 class MessageLoopThread;
@@ -56,7 +56,7 @@ class RepeatingTimer final {
    * @param period period for the task to be executed
    * @return true iff task is scheduled successfully
    */
-  bool SchedulePeriodic(const base::WeakPtr<MessageLoopThread>& thread,
+  bool SchedulePeriodic(const std::weak_ptr<MessageLoopThread>& thread,
                         const base::Location& from_here,
                         base::RepeatingClosure task,
                         std::chrono::microseconds period);
@@ -79,18 +79,17 @@ class RepeatingTimer final {
   bool IsScheduled() const;
 
  private:
-  base::WeakPtr<MessageLoopThread> message_loop_thread_;
+  std::weak_ptr<MessageLoopThread> message_loop_thread_;
   base::CancelableClosure task_wrapper_;
   base::RepeatingClosure task_;
   std::chrono::microseconds period_;
   uint64_t expected_time_next_task_us_;  // Using clock boot time in time_util.h
   mutable std::recursive_mutex api_mutex_;
+
   void CancelHelper(std::promise<void> promise);
   void CancelClosure(std::promise<void> promise);
-
   void RunTask();
 };
 
 }  // namespace common
-
 }  // namespace bluetooth

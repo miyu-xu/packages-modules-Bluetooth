@@ -32,14 +32,15 @@ using BtMainClosure = std::function<void()>;
 
 namespace {
 
-MessageLoopThread main_thread("bt_test_main_thread");
+std::shared_ptr<bluetooth::common::MessageLoopThread> main_thread =
+    MessageLoopThread::Create("bt_test_main_thread");
 void do_post_on_bt_main(BtMainClosure closure) { closure(); }
 
 }  // namespace
 
 bt_status_t do_in_main_thread(const base::Location& from_here,
                               base::OnceClosure task) {
-  ASSERT_LOG(main_thread.DoInThread(from_here, std::move(task)),
+  ASSERT_LOG(main_thread->DoInThread(from_here, std::move(task)),
              "Unable to run on main thread");
   return BT_STATUS_SUCCESS;
 }
@@ -47,7 +48,7 @@ bt_status_t do_in_main_thread(const base::Location& from_here,
 bt_status_t do_in_main_thread_delayed(const base::Location& from_here,
                                       base::OnceClosure task,
                                       std::chrono::microseconds delay) {
-  ASSERT_LOG(!main_thread.DoInThreadDelayed(from_here, std::move(task), delay),
+  ASSERT_LOG(!main_thread->DoInThreadDelayed(from_here, std::move(task), delay),
              "Unable to run on main thread delayed");
   return BT_STATUS_SUCCESS;
 }
@@ -60,11 +61,11 @@ void post_on_bt_main(BtMainClosure closure) {
 
 void main_thread_start_up() {
   main_thread.StartUp();
-  ASSERT_LOG(main_thread.IsRunning(),
+  ASSERT_LOG(main_thread->IsRunning(),
              "Unable to start message loop on main thread");
 }
 
 void main_thread_shut_down() { main_thread.ShutDown(); }
 
 // osi_alarm
-bluetooth::common::MessageLoopThread* get_main_thread() { return &main_thread; }
+bluetooth::common::MessageLoopThread* get_main_thread() { return main_thread.get(); }

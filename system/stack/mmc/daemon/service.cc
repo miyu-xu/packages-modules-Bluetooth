@@ -280,7 +280,7 @@ bool Service::StartWorkerThread(int fd, struct sockaddr_un addr,
   // Each thread has its associated future to indicate task completion.
   std::promise<void> task_ended;
   thread_pool_.push_back(std::make_pair(
-      std::make_unique<bluetooth::common::MessageLoopThread>(kWorkerThreadName),
+      bluetooth::common::MessageLoopThread::Create(kWorkerThreadName),
       std::make_unique<std::future<void>>(task_ended.get_future())));
 
   // Start up thread and assign task to it.

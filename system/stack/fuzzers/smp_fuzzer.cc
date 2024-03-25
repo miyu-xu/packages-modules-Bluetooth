@@ -32,10 +32,10 @@
 #include "test/mock/mock_stack_l2cap_api.h"
 #include "test/mock/mock_stack_l2cap_ble.h"
 
-bluetooth::common::MessageLoopThread* main_thread_ptr = nullptr;
+std::shared_ptr<bluetooth::common::MessageLoopThread> main_thread_ptr = nullptr;
 
 bluetooth::common::MessageLoopThread* get_main_thread() {
-  return main_thread_ptr;
+  return main_thread_ptr.get();
 }
 namespace {
 
@@ -108,7 +108,7 @@ class FakeBtStack {
           return true;
         };
     main_thread_ptr =
-        new bluetooth::common::MessageLoopThread("smp_fuzz_main_thread");
+        bluetooth::common::MessageLoopThread::Create("smp_fuzz_main_thread");
     main_thread_ptr->StartUp();
   }
 
@@ -126,7 +126,6 @@ class FakeBtStack {
     test::mock::stack_l2cap_api::L2CA_SendFixedChnlData = {};
     test::mock::stack_l2cap_api::L2CA_RegisterFixedChannel = {};
     main_thread_ptr->ShutDown();
-    delete main_thread_ptr;
     main_thread_ptr = nullptr;
   }
 };

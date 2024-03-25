@@ -54,9 +54,11 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
   osi_property_set("persist.bluetooth.a2dp_offload.disabled",
                    fdp.PickValueInArray({"true", "false"}));
   std::string name = fdp.ConsumeRandomLengthString(kRandomStringLength);
-  bluetooth::common::MessageLoopThread messageLoopThread(name);
-  messageLoopThread.StartUp();
-  messageLoopThread.DoInThread(FROM_HERE, base::BindOnce(&source_init_delayed));
+  std::shared_ptr<bluetooth::common::MessageLoopThread> message_loop_thread =
+      MessageLoopThread::Create(kRandomStringLength);
+
+  message_loop_thread->StartUp();
+  message_loop_thread->DoInThread(FROM_HERE, base::BindOnce(&source_init_delayed));
 
   LeAudioClientInterface* interface = LeAudioClientInterface::Get();
 
@@ -65,7 +67,7 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
 
   if (!interface->IsSourceAcquired()) {
     LeAudioClientInterface::Source* source =
-        interface->GetSource(streamCb, &messageLoopThread);
+        interface->GetSource(streamCb, message_loop_thread.get());
     if (source != nullptr) {
       uint16_t delay = fdp.ConsumeIntegral<uint16_t>();
       source->SetRemoteDelay(delay);
@@ -85,7 +87,7 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
 
   if (!interface->IsUnicastSinkAcquired()) {
     LeAudioClientInterface::Sink* sink =
-        interface->GetSink(streamCb, &messageLoopThread, false);
+        interface->GetSink(streamCb, message_loop_thread.get(), false);
     if (sink != nullptr) {
       uint16_t delay = fdp.ConsumeIntegral<uint16_t>();
       sink->SetRemoteDelay(delay);
@@ -103,6 +105,6 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
     interface->ReleaseSink(sink);
   }
 
-  messageLoopThread.ShutDown();
+  message_loop_thread->ShutDown();
   return 0;
 }

@@ -37,7 +37,7 @@ namespace common {
 /**
  * An interface to various thread related functionality
  */
-class MessageLoopThread final : public PostableContext {
+class MessageLoopThread final : public PostableContext, public std::enable_shared_from_this {
  public:
   /**
    * Create a message loop thread with name. Thread won't be running until
@@ -45,7 +45,7 @@ class MessageLoopThread final : public PostableContext {
    *
    * @param thread_name name of this worker thread
    */
-  explicit MessageLoopThread(const std::string& thread_name);
+  std::shared_ptr<MessageLoopThread> Create(const std::string& thread_name);
 
   MessageLoopThread(const MessageLoopThread&) = delete;
   MessageLoopThread& operator=(const MessageLoopThread&) = delete;
@@ -129,7 +129,7 @@ class MessageLoopThread final : public PostableContext {
    * Return the weak pointer to this object. This can be useful when posting
    * delayed tasks to this MessageLoopThread using Timer.
    */
-  base::WeakPtr<MessageLoopThread> GetWeakPtr();
+  std::weak_ptr<MessageLoopThread> GetWeakPtr();
 
   /**
    * Return the message loop for this thread. Accessing raw message loop is not
@@ -180,6 +180,14 @@ class MessageLoopThread final : public PostableContext {
 
  private:
   /**
+   * Actual method to create a message loop thread with name.
+   * Thread won't be running until StartUp is called.
+   *
+   * @param thread_name name of this worker thread
+   */
+  MessageLoopThread(const std::string& thread_name);
+
+  /**
    * Static method to run the thread
    *
    * This is used instead of a C++ lambda because of the use of std::shared_ptr
@@ -207,7 +215,6 @@ class MessageLoopThread final : public PostableContext {
   base::PlatformThreadId thread_id_;
   // Linux specific abstractions
   pid_t linux_tid_;
-  base::WeakPtrFactory<MessageLoopThread> weak_ptr_factory_;
   bool shutting_down_;
 };
 

@@ -324,12 +324,13 @@ TEST_F(AlarmTest, test_callback_ordering_on_mloop) {
   alarm_t* alarms[100];
 
   // Initialize MesageLoop, and wait till it's initialized.
-  MessageLoopThread message_loop_thread("btu message loop");
-  message_loop_thread.StartUp();
-  if (!message_loop_thread.IsRunning()) {
+  std::shared_ptr<MessageLoopThread> message_loop_thread =
+      MessageLoopThread::Create("btu message loop");
+  message_loop_thread->StartUp();
+  if (!message_loop_thread->IsRunning()) {
     FAIL() << "unable to create btu message loop thread.";
   }
-  thread_ = &message_loop_thread;
+  thread_ = message_loop_thread.get();
 
   for (int i = 0; i < 100; i++) {
     const std::string alarm_name =
@@ -350,7 +351,7 @@ TEST_F(AlarmTest, test_callback_ordering_on_mloop) {
 
   for (int i = 0; i < 100; i++) alarm_free(alarms[i]);
 
-  message_loop_thread.ShutDown();
+  message_loop_thread->ShutDown();
   EXPECT_FALSE(is_wake_lock_acquired);
 }
 

@@ -281,7 +281,7 @@ class WorkerThreadPerformanceTest : public PerformanceTest {
     PerformanceTest::SetUp();
     std::future<void> set_up_future = set_up_promise_->get_future();
     worker_thread_ =
-        new MessageLoopThread("WorkerThreadPerformanceTest thread");
+        MessageLoopThread::Create("WorkerThreadPerformanceTest thread");
     worker_thread_->StartUp();
     worker_thread_->DoInThread(
         FROM_HERE, base::BindOnce(&std::promise<void>::set_value,
@@ -291,12 +291,11 @@ class WorkerThreadPerformanceTest : public PerformanceTest {
 
   void TearDown() override {
     worker_thread_->ShutDown();
-    delete worker_thread_;
     worker_thread_ = nullptr;
     PerformanceTest::TearDown();
   }
 
-  MessageLoopThread* worker_thread_ = nullptr;
+  std::shared_ptr<MessageLoopThread> worker_thread_ = nullptr;
 };
 
 TEST_F(WorkerThreadPerformanceTest, worker_thread_speed_test) {

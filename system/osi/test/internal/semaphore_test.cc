@@ -72,18 +72,18 @@ TEST_F(SemaphoreTest, test_wait_after_post) {
 TEST_F(SemaphoreTest, test_ensure_wait) {
   semaphore_t* semaphore = semaphore_new(0);
   ASSERT_TRUE(semaphore != NULL);
-  MessageLoopThread thread("semaphore_test_thread");
-  thread.StartUp();
-  ASSERT_TRUE(thread.IsRunning());
+  std::shared_ptr<MessageLoopThread> thread = MessageLoopThread::Create("semaphore_test_thread");
+  thread->StartUp();
+  ASSERT_TRUE(thread->IsRunning());
 
   EXPECT_FALSE(semaphore_try_wait(semaphore));
   SemaphoreTestSequenceHelper sequence_helper = {semaphore, 0};
-  thread.DoInThread(FROM_HERE, base::BindOnce(sleep_then_increment_counter,
+  thread->DoInThread(FROM_HERE, base::BindOnce(sleep_then_increment_counter,
                                               &sequence_helper));
   semaphore_wait(semaphore);
   EXPECT_EQ(sequence_helper.counter, 1)
       << "semaphore_wait() did not wait for counter to increment";
 
   semaphore_free(semaphore);
-  thread.ShutDown();
+  thread->ShutDown();
 }

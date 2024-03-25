@@ -33,16 +33,17 @@
 using bluetooth::common::MessageLoopThread;
 using namespace bluetooth;
 
-static MessageLoopThread main_thread("bt_main_thread");
+static std::shared_ptr<MessageLoopThread> main_thread =
+    MessageLoopThread::Create("bt_main_thread");
 
-bluetooth::common::MessageLoopThread* get_main_thread() { return &main_thread; }
+bluetooth::common::MessageLoopThread* get_main_thread() { return main_thread.get(); }
 bluetooth::common::PostableContext* get_main() {
-  return main_thread.Postable();
+  return main_thread->Postable();
 }
 
 bt_status_t do_in_main_thread(const base::Location& from_here,
                               base::OnceClosure task) {
-  if (!main_thread.DoInThread(from_here, std::move(task))) {
+  if (!main_thread->DoInThread(from_here, std::move(task))) {
     log::error("failed from {}", from_here.ToString());
     return BT_STATUS_FAIL;
   }
@@ -52,7 +53,7 @@ bt_status_t do_in_main_thread(const base::Location& from_here,
 bt_status_t do_in_main_thread_delayed(const base::Location& from_here,
                                       base::OnceClosure task,
                                       std::chrono::microseconds delay) {
-  if (!main_thread.DoInThreadDelayed(from_here, std::move(task), delay)) {
+  if (!main_thread->DoInThreadDelayed(from_here, std::move(task), delay)) {
     log::error("failed from {}", from_here.ToString());
     return BT_STATUS_FAIL;
   }
@@ -68,11 +69,11 @@ void post_on_bt_main(BtMainClosure closure) {
 }
 
 void main_thread_start_up() {
-  main_thread.StartUp();
-  if (!main_thread.IsRunning()) {
+  main_thread->StartUp();
+  if (!main_thread->IsRunning()) {
     log::fatal("unable to start btu message loop thread.");
   }
-  if (!main_thread.EnableRealTimeScheduling()) {
+  if (!main_thread->EnableRealTimeScheduling()) {
 #if defined(__ANDROID__)
     log::fatal("unable to enable real time scheduling");
 #else
@@ -81,4 +82,4 @@ void main_thread_start_up() {
   }
 }
 
-void main_thread_shut_down() { main_thread.ShutDown(); }
+void main_thread_shut_down() { main_thread->ShutDown(); }

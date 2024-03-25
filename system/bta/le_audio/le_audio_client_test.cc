@@ -130,9 +130,10 @@ extern "C" const char* __asan_default_options() {
 
 std::atomic<int> num_async_tasks;
 static base::MessageLoop* message_loop_;
-bluetooth::common::MessageLoopThread message_loop_thread("test message loop");
+
+std::shared_ptr<bluetooth::common::MessageLoopThread> message_loop_thread = MessageLoopThread::Create("test message loop");
 bluetooth::common::MessageLoopThread* get_main_thread() {
-  return &message_loop_thread;
+  return message_loop_thread.get();
 }
 
 bt_status_t do_in_main_thread(const base::Location& from_here,

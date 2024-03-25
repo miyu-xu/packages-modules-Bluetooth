@@ -86,14 +86,16 @@ void A2dpEncodingFuzzer::process(const uint8_t* data, size_t size) {
                    fdp.PickValueInArray({"true", "false"}));
 
   std::string name = fdp.ConsumeRandomLengthString(kRandomStringLength);
-  bluetooth::common::MessageLoopThread messageLoopThread(name);
-  messageLoopThread.StartUp();
-  messageLoopThread.DoInThread(FROM_HERE, base::BindOnce(&source_init_delayed));
+  std::shared_ptr<bluetooth::common::MessageLoopThread> message_loop_thread =
+      MessageLoopThread::Create(kRandomStringLength);
+
+  message_loop_thread->StartUp();
+  message_loop_thread->DoInThread(FROM_HERE, base::BindOnce(&source_init_delayed));
 
   uint16_t delayReport = fdp.ConsumeIntegral<uint16_t>();
   bluetooth::audio::a2dp::set_remote_delay(delayReport);
 
-  if (!bluetooth::audio::a2dp::init(&messageLoopThread)) {
+  if (!bluetooth::audio::a2dp::init(message_loop_thread.get())) {
     return;
   }
 
@@ -112,7 +114,7 @@ void A2dpEncodingFuzzer::process(const uint8_t* data, size_t size) {
   status = fdp.PickValueInArray(kCtrlAckStatus);
   bluetooth::audio::a2dp::ack_stream_suspended(status);
   bluetooth::audio::a2dp::cleanup();
-  messageLoopThread.ShutDown();
+  message_loop_thread->ShutDown();
 }
 
 extern "C" int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
