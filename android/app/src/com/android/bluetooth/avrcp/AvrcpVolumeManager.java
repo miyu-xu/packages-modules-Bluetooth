@@ -29,11 +29,13 @@ import android.media.AudioManager;
 import android.util.Log;
 
 import com.android.bluetooth.BluetoothEventLogger;
+import com.android.bluetooth.Utils;
 import com.android.internal.annotations.VisibleForTesting;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.Future;
 
 class AvrcpVolumeManager extends AudioDeviceCallback {
     public static final String TAG = AvrcpVolumeManager.class.getSimpleName();
@@ -78,11 +80,22 @@ class AvrcpVolumeManager extends AudioDeviceCallback {
     private void switchVolumeDevice(@NonNull BluetoothDevice device) {
         // Inform the audio manager that the device has changed
         d("switchVolumeDevice: Set Absolute volume support to " + mDeviceMap.get(device));
-        mAudioManager.setDeviceVolumeBehavior(new AudioDeviceAttributes(
-                    AudioDeviceAttributes.ROLE_OUTPUT, AudioDeviceInfo.TYPE_BLUETOOTH_A2DP,
-                    device.getAddress()),
-                 mDeviceMap.get(device) ? AudioManager.DEVICE_VOLUME_BEHAVIOR_ABSOLUTE
-                 : AudioManager.DEVICE_VOLUME_BEHAVIOR_VARIABLE);
+        final AudioDeviceAttributes deviceAttributes =
+                new AudioDeviceAttributes(
+                        AudioDeviceAttributes.ROLE_OUTPUT,
+                        AudioDeviceInfo.TYPE_BLUETOOTH_A2DP,
+                        device.getAddress());
+        final int deviceVolumeBehavior =
+                mDeviceMap.get(device)
+                        ? AudioManager.DEVICE_VOLUME_BEHAVIOR_ABSOLUTE
+                        : AudioManager.DEVICE_VOLUME_BEHAVIOR_VARIABLE;
+
+        // Future is unused as we intentionnally making this call asynchronous
+        Future unusedFuture =
+                Utils.BackgroundThreadPool.submit(
+                        () ->
+                                mAudioManager.setDeviceVolumeBehavior(
+                                        deviceAttributes, deviceVolumeBehavior));
 
         // Get the current system volume and try to get the preference volume
         int savedVolume = getVolume(device, sNewDeviceVolume);
