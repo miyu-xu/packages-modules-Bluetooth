@@ -428,12 +428,20 @@ void bta_gatts_open(UNUSED_ATTR tBTA_GATTS_CB* p_cb, tBTA_GATTS_DATA* p_msg) {
 
   p_rcb = bta_gatts_find_app_rcb_by_app_if(p_msg->api_open.server_if);
   if (p_rcb != NULL) {
-    /* should always get the connection ID */
-    if (GATT_Connect(p_rcb->gatt_if, p_msg->api_open.remote_bda,
-                     p_msg->api_open.connection_type, p_msg->api_open.transport,
-                     false)) {
-      status = GATT_SUCCESS;
+    bool flag = true;
+    bool success = false;
+    if (flag) {
+      success = GATT_Connect(p_rcb->gatt_if, p_msg->api_open.remote_bda,
+                             p_msg->api_open.connection_type,
+                             p_msg->api_open.transport, false);
+    } else {
+      success = GATT_Connect(p_rcb->gatt_if, p_msg->api_open.remote_bda,
+                             p_msg->api_open.connection_type,
+                             p_msg->api_open.transport, false);
+    }
 
+    if (success) {
+      status = GATT_SUCCESS;
       if (GATT_GetConnIdIfConnected(p_rcb->gatt_if, p_msg->api_open.remote_bda,
                                     &conn_id, p_msg->api_open.transport)) {
         status = GATT_ALREADY_OPEN;
