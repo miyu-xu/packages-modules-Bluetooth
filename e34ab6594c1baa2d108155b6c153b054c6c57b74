@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f6e5ad7_85e1b10a",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-03-25T17:32:17Z",
+      "side": 1,
+      "message": "Do you think we should consider to flag this change as well?\nOr we\u0027re confident enough this won\u0027t cause any issues.\n\ne.g. in HandleNextRequest() {\nif (flag)\n    request.sync_timeout_alarm.Schedule(\n        base::BindOnce(\u0026PeriodicSyncManager::OnStartSyncTimeout, base::Unretained(this)), lNewTimeout);\n        \nelse\n    request.sync_timeout_alarm.Schedule(\n        base::BindOnce(\u0026PeriodicSyncManager::OnStartSyncTimeout, base::Unretained(this)), kPeriodicSyncTimeout);",
+      "revId": "e34ab6594c1baa2d108155b6c153b054c6c57b74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
