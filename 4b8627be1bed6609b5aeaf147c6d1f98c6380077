@@ -46,6 +46,30 @@
       },
       "revId": "4b8627be1bed6609b5aeaf147c6d1f98c6380077",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "320dcb28_a3ad7e4e",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-25T16:20:59Z",
+      "side": 1,
+      "message": "Please note it\u0027s device vs service search callback, so can\u0027t be an if/else as you suggested.",
+      "parentUuid": "df24ddac_0bf88573",
+      "range": {
+        "startLine": 915,
+        "startChar": 0,
+        "endLine": 925,
+        "endChar": 3
+      },
+      "revId": "4b8627be1bed6609b5aeaf147c6d1f98c6380077",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
