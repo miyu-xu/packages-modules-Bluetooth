@@ -2142,6 +2142,14 @@ public class HeadsetService extends ProfileService {
                     mSystemInterface.getAudioManager().setA2dpSuspended(false);
                     if (isAtLeastU()) {
                         mSystemInterface.getAudioManager().setLeAudioSuspended(false);
+
+                        // Resumes LE audio previous active device if HFP handover happened before.
+                        // Do it here because some controllers cannot handle SCO and CIS
+                        // co-existence see {@link LeAudioService#setInactiveForHfpHandover}
+                        if (Flags.leaudioResumeActiveAfterHfpHandover()) {
+                            LeAudioService leAudioService = mFactory.getLeAudioService();
+                            leAudioService.setActiveAfterHfpHandover();
+                        }
                     }
                 }
             }
