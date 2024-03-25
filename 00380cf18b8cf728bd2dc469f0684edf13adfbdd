@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a60be791_c850bf47",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1301,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2024-03-25T09:50:33Z",
+      "side": 1,
+      "message": "Updated",
+      "parentUuid": "caf15a11_2389a3e5",
+      "range": {
+        "startLine": 1298,
+        "startChar": 0,
+        "endLine": 1301,
+        "endChar": 47
+      },
+      "revId": "00380cf18b8cf728bd2dc469f0684edf13adfbdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f74b41b3_0b794a19",
@@ -108,6 +132,30 @@
       "writtenOn": "2024-03-21T08:33:45Z",
       "side": 1,
       "message": "I think after https://r.android.com/3000176 this function would imply this and we don\u0027t need to add anything here.",
+      "range": {
+        "startLine": 1974,
+        "startChar": 0,
+        "endLine": 1977,
+        "endChar": 0
+      },
+      "revId": "00380cf18b8cf728bd2dc469f0684edf13adfbdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cfb0f3d_2964d69b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1977,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2024-03-25T09:50:33Z",
+      "side": 1,
+      "message": "Yes, you\u0027re right. Removed.",
+      "parentUuid": "f74b41b3_0b794a19",
       "range": {
         "startLine": 1974,
         "startChar": 0,
