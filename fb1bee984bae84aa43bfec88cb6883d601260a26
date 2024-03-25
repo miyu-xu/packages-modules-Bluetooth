@@ -34,6 +34,40 @@
       "parentUuid": "fc03864f_f86c4fab",
       "revId": "fb1bee984bae84aa43bfec88cb6883d601260a26",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e8f86ba_59895e1e",
+        "filename": "system/osi/test/stack_power_telemetry_test.cc",
+        "patchSetId": 47
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-25T16:48:39Z",
+      "side": 1,
+      "message": "This is an interesting fixture.  I assume there is a static initializer underneath ?\nPlus (no punctuation in comment)\n```suggestion\n    power_telemetry::GetInstance();   // Init the object\n```",
+      "revId": "fb1bee984bae84aa43bfec88cb6883d601260a26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2de090f5_62822d20",
+        "filename": "system/osi/test/stack_power_telemetry_test.cc",
+        "patchSetId": 47
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-25T16:48:39Z",
+      "side": 1,
+      "message": "I assume this misspelling is intentional and/or previous ?\n\nDoes it make sense to fix the spelling here ?\n```suggestion\n    power_telemetry_enabled_ \u003d true;  // Enable the feature flag\n```",
+      "revId": "fb1bee984bae84aa43bfec88cb6883d601260a26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
