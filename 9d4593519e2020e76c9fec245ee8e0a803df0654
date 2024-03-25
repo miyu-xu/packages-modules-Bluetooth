@@ -244,6 +244,190 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e6fb8190_2a01bd75",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-25T17:53:33Z",
+      "side": 1,
+      "message": ":)",
+      "range": {
+        "startLine": 309,
+        "startChar": 27,
+        "endLine": 309,
+        "endChar": 56
+      },
+      "revId": "9d4593519e2020e76c9fec245ee8e0a803df0654",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "310b33d8_26e9ab41",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-25T17:53:33Z",
+      "side": 1,
+      "message": ":)",
+      "range": {
+        "startLine": 319,
+        "startChar": 27,
+        "endLine": 319,
+        "endChar": 56
+      },
+      "revId": "9d4593519e2020e76c9fec245ee8e0a803df0654",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ae7f1cd_284c4537",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-25T17:53:33Z",
+      "side": 1,
+      "message": "nitpicking: I have seen you do\n\n```\nif (service \u003d\u003d null) {\n    Log.w(TAG, \"Service handle is null for setAudioRouteAllowed!\");\n    return;\n}\n```",
+      "range": {
+        "startLine": 383,
+        "startChar": 12,
+        "endLine": 387,
+        "endChar": 13
+      },
+      "revId": "9d4593519e2020e76c9fec245ee8e0a803df0654",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f48b1fd_1c4eef5c",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-25T17:53:33Z",
+      "side": 1,
+      "message": "```\n            if (service \u003d\u003d null) {\n                Log.w(TAG, \"Service handle is null for getAudioRouteAllowed!\");\n                return false;\n            }\n            \n            return service.getAudioRouteAllowed(device);\n```",
+      "range": {
+        "startLine": 393,
+        "startChar": 12,
+        "endLine": 398,
+        "endChar": 25
+      },
+      "revId": "9d4593519e2020e76c9fec245ee8e0a803df0654",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "492009b4_149e6b36",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidDeviceService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-25T17:53:33Z",
+      "side": 1,
+      "message": ":)",
+      "range": {
+        "startLine": 473,
+        "startChar": 27,
+        "endLine": 473,
+        "endChar": 56
+      },
+      "revId": "9d4593519e2020e76c9fec245ee8e0a803df0654",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce875264_bda7f445",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-25T17:53:33Z",
+      "side": 1,
+      "message": ":)",
+      "range": {
+        "startLine": 835,
+        "startChar": 27,
+        "endLine": 835,
+        "endChar": 56
+      },
+      "revId": "9d4593519e2020e76c9fec245ee8e0a803df0654",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f964d04_7d864984",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1363,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-25T17:53:33Z",
+      "side": 1,
+      "message": "On the side, apparently only two profiles do use this reporting mechanism 😐",
+      "range": {
+        "startLine": 1363,
+        "startChar": 16,
+        "endLine": 1363,
+        "endChar": 46
+      },
+      "revId": "9d4593519e2020e76c9fec245ee8e0a803df0654",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "622c1dd0_75344101",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MapClientService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-25T17:53:33Z",
+      "side": 1,
+      "message": "nit: log before getService",
+      "range": {
+        "startLine": 538,
+        "startChar": 11,
+        "endLine": 540,
+        "endChar": 0
+      },
+      "revId": "9d4593519e2020e76c9fec245ee8e0a803df0654",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9452421c_52f04ecf",
         "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientService.java",
         "patchSetId": 16
