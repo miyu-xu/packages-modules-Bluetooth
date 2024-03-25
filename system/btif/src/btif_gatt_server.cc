@@ -26,6 +26,7 @@
 
 #define LOG_TAG "bt_btif_gatt"
 
+#include <android_bluetooth_flags.h>
 #include <base/functional/bind.h>
 #include <bluetooth/log.h>
 #include <hardware/bluetooth.h>
@@ -287,22 +288,30 @@ static bt_status_t btif_gatts_unregister_app(int server_if) {
 }
 
 static void btif_gatts_open_impl(int server_if, const RawAddress& address,
-                                 bool is_direct, int transport_param) {
-  // Ensure device is in inquiry database
-  tBLE_ADDR_TYPE addr_type = BLE_ADDR_PUBLIC;
-  int device_type = 0;
-  tBT_TRANSPORT transport = BT_TRANSPORT_LE;
+                                 tBLE_ADDR_TYPE addr_type, bool is_direct,
+                                 int transport_param) {
+  int device_type = BT_DEVICE_TYPE_UNKNOWN;
+  tBT_TRANSPORT transport = (tBT_TRANSPORT)BT_TRANSPORT_LE;
 
-  if (btif_get_address_type(address, &addr_type) &&
-      btif_get_device_type(address, &device_type) &&
-      device_type != BT_DEVICE_TYPE_BREDR) {
+  if (IS_FLAG_ENABLED(ble_gatt_server_use_address_type_in_connection) &&
+      addr_type == BLE_ADDR_RANDOM) {
+    device_type = BT_DEVICE_TYPE_BLE;
     BTA_DmAddBleDevice(address, addr_type, device_type);
+  } else {
+    // Ensure device is in inquiry database
+    addr_type = BLE_ADDR_PUBLIC;
+    if (btif_get_address_type(address, &addr_type) &&
+        btif_get_device_type(address, &device_type) &&
+        device_type != BT_DEVICE_TYPE_BREDR) {
+      BTA_DmAddBleDevice(address, addr_type, device_type);
+    }
   }
 
   // Determine transport
   if (transport_param != BT_TRANSPORT_AUTO) {
     transport = transport_param;
   } else {
+    // transport_param == BT_TRANSPORT_AUTO
     switch (device_type) {
       case BT_DEVICE_TYPE_BREDR:
         transport = BT_TRANSPORT_BR_EDR;
@@ -313,23 +322,27 @@ static void btif_gatts_open_impl(int server_if, const RawAddress& address,
         break;
 
       case BT_DEVICE_TYPE_DUMO:
-        if (transport_param == BT_TRANSPORT_LE)
+        if (IS_FLAG_ENABLED(ble_gatt_server_use_address_type_in_connection)) {
           transport = BT_TRANSPORT_LE;
-        else
+        } else {
           transport = BT_TRANSPORT_BR_EDR;
+        }
         break;
     }
   }
 
+  log::info("addr_type:{}, transport:{}", addr_type, transport);
+
   // Connect!
-  BTA_GATTS_Open(server_if, address, is_direct, transport);
+  BTA_GATTS_Open(server_if, address, addr_type, is_direct, transport);
 }
 
 static bt_status_t btif_gatts_open(int server_if, const RawAddress& bd_addr,
-                                   bool is_direct, int transport) {
+                                   uint8_t addr_type, bool is_direct,
+                                   int transport) {
   CHECK_BTGATT_INIT();
-  return do_in_jni_thread(
-      Bind(&btif_gatts_open_impl, server_if, bd_addr, is_direct, transport));
+  return do_in_jni_thread(Bind(&btif_gatts_open_impl, server_if, bd_addr,
+                               addr_type, is_direct, transport));
 }
 
 static void btif_gatts_close_impl(int server_if, const RawAddress& address,
