@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "597d0298_03e461b7",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-25T14:22:59Z",
+      "side": 1,
+      "message": "https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2848253 for a little more context.",
+      "parentUuid": "0e95534b_f2e27f16",
+      "range": {
+        "startLine": 508,
+        "startChar": 3,
+        "endLine": 514,
+        "endChar": 5
+      },
+      "revId": "30b320bdd069e020bfc1a8c33fdd61dc3a5aa634",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "87331704_b1bdf395",
         "filename": "system/bta/dm/bta_dm_disc.cc",
         "patchSetId": 1
