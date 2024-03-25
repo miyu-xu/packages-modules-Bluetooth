@@ -22,6 +22,30 @@
       },
       "revId": "03f01cbc61c9eb4372821e564bd23723437c5db7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62652f5c_524ed695",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-25T17:15:27Z",
+      "side": 1,
+      "message": "That would be a separate cl. I can c",
+      "parentUuid": "c0a28832_fe935073",
+      "range": {
+        "startLine": 462,
+        "startChar": 49,
+        "endLine": 462,
+        "endChar": 66
+      },
+      "revId": "03f01cbc61c9eb4372821e564bd23723437c5db7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
