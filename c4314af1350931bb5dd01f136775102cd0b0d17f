@@ -33,6 +33,24 @@
       "message": "```suggestion\n    Returns:\n        Bluetooth GATT descriptor object.\n```",
       "revId": "c4314af1350931bb5dd01f136775102cd0b0d17f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2ec7bcc_e415a374",
+        "filename": "floss/pandora/floss/bluetooth_gatt_service.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-03-25T06:21:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "258402ab_6b82f36d",
+      "revId": "c4314af1350931bb5dd01f136775102cd0b0d17f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
