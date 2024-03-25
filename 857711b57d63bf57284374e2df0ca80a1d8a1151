@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4114ef1_dad9d398",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-25T18:24:33Z",
+      "side": 1,
+      "message": "I\u0027m not sure of this anymore...",
+      "parentUuid": "61c975b9_59ac0f28",
+      "range": {
+        "startLine": 398,
+        "startChar": 7,
+        "endLine": 398,
+        "endChar": 17
+      },
+      "revId": "857711b57d63bf57284374e2df0ca80a1d8a1151",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e2046e06_42886eaa",
