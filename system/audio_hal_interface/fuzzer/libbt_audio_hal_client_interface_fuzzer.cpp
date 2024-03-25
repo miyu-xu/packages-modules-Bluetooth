@@ -164,7 +164,7 @@ class TestSinkTransport
     return true;
   }
 
-  void MetadataChanged(const source_metadata_t&) override {}
+  void MetadataChanged(const source_metadata_v7_t&) override {}
 
   void ResetPresentationPosition() override{};
 
@@ -197,7 +197,7 @@ class TestSourceTransport
     return true;
   }
 
-  void MetadataChanged(const source_metadata_t&) override {}
+  void MetadataChanged(const source_metadata_v7_t&) override {}
 
   void ResetPresentationPosition() override{};
 

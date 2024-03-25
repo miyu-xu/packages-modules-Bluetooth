@@ -104,7 +104,7 @@ class HearingAidTransport
     return true;
   }
 
-  void MetadataChanged(const source_metadata_t& source_metadata) override {
+  void MetadataChanged(const source_metadata_v7_t& source_metadata) override {
     auto track_count = source_metadata.track_count;
     auto tracks = source_metadata.tracks;
     log::info("{} track(s) received", track_count);

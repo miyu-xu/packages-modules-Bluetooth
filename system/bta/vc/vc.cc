@@ -1082,7 +1082,7 @@ class VolumeControlImpl : public VolumeControl {
     VolumeControlDevice* device =
         volume_control_devices_.FindByAddress(address);
     if (!device) {
-      log::error("no such device!");
+      LOG(ERROR) << __func__ << ", no such device!";
       return;
     }
 

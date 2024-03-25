@@ -386,18 +386,20 @@ void VolumeControlDevice::SetExtAudioOutDescription(uint8_t ext_output_id,
                                                     std::string& descr) {
   VolumeOffset* offset = audio_offsets.FindById(ext_output_id);
   if (!offset) {
-    log::error("no such offset!");
+    LOG(ERROR) << __func__ << ": no such offset!";
     return;
   }
 
   if (!offset->audio_descr_writable) {
-    log::warn("not writable");
+    LOG(WARNING) << __func__ << ": not writable";
     return;
   }
 
   std::vector<uint8_t> value(descr.begin(), descr.end());
-  BtaGattQueue::WriteCharacteristic(connection_id, offset->audio_descr_handle,
-                                    value, GATT_WRITE_NO_RSP, nullptr, nullptr);
+  BtaGattQueue::WriteCharacteristic(connection_id,
+  offset->audio_descr_handle,
+                                    value, GATT_WRITE_NO_RSP, nullptr,
+                                    nullptr);
 }
 
 void VolumeControlDevice::ExtAudioOutControlPointOperation(

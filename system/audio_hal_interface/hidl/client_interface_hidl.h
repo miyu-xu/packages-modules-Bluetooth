@@ -136,7 +136,7 @@ class IBluetoothTransportInstance {
                                        uint64_t* total_bytes_readed,
                                        timespec* data_position) = 0;
 
-  virtual void MetadataChanged(const source_metadata_t& source_metadata) = 0;
+  virtual void MetadataChanged(const source_metadata_v7_t& source_metadata) = 0;
 
   // Invoked when the transport is requested to reset presentation position
   virtual void ResetPresentationPosition() = 0;

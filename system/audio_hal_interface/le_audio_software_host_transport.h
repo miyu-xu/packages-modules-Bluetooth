@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 The Android Open Source Project
+ * Copyright 2023 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,53 +16,35 @@
 
 #pragma once
 
-#include "../le_audio_software.h"
+#include "audio_hal_interface/le_audio_software.h"
+#include "audio_hal_interface/le_audio_software_host.h"
 #include "bta/le_audio/le_audio_types.h"
-#include "client_interface_hidl.h"
 
 namespace bluetooth {
 namespace audio {
-namespace hidl {
+namespace host {
 namespace le_audio {
 
-using ::android::hardware::bluetooth::audio::V2_1::PcmParameters;
-using ::bluetooth::audio::hidl::BluetoothAudioCtrlAck;
 using ::bluetooth::le_audio::set_configurations::AudioSetConfiguration;
 using ::bluetooth::le_audio::set_configurations::CodecConfigSetting;
 
+using ::bluetooth::audio::le_audio::LeAudioClientInterface;
 using ::bluetooth::audio::le_audio::StartRequestState;
-
-constexpr uint8_t kChannelNumberMono = 1;
-constexpr uint8_t kChannelNumberStereo = 2;
-
-constexpr uint32_t kSampleRate48000 = 48000;
-constexpr uint32_t kSampleRate44100 = 44100;
-constexpr uint32_t kSampleRate32000 = 32000;
-constexpr uint32_t kSampleRate24000 = 24000;
-constexpr uint32_t kSampleRate16000 = 16000;
-constexpr uint32_t kSampleRate8000 = 8000;
-
-constexpr uint8_t kBitsPerSample16 = 16;
-constexpr uint8_t kBitsPerSample24 = 24;
-constexpr uint8_t kBitsPerSample32 = 32;
-
 using ::bluetooth::audio::le_audio::StreamCallbacks;
+
+typedef LeAudioClientInterface::PcmParameters PcmParameters;
 
 void flush_sink();
 void flush_source();
-
-bool is_source_hal_enabled();
-bool is_sink_hal_enabled();
 
 class LeAudioTransport {
  public:
   LeAudioTransport(void (*flush)(void), StreamCallbacks stream_cb,
                    PcmParameters pcm_config);
 
-  BluetoothAudioCtrlAck StartRequest();
-  BluetoothAudioCtrlAck StartRequestV2();
+  bool StartRequest();
 
-  BluetoothAudioCtrlAck SuspendRequest();
+  bool SuspendRequest();
 
   void StopRequest();
 
@@ -70,7 +52,9 @@ class LeAudioTransport {
                                uint64_t* total_bytes_processed,
                                timespec* data_position);
 
-  void MetadataChanged(const source_metadata_v7_t& source_metadata);
+  void SourceMetadataChanged(const source_metadata_v7_t& source_metadata);
+
+  void SinkMetadataChanged(const sink_metadata_v7_t& sink_metadata);
 
   void ResetPresentationPosition();
 
@@ -84,10 +68,6 @@ class LeAudioTransport {
                                       uint8_t channels_count,
                                       uint32_t data_interval);
 
-  bool IsRequestCompletedAfterUpdate(
-      const std::function<
-          std::pair<StartRequestState, bool>(StartRequestState)>& lambda);
-
   StartRequestState GetStartRequestState(void);
   void ClearStartRequestState(void);
   void SetStartRequestState(StartRequestState state);
@@ -99,34 +79,33 @@ class LeAudioTransport {
   uint64_t total_bytes_processed_;
   timespec data_position_;
   PcmParameters pcm_config_;
-  mutable std::mutex start_request_state_mutex_;
   std::atomic<StartRequestState> start_request_state_;
 };
 
 // Sink transport implementation for Le Audio
-class LeAudioSinkTransport
-    : public ::bluetooth::audio::hidl::IBluetoothSinkTransportInstance {
+class LeAudioSinkTransport {
  public:
-  LeAudioSinkTransport(SessionType_2_1 session_type, StreamCallbacks stream_cb);
+  LeAudioSinkTransport(StreamCallbacks stream_cb);
 
   ~LeAudioSinkTransport();
 
-  BluetoothAudioCtrlAck StartRequest() override;
-  BluetoothAudioCtrlAck StartRequestV2();
+  bool StartRequest();
 
-  BluetoothAudioCtrlAck SuspendRequest() override;
+  bool SuspendRequest();
 
-  void StopRequest() override;
+  void StopRequest();
 
   bool GetPresentationPosition(uint64_t* remote_delay_report_ns,
                                uint64_t* total_bytes_read,
-                               timespec* data_position) override;
+                               timespec* data_position);
 
-  void MetadataChanged(const source_metadata_v7_t& source_metadata) override;
+  void SourceMetadataChanged(const source_metadata_v7_t& source_metadata);
 
-  void ResetPresentationPosition() override;
+  void SinkMetadataChanged(const sink_metadata_v7_t& sink_metadata);
 
-  void LogBytesRead(size_t bytes_read) override;
+  void ResetPresentationPosition();
+
+  void LogBytesRead(size_t bytes_read);
 
   void SetRemoteDelay(uint16_t delay_report_ms);
 
@@ -135,45 +114,41 @@ class LeAudioSinkTransport
   void LeAudioSetSelectedHalPcmConfig(uint32_t sample_rate_hz, uint8_t bit_rate,
                                       uint8_t channels_count,
                                       uint32_t data_interval);
-
-  bool IsRequestCompletedAfterUpdate(
-      const std::function<
-          std::pair<StartRequestState, bool>(StartRequestState)>& lambda);
 
   StartRequestState GetStartRequestState(void);
   void ClearStartRequestState(void);
   void SetStartRequestState(StartRequestState state);
 
   static inline LeAudioSinkTransport* instance = nullptr;
-  static inline BluetoothAudioSinkClientInterface* interface = nullptr;
+  static inline bool stream_started = false;
 
  private:
   LeAudioTransport* transport_;
 };
 
-class LeAudioSourceTransport
-    : public ::bluetooth::audio::hidl::IBluetoothSourceTransportInstance {
+class LeAudioSourceTransport {
  public:
-  LeAudioSourceTransport(SessionType_2_1 session_type,
-                         StreamCallbacks stream_cb);
+  LeAudioSourceTransport(StreamCallbacks stream_cb);
 
   ~LeAudioSourceTransport();
 
-  BluetoothAudioCtrlAck StartRequest() override;
+  bool StartRequest();
 
-  BluetoothAudioCtrlAck SuspendRequest() override;
+  bool SuspendRequest();
 
-  void StopRequest() override;
+  void StopRequest();
 
   bool GetPresentationPosition(uint64_t* remote_delay_report_ns,
                                uint64_t* total_bytes_written,
-                               timespec* data_position) override;
+                               timespec* data_position);
 
-  void MetadataChanged(const source_metadata_v7_t& source_metadata) override;
+  void SourceMetadataChanged(const source_metadata_v7_t& source_metadata);
 
-  void ResetPresentationPosition() override;
+  void SinkMetadataChanged(const sink_metadata_v7_t& sink_metadata);
 
-  void LogBytesWritten(size_t bytes_written) override;
+  void ResetPresentationPosition();
+
+  void LogBytesWritten(size_t bytes_written);
 
   void SetRemoteDelay(uint16_t delay_report_ms);
 
@@ -183,21 +158,18 @@ class LeAudioSourceTransport
                                       uint8_t channels_count,
                                       uint32_t data_interval);
 
-  bool IsRequestCompletedAfterUpdate(
-      const std::function<
-          std::pair<StartRequestState, bool>(StartRequestState)>& lambda);
   StartRequestState GetStartRequestState(void);
   void ClearStartRequestState(void);
   void SetStartRequestState(StartRequestState state);
 
   static inline LeAudioSourceTransport* instance = nullptr;
-  static inline BluetoothAudioSourceClientInterface* interface = nullptr;
+  static inline bool stream_started = false;
 
  private:
   LeAudioTransport* transport_;
 };
 
 }  // namespace le_audio
-}  // namespace hidl
+}  // namespace host
 }  // namespace audio
 }  // namespace bluetooth
