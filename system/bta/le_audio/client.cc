@@ -5409,7 +5409,8 @@ class LeAudioClientImpl : public LeAudioClient {
   }
 
   void HandlePendingDeviceDisconnection(LeAudioDeviceGroup* group) {
-    LOG_DEBUG();
+    log::debug("");
+
     auto leAudioDevice = group->GetFirstDevice();
     while (leAudioDevice) {
       if (leAudioDevice->closing_stream_for_disconnection_) {
@@ -5817,11 +5818,10 @@ class LeAudioClientImpl : public LeAudioClient {
   void ClientAudioInterfaceRelease() {
     auto group = aseGroups_.FindById(active_group_id_);
     if (!group) {
-      LOG(ERROR) << __func__
-                 << ", Invalid group: " << static_cast<int>(active_group_id_);
+      log::error("Invalid group: {}", static_cast<int>(active_group_id_));
     } else {
       handleAsymmetricPhyForUnicast(group);
-      LOG_VERBOSE("ClientAudioInterfaceRelease - cleanup");
+      log::verbose("ClientAudioInterfaceRelease - cleanup");
     }
 
     if (le_audio_source_hal_client_) {
@@ -5862,13 +5862,13 @@ class LeAudioClientImpl : public LeAudioClient {
     }
 
     if (group->dsa_.mode != DsaMode::ISO_SW) {
-      LOG_WARN("ISO packets received over HCI in DSA mode: %d",
-               group->dsa_.mode);
+      log::warn("ISO packets received over HCI in DSA mode: {}",
+                group->dsa_.mode);
       return false;
     }
 
     if (iso_data_callback == nullptr) {
-      LOG_WARN("Dsa data consumer not registered");
+      log::warn("Dsa data consumer not registered");
       return false;
     }
 
@@ -5904,7 +5904,7 @@ class LeAudioClientImpl : public LeAudioClient {
   void SetAsymmetricBlePhy(LeAudioDeviceGroup* group, bool asymmetric) {
     LeAudioDevice* leAudioDevice = group->GetFirstDevice();
     if (leAudioDevice == nullptr) {
-      LOG_ERROR("Shouldn't be called without a device.");
+      log::error("Shouldn't be called without a device.");
       return;
     }
 
@@ -5914,8 +5914,8 @@ class LeAudioClientImpl : public LeAudioClient {
           !BTM_IsAclConnectionUp(tmpDevice->address_, BT_TRANSPORT_LE))
         continue;
 
-      LOG_VERBOSE("SetAsymmetricBlePhy: %d for %s", asymmetric,
-                  ADDRESS_TO_LOGGABLE_CSTR(tmpDevice->address_));
+      log::verbose("SetAsymmetricBlePhy: {} for {}", asymmetric,
+                   ADDRESS_TO_LOGGABLE_CSTR(tmpDevice->address_));
       BTM_BleSetPhy(tmpDevice->address_, PHY_LE_2M,
                     asymmetric ? PHY_LE_1M : PHY_LE_2M, 0);
       tmpDevice->acl_asymmetric_ = asymmetric;
@@ -6283,7 +6283,7 @@ bool LeAudioClient::RegisterIsoDataConsumer(LeAudioIsoDataCallback callback) {
     return false;
   }
 
-  LOG_INFO("ISO data consumer changed");
+  log::info("ISO data consumer changed");
   iso_data_callback = callback;
   return true;
 }
