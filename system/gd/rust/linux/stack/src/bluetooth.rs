@@ -620,7 +620,8 @@ impl Bluetooth {
             | Profile::Hfp
             | Profile::AvrcpTarget
             | Profile::LeAudio
-            | Profile::VolumeControl => {
+            | Profile::VolumeControl
+            | Profile::CoordinatedSet => {
                 self.bluetooth_media.lock().unwrap().disable_profile(profile);
             }
             // Ignore profiles that we don't connect.
@@ -646,7 +647,8 @@ impl Bluetooth {
             | Profile::Hfp
             | Profile::AvrcpTarget
             | Profile::LeAudio
-            | Profile::VolumeControl => {
+            | Profile::VolumeControl
+            | Profile::CoordinatedSet => {
                 self.bluetooth_media.lock().unwrap().enable_profile(profile);
             }
             // Ignore profiles that we don't connect.
@@ -664,7 +666,12 @@ impl Bluetooth {
 
             Profile::Hogp => Some(self.hh.as_ref().unwrap().is_hogp_activated),
 
-            Profile::A2dpSource | Profile::Hfp | Profile::AvrcpTarget | Profile::LeAudio => {
+            Profile::A2dpSource
+            | Profile::Hfp
+            | Profile::AvrcpTarget
+            | Profile::LeAudio
+            | Profile::VolumeControl
+            | Profile::CoordinatedSet => {
                 self.bluetooth_media.lock().unwrap().is_profile_enabled(profile)
             }
             // Ignore profiles that we don't connect.
@@ -2732,6 +2739,16 @@ impl IBluetooth for Bluetooth {
                                 });
                             }
 
+                            Profile::CoordinatedSet => {
+                                let txl = self.tx.clone();
+                                let address = device.address.clone();
+                                topstack::get_runtime().spawn(async move {
+                                    let _ = txl
+                                        .send(Message::Media(MediaActions::ConnectCsis(address)))
+                                        .await;
+                                });
+                            }
+
                             Profile::A2dpSink | Profile::A2dpSource | Profile::Hfp
                                 if !has_classic_media_profile =>
                             {
@@ -2862,6 +2879,16 @@ impl IBluetooth for Bluetooth {
                                 topstack::get_runtime().spawn(async move {
                                     let _ = txl
                                         .send(Message::Media(MediaActions::DisconnectVc(address)))
+                                        .await;
+                                });
+                            }
+
+                            Profile::CoordinatedSet => {
+                                let txl = self.tx.clone();
+                                let address = device.address.clone();
+                                topstack::get_runtime().spawn(async move {
+                                    let _ = txl
+                                        .send(Message::Media(MediaActions::DisconnectCsis(address)))
                                         .await;
                                 });
                             }
