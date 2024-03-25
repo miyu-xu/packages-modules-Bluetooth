@@ -105,6 +105,24 @@
       "parentUuid": "b15c79c8_681b6136",
       "revId": "e8b681c674a082a1197de48a87cd6564b8958385",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "757af3e6_6e955142",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-03-25T02:23:19Z",
+      "side": 1,
+      "message": "Thanks for the guideline Thomas. I\u0027ll move on to removing this one since it\u0027s a pretty straightforward change with low risk of rollback.",
+      "parentUuid": "0fcb6d0e_d6d8ab72",
+      "revId": "e8b681c674a082a1197de48a87cd6564b8958385",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
