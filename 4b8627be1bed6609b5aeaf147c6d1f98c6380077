@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1823099_63c47aaa",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-25T14:12:10Z",
+      "side": 1,
+      "message": "I prefer not to have the log if the callback won\u0027t be called.  The old code always called a callback.\n\n```suggestion\n  if (bta_dm_search_cb.p_service_search_cback \u0026\u0026 send_gatt_results) {\n    log::info(\"Sending GATT results to upper layer\");\n    bta_dm_search_cb.p_service_search_cback(BTA_DM_GATT_OVER_LE_RES_EVT,\n                                            \u0026result);\n  } else {\n    bta_dm_search_cb.p_device_search_cback(BTA_DM_DISC_CMPL_EVT, nullptr);\n  }\n```",
+      "range": {
+        "startLine": 915,
+        "startChar": 0,
+        "endLine": 925,
+        "endChar": 3
+      },
+      "revId": "4b8627be1bed6609b5aeaf147c6d1f98c6380077",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
