@@ -22,6 +22,30 @@
       },
       "revId": "85e75fdd464245897b04ed108f7d2675f4510349",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8aa3642f_e9ec4c73",
+        "filename": "tools/lint/checks/src/com/android/bluetooth/lint/GuardedLogLineDetector.kt",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-25T18:44:10Z",
+      "side": 1,
+      "message": "Downgraded to warn. There didn\u0027t seem to be a way to annotate a if statement",
+      "parentUuid": "78ee66ee_011ba4f1",
+      "range": {
+        "startLine": 123,
+        "startChar": 20,
+        "endLine": 123,
+        "endChar": 35
+      },
+      "revId": "85e75fdd464245897b04ed108f7d2675f4510349",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
