@@ -39,6 +39,24 @@
       "message": "This change needs to be flagged.",
       "revId": "826e6d2b463e88253ada47109ee4d0eb26c4547b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51f2fb63_d9aedbf2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3211944
+      },
+      "writtenOn": "2024-03-26T01:59:23Z",
+      "side": 1,
+      "message": "Thanks for looking into this change. About the flag, could you please help to understand what type of changes need to be flagged? Whether I should add the flag? or there\u0027s will be someone in Google team will help on the flag?",
+      "parentUuid": "99127b2a_790b431c",
+      "revId": "826e6d2b463e88253ada47109ee4d0eb26c4547b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
