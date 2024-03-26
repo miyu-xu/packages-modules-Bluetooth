@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5f4553e_c9fff37a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-03-26T00:20:42Z",
+      "side": 1,
+      "message": "If this change is not flagged and you\u0027d prefer Dr.No, you might need to add Flag: Exempt, \u003creason\u003e.",
+      "revId": "69b34193d0f7296b462f374f4fb190564027476f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
