@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecdd4298_95ae85d7",
+        "filename": "system/bta/test/bta_pan_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-26T17:28:39Z",
+      "side": 1,
+      "message": "It looks like it was already in TearDown()\n\nIs it needed twice?",
+      "range": {
+        "startLine": 108,
+        "startChar": 4,
+        "endLine": 108,
+        "endChar": 26
+      },
+      "revId": "303e9857eca0f4a64699611079328a9a4e3d1b7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
