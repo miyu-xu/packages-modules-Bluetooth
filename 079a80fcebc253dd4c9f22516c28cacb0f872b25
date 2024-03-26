@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21cd3982_530b85d3",
+        "filename": "floss/pandora/server/modem.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-26T10:10:44Z",
+      "side": 1,
+      "message": "```suggestion\n        if not call_result:\n```",
+      "range": {
+        "startLine": 40,
+        "startChar": 11,
+        "endLine": 40,
+        "endChar": 49
+      },
+      "revId": "079a80fcebc253dd4c9f22516c28cacb0f872b25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
