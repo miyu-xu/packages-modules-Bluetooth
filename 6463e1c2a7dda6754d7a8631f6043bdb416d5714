@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e924e8f4_c3a882af",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1349,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T02:16:41Z",
+      "side": 1,
+      "message": "nit:\n\n```suggestion\n    public static ExecutorService BackgroundThreadPool \u003d Executors.newSingleThreadExecutor();\n```",
+      "revId": "6463e1c2a7dda6754d7a8631f6043bdb416d5714",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1362b67c_37136e9a",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1349,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T02:16:41Z",
+      "side": 1,
+      "message": "nit: Name it `BackgroundExecutor`, this being a thread pool or not is an implementation detail.",
+      "range": {
+        "startLine": 1349,
+        "startChar": 34,
+        "endLine": 1349,
+        "endChar": 54
+      },
+      "revId": "6463e1c2a7dda6754d7a8631f6043bdb416d5714",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "001a23d1_0138f483",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpVolumeManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T02:16:41Z",
+      "side": 1,
+      "message": "```suggestion\n       CompletableFuture.runAsync(\n               () -\u003e\n                        mAudioManager.setDeviceVolumeBehavior(\n                                deviceAttributes, deviceVolumeBehavior),\n                Utils.BackgroundThreadPool)\n        .exceptionally(e -\u003e {\n            Log.e(TAG, \"switchVolumeDevice has thrown an Exception\", e);\n            return null;\n        });\n```",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 44
+      },
+      "revId": "6463e1c2a7dda6754d7a8631f6043bdb416d5714",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
