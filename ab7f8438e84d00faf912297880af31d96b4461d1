@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "543165ef_82ebd5c5",
+        "filename": "pandora/interfaces/pandora_experimental/modem.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T17:45:23Z",
+      "side": 1,
+      "message": "nit: Why do we need both the local and remote phone number here?",
+      "revId": "ab7f8438e84d00faf912297880af31d96b4461d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
