@@ -16,6 +16,23 @@
       "message": "pass to avrcp owner to take a look",
       "revId": "33f9ad213e9dd563918509a4354c0d954ad624e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7a21465_8fe8ae26",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-26T03:52:24Z",
+      "side": 1,
+      "message": "Hey Etienne,\n\nYou may be a good owner to review this.\nI believe deleting the feature for everybody is not the good decision.\nDo you know if initializing the browsing at the first avrcp device  connection is feasible ?",
+      "revId": "33f9ad213e9dd563918509a4354c0d954ad624e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
