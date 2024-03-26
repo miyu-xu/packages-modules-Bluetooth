@@ -34,6 +34,24 @@
       "parentUuid": "ca831b21_cce12ce6",
       "revId": "f07259dbbcb56738e5ff2f78e6d60923d6d4d32c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed985d2d_46fb5b59",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapbMessage.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-26T21:43:46Z",
+      "side": 0,
+      "message": "@hdmoon@google.com FYI.\n\nI agree with Sal judgement here.",
+      "parentUuid": "68c318d3_b305788d",
+      "revId": "f07259dbbcb56738e5ff2f78e6d60923d6d4d32c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
