@@ -71,6 +71,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4cc882de_5bbcafac",
+        "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-26T22:43:17Z",
+      "side": 1,
+      "message": "Since this is use only once I would remove the variable entirely",
+      "parentUuid": "10e5dbff_38a2b819",
+      "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "527a5b83_ab5d6334",
         "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
         "patchSetId": 1
@@ -116,6 +134,30 @@
       "writtenOn": "2024-03-26T18:46:15Z",
       "side": 1,
       "message": "Why is the whole method marked synchronized?\n\nIs it to handle concurrent `sLastBugReportTimeMs` updates?\n\nIf yes, could we either only handle thread safety there? (With a lock or an atomic or whatever) or just discard it, I don\u0027t think races are an issue with this. Worst case scenario we create two bug reports.",
+      "range": {
+        "startLine": 40,
+        "startChar": 18,
+        "endLine": 40,
+        "endChar": 30
+      },
+      "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0576112_10a1d413",
+        "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-26T22:43:17Z",
+      "side": 1,
+      "message": "In current patch, the whole synchronized it not needed since it is called from only one thread",
+      "parentUuid": "6ebf56bb_de288a85",
       "range": {
         "startLine": 40,
         "startChar": 18,
@@ -185,6 +227,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a4769ab3_f442c408",
+        "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-26T22:43:17Z",
+      "side": 1,
+      "message": "I don\u0027t understand the difference between the two methods.\n\nWhat is the benefit of using BetterBug? Why not always use the bugreportManager ?",
+      "range": {
+        "startLine": 58,
+        "startChar": 5,
+        "endLine": 60,
+        "endChar": 9
+      },
+      "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ac541dea_410e202c",
         "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
         "patchSetId": 1
@@ -213,6 +278,24 @@
       "writtenOn": "2024-03-26T18:46:15Z",
       "side": 1,
       "message": "nit: I think this should be done by the caller",
+      "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b718dd4_3b8c0604",
+        "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-26T22:43:17Z",
+      "side": 1,
+      "message": "In current patch set the caller identity is already the system server. This is therefor not necessary",
+      "parentUuid": "90b57598_2a514ff5",
       "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -264,6 +347,29 @@
       "writtenOn": "2024-03-26T18:46:15Z",
       "side": 1,
       "message": "```suggestion\n            Log.e(TAG, \"Error taking bugreport\", e);\n```",
+      "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2028f188_c517c9b4",
+        "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-26T22:43:17Z",
+      "side": 1,
+      "message": "If this is blocking, we will freeze the whole thread during the bugreport. It is not something we want to do.",
+      "range": {
+        "startLine": 100,
+        "startChar": 29,
+        "endLine": 100,
+        "endChar": 45
+      },
       "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
