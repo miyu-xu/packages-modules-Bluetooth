@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c69045e_f0fa981a",
+        "filename": "system/gd/storage/config_cache.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-03-26T13:13:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c6c9609_e252f835",
+      "range": {
+        "startLine": 428,
+        "startChar": 21,
+        "endLine": 428,
+        "endChar": 50
+      },
+      "revId": "e5cc335b73225bd094cb8d2d5f26cf10b6c4fdb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d95b83ed_dc163ad4",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-26T01:16:13Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Check Contents: It looks like you\u0027re taking the address of a vector element - this is unsafe (the underlying element can move)\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nIt looks like you\u0027re taking the address of a vector element - this is unsafe (the underlying element can move)",
+      "range": {
+        "startLine": 438,
+        "startChar": 21,
+        "endLine": 438,
+        "endChar": 50
+      },
+      "revId": "e5cc335b73225bd094cb8d2d5f26cf10b6c4fdb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6064371_73406a2d",
+        "filename": "system/gd/storage/config_cache.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-03-26T13:13:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d95b83ed_dc163ad4",
       "range": {
         "startLine": 438,
         "startChar": 21,

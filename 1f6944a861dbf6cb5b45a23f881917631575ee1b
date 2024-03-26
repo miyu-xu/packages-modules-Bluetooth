@@ -105,6 +105,24 @@
       "parentUuid": "45f9c60f_0d21c4b0",
       "revId": "1f6944a861dbf6cb5b45a23f881917631575ee1b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2ea0c0a_e2be33d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-03-26T13:13:40Z",
+      "side": 1,
+      "message": "fix_pairing_failure_reason_from_remote.",
+      "parentUuid": "6db0d5a9_392eb7fa",
+      "revId": "1f6944a861dbf6cb5b45a23f881917631575ee1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
