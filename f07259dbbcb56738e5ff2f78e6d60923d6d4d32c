@@ -52,6 +52,24 @@
       "parentUuid": "68c318d3_b305788d",
       "revId": "f07259dbbcb56738e5ff2f78e6d60923d6d4d32c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "148c6df9_85df2ef8",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapbMessage.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-26T23:23:23Z",
+      "side": 0,
+      "message": "We can re-add later if needed with a stack internal system property if we must. I\u0027ll close out this comment for now",
+      "parentUuid": "ed985d2d_46fb5b59",
+      "revId": "f07259dbbcb56738e5ff2f78e6d60923d6d4d32c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
