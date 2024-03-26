@@ -192,6 +192,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d05258ab_99a7b258",
+        "filename": "tools/lint/checks/src/com/android/bluetooth/lint/LogEnforcementVariableCreationDetector.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T23:49:56Z",
+      "side": 1,
+      "message": "Tried locally, and yeah I can remove the Nullable and the null pattern\n\n```\ndiff --git a/tools/lint/checks/src/com/android/bluetooth/lint/LogEnforcementVariableCreationDetector.kt b/tools/lint/checks/src/com/android/bluetooth/lint/LogEnforcementVariableCreationDetector.kt\nindex 53b1c791e0..3b0ca71d66 100644\n--- a/tools/lint/checks/src/com/android/bluetooth/lint/LogEnforcementVariableCreationDetector.kt\n+++ b/tools/lint/checks/src/com/android/bluetooth/lint/LogEnforcementVariableCreationDetector.kt\n@@ -159,11 +159,8 @@ class LogEnforcementVariableCreationDetector : Detector(), SourceCodeScanner {\n      * Checks an expression to see if it uses a log enforcement variable, based on the common names\n      * used for log enforcement variables in the stack.\n      */\n-    private fun checkExpressionForDebugVariableUsages(expression: UExpression?): Boolean {\n+    private fun checkExpressionForDebugVariableUsages(expression: UExpression): Boolean {\n         when (expression) {\n-            null -\u003e {\n-                return false\n-            }\n             is USimpleNameReferenceExpression -\u003e {\n                 if (isLogEnforcementVariable(expression.identifier)) {\n                     return true\n@@ -198,11 +195,8 @@ class LogEnforcementVariableCreationDetector : Detector(), SourceCodeScanner {\n     /*\n      * Checks an expression to see if it uses the Log.isLoggable() function\n      */\n-    private fun checkExpressionForIsLoggableUsages(expression: UExpression?): Boolean {\n+    private fun checkExpressionForIsLoggableUsages(expression: UExpression): Boolean {\n         when (expression) {\n-            null -\u003e {\n-                return false\n-            }\n             is UCallExpression -\u003e {\n                 val resolvedMethod \u003d expression.resolve()\n                 return resolvedMethod?.name \u003d\u003d \"isLoggable\" \u0026\u0026\n```",
+      "parentUuid": "f1afbc73_12f13daf",
+      "range": {
+        "startLine": 140,
+        "startChar": 16,
+        "endLine": 141,
+        "endChar": 72
+      },
+      "revId": "46e1d4228c483fdd785a339c538c01b65f4479e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4ac5db11_402162fe",
         "filename": "tools/lint/checks/src/com/android/bluetooth/lint/Utils.kt",
         "patchSetId": 12
