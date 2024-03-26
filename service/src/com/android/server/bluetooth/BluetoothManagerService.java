@@ -74,6 +74,7 @@ import android.sysprop.BluetoothProperties;
 import android.util.proto.ProtoOutputStream;
 
 import com.android.bluetooth.BluetoothStatsLog;
+import com.android.bluetooth.BugReportUtils;
 import com.android.bluetooth.flags.FeatureFlags;
 import com.android.bluetooth.flags.Flags;
 import com.android.internal.annotations.GuardedBy;
@@ -1905,6 +1906,10 @@ class BluetoothManagerService {
                             BluetoothProtoEnums.ENABLE_DISABLE_REASON_CRASH,
                             mContext.getPackageName(),
                             false);
+                    BugReportUtils.takeBugReport(
+                            mContext,
+                            "[Bluetooth BugReport] Unexpected BT Service Crash",
+                            "Service observed unexpected crash during Bluetooth enable/disable");
                     if (mEnable) {
                         mEnable = false;
                         mHandler.sendEmptyMessageDelayed(
@@ -1948,6 +1953,11 @@ class BluetoothManagerService {
                         mAdapter = null;
                         mAdapterLock.writeLock().unlock();
                         Log.e(TAG, "Reach maximum retry to restart Bluetooth!");
+                        BugReportUtils.takeBugReport(
+                                mContext,
+                                "[Bluetooth BugReport] Service restart failed",
+                                "Service restart failed after retries="
+                                        + MAX_ERROR_RESTART_RETRIES);
                     }
                     break;
 
