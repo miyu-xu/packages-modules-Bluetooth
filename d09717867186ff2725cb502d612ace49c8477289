@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5e968f4_d05a477d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-03-26T08:54:02Z",
+      "side": 1,
+      "message": "should we check asha first then non csis device? I am thinking if there is single device (no csis) and support asha. In this case it will return true first that it does not support csis, but still support asha?\n```\n        if (Utils.arrayContains(uuids, BluetoothUuid.HEARING_AID)) {\n            debugLog(\"isLeAudioOnlyDevice: \" + device + \" supports ASHA\");\n            return false;\n        }\n        \n        /* For no CSIS device, allow LE Only devices. */\n        if (!Utils.arrayContains(uuids, BluetoothUuid.COORDINATED_SET)) {\n            debugLog(\"isLeAudioOnlyDevice: \" + device + \" is LeAudio only.\");\n            return true;\n        }\n\n        \n```",
+      "range": {
+        "startLine": 268,
+        "startChar": 0,
+        "endLine": 277,
+        "endChar": 9
+      },
+      "revId": "d09717867186ff2725cb502d612ace49c8477289",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
