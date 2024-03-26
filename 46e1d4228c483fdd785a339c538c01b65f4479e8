@@ -168,6 +168,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f1afbc73_12f13daf",
+        "filename": "tools/lint/checks/src/com/android/bluetooth/lint/LogEnforcementVariableCreationDetector.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T23:39:12Z",
+      "side": 1,
+      "message": "Ah, this is not what I was intending, but more handle the null in the branches that can produce a null. \n\nBut looking at all the type of ASTs that you handle, none should give you a null UExpression.\n\nCan you not just remove this case?\n\nI\u0027ll clone your CL locally to try it out.",
+      "parentUuid": "57b96bc9_849261cd",
+      "range": {
+        "startLine": 140,
+        "startChar": 16,
+        "endLine": 141,
+        "endChar": 72
+      },
+      "revId": "46e1d4228c483fdd785a339c538c01b65f4479e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4ac5db11_402162fe",
         "filename": "tools/lint/checks/src/com/android/bluetooth/lint/Utils.kt",
         "patchSetId": 12
