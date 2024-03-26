@@ -159,7 +159,7 @@ class BleScannerInterface {
 
   /** Configure a scan filter condition  */
   virtual void ScanFilterAdd(int filter_index, std::vector<ApcfCommand> filters,
-                             FilterConfigCallback cb) = 0;
+                             bool is_passive, FilterConfigCallback cb) = 0;
 
   /** Clear all scan filter conditions for specific filter index*/
   virtual void ScanFilterClear(int filt_index, FilterConfigCallback cb) = 0;

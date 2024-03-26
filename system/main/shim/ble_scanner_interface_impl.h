@@ -64,7 +64,7 @@ class BleScannerInterfaceImpl : public ::BleScannerInterface,
       std::unique_ptr<btgatt_filt_param_setup_t> filt_param,
       FilterParamSetupCallback cb) override;
   void ScanFilterAdd(int filter_index, std::vector<ApcfCommand> filters,
-                     FilterConfigCallback cb) override;
+                     bool is_passive, FilterConfigCallback cb) override;
   void ScanFilterClear(int filter_index, FilterConfigCallback cb) override;
   void ScanFilterEnable(bool enable, EnableCallback cb) override;
   bool IsMsftSupported() override;

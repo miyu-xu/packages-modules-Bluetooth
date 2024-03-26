@@ -1025,6 +1025,7 @@ public class ScanManager {
             Log.d(TAG, "configureRegularScanParams() - queue=" + mRegularScanClients.size());
             int curScanSetting = Integer.MIN_VALUE;
             ScanClient client = getAggressiveClient(mRegularScanClients);
+            boolean applyPassiveScan = isAllPassiveScanClient(mRegularScanClients);
             if (client != null) {
                 curScanSetting = client.settings.getScanMode();
             }
@@ -1050,7 +1051,10 @@ public class ScanManager {
                             + ", in scan unit: " + scanInterval + " / " + scanWindow + " )"
                             + client);
                     mNativeInterface.gattSetScanParameters(
-                            client.scannerId, scanInterval, scanWindow, scanPhy);
+                            client.scannerId,
+                            (applyPassiveScan ? ScanSettings.SCAN_TYPE_PASSIVE :
+                                                ScanSettings.SCAN_TYPE_ACTIVE),
+                            scanInterval, scanWindow, scanPhy);
                     mNativeInterface.gattClientScan(true);
                     if (!AppScanStats.recordScanRadioStart(curScanSetting)) {
                         Log.w(TAG, "Scan radio already started");
@@ -1074,6 +1078,15 @@ public class ScanManager {
                 }
             }
             return result;
+        }
+
+        boolean isAllPassiveScanClient(Set<ScanClient> cList) {
+            for (ScanClient client : cList) {
+                if (client.settings.getScanType() == ScanSettings.SCAN_TYPE_ACTIVE) {
+                    return false;
+                }
+            }
+            return true;
         }
 
         void startRegularScan(ScanClient client) {
@@ -1154,6 +1167,19 @@ public class ScanManager {
         private boolean isFirstMatchScanClient(ScanClient client) {
             return (client.settings.getCallbackType() & ScanSettings.CALLBACK_TYPE_FIRST_MATCH)
                     != 0;
+        }
+
+        private boolean isPassiveScanClient(ScanClient client) {
+            ScanSettings settings = client.settings;
+
+            // Don't apply passive scan type to batch scan
+            // Because batch scan is the scan method where the discovery time is not critical          
+            if(settings.getCallbackType() == ScanSettings.CALLBACK_TYPE_ALL_MATCHES
+                    && settings.getReportDelayMillis() != 0) {
+                return false;
+            }
+            
+            return settings.getScanType() == ScanSettings.SCAN_TYPE_PASSIVE;
         }
 
         private void resetBatchScan(ScanClient client) {
@@ -1438,6 +1464,7 @@ public class ScanManager {
             int scannerId = client.scannerId;
             int deliveryMode = getDeliveryMode(client);
             int trackEntries = 0;
+            boolean isPassiveScanType = isPassiveScanClient(client);
 
             // Do not add any filters set by opportunistic scan clients
             if (isOpportunisticScanClient(client)) {
@@ -1471,7 +1498,7 @@ public class ScanManager {
 
                     resetCountDownLatch();
                     mNativeInterface.gattClientScanFilterAdd(scannerId, queue.toArray(),
-                            filterIndex);
+                            filterIndex, isPassiveScanType);
                     waitForCallback();
 
                     resetCountDownLatch();

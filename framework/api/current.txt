@@ -1451,6 +1451,7 @@ package android.bluetooth.le {
     method public long getReportDelayMillis();
     method public int getScanMode();
     method public int getScanResultType();
+    method public int getScanType();
     method public void writeToParcel(android.os.Parcel, int);
     field public static final long AUTO_BATCH_MIN_REPORT_DELAY_MILLIS = 600000L; // 0x927c0L
     field public static final int CALLBACK_TYPE_ALL_MATCHES = 1; // 0x1
@@ -1480,6 +1481,7 @@ package android.bluetooth.le {
     method public android.bluetooth.le.ScanSettings.Builder setPhy(int);
     method public android.bluetooth.le.ScanSettings.Builder setReportDelay(long);
     method public android.bluetooth.le.ScanSettings.Builder setScanMode(int);
+    method @NonNull public android.bluetooth.le.ScanSettings.Builder setScanType(@NonNull int);
   }
 
   public final class TransportBlock implements android.os.Parcelable {

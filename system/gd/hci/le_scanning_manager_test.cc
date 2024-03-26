@@ -450,7 +450,7 @@ TEST_F(LeScanningManagerTest, scan_filter_add_ad_type_not_supported_test) {
 
   std::vector<AdvertisingPacketContentFilterCommand> filters = {};
   filters.push_back(make_filter(hci::ApcfFilterType::AD_TYPE));
-  le_scanning_manager->ScanFilterAdd(0x01, filters);
+  le_scanning_manager->ScanFilterAdd(0x01, false, filters);
 }
 
 TEST_F(LeScanningManagerExtendedTest, is_nonstandard_phy_supported_test) {
@@ -538,7 +538,7 @@ TEST_F(LeScanningManagerAndroidHciTest, scan_filter_add_broadcaster_address_test
 
   std::vector<AdvertisingPacketContentFilterCommand> filters = {};
   filters.push_back(make_filter(ApcfFilterType::BROADCASTER_ADDRESS));
-  le_scanning_manager->ScanFilterAdd(0x01, filters);
+  le_scanning_manager->ScanFilterAdd(0x01, false, filters);
   auto commandView = test_hci_layer_->GetCommand();
   ASSERT_EQ(OpCode::LE_ADV_FILTER, commandView.GetOpCode());
   auto filter_command_view =
@@ -555,7 +555,7 @@ TEST_F(LeScanningManagerAndroidHciTest, scan_filter_add_service_uuid_test) {
 
   std::vector<AdvertisingPacketContentFilterCommand> filters = {};
   filters.push_back(make_filter(ApcfFilterType::SERVICE_UUID));
-  le_scanning_manager->ScanFilterAdd(0x01, filters);
+  le_scanning_manager->ScanFilterAdd(0x01, false, filters);
   auto commandView = test_hci_layer_->GetCommand();
   ASSERT_EQ(OpCode::LE_ADV_FILTER, commandView.GetOpCode());
   auto filter_command_view =
@@ -572,7 +572,7 @@ TEST_F(LeScanningManagerAndroidHciTest, scan_filter_add_local_name_test) {
 
   std::vector<AdvertisingPacketContentFilterCommand> filters = {};
   filters.push_back(make_filter(ApcfFilterType::LOCAL_NAME));
-  le_scanning_manager->ScanFilterAdd(0x01, filters);
+  le_scanning_manager->ScanFilterAdd(0x01, false, filters);
   auto commandView = test_hci_layer_->GetCommand();
   ASSERT_EQ(OpCode::LE_ADV_FILTER, commandView.GetOpCode());
   auto filter_command_view =
@@ -589,7 +589,7 @@ TEST_F(LeScanningManagerAndroidHciTest, scan_filter_add_manufacturer_data_test) 
 
   std::vector<AdvertisingPacketContentFilterCommand> filters = {};
   filters.push_back(make_filter(ApcfFilterType::MANUFACTURER_DATA));
-  le_scanning_manager->ScanFilterAdd(0x01, filters);
+  le_scanning_manager->ScanFilterAdd(0x01, false, filters);
   auto commandView = test_hci_layer_->GetCommand();
   ASSERT_EQ(OpCode::LE_ADV_FILTER, commandView.GetOpCode());
   auto filter_command_view =
@@ -606,7 +606,7 @@ TEST_F(LeScanningManagerAndroidHciTest, scan_filter_add_service_data_test) {
 
   std::vector<AdvertisingPacketContentFilterCommand> filters = {};
   filters.push_back(make_filter(hci::ApcfFilterType::SERVICE_DATA));
-  le_scanning_manager->ScanFilterAdd(0x01, filters);
+  le_scanning_manager->ScanFilterAdd(0x01, false, filters);
   auto commandView = test_hci_layer_->GetCommand();
   ASSERT_EQ(OpCode::LE_ADV_FILTER, commandView.GetOpCode());
   auto filter_command_view =
@@ -622,7 +622,7 @@ TEST_F(LeScanningManagerAndroidHciTest, scan_filter_add_service_data_test) {
 TEST_F(LeScanningManagerAndroidHciTest, scan_filter_add_transport_discovery_data_test) {
   std::vector<AdvertisingPacketContentFilterCommand> filters = {};
   filters.push_back(make_filter(hci::ApcfFilterType::TRANSPORT_DISCOVERY_DATA));
-  le_scanning_manager->ScanFilterAdd(0x01, filters);
+  le_scanning_manager->ScanFilterAdd(0x01, false, filters);
   auto commandView = test_hci_layer_->GetCommand();
   ASSERT_EQ(OpCode::LE_ADV_FILTER, commandView.GetOpCode());
   auto filter_command_view = LeAdvFilterTransportDiscoveryDataView::Create(
@@ -645,7 +645,7 @@ TEST_F(LeScanningManagerAndroidHciTest, scan_filter_add_ad_type_test) {
   std::vector<AdvertisingPacketContentFilterCommand> filters = {};
   hci::AdvertisingPacketContentFilterCommand filter = make_filter(hci::ApcfFilterType::AD_TYPE);
   filters.push_back(filter);
-  le_scanning_manager->ScanFilterAdd(0x01, filters);
+  le_scanning_manager->ScanFilterAdd(0x01, false, filters);
   sync_client_handler();
 
   EXPECT_CALL(mock_callbacks_, OnFilterConfigCallback);
