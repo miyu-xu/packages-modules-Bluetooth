@@ -145,6 +145,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "51e7727e_af009032",
+        "filename": "system/bta/ag/bta_ag_at.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-03-26T00:00:23Z",
+      "side": 1,
+      "message": "Interesting, 0b1 should not be `something greater than 1 \u003c\u003c 31`, this part should be tested with pts for HFP 1.9 on phone. \n\nI will verify the behavior tomorrow when my team brings the pts dongle back.",
+      "parentUuid": "2e2ac963_a3ac080e",
+      "range": {
+        "startLine": 143,
+        "startChar": 11,
+        "endLine": 143,
+        "endChar": 77
+      },
+      "revId": "1b6028ee89ea595fd144eb4808e2d7692feefe13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6c1c5af9_023de677",
         "filename": "system/bta/ag/bta_ag_at.cc",
         "patchSetId": 1
@@ -180,6 +204,30 @@
       "side": 1,
       "message": "To better protect the functionalities when the flag is disabled, I\u0027d like to keep the `utl_str2int` function and define a new one. Or could you suggest an uint32 / int64 converter utility?",
       "parentUuid": "6c1c5af9_023de677",
+      "range": {
+        "startLine": 148,
+        "startChar": 14,
+        "endLine": 148,
+        "endChar": 28
+      },
+      "revId": "1b6028ee89ea595fd144eb4808e2d7692feefe13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78c95b8d_828766ea",
+        "filename": "system/bta/ag/bta_ag_at.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-03-26T00:00:23Z",
+      "side": 1,
+      "message": "how about use [atoll](https://en.cppreference.com/w/cpp/string/byte/atoi)?",
+      "parentUuid": "c8ac1afc_0b41a67b",
       "range": {
         "startLine": 148,
         "startChar": 14,
