@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b37ca6d9_4656c772",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T19:04:26Z",
+      "side": 1,
+      "message": "This is perfect 😍\n\nJust some small nits!",
+      "revId": "46e1d4228c483fdd785a339c538c01b65f4479e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e172a241_895b7fd5",
+        "filename": "tools/lint/OWNERS",
+        "patchSetId": 12
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T19:04:26Z",
+      "side": 1,
+      "message": "You can add me there as well if you want (I should get rid of the top level OWNERS file)",
+      "revId": "46e1d4228c483fdd785a339c538c01b65f4479e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f6e87d9_04f10475",
+        "filename": "tools/lint/checks/src/com/android/bluetooth/lint/LogEnforcementVariableCreationDetector.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T19:04:26Z",
+      "side": 1,
+      "message": "Both methods seems to have \n\n```\n        if (expression \u003d\u003d null) {\n            return false\n        }\n```\n\nAt the beginning, would it be possible to check for null in this method here ?\n\nSomething like this\n```suggestion\n                fieldInitializer?.let { checkExpressionForIsLoggableUsages(it) ||\n                checkExpressionForDebugVariableUsages(it) }\n```\n\nOr just\n\n```\n                (fieldInitializer !\u003d null \u0026\u0026 (checkExpressionForIsLoggableUsages(fieldInitializer) ||\n                checkExpressionForDebugVariableUsages(fieldInitializer)))\n```",
+      "range": {
+        "startLine": 140,
+        "startChar": 16,
+        "endLine": 141,
+        "endChar": 72
+      },
+      "revId": "46e1d4228c483fdd785a339c538c01b65f4479e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ac5db11_402162fe",
+        "filename": "tools/lint/checks/src/com/android/bluetooth/lint/Utils.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T19:04:26Z",
+      "side": 1,
+      "message": "nit: This util seems to only be used in `LogEnforcementVariableCreationDetector.kt`. I would just put all those methods in this file.",
+      "revId": "46e1d4228c483fdd785a339c538c01b65f4479e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc59d27f_56012bfc",
+        "filename": "tools/lint/checks/tests/com/android/bluetooth/lint/test/LogEnforcementVariableCreationDetectorTest.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T19:04:26Z",
+      "side": 1,
+      "message": "😍",
+      "revId": "46e1d4228c483fdd785a339c538c01b65f4479e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
