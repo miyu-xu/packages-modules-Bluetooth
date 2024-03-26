@@ -16,6 +16,24 @@
       "message": "Do you shutdown the executor?",
       "revId": "6d4eb1f9f9d2cf2a038c020ec4432b1768183cca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00ce3111_45201b0e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcp/AvrcpVolumeManagerTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-26T21:51:28Z",
+      "side": 1,
+      "message": "I misunderstood the doc.  \nGood catch. I will ask to shutdown, and split the test in 2 tests",
+      "parentUuid": "b8105883_fcddac7c",
+      "revId": "6d4eb1f9f9d2cf2a038c020ec4432b1768183cca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
