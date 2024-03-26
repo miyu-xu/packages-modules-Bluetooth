@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccce7e1f_1ef077a2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-03-26T08:06:27Z",
+      "side": 1,
+      "message": "Hi yuyangh@, this includes some refactoring since the original code is a bit messy. The only changed behavior should be the CVSD fallback part (in the select_next_settings function). If we don\u0027t want such refactor, I\u0027ll append the fallback logic like the retry retransmission effort. Please let me know which one is preferred. Thanks!",
+      "revId": "2b28d7f525e5fdd8bc286a0dc61ca2a77e0feb0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
