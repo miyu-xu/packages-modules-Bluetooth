@@ -34,6 +34,24 @@
       "parentUuid": "b8105883_fcddac7c",
       "revId": "6d4eb1f9f9d2cf2a038c020ec4432b1768183cca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed027209_94cc59d0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcp/AvrcpVolumeManagerTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-26T22:04:23Z",
+      "side": 1,
+      "message": "Shutting downs the pool affect alls tests.\nI replaced with a timeout on the verify instead",
+      "parentUuid": "00ce3111_45201b0e",
+      "revId": "6d4eb1f9f9d2cf2a038c020ec4432b1768183cca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
