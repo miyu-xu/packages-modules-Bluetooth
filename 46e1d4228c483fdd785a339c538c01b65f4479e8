@@ -120,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "018e7b88_a80dac0f",
+        "filename": "tools/lint/checks/src/com/android/bluetooth/lint/LogEnforcementVariableCreationDetector.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T21:34:22Z",
+      "side": 1,
+      "message": "\u003e I think I was leveraging the null check in the functions as a base case to help end recursion\n\noh, interesting, I didn\u0027t considered that. In that case I think I would still prefer to remove this check and put it in the caller (so checkExpressionForIsLoggableUsages/checkExpressionForDebugVariableUsages as well [and ideally put it in the when patterns])  to make it explicit because this is not obvious when you read the code.",
+      "parentUuid": "fa3ec3d0_02abfe68",
+      "range": {
+        "startLine": 140,
+        "startChar": 16,
+        "endLine": 141,
+        "endChar": 72
+      },
+      "revId": "46e1d4228c483fdd785a339c538c01b65f4479e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4ac5db11_402162fe",
         "filename": "tools/lint/checks/src/com/android/bluetooth/lint/Utils.kt",
         "patchSetId": 12
@@ -149,6 +173,24 @@
       "side": 1,
       "message": "I ended up using `isBluetoothClass()` in the next lint rule too. It seems like the linter will run on classes imported/linked to the code too, so you have to be explicit.\n\nI\u0027ve been using `debug()` when developing lint rules too, its really helpful to help print the nodes of the AST, as everything seems really under-documented and sometimes its the only way to figure out how to proceed. I ended up removing the calls to `debug()` before uploading though, since stdout outputs to the command line when you run `m Bluetooth-lint` (in addition to appearing in the report logs). I suppose I could remove the function altogether, but I would probably just end up adding it back in temporarily each time I develop a lint rule.",
       "parentUuid": "4ac5db11_402162fe",
+      "revId": "46e1d4228c483fdd785a339c538c01b65f4479e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd6f1225_d0493b72",
+        "filename": "tools/lint/checks/src/com/android/bluetooth/lint/Utils.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T21:34:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ab320842_6a0243db",
       "revId": "46e1d4228c483fdd785a339c538c01b65f4479e8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
