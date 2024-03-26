@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0dc7099_f2cab7fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-26T01:46:28Z",
+      "side": 1,
+      "message": "@hdmoon@google.com can you have a look at this CL ?\n\nIt looks legit to me.\n\nWe may want to call the \n`BluetoothMethodProxy` ... `contentResolverDelete`\ninstead in order to easily use that in test.\n\nFYI this is coming from external contributor, I suppose flagging will have to be done by our team",
+      "revId": "8833998910765eed95f8d82dbdc3a3cea42358a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
