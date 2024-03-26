@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "060e3836_40691ddf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-03-26T08:11:04Z",
+      "side": 1,
+      "message": "Hi yuyangh@, this is also necessary to pass HFP 1.9 HFP/AG/ACC/BV-22-C and HFP/AG/ACC/BV-23-C. The tests want to verify if IUT could fallback to safe settings but in the current implementation, the first SCO setup always succeed because we allow EV3 in CVSD S4 and mSBC T2, which causes the test result to be inconclusive.",
+      "revId": "fd1fd20219b8de02b9f1b485b5a031940ef020eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
