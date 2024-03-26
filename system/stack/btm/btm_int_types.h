@@ -67,9 +67,6 @@ class TimestampedStringCircularBuffer
 /* Define the Device Management control structure
  */
 typedef struct tBTM_DEVCB {
-  tBTM_VS_EVT_CB* p_vend_spec_cb[BTM_MAX_VSE_CALLBACKS]; /* Register for vendor
-                                                            specific events  */
-
   alarm_t* read_local_name_timer; /* Read local name timer */
   tBTM_CMPL_CB* p_rln_cmpl_cb;    /* Callback function to be called when  */
                                   /* read local name function complete    */
