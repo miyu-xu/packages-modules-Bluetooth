@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7e8da893_6ff77549",
+        "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-26T22:51:26Z",
+      "side": 1,
+      "message": "Putting in the service looks like the good things to do.\n\npackages/modules/Bluetooth/service.\n\nPlease transform this in Kotlin and add it to `packages/modules/Bluetooth/service/src/xx.kt`\n\nPlease add associated test to cover this using the ServiceBluetoothRoboTests.",
+      "parentUuid": "9874feb4_2cbb5f8d",
+      "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "71c754a1_f62cdbf7",
         "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
         "patchSetId": 1
@@ -421,6 +439,29 @@
       "writtenOn": "2024-03-26T18:46:15Z",
       "side": 1,
       "message": "This seems to only be used once within `takeBugreportThroughBetterBug`. I think it would be clearer for this abstraction to be removed and to create the intent directly in `takeBugreportThroughBetterBug`",
+      "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef75b434_8a1ce78c",
+        "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-26T22:51:26Z",
+      "side": 1,
+      "message": "I think we should not have 2 flags",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 60
+      },
       "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
