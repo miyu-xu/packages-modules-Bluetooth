@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90ace8c5_4680ad55",
+        "filename": "system/gd/rust/topshim/src/profiles/socket.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-03-26T09:59:57Z",
+      "side": 1,
+      "message": "You usually need a safety comment on unsafe blocks. Here, it could be:\n\n// SAFETY: The `sock_connect_signal_t` type has size `CONNECT_COMPLETE_SIZE`, and has no padding, so it\u0027s safe to convert it to a byte array.",
+      "revId": "1475a8aadee24bb4b834427426785a5132f149e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
