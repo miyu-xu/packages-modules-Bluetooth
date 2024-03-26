@@ -16,6 +16,24 @@
       "message": "I have started doing an extra stretch with aosp/3011917 Gatt is being done with aosp/3011918 but I haven\u0027t finished yet (need to update java side).",
       "revId": "62e748d904fa6b68694a6b0dd0e5794b4167ab6d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51301ac3_aa5a5ce5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-03-26T14:58:31Z",
+      "side": 1,
+      "message": "Ack. I\u0027ll rebase this CL on yours once UUIDs are cleaned up.",
+      "parentUuid": "38c3e120_fde0c049",
+      "revId": "62e748d904fa6b68694a6b0dd0e5794b4167ab6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
