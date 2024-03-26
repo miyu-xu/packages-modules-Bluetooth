@@ -233,7 +233,15 @@ static void bta_ag_sco_disc_cback(uint16_t sco_idx) {
        * 'Safe setting' first. If T1 also fails, try CVSD
        * same operations for LC3 settings */
       if (bta_ag_sco_is_opening(bta_ag_cb.sco.p_curr_scb)) {
-        bta_ag_cb.sco.p_curr_scb->state = BTA_AG_SCO_CODEC_ST;
+#if TARGET_FLOSS
+        if (true) {
+#else
+        if (IS_FLAG_ENABLED(fix_sco_state_on_retry)) {
+#endif
+          bta_ag_cb.sco.state = BTA_AG_SCO_CODEC_ST;
+        } else {
+          bta_ag_cb.sco.p_curr_scb->state = BTA_AG_SCO_CODEC_ST;
+        }
         if (bta_ag_cb.sco.p_curr_scb->inuse_codec == UUID_CODEC_LC3) {
           if (bta_ag_cb.sco.p_curr_scb->codec_lc3_settings ==
               BTA_AG_SCO_LC3_SETTINGS_T2) {
@@ -265,7 +273,15 @@ static void bta_ag_sco_disc_cback(uint16_t sco_idx) {
       if (IS_FLAG_ENABLED(retry_esco_with_zero_retransmission_effort) &&
           bta_ag_cb.sco.p_curr_scb->retransmission_effort_retries == 0) {
         bta_ag_cb.sco.p_curr_scb->retransmission_effort_retries++;
-        bta_ag_cb.sco.p_curr_scb->state = BTA_AG_SCO_CODEC_ST;
+#if TARGET_FLOSS
+        if (true) {
+#else
+        if (IS_FLAG_ENABLED(fix_sco_state_on_retry)) {
+#endif
+          bta_ag_cb.sco.state = BTA_AG_SCO_CODEC_ST;
+        } else {
+          bta_ag_cb.sco.p_curr_scb->state = BTA_AG_SCO_CODEC_ST;
+        }
         log::warn("eSCO/SCO failed to open, retry with retransmission_effort");
       } else {
         log::error("eSCO/SCO failed to open, no more fall back");
