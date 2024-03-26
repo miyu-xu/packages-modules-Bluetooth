@@ -22,6 +22,30 @@
       },
       "revId": "5c2534b796856c6e0b8ec6d4841dd983c0c3b81d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e30c1017_8058de9a",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1059977
+      },
+      "writtenOn": "2024-03-26T16:15:09Z",
+      "side": 0,
+      "message": "Hi Etienne, nice to meet you.\n\nI understand and appreciate that MediaPlayerList is important to the AAOS experience.\n\nI don\u0027t actually understand how to access this functionality on my phone. When I disable this flag on my phone I don\u0027t see any perceptible difference as a user (except that my phone boots a lot faster and feels snappier). Could you direct me to understanding what functionality I stand to lose as a user by disabling this flag on my phone, and how I can see this?\n\nIs there a fast path forward here where we disable this feature on devices where it\u0027s inaccessible, or where the product owner simply doesn\u0027t see the added value?\n\nThere is precedent to this: device/google/clockwork/bluetooth/bluetooth.prop",
+      "parentUuid": "e2a1aaff_41c467d9",
+      "range": {
+        "startLine": 205,
+        "startChar": 12,
+        "endLine": 205,
+        "endChar": 38
+      },
+      "revId": "5c2534b796856c6e0b8ec6d4841dd983c0c3b81d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
