@@ -275,7 +275,7 @@ void LeAddressManager::ack_pause(LeAddressManagerCallback* callback) {
   for (auto client : registered_clients_) {
     switch (client.second) {
       case ClientState::PAUSED:
-        log::info("Client already in paused state");
+        log::verbose("Client already in paused state");
         break;
       case ClientState::WAITING_FOR_PAUSE:
         // make sure all client paused
@@ -283,12 +283,12 @@ void LeAddressManager::ack_pause(LeAddressManagerCallback* callback) {
         return;
       case WAITING_FOR_RESUME:
       case RESUMED:
-        log::debug("Trigger OnPause for client that not paused and not waiting for pause");
+        log::warn(
+            "Trigger OnPause for client {}",
+            (client.second == WAITING_FOR_RESUME ? "WAITING_FOR_RESUME" : "RESUMED"));
         client.second = ClientState::WAITING_FOR_PAUSE;
         client.first->OnPause();
         return;
-      default:
-        log::error("Found client in unexpected state:{}", client.second);
     }
   }
 
@@ -306,6 +306,13 @@ void LeAddressManager::resume_registered_clients() {
 
   log::info("Resuming registered clients");
   for (auto& client : registered_clients_) {
+    if (client.second != PAUSED) {
+      log::warn(
+          "client is not paused {}",
+          (client.second == WAITING_FOR_PAUSE
+               ? "WAITING_FOR_PAUSE"
+               : (client.second == WAITING_FOR_RESUME ? "WAITING_FOR_RESUME" : "RESUMED")));
+    }
     client.second = ClientState::WAITING_FOR_RESUME;
     client.first->OnResume();
   }
@@ -314,6 +321,8 @@ void LeAddressManager::resume_registered_clients() {
 void LeAddressManager::ack_resume(LeAddressManagerCallback* callback) {
   if (registered_clients_.find(callback) != registered_clients_.end()) {
     registered_clients_.find(callback)->second = ClientState::RESUMED;
+  } else {
+    log::info("Client not registered");
   }
 }
 
