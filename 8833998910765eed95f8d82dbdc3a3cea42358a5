@@ -16,6 +16,41 @@
       "message": "@hdmoon@google.com can you have a look at this CL ?\n\nIt looks legit to me.\n\nWe may want to call the \n`BluetoothMethodProxy` ... `contentResolverDelete`\ninstead in order to easily use that in test.\n\nFYI this is coming from external contributor, I suppose flagging will have to be done by our team",
       "revId": "8833998910765eed95f8d82dbdc3a3cea42358a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17cf9cfe_a11ac74c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-03-26T01:51:24Z",
+      "side": 1,
+      "message": "LGTM. I\u0027ll work on the flagging for this CL. Thanks!",
+      "parentUuid": "f0dc7099_f2cab7fa",
+      "revId": "8833998910765eed95f8d82dbdc3a3cea42358a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec5e3f89_26d18655",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-03-26T01:51:24Z",
+      "side": 1,
+      "message": "Thanks for filing this. I\u0027ll add flag on this CL.",
+      "revId": "8833998910765eed95f8d82dbdc3a3cea42358a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
