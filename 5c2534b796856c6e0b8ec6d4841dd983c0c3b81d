@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2a1aaff_41c467d9",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 3013946
+      },
+      "writtenOn": "2024-03-26T07:59:25Z",
+      "side": 0,
+      "message": "Removing this means two things:\n- Remote device \"play\"/\"pause\" events won\u0027t work unless a new player has been set active on the phone. Currently, using the play button even if no media is playing will play the last played media on the last active player.\n- Remote device won\u0027t be able to browse to select a player / media to play, except on players that became active later on. (which defeats the purpose of AVRCP browsing).\n\nThe best solution would be to reduce the load itself: currently, AVRCP uses only old/public Media APIs so we should work with Media team to find a better way of retrieving the active sessions.\n\nDelaying this until a connection happens would also be a quick \u0026 easy solution, not the cleanest one though.\n\n\nIn any case, I don\u0027t think removing a feature we advertise as supported is a good way of reducing the system load.",
+      "range": {
+        "startLine": 205,
+        "startChar": 12,
+        "endLine": 205,
+        "endChar": 38
+      },
+      "revId": "5c2534b796856c6e0b8ec6d4841dd983c0c3b81d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
