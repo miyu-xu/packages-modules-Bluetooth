@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "292f4d98_12da5d6d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-03-26T10:14:22Z",
+      "side": 1,
+      "message": "Unsafe Rust LGTM.",
+      "revId": "2c0b87660d4b84f405ac7142fcb6d060f0558812",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
