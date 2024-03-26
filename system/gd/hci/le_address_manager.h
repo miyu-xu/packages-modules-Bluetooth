@@ -21,6 +21,7 @@
 #include <variant>
 
 #include "common/callback.h"
+#include "common/macros.h"
 #include "hci/address_with_type.h"
 #include "hci/octets.h"
 #include "os/alarm.h"
@@ -110,12 +111,21 @@ class LeAddressManager {
   std::chrono::milliseconds maximum_rotation_time_;
 
  private:
-  enum ClientState {
+  enum class ClientState {
     WAITING_FOR_PAUSE,
     PAUSED,
     WAITING_FOR_RESUME,
     RESUMED,
   };
+
+  inline std::string ClientStateText(const ClientState cs) {
+    switch (cs) {
+      CASE_RETURN_TEXT(ClientState::WAITING_FOR_PAUSE);
+      CASE_RETURN_TEXT(ClientState::PAUSED);
+      CASE_RETURN_TEXT(ClientState::WAITING_FOR_RESUME);
+      CASE_RETURN_TEXT(ClientState::RESUMED);
+    }
+  }
 
   enum CommandType {
     ROTATE_RANDOM_ADDRESS,
