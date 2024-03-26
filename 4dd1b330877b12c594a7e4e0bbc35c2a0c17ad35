@@ -16,6 +16,52 @@
       "message": "John advice to rebase on A2DP to avoid any conflict",
       "revId": "4dd1b330877b12c594a7e4e0bbc35c2a0c17ad35",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f23f279a_f67c5347",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 722,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-03-26T12:03:48Z",
+      "side": 1,
+      "message": "Args",
+      "range": {
+        "startLine": 722,
+        "startChar": 8,
+        "endLine": 722,
+        "endChar": 13
+      },
+      "revId": "4dd1b330877b12c594a7e4e0bbc35c2a0c17ad35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24eba2e6_d133264f",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 722,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-03-26T12:03:48Z",
+      "side": 1,
+      "message": "Args",
+      "range": {
+        "startLine": 722,
+        "startChar": 8,
+        "endLine": 722,
+        "endChar": 13
+      },
+      "revId": "4dd1b330877b12c594a7e4e0bbc35c2a0c17ad35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
