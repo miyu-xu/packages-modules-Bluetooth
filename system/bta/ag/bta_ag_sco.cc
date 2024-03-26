@@ -298,7 +298,7 @@ static void bta_ag_sco_disc_cback(uint16_t sco_idx) {
 
     /* Try next setting if we are AG */
     if (bta_ag_sco_is_opening(bta_ag_cb.sco.p_curr_scb) &&
-        !select_next_settings()) {
+        bta_ag_cb.sco.is_local && !select_next_settings()) {
       log::error("eSCO/SCO failed to open, no more fall back");
       if (IS_FLAG_ENABLED(is_sco_managed_by_audio)) {
         hfp_offload_interface->CancelStreamingRequest();
