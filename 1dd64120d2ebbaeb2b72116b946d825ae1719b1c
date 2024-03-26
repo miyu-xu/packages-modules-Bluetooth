@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2fc94ad_255e2645",
+        "filename": "system/gd/common/contextual_callback.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-26T22:12:32Z",
+      "side": 1,
+      "message": "I\u0027m wondering if this would be more effective:\n\nI\u0027d like to get the \"called twice\" error instead of a nullpointer exception when IsEmpty isn\u0027t checked.\n\n```suggestion\n    return context_ \u003d\u003d nullptr || !callback_;\n```",
+      "range": {
+        "startLine": 49,
+        "startChar": 30,
+        "endLine": 49,
+        "endChar": 31
+      },
+      "revId": "1dd64120d2ebbaeb2b72116b946d825ae1719b1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
