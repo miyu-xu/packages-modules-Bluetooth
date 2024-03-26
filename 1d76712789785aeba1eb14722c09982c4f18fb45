@@ -16,6 +16,24 @@
       "message": "This require aosp/3006789 in order to work as there is not yet a support for `sendBroadcast(_, _, Bundle)` in Robolectric",
       "revId": "1d76712789785aeba1eb14722c09982c4f18fb45",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d27fb73a_d68ac7b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-26T01:36:48Z",
+      "side": 1,
+      "message": "Robolectric was updated and change was upstream into external.\n\nThis CL can now pursue its journey 🔥",
+      "parentUuid": "f49c4d6c_d391fa78",
+      "revId": "1d76712789785aeba1eb14722c09982c4f18fb45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
