@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf867088_23b9ddc8",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-26T23:08:58Z",
+      "side": 0,
+      "message": "All 4 cases are covered here.",
+      "range": {
+        "startLine": 290,
+        "startChar": 6,
+        "endLine": 290,
+        "endChar": 14
+      },
+      "revId": "d965f0007f4c5eb873004ed66f81525c0dff128e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
