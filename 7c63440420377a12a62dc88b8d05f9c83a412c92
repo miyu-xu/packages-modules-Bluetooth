@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd9c1047_5a50227d",
+        "filename": "android/app/aidl/android/bluetooth/IBluetoothLeAudio.aidl",
+        "patchSetId": 18
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T16:20:25Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "51667a59_17d316ce",
+      "revId": "7c63440420377a12a62dc88b8d05f9c83a412c92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97167c15_88544b95",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "It is not an addition. The metric was already present on initial code, (previously line 3531).",
       "parentUuid": "97167c15_88544b95",
+      "revId": "7c63440420377a12a62dc88b8d05f9c83a412c92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0edd2034_444f8169",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 2981,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T16:20:25Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e81baa40_8dff159d",
       "revId": "7c63440420377a12a62dc88b8d05f9c83a412c92",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
