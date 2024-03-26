@@ -23,6 +23,7 @@ import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 
 import java.io.FileDescriptor;
+import java.util.UUID;
 
 /** Native interface to be used by AdapterService */
 public class AdapterNativeInterface {
@@ -248,15 +249,11 @@ public class AdapterNativeInterface {
     }
 
     int getSocketL2capLocalChannelId(ParcelUuid connectionUuid) {
-        return getSocketL2capLocalChannelIdNative(
-                connectionUuid.getUuid().getLeastSignificantBits(),
-                connectionUuid.getUuid().getMostSignificantBits());
+        return getSocketL2capLocalChannelIdNative(connectionUuid.getUuid());
     }
 
     int getSocketL2capRemoteChannelId(ParcelUuid connectionUuid) {
-        return getSocketL2capRemoteChannelIdNative(
-                connectionUuid.getUuid().getLeastSignificantBits(),
-                connectionUuid.getUuid().getMostSignificantBits());
+        return getSocketL2capRemoteChannelIdNative(connectionUuid.getUuid());
     }
 
     /**********************************************************************************************/
@@ -366,9 +363,7 @@ public class AdapterNativeInterface {
 
     private native boolean isLogRedactionEnabledNative();
 
-    private native int getSocketL2capLocalChannelIdNative(
-            long connectionUuidLsb, long connectionUuidMsb);
+    private native int getSocketL2capLocalChannelIdNative(UUID uuid);
 
-    private native int getSocketL2capRemoteChannelIdNative(
-            long connectionUuidLsb, long connectionUuidMsb);
+    private native int getSocketL2capRemoteChannelIdNative(UUID uuid);
 }
