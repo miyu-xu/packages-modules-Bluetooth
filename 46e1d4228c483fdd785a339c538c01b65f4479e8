@@ -142,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57b96bc9_849261cd",
+        "filename": "tools/lint/checks/src/com/android/bluetooth/lint/LogEnforcementVariableCreationDetector.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-26T23:25:41Z",
+      "side": 1,
+      "message": "Okay, I moved the null checks to the when patterns, i.e.\n```\nwhen (expression) {\n    null -\u003e {\n        return false\n    }\n    // ...\n}\n```\n\nI also added the check in the original calling location too since I had to make changes anyways. I _think_ this should have everything you\u0027re after in it now 😊",
+      "parentUuid": "018e7b88_a80dac0f",
+      "range": {
+        "startLine": 140,
+        "startChar": 16,
+        "endLine": 141,
+        "endChar": 72
+      },
+      "revId": "46e1d4228c483fdd785a339c538c01b65f4479e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ac5db11_402162fe",
