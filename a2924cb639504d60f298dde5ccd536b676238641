@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1db5151d_5d07b113",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapObexServer.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 730,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-26T21:48:24Z",
+      "side": 1,
+      "message": "I believe you bypassed google-java-format for that 😂\n\nI like the `+ (\"Key\u003d\" + value)` when I have to deal with big string like this \n```suggestion\n            return \"AppParamValue\u003c\"\n                    + (\" maxListCount\u003d\" + maxListCount)\n                    + (\" listStartOffset\u003d\" + listStartOffset)\n                    + (\" searchValue\u003d\" + searchValue)\n                    + (\" searchAttr\u003d\" + searchAttr)\n                    + (\" needTag\u003d\" + needTag)\n                    + (\" vcard21\u003d\" + vcard21)\n                    + (\" order\u003d\" + order)\n                    + (\" vcardselector\u003d\" + Arrays.toString(vCardSelector))\n                    + (\" vcardselop\u003d\" + vCardSelectorOperator)\n                    + \"\u003e\";\n```",
+      "range": {
+        "startLine": 726,
+        "startChar": 11,
+        "endLine": 730,
+        "endChar": 50
+      },
+      "revId": "a2924cb639504d60f298dde5ccd536b676238641",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
