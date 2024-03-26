@@ -110,7 +110,7 @@ class LeAddressManager {
   std::chrono::milliseconds maximum_rotation_time_;
 
  private:
-  enum ClientState {
+  enum class ClientState {
     WAITING_FOR_PAUSE,
     PAUSED,
     WAITING_FOR_RESUME,
