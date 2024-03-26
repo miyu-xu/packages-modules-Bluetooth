@@ -1,0 +1,147 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a6a67cd_b11602dd",
+        "filename": "android/app/aidl/android/bluetooth/IBluetoothLeAudio.aidl",
+        "patchSetId": 18
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T02:06:06Z",
+      "side": 1,
+      "message": "Is this needed?",
+      "revId": "7c63440420377a12a62dc88b8d05f9c83a412c92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97167c15_88544b95",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 2981,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T02:06:06Z",
+      "side": 1,
+      "message": "Is this addition intended?",
+      "revId": "7c63440420377a12a62dc88b8d05f9c83a412c92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9a6dc81_4a3f7946",
+        "filename": "framework/java/android/bluetooth/BluetoothPbapClient.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T02:06:06Z",
+      "side": 1,
+      "message": "I understand why we want to change that for consistency, but I don\u0027t think it should be done in this CL.",
+      "revId": "7c63440420377a12a62dc88b8d05f9c83a412c92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d43f515_9ca8bb15",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T02:06:06Z",
+      "side": 1,
+      "message": "nit: Remove",
+      "range": {
+        "startLine": 354,
+        "startChar": 0,
+        "endLine": 356,
+        "endChar": 42
+      },
+      "revId": "7c63440420377a12a62dc88b8d05f9c83a412c92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92e2db1c_2103f154",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 1186,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T02:06:06Z",
+      "side": 1,
+      "message": "nit: Remove",
+      "range": {
+        "startLine": 1183,
+        "startChar": 0,
+        "endLine": 1186,
+        "endChar": 20
+      },
+      "revId": "7c63440420377a12a62dc88b8d05f9c83a412c92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df674dcf_26f1e7b6",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 1487,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T02:06:06Z",
+      "side": 1,
+      "message": "nit: Remove",
+      "range": {
+        "startLine": 1485,
+        "startChar": 0,
+        "endLine": 1487,
+        "endChar": 42
+      },
+      "revId": "7c63440420377a12a62dc88b8d05f9c83a412c92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45ebc2f7_c529d3f3",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 1512,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T02:06:06Z",
+      "side": 1,
+      "message": "nit: Remove",
+      "range": {
+        "startLine": 1508,
+        "startChar": 0,
+        "endLine": 1512,
+        "endChar": 13
+      },
+      "revId": "7c63440420377a12a62dc88b8d05f9c83a412c92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
