@@ -22,6 +22,30 @@
       },
       "revId": "303e9857eca0f4a64699611079328a9a4e3d1b7d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4591c893_9049faeb",
+        "filename": "system/bta/test/bta_pan_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-26T17:55:28Z",
+      "side": 1,
+      "message": "Right...this is an older patch that likely was cleaned up in the meantime.",
+      "parentUuid": "ecdd4298_95ae85d7",
+      "range": {
+        "startLine": 108,
+        "startChar": 4,
+        "endLine": 108,
+        "endChar": 26
+      },
+      "revId": "303e9857eca0f4a64699611079328a9a4e3d1b7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
