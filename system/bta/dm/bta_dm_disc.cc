@@ -19,6 +19,7 @@
 #include "bta/dm/bta_dm_disc.h"
 
 #include <android_bluetooth_flags.h>
+#include <base/functional/bind.h>
 #include <base/logging.h>
 #include <base/strings/stringprintf.h>
 #include <bluetooth/log.h>
@@ -26,6 +27,7 @@
 
 #include <cstdint>
 #include <string>
+#include <variant>
 #include <vector>
 
 #include "android_bluetooth_flags.h"
@@ -57,6 +59,7 @@
 #include "stack/include/btm_sec_api.h"  // BTM_IsRemoteNameKnown
 #include "stack/include/gap_api.h"      // GAP_BleReadPeerPrefConnParams
 #include "stack/include/hidh_api.h"
+#include "stack/include/main_thread.h"
 #include "stack/include/sdp_status.h"
 #include "stack/sdp/sdpint.h"  // is_sdp_pbap_pce_disabled
 #include "storage/config_keys.h"
@@ -77,6 +80,16 @@ constexpr char kBtmLogTag[] = "SDP";
 
 tBTA_DM_SEARCH_CB bta_dm_search_cb;
 }  // namespace
+
+static void bta_dm_search_sm_execute(tBTA_DM_EVT event,
+                                     std::unique_ptr<tBTA_DM_MSG> msg);
+static void post_disc_evt(tBTA_DM_EVT event, std::unique_ptr<tBTA_DM_MSG> msg) {
+  if (do_in_main_thread(FROM_HERE, base::BindOnce(&bta_dm_search_sm_execute,
+                                                  event, std::move(msg))) !=
+      BT_STATUS_SUCCESS) {
+    log::error("post_disc_evt failed");
+  }
+}
 
 static void bta_dm_gatt_disc_complete(uint16_t conn_id, tGATT_STATUS status);
 static void bta_dm_inq_results_cb(tBTM_INQ_RESULTS* p_inq, const uint8_t* p_eir,
@@ -105,7 +118,7 @@ static void bta_dm_search_cmpl();
 static void bta_dm_free_sdp_db();
 static void bta_dm_execute_queued_request();
 static void bta_dm_search_cancel_notify();
-static void bta_dm_close_gatt_conn(UNUSED_ATTR tBTA_DM_MSG* p_data);
+static void bta_dm_close_gatt_conn();
 
 TimestampedStringCircularBuffer disc_gatt_history_{50};
 
@@ -269,13 +282,13 @@ static tBTA_DM_STATE bta_dm_search_get_state() {
  * Returns          void
  *
  ******************************************************************************/
-static void bta_dm_search_start(tBTA_DM_MSG* p_data) {
+static void bta_dm_search_start(tBTA_DM_API_SEARCH& search) {
   bta_dm_gattc_register();
 
   get_btm_client_interface().db.BTM_ClearInqDb(nullptr);
   /* save search params */
-  bta_dm_search_cb.p_device_search_cback = p_data->search.p_cback;
-  bta_dm_search_cb.services = p_data->search.services;
+  bta_dm_search_cb.p_device_search_cback = search.p_cback;
+  bta_dm_search_cb.services = search.services;
 
   const tBTM_STATUS btm_status =
       BTM_StartInquiry(bta_dm_inq_results_cb, bta_dm_inq_cmpl_cb);
@@ -335,28 +348,28 @@ static void bta_dm_search_cancel() {
  * Returns          void
  *
  ******************************************************************************/
-static void bta_dm_discover(tBTA_DM_MSG* p_data) {
+static void bta_dm_discover(tBTA_DM_API_DISCOVER& discover) {
   /* save the search condition */
   bta_dm_search_cb.services = BTA_ALL_SERVICE_MASK;
 
   bta_dm_gattc_register();
 
-  bta_dm_search_cb.service_search_cbacks = p_data->discover.cbacks;
+  bta_dm_search_cb.service_search_cbacks = discover.cbacks;
   bta_dm_search_cb.services_to_search = bta_dm_search_cb.services;
   bta_dm_search_cb.service_index = 0;
   bta_dm_search_cb.services_found = 0;
   bta_dm_search_cb.peer_name[0] = 0;
   bta_dm_search_cb.p_btm_inq_info =
-      get_btm_client_interface().db.BTM_InqDbRead(p_data->discover.bd_addr);
-  bta_dm_search_cb.transport = p_data->discover.transport;
+      get_btm_client_interface().db.BTM_InqDbRead(discover.bd_addr);
+  bta_dm_search_cb.transport = discover.transport;
 
   bta_dm_search_cb.name_discover_done = false;
 
   log::info(
       "bta_dm_discovery: starting service discovery to {} , transport: {}",
-      ADDRESS_TO_LOGGABLE_CSTR(p_data->discover.bd_addr),
-      bt_transport_text(p_data->discover.transport));
-  bta_dm_discover_device(p_data->discover.bd_addr);
+      ADDRESS_TO_LOGGABLE_CSTR(discover.bd_addr),
+      bt_transport_text(discover.transport));
+  bta_dm_discover_device(discover.bd_addr);
 }
 
 /*******************************************************************************
@@ -465,11 +478,8 @@ static void bta_dm_inq_cmpl() {
   }
 }
 
-static void bta_dm_remote_name_cmpl(const tBTA_DM_MSG* p_data) {
-  CHECK(p_data != nullptr);
-
-  const tBTA_DM_REMOTE_NAME& remote_name_msg = p_data->remote_name_msg;
-
+static void bta_dm_remote_name_cmpl(
+    const tBTA_DM_REMOTE_NAME& remote_name_msg) {
   BTM_LogHistory(kBtmLogTag, remote_name_msg.bd_addr, "Remote name completed",
                  base::StringPrintf(
                      "status:%s state:%s name:\"%s\"",
@@ -610,21 +620,20 @@ static void bta_dm_store_audio_profiles_version() {
  * Returns          void
  *
  ******************************************************************************/
-static void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
+static void bta_dm_sdp_result(tBTA_DM_SDP_RESULT& sdp_event) {
   tSDP_DISC_REC* p_sdp_rec = NULL;
-  tBTA_DM_MSG* p_msg;
   bool scn_found = false;
   uint16_t service = 0xFFFF;
   tSDP_PROTOCOL_ELEM pe;
 
   std::vector<Uuid> uuid_list;
 
-  const tSDP_RESULT sdp_result = p_data->sdp_event.sdp_result;
+  const tSDP_RESULT sdp_result = sdp_event.sdp_result;
 
-  if ((p_data->sdp_event.sdp_result == SDP_SUCCESS) ||
-      (p_data->sdp_event.sdp_result == SDP_NO_RECS_MATCH) ||
-      (p_data->sdp_event.sdp_result == SDP_DB_FULL)) {
-    log::verbose("sdp_result::0x{:x}", p_data->sdp_event.sdp_result);
+  if ((sdp_event.sdp_result == SDP_SUCCESS) ||
+      (sdp_event.sdp_result == SDP_NO_RECS_MATCH) ||
+      (sdp_event.sdp_result == SDP_DB_FULL)) {
+    log::verbose("sdp_result::0x{:x}", sdp_event.sdp_result);
     do {
       p_sdp_rec = NULL;
       if (bta_dm_search_cb.service_index == (BTA_USER_SERVICE_ID + 1)) {
@@ -674,7 +683,7 @@ static void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
       } else {
         /* SDP_DB_FULL means some records with the
            required attributes were received */
-        if (((p_data->sdp_event.sdp_result == SDP_DB_FULL) &&
+        if (((sdp_event.sdp_result == SDP_DB_FULL) &&
              bta_dm_search_cb.services != BTA_ALL_SERVICE_MASK) ||
             (p_sdp_rec != NULL)) {
           if (service != UUID_SERVCLASS_PNP_INFORMATION) {
@@ -754,17 +763,19 @@ static void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
                              bta_dm_search_cb.services_found,
                              bta_dm_search_cb.service_index));
 
-      p_msg = (tBTA_DM_MSG*)osi_calloc(sizeof(tBTA_DM_MSG));
-      p_msg->hdr.event = BTA_DM_DISCOVERY_RESULT_EVT;
-      p_msg->disc_result.result.disc_res.result = BTA_SUCCESS;
-      p_msg->disc_result.result.disc_res.num_uuids = uuid_list.size();
-      p_msg->disc_result.result.disc_res.p_uuid_list = NULL;
+      std::unique_ptr<tBTA_DM_MSG> msg =
+          std::make_unique<tBTA_DM_MSG>(tBTA_DM_DISC_RESULT{});
+      auto& disc_result = std::get<tBTA_DM_DISC_RESULT>(*msg);
+
+      disc_result.result.disc_res.result = BTA_SUCCESS;
+      disc_result.result.disc_res.num_uuids = uuid_list.size();
+      disc_result.result.disc_res.p_uuid_list = NULL;
       if (uuid_list.size() > 0) {
         // TODO(jpawlowski): make p_uuid_list into vector, and just copy
         // vectors, but first get rid of bta_sys_sendmsg below.
-        p_msg->disc_result.result.disc_res.p_uuid_list =
+        disc_result.result.disc_res.p_uuid_list =
             (Uuid*)osi_calloc(uuid_list.size() * sizeof(Uuid));
-        memcpy(p_msg->disc_result.result.disc_res.p_uuid_list, uuid_list.data(),
+        memcpy(disc_result.result.disc_res.p_uuid_list, uuid_list.data(),
                uuid_list.size() * sizeof(Uuid));
       }
       // Copy the raw_data to the discovery result structure
@@ -784,30 +795,29 @@ static void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
       }
       /* Done with p_sdp_db. Free it */
       bta_dm_free_sdp_db();
-      p_msg->disc_result.result.disc_res.services =
-          bta_dm_search_cb.services_found;
+      disc_result.result.disc_res.services = bta_dm_search_cb.services_found;
 
       // Piggy back the SCN over result field
       if (scn_found) {
-        p_msg->disc_result.result.disc_res.result =
+        disc_result.result.disc_res.result =
             static_cast<tBTA_STATUS>((3 + bta_dm_search_cb.peer_scn));
-        p_msg->disc_result.result.disc_res.services |= BTA_USER_SERVICE_MASK;
+        disc_result.result.disc_res.services |= BTA_USER_SERVICE_MASK;
 
         log::verbose("Piggy back the SCN over result field  SCN={}",
                      bta_dm_search_cb.peer_scn);
       }
-      p_msg->disc_result.result.disc_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
-      bd_name_from_char_pointer(p_msg->disc_result.result.disc_res.bd_name,
+      disc_result.result.disc_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
+      bd_name_from_char_pointer(disc_result.result.disc_res.bd_name,
                                 bta_dm_get_remname());
 
-      bta_sys_sendmsg(p_msg);
+      bta_dm_search_sm_execute(BTA_DM_DISCOVERY_RESULT_EVT, std::move(msg));
     }
   } else {
     BTM_LogHistory(
         kBtmLogTag, bta_dm_search_cb.peer_bdaddr, "Discovery failed",
         base::StringPrintf("Result:%s", sdp_result_text(sdp_result).c_str()));
     log::error("SDP connection failed {}", sdp_status_text(sdp_result));
-    if (p_data->sdp_event.sdp_result == SDP_CONN_FAILED)
+    if (sdp_event.sdp_result == SDP_CONN_FAILED)
       bta_dm_search_cb.wait_disc = false;
 
     /* not able to connect go to next device */
@@ -817,16 +827,17 @@ static void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
     get_btm_client_interface().security.BTM_SecDeleteRmtNameNotifyCallback(
         &bta_dm_service_search_remname_cback);
 
-    p_msg = (tBTA_DM_MSG*)osi_calloc(sizeof(tBTA_DM_MSG));
-    p_msg->hdr.event = BTA_DM_DISCOVERY_RESULT_EVT;
-    p_msg->disc_result.result.disc_res.result = BTA_FAILURE;
-    p_msg->disc_result.result.disc_res.services =
-        bta_dm_search_cb.services_found;
-    p_msg->disc_result.result.disc_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
-    bd_name_from_char_pointer(p_msg->disc_result.result.disc_res.bd_name,
+    std::unique_ptr<tBTA_DM_MSG> msg =
+        std::make_unique<tBTA_DM_MSG>(tBTA_DM_DISC_RESULT{});
+    auto& disc_result = std::get<tBTA_DM_DISC_RESULT>(*msg);
+
+    disc_result.result.disc_res.result = BTA_FAILURE;
+    disc_result.result.disc_res.services = bta_dm_search_cb.services_found;
+    disc_result.result.disc_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
+    bd_name_from_char_pointer(disc_result.result.disc_res.bd_name,
                               bta_dm_get_remname());
 
-    bta_sys_sendmsg(p_msg);
+    bta_dm_search_sm_execute(BTA_DM_DISCOVERY_RESULT_EVT, std::move(msg));
   }
 }
 
@@ -938,19 +949,19 @@ static void bta_dm_search_cmpl() {
  * Returns          void
  *
  ******************************************************************************/
-static void bta_dm_disc_result(tBTA_DM_MSG* p_data) {
+static void bta_dm_disc_result(tBTA_DM_DISC_RESULT& disc_result) {
   log::verbose("");
 
   /* disc_res.device_type is set only when GATT discovery is finished in
    * bta_dm_gatt_disc_complete */
-  bool is_gatt_over_ble = ((p_data->disc_result.result.disc_res.device_type &
-                            BT_DEVICE_TYPE_BLE) != 0);
+  bool is_gatt_over_ble =
+      ((disc_result.result.disc_res.device_type & BT_DEVICE_TYPE_BLE) != 0);
 
   /* if any BR/EDR service discovery has been done, report the event */
   if (!is_gatt_over_ble && (bta_dm_search_cb.services &
                             ((BTA_ALL_SERVICE_MASK | BTA_USER_SERVICE_MASK) &
                              ~BTA_BLE_SERVICE_MASK))) {
-    auto& r = p_data->disc_result.result.disc_res;
+    auto& r = disc_result.result.disc_res;
     bta_dm_search_cb.service_search_cbacks.on_service_discovery_results(
         r.bd_addr, r.bd_name, r.services, r.device_type, r.num_uuids,
         r.p_uuid_list, r.result, r.hci_status);
@@ -971,17 +982,16 @@ static void bta_dm_disc_result(tBTA_DM_MSG* p_data) {
  * Returns          void
  *
  ******************************************************************************/
-static void bta_dm_search_result(tBTA_DM_MSG* p_data) {
+static void bta_dm_search_result(tBTA_DM_DISC_RESULT& disc_result) {
   log::verbose("searching:0x{:04x}, result:0x{:04x}", bta_dm_search_cb.services,
-               p_data->disc_result.result.disc_res.services);
+               disc_result.result.disc_res.services);
 
   /* call back if application wants name discovery or found services that
    * application is searching */
   if ((!bta_dm_search_cb.services) ||
-      ((bta_dm_search_cb.services) &&
-       (p_data->disc_result.result.disc_res.services))) {
+      ((bta_dm_search_cb.services) && (disc_result.result.disc_res.services))) {
     if (bta_dm_search_cb.service_search_cbacks.on_service_discovery_results) {
-      auto& r = p_data->disc_result.result.disc_res;
+      auto& r = disc_result.result.disc_res;
       bta_dm_search_cb.service_search_cbacks.on_service_discovery_results(
           r.bd_addr, r.bd_name, r.services, r.device_type, r.num_uuids,
           r.p_uuid_list, r.result, r.hci_status);
@@ -1043,14 +1053,11 @@ static void bta_dm_free_sdp_db() {
  * Returns          void
  *
  ******************************************************************************/
-static void bta_dm_queue_search(tBTA_DM_MSG* p_data) {
+static void bta_dm_queue_search(tBTA_DM_API_SEARCH& search) {
   if (bta_dm_search_cb.p_pending_search) {
     log::warn("Overwrote previous device discovery inquiry scan request");
   }
-  osi_free_and_reset((void**)&bta_dm_search_cb.p_pending_search);
-  bta_dm_search_cb.p_pending_search =
-      (tBTA_DM_MSG*)osi_malloc(sizeof(tBTA_DM_API_SEARCH));
-  memcpy(bta_dm_search_cb.p_pending_search, p_data, sizeof(tBTA_DM_API_SEARCH));
+  bta_dm_search_cb.p_pending_search.reset(new tBTA_DM_MSG(search));
   log::info("Queued device discovery inquiry scan request");
 }
 
@@ -1063,13 +1070,14 @@ static void bta_dm_queue_search(tBTA_DM_MSG* p_data) {
  * Returns          void
  *
  ******************************************************************************/
-static void bta_dm_queue_disc(tBTA_DM_MSG* p_data) {
-  tBTA_DM_MSG* p_pending_discovery =
-      (tBTA_DM_MSG*)osi_malloc(sizeof(tBTA_DM_API_DISCOVER));
-  memcpy(p_pending_discovery, p_data, sizeof(tBTA_DM_API_DISCOVER));
+static void bta_dm_queue_disc(tBTA_DM_API_DISCOVER& discovery) {
+  // TODO fix that up, use something safe, not malloc!
+  tBTA_DM_API_DISCOVER* p_pending_discovery =
+      (tBTA_DM_API_DISCOVER*)osi_malloc(sizeof(tBTA_DM_API_DISCOVER));
+  memcpy(p_pending_discovery, &discovery, sizeof(tBTA_DM_API_DISCOVER));
 
   log::info("bta_dm_discovery: queuing service discovery to {}",
-            ADDRESS_TO_LOGGABLE_CSTR(p_pending_discovery->discover.bd_addr));
+            ADDRESS_TO_LOGGABLE_CSTR(discovery.bd_addr));
   fixed_queue_enqueue(bta_dm_search_cb.pending_discovery_queue,
                       p_pending_discovery);
 }
@@ -1084,15 +1092,19 @@ static void bta_dm_queue_disc(tBTA_DM_MSG* p_data) {
  *
  ******************************************************************************/
 static void bta_dm_execute_queued_request() {
-  tBTA_DM_MSG* p_pending_discovery = (tBTA_DM_MSG*)fixed_queue_try_dequeue(
-      bta_dm_search_cb.pending_discovery_queue);
+  tBTA_DM_API_DISCOVER* p_pending_discovery =
+      (tBTA_DM_API_DISCOVER*)fixed_queue_try_dequeue(
+          bta_dm_search_cb.pending_discovery_queue);
   if (p_pending_discovery) {
     log::info("Start pending discovery");
-    bta_sys_sendmsg(p_pending_discovery);
+    post_disc_evt(BTA_DM_API_DISCOVER_EVT,
+                  std::make_unique<tBTA_DM_MSG>(
+                      tBTA_DM_API_DISCOVER{*p_pending_discovery}));
   } else if (bta_dm_search_cb.p_pending_search) {
     log::info("Start pending search");
-    bta_sys_sendmsg(bta_dm_search_cb.p_pending_search);
-    bta_dm_search_cb.p_pending_search = NULL;
+    post_disc_evt(BTA_DM_API_SEARCH_EVT,
+                  std::move(bta_dm_search_cb.p_pending_search));
+    bta_dm_search_cb.p_pending_search.reset();
   }
 }
 
@@ -1119,7 +1131,7 @@ bool bta_dm_is_search_request_queued() {
  *
  ******************************************************************************/
 static void bta_dm_search_clear_queue() {
-  osi_free_and_reset((void**)&bta_dm_search_cb.p_pending_search);
+  bta_dm_search_cb.p_pending_search.reset();
   if (bluetooth::common::InitFlags::
           IsBtmDmFlushDiscoveryQueueOnSearchCancel()) {
     fixed_queue_flush(bta_dm_search_cb.pending_discovery_queue, osi_free);
@@ -1236,17 +1248,15 @@ static void bta_dm_find_services(const RawAddress& bd_addr) {
 
   /* no more services to be discovered */
   if (bta_dm_search_cb.service_index >= BTA_MAX_SERVICE_ID) {
-    tBTA_DM_MSG* p_msg = (tBTA_DM_MSG*)osi_malloc(sizeof(tBTA_DM_MSG));
-    /* initialize the data structure */
-    memset(&(p_msg->disc_result.result), 0, sizeof(tBTA_DM_DISC_RES));
-    p_msg->hdr.event = BTA_DM_DISCOVERY_RESULT_EVT;
-    p_msg->disc_result.result.disc_res.services =
-        bta_dm_search_cb.services_found;
-    p_msg->disc_result.result.disc_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
-    bd_name_from_char_pointer(p_msg->disc_result.result.disc_res.bd_name,
+    std::unique_ptr<tBTA_DM_MSG> msg =
+        std::make_unique<tBTA_DM_MSG>(tBTA_DM_DISC_RESULT{});
+    auto& disc_result = std::get<tBTA_DM_DISC_RESULT>(*msg);
+    disc_result.result.disc_res.services = bta_dm_search_cb.services_found;
+    disc_result.result.disc_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
+    bd_name_from_char_pointer(disc_result.result.disc_res.bd_name,
                               bta_dm_get_remname());
 
-    bta_sys_sendmsg(p_msg);
+    post_disc_evt(BTA_DM_DISCOVERY_RESULT_EVT, std::move(msg));
   }
 }
 
@@ -1271,13 +1281,10 @@ static void bta_dm_discover_next_device(void) {
     bta_dm_discover_device(
         bta_dm_search_cb.p_btm_inq_info->results.remote_bd_addr);
   } else {
-    tBTA_DM_MSG* p_msg = (tBTA_DM_MSG*)osi_malloc(sizeof(tBTA_DM_MSG));
-
     /* no devices, search complete */
     bta_dm_search_cb.services = 0;
 
-    p_msg->hdr.event = BTA_DM_SEARCH_CMPL_EVT;
-    bta_sys_sendmsg(p_msg);
+    post_disc_evt(BTA_DM_SEARCH_CMPL_EVT, nullptr);
   }
 }
 
@@ -1442,17 +1449,18 @@ static void bta_dm_discover_device(const RawAddress& remote_bd_addr) {
   }
 
   /* name discovery and service discovery are done for this device */
-  tBTA_DM_MSG* p_msg = (tBTA_DM_MSG*)osi_malloc(sizeof(tBTA_DM_MSG));
-  p_msg->hdr.event = BTA_DM_DISCOVERY_RESULT_EVT;
+  std::unique_ptr<tBTA_DM_MSG> msg =
+      std::make_unique<tBTA_DM_MSG>(tBTA_DM_DISC_RESULT{});
+  auto& disc_result = std::get<tBTA_DM_DISC_RESULT>(*msg);
+
   /* initialize the data structure */
-  memset(&(p_msg->disc_result.result), 0, sizeof(tBTA_DM_DISC_RES));
-  p_msg->disc_result.result.disc_res.result = BTA_SUCCESS;
-  p_msg->disc_result.result.disc_res.services = bta_dm_search_cb.services_found;
-  p_msg->disc_result.result.disc_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
-  bd_name_from_char_pointer(p_msg->disc_result.result.disc_res.bd_name,
+  disc_result.result.disc_res.result = BTA_SUCCESS;
+  disc_result.result.disc_res.services = bta_dm_search_cb.services_found;
+  disc_result.result.disc_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
+  bd_name_from_char_pointer(disc_result.result.disc_res.bd_name,
                             bta_dm_get_remname());
 
-  bta_sys_sendmsg(p_msg);
+  bta_dm_search_sm_execute(BTA_DM_DISCOVERY_RESULT_EVT, std::move(msg));
 }
 
 /*******************************************************************************
@@ -1466,13 +1474,9 @@ static void bta_dm_discover_device(const RawAddress& remote_bd_addr) {
  ******************************************************************************/
 static void bta_dm_sdp_callback(UNUSED_ATTR const RawAddress& bd_addr,
                                 tSDP_STATUS sdp_status) {
-  tBTA_DM_SDP_RESULT* p_msg =
-      (tBTA_DM_SDP_RESULT*)osi_malloc(sizeof(tBTA_DM_SDP_RESULT));
-
-  p_msg->hdr.event = BTA_DM_SDP_RESULT_EVT;
-  p_msg->sdp_result = sdp_status;
-
-  bta_sys_sendmsg(p_msg);
+  post_disc_evt(BTA_DM_SDP_RESULT_EVT,
+                std::make_unique<tBTA_DM_MSG>(
+                    tBTA_DM_SDP_RESULT{.sdp_result = sdp_status}));
 }
 
 /*******************************************************************************
@@ -1647,25 +1651,14 @@ static void bta_dm_remname_cback(const tBTM_REMOTE_DEV_NAME* p_remote_name) {
     GAP_BleReadPeerPrefConnParams(bta_dm_search_cb.peer_bdaddr);
   }
 
-  tBTA_DM_MSG* p_msg = (tBTA_DM_MSG*)osi_malloc(sizeof(tBTA_DM_MSG));
-  *p_msg = {
-      .remote_name_msg =
-          {
-              // tBTA_DM_REMOTE_NAME
-              .hdr =
-                  {
-                      .event = BTA_DM_REMT_NAME_EVT,
-                      .len = 0,
-                      .offset = 0,
-                      .layer_specific = 0,
-                  },
-              .bd_addr = bta_dm_search_cb.peer_bdaddr,
-              .bd_name = {},
-              .hci_status = p_remote_name->hci_status,
-          },
-  };
-  bd_name_copy(p_msg->remote_name_msg.bd_name, p_remote_name->remote_bd_name);
-  bta_sys_sendmsg(p_msg);
+  std::unique_ptr<tBTA_DM_MSG> msg =
+      std::make_unique<tBTA_DM_MSG>(tBTA_DM_REMOTE_NAME{});
+  auto& rmt_name_msg = std::get<tBTA_DM_REMOTE_NAME>(*msg);
+  rmt_name_msg.bd_addr = bta_dm_search_cb.peer_bdaddr;
+  rmt_name_msg.hci_status = p_remote_name->hci_status;
+  bd_name_copy(rmt_name_msg.bd_name, p_remote_name->remote_bd_name);
+
+  post_disc_evt(BTA_DM_REMT_NAME_EVT, std::move(msg));
 }
 
 /*******************************************************************************
@@ -1902,23 +1895,23 @@ static void bta_dm_gattc_register(void) {
 static void bta_dm_gatt_disc_complete(uint16_t conn_id, tGATT_STATUS status) {
   log::verbose("conn_id = {}", conn_id);
 
-  tBTA_DM_MSG* p_msg = (tBTA_DM_MSG*)osi_malloc(sizeof(tBTA_DM_MSG));
+  std::unique_ptr<tBTA_DM_MSG> msg =
+      std::make_unique<tBTA_DM_MSG>(tBTA_DM_DISC_RESULT{});
+  auto& disc_result = std::get<tBTA_DM_DISC_RESULT>(*msg);
 
   /* no more services to be discovered */
-  p_msg->hdr.event = BTA_DM_DISCOVERY_RESULT_EVT;
-  p_msg->disc_result.result.disc_res.result =
+  disc_result.result.disc_res.result =
       (status == GATT_SUCCESS) ? BTA_SUCCESS : BTA_FAILURE;
   log::verbose("service found: 0x{:08x}", bta_dm_search_cb.services_found);
-  p_msg->disc_result.result.disc_res.services = bta_dm_search_cb.services_found;
-  p_msg->disc_result.result.disc_res.num_uuids = 0;
-  p_msg->disc_result.result.disc_res.p_uuid_list = NULL;
-  p_msg->disc_result.result.disc_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
-  bd_name_from_char_pointer(p_msg->disc_result.result.disc_res.bd_name,
+  disc_result.result.disc_res.services = bta_dm_search_cb.services_found;
+  disc_result.result.disc_res.num_uuids = 0;
+  disc_result.result.disc_res.p_uuid_list = NULL;
+  disc_result.result.disc_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
+  bd_name_from_char_pointer(disc_result.result.disc_res.bd_name,
                             bta_dm_get_remname());
+  disc_result.result.disc_res.device_type |= BT_DEVICE_TYPE_BLE;
 
-  p_msg->disc_result.result.disc_res.device_type |= BT_DEVICE_TYPE_BLE;
-
-  bta_sys_sendmsg(p_msg);
+  bta_dm_search_sm_execute(BTA_DM_DISCOVERY_RESULT_EVT, std::move(msg));
 
   if (conn_id != GATT_INVALID_CONN_ID) {
     bta_dm_search_cb.pending_close_bda = bta_dm_search_cb.peer_bdaddr;
@@ -1930,10 +1923,7 @@ static void bta_dm_gatt_disc_complete(uint16_t conn_id, tGATT_STATUS status) {
                           BTA_DM_GATT_CLOSE_DELAY_TOUT,
                           BTA_DM_DISC_CLOSE_TOUT_EVT, 0);
     } else {
-      p_msg = (tBTA_DM_MSG*)osi_malloc(sizeof(tBTA_DM_MSG));
-      p_msg->hdr.event = BTA_DM_DISC_CLOSE_TOUT_EVT;
-      p_msg->hdr.layer_specific = 0;
-      bta_sys_sendmsg(p_msg);
+      bta_dm_search_sm_execute(BTA_DM_DISC_CLOSE_TOUT_EVT, nullptr);
     }
   } else {
     bta_dm_search_cb.conn_id = GATT_INVALID_CONN_ID;
@@ -1958,7 +1948,7 @@ static void bta_dm_gatt_disc_complete(uint16_t conn_id, tGATT_STATUS status) {
  * Parameters:
  *
  ******************************************************************************/
-static void bta_dm_close_gatt_conn(UNUSED_ATTR tBTA_DM_MSG* p_data) {
+static void bta_dm_close_gatt_conn() {
   if (bta_dm_search_cb.conn_id != GATT_INVALID_CONN_ID)
     BTA_GATTC_Close(bta_dm_search_cb.conn_id);
 
@@ -2134,11 +2124,13 @@ tBT_TRANSPORT bta_dm_determine_discovery_transport(const RawAddress& bd_addr) {
   return ::bta_dm_determine_discovery_transport(bd_addr);
 }
 
-void bta_dm_remote_name_cmpl(const tBTA_DM_MSG* p_data) {
-  ::bta_dm_remote_name_cmpl(p_data);
+void bta_dm_remote_name_cmpl(const tBTA_DM_REMOTE_NAME& remote_name_msg) {
+  ::bta_dm_remote_name_cmpl(remote_name_msg);
 }
 
-void bta_dm_sdp_result(tBTA_DM_MSG* p_data) { ::bta_dm_sdp_result(p_data); }
+void bta_dm_sdp_result(tBTA_DM_SDP_RESULT& sdp_event) {
+  ::bta_dm_sdp_result(sdp_event);
+}
 
 }  // namespace testing
 }  // namespace legacy
@@ -2174,17 +2166,11 @@ struct tSEARCH_STATE_HISTORY {
 bluetooth::common::TimestampedCircularBuffer<tSEARCH_STATE_HISTORY>
     search_state_history_(kSearchStateHistorySize);
 
-/*******************************************************************************
- *
- * Function         bta_dm_sm_search_disable
- *
- * Description     unregister BTA SEARCH DM
- *
- *
- * Returns          void
- *
- ******************************************************************************/
-void bta_dm_search_sm_disable() { bta_sys_deregister(BTA_ID_DM_SEARCH); }
+// helper type for the visitor
+template <class... Ts>
+struct overloaded : Ts... {
+  using Ts::operator()...;
+};
 
 /*******************************************************************************
  *
@@ -2196,8 +2182,8 @@ void bta_dm_search_sm_disable() { bta_sys_deregister(BTA_ID_DM_SEARCH); }
  * Returns          void
  *
  ******************************************************************************/
-bool bta_dm_search_sm_execute(const BT_HDR_RIGID* p_msg) {
-  const tBTA_DM_EVT event = static_cast<tBTA_DM_EVT>(p_msg->event);
+static void bta_dm_search_sm_execute(tBTA_DM_EVT event,
+                                     std::unique_ptr<tBTA_DM_MSG> msg) {
   log::info("state:{}, event:{}[0x{:x}]",
             bta_dm_state_text(bta_dm_search_get_state()),
             bta_dm_event_text(event), event);
@@ -2205,17 +2191,24 @@ bool bta_dm_search_sm_execute(const BT_HDR_RIGID* p_msg) {
       .state = bta_dm_search_get_state(),
       .event = event,
   });
-  tBTA_DM_MSG* message = (tBTA_DM_MSG*)p_msg;
+
   switch (bta_dm_search_get_state()) {
     case BTA_DM_SEARCH_IDLE:
-      switch (p_msg->event) {
+      switch (event) {
         case BTA_DM_API_SEARCH_EVT:
           bta_dm_search_set_state(BTA_DM_SEARCH_ACTIVE);
-          bta_dm_search_start(message);
+          std::visit(overloaded{[](tBTA_DM_API_SEARCH msg) {
+                                  bta_dm_search_start(msg);
+                                },
+                                [](auto) { log::fatal("bad message type!"); }},
+                     *msg.get());
           break;
         case BTA_DM_API_DISCOVER_EVT:
           bta_dm_search_set_state(BTA_DM_DISCOVER_ACTIVE);
-          bta_dm_discover(message);
+          std::visit(
+              overloaded{[](tBTA_DM_API_DISCOVER msg) { bta_dm_discover(msg); },
+                         [](auto) { log::fatal("bad message type!"); }},
+              *msg.get());
           break;
         case BTA_DM_API_SEARCH_CANCEL_EVT:
           bta_dm_search_clear_queue();
@@ -2225,7 +2218,7 @@ bool bta_dm_search_sm_execute(const BT_HDR_RIGID* p_msg) {
           bta_dm_free_sdp_db();
           break;
         case BTA_DM_DISC_CLOSE_TOUT_EVT:
-          bta_dm_close_gatt_conn(message);
+          bta_dm_close_gatt_conn();
           break;
         default:
           log::info("Received unexpected event {}[0x{:x}] in state {}",
@@ -2234,21 +2227,34 @@ bool bta_dm_search_sm_execute(const BT_HDR_RIGID* p_msg) {
       }
       break;
     case BTA_DM_SEARCH_ACTIVE:
-      switch (p_msg->event) {
+      switch (event) {
         case BTA_DM_REMT_NAME_EVT:
-          bta_dm_remote_name_cmpl(message);
+          std::visit(overloaded{[](tBTA_DM_REMOTE_NAME msg) {
+                                  bta_dm_remote_name_cmpl(msg);
+                                },
+                                [](auto) { log::fatal("bad message type!"); }},
+                     *msg.get());
           break;
         case BTA_DM_SEARCH_CMPL_EVT:
           bta_dm_search_cmpl();
           break;
         case BTA_DM_DISCOVERY_RESULT_EVT:
-          bta_dm_search_result(message);
+          std::visit(overloaded{[](tBTA_DM_DISC_RESULT msg) {
+                                  bta_dm_search_result(msg);
+                                },
+                                [](auto) { log::fatal("bad message type!"); }},
+                     *msg.get());
           break;
         case BTA_DM_DISC_CLOSE_TOUT_EVT:
-          bta_dm_close_gatt_conn(message);
+          bta_dm_close_gatt_conn();
           break;
         case BTA_DM_API_DISCOVER_EVT:
-          bta_dm_queue_disc(message);
+          std::visit(overloaded{[](tBTA_DM_API_DISCOVER& msg) {
+                                  bta_dm_queue_disc(msg);
+                                },
+                                [](auto) { log::fatal("bad message type!"); }},
+                     *msg.get());
+
           break;
         case BTA_DM_API_SEARCH_CANCEL_EVT:
           bta_dm_search_clear_queue();
@@ -2262,12 +2268,20 @@ bool bta_dm_search_sm_execute(const BT_HDR_RIGID* p_msg) {
       }
       break;
     case BTA_DM_SEARCH_CANCELLING:
-      switch (p_msg->event) {
+      switch (event) {
         case BTA_DM_API_SEARCH_EVT:
-          bta_dm_queue_search(message);
+          std::visit(overloaded{[](tBTA_DM_API_SEARCH& msg) {
+                                  bta_dm_queue_search(msg);
+                                },
+                                [](auto) { log::fatal("bad message type!"); }},
+                     *msg.get());
           break;
         case BTA_DM_API_DISCOVER_EVT:
-          bta_dm_queue_disc(message);
+          std::visit(overloaded{[](tBTA_DM_API_DISCOVER& msg) {
+                                  bta_dm_queue_disc(msg);
+                                },
+                                [](auto) { log::fatal("bad message type!"); }},
+                     *msg.get());
           break;
         case BTA_DM_API_SEARCH_CANCEL_EVT:
           bta_dm_search_clear_queue();
@@ -2283,7 +2297,7 @@ bool bta_dm_search_sm_execute(const BT_HDR_RIGID* p_msg) {
           bta_dm_execute_queued_request();
           break;
         case BTA_DM_DISC_CLOSE_TOUT_EVT:
-          bta_dm_close_gatt_conn(message);
+          bta_dm_close_gatt_conn();
           break;
         default:
           log::info("Received unexpected event {}[0x{:x}] in state {}",
@@ -2292,24 +2306,44 @@ bool bta_dm_search_sm_execute(const BT_HDR_RIGID* p_msg) {
       }
       break;
     case BTA_DM_DISCOVER_ACTIVE:
-      switch (p_msg->event) {
+      switch (event) {
         case BTA_DM_REMT_NAME_EVT:
-          bta_dm_remote_name_cmpl(message);
+          std::visit(overloaded{[](tBTA_DM_REMOTE_NAME msg) {
+                                  bta_dm_remote_name_cmpl(msg);
+                                },
+                                [](auto) { log::fatal("bad message type!"); }},
+                     *msg.get());
           break;
         case BTA_DM_SDP_RESULT_EVT:
-          bta_dm_sdp_result(message);
+          std::visit(overloaded{[](tBTA_DM_SDP_RESULT& msg) {
+                                  bta_dm_sdp_result(msg);
+                                },
+                                [](auto) { log::fatal("bad message type!"); }},
+                     *msg.get());
           break;
         case BTA_DM_SEARCH_CMPL_EVT:
           bta_dm_search_cmpl();
           break;
         case BTA_DM_DISCOVERY_RESULT_EVT:
-          bta_dm_disc_result(message);
+          std::visit(overloaded{[](tBTA_DM_DISC_RESULT& msg) {
+                                  bta_dm_disc_result(msg);
+                                },
+                                [](auto) { log::fatal("bad message type!"); }},
+                     *msg.get());
           break;
         case BTA_DM_API_SEARCH_EVT:
-          bta_dm_queue_search(message);
+          std::visit(overloaded{[](tBTA_DM_API_SEARCH& msg) {
+                                  bta_dm_queue_search(msg);
+                                },
+                                [](auto) { log::fatal("bad message type!"); }},
+                     *msg.get());
           break;
         case BTA_DM_API_DISCOVER_EVT:
-          bta_dm_queue_disc(message);
+          std::visit(overloaded{[](tBTA_DM_API_DISCOVER& msg) {
+                                  bta_dm_queue_disc(msg);
+                                },
+                                [](auto) { log::fatal("bad message type!"); }},
+                     *msg.get());
           break;
         case BTA_DM_API_SEARCH_CANCEL_EVT:
           bta_dm_search_clear_queue();
@@ -2320,7 +2354,7 @@ bool bta_dm_search_sm_execute(const BT_HDR_RIGID* p_msg) {
           bta_dm_search_cancel_notify();
           break;
         case BTA_DM_DISC_CLOSE_TOUT_EVT:
-          bta_dm_close_gatt_conn(message);
+          bta_dm_close_gatt_conn();
           break;
         default:
           log::info("Received unexpected event {}[0x{:x}] in state {}",
@@ -2329,7 +2363,6 @@ bool bta_dm_search_sm_execute(const BT_HDR_RIGID* p_msg) {
       }
       break;
   }
-  return true;
 }
 
 static void bta_dm_disc_init_search_cb(tBTA_DM_SEARCH_CB& bta_dm_search_cb) {
@@ -2342,7 +2375,7 @@ static void bta_dm_disc_init_search_cb(tBTA_DM_SEARCH_CB& bta_dm_search_cb) {
 static void bta_dm_disc_reset() {
   alarm_free(bta_dm_search_cb.search_timer);
   alarm_free(bta_dm_search_cb.gatt_close_timer);
-  osi_free_and_reset((void**)&bta_dm_search_cb.p_pending_search);
+  bta_dm_search_cb.p_pending_search.reset();
   fixed_queue_free(bta_dm_search_cb.pending_discovery_queue, osi_free);
   bta_dm_disc_init_search_cb(::bta_dm_search_cb);
 }
@@ -2379,36 +2412,22 @@ void bta_dm_disc_acl_down(const RawAddress& bd_addr, tBT_TRANSPORT transport) {
 void bta_dm_disc_stop() { bta_dm_disc_reset(); }
 
 void bta_dm_disc_start_device_discovery(tBTA_DM_SEARCH_CBACK* p_cback) {
-  tBTA_DM_API_SEARCH* p_msg =
-      (tBTA_DM_API_SEARCH*)osi_calloc(sizeof(tBTA_DM_API_SEARCH));
-
-  p_msg->hdr.event = BTA_DM_API_SEARCH_EVT;
-  p_msg->p_cback = p_cback;
-
-  bta_sys_sendmsg(p_msg);
+  bta_dm_search_sm_execute(BTA_DM_API_SEARCH_EVT,
+                           std::make_unique<tBTA_DM_MSG>(tBTA_DM_API_SEARCH{
+                               .services = 0, .p_cback = p_cback}));
 }
 
 void bta_dm_disc_stop_device_discovery() {
-  tBTA_DM_API_DISCOVERY_CANCEL* p_msg =
-      (tBTA_DM_API_DISCOVERY_CANCEL*)osi_calloc(
-          sizeof(tBTA_DM_API_DISCOVERY_CANCEL));
-
-  p_msg->hdr.event = BTA_DM_API_SEARCH_CANCEL_EVT;
-  bta_sys_sendmsg(p_msg);
+  bta_dm_search_sm_execute(BTA_DM_API_SEARCH_CANCEL_EVT, nullptr);
 }
 
 void bta_dm_disc_start_service_discovery(service_discovery_callbacks cbacks,
                                          const RawAddress& bd_addr,
                                          tBT_TRANSPORT transport) {
-  tBTA_DM_API_DISCOVER* p_msg =
-      (tBTA_DM_API_DISCOVER*)osi_calloc(sizeof(tBTA_DM_API_DISCOVER));
-
-  p_msg->hdr.event = BTA_DM_API_DISCOVER_EVT;
-  p_msg->bd_addr = bd_addr;
-  p_msg->transport = transport;
-  p_msg->cbacks = cbacks;
-
-  bta_sys_sendmsg(p_msg);
+  bta_dm_search_sm_execute(
+      BTA_DM_API_DISCOVER_EVT,
+      std::make_unique<tBTA_DM_MSG>(tBTA_DM_API_DISCOVER{
+          .bd_addr = bd_addr, .cbacks = cbacks, .transport = transport}));
 }
 
 void bta_dm_disc_stop_service_discovery(const RawAddress& /* bd_addr */,
@@ -2441,10 +2460,7 @@ tBTA_DM_SEARCH_CB bta_dm_disc_get_search_cb() {
   ::bta_dm_disc_init_search_cb(search_cb);
   return search_cb;
 }
-void bta_dm_disc_search_cb(const tBTA_DM_SEARCH_CB& search_cb) {
-  ::bta_dm_search_cb = search_cb;
-}
-const tBTA_DM_SEARCH_CB& bta_dm_disc_search_cb() { return ::bta_dm_search_cb; }
+tBTA_DM_SEARCH_CB& bta_dm_disc_search_cb() { return ::bta_dm_search_cb; }
 bool bta_dm_read_remote_device_name(const RawAddress& bd_addr,
                                     tBT_TRANSPORT transport) {
   return ::bta_dm_read_remote_device_name(bd_addr, transport);
@@ -2469,9 +2485,11 @@ void bta_dm_opportunistic_observe_results_cb(tBTM_INQ_RESULTS* p_inq,
                                              uint16_t eir_len) {
   ::bta_dm_opportunistic_observe_results_cb(p_inq, p_eir, eir_len);
 }
-void bta_dm_queue_search(tBTA_DM_MSG* p_data) { ::bta_dm_queue_search(p_data); }
-void bta_dm_search_result(tBTA_DM_MSG* p_data) {
-  ::bta_dm_search_result(p_data);
+void bta_dm_queue_search(tBTA_DM_API_SEARCH& search) {
+  ::bta_dm_queue_search(search);
+}
+void bta_dm_search_result(tBTA_DM_DISC_RESULT& disc_result) {
+  ::bta_dm_search_result(disc_result);
 }
 void bta_dm_search_timer_cback(void* data) {
   ::bta_dm_search_timer_cback(data);
