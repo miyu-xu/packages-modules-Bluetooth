@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38c3e120_fde0c049",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-26T02:34:14Z",
+      "side": 1,
+      "message": "I have started doing an extra stretch with aosp/3011917 Gatt is being done with aosp/3011918 but I haven\u0027t finished yet (need to update java side).",
+      "revId": "62e748d904fa6b68694a6b0dd0e5794b4167ab6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
