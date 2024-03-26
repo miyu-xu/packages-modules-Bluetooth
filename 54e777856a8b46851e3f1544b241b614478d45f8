@@ -1,0 +1,362 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9874feb4_2cbb5f8d",
+        "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T18:46:15Z",
+      "side": 1,
+      "message": "This file is being put inside the app and used in the service.\n\nYou may want to move it to the service for now or create a library and use it in the service.",
+      "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71c754a1_f62cdbf7",
+        "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T18:46:15Z",
+      "side": 1,
+      "message": "Since this code is shared with UWB and Wifi, should we not create a library in `frameworks/libs/modules-utils/` instead?",
+      "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ab63258_bdbee0e0",
+        "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T18:46:15Z",
+      "side": 1,
+      "message": "nit: Rename this class and describe more what is its purpose go/java-practices/naming#avoid-generic-class-names\n\nI think even just naming it `BugReport` would be good for me (dropping the Utils suffix). Or `AutoBugReport` would work.",
+      "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10e5dbff_38a2b819",
+        "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T18:46:15Z",
+      "side": 1,
+      "message": "`DBG` has a meaning associated with Log in android, I would prefer to rename this constant. Something like `USEDEBUG_OR_ENG` would be good for me.",
+      "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "527a5b83_ab5d6334",
+        "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T18:46:15Z",
+      "side": 1,
+      "message": "nit: Use a [Duration](https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html)",
+      "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e3612ba_2fbe531b",
+        "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T18:46:15Z",
+      "side": 1,
+      "message": "nit: Use an [Instant](https://docs.oracle.com/javase/8/docs/api/java/time/Instant.html)",
+      "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ebf56bb_de288a85",
+        "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T18:46:15Z",
+      "side": 1,
+      "message": "Why is the whole method marked synchronized?\n\nIs it to handle concurrent `sLastBugReportTimeMs` updates?\n\nIf yes, could we either only handle thread safety there? (With a lock or an atomic or whatever) or just discard it, I don\u0027t think races are an issue with this. Worst case scenario we create two bug reports.",
+      "range": {
+        "startLine": 40,
+        "startChar": 18,
+        "endLine": 40,
+        "endChar": 30
+      },
+      "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82040911_e098d464",
+        "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T18:46:15Z",
+      "side": 1,
+      "message": "```suggestion\n            Log.d(TAG, \"Skip bugreport because it can be triggered only in userdebug build\");\n```",
+      "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c0eb343_0bf9f952",
+        "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T18:46:15Z",
+      "side": 1,
+      "message": "nit: \n```suggestion\n            Log.d(TAG, \"Bugreport was filed recently, skip \" + bugTitle);\n```",
+      "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bb5651d_bede6b8c",
+        "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T18:46:15Z",
+      "side": 1,
+      "message": "nit: \n```suggestion\n        boolean tookBugreport \u003d takeBugreportThroughBetterBug(context, bugTitle, bugDescription);\n        if (!tookBugreport) {\n            takeBugreportThroughBugreportManager(context, bugTitle, bugDescription);\n        }\n```",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 9
+      },
+      "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac541dea_410e202c",
+        "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T18:46:15Z",
+      "side": 1,
+      "message": "nit:\n\n```suggestion\n            Log.d(TAG, \"intent is unsafe and skip bugreport from BetterBug: \" + bugTitle);\n```",
+      "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90b57598_2a514ff5",
+        "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T18:46:15Z",
+      "side": 1,
+      "message": "nit: I think this should be done by the caller",
+      "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa5a25e1_abb6f3c5",
+        "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T18:46:15Z",
+      "side": 1,
+      "message": "nit:\n\n```suggestion\n            Log.d(TAG, \"Taking the bugreport through BetterBug: \" + bugTitle);\n```",
+      "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a761c37_ecb85622",
+        "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T18:46:15Z",
+      "side": 1,
+      "message": "I think this should be done in `takeBugReport`",
+      "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a567a1f_68971e36",
+        "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T18:46:15Z",
+      "side": 1,
+      "message": "```suggestion\n            Log.e(TAG, \"Error taking bugreport\", e);\n```",
+      "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20607235_580ea5ba",
+        "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T18:46:15Z",
+      "side": 1,
+      "message": "Should this be printed before `requestBugreport` as the log is \"Taking\" ? (Is `requestBugreport` blocking, looking at the AIDL it doesn\u0027t seems oneway)",
+      "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14b4ebf2_9fbad8a3",
+        "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T18:46:15Z",
+      "side": 1,
+      "message": "```suggestion\n            Log.e(TAG, \"Error taking bugreport\", e);\n```",
+      "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48754926_7849726b",
+        "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T18:46:15Z",
+      "side": 1,
+      "message": "This seems to only be used once within `takeBugreportThroughBetterBug`. I think it would be clearer for this abstraction to be removed and to create the intent directly in `takeBugreportThroughBetterBug`",
+      "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f480555_64206f6a",
+        "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T18:46:15Z",
+      "side": 1,
+      "message": "nit: Is this something that we could put into betterbug instead or rely on better bug setting? I\u0027m not a big fan of having those values living in our code.",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 64
+      },
+      "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84ff5aa6_730f460e",
+        "filename": "android/app/src/com/android/bluetooth/BugReportUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-26T18:46:15Z",
+      "side": 1,
+      "message": "nit: A builder should not reuse objects to allow it to be reusable go/java-practices/builders#reuse\n\nIt\u0027s not reused right now so it\u0027s fine, but with this current build implementation if you build (1) something then call a setter and rebuild an intent (2), you will have modified the first (1) object returned.",
+      "revId": "54e777856a8b46851e3f1544b241b614478d45f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
