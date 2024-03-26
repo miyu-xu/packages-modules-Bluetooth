@@ -22,6 +22,30 @@
       },
       "revId": "d09717867186ff2725cb502d612ace49c8477289",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab08a8db_7bf0f25d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-26T09:57:42Z",
+      "side": 1,
+      "message": "Thanks Patrick, good point.",
+      "parentUuid": "f5e968f4_d05a477d",
+      "range": {
+        "startLine": 268,
+        "startChar": 0,
+        "endLine": 277,
+        "endChar": 9
+      },
+      "revId": "d09717867186ff2725cb502d612ace49c8477289",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
