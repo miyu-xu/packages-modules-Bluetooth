@@ -16,6 +16,24 @@
       "message": "Do you think we should consider to flag this change as well?\nOr we\u0027re confident enough this won\u0027t cause any issues.\n\ne.g. in HandleNextRequest() {\nif (flag)\n    request.sync_timeout_alarm.Schedule(\n        base::BindOnce(\u0026PeriodicSyncManager::OnStartSyncTimeout, base::Unretained(this)), lNewTimeout);\n        \nelse\n    request.sync_timeout_alarm.Schedule(\n        base::BindOnce(\u0026PeriodicSyncManager::OnStartSyncTimeout, base::Unretained(this)), kPeriodicSyncTimeout);",
       "revId": "e34ab6594c1baa2d108155b6c153b054c6c57b74",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "893f6dc5_699dc0f0",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-03-26T08:10:29Z",
+      "side": 1,
+      "message": "IMHO flag is not needed. Without that change in environment where are a lot of broadcasters is almost impossible sync to broadcast using QR code because QR timeout is much less then time needed to sync all of them. 5 seconds if far enough to sync to valid one, if timeout occur then it can be sync after next PA (at the end of the queue).",
+      "parentUuid": "0f6e5ad7_85e1b10a",
+      "revId": "e34ab6594c1baa2d108155b6c153b054c6c57b74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
