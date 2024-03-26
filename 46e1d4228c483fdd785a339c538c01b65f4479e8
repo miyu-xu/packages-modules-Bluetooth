@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "8ad8517f_15f69ee6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-26T20:14:39Z",
+      "side": 1,
+      "message": "There is surprisingly little documentation on how to do this stuff, and I thought what I ended up with was a _bit_ brute force-y, but it\u0027ll do the job!\n\nI wish there was a better way to detect these enforcement variables instead of strictly by name or usage of `Log.isLoggable()`, but I couldn\u0027t think of a better way.\n\nEither way, I\u0027m glad you like it 😊\n\nIt should provide us an easy place to add new Bluetooth-specific checks too!",
+      "parentUuid": "b37ca6d9_4656c772",
+      "revId": "46e1d4228c483fdd785a339c538c01b65f4479e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "e172a241_895b7fd5",
         "filename": "tools/lint/OWNERS",
         "patchSetId": 12
@@ -31,6 +49,24 @@
       "writtenOn": "2024-03-26T19:04:26Z",
       "side": 1,
       "message": "You can add me there as well if you want (I should get rid of the top level OWNERS file)",
+      "revId": "46e1d4228c483fdd785a339c538c01b65f4479e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6715d411_1da1e403",
+        "filename": "tools/lint/OWNERS",
+        "patchSetId": 12
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-26T20:14:39Z",
+      "side": 1,
+      "message": "Done 😊",
+      "parentUuid": "e172a241_895b7fd5",
       "revId": "46e1d4228c483fdd785a339c538c01b65f4479e8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -60,6 +96,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fa3ec3d0_02abfe68",
+        "filename": "tools/lint/checks/src/com/android/bluetooth/lint/LogEnforcementVariableCreationDetector.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-26T20:14:39Z",
+      "side": 1,
+      "message": "I think I was leveraging the null check in the functions as a base case to help end recursion. It wasn\u0027t just a defensive check coming from the original entry point, but it ends up serving that purpose just fine too.\n\nI can still add the early null check to save a check if you want though.",
+      "parentUuid": "3f6e87d9_04f10475",
+      "range": {
+        "startLine": 140,
+        "startChar": 16,
+        "endLine": 141,
+        "endChar": 72
+      },
+      "revId": "46e1d4228c483fdd785a339c538c01b65f4479e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4ac5db11_402162fe",
         "filename": "tools/lint/checks/src/com/android/bluetooth/lint/Utils.kt",
         "patchSetId": 12
@@ -71,6 +131,24 @@
       "writtenOn": "2024-03-26T19:04:26Z",
       "side": 1,
       "message": "nit: This util seems to only be used in `LogEnforcementVariableCreationDetector.kt`. I would just put all those methods in this file.",
+      "revId": "46e1d4228c483fdd785a339c538c01b65f4479e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab320842_6a0243db",
+        "filename": "tools/lint/checks/src/com/android/bluetooth/lint/Utils.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-26T20:14:39Z",
+      "side": 1,
+      "message": "I ended up using `isBluetoothClass()` in the next lint rule too. It seems like the linter will run on classes imported/linked to the code too, so you have to be explicit.\n\nI\u0027ve been using `debug()` when developing lint rules too, its really helpful to help print the nodes of the AST, as everything seems really under-documented and sometimes its the only way to figure out how to proceed. I ended up removing the calls to `debug()` before uploading though, since stdout outputs to the command line when you run `m Bluetooth-lint` (in addition to appearing in the report logs). I suppose I could remove the function altogether, but I would probably just end up adding it back in temporarily each time I develop a lint rule.",
+      "parentUuid": "4ac5db11_402162fe",
       "revId": "46e1d4228c483fdd785a339c538c01b65f4479e8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
