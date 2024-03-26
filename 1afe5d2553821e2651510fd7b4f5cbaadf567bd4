@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ca511f3_3101679f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-26T05:51:09Z",
+      "side": 1,
+      "message": "Apologies for this. Will make sure to use the repo hook next time. Thank you.",
+      "parentUuid": "d4a0dfad_3369896f",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 52
+      },
+      "revId": "1afe5d2553821e2651510fd7b4f5cbaadf567bd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d71ad52e_29212d56",
@@ -72,6 +96,24 @@
       "side": 1,
       "message": ".",
       "parentUuid": "14638caf_13930fca",
+      "revId": "1afe5d2553821e2651510fd7b4f5cbaadf567bd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d77c151d_2268870b",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-26T05:51:09Z",
+      "side": 1,
+      "message": "That command worked. Thank you. aosp/3013234\n\nAs well as the repo hook; Which I\u0027ll be sure to run properly next time. Thank you.",
+      "parentUuid": "d71ad52e_29212d56",
       "revId": "1afe5d2553821e2651510fd7b4f5cbaadf567bd4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
