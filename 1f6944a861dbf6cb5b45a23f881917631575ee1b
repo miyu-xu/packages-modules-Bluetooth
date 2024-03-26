@@ -69,6 +69,24 @@
       "parentUuid": "ff2b0551_6e5eaeb6",
       "revId": "1f6944a861dbf6cb5b45a23f881917631575ee1b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45f9c60f_0d21c4b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-03-26T01:03:06Z",
+      "side": 1,
+      "message": "William and David, I\u0027ll close this thread as I have other WIP patches per your suggestion. Let\u0027s continue code-gen discussion there.\n\nIn the meantime, this patch enables Floss aflags and will reduce engineering effort for both teams and shorten the time for applying critical fixes from AOSP to Floss. Please kindly consider this during review.",
+      "parentUuid": "12411de3_06924997",
+      "revId": "1f6944a861dbf6cb5b45a23f881917631575ee1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
