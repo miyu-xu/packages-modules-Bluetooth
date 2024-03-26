@@ -51,6 +51,23 @@
       "message": "Thanks for filing this. I\u0027ll add flag on this CL.",
       "revId": "8833998910765eed95f8d82dbdc3a3cea42358a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54202dc2_aaf8644b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-26T17:51:22Z",
+      "side": 1,
+      "message": "I think it would be nice to clean up ongoing transfers before mCallback is cleared, or delete the file in both cases here (whether or not the callback is cleared).  It would be simpler to understand and test. (It would be nice to have a test that covers this case)",
+      "revId": "8833998910765eed95f8d82dbdc3a3cea42358a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
