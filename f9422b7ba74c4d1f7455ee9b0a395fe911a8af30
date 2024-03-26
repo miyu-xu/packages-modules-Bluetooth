@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9d1f3e8_65d3a1ad",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-26T08:18:09Z",
+      "side": 1,
+      "message": "this will be always false when FLAG is OFF.",
+      "parentUuid": "84e08b14_c40c3852",
+      "range": {
+        "startLine": 303,
+        "startChar": 0,
+        "endLine": 303,
+        "endChar": 48
+      },
+      "revId": "f9422b7ba74c4d1f7455ee9b0a395fe911a8af30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81009769_f1734ee4",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "01e22512_6b2f2a2f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 576,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-26T08:18:09Z",
+      "side": 1,
+      "message": "No, we need another fix to make use of this function (aosp/2994214)\nHowever, inside this code nothing will happen if flag is OFF\u003e",
+      "parentUuid": "81009769_f1734ee4",
+      "range": {
+        "startLine": 576,
+        "startChar": 9,
+        "endLine": 576,
+        "endChar": 48
+      },
+      "revId": "f9422b7ba74c4d1f7455ee9b0a395fe911a8af30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e9d1eb5d_0f5c3037",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-03-25T23:42:38Z",
       "side": 1,
       "message": "miss a `)`",
+      "range": {
+        "startLine": 243,
+        "startChar": 82,
+        "endLine": 243,
+        "endChar": 83
+      },
+      "revId": "f9422b7ba74c4d1f7455ee9b0a395fe911a8af30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "571fbaa2_dec499ee",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/PhonePolicyTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-26T08:18:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e9d1eb5d_0f5c3037",
       "range": {
         "startLine": 243,
         "startChar": 82,
