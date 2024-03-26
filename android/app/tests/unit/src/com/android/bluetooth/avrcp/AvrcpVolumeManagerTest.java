@@ -115,6 +115,8 @@ public class AvrcpVolumeManagerTest {
     public void switchVolumeDevice() {
         mAvrcpVolumeManager.volumeDeviceSwitched(mRemoteDevice);
         mAvrcpVolumeManager.deviceConnected(mRemoteDevice, true);
+        // Avrcp notify the audio manager using a background thread. Waiting for its completion
+        assertThat(Utils.BackgroundExecutor.awaitTermination(2, TimeUnit.SECONDS)).isTrue();
 
         // verify whether switchVolumeDevice is called by checking
         // mAudioManager.setDeviceVolumeBehavior().
@@ -126,6 +128,8 @@ public class AvrcpVolumeManagerTest {
         mAvrcpVolumeManager.deviceConnected(mRemoteDevice, true);
         mAvrcpVolumeManager.volumeDeviceSwitched(mRemoteDevice);
 
+        // Avrcp notify the audio manager using a background thread. Waiting for its completion
+        assertThat(Utils.BackgroundExecutor.awaitTermination(2, TimeUnit.SECONDS)).isTrue();
         verify(mAudioManager).setDeviceVolumeBehavior(any(), anyInt());
     }
 }
