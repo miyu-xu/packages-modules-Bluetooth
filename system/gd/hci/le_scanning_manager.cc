@@ -440,6 +440,105 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     }
   }
 
+  struct AdBlock {
+    uint8_t length;
+    uint8_t ad_type;
+    std::vector<uint8_t> data;
+  };
+
+  std::vector<AdBlock> split_ad_blocks(const std::vector<uint8_t>& advertising_data) {
+    std::vector<AdBlock> ad_blocks;
+    AdBlock current_ad_block;
+
+    for(size_t offset = 0; offset < advertising_data.size();) {
+      size_t remaining_size = advertising_data.size() - offset;
+      uint8_t entry_size = advertising_data[offset];
+
+      if(entry_size <= remaining_size) {
+        current_ad_block.length = entry_size;
+        current_ad_block.ad_type = advertising_data[++offset];
+        current_ad_block.data.clear();
+
+        for(size_t i = 1; i <= entry_size; ++i) {
+          current_ad_block.data.push_back(advertising_data[offset + i]);
+        }
+
+        ad_blocks.push_back(current_ad_block);
+        offset += entry_size;
+      } else {
+        break;
+      }
+    }
+
+    return ad_blocks;
+  }
+
+  bool is_passive_filter_content(uint16_t event_type, const std::vector<uint8_t>& advertising_data) {
+    // check legacy
+    bool is_legacy = event_type & (1 << kLegacyBit);
+    bool is_scan_response = event_type & (1 << kScanResponseBit);
+    if(!is_legacy || is_scan_response) {
+      return false;
+    }
+
+    // split into ad blocks
+    std::vector<AdBlock> blocks = split_ad_blocks(advertising_data);
+
+    // compare filters
+    uint8_t match_cnt = 0;
+    for (const auto& entry : passive_filter_indices_) {
+      const auto& filter_index = entry.first;
+      const auto& filters = entry.second;
+
+      match_cnt = filters.size();
+
+      for (const auto& filter : filters) {
+        for (const auto& block : blocks) {
+          uint8_t prev_match = match_cnt;
+          switch(filter.filter_type) {
+            case ApcfFilterType::BROADCASTER_ADDRESS: {
+              //TODO: if block matches filter, reduce match_cnt.
+              break;
+            }
+            case ApcfFilterType::SERVICE_UUID:
+            case ApcfFilterType::SERVICE_SOLICITATION_UUID: {
+              //TODO: if block matches filter, reduce match_cnt.
+              break;
+            }
+            case ApcfFilterType::LOCAL_NAME: {
+              //TODO: if block matches filter, reduce match_cnt.
+              break;
+            }
+            case ApcfFilterType::MANUFACTURER_DATA: {
+              //TODO: if block matches filter, reduce match_cnt.
+              break;
+            }
+            case ApcfFilterType::SERVICE_DATA: {
+              //TODO: if block matches filter, reduce match_cnt.
+              break;
+            }
+            case ApcfFilterType::TRANSPORT_DISCOVERY_DATA: {
+              //TODO: if block matches filter, reduce match_cnt.
+              break;
+            }
+            case ApcfFilterType::AD_TYPE: {
+              //TODO: if block matches filter, reduce match_cnt.
+              break;
+            }
+            default:
+              log::error("Unknown filter type");
+              break;
+          }
+          if (prev_match != match_cnt) {
+            break;
+          }
+        }
+      }
+    }
+    
+    return (match_cnt == 0);
+  }
+
   void process_advertising_package_content(
       uint16_t event_type,
       uint8_t address_type,
@@ -460,7 +559,8 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     // scan responses are still reported too.
     scanning_reassembler_.SetIgnoreScanResponses(
         le_scan_type_ == LeScanType::PASSIVE ||
-        filter_policy_ == LeScanningFilterPolicy::FILTER_ACCEPT_LIST_ONLY);
+        filter_policy_ == LeScanningFilterPolicy::FILTER_ACCEPT_LIST_ONLY ||
+        is_passive_filter_content(event_type, advertising_data));
 
     std::optional<LeScanningReassembler::CompleteAdvertisingData> processed_report =
         scanning_reassembler_.ProcessAdvertisingReport(
@@ -735,6 +835,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     }
 
     auto entry = remove_me_later_map_.find(filter_index);
+    auto entry_passive = passive_filter_indices_.find(filter_index);
     switch (action) {
       case ApcfAction::ADD:
         le_scanning_interface_->EnqueueCommand(
@@ -768,6 +869,9 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
           remove_me_later_map_.erase(filter_index);
         }
 
+        if (entry_passive != passive_filter_indices_.end()) {
+            passive_filter_indices_.erase(filter_index);
+        }
         break;
       case ApcfAction::CLEAR:
         le_scanning_interface_->EnqueueCommand(
@@ -784,6 +888,9 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
           remove_me_later_map_.erase(filter_index);
         }
 
+        if (entry_passive != passive_filter_indices_.end()) {
+            passive_filter_indices_.erase(filter_index);
+        }
         break;
       default:
         log::error("Unknown action type: {}", (uint16_t)action);
@@ -791,10 +898,14 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     }
   }
 
-  void scan_filter_add(uint8_t filter_index, std::vector<AdvertisingPacketContentFilterCommand> filters) {
+  void scan_filter_add(uint8_t filter_index, bool is_passive, std::vector<AdvertisingPacketContentFilterCommand> filters) {
     if (!is_filter_supported_) {
       log::warn("Advertising filter is not supported");
       return;
+    }
+
+    if (is_passive) {
+        passive_filter_indices_.insert({filter_index, filters});
     }
 
     ApcfAction apcf_action = ApcfAction::ADD;
@@ -1726,6 +1837,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
   BatchScanConfig batch_scan_config_;
   std::map<ScannerId, std::vector<uint8_t>> batch_scan_result_cache_;
   std::unordered_map<uint8_t, ScannerId> tracker_id_map_;
+  std::unordered_map<uint8_t, std::vector<AdvertisingPacketContentFilterCommand>> passive_filter_indices_;
   uint16_t total_num_of_advt_tracked_ = 0x00;
   int8_t le_rx_path_loss_comp_ = 0;
 };
@@ -1803,8 +1915,8 @@ void LeScanningManager::ScanFilterParameterSetup(
 }
 
 void LeScanningManager::ScanFilterAdd(
-    uint8_t filter_index, std::vector<AdvertisingPacketContentFilterCommand> filters) {
-  CallOn(pimpl_.get(), &impl::scan_filter_add, filter_index, filters);
+    uint8_t filter_index, bool is_passive, std::vector<AdvertisingPacketContentFilterCommand> filters) {
+  CallOn(pimpl_.get(), &impl::scan_filter_add, filter_index, is_passive, filters);
 }
 
 void LeScanningManager::BatchScanConifgStorage(

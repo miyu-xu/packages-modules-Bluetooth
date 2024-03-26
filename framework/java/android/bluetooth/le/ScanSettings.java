@@ -78,6 +78,16 @@ public final class ScanSettings implements Parcelable {
     public static final int SCAN_MODE_SCREEN_OFF_BALANCED = 5;
 
     /**
+     * Passive scan type.
+     */
+    public static final int SCAN_TYPE_PASSIVE = 0;
+
+    /**
+     * Active scan type.
+     */
+    public static final int SCAN_TYPE_ACTIVE = 1;
+
+    /**
      * Trigger a callback for every Bluetooth advertisement found that matches the filter criteria.
      * If no filter is active, all advertisement packets are reported.
      */
@@ -183,8 +193,15 @@ public final class ScanSettings implements Parcelable {
 
     private int mPhy;
 
+    // Bluetooth LE scan type.
+    private int mScanType;
+
     public int getScanMode() {
         return mScanMode;
+    }
+
+    public int getScanType() {
+        return mScanType;
     }
 
     public int getCallbackType() {
@@ -225,6 +242,7 @@ public final class ScanSettings implements Parcelable {
 
     private ScanSettings(
             int scanMode,
+            int scanType,
             int callbackType,
             int scanResultType,
             long reportDelayMillis,
@@ -233,6 +251,7 @@ public final class ScanSettings implements Parcelable {
             boolean legacy,
             int phy) {
         mScanMode = scanMode;
+        mScanType = scanType;
         mCallbackType = callbackType;
         mScanResultType = scanResultType;
         mReportDelayMillis = reportDelayMillis;
@@ -244,6 +263,7 @@ public final class ScanSettings implements Parcelable {
 
     private ScanSettings(Parcel in) {
         mScanMode = in.readInt();
+        mScanType = in.readInt();
         mCallbackType = in.readInt();
         mScanResultType = in.readInt();
         mReportDelayMillis = in.readLong();
@@ -256,6 +276,7 @@ public final class ScanSettings implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(mScanMode);
+        dest.writeInt(mScanType);
         dest.writeInt(mCallbackType);
         dest.writeInt(mScanResultType);
         dest.writeLong(mReportDelayMillis);
@@ -286,6 +307,7 @@ public final class ScanSettings implements Parcelable {
     /** Builder for {@link ScanSettings}. */
     public static final class Builder {
         private int mScanMode = SCAN_MODE_LOW_POWER;
+        private int mScanType = SCAN_TYPE_ACTIVE;
         private int mCallbackType = CALLBACK_TYPE_ALL_MATCHES;
         private int mScanResultType = SCAN_RESULT_TYPE_FULL;
         private long mReportDelayMillis = 0;
@@ -315,6 +337,30 @@ public final class ScanSettings implements Parcelable {
                     break;
                 default:
                     throw new IllegalArgumentException("invalid scan mode " + scanMode);
+            }
+            return this;
+        }
+
+        /**
+         * Set scan type for Bluetooth LE scan.
+         *
+         * @param scanType The scanType can be one of {@link ScanSettings#SCAN_TYPE_ACTIVE},
+         *     {@link ScanSettings#SCAN_TYPE_PASSIVE}.
+         * @throws IllegalArgumentException If the {@code scanType} is invalid.
+         */
+        @NonNull
+        public Builder setScanType(@NonNull int scanType) {
+            switch (scanType) {
+                case SCAN_TYPE_PASSIVE:
+                    if (mReportDelayMillis > 0) {
+                        throw new IllegalArgumentException(
+                                "scan type PASSIVE could not applied with report delay");
+                    }
+                case SCAN_TYPE_ACTIVE:
+                    mScanType= scanType;
+                    break;
+                default:
+                    throw new IllegalArgumentException("invalid scan type: " + scanType);
             }
             return this;
         }
@@ -374,6 +420,10 @@ public final class ScanSettings implements Parcelable {
          * @throws IllegalArgumentException if {@code reportDelayMillis} &lt; 0
          */
         public Builder setReportDelay(long reportDelayMillis) {
+            if (mScanType == SCAN_TYPE_PASSIVE) {
+                throw new IllegalArgumentException("scan type must be ACTIVE");
+            }
+
             if (reportDelayMillis < 0) {
                 throw new IllegalArgumentException("reportDelay must be > 0");
             }
@@ -456,6 +506,7 @@ public final class ScanSettings implements Parcelable {
             }
             return new ScanSettings(
                     mScanMode,
+                    mScanType,
                     mCallbackType,
                     mScanResultType,
                     mReportDelayMillis,

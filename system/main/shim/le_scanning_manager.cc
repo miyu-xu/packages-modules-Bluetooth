@@ -248,6 +248,7 @@ void BleScannerInterfaceImpl::ScanFilterParamSetup(
 /** Configure a scan filter condition  */
 void BleScannerInterfaceImpl::ScanFilterAdd(int filter_index,
                                             std::vector<ApcfCommand> filters,
+                                            bool is_passive,
                                             FilterConfigCallback cb) {
   log::info("in shim layer");
   std::vector<bluetooth::hci::AdvertisingPacketContentFilterCommand>
@@ -260,7 +261,7 @@ void BleScannerInterfaceImpl::ScanFilterAdd(int filter_index,
     }
     new_filters.push_back(command);
   }
-  bluetooth::shim::GetScanning()->ScanFilterAdd(filter_index, new_filters);
+  bluetooth::shim::GetScanning()->ScanFilterAdd(filter_index, is_passive, new_filters);
   do_in_jni_thread(FROM_HERE,
                    base::BindOnce(cb, 0, 0, 0, btm_status_value(BTM_SUCCESS)));
 }
@@ -885,7 +886,7 @@ void bluetooth::shim::set_ad_type_rsi_filter(bool enable) {
     filter.filter_type = bluetooth::hci::ApcfFilterType::AD_TYPE;
     filter.ad_type = BTM_BLE_AD_TYPE_RSI;
     filters.push_back(filter);
-    bluetooth::shim::GetScanning()->ScanFilterAdd(0x00, filters);
+    bluetooth::shim::GetScanning()->ScanFilterAdd(0x00, false, filters);
 
     advertising_filter_parameter.delivery_mode =
         bluetooth::hci::DeliveryMode::IMMEDIATE;
@@ -950,7 +951,7 @@ void bluetooth::shim::set_target_announcements_filter(bool enable) {
   bap_filter.data_mask = {0x4e, 0x18, 0xFF};
 
   cap_bap_filter.push_back(bap_filter);
-  bluetooth::shim::GetScanning()->ScanFilterAdd(filter_index, cap_bap_filter);
+  bluetooth::shim::GetScanning()->ScanFilterAdd(filter_index, false, cap_bap_filter);
 
   bluetooth::shim::GetScanning()->ScanFilterParameterSetup(
       bluetooth::hci::ApcfAction::ADD, filter_index,

@@ -67,7 +67,7 @@ class LeScanningManager : public bluetooth::Module {
   virtual void ScanFilterParameterSetup(
       ApcfAction action, uint8_t filter_index, AdvertisingFilterParameter advertising_filter_parameter);
 
-  virtual void ScanFilterAdd(uint8_t filter_index, std::vector<AdvertisingPacketContentFilterCommand> filters);
+  virtual void ScanFilterAdd(uint8_t filter_index, bool is_passive, std::vector<AdvertisingPacketContentFilterCommand> filters);
 
   /*Batch Scan*/
   virtual void BatchScanConifgStorage(

@@ -55,7 +55,7 @@ class MockLeScanningManager : public LeScanningManager {
   MOCK_METHOD(void, SetScanParameters, (ScannerId, LeScanType, uint16_t, uint16_t, uint8_t));
   MOCK_METHOD(void, ScanFilterEnable, (bool));
   MOCK_METHOD(void, ScanFilterParameterSetup, (ApcfAction, uint8_t, AdvertisingFilterParameter));
-  MOCK_METHOD(void, ScanFilterAdd, (uint8_t, std::vector<AdvertisingPacketContentFilterCommand>));
+  MOCK_METHOD(void, ScanFilterAdd, (uint8_t, bool, std::vector<AdvertisingPacketContentFilterCommand>));
   MOCK_METHOD(void, BatchScanConifgStorage, (uint8_t, uint8_t, uint8_t, ScannerId));
   MOCK_METHOD(void, BatchScanEnable, (BatchScanMode, uint32_t, uint32_t, BatchScanDiscardRule));
   MOCK_METHOD(void, BatchScanDisable, ());
