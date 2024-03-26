@@ -16,6 +16,24 @@
       "message": "Can we add a test for this?",
       "revId": "8f76d81e94981bdb413e60e851c46b84323e0be7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45706dd8_7136586c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-03-26T13:34:13Z",
+      "side": 1,
+      "message": "I added tests but in the meantime I found the real root cause of that PERIODIC_ADVERTISING_SYNC_ESTABLISHED is not received sometimes. WIP",
+      "parentUuid": "0350c1cf_f36b319e",
+      "revId": "8f76d81e94981bdb413e60e851c46b84323e0be7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
