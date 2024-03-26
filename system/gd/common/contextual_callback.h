@@ -42,6 +42,7 @@ class ContextualOnceCallback<R(Args...)> {
 
   void Invoke(Args... args) {
     context_->Post(common::BindOnce(std::move(callback_), std::forward<Args>(args)...));
+    context_ = nullptr;
   }
 
   bool IsEmpty() {
