@@ -252,8 +252,8 @@ void LeAddressManager::pause_registered_clients() {
       case ClientState::PAUSED:
       case ClientState::WAITING_FOR_PAUSE:
         break;
-      case WAITING_FOR_RESUME:
-      case RESUMED:
+      case ClientState::WAITING_FOR_RESUME:
+      case ClientState::RESUMED:
         client.second = ClientState::WAITING_FOR_PAUSE;
         client.first->OnPause();
         break;
@@ -275,20 +275,18 @@ void LeAddressManager::ack_pause(LeAddressManagerCallback* callback) {
   for (auto client : registered_clients_) {
     switch (client.second) {
       case ClientState::PAUSED:
-        log::info("Client already in paused state");
+        log::verbose("Client already in paused state");
         break;
       case ClientState::WAITING_FOR_PAUSE:
         // make sure all client paused
         log::debug("Wait all clients paused, return");
         return;
-      case WAITING_FOR_RESUME:
-      case RESUMED:
-        log::debug("Trigger OnPause for client that not paused and not waiting for pause");
+      case ClientState::WAITING_FOR_RESUME:
+      case ClientState::RESUMED:
+        log::warn("Trigger OnPause for client {}", ClientStateText(client.second));
         client.second = ClientState::WAITING_FOR_PAUSE;
         client.first->OnPause();
         return;
-      default:
-        log::error("Found client in unexpected state:{}", client.second);
     }
   }
 
@@ -306,6 +304,9 @@ void LeAddressManager::resume_registered_clients() {
 
   log::info("Resuming registered clients");
   for (auto& client : registered_clients_) {
+    if (client.second != ClientState::PAUSED) {
+      log::warn("client is not paused {}", ClientStateText(client.second));
+    }
     client.second = ClientState::WAITING_FOR_RESUME;
     client.first->OnResume();
   }
@@ -314,6 +315,8 @@ void LeAddressManager::resume_registered_clients() {
 void LeAddressManager::ack_resume(LeAddressManagerCallback* callback) {
   if (registered_clients_.find(callback) != registered_clients_.end()) {
     registered_clients_.find(callback)->second = ClientState::RESUMED;
+  } else {
+    log::info("Client not registered");
   }
 }
 
