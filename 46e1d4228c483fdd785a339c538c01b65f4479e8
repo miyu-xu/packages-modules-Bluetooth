@@ -216,6 +216,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "aca84d7b_e4197979",
+        "filename": "tools/lint/checks/src/com/android/bluetooth/lint/LogEnforcementVariableCreationDetector.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-26T23:57:54Z",
+      "side": 1,
+      "message": "You know, if there\u0027s a null then it must just not meet any of the type checks and takes the default `return false` below. And perhaps there are no nulls returned in the AST? I promise I must have saw one if I added the code, but it would make sense that a different expression would be used such that there shouldn\u0027t _need_ to be a null member variable.\n\nI\u0027ll fix this up, double check the tests, and re-upload.",
+      "parentUuid": "d05258ab_99a7b258",
+      "range": {
+        "startLine": 140,
+        "startChar": 16,
+        "endLine": 141,
+        "endChar": 72
+      },
+      "revId": "46e1d4228c483fdd785a339c538c01b65f4479e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4ac5db11_402162fe",
         "filename": "tools/lint/checks/src/com/android/bluetooth/lint/Utils.kt",
         "patchSetId": 12
