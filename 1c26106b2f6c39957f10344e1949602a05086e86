@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fb33fa6_56124819",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-03-26T18:40:04Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d9e860b5_7d30d62d",
+      "revId": "1c26106b2f6c39957f10344e1949602a05086e86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ad89871_3f8b47ed",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-03-26T14:57:16Z",
       "side": 1,
       "message": "...but this new code (and a couple other places below this as well) unconditionally dereference `procedure_data`.  If `procedure_data` is null, we\u0027ll crash in this new code.",
+      "revId": "1c26106b2f6c39957f10344e1949602a05086e86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6cfe16b_28b817d6",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-03-26T18:40:04Z",
+      "side": 1,
+      "message": "Good catch! Thanks!\nI uploaded a fix for it\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3015033",
+      "parentUuid": "4ad89871_3f8b47ed",
       "revId": "1c26106b2f6c39957f10344e1949602a05086e86",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
