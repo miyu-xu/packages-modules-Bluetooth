@@ -193,6 +193,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f952941e_9e2d2a35",
+        "filename": "system/bta/ag/bta_ag_at.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-26T02:57:51Z",
+      "side": 1,
+      "message": "Below is what we receive during `HFP/AG/SLC/BI-01-C`: `0xffffc000`.\n```\n\u003e ACL Data RX: Handle 256 flags 0x02 dlen 27                                                          #107 [hci0] 2024-03-26 10:53:26.657290\n      Channel: 72 len 23 [PSM 3 mode Basic (0x00)] {chan 1}\n      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)\n         Address: 0x29 cr 0 dlci 0x0a\n         Control: 0xef poll/final 0\n         Length: 19\n         FCS: 0x6a\n        41 54 2b 42 52 53 46 3d 34 32 39 34 39 35 30 39  AT+BRSF\u003d42949509\n        31 32 0d 6a                                      12.j\n\u003c ACL Data TX: Handle 256 flags 0x00 dlen 24                                                          #108 [hci0] 2024-03-26 10:53:26.658664\n      Channel: 65 len 20 [PSM 3 mode Basic (0x00)] {chan 1}\n      RFCOMM: Unnumbered Info with Header Check (UIH) (0xef)\n         Address: 0x2b cr 1 dlci 0x0a\n         Control: 0xff poll/final 1\n         Length: 15\n         FCS: 0xac\n         Credits: 4\n        0d 0a 2b 42 52 53 46 3a 20 33 36 34 38 0d 0a ac  ..+BRSF: 3648...\n```",
+      "parentUuid": "072a1d4f_aa86d303",
+      "range": {
+        "startLine": 143,
+        "startChar": 11,
+        "endLine": 143,
+        "endChar": 77
+      },
+      "revId": "1b6028ee89ea595fd144eb4808e2d7692feefe13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6c1c5af9_023de677",
         "filename": "system/bta/ag/bta_ag_at.cc",
         "patchSetId": 1
