@@ -144,6 +144,23 @@ struct MsftExtensionManager::impl {
       return;
     }
 
+    if (monitor.condition_type == MSFT_CONDITION_TYPE_ADDRESS) {
+      msft_adv_monitor_add_cb_ = cb;
+      Address addr;
+      Address::FromString(monitor.addr_info.bd_addr.ToString(), addr);
+      hci_layer_->EnqueueCommand(
+          MsftLeMonitorAdvConditionAddressBuilder::Create(
+              static_cast<OpCode>(msft_.opcode.value()),
+              monitor.rssi_threshold_high,
+              monitor.rssi_threshold_low,
+              monitor.rssi_threshold_low_time_interval,
+              monitor.rssi_sampling_period,
+              monitor.addr_info.addr_type,
+              addr),
+          module_handler_->BindOnceOn(this, &impl::on_msft_adv_monitor_add_complete));
+      return;
+    }
+
     std::vector<MsftLeMonitorAdvConditionPattern> patterns;
     MsftLeMonitorAdvConditionPattern pattern;
     // The Microsoft Extension specifies 1 octet for the number of patterns.
