@@ -456,6 +456,8 @@ struct DistanceMeasurementManager::impl {
       // Create a cs tracker with role reflector
       // TODO: Check ROLE via CS config. (b/304295768)
       cs_trackers_[connection_handle].role = CsRole::REFLECTOR;
+      cs_trackers_[connection_handle].address = acl_manager_->HACK_GetLeAddress(connection_handle);
+      LOG_INFO("CYDBG RAS address:%s", cs_trackers_[connection_handle].address.ToString().c_str());
     } else {
       send_le_cs_security_enable(connection_handle);
     }
