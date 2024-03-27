@@ -81,7 +81,7 @@ struct RemoteNameRequestModule::impl {
               log::info(
                   "Dequeued remote name request to {} since it was cancelled",
                   address.ToRedactedStringForLogging());
-              on_remote_name_complete_ptr->Invoke(ErrorCode::PAGE_TIMEOUT, {});
+              (*on_remote_name_complete_ptr)(ErrorCode::PAGE_TIMEOUT, {});
             },
             address,
             on_remote_name_complete_ptr));
@@ -100,7 +100,7 @@ struct RemoteNameRequestModule::impl {
           "Received CONNECTION_COMPLETE (corresponding INCORRECTLY to an RNR cancellation) from {}",
           address.ToRedactedStringForLogging());
       pending_ = false;
-      on_remote_name_complete_.Invoke(ErrorCode::UNKNOWN_CONNECTION, {});
+      on_remote_name_complete_(ErrorCode::UNKNOWN_CONNECTION, {});
       acl_scheduler_->ReportRemoteNameRequestCompletion(address);
     } else {
       log::error(
@@ -147,7 +147,7 @@ struct RemoteNameRequestModule::impl {
         "Started remote name request peer:{} status:{}",
         address.ToString(),
         ErrorCodeText(status.GetStatus()));
-    on_completion.Invoke(status.GetStatus());
+    on_completion(status.GetStatus());
     if (status.GetStatus() != ErrorCode::SUCCESS /* pending */) {
       pending_ = false;
       acl_scheduler_->ReportRemoteNameRequestCompletion(address);
@@ -182,7 +182,7 @@ struct RemoteNameRequestModule::impl {
       log::info(
           "Received REMOTE_HOST_SUPPORTED_FEATURES_NOTIFICATION from {}",
           packet.GetBdAddr().ToRedactedStringForLogging());
-      on_remote_host_supported_features_notification_.Invoke(packet.GetHostSupportedFeatures());
+      on_remote_host_supported_features_notification_(packet.GetHostSupportedFeatures());
       // Remove the callback so that we won't call it again.
       on_remote_host_supported_features_notification_ = RemoteHostSupportedFeaturesCallback();
     } else if (!pending_) {
@@ -204,7 +204,7 @@ struct RemoteNameRequestModule::impl {
           "Received REMOTE_NAME_REQUEST_COMPLETE from {}",
           packet.GetBdAddr().ToRedactedStringForLogging());
       pending_ = false;
-      on_remote_name_complete_.Invoke(packet.GetStatus(), packet.GetRemoteName());
+      on_remote_name_complete_(packet.GetStatus(), packet.GetRemoteName());
       acl_scheduler_->ReportRemoteNameRequestCompletion(packet.GetBdAddr());
     } else {
       log::error(
