@@ -145,6 +145,7 @@ flag {
 }
 
 flag {
+<<<<<<< HEAD
     name: "update_inquiry_result_on_flag_change"
     namespace: "bluetooth"
     description: "Update ADV flag in inquiry result as soon as updated flag received"
@@ -169,6 +170,16 @@ flag {
     namespace: "bluetooth"
     description: "If a scan record has multiple datas under same manufacturer id, merge the values"
     bug: "331723396"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
+
+flag {
+    name: "msft_addr_tracking_quirk"
+    namespace: "bluetooth"
+    description: "Scanning with MSFT paddress tracking for Realtek BT controllers"
+    bug: "332438857"
     metadata {
         purpose: PURPOSE_BUGFIX
     }
