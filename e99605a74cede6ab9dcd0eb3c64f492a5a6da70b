@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e332f17_3ad0a6a2",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-03-27T20:41:14Z",
+      "side": 1,
+      "message": "We should use `\u003d\u003d` here as well",
+      "range": {
+        "startLine": 209,
+        "startChar": 8,
+        "endLine": 209,
+        "endChar": 31
+      },
+      "revId": "e99605a74cede6ab9dcd0eb3c64f492a5a6da70b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
