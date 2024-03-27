@@ -21,8 +21,7 @@ using bluetooth::ras::ProcedureDoneStatus;
 class MockRasServer : public bluetooth::ras::RasServer {
   void Initialize() override {}
   void PushProcedureData(RawAddress /* address */,
-                         uint16_t /* procedure_count */,
-                         ProcedureDoneStatus /* procedure_done_status */,
+                         uint16_t /* procedure_count */, bool /* is_last */,
                          std::vector<uint8_t> /* data */) override{};
 };
 
