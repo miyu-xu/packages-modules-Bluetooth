@@ -16,6 +16,24 @@
       "message": "nit: Why do we need both the local and remote phone number here?",
       "revId": "ab7f8438e84d00faf912297880af31d96b4461d1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b44ebbaa_3a42b797",
+        "filename": "pandora/interfaces/pandora_experimental/modem.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-03-27T07:58:24Z",
+      "side": 1,
+      "message": "Yes it\u0027s unused. \n\nMore details:\n\nIt depends on the role of the modem service: \n\n(1) If the modem service is any independent modem and we use it to place a call to the DUT. \nIt should have a way to configure it\u0027s phone number and who to call (remote_phone_number, DUT). \n\n(2) If the modem service is the modem on the DUT. \nIn this case, it\u0027s not needed in the test.\n\nI define this service like (1) and in the current implementation, the modem\nservice is always call to the DUT so remote_phone_number is no needed.\nBut this will be more flexible.",
+      "parentUuid": "543165ef_82ebd5c5",
+      "revId": "ab7f8438e84d00faf912297880af31d96b4461d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
