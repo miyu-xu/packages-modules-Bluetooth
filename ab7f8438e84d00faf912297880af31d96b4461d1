@@ -34,6 +34,24 @@
       "parentUuid": "543165ef_82ebd5c5",
       "revId": "ab7f8438e84d00faf912297880af31d96b4461d1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d44eb9d6_e2043200",
+        "filename": "pandora/interfaces/pandora_experimental/modem.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-27T21:54:57Z",
+      "side": 1,
+      "message": "In which usecase is the modem simulator fulfilling role 2?\n\nFor 1, I don\u0027t understand why the test should have a way to configure its phone number, it should just have a way to read it for me.\n\nOne implementation of the \"modem simulator\" could be another device with a physical sim card.\n\nWith cuttlefish we are in role 1 with a fixed number.",
+      "parentUuid": "b44ebbaa_3a42b797",
+      "revId": "ab7f8438e84d00faf912297880af31d96b4461d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
