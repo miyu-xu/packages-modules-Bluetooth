@@ -33,6 +33,23 @@
       "message": "This reland has been verified using physical setup to reproduce initial broken behavior.",
       "revId": "5e8e1531bef13c81f137c6b4ba21ba672f28cb20",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4adeffd_dbc59bf5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1088076
+      },
+      "writtenOn": "2024-03-27T20:13:21Z",
+      "side": 1,
+      "message": "blocking it due to b/331522629",
+      "revId": "5e8e1531bef13c81f137c6b4ba21ba672f28cb20",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
