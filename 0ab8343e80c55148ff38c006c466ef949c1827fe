@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e60aeeea_43e4db5c",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1633,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-27T23:47:53Z",
+      "side": 1,
+      "message": "This should be a no-op change, right?",
+      "range": {
+        "startLine": 1633,
+        "startChar": 45,
+        "endLine": 1633,
+        "endChar": 65
+      },
+      "revId": "0ab8343e80c55148ff38c006c466ef949c1827fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
