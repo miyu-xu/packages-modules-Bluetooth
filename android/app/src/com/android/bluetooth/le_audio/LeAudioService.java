@@ -1204,6 +1204,17 @@ public class LeAudioService extends ProfileService {
             return;
         }
 
+        if (!isPlaying(broadcastId)) {
+            Log.d(TAG, "pauseBroadcast: Broadcast is not playing, skip pause request");
+            return;
+        }
+
+        // Due to broadcast pause sinks may losse synchronization
+        BassClientService bassClientService = getBassClientService();
+        if (bassClientService != null) {
+            bassClientService.suspendReceiversSourceSynchronization(broadcastId);
+        }
+
         Log.d(TAG, "pauseBroadcast");
         mLeAudioBroadcasterNativeInterface.pauseBroadcast(broadcastId);
     }
@@ -2952,6 +2963,7 @@ public class LeAudioService extends ProfileService {
 
             // TODO: Improve reason reporting or extend the native stack event with reason code
             notifyOnBroadcastStopped(broadcastId, BluetoothStatusCodes.REASON_LOCAL_APP_REQUEST);
+
             BassClientService bassClientService = getBassClientService();
             if (bassClientService != null) {
                 bassClientService.stopReceiversSourceSynchronization(broadcastId);
@@ -3017,10 +3029,6 @@ public class LeAudioService extends ProfileService {
                     // Playback paused
                     notifyPlaybackStopped(broadcastId,
                             BluetoothStatusCodes.REASON_LOCAL_STACK_REQUEST);
-
-                    if (bassClientService != null) {
-                        bassClientService.suspendReceiversSourceSynchronization(broadcastId);
-                    }
 
                     /* Restore the Unicast stream from before the Broadcast was started. */
                     if (mUnicastGroupIdDeactivatedForBroadcastTransition
