@@ -1793,7 +1793,7 @@ public class BassClientStateMachine extends StateMachine {
                         log("SWITCH_BCAST_SOURCE force source to lost PA sync");
                         Message msg = obtainMessage(UPDATE_BCAST_SOURCE);
                         msg.arg1 = sourceIdToRemove;
-                        msg.arg2 = BluetoothLeBroadcastReceiveState.PA_SYNC_STATE_IDLE;
+                        msg.arg2 = BassConstants.PA_SYNC_DO_NOT_SYNC;
                         msg.obj = metaDataToUpdate;
                         /* Pending remove set. Remove source once not synchronized to PA */
                         sendMessage(msg);
@@ -1866,7 +1866,7 @@ public class BassClientStateMachine extends StateMachine {
                         writeBassControlPoint(updateSourceInfo);
                         mPendingOperation = message.what;
                         mPendingSourceId = (byte) sourceId;
-                        if (paSync == BluetoothLeBroadcastReceiveState.PA_SYNC_STATE_IDLE) {
+                        if (paSync == BassConstants.PA_SYNC_DO_NOT_SYNC) {
                             setPendingRemove(sourceId, true);
                         }
                         if (metaData.isEncrypted() && (metaData.getBroadcastCode() != null)) {
