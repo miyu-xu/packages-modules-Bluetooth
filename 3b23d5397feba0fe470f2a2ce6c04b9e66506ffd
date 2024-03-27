@@ -22,6 +22,30 @@
       },
       "revId": "3b23d5397feba0fe470f2a2ce6c04b9e66506ffd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2aec803c_8a980287",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1282,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-27T15:43:40Z",
+      "side": 1,
+      "message": "TBH I don\u0027t know if it\u0027s needed. I would prefer to make no \"logic\" change, just modify memory management. \n\nI\u0027m planning couple patches on top of this one, will add one to clean this too.",
+      "parentUuid": "ba4015e3_d144caa3",
+      "range": {
+        "startLine": 1281,
+        "startChar": 0,
+        "endLine": 1282,
+        "endChar": 34
+      },
+      "revId": "3b23d5397feba0fe470f2a2ce6c04b9e66506ffd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
