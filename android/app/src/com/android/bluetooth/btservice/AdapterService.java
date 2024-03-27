@@ -654,7 +654,6 @@ public class AdapterService extends Service {
         }
 
         mRemoteDevices = new RemoteDevices(this, mLooper);
-        mRemoteDevices.init();
         clearDiscoveringPackages();
         if (!Flags.fastBindToApp()) {
             mBinder = new AdapterServiceBinder(this);
@@ -1374,7 +1373,7 @@ public class AdapterService extends Service {
         }
 
         if (mRemoteDevices != null) {
-            mRemoteDevices.cleanup();
+            mRemoteDevices.reset();
         }
 
         if (mSdpManager != null) {
