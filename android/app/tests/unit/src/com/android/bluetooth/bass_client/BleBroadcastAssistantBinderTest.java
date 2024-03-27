@@ -27,6 +27,7 @@ import static org.mockito.Mockito.verify;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothLeBroadcastReceiveState;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.IBluetoothLeBroadcastAssistantCallback;
 import android.bluetooth.le.ScanFilter;
@@ -236,16 +237,22 @@ public class BleBroadcastAssistantBinderTest {
     public void modifySource() {
         BluetoothDevice device = TestUtils.getTestDevice(mAdapter, 0);
         mBinder.modifySource(device, 0, null);
-        verify(mService).modifySource(device, 0, null);
+        verify(mService)
+                .modifySource(
+                        device, 0, null, BluetoothLeBroadcastReceiveState.PA_SYNC_STATE_INVALID);
 
         Mockito.clearInvocations(mService);
         doThrow(new RuntimeException()).when(mService).enforceCallingOrSelfPermission(any(), any());
         mBinder.modifySource(device, 0, null);
-        verify(mService, never()).modifySource(device, 0, null);
+        verify(mService, never())
+                .modifySource(
+                        device, 0, null, BluetoothLeBroadcastReceiveState.PA_SYNC_STATE_INVALID);
 
         mBinder.cleanup();
         mBinder.modifySource(device, 0, null);
-        verify(mService, never()).modifySource(device, 0, null);
+        verify(mService, never())
+                .modifySource(
+                        device, 0, null, BluetoothLeBroadcastReceiveState.PA_SYNC_STATE_INVALID);
     }
 
     @Test
