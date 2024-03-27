@@ -1,0 +1,153 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7107ebc1_dfd013f8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-27T10:52:49Z",
+      "side": 1,
+      "message": "Add a single line for the commit message. I suggest:\n`Floss: RTL8852 MSFT support`\n\nAlso add a description about this patch. e.g.\n```\nBecause RTL8852 supports only one peer for each monitor, it needs a special\nhandling to make pattern searching via MSFT work.\n\nWhen a peer device with the matching pattern is scanned, we need to split\nthat into its own address monitor. At the same time, we also report device\nfound. This way we can monitor multiple peer devices. \nWhen the address monitor reports device lost, we cancel the address monitor\nand reports device lost to the host as well.\n```\n\nGive one blank line before and after the description.",
+      "revId": "3cf6d57bc6ea29fed1ad75d8d6c3d137aedaad80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8dc7c80_1a9c699d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-27T10:52:49Z",
+      "side": 1,
+      "message": "Add another line here to make the \"test validation\" happy\n`Test: m -j`",
+      "revId": "3cf6d57bc6ea29fed1ad75d8d6c3d137aedaad80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e08f103b_4fcdac5e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1760,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-27T10:52:49Z",
+      "side": 1,
+      "message": "let\u0027s clean up this comment",
+      "range": {
+        "startLine": 1760,
+        "startChar": 16,
+        "endLine": 1760,
+        "endChar": 51
+      },
+      "revId": "3cf6d57bc6ea29fed1ad75d8d6c3d137aedaad80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb3e435e_6a4eca6f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1798,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-27T10:52:49Z",
+      "side": 1,
+      "message": "We don\u0027t update the scan here, please update this comment.",
+      "range": {
+        "startLine": 1798,
+        "startChar": 57,
+        "endLine": 1798,
+        "endChar": 68
+      },
+      "revId": "3cf6d57bc6ea29fed1ad75d8d6c3d137aedaad80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8271f1fa_6d0488c3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1853,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-27T10:52:49Z",
+      "side": 1,
+      "message": "A lot of the logic is about checking whether this is a pattern filter or an address filter, and currently it\u0027s done by checking whether the handle maps to a None or some address.\n\nHow about never insert the pattern handle to `monitor_handle_map` instead? This way we can check:\n`if monitor_handle \u003d\u003d handle` --\u003e pattern filter\n`else if monitor_handle_map.contains_key(handle)` --\u003e address filter\n`else` --\u003e bad handle\n\nHopefully that can simplify a lot of the logic? e.g. if it\u0027s an address filter, we skip the check whether it\u0027s already added to the handle_map.\n\nIf you decide to implement this, the value of the map can directly be the address, and not `Option\u003cAddress\u003e`.\nAlso, you must only assign the pattern monitor handle to `scanner.monitor_handle` and not assign the address monitor handle.",
+      "range": {
+        "startLine": 1853,
+        "startChar": 24,
+        "endLine": 1853,
+        "endChar": 80
+      },
+      "revId": "3cf6d57bc6ea29fed1ad75d8d6c3d137aedaad80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa952280_2dbf4fe8",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2222,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-27T10:52:49Z",
+      "side": 1,
+      "message": "Could you please explain why we don\u0027t cancel the pattern filter?",
+      "range": {
+        "startLine": 2222,
+        "startChar": 71,
+        "endLine": 2222,
+        "endChar": 88
+      },
+      "revId": "3cf6d57bc6ea29fed1ad75d8d6c3d137aedaad80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98996dd2_0abeb16c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 4267,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-27T10:52:49Z",
+      "side": 1,
+      "message": "`if controller_need_separate_pattern_and_address {`\nDon\u0027t need to specify `\u003d\u003d true` for a boolean\n\nBtw please use `separate` instead of `seperate`",
+      "range": {
+        "startLine": 4267,
+        "startChar": 8,
+        "endLine": 4267,
+        "endChar": 65
+      },
+      "revId": "3cf6d57bc6ea29fed1ad75d8d6c3d137aedaad80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
