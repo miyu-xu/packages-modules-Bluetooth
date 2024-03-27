@@ -68,6 +68,24 @@
       "message": "I think it would be nice to clean up ongoing transfers before mCallback is cleared, or delete the file in both cases here (whether or not the callback is cleared).  It would be simpler to understand and test. (It would be nice to have a test that covers this case)",
       "revId": "8833998910765eed95f8d82dbdc3a3cea42358a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2de5f1c_0d28d910",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-03-27T03:30:24Z",
+      "side": 1,
+      "message": "Deleting the file in both cases looks good. Thanks for the suggestion. I\u0027ll add test with it.",
+      "parentUuid": "54202dc2_aaf8644b",
+      "revId": "8833998910765eed95f8d82dbdc3a3cea42358a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
