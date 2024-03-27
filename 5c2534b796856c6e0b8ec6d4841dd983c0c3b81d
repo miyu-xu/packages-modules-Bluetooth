@@ -94,6 +94,30 @@
       },
       "revId": "5c2534b796856c6e0b8ec6d4841dd983c0c3b81d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e9935e4_a1e35f6e",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 3013946
+      },
+      "writtenOn": "2024-03-27T17:56:15Z",
+      "side": 0,
+      "message": "You\u0027re welcome, and thank you for taking this into consideration. Also yes, the Bluetooth module is mostly AOSP first, so thanks for moving the change here ;)\n\nAbout new players added or removed after boot, this is handled here:\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java;l\u003d881\nand here:\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java;l\u003d763\nThe first link does indeed look for missing players and add them to the current list, however this callback isn\u0027t triggered if there hasn\u0027t been a change in the players; this means that MediaPlayerList won\u0027t have a list of players to send to AAOS before user has changed the player on the phone (which still breaks the feature).\n\nI will start working on a change for 1. and 2. tomorrow (EU timezone), and hopefully find a way of fixing it that doesn\u0027t require too much refactor. I\u0027ll be sure to add you as reviewer so you can test on your side too, and I\u0027ll be glad to find out the impact it has! \n\nThanks!",
+      "parentUuid": "37de44d9_65c2aa27",
+      "range": {
+        "startLine": 205,
+        "startChar": 12,
+        "endLine": 205,
+        "endChar": 38
+      },
+      "revId": "5c2534b796856c6e0b8ec6d4841dd983c0c3b81d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
