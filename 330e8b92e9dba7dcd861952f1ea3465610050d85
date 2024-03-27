@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6eaabd3_11bc5be3",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/bap.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-03-27T20:45:52Z",
+      "side": 1,
+      "message": "Why do we have to secure here if the PTS is only asking for a connection ?",
+      "revId": "330e8b92e9dba7dcd861952f1ea3465610050d85",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
