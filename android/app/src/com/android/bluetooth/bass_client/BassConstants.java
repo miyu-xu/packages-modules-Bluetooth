@@ -76,4 +76,8 @@ public class BassConstants {
     public static final int BCAST_NAME_AD_TYPE = 0x30;
     public static final int BCAST_NAME_LEN_MIN = 4;
     public static final int BCAST_NAME_LEN_MAX = 32;
+    // PA_Sync parameter value
+    public static final int PA_SYNC_DO_NOT_SYNC = 0x00;
+    public static final int PA_SYNC_PAST_AVAILABLE = 0x01;
+    public static final int PA_SYNC_PAST_NOT_AVAILABLE = 0x02;
 }
