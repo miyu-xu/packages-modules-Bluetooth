@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a16aaf8_50a70cd0",
+        "filename": "flags/leaudio.aconfig",
+        "patchSetId": 6
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-27T10:51:17Z",
+      "side": 1,
+      "message": "please add\n    \n    metadata {\n        purpose: PURPOSE_BUGFIX\n    }",
+      "revId": "8ee429aafa4fc80a43c50efb616d7b712efcf15a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
