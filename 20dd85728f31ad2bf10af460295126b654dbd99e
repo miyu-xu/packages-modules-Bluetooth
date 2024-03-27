@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a0a24dc_051b4403",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-27T17:19:59Z",
+      "side": 1,
+      "message": "Can we use the address that was passed in?",
+      "range": {
+        "startLine": 194,
+        "startChar": 21,
+        "endLine": 194,
+        "endChar": 38
+      },
+      "revId": "20dd85728f31ad2bf10af460295126b654dbd99e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16c5e789_8e19fb79",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-27T17:19:59Z",
+      "side": 1,
+      "message": "Do we allow ranging with devices that the user hasn\u0027t configured?",
+      "range": {
+        "startLine": 459,
+        "startChar": 38,
+        "endLine": 459,
+        "endChar": 45
+      },
+      "revId": "20dd85728f31ad2bf10af460295126b654dbd99e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
