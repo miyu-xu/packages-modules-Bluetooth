@@ -16,6 +16,23 @@
       "message": "Most likely broke b/331632999 also.",
       "revId": "a9ddf816f3c3425268bce64493b2dd6144f9e5c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b63dac3_e9384bfe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1088076
+      },
+      "writtenOn": "2024-03-27T20:12:59Z",
+      "side": 1,
+      "message": "We might need this revert, context is b/331522629",
+      "revId": "a9ddf816f3c3425268bce64493b2dd6144f9e5c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
