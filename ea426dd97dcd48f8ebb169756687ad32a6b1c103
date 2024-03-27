@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a775753_e36c0fca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-03-27T07:46:58Z",
+      "side": 1,
+      "message": "Comment from klhyun: Needs try-catch to close the gattserver",
+      "revId": "ea426dd97dcd48f8ebb169756687ad32a6b1c103",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
