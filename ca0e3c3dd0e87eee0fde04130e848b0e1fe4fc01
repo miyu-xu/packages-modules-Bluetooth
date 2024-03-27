@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "028ceeab_200395c2",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-03-27T17:04:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "655c9e94_575b8439",
+      "range": {
+        "startLine": 563,
+        "startChar": 22,
+        "endLine": 563,
+        "endChar": 30
+      },
+      "revId": "ca0e3c3dd0e87eee0fde04130e848b0e1fe4fc01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e48ed9c8_52db5baf",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "acfa875f_da1fd051",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-03-27T17:04:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e48ed9c8_52db5baf",
+      "range": {
+        "startLine": 573,
+        "startChar": 15,
+        "endLine": 573,
+        "endChar": 41
+      },
+      "revId": "ca0e3c3dd0e87eee0fde04130e848b0e1fe4fc01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d92bddc2_f04c1ae9",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-03-26T22:38:26Z",
       "side": 1,
       "message": "Prefer access a specific service/characteristic directly by UUID to guard against Bumble configuration changes.",
+      "range": {
+        "startLine": 590,
+        "startChar": 12,
+        "endLine": 593,
+        "endChar": 63
+      },
+      "revId": "ca0e3c3dd0e87eee0fde04130e848b0e1fe4fc01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2352e52_799eb889",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-03-27T17:04:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d92bddc2_f04c1ae9",
       "range": {
         "startLine": 590,
         "startChar": 12,
