@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "deb27d09_eaf7db1b",
+        "filename": "framework/java/android/bluetooth/le/BluetoothLeScanner.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-27T00:33:00Z",
+      "side": 1,
+      "message": "Comment from @okamil@google.com (Thank you).\n\nCombine the logic of this and scan.",
+      "range": {
+        "startLine": 264,
+        "startChar": 12,
+        "endLine": 264,
+        "endChar": 31
+      },
+      "revId": "f876a4d28a8e4b6f3fdafd519d514f2a4152f2de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4acb2677_171536b7",
+        "filename": "framework/java/android/bluetooth/le/BluetoothLeScanner.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-27T00:33:00Z",
+      "side": 1,
+      "message": "Comment from @okamil@google.com (Thank you).\n\nFlag guard this.",
+      "range": {
+        "startLine": 267,
+        "startChar": 12,
+        "endLine": 267,
+        "endChar": 71
+      },
+      "revId": "f876a4d28a8e4b6f3fdafd519d514f2a4152f2de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
