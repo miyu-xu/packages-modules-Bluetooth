@@ -118,6 +118,30 @@
       },
       "revId": "5c2534b796856c6e0b8ec6d4841dd983c0c3b81d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59c20288_1b93ab9a",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1059977
+      },
+      "writtenOn": "2024-03-27T18:48:58Z",
+      "side": 0,
+      "message": "Happy to collaborate on this!\n\nAside - in listening to PACKAGE_ADDED and PACKAGE_CHANGED, should MediaPlayerList respect Flags.keepStoppedMediaBrowserService(), the same as it does in init?",
+      "parentUuid": "4e9935e4_a1e35f6e",
+      "range": {
+        "startLine": 205,
+        "startChar": 12,
+        "endLine": 205,
+        "endChar": 38
+      },
+      "revId": "5c2534b796856c6e0b8ec6d4841dd983c0c3b81d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
