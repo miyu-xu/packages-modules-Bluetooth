@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23ed220b_ce88b504",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-27T17:49:47Z",
+      "side": 1,
+      "message": "Yes removing the void* and providing type safe parameters is a good step",
+      "revId": "b3648fe79275165e65689d107519f5242d0bac59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
