@@ -85,6 +85,9 @@ config("target_defaults") {
     # For flatbuffer generated headers
     "${root_gen_dir}/bt/system/gd/",
     "${root_gen_dir}/bt/system/gd/dumpsys/bundler",
+
+    # For aconfig generated headers
+    "${root_gen_dir}/bt/flags/include",
   ]
 
   cflags = [

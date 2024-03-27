@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 The Android Open Source Project
+ * Copyright (C) 2024 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -11,12 +11,19 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License.
+ * limitations under the License
  */
 
 #pragma once
 
-#include <com_android_bluetooth_flags.h>
+#include <string>
 
-#define IS_FLAG_ENABLED(flag_name) com::android::bluetooth::flags::flag_name()
-#define IS_FLAG_ENABLED_P(provider, flag_name) provider.flag_name()
+namespace server_configurable_flags {
+
+// Use the category name and flag name to query the experiment flag value.
+// This method will return default_value if querying fails.
+std::string GetServerConfigurableFlag(
+    const std::string& experiment_category_name,
+    const std::string& experiment_flag_name, const std::string& default_value);
+
+}  // namespace server_configurable_flags
