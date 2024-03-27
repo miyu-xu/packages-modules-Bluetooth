@@ -70,6 +70,30 @@
       },
       "revId": "5c2534b796856c6e0b8ec6d4841dd983c0c3b81d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37de44d9_65c2aa27",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1059977
+      },
+      "writtenOn": "2024-03-27T17:05:11Z",
+      "side": 0,
+      "message": "Étienne,\n\nFirst, thank you very much for providing useful information and context to this conversation, and for engaging so thoughtfully. I\u0027m glad we were able to connect!\nOriginally I uploaded this change to internal Gerrit, but @wescande@google.com asked to move the conversation to AOSP. I was skeptical at first but now I see we\u0027re better off here. Thanks William!\n\nAnyway, I think I understand better what this does now. I\u0027m also personally thankful for this feature.\nI\u0027m still a bit confused about how this works though. I get that it works if I test it shortly after booting the phone - cool! But usually I have days or weeks of uptime. After booting my phone I may have installed new media apps, or just completely shuffled things around in terms of what\u0027s playing across my different media apps (music, videos, audio books, podcasts, the occasional fart app - don\u0027t judge me). How does this feature work?\n\nIn the immediate term, I\u0027m going to work with the Automotive team to disable this flag on their build. I\u0027ll also work with the TV team, as I think we agree that users don\u0027t expect to pair their TV dongle with an AVRCP device.\n\nI think we agree that it would be very helpful to change the implementation so that it\u0027s less taxing. Particularly:\n1. Defer the work until it\u0027s needed (shortly after AVRCP pairing, not shortly after boot).\n2. Bind and unbind to `MediaBrowserService`s one at a time, rather than bind to all at once and then query them one at a time.\n\nI\u0027m happy to support a refactor effort by helping measure the impact of the refactor, using tools that we\u0027ve built in the last few months.\nWould you kindly keep me looped in so I can help generate traces and analyze them?",
+      "parentUuid": "9ffdc6ad_e8cd0ff2",
+      "range": {
+        "startLine": 205,
+        "startChar": 12,
+        "endLine": 205,
+        "endChar": 38
+      },
+      "revId": "5c2534b796856c6e0b8ec6d4841dd983c0c3b81d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
