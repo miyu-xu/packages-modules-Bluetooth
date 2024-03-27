@@ -68,6 +68,24 @@
       "parentUuid": "a4adeffd_dbc59bf5",
       "revId": "5e8e1531bef13c81f137c6b4ba21ba672f28cb20",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37e67bfa_cf4845cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-27T20:36:38Z",
+      "side": 1,
+      "message": "The culprit line was modified between patchset 1 and 2 to address the issue.\n\nThis reland has been already test with physical pandora setup and I intend to merge it soon.\n\nIs there something specific you want us to address ?",
+      "parentUuid": "a4adeffd_dbc59bf5",
+      "revId": "5e8e1531bef13c81f137c6b4ba21ba672f28cb20",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
