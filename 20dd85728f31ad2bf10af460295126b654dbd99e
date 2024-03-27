@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "460c4d2a_3fbf3431",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-03-27T17:38:19Z",
+      "side": 1,
+      "message": "This function only triggers when we are the initiator.",
+      "parentUuid": "4a0a24dc_051b4403",
+      "range": {
+        "startLine": 194,
+        "startChar": 21,
+        "endLine": 194,
+        "endChar": 38
+      },
+      "revId": "20dd85728f31ad2bf10af460295126b654dbd99e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16c5e789_8e19fb79",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-27T17:19:59Z",
       "side": 1,
       "message": "Do we allow ranging with devices that the user hasn\u0027t configured?",
+      "range": {
+        "startLine": 459,
+        "startChar": 38,
+        "endLine": 459,
+        "endChar": 45
+      },
+      "revId": "20dd85728f31ad2bf10af460295126b654dbd99e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "347a65ac_eb1dce3b",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-03-27T17:38:19Z",
+      "side": 1,
+      "message": "Yes, the ranging only worked on paired device. The remote device can do ranging with TX power/RSSI and CS provide more accuracy distance.\nThe address is use to callback to upper layer.\nIt is not required for parsing cs subevent data.\nBut we need it for the RAS server.",
+      "parentUuid": "16c5e789_8e19fb79",
       "range": {
         "startLine": 459,
         "startChar": 38,
