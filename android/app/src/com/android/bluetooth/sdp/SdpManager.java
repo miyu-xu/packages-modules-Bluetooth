@@ -181,7 +181,7 @@ public class SdpManager {
         this(adapterService, Looper.myLooper());
     }
 
-    SdpManager(AdapterService adapterService, Looper looper) {
+    public SdpManager(AdapterService adapterService, Looper looper) {
         sSdpSearchTracker = new SdpSearchTracker();
         sAdapterService = adapterService;
         mNativeInterface.init(this);
