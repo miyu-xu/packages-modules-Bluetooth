@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6707f872_a755e071",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-03-27T08:12:47Z",
+      "side": 1,
+      "message": "Need more understanding about the stack and Bumble tests.\nAI) Enhance the tests in the 2nd CL.",
+      "revId": "9da83b88e6332aaa151a42c827fda90678095f36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
