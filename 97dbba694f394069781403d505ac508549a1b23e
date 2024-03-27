@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a2a9e3f_fca2e738",
+        "filename": "system/stack/test/btm/stack_btm_sec_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-27T17:27:32Z",
+      "side": 1,
+      "message": "new logging?\n```suggestion\n    log::info(\" {}.{:3} {}\", s2,\n              static_cast\u003cunsigned int\u003e(record.timestamp % 1000),\n              record.entry);\n```",
+      "range": {
+        "startLine": 307,
+        "startChar": 0,
+        "endLine": 309,
+        "endChar": 35
+      },
+      "revId": "97dbba694f394069781403d505ac508549a1b23e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
