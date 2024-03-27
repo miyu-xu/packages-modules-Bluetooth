@@ -359,9 +359,11 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
     /**
      * This represents an invalid audio location.
      *
+     * @deprecated As per Bluetooth Assigned Numbers, previously location invalid is now replaced
+     *     with a meaning MONO.
      * @hide
      */
-    @SystemApi public static final int AUDIO_LOCATION_INVALID = 0;
+    @Deprecated @SystemApi public static final int AUDIO_LOCATION_INVALID = 0;
 
     /**
      * This represents an Mono audio location.
