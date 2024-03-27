@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c1b0243_088e9900",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 751,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-03-27T03:35:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b11c9c2b_d08fc99e",
+      "range": {
+        "startLine": 751,
+        "startChar": 0,
+        "endLine": 751,
+        "endChar": 46
+      },
+      "revId": "6de4bfbd7663843d663db3d5987930048f762d56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c1a298c_7461f7b8",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-26T20:18:04Z",
       "side": 1,
       "message": "This looks like it could still be done without an index.\n\nAuto-generated suggestion added :)\n\n```suggestion\n    for (auto\u0026 data : data_list) {\n      if (data.counter \u003d\u003d procedure_counter) {\n        // Data already exists, return\n        return \u0026data;\n      }\n    }\n```",
+      "range": {
+        "startLine": 752,
+        "startChar": 0,
+        "endLine": 757,
+        "endChar": 5
+      },
+      "revId": "6de4bfbd7663843d663db3d5987930048f762d56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90c990d9_1e82e97e",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 757,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-03-27T03:35:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c1a298c_7461f7b8",
       "range": {
         "startLine": 752,
         "startChar": 0,
