@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a673fba9_6b4e8058",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-27T23:49:28Z",
+      "side": 1,
+      "message": "Update logging?\n```suggestion\n                            \"handleMessageConnectStateChanged: \"\n                                    + \"disconnect disallowed device: \"\n                                    + device\n                                    + \" state: \"\n                                    + state);\n```",
+      "range": {
+        "startLine": 658,
+        "startChar": 0,
+        "endLine": 662,
+        "endChar": 45
+      },
+      "revId": "c5ae5ec073f682b5ed6deb8721af2f37fe7ed739",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
