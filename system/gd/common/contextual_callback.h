@@ -40,6 +40,15 @@ class ContextualOnceCallback<R(Args...)> {
   ContextualOnceCallback(ContextualOnceCallback&&) noexcept = default;
   ContextualOnceCallback& operator=(ContextualOnceCallback&&) noexcept = default;
 
+  void operator()(Args... args) {
+    context_->Post(common::BindOnce(std::move(callback_), std::forward<Args>(args)...));
+    context_ = nullptr;
+  }
+
+  operator bool() const {
+    return context_ && callback_;
+  }
+
   void Invoke(Args... args) {
     context_->Post(common::BindOnce(std::move(callback_), std::forward<Args>(args)...));
   }
@@ -79,6 +88,14 @@ class ContextualCallback<R(Args...)> {
   ContextualCallback& operator=(const ContextualCallback&) = default;
   ContextualCallback(ContextualCallback&&) noexcept = default;
   ContextualCallback& operator=(ContextualCallback&&) noexcept = default;
+
+  void operator()(Args... args) {
+    context_->Post(common::BindOnce(std::move(callback_), std::forward<Args>(args)...));
+  }
+
+  operator bool() const {
+    return context_ && callback_;
+  }
 
   void Invoke(Args... args) {
     context_->Post(common::BindOnce(callback_, std::forward<Args>(args)...));
