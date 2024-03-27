@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48a7864f_e1dc42cb",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1255,
+      "author": {
+        "id": 1962420
+      },
+      "writtenOn": "2024-03-27T22:21:14Z",
+      "side": 1,
+      "message": "This is unused and can be removed.",
+      "range": {
+        "startLine": 1250,
+        "startChar": 0,
+        "endLine": 1255,
+        "endChar": 0
+      },
+      "revId": "783ee123b5c51cdf22174f4e1ab0ae96d9dfe3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15594a14_2e8e1a06",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1759,
+      "author": {
+        "id": 1962420
+      },
+      "writtenOn": "2024-03-27T22:21:14Z",
+      "side": 1,
+      "message": "Instead of checking `is_msft_supported` here, can we check at the beginning and return early if not supported? This we can avoid one level of indentation and also it\u0027ll look more cleaner.",
+      "range": {
+        "startLine": 1759,
+        "startChar": 0,
+        "endLine": 1759,
+        "endChar": 34
+      },
+      "revId": "783ee123b5c51cdf22174f4e1ab0ae96d9dfe3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8723bcf3_5c95efe6",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1774,
+      "author": {
+        "id": 1962420
+      },
+      "writtenOn": "2024-03-27T22:21:14Z",
+      "side": 1,
+      "message": "The `scanner.monitor_handle` stores the handle of the pattern monitor. So, I think we shouldn\u0027t overwrite it with the child address monitor handle.\n\nAlso, there could be more than one address monitors for one pattern monitor, and `scanner.monitor_handle` won\u0027t be updated every time a child address monitor is removed when the device is lost.\n\nSo, let\u0027s store address monitor handles only in `scanner.monitor_handle_map`",
+      "range": {
+        "startLine": 1774,
+        "startChar": 0,
+        "endLine": 1774,
+        "endChar": 66
+      },
+      "revId": "783ee123b5c51cdf22174f4e1ab0ae96d9dfe3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1c8ec79_1bed9a42",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 2212,
+      "author": {
+        "id": 1962420
+      },
+      "writtenOn": "2024-03-27T22:21:14Z",
+      "side": 1,
+      "message": "The `scanner.monitor_handle_map` is removed before cloning in the next lines. Need to move this further down the code once all monitors are removed?",
+      "range": {
+        "startLine": 2212,
+        "startChar": 0,
+        "endLine": 2212,
+        "endChar": 51
+      },
+      "revId": "783ee123b5c51cdf22174f4e1ab0ae96d9dfe3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4238fae3_2dddf687",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 4259,
+      "author": {
+        "id": 1962420
+      },
+      "writtenOn": "2024-03-27T22:21:14Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"seperate\" -- should it be \"separate\"?",
+      "range": {
+        "startLine": 4259,
+        "startChar": 28,
+        "endLine": 4259,
+        "endChar": 36
+      },
+      "revId": "783ee123b5c51cdf22174f4e1ab0ae96d9dfe3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c357916b_fc609a8f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 4262,
+      "author": {
+        "id": 1962420
+      },
+      "writtenOn": "2024-03-27T22:21:14Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"seperate\" -- should it be \"separate\"?",
+      "range": {
+        "startLine": 4262,
+        "startChar": 27,
+        "endLine": 4262,
+        "endChar": 35
+      },
+      "revId": "783ee123b5c51cdf22174f4e1ab0ae96d9dfe3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c20dbb21_51631459",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 4302,
+      "author": {
+        "id": 1962420
+      },
+      "writtenOn": "2024-03-27T22:21:14Z",
+      "side": 1,
+      "message": "We can remove this comment as it\u0027s no longer relevant here.",
+      "range": {
+        "startLine": 4302,
+        "startChar": 0,
+        "endLine": 4302,
+        "endChar": 97
+      },
+      "revId": "783ee123b5c51cdf22174f4e1ab0ae96d9dfe3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6d10ab1_9e4111f8",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 4334,
+      "author": {
+        "id": 1962420
+      },
+      "writtenOn": "2024-03-27T22:21:14Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"seperate\" -- should it be \"separate\"?",
+      "range": {
+        "startLine": 4334,
+        "startChar": 31,
+        "endLine": 4334,
+        "endChar": 39
+      },
+      "revId": "783ee123b5c51cdf22174f4e1ab0ae96d9dfe3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
