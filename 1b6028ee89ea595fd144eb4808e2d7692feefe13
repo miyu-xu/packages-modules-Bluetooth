@@ -215,6 +215,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f317fe3d_a2a663ac",
+        "filename": "system/bta/ag/bta_ag_at.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-03-27T22:23:30Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f952941e_9e2d2a35",
+      "range": {
+        "startLine": 143,
+        "startChar": 11,
+        "endLine": 143,
+        "endChar": 77
+      },
+      "revId": "1b6028ee89ea595fd144eb4808e2d7692feefe13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c1c5af9_023de677",
