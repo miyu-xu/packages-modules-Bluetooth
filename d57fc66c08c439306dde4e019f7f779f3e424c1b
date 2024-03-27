@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af7cf388_1b5816db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-03-27T23:41:05Z",
+      "side": 1,
+      "message": "The test is `HFP/HF/ACS/BI-13-C`, which is on `HF` side, but phone and chrome OS are on the AG side. Is there a use case for Chrome OS on HF? \nI am think, maybe `packages/modules/Bluetooth/system/bta/hf_client/` is the place for HF related test changes?",
+      "revId": "d57fc66c08c439306dde4e019f7f779f3e424c1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
