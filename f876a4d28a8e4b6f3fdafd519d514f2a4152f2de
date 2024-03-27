@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bd15bb9_9df6dd44",
+        "filename": "framework/java/android/bluetooth/le/BluetoothLeScanner.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-27T05:33:12Z",
+      "side": 1,
+      "message": "I have unified this but I\u0027m not sure of the solution as assigning them both as `null` initially doesn\u0027t _feel_ right. Although I\u0027ve made certain every call following it is flagged so it is safe. PTAL and let me know if it\u0027s not alright.",
+      "parentUuid": "deb27d09_eaf7db1b",
+      "range": {
+        "startLine": 264,
+        "startChar": 12,
+        "endLine": 264,
+        "endChar": 31
+      },
+      "revId": "f876a4d28a8e4b6f3fdafd519d514f2a4152f2de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4acb2677_171536b7",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-27T00:33:00Z",
       "side": 1,
       "message": "Comment from @okamil@google.com (Thank you).\n\nFlag guard this.",
+      "range": {
+        "startLine": 267,
+        "startChar": 12,
+        "endLine": 267,
+        "endChar": 71
+      },
+      "revId": "f876a4d28a8e4b6f3fdafd519d514f2a4152f2de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65aea7be_c93fffae",
+        "filename": "framework/java/android/bluetooth/le/BluetoothLeScanner.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-27T05:33:12Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "4acb2677_171536b7",
       "range": {
         "startLine": 267,
         "startChar": 12,
