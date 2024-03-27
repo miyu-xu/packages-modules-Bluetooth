@@ -21,8 +21,8 @@
 
 #include <cstdint>
 
+#include "common/macros.h"
 #include "internal_include/bt_target.h"  // L2CAP_EXTFEA_SUPPORTED_MASK
-#include "macros.h"
 
 /* L2CAP command codes
 */

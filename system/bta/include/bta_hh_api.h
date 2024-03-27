@@ -24,8 +24,8 @@
 #include <cstdint>
 #include <string>
 
+#include "common/macros.h"
 #include "internal_include/bt_target.h"
-#include "macros.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/hiddefs.h"
 #include "stack/include/l2c_api.h"

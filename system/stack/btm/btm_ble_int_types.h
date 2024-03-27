@@ -19,7 +19,7 @@
 #ifndef BTM_BLE_INT_TYPES_H
 #define BTM_BLE_INT_TYPES_H
 
-#include "macros.h"
+#include "common/macros.h"
 #include "osi/include/alarm.h"
 #include "stack/btm/neighbor_inquiry.h"
 #include "stack/include/btm_ble_api_types.h"

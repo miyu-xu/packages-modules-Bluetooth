@@ -31,8 +31,8 @@
 #include <cstdint>
 #include <string>
 
+#include "common/macros.h"
 #include "internal_include/bt_target.h"
-#include "macros.h"
 #include "osi/include/alarm.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/hci_error_code.h"

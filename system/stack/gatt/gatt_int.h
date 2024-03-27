@@ -29,9 +29,9 @@
 #include <vector>
 
 #include "common/init_flags.h"
+#include "common/macros.h"
 #include "gatt_api.h"
 #include "internal_include/bt_target.h"
-#include "macros.h"
 #include "osi/include/fixed_queue.h"
 #include "stack/include/bt_hdr.h"
 #include "types/bluetooth/uuid.h"

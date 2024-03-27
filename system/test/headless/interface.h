@@ -22,9 +22,9 @@
 #include <deque>
 #include <string>
 
+#include "common/macros.h"
 #include "gd/os/log.h"
 #include "include/hardware/bluetooth.h"
-#include "macros.h"
 #include "test/headless/log.h"
 #include "test/headless/property.h"
 #include "test/headless/text.h"

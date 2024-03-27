@@ -24,8 +24,8 @@
 #include <string>
 #include <type_traits>
 
+#include "common/macros.h"
 #include "internal_include/bt_trace.h"
-#include "macros.h"
 #include "sdp_common.h"
 
 namespace bluetooth {

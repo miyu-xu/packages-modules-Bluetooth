@@ -29,8 +29,8 @@
 #include <cstdint>
 #include <string>
 
+#include "common/macros.h"
 #include "include/hardware/bt_sdp.h"  // bluetooth_sdp_record
-#include "macros.h"
 #include "stack/sdp/sdp_discovery_db.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"

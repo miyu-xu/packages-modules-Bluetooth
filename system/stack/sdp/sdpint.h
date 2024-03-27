@@ -29,8 +29,8 @@
 
 #include <cstdint>
 
+#include "common/macros.h"
 #include "internal_include/bt_target.h"
-#include "macros.h"
 #include "osi/include/alarm.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/l2c_api.h"

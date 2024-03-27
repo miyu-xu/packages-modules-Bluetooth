@@ -23,7 +23,7 @@
 
 #include <cstdint>
 
-#include "macros.h"
+#include "common/macros.h"
 
 /* pairing failure reason code */
 typedef enum : uint8_t {

@@ -30,7 +30,7 @@
 
 #include "bta/include/bta_api.h"
 #include "bta_sec_api.h"
-#include "include/macros.h"
+#include "common/macros.h"
 #include "internal_include/bt_target.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/l2c_api.h"

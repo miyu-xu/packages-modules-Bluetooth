@@ -28,7 +28,7 @@
 
 #include <cstdint>
 
-#include "macros.h"
+#include "common/macros.h"
 #include "osi/include/alarm.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_octets.h"

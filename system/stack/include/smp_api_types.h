@@ -25,7 +25,7 @@
 #include <cstdint>
 #include <string>
 
-#include "macros.h"
+#include "common/macros.h"
 #include "stack/include/bt_octets.h"
 #include "stack/include/btm_status.h"
 #include "stack/include/smp_status.h"

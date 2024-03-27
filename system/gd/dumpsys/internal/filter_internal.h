@@ -19,9 +19,9 @@
 
 #include <string>
 
+#include "common/macros.h"
 #include "flatbuffers/flatbuffers.h"
 #include "flatbuffers/idl.h"
-#include "macros.h"
 
 namespace bluetooth {
 namespace dumpsys {
