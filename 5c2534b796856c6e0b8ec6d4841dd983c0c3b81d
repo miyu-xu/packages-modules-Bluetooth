@@ -46,6 +46,30 @@
       },
       "revId": "5c2534b796856c6e0b8ec6d4841dd983c0c3b81d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ffdc6ad_e8cd0ff2",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 3013946
+      },
+      "writtenOn": "2024-03-27T09:04:48Z",
+      "side": 0,
+      "message": "Hi Shai, nice to meet you too :)\n\nThat\u0027s important for AAOS, but that\u0027s not an AAOS feature!\n\nThis feature enables AVRCP on the phone side to retrieve existing media players. \n\nThis is important because when you connect an AAOS device for example you are able to browse the existing medias the phone has and select them to play.\n\nThis is also important because even when not currently playing any media on the phone, users can still use the \"play\" button on the connected remote device to resume the last played media.\n\nExample of browsing:\nUser gets in the car, car connects to user\u0027s phone. On the car screen, user opens the Bluetooth player. With this feature (on the phone side), user can browse medias that are present in the phone and select one to play. Without this feature, there will be nothing on the Bluetooth player of the car.\n\nExample of resume play:\nUser connects a Bluetooth speaker to the phone, phone is not currently playing anything. User presses the \"play\" button on the Bluetooth speaker. With the feature, AVRCP on the phone side will retrieve the last played media and resume it. Without the feature, nothing will happen.\n\nThese are AVRCP features that Android currently supports and removing it would impact a lot of users.\n\nThis can be removed from the watch side and car side as these devices are not the ones who \"store\" the media, but the ones who \"retrieve\" the media and this can be done with the system property. The phone side however should always have it enabled.\n\nI hope I\u0027m making sense here, and I hope we\u0027ll be able to find a quick solution to reduce the load time!",
+      "parentUuid": "e30c1017_8058de9a",
+      "range": {
+        "startLine": 205,
+        "startChar": 12,
+        "endLine": 205,
+        "endChar": 38
+      },
+      "revId": "5c2534b796856c6e0b8ec6d4841dd983c0c3b81d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
