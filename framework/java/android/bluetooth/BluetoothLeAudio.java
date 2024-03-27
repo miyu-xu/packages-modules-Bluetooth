@@ -368,6 +368,24 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
     @SystemApi public static final int AUDIO_LOCATION_INVALID = 0;
 
     /**
+     * This represents an Mono audio location.
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_LEAUDIO_MONO_LOCATION_ERRATA)
+    @SystemApi
+    public static final int AUDIO_LOCATION_MONO = 0;
+
+    /**
+     * This represents an Unknown audio location which will be returned only when Bluetooth is OFF.
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_LEAUDIO_MONO_LOCATION_ERRATA)
+    @SystemApi
+    public static final int AUDIO_LOCATION_UNKNOWN = 0x01 << 31;
+
+    /**
      * This represents an audio location front left.
      *
      * @hide
@@ -569,6 +587,7 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
             prefix = "AUDIO_LOCATION_",
             value = {
                 AUDIO_LOCATION_INVALID,
+                AUDIO_LOCATION_MONO,
                 AUDIO_LOCATION_FRONT_LEFT,
                 AUDIO_LOCATION_FRONT_RIGHT,
                 AUDIO_LOCATION_FRONT_CENTER,
@@ -597,6 +616,7 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
                 AUDIO_LOCATION_FRONT_RIGHT_WIDE,
                 AUDIO_LOCATION_LEFT_SURROUND,
                 AUDIO_LOCATION_RIGHT_SURROUND,
+                AUDIO_LOCATION_UNKNOWN,
             })
     @Retention(RetentionPolicy.SOURCE)
     public @interface AudioLocation {}
@@ -1195,8 +1215,7 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
      * Front Left: 0x00000001 Front Right: 0x00000002 Front Left | Front Right: 0x00000003
      *
      * @param device the bluetooth device
-     * @return The bit field of audio location for the device, if bluetooth is off, return
-     *     AUDIO_LOCATION_INVALID.
+     * @return The bit field of audio location for the device.
      * @hide
      */
     @RequiresBluetoothConnectPermission
@@ -1219,6 +1238,11 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
                 Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
             }
         }
+
+        if (Flags.leaudioMonoLocationErrata()) {
+            return AUDIO_LOCATION_UNKNOWN;
+        }
+
         return AUDIO_LOCATION_INVALID;
     }
 
