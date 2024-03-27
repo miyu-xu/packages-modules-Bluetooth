@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c65b425c_9108a52a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-03-27T17:08:56Z",
+      "side": 1,
+      "message": "I think it is more appropriate to use `\u003d\u003d` instead, here we are using a side effect of the tuple to perform an exact match",
+      "revId": "eaf8fd068542471940cbaa84ab14540470d04c1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
