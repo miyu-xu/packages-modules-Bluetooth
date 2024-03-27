@@ -57,7 +57,7 @@ void IsoManagerImpl::OnHciLeEvent(hci::LeMetaEventView event) {
       return;
     }
 
-    cis_established_callback.Invoke(le_cis_established_view.GetConnectionHandle());
+    cis_established_callback(le_cis_established_view.GetConnectionHandle());
     return;
   } else if (code == hci::SubeventCode::CIS_REQUEST) {
     hci::LeCisRequestView le_cis_request_view = hci::LeCisRequestView::Create(event);
@@ -147,7 +147,7 @@ void IsoManagerImpl::SetCigParametersComplete(
       handle_it++;
     }
 
-    command_complete_callback.Invoke(handles);
+    command_complete_callback(handles);
   }
 }
 
@@ -223,7 +223,7 @@ void IsoManagerImpl::SetCigParametersTestComplete(
       handle_it++;
     }
 
-    command_complete_callback.Invoke(handles);
+    command_complete_callback(handles);
   }
 }
 
@@ -272,7 +272,7 @@ void IsoManagerImpl::SendIsoPacket(uint16_t cis_handle, std::vector<uint8_t> pac
 
 void IsoManagerImpl::OnIncomingPacket() {
   std::unique_ptr<hci::IsoView> packet = hci_layer_->GetIsoQueueEnd()->TryDequeue();
-  iso_data_callback.Invoke(std::move(packet));
+  iso_data_callback(std::move(packet));
 }
 
 }  // namespace internal
