@@ -264,6 +264,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e5ba9ca4_48c92df2",
+        "filename": "tools/lint/checks/src/com/android/bluetooth/lint/LogEnforcementVariableCreationDetector.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-27T20:39:41Z",
+      "side": 1,
+      "message": "Makes sense. I\u0027m still learning Kotlin and the best conventions for doing things 😊\n\nI think I actually addressed it as you expect on this change, and I looked for similar stuff on the second lint rule, just in case",
+      "parentUuid": "543e188f_1d6acd9a",
+      "range": {
+        "startLine": 140,
+        "startChar": 16,
+        "endLine": 141,
+        "endChar": 72
+      },
+      "revId": "46e1d4228c483fdd785a339c538c01b65f4479e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4ac5db11_402162fe",
         "filename": "tools/lint/checks/src/com/android/bluetooth/lint/Utils.kt",
         "patchSetId": 12
