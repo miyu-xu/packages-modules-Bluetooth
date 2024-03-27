@@ -16,6 +16,24 @@
       "message": "This looks like it\u0027s screaming out for `class enum` ification",
       "revId": "db00ddab037619cfdd8f4a10e0da7b19d8387b6e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "655e7c59_8299de45",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-27T14:26:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "caa00585_3dcd2fec",
+      "revId": "db00ddab037619cfdd8f4a10e0da7b19d8387b6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
