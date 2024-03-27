@@ -86,6 +86,24 @@
       "parentUuid": "a4adeffd_dbc59bf5",
       "revId": "5e8e1531bef13c81f137c6b4ba21ba672f28cb20",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e333be4c_3e4d07ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1088076
+      },
+      "writtenOn": "2024-03-27T20:38:09Z",
+      "side": 1,
+      "message": "Thanks! Can you verify it with an abtd run on tablet target? This can be an example:\n\nhttps://android-build.corp.google.com/builds/abtd/run/L62000030002800293",
+      "parentUuid": "cff69451_cbdb21e3",
+      "revId": "5e8e1531bef13c81f137c6b4ba21ba672f28cb20",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
