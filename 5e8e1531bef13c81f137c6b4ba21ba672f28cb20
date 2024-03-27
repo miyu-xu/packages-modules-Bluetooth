@@ -16,6 +16,23 @@
       "message": "Avatar physical tests are passing",
       "revId": "5e8e1531bef13c81f137c6b4ba21ba672f28cb20",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "770b35bc_66be6f3d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-27T18:22:14Z",
+      "side": 1,
+      "message": "This reland has been verified using physical setup to reproduce initial broken behavior.",
+      "revId": "5e8e1531bef13c81f137c6b4ba21ba672f28cb20",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
