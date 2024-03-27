@@ -660,8 +660,7 @@ public class HidHostService extends ProfileService {
                                     + device
                                     + " state: "
                                     + state);
-                    mNativeInterface.virtualUnPlug(
-                            getByteAddress(device), getAddressType(device), getTransport(device));
+                    nativeDisconnect(device, transport, false);
                     return;
                 }
             }
