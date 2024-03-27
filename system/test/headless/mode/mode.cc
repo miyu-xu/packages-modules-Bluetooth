@@ -25,7 +25,6 @@
 #include "base/logging.h"  // LOG() stdout and android log
 #include "btm_status.h"
 #include "hci_error_code.h"
-#include "include/macros.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/l2cap_acl_interface.h"
 #include "test/headless/get_options.h"

@@ -20,7 +20,7 @@
 
 #include <string>
 
-#include "macros.h"
+#include "common/macros.h"
 #include "stack/include/btm_ble_sec_api_types.h"
 #include "stack/include/btm_sec_api_types.h"
 #include "stack/include/btm_status.h"

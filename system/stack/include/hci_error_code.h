@@ -22,7 +22,7 @@
 #include <cstdint>
 #include <string>
 
-#include "macros.h"
+#include "common/macros.h"
 
 /*
  *  Definitions for HCI Error Codes that are passed in the events

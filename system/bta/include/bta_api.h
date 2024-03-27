@@ -33,9 +33,9 @@
 #include <vector>
 
 #include "bta_api_data_types.h"
+#include "common/macros.h"
 #include "hci/le_rand_callback.h"
 #include "internal_include/bt_target.h"
-#include "macros.h"
 #include "os/log.h"
 #include "stack/btm/power_mode.h"
 #include "stack/include/bt_device_type.h"

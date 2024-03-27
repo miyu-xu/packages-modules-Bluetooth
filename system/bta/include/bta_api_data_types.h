@@ -24,7 +24,7 @@
 #include <cstdint>
 #include <string>
 
-#include "macros.h"
+#include "common/macros.h"
 #include "types/raw_address.h"
 
 /*****************************************************************************

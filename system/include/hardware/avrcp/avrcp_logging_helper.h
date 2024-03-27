@@ -25,8 +25,8 @@
 #include <type_traits>
 
 #include "avrcp_common.h"
+#include "common/macros.h"
 #include "internal_include/bt_trace.h"
-#include "macros.h"
 
 namespace bluetooth {
 namespace avrcp {

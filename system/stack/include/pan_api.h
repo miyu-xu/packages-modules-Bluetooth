@@ -30,7 +30,7 @@
 #include <cstdint>
 
 #include "bnep_api.h"
-#include "macros.h"
+#include "common/macros.h"
 #include "stack/include/bt_hdr.h"
 #include "types/raw_address.h"
 

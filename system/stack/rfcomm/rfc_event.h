@@ -20,7 +20,7 @@
 
 #include <cstdint>
 
-#include "macros.h"
+#include "common/macros.h"
 
 /*
  * Events that can be received by multiplexer as well as port state machines

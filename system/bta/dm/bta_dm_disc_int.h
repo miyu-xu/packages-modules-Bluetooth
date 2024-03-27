@@ -23,7 +23,7 @@
 
 #include "bta/include/bta_api.h"
 #include "bta/sys/bta_sys.h"
-#include "macros.h"
+#include "common/macros.h"
 #include "stack/btm/neighbor_inquiry.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/sdp_status.h"

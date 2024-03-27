@@ -20,7 +20,7 @@
 
 #include <string>
 
-#include "macros.h"
+#include "common/macros.h"
 
 #define BT_TRANSPORT_AUTO 0
 #define BT_TRANSPORT_BR_EDR 1

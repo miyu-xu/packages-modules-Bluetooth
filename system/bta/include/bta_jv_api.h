@@ -30,8 +30,8 @@
 
 #include "bta/include/bta_api.h"
 #include "bta_sec_api.h"
+#include "common/macros.h"
 #include "internal_include/bt_target.h"
-#include "macros.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/l2c_api.h"
 #include "types/bluetooth/uuid.h"

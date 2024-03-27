@@ -23,8 +23,8 @@
 #include <sstream>
 #include <string>
 
+#include "common/macros.h"
 #include "include/hardware/bluetooth.h"
-#include "macros.h"
 #include "test/headless/log.h"
 #include "types/bluetooth/uuid.h"
 

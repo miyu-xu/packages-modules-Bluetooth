@@ -29,7 +29,7 @@
 
 #include <string>
 
-#include "macros.h"
+#include "common/macros.h"
 
 /* Define the service attribute IDs.
 */

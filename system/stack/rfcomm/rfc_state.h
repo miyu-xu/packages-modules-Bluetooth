@@ -18,7 +18,7 @@
 
 #include <cstdint>
 
-#include "macros.h"
+#include "common/macros.h"
 
 /*
  * Define states and events for the RFC multiplexer state machine

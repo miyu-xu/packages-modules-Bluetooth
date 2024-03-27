@@ -20,7 +20,7 @@
 
 #include <cstdint>
 
-#include "macros.h"
+#include "common/macros.h"
 
 /* BTM application return status codes */
 enum : uint8_t {

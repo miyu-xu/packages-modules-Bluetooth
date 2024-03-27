@@ -32,8 +32,8 @@
 
 #include "bta/include/bta_api.h"
 #include "bta_api.h"
+#include "common/macros.h"
 #include "internal_include/bt_target.h"
-#include "macros.h"
 #include "types/raw_address.h"
 
 /*****************************************************************************

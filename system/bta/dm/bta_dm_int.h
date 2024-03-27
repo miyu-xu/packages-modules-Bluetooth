@@ -33,10 +33,10 @@
 #include "bta/include/bta_api.h"
 #include "bta/include/bta_sec_api.h"
 #include "bta/sys/bta_sys.h"
+#include "common/macros.h"
 #include "hci/le_rand_callback.h"
 #include "internal_include/bt_target.h"
 #include "internal_include/bt_trace.h"
-#include "macros.h"
 #include "types/raw_address.h"
 
 /*****************************************************************************

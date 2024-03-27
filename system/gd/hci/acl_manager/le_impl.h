@@ -27,6 +27,7 @@
 
 #include "common/bind.h"
 #include "common/init_flags.h"
+#include "common/macros.h"
 #include "hci/acl_manager/assembler.h"
 #include "hci/acl_manager/le_acceptlist_callbacks.h"
 #include "hci/acl_manager/le_acl_connection.h"
@@ -37,7 +38,6 @@
 #include "hci/hci_layer.h"
 #include "hci/hci_packets.h"
 #include "hci/le_address_manager.h"
-#include "macros.h"
 #include "os/alarm.h"
 #include "os/handler.h"
 #include "os/system_properties.h"

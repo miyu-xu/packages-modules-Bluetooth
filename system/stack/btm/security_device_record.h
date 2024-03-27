@@ -24,8 +24,8 @@
 #include <cstdint>
 #include <string>
 
+#include "common/macros.h"
 #include "internal_include/bt_target.h"
-#include "macros.h"
 #include "os/log.h"
 #include "stack/include/bt_device_type.h"
 #include "stack/include/bt_name.h"

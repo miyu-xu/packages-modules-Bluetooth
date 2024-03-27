@@ -27,7 +27,7 @@
 #include <stdint.h>
 
 #include "bta/include/bta_hh_api.h"
-#include "macros.h"
+#include "common/macros.h"
 #include "osi/include/alarm.h"
 #include "osi/include/fixed_queue.h"
 #include "types/ble_address_with_type.h"

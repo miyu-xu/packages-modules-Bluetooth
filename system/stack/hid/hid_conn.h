@@ -28,7 +28,7 @@
 #include <base/strings/stringprintf.h>
 #include <bluetooth/log.h>
 
-#include "macros.h"
+#include "common/macros.h"
 #include "osi/include/alarm.h"
 
 typedef enum : uint8_t {

@@ -30,10 +30,10 @@
 
 #include <string>
 
+#include "common/macros.h"
 #include "internal_include/bt_target.h"
 #include "l2c_api.h"
 #include "l2cdefs.h"
-#include "macros.h"
 #include "osi/include/alarm.h"
 #include "osi/include/fixed_queue.h"
 #include "osi/include/list.h"

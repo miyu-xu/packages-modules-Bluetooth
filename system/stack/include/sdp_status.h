@@ -23,7 +23,7 @@
 
 #include <cstdint>
 
-#include "macros.h"
+#include "common/macros.h"
 
 /*****************************************************************************
  *  Constants
