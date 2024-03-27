@@ -1450,40 +1450,110 @@ public class BassClientServiceTest {
             }
         }
 
-        mBassClientService.suspendAllReceiversSourceSynchronization();
-
-        // Inject source removed
-        for (BassClientStateMachine sm: mStateMachines.values()) {
-            ArgumentCaptor<Message> messageCaptor = ArgumentCaptor.forClass(Message.class);
-            verify(sm, atLeast(1)).sendMessage(messageCaptor.capture());
-
-            Optional<Message> msg = messageCaptor.getAllValues().stream()
-                    .filter(m -> m.what == BassClientStateMachine.REMOVE_BCAST_SOURCE)
-                    .findFirst();
-            assertThat(msg.isPresent()).isEqualTo(true);
-
+        for (BassClientStateMachine sm : mStateMachines.values()) {
+            // Update receiver state
             if (sm.getDevice().equals(mCurrentDevice)) {
-                assertThat(msg.get().arg1).isEqualTo(TEST_SOURCE_ID);
-                injectRemoteSourceStateRemoval(sm, TEST_SOURCE_ID);
+                injectRemoteSourceStateChanged(
+                        sm,
+                        meta,
+                        TEST_SOURCE_ID,
+                        BluetoothLeBroadcastReceiveState.PA_SYNC_STATE_IDLE,
+                        meta.isEncrypted()
+                                ? BluetoothLeBroadcastReceiveState.BIG_ENCRYPTION_STATE_DECRYPTING
+                                : BluetoothLeBroadcastReceiveState
+                                        .BIG_ENCRYPTION_STATE_NOT_ENCRYPTED,
+                        null,
+                        (long) 0x00000001);
             } else if (sm.getDevice().equals(mCurrentDevice1)) {
-                assertThat(msg.get().arg1).isEqualTo(TEST_SOURCE_ID + 1);
-                injectRemoteSourceStateRemoval(sm, TEST_SOURCE_ID + 1);
+                injectRemoteSourceStateChanged(
+                        sm,
+                        meta,
+                        TEST_SOURCE_ID + 1,
+                        BluetoothLeBroadcastReceiveState.PA_SYNC_STATE_IDLE,
+                        meta.isEncrypted()
+                                ? BluetoothLeBroadcastReceiveState.BIG_ENCRYPTION_STATE_DECRYPTING
+                                : BluetoothLeBroadcastReceiveState
+                                        .BIG_ENCRYPTION_STATE_NOT_ENCRYPTED,
+                        null,
+                        (long) 0x00000002);
+            }
+        }
+        verify(mLeAudioService).activeBroadcastAssistantNotification(eq(true));
+        Mockito.clearInvocations(mLeAudioService);
+
+        /* Unicast would like to stream */
+        mBassClientService.cacheSuspendingSources(TEST_BROADCAST_ID);
+
+        /* Imitate broadcast source stop, sink notify about loosing BIS sync */
+        for (BassClientStateMachine sm : mStateMachines.values()) {
+            // Update receiver state
+            if (sm.getDevice().equals(mCurrentDevice)) {
+                injectRemoteSourceStateChanged(
+                        sm,
+                        meta,
+                        TEST_SOURCE_ID,
+                        BluetoothLeBroadcastReceiveState.PA_SYNC_STATE_IDLE,
+                        meta.isEncrypted()
+                                ? BluetoothLeBroadcastReceiveState.BIG_ENCRYPTION_STATE_DECRYPTING
+                                : BluetoothLeBroadcastReceiveState
+                                        .BIG_ENCRYPTION_STATE_NOT_ENCRYPTED,
+                        null,
+                        (long) 0x00000000);
+            } else if (sm.getDevice().equals(mCurrentDevice1)) {
+                injectRemoteSourceStateChanged(
+                        sm,
+                        meta,
+                        TEST_SOURCE_ID + 1,
+                        BluetoothLeBroadcastReceiveState.PA_SYNC_STATE_IDLE,
+                        meta.isEncrypted()
+                                ? BluetoothLeBroadcastReceiveState.BIG_ENCRYPTION_STATE_DECRYPTING
+                                : BluetoothLeBroadcastReceiveState
+                                        .BIG_ENCRYPTION_STATE_NOT_ENCRYPTED,
+                        null,
+                        (long) 0x00000000);
             }
         }
 
         mBassClientService.resumeReceiversSourceSynchronization();
 
-        // Verify all group members getting ADD_BCAST_SOURCE message
+        // Verify all group members getting UPDATE_BCAST_SOURCE ressuming syncmessage
         assertThat(mStateMachines.size()).isEqualTo(2);
         for (BassClientStateMachine sm: mStateMachines.values()) {
             ArgumentCaptor<Message> messageCaptor = ArgumentCaptor.forClass(Message.class);
             verify(sm, atLeast(1)).sendMessage(messageCaptor.capture());
+            long count;
 
-            long count = messageCaptor.getAllValues().stream()
-                    .filter(m -> (m.what == BassClientStateMachine.ADD_BCAST_SOURCE)
-                                        && (m.obj == meta))
-                    .count();
-            assertThat(count).isEqualTo(2);
+            if (sm.getDevice().equals(mCurrentDevice)) {
+                count =
+                        messageCaptor.getAllValues().stream()
+                                .filter(
+                                        m ->
+                                                (m.what
+                                                                == BassClientStateMachine
+                                                                        .UPDATE_BCAST_SOURCE)
+                                                        && (m.obj == meta)
+                                                        && (m.arg1 == TEST_SOURCE_ID)
+                                                        && (m.arg2
+                                                                == BassConstants
+                                                                        .PA_SYNC_PAST_AVAILABLE))
+                                .count();
+                assertThat(count).isEqualTo(1);
+            } else if (sm.getDevice().equals(mCurrentDevice1)) {
+                count =
+                        messageCaptor.getAllValues().stream()
+                                .filter(
+                                        m ->
+                                                (m.what
+                                                                == BassClientStateMachine
+                                                                        .UPDATE_BCAST_SOURCE)
+                                                        && (m.obj == meta)
+                                                        && (m.arg1 == (TEST_SOURCE_ID + 1))
+                                                        && (m.arg2
+                                                                == BassConstants
+                                                                        .PA_SYNC_PAST_AVAILABLE))
+                                .count();
+                assertThat(count).isEqualTo(1);
+            }
         }
     }
 
@@ -1531,22 +1601,33 @@ public class BassClientServiceTest {
         mBassClientService.handleUnicastSourceStreamStatusChange(
                 0 /* STATUS_LOCAL_STREAM_REQUESTED */);
 
-        // Inject source removed
-        for (BassClientStateMachine sm: mStateMachines.values()) {
-            ArgumentCaptor<Message> messageCaptor = ArgumentCaptor.forClass(Message.class);
-            verify(sm, atLeast(1)).sendMessage(messageCaptor.capture());
-
-            Optional<Message> msg = messageCaptor.getAllValues().stream()
-                    .filter(m -> m.what == BassClientStateMachine.REMOVE_BCAST_SOURCE)
-                    .findFirst();
-            assertThat(msg.isPresent()).isEqualTo(true);
-
+        /* Imitate broadcast source stop, sink notify about loosing BIS sync */
+        for (BassClientStateMachine sm : mStateMachines.values()) {
+            // Update receiver state
             if (sm.getDevice().equals(mCurrentDevice)) {
-                assertThat(msg.get().arg1).isEqualTo(TEST_SOURCE_ID);
-                injectRemoteSourceStateRemoval(sm, TEST_SOURCE_ID);
+                injectRemoteSourceStateChanged(
+                        sm,
+                        meta,
+                        TEST_SOURCE_ID,
+                        BluetoothLeBroadcastReceiveState.PA_SYNC_STATE_IDLE,
+                        meta.isEncrypted()
+                                ? BluetoothLeBroadcastReceiveState.BIG_ENCRYPTION_STATE_DECRYPTING
+                                : BluetoothLeBroadcastReceiveState
+                                        .BIG_ENCRYPTION_STATE_NOT_ENCRYPTED,
+                        null,
+                        (long) 0x00000000);
             } else if (sm.getDevice().equals(mCurrentDevice1)) {
-                assertThat(msg.get().arg1).isEqualTo(TEST_SOURCE_ID + 1);
-                injectRemoteSourceStateRemoval(sm, TEST_SOURCE_ID + 1);
+                injectRemoteSourceStateChanged(
+                        sm,
+                        meta,
+                        TEST_SOURCE_ID + 1,
+                        BluetoothLeBroadcastReceiveState.PA_SYNC_STATE_IDLE,
+                        meta.isEncrypted()
+                                ? BluetoothLeBroadcastReceiveState.BIG_ENCRYPTION_STATE_DECRYPTING
+                                : BluetoothLeBroadcastReceiveState
+                                        .BIG_ENCRYPTION_STATE_NOT_ENCRYPTED,
+                        null,
+                        (long) 0x00000000);
             }
         }
 
@@ -1554,17 +1635,44 @@ public class BassClientServiceTest {
         mBassClientService.handleUnicastSourceStreamStatusChange(
                 2 /* STATUS_LOCAL_STREAM_SUSPENDED */);
 
-        // Verify all group members getting ADD_BCAST_SOURCE message
+        // Verify all group members getting UPDATE_BCAST_SOURCE ressuming syncmessage
         assertThat(mStateMachines.size()).isEqualTo(2);
         for (BassClientStateMachine sm: mStateMachines.values()) {
             ArgumentCaptor<Message> messageCaptor = ArgumentCaptor.forClass(Message.class);
             verify(sm, atLeast(1)).sendMessage(messageCaptor.capture());
+            long count;
 
-            long count = messageCaptor.getAllValues().stream()
-                    .filter(m -> (m.what == BassClientStateMachine.ADD_BCAST_SOURCE)
-                                        && (m.obj == meta))
-                    .count();
-            assertThat(count).isEqualTo(2);
+            if (sm.getDevice().equals(mCurrentDevice)) {
+                count =
+                        messageCaptor.getAllValues().stream()
+                                .filter(
+                                        m ->
+                                                (m.what
+                                                                == BassClientStateMachine
+                                                                        .UPDATE_BCAST_SOURCE)
+                                                        && (m.obj == meta)
+                                                        && (m.arg1 == TEST_SOURCE_ID)
+                                                        && (m.arg2
+                                                                == BassConstants
+                                                                        .PA_SYNC_PAST_AVAILABLE))
+                                .count();
+                assertThat(count).isEqualTo(1);
+            } else if (sm.getDevice().equals(mCurrentDevice1)) {
+                count =
+                        messageCaptor.getAllValues().stream()
+                                .filter(
+                                        m ->
+                                                (m.what
+                                                                == BassClientStateMachine
+                                                                        .UPDATE_BCAST_SOURCE)
+                                                        && (m.obj == meta)
+                                                        && (m.arg1 == (TEST_SOURCE_ID + 1))
+                                                        && (m.arg2
+                                                                == BassConstants
+                                                                        .PA_SYNC_PAST_AVAILABLE))
+                                .count();
+                assertThat(count).isEqualTo(1);
+            }
         }
 
         // Update receiver state with lost BIS sync
