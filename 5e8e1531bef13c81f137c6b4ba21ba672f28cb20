@@ -104,6 +104,24 @@
       "parentUuid": "cff69451_cbdb21e3",
       "revId": "5e8e1531bef13c81f137c6b4ba21ba672f28cb20",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d22a30a0_6573aa9a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-27T20:42:24Z",
+      "side": 1,
+      "message": "Sure, I started one with:\nhttps://android-build.corp.google.com/builds/abtd/run/L88700030002796954\n\nFYI:\nBluetooth is built the same whatever the target.\nRunning it specifically for tablet device add no value compared to running on phone.\nIn initial breakage all form factor were impacted.",
+      "parentUuid": "e333be4c_3e4d07ab",
+      "revId": "5e8e1531bef13c81f137c6b4ba21ba672f28cb20",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
