@@ -87,6 +87,30 @@
       },
       "revId": "b1d16071b4e93ceabf3bd882fc9aa842d075d549",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1eca42ec_bc2cd338",
+        "filename": "framework/java/android/bluetooth/le/ScanRecord.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 653,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-28T23:17:36Z",
+      "side": 1,
+      "message": "Cool! That is indeed more compact. Done, thank you.",
+      "parentUuid": "79219cd7_b192ec52",
+      "range": {
+        "startLine": 647,
+        "startChar": 30,
+        "endLine": 653,
+        "endChar": 98
+      },
+      "revId": "b1d16071b4e93ceabf3bd882fc9aa842d075d549",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
