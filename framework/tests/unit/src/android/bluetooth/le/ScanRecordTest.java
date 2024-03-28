@@ -17,14 +17,18 @@
 package android.bluetooth.le;
 
 import android.os.ParcelUuid;
+
 import androidx.test.filters.SmallTest;
+
 import com.android.internal.util.HexDump;
 import com.android.modules.utils.BytesMatcher;
+
+import junit.framework.TestCase;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
-import junit.framework.TestCase;
 
 /**
  * Unit test cases for {@link ScanRecord}.
@@ -174,6 +178,67 @@ public class ScanRecordTest extends TestCase {
 
         assertTrue(data.getManufacturerSpecificData().get(0x00E0) != null);
         assertArrayEquals(new byte[] {0x02, 0x15}, data.getManufacturerSpecificData().get(0x00E0));
+
+        assertTrue(data.getServiceData().containsKey(uuid2));
+        assertArrayEquals(new byte[] {0x50, 0x64}, data.getServiceData().get(uuid2));
+    }
+
+    @SmallTest
+    public void testParserMultipleManufacturerSpecificData() {
+        byte[] scanRecord =
+                new byte[] {
+                    0x02,
+                    0x01,
+                    0x1a, // advertising flags
+                    0x05,
+                    0x02,
+                    0x0b,
+                    0x11,
+                    0x0a,
+                    0x11, // 16 bit service uuids
+                    0x04,
+                    0x09,
+                    0x50,
+                    0x65,
+                    0x64, // name
+                    0x02,
+                    0x0A,
+                    (byte) 0xec, // tx power level
+                    0x05,
+                    0x16,
+                    0x0b,
+                    0x11,
+                    0x50,
+                    0x64, // service data
+                    0x05,
+                    (byte) 0xff,
+                    (byte) 0xe0,
+                    0x00,
+                    0x02,
+                    0x15, // manufacturer specific data #1
+                    (byte) 0xff,
+                    (byte) 0xe0,
+                    0x00,
+                    0x02,
+                    0x16, // manufacturer specific data #2
+                    0x03,
+                    0x50,
+                    0x01,
+                    0x02, // an unknown data type won't cause trouble
+                };
+        ScanRecord data = ScanRecord.parseFromBytes(scanRecord);
+        assertEquals(0x1a, data.getAdvertiseFlags());
+        ParcelUuid uuid1 = ParcelUuid.fromString("0000110A-0000-1000-8000-00805F9B34FB");
+        ParcelUuid uuid2 = ParcelUuid.fromString("0000110B-0000-1000-8000-00805F9B34FB");
+        assertTrue(data.getServiceUuids().contains(uuid1));
+        assertTrue(data.getServiceUuids().contains(uuid2));
+
+        assertEquals("Ped", data.getDeviceName());
+        assertEquals(-20, data.getTxPowerLevel());
+
+        assertTrue(data.getManufacturerSpecificData().get(0x00E0) != null);
+        assertArrayEquals(
+                new byte[] {0x02, 0x15, 0x16}, data.getManufacturerSpecificData().get(0x00E0));
 
         assertTrue(data.getServiceData().containsKey(uuid2));
         assertArrayEquals(new byte[] {0x50, 0x64}, data.getServiceData().get(uuid2));
