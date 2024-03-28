@@ -16,6 +16,7 @@
 
 #include "os/alarm.h"
 
+#include <cstddef>
 #include <future>
 
 #include "common/bind.h"
@@ -49,6 +50,11 @@ class AlarmTest : public ::testing::Test {
   void fake_timer_advance(uint64_t ms) {
     handler_->Post(common::BindOnce(fake_timerfd_advance, ms));
   }
+
+  Alarm* get_new_alarm() {
+    return new Alarm(handler_);
+  }
+
   Alarm* alarm_;
 
  private:
@@ -97,6 +103,47 @@ TEST_F(AlarmTest, delete_while_alarm_armed) {
   delete alarm_;
   alarm_ = nullptr;
   std::this_thread::sleep_for(std::chrono::milliseconds(10));
+}
+
+class TwoAlarmTest : public AlarmTest {
+ protected:
+  void SetUp() override {
+    AlarmTest::SetUp();
+    alarm2 = get_new_alarm();
+  }
+
+  void TearDown() override {
+    delete alarm2;
+    AlarmTest::TearDown();
+  }
+
+  Alarm* alarm2;
+};
+
+TEST_F(TwoAlarmTest, schedule_from_alarm_long) {
+  std::promise<void> promise;
+  auto future = promise.get_future();
+  std::promise<void> promise2;
+  auto future2 = promise2.get_future();
+  alarm_->Schedule(
+      BindOnce(
+          [](Alarm* alarm2, std::promise<void>* promise, std::promise<void>* promise2) {
+            promise->set_value();
+            if (promise == nullptr) {
+              FAIL();
+            }
+            alarm2->Schedule(
+                BindOnce(&std::promise<void>::set_value, common::Unretained(promise2)),
+                std::chrono::milliseconds(10));
+          },
+          common::Unretained(alarm2),
+          common::Unretained(&promise),
+          common::Unretained(&promise2)),
+      std::chrono::milliseconds(1));
+  fake_timer_advance(10);
+  EXPECT_EQ(std::future_status::ready, future.wait_for(std::chrono::milliseconds(20)));
+  fake_timer_advance(10);
+  EXPECT_EQ(std::future_status::ready, future2.wait_for(std::chrono::milliseconds(20)));
 }
 
 }  // namespace
