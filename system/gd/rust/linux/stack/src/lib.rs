@@ -317,9 +317,17 @@ impl Stack {
                     bluetooth.lock().unwrap().connection_callback_disconnected(id);
                 }
 
-                Message::DelayedAdapterActions(action) => {
-                    bluetooth.lock().unwrap().handle_delayed_actions(action);
-                }
+                Message::DelayedAdapterActions(action) => match action {
+                    DelayedActions::UpdateConnectableMode(_) => {
+                        let is_listening = bluetooth_socketmgr.lock().unwrap().is_listening();
+                        bluetooth.lock().unwrap().handle_delayed_actions(
+                            DelayedActions::UpdateConnectableMode(is_listening),
+                        );
+                    }
+                    _ => {
+                        bluetooth.lock().unwrap().handle_delayed_actions(action);
+                    }
+                },
 
                 // Any service needing an updated list of devices can have an
                 // update method triggered from here rather than needing a
