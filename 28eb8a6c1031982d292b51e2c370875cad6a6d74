@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d08a20a_9fdc6321",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-03-28T00:58:50Z",
+      "side": 1,
+      "message": "I was suggesting to use it to resolve my comment in #3521, but using isActive should be good there.",
+      "parentUuid": "d599dce6_cc77c92c",
+      "revId": "28eb8a6c1031982d292b51e2c370875cad6a6d74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "79b34c59_55a03e9e",
@@ -235,6 +253,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c35684e7_0246aae7",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 3437,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-03-28T00:58:50Z",
+      "side": 1,
+      "message": "you\u0027re right, this is fine, I was thinking about line #3521.",
+      "parentUuid": "034fb04d_3d828adb",
+      "revId": "28eb8a6c1031982d292b51e2c370875cad6a6d74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "364c5fec_3661eb23",
@@ -266,6 +302,24 @@
       "side": 1,
       "message": "Replied in previous comment.",
       "parentUuid": "364c5fec_3661eb23",
+      "revId": "28eb8a6c1031982d292b51e2c370875cad6a6d74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c809d10e_abf2aafe",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 3521,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-03-28T00:58:50Z",
+      "side": 1,
+      "message": "should we use descriptor.isActive() here? like in #3437\notherwise, if it\u0027s not active, we\u0027re setting true here.",
+      "parentUuid": "56c7231c_9b18c7c0",
       "revId": "28eb8a6c1031982d292b51e2c370875cad6a6d74",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
