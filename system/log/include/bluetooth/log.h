@@ -205,11 +205,11 @@ template <typename T0, typename T1, typename T2, typename T3>
 }
 
 template <typename... T>
-struct fatal_if {
-  fatal_if(bool cond, fmt::format_string<T...> fmt, T&&... args,
-           log_internal::source_location location =
-               log_internal::source_location()) {
-    if (cond) {
+struct assert_that {
+  assert_that(bool cond, fmt::format_string<T...> fmt, T&&... args,
+              log_internal::source_location location =
+                  log_internal::source_location()) {
+    if (!cond) {
       vlog(log_internal::kFatal, LOG_TAG, location,
            static_cast<fmt::string_view>(fmt),
            fmt::make_format_args(format_replace(args)...));
@@ -218,7 +218,7 @@ struct fatal_if {
 };
 
 template <typename... T>
-fatal_if(fmt::format_string<T...>, T&&...) -> fatal_if<T...>;
+assert_that(fmt::format_string<T...>, T&&...) -> assert_that<T...>;
 
 }  // namespace bluetooth::log
 
