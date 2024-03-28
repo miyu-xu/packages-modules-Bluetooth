@@ -190,6 +190,30 @@
       },
       "revId": "5c2534b796856c6e0b8ec6d4841dd983c0c3b81d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "929db2d6_7e2fb172",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-28T18:50:45Z",
+      "side": 0,
+      "message": "My 2 cents will be that if you wait for `when a remote device requests a browsing feature`, then any delay to perform the operation may make you too late…\nWhile if you do it when a device connect (not avrcp connect, juste acl connection), you have the time of the pairing + negotiation + profile connection.\n\nBut this is a topic I am not that much familiar with, so take my feedback accordingly",
+      "parentUuid": "96ab3d3b_ec639d02",
+      "range": {
+        "startLine": 205,
+        "startChar": 12,
+        "endLine": 205,
+        "endChar": 38
+      },
+      "revId": "5c2534b796856c6e0b8ec6d4841dd983c0c3b81d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
