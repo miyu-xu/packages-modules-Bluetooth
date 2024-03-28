@@ -22,6 +22,30 @@
       },
       "revId": "c5ae5ec073f682b5ed6deb8721af2f37fe7ed739",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd344c78_bf04d210",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-28T00:54:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a673fba9_6b4e8058",
+      "range": {
+        "startLine": 658,
+        "startChar": 0,
+        "endLine": 662,
+        "endChar": 45
+      },
+      "revId": "c5ae5ec073f682b5ed6deb8721af2f37fe7ed739",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
