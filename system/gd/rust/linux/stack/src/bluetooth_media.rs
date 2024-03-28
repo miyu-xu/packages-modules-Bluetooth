@@ -1230,7 +1230,10 @@ impl BluetoothMedia {
             return;
         }
         if let Some(uhid) = self.uhid.get_mut(addr) {
-            let data = 0;
+            let mut data = 0;
+            if self.phone_state.state == CallState::Incoming {
+                data |= UHID_INPUT_DROP;
+            }
             info!("[{}]: UHID: Send hangup call hid report {}", DisplayAddress(&addr), data);
             match uhid.handle.send_input(data) {
                 Err(e) => log::error!(
