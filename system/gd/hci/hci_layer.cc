@@ -66,7 +66,7 @@ static void fail_if_reset_complete_not_success(CommandCompleteView complete) {
 
 static void abort_after_time_out(OpCode op_code) {
   bluetooth::os::LogMetricHciTimeoutEvent(static_cast<uint32_t>(op_code));
-  ASSERT_LOG(false, "Done waiting for debug information after HCI timeout (%s)", OpCodeText(op_code).c_str());
+  log::fatal("Done waiting for debug information after HCI timeout ({})", OpCodeText(op_code));
 }
 
 class CommandQueueEntry {
@@ -363,7 +363,7 @@ struct HciLayer::impl {
   }
 
   static void abort_after_root_inflammation(uint8_t vse_error) {
-    ASSERT_LOG(false, "Root inflammation with reason 0x%02hhx", vse_error);
+    log::fatal("Root inflammation with reason 0x{:02x}", vse_error);
   }
 
   void handle_root_inflammation(uint8_t vse_error_reason) {
@@ -647,7 +647,7 @@ void HciLayer::RegisterForDisconnects(ContextualCallback<void(uint16_t, ErrorCod
 
 void HciLayer::on_read_remote_version_complete(EventView event_view) {
   auto view = ReadRemoteVersionInformationCompleteView::Create(event_view);
-  ASSERT_LOG(view.IsValid(), "Read remote version information packet invalid");
+  log::assert_that(view.IsValid(), "Read remote version information packet invalid");
   ReadRemoteVersion(
       view.GetStatus(),
       view.GetConnectionHandle(),

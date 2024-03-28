@@ -184,8 +184,8 @@ void ConfigCache::SetProperty(std::string section, std::string property, std::st
   TrimAfterNewLine(section);
   TrimAfterNewLine(property);
   TrimAfterNewLine(value);
-  ASSERT_LOG(!section.empty(), "Empty section name not allowed");
-  ASSERT_LOG(!property.empty(), "Empty property name not allowed");
+  log::assert_that(!section.empty(), "Empty section name not allowed");
+  log::assert_that(!property.empty(), "Empty property name not allowed");
   if (!IsDeviceSection(section)) {
     auto section_iter = information_sections_.find(section);
     if (section_iter == information_sections_.end()) {

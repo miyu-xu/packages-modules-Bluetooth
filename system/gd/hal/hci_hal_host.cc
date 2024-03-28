@@ -438,7 +438,9 @@ class HciHalHost : public HciHal {
           "malformed ACL length received: %d != %d",
           payload_size,
           hci_acl_data_total_length);
-      ASSERT_LOG(hci_acl_data_total_length <= kBufSize - kH4HeaderSize - kHciAclHeaderSize, "packet too long");
+      log::assert_that(
+          hci_acl_data_total_length <= kBufSize - kH4HeaderSize - kHciAclHeaderSize,
+          "packet too long");
 
       HciPacket receivedHciPacket;
       receivedHciPacket.assign(

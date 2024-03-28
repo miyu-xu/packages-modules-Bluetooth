@@ -46,7 +46,7 @@ constexpr char _main[7 + 1] = "  MAIN ";
 
 #define LOG_CONSOLE(fmt, args...)                                              \
   do {                                                                         \
-    ASSERT_LOG(console_fd != -1, "Console output fd has not been set");        \
+    log::assert_that(console_fd != -1, "Console output fd has not been set");  \
     /* Also log to Android logging via INFO level */                           \
     ALOGI("%s:%d %s: " fmt, __FILE__, __LINE__, __func__, ##args);             \
     auto _now = std::chrono::system_clock::now();                              \

@@ -498,9 +498,9 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
       return;
     }
 
-    ASSERT_LOG(group->cig.GetState() == CigState::CREATING,
-               "Unexpected CIG creation group id: %d, cig state: %s",
-               group->group_id_, ToString(group->cig.GetState()).c_str());
+    log::assert_that(group->cig.GetState() == CigState::CREATING,
+                     "Unexpected CIG creation group id: {}, cig state: {}",
+                     group->group_id_, ToString(group->cig.GetState()));
 
     group->cig.SetState(CigState::CREATED);
     log::info("Group: {}, id: {} cig state: {}, number of cis handles: {}",
@@ -577,9 +577,9 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
       return;
     }
 
-    ASSERT_LOG(group->cig.GetState() == CigState::REMOVING,
-               "Unexpected CIG remove group id: %d, cig state %s",
-               group->group_id_, ToString(group->cig.GetState()).c_str());
+    log::assert_that(group->cig.GetState() == CigState::REMOVING,
+                     "Unexpected CIG remove group id: {}, cig state {}",
+                     group->group_id_, ToString(group->cig.GetState()));
 
     group->cig.SetState(CigState::NONE);
 
@@ -1051,11 +1051,11 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
      * to streaming state.
      */
     struct ase* ase = leAudioDevice->GetFirstActiveAse();
-    ASSERT_LOG(ase != nullptr,
-               "shouldn't be called without an active ASE, device %s, group "
-               "id: %d, cis handle 0x%04x",
-               ADDRESS_TO_LOGGABLE_CSTR(leAudioDevice->address_), event->cig_id,
-               event->cis_conn_hdl);
+    log::assert_that(ase != nullptr,
+                     "shouldn't be called without an active ASE, device {}, "
+                     "group id: {}, cis handle 0x{:04x}",
+                     ADDRESS_TO_LOGGABLE_CSTR(leAudioDevice->address_),
+                     event->cig_id, event->cis_conn_hdl);
 
     PrepareAndSendReceiverStartReady(leAudioDevice, ase);
   }
@@ -1342,8 +1342,8 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
     auto iter = std::find_if(
         params.stream_locations.begin(), params.stream_locations.end(),
         [cis_conn_hdl](auto& pair) { return cis_conn_hdl == pair.first; });
-    ASSERT_LOG(iter == params.stream_locations.end(),
-               "Stream is already there 0x%04x", cis_conn_hdl);
+    log::assert_that(iter == params.stream_locations.end(),
+                     "Stream is already there 0x{:04x}", cis_conn_hdl);
 
     auto core_config = ase->codec_config.GetAsCoreCodecConfig();
 
@@ -1391,9 +1391,10 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
     if (params.frame_duration_us == 0) {
       params.frame_duration_us = core_config.GetFrameDurationUs();
     } else {
-      ASSERT_LOG(params.frame_duration_us == core_config.GetFrameDurationUs(),
-                 "frame_duration_us: %d!=%d", params.frame_duration_us,
-                 core_config.GetFrameDurationUs());
+      log::assert_that(
+          params.frame_duration_us == core_config.GetFrameDurationUs(),
+          "frame_duration_us: {}!={}", params.frame_duration_us,
+          core_config.GetFrameDurationUs());
     }
 
     log::info(
@@ -1900,7 +1901,7 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
     msg_stream << kLogAseConfigOp;
 
     ase = leAudioDevice->GetFirstActiveAse();
-    ASSERT_LOG(ase, "shouldn't be called without an active ASE");
+    log::assert_that(ase, "shouldn't be called without an active ASE");
     for (; ase != nullptr; ase = leAudioDevice->GetNextActiveAse(ase)) {
       log::debug("device: {}, ase_id: {}, cis_id: {}, ase state: {}",
                  ADDRESS_TO_LOGGABLE_CSTR(leAudioDevice->address_), ase->id,
@@ -2814,9 +2815,10 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
            * to streaming state.
            */
           struct ase* ase = leAudioDevice->GetFirstActiveAse();
-          ASSERT_LOG(ase != nullptr,
-                     "shouldn't be called without an active ASE, device %s",
-                     leAudioDevice->address_.ToString().c_str());
+          log::assert_that(
+              ase != nullptr,
+              "shouldn't be called without an active ASE, device {}",
+              leAudioDevice->address_.ToString());
           PrepareAndSendReceiverStartReady(leAudioDevice, ase);
 
           return;

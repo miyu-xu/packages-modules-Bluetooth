@@ -381,12 +381,13 @@ static void btm_route_sco_data(bluetooth::hci::ScoView valid_packet) {
         read = bluetooth::audio::sco::read(
             (uint8_t*)btm_pcm_buf + btm_pcm_buf_write_offset, to_read);
         if (read != to_read) {
-          ASSERT_LOG(btm_pcm_buf_write_offset + read <= BTM_SCO_DATA_SIZE_MAX,
-                     "Read more %s data (%lu) than available buffer (%lu) "
-                     "guarded by read",
-                     codec.c_str(), (unsigned long)read,
-                     (unsigned long)(BTM_SCO_DATA_SIZE_MAX -
-                                     btm_pcm_buf_write_offset));
+          log::assert_that(
+              btm_pcm_buf_write_offset + read <= BTM_SCO_DATA_SIZE_MAX,
+              "Read more {} data ({}) than available buffer ({}) guarded by "
+              "read",
+              codec, (unsigned long)read,
+              (unsigned long)(BTM_SCO_DATA_SIZE_MAX -
+                              btm_pcm_buf_write_offset));
 
           log::info(
               "Requested to read {} bytes of {} data but got {} bytes of PCM "
@@ -481,13 +482,14 @@ void btm_send_sco_packet(std::vector<uint8_t> data) {
   if (active_sco == nullptr || data.empty()) {
     return;
   }
-  ASSERT_LOG(data.size() <= BTM_SCO_DATA_SIZE_MAX, "Invalid SCO data size: %lu",
-             (unsigned long)data.size());
+  log::assert_that(data.size() <= BTM_SCO_DATA_SIZE_MAX,
+                   "Invalid SCO data size: {}", (unsigned long)data.size());
 
   uint16_t handle_with_flags = active_sco->hci_handle;
   uint16_t handle = HCID_GET_HANDLE(handle_with_flags);
-  ASSERT_LOG(handle <= HCI_HANDLE_MAX, "Require handle <= 0x%X, but is 0x%X",
-             HCI_HANDLE_MAX, handle);
+  log::assert_that(handle <= HCI_HANDLE_MAX,
+                   "Require handle <= 0x{:X}, but is 0x{:X}", HCI_HANDLE_MAX,
+                   handle);
 
   auto sco_packet = bluetooth::hci::ScoBuilder::Create(
       handle, bluetooth::hci::PacketStatusFlag::CORRECTLY_RECEIVED,
@@ -1364,7 +1366,7 @@ const RawAddress* BTM_ReadScoBdAddr(uint16_t sco_inx) {
  *
  ******************************************************************************/
 tBTM_STATUS BTM_SetEScoMode(enh_esco_params_t* p_parms) {
-  ASSERT_LOG(p_parms != nullptr, "eSCO parameters must have a value");
+  log::assert_that(p_parms != nullptr, "eSCO parameters must have a value");
   enh_esco_params_t* p_def = &btm_cb.sco_cb.def_esco_parms;
 
   if (btm_cb.sco_cb.esco_supported) {

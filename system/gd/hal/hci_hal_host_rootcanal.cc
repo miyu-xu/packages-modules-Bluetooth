@@ -261,7 +261,7 @@ class HciHalHost : public HciHal {
 
     ssize_t received_size;
     RUN_NO_INTR(received_size = recv(sock_fd_, buf, kH4HeaderSize, 0));
-    ASSERT_LOG(received_size != -1, "Can't receive from socket: %s", strerror(errno));
+    log::assert_that(received_size != -1, "Can't receive from socket: {}", strerror(errno));
     if (received_size == 0) {
       log::warn("Can't read H4 header. EOF received");
       raise(SIGINT);

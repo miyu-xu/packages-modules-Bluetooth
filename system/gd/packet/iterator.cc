@@ -144,7 +144,7 @@ uint8_t Iterator<little_endian>::operator*() const {
     }
     index -= view.size();
   }
-  ASSERT_LOG(false, "Out of fragments searching for index %zu", index_);
+  log::fatal("Out of fragments searching for index {}", index_);
   return 0;
 }
 

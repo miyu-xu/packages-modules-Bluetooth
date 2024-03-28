@@ -725,8 +725,9 @@ uint8_t LeAudioDevice::GetSupportedAudioChannelCounts(uint8_t direction) const {
                   bluetooth::common::ToString(pac.codec_id));
         continue;
       }
-      ASSERT_LOG(!pac.codec_spec_caps.IsEmpty(),
-                 "Codec specific capabilities are not parsed approprietly.");
+      log::assert_that(
+          !pac.codec_spec_caps.IsEmpty(),
+          "Codec specific capabilities are not parsed approprietly.");
 
       auto supported_channel_count_ltv = pac.codec_spec_caps.Find(
           codec_spec_caps::kLeAudioLtvTypeSupportedAudioChannelCounts);

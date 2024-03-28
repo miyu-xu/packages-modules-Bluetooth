@@ -224,7 +224,8 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       if (callbacks != nullptr)
         execute(callbacks);
       else
-        ASSERT_LOG(!crash_on_unknown_handle_, "Received command for unknown handle:0x%x", handle);
+        log::assert_that(
+            !crash_on_unknown_handle_, "Received command for unknown handle:0x{:x}", handle);
       if (remove_afterwards) remove(handle);
     }
     bool send_packet_upward(uint16_t handle, std::function<void(struct acl_manager::assembler* assembler)> cb) {
@@ -316,7 +317,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
 
   // connection canceled by LeAddressManager.OnPause(), will auto reconnect by LeAddressManager.OnResume()
   void on_le_connection_canceled_on_pause() {
-    ASSERT_LOG(pause_connection, "Connection must be paused to ack the le address manager");
+    log::assert_that(pause_connection, "Connection must be paused to ack the le address manager");
     arm_on_resume_ = true;
     connectability_state_ = ConnectabilityState::DISARMED;
     le_address_manager_->AckPause(this);
@@ -1041,7 +1042,8 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
           auto complete_view = LeSetDefaultSubrateCompleteView::Create(complete);
           ASSERT(complete_view.IsValid());
           ErrorCode status = complete_view.GetStatus();
-          ASSERT_LOG(status == ErrorCode::SUCCESS, "Status 0x%02hhx, %s", status, ErrorCodeText(status).c_str());
+          log::assert_that(
+              status == ErrorCode::SUCCESS, "Status 0x{:02x}, {}", status, ErrorCodeText(status));
         }));
   }
 
@@ -1088,7 +1090,9 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void handle_unregister_le_callbacks(LeConnectionCallbacks* callbacks, std::promise<void> promise) {
-    ASSERT_LOG(le_client_callbacks_ == callbacks, "Registered le callback entity is different then unregister request");
+    log::assert_that(
+        le_client_callbacks_ == callbacks,
+        "Registered le callback entity is different then unregister request");
     le_client_callbacks_ = nullptr;
     le_client_handler_ = nullptr;
     promise.set_value();

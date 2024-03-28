@@ -38,7 +38,7 @@ using common::Closure;
 using common::OnceClosure;
 
 Alarm::Alarm(Handler* handler) : handler_(handler), fd_(TIMERFD_CREATE(ALARM_CLOCK, 0)) {
-  ASSERT_LOG(fd_ != -1, "cannot create timerfd: %s", strerror(errno));
+  log::assert_that(fd_ != -1, "cannot create timerfd: {}", strerror(errno));
 
   token_ = handler_->thread_->GetReactor()->Register(
       fd_, common::Bind(&Alarm::on_fire, common::Unretained(this)), Closure());
