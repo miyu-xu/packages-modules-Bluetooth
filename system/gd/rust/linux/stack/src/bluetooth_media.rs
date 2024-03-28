@@ -1075,7 +1075,6 @@ impl BluetoothMedia {
                 if success {
                     // Success means the call state has changed. Inform libbluetooth.
                     self.phone_state_change("".into());
-                    self.uhid_send_input_report(&addr);
                 } else {
                     warn!(
                         "[{}]: Unexpected or unsupported CHLD command {:?} from HF",
