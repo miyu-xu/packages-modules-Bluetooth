@@ -44,11 +44,11 @@ struct VendorSpecificEventManager::impl {
   void stop() {}
 
   void register_event(VseSubeventCode event, common::ContextualCallback<void(VendorSpecificEventView)> handler) {
-    ASSERT_LOG(
+    log::assert_that(
         subevent_handlers_.count(event) == 0,
-        "Can not register a second handler for %02hhx (%s)",
+        "Can not register a second handler for {:02x} ({})",
         event,
-        VseSubeventCodeText(event).c_str());
+        VseSubeventCodeText(event));
     subevent_handlers_[event] = handler;
   }
 
