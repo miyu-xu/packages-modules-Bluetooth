@@ -849,12 +849,12 @@ impl BluetoothMedia {
                 if let Some(uhid) = self.uhid.get_mut(&addr) {
                     if volume == 0 && !uhid.muted {
                         uhid.muted = true;
-                        self.uhid_send_input_report(&addr);
+                        self.uhid_send_input_report_base_on_call_state(&addr);
                     } else if volume > 0 {
                         uhid.volume = volume;
                         if uhid.muted {
                             uhid.muted = false;
-                            self.uhid_send_input_report(&addr);
+                            self.uhid_send_input_report_base_on_call_state(&addr);
                         }
                     }
                 }
@@ -1000,34 +1000,27 @@ impl BluetoothMedia {
                 };
             }
             HfpCallbacks::AnswerCall(addr) => {
-                if !self.answer_call_impl() {
-                    warn!("[{}]: answer_call triggered by ATA failed", DisplayAddress(&addr));
-                    return;
-                }
-                self.phone_state_change("".into());
-
                 if self.mps_qualification_enabled {
+                    if !self.answer_call_impl() {
+                        warn!("[{}]: answer_call triggered by ATA failed", DisplayAddress(&addr));
+                        return;
+                    }
+                    self.phone_state_change("".into());
                     debug!("[{}]: Start SCO call due to ATA", DisplayAddress(&addr));
                     self.start_sco_call_impl(addr.to_string(), false, HfpCodecBitId::NONE);
                 }
-                self.uhid_send_input_report(&addr);
+                self.uhid_send_answer_call_report(&addr);
             }
             HfpCallbacks::HangupCall(addr) => {
-                if self.should_insert_call_when_sco_start(addr) {
-                    // The devices requiring a +CIEV event are not managed through the telephony commands.
-                    // This allows to prevent to stop the SCO link as there is no command to set it up again.
-                    debug!(
-                        "[{}]: AT+CHUP skipped due to interop workaround",
-                        DisplayAddress(&addr)
-                    );
-                    return;
+                if self.mps_qualification_enabled {
+                    if !self.hangup_call_impl() {
+                        warn!("[{}]: hangup_call triggered by AT+CHUP failed", DisplayAddress(&addr));
+                        return;
+                    }
+                    self.phone_state_change("".into());
                 }
-                if !self.hangup_call_impl() {
-                    warn!("[{}]: hangup_call triggered by AT+CHUP failed", DisplayAddress(&addr));
-                    return;
-                }
-                self.phone_state_change("".into());
-                self.uhid_send_input_report(&addr);
+
+                self.uhid_send_hangup_call_report(&addr);
 
                 // Try resume the A2DP stream (per MPS v1.0) on rejecting an incoming call or an
                 // outgoing call is rejected.
@@ -1209,7 +1202,49 @@ impl BluetoothMedia {
         }
     }
 
-    fn uhid_send_input_report(&mut self, addr: &RawAddress) {
+    fn uhid_send_answer_call_report(&mut self, addr: &RawAddress) {
+        if !self.phone_ops_enabled {
+            return;
+        }
+        if let Some(uhid) = self.uhid.get_mut(addr) {
+            let mut data = 0;
+            data |= UHID_INPUT_HOOK_SWITCH;
+            if uhid.muted {
+                data |= UHID_INPUT_PHONE_MUTE;
+            }
+            info!("[{}]: UHID: Send answer call hid report: {}", DisplayAddress(&addr), data);
+            match uhid.handle.send_input(data) {
+                Err(e) => log::error!(
+                    "[{}]: UHID: Fail to answer call hid report ({}) to uhid: {}",
+                    DisplayAddress(&addr),
+                    data,
+                    e
+                ),
+                Ok(_) => (),
+            };
+        };
+    }
+
+    fn uhid_send_hangup_call_report(&mut self, addr: &RawAddress) {
+        if !self.phone_ops_enabled {
+            return;
+        }
+        if let Some(uhid) = self.uhid.get_mut(addr) {
+            let data = 0;
+            info!("[{}]: UHID: Send hangup call hid report {}", DisplayAddress(&addr), data);
+            match uhid.handle.send_input(data) {
+                Err(e) => log::error!(
+                    "[{}]: UHID: Fail to send hangup call hid report ({}) to uhid: {}",
+                    DisplayAddress(&addr),
+                    data,
+                    e
+                ),
+                Ok(_) => (),
+            };
+        };
+    }
+
+    fn uhid_send_input_report_base_on_call_state(&mut self, addr: &RawAddress) {
         // To change the value of phone_ops_enabled, you need to toggle the BluetoothFlossTelephony feature flag on chrome://flags.
         if !self.phone_ops_enabled {
             return;
@@ -1278,7 +1313,7 @@ impl BluetoothMedia {
             } else if call_state == UHID_OUTPUT_OFF_HOOK {
                 self.dialing_call("".into());
                 self.answer_call();
-                self.uhid_send_input_report(&addr);
+                self.uhid_send_input_report_base_on_call_state(&addr);
             }
         }
     }
