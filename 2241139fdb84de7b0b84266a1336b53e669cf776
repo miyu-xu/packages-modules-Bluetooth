@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9b562b8_87477ab1",
+        "filename": "system/main/shim/distance_measurement_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-28T21:31:51Z",
+      "side": 1,
+      "message": "Can this be done in this CL or is something blocking or large effort/other reason?",
+      "range": {
+        "startLine": 119,
+        "startChar": 4,
+        "endLine": 119,
+        "endChar": 29
+      },
+      "revId": "2241139fdb84de7b0b84266a1336b53e669cf776",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
