@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da29ae59_83ce4a88",
+        "filename": "system/gd/common/contextual_callback.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-28T15:06:03Z",
+      "side": 1,
+      "message": "This will be a null-pointer error if we execute twice.  I think I prefer the Callback error.",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 23
+      },
+      "revId": "4771cd563a4608cc42441e8d96fa61cfa5070025",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
