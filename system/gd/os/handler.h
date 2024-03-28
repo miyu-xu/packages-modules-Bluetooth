@@ -68,6 +68,8 @@ class Handler : public common::PostableContext {
 
   friend class RepeatingAlarm;
 
+  friend class NonwakeAlarm;
+
  private:
   inline bool was_cleared() const {
     return tasks_ == nullptr;
