@@ -23,8 +23,8 @@ use bt_topshim::{metrics, topstack};
 use bt_utils::at_command_parser::{calculate_battery_percent, parse_at_command_data};
 use bt_utils::uhid_hfp::{
     OutputEvent, UHidHfp, BLUETOOTH_TELEPHONY_UHID_REPORT_ID, UHID_INPUT_HOOK_SWITCH,
-    UHID_INPUT_PHONE_MUTE, UHID_OUTPUT_MUTE, UHID_OUTPUT_NONE, UHID_OUTPUT_OFF_HOOK,
-    UHID_OUTPUT_RING,
+    UHID_INPUT_NONE, UHID_INPUT_PHONE_MUTE, UHID_OUTPUT_MUTE, UHID_OUTPUT_NONE,
+    UHID_OUTPUT_OFF_HOOK, UHID_OUTPUT_RING,
 };
 use bt_utils::uinput::UInput;
 
@@ -849,12 +849,12 @@ impl BluetoothMedia {
                 if let Some(uhid) = self.uhid.get_mut(&addr) {
                     if volume == 0 && !uhid.muted {
                         uhid.muted = true;
-                        self.uhid_send_input_report(&addr);
+                        self.uhid_send_phone_mute_input_report(&addr, true);
                     } else if volume > 0 {
                         uhid.volume = volume;
                         if uhid.muted {
                             uhid.muted = false;
-                            self.uhid_send_input_report(&addr);
+                            self.uhid_send_phone_mute_input_report(&addr, false);
                         }
                     }
                 }
@@ -1000,26 +1000,39 @@ impl BluetoothMedia {
                 };
             }
             HfpCallbacks::AnswerCall(addr) => {
+                // If the qualification mode is disabled, we don't need to
+                // update the call state when the hands-free device sends an
+                // answer call event.
+                // Instead, we rely on the application to send a UHID output
+                // report in the dispatch_uhid_hfp_output_callback function to
+                // change the call state after the application receive input
+                // report.
+                self.uhid_send_hook_switch_input_report(&addr, true);
+                // Change the call status using the D-Bus command interface
+                // during mps qualification
+                if !self.mps_qualification_enabled {
+                    return;
+                }
                 if !self.answer_call_impl() {
                     warn!("[{}]: answer_call triggered by ATA failed", DisplayAddress(&addr));
                     return;
                 }
                 self.phone_state_change("".into());
-
-                if self.mps_qualification_enabled {
-                    debug!("[{}]: Start SCO call due to ATA", DisplayAddress(&addr));
-                    self.start_sco_call_impl(addr.to_string(), false, HfpCodecBitId::NONE);
-                }
-                self.uhid_send_input_report(&addr);
+                debug!("[{}]: Start SCO call due to ATA", DisplayAddress(&addr));
+                self.start_sco_call_impl(addr.to_string(), false, HfpCodecBitId::NONE);
             }
             HfpCallbacks::HangupCall(addr) => {
-                if self.should_insert_call_when_sco_start(addr) {
-                    // The devices requiring a +CIEV event are not managed through the telephony commands.
-                    // This allows to prevent to stop the SCO link as there is no command to set it up again.
-                    debug!(
-                        "[{}]: AT+CHUP skipped due to interop workaround",
-                        DisplayAddress(&addr)
-                    );
+                // If the qualification mode is disabled, we don't need to
+                // update the call state when the hands-free device sends an
+                // hangup call event.
+                // Instead, we rely on the application to send a UHID output
+                // report in the dispatch_uhid_hfp_output_callback function to
+                // change the call state after the application receive input
+                // report.
+                self.uhid_send_hook_switch_input_report(&addr, false);
+                // Change the call status using the D-Bus command interface
+                // during mps qualification
+                if !self.mps_qualification_enabled {
                     return;
                 }
                 if !self.hangup_call_impl() {
@@ -1027,7 +1040,6 @@ impl BluetoothMedia {
                     return;
                 }
                 self.phone_state_change("".into());
-                self.uhid_send_input_report(&addr);
 
                 // Try resume the A2DP stream (per MPS v1.0) on rejecting an incoming call or an
                 // outgoing call is rejected.
@@ -1036,6 +1048,10 @@ impl BluetoothMedia {
                 self.try_a2dp_resume();
             }
             HfpCallbacks::DialCall(number, addr) => {
+                if !self.mps_qualification_enabled {
+                    self.simple_at_response(false, addr);
+                    return;
+                }
                 let number = if number == "" {
                     self.last_dialing_number.clone()
                 } else if number.starts_with(">") {
@@ -1213,25 +1229,63 @@ impl BluetoothMedia {
         }
     }
 
-    fn uhid_send_input_report(&mut self, addr: &RawAddress) {
-        // To change the value of phone_ops_enabled, you need to toggle the BluetoothFlossTelephony feature flag on chrome://flags.
+    fn uhid_send_hook_switch_input_report(&mut self, addr: &RawAddress, hook: bool) {
         if !self.phone_ops_enabled {
             return;
         }
         if let Some(uhid) = self.uhid.get_mut(addr) {
-            let mut data = 0;
-            if self.phone_state.num_active > 0 {
+            let mut data = UHID_INPUT_NONE;
+            if hook {
                 data |= UHID_INPUT_HOOK_SWITCH;
             }
+            // Preserve the muted state when sending the hook switch event.
             if uhid.muted {
                 data |= UHID_INPUT_PHONE_MUTE;
             }
-            debug!("[{}]: UHID: Send input report: {}", DisplayAddress(&addr), data);
+            info!(
+                "[{}]: UHID: Send hook-switch({}) hid input report. phone_mute({})",
+                DisplayAddress(&addr),
+                hook,
+                uhid.muted
+            );
             match uhid.handle.send_input(data) {
                 Err(e) => log::error!(
-                    "[{}]: UHID: Fail to send Input Report ({}) to uhid: {}",
+                    "[{}]: UHID: Fail to send hook-switch({}) hid input report. phone_mute({}) err:{}",
                     DisplayAddress(&addr),
-                    data,
+                    hook,
+                    uhid.muted,
+                    e
+                ),
+                Ok(_) => (),
+            };
+        };
+    }
+    fn uhid_send_phone_mute_input_report(&mut self, addr: &RawAddress, muted: bool) {
+        if !self.phone_ops_enabled {
+            return;
+        }
+        if let Some(uhid) = self.uhid.get_mut(addr) {
+            let mut data = UHID_INPUT_NONE;
+            // Preserve the hook switch state when sending the microphone mute event.
+            let call_active = self.phone_state.num_active > 0;
+            if call_active {
+                data |= UHID_INPUT_HOOK_SWITCH;
+            }
+            if muted {
+                data |= UHID_INPUT_PHONE_MUTE;
+            }
+            info!(
+                "[{}]: UHID: Send phone_mute({}) hid input report. hook-switch({})",
+                DisplayAddress(&addr),
+                muted,
+                call_active
+            );
+            match uhid.handle.send_input(data) {
+                Err(e) => log::error!(
+                    "[{}]: UHID: Fail to send phone_mute({}) hid input report. hook-switch({}) err:{}",
+                    DisplayAddress(&addr),
+                    muted,
+                    call_active,
                     e
                 ),
                 Ok(_) => (),
@@ -1282,7 +1336,7 @@ impl BluetoothMedia {
             } else if call_state == UHID_OUTPUT_OFF_HOOK {
                 self.dialing_call("".into());
                 self.answer_call();
-                self.uhid_send_input_report(&addr);
+                self.uhid_send_hook_switch_input_report(&addr, true);
             }
         }
     }
