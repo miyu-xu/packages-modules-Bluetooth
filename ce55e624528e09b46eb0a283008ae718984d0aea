@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6efd736b_bb4caf1b",
+        "filename": "system/bta/ag/bta_ag_at.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-28T15:03:27Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "abee9380_64090dad",
+      "range": {
+        "startLine": 157,
+        "startChar": 19,
+        "endLine": 157,
+        "endChar": 23
+      },
+      "revId": "ce55e624528e09b46eb0a283008ae718984d0aea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b25c4b86_7e5ee1f8",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "An edge case could be: The peer sends an integer \u003e int32 max. In that case we should respond ERROR, but with your approach this we may succeed silently. This also applies to an integer \u003c int32 min.",
       "parentUuid": "b25c4b86_7e5ee1f8",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 11
+      },
+      "revId": "ce55e624528e09b46eb0a283008ae718984d0aea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7d6ab68_d87315cd",
+        "filename": "system/bta/ag/bta_ag_at.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-28T15:03:27Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f2ef6480_a18282e4",
       "range": {
         "startLine": 152,
         "startChar": 0,
