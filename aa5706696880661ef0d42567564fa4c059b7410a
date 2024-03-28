@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2cd3ef2_d9529267",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 668,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-28T18:41:27Z",
+      "side": 1,
+      "message": "```suggestion\n          bd_name_from_char_pointer(bd_name, bta_dm_get_remname());\n```",
+      "range": {
+        "startLine": 668,
+        "startChar": 0,
+        "endLine": 668,
+        "endChar": 73
+      },
+      "revId": "aa5706696880661ef0d42567564fa4c059b7410a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "419b3bb7_0b03daa0",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 908,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-28T18:41:27Z",
+      "side": 1,
+      "message": "```suggestion\n      bd_name_from_char_pointer(bd_name, bta_dm_get_remname());\n```",
+      "range": {
+        "startLine": 908,
+        "startChar": 6,
+        "endLine": 908,
+        "endChar": 69
+      },
+      "revId": "aa5706696880661ef0d42567564fa4c059b7410a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
