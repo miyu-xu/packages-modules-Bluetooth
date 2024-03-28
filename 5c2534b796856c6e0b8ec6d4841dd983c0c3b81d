@@ -214,6 +214,30 @@
       },
       "revId": "5c2534b796856c6e0b8ec6d4841dd983c0c3b81d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6ab6904_002626e7",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-03-28T19:14:17Z",
+      "side": 0,
+      "message": "From a Bluetooth point of view, theoretically the delay shouldn\u0027t matter much here, you can make the peer wait before answering.\n\nIn practice, the peer could have a timeout, but IMO it should already be high enough and I don\u0027t think we would trigger it here, because timeouts are usually oversized to take into account retransmissions/slow devices.\n\nBy taking more time to answer the peer, it will take more time to show the information to the user\u0027s peripheral (e.g. the car), but I think this is acceptable.\n\nAlso I would expect that browsing the applications at connection or when the peer do media browsing should be faster than at post boot because there should be less contention but I may be wrong, wdyt @shayba@google.com ?\n\nBut unfortunately, if I\u0027m correctly reading our current implementation the JNI callback is synchronous https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/jni/com_android_bluetooth_avrcp_target.cpp;l\u003d633;drc\u003d82bdcd7ff7ba4962274f1d88caac0594ae964bef.\nSo this would require a bit of changes to make that operation asynchronous.\n\nBut fortunately, the `MediaInterface` seems to give a callback already, so maybe there is a way to make it asynchronous by only changing the JNI https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/jni/com_android_bluetooth_avrcp_target.cpp;l\u003d132-136;drc\u003d82bdcd7ff7ba4962274f1d88caac0594ae964bef.",
+      "parentUuid": "929db2d6_7e2fb172",
+      "range": {
+        "startLine": 205,
+        "startChar": 12,
+        "endLine": 205,
+        "endChar": 38
+      },
+      "revId": "5c2534b796856c6e0b8ec6d4841dd983c0c3b81d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
