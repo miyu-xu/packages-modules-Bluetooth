@@ -2125,9 +2125,9 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
         }};
         const bt_status_t status = btif_storage_set_remote_device_property(
             &disc_res.bd_addr, properties);
-        ASSERT_LOG(status == BT_STATUS_SUCCESS,
-                   "Failed to save remote device property status:%s",
-                   bt_status_text(status).c_str());
+        log::assert_that(status == BT_STATUS_SUCCESS,
+                         "Failed to save remote device property status:{}",
+                         bt_status_text(status));
         const size_t num_props = sizeof(properties) / sizeof(bt_property_t);
         GetInterfaceToProfiles()->events->invoke_remote_device_properties_cb(
             status, disc_res.bd_addr, (int)num_props, properties);
