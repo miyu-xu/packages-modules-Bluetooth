@@ -52,14 +52,14 @@ uint8_t PacketView<little_endian>::operator[](size_t index) const {
 
 template <bool little_endian>
 uint8_t PacketView<little_endian>::at(size_t index) const {
-  ASSERT_LOG(index < length_, "Index %zu out of bounds", index);
+  log::assert_that(index < length_, "Index {} out of bounds", index);
   for (const auto& fragment : fragments_) {
     if (index < fragment.size()) {
       return fragment[index];
     }
     index -= fragment.size();
   }
-  ASSERT_LOG(false, "Out of fragments searching for index %zu", index);
+  log::fatal("Out of fragments searching for index {}", index);
   return 0;
 }
 

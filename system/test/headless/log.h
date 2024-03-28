@@ -37,12 +37,13 @@ constexpr char _main[7 + 1] = "  MAIN ";
 
 #define STR(obj) (obj).ToString().c_str()
 
-#define ASSERT_LOG(condition, fmt, args...)                                 \
-  do {                                                                      \
+#define log                                                                 \
+  ::assert_that(condition, fmt, args...) do {                               \
     if (!(condition)) {                                                     \
       LOG_ALWAYS_FATAL("assertion '" #condition "' failed - " fmt, ##args); \
     }                                                                       \
-  } while (false)
+  }                                                                         \
+  while (false)
 
 #define LOG_CONSOLE(fmt, args...)                                              \
   do {                                                                         \

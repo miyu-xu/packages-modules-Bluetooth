@@ -31,7 +31,7 @@ WavReader::WavReader(const char* filename) {
     wavFile_.read((char*)&header_, kWavHeaderSize);
     ReadSamples();
   } else {
-    ASSERT_LOG(false, "File %s does not exist!", filename);
+    log::fatal("File {} does not exist!", filename);
   }
 }
 
