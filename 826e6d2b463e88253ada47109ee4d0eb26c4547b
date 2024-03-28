@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "388972ec_04c6a86c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3211944
+      },
+      "writtenOn": "2024-03-28T02:46:22Z",
+      "side": 1,
+      "message": "Fixed.",
+      "parentUuid": "9969715c_08458155",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "826e6d2b463e88253ada47109ee4d0eb26c4547b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99127b2a_790b431c",
