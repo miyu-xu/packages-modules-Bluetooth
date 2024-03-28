@@ -24,6 +24,7 @@
 #include "hci/address_with_type.h"
 #include "hci/octets.h"
 #include "os/alarm.h"
+#include "os/nonwake_alarm.h"
 
 namespace bluetooth {
 namespace hci {
@@ -98,6 +99,8 @@ class LeAddressManager {
   void ClearResolvingList();
   void OnCommandComplete(CommandCompleteView view);
   std::chrono::milliseconds GetNextPrivateAddressIntervalMs();
+  std::chrono::milliseconds GetNextMaximumRotationTime();
+  std::chrono::milliseconds GetNextMinimumRotationTime();
 
   // Unsynchronized check for testing purposes
   size_t NumberCachedCommands() const {
@@ -171,6 +174,7 @@ class LeAddressManager {
   AddressWithType cached_address_;
   Address public_address_;
   std::unique_ptr<os::Alarm> address_rotation_alarm_;
+  std::unique_ptr<os::NonwakeAlarm> address_rotation_alarm_non_wake_;
   Octet16 rotation_irk_;
   uint8_t accept_list_size_;
   uint8_t resolving_list_size_;
