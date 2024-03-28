@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c0f578d_67037baf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-28T22:55:02Z",
+      "side": 1,
+      "message": "packages/modules/Bluetooth/system/types/bt_transport.h:23:10: fatal error: \u0027common/macros.h\u0027 file not found",
+      "revId": "dba59c176304568a53bd8365b313b0291270ec47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
