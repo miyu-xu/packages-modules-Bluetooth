@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7798dfc1_89cb8a71",
+        "filename": "system/gd/packet/parser/enum_gen.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-28T14:27:43Z",
+      "side": 1,
+      "message": "The cast to uint8_t here was causing small types to be printed as char.\n\nFIVE(0x0\\x5)\n\nThat could have been confusing with something like:\nUPPER_A(0xA) instead of UPPER_A(0x41) :)",
+      "range": {
+        "startLine": 58,
+        "startChar": 28,
+        "endLine": 58,
+        "endChar": 36
+      },
+      "revId": "7a7c68290bc50c637b147f8cc93c69cedb0c3909",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
