@@ -109,7 +109,7 @@ void LeAddressManager::SetPrivacyPolicyForInitiatorAddress(
         minimum_rotation_time_ = minimum_rotation_time;
         maximum_rotation_time_ = maximum_rotation_time;
       }
-      address_rotation_alarm_ = std::make_unique<os::Alarm>(handler_);
+      address_rotation_alarm_ = std::make_unique<os::NonwakeAlarm>(handler_);
       set_random_address();
       break;
     case AddressPolicy::POLICY_NOT_SET:
@@ -153,7 +153,7 @@ void LeAddressManager::SetPrivacyPolicyForInitiatorAddressForTest(
       rotation_irk_ = rotation_irk;
       minimum_rotation_time_ = minimum_rotation_time;
       maximum_rotation_time_ = maximum_rotation_time;
-      address_rotation_alarm_ = std::make_unique<os::Alarm>(handler_);
+      address_rotation_alarm_ = std::make_unique<os::NonwakeAlarm>(handler_);
       set_random_address();
       break;
     case AddressPolicy::POLICY_NOT_SET:

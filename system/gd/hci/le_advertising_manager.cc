@@ -84,7 +84,7 @@ struct Advertiser {
   bool discoverable = false;
   bool directed = false;
   bool in_use = false;
-  std::unique_ptr<os::Alarm> address_rotation_alarm;
+  std::unique_ptr<os::NonwakeAlarm> address_rotation_alarm;
 };
 
 /**
@@ -355,7 +355,7 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
           advertising_sets_[advertiser_id].max_extended_advertising_events == 0) {
         log::info("Reenable advertising");
         if (was_rotating_address) {
-          advertising_sets_[advertiser_id].address_rotation_alarm = std::make_unique<os::Alarm>(module_handler_);
+          advertising_sets_[advertiser_id].address_rotation_alarm = std::make_unique<os::NonwakeAlarm>(module_handler_);
           advertising_sets_[advertiser_id].address_rotation_alarm->Schedule(
               common::BindOnce(
                   &impl::set_advertising_set_random_address_on_timer, common::Unretained(this), advertiser_id),
@@ -644,7 +644,7 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
       if (advertising_sets_[id].address_type != AdvertiserAddressType::PUBLIC &&
           !leaudio_requested_nrpa) {
         // start timer for random address
-        advertising_sets_[id].address_rotation_alarm = std::make_unique<os::Alarm>(module_handler_);
+        advertising_sets_[id].address_rotation_alarm = std::make_unique<os::NonwakeAlarm>(module_handler_);
         advertising_sets_[id].address_rotation_alarm->Schedule(
             common::BindOnce(
                 &impl::set_advertising_set_random_address_on_timer, common::Unretained(this), id),
