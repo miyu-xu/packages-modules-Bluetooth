@@ -39,6 +39,30 @@
       },
       "revId": "b1d16071b4e93ceabf3bd882fc9aa842d075d549",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "561ac487_7215b448",
+        "filename": "framework/java/android/bluetooth/le/ScanRecord.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 653,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-28T22:45:49Z",
+      "side": 1,
+      "message": "I did see that but I believe we don\u0027t have guava under `framework`.\n\nFor `app` package, I can see it\u0027s defined here:\nhttps://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/Android.bp;l\u003d271\n\nBut under `framework`, I think it\u0027s not available at the moment:\nhttps://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/Android.bp\n\nI\u0027m getting:\n\n```\npackages/modules/Bluetooth/framework/java/android/bluetooth/le/ScanRecord.\njava:33: error: package com.google.common.primitives does not exist\nimport com.google.common.primitives.Bytes;\n```",
+      "parentUuid": "cb0bd3e6_db00c47f",
+      "range": {
+        "startLine": 647,
+        "startChar": 30,
+        "endLine": 653,
+        "endChar": 98
+      },
+      "revId": "b1d16071b4e93ceabf3bd882fc9aa842d075d549",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
