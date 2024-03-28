@@ -166,6 +166,30 @@
       },
       "revId": "5c2534b796856c6e0b8ec6d4841dd983c0c3b81d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96ab3d3b_ec639d02",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 3013946
+      },
+      "writtenOn": "2024-03-28T15:32:35Z",
+      "side": 0,
+      "message": "I spent some time looking into AVRCP target browsing classes and MediaBrowser.\n\nNot only AVRCP spends time binding to MediaBrowserService at boot time, it also spends time retrieving the subfolders of each MediaBrowser. If I understand correctly, this means we never update the subfolders after that: https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/audio_util/BrowsedPlayerWrapper.java;l\u003d239 (I\u0027m pretty sure I\u0027ve seen a bug on that too, where browsable folders were not updated).\nI believe it was made this way because waiting for Media callbacks before responding to an event sent by the remote device might cause issues.\n\nIn the meantime, I\u0027m currently testing to make browsing init happen only when a remote device requests a browsing feature. I\u0027m not sure of the actual time it takes to bind to the players, so this might be a bad idea (especially if the phone has a lot of browsable players), but if it\u0027s not too much that should work. I could also make it happen when a device is connected, but I\u0027m more afraid of the load time there... @wescande@google.com do you have any thoughts on this?",
+      "parentUuid": "762eae62_852284ff",
+      "range": {
+        "startLine": 205,
+        "startChar": 12,
+        "endLine": 205,
+        "endChar": 38
+      },
+      "revId": "5c2534b796856c6e0b8ec6d4841dd983c0c3b81d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
