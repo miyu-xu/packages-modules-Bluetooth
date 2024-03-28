@@ -16,7 +16,7 @@
 
 #include "packet/view.h"
 
-#include "os/log.h"
+#include <cassert>
 
 namespace bluetooth {
 namespace packet {
@@ -33,7 +33,7 @@ View::View(const View& view, size_t begin, size_t end) : data_(view.data_) {
 }
 
 uint8_t View::operator[](size_t i) const {
-  ASSERT_LOG(i + begin_ < end_, "Out of bounds access at %zu", i);
+  assert(i + begin_ < end_);
   return data_->operator[](i + begin_);
 }
 
