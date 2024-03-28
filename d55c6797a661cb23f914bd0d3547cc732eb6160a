@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fa11507_26e2a444",
+        "filename": "system/gd/rust/topshim/src/sysprop.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-03-28T13:29:40Z",
+      "side": 1,
+      "message": "nit: We could use CString for easier conversion, but Vec\u003cu8\u003e works well here for consistency.",
+      "range": {
+        "startLine": 74,
+        "startChar": 22,
+        "endLine": 74,
+        "endChar": 29
+      },
+      "revId": "d55c6797a661cb23f914bd0d3547cc732eb6160a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
