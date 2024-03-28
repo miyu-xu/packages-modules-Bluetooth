@@ -121,9 +121,10 @@ typedef enum : uint8_t {
 } tBTA_PREF_ROLES;
 
 inline tBTA_PREF_ROLES toBTA_PREF_ROLES(uint8_t role) {
-  ASSERT_LOG(role <= BTA_PERIPHERAL_ROLE_ONLY,
-             "Passing illegal preferred role:0x%02x [0x%02x<=>0x%02x]", role,
-             BTA_ANY_ROLE, BTA_PERIPHERAL_ROLE_ONLY);
+  log::assert_that(
+      role <= BTA_PERIPHERAL_ROLE_ONLY,
+      "Passing illegal preferred role:0x{:02x} [0x{:02x}<=>0x{:02x}]", role,
+      BTA_ANY_ROLE, BTA_PERIPHERAL_ROLE_ONLY);
   return static_cast<tBTA_PREF_ROLES>(role);
 }
 
