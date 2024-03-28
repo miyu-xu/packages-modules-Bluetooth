@@ -96,7 +96,7 @@ inline std::string connectability_state_machine_text(const ConnectabilityState& 
     CASE_RETURN_TEXT(ConnectabilityState::ARMED);
     CASE_RETURN_TEXT(ConnectabilityState::DISARMING);
     default:
-      return base::StringPrintf("UNKNOWN[%d]", state);
+      return base::StringPrintf("UNKNOWN[%u]", (unsigned)state);
   }
 }
 
@@ -1045,7 +1045,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
           auto complete_view = LeSetDefaultSubrateCompleteView::Create(complete);
           ASSERT(complete_view.IsValid());
           ErrorCode status = complete_view.GetStatus();
-          ASSERT_LOG(status == ErrorCode::SUCCESS, "Status 0x%02hhx, %s", status, ErrorCodeText(status).c_str());
+          ASSERT_LOG(status == ErrorCode::SUCCESS, "Status:%s", ErrorCodeText(status).c_str());
         }));
   }
 
