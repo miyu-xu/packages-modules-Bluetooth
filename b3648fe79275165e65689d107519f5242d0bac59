@@ -16,6 +16,75 @@
       "message": "Yes removing the void* and providing type safe parameters is a good step",
       "revId": "b3648fe79275165e65689d107519f5242d0bac59",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96cc98a3_3ac977e6",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-28T21:59:53Z",
+      "side": 1,
+      "message": "auto",
+      "range": {
+        "startLine": 766,
+        "startChar": 6,
+        "endLine": 766,
+        "endChar": 34
+      },
+      "revId": "b3648fe79275165e65689d107519f5242d0bac59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c9bda66_9901dea0",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 831,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-28T21:59:53Z",
+      "side": 1,
+      "message": "I prefer auto when the type is already in the std::make_unique:\n```suggestion\n    auto msg \u003d std::make_unique\u003ctBTA_DM_MSG\u003e(tBTA_DM_DISC_RESULT{});\n```",
+      "range": {
+        "startLine": 830,
+        "startChar": 0,
+        "endLine": 831,
+        "endChar": 61
+      },
+      "revId": "b3648fe79275165e65689d107519f5242d0bac59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5abf1ae_b648cce0",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2204,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-28T21:59:53Z",
+      "side": 1,
+      "message": "This isn\u0027t beautiful to me.  It\u0027s possible that I don\u0027t like visitors, just like I don\u0027t like friends.  Is there a different way to express this?",
+      "range": {
+        "startLine": 2200,
+        "startChar": 0,
+        "endLine": 2204,
+        "endChar": 33
+      },
+      "revId": "b3648fe79275165e65689d107519f5242d0bac59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
