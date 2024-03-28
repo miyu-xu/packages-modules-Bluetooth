@@ -46,6 +46,30 @@
       },
       "revId": "2e4b86a926fe405f2845517208e833ced114984f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7adca853_a7d3ed81",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-28T02:54:02Z",
+      "side": 0,
+      "message": "from https://r.android.com/1663665\n\nJack He\nPatchset 3\nApr 05, 2021\nwhy comment this out? just call it in this CL?\n\nMyles Watson\nPatchset 3\nApr 05, 2021\nI ran out of time. It didn\u0027t compile for me.\n\nJack He\nPatchset 3\nApr 05, 2021\nAck\n\nlol, this is why",
+      "parentUuid": "75fd2aef_0aea69bc",
+      "range": {
+        "startLine": 275,
+        "startChar": 4,
+        "endLine": 275,
+        "endChar": 21
+      },
+      "revId": "2e4b86a926fe405f2845517208e833ced114984f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
