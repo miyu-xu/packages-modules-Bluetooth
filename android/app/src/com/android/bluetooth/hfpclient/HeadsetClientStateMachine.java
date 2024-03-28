@@ -37,6 +37,8 @@ import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 import static android.content.pm.PackageManager.FEATURE_WATCH;
 
+import static com.android.modules.utils.build.SdkLevel.isAtLeastU;
+
 import static java.util.Objects.requireNonNull;
 
 import android.bluetooth.BluetoothAdapter;
@@ -1843,6 +1845,10 @@ public class HeadsetClientStateMachine extends StateMachine {
                     routeHfpAudio(true);
                     mAudioFocusRequest = requestAudioFocus();
                     mAudioManager.setHfpVolume(hfVol);
+                    if (isAtLeastU()) {
+                        logD("SCO connected, suspend LE Audio");
+                        mAudioManager.setLeAudioSuspended(true);
+                    }
                     transitionTo(mAudioOn);
                     break;
 
@@ -1851,6 +1857,10 @@ public class HeadsetClientStateMachine extends StateMachine {
                     broadcastAudioState(device, BluetoothHeadsetClient.STATE_AUDIO_CONNECTING,
                             mAudioState);
                     mAudioState = BluetoothHeadsetClient.STATE_AUDIO_CONNECTING;
+                    if (isAtLeastU()) {
+                        logD("SCO connecting, suspend LE Audio");
+                        mAudioManager.setLeAudioSuspended(true);
+                    }
                     break;
 
                 case HeadsetClientHalConstants.AUDIO_STATE_DISCONNECTED:
@@ -1858,6 +1868,10 @@ public class HeadsetClientStateMachine extends StateMachine {
                     broadcastAudioState(device, BluetoothHeadsetClient.STATE_AUDIO_DISCONNECTED,
                             mAudioState);
                     mAudioState = BluetoothHeadsetClient.STATE_AUDIO_DISCONNECTED;
+                    if (isAtLeastU()) {
+                        logD("SCO disconnected, resume LE Audio");
+                        mAudioManager.setLeAudioSuspended(false);
+                    }
                     break;
 
                 default:

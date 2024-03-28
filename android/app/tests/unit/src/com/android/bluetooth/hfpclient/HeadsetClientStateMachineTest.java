@@ -1605,6 +1605,36 @@ public class HeadsetClientStateMachineTest {
         Assert.assertTrue(mHeadsetClientStateMachine.mAudioSWB);
     }
 
+    @Test
+    public void processAudioEvent_onConnecting_shouldSuspendLeAudio() {
+        initToConnectedState();
+
+        mHeadsetClientStateMachine.processAudioEvent(
+                HeadsetClientHalConstants.AUDIO_STATE_CONNECTING, mTestDevice);
+
+        verify(mAudioManager).setLeAudioSuspended(true);
+    }
+
+    @Test
+    public void processAudioEvent_onConnected_shouldSuspendLeAudio() {
+        initToConnectedState();
+
+        mHeadsetClientStateMachine.processAudioEvent(
+                HeadsetClientHalConstants.AUDIO_STATE_CONNECTED, mTestDevice);
+
+        verify(mAudioManager).setLeAudioSuspended(true);
+    }
+
+    @Test
+    public void processAudioEvent_onDisconnected_shouldResumeLeAudio() {
+        initToConnectedState();
+
+        mHeadsetClientStateMachine.processAudioEvent(
+                HeadsetClientHalConstants.AUDIO_STATE_DISCONNECTED, mTestDevice);
+
+        verify(mAudioManager).setLeAudioSuspended(false);
+    }
+
     /**
      * Allow/disallow connection to any device
      *
