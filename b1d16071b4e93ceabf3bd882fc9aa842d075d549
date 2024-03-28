@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b5f2bd7_307e8b80",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-28T19:47:21Z",
+      "side": 1,
+      "message": "Not sure why Presubmits are failing with\n\n```\nerror: package com.android.bluetooth.flags does not exist\nimport com.android.bluetooth.flags.Flags;\n```\n\nIt\u0027s working good on my local. Will investigate.",
+      "revId": "b1d16071b4e93ceabf3bd882fc9aa842d075d549",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
