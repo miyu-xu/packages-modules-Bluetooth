@@ -37,6 +37,8 @@ import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 import static android.content.pm.PackageManager.FEATURE_WATCH;
 
+import static com.android.modules.utils.build.SdkLevel.isAtLeastU;
+
 import static java.util.Objects.requireNonNull;
 
 import android.bluetooth.BluetoothAdapter;
@@ -1824,6 +1826,10 @@ public class HeadsetClientStateMachine extends StateMachine {
                     routeHfpAudio(true);
                     mAudioFocusRequest = requestAudioFocus();
                     mAudioManager.setHfpVolume(hfVol);
+                    if (isAtLeastU()) {
+                        debug("SCO connected, suspend LE Audio");
+                        mAudioManager.setLeAudioSuspended(true);
+                    }
                     transitionTo(mAudioOn);
                     break;
 
@@ -1832,6 +1838,10 @@ public class HeadsetClientStateMachine extends StateMachine {
                     broadcastAudioState(device, BluetoothHeadsetClient.STATE_AUDIO_CONNECTING,
                             mAudioState);
                     mAudioState = BluetoothHeadsetClient.STATE_AUDIO_CONNECTING;
+                    if (isAtLeastU()) {
+                        debug("SCO connecting, suspend LE Audio");
+                        mAudioManager.setLeAudioSuspended(true);
+                    }
                     break;
 
                 case HeadsetClientHalConstants.AUDIO_STATE_DISCONNECTED:
@@ -1839,6 +1849,10 @@ public class HeadsetClientStateMachine extends StateMachine {
                     broadcastAudioState(device, BluetoothHeadsetClient.STATE_AUDIO_DISCONNECTED,
                             mAudioState);
                     mAudioState = BluetoothHeadsetClient.STATE_AUDIO_DISCONNECTED;
+                    if (isAtLeastU()) {
+                        debug("SCO disconnected, resume LE Audio");
+                        mAudioManager.setLeAudioSuspended(false);
+                    }
                     break;
 
                 default:
@@ -1950,6 +1964,10 @@ public class HeadsetClientStateMachine extends StateMachine {
                 case HeadsetClientHalConstants.AUDIO_STATE_DISCONNECTED:
                     removeMessages(DISCONNECT_AUDIO);
                     mAudioState = BluetoothHeadsetClient.STATE_AUDIO_DISCONNECTED;
+                    if (isAtLeastU()) {
+                        debug("SCO disconnected, resume LE Audio");
+                        mAudioManager.setLeAudioSuspended(false);
+                    }
                     // Audio focus may still be held by the entity controlling the actual call
                     // (such as Telecom) and hence this will still keep the call around, there
                     // is not much we can do here since dropping the call without user consent

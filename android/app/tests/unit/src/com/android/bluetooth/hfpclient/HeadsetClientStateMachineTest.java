@@ -1608,6 +1608,63 @@ public class HeadsetClientStateMachineTest {
         Assert.assertTrue(mHeadsetClientStateMachine.mAudioSWB);
     }
 
+    @Test
+    public void testProcessStackEvent_audioConnecting_onConnectedState_shouldSuspendLeAudio() {
+        initToConnectedState();
+
+        StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_AUDIO_STATE_CHANGED);
+        event.valueInt = HeadsetClientHalConstants.AUDIO_STATE_CONNECTING;
+        event.device = mTestDevice;
+        mHeadsetClientStateMachine.sendMessage(
+                mHeadsetClientStateMachine.obtainMessage(StackEvent.STACK_EVENT, event));
+        TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
+
+        verify(mAudioManager).setLeAudioSuspended(true);
+    }
+
+    @Test
+    public void testProcessStackEvent_audioConnected_onConnectedState_shouldSuspendLeAudio() {
+        initToConnectedState();
+        mHeadsetClientStateMachine.setAudioRouteAllowed(true);
+
+        StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_AUDIO_STATE_CHANGED);
+        event.valueInt = HeadsetClientHalConstants.AUDIO_STATE_CONNECTED;
+        event.device = mTestDevice;
+        mHeadsetClientStateMachine.sendMessage(
+                mHeadsetClientStateMachine.obtainMessage(StackEvent.STACK_EVENT, event));
+        TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
+
+        verify(mAudioManager).setLeAudioSuspended(true);
+    }
+
+    @Test
+    public void testProcessStackEvent_audioDisconnected_onConnectedState_shouldResumeLeAudio() {
+        initToConnectedState();
+
+        StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_AUDIO_STATE_CHANGED);
+        event.valueInt = HeadsetClientHalConstants.AUDIO_STATE_DISCONNECTED;
+        event.device = mTestDevice;
+        mHeadsetClientStateMachine.sendMessage(
+                mHeadsetClientStateMachine.obtainMessage(StackEvent.STACK_EVENT, event));
+        TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
+
+        verify(mAudioManager).setLeAudioSuspended(false);
+    }
+
+    @Test
+    public void testProcessStackEvent_audioDisconnected_onAudioOnState_shouldResumeLeAudio() {
+        initToAudioOnState();
+
+        StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_AUDIO_STATE_CHANGED);
+        event.valueInt = HeadsetClientHalConstants.AUDIO_STATE_DISCONNECTED;
+        event.device = mTestDevice;
+        mHeadsetClientStateMachine.sendMessage(
+                mHeadsetClientStateMachine.obtainMessage(StackEvent.STACK_EVENT, event));
+        TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
+
+        verify(mAudioManager).setLeAudioSuspended(false);
+    }
+
     /**
      * Allow/disallow connection to any device
      *
