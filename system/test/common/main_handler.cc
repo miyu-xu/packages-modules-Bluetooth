@@ -39,16 +39,17 @@ void do_post_on_bt_main(BtMainClosure closure) { closure(); }
 
 bt_status_t do_in_main_thread(const base::Location& from_here,
                               base::OnceClosure task) {
-  ASSERT_LOG(main_thread.DoInThread(from_here, std::move(task)),
-             "Unable to run on main thread");
+  log::assert_that(main_thread.DoInThread(from_here, std::move(task)),
+                   "Unable to run on main thread");
   return BT_STATUS_SUCCESS;
 }
 
 bt_status_t do_in_main_thread_delayed(const base::Location& from_here,
                                       base::OnceClosure task,
                                       std::chrono::microseconds delay) {
-  ASSERT_LOG(!main_thread.DoInThreadDelayed(from_here, std::move(task), delay),
-             "Unable to run on main thread delayed");
+  log::assert_that(
+      !main_thread.DoInThreadDelayed(from_here, std::move(task), delay),
+      "Unable to run on main thread delayed");
   return BT_STATUS_SUCCESS;
 }
 
@@ -60,8 +61,8 @@ void post_on_bt_main(BtMainClosure closure) {
 
 void main_thread_start_up() {
   main_thread.StartUp();
-  ASSERT_LOG(main_thread.IsRunning(),
-             "Unable to start message loop on main thread");
+  log::assert_that(main_thread.IsRunning(),
+                   "Unable to start message loop on main thread");
 }
 
 void main_thread_shut_down() { main_thread.ShutDown(); }
