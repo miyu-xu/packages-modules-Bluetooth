@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0666d0ab_589eed1f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-28T21:21:55Z",
+      "side": 1,
+      "message": "nit: It seems these tests don\u0027t really require separate READABLE/WRITABLE characteristics.\n\nYou could make the existing characteristic both readable and writable to keep it simple (unless there\u0027s a reason these are needed as separate characteristics).",
+      "range": {
+        "startLine": 87,
+        "startChar": 35,
+        "endLine": 87,
+        "endChar": 43
+      },
+      "revId": "b76d1cc022565e7f50848db01305f65fef601fd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
