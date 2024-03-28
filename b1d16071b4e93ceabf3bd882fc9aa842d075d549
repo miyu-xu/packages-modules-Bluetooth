@@ -63,6 +63,30 @@
       },
       "revId": "b1d16071b4e93ceabf3bd882fc9aa842d075d549",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79219cd7_b192ec52",
+        "filename": "framework/java/android/bluetooth/le/ScanRecord.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 653,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-28T23:11:50Z",
+      "side": 1,
+      "message": "As you pointed out adding a dependency to guava in framework is not the right way to go. I suggest ByteBuffer instead:\n\nbyte[] firstValue \u003d manufacturerData.get(manufacturerId);\nByteBuffer buffer \u003d ByteBuffer.allocate(firstValue.length + manufacturerDataBytes.length);\nbuffer.put(firstValue);\nbuffer.put(manufacturerDataBytes);\nmanufacturerData.put(manufacturerId, buffer.array());",
+      "parentUuid": "561ac487_7215b448",
+      "range": {
+        "startLine": 647,
+        "startChar": 30,
+        "endLine": 653,
+        "endChar": 98
+      },
+      "revId": "b1d16071b4e93ceabf3bd882fc9aa842d075d549",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
