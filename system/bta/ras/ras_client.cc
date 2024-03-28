@@ -76,6 +76,10 @@ class RasClientImpl : public bluetooth::ras::RasClient {
         true);
   }
 
+  void RegisterCallbacks(bluetooth::ras::RasClientCallbacks* callbacks) {
+    callbacks_ = callbacks;
+  }
+
   void Connect(const RawAddress& address) override {
     log::info("{}", ADDRESS_TO_LOGGABLE_CSTR(address));
     tBLE_BD_ADDR ble_bd_addr;
@@ -340,6 +344,7 @@ class RasClientImpl : public bluetooth::ras::RasClient {
  private:
   uint16_t gatt_if_;
   std::list<std::shared_ptr<RasTracker>> trackers_;
+  bluetooth::ras::RasClientCallbacks* callbacks_;
 };
 
 }  // namespace
