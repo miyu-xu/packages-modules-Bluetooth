@@ -28,6 +28,8 @@ import android.util.ArrayMap;
 import android.util.Log;
 import android.util.SparseArray;
 
+import com.android.bluetooth.flags.Flags;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
@@ -640,7 +642,21 @@ public final class ScanRecord {
                                         + (scanRecord[currentPos] & 0xFF);
                         byte[] manufacturerDataBytes =
                                 extractBytes(scanRecord, currentPos + 2, dataLength - 2);
-                        manufacturerData.put(manufacturerId, manufacturerDataBytes);
+                        if (Flags.scanRecordManufacturerDataMerge()) {
+                            if (manufacturerData.contains(manufacturerId)) {
+                                byte[] existingManufacturerDataBytes =
+                                        manufacturerData.get(manufacturerId);
+                                byte[] mergedManufacturerDataBytes =
+                                        mergeBytes(
+                                                existingManufacturerDataBytes,
+                                                manufacturerDataBytes);
+                                manufacturerData.put(manufacturerId, mergedManufacturerDataBytes);
+                            } else {
+                                manufacturerData.put(manufacturerId, manufacturerDataBytes);
+                            }
+                        } else {
+                            manufacturerData.put(manufacturerId, manufacturerDataBytes);
+                        }
                         break;
                     case DATA_TYPE_TRANSPORT_DISCOVERY_DATA:
                         // -1 / +1 to include the type in the extract
@@ -747,5 +763,13 @@ public final class ScanRecord {
         byte[] bytes = new byte[length];
         System.arraycopy(scanRecord, start, bytes, 0, length);
         return bytes;
+    }
+
+    // Helper method to merge two byte arrays.
+    private static byte[] mergeBytes(byte[] first, byte[] second) {
+        byte[] merged = new byte[first.length + second.length];
+        System.arraycopy(first, 0, merged, 0, first.length);
+        System.arraycopy(second, 0, merged, first.length, second.length);
+        return merged;
     }
 }
