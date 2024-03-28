@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6b73215_209da82a",
+        "filename": "system/bta/ag/bta_ag_at.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-28T01:45:58Z",
+      "side": 1,
+      "message": "This is actually out of range and would be covered by the `log::warn(\"arg out of range\");` below",
+      "parentUuid": "bfe1012d_60e899ae",
+      "range": {
+        "startLine": 153,
+        "startChar": 61,
+        "endLine": 153,
+        "endChar": 77
+      },
+      "revId": "5e7a5bae2e7dddd71a7ba90cbd6bc5348ee0c56b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26be6cba_ee2a9899",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-27T22:23:30Z",
       "side": 1,
       "message": "nit: maybe add a warning log for using reserved bits",
+      "range": {
+        "startLine": 156,
+        "startChar": 32,
+        "endLine": 156,
+        "endChar": 52
+      },
+      "revId": "5e7a5bae2e7dddd71a7ba90cbd6bc5348ee0c56b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f625493_6153c7c5",
+        "filename": "system/bta/ag/bta_ag_at.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-28T01:45:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26be6cba_ee2a9899",
       "range": {
         "startLine": 156,
         "startChar": 32,
