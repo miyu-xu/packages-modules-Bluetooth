@@ -142,6 +142,30 @@
       },
       "revId": "5c2534b796856c6e0b8ec6d4841dd983c0c3b81d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "762eae62_852284ff",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 3013946
+      },
+      "writtenOn": "2024-03-28T08:24:32Z",
+      "side": 0,
+      "message": "That\u0027s a really good point, and I think there is an existing AVRCP issue about old players showing up because of AVRCP sometimes so it may be related. Thanks!",
+      "parentUuid": "59c20288_1b93ab9a",
+      "range": {
+        "startLine": 205,
+        "startChar": 12,
+        "endLine": 205,
+        "endChar": 38
+      },
+      "revId": "5c2534b796856c6e0b8ec6d4841dd983c0c3b81d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
