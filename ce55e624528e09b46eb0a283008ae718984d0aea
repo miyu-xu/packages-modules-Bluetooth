@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "abee9380_64090dad",
+        "filename": "system/bta/ag/bta_ag_at.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-28T15:02:00Z",
+      "side": 1,
+      "message": "This was suggested by @yuyangh@google.com",
+      "parentUuid": "31a1de5a_c71fa2b1",
+      "range": {
+        "startLine": 157,
+        "startChar": 19,
+        "endLine": 157,
+        "endChar": 23
+      },
+      "revId": "ce55e624528e09b46eb0a283008ae718984d0aea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b25c4b86_7e5ee1f8",
         "filename": "system/bta/ag/bta_ag_at.cc",
         "patchSetId": 5
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-28T14:51:16Z",
       "side": 1,
       "message": "I think this could be simpler and still functional.\n```suggestion\n            // Ignore reserved bits. 0xfff because there are 12 defined bits.\n            int_arg \u003d static_cast\u003cint16_t\u003e(std::atoll(p_arg) \u0026 0xfffll);\n          } else {\n            int_arg \u003d utl_str2int(p_arg);\n          }\n```",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 11
+      },
+      "revId": "ce55e624528e09b46eb0a283008ae718984d0aea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2ef6480_a18282e4",
+        "filename": "system/bta/ag/bta_ag_at.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-28T15:02:00Z",
+      "side": 1,
+      "message": "An edge case could be: The peer sends an integer \u003e int32 max. In that case we should respond ERROR, but with your approach this we may succeed silently. This also applies to an integer \u003c int32 min.",
+      "parentUuid": "b25c4b86_7e5ee1f8",
       "range": {
         "startLine": 152,
         "startChar": 0,
