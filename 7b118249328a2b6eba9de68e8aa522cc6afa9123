@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a04e7c4e_8b5f06df",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1426,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-28T20:34:57Z",
+      "side": 1,
+      "message": "What if unbonding happens few ms later, i.e. while your code execution is already here ?\n\nTo get such race condition properly fixed, maybe we should consider handling bond removal as event  in this class ?\n\nOr have the Java profile call Disconnect if device bond is removal ? Maybe it\u0027s some unhandled case in Java ?",
+      "revId": "7b118249328a2b6eba9de68e8aa522cc6afa9123",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
