@@ -16,6 +16,24 @@
       "message": "This callback is for all devices in set ? Or just one device ? Do you want device address logged here? in case you have set of devices, it would be easier to tell which device is having troubles.",
       "revId": "e69a3d5a6a4b2aff097933bdd2bcc3eec2ccea1b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6217236_d2e8c55f",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 804,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-28T14:26:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0551087_49c0ebe4",
+      "revId": "e69a3d5a6a4b2aff097933bdd2bcc3eec2ccea1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
