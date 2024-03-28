@@ -22,6 +22,30 @@
       },
       "revId": "49eed8ea724493742ac480f49a9da0c5ed5705f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e834a17a_b3136a9c",
+        "filename": "system/gd/facade/facade_main.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-28T22:58:47Z",
+      "side": 1,
+      "message": "Some Android.bp updates required some extra libraries that are needed to be pulled in which caused linkage errors.\n\nI will revisit this and try different combinations to see if this can be mitigated",
+      "parentUuid": "673339b0_e53faf75",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 1
+      },
+      "revId": "49eed8ea724493742ac480f49a9da0c5ed5705f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
