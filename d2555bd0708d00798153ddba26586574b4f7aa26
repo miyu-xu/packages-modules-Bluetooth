@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03958815_13c42231",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2192,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-28T07:14:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47af027a_d34d32a1",
+      "range": {
+        "startLine": 2192,
+        "startChar": 6,
+        "endLine": 2192,
+        "endChar": 14
+      },
+      "revId": "d2555bd0708d00798153ddba26586574b4f7aa26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4bceefd9_b4b70390",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-27T22:43:29Z",
       "side": 1,
       "message": "nit: if (leAudioDevice !\u003d nullptr)\n\nAvoid using ptr as booleans in new C++ code",
+      "range": {
+        "startLine": 2587,
+        "startChar": 0,
+        "endLine": 2587,
+        "endChar": 25
+      },
+      "revId": "d2555bd0708d00798153ddba26586574b4f7aa26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43acda0b_9d85edf9",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2587,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-28T07:14:12Z",
+      "side": 1,
+      "message": "Ok, but actually \n`if (leAudioDevice \u003d\u003d nullptr).`",
+      "parentUuid": "4bceefd9_b4b70390",
       "range": {
         "startLine": 2587,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7d89e48_7c29086d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2588,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-28T07:14:12Z",
+      "side": 1,
+      "message": "all devices. This is why it is debug",
+      "parentUuid": "aa985477_26c7137d",
+      "range": {
+        "startLine": 2588,
+        "startChar": 5,
+        "endLine": 2588,
+        "endChar": 51
+      },
+      "revId": "d2555bd0708d00798153ddba26586574b4f7aa26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fbabc516_f0bd0662",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-03-27T22:43:29Z",
       "side": 1,
       "message": "log::info ?",
+      "range": {
+        "startLine": 2592,
+        "startChar": 9,
+        "endLine": 2592,
+        "endChar": 14
+      },
+      "revId": "d2555bd0708d00798153ddba26586574b4f7aa26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c630bf0_40a3221c",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2592,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-03-28T07:14:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "fbabc516_f0bd0662",
       "range": {
         "startLine": 2592,
         "startChar": 9,
