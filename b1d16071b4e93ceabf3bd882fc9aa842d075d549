@@ -16,6 +16,29 @@
       "message": "Not sure why Presubmits are failing with\n\n```\nerror: package com.android.bluetooth.flags does not exist\nimport com.android.bluetooth.flags.Flags;\n```\n\nIt\u0027s working good on my local. Will investigate.",
       "revId": "b1d16071b4e93ceabf3bd882fc9aa842d075d549",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb0bd3e6_db00c47f",
+        "filename": "framework/java/android/bluetooth/le/ScanRecord.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 653,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-03-28T21:36:39Z",
+      "side": 1,
+      "message": "Use guava:\n\nimport com.google.common.primitives.Bytes;\n\n...\n\nmanufacturerData.put(manufacturerId, Bytes.concat(manufacturerData.get(manufacturerId), manufacturerDataBytes));",
+      "range": {
+        "startLine": 647,
+        "startChar": 30,
+        "endLine": 653,
+        "endChar": 98
+      },
+      "revId": "b1d16071b4e93ceabf3bd882fc9aa842d075d549",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
