@@ -52,6 +52,24 @@
       "parentUuid": "b44ebbaa_3a42b797",
       "revId": "ab7f8438e84d00faf912297880af31d96b4461d1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "751ab665_5f96cde7",
+        "filename": "pandora/interfaces/pandora_experimental/modem.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-03-28T07:01:46Z",
+      "side": 1,
+      "message": "\u003eFor 1, I don\u0027t understand why the test should have a way to configure its phone number, it should just have a way to read it for me.\n\nI saw we need to place 2 calls to the DUT with differenct phone number [link](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/pandora/mmi2grpc/mmi2grpc/hfp.py;l\u003d312?q\u003dmmi2grpc%20hfp\n):\n```\n            self.modem.call(IXIT_SECOND_PHONE_NUMBER)\n```\n\n\nin this case, it seems that we need to have a way to configure the modem\u0027s phone number.\n \n\n\u003eWith cuttlefish we are in role 1 with a fixed number.\n\ncurrent implementation of android is more like 2 to me. When we call `self.modem.call(IXIT_PHONE_NUMBER)` [link](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/pandora/mmi2grpc/mmi2grpc/hfp.py;l\u003d187?q\u003dmmi2grpc%20hfp), we are sending command to the modem_simulator on the cuttlefish host, and then modem_simulator communicate to RILJ on the CVD. It\u0027s like cuttlefish talk to itself there\u0027s an incoming call and we are not using another device\u0027s modem to place a call. I\u0027m not sure if I missing anything here.",
+      "parentUuid": "d44eb9d6_e2043200",
+      "revId": "ab7f8438e84d00faf912297880af31d96b4461d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
