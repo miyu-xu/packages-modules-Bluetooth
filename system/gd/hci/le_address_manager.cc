@@ -70,9 +70,15 @@ LeAddressManager::LeAddressManager(
       resolving_list_size_(resolving_list_size){};
 
 LeAddressManager::~LeAddressManager() {
+  // wake
   if (address_rotation_alarm_ != nullptr) {
     address_rotation_alarm_->Cancel();
     address_rotation_alarm_.reset();
+  }
+  // nonwake
+  if (address_rotation_alarm_non_wake_ != nullptr) {
+    address_rotation_alarm_non_wake_->Cancel();
+    address_rotation_alarm_non_wake_.reset();
   }
 }
 
@@ -144,7 +150,11 @@ void LeAddressManager::SetPrivacyPolicyForInitiatorAddress(
         minimum_rotation_time_ = minimum_rotation_time;
         maximum_rotation_time_ = maximum_rotation_time;
       }
+      // wake
       address_rotation_alarm_ = std::make_unique<os::Alarm>(handler_);
+      // nonwake
+      address_rotation_alarm_non_wake_ = std::make_unique<os::NonwakeAlarm>(handler_);
+
       set_random_address();
       break;
     case AddressPolicy::POLICY_NOT_SET:
@@ -194,6 +204,7 @@ void LeAddressManager::SetPrivacyPolicyForInitiatorAddressForTest(
       minimum_rotation_time_ = minimum_rotation_time;
       maximum_rotation_time_ = maximum_rotation_time;
       address_rotation_alarm_ = std::make_unique<os::Alarm>(handler_);
+      address_rotation_alarm_non_wake_ = std::make_unique<os::NonwakeAlarm>(handler_);
       set_random_address();
       break;
     case AddressPolicy::POLICY_NOT_SET:
@@ -243,9 +254,14 @@ void LeAddressManager::unregister_client(LeAddressManagerCallback* callback) {
     registered_clients_.erase(callback);
     log::info("Client unregistered");
   }
+  // wake
   if (registered_clients_.empty() && address_rotation_alarm_ != nullptr) {
     address_rotation_alarm_->Cancel();
     log::info("Cancelled address rotation alarm");
+  }
+  // nonwake
+  if (registered_clients_.empty() && address_rotation_alarm_non_wake_ != nullptr) {
+    address_rotation_alarm_non_wake_->Cancel();
   }
 }
 
@@ -369,9 +385,16 @@ void LeAddressManager::prepare_to_rotate() {
 }
 
 void LeAddressManager::schedule_rotate_random_address() {
+  // wake
   address_rotation_alarm_->Schedule(
+      common::BindOnce([]() {
+        log::warn("deadline wakeup in schedule_rotate_random_address"); /* do nothing */
+      }),
+      GetNextMaximumRotationTime());
+  // nonwake
+  address_rotation_alarm_non_wake_->Schedule(
       common::BindOnce(&LeAddressManager::prepare_to_rotate, common::Unretained(this)),
-      GetNextPrivateAddressIntervalMs());
+      GetNextMinimumRotationTime());
 }
 
 void LeAddressManager::set_random_address() {
@@ -736,6 +759,20 @@ void LeAddressManager::check_cached_commands() {
   } else {
     handle_next_command();
   }
+}
+
+std::chrono::milliseconds LeAddressManager::GetNextMaximumRotationTime() {
+  // 14 ~ 15 mins
+  auto interval_random_part_max_ms = std::chrono::minutes(1);  // random part for next max
+  auto random_ms = std::chrono::milliseconds(os::GenerateRandom()) % (interval_random_part_max_ms);
+  return (maximum_rotation_time_ - std::chrono::minutes(1)) + random_ms;
+}
+
+std::chrono::milliseconds LeAddressManager::GetNextMinimumRotationTime() {
+  // 5 ~ 7 mins
+  auto interval_random_part_max_ms = std::chrono::minutes(2);  // random part for next min
+  auto random_ms = std::chrono::milliseconds(os::GenerateRandom()) % (interval_random_part_max_ms);
+  return (minimum_rotation_time_ - std::chrono::minutes(2)) + random_ms;
 }
 
 }  // namespace hci
