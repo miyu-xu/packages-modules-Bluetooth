@@ -22,6 +22,30 @@
       },
       "revId": "77f8c9c7d6acf6b017934ed2f787f6fe31916001",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed397251_21e248b8",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-03-28T02:35:30Z",
+      "side": 1,
+      "message": "Before this feature, DISCONNECTED would accept all incoming connections. So it is equivalent to ACCEPTING. When flag is disabled, we have to retain old behaviour.",
+      "parentUuid": "b39ba08f_8409292d",
+      "range": {
+        "startLine": 467,
+        "startChar": 3,
+        "endLine": 467,
+        "endChar": 37
+      },
+      "revId": "77f8c9c7d6acf6b017934ed2f787f6fe31916001",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
