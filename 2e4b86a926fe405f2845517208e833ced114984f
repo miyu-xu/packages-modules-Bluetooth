@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2f2aa26_b7153672",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-28T00:16:30Z",
+      "side": 0,
+      "message": "curious, why this was a TODO?",
+      "range": {
+        "startLine": 275,
+        "startChar": 4,
+        "endLine": 275,
+        "endChar": 21
+      },
+      "revId": "2e4b86a926fe405f2845517208e833ced114984f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
