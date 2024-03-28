@@ -262,6 +262,10 @@ bool LinkLayerController::ValidateTargetA(AddressWithType target_a,
 std::optional<AddressWithType>
 LinkLayerController::GenerateResolvablePrivateAddress(AddressWithType address,
                                                       IrkSelection irk) {
+  if (!le_resolving_list_enabled_) {
+    return {};
+  }
+
   for (auto& entry : le_resolving_list_) {
     if (address.GetAddress() == entry.peer_identity_address &&
         address.ToPeerAddressType() == entry.peer_identity_address_type) {
@@ -4331,14 +4335,11 @@ bool LinkLayerController::ProcessIncomingLegacyConnectRequest(
   // When the Link Layer is [...] connectable directed advertising events the
   // advertising filter policy shall be ignored.
   if (legacy_advertiser_.IsDirected()) {
-    if (resolved_initiating_address !=
-        PeerDeviceAddress(legacy_advertiser_.peer_address,
-                          legacy_advertiser_.peer_address_type)) {
+    if (legacy_advertiser_.GetTargetAddress() != resolved_initiating_address) {
       DEBUG(id_,
             "LE Connect request ignored by legacy advertiser because the "
-            "initiating address {} does not match the target address {}[{}]",
-            resolved_initiating_address, legacy_advertiser_.peer_address,
-            PeerAddressTypeText(legacy_advertiser_.peer_address_type));
+            "initiating address {} does not match the target address {}",
+            resolved_initiating_address, legacy_advertiser_.GetTargetAddress());
       return false;
     }
   } else {
@@ -4445,15 +4446,12 @@ bool LinkLayerController::ProcessIncomingExtendedConnectRequest(
   // When the Link Layer is [...] connectable directed advertising events the
   // advertising filter policy shall be ignored.
   if (advertiser.IsDirected()) {
-    if (resolved_initiating_address !=
-        PeerDeviceAddress(advertiser.peer_address,
-                          advertiser.peer_address_type)) {
+    if (advertiser.GetTargetAddress() != resolved_initiating_address) {
       DEBUG(id_,
             "LE Connect request ignored by extended advertiser {} because the "
-            "initiating address {} does not match the target address {}[{}]",
+            "initiating address {} does not match the target address {}",
             advertiser.advertising_handle, resolved_initiating_address,
-            advertiser.peer_address,
-            PeerAddressTypeText(advertiser.peer_address_type));
+            advertiser.GetTargetAddress());
       return false;
     }
   } else {
