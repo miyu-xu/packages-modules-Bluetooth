@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4dd55ca9_b81e9f21",
+        "filename": "system/gd/os/queue.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-28T23:23:13Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: assert() gets compiled out - use ASSERT() instead\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nassert() gets compiled out - use ASSERT() instead",
+      "range": {
+        "startLine": 166,
+        "startChar": 7,
+        "endLine": 166,
+        "endChar": 14
+      },
+      "revId": "badaf39edbdf8d3ece8e0215c8c901cee9b67a0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d715c8b_9919e262",
+        "filename": "system/gd/os/queue.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-28T23:23:13Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: assert() gets compiled out - use ASSERT() instead\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nassert() gets compiled out - use ASSERT() instead",
+      "range": {
+        "startLine": 167,
+        "startChar": 7,
+        "endLine": 167,
+        "endChar": 14
+      },
+      "revId": "badaf39edbdf8d3ece8e0215c8c901cee9b67a0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
