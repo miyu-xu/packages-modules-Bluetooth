@@ -46,6 +46,30 @@
       },
       "revId": "c6187ab1d6ae752e2b8a2d506eafdff15b5aeeb4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3178eb4_bc480400",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 3037,
+      "author": {
+        "id": 3211944
+      },
+      "writtenOn": "2024-03-28T02:56:27Z",
+      "side": 1,
+      "message": "Thanks for explaining. Can we get this change merged? or further comment on this?",
+      "parentUuid": "e3d37398_6370e33e",
+      "range": {
+        "startLine": 3037,
+        "startChar": 6,
+        "endLine": 3037,
+        "endChar": 65
+      },
+      "revId": "c6187ab1d6ae752e2b8a2d506eafdff15b5aeeb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
