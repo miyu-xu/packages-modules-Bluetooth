@@ -22,6 +22,52 @@
       },
       "revId": "0f2fa14632545f4ef40df757a6cccdedc75cefa5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "703c586a_489d6c42",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1750,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-29T07:11:41Z",
+      "side": 1,
+      "message": "hopefully this section can be cleaned-up a bit in a future CL",
+      "range": {
+        "startLine": 1747,
+        "startChar": 0,
+        "endLine": 1750,
+        "endChar": 33
+      },
+      "revId": "0f2fa14632545f4ef40df757a6cccdedc75cefa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d319149_44f09b83",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3121,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-29T07:11:41Z",
+      "side": 1,
+      "message": "same as previous CLs\n\nplease use\n\nT object { .des1 \u003d arg1 , .des2 { arg2 } ... };",
+      "range": {
+        "startLine": 3121,
+        "startChar": 40,
+        "endLine": 3121,
+        "endChar": 73
+      },
+      "revId": "0f2fa14632545f4ef40df757a6cccdedc75cefa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
