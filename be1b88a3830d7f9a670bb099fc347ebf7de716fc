@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4238724_dca093db",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 2201,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-03-29T01:52:21Z",
+      "side": 1,
+      "message": "suggest to have a feature flag to control the change of monitor_handles.",
+      "range": {
+        "startLine": 2201,
+        "startChar": 0,
+        "endLine": 2201,
+        "endChar": 31
+      },
+      "revId": "be1b88a3830d7f9a670bb099fc347ebf7de716fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ee5c15b_750018ed",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 4246,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-03-29T01:52:21Z",
+      "side": 1,
+      "message": "Isolating the change with a feature flag or using monitor_handle_map as Archie suggested.",
+      "range": {
+        "startLine": 4242,
+        "startChar": 0,
+        "endLine": 4246,
+        "endChar": 37
+      },
+      "revId": "be1b88a3830d7f9a670bb099fc347ebf7de716fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
