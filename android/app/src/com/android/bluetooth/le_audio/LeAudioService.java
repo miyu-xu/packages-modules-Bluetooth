@@ -83,6 +83,7 @@ import com.android.bluetooth.csip.CsipSetCoordinatorService;
 import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.hap.HapClientService;
 import com.android.bluetooth.hfp.HeadsetService;
+import com.android.bluetooth.hfpclient.HeadsetClientService;
 import com.android.bluetooth.mcp.McpService;
 import com.android.bluetooth.tbs.TbsGatt;
 import com.android.bluetooth.tbs.TbsService;
@@ -3395,7 +3396,7 @@ public class LeAudioService extends ProfileService {
             return false;
         }
 
-        return descriptor.mInbandRingtoneEnabled;
+        return descriptor.mInbandRingtoneEnabled && !isHeadsetClientConnected();
     }
 
     /**
@@ -4203,6 +4204,14 @@ public class LeAudioService extends ProfileService {
         }
 
         return audioFrameworkCalls;
+    }
+
+    private boolean isHeadsetClientConnected() {
+        HeadsetClientService headsetClientService = HeadsetClientService.getHeadsetClientService();
+        if (headsetClientService == null) {
+            return false;
+        }
+        return !(headsetClientService.getConnectedDevices().isEmpty());
     }
 
     class DialingOutTimeoutEvent implements Runnable {
