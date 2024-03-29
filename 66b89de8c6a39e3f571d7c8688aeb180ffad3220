@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc966b81_102e3556",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-03-29T10:53:14Z",
+      "side": 1,
+      "message": "Hi Yuyang, since this also involves some refactoring so it would be a hard to put all of the change behind a flag.\n\nDo you think we should\n1. only put the logic change behind the flag, or\n2. don\u0027t refactor the original part at this change, or\n3. keep the refactor and the original code. Only run the refactor code when flag is enabled.\n\nOr do you have other idea? Please let me know, thanks!",
+      "revId": "66b89de8c6a39e3f571d7c8688aeb180ffad3220",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

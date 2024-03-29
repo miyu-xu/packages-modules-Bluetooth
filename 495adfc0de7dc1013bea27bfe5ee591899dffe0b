@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdb20689_70b80c1b",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-03-29T10:53:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b267e8fd_6ebbdadc",
+      "range": {
+        "startLine": 303,
+        "startChar": 10,
+        "endLine": 303,
+        "endChar": 25
+      },
+      "revId": "495adfc0de7dc1013bea27bfe5ee591899dffe0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc5af983_afd3d1ac",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-29T00:34:14Z",
       "side": 1,
       "message": "```suggestion\n#define ESCO_LEGACY_NUM_CODECS 8\n```",
+      "range": {
+        "startLine": 49,
+        "startChar": 31,
+        "endLine": 49,
+        "endChar": 48
+      },
+      "revId": "495adfc0de7dc1013bea27bfe5ee591899dffe0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67221260_11a722ff",
+        "filename": "system/device/include/esco_parameters.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-03-29T10:53:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc5af983_afd3d1ac",
       "range": {
         "startLine": 49,
         "startChar": 31,
