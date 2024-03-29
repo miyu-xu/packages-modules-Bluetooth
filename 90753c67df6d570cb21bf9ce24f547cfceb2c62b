@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df8c8f84_0b628992",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2024-03-29T03:59:39Z",
+      "side": 1,
+      "message": "Shall we have a centralized module to manage multiple audio profiles coex control? Also for aosp/3016920.",
+      "revId": "90753c67df6d570cb21bf9ce24f547cfceb2c62b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
