@@ -182,7 +182,7 @@ public class NotificationHelperService extends Service {
 
     /** Return whether the notification has been shown */
     private boolean isFirstTimeNotification(String name) {
-        return Settings.Secure.getInt(getContentResolver(), name, 0) == 0;
+        return Settings.Secure.getInt(getContentResolver(), name, 0) < 2;
     }
 
     private void autoOnUserAction(boolean disableAutoOn) {
