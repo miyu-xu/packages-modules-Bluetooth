@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e373648e_05ef7d84",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 3148,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-29T07:05:50Z",
+      "side": 1,
+      "message": "nit: same as previous CL, could this include the name of the variable when assigning to structs? \n\nT object { .des1 \u003d arg1 , .des2 { arg2 } ... };",
+      "range": {
+        "startLine": 3148,
+        "startChar": 21,
+        "endLine": 3148,
+        "endChar": 38
+      },
+      "revId": "5b52c1b3d118361e9f6c0f8473af2cca7a1bcd1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
