@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "54d11441_ebc73ae9",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2867,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-29T16:44:13Z",
+      "side": 1,
+      "message": "That `btif_rc_is_connected_peer()` may be sort of important in that it\u0027ll keep you from connecting A2DP on a device that may have connected AVRCP, then disconnected AVRCP in the time that you were waiting.\n\nFrom the looks of it, what you\u0027re basically trying to do is notify the AV state machine of an AVRCP connection event. So instead of avoiding it if new_avrcp is active, then maybe you want to check and see if the device is still connected with a call over to avrcp_service?\n\nUltimately, if we removed the dead \"old avrcp\" code, we would want to call over to new avrcp anyways.\n\ni.e.:\n```\n// Make a function to get connection status from new AVRCP\n// I did separate if blocks for the old and new way, but you could\n// probably join both and output the same error message\nif (is_new_avrcp_enabled() \u0026\u0026 bluetooth::avrcp::AvrcpService::Get()-\u003egetConnectionState(peer-\u003ePeerAddress()) !\u003d CONNECTED) {\n    log::error(\"AVRCP peer {} is not connected in new (only) avrcp\",\n               ADDRESS_TO_LOGGABLE_CSTR(peer-\u003ePeerAddress()));\n    return;\n} else if (!btif_rc_is_connected_peer(peer-\u003ePeerAddress())) {\n    log::error(\"AVRCP peer {} is not connected in old (dead code) AVRCP\",\n               ADDRESS_TO_LOGGABLE_CSTR(peer-\u003ePeerAddress()));\n    return;\n  }\n}\n```",
+      "parentUuid": "090daa1a_d3406e8a",
+      "range": {
+        "startLine": 2867,
+        "startChar": 6,
+        "endLine": 2867,
+        "endChar": 32
+      },
+      "revId": "e3bc1c41518a06824aa43870709ef427d2464eca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4dabeddd_ba3ecf4f",
         "filename": "system/btif/src/btif_av.cc",
         "patchSetId": 2
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Thank you for your comments. I had to redesign the fix, because in this moment we do not know exactly if perr is audio source or audio sink. Hence I am doing service discovery for audio sink and audio source and based on that information I trigger btif_av_sink_dispatch_sm_event and btif_av_source_dispatch_sm_event respectively. \nThis introduces a greater delay between avrcp connect and a2dp connect, but I don\u0027t think that would be a problem. Let me know what do you think",
       "parentUuid": "4dabeddd_ba3ecf4f",
+      "range": {
+        "startLine": 4361,
+        "startChar": 1,
+        "endLine": 4365,
+        "endChar": 3
+      },
+      "revId": "e3bc1c41518a06824aa43870709ef427d2464eca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cac5dc6_60e80406",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 4365,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-03-29T16:44:13Z",
+      "side": 1,
+      "message": "Why check if the peer device is a source at all when AVRCP Target really only cares about sink devices?\n\nThe AVRCP Controller implementation can/should/already does it\u0027s own thing to help A2DP connect, as it leverages this btif_av state machine that you\u0027re dropping events onto.\n\nHave you tried:\n(1) Just check for the Sink SDP record of the remote device.\n(2) Don\u0027t alter the btif_av_sink_initiate_av_open_timer_timeout function\n\nI worry about altering the AVRCP Controller/A2DP Sink code path for concurrent source and sink devices like Android TVs and Cars. Scoping this down to deal with source devices only has a nice separation of responsibilities and keeps you from having to worry about what if the device you\u0027re connecting to is a source and a sink.",
+      "parentUuid": "038d5d00_78e13fe3",
       "range": {
         "startLine": 4361,
         "startChar": 1,
