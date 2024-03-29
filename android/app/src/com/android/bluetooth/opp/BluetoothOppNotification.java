@@ -117,7 +117,7 @@ class BluetoothOppNotification {
 
     private Context mContext;
 
-    private HashMap<String, NotificationItem> mNotifications;
+    private HashMap<String, NotificationItem> mNotifications = new HashMap<>();
 
     private NotificationUpdateThread mUpdateNotificationThread;
 
@@ -180,7 +180,6 @@ class BluetoothOppNotification {
                 NotificationManager.IMPORTANCE_HIGH);
 
         mNotificationMgr.createNotificationChannel(mNotificationChannel);
-        mNotifications = new HashMap<String, NotificationItem>();
         // Get Content Resolver object one time
         mContentResolver = mContext.getContentResolver();
     }
@@ -733,11 +732,14 @@ class BluetoothOppNotification {
         cursor.close();
     }
 
-    void cancelNotifications() {
+    void cancelOppNotifications() {
         if (V) {
             Log.v(TAG, "cancelNotifications ");
         }
         mHandler.removeCallbacksAndMessages(null);
-        mNotificationMgr.cancelAll();
+        mNotificationMgr.cancel(NOTIFICATION_ID_PROGRESS);
+        mNotificationMgr.cancel(NOTIFICATION_ID_OUTBOUND_COMPLETE);
+        mNotificationMgr.cancel(NOTIFICATION_ID_INBOUND_COMPLETE);
+        mNotificationMgr.cancel(NOTIFICATION_ID_COMPLETE_SUMMARY);
     }
 }
