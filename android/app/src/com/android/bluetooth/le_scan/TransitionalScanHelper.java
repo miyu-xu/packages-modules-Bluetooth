@@ -150,6 +150,8 @@ public class TransitionalScanHelper {
     private ScannerMap mScannerMap = new ScannerMap();
     private String mExposureNotificationPackage;
 
+    private AppCurrentConsumptionStats mAppCurrentConsumptionStats;
+
     public ScannerMap getScannerMap() {
         return mScannerMap;
     }
@@ -207,6 +209,8 @@ public class TransitionalScanHelper {
 
         mPeriodicScanManager =
                 GattObjectsFactory.getInstance().createPeriodicScanManager(mAdapterService);
+
+        mAppCurrentConsumptionStats = new AppCurrentConsumption();
     }
 
     /** Stops the scanning component. */
@@ -235,6 +239,10 @@ public class TransitionalScanHelper {
 
     public int getCurrentUsedTrackingAdvertisement() {
         return mScanManager.getCurrentUsedTrackingAdvertisement();
+    }
+
+    public AppCurrentConsumptionStats getAppCurrentConsumptionStatsInstance() {
+        return mAppCurrentConsumptionStats;
     }
 
     /**************************************************************************
