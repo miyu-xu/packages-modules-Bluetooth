@@ -22,6 +22,30 @@
       },
       "revId": "2241139fdb84de7b0b84266a1336b53e669cf776",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfd0eff3_a6d7eb8d",
+        "filename": "system/main/shim/distance_measurement_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-03-29T17:30:08Z",
+      "side": 1,
+      "message": "Just want to separate logic of CS and RAS.\nI will add more code in this patch, include the use case of OnRemoteData in RasClient.\nThanks!",
+      "parentUuid": "e9b562b8_87477ab1",
+      "range": {
+        "startLine": 119,
+        "startChar": 4,
+        "endLine": 119,
+        "endChar": 29
+      },
+      "revId": "2241139fdb84de7b0b84266a1336b53e669cf776",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
