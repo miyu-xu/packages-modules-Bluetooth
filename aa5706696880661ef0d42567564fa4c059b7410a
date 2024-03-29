@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4643a24_717d69bf",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 668,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-29T07:38:43Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a2cd3ef2_d9529267",
+      "range": {
+        "startLine": 668,
+        "startChar": 0,
+        "endLine": 668,
+        "endChar": 73
+      },
+      "revId": "aa5706696880661ef0d42567564fa4c059b7410a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df336d70_65004318",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-29T07:09:00Z",
       "side": 1,
       "message": "!\u003d nullptr",
+      "range": {
+        "startLine": 904,
+        "startChar": 47,
+        "endLine": 904,
+        "endChar": 62
+      },
+      "revId": "aa5706696880661ef0d42567564fa4c059b7410a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "745e16b4_96a6f711",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 904,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-29T07:38:43Z",
+      "side": 1,
+      "message": "Will have follow-up CL for that",
+      "parentUuid": "df336d70_65004318",
       "range": {
         "startLine": 904,
         "startChar": 47,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "532fb68f_000b1662",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 908,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-29T07:38:43Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "419b3bb7_0b03daa0",
+      "range": {
+        "startLine": 908,
+        "startChar": 6,
+        "endLine": 908,
+        "endChar": 69
+      },
+      "revId": "aa5706696880661ef0d42567564fa4c059b7410a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d21dcade_650a24e5",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2113a73_d5c119a9",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 912,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-29T07:38:43Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d21dcade_650a24e5",
+      "range": {
+        "startLine": 912,
+        "startChar": 4,
+        "endLine": 912,
+        "endChar": 5
+      },
+      "revId": "aa5706696880661ef0d42567564fa4c059b7410a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "11695191_a39d4721",
@@ -106,6 +202,30 @@
       "writtenOn": "2024-03-29T07:09:00Z",
       "side": 1,
       "message": "same as previous CL comments, please use\n\nT object { .des1 \u003d arg1 , .des2 { arg2 } ... };",
+      "range": {
+        "startLine": 3145,
+        "startChar": 21,
+        "endLine": 3145,
+        "endChar": 41
+      },
+      "revId": "aa5706696880661ef0d42567564fa4c059b7410a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e70e638_c12cfee8",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 3145,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-29T07:38:43Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "11695191_a39d4721",
       "range": {
         "startLine": 3145,
         "startChar": 21,
