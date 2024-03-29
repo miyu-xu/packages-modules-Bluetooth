@@ -368,39 +368,42 @@ typedef struct {
 
 /** Represents the standard BT-AV A2DP Source interface.
  */
-typedef struct {
-  /** set to sizeof(btav_source_interface_t) */
-  size_t size;
+class btav_source_interface_t {
+ public:
+  btav_source_interface_t() = default;
+  virtual ~btav_source_interface_t() = default;
+
+ public:
   /**
    * Register the BtAv callbacks.
    */
-  bt_status_t (*init)(
+  virtual bt_status_t init(
       btav_source_callbacks_t* callbacks, int max_connected_audio_devices,
       const std::vector<btav_a2dp_codec_config_t>& codec_priorities,
       const std::vector<btav_a2dp_codec_config_t>& offloading_preference,
-      std::vector<btav_a2dp_codec_info_t>* supported_codecs);
+      std::vector<btav_a2dp_codec_info_t>* supported_codecs) const = 0;
 
   /** connect to headset */
-  bt_status_t (*connect)(const RawAddress& bd_addr);
+  virtual bt_status_t connect(const RawAddress& bd_addr) const = 0;
 
   /** dis-connect from headset */
-  bt_status_t (*disconnect)(const RawAddress& bd_addr);
+  virtual bt_status_t disconnect(const RawAddress& bd_addr) const = 0;
 
   /** sets the connected device silence state */
-  bt_status_t (*set_silence_device)(const RawAddress& bd_addr, bool silence);
+  virtual bt_status_t set_silence_device(const RawAddress& bd_addr,
+                                         bool silence) const = 0;
 
   /** sets the connected device as active */
-  bt_status_t (*set_active_device)(const RawAddress& bd_addr);
+  virtual bt_status_t set_active_device(const RawAddress& bd_addr) const = 0;
 
   /** configure the codecs settings preferences */
-  bt_status_t (*config_codec)(
+  virtual bt_status_t config_codec(
       const RawAddress& bd_addr,
-      std::vector<btav_a2dp_codec_config_t> codec_preferences);
+      std::vector<btav_a2dp_codec_config_t> codec_preferences) const = 0;
 
   /** Closes the interface. */
-  void (*cleanup)(void);
-
-} btav_source_interface_t;
+  virtual void cleanup(void) const = 0;
+};
 
 /** Represents the standard BT-AV A2DP Sink interface.
  */

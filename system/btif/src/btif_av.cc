@@ -789,6 +789,51 @@ class BtifAvSink {
   std::map<uint8_t, tBTA_AV_HNDL> peer_id2bta_handle_;
 };
 
+/**
+ * This is an implementation of the btav_source_interface_t.
+ */
+class BtAvSourceImpl : public btav_source_interface_t {
+ public:
+  static const BtAvSourceImpl& GetSingleton() {
+    static const BtAvSourceImpl
+        singleton;  // only construct once and lives until the end of the
+                    // process, thread safe since C++11
+    return singleton;
+  }
+
+  /* Implements functions defined in the interface. */
+ public:
+  /**
+   * Register the BtAv callbacks.
+   */
+  bt_status_t init(
+      btav_source_callbacks_t* callbacks, int max_connected_audio_devices,
+      const std::vector<btav_a2dp_codec_config_t>& codec_priorities,
+      const std::vector<btav_a2dp_codec_config_t>& offloading_preference,
+      std::vector<btav_a2dp_codec_info_t>* supported_codecs) const override;
+
+  /** connect to headset */
+  bt_status_t connect(const RawAddress& bd_addr) const override;
+
+  /** dis-connect from headset */
+  bt_status_t disconnect(const RawAddress& bd_addr) const override;
+
+  /** sets the connected device silence state */
+  bt_status_t set_silence_device(const RawAddress& bd_addr,
+                                 bool silence) const override;
+
+  /** sets the connected device as active */
+  bt_status_t set_active_device(const RawAddress& bd_addr) const override;
+
+  /** configure the codecs settings preferences */
+  bt_status_t config_codec(
+      const RawAddress& bd_addr,
+      std::vector<btav_a2dp_codec_config_t> codec_preferences) const override;
+
+  /** Closes the interface. */
+  void cleanup(void) const override;
+};
+
 /*****************************************************************************
  *  Static variables
  *****************************************************************************/
@@ -810,7 +855,6 @@ static BtifAvSink btif_av_sink;
     btif_rc_handler(e, d);         \
   } break;
 
-static bt_status_t src_disconnect_sink(const RawAddress& peer_address);
 static bt_status_t sink_disconnect_src(const RawAddress& peer_address);
 static void btif_av_source_dispatch_sm_event(const RawAddress& peer_address,
                                              btif_av_sm_event_t event);
@@ -1812,7 +1856,8 @@ bool BtifAvStateMachine::StateIdle::ProcessEvent(uint32_t event, void* p_data) {
       // Check whether connection is allowed
       if (peer_.IsSink()) {
         can_connect = btif_av_source.AllowedToConnect(peer_.PeerAddress());
-        if (!can_connect) src_disconnect_sink(peer_.PeerAddress());
+        if (!can_connect)
+          BtAvSourceImpl::GetSingleton().disconnect(peer_.PeerAddress());
       } else if (peer_.IsSource()) {
         can_connect = btif_av_sink.AllowedToConnect(peer_.PeerAddress());
         if (!can_connect) sink_disconnect_src(peer_.PeerAddress());
@@ -1867,7 +1912,7 @@ bool BtifAvStateMachine::StateIdle::ProcessEvent(uint32_t event, void* p_data) {
           if (btif_av_src_sink_coexist_enabled())
             BTA_AvCloseRc(((tBTA_AV*)p_data)->rc_open.rc_handle);
           else
-            src_disconnect_sink(peer_.PeerAddress());
+            BtAvSourceImpl::GetSingleton().disconnect(peer_.PeerAddress());
         }
       } else if (peer_.IsSource()) {
         can_connect = btif_av_sink.AllowedToConnect(peer_.PeerAddress());
@@ -1995,7 +2040,7 @@ bool BtifAvStateMachine::StateIdle::ProcessEvent(uint32_t event, void* p_data) {
                      ADDRESS_TO_LOGGABLE_CSTR(peer_.PeerAddress()));
 
           if (peer_.IsSink()) {
-            src_disconnect_sink(peer_.PeerAddress());
+            BtAvSourceImpl::GetSingleton().disconnect(peer_.PeerAddress());
           } else if (peer_.IsSource()) {
             sink_disconnect_src(peer_.PeerAddress());
           }
@@ -2203,7 +2248,8 @@ bool BtifAvStateMachine::StateOpening::ProcessEvent(uint32_t event,
           bool can_connect = true;
           if (peer_.IsSink()) {
             can_connect = btif_av_source.AllowedToConnect(peer_.PeerAddress());
-            if (!can_connect) src_disconnect_sink(peer_.PeerAddress());
+            if (!can_connect)
+              BtAvSourceImpl::GetSingleton().disconnect(peer_.PeerAddress());
           } else if (peer_.IsSource()) {
             can_connect = btif_av_sink.AllowedToConnect(peer_.PeerAddress());
             if (!can_connect) sink_disconnect_src(peer_.PeerAddress());
@@ -2545,7 +2591,7 @@ bool BtifAvStateMachine::StateOpened::ProcessEvent(uint32_t event,
           btif_a2dp_command_ack(A2DP_CTRL_ACK_FAILURE);
         }
         if (peer_.IsSink()) {
-          src_disconnect_sink(peer_.PeerAddress());
+          BtAvSourceImpl::GetSingleton().disconnect(peer_.PeerAddress());
         } else if (peer_.IsSource()) {
           sink_disconnect_src(peer_.PeerAddress());
         }
@@ -3582,11 +3628,11 @@ static void bta_av_sink_media_callback(const RawAddress& peer_address,
 }
 
 // Initializes the AV interface for source mode
-static bt_status_t init_src(
+bt_status_t BtAvSourceImpl::init(
     btav_source_callbacks_t* callbacks, int max_connected_audio_devices,
     const std::vector<btav_a2dp_codec_config_t>& codec_priorities,
     const std::vector<btav_a2dp_codec_config_t>& offloading_preference,
-    std::vector<btav_a2dp_codec_info_t>* supported_codecs) {
+    std::vector<btav_a2dp_codec_info_t>* supported_codecs) const {
   log::verbose("");
   return btif_av_source.Init(callbacks, max_connected_audio_devices,
                              codec_priorities, offloading_preference,
@@ -3695,7 +3741,7 @@ static void set_active_peer_int(uint8_t peer_sep,
   peer_ready_promise.set_value();
 }
 
-static bt_status_t src_connect_sink(const RawAddress& peer_address) {
+bt_status_t BtAvSourceImpl::connect(const RawAddress& peer_address) const {
   if (!btif_av_source.Enabled()) {
     log::warn("BTIF AV Source is not enabled");
     return BT_STATUS_NOT_READY;
@@ -3722,7 +3768,7 @@ static bt_status_t sink_connect_src(const RawAddress& peer_address) {
                             connect_int);
 }
 
-static bt_status_t src_disconnect_sink(const RawAddress& peer_address) {
+bt_status_t BtAvSourceImpl::disconnect(const RawAddress& peer_address) const {
   log::info("Peer {}", ADDRESS_TO_LOGGABLE_CSTR(peer_address));
 
   if (!btif_av_source.Enabled()) {
@@ -3778,8 +3824,8 @@ static bt_status_t sink_set_active_device(const RawAddress& peer_address) {
   return status;
 }
 
-static bt_status_t src_set_silence_sink(const RawAddress& peer_address,
-                                        bool silence) {
+bt_status_t BtAvSourceImpl::set_silence_device(const RawAddress& peer_address,
+                                               bool silence) const {
   log::verbose("Peer {}", ADDRESS_TO_LOGGABLE_CSTR(peer_address));
   if (!btif_av_source.Enabled()) {
     log::warn("BTIF AV Source is not enabled");
@@ -3791,7 +3837,8 @@ static bt_status_t src_set_silence_sink(const RawAddress& peer_address,
       base::BindOnce(&set_source_silence_peer_int, peer_address, silence));
 }
 
-static bt_status_t src_set_active_sink(const RawAddress& peer_address) {
+bt_status_t BtAvSourceImpl::set_active_device(
+    const RawAddress& peer_address) const {
   log::verbose("Peer {}", ADDRESS_TO_LOGGABLE_CSTR(peer_address));
 
   if (!btif_av_source.Enabled()) {
@@ -3813,9 +3860,9 @@ static bt_status_t src_set_active_sink(const RawAddress& peer_address) {
   return status;
 }
 
-static bt_status_t codec_config_src(
+bt_status_t BtAvSourceImpl::config_codec(
     const RawAddress& peer_address,
-    std::vector<btav_a2dp_codec_config_t> codec_preferences) {
+    std::vector<btav_a2dp_codec_config_t> codec_preferences) const {
   log::verbose("");
 
   if (!btif_av_source.Enabled()) {
@@ -3843,7 +3890,7 @@ static bt_status_t codec_config_src(
   return status;
 }
 
-static void cleanup_src(void) {
+void BtAvSourceImpl::cleanup(void) const {
   log::verbose("");
   do_in_main_thread(FROM_HERE,
                     base::BindOnce(&BtifAvSource::Cleanup,
@@ -3855,17 +3902,6 @@ static void cleanup_sink(void) {
   do_in_main_thread(FROM_HERE, base::BindOnce(&BtifAvSink::Cleanup,
                                               base::Unretained(&btif_av_sink)));
 }
-
-static const btav_source_interface_t bt_av_src_interface = {
-    sizeof(btav_source_interface_t),
-    init_src,
-    src_connect_sink,
-    src_disconnect_sink,
-    src_set_silence_sink,
-    src_set_active_sink,
-    codec_config_src,
-    cleanup_src,
-};
 
 static const btav_sink_interface_t bt_av_sink_interface = {
     sizeof(btav_sink_interface_t),
@@ -3959,7 +3995,7 @@ void btif_av_stream_start_offload(void) {
 
 void btif_av_src_disconnect_sink(const RawAddress& peer_address) {
   log::info("peer {}", ADDRESS_TO_LOGGABLE_CSTR(peer_address));
-  src_disconnect_sink(peer_address);
+  BtAvSourceImpl::GetSingleton().disconnect(peer_address);
 }
 
 bool btif_av_stream_ready(const A2dpType local_a2dp_type) {
@@ -4107,7 +4143,8 @@ bt_status_t btif_av_sink_execute_service(bool enable) {
 // Get the AV callback interface for A2DP source profile
 const btav_source_interface_t* btif_av_get_src_interface(void) {
   log::verbose("");
-  return &bt_av_src_interface;
+  return dynamic_cast<const btav_source_interface_t*>(
+      &BtAvSourceImpl::GetSingleton());
 }
 
 // Get the AV callback interface for A2DP sink profile

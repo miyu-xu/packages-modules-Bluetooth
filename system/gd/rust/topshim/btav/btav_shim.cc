@@ -267,8 +267,8 @@ std::unique_ptr<A2dpIntf> GetA2dpProfile(const unsigned char* btif) {
 
   const bt_interface_t* btif_ = reinterpret_cast<const bt_interface_t*>(btif);
 
-  auto a2dpif = std::make_unique<A2dpIntf>(
-      reinterpret_cast<const btav_source_interface_t*>(btif_->get_profile_interface("a2dp")));
+  auto a2dpif = std::make_unique<A2dpIntf>(reinterpret_cast<const btav_source_interface_t*>(
+      btif_->get_profile_interface(BT_PROFILE_ADVANCED_AUDIO_ID)));
   internal::g_a2dpif = a2dpif.get();
   return a2dpif;
 }
