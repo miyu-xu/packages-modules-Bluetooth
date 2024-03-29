@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "562c68ab_200026c1",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 2136,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-29T07:27:42Z",
+      "side": 1,
+      "message": "Will have follow-up CL for that",
+      "parentUuid": "5fd56ce9_b66c9f09",
+      "range": {
+        "startLine": 2130,
+        "startChar": 0,
+        "endLine": 2136,
+        "endChar": 0
+      },
+      "revId": "8d4ab54a37c48e8971d119f7ef7c74d261932e54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8466039c_8cf3c822",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-29T07:01:13Z",
       "side": 1,
       "message": "why not just do:\n\nbt_property_t prop_did \u003d {\n .type \u003d BT_PROPERTY_VENDOR_PRODUCT_INFO,\n .val \u003d \u0026vp_info,\n .len \u003d sizeof(vp_info)\n};\n\n?",
+      "range": {
+        "startLine": 2137,
+        "startChar": 0,
+        "endLine": 2139,
+        "endChar": 33
+      },
+      "revId": "8d4ab54a37c48e8971d119f7ef7c74d261932e54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "970e3d92_4420de6b",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 2139,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-29T07:27:42Z",
+      "side": 1,
+      "message": "Will have follow-up CL for that",
+      "parentUuid": "8466039c_8cf3c822",
       "range": {
         "startLine": 2137,
         "startChar": 0,
