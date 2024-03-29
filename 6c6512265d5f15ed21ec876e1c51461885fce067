@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a79690b_6814e703",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-29T14:17:32Z",
+      "side": 1,
+      "message": "Is this the next step?",
+      "range": {
+        "startLine": 773,
+        "startChar": 0,
+        "endLine": 774,
+        "endChar": 63
+      },
+      "revId": "6c6512265d5f15ed21ec876e1c51461885fce067",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94caf2af_9133dba3",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2193,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-29T14:17:32Z",
+      "side": 1,
+      "message": "I like this much better.  Thanks!\n\nI\u0027m curious what happens if we just leave out the check.  I would hope that we get a meaningful error from the get\u003ctBTA_DM_API_SEARCH\u003e() call.",
+      "range": {
+        "startLine": 2190,
+        "startChar": 0,
+        "endLine": 2193,
+        "endChar": 66
+      },
+      "revId": "6c6512265d5f15ed21ec876e1c51461885fce067",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
