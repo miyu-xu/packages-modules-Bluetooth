@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b087721e_c7f051a4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-29T07:18:17Z",
+      "side": 1,
+      "message": "Dr. No\u0027ed because of sufficient unit tests",
+      "revId": "c7ec30211550650f43bf68d057337e168397ddb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
