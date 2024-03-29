@@ -16,6 +16,8 @@
 
 #include "os/alarm.h"
 
+#include <bluetooth/log.h>
+
 #include <cstddef>
 #include <future>
 
@@ -125,13 +127,16 @@ TEST_F(TwoAlarmTest, schedule_from_alarm_long) {
   auto future = promise.get_future();
   std::promise<void> promise2;
   auto future2 = promise2.get_future();
+  log::info("scheduling");
   alarm_->Schedule(
       BindOnce(
           [](Alarm* alarm2, std::promise<void>* promise, std::promise<void>* promise2) {
+            log::info("set promise");
             promise->set_value();
             if (promise == nullptr) {
               FAIL();
             }
+            log::info("schedule promise2");
             alarm2->Schedule(
                 BindOnce(&std::promise<void>::set_value, common::Unretained(promise2)),
                 std::chrono::milliseconds(10));
@@ -140,10 +145,79 @@ TEST_F(TwoAlarmTest, schedule_from_alarm_long) {
           common::Unretained(&promise),
           common::Unretained(&promise2)),
       std::chrono::milliseconds(1));
+  log::info("scheduled");
   fake_timer_advance(10);
+  log::info("wait");
   EXPECT_EQ(std::future_status::ready, future.wait_for(std::chrono::milliseconds(20)));
   fake_timer_advance(10);
+  log::info("wait2");
   EXPECT_EQ(std::future_status::ready, future2.wait_for(std::chrono::milliseconds(20)));
+}
+
+TEST_F(TwoAlarmTest, schedule_from_alarm_short) {
+  std::promise<void> promise;
+  auto future = promise.get_future();
+  std::promise<void> promise2;
+  auto future2 = promise2.get_future();
+  log::info("scheduling");
+  alarm_->Schedule(
+      BindOnce(
+          [](Alarm* alarm2, std::promise<void>* promise, std::promise<void>* promise2) {
+            log::info("set promise");
+            promise->set_value();
+            if (promise == nullptr) {
+              FAIL();
+            }
+            log::info("schedule promise2");
+            alarm2->Schedule(
+                BindOnce(&std::promise<void>::set_value, common::Unretained(promise2)),
+                std::chrono::milliseconds(10));
+          },
+          common::Unretained(alarm2),
+          common::Unretained(&promise),
+          common::Unretained(&promise2)),
+      std::chrono::milliseconds(1));
+  log::info("scheduled");
+  fake_timer_advance(10);
+  log::info("wait");
+  EXPECT_EQ(std::future_status::ready, future.wait_for(std::chrono::milliseconds(1)));
+  fake_timer_advance(10);
+  log::info("wait2");
+  EXPECT_EQ(std::future_status::ready, future2.wait_for(std::chrono::milliseconds(1)));
+  fake_timer_advance(10);
+}
+
+TEST_F(TwoAlarmTest, schedule_from_alarm_exact) {
+  std::promise<void> promise;
+  auto future = promise.get_future();
+  std::promise<void> promise2;
+  auto future2 = promise2.get_future();
+  log::info("scheduling");
+  alarm_->Schedule(
+      BindOnce(
+          [](Alarm* alarm2, std::promise<void>* promise, std::promise<void>* promise2) {
+            log::info("set promise");
+            promise->set_value();
+            if (promise == nullptr) {
+              FAIL();
+            }
+            log::info("schedule promise2");
+            alarm2->Schedule(
+                BindOnce(&std::promise<void>::set_value, common::Unretained(promise2)),
+                std::chrono::milliseconds(10));
+          },
+          common::Unretained(alarm2),
+          common::Unretained(&promise),
+          common::Unretained(&promise2)),
+      std::chrono::milliseconds(1));
+  log::info("scheduled");
+  fake_timer_advance(10);
+  log::info("wait");
+  EXPECT_EQ(std::future_status::ready, future.wait_for(std::chrono::milliseconds(10)));
+  fake_timer_advance(10);
+  log::info("wait2");
+  EXPECT_EQ(std::future_status::ready, future2.wait_for(std::chrono::milliseconds(10)));
+  fake_timer_advance(10);
 }
 
 }  // namespace
