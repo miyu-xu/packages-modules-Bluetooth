@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f7fd21b_b194a539",
+        "filename": "framework/tests/unit/src/android/bluetooth/le/ScanRecordTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-29T08:50:21Z",
+      "side": 1,
+      "message": "Oh yes, forgot that. Good call. Thank you!",
+      "parentUuid": "cd9585c6_c99b9d2f",
+      "revId": "9492cf1776f93864c91e7afff088f3f68548a69d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2e2d3a2_aa954ced",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-03-29T06:32:11Z",
       "side": 1,
       "message": "Q) Shouldn\u0027t we need 0x04 for the length of the MSD #2?",
+      "revId": "9492cf1776f93864c91e7afff088f3f68548a69d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c7354fe_63a83e0f",
+        "filename": "framework/tests/unit/src/android/bluetooth/le/ScanRecordTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-03-29T08:50:21Z",
+      "side": 1,
+      "message": "You\u0027re right. Fixed. Thank you!",
+      "parentUuid": "b2e2d3a2_aa954ced",
       "revId": "9492cf1776f93864c91e7afff088f3f68548a69d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
