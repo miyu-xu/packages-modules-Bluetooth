@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bc1a070_da101c96",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-29T04:37:31Z",
+      "side": 1,
+      "message": "Could you verify this patch with the `SocketManager.ListenXXXX` API? I suspect we won\u0027t be able to accept incoming Classic connection if there\u0027s no bonded device, which would break the NearbyShare featrue.",
+      "revId": "48cf92a1b12c91d3ca03ebd595c5b31d9acb8a82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98dcfabc_713e1e96",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1512,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-03-29T04:37:31Z",
+      "side": 1,
+      "message": "The properties could already be updated. See line #1492.",
+      "revId": "48cf92a1b12c91d3ca03ebd595c5b31d9acb8a82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
