@@ -32,6 +32,8 @@
 
 package com.android.bluetooth.opp;
 
+import static java.util.Objects.requireNonNull;
+
 import android.app.NotificationManager;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -84,16 +86,17 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
 
     private static final Object INSTANCE_LOCK = new Object();
 
-    private Context mContext;
+    private final Context mContext;
+    private final AdapterService mAdapterService;
 
     private BluetoothAdapter mAdapter;
 
     @VisibleForTesting
     BluetoothDevice mDevice;
 
-    private BluetoothOppBatch mBatch;
+    private final BluetoothOppBatch mBatch;
 
-    private BluetoothOppObexSession mSession;
+    private final BluetoothOppObexSession mSession;
 
     @VisibleForTesting
     BluetoothOppShareInfo mCurrentShare;
@@ -124,7 +127,7 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
                                     .BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED__TYPE__LOG_ERROR,
                             0);
                     return;
-                } else if (mBatch == null || mCurrentShare == null) {
+                } else if (mCurrentShare == null) {
                     Log.e(
                             TAG,
                             "device : "
@@ -228,11 +231,12 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
 
     private OppConnectionReceiver mBluetoothReceiver;
 
-    public BluetoothOppTransfer(Context context, BluetoothOppBatch batch,
+    public BluetoothOppTransfer(AdapterService adapterService, BluetoothOppBatch batch,
             BluetoothOppObexSession session) {
 
-        mContext = context;
-        mBatch = batch;
+        mAdapterService = adapterService;
+        mContext = (Context) adapterService;
+        mBatch = requireNonNull(batch);
         mSession = session;
 
         mBatch.registerListener(this);
