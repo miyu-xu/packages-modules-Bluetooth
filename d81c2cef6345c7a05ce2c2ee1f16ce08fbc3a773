@@ -33,6 +33,24 @@
       "message": "maybe this could go down into `else` statement in line 1524?\n\nDon\u0027t we need mGroupLock here?",
       "revId": "d81c2cef6345c7a05ce2c2ee1f16ce08fbc3a773",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42e75686_61f08f12",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1514,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-03-29T14:55:27Z",
+      "side": 1,
+      "message": "This seems to be outdated comment. Please re-open if needed",
+      "parentUuid": "8767c5d7_fc11b576",
+      "revId": "d81c2cef6345c7a05ce2c2ee1f16ce08fbc3a773",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
