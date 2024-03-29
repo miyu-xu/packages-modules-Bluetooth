@@ -621,7 +621,7 @@ void bta_av_role_res(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
       p_scb->wait &= ~BTA_AV_WAIT_ROLE_SW_BITS;
       if (p_data->role_res.hci_status != HCI_SUCCESS) {
         p_scb->role &= ~BTA_AV_ROLE_START_INT;
-        bta_sys_idle(BTA_ID_AV, bta_av_cb.audio_open_cnt, p_scb->PeerAddress());
+        bta_sys_idle(BTA_ID_AV, p_scb->app_id, p_scb->PeerAddress());
         /* start failed because of role switch. */
         tBTA_AV bta_av_data = {
                 .start =
@@ -1834,7 +1834,7 @@ void bta_av_do_start(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
   }
 
   p_scb->role |= BTA_AV_ROLE_START_INT;
-  bta_sys_busy(BTA_ID_AV, bta_av_cb.audio_open_cnt, p_scb->PeerAddress());
+  bta_sys_busy(BTA_ID_AV, p_scb->app_id, p_scb->PeerAddress());
   /* disallow role switch during streaming, only if we are the central role
    * i.e. allow role switch, if we are peripheral.
    * It would not hurt us, if the peer device wants us to be central
@@ -1875,7 +1875,7 @@ void bta_av_str_stopped(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
   log::info("peer {} bta_handle:0x{:x} audio_open_cnt:{}, p_data {} start:{}", p_scb->PeerAddress(),
             p_scb->hndl, bta_av_cb.audio_open_cnt, fmt::ptr(p_data), start);
 
-  bta_sys_idle(BTA_ID_AV, bta_av_cb.audio_open_cnt, p_scb->PeerAddress());
+  bta_sys_idle(BTA_ID_AV, p_scb->app_id, p_scb->PeerAddress());
   BTM_unblock_role_switch_and_sniff_mode_for(p_scb->PeerAddress());
 
   if (p_scb->co_started) {
@@ -2228,7 +2228,7 @@ void bta_av_start_ok(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
   if (p_data && (p_data->hdr.offset != BTA_AV_RS_NONE)) {
     p_scb->wait &= ~BTA_AV_WAIT_ROLE_SW_BITS;
     if (p_data->hdr.offset == BTA_AV_RS_FAIL) {
-      bta_sys_idle(BTA_ID_AV, bta_av_cb.audio_open_cnt, p_scb->PeerAddress());
+      bta_sys_idle(BTA_ID_AV, p_scb->app_id, p_scb->PeerAddress());
       tBTA_AV bta_av_data = {
               .start =
                       {
@@ -2277,7 +2277,7 @@ void bta_av_start_ok(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
   /* tell role manager to check M/S role */
   bta_sys_conn_open(BTA_ID_AV, p_scb->app_id, p_scb->PeerAddress());
 
-  bta_sys_busy(BTA_ID_AV, bta_av_cb.audio_open_cnt, p_scb->PeerAddress());
+  bta_sys_busy(BTA_ID_AV, p_scb->app_id, p_scb->PeerAddress());
 
   if (p_scb->media_type == AVDT_MEDIA_TYPE_AUDIO) {
     /* in normal logic, conns should be bta_av_cb.audio_count - 1,
@@ -2375,7 +2375,7 @@ void bta_av_start_failed(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* /* p_data */) {
              p_scb->co_started);
 
   if (!p_scb->started && !p_scb->co_started) {
-    bta_sys_idle(BTA_ID_AV, bta_av_cb.audio_open_cnt, p_scb->PeerAddress());
+    bta_sys_idle(BTA_ID_AV, p_scb->app_id, p_scb->PeerAddress());
     notify_start_failed(p_scb);
   }
 
@@ -2503,7 +2503,7 @@ void bta_av_suspend_cfm(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
     p_scb->cong = false;
   }
 
-  bta_sys_idle(BTA_ID_AV, bta_av_cb.audio_open_cnt, p_scb->PeerAddress());
+  bta_sys_idle(BTA_ID_AV, p_scb->app_id, p_scb->PeerAddress());
   BTM_unblock_role_switch_and_sniff_mode_for(p_scb->PeerAddress());
 
   /* in case that we received suspend_ind, we may need to call co_stop here */
