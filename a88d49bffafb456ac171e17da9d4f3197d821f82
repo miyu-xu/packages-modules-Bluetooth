@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3e83413_15a7bba1",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 2843,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-03-29T21:01:51Z",
+      "side": 1,
+      "message": "This needs to fix isActive() after the rebase.",
+      "revId": "a88d49bffafb456ac171e17da9d4f3197d821f82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
