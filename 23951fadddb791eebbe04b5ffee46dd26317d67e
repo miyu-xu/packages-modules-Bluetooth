@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a963bf97_07f3f821",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppObexServerSession.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-03-29T17:28:51Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Build Warnings: cannot find symbol\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    cannot find symbol\n                        if (D) {\n                            ^\n      symbol:   variable D\n      location: class BluetoothOppObexServerSession\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P72480012/targets/errorprone-trunk_staging, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the git_main branch.\n\n\u003e Please check recent changes removing hardcoding of log configuration.",
+      "range": {
+        "startLine": 432,
+        "startChar": 0,
+        "endLine": 432,
+        "endChar": 28
+      },
+      "revId": "23951fadddb791eebbe04b5ffee46dd26317d67e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
