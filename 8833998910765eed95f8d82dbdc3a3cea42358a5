@@ -86,6 +86,24 @@
       "parentUuid": "54202dc2_aaf8644b",
       "revId": "8833998910765eed95f8d82dbdc3a3cea42358a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14bb4400_354122b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-03-29T11:33:35Z",
+      "side": 1,
+      "message": "Done for deleting the file for both cases.\n\nFor test, current test structure is too complex to test this case, so replaced with the manual test.",
+      "parentUuid": "d2de5f1c_0d28d910",
+      "revId": "8833998910765eed95f8d82dbdc3a3cea42358a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
