@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b22c31ee_cb09c762",
+        "filename": "system/main/shim/dumpsys.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-29T20:41:11Z",
+      "side": 1,
+      "message": "Do we want to wait here?\n\nI typed this:\nlog::assert_that(\n\nThe suggestion is auto-generated :)\n```suggestion\n      log::assert_that(future.wait_for(std::chrono::seconds(1)) \u003d\u003d\n                       std::future_status::ready,\n                       \"Timed out waiting for dumpsys to complete\");\n```\n\nI don\u0027t know if 1 second is correct, or if it really should be an assert.  I\u0027m just a little worried about a hang with no logs.",
+      "range": {
+        "startLine": 67,
+        "startChar": 13,
+        "endLine": 67,
+        "endChar": 16
+      },
+      "revId": "a8928cdb05b7b2f938779a6053b3d45e6cea9121",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
