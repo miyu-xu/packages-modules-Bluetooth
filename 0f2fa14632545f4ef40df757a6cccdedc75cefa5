@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a06e4937_e61de1b0",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1750,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-03-29T07:44:26Z",
+      "side": 1,
+      "message": "Yes, that would be some further patches, p_uuid_list will be turned into vector.",
+      "parentUuid": "5f5b3730_ef6b4e1d",
+      "range": {
+        "startLine": 1747,
+        "startChar": 0,
+        "endLine": 1750,
+        "endChar": 33
+      },
+      "revId": "0f2fa14632545f4ef40df757a6cccdedc75cefa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d319149_44f09b83",
