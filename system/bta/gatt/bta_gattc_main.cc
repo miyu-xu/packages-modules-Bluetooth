@@ -322,6 +322,18 @@ bool bta_gattc_hdl_event(const BT_HDR_RIGID* p_msg) {
       bta_gattc_process_api_open_cancel((tBTA_GATTC_DATA*)p_msg);
       break;
 
+    case BTA_GATTC_OP_CMPL_EVT: {
+      tBTA_GATTC_OP_CMPL* p_buf = (tBTA_GATTC_OP_CMPL*)p_msg;
+      tGATTC_OPTYPE op_code = p_buf->op_code;
+      if (op_code == GATTC_OPTYPE_NOTIFICATION ||
+          op_code == GATTC_OPTYPE_INDICATION) {
+        bta_gattc_process_indicate(p_msg->layer_specific, op_code,
+                                   p_buf->p_cmpl);
+        break;
+      }
+      FALLTHROUGH_INTENDED; /* FALLTHROUGH */
+    }
+
     default:
       if (p_msg->event == BTA_GATTC_INT_CONN_EVT) {
         p_clcb = bta_gattc_find_int_conn_clcb((tBTA_GATTC_DATA*)p_msg);

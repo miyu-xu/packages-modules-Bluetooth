@@ -489,6 +489,9 @@ void bta_gattc_cache_write(const RawAddress& server_bda, const gatt::Database& d
 void bta_gattc_cache_link(const RawAddress& server_bda, const Octet16& hash);
 void bta_gattc_cache_reset(const RawAddress& server_bda);
 
+void bta_gattc_process_indicate(uint16_t conn_id, tGATTC_OPTYPE op,
+                                tGATT_CL_COMPLETE* p_data);
+
 inline std::string bta_clcb_state_text(const tBTA_GATTC_STATE& state) {
   switch (state) {
     CASE_RETURN_TEXT(BTA_GATTC_IDLE_ST);

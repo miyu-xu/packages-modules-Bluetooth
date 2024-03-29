@@ -1508,7 +1508,7 @@ static void bta_gattc_proc_other_indication(tBTA_GATTC_CLCB* p_clcb, uint8_t op,
 }
 
 /** process indication/notification */
-static void bta_gattc_process_indicate(uint16_t conn_id, tGATTC_OPTYPE op,
+void bta_gattc_process_indicate(uint16_t conn_id, tGATTC_OPTYPE op,
                                        tGATT_CL_COMPLETE* p_data) {
   uint16_t handle = p_data->att_value.handle;
   tBTA_GATTC_NOTIFY notify;
@@ -1600,7 +1600,7 @@ static void bta_gattc_cmpl_cback(uint16_t conn_id, tGATTC_OPTYPE op, tGATT_STATU
 
   /* notification and indication processed right away */
   if (op == GATTC_OPTYPE_NOTIFICATION || op == GATTC_OPTYPE_INDICATION) {
-    bta_gattc_process_indicate(conn_id, op, p_data);
+    bta_gattc_cmpl_sendmsg(conn_id, op, status, p_data);
     return;
   }
   /* for all other operation, not expected if w/o connection */
