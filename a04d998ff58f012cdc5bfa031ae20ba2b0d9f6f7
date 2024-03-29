@@ -46,6 +46,30 @@
       },
       "revId": "a04d998ff58f012cdc5bfa031ae20ba2b0d9f6f7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eea80b13_db4e22dc",
+        "filename": "system/gd/l2cap/internal/fixed_channel_allocator.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-03-29T20:32:39Z",
+      "side": 1,
+      "message": "Actually the formatter did not update this line because it was not impacted by the change.",
+      "parentUuid": "e287e189_8e2bd86a",
+      "range": {
+        "startLine": 61,
+        "startChar": 16,
+        "endLine": 61,
+        "endChar": 25
+      },
+      "revId": "a04d998ff58f012cdc5bfa031ae20ba2b0d9f6f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
