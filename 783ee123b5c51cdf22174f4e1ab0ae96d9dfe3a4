@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "13e45fa7_b28fa427",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1759,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-03-29T02:19:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15594a14_2e8e1a06",
+      "range": {
+        "startLine": 1759,
+        "startChar": 0,
+        "endLine": 1759,
+        "endChar": 34
+      },
+      "revId": "783ee123b5c51cdf22174f4e1ab0ae96d9dfe3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8723bcf3_5c95efe6",
@@ -60,6 +84,30 @@
       "writtenOn": "2024-03-27T22:21:14Z",
       "side": 1,
       "message": "The `scanner.monitor_handle` stores the handle of the pattern monitor. So, I think we shouldn\u0027t overwrite it with the child address monitor handle.\n\nAlso, there could be more than one address monitors for one pattern monitor, and `scanner.monitor_handle` won\u0027t be updated every time a child address monitor is removed when the device is lost.\n\nSo, let\u0027s store address monitor handles only in `scanner.monitor_handle_map`",
+      "range": {
+        "startLine": 1774,
+        "startChar": 0,
+        "endLine": 1774,
+        "endChar": 66
+      },
+      "revId": "783ee123b5c51cdf22174f4e1ab0ae96d9dfe3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "711e633c_d20a3b1c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1774,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-03-29T02:19:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8723bcf3_5c95efe6",
       "range": {
         "startLine": 1774,
         "startChar": 0,
@@ -93,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d17936a_155072ce",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 2212,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-03-29T02:19:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1c8ec79_1bed9a42",
+      "range": {
+        "startLine": 2212,
+        "startChar": 0,
+        "endLine": 2212,
+        "endChar": 51
+      },
+      "revId": "783ee123b5c51cdf22174f4e1ab0ae96d9dfe3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4238fae3_2dddf687",
@@ -106,6 +178,30 @@
       "writtenOn": "2024-03-27T22:21:14Z",
       "side": 1,
       "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"seperate\" -- should it be \"separate\"?",
+      "range": {
+        "startLine": 4259,
+        "startChar": 28,
+        "endLine": 4259,
+        "endChar": 36
+      },
+      "revId": "783ee123b5c51cdf22174f4e1ab0ae96d9dfe3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85653830_fc810eff",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 4259,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-03-29T02:19:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4238fae3_2dddf687",
       "range": {
         "startLine": 4259,
         "startChar": 28,
@@ -139,6 +235,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da07bc91_bc5f33b8",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 4262,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-03-29T02:19:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c357916b_fc609a8f",
+      "range": {
+        "startLine": 4262,
+        "startChar": 27,
+        "endLine": 4262,
+        "endChar": 35
+      },
+      "revId": "783ee123b5c51cdf22174f4e1ab0ae96d9dfe3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c20dbb21_51631459",
@@ -162,6 +282,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b541e8a6_2e77464c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 4302,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-03-29T02:19:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c20dbb21_51631459",
+      "range": {
+        "startLine": 4302,
+        "startChar": 0,
+        "endLine": 4302,
+        "endChar": 97
+      },
+      "revId": "783ee123b5c51cdf22174f4e1ab0ae96d9dfe3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6d10ab1_9e4111f8",
@@ -175,6 +319,30 @@
       "writtenOn": "2024-03-27T22:21:14Z",
       "side": 1,
       "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"seperate\" -- should it be \"separate\"?",
+      "range": {
+        "startLine": 4334,
+        "startChar": 31,
+        "endLine": 4334,
+        "endChar": 39
+      },
+      "revId": "783ee123b5c51cdf22174f4e1ab0ae96d9dfe3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "342b942d_3e87515d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 4334,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-03-29T02:19:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6d10ab1_9e4111f8",
       "range": {
         "startLine": 4334,
         "startChar": 31,

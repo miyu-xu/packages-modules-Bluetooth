@@ -58,6 +58,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d633c49c_ae5eba8d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1760,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-03-29T02:19:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e08f103b_4fcdac5e",
+      "range": {
+        "startLine": 1760,
+        "startChar": 16,
+        "endLine": 1760,
+        "endChar": 51
+      },
+      "revId": "3cf6d57bc6ea29fed1ad75d8d6c3d137aedaad80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb3e435e_6a4eca6f",
@@ -71,6 +95,30 @@
       "writtenOn": "2024-03-27T10:52:49Z",
       "side": 1,
       "message": "We don\u0027t update the scan here, please update this comment.",
+      "range": {
+        "startLine": 1798,
+        "startChar": 57,
+        "endLine": 1798,
+        "endChar": 68
+      },
+      "revId": "3cf6d57bc6ea29fed1ad75d8d6c3d137aedaad80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5eba0073_a1d782af",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1798,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-03-29T02:19:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb3e435e_6a4eca6f",
       "range": {
         "startLine": 1798,
         "startChar": 57,
@@ -140,6 +188,30 @@
       "writtenOn": "2024-03-27T10:52:49Z",
       "side": 1,
       "message": "`if controller_need_separate_pattern_and_address {`\nDon\u0027t need to specify `\u003d\u003d true` for a boolean\n\nBtw please use `separate` instead of `seperate`",
+      "range": {
+        "startLine": 4267,
+        "startChar": 8,
+        "endLine": 4267,
+        "endChar": 65
+      },
+      "revId": "3cf6d57bc6ea29fed1ad75d8d6c3d137aedaad80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e3fdb51_b87d2db6",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 4267,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-03-29T02:19:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98996dd2_0abeb16c",
       "range": {
         "startLine": 4267,
         "startChar": 8,
