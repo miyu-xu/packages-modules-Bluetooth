@@ -238,6 +238,30 @@
       },
       "revId": "5c2534b796856c6e0b8ec6d4841dd983c0c3b81d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a45d355_d92dbaf6",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 3013946
+      },
+      "writtenOn": "2024-03-29T09:26:20Z",
+      "side": 0,
+      "message": "Thanks @licorne@google.com and @wescande@google.com!\n\n```\nIn practice, the peer could have a timeout, but IMO it should already be high enough and I don\u0027t think we would trigger it here, because timeouts are usually oversized to take into account retransmissions/slow devices.\n```\nThis is a good thing as we should ideally use MediaBrowser APIs with its callback each time the remote device requests to browse a player to have up-to-date information!\n\n```\nBy taking more time to answer the peer, it will take more time to show the information to the user\u0027s peripheral (e.g. the car), but I think this is acceptable.\n```\nI think it\u0027s acceptable too.\n\n```\nBut unfortunately, if I\u0027m correctly reading our current implementation the JNI callback is synchronous \nBut fortunately, the MediaInterface seems to give a callback already, so maybe there is a way to make it asynchronous by only changing the JNI\n```\nYes, that\u0027s how it\u0027s done right now, there already is an async implmentation in BrowsedPlayerWrapper though so changing it isn\u0027t hard: https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/audio_util/BrowsedPlayerWrapper.java;l\u003d159\n\n\nOne thing that I assume would also increase the load is to stop filtering empty players. Right now, after binding to a player, we request its folder content (and never after that) and if it\u0027s empty we do not show the player as browsable. We should not do that for three reasons:\n1) It\u0027s taking load time\n2) Filtering it out means that even if its folder content changes we do not show it.\n3) We need to update the folder content each time the remote device requests it.\n\nSo I guess the best plan here would be:\n- Make the binding to browsable players async.\n- Move the binding to when remote device requests browsing.\n- Remove the `getFolderItems` during the binding.\n- Use `MediaBrowser` each time we want to retrieve the folder content of a player.\n\nThis will increase a bit the delay for each AVRCP browse request, but will make it work properly.",
+      "parentUuid": "a6ab6904_002626e7",
+      "range": {
+        "startLine": 205,
+        "startChar": 12,
+        "endLine": 205,
+        "endChar": 38
+      },
+      "revId": "5c2534b796856c6e0b8ec6d4841dd983c0c3b81d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
