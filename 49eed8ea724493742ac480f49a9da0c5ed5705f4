@@ -46,6 +46,30 @@
       },
       "revId": "49eed8ea724493742ac480f49a9da0c5ed5705f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b068ebe_df7ecf3f",
+        "filename": "system/gd/facade/facade_main.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-03-29T01:33:23Z",
+      "side": 1,
+      "message": "The recent refactor I did with the stack manager along with moving the dumpsys to gdx removed this dependency.",
+      "parentUuid": "e834a17a_b3136a9c",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 1
+      },
+      "revId": "49eed8ea724493742ac480f49a9da0c5ed5705f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
