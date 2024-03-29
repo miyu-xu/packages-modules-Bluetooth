@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "abcc8cc6_51b9ab7c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-03-29T15:34:19Z",
+      "side": 1,
+      "message": "Nice catch. Can you just update the commit message to also include the socket?",
+      "parentUuid": "17ab2d1f_c45c5f7e",
+      "revId": "48cf92a1b12c91d3ca03ebd595c5b31d9acb8a82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98dcfabc_713e1e96",
