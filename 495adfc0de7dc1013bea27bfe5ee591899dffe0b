@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b267e8fd_6ebbdadc",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-03-29T00:34:14Z",
+      "side": 1,
+      "message": "the original code is `bta_ag_is_sco_managed_by_audio`, different from the flag, please use original function as it has flag and system property",
+      "range": {
+        "startLine": 303,
+        "startChar": 10,
+        "endLine": 303,
+        "endChar": 25
+      },
+      "revId": "495adfc0de7dc1013bea27bfe5ee591899dffe0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc5af983_afd3d1ac",
+        "filename": "system/device/include/esco_parameters.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-03-29T00:34:14Z",
+      "side": 1,
+      "message": "```suggestion\n#define ESCO_LEGACY_NUM_CODECS 8\n```",
+      "range": {
+        "startLine": 49,
+        "startChar": 31,
+        "endLine": 49,
+        "endChar": 48
+      },
+      "revId": "495adfc0de7dc1013bea27bfe5ee591899dffe0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
