@@ -76,3 +76,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "fix_sco_state_on_retry"
+    namespace: "bluetooth"
+    description: "Fix SCO state when retrying different parameters"
+    bug: "332650199"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
