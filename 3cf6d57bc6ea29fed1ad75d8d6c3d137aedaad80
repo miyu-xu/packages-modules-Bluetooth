@@ -188,6 +188,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7aa5712_a8183b12",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1853,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-03-29T18:16:39Z",
+      "side": 1,
+      "message": "Done. I refactor the map to avoid race between the callback `on_track_adv_found_lost()` and the async task inside `add_child_monitor()`. The map uses addr as key instead of handle and only keeps keep address monitors.",
+      "parentUuid": "8271f1fa_6d0488c3",
+      "range": {
+        "startLine": 1853,
+        "startChar": 24,
+        "endLine": 1853,
+        "endChar": 80
+      },
+      "revId": "3cf6d57bc6ea29fed1ad75d8d6c3d137aedaad80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3077c4b_c5a648c7",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1853,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-03-29T18:16:39Z",
+      "side": 1,
+      "message": "I refactor this part to avoid the race between on_track_adv_found_lost",
+      "parentUuid": "8271f1fa_6d0488c3",
+      "range": {
+        "startLine": 1853,
+        "startChar": 24,
+        "endLine": 1853,
+        "endChar": 80
+      },
+      "revId": "3cf6d57bc6ea29fed1ad75d8d6c3d137aedaad80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa952280_2dbf4fe8",
