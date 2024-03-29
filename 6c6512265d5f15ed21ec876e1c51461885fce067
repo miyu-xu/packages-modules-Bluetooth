@@ -93,6 +93,30 @@
       },
       "revId": "6c6512265d5f15ed21ec876e1c51461885fce067",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c33da24c_c03ee095",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2193,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-29T19:51:30Z",
+      "side": 1,
+      "message": "If it crashes in a readable way, we could just do that.  I guess we could test it out.  Thanks for the research!",
+      "parentUuid": "d35fc46a_6295c55e",
+      "range": {
+        "startLine": 2190,
+        "startChar": 0,
+        "endLine": 2193,
+        "endChar": 66
+      },
+      "revId": "6c6512265d5f15ed21ec876e1c51461885fce067",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
