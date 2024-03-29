@@ -16,6 +16,23 @@
       "message": "+Archie to review hcidoc",
       "revId": "fdcc22d633e6d40f8e201998dfabd5e35374c613",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31e6d947_3be4e41b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-03-29T11:27:30Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "fdcc22d633e6d40f8e201998dfabd5e35374c613",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
