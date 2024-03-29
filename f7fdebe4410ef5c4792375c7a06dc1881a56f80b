@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41d24507_c02bb5fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-03-29T11:50:13Z",
+      "side": 1,
+      "message": "Please take a look, thanks!\n\nFor comparison, I ran cl_adapter_discovery_test on QCA6174A5 with 40 iterations.\nBefore this change, it passed 38/40 iterations.\nAfter this change, it passed 40/40 iterations.",
+      "revId": "f7fdebe4410ef5c4792375c7a06dc1881a56f80b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
