@@ -407,33 +407,36 @@ class btav_source_interface_t {
 
 /** Represents the standard BT-AV A2DP Sink interface.
  */
-typedef struct {
-  /** set to sizeof(btav_sink_interface_t) */
-  size_t size;
+class btav_sink_interface_t {
+ public:
+  btav_sink_interface_t() = default;
+  virtual ~btav_sink_interface_t() = default;
+
+ public:
   /**
    * Register the BtAv callbacks
    */
-  bt_status_t (*init)(btav_sink_callbacks_t* callbacks,
-                      int max_connected_audio_devices);
+  virtual bt_status_t init(btav_sink_callbacks_t* callbacks,
+                           int max_connected_audio_devices) const = 0;
 
   /** connect to headset */
-  bt_status_t (*connect)(const RawAddress& bd_addr);
+  virtual bt_status_t connect(const RawAddress& bd_addr) const = 0;
 
   /** dis-connect from headset */
-  bt_status_t (*disconnect)(const RawAddress& bd_addr);
+  virtual bt_status_t disconnect(const RawAddress& bd_addr) const = 0;
 
   /** Closes the interface. */
-  void (*cleanup)(void);
+  virtual void cleanup(void) const = 0;
 
   /** Sends Audio Focus State. */
-  void (*set_audio_focus_state)(int focus_state);
+  virtual void set_audio_focus_state(int focus_state) const = 0;
 
   /** Sets the audio track gain. */
-  void (*set_audio_track_gain)(float gain);
+  virtual void set_audio_track_gain(float gain) const = 0;
 
   /** sets the connected device as active */
-  bt_status_t (*set_active_device)(const RawAddress& bd_addr);
-} btav_sink_interface_t;
+  virtual bt_status_t set_active_device(const RawAddress& bd_addr) const = 0;
+};
 
 __END_DECLS
 
