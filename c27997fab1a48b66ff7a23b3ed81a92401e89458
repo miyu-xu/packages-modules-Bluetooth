@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "543bd379_3be586d0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 6198,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-29T17:59:58Z",
+      "side": 1,
+      "message": "I believe this may break the API contract of getConnectionState.\n\nWhat happen if the value returned by the 2 calls to getConnectionState are different ? \n\nThe returned value will no longer be a `@ConnectionState` as defined in the BluetoothAdapter",
+      "range": {
+        "startLine": 6197,
+        "startChar": 16,
+        "endLine": 6198,
+        "endChar": 96
+      },
+      "revId": "c27997fab1a48b66ff7a23b3ed81a92401e89458",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
