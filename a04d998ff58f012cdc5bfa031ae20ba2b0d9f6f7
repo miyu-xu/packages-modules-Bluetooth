@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8346423d_d39e4904",
+        "filename": "system/gd/l2cap/internal/fixed_channel_allocator.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-29T20:02:59Z",
+      "side": 1,
+      "message": "formatting?",
+      "range": {
+        "startLine": 61,
+        "startChar": 16,
+        "endLine": 61,
+        "endChar": 25
+      },
+      "revId": "a04d998ff58f012cdc5bfa031ae20ba2b0d9f6f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
