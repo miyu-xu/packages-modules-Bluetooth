@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c80beaa0_51c312d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-29T07:19:13Z",
+      "side": 1,
+      "message": "Dr. No because of unit test coverage and HAP is behind flag already",
+      "revId": "d0aa64c4a274241d440009fef5ba7d1f888b1788",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
