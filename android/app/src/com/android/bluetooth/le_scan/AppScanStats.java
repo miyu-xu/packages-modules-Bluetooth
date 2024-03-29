@@ -70,6 +70,7 @@ public class AppScanStats {
 
     // Battery stats is used to keep track of scans and result stats
     BatteryStatsManager mBatteryStatsManager;
+    mAppCurrentConsStats mAppCurrentConsStats;
 
     private final AdapterService mAdapterService;
 
@@ -158,6 +159,7 @@ public class AppScanStats {
         mContextMap = map;
         mScanHelper = scanHelper;
         mBatteryStatsManager = context.getSystemService(BatteryStatsManager.class);
+        mAppCurrentConsStats = mScanHelper.getAppCurrentConsumptionStatsInstance();
 
         if (source == null) {
             // Bill the caller if the work source isn't passed through
@@ -172,6 +174,10 @@ public class AppScanStats {
         LastScan scan = getScanFromScannerId(scannerId);
         if (scan != null) {
             scan.results++;
+
+            if(!sIsScreenOn && mAppCurrentConsStats!=null) {
+                mAppCurrentConsStats.addScrOffResult(appName);
+            }
 
             // Only update battery stats after receiving 100 new results in order
             // to lower the cost of the binder transaction
@@ -526,6 +532,8 @@ public class AppScanStats {
             }
             recordScreenOnOffMetrics(isScreenOn);
             sIsScreenOn = isScreenOn;
+            if(mAppCurrentConsStats != null)
+                mAppCurrentConsStats.setScreenState(isScreenOn);
         }
     }
 
