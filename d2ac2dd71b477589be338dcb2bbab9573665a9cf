@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f2dee211_45779904",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MapClientContent.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-03-29T08:27:45Z",
+      "side": 1,
+      "message": "So does that mean if the flag doesn\u0027t go to V release, the (automated) test will trigger an alarm, so that you can remove this code?",
+      "parentUuid": "134460c0_64f7193b",
+      "range": {
+        "startLine": 141,
+        "startChar": 21,
+        "endLine": 141,
+        "endChar": 31
+      },
+      "revId": "d2ac2dd71b477589be338dcb2bbab9573665a9cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1f54e9ba_c589d779",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientContentTest.java",
         "patchSetId": 1
