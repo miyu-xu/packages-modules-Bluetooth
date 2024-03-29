@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fd56ce9_b66c9f09",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 2136,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-29T07:01:13Z",
+      "side": 1,
+      "message": "same as below, why not just do:\n\nbt_vendor_product_info_t vp_info \u003d {\n  .vendor_id_src \u003d vendor_id_src,\n  .vendor_id \u003d vendor_id,\n  .product_id \u003d product_id,\n  .version \u003d version\n};",
+      "range": {
+        "startLine": 2130,
+        "startChar": 0,
+        "endLine": 2136,
+        "endChar": 0
+      },
+      "revId": "8d4ab54a37c48e8971d119f7ef7c74d261932e54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8466039c_8cf3c822",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 2139,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-29T07:01:13Z",
+      "side": 1,
+      "message": "why not just do:\n\nbt_property_t prop_did \u003d {\n .type \u003d BT_PROPERTY_VENDOR_PRODUCT_INFO,\n .val \u003d \u0026vp_info,\n .len \u003d sizeof(vp_info)\n};\n\n?",
+      "range": {
+        "startLine": 2137,
+        "startChar": 0,
+        "endLine": 2139,
+        "endChar": 33
+      },
+      "revId": "8d4ab54a37c48e8971d119f7ef7c74d261932e54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de8be426_4bbe9754",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 3147,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-29T07:01:13Z",
+      "side": 1,
+      "message": "nit: please use\n\nservice_discovery_callbacks{.legacy \u003d btif_dm_search_services_evt,\n                            .on_did_received \u003d btif_on_did_received}\n                            \nOR something like this so that a reader know which callback is assigned to what and avoid typos in the future.",
+      "range": {
+        "startLine": 3146,
+        "startChar": 0,
+        "endLine": 3147,
+        "endChar": 67
+      },
+      "revId": "8d4ab54a37c48e8971d119f7ef7c74d261932e54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
