@@ -96,8 +96,7 @@ class CodecManager {
       ::bluetooth::le_audio::set_configurations::AudioSetConfiguration>
   GetCodecConfig(const UnicastConfigurationRequirements& requirements,
                  UnicastConfigurationVerifier verifier);
-
-  virtual bool CheckCodecConfigIsBiDirSwb(
+  virtual bool CheckCodecConfigIsDualBiDirSwb(
       const ::bluetooth::le_audio::set_configurations::AudioSetConfiguration&
           config) const;
   virtual std::unique_ptr<broadcaster::BroadcastConfiguration>
