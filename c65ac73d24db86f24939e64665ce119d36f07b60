@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00831ec7_9a64cc1b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3059,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-29T17:49:47Z",
+      "side": 1,
+      "message": "Hey, this is a very suspicious to do.\n\nWe should revert this change after taking into consideration my comment in aosp/2912148",
+      "range": {
+        "startLine": 3049,
+        "startChar": 2,
+        "endLine": 3059,
+        "endChar": 9
+      },
+      "revId": "c65ac73d24db86f24939e64665ce119d36f07b60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
