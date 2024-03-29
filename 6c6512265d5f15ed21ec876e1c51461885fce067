@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1d1e08e0_ef26210e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-29T19:53:07Z",
+      "side": 1,
+      "message": "The PTS-bot failure looks like it could be real.",
+      "revId": "6c6512265d5f15ed21ec876e1c51461885fce067",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6a79690b_6814e703",
         "filename": "system/bta/dm/bta_dm_disc.cc",
         "patchSetId": 4
