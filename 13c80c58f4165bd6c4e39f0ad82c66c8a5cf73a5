@@ -16,6 +16,24 @@
       "message": "Apologies for the many reviewers. I\u0027ve just added @wescande@google.com as I wasn\u0027t sure if it\u0027s okay adding a new dependency to `framework/tests/unit/Android.bp` so I\u0027d love it if I can get a check on that. Thank you!",
       "revId": "13c80c58f4165bd6c4e39f0ad82c66c8a5cf73a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08c3f022_87406c14",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-03-29T17:27:04Z",
+      "side": 1,
+      "message": "I think this is an okay dependency.",
+      "parentUuid": "5f369405_781131c7",
+      "revId": "13c80c58f4165bd6c4e39f0ad82c66c8a5cf73a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
