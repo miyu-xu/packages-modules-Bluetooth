@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "568d3959_925c1e69",
+        "filename": "system/stack/test/btm/stack_btm_sec_test.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-03-29T20:43:35Z",
+      "side": 1,
+      "message": "This looks helpful for debugging, but a little noisy during a normal test run.",
+      "range": {
+        "startLine": 306,
+        "startChar": 3,
+        "endLine": 307,
+        "endChar": 80
+      },
+      "revId": "acf7b6b368e283c7e13bd9663da3aede0cffec91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
