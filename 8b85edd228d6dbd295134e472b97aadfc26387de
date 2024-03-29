@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a74f69a_5b75f8d4",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 786,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-29T18:57:23Z",
+      "side": 1,
+      "message": "nit: operation_timeout_callback ?",
+      "range": {
+        "startLine": 786,
+        "startChar": 14,
+        "endLine": 786,
+        "endChar": 32
+      },
+      "revId": "8b85edd228d6dbd295134e472b97aadfc26387de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79dad9b3_465c16db",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 809,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-03-29T18:57:23Z",
+      "side": 1,
+      "message": "wouldn\u0027t this wait for the operation forever?",
+      "range": {
+        "startLine": 808,
+        "startChar": 4,
+        "endLine": 809,
+        "endChar": 69
+      },
+      "revId": "8b85edd228d6dbd295134e472b97aadfc26387de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
