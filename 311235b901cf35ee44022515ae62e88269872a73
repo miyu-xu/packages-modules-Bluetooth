@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62215b54_28d643a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3369106
+      },
+      "writtenOn": "2024-03-30T23:44:20Z",
+      "side": 1,
+      "message": "3018575: Revert \"Clear calling identity when calling getConnectionState internally\" | https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/3018575",
+      "revId": "311235b901cf35ee44022515ae62e88269872a73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
