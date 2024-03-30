@@ -110,11 +110,10 @@ public class NotificationHelperService extends Service {
             return;
         }
 
-        if (!isFirstTimeNotification(notificationReason)) {
+        if (!shouldDisplayNotification(notificationReason)) {
             Log.d(TAG, logHeader + "already displayed");
             return;
         }
-        Settings.Secure.putInt(getContentResolver(), notificationReason, 1);
 
         Log.d(TAG, logHeader + "sending");
 
@@ -181,8 +180,13 @@ public class NotificationHelperService extends Service {
     }
 
     /** Return whether the notification has been shown */
-    private boolean isFirstTimeNotification(String name) {
-        return Settings.Secure.getInt(getContentResolver(), name, 0) == 0;
+    private boolean shouldDisplayNotification(String key) {
+        int countShown = Settings.Secure.getInt(getContentResolver(), key, 0);
+        if (countShown >= 2) {
+            return false;
+        }
+        Settings.Secure.putInt(getContentResolver(), key, countShown + 1);
+        return true;
     }
 
     private void autoOnUserAction(boolean disableAutoOn) {
