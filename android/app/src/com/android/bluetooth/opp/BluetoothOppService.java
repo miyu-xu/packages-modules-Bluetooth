@@ -74,6 +74,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -203,7 +204,7 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
     private BluetoothOppObexServerSession mServerSession;
 
     public BluetoothOppService(AdapterService adapterService) {
-        super((Context) adapterService);
+        super(adapterService.asContext());
 
         mAdapterService = adapterService;
 
@@ -211,17 +212,7 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
         filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
         registerReceiver(mBluetoothReceiver, filter);
 
-        BluetoothOppPreference preference = BluetoothOppPreference.getInstance(this);
-        if (preference != null) {
-            preference.dump();
-        } else {
-            Log.w(TAG, "BluetoothOppPreference.getInstance returned null.");
-            ContentProfileErrorReportUtils.report(
-                    BluetoothProfile.OPP,
-                    BluetoothProtoEnums.BLUETOOTH_OPP_SERVICE,
-                    BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED__TYPE__LOG_WARN,
-                    0);
-        }
+        BluetoothOppPreference.getInstance(adapterService).dump();
     }
 
     public static boolean isEnabled() {
@@ -902,13 +893,21 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
                 }
 
                 if (info.mDirection == BluetoothShare.DIRECTION_OUTBOUND && mTransfer != null) {
-                    Log.v(TAG, "Service start transfer new Batch " + newBatch.mId + " for info "
-                            + info.mId);
+                    Log.v(
+                            TAG,
+                            "Service start transfer new Batch "
+                                    + newBatch.mId
+                                    + " for info "
+                                    + info.mId);
                     mTransfer.start();
                 } else if (info.mDirection == BluetoothShare.DIRECTION_INBOUND
                         && mServerTransfer != null) {
-                    Log.v(TAG, "Service start server transfer new Batch " + newBatch.mId
-                            + " for info " + info.mId);
+                    Log.v(
+                            TAG,
+                            "Service start server transfer new Batch "
+                                    + newBatch.mId
+                                    + " for info "
+                                    + info.mId);
                     mServerTransfer.start();
                 }
 
@@ -1306,15 +1305,14 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
 
     @Override
     public boolean onConnect(BluetoothDevice device, BluetoothSocket socket) {
-
         Log.d(
                 TAG,
-                " onConnect BluetoothSocket :"
-                        + socket
-                        + " \n :device :"
-                        + device.getIdentityAddress());
+                "onConnect"
+                        + (" socket=" + socket)
+                        + (" device=" + mAdapterService.getIdentityAddress(device.getAddress())));
+
         if (!mAcceptNewConnections) {
-            Log.d(TAG, " onConnect BluetoothSocket :" + socket + " rejected");
+            Log.d(TAG, " onConnect socket=" + socket + " rejected");
             return false;
         }
         BluetoothObexTransport transport = new BluetoothObexTransport(socket);

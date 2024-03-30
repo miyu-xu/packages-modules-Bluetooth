@@ -28,31 +28,39 @@ import static org.mockito.Mockito.spy;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
-import android.content.ContextWrapper;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.BluetoothMethodProxy;
+import com.android.bluetooth.btservice.AdapterService;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 @RunWith(AndroidJUnit4.class)
 public class BluetoothOppPreferenceTest {
-    Context mContext;
+    private static final String ADDRESS = "AA:BB:CC:DD:EE:FF";
+    private final Context mContext =
+            InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-    BluetoothMethodProxy mCallProxy;
+    @Mock private AdapterService mAdapterService;
+    private BluetoothMethodProxy mCallProxy;
+    private BluetoothOppPreference mOppPreference;
 
     @Before
     public void setUp() {
-        mContext = spy(new ContextWrapper(
-                InstrumentationRegistry.getInstrumentation().getTargetContext()));
+        MockitoAnnotations.initMocks(this);
+        doReturn(mContext).when(mAdapterService).asContext();
+        doReturn(ADDRESS).when(mAdapterService).getIdentityAddress(any());
 
         mCallProxy = spy(BluetoothMethodProxy.getInstance());
         BluetoothMethodProxy.setInstanceForTesting(mCallProxy);
+        mOppPreference = BluetoothOppPreference.getInstance(mAdapterService);
 
         doReturn(null).when(mCallProxy).contentResolverInsert(
                 any(), eq(BluetoothShare.CONTENT_URI), any());
@@ -68,39 +76,38 @@ public class BluetoothOppPreferenceTest {
 
     @Test
     public void dump_shouldNotThrow() {
-        BluetoothOppPreference.getInstance(mContext).dump();
+        mOppPreference.dump();
     }
 
     @Test
     public void setNameAndGetNameAndRemoveName_setsAndGetsAndRemovesNameCorrectly() {
-        String address = "AA:BB:CC:DD:EE:FF";
         String name = "randomName";
-        BluetoothDevice device = (mContext.getSystemService(BluetoothManager.class))
-                .getAdapter().getRemoteDevice(address);
-        BluetoothOppPreference.getInstance(mContext).setName(device, name);
+        BluetoothDevice device =
+                mContext.getSystemService(BluetoothManager.class)
+                        .getAdapter()
+                        .getRemoteDevice(ADDRESS);
+        mOppPreference.setName(device, name);
 
-        assertThat(BluetoothOppPreference.getInstance(mContext).getName(device)).isEqualTo(name);
-
+        assertThat(mOppPreference.getName(device)).isEqualTo(name);
 
         // Undo the change so this will not be saved on share preference
-        BluetoothOppPreference.getInstance(mContext).removeName(device);
-        assertThat(BluetoothOppPreference.getInstance(mContext).getName(device)).isNull();
+        mOppPreference.removeName(device);
+        assertThat(mOppPreference.getName(device)).isNull();
     }
 
     @Test
     public void setChannelAndGetAndRemoveChannel_setsAndGetsAndRemovesChannelCorrectly() {
-        String address = "AA:BB:CC:DD:EE:FF";
         int uuid = 1234;
         int channel = 78910;
-        BluetoothDevice device = (mContext.getSystemService(BluetoothManager.class))
-                .getAdapter().getRemoteDevice(address);
-        BluetoothOppPreference.getInstance(mContext).setChannel(device, uuid, channel);
-        assertThat(BluetoothOppPreference.getInstance(mContext).getChannel(device, uuid)).isEqualTo(
-                channel);
+        BluetoothDevice device =
+                (mContext.getSystemService(BluetoothManager.class))
+                        .getAdapter()
+                        .getRemoteDevice(ADDRESS);
+        mOppPreference.setChannel(device, uuid, channel);
+        assertThat(mOppPreference.getChannel(device, uuid)).isEqualTo(channel);
 
         // Undo the change so this will not be saved on share preference
-        BluetoothOppPreference.getInstance(mContext).removeChannel(device, uuid);
-        assertThat(BluetoothOppPreference.getInstance(mContext).getChannel(device, uuid)).isEqualTo(
-                -1);
+        mOppPreference.removeChannel(device, uuid);
+        assertThat(mOppPreference.getChannel(device, uuid)).isEqualTo(-1);
     }
 }

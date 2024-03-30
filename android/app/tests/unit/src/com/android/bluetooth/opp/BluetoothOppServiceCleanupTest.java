@@ -19,6 +19,8 @@ package com.android.bluetooth.opp;
 import static android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_ENABLED;
 import static android.content.pm.PackageManager.DONT_KILL_APP;
 
+import static org.mockito.Mockito.doReturn;
+
 import android.content.ComponentName;
 import android.content.ContentValues;
 import android.content.Context;
@@ -30,7 +32,6 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.BluetoothMethodProxy;
-import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.flags.Flags;
 
@@ -47,30 +48,22 @@ import org.mockito.junit.MockitoRule;
 @RunWith(AndroidJUnit4.class)
 public class BluetoothOppServiceCleanupTest {
     @Rule public final SetFlagsRule mSetFlagsRule = new SetFlagsRule();
-
-    private boolean mIsAdapterServiceSet;
-
-    private Context mTargetContext;
-
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
+
+    private final Context mTargetContext =
+            InstrumentationRegistry.getInstrumentation().getTargetContext();
 
     @Mock private AdapterService mAdapterService;
 
     @Before
     public void setUp() throws Exception {
-        mTargetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-
-        TestUtils.setAdapterService(mAdapterService);
-        mIsAdapterServiceSet = true;
+        doReturn(mTargetContext).when(mAdapterService).asContext();
     }
 
     @After
     public void tearDown() throws Exception {
         BluetoothMethodProxy.setInstanceForTesting(null);
 
-        if (mIsAdapterServiceSet) {
-            TestUtils.clearAdapterService(mAdapterService);
-        }
     }
 
     @Test
@@ -89,7 +82,7 @@ public class BluetoothOppServiceCleanupTest {
         }
 
         try {
-            BluetoothOppService service = new BluetoothOppService(mTargetContext);
+            BluetoothOppService service = new BluetoothOppService(mAdapterService);
             service.start();
             service.setAvailable(true);
 

@@ -371,6 +371,11 @@ public class AdapterService extends Service {
         return sAdapterService;
     }
 
+    /** Return this instance as a context (so cast can be mocked) */
+    public Context asContext() {
+        return (Context) this;
+    }
+
     AdapterNativeInterface getNative() {
         return mNativeInterface;
     }
