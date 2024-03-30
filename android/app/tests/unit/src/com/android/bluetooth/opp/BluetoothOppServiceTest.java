@@ -39,7 +39,6 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.BluetoothMethodProxy;
-import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 
 import org.junit.After;
@@ -57,7 +56,6 @@ import org.mockito.junit.MockitoRule;
 @RunWith(AndroidJUnit4.class)
 public class BluetoothOppServiceTest {
     private BluetoothOppService mService = null;
-    private boolean mIsAdapterServiceSet;
     private boolean mIsBluetoothOppServiceStarted;
 
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
@@ -72,6 +70,7 @@ public class BluetoothOppServiceTest {
             Looper.prepare();
         }
         Context targetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        doReturn(targetContext).when(mAdapterService).asContext();
 
         BluetoothMethodProxy.setInstanceForTesting(mBluetoothMethodProxy);
         // BluetoothOppService can create a UpdateThread, which will call
@@ -81,9 +80,7 @@ public class BluetoothOppServiceTest {
         // is no mocking). Since we have no intention to test those threads, avoid running them
         doNothing().when(mBluetoothMethodProxy).threadStart(any());
 
-        TestUtils.setAdapterService(mAdapterService);
-        mIsAdapterServiceSet = true;
-        mService = new BluetoothOppService(targetContext);
+        mService = new BluetoothOppService(mAdapterService);
         mService.start();
         mService.setAvailable(true);
         mIsBluetoothOppServiceStarted = true;
@@ -114,9 +111,6 @@ public class BluetoothOppServiceTest {
         BluetoothMethodProxy.setInstanceForTesting(null);
         if (mIsBluetoothOppServiceStarted) {
             mService.stop();
-        }
-        if (mIsAdapterServiceSet) {
-            TestUtils.clearAdapterService(mAdapterService);
         }
     }
 

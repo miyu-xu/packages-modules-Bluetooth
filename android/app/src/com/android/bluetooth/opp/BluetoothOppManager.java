@@ -52,6 +52,7 @@ import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.R;
 import com.android.bluetooth.Utils;
+import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.content_profiles.ContentProfileErrorReportUtils;
 import com.android.bluetooth.flags.Flags;
 import com.android.internal.annotations.VisibleForTesting;
@@ -350,7 +351,9 @@ public class BluetoothOppManager {
         if (device != null) {
             deviceName = device.getAlias();
             if (deviceName == null) {
-                deviceName = BluetoothOppPreference.getInstance(mContext).getName(device);
+                deviceName =
+                        BluetoothOppPreference.getInstance(AdapterService.getAdapterService())
+                                .getName(device);
             }
         }
 

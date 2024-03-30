@@ -60,6 +60,7 @@ import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothObexTransport;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.Utils;
+import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.content_profiles.ContentProfileErrorReportUtils;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.obex.ObexTransport;
@@ -96,7 +97,7 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
 
     private final BluetoothOppBatch mBatch;
 
-    private final BluetoothOppObexSession mSession;
+    private BluetoothOppObexSession mSession;
 
     @VisibleForTesting
     BluetoothOppShareInfo mCurrentShare;
@@ -131,11 +132,9 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
                     Log.e(
                             TAG,
                             "device : "
-                                    + device.getIdentityAddress()
-                                    + " mBatch :"
-                                    + mBatch
-                                    + " mCurrentShare :"
-                                    + mCurrentShare);
+                                    + mAdapterService.getIdentityAddress(device.getAddress())
+                                    + (" mBatch :" + mBatch)
+                                    + (" mCurrentShare :" + mCurrentShare));
                     ContentProfileErrorReportUtils.report(
                             BluetoothProfile.OPP,
                             BluetoothProtoEnums.BLUETOOTH_OPP_TRANSFER,
@@ -148,7 +147,7 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
                     Log.v(
                             TAG,
                             "Device :"
-                                    + device.getIdentityAddress()
+                                    + mAdapterService.getIdentityAddress(device.getAddress())
                                     + "- OPP device: "
                                     + mBatch.mDestination
                                     + " \n mCurrentShare.mConfirm == "
@@ -191,8 +190,10 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
                                 3);
                         return;
                     }
-                    String deviceIdentityAddress = device.getIdentityAddress();
-                    String transferDeviceIdentityAddress = mDevice.getIdentityAddress();
+                    String deviceIdentityAddress =
+                            mAdapterService.getIdentityAddress(device.getAddress());
+                    String transferDeviceIdentityAddress =
+                            mAdapterService.getIdentityAddress(mDevice.getAddress());
                     if (deviceIdentityAddress == null || transferDeviceIdentityAddress == null
                             || !deviceIdentityAddress.equalsIgnoreCase(
                                     transferDeviceIdentityAddress)) {
@@ -235,7 +236,7 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
             BluetoothOppObexSession session) {
 
         mAdapterService = adapterService;
-        mContext = (Context) adapterService;
+        mContext = adapterService.asContext();
         mBatch = requireNonNull(batch);
         mSession = session;
 
@@ -244,8 +245,8 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
 
     }
 
-    public BluetoothOppTransfer(Context context, BluetoothOppBatch batch) {
-        this(context, batch, null);
+    public BluetoothOppTransfer(AdapterService adapterService, BluetoothOppBatch batch) {
+        this(adapterService, batch, null);
     }
 
     public int getBatchId() {
@@ -803,8 +804,8 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
                 BluetoothObexTransport transport;
                 transport = new BluetoothObexTransport(mBtSocket);
 
-                BluetoothOppPreference.getInstance(mContext).setName(mDevice,
-                        Utils.getName(mDevice));
+                BluetoothOppPreference.getInstance(mAdapterService)
+                        .setName(mDevice, Utils.getName(mDevice));
 
                 Log.v(TAG, "Send transport message " + transport.toString());
 
@@ -880,8 +881,8 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
                         - mTimestamp) + " ms");
                 BluetoothObexTransport transport;
                 transport = new BluetoothObexTransport(mBtSocket);
-                BluetoothOppPreference.getInstance(mContext).setName(mDevice,
-                        Utils.getName(mDevice));
+                BluetoothOppPreference.getInstance(mAdapterService)
+                        .setName(mDevice, Utils.getName(mDevice));
                 Log.v(TAG, "Send transport message " + transport.toString());
                 mSessionHandler.obtainMessage(TRANSPORT_CONNECTED, transport).sendToTarget();
             } catch (IOException e) {
