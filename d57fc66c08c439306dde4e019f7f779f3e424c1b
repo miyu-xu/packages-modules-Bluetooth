@@ -34,6 +34,24 @@
       "parentUuid": "af7cf388_1b5816db",
       "revId": "d57fc66c08c439306dde4e019f7f779f3e424c1b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8c66038_aa5e8a52",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-03-31T22:27:09Z",
+      "side": 1,
+      "message": "If the failing test is `HFP/AG/ACS/BI-14-C`, then please update the commit description. I was confused by `HFP/HF/ACS/BI-13-C`\n\nAlso, [HFP/AG/ACS/BI-14-C](https://android-build.corp.google.com/test_investigate/?invocationId\u003dI69100010260913441\u0026testResultId\u003dTR23929236430148563) is passing on our pts bot test. I will double check if the phone is passing or not on real pts machine Monday. (the pts bot test\u0027s name is ending with -I, it is a typo for test name)",
+      "parentUuid": "1e033a78_ff425f01",
+      "revId": "d57fc66c08c439306dde4e019f7f779f3e424c1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

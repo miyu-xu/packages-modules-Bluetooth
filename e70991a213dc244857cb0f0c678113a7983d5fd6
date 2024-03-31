@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7344a7fd_63beb168",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-03-31T22:27:09Z",
+      "side": 1,
+      "message": "Based on [comment](https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3013316/comments/af7cf388_1b5816db), the test target to pass with this change is `HFP/AG/ACS/BI-14-C`, please update :)",
+      "range": {
+        "startLine": 11,
+        "startChar": 34,
+        "endLine": 11,
+        "endChar": 52
+      },
+      "revId": "e70991a213dc244857cb0f0c678113a7983d5fd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
