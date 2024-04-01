@@ -34,6 +34,24 @@
       "parentUuid": "29a46809_8be2fcba",
       "revId": "bc363ffe811966fa24270ecae2d3919f16611116",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e063e44_12dcea9f",
+        "filename": "framework/java/android/bluetooth/le/ScanRecord.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-01T22:01:10Z",
+      "side": 1,
+      "message": "Let me take a look then.",
+      "parentUuid": "69290e98_1adcfc4f",
+      "revId": "bc363ffe811966fa24270ecae2d3919f16611116",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
