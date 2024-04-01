@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "2411e28d_1d1a8ed8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-01T23:48:08Z",
+      "side": 1,
+      "message": "`system/gd/hci/msft.cc` it looks like it is part of GD and used on phone too.\n\nWhy can this be considered as floss only ? (note that I do not know this code at all, just pointing the fact that the file is part of phone binaries too)",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 32
+      },
+      "revId": "a0cd02d477a040d13db456d8a9fdbbb3d422ad06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "179689b0_5742629c",
