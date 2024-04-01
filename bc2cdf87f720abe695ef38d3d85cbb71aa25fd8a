@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98b65801_a2e6919d",
+        "filename": "framework/tests/unit/src/android/bluetooth/le/ScanRecordTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-01T18:56:52Z",
+      "side": 1,
+      "message": "Genuine question:\nDon\u0027t we need a `@RunWith(AndroidJUnit4.class)` ?\n```suggestion\n@RunWith(JUnit4.class)\npublic class ScanRecordTest {\n```",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 29
+      },
+      "revId": "bc2cdf87f720abe695ef38d3d85cbb71aa25fd8a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
