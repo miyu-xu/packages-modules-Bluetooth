@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32c97ca6_b8e339b1",
+        "filename": "framework/tests/unit/src/android/bluetooth/le/ScanRecordTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-04-01T06:06:40Z",
+      "side": 1,
+      "message": "As mentioned, will follow up with a CL fixing/updating existing tests.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 36
+      },
+      "revId": "0b351a6b9be1f2912cc012adaf8231f7550f587e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
