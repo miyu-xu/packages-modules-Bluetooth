@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02065fd8_a5a0caac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-01T10:23:41Z",
+      "side": 1,
+      "message": "Archie and Manish, I integrate sysprop on patchset 11. PTAL.",
+      "revId": "4129ece6f081440cdf9831fa855ac575005bb61f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

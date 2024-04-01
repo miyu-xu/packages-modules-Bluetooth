@@ -259,6 +259,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a874ba7b_96bc91f2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2222,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-01T10:23:41Z",
+      "side": 1,
+      "message": "Done. Pattern handle is canceled  in stop_can() as before.",
+      "parentUuid": "fa952280_2dbf4fe8",
+      "range": {
+        "startLine": 2222,
+        "startChar": 71,
+        "endLine": 2222,
+        "endChar": 88
+      },
+      "revId": "3cf6d57bc6ea29fed1ad75d8d6c3d137aedaad80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98996dd2_0abeb16c",
