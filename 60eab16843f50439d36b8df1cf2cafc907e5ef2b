@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ad04e63_150996b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-01T20:50:12Z",
+      "side": 1,
+      "message": "Moving to shared ptrs allows the proper lifecycles to be done too with bind",
+      "revId": "60eab16843f50439d36b8df1cf2cafc907e5ef2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
