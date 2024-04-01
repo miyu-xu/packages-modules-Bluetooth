@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e422d843_30d82989",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-01T21:23:21Z",
+      "side": 1,
+      "message": "Modification outside of the method happened due to the repo-hook formatter.",
+      "range": {
+        "startLine": 473,
+        "startChar": 0,
+        "endLine": 501,
+        "endChar": 0
+      },
+      "revId": "6d8c982153dcbd6637710147c10e8cdc943f79fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
