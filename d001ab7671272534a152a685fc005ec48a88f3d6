@@ -22,6 +22,30 @@
       },
       "revId": "d001ab7671272534a152a685fc005ec48a88f3d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ee18b47_80272c4f",
+        "filename": "tools/lint/checks/src/com/android/bluetooth/lint/GuardedLogLineDetector.kt",
+        "patchSetId": 16
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-01T23:31:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11b78e4d_4d534ab4",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 52
+      },
+      "revId": "d001ab7671272534a152a685fc005ec48a88f3d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
