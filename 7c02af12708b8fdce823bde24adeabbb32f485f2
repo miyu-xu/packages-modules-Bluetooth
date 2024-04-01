@@ -105,6 +105,30 @@
       },
       "revId": "7c02af12708b8fdce823bde24adeabbb32f485f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ab959b6_3a43097c",
+        "filename": "system/btif/src/btif_gatt_server.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-04-01T18:53:32Z",
+      "side": 1,
+      "message": "`transport_param` is considered in L311. Can we just remove L327-330?",
+      "parentUuid": "62835c05_a8828c7a",
+      "range": {
+        "startLine": 328,
+        "startChar": 24,
+        "endLine": 328,
+        "endChar": 43
+      },
+      "revId": "7c02af12708b8fdce823bde24adeabbb32f485f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
