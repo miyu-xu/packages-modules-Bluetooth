@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "74cd7c04_7674fabd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-01T23:52:47Z",
+      "side": 1,
+      "message": "msft.cc was introduced by Floss team and we assume Android devices are using APCF as it\u0027s mandatory. Some design doc for the quirk FYI:\nhttps://drive.google.com/file/d/1CKTguEPLAWcFntFAz0NT-mFE4R9dAax6/view?usp\u003dsharing\u0026resourcekey\u003d0-hnxEnSvEw2zn0Hz_OmwE6Q",
+      "parentUuid": "2411e28d_1d1a8ed8",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 32
+      },
+      "revId": "a0cd02d477a040d13db456d8a9fdbbb3d422ad06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "179689b0_5742629c",
