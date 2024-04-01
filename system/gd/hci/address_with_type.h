@@ -156,3 +156,14 @@ struct hash<bluetooth::hci::AddressWithType> {
   }
 };
 }  // namespace std
+
+namespace fmt {
+template <>
+struct formatter<bluetooth::hci::AddressWithType> : formatter<std::string> {
+  template <class Context>
+  typename Context::iterator format(const bluetooth::hci::AddressWithType& address, Context& ctx) const {
+    std::string repr = address.ToRedactedStringForLogging();
+    return fmt::formatter<std::string>::format(repr, ctx);
+  }
+};
+}  // namespace fmt
