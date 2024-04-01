@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec8b67e6_ea9e9cc1",
+        "filename": "system/gd/packet/iterator.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-01T20:29:39Z",
+      "side": 1,
+      "message": "That\u0027s odd...  I didn\u0027t expect the return statement to be covered, but the abort isn\u0027t covered.  Is it not really aborting?",
+      "range": {
+        "startLine": 145,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 11
+      },
+      "revId": "f0229554ed1989f20ca070a3ce30db8a1c4320a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
