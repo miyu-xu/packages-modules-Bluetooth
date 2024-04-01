@@ -70,6 +70,30 @@
       },
       "revId": "1a4a0469af2f94d0963c33ce681fc2d61590bae3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8861588f_71303aea",
+        "filename": "system/bta/ag/bta_ag_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-01T23:10:36Z",
+      "side": 1,
+      "message": "done, with index info",
+      "parentUuid": "c4ea49cd_80b35b5a",
+      "range": {
+        "startLine": 355,
+        "startChar": 7,
+        "endLine": 355,
+        "endChar": 11
+      },
+      "revId": "1a4a0469af2f94d0963c33ce681fc2d61590bae3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
