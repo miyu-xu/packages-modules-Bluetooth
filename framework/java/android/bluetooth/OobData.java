@@ -237,7 +237,7 @@ public final class OobData implements Parcelable {
         /**
          * Contains which discoverable mode to use, BR/EDR support and capability.
          *
-         * <p>Possible LE Flags: {@link LE_FLAG_LIMITED_DISCOVERY_MODE} LE Limited Discoverable
+         * <p>Possible LE flags: {@link LE_FLAG_LIMITED_DISCOVERY_MODE} LE Limited Discoverable
          * Mode. {@link LE_FLAG_GENERAL_DISCOVERY_MODE} LE General Discoverable Mode. {@link
          * LE_FLAG_BREDR_NOT_SUPPORTED} BR/EDR Not Supported. Bit 37 of LMP Feature Mask
          * Definitions. {@link LE_FLAG_SIMULTANEOUS_CONTROLLER} Simultaneous LE and BR/EDR to Same
@@ -341,10 +341,10 @@ public final class OobData implements Parcelable {
         }
 
         /**
-         * Sets the LE Flags necessary for the pairing scenario or discovery mode.
+         * Sets the LE flags necessary for the pairing scenario or discovery mode.
          *
          * @param leFlags enum value representing the 1 octet of data about discovery modes.
-         *     <p>Possible LE Flags: {@link LE_FLAG_LIMITED_DISCOVERY_MODE} LE Limited Discoverable
+         *     <p>Possible LE flags: {@link LE_FLAG_LIMITED_DISCOVERY_MODE} LE Limited Discoverable
          *     Mode. {@link LE_FLAG_GENERAL_DISCOVERY_MODE} LE General Discoverable Mode. {@link
          *     LE_FLAG_BREDR_NOT_SUPPORTED} BR/EDR Not Supported. Bit 37 of LMP Feature Mask
          *     Definitions. {@link LE_FLAG_SIMULTANEOUS_CONTROLLER} Simultaneous LE and BR/EDR to
@@ -740,8 +740,8 @@ public final class OobData implements Parcelable {
     }
 
     /**
-     * @return Flags used to determining discoverable mode to use, BR/EDR Support, and Capability.
-     *     <p>Possible LE Flags: {@link LE_FLAG_LIMITED_DISCOVERY_MODE} LE Limited Discoverable
+     * @return flags used to determining discoverable mode to use, BR/EDR Support, and Capability.
+     *     <p>Possible LE flags: {@link LE_FLAG_LIMITED_DISCOVERY_MODE} LE Limited Discoverable
      *     Mode. {@link LE_FLAG_GENERAL_DISCOVERY_MODE} LE General Discoverable Mode. {@link
      *     LE_FLAG_BREDR_NOT_SUPPORTED} BR/EDR Not Supported. Bit 37 of LMP Feature Mask
      *     Definitions. {@link LE_FLAG_SIMULTANEOUS_CONTROLLER} Simultaneous LE and BR/EDR to Same
