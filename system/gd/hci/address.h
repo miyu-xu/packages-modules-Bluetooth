@@ -127,3 +127,19 @@ struct hash<bluetooth::hci::Address> {
   }
 };
 }  // namespace std
+
+#if __has_include(<bluetooth/log.h>)
+#include <bluetooth/log.h>
+
+namespace fmt {
+template <>
+struct formatter<bluetooth::hci::Address> : formatter<std::string> {
+  template <class Context>
+  typename Context::iterator format(const bluetooth::hci::Address& address, Context& ctx) const {
+    std::string repr = address.ToRedactedStringForLogging();
+    return fmt::formatter<std::string>::format(repr, ctx);
+  }
+};
+}  // namespace fmt
+
+#endif  // __has_include(<bluetooth/log.h>
