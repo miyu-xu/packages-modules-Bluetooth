@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7f75d91_d41d9d93",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-01T10:59:44Z",
+      "side": 1,
+      "message": "Fixed potential scanner_id.unwrap() failure in Patchset 12.",
+      "revId": "a8558fc30936fb49f828cfa43c2fd34a47dc7e5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
