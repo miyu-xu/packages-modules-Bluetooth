@@ -61,6 +61,7 @@
 #include "rust/src/core/ffi/types.h"
 #include "stack/acl/acl.h"
 #include "stack/acl/peer_packet_types.h"
+#include "stack/btm/btm_ble_sec.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/btm/btm_sco.h"
@@ -2442,6 +2443,7 @@ bool acl_set_peer_le_features_from_handle(uint16_t hci_handle,
 
   DEVICE_IOT_CONFIG_ADDR_SET_BIN(p_acl->remote_addr, key,
                                  p_acl->peer_le_features, BD_FEATURES_LEN);
+  btm_ble_set_data_length_if_pending(hci_handle);
   return true;
 }
 
