@@ -40,6 +40,8 @@
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_types.h"
 #include "types/bluetooth/uuid.h"
+#include "btif/include/btif_storage.h"
+#include "device/include/interop.h"
 
 #define GATT_MTU_REQ_MIN_LEN 2
 #define L2CAP_PKT_OVERHEAD 4
@@ -858,8 +860,16 @@ static void gatts_process_mtu_req(tGATT_TCB& tcb, uint16_t cid, uint16_t len,
     tcb.payload_size = std::min(mtu, (uint16_t)(gatt_get_local_mtu()));
   }
 
-  /* Always say to remote our default MTU. */
-  gatt_sr_msg.mtu = gatt_get_local_mtu();
+  char remote_name[BTM_MAX_REM_BD_NAME_LEN] = "";
+  btif_storage_get_stored_remote_name(tcb.peer_bda, remote_name);
+  if(interop_match_addr(INTEROP_ENFORCE_USE_REQUESTED_MTU, &tcb.peer_bda) 
+     || interop_match_name(INTEROP_ENFORCE_USE_REQUESTED_MTU, remote_name)) {
+    LOG_WARN("Send response with value obtained from MTU negotiation : %d", mtu);
+    gatt_sr_msg.mtu = tcb.payload_size;
+  } else {
+    /* Always say to remote our default MTU. */
+    gatt_sr_msg.mtu = gatt_get_local_mtu();
+  }
 
   log::info("MTU {} request from remote ({}), resulted MTU {}", mtu,
             tcb.peer_bda.ToString(), tcb.payload_size);
