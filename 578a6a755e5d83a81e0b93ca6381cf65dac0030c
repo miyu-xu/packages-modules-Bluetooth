@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fc3dfe6_64ecd391",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-01T20:51:34Z",
+      "side": 1,
+      "message": "Looks similar to the previous one ... good minus the excess logging",
+      "revId": "578a6a755e5d83a81e0b93ca6381cf65dac0030c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
