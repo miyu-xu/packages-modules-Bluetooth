@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23298499_b317f4ab",
+        "filename": "flags/avrcp_controller.aconfig",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-01T23:53:17Z",
+      "side": 1,
+      "message": "Looks like there\u0027s a new convention for TS flags where you can indicate its specifically for a bug fix. Let\u0027s do that here. Add:\n```\nmetadata {\n    purpose: PURPOSE_BUGFIX\n}\n```\n\nExample: aosp/2994213\nDocs: go/trunk-stable-bug-fix#how-to-specify-a-flag-is-a-bug-fix-aconfig-flag",
+      "range": {
+        "startLine": 8,
+        "startChar": 4,
+        "endLine": 8,
+        "endChar": 20
+      },
+      "revId": "25c27c4afd07a604eb319510b235a329b16e6c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
