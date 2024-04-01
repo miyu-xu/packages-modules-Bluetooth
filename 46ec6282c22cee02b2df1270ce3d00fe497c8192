@@ -16,6 +16,24 @@
       "message": "Why not just fix forward? A revert doesn\u0027t seem necessary if it can be fixed-forward in a single patch.",
       "revId": "46ec6282c22cee02b2df1270ce3d00fe497c8192",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28555997_3384f82a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-01T22:25:22Z",
+      "side": 1,
+      "message": "I am doing the fix-forward in the CL from Chris as reverting it will remove some code.\nBut the CL being reverted here need to be entirely removed and it is better to revert for history purpose.",
+      "parentUuid": "e810ef03_64fd8fe1",
+      "revId": "46ec6282c22cee02b2df1270ce3d00fe497c8192",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
