@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bcea11c_a9e025e8",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-01T21:24:03Z",
+      "side": 0,
+      "message": "I think this could be done in follow-up in order for this CL to focus on the suppressLint.\n\nfollow-up can focus in inlining the method\nSee aosp/3021326",
+      "parentUuid": "1b73dd9e_2b04ef87",
+      "range": {
+        "startLine": 487,
+        "startChar": 0,
+        "endLine": 501,
+        "endChar": 5
+      },
+      "revId": "6b9f6fe43a0928865de84d348bb105656292f7f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a0a63e0d_f407791d",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-01T20:20:44Z",
       "side": 0,
       "message": "ditto",
+      "range": {
+        "startLine": 1176,
+        "startChar": 0,
+        "endLine": 1183,
+        "endChar": 5
+      },
+      "revId": "6b9f6fe43a0928865de84d348bb105656292f7f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ce15094_36364188",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1183,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-01T21:24:03Z",
+      "side": 0,
+      "message": "See aosp/3021329",
+      "parentUuid": "a0a63e0d_f407791d",
       "range": {
         "startLine": 1176,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bf6a3d1_7056e336",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1218,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-01T21:24:03Z",
+      "side": 0,
+      "message": "See aosp/3021327",
+      "parentUuid": "d04df05a_30deafa7",
+      "range": {
+        "startLine": 1213,
+        "startChar": 0,
+        "endLine": 1218,
+        "endChar": 5
+      },
+      "revId": "6b9f6fe43a0928865de84d348bb105656292f7f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13f884a5_15ed9949",
@@ -83,6 +155,24 @@
       "writtenOn": "2024-04-01T20:20:44Z",
       "side": 0,
       "message": "ditto",
+      "revId": "6b9f6fe43a0928865de84d348bb105656292f7f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f7ba92a_58b1c9b0",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1230,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-01T21:24:03Z",
+      "side": 0,
+      "message": "See aosp/3021328",
+      "parentUuid": "13f884a5_15ed9949",
       "revId": "6b9f6fe43a0928865de84d348bb105656292f7f7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
