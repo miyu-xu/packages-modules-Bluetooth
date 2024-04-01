@@ -22,6 +22,30 @@
       },
       "revId": "a8928cdb05b7b2f938779a6053b3d45e6cea9121",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "861b59fb_8723bdbb",
+        "filename": "system/main/shim/dumpsys.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-01T21:01:06Z",
+      "side": 1,
+      "message": "good point...the dumpsys thread should never hang else disaster ensues but we do have to sync with it.  Is 1 second sufficient ?  Probably...",
+      "parentUuid": "b22c31ee_cb09c762",
+      "range": {
+        "startLine": 67,
+        "startChar": 13,
+        "endLine": 67,
+        "endChar": 16
+      },
+      "revId": "a8928cdb05b7b2f938779a6053b3d45e6cea9121",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
