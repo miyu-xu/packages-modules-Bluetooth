@@ -16,6 +16,24 @@
       "message": "testing in progress",
       "revId": "2b20f60fd4ccb3e56aa3b86d8a104e85b302a80a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a572337_d8a52252",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-01T17:53:39Z",
+      "side": 1,
+      "message": "earbuds team completes the testing",
+      "parentUuid": "f328d8cc_30d263ec",
+      "revId": "2b20f60fd4ccb3e56aa3b86d8a104e85b302a80a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
