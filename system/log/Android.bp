@@ -13,7 +13,8 @@ cc_library {
         "liblog",
     ],
     srcs: [
-        "src/vlog_android.cc",
+        //        "src/vlog_android.cc",
+        "src/vlog_btsay.cc",
     ],
 }
 
