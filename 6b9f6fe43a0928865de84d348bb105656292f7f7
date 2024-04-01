@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b73dd9e_2b04ef87",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-01T20:20:44Z",
+      "side": 0,
+      "message": "I think we should remove the whole function and replace the callers with `cdm.getAllAssociations`",
+      "range": {
+        "startLine": 487,
+        "startChar": 0,
+        "endLine": 501,
+        "endChar": 5
+      },
+      "revId": "6b9f6fe43a0928865de84d348bb105656292f7f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0a63e0d_f407791d",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1183,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-01T20:20:44Z",
+      "side": 0,
+      "message": "ditto",
+      "range": {
+        "startLine": 1176,
+        "startChar": 0,
+        "endLine": 1183,
+        "endChar": 5
+      },
+      "revId": "6b9f6fe43a0928865de84d348bb105656292f7f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d04df05a_30deafa7",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1218,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-01T20:20:44Z",
+      "side": 0,
+      "message": "ditto",
+      "range": {
+        "startLine": 1213,
+        "startChar": 0,
+        "endLine": 1218,
+        "endChar": 5
+      },
+      "revId": "6b9f6fe43a0928865de84d348bb105656292f7f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13f884a5_15ed9949",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1230,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-01T20:20:44Z",
+      "side": 0,
+      "message": "ditto",
+      "revId": "6b9f6fe43a0928865de84d348bb105656292f7f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
