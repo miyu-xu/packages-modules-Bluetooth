@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9c82e25_07c47669",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-01T22:28:42Z",
+      "side": 1,
+      "message": "It was very real. Took me a while to figure out that bta_sys_start_timer can\u0027t be used when module is remove, fixed between revision 4 and 6",
+      "parentUuid": "1d1e08e0_ef26210e",
+      "revId": "6c6512265d5f15ed21ec876e1c51461885fce067",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a79690b_6814e703",
