@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "179689b0_5742629c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-01T23:44:50Z",
+      "side": 1,
+      "message": "Christine and William, need a stamp on this patch for RTL8852AE Microsort Extension quirk on Floss. It\u0027s Floss only change, PTAL.",
+      "revId": "a0cd02d477a040d13db456d8a9fdbbb3d422ad06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
