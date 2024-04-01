@@ -19,6 +19,7 @@
 #include <cstdint>
 #include <string>
 
+#include "os/logging/log_adapter.h"
 #include "types/bt_transport.h"
 #include "types/raw_address.h"
 
@@ -186,5 +187,24 @@ struct tAclLinkSpec {
            bt_transport_text(transport) + "]";
   }
 };
+
+#if __has_include(<bluetooth/log.h>)
+#include <bluetooth/log.h>
+
+namespace fmt {
+template <>
+struct formatter<tBLE_BD_ADDR> : formatter<std::string> {
+  template <class Context>
+  typename Context::iterator format(const tBLE_BD_ADDR& address,
+                                    Context& ctx) const {
+    std::string repr = bluetooth::os::should_log_be_redacted()
+                           ? address.ToRedactedStringForLogging()
+                           : address.ToStringForLogging();
+    return fmt::formatter<std::string>::format(repr, ctx);
+  }
+};
+}  // namespace fmt
+
+#endif  // __has_include(<bluetooth/log.h>
 
 #endif
