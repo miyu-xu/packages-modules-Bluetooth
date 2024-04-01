@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "804d0d5b_08a46b19",
+        "filename": "system/gd/packet/bit_inserter.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-01T16:59:49Z",
+      "side": 1,
+      "message": "Doesn\u0027t seem to fit with the CL title.\n\nI think I\u0027d prefer log::assert_that",
+      "range": {
+        "startLine": 27,
+        "startChar": 2,
+        "endLine": 27,
+        "endChar": 8
+      },
+      "revId": "62375634915216ca54fa476737127f5c77b70e50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
