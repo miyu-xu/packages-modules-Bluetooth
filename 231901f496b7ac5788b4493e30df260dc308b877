@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cffdbb6_b339f4e4",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientConnectionTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-04-01T22:07:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "071730e1_35010562",
+      "range": {
+        "startLine": 114,
+        "startChar": 8,
+        "endLine": 114,
+        "endChar": 38
+      },
+      "revId": "231901f496b7ac5788b4493e30df260dc308b877",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c7b19131_bd586217",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-29T22:18:11Z",
       "side": 1,
       "message": "Same here, import the response",
+      "range": {
+        "startLine": 119,
+        "startChar": 8,
+        "endLine": 119,
+        "endChar": 39
+      },
+      "revId": "231901f496b7ac5788b4493e30df260dc308b877",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "752031a8_d1c4753c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientConnectionTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-04-01T22:07:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7b19131_bd586217",
       "range": {
         "startLine": 119,
         "startChar": 8,
