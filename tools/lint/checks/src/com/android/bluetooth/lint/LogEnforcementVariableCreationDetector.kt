@@ -135,7 +135,18 @@ class LogEnforcementVariableCreationDetector : Detector(), SourceCodeScanner {
         val fieldType = field.getType()
         val fieldName = field.getName()
         val fieldInitializer = field.uastInitializer?.skipParenthesizedExprDown()
-        return fieldType.canonicalText.lowercase() == "boolean" &&
+        debug("LogEnforcementVariableCreationDetector", "Checking field=" + field)
+        debug(
+            "LogEnforcementVariableCreationDetector",
+            "    typeText='" +
+                fieldType.canonicalText +
+                "', lowercase='" +
+                fieldType.canonicalText.lowercase() +
+                "', equal to 'boolean' => " +
+                (if (fieldType.canonicalText.lowercase() == "boolean") "True" else "False")
+        )
+        return (fieldType.canonicalText == "boolean" ||
+            fieldType.canonicalText == "java.lang.Boolean") &&
             (isLogEnforcementVariable(fieldName) ||
                 (fieldInitializer != null &&
                     (checkExpressionForIsLoggableUsages(fieldInitializer) ||
