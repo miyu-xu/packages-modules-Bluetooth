@@ -81,6 +81,30 @@
       },
       "revId": "7c02af12708b8fdce823bde24adeabbb32f485f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62835c05_a8828c7a",
+        "filename": "system/btif/src/btif_gatt_server.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-04-01T18:28:25Z",
+      "side": 1,
+      "message": "+1 to Kyunglyul\u0027s call out here - since the transport_param is still a parameter to this method it should be considered for correctness, or removed altogether (I\u0027d suggest still considering transport_param for now).",
+      "parentUuid": "f52d3a4c_20e00394",
+      "range": {
+        "startLine": 328,
+        "startChar": 24,
+        "endLine": 328,
+        "endChar": 43
+      },
+      "revId": "7c02af12708b8fdce823bde24adeabbb32f485f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
