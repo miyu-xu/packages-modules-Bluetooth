@@ -46,6 +46,30 @@
       },
       "revId": "62375634915216ca54fa476737127f5c77b70e50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f2561b0_be2ea792",
+        "filename": "system/gd/packet/bit_inserter.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-01T17:09:21Z",
+      "side": 1,
+      "message": "I\u0027d prefer to split it into a separate CL, then, if it doesn\u0027t fit.",
+      "parentUuid": "0e51fe8e_151ea810",
+      "range": {
+        "startLine": 27,
+        "startChar": 2,
+        "endLine": 27,
+        "endChar": 8
+      },
+      "revId": "62375634915216ca54fa476737127f5c77b70e50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
