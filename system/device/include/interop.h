@@ -325,7 +325,7 @@ typedef enum {
   // caching or correctly response with an error. We disable the database hash
   // lookup for such devices.
   INTEROP_DISABLE_ROBUST_CACHING,
-
+  INTEROP_ENFORCE_USE_REQUESTED_MTU,
   INTEROP_HFP_1_7_ALLOWLIST,
 
   INTEROP_HFP_1_9_ALLOWLIST,
