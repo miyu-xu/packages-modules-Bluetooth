@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "14387852_602e3af3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-04-01T23:47:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0b67d13_f5cc15dc",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 5
+      },
+      "revId": "e4a4e856a604e00e8813e615be23dcbdeb3e7806",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6fe7e773_8bd366e9",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-01T23:36:45Z",
       "side": 1,
       "message": "This needs to be your flag bug, not the bug for the issue you\u0027re fixing",
+      "range": {
+        "startLine": 8,
+        "startChar": 10,
+        "endLine": 8,
+        "endChar": 19
+      },
+      "revId": "e4a4e856a604e00e8813e615be23dcbdeb3e7806",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97ca7772_8e36377b",
+        "filename": "flags/avrcp_controller.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-04-01T23:47:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fe7e773_8bd366e9",
       "range": {
         "startLine": 8,
         "startChar": 10,
