@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29a46809_8be2fcba",
+        "filename": "framework/java/android/bluetooth/le/ScanRecord.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-01T21:53:38Z",
+      "side": 1,
+      "message": "This name `Flags` comes from the spec, I wonder if we could escape it somehow instead.",
+      "revId": "bc363ffe811966fa24270ecae2d3919f16611116",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "439aa555_f5b87b2b",
+        "filename": "framework/java/android/bluetooth/OobData.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 902,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-01T21:53:38Z",
+      "side": 1,
+      "message": "I think you can keep this one",
+      "revId": "d247c577dfdb7438e90e16b4f9a954d4a46e406e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
