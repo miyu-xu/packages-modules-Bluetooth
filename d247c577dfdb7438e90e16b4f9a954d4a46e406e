@@ -16,6 +16,24 @@
       "message": "I think you can keep this one",
       "revId": "d247c577dfdb7438e90e16b4f9a954d4a46e406e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d0a1828_c251156e",
+        "filename": "framework/java/android/bluetooth/OobData.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 902,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-01T21:59:46Z",
+      "side": 1,
+      "message": "I **HAD** to keep it because it is enforced in our cts...\n`(\u003eლ) `\n\nSo I restored it",
+      "parentUuid": "439aa555_f5b87b2b",
+      "revId": "d247c577dfdb7438e90e16b4f9a954d4a46e406e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
