@@ -20,6 +20,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+#undef NDEBUG
 #include <cassert>
 #include <list>
 #include <map>
