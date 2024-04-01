@@ -22,6 +22,30 @@
       },
       "revId": "5861d1c015bc7713f6e5d46f335e27812ddde887",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b198d47_876298a4",
+        "filename": "system/stack/include/btm_api_types.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-01T20:57:32Z",
+      "side": 1,
+      "message": "Sure I can clean house...this is an old CL that at one point demolished and redistributed such that `btm_api_types` disappeared so that is the goal.\n\nPLUS...Floss failed but passes on android which is NOT where I want to be so I will examine that too.",
+      "parentUuid": "4621cad5_82d58fc9",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 80
+      },
+      "revId": "5861d1c015bc7713f6e5d46f335e27812ddde887",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
