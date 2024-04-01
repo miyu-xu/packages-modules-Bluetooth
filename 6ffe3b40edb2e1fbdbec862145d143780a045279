@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04b62795_01c181a5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 1756,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-04-01T11:52:30Z",
+      "side": 1,
+      "message": "nit: move this comment to the check above `is_msft_supported`.\nOn a side note, probably we are safe to not check `is_msft_supported` because add_child_monitor is only possible to be called when msft is supported in the first place, but I think it\u0027s fine for a safety net.",
+      "range": {
+        "startLine": 1756,
+        "startChar": 12,
+        "endLine": 1756,
+        "endChar": 91
+      },
+      "revId": "6ffe3b40edb2e1fbdbec862145d143780a045279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "410b3832_da83e26a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 1762,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-04-01T11:52:30Z",
+      "side": 1,
+      "message": "Does return nothing not make the compiler upset?",
+      "range": {
+        "startLine": 1762,
+        "startChar": 20,
+        "endLine": 1762,
+        "endChar": 26
+      },
+      "revId": "6ffe3b40edb2e1fbdbec862145d143780a045279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f81ed0e2_d4b7140e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 1772,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-04-01T11:52:30Z",
+      "side": 1,
+      "message": "Do you think we should first check whether the address is already contained in the map or not?\nIn case of not, it probably mean the pattern monitor is stopped so we need to stop this one as well.",
+      "range": {
+        "startLine": 1772,
+        "startChar": 16,
+        "endLine": 1772,
+        "endChar": 39
+      },
+      "revId": "6ffe3b40edb2e1fbdbec862145d143780a045279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4442a4c9_abbf81c5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 2072,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-04-01T11:52:30Z",
+      "side": 1,
+      "message": "Should we just outright reject the default case?",
+      "range": {
+        "startLine": 2072,
+        "startChar": 12,
+        "endLine": 2072,
+        "endChar": 69
+      },
+      "revId": "6ffe3b40edb2e1fbdbec862145d143780a045279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5baa2e8a_8059c13a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 2213,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-04-01T11:52:30Z",
+      "side": 1,
+      "message": "nit: You can iterate the map while clearing it via `map.drain()`",
+      "range": {
+        "startLine": 2207,
+        "startChar": 15,
+        "endLine": 2213,
+        "endChar": 17
+      },
+      "revId": "6ffe3b40edb2e1fbdbec862145d143780a045279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e300eb88_22d373e8",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 4258,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-04-01T11:52:30Z",
+      "side": 1,
+      "message": "How about merging the match to the if else?\n```\nlet corresponding_scanner: \u0026mut ScannerInfo \u003d\n    binding.values_mut().find_map(|scanner| {\n        if scanner.monitor_handle \u003d\u003d Some(track_adv_info.monitor_handle)\n            || scanner.addr_handle_map.contains_key(\u0026addr)\n        {\n            scanner\n        } else {\n            log::warn!(\"No scanner having monitor handle {}\", track_adv_info.monitor_handle);\n            return;\n        }\n    });\n```\n\nnit in log::warn: `having`.",
+      "range": {
+        "startLine": 4242,
+        "startChar": 8,
+        "endLine": 4258,
+        "endChar": 10
+      },
+      "revId": "6ffe3b40edb2e1fbdbec862145d143780a045279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13fd726d_e1a70a3f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 4298,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-04-01T11:52:30Z",
+      "side": 1,
+      "message": "How about:\n```\nlet mut scan_filter \u003d corresponding_scanner.filter.clone().unwrap();\nscan_filter.condition \u003d ScanFilterCondition::BluetoothAddress(scan_filter_addr);\n```",
+      "range": {
+        "startLine": 4291,
+        "startChar": 16,
+        "endLine": 4298,
+        "endChar": 18
+      },
+      "revId": "6ffe3b40edb2e1fbdbec862145d143780a045279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "315e50b9_eb94357e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 4359,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-04-01T11:52:30Z",
+      "side": 1,
+      "message": "How about:\n```\nif track_adv_info.advertiser_state \u003d\u003d 0x01 {\n    if !controller_need_separate_pattern_and_address || address_monitor_succeed {\n        callback.on_advertisement_found(scanner_id, scan_result);\n    }\n} else {\n    callback.on_advertisement_lost(scanner_id, scan_result);\n}\n```",
+      "range": {
+        "startLine": 4347,
+        "startChar": 12,
+        "endLine": 4359,
+        "endChar": 13
+      },
+      "revId": "6ffe3b40edb2e1fbdbec862145d143780a045279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
