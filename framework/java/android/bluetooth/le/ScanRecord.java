@@ -100,7 +100,7 @@ public final class ScanRecord {
     /** Data type is not set for the filter. Will not filter advertising data type. */
     public static final int DATA_TYPE_NONE = -1;
 
-    /** Data type is Flags, see the Bluetooth Generic Access Profile for more details. */
+    /** Data type is flags, see the Bluetooth Generic Access Profile for more details. */
     public static final int DATA_TYPE_FLAGS = 0x01;
 
     /**
@@ -171,7 +171,7 @@ public final class ScanRecord {
     public static final int DATA_TYPE_DEVICE_ID = 0x10;
 
     /**
-     * Data type is Security Manager Out of Band Flags, see the Bluetooth Generic Access Profile for
+     * Data type is Security Manager Out of Band flags, see the Bluetooth Generic Access Profile for
      * more details.
      */
     public static final int DATA_TYPE_SECURITY_MANAGER_OUT_OF_BAND_FLAGS = 0x11;
