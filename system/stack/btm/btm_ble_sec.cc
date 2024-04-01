@@ -615,13 +615,6 @@ tBTM_STATUS BTM_SetBleDataLength(const RawAddress& bd_addr,
     return BTM_WRONG_MODE;
   }
 
-  uint16_t hci_handle = BTM_GetHCIConnHandle(bd_addr, BT_TRANSPORT_LE);
-
-  if (!acl_peer_supports_ble_packet_extension(hci_handle)) {
-    log::info("Remote device unable to support le packet extension");
-    return BTM_ILLEGAL_VALUE;
-  }
-
   tx_pdu_length =
       std::min<uint16_t>(tx_pdu_length, bluetooth::shim::GetController()
                                             ->GetLeMaximumDataLength()
@@ -629,11 +622,44 @@ tBTM_STATUS BTM_SetBleDataLength(const RawAddress& bd_addr,
   tx_time = std::min<uint16_t>(tx_time, bluetooth::shim::GetController()
                                             ->GetLeMaximumDataLength()
                                             .supported_max_tx_time_);
-
-  btsnd_hcic_ble_set_data_length(hci_handle, tx_pdu_length, tx_time);
   p_dev_rec->set_suggested_tx_octect(tx_pdu_length);
 
+  uint16_t hci_handle = BTM_GetHCIConnHandle(bd_addr, BT_TRANSPORT_LE);
+  if (!acl_peer_supports_ble_packet_extension(hci_handle)) {
+    log::info("Remote device unable to support le packet extension");
+    return BTM_ILLEGAL_VALUE;
+  }
+  btsnd_hcic_ble_set_data_length(hci_handle, tx_pdu_length, tx_time);
+
   return BTM_SUCCESS;
+}
+
+void btm_ble_set_data_length_if_pending(uint16_t handle) {
+  if (!acl_peer_supports_ble_packet_extension(handle)) {
+    log::info("Remote device unable to support le packet extension");
+    return;
+  }
+  auto p_dev_rec = btm_find_dev_by_handle(handle);
+  // Non zero tx octets means there was request to update data length but
+  // was blocked due to unavailable remote feature.
+  // Re-initiate the data length update.
+  if (p_dev_rec && p_dev_rec->get_suggested_tx_octets() > 0) {
+    uint16_t tx_pdu_length = std::min<uint16_t>(
+        p_dev_rec->get_suggested_tx_octets(), bluetooth::shim::GetController()
+                                                  ->GetLeMaximumDataLength()
+                                                  .supported_max_tx_octets_);
+    uint16_t tx_time = BTM_BLE_DATA_TX_TIME_MAX_LEGACY;
+    if (bluetooth::shim::GetController()
+            ->GetLocalVersionInformation()
+            .hci_version_ >= bluetooth::hci::HciVersion::V_5_0)
+      tx_time = BTM_BLE_DATA_TX_TIME_MAX;
+    tx_time = std::min<uint16_t>(tx_time, bluetooth::shim::GetController()
+                                              ->GetLeMaximumDataLength()
+                                              .supported_max_tx_time_);
+    log::info("Set pending TX octect {} to controller", tx_pdu_length);
+    p_dev_rec->set_suggested_tx_octect(tx_pdu_length);
+    btsnd_hcic_ble_set_data_length(handle, tx_pdu_length, tx_time);
+  }
 }
 
 /*******************************************************************************
