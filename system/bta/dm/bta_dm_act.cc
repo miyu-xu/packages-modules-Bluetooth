@@ -465,39 +465,50 @@ void bta_dm_process_remove_device(const RawAddress& bd_addr) {
 
 /** Removes device, disconnects ACL link if required */
 void bta_dm_remove_device(const RawAddress& bd_addr) {
-  /* If ACL exists for the device in the remove_bond message*/
-  bool is_bd_addr_connected =
-      get_btm_client_interface().peer.BTM_IsAclConnectionUp(bd_addr,
-                                                            BT_TRANSPORT_LE) ||
-      get_btm_client_interface().peer.BTM_IsAclConnectionUp(
-          bd_addr, BT_TRANSPORT_BR_EDR);
-
+  tBT_TRANSPORT transport = BT_TRANSPORT_AUTO;
   tBT_TRANSPORT other_transport = BT_TRANSPORT_AUTO;
+  /* If ACL exists for the device in the remove_bond message*/
+  if (get_btm_client_interface().peer.BTM_IsAclConnectionUp(bd_addr,
+                                                            BT_TRANSPORT_LE))
+    transport = BT_TRANSPORT_LE;
+  else if (get_btm_client_interface().peer.BTM_IsAclConnectionUp(
+               bd_addr, BT_TRANSPORT_BR_EDR))
+    transport = BT_TRANSPORT_BR_EDR;
+  bool is_bd_addr_connected = (transport != BT_TRANSPORT_AUTO);
+
   if (is_bd_addr_connected) {
     log::verbose("ACL Up count: {}", bta_dm_cb.device_list.count);
 
     /* Take the link down first, and mark the device for removal when
      * disconnected */
-    for (int i = 0; i < bta_dm_cb.device_list.count; i++) {
+    uint8_t i = 0;
+    for (; i < bta_dm_cb.device_list.count; i++) {
       auto& peer_device = bta_dm_cb.device_list.peer_device[i];
       if (peer_device.peer_bdaddr == bd_addr) {
         peer_device.conn_state = BTA_DM_UNPAIRING;
-
-        /* Make sure device is not in acceptlist before we disconnect */
-        GATT_CancelConnect(0, bd_addr, false);
-
-        btm_remove_acl(bd_addr, peer_device.transport);
+        transport = peer_device.transport;
         log::verbose("transport: {}", peer_device.transport);
-
-        /* save the other transport to check if device is connected on
-         * other_transport */
-        if (peer_device.transport == BT_TRANSPORT_LE)
-          other_transport = BT_TRANSPORT_BR_EDR;
-        else
-          other_transport = BT_TRANSPORT_LE;
-
         break;
       }
+    }
+    /* Make sure device is not in acceptlist before we disconnect */
+    GATT_CancelConnect(0, bd_addr, false);
+
+    btm_remove_acl(bd_addr, transport);
+
+    /* save the other transport to check if device is connected on
+     * other_transport */
+    if (transport == BT_TRANSPORT_LE)
+      other_transport = BT_TRANSPORT_BR_EDR;
+    else
+      other_transport = BT_TRANSPORT_LE;
+
+    if (i == bta_dm_cb.device_list.count) {
+      log::info(
+          "address {} with transport {} connected, but BTA layer hasn't been "
+          "notified. Remove sec",
+          ADDRESS_TO_LOGGABLE_CSTR(bd_addr), transport);
+      bta_dm_process_remove_device(bd_addr);
     }
   }
 
@@ -525,23 +536,33 @@ void bta_dm_remove_device(const RawAddress& bd_addr) {
       other_transport =
           connected_with_br_edr ? BT_TRANSPORT_BR_EDR : BT_TRANSPORT_LE;
     }
-    log::info("other_address {} with transport {} connected", other_address,
-              other_transport);
+    log::info("other_address {} with transport {} connected",
+              ADDRESS_TO_LOGGABLE_CSTR(other_address), other_transport);
     /* Take the link down first, and mark the device for removal when
      * disconnected */
-    for (int i = 0; i < bta_dm_cb.device_list.count; i++) {
+    uint8_t i = 0;
+    for (; i < bta_dm_cb.device_list.count; i++) {
       auto& peer_device = bta_dm_cb.device_list.peer_device[i];
       if (peer_device.peer_bdaddr == other_address &&
           peer_device.transport == other_transport) {
         peer_device.conn_state = BTA_DM_UNPAIRING;
-        log::info("Remove ACL of address {}", other_address);
-
-        /* Make sure device is not in acceptlist before we disconnect */
-        GATT_CancelConnect(0, bd_addr, false);
-
-        btm_remove_acl(other_address, peer_device.transport);
         break;
       }
+    }
+    log::info("Remove ACL of address {}",
+              ADDRESS_TO_LOGGABLE_CSTR(other_address));
+
+    /* Make sure device is not in acceptlist before we disconnect */
+    GATT_CancelConnect(0, other_address, false);
+
+    btm_remove_acl(other_address, other_transport);
+
+    if (i == bta_dm_cb.device_list.count) {
+      log::info(
+          "address {} with transport %d connected, but BTA layer hasn't been "
+          "notified. Remove sec.",
+          ADDRESS_TO_LOGGABLE_CSTR(other_address), other_transport);
+      bta_dm_process_remove_device(other_address);
     }
   }
 
