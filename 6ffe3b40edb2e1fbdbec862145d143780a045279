@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "feacd23b_7af337fc",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 1762,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-04-01T11:54:11Z",
+      "side": 1,
+      "message": "I guess not since it\u0027s inside an async block. I thought this should return BtStatus.",
+      "parentUuid": "410b3832_da83e26a",
+      "range": {
+        "startLine": 1762,
+        "startChar": 20,
+        "endLine": 1762,
+        "endChar": 26
+      },
+      "revId": "6ffe3b40edb2e1fbdbec862145d143780a045279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f81ed0e2_d4b7140e",
