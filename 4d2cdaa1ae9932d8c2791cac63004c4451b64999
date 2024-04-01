@@ -117,6 +117,30 @@
       },
       "revId": "4d2cdaa1ae9932d8c2791cac63004c4451b64999",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1cbf4d5_c64fbe92",
+        "filename": "framework/tests/unit/src/android/bluetooth/le/ScanRecordTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-04-01T06:16:55Z",
+      "side": 1,
+      "message": "Updated the whole test class with go/truth. Thank you!",
+      "parentUuid": "9aacf68e_22a9624b",
+      "range": {
+        "startLine": 238,
+        "startChar": 8,
+        "endLine": 238,
+        "endChar": 20
+      },
+      "revId": "4d2cdaa1ae9932d8c2791cac63004c4451b64999",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
