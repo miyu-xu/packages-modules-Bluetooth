@@ -71,6 +71,8 @@ void btm_ble_update_sec_key_size(const RawAddress& bd_addr,
                                  uint8_t enc_key_size);
 uint8_t btm_ble_read_sec_key_size(const RawAddress& bd_addr);
 
+void btm_ble_set_data_length_if_pending(uint16_t handle);
+
 tBTM_STATUS btm_ble_start_sec_check(const RawAddress& bd_addr, uint16_t psm,
                                     bool is_originator,
                                     tBTM_SEC_CALLBACK* p_callback,
