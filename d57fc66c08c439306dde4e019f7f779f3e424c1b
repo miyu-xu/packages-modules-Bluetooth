@@ -52,6 +52,24 @@
       "parentUuid": "1e033a78_ff425f01",
       "revId": "d57fc66c08c439306dde4e019f7f779f3e424c1b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "453a98fe_5387b481",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-04-01T04:17:28Z",
+      "side": 1,
+      "message": "I think the current implementation will pass this test.\n\nThis is because in the test, when the remote requests eSCO with S1 settings with some other invalid parameters, we won\u0027t re-initiate the eSCO because it\u0027s CVSD.\n\nOnce we allow CVSD fallback, the issue got revealed. So we need to check if we are initiator or not. Actually, even if the CVSD fallback is not enabled, another case is that the remote requests eSCO with mSBC T2 with some invalid parameters, then the current implementation would also re-initiate the eSCO which in my understanding is not correct to the spec.",
+      "parentUuid": "c8c66038_aa5e8a52",
+      "revId": "d57fc66c08c439306dde4e019f7f779f3e424c1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
