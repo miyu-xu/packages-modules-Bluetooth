@@ -22,6 +22,30 @@
       },
       "revId": "1a4a0469af2f94d0963c33ce681fc2d61590bae3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09c7300b_d5d6ab29",
+        "filename": "system/bta/ag/bta_ag_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-01T20:03:41Z",
+      "side": 1,
+      "message": "this function only used when collision happened. As collision is not a frequent case (usually at most 1 occurence during connection), I would like to keep it, so in public build, we can know whether we reset p_scb member variables.",
+      "parentUuid": "2b730d87_16f9d8e8",
+      "range": {
+        "startLine": 355,
+        "startChar": 7,
+        "endLine": 355,
+        "endChar": 11
+      },
+      "revId": "1a4a0469af2f94d0963c33ce681fc2d61590bae3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
