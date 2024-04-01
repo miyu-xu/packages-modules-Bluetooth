@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b571cf8_539b8571",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-04-01T18:19:35Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Bug Validation: \"Bug: \u003cbug_id\u003e\" is required to be in the commit message.\n\nAnalyzer Description: Validates that commit messages contains the required bug information.\nOwner: ayeaye-team@google.com\n\n\"Bug: \u003cbug_id\u003e\" is required to be in the commit message.",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "9c69bcba245f6895e0fa915ec368812f31de246d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
