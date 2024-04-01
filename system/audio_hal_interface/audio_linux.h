@@ -79,7 +79,7 @@ typedef enum {
 } audio_usage_t;
 
 typedef enum {
-  AUDIO_DEVICE_DEFAULT = 0,
+  AUDIO_DEVICE_IN_DEFAULT = 0,
 } audio_devices_t;
 
 // The "channel mask" enum is comprised of discrete channels,
