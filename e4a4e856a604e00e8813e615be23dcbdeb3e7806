@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f0b67d13_f5cc15dc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-01T23:37:54Z",
+      "side": 1,
+      "message": "You should add an additional `Bug:` line with your flag bug\n\nYou can also scope down the commit message to represent what we\u0027re doing here!\n\nSee Andrew\u0027s recent flag change for a good example!",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 5
+      },
+      "revId": "e4a4e856a604e00e8813e615be23dcbdeb3e7806",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6fe7e773_8bd366e9",
         "filename": "flags/avrcp_controller.aconfig",
         "patchSetId": 2
