@@ -22,6 +22,30 @@
       },
       "revId": "ab349c7f7fbb1f0bebda55750893413526dd6eb4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0753934a_5547c0bd",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppNotification.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-01T21:52:54Z",
+      "side": 1,
+      "message": "I think so, will fix later... maybe 😊",
+      "parentUuid": "c8ae042e_2c02c651",
+      "range": {
+        "startLine": 112,
+        "startChar": 4,
+        "endLine": 112,
+        "endChar": 10
+      },
+      "revId": "ab349c7f7fbb1f0bebda55750893413526dd6eb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
