@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e810ef03_64fd8fe1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-04-01T22:18:40Z",
+      "side": 1,
+      "message": "Why not just fix forward? A revert doesn\u0027t seem necessary if it can be fixed-forward in a single patch.",
+      "revId": "46ec6282c22cee02b2df1270ce3d00fe497c8192",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
