@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cd0ab3b_b14ca107",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-01T14:11:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "887ed2fb_2794feaa",
+      "revId": "a8558fc30936fb49f828cfa43c2fd34a47dc7e5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aacd06ee_7e866e6d",
@@ -48,6 +66,30 @@
       "writtenOn": "2024-04-01T11:52:30Z",
       "side": 1,
       "message": "WDYT about lowering this to `log::verbose`? Same idea to the other `log::debug`.",
+      "range": {
+        "startLine": 1742,
+        "startChar": 8,
+        "endLine": 1742,
+        "endChar": 18
+      },
+      "revId": "a8558fc30936fb49f828cfa43c2fd34a47dc7e5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eee7ea42_f3074c1e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 1742,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-01T14:11:17Z",
+      "side": 1,
+      "message": "Ack. Let\u0027s keep it as debug level for vendor to debug the flakiness.",
+      "parentUuid": "aacd06ee_7e866e6d",
       "range": {
         "startLine": 1742,
         "startChar": 8,
