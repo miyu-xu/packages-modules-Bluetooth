@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b730d87_16f9d8e8",
+        "filename": "system/bta/ag/bta_ag_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-01T18:34:41Z",
+      "side": 1,
+      "message": "nit: info seems a bit high",
+      "range": {
+        "startLine": 355,
+        "startChar": 7,
+        "endLine": 355,
+        "endChar": 11
+      },
+      "revId": "1a4a0469af2f94d0963c33ce681fc2d61590bae3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
