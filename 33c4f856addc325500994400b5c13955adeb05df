@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec536719_9cad65fb",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-04-02T14:22:45Z",
+      "side": 1,
+      "message": "nit: this can simplified a bit\n\n```\nop.devices_.erase(std::remove(op.devices_.begin(), op.devices_.end(), addr), op.devices_.end());\n```",
+      "range": {
+        "startLine": 709,
+        "startChar": 3,
+        "endLine": 713,
+        "endChar": 28
+      },
+      "revId": "33c4f856addc325500994400b5c13955adeb05df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecf0a2cd_5dc6670e",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 719,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-04-02T14:22:45Z",
+      "side": 1,
+      "message": "I think you wanted to remove all the operations with empty device list and not just the first one:\n\n```\n// Remove operations with no devices\n    ongoing_operations_.erase(\n        std::remove_if(ongoing_operations_.begin(), ongoing_operations_.end(),\n                       [](auto\u0026 op) { return op.devices_.empty(); }), ongoing_operations_.end());\n```",
+      "range": {
+        "startLine": 716,
+        "startChar": 4,
+        "endLine": 719,
+        "endChar": 70
+      },
+      "revId": "33c4f856addc325500994400b5c13955adeb05df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
