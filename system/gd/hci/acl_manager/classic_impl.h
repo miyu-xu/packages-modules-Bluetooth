@@ -398,16 +398,24 @@ struct classic_impl : public security::ISecurityManagerListener {
                 Address address,
                 ErrorCode status,
                 std::string valid_incoming_addresses) {
+<<<<<<< PATCH SET (7fb5b4 HCI: Don't abort for unsuccessful connections)
+=======
               log::assert_that(
                   status == ErrorCode::UNKNOWN_CONNECTION,
                   "No prior connection request for {} expecting:{}",
                   ADDRESS_TO_LOGGABLE_CSTR(address),
                   valid_incoming_addresses);
+>>>>>>> BASE      (f2bf4d bta:: Remove BTA_EIR_CANNED_UUID_LIST)
               log::warn(
                   "No matching connection to {} ({})",
                   ADDRESS_TO_LOGGABLE_CSTR(address),
                   ErrorCodeText(status));
-              log::warn("Firmware error after RemoteNameRequestCancel?");  // see b/184239841
+              if (status == ErrorCode::SUCCESS) {
+                log::fatal(
+                    "No prior connection request for {} expecting:{}",
+                    ADDRESS_TO_LOGGABLE_CSTR(address),
+                    valid_incoming_addresses.c_str());
+              }
               remote_name_request_module->ReportRemoteNameRequestCancellation(address);
             },
             common::Unretained(remote_name_request_module_),
