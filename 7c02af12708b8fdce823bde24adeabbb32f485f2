@@ -153,6 +153,29 @@
       },
       "revId": "7c02af12708b8fdce823bde24adeabbb32f485f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6f5c348_7a05510f",
+        "filename": "system/btif/src/btif_gatt_server.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-04-02T17:33:05Z",
+      "side": 1,
+      "message": "Just because the address type isn\u0027t random, that doesn\u0027t necessarily mean BR/EDR transport should be used. Some devices might advertise with public address but still expect LE transport.",
+      "range": {
+        "startLine": 328,
+        "startChar": 12,
+        "endLine": 328,
+        "endChar": 44
+      },
+      "revId": "7c02af12708b8fdce823bde24adeabbb32f485f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
