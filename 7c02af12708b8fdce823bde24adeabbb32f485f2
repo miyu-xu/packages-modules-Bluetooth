@@ -200,6 +200,30 @@
       },
       "revId": "7c02af12708b8fdce823bde24adeabbb32f485f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "260eaa6d_44b7c5e2",
+        "filename": "system/btif/src/btif_gatt_server.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-04-02T23:31:53Z",
+      "side": 1,
+      "message": "I removed the `BT_TRANSPORT_LE` case because this is unreachable code.\nThis part is not related to my CL (flag is not ON).\n\nFor public address advertise test cases, I added the comment in the next CL why I couldn\u0027t added them.",
+      "parentUuid": "da40ee16_0e2b7b40",
+      "range": {
+        "startLine": 328,
+        "startChar": 12,
+        "endLine": 328,
+        "endChar": 44
+      },
+      "revId": "7c02af12708b8fdce823bde24adeabbb32f485f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
