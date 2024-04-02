@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57d5187f_158b7ef0",
+        "filename": "system/gd/os/linux_generic/alarm_timerfd_unittest.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-02T22:10:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "832a9a80_7598b3d6",
+      "range": {
+        "startLine": 142,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 33
+      },
+      "revId": "4eca4eab53b00fca23e186fbacbe8bad7e88dbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e60ea869_bf61b7c1",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "example\n\n```\nint main(int argc, char **argv) {\n    // all gtest_ arguments will be removed after the line below\n    ::testing::InitGoogleTest(\u0026argc, argv);\n    for (int i \u003d 1; i \u003c argc; ++i) {\n        printf(\"arg %2d \u003d %s\\n\", i, argv[i]);\n    }\n    return RUN_ALL_TESTS();\n}\n```",
       "parentUuid": "e60ea869_bf61b7c1",
+      "range": {
+        "startLine": 148,
+        "startChar": 19,
+        "endLine": 148,
+        "endChar": 21
+      },
+      "revId": "4eca4eab53b00fca23e186fbacbe8bad7e88dbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1b3afc6_28ce9f1d",
+        "filename": "system/gd/os/linux_generic/alarm_timerfd_unittest.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-02T22:10:57Z",
+      "side": 1,
+      "message": "I\u0027ll parameterize the test if needed.  I don\u0027t think the time values should make a difference for the testing with deep doze.\n\nI changed the times to constants for easier changing if we need to make changes.",
+      "parentUuid": "eed51e3f_671d3087",
       "range": {
         "startLine": 148,
         "startChar": 19,
