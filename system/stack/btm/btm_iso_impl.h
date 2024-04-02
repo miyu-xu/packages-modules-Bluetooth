@@ -574,8 +574,8 @@ struct iso_impl {
       return;
     }
 
-    iso_credits_--;
-    iso->used_credits++;
+    // iso_credits_--;
+    // iso->used_credits++;
 
     BT_HDR* packet = prepare_hci_packet(iso_handle, seq_nb, data_len);
     memcpy(packet->data + kIsoHeaderWithoutTsLen, data, data_len);
