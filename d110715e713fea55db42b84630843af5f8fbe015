@@ -67,6 +67,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "03541180_45e523b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2023666
+      },
+      "writtenOn": "2024-04-02T20:59:18Z",
+      "side": 1,
+      "message": "Hi, that\u0027s great news!\n\nI see the change is currently behind a \"Flags.gattFixDeviceBusy()\" test, does that mean it\u0027s not yet enabled?\n\nI would also be interested to know when / on which Android versions we can expect this fix to land.\n\nThanks",
+      "parentUuid": "12523724_7f5e0f71",
+      "revId": "d110715e713fea55db42b84630843af5f8fbe015",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "00fdb4f0_73bb5345",
         "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
         "patchSetId": 1
