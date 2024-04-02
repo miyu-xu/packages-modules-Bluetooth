@@ -144,6 +144,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "966eccb7_4bb25feb",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2194,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-02T18:41:40Z",
+      "side": 1,
+      "message": "oh sorry, my point is do not do \"if\" without \"{\" and \"}\"\n\n```\nif (!std::holds_alternative\u003ctBTA_DM_API_SEARCH\u003e(*msg)) {\n  log::fatal(\"bad message type!\");\n}\n```",
+      "parentUuid": "d666c976_1cb94821",
+      "range": {
+        "startLine": 2193,
+        "startChar": 0,
+        "endLine": 2194,
+        "endChar": 44
+      },
+      "revId": "c8830dfa25171212c90c50bdf7679880c5748b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c22529ec_97785e23",
         "filename": "system/bta/dm/bta_dm_disc_int.h",
         "patchSetId": 6
