@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e89614e3_7fe0d254",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-02T17:11:14Z",
+      "side": 1,
+      "message": "@etienne.ruffieux@codecoup.pl can you have a look ?\n\nIdeally the test should be enabled in pts-bot and run at presubmit, it looks like it is not the case.\nIdeally we should pass pts test without the need to set a property. Is this done in order to have some fake data to send ? Why the device cannot provide the data instead ?",
+      "revId": "b13b7dd933f9f87c8e7c34527d792fb64d2e0234",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
