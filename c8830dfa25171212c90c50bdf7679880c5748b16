@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3004b1c2_6fbe4767",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-02T16:17:27Z",
+      "side": 1,
+      "message": "this osi_callloc is still here and p_uuid_list is just a pointer to it\n\nwhen is p_uuid_list freed? Could it be changed to an actual std::array or std::vector to avoid the memcpy below?",
+      "range": {
+        "startLine": 776,
+        "startChar": 19,
+        "endLine": 776,
+        "endChar": 29
+      },
+      "revId": "c8830dfa25171212c90c50bdf7679880c5748b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c020cdcb_afaf2c39",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1074,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-02T16:17:27Z",
+      "side": 1,
+      "message": "agreed, when not switch to std::unique_ptr here?",
+      "range": {
+        "startLine": 1074,
+        "startChar": 43,
+        "endLine": 1074,
+        "endChar": 53
+      },
+      "revId": "c8830dfa25171212c90c50bdf7679880c5748b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "734020c2_38ba3b22",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2194,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-02T16:17:27Z",
+      "side": 1,
+      "message": "please use \n\nif (X) {\n  // code\n}\n\nwith braces whenever possible",
+      "range": {
+        "startLine": 2193,
+        "startChar": 0,
+        "endLine": 2194,
+        "endChar": 44
+      },
+      "revId": "c8830dfa25171212c90c50bdf7679880c5748b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c22529ec_97785e23",
+        "filename": "system/bta/dm/bta_dm_disc_int.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-02T16:17:27Z",
+      "side": 1,
+      "message": "I feel like switching to std::variant can be a CL by itself, could you extract that out and merge it first?",
+      "range": {
+        "startLine": 107,
+        "startChar": 1,
+        "endLine": 109,
+        "endChar": 80
+      },
+      "revId": "c8830dfa25171212c90c50bdf7679880c5748b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
