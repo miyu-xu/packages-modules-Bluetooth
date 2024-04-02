@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "34afbbe9_82045af6",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1105,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2024-04-02T17:12:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aebe2a98_946771ad",
+      "revId": "baece58ad42703838e2c6ed38a3bcf5e9e407d8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d8f1fef3_7cfa0b88",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-04-02T10:53:17Z",
       "side": 1,
       "message": "BluetoothDevice.PHY_LE_1M_MASK \u0026 BluetoothDevice.PHY_LE_CODED_MASK condition will alway return 0. \n \nThis should be BluetoothDevice.PHY_LE_1M_MASK | BluetoothDevice.PHY_LE_CODED_MASK",
+      "revId": "baece58ad42703838e2c6ed38a3bcf5e9e407d8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb2f825d_30112de8",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1811,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2024-04-02T17:12:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8f1fef3_7cfa0b88",
       "revId": "baece58ad42703838e2c6ed38a3bcf5e9e407d8d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
