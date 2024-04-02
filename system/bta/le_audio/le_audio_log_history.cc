@@ -121,7 +121,7 @@ class LeAudioLogHistoryImpl : public LeAudioLogHistory {
                    tag.substr(0, kMaxLogHistoryTagLength).c_str(), group_id,
                    kMaxLogHistoryMsgLength,
                    msg.substr(0, kMaxLogHistoryMsgLength).c_str(),
-                   ADDRESS_TO_LOGGABLE_CSTR(addr), extra.c_str());
+                   addr, extra.c_str());
   }
 
   std::shared_ptr<TimestampedStringCircularBuffer> history_{nullptr};

@@ -120,7 +120,7 @@ int RFCOMM_CreateConnectionWithSecurity(uint16_t uuid, uint8_t scn,
   if ((scn == 0) || (scn > RFCOMM_MAX_SCN)) {
     // Server Channel Number (SCN) should be in range [1, 30]
     log::error("Invalid SCN, bd_addr={}, scn={}, is_server={}, mtu={}, uuid={}",
-               ADDRESS_TO_LOGGABLE_STR(bd_addr), static_cast<int>(scn),
+               bd_addr, static_cast<int>(scn),
                is_server, static_cast<int>(mtu), loghex(uuid));
     return (PORT_INVALID_SCN);
   }
@@ -150,7 +150,7 @@ int RFCOMM_CreateConnectionWithSecurity(uint16_t uuid, uint8_t scn,
             static_cast<int>(p_port->state),
             static_cast<int>(p_port->rfc.state),
             (p_port->rfc.p_mcb ? p_port->rfc.p_mcb->state : 0),
-            ADDRESS_TO_LOGGABLE_STR(bd_addr), scn, is_server, mtu, loghex(uuid),
+            bd_addr, scn, is_server, mtu, loghex(uuid),
             dlci, fmt::ptr(p_mcb), p_port->handle);
         *p_handle = p_port->handle;
         return (PORT_ALREADY_OPENED);
@@ -164,7 +164,7 @@ int RFCOMM_CreateConnectionWithSecurity(uint16_t uuid, uint8_t scn,
     log::error(
         "no resources, bd_addr={}, scn={}, is_server={}, mtu={}, uuid={}, "
         "dlci={}",
-        ADDRESS_TO_LOGGABLE_STR(bd_addr), scn, is_server, mtu, loghex(uuid),
+        bd_addr, scn, is_server, mtu, loghex(uuid),
         dlci);
     return PORT_NO_RESOURCES;
   }
@@ -226,7 +226,7 @@ int RFCOMM_CreateConnectionWithSecurity(uint16_t uuid, uint8_t scn,
   log::info(
       "bd_addr={}, scn={}, is_server={}, mtu={}, uuid={}, dlci={}, "
       "signal_state={}, p_port={}",
-      ADDRESS_TO_LOGGABLE_STR(bd_addr), scn, is_server, mtu, loghex(uuid), dlci,
+      bd_addr, scn, is_server, mtu, loghex(uuid), dlci,
       loghex(p_port->default_signal_state), fmt::ptr(p_port));
 
   // If this is not initiator of the connection need to just wait

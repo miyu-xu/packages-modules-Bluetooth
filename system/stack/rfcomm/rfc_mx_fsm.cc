@@ -77,7 +77,7 @@ void rfc_mx_sm_execute(tRFC_MCB* p_mcb, tRFC_MX_EVENT event, void* p_data) {
   CHECK(p_mcb != nullptr) << __func__ << ": NULL mcb for event " << event;
 
   log::info("RFCOMM peer:{} event:{} state:{}",
-            ADDRESS_TO_LOGGABLE_CSTR(p_mcb->bd_addr), event,
+            p_mcb->bd_addr, event,
             rfcomm_mx_state_text(static_cast<tRFC_MX_STATE>(p_mcb->state)));
 
   switch (p_mcb->state) {
@@ -135,7 +135,7 @@ void rfc_mx_sm_state_idle(tRFC_MCB* p_mcb, tRFC_MX_EVENT event, void* p_data) {
       uint16_t lcid = L2CA_ConnectReq(BT_PSM_RFCOMM, p_mcb->bd_addr);
       if (lcid == 0) {
         log::error("failed to open L2CAP channel for {}",
-                   ADDRESS_TO_LOGGABLE_STR(p_mcb->bd_addr));
+                   p_mcb->bd_addr);
         rfc_save_lcid_mcb(nullptr, p_mcb->lcid);
         p_mcb->lcid = 0;
         PORT_StartCnf(p_mcb, RFCOMM_ERROR);
@@ -297,7 +297,7 @@ void rfc_mx_sm_state_configure(tRFC_MCB* p_mcb, tRFC_MX_EVENT event,
 
     case RFC_MX_EVENT_TIMEOUT:
       log::error("L2CAP configuration timeout for {}",
-                 ADDRESS_TO_LOGGABLE_STR(p_mcb->bd_addr));
+                 p_mcb->bd_addr);
       p_mcb->state = RFC_MX_STATE_IDLE;
       L2CA_DisconnectReq(p_mcb->lcid);
 
@@ -610,10 +610,10 @@ void rfc_on_l2cap_error(uint16_t lcid, uint16_t result) {
     rfc_mx_sm_execute(p_mcb, RFC_MX_EVENT_CONN_CNF, &result);
   } else if (result == L2CAP_CFG_FAILED_NO_REASON) {
     log::error("failed to configure L2CAP for {}",
-               ADDRESS_TO_LOGGABLE_STR(p_mcb->bd_addr));
+               p_mcb->bd_addr);
     if (p_mcb->is_initiator) {
       log::error("disconnect L2CAP due to config failure for {}",
-                 ADDRESS_TO_LOGGABLE_STR(p_mcb->bd_addr));
+                 p_mcb->bd_addr);
       PORT_StartCnf(p_mcb, result);
       L2CA_DisconnectReq(p_mcb->lcid);
     }

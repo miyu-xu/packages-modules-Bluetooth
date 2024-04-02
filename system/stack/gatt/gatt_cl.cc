@@ -1107,7 +1107,7 @@ void gatt_process_mtu_rsp(tGATT_TCB& tcb, tGATT_CLCB* p_clcb, uint16_t len,
 
     log::info("Local pending MTU {}, Remote ({}) MTU {}",
               tcb.pending_user_mtu_exchange_value,
-              ADDRESS_TO_LOGGABLE_STR(tcb.peer_bda), mtu);
+              tcb.peer_bda, mtu);
 
     /* Aim for default as we did in the request */
     if (mtu < GATT_DEF_BLE_MTU_SIZE) {

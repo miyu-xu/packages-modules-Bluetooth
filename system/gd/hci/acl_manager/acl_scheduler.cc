@@ -105,7 +105,7 @@ struct AclScheduler::impl {
     if (!ok) {
       log::error(
           "Attempted to cancel connection to {} that does not exist",
-          ADDRESS_TO_LOGGABLE_CSTR(address));
+          address);
     }
   }
 
@@ -154,7 +154,7 @@ struct AclScheduler::impl {
     if (!ok) {
       log::error(
           "Attempted to cancel remote name request to {} that does not exist",
-          ADDRESS_TO_LOGGABLE_CSTR(address));
+          address);
     }
   };
 

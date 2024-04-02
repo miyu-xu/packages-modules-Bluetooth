@@ -828,7 +828,7 @@ tBTM_STATUS BTM_StartInquiry(tBTM_INQ_RESULTS_CB* p_results_cb,
 tBTM_STATUS BTM_ReadRemoteDeviceName(const RawAddress& remote_bda,
                                      tBTM_NAME_CMPL_CB* p_cb,
                                      tBT_TRANSPORT transport) {
-  log::verbose("bd addr {}", ADDRESS_TO_LOGGABLE_STR(remote_bda));
+  log::verbose("bd addr {}", remote_bda);
   /* Use LE transport when LE is the only available option */
   if (transport == BT_TRANSPORT_LE) {
     return btm_ble_read_remote_name(remote_bda, p_cb);
@@ -1969,10 +1969,10 @@ void btm_process_remote_name(const RawAddress* bda, const BD_NAME bdn,
   }
 
   log::info("btm_process_remote_name for {}",
-            ADDRESS_TO_LOGGABLE_CSTR(rem_name.bd_addr));
+            rem_name.bd_addr);
 
   log::verbose("Inquire BDA {}",
-               ADDRESS_TO_LOGGABLE_CSTR(btm_cb.btm_inq_vars.remname_bda));
+               btm_cb.btm_inq_vars.remname_bda);
 
   /* If the inquire BDA and remote DBA are the same, then stop the timer and set
    * the active to false */

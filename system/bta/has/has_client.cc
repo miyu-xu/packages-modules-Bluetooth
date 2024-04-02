@@ -162,7 +162,7 @@ class HasClientImpl : public HasClient {
     }
 
     if (addresses.empty()) {
-      log::warn("{} is not part of any set", ADDRESS_TO_LOGGABLE_STR(address));
+      log::warn("{} is not part of any set", address);
       addresses = {address};
     }
 
@@ -213,7 +213,7 @@ class HasClientImpl : public HasClient {
     }
 
     if (addresses.empty()) {
-      log::warn("{} is not part of any set", ADDRESS_TO_LOGGABLE_STR(address));
+      log::warn("{} is not part of any set", address);
       addresses = {address};
     }
 
@@ -222,7 +222,7 @@ class HasClientImpl : public HasClient {
                                  HasDevice::MatchAddress(addr));
       if (device == devices_.end()) {
         log::warn("Device not connected to profile{}",
-                  ADDRESS_TO_LOGGABLE_STR(addr));
+                  addr);
         return;
       }
 
@@ -321,7 +321,7 @@ class HasClientImpl : public HasClient {
 
     if (status == GATT_DATABASE_OUT_OF_SYNC) {
       log::info("Database out of sync for {}",
-                ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+                device->addr);
       ClearDeviceInformationAndStartSearch(device);
     }
   }
@@ -356,7 +356,7 @@ class HasClientImpl : public HasClient {
                                      GattStatus2SvcErrorCode(status));
     if (status == GATT_DATABASE_OUT_OF_SYNC) {
       log::info("Database out of sync for {}",
-                ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+                device->addr);
       ClearDeviceInformationAndStartSearch(device);
     }
   }
@@ -389,11 +389,11 @@ class HasClientImpl : public HasClient {
 
     if (status == GATT_DATABASE_OUT_OF_SYNC) {
       log::info("Database out of sync for {}",
-                ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+                device->addr);
       ClearDeviceInformationAndStartSearch(device);
     } else {
       log::error("Devices {}: Control point not usable. Disconnecting!",
-                 ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+                 device->addr);
       BTA_GATTC_Close(device->conn_id);
     }
   }
@@ -438,11 +438,11 @@ class HasClientImpl : public HasClient {
 
     if (status == GATT_DATABASE_OUT_OF_SYNC) {
       log::info("Database out of sync for {}",
-                ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+                device->addr);
       ClearDeviceInformationAndStartSearch(device);
     } else {
       log::error("Devices {}: Control point not usable. Disconnecting!",
-                 ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+                 device->addr);
       BTA_GATTC_Close(device->conn_id);
     }
   }
@@ -852,7 +852,7 @@ class HasClientImpl : public HasClient {
                                HasDevice::MatchAddress(address));
     if (device == devices_.end()) {
       log::warn("Device not connected to profile{}",
-                ADDRESS_TO_LOGGABLE_STR(address));
+                address);
       return;
     }
 
@@ -867,7 +867,7 @@ class HasClientImpl : public HasClient {
       auto* preset = device->GetPreset(preset_index);
       if (preset == nullptr) {
         log::error("Invalid preset request{}",
-                   ADDRESS_TO_LOGGABLE_STR(address));
+                   address);
         callbacks_->OnPresetInfoError(address, preset_index,
                                       ErrorCode::INVALID_PRESET_INDEX);
         return;
@@ -938,7 +938,7 @@ class HasClientImpl : public HasClient {
   void WriteAllNeededCcc(const HasDevice& device) {
     if (device.conn_id == GATT_INVALID_CONN_ID) {
       log::error("Device {} is not connected",
-                 ADDRESS_TO_LOGGABLE_CSTR(device.addr));
+                 device.addr);
       return;
     }
 
@@ -1028,7 +1028,7 @@ class HasClientImpl : public HasClient {
 
     if (status == GATT_DATABASE_OUT_OF_SYNC) {
       log::info("Database out of sync for {}",
-                ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+                device->addr);
       ClearDeviceInformationAndStartSearch(device);
       return;
     }
@@ -1104,7 +1104,7 @@ class HasClientImpl : public HasClient {
     if (status != GATT_SUCCESS) {
       if (status == GATT_DATABASE_OUT_OF_SYNC) {
         log::info("Database out of sync for {}",
-                  ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+                  device->addr);
         ClearDeviceInformationAndStartSearch(device);
       } else {
         log::error("Could not read characteristic at handle=0x{:04x}", handle);
@@ -1489,7 +1489,7 @@ class HasClientImpl : public HasClient {
     if (status != GATT_SUCCESS) {
       if (status == GATT_DATABASE_OUT_OF_SYNC) {
         log::info("Database out of sync for {}",
-                  ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+                  device->addr);
         ClearDeviceInformationAndStartSearch(device);
       } else {
         log::error("Could not read characteristic at handle=0x{:04x}", handle);
@@ -1587,7 +1587,7 @@ class HasClientImpl : public HasClient {
   /* Cleans up after the device disconnection */
   void DoDisconnectCleanUp(HasDevice& device,
                            bool invalidate_gatt_service = true) {
-    log::debug(": device={}", ADDRESS_TO_LOGGABLE_CSTR(device.addr));
+    log::debug(": device={}", device.addr);
 
     DeregisterNotifications(device);
 
@@ -1840,7 +1840,7 @@ class HasClientImpl : public HasClient {
 
   void OnGattConnected(const tBTA_GATTC_OPEN& evt) {
     log::info("{}, conn_id=0x{:04x}, transport={}, status={}(0x{:02x})",
-              ADDRESS_TO_LOGGABLE_CSTR(evt.remote_bda), evt.conn_id,
+              evt.remote_bda, evt.conn_id,
               bt_transport_text(evt.transport), gatt_status_text(evt.status),
               evt.status);
 
@@ -1855,7 +1855,7 @@ class HasClientImpl : public HasClient {
                                HasDevice::MatchAddress(evt.remote_bda));
     if (device == devices_.end()) {
       log::warn("Skipping unknown device, address={}",
-                ADDRESS_TO_LOGGABLE_STR(evt.remote_bda));
+                evt.remote_bda);
       BTA_GATTC_Close(evt.conn_id);
       return;
     }
@@ -1893,11 +1893,11 @@ class HasClientImpl : public HasClient {
                                    nullptr, BTM_BLE_SEC_ENCRYPT);
 
     log::info("Encryption required for {}. Request result: 0x{:02x}",
-              ADDRESS_TO_LOGGABLE_CSTR(device->addr), result);
+              device->addr, result);
 
     if (result == BTM_ERR_KEY_MISSING) {
       log::error("Link key unknown for {}, disconnect profile",
-                 ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+                 device->addr);
       BTA_GATTC_Close(device->conn_id);
     }
   }
@@ -1994,13 +1994,13 @@ class HasClientImpl : public HasClient {
     auto device = std::find_if(devices_.begin(), devices_.end(),
                                HasDevice::MatchAddress(address));
     if (device == devices_.end()) {
-      log::warn("Skipping unknown device{}", ADDRESS_TO_LOGGABLE_STR(address));
+      log::warn("Skipping unknown device{}", address);
       return;
     }
 
     if (!success) {
       log::error("Encryption failed for device {}",
-                 ADDRESS_TO_LOGGABLE_STR(address));
+                 address);
 
       BTA_GATTC_Close(device->conn_id);
       return;
@@ -2020,7 +2020,7 @@ class HasClientImpl : public HasClient {
       return;
     }
 
-    log::info("{}", ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+    log::info("{}", device->addr);
 
     if (!device->isGattServiceValid()) {
       log::info("Service already invalidated");
@@ -2040,10 +2040,10 @@ class HasClientImpl : public HasClient {
                                HasDevice::MatchAddress(address));
     if (device == devices_.end()) {
       log::warn("Skipping unknown device: {}",
-                ADDRESS_TO_LOGGABLE_STR(address));
+                address);
       return;
     }
-    log::info("{}", ADDRESS_TO_LOGGABLE_CSTR(address));
+    log::info("{}", address);
     ClearDeviceInformationAndStartSearch(&(*device));
   }
 
@@ -2052,7 +2052,7 @@ class HasClientImpl : public HasClient {
                                HasDevice::MatchAddress(address));
     if (device == devices_.end()) {
       log::warn("Skipping unknown device: {}",
-                ADDRESS_TO_LOGGABLE_STR(address));
+                address);
       return;
     }
 

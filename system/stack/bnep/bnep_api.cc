@@ -137,7 +137,7 @@ tBNEP_RESULT BNEP_Connect(const RawAddress& p_rem_bda, const Uuid& src_uuid,
   uint16_t cid;
   tBNEP_CONN* p_bcb = bnepu_find_bcb_by_bd_addr(p_rem_bda);
 
-  log::verbose("BDA:{}", ADDRESS_TO_LOGGABLE_STR(p_rem_bda));
+  log::verbose("BDA:{}", p_rem_bda);
 
   if (!bnep_cb.profile_registered) return BNEP_WRONG_STATE;
 

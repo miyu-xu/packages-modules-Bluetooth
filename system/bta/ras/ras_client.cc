@@ -77,10 +77,10 @@ class RasClientImpl : public bluetooth::ras::RasClient {
   }
 
   void Connect(const RawAddress& address) override {
-    log::info("{}", ADDRESS_TO_LOGGABLE_CSTR(address));
+    log::info("{}", address);
     tBLE_BD_ADDR ble_bd_addr;
     ResolveAddress(ble_bd_addr, address);
-    log::info("resolve {}", ADDRESS_TO_LOGGABLE_CSTR(ble_bd_addr.bda));
+    log::info("resolve {}", ble_bd_addr.bda);
 
     auto tracker = FindTrackerByAddress(ble_bd_addr.bda);
     if (tracker == nullptr) {
@@ -105,7 +105,7 @@ class RasClientImpl : public bluetooth::ras::RasClient {
 
   void OnGattConnected(const tBTA_GATTC_OPEN& evt) {
     log::info("{}, conn_id=0x{:04x}, transport:{}, status:{}",
-              ADDRESS_TO_LOGGABLE_CSTR(evt.remote_bda), evt.conn_id,
+              evt.remote_bda, evt.conn_id,
               bt_transport_text(evt.transport).c_str(),
               gatt_status_text(evt.status).c_str());
 
@@ -119,14 +119,14 @@ class RasClientImpl : public bluetooth::ras::RasClient {
     auto tracker = FindTrackerByAddress(evt.remote_bda);
     if (tracker == nullptr) {
       log::warn("Skipping unknown device, address: {}",
-                ADDRESS_TO_LOGGABLE_CSTR(evt.remote_bda));
+                evt.remote_bda);
       BTA_GATTC_Close(evt.conn_id);
       return;
     }
 
     if (evt.status != GATT_SUCCESS) {
       log::error("Failed to connect to server device {}",
-                 ADDRESS_TO_LOGGABLE_CSTR(evt.remote_bda));
+                 evt.remote_bda);
       return;
     }
     tracker->conn_id_ = evt.conn_id;

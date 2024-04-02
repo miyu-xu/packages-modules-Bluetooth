@@ -523,7 +523,7 @@ void bta_dm_remove_device(const RawAddress& bd_addr) {
           connected_with_br_edr ? BT_TRANSPORT_BR_EDR : BT_TRANSPORT_LE;
     }
     log::info("other_address {} with transport {} connected",
-              ADDRESS_TO_LOGGABLE_CSTR(other_address), other_transport);
+              other_address, other_transport);
     /* Take the link down first, and mark the device for removal when
      * disconnected */
     for (int i = 0; i < bta_dm_cb.device_list.count; i++) {
@@ -532,7 +532,7 @@ void bta_dm_remove_device(const RawAddress& bd_addr) {
           peer_device.transport == other_transport) {
         peer_device.conn_state = BTA_DM_UNPAIRING;
         log::info("Remove ACL of address {}",
-                  ADDRESS_TO_LOGGABLE_CSTR(other_address));
+                  other_address);
 
         /* Make sure device is not in acceptlist before we disconnect */
         GATT_CancelConnect(0, bd_addr, false);
@@ -570,7 +570,7 @@ void bta_dm_close_acl(const RawAddress& bd_addr, bool remove_dev,
     if (index != bta_dm_cb.device_list.count) {
       if (remove_dev) {
         log::info("Setting remove_dev_pending for {}",
-                  ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+                  bd_addr);
         bta_dm_cb.device_list.peer_device[index].remove_dev_pending = true;
       }
     } else {
@@ -611,7 +611,7 @@ static void handle_role_change(const RawAddress& bd_addr, tHCI_ROLE new_role,
     log::warn(
         "Unable to find device for role change peer:{} new_role:{} "
         "hci_status:{}",
-        ADDRESS_TO_LOGGABLE_CSTR(bd_addr), RoleText(new_role),
+        bd_addr, RoleText(new_role),
         hci_error_code_text(hci_status));
     return;
   }
@@ -619,7 +619,7 @@ static void handle_role_change(const RawAddress& bd_addr, tHCI_ROLE new_role,
   log::info(
       "Role change callback peer:{} info:{} new_role:{} dev count:{} "
       "hci_status:{}",
-      ADDRESS_TO_LOGGABLE_CSTR(bd_addr), p_dev->info_text(), RoleText(new_role),
+      bd_addr, p_dev->info_text(), RoleText(new_role),
       bta_dm_cb.device_list.count, hci_error_code_text(hci_status));
 
   if (p_dev->is_av_active()) {
@@ -662,18 +662,18 @@ void handle_remote_features_complete(const RawAddress& bd_addr) {
   tBTA_DM_PEER_DEVICE* p_dev = bta_dm_find_peer_device(bd_addr);
   if (!p_dev) {
     log::warn("Unable to find device peer:{}",
-              ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+              bd_addr);
     return;
   }
 
   if (bluetooth::shim::GetController()->SupportsSniffSubrating() &&
       acl_peer_supports_sniff_subrating(bd_addr)) {
     log::debug("Device supports sniff subrating peer:{}",
-               ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+               bd_addr);
     p_dev->set_both_device_ssr_capable();
   } else {
     log::debug("Device does NOT support sniff subrating peer:{}",
-               ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+               bd_addr);
   }
 }
 
@@ -712,7 +712,7 @@ void bta_dm_acl_up(const RawAddress& bd_addr, tBT_TRANSPORT transport,
     return;
   }
   log::info("Acl connected peer:{} transport:{} handle:{}",
-            ADDRESS_TO_LOGGABLE_CSTR(bd_addr), bt_transport_text(transport),
+            bd_addr, bt_transport_text(transport),
             acl_handle);
   device->conn_state = BTA_DM_CONNECTED;
   device->pref_role = BTA_ANY_ROLE;
@@ -822,7 +822,7 @@ static void bta_dm_acl_down(const RawAddress& bd_addr,
   }
   if (remove_device) {
     log::info("remove_dev_pending actually removing {}",
-              ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+              bd_addr);
     bta_dm_process_remove_device_no_callback(bd_addr);
   }
 
@@ -919,7 +919,7 @@ static void bta_dm_rm_cback(tBTA_SYS_CONN_STATUS status, tBTA_SYS_ID id,
 
   log::debug("BTA Role management callback count:{} status:{} peer:{}",
              bta_dm_cb.cur_av_count, bta_sys_conn_status_text(status),
-             ADDRESS_TO_LOGGABLE_CSTR(peer_addr));
+             peer_addr);
 
   p_dev = bta_dm_find_peer_device(peer_addr);
   if (status == BTA_SYS_CONN_OPEN) {

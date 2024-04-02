@@ -153,7 +153,7 @@ void LEConnectionMetricsRemoteDevice::UploadLEConnectionSession(const hci::Addre
     metrics_logger_module->LogMetricBluetoothLESession(session_options);
     log::info(
         "LEConnectionMetricsRemoteDevice: The session is uploaded for {}",
-        ADDRESS_TO_LOGGABLE_CSTR(address));
+        address);
     opened_devices.erase(it);
   }
 }

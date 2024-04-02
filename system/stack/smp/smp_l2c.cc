@@ -100,7 +100,7 @@ static void smp_connect_callback(UNUSED_ATTR uint16_t channel,
   tSMP_INT_DATA int_data;
 
   log::debug("bd_addr:{} transport:{}, connected:{}",
-             ADDRESS_TO_LOGGABLE_CSTR(bd_addr), bt_transport_text(transport),
+             bd_addr, bt_transport_text(transport),
              connected);
 
   if (bd_addr.IsEmpty()) {
@@ -272,8 +272,8 @@ static void smp_br_connect_callback(uint16_t channel, const RawAddress& bd_addr,
   }
 
   log::info("BDA:{} pairing_bda:{}, connected:{}",
-            ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
-            ADDRESS_TO_LOGGABLE_CSTR(p_cb->pairing_bda), connected);
+            bd_addr,
+            p_cb->pairing_bda, connected);
 
   if (bd_addr != p_cb->pairing_bda) return;
 

@@ -127,12 +127,12 @@ void ConnectionHandler::InitForTesting(ConnectionHandler* handler) {
 
 bool ConnectionHandler::ConnectDevice(const RawAddress& bdaddr) {
   log::info("Attempting to connect to device {}",
-            ADDRESS_TO_LOGGABLE_STR(bdaddr));
+            bdaddr);
 
   for (const auto& pair : device_map_) {
     if (bdaddr == pair.second->GetAddress()) {
       log::warn("Already connected to device with address {}",
-                ADDRESS_TO_LOGGABLE_STR(bdaddr));
+                bdaddr);
       return false;
     }
   }
@@ -213,7 +213,7 @@ bool ConnectionHandler::SdpLookup(const RawAddress& bdaddr, SdpCallback cb,
 }
 
 bool ConnectionHandler::AvrcpConnect(bool initiator, const RawAddress& bdaddr) {
-  log::info("Connect to device {}", ADDRESS_TO_LOGGABLE_STR(bdaddr));
+  log::info("Connect to device {}", bdaddr);
 
   tAVRC_CONN_CB open_cb;
   if (initiator) {
@@ -245,7 +245,7 @@ void ConnectionHandler::InitiatorControlCb(uint8_t handle, uint8_t event,
   DCHECK(!connection_cb_.is_null());
 
   log::info("handle={} result={} addr={}", loghex(handle), loghex(result),
-            (peer_addr ? ADDRESS_TO_LOGGABLE_STR(*peer_addr) : "none"));
+            (peer_addr ? *peer_addr) : "none");
 
   switch (event) {
     case AVRC_OPEN_IND_EVT: {
@@ -337,7 +337,7 @@ void ConnectionHandler::AcceptorControlCb(uint8_t handle, uint8_t event,
   DCHECK(!connection_cb_.is_null());
 
   log::info("handle={} result={} addr={}", loghex(handle), loghex(result),
-            (peer_addr ? ADDRESS_TO_LOGGABLE_STR(*peer_addr) : "none"));
+            (peer_addr ? *peer_addr) : "none");
 
   switch (event) {
     case AVRC_OPEN_IND_EVT: {
@@ -370,7 +370,7 @@ void ConnectionHandler::AcceptorControlCb(uint8_t handle, uint8_t event,
       connection_cb_.Run(newDevice);
 
       log::info("Performing SDP on connected device. address={}",
-                ADDRESS_TO_LOGGABLE_STR(*peer_addr));
+                *peer_addr);
       auto sdp_lambda = [](ConnectionHandler* instance_, uint8_t handle,
                            uint16_t status, uint16_t version,
                            uint16_t features) {
@@ -502,7 +502,7 @@ void ConnectionHandler::SdpCb(RawAddress bdaddr, SdpCallback cb,
       sdp_->FindServiceInDb(disc_db, UUID_SERVCLASS_AV_REMOTE_CONTROL, nullptr);
   if (sdp_record != nullptr) {
     log::info("Device {} supports remote control",
-              ADDRESS_TO_LOGGABLE_STR(bdaddr));
+              bdaddr);
     peer_features |= BTA_AV_FEAT_RCCT;
 
     if ((sdp_->FindAttributeInRec(sdp_record, ATTR_ID_BT_PROFILE_DESC_LIST)) !=
@@ -511,13 +511,13 @@ void ConnectionHandler::SdpCb(RawAddress bdaddr, SdpCallback cb,
       sdp_->FindProfileVersionInRec(
           sdp_record, UUID_SERVCLASS_AV_REMOTE_CONTROL, &peer_avrcp_version);
       log::verbose("Device {} peer avrcp version={}",
-                   ADDRESS_TO_LOGGABLE_STR(bdaddr), loghex(peer_avrcp_version));
+                   bdaddr, loghex(peer_avrcp_version));
 
       if (peer_avrcp_version >= AVRC_REV_1_3) {
         // These are the standard features, another way to check this is to
         // search for CAT1 on the remote device
         log::verbose("Device {} supports metadata",
-                     ADDRESS_TO_LOGGABLE_STR(bdaddr));
+                     bdaddr);
         peer_features |= (BTA_AV_FEAT_VENDOR | BTA_AV_FEAT_METADATA);
       }
       if (peer_avrcp_version >= AVRC_REV_1_4) {
@@ -532,14 +532,14 @@ void ConnectionHandler::SdpCb(RawAddress bdaddr, SdpCallback cb,
           uint16_t categories = sdp_attribute->attr_value.v.u16;
           if (categories & AVRC_SUPF_CT_CAT2) {
             log::verbose("Device {} supports advanced control",
-                         ADDRESS_TO_LOGGABLE_STR(bdaddr));
+                         bdaddr);
             if (IsAbsoluteVolumeEnabled(&bdaddr)) {
               peer_features |= (BTA_AV_FEAT_ADV_CTRL);
             }
           }
           if (categories & AVRC_SUPF_CT_BROWSE) {
             log::verbose("Device {} supports browsing",
-                         ADDRESS_TO_LOGGABLE_STR(bdaddr));
+                         bdaddr);
             peer_features |= (BTA_AV_FEAT_BROWSE);
           }
         }
@@ -555,13 +555,13 @@ void ConnectionHandler::SdpCb(RawAddress bdaddr, SdpCallback cb,
                                      nullptr);
   if (sdp_record != nullptr) {
     log::verbose("Device {} supports remote control target",
-                 ADDRESS_TO_LOGGABLE_STR(bdaddr));
+                 bdaddr);
 
     uint16_t peer_avrcp_target_version = 0;
     sdp_->FindProfileVersionInRec(sdp_record, UUID_SERVCLASS_AV_REMOTE_CONTROL,
                                   &peer_avrcp_target_version);
     log::verbose("Device {} peer avrcp target version={}",
-                 ADDRESS_TO_LOGGABLE_STR(bdaddr),
+                 bdaddr,
                  loghex(peer_avrcp_target_version));
 
     if ((sdp_->FindAttributeInRec(sdp_record, ATTR_ID_BT_PROFILE_DESC_LIST)) !=
@@ -578,7 +578,7 @@ void ConnectionHandler::SdpCb(RawAddress bdaddr, SdpCallback cb,
           uint16_t categories = sdp_attribute->attr_value.v.u16;
           if (categories & AVRC_SUPF_CT_CAT2) {
             log::verbose("Device {} supports advanced control",
-                         ADDRESS_TO_LOGGABLE_STR(bdaddr));
+                         bdaddr);
             if (IsAbsoluteVolumeEnabled(&bdaddr)) {
               peer_features |= (BTA_AV_FEAT_ADV_CTRL);
             }
@@ -640,7 +640,7 @@ void ConnectionHandler::SendMessage(
 
 void ConnectionHandler::RegisterVolChanged(const RawAddress& bdaddr) {
   log::info("Attempting to RegisterVolChanged device {}",
-            ADDRESS_TO_LOGGABLE_STR(bdaddr));
+            bdaddr);
   for (auto it = device_map_.begin(); it != device_map_.end(); it++) {
     if (bdaddr == it->second->GetAddress()) {
       const auto& feature_iter = feature_map_.find(bdaddr);

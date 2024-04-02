@@ -364,7 +364,7 @@ bt_status_t btsock_rfc_connect(const RawAddress* bd_addr,
       alloc_rfc_slot(bd_addr, NULL, *service_uuid, channel, flags, false);
   if (!slot) {
     log::error("unable to allocate RFCOMM slot. bd_addr:{}",
-               ADDRESS_TO_LOGGABLE_CSTR(*bd_addr));
+               *bd_addr);
     return BT_STATUS_FAIL;
   }
 
@@ -376,7 +376,7 @@ bt_status_t btsock_rfc_connect(const RawAddress* bd_addr,
       log::error(
           "unable to initiate RFCOMM connection. status:{}, scn:{}, bd_addr:{}",
           bta_jv_status_text(ret), slot->scn,
-          ADDRESS_TO_LOGGABLE_CSTR(slot->addr));
+          slot->addr);
       cleanup_rfc_slot(slot);
       return BT_STATUS_FAIL;
     }
@@ -388,7 +388,7 @@ bt_status_t btsock_rfc_connect(const RawAddress* bd_addr,
     }
   } else {
     log::info("service_uuid:{}, bd_addr:{}, slot_id:{}",
-              service_uuid->ToString(), ADDRESS_TO_LOGGABLE_CSTR(*bd_addr),
+              service_uuid->ToString(), *bd_addr,
               slot->id);
     if (!is_requesting_sdp()) {
       BTA_JvStartDiscovery(*bd_addr, 1, service_uuid, slot->id);
@@ -437,7 +437,7 @@ static void cleanup_rfc_slot(rfc_slot_t* slot) {
     log::info(
         "disconnected from RFCOMM socket connections for device: {}, scn: {}, "
         "app_uid: {}, id: {}",
-        ADDRESS_TO_LOGGABLE_CSTR(slot->addr), slot->scn, slot->app_uid,
+        slot->addr, slot->scn, slot->app_uid,
         slot->id);
     btif_sock_connection_logger(
         slot->addr, slot->id, BTSOCK_RFCOMM,
@@ -482,7 +482,7 @@ static bool send_app_scn(rfc_slot_t* slot) {
     return true;
   }
   log::debug("Sending scn for slot {}. bd_addr:{}", slot->id,
-             ADDRESS_TO_LOGGABLE_CSTR(slot->addr));
+             slot->addr);
   slot->scn_notified = true;
   return sock_send_all(slot->fd, (const uint8_t*)&slot->scn,
                        sizeof(slot->scn)) == sizeof(slot->scn);
@@ -539,7 +539,7 @@ static void on_srv_rfc_listen_started(tBTA_JV_RFCOMM_START* p_start,
   log::info(
       "listening for RFCOMM socket connections for device: {}, scn: {}, "
       "app_uid: {}, id: {}",
-      ADDRESS_TO_LOGGABLE_CSTR(slot->addr), slot->scn, slot->app_uid, id);
+      slot->addr, slot->scn, slot->app_uid, id);
   btif_sock_connection_logger(
       slot->addr, slot->id, BTSOCK_RFCOMM, SOCKET_CONNECTION_STATE_LISTENING,
       slot->f.server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION,
@@ -564,7 +564,7 @@ static uint32_t on_srv_rfc_connect(tBTA_JV_RFCOMM_SRV_OPEN* p_open,
   log::info(
       "connected to RFCOMM socket connections for device: {}, scn: {}, "
       "app_uid: {}, id: {}",
-      ADDRESS_TO_LOGGABLE_CSTR(accept_rs->addr), accept_rs->scn,
+      accept_rs->addr, accept_rs->scn,
       accept_rs->app_uid, id);
   btif_sock_connection_logger(
       accept_rs->addr, accept_rs->id, BTSOCK_RFCOMM,
@@ -606,7 +606,7 @@ static void on_cli_rfc_connect(tBTA_JV_RFCOMM_OPEN* p_open, uint32_t id) {
   log::info(
       "connected to RFCOMM socket connections for device: {}, scn: {}, "
       "app_uid: {}, id: {}",
-      ADDRESS_TO_LOGGABLE_CSTR(slot->addr), slot->scn, slot->app_uid, id);
+      slot->addr, slot->scn, slot->app_uid, id);
   btif_sock_connection_logger(
       slot->addr, slot->id, BTSOCK_RFCOMM, SOCKET_CONNECTION_STATE_CONNECTED,
       slot->f.server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION,

@@ -57,7 +57,7 @@ class ConnectNode {
 
   std::string ToString() const {
     return base::StringPrintf("address=%s UUID=%04X busy=%s",
-                              ADDRESS_TO_LOGGABLE_CSTR(address_), uuid_,
+                              address_, uuid_,
                               (busy_) ? "true" : "false");
   }
 

@@ -137,7 +137,7 @@ struct assembler {
     if (incoming_queue_.size() > kMaxQueuedPacketsPerConnection) {
       log::error(
           "Dropping packet from {} due to congestion",
-          ADDRESS_TO_LOGGABLE_CSTR(address_with_type_));
+          address_with_type_);
       recombination_stage_ = PacketViewForRecombination();
       return;
     }

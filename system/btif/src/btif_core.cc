@@ -196,7 +196,7 @@ void btif_enable_bluetooth_evt() {
     // We failed to get an address or the one in the config file does not match
     // the address given by the controller interface. Update the config cache
     log::info("Storing '{}' into the config file",
-              ADDRESS_TO_LOGGABLE_CSTR(local_bd_addr));
+              local_bd_addr);
     btif_config_set_str(BTIF_STORAGE_SECTION_ADAPTER, BTIF_STORAGE_KEY_ADDRESS,
                         bdstr.c_str());
 

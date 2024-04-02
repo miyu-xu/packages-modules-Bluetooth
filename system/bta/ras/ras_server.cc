@@ -76,14 +76,14 @@ class RasServerImpl : public bluetooth::ras::RasServer {
   void PushProcedureData(RawAddress address, uint16_t procedure_counter,
                          bool is_last, std::vector<uint8_t> data) {
     log::info("{}, counter:{}, is_last:{}, with size {}",
-              ADDRESS_TO_LOGGABLE_STR(address), procedure_counter, is_last,
+              address, procedure_counter, is_last,
               data.size());
     tBLE_BD_ADDR ble_bd_addr;
     ResolveAddress(ble_bd_addr, address);
 
     if (trackers_.find(ble_bd_addr.bda) == trackers_.end()) {
       log::warn("Can't find tracker for {}",
-                ADDRESS_TO_LOGGABLE_STR(ble_bd_addr.bda));
+                ble_bd_addr.bda);
       return;
     }
     std::lock_guard<std::mutex> lock(data_mutex_);
@@ -164,7 +164,7 @@ class RasServerImpl : public bluetooth::ras::RasServer {
 
   void OnGattConnect(tBTA_GATTS* p_data) {
     auto address = p_data->conn.remote_bda;
-    log::info("Address: {}, conn_id:{}", ADDRESS_TO_LOGGABLE_STR(address),
+    log::info("Address: {}, conn_id:{}", address,
               p_data->conn.conn_id);
     if (p_data->conn.transport == BT_TRANSPORT_BR_EDR) {
       log::warn("Skip BE/EDR connection");
@@ -359,7 +359,7 @@ class RasServerImpl : public bluetooth::ras::RasServer {
       case kRasControlPointCharacteristic16bit: {
         if (trackers_.find(p_data->req_data.remote_bda) == trackers_.end()) {
           log::warn("Can't find trackers for {}",
-                    ADDRESS_TO_LOGGABLE_STR(p_data->req_data.remote_bda));
+                    p_data->req_data.remote_bda);
           BTA_GATTS_SendRsp(conn_id, p_data->req_data.trans_id,
                             GATT_ILLEGAL_PARAMETER, &p_msg);
           return;

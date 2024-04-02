@@ -107,7 +107,7 @@ void LinkManager::ConnectDynamicChannelServices(
 void LinkManager::InitiateConnectionForSecurity(hci::Address remote) {
   auto* link = GetLink(remote);
   if (link != nullptr) {
-    log::error("Link already exists for {}", ADDRESS_TO_LOGGABLE_CSTR(remote));
+    log::error("Link already exists for {}", remote);
   }
   acl_manager_->CreateConnection(remote);
 }
@@ -245,7 +245,7 @@ void LinkManager::OnConnectSuccess(std::unique_ptr<hci::acl_manager::ClassicAclC
   log::assert_that(
       GetLink(device) == nullptr,
       "{} is connected twice without disconnection",
-      ADDRESS_TO_LOGGABLE_CSTR(acl_connection->GetAddress()));
+      acl_connection->GetAddress());
   links_.try_emplace(device, l2cap_handler_, std::move(acl_connection), parameter_provider_,
                      dynamic_channel_service_manager_, fixed_channel_service_manager_, this);
   auto* link = GetLink(device);
@@ -299,7 +299,7 @@ void LinkManager::OnConnectFail(hci::Address device, hci::ErrorCode reason, bool
     // There is no pending link, exit
     log::info(
         "Connection to {} failed without a pending link; reason: {}",
-        ADDRESS_TO_LOGGABLE_CSTR(device),
+        device,
         hci::ErrorCodeText(reason));
     if (pending_dynamic_channels_callbacks_.find(device) != pending_dynamic_channels_callbacks_.end()) {
       for (Link::PendingDynamicChannelConnection& callbacks : pending_dynamic_channels_callbacks_[device]) {
@@ -327,7 +327,7 @@ void LinkManager::OnDisconnect(hci::Address device, hci::ErrorCode status) {
   log::assert_that(
       link != nullptr,
       "Device {} is disconnected with reason 0x{:x}, but not in local database",
-      ADDRESS_TO_LOGGABLE_CSTR(device),
+      device,
       static_cast<uint8_t>(status));
   if (link_security_interface_listener_handler_ != nullptr) {
     link_security_interface_listener_handler_->CallOn(

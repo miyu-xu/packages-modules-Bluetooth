@@ -317,7 +317,7 @@ static void srvc_eng_connect_cback(UNUSED_ATTR tGATT_IF gatt_if,
                                    const RawAddress& bda, uint16_t conn_id,
                                    bool connected, tGATT_DISCONN_REASON reason,
                                    UNUSED_ATTR tBT_TRANSPORT transport) {
-  log::verbose("from {} connected:{} conn_id={}", ADDRESS_TO_LOGGABLE_STR(bda),
+  log::verbose("from {} connected:{} conn_id={}", bda,
                connected, conn_id);
 
   if (connected) {

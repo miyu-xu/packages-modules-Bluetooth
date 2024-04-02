@@ -331,12 +331,12 @@ tCONN_CB* sdp_conn_originate(const RawAddress& p_bd_addr) {
   /* Allocate a new CCB. Return if none available. */
   p_ccb = sdpu_allocate_ccb();
   if (p_ccb == NULL) {
-    log::warn("no spare CCB for peer {}", ADDRESS_TO_LOGGABLE_CSTR(p_bd_addr));
+    log::warn("no spare CCB for peer {}", p_bd_addr);
     return (NULL);
   }
 
   log::verbose("SDP - Originate started for peer {}",
-               ADDRESS_TO_LOGGABLE_CSTR(p_bd_addr));
+               p_bd_addr);
 
   /* Look for any active sdp connection on the remote device */
   cid = sdpu_get_active_ccb_cid(p_bd_addr);
@@ -355,13 +355,13 @@ tCONN_CB* sdp_conn_originate(const RawAddress& p_bd_addr) {
   } else {
     p_ccb->con_state = SDP_STATE_CONN_PEND;
     log::warn("SDP already active for peer {}. cid={:#0x}",
-              ADDRESS_TO_LOGGABLE_CSTR(p_bd_addr), cid);
+              p_bd_addr, cid);
   }
 
   /* Check if L2CAP started the connection process */
   if (cid == 0) {
     log::warn("SDP - Originate failed for peer {}",
-              ADDRESS_TO_LOGGABLE_CSTR(p_bd_addr));
+              p_bd_addr);
     sdpu_release_ccb(*p_ccb);
     return (NULL);
   }

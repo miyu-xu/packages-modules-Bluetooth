@@ -79,13 +79,13 @@ void Device::RegisterInterfaces(
 base::WeakPtr<Device> Device::Get() { return weak_ptr_factory_.GetWeakPtr(); }
 
 void Device::SetBrowseMtu(uint16_t browse_mtu) {
-  log::info("{}: browse_mtu = {}", ADDRESS_TO_LOGGABLE_STR(address_),
+  log::info("{}: browse_mtu = {}", address_,
             browse_mtu);
   browse_mtu_ = browse_mtu;
 }
 
 void Device::SetBipClientStatus(bool connected) {
-  log::info("{}: connected = {}", ADDRESS_TO_LOGGABLE_STR(address_), connected);
+  log::info("{}: connected = {}", address_, connected);
   has_bip_client_ = connected;
 }
 
@@ -115,7 +115,7 @@ void Device::VendorPacketHandler(uint8_t label,
 
   if (!pkt->IsValid()) {
     log::warn("{}: Request packet is not valid",
-              ADDRESS_TO_LOGGABLE_STR(address_));
+              address_);
     auto response = RejectBuilder::MakeBuilder(static_cast<CommandPdu>(0),
                                                Status::INVALID_COMMAND);
     send_message(label, false, std::move(response));
@@ -139,7 +139,7 @@ void Device::VendorPacketHandler(uint8_t label,
               register_notification->GetEvent() == Event::VOLUME_CHANGED)) &&
             !register_notification->IsValid()) {
           log::warn("{}: Request packet is not valid",
-                    ADDRESS_TO_LOGGABLE_STR(address_));
+                    address_);
           auto response = RejectBuilder::MakeBuilder(pkt->GetCommandPdu(),
                                                      Status::INVALID_PARAMETER);
           send_message(label, false, std::move(response));
@@ -151,7 +151,7 @@ void Device::VendorPacketHandler(uint8_t label,
 
         if (register_notification->GetEvent() != Event::VOLUME_CHANGED) {
           log::warn("{}: Unhandled register notification received: {}",
-                    ADDRESS_TO_LOGGABLE_STR(address_),
+                    address_,
                     register_notification->GetEvent());
           return;
         }
@@ -165,7 +165,7 @@ void Device::VendorPacketHandler(uint8_t label,
         break;
       default:
         log::warn("{}: Unhandled Response: pdu={}",
-                  ADDRESS_TO_LOGGABLE_STR(address_), pkt->GetCommandPdu());
+                  address_, pkt->GetCommandPdu());
         break;
     }
     return;
@@ -188,7 +188,7 @@ void Device::VendorPacketHandler(uint8_t label,
 
       if (!get_element_attributes_request_pkt->IsValid()) {
         log::warn("{}: Request packet is not valid",
-                  ADDRESS_TO_LOGGABLE_STR(address_));
+                  address_);
         auto response = RejectBuilder::MakeBuilder(pkt->GetCommandPdu(),
                                                    Status::INVALID_PARAMETER);
         send_message(label, false, std::move(response));
@@ -219,7 +219,7 @@ void Device::VendorPacketHandler(uint8_t label,
 
       if (!set_addressed_player_request->IsValid()) {
         log::warn("{}: Request packet is not valid",
-                  ADDRESS_TO_LOGGABLE_STR(address_));
+                  address_);
         auto response = RejectBuilder::MakeBuilder(pkt->GetCommandPdu(),
                                                    Status::INVALID_PARAMETER);
         send_message(label, false, std::move(response));
@@ -258,7 +258,7 @@ void Device::VendorPacketHandler(uint8_t label,
 
       if (!list_player_setting_values_request->IsValid()) {
         log::warn("{}: Request packet is not valid",
-                  ADDRESS_TO_LOGGABLE_STR(address_));
+                  address_);
         auto response = RejectBuilder::MakeBuilder(pkt->GetCommandPdu(),
                                                    Status::INVALID_PARAMETER);
         send_message(label, false, std::move(response));
@@ -270,7 +270,7 @@ void Device::VendorPacketHandler(uint8_t label,
       if (attribute < PlayerAttribute::EQUALIZER ||
           attribute > PlayerAttribute::SCAN) {
         log::warn("{}: Player Setting Attribute is not valid",
-                  ADDRESS_TO_LOGGABLE_STR(address_));
+                  address_);
         auto response = RejectBuilder::MakeBuilder(pkt->GetCommandPdu(),
                                                    Status::INVALID_PARAMETER);
         send_message(label, false, std::move(response));
@@ -297,7 +297,7 @@ void Device::VendorPacketHandler(uint8_t label,
 
       if (!get_current_player_setting_value_request->IsValid()) {
         log::warn("{}: Request packet is not valid",
-                  ADDRESS_TO_LOGGABLE_STR(address_));
+                  address_);
         auto response = RejectBuilder::MakeBuilder(pkt->GetCommandPdu(),
                                                    Status::INVALID_PARAMETER);
         send_message(label, false, std::move(response));
@@ -310,7 +310,7 @@ void Device::VendorPacketHandler(uint8_t label,
         if (attribute < PlayerAttribute::EQUALIZER ||
             attribute > PlayerAttribute::SCAN) {
           log::warn("{}: Player Setting Attribute is not valid",
-                    ADDRESS_TO_LOGGABLE_STR(address_));
+                    address_);
           auto response = RejectBuilder::MakeBuilder(pkt->GetCommandPdu(),
                                                      Status::INVALID_PARAMETER);
           send_message(label, false, std::move(response));
@@ -337,7 +337,7 @@ void Device::VendorPacketHandler(uint8_t label,
 
       if (!set_player_setting_value_request->IsValid()) {
         log::warn("{} : Request packet is not valid",
-                  ADDRESS_TO_LOGGABLE_STR(address_));
+                  address_);
         auto response = RejectBuilder::MakeBuilder(pkt->GetCommandPdu(),
                                                    Status::INVALID_PARAMETER);
         send_message(label, false, std::move(response));
@@ -354,7 +354,7 @@ void Device::VendorPacketHandler(uint8_t label,
         if (attributes[i] < PlayerAttribute::EQUALIZER ||
             attributes[i] > PlayerAttribute::SCAN) {
           log::warn("{}: Player Setting Attribute is not valid",
-                    ADDRESS_TO_LOGGABLE_STR(address_));
+                    address_);
           invalid_request = true;
           break;
         }
@@ -364,7 +364,7 @@ void Device::VendorPacketHandler(uint8_t label,
           if (value < PlayerRepeatValue::OFF ||
               value > PlayerRepeatValue::GROUP) {
             log::warn("{}: Player Repeat Value is not valid",
-                      ADDRESS_TO_LOGGABLE_STR(address_));
+                      address_);
             invalid_request = true;
             break;
           }
@@ -373,7 +373,7 @@ void Device::VendorPacketHandler(uint8_t label,
           if (value < PlayerShuffleValue::OFF ||
               value > PlayerShuffleValue::GROUP) {
             log::warn("{}: Player Shuffle Value is not valid",
-                      ADDRESS_TO_LOGGABLE_STR(address_));
+                      address_);
             invalid_request = true;
             break;
           }
@@ -396,7 +396,7 @@ void Device::VendorPacketHandler(uint8_t label,
 
     default: {
       log::error("{}: Unhandled Vendor Packet: {}",
-                 ADDRESS_TO_LOGGABLE_STR(address_), pkt->ToString());
+                 address_, pkt->ToString());
       auto response = RejectBuilder::MakeBuilder(
           (CommandPdu)pkt->GetCommandPdu(), Status::INVALID_COMMAND);
       send_message(label, false, std::move(response));
@@ -408,7 +408,7 @@ void Device::HandleGetCapabilities(
     uint8_t label, const std::shared_ptr<GetCapabilitiesRequest>& pkt) {
   if (!pkt->IsValid()) {
     log::warn("{}: Request packet is not valid",
-              ADDRESS_TO_LOGGABLE_STR(address_));
+              address_);
     auto response = RejectBuilder::MakeBuilder(pkt->GetCommandPdu(),
                                                Status::INVALID_PARAMETER);
     send_message(label, false, std::move(response));
@@ -447,7 +447,7 @@ void Device::HandleGetCapabilities(
 
     default: {
       log::warn("{}: Unhandled Capability: {}",
-                ADDRESS_TO_LOGGABLE_STR(address_),
+                address_,
                 pkt->GetCapabilityRequested());
       auto response = RejectBuilder::MakeBuilder(CommandPdu::GET_CAPABILITIES,
                                                  Status::INVALID_PARAMETER);
@@ -460,7 +460,7 @@ void Device::HandleNotification(
     uint8_t label, const std::shared_ptr<RegisterNotificationRequest>& pkt) {
   if (!pkt->IsValid()) {
     log::warn("{}: Request packet is not valid",
-              ADDRESS_TO_LOGGABLE_STR(address_));
+              address_);
     auto response = RejectBuilder::MakeBuilder(pkt->GetCommandPdu(),
                                                Status::INVALID_PARAMETER);
     send_message(label, false, std::move(response));
@@ -543,7 +543,7 @@ void Device::HandleNotification(
 
     default: {
       log::error("{}: Unknown event registered. Event ID={}",
-                 ADDRESS_TO_LOGGABLE_STR(address_), pkt->GetEventRegistered());
+                 address_, pkt->GetEventRegistered());
       auto response = RejectBuilder::MakeBuilder(
           (CommandPdu)pkt->GetCommandPdu(), Status::INVALID_PARAMETER);
       send_message(label, false, std::move(response));
@@ -572,7 +572,7 @@ void Device::RegisterVolumeChanged() {
 
   if (label == MAX_TRANSACTION_LABEL) {
     log::fatal("{}: Abandon all hope, something went catastrophically wrong",
-               ADDRESS_TO_LOGGABLE_STR(address_));
+               address_);
   }
 
   send_message_cb_.Run(label, false, std::move(request));
@@ -628,7 +628,7 @@ void Device::SetVolume(int8_t volume) {
   log::verbose("volume={}", (int)volume);
   if (volume == volume_) {
     log::warn("{}: Ignoring volume change same as current volume level",
-              ADDRESS_TO_LOGGABLE_STR(address_));
+              address_);
     return;
   }
   auto request = SetAbsoluteVolumeRequestBuilder::MakeBuilder(volume);
@@ -671,7 +671,7 @@ void Device::TrackChangedNotificationResponse(uint8_t label, bool interim,
   // Case for browsing not supported;
   // PTS BV-04-C and BV-5-C assume browsing not supported
   if (stack_config_get_interface()->get_pts_avrcp_test()) {
-    log::warn("{}: pts test mode", ADDRESS_TO_LOGGABLE_STR(address_));
+    log::warn("{}: pts test mode", address_);
     uint64_t uid = curr_song_id.empty() ? 0xffffffffffffffff : 0;
     auto response =
         RegisterNotificationResponseBuilder::MakeTrackChangedBuilder(interim,
@@ -695,7 +695,7 @@ void Device::TrackChangedNotificationResponse(uint8_t label, bool interim,
   if (uid == 0) {
     // uid 0 is not valid here when browsing is supported
     log::error("{}: No match for media ID found",
-               ADDRESS_TO_LOGGABLE_STR(address_));
+               address_);
   }
 
   auto response = RegisterNotificationResponseBuilder::MakeTrackChangedBuilder(
@@ -719,7 +719,7 @@ void Device::PlaybackStatusNotificationResponse(uint8_t label, bool interim,
   if (!IsActive()) state_to_send = PlayState::PAUSED;
   if (!interim && state_to_send == last_play_status_.state) {
     log::verbose("Not sending notification due to no state update {}",
-                 ADDRESS_TO_LOGGABLE_STR(address_));
+                 address_);
     return;
   }
 
@@ -749,7 +749,7 @@ void Device::PlaybackPosNotificationResponse(uint8_t label, bool interim,
 
   if (!interim && last_play_status_.position == status.position) {
     log::warn("{}: No update to play position",
-              ADDRESS_TO_LOGGABLE_STR(address_));
+              address_);
     return;
   }
 
@@ -872,7 +872,7 @@ void Device::GetElementAttributesResponse(
 void Device::MessageReceived(uint8_t label, std::shared_ptr<Packet> pkt) {
   if (!pkt->IsValid()) {
     log::warn("{}: Request packet is not valid",
-              ADDRESS_TO_LOGGABLE_STR(address_));
+              address_);
     auto response = RejectBuilder::MakeBuilder(static_cast<CommandPdu>(0),
                                                Status::INVALID_COMMAND);
     send_message(label, false, std::move(response));
@@ -899,7 +899,7 @@ void Device::MessageReceived(uint8_t label, std::shared_ptr<Packet> pkt) {
 
       if (!pass_through_packet->IsValid()) {
         log::warn("{}: Request packet is not valid",
-                  ADDRESS_TO_LOGGABLE_STR(address_));
+                  address_);
         auto response = RejectBuilder::MakeBuilder(static_cast<CommandPdu>(0),
                                                    Status::INVALID_COMMAND);
         send_message(label, false, std::move(response));
@@ -923,7 +923,7 @@ void Device::MessageReceived(uint8_t label, std::shared_ptr<Packet> pkt) {
 
               if (!d->IsActive()) {
                 log::info("Setting {} to be the active device",
-                          ADDRESS_TO_LOGGABLE_STR(d->address_));
+                          d->address_);
                 d->media_interface_->SetActiveDevice(d->address_);
 
                 if (s.state == PlayState::PLAYING) {
@@ -955,7 +955,7 @@ void Device::HandlePlayItem(uint8_t label,
                             std::shared_ptr<PlayItemRequest> pkt) {
   if (!pkt->IsValid()) {
     log::warn("{}: Request packet is not valid",
-              ADDRESS_TO_LOGGABLE_STR(address_));
+              address_);
     auto response = RejectBuilder::MakeBuilder(pkt->GetCommandPdu(),
                                                Status::INVALID_PARAMETER);
     send_message(label, false, std::move(response));
@@ -974,7 +974,7 @@ void Device::HandlePlayItem(uint8_t label,
       break;
     default:
       log::warn("{}: Unknown scope for play item",
-                ADDRESS_TO_LOGGABLE_STR(address_));
+                address_);
   }
 
   if (media_id == "") {
@@ -1076,7 +1076,7 @@ void Device::SetPlayerApplicationSettingValueResponse(uint8_t label,
                                                       bool success) {
   if (!success) {
     log::error("{}: Set Player Application Setting Value failed",
-               ADDRESS_TO_LOGGABLE_STR(address_));
+               address_);
     auto response = RejectBuilder::MakeBuilder(pdu, Status::INVALID_PARAMETER);
     send_message(label, false, std::move(response));
     return;
@@ -1091,7 +1091,7 @@ void Device::BrowseMessageReceived(uint8_t label,
                                    std::shared_ptr<BrowsePacket> pkt) {
   if (!pkt->IsValid()) {
     log::warn("{}: Request packet is not valid",
-              ADDRESS_TO_LOGGABLE_STR(address_));
+              address_);
     auto response = GeneralRejectBuilder::MakeBuilder(Status::INVALID_COMMAND);
     send_message(label, false, std::move(response));
     return;
@@ -1120,7 +1120,7 @@ void Device::BrowseMessageReceived(uint8_t label,
           label, Packet::Specialize<GetTotalNumberOfItemsRequest>(pkt));
       break;
     default:
-      log::warn("{}: pdu={}", ADDRESS_TO_LOGGABLE_STR(address_), pkt->GetPdu());
+      log::warn("{}: pdu={}", address_, pkt->GetPdu());
       auto response =
           GeneralRejectBuilder::MakeBuilder(Status::INVALID_COMMAND);
       send_message(label, true, std::move(response));
@@ -1134,7 +1134,7 @@ void Device::HandleGetFolderItems(uint8_t label,
   if (!pkt->IsValid()) {
     // The specific get folder items builder is unimportant on failure.
     log::warn("{}: Get folder items request packet is not valid",
-              ADDRESS_TO_LOGGABLE_STR(address_));
+              address_);
     auto response = GetFolderItemsResponseBuilder::MakePlayerListBuilder(
         Status::INVALID_PARAMETER, 0x0000, browse_mtu_);
     send_message(label, true, std::move(response));
@@ -1161,7 +1161,7 @@ void Device::HandleGetFolderItems(uint8_t label,
                      weak_ptr_factory_.GetWeakPtr(), label, pkt));
       break;
     default:
-      log::error("{}: scope={}", ADDRESS_TO_LOGGABLE_STR(address_),
+      log::error("{}: scope={}", address_,
                  pkt->GetScope());
       auto response = GetFolderItemsResponseBuilder::MakePlayerListBuilder(
           Status::INVALID_PARAMETER, 0, browse_mtu_);
@@ -1174,7 +1174,7 @@ void Device::HandleGetTotalNumberOfItems(
     uint8_t label, std::shared_ptr<GetTotalNumberOfItemsRequest> pkt) {
   if (!pkt->IsValid()) {
     log::warn("{}: Request packet is not valid",
-              ADDRESS_TO_LOGGABLE_STR(address_));
+              address_);
     auto response = GetTotalNumberOfItemsResponseBuilder::MakeBuilder(
         Status::INVALID_PARAMETER, 0x0000, 0);
     send_message(label, true, std::move(response));
@@ -1202,7 +1202,7 @@ void Device::HandleGetTotalNumberOfItems(
                      weak_ptr_factory_.GetWeakPtr(), label));
       break;
     default:
-      log::error("{}: scope={}", ADDRESS_TO_LOGGABLE_STR(address_),
+      log::error("{}: scope={}", address_,
                  pkt->GetScope());
       break;
   }
@@ -1239,7 +1239,7 @@ void Device::HandleChangePath(uint8_t label,
                               std::shared_ptr<ChangePathRequest> pkt) {
   if (!pkt->IsValid()) {
     log::warn("{}: Request packet is not valid",
-              ADDRESS_TO_LOGGABLE_STR(address_));
+              address_);
     auto response =
         ChangePathResponseBuilder::MakeBuilder(Status::INVALID_PARAMETER, 0);
     send_message(label, true, std::move(response));
@@ -1252,7 +1252,7 @@ void Device::HandleChangePath(uint8_t label,
   if (pkt->GetDirection() == Direction::DOWN &&
       vfs_ids_.get_media_id(pkt->GetUid()) == "") {
     log::error("{}: No item found for UID={}",
-               ADDRESS_TO_LOGGABLE_STR(address_), pkt->GetUid());
+               address_, pkt->GetUid());
     auto builder =
         ChangePathResponseBuilder::MakeBuilder(Status::DOES_NOT_EXIST, 0);
     send_message(label, true, std::move(builder));
@@ -1268,7 +1268,7 @@ void Device::HandleChangePath(uint8_t label,
       current_path_.pop();
     } else {
       log::error("{}: Trying to change directory up past root.",
-                 ADDRESS_TO_LOGGABLE_STR(address_));
+                 address_);
       auto builder =
           ChangePathResponseBuilder::MakeBuilder(Status::DOES_NOT_EXIST, 0);
       send_message(label, true, std::move(builder));
@@ -1298,7 +1298,7 @@ void Device::HandleGetItemAttributes(
     uint8_t label, std::shared_ptr<GetItemAttributesRequest> pkt) {
   if (!pkt->IsValid()) {
     log::warn("{}: Request packet is not valid",
-              ADDRESS_TO_LOGGABLE_STR(address_));
+              address_);
     auto builder = GetItemAttributesResponseBuilder::MakeBuilder(
         Status::INVALID_PARAMETER, browse_mtu_);
     send_message(label, true, std::move(builder));
@@ -1308,7 +1308,7 @@ void Device::HandleGetItemAttributes(
   log::verbose("scope={} uid={} uid counter={}", pkt->GetScope(),
                loghex(pkt->GetUid()), loghex(pkt->GetUidCounter()));
   if (pkt->GetUidCounter() != 0x0000) {  // For database unaware player, use 0
-    log::warn("{}: UidCounter is invalid", ADDRESS_TO_LOGGABLE_STR(address_));
+    log::warn("{}: UidCounter is invalid", address_);
     auto builder = GetItemAttributesResponseBuilder::MakeBuilder(
         Status::UIDS_CHANGED, browse_mtu_);
     send_message(label, true, std::move(builder));
@@ -1333,7 +1333,7 @@ void Device::HandleGetItemAttributes(
       break;
     default:
       log::error("{}: UNKNOWN SCOPE FOR HANDLE GET ITEM ATTRIBUTES",
-                 ADDRESS_TO_LOGGABLE_STR(address_));
+                 address_);
       break;
   }
 }
@@ -1612,7 +1612,7 @@ void Device::HandleSetBrowsedPlayer(
     uint8_t label, std::shared_ptr<SetBrowsedPlayerRequest> pkt) {
   if (!pkt->IsValid()) {
     log::warn("{}: Request packet is not valid",
-              ADDRESS_TO_LOGGABLE_STR(address_));
+              address_);
     auto response = SetBrowsedPlayerResponseBuilder::MakeBuilder(
         Status::INVALID_PARAMETER, 0x0000, 0, 0, "");
     send_message(label, true, std::move(response));
@@ -1848,7 +1848,7 @@ void Device::HandleAddressedPlayerUpdate() {
   log::verbose("");
   if (!addr_player_changed_.first) {
     log::warn("{}: Device is not registered for addressed player updates",
-              ADDRESS_TO_LOGGABLE_STR(address_));
+              address_);
     return;
   }
   media_interface_->GetMediaPlayerList(base::Bind(
@@ -1857,7 +1857,7 @@ void Device::HandleAddressedPlayerUpdate() {
 }
 
 void Device::DeviceDisconnected() {
-  log::info("{} : Device was disconnected", ADDRESS_TO_LOGGABLE_STR(address_));
+  log::info("{} : Device was disconnected", address_);
   play_pos_update_cb_.Cancel();
 
   // TODO (apanicke): Once the interfaces are set in the Device construction,

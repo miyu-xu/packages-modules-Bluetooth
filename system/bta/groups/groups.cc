@@ -122,7 +122,7 @@ class DeviceGroupsImpl : public DeviceGroups {
 
     if (group->Contains(addr)) {
       log::error("device {} already in the group: {}",
-                 ADDRESS_TO_LOGGABLE_STR(addr), group_id);
+                 addr, group_id);
       return group->GetGroupId();
     }
 

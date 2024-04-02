@@ -309,7 +309,7 @@ static void device_found_callback(int num_properties,
 
   log::verbose(
       "Properties: {}, Address: {}", num_properties,
-      ADDRESS_TO_LOGGABLE_STR(*(RawAddress*)properties[addr_index].val));
+      *(RawAddress*)properties[addr_index].val);
 
   remote_device_properties_callback(BT_STATUS_SUCCESS,
                                     (RawAddress*)properties[addr_index].val,

@@ -115,7 +115,7 @@ bool is_anyone_connecting(
 /** background connection device from the list. Returns pointer to the device
  * record, or nullptr if not found */
 std::set<tAPP_ID> get_apps_connecting_to(const RawAddress& address) {
-  log::debug("address={}", ADDRESS_TO_LOGGABLE_CSTR(address));
+  log::debug("address={}", address);
   auto it = bgconn_dev.find(address);
   return (it != bgconn_dev.end()) ? it->second.doing_bg_conn
                                   : std::set<tAPP_ID>();
@@ -168,21 +168,21 @@ static void target_announcement_observe_results_cb(tBTM_INQ_RESULTS* p_inq,
 
   if (!IsTargetedAnnouncement(p_eir, eir_len)) {
     log::debug("Not a targeted announcement for device {}",
-               ADDRESS_TO_LOGGABLE_CSTR(addr));
+               addr);
     return;
   }
 
   log::info("Found targeted announcement for device {}",
-            ADDRESS_TO_LOGGABLE_CSTR(addr));
+            addr);
 
   if (it->second.is_in_accept_list) {
     log::info("Device {} is already connecting",
-              ADDRESS_TO_LOGGABLE_CSTR(addr));
+              addr);
     return;
   }
 
   if (BTM_GetHCIConnHandle(addr, BT_TRANSPORT_LE) != 0xFFFF) {
-    log::debug("Device {} already connected", ADDRESS_TO_LOGGABLE_CSTR(addr));
+    log::debug("Device {} already connected", addr);
     return;
   }
 
@@ -216,7 +216,7 @@ void target_announcements_filtering_set(bool enable) {
 bool background_connect_targeted_announcement_add(tAPP_ID app_id,
                                                   const RawAddress& address) {
   log::info("app_id={}, address={}", static_cast<int>(app_id),
-            ADDRESS_TO_LOGGABLE_CSTR(address));
+            address);
 
   bool disable_accept_list = false;
 
@@ -227,7 +227,7 @@ bool background_connect_targeted_announcement_add(tAPP_ID app_id,
       log::info(
           "app_id={}, already doing targeted announcement filtering to "
           "address={}",
-          static_cast<int>(app_id), ADDRESS_TO_LOGGABLE_CSTR(address));
+          static_cast<int>(app_id), address);
       return true;
     }
 
@@ -237,7 +237,7 @@ bool background_connect_targeted_announcement_add(tAPP_ID app_id,
     // Check if connecting
     if (!it->second.doing_direct_conn.empty()) {
       log::info("app_id={}, address={}, already in direct connection",
-                static_cast<int>(app_id), ADDRESS_TO_LOGGABLE_CSTR(address));
+                static_cast<int>(app_id), address);
 
     } else if (!targeted_filtering_enabled &&
                !it->second.doing_bg_conn.empty()) {
@@ -245,7 +245,7 @@ bool background_connect_targeted_announcement_add(tAPP_ID app_id,
       log::info(
           "already doing background connection to address={}. Need to disable "
           "it.",
-          ADDRESS_TO_LOGGABLE_CSTR(address));
+          address);
       disable_accept_list = true;
     }
   }
@@ -271,7 +271,7 @@ bool background_connect_targeted_announcement_add(tAPP_ID app_id,
  * added to the list, or already in list, false otherwise */
 bool background_connect_add(uint8_t app_id, const RawAddress& address) {
   log::debug("app_id={}, address={}", static_cast<int>(app_id),
-             ADDRESS_TO_LOGGABLE_CSTR(address));
+             address);
   auto it = bgconn_dev.find(address);
   bool in_acceptlist = false;
   bool is_targeted_announcement_enabled = false;
@@ -279,14 +279,14 @@ bool background_connect_add(uint8_t app_id, const RawAddress& address) {
     // device already in the acceptlist, just add interested app to the list
     if (it->second.doing_bg_conn.count(app_id)) {
       log::debug("app_id={}, already doing background connection to address={}",
-                 static_cast<int>(app_id), ADDRESS_TO_LOGGABLE_CSTR(address));
+                 static_cast<int>(app_id), address);
       return true;
     }
 
     // Already in acceptlist ?
     if (it->second.is_in_accept_list) {
       log::debug("app_id={}, address={}, already in accept list",
-                 static_cast<int>(app_id), ADDRESS_TO_LOGGABLE_CSTR(address));
+                 static_cast<int>(app_id), address);
       in_acceptlist = true;
     } else {
       is_targeted_announcement_enabled =
@@ -301,7 +301,7 @@ bool background_connect_add(uint8_t app_id, const RawAddress& address) {
     } else {
       if (!BTM_AcceptlistAdd(address)) {
         log::warn("Failed to add device {} to accept list for app {}",
-                  ADDRESS_TO_LOGGABLE_CSTR(address), static_cast<int>(app_id));
+                  address, static_cast<int>(app_id));
         return false;
       }
       bgconn_dev[address].is_in_accept_list = true;
@@ -317,10 +317,10 @@ bool background_connect_add(uint8_t app_id, const RawAddress& address) {
 /** Removes all registrations for connection for given device.
  * Returns true if anything was removed, false otherwise */
 bool remove_unconditional(const RawAddress& address) {
-  log::debug("address={}", ADDRESS_TO_LOGGABLE_CSTR(address));
+  log::debug("address={}", address);
   auto it = bgconn_dev.find(address);
   if (it == bgconn_dev.end()) {
-    log::warn("address {} is not found", ADDRESS_TO_LOGGABLE_CSTR(address));
+    log::warn("address {} is not found", address);
     return false;
   }
 
@@ -334,10 +334,10 @@ bool remove_unconditional(const RawAddress& address) {
  * successfully removed */
 bool background_connect_remove(uint8_t app_id, const RawAddress& address) {
   log::debug("app_id={}, address={}", static_cast<int>(app_id),
-             ADDRESS_TO_LOGGABLE_CSTR(address));
+             address);
   auto it = bgconn_dev.find(address);
   if (it == bgconn_dev.end()) {
-    log::warn("address {} is not found", ADDRESS_TO_LOGGABLE_CSTR(address));
+    log::warn("address {} is not found", address);
     return false;
   }
 
@@ -350,7 +350,7 @@ bool background_connect_remove(uint8_t app_id, const RawAddress& address) {
       (it->second.doing_targeted_announcements_conn.erase(app_id) > 0);
   if (!removed_from_bg_conn && !removed_from_ta) {
     log::warn("Failed to remove background connection app {} for address {}",
-              static_cast<int>(app_id), ADDRESS_TO_LOGGABLE_CSTR(address));
+              static_cast<int>(app_id), address);
     return false;
   }
 
@@ -361,7 +361,7 @@ bool background_connect_remove(uint8_t app_id, const RawAddress& address) {
 
   if (is_anyone_connecting(it)) {
     log::debug("some device is still connecting, app_id={}, address={}",
-               static_cast<int>(app_id), ADDRESS_TO_LOGGABLE_CSTR(address));
+               static_cast<int>(app_id), address);
     /* Check which method should be used now.*/
     if (!accept_list_enabled) {
       /* Accept list was not used */
@@ -422,7 +422,7 @@ void on_app_deregistered(uint8_t app_id) {
 
 static void remove_all_clients_with_pending_connections(
     const RawAddress& address) {
-  log::debug("address={}", ADDRESS_TO_LOGGABLE_CSTR(address));
+  log::debug("address={}", address);
   auto it = bgconn_dev.find(address);
   while (it != bgconn_dev.end() && !it->second.doing_direct_conn.empty()) {
     uint8_t app_id = it->second.doing_direct_conn.begin()->first;
@@ -433,13 +433,13 @@ static void remove_all_clients_with_pending_connections(
 
 void on_connection_complete(const RawAddress& address) {
   log::info("Le connection completed to device:{}",
-            ADDRESS_TO_LOGGABLE_CSTR(address));
+            address);
 
   remove_all_clients_with_pending_connections(address);
 }
 
 void on_connection_timed_out_from_shim(const RawAddress& address) {
-  log::info("Connection failed {}", ADDRESS_TO_LOGGABLE_CSTR(address));
+  log::info("Connection failed {}", address);
   on_connection_timed_out(0x00, address);
 }
 
@@ -455,7 +455,7 @@ void reset(bool after_reset) {
 
 void wl_direct_connect_timeout_cb(uint8_t app_id, const RawAddress& address) {
   log::debug("app_id={}, address={}", static_cast<int>(app_id),
-             ADDRESS_TO_LOGGABLE_CSTR(address));
+             address);
   on_connection_timed_out(app_id, address);
 
   // TODO: this would free the timer, from within the timer callback, which is
@@ -467,7 +467,7 @@ void wl_direct_connect_timeout_cb(uint8_t app_id, const RawAddress& address) {
  * added to the list, false otherwise */
 bool direct_connect_add(uint8_t app_id, const RawAddress& address) {
   log::debug("app_id={}, address={}", static_cast<int>(app_id),
-             ADDRESS_TO_LOGGABLE_CSTR(address));
+             address);
   bool in_acceptlist = false;
   auto it = bgconn_dev.find(address);
   if (it != bgconn_dev.end()) {
@@ -515,18 +515,18 @@ static void schedule_direct_connect_add(uint8_t app_id,
 bool direct_connect_remove(uint8_t app_id, const RawAddress& address,
                            bool connection_timeout) {
   log::debug("app_id={}, address={}", static_cast<int>(app_id),
-             ADDRESS_TO_LOGGABLE_CSTR(address));
+             address);
   auto it = bgconn_dev.find(address);
   if (it == bgconn_dev.end()) {
     log::warn("Unable to find background connection to remove peer:{}",
-              ADDRESS_TO_LOGGABLE_CSTR(address));
+              address);
     return false;
   }
 
   auto app_it = it->second.doing_direct_conn.find(app_id);
   if (app_it == it->second.doing_direct_conn.end()) {
     log::warn("Unable to find direct connection to remove peer:{}",
-              ADDRESS_TO_LOGGABLE_CSTR(address));
+              address);
     return false;
   }
 
@@ -547,7 +547,7 @@ bool direct_connect_remove(uint8_t app_id, const RawAddress& address,
         log::warn(
             "Failed to re-add device {} to accept list after connection "
             "timeout",
-            ADDRESS_TO_LOGGABLE_CSTR(address));
+            address);
       }
     }
     return true;
@@ -575,7 +575,7 @@ void dump(int fd) {
   dprintf(fd, "\tdevices attempting connection: %d", (int)bgconn_dev.size());
   for (const auto& entry : bgconn_dev) {
     // TODO: confirm whether we need to replace this
-    dprintf(fd, "\n\t * %s: ", ADDRESS_TO_LOGGABLE_CSTR(entry.first));
+    dprintf(fd, "\n\t * %s: ", entry.first);
 
     if (!entry.second.doing_direct_conn.empty()) {
       dprintf(fd, "\n\t\tapps doing direct connect: ");

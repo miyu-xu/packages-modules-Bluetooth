@@ -587,7 +587,7 @@ static void bta_gatts_conn_cback(tGATT_IF gatt_if, const RawAddress& bdaddr,
   tBTA_GATTS_RCB* p_reg;
 
   log::verbose("bda={} gatt_if= {}, conn_id={} connected={}",
-               ADDRESS_TO_LOGGABLE_STR(bdaddr), gatt_if, loghex(conn_id),
+               bdaddr, gatt_if, loghex(conn_id),
                connected);
 
   if (connected)

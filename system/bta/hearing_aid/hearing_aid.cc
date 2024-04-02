@@ -203,7 +203,7 @@ class HearingDevices {
 
     for (auto& d : devices) {
       log::debug("device={}, read_rssi_count={}",
-                 ADDRESS_TO_LOGGABLE_CSTR(d.address), d.read_rssi_count);
+                 d.address, d.read_rssi_count);
 
       // Reset the count
       if (d.read_rssi_count <= 0) {
@@ -429,18 +429,18 @@ class HearingAidImpl : public HearingAid {
 
     if (overwrite_min_ce_len != -1) {
       log::warn("min_ce_len={} for device {} is overwritten to {}", min_ce_len,
-                ADDRESS_TO_LOGGABLE_CSTR(address), overwrite_min_ce_len);
+                address, overwrite_min_ce_len);
       min_ce_len = overwrite_min_ce_len;
     }
     if (overwrite_max_ce_len != -1) {
       log::warn("max_ce_len={} for device {} is overwritten to {}", max_ce_len,
-                ADDRESS_TO_LOGGABLE_CSTR(address), overwrite_max_ce_len);
+                address, overwrite_max_ce_len);
       max_ce_len = overwrite_max_ce_len;
     }
 
     log::info(
         "L2CA_UpdateBleConnParams for device {} min_ce_len:{} max_ce_len:{}",
-        ADDRESS_TO_LOGGABLE_CSTR(address), min_ce_len, max_ce_len);
+        address, min_ce_len, max_ce_len);
     L2CA_UpdateBleConnParams(address, connection_interval, connection_interval,
                              0x000A, 0x0064 /*1s*/, min_ce_len, max_ce_len);
     return connection_interval;
@@ -457,20 +457,20 @@ class HearingAidImpl : public HearingAid {
   }
 
   void Connect(const RawAddress& address) {
-    log::debug("{}", ADDRESS_TO_LOGGABLE_CSTR(address));
+    log::debug("{}", address);
     hearingDevices.Add(HearingDevice(address, true));
     BTA_GATTC_Open(gatt_if, address, BTM_BLE_DIRECT_CONNECTION, false);
   }
 
   void AddToAcceptlist(const RawAddress& address) {
-    log::debug("{}", ADDRESS_TO_LOGGABLE_CSTR(address));
+    log::debug("{}", address);
     hearingDevices.Add(HearingDevice(address, true));
     BTA_GATTC_Open(gatt_if, address, BTM_BLE_BKG_CONNECT_ALLOW_LIST, false);
   }
 
   void AddFromStorage(const HearingDevice& dev_info, bool is_acceptlisted) {
     log::debug("{}, hiSyncId={}, isAcceptlisted={}",
-               ADDRESS_TO_LOGGABLE_CSTR(dev_info.address),
+               dev_info.address,
                loghex(dev_info.hi_sync_id), is_acceptlisted);
     if (is_acceptlisted) {
       hearingDevices.Add(dev_info);
@@ -498,12 +498,12 @@ class HearingAidImpl : public HearingAid {
       /* When Hearing Aid is quickly disabled and enabled in settings, this case
        * might happen */
       log::warn("Closing connection to non hearing-aid device, address={}",
-                ADDRESS_TO_LOGGABLE_CSTR(address));
+                address);
       BTA_GATTC_Close(conn_id);
       return;
     }
 
-    log::info("address={}, conn_id={}", ADDRESS_TO_LOGGABLE_CSTR(address),
+    log::info("address={}, conn_id={}", address,
               conn_id);
 
     if (status != GATT_SUCCESS) {
@@ -518,7 +518,7 @@ class HearingAidImpl : public HearingAid {
         BTA_GATTC_Open(gatt_if, address, BTM_BLE_BKG_CONNECT_ALLOW_LIST, false);
       } else {
         log::info("Failed to connect to Hearing Aid device, bda={}",
-                  ADDRESS_TO_LOGGABLE_CSTR(address));
+                  address);
 
         hearingDevices.Remove(address);
         callbacks->OnConnectionState(ConnectionState::DISCONNECTED, address);
@@ -539,7 +539,7 @@ class HearingAidImpl : public HearingAid {
           log::info(
               "Promoting device from the set from background to "
               "direct connection, bda={}",
-              ADDRESS_TO_LOGGABLE_CSTR(device.address));
+              device.address);
           device.connecting_actively = true;
           device.switch_to_background_connection_after_failure = true;
           BTA_GATTC_Open(gatt_if, device.address, BTM_BLE_DIRECT_CONNECTION,
@@ -552,7 +552,7 @@ class HearingAidImpl : public HearingAid {
     hearingDevice->requested_connection_interval = UpdateBleConnParams(address);
 
     if (bluetooth::shim::GetController()->SupportsBle2mPhy()) {
-      log::info("{} set preferred 2M PHY", ADDRESS_TO_LOGGABLE_CSTR(address));
+      log::info("{} set preferred 2M PHY", address);
       BTM_BleSetPhy(address, PHY_LE_2M, PHY_LE_2M, 0);
     }
 
@@ -614,7 +614,7 @@ class HearingAidImpl : public HearingAid {
             if (same_conn_interval) {
               log::info("Connection update completed. conn_id={}, device={}",
                         conn_id,
-                        ADDRESS_TO_LOGGABLE_CSTR(hearingDevice->address));
+                        hearingDevice->address);
               hearingDevice->connection_update_status = COMPLETED;
             } else {
               log::warn(
@@ -644,7 +644,7 @@ class HearingAidImpl : public HearingAid {
             "error status={}, conn_id={},device={}, "
             "connection_update_status={}",
             loghex(static_cast<uint8_t>(p_data->conn_update.status)), conn_id,
-            ADDRESS_TO_LOGGABLE_CSTR(hearingDevice->address),
+            hearingDevice->address,
             hearingDevice->connection_update_status);
         if (hearingDevice->connection_update_status == STARTED) {
           // Redo this connection interval change.
@@ -677,16 +677,16 @@ class HearingAidImpl : public HearingAid {
     HearingDevice* hearingDevice = hearingDevices.FindByAddress(address);
     if (!hearingDevice) {
       log::info("Skipping unknown device {}",
-                ADDRESS_TO_LOGGABLE_CSTR(address));
+                address);
       return;
     }
 
-    log::debug("device={}, rssi={}", ADDRESS_TO_LOGGABLE_CSTR(address),
+    log::debug("device={}, rssi={}", address,
                (int)rssi_value);
 
     if (hearingDevice->read_rssi_count <= 0) {
       log::error("device={}, invalid read_rssi_count={}",
-                 ADDRESS_TO_LOGGABLE_CSTR(address),
+                 address,
                  hearingDevice->read_rssi_count);
       return;
     }
@@ -697,7 +697,7 @@ class HearingAidImpl : public HearingAid {
       // Store the timestamp only for the first one after packet flush
       clock_gettime(CLOCK_REALTIME, &last_log_set.timestamp);
       log::info("store time, device={}, rssi={}",
-                ADDRESS_TO_LOGGABLE_CSTR(address), (int)rssi_value);
+                address, (int)rssi_value);
     }
 
     last_log_set.rssi.emplace_back(rssi_value);
@@ -708,7 +708,7 @@ class HearingAidImpl : public HearingAid {
     HearingDevice* hearingDevice = hearingDevices.FindByAddress(address);
     if (!hearingDevice) {
       log::debug("Skipping unknown device {}",
-                 ADDRESS_TO_LOGGABLE_CSTR(address));
+                 address);
       return;
     }
 
@@ -721,7 +721,7 @@ class HearingAidImpl : public HearingAid {
       return;
     }
 
-    log::info("{}", ADDRESS_TO_LOGGABLE_CSTR(address));
+    log::info("{}", address);
 
     if (hearingDevice->audio_control_point_handle &&
         hearingDevice->audio_status_handle &&
@@ -731,7 +731,7 @@ class HearingAidImpl : public HearingAid {
       ReadPSM(hearingDevice);
     } else {
       log::info("{}: do BTA_GATTC_ServiceSearchRequest",
-                ADDRESS_TO_LOGGABLE_CSTR(address));
+                address);
       hearingDevice->first_connection = true;
       BTA_GATTC_ServiceSearchRequest(hearingDevice->conn_id, &HEARING_AID_UUID);
     }
@@ -747,12 +747,12 @@ class HearingAidImpl : public HearingAid {
     }
     if (status != GATT_SUCCESS) {
       log::warn("{} phy update fail with status: {}",
-                ADDRESS_TO_LOGGABLE_CSTR(hearingDevice->address), status);
+                hearingDevice->address, status);
       return;
     }
     if (tx_phys == PHY_LE_2M && rx_phys == PHY_LE_2M) {
       log::info("{} phy update to 2M successful",
-                ADDRESS_TO_LOGGABLE_CSTR(hearingDevice->address));
+                hearingDevice->address);
       hearingDevice->phy_update_retry_remain = PHY_UPDATE_RETRY_LIMIT;
       return;
     }
@@ -761,7 +761,7 @@ class HearingAidImpl : public HearingAid {
       log::info(
           "{} phy update successful but not target phy, try again. tx_phys: "
           "{},rx_phys: {}",
-          ADDRESS_TO_LOGGABLE_CSTR(hearingDevice->address), tx_phys, rx_phys);
+          hearingDevice->address, tx_phys, rx_phys);
       BTM_BleSetPhy(hearingDevice->address, PHY_LE_2M, PHY_LE_2M, 0);
       hearingDevice->phy_update_retry_remain--;
     } else {
@@ -773,10 +773,10 @@ class HearingAidImpl : public HearingAid {
     HearingDevice* hearingDevice = hearingDevices.FindByAddress(address);
     if (!hearingDevice) {
       log::debug("Skipping unknown device {}",
-                 ADDRESS_TO_LOGGABLE_CSTR(address));
+                 address);
       return;
     }
-    log::info("address={}", ADDRESS_TO_LOGGABLE_CSTR(address));
+    log::info("address={}", address);
     hearingDevice->first_connection = true;
     hearingDevice->service_changed_rcvd = true;
     BtaGattQueue::Clean(hearingDevice->conn_id);
@@ -790,17 +790,17 @@ class HearingAidImpl : public HearingAid {
     HearingDevice* hearingDevice = hearingDevices.FindByAddress(address);
     if (!hearingDevice) {
       log::debug("Skipping unknown device {}",
-                 ADDRESS_TO_LOGGABLE_CSTR(address));
+                 address);
       return;
     }
-    log::info("{}", ADDRESS_TO_LOGGABLE_CSTR(address));
+    log::info("{}", address);
     if (hearingDevice->service_changed_rcvd ||
         !(hearingDevice->audio_control_point_handle &&
           hearingDevice->audio_status_handle &&
           hearingDevice->audio_status_ccc_handle &&
           hearingDevice->volume_handle && hearingDevice->read_psm_handle)) {
       log::info("{}: do BTA_GATTC_ServiceSearchRequest",
-                ADDRESS_TO_LOGGABLE_CSTR(address));
+                address);
       BTA_GATTC_ServiceSearchRequest(hearingDevice->conn_id, &HEARING_AID_UUID);
     }
   }
@@ -894,7 +894,7 @@ class HearingAidImpl : public HearingAid {
     if (hearingDevice->read_psm_handle) {
       log::info("Reading PSM {}, device={}",
                 loghex(hearingDevice->read_psm_handle),
-                ADDRESS_TO_LOGGABLE_CSTR(hearingDevice->address));
+                hearingDevice->address);
       BtaGattQueue::ReadCharacteristic(
           hearingDevice->conn_id, hearingDevice->read_psm_handle,
           HearingAidImpl::OnPsmReadStatic, nullptr);
@@ -1052,7 +1052,7 @@ class HearingAidImpl : public HearingAid {
 
     if (status != GATT_SUCCESS) {
       log::error("Error reading PSM for device {}",
-                 ADDRESS_TO_LOGGABLE_CSTR(hearingDevice->address));
+                 hearingDevice->address);
       return;
     }
 
@@ -1118,7 +1118,7 @@ class HearingAidImpl : public HearingAid {
     HearingDevice* hearingDevice = hearingDevices.FindByAddress(address);
     if (!hearingDevice) {
       log::info("Device not connected to profile {}",
-                ADDRESS_TO_LOGGABLE_CSTR(address));
+                address);
       return;
     }
 
@@ -1162,7 +1162,7 @@ class HearingAidImpl : public HearingAid {
     hearingDevice->connecting_actively = false;
     hearingDevice->accepting_audio = true;
     log::info("address={}, hi_sync_id={}, codec_in_use={}, audio_running={}",
-              ADDRESS_TO_LOGGABLE_CSTR(address),
+              address,
               loghex(hearingDevice->hi_sync_id), loghex(codec_in_use),
               audio_running);
 
@@ -1174,7 +1174,7 @@ class HearingAidImpl : public HearingAid {
   }
 
   void StartSendingAudio(const HearingDevice& hearingDevice) {
-    log::debug("device={}", ADDRESS_TO_LOGGABLE_CSTR(hearingDevice.address));
+    log::debug("device={}", hearingDevice.address);
 
     if (encoder_state_left == nullptr) {
       encoder_state_init();
@@ -1221,10 +1221,10 @@ class HearingAidImpl : public HearingAid {
 
       if (!device.playback_started) {
         log::warn("Playback not started, skip send Stop cmd, device={}",
-                  ADDRESS_TO_LOGGABLE_CSTR(device.address));
+                  device.address);
       } else {
         log::info("send Stop cmd, device={}",
-                  ADDRESS_TO_LOGGABLE_CSTR(device.address));
+                  device.address);
         device.playback_started = false;
         device.command_acked = false;
         BtaGattQueue::WriteCharacteristic(device.conn_id,
@@ -1282,7 +1282,7 @@ class HearingAidImpl : public HearingAid {
 
   void SendEnableServiceChangedInd(HearingDevice* device) {
     log::debug("Enable service changed ind.{}",
-               ADDRESS_TO_LOGGABLE_CSTR(device->address));
+               device->address);
     std::vector<uint8_t> value(2);
     uint8_t* ptr = value.data();
     UINT16_TO_STREAM(ptr, GATT_CHAR_CLIENT_CONFIG_INDICTION);
@@ -1299,10 +1299,10 @@ class HearingAidImpl : public HearingAid {
     if (!audio_running) {
       if (!device->playback_started) {
         log::info("Skip Send Start since audio is not running, device={}",
-                  ADDRESS_TO_LOGGABLE_CSTR(device->address));
+                  device->address);
       } else {
         log::error("Audio not running but Playback has started, device={}",
-                   ADDRESS_TO_LOGGABLE_CSTR(device->address));
+                   device->address);
       }
       return;
     }
@@ -1311,14 +1311,14 @@ class HearingAidImpl : public HearingAid {
 
     if (device->playback_started) {
       log::error("Playback already started, skip send Start cmd, device={}",
-                 ADDRESS_TO_LOGGABLE_CSTR(device->address));
+                 device->address);
     } else {
       start[4] = GetOtherSideStreamStatus(device);
       log::info(
           "send Start cmd, volume={}, audio type={}, device={}, other side "
           "streaming={}",
           loghex(start[3]), loghex(start[2]),
-          ADDRESS_TO_LOGGABLE_CSTR(device->address), loghex(start[4]));
+          device->address, loghex(start[4]));
       device->command_acked = false;
       BtaGattQueue::WriteCharacteristic(
           device->conn_id, device->audio_control_point_handle, start,
@@ -1348,7 +1348,7 @@ class HearingAidImpl : public HearingAid {
       log::error("Skipping unknown device, conn_id={}", loghex(conn_id));
       return;
     }
-    log::info("device: {}", ADDRESS_TO_LOGGABLE_CSTR(hearingDevice->address));
+    log::info("device: {}", hearingDevice->address);
     hearingDevice->playback_started = true;
   }
 
@@ -1389,9 +1389,9 @@ class HearingAidImpl : public HearingAid {
       diff_credit = other_current_credit - target_current_credit;
     }
     log::debug("Target({}) Credit: {}, Other({}) Credit: {}, Init Credit: {}",
-               ADDRESS_TO_LOGGABLE_CSTR(target_side->address),
+               target_side->address,
                target_current_credit,
-               ADDRESS_TO_LOGGABLE_CSTR(other_side->address),
+               other_side->address,
                other_current_credit, init_credit);
     return diff_credit < (init_credit / 2 - 1);
   }
@@ -1505,12 +1505,12 @@ class HearingAidImpl : public HearingAid {
         // skip audio packet.
         if (NeedToDropPacket(left, right) && IsBelowDropFrequency(time_point)) {
           log::info("{} triggers dropping, {} packets in channel",
-                    ADDRESS_TO_LOGGABLE_CSTR(left->address), packets_in_chans);
+                    left->address, packets_in_chans);
           need_drop = true;
           left->audio_stats.trigger_drop_count++;
         } else {
           log::info("{} skipping {} packets",
-                    ADDRESS_TO_LOGGABLE_CSTR(left->address), packets_in_chans);
+                    left->address, packets_in_chans);
           left->audio_stats.packet_flush_count += packets_in_chans;
           left->audio_stats.frame_flush_count++;
           L2CA_FlushChannel(cid, 0xffff);
@@ -1537,12 +1537,12 @@ class HearingAidImpl : public HearingAid {
         // skip audio packet.
         if (NeedToDropPacket(right, left) && IsBelowDropFrequency(time_point)) {
           log::info("{} triggers dropping, {} packets in channel",
-                    ADDRESS_TO_LOGGABLE_CSTR(right->address), packets_in_chans);
+                    right->address, packets_in_chans);
           need_drop = true;
           right->audio_stats.trigger_drop_count++;
         } else {
           log::info("{} skipping {} packets",
-                    ADDRESS_TO_LOGGABLE_CSTR(right->address), packets_in_chans);
+                    right->address, packets_in_chans);
           right->audio_stats.packet_flush_count += packets_in_chans;
           right->audio_stats.frame_flush_count++;
           L2CA_FlushChannel(cid, 0xffff);
@@ -1588,7 +1588,7 @@ class HearingAidImpl : public HearingAid {
                  HearingDevice* hearingAid) {
     if (!hearingAid->playback_started || !hearingAid->command_acked) {
       log::debug("Playback stalled, device={},cmd send={}, cmd acked={}",
-                 ADDRESS_TO_LOGGABLE_CSTR(hearingAid->address),
+                 hearingAid->address,
                  hearingAid->playback_started, hearingAid->command_acked);
       return;
     }
@@ -1599,7 +1599,7 @@ class HearingAidImpl : public HearingAid {
     p++;
     memcpy(p, encoded_data, packet_size);
 
-    log::debug("{} : {}", ADDRESS_TO_LOGGABLE_CSTR(hearingAid->address),
+    log::debug("{} : {}", hearingAid->address,
                base::HexEncode(p, packet_size));
 
     uint16_t result = GAP_ConnWriteData(hearingAid->gap_handle, audio_packet);
@@ -1625,12 +1625,12 @@ class HearingAidImpl : public HearingAid {
             L2CA_GetPeerLECocCredit(address, GAP_ConnGetL2CAPCid(gap_handle));
 
         log::info("GAP_EVT_CONN_OPENED {}, tx_mtu={}, init_credit={}",
-                  ADDRESS_TO_LOGGABLE_CSTR(address), tx_mtu, init_credit);
+                  address, tx_mtu, init_credit);
 
         HearingDevice* hearingDevice = hearingDevices.FindByAddress(address);
         if (!hearingDevice) {
           log::info("Skipping unknown device {}",
-                    ADDRESS_TO_LOGGABLE_CSTR(address));
+                    address);
           return;
         }
         hearingDevice->gap_opened = true;
@@ -1643,7 +1643,7 @@ class HearingAidImpl : public HearingAid {
       case GAP_EVT_CONN_CLOSED:
         log::info(
             "GAP_EVT_CONN_CLOSED: {}, playback_started={}, accepting_audio={}",
-            ADDRESS_TO_LOGGABLE_CSTR(hearingDevice->address),
+            hearingDevice->address,
             hearingDevice->playback_started, hearingDevice->accepting_audio);
         if (!hearingDevice->accepting_audio) {
           /* Disconnect connection when data channel is not available */
@@ -1718,11 +1718,11 @@ class HearingAidImpl : public HearingAid {
 
     if (stats->rssi_history.size() <= 0) {
       dprintf(fd, "  No RSSI history for %s:\n",
-              ADDRESS_TO_LOGGABLE_CSTR(device.address));
+              device.address);
       return;
     }
     dprintf(fd, "  RSSI history for %s:\n",
-            ADDRESS_TO_LOGGABLE_CSTR(device.address));
+            device.address);
 
     dprintf(fd, "    Time of RSSI    0.0  0.1  0.2  0.3  0.4  0.5  0.6  0.7  0.8  0.9\n");
     for (auto& rssi_logs : stats->rssi_history) {
@@ -1780,17 +1780,17 @@ class HearingAidImpl : public HearingAid {
     HearingDevice* hearingDevice = hearingDevices.FindByAddress(address);
     if (!hearingDevice) {
       log::info("Device not connected to profile {}",
-                ADDRESS_TO_LOGGABLE_CSTR(address));
+                address);
       return;
     }
 
-    log::debug("{}", ADDRESS_TO_LOGGABLE_CSTR(address));
+    log::debug("{}", address);
 
     bool connected = hearingDevice->accepting_audio;
     bool connecting_by_user = hearingDevice->connecting_actively;
 
     log::info("{}, playback_started={}, accepting_audio={}",
-              ADDRESS_TO_LOGGABLE_CSTR(hearingDevice->address),
+              hearingDevice->address,
               hearingDevice->playback_started, hearingDevice->accepting_audio);
 
     if (hearingDevice->connecting_actively) {
@@ -1837,7 +1837,7 @@ class HearingAidImpl : public HearingAid {
       return;
     }
     log::debug("conn_id={}, remote_bda={}", loghex(conn_id),
-               ADDRESS_TO_LOGGABLE_CSTR(remote_bda));
+               remote_bda);
 
     // Inform the other side (if any) of this disconnection
     std::vector<uint8_t> inform_disconn_state(
@@ -1853,7 +1853,7 @@ class HearingAidImpl : public HearingAid {
       log::info(
           "Another device from the set is still connected, issuing a direct "
           "connection, other_device_bda={}",
-          ADDRESS_TO_LOGGABLE_CSTR(other_connected_device_from_set->address));
+          other_connected_device_from_set->address);
     }
 
     // If another device from the pair is still connected, do a direct
@@ -1885,7 +1885,7 @@ class HearingAidImpl : public HearingAid {
     if (hearingDevice->connection_update_status != COMPLETED) {
       log::info("connection update not completed. Current={}, device={}",
                 hearingDevice->connection_update_status,
-                ADDRESS_TO_LOGGABLE_CSTR(hearingDevice->address));
+                hearingDevice->address);
 
       if (hearingDevice->connection_update_status == STARTED) {
         OnConnectionUpdateComplete(hearingDevice->conn_id, NULL);
@@ -1907,7 +1907,7 @@ class HearingAidImpl : public HearingAid {
 
     hearingDevice->accepting_audio = false;
     log::info("device={}, playback_started={}",
-              ADDRESS_TO_LOGGABLE_CSTR(hearingDevice->address),
+              hearingDevice->address,
               hearingDevice->playback_started);
     hearingDevice->playback_started = false;
     hearingDevice->command_acked = false;
@@ -2010,7 +2010,7 @@ class HearingAidImpl : public HearingAid {
       }
       // Send the data packet
       log::info("Send State Change. device={}, status={}",
-                ADDRESS_TO_LOGGABLE_CSTR(device->address), loghex(payload[1]));
+                device->address, loghex(payload[1]));
       BtaGattQueue::WriteCharacteristic(
           device->conn_id, device->audio_control_point_handle, payload,
           GATT_WRITE_NO_RSP, nullptr, nullptr);
@@ -2033,7 +2033,7 @@ class HearingAidImpl : public HearingAid {
       device->num_intervals_since_last_rssi_read++;
       if (device->num_intervals_since_last_rssi_read >= PERIOD_TO_READ_RSSI_IN_INTERVALS) {
         device->num_intervals_since_last_rssi_read = 0;
-        log::debug("device={}", ADDRESS_TO_LOGGABLE_CSTR(device->address));
+        log::debug("device={}", device->address);
         BTM_ReadRSSI(device->address, read_rssi_cb);
       }
     }

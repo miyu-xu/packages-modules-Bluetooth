@@ -233,7 +233,7 @@ std::ostream& operator<<(std::ostream& out, const HasCtpOp& op) {
     out << "\"group_id\": " << std::get<int>(op.addr_or_group);
   } else if (std::holds_alternative<RawAddress>(op.addr_or_group)) {
     out << "\"address\": \""
-    << ADDRESS_TO_LOGGABLE_STR(std::get<RawAddress>(op.addr_or_group)) << "\"";
+    << std::get<RawAddress>(op.addr_or_group) << "\"";
   } else {
     out << "\"bad value\"";
   }

@@ -409,7 +409,7 @@ class tBTM_SEC_DEV_REC {
     return base::StringPrintf(
         "%s %6s cod:%s remote_info:%-14s sm4:0x%02x SecureConn:%c name:\"%s\""
         "sec_prop:%s",
-        ADDRESS_TO_LOGGABLE_CSTR(bd_addr), DeviceTypeText(device_type).c_str(),
+        bd_addr, DeviceTypeText(device_type).c_str(),
         dev_class_text(dev_class).c_str(),
         remote_version_info.ToString().c_str(), sm4,
         (remote_supports_secure_connections) ? 'T' : 'F',

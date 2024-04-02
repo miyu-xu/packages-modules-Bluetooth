@@ -281,7 +281,7 @@ uint16_t AVDT_DiscoverReq(const RawAddress& bd_addr, uint8_t channel_index,
 
   if (result != AVDT_SUCCESS) {
     log::error("result={} address={}", result,
-               ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+               bd_addr);
   }
   return result;
 }
@@ -334,7 +334,7 @@ static uint16_t avdt_get_cap_req(const RawAddress& bd_addr,
 
   if (result != AVDT_SUCCESS) {
     log::error("result={} address={}", result,
-               ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+               bd_addr);
   }
   return result;
 }
@@ -383,7 +383,7 @@ uint16_t AVDT_GetCapReq(const RawAddress& bd_addr, uint8_t channel_index,
 
   if (result != AVDT_SUCCESS) {
     log::error("result={} address={}", result,
-               ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+               bd_addr);
   }
   return result;
 }
@@ -447,7 +447,7 @@ uint16_t AVDT_OpenReq(uint8_t handle, const RawAddress& bd_addr,
   tAVDT_SCB_EVT evt;
 
   log::verbose("address={} avdt_handle={} seid={}",
-               ADDRESS_TO_LOGGABLE_CSTR(bd_addr), handle, seid);
+               bd_addr, handle, seid);
 
   /* verify SEID */
   if ((seid < AVDT_SEID_MIN) || (seid > AVDT_SEID_MAX)) {
@@ -483,7 +483,7 @@ uint16_t AVDT_OpenReq(uint8_t handle, const RawAddress& bd_addr,
     avdt_scb_event(p_scb, AVDT_SCB_API_SETCONFIG_REQ_EVT, &evt);
   } else {
     log::error("result={} address={} avdt_handle={}", result,
-               ADDRESS_TO_LOGGABLE_CSTR(bd_addr), handle);
+               bd_addr, handle);
   }
 
   return result;
@@ -901,7 +901,7 @@ uint16_t AVDT_ConnectReq(const RawAddress& bd_addr, uint8_t channel_index,
   uint16_t result = AVDT_SUCCESS;
   tAVDT_CCB_EVT evt;
 
-  log::warn("address={} channel_index={}", ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
+  log::warn("address={} channel_index={}", bd_addr,
             channel_index);
 
   /* find channel control block for this bd addr; if none, allocate one */
@@ -925,7 +925,7 @@ uint16_t AVDT_ConnectReq(const RawAddress& bd_addr, uint8_t channel_index,
     avdt_ccb_event(p_ccb, AVDT_CCB_API_CONNECT_REQ_EVT, &evt);
   }
 
-  log::warn("address={} result={}", ADDRESS_TO_LOGGABLE_CSTR(bd_addr), result);
+  log::warn("address={} result={}", bd_addr, result);
 
   return result;
 }
@@ -952,11 +952,11 @@ uint16_t AVDT_DisconnectReq(const RawAddress& bd_addr,
   p_ccb = avdt_ccb_by_bd(bd_addr);
   if (p_ccb == NULL) {
     log::error("Unable to find AVDT stream endpoint peer:{}",
-               ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+               bd_addr);
     result = AVDT_BAD_PARAMS;
   } else {
     log::debug("Sending disconnect request to ccb peer:{}",
-               ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+               bd_addr);
     evt.disconnect.p_cback = p_cback;
     avdt_ccb_event(p_ccb, AVDT_CCB_API_DISCONNECT_REQ_EVT, &evt);
   }
@@ -1001,7 +1001,7 @@ void stack_debug_avdtp_api_dump(int fd) {
       continue;
     }
     dprintf(fd, "\n  Channel control block: %zu peer: %s\n", i,
-            ADDRESS_TO_LOGGABLE_CSTR(ccb.peer_addr));
+            ccb.peer_addr);
     dprintf(fd, "    Allocated: %s\n", ccb.allocated ? "true" : "false");
     dprintf(fd, "    State: %d\n", ccb.state);
     dprintf(fd, "    Link-layer opened: %s\n",

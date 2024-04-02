@@ -299,7 +299,7 @@ bool maybe_resolve_address(RawAddress* bda, tBLE_ADDR_TYPE* bda_type) {
     tBTM_SEC_DEV_REC* match_rec = btm_ble_resolve_random_addr(*bda);
     if (match_rec) {
       log::info("matched/resolved random address:{}",
-                ADDRESS_TO_LOGGABLE_CSTR(*bda));
+                *bda);
       is_in_security_db = true;
       match_rec->ble.active_addr_type = BTM_BLE_ADDR_RRA;
       match_rec->ble.cur_rand_addr = *bda;
@@ -312,7 +312,7 @@ bool maybe_resolve_address(RawAddress* bda, tBLE_ADDR_TYPE* bda_type) {
       }
     } else {
       log::info("unable to match/resolve random address:{}",
-                ADDRESS_TO_LOGGABLE_CSTR(*bda));
+                *bda);
     }
   }
   return is_in_security_db;

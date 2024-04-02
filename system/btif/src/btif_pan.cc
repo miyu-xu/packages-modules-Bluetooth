@@ -578,7 +578,7 @@ static void bta_pan_callback_transfer(uint16_t event, char* p_param) {
       btpan_conn_t* conn;
       log::verbose("BTA_PAN_OPENING_EVT handle {}, addr: {}",
                    p_data->opening.handle,
-                   ADDRESS_TO_LOGGABLE_CSTR(p_data->opening.bd_addr));
+                   p_data->opening.bd_addr);
       conn = btpan_find_conn_addr(p_data->opening.bd_addr);
 
       asrt(conn != NULL);

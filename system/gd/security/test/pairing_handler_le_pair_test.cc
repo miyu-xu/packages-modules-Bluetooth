@@ -107,7 +107,7 @@ void OnPairingFinishedCentral(PairingResultOrFailure r) {
   if (std::holds_alternative<PairingResult>(r)) {
     log::info(
         "pairing finished successfully with {}",
-        ADDRESS_TO_LOGGABLE_CSTR(std::get<PairingResult>(r).connection_address));
+        std::get<PairingResult>(r).connection_address);
   } else {
     log::info("pairing with ... failed: {}", std::get<PairingFailure>(r).message);
   }
@@ -118,7 +118,7 @@ void OnPairingFinishedPeripheral(PairingResultOrFailure r) {
   if (std::holds_alternative<PairingResult>(r)) {
     log::info(
         "pairing finished successfully with {}",
-        ADDRESS_TO_LOGGABLE_CSTR(std::get<PairingResult>(r).connection_address));
+        std::get<PairingResult>(r).connection_address);
   } else {
     log::info("pairing with ... failed: {}", std::get<PairingFailure>(r).message);
   }

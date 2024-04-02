@@ -493,7 +493,7 @@ void bta_ag_rfc_open(tBTA_AG_SCB* p_scb, const tBTA_AG_DATA& data) {
             p_scb->peer_addr.ToString(), BTIF_STORAGE_KEY_HFP_VERSION,
             (uint8_t*)&p_scb->peer_version, &version_value_size)) {
       log::warn("Failed read cached peer HFP version for {}",
-                ADDRESS_TO_LOGGABLE_CSTR(p_scb->peer_addr));
+                p_scb->peer_addr);
       p_scb->peer_version = HFP_HSP_VERSION_UNKNOWN;
     }
     size_t sdp_features_size = sizeof(p_scb->peer_sdp_features);
@@ -514,7 +514,7 @@ void bta_ag_rfc_open(tBTA_AG_SCB* p_scb, const tBTA_AG_DATA& data) {
       }
     } else {
       log::warn("Failed read cached peer HFP SDP features for {}",
-                ADDRESS_TO_LOGGABLE_CSTR(p_scb->peer_addr));
+                p_scb->peer_addr);
     }
   }
 
@@ -571,7 +571,7 @@ void bta_ag_rfc_acp_open(tBTA_AG_SCB* p_scb, const tBTA_AG_DATA& data) {
     // Cancel any pending collision timers
     if (ag_scb.in_use && alarm_is_scheduled(ag_scb.collision_timer)) {
       log::verbose("cancel collision alarm for {}",
-                   ADDRESS_TO_LOGGABLE_STR(ag_scb.peer_addr));
+                   ag_scb.peer_addr);
       alarm_cancel(ag_scb.collision_timer);
       if (dev_addr != ag_scb.peer_addr && p_scb != &ag_scb) {
         // Resume outgoing connection if incoming is not on the same device
@@ -581,7 +581,7 @@ void bta_ag_rfc_acp_open(tBTA_AG_SCB* p_scb, const tBTA_AG_DATA& data) {
     if (dev_addr == ag_scb.peer_addr && p_scb != &ag_scb) {
       log::info(
           "close outgoing connection before accepting {} with conn_handle={}",
-          ADDRESS_TO_LOGGABLE_STR(ag_scb.peer_addr), ag_scb.conn_handle);
+          ag_scb.peer_addr, ag_scb.conn_handle);
       if (!IS_FLAG_ENABLED(close_rfcomm_instead_of_reset)) {
         // Fail the outgoing connection to clean up any upper layer states
         bta_ag_rfc_fail(&ag_scb, tBTA_AG_DATA::kEmpty);
@@ -593,7 +593,7 @@ void bta_ag_rfc_acp_open(tBTA_AG_SCB* p_scb, const tBTA_AG_DATA& data) {
         if (status != PORT_SUCCESS) {
           log::warn(
               "RFCOMM_RemoveConnection failed for {}, handle {}, error {}",
-              ADDRESS_TO_LOGGABLE_STR(dev_addr), ag_scb.conn_handle, status);
+              dev_addr, ag_scb.conn_handle, status);
         }
       } else if (IS_FLAG_ENABLED(reset_after_collision)) {
         // As no existing outgoing rfcomm connection, then manual reset current
@@ -602,8 +602,8 @@ void bta_ag_rfc_acp_open(tBTA_AG_SCB* p_scb, const tBTA_AG_DATA& data) {
       }
     }
     log::info("dev_addr={}, peer_addr={}, in_use={}, index={}",
-              ADDRESS_TO_LOGGABLE_STR(dev_addr),
-              ADDRESS_TO_LOGGABLE_STR(ag_scb.peer_addr), ag_scb.in_use,
+              dev_addr,
+              ag_scb.peer_addr, ag_scb.in_use,
               bta_ag_scb_to_idx(p_scb));
   }
 
@@ -668,13 +668,13 @@ void bta_ag_rfc_data(tBTA_AG_SCB* p_scb, UNUSED_ATTR const tBTA_AG_DATA& data) {
     if (PORT_ReadData(p_scb->conn_handle, buf, BTA_AG_RFC_READ_MAX, &len) !=
         PORT_SUCCESS) {
       log::error("failed to read data {}",
-                 ADDRESS_TO_LOGGABLE_STR(p_scb->peer_addr));
+                 p_scb->peer_addr);
       break;
     }
 
     /* if no data, we're done */
     if (len == 0) {
-      log::warn("no data for {}", ADDRESS_TO_LOGGABLE_STR(p_scb->peer_addr));
+      log::warn("no data for {}", p_scb->peer_addr);
       break;
     }
 

@@ -161,7 +161,7 @@ class CsisClientImpl : public CsisClient {
   std::shared_ptr<bluetooth::csis::CsisGroup> AssignCsisGroup(
       const RawAddress& address, int group_id,
       bool create_group_if_non_existing, const bluetooth::Uuid& uuid) {
-    log::debug("Device: {}, group_id: {}", ADDRESS_TO_LOGGABLE_CSTR(address),
+    log::debug("Device: {}, group_id: {}", address,
                group_id);
     auto csis_group = FindCsisGroup(group_id);
     if (!csis_group) {
@@ -192,13 +192,13 @@ class CsisClientImpl : public CsisClient {
   void OnGroupAddedCb(const RawAddress& address, const bluetooth::Uuid& uuid,
                       int group_id) {
     log::debug("address: {}, uuid: {}, group_id: {}",
-               ADDRESS_TO_LOGGABLE_CSTR(address), uuid.ToString(), group_id);
+               address, uuid.ToString(), group_id);
 
     AssignCsisGroup(address, group_id, true, uuid);
   }
 
   void OnGroupMemberAddedCb(const RawAddress& address, int group_id) {
-    log::debug("{}, group_id: {}", ADDRESS_TO_LOGGABLE_CSTR(address), group_id);
+    log::debug("{}, group_id: {}", address, group_id);
 
     AssignCsisGroup(address, group_id, false, Uuid::kEmpty);
   }
@@ -208,7 +208,7 @@ class CsisClientImpl : public CsisClient {
   }
 
   void OnGroupMemberRemovedCb(const RawAddress& address, int group_id) {
-    log::debug("{}, group_id: {}", ADDRESS_TO_LOGGABLE_CSTR(address), group_id);
+    log::debug("{}, group_id: {}", address, group_id);
 
     auto device = FindDeviceByAddress(address);
     if (device) RemoveCsisDevice(device, group_id);
@@ -227,7 +227,7 @@ class CsisClientImpl : public CsisClient {
 
     if (!csis_group->IsDeviceInTheGroup(device)) {
       log::error("the csis group (id: {} ) does contain the device: {}",
-                 group_id, ADDRESS_TO_LOGGABLE_CSTR(address));
+                 group_id, address);
       return;
     }
 
@@ -246,7 +246,7 @@ class CsisClientImpl : public CsisClient {
   }
 
   void Connect(const RawAddress& address) override {
-    log::debug("{}", ADDRESS_TO_LOGGABLE_CSTR(address));
+    log::debug("{}", address);
 
     auto device = FindDeviceByAddress(address);
     if (device == nullptr) {
@@ -259,12 +259,12 @@ class CsisClientImpl : public CsisClient {
   }
 
   void Disconnect(const RawAddress& addr) override {
-    log::debug("{}", ADDRESS_TO_LOGGABLE_CSTR(addr));
+    log::debug("{}", addr);
 
     auto device = FindDeviceByAddress(addr);
     if (device == nullptr) {
       log::warn("Device not connected to profile {}",
-                ADDRESS_TO_LOGGABLE_CSTR(addr));
+                addr);
       callbacks_->OnConnectionState(addr, ConnectionState::DISCONNECTED);
       return;
     }
@@ -280,7 +280,7 @@ class CsisClientImpl : public CsisClient {
   }
 
   void RemoveDevice(const RawAddress& addr) override {
-    log::debug("{}", ADDRESS_TO_LOGGABLE_CSTR(addr));
+    log::debug("{}", addr);
 
     auto device = FindDeviceByAddress(addr);
     if (!device) return;
@@ -344,7 +344,7 @@ class CsisClientImpl : public CsisClient {
     CsisLockState target_lock_state = csis_group->GetTargetLockState();
 
     log::debug("Device {}, target lock: {}, status: 0x{:02x}",
-               ADDRESS_TO_LOGGABLE_CSTR(device->addr), (int)target_lock_state,
+               device->addr, (int)target_lock_state,
                (int)status);
     if (target_lock_state == CsisLockState::CSIS_STATE_UNSET) return;
 
@@ -364,7 +364,7 @@ class CsisClientImpl : public CsisClient {
 
       if (status == GATT_DATABASE_OUT_OF_SYNC) {
         log::info("Database out of sync for {}",
-                  ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+                  device->addr);
         ClearDeviceInformationAndStartSearch(device);
       }
       return;
@@ -422,7 +422,7 @@ class CsisClientImpl : public CsisClient {
         (std::underlying_type<CsisLockState>::type)lock};
 
     log::info("{},  rank: {}, conn_id: 0x{:04x}, handle: 0x{:04x}",
-              ADDRESS_TO_LOGGABLE_CSTR(device->addr), csis_instance->GetRank(),
+              device->addr, csis_instance->GetRank(),
               device->conn_id, csis_instance->svc_data.lock_handle.val_hdl);
 
     BtaGattQueue::WriteCharacteristic(
@@ -562,17 +562,17 @@ class CsisClientImpl : public CsisClient {
     auto device = FindDeviceByAddress(addr);
     if (device == nullptr) {
       log::warn("Skipping unknown device addr= {}",
-                ADDRESS_TO_LOGGABLE_CSTR(addr));
+                addr);
       return false;
     }
 
     if (device->GetNumberOfCsisInstances() == 0) {
       log::warn("No CSIS instances for addr= {}",
-                ADDRESS_TO_LOGGABLE_CSTR(addr));
+                addr);
       return false;
     }
 
-    log::debug(": device= {}", ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+    log::debug(": device= {}", device->addr);
 
     auto num_sets = device->GetNumberOfCsisInstances();
     if ((num_sets == 0) || (num_sets > std::numeric_limits<uint8_t>::max()))
@@ -660,14 +660,14 @@ class CsisClientImpl : public CsisClient {
     /* Oportunistic works only for direct connect,
      * but in fact this is background connect
      */
-    log::info(": {}", ADDRESS_TO_LOGGABLE_CSTR(address));
+    log::info(": {}", address);
     BTA_GATTC_Open(gatt_if_, address, BTM_BLE_DIRECT_CONNECTION, true);
   }
 
   void AddFromStorage(const RawAddress& addr, const std::vector<uint8_t>& in) {
     auto group_rank_map = DeserializeSets(addr, in);
 
-    log::debug("{}, number of groups {}", ADDRESS_TO_LOGGABLE_CSTR(addr),
+    log::debug("{}, number of groups {}", addr,
                static_cast<int>(csis_groups_.size()));
 
     auto device = FindDeviceByAddress(addr);
@@ -843,7 +843,7 @@ class CsisClientImpl : public CsisClient {
 
   /* Handle encryption */
   void OnEncrypted(std::shared_ptr<CsisDevice>& device) {
-    log::debug("{}", ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+    log::debug("{}", device->addr);
 
     if (device->is_gatt_service_valid) {
       NotifyCsisDeviceValidAndStoreIfNeeded(device);
@@ -925,26 +925,26 @@ class CsisClientImpl : public CsisClient {
 
     if (status == GATT_DATABASE_OUT_OF_SYNC) {
       log::info("Database out of sync for {}",
-                ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+                device->addr);
       ClearDeviceInformationAndStartSearch(device);
       return;
     }
 
     if (status == GATT_SUCCESS) {
       log::info("Successfully registered on ccc: 0x{:04x}, device: {}", handle,
-                ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+                device->addr);
       return;
     }
 
     log::error(
         "Failed to register for indications: 0x{:04x}, device: {}, status: "
         "0x{:02x}",
-        handle, ADDRESS_TO_LOGGABLE_CSTR(device->addr), status);
+        handle, device->addr, status);
 
     auto val_handle = device->FindValueHandleByCccHandle(handle);
     if (!val_handle) {
       log::error("Unknown ccc handle: 0x{:04x}, device: {}", handle,
-                 ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+                 device->addr);
       return;
     }
 
@@ -1067,13 +1067,13 @@ class CsisClientImpl : public CsisClient {
       return;
     }
 
-    log::debug("{}, status: 0x{:02x}", ADDRESS_TO_LOGGABLE_CSTR(device->addr),
+    log::debug("{}, status: 0x{:02x}", device->addr,
                status);
 
     if (status != GATT_SUCCESS) {
       if (status == GATT_DATABASE_OUT_OF_SYNC) {
         log::info("Database out of sync for {}",
-                  ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+                  device->addr);
         ClearDeviceInformationAndStartSearch(device);
       } else {
         log::error("Could not read characteristic at handle=0x{:04x}", handle);
@@ -1116,13 +1116,13 @@ class CsisClientImpl : public CsisClient {
       return;
     }
 
-    log::info("{}, status 0x{:02x}", ADDRESS_TO_LOGGABLE_CSTR(device->addr),
+    log::info("{}, status 0x{:02x}", device->addr,
               status);
 
     if (status != GATT_SUCCESS) {
       if (status == GATT_DATABASE_OUT_OF_SYNC) {
         log::info("Database out of sync for {}",
-                  ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+                  device->addr);
         ClearDeviceInformationAndStartSearch(device);
       } else {
         log::error("Could not read characteristic at handle=0x{:04x}", handle);
@@ -1159,11 +1159,11 @@ class CsisClientImpl : public CsisClient {
     }
 
     log::debug("{}, status: 0x{:02x}, rank: {}",
-               ADDRESS_TO_LOGGABLE_CSTR(device->addr), status, value[0]);
+               device->addr, status, value[0]);
     if (status != GATT_SUCCESS) {
       if (status == GATT_DATABASE_OUT_OF_SYNC) {
         log::info("Database out of sync for {}",
-                  ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+                  device->addr);
         ClearDeviceInformationAndStartSearch(device);
       } else {
         log::error("Could not read characteristic at handle=0x{:04x}", handle);
@@ -1232,7 +1232,7 @@ class CsisClientImpl : public CsisClient {
            Octet16& sirk) {
     auto pltk = BTM_BleGetPeerLTK(address);
     if (!pltk.has_value()) {
-      log::error("No security for {}", ADDRESS_TO_LOGGABLE_CSTR(address));
+      log::error("No security for {}", address);
       return false;
     }
 
@@ -1335,7 +1335,7 @@ class CsisClientImpl : public CsisClient {
     auto csis_device = FindDeviceByAddress(result->bd_addr);
     if (csis_device) {
       log::debug("Drop same device .. {}",
-                 ADDRESS_TO_LOGGABLE_CSTR(result->bd_addr));
+                 result->bd_addr);
       return;
     }
 
@@ -1344,7 +1344,7 @@ class CsisClientImpl : public CsisClient {
      */
     if (BTM_BleIsLinkKeyKnown(result->bd_addr)) {
       log::verbose("Device {} already bonded. Identity address: {}",
-                   ADDRESS_TO_LOGGABLE_CSTR(result->bd_addr),
+                   result->bd_addr,
                    ADDRESS_TO_LOGGABLE_CSTR(
                        *BTM_BleGetIdentityAddress(result->bd_addr)));
       return;
@@ -1373,7 +1373,7 @@ class CsisClientImpl : public CsisClient {
         });
     if (discovered_group_rsi != all_rsi.cend()) {
       log::debug("Found set member {}",
-                 ADDRESS_TO_LOGGABLE_CSTR(result->bd_addr));
+                 result->bd_addr);
 
       CacheAndAdvertiseExpectedMember(result->bd_addr,
                                       csis_group->GetGroupId());
@@ -1455,7 +1455,7 @@ class CsisClientImpl : public CsisClient {
       }
 
       log::info("Device {} from inquiry cache match to group id {}",
-                ADDRESS_TO_LOGGABLE_CSTR(address), csis_group->GetGroupId());
+                address, csis_group->GetGroupId());
       callbacks_->OnSetMemberAvailable(address, csis_group->GetGroupId());
       break;
     }
@@ -1486,7 +1486,7 @@ class CsisClientImpl : public CsisClient {
     auto csis_device = FindDeviceByAddress(result->bd_addr);
     if (csis_device) {
       log::debug("Drop known device {}",
-                 ADDRESS_TO_LOGGABLE_CSTR(result->bd_addr));
+                 result->bd_addr);
       return;
     }
 
@@ -1495,7 +1495,7 @@ class CsisClientImpl : public CsisClient {
      */
     if (BTM_BleIsLinkKeyKnown(result->bd_addr)) {
       log::verbose("Device {} already bonded. Identity address: {}",
-                   ADDRESS_TO_LOGGABLE_CSTR(result->bd_addr),
+                   result->bd_addr,
                    ADDRESS_TO_LOGGABLE_CSTR(
                        *BTM_BleGetIdentityAddress(result->bd_addr)));
       return;
@@ -1509,7 +1509,7 @@ class CsisClientImpl : public CsisClient {
       for (auto& rsi : all_rsi) {
         if (group->IsRsiMatching(rsi)) {
           log::info("Device {} match to group id {}",
-                    ADDRESS_TO_LOGGABLE_CSTR(result->bd_addr),
+                    result->bd_addr,
                     group->GetGroupId());
           if (group->GetDesiredSize() > 0 &&
               (group->GetCurrentSize() == group->GetDesiredSize())) {
@@ -1564,7 +1564,7 @@ class CsisClientImpl : public CsisClient {
       return;
     }
 
-    log::debug("{}, status: 0x{:02x}", ADDRESS_TO_LOGGABLE_CSTR(device->addr),
+    log::debug("{}, status: 0x{:02x}", device->addr,
                status);
 
     if (status != GATT_SUCCESS) {
@@ -1574,7 +1574,7 @@ class CsisClientImpl : public CsisClient {
        */
       if (status == GATT_DATABASE_OUT_OF_SYNC) {
         log::info("Database out of sync for {}",
-                  ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+                  device->addr);
         ClearDeviceInformationAndStartSearch(device);
       } else {
         log::error("Could not read characteristic at handle=0x{:04x}", handle);
@@ -1662,7 +1662,7 @@ class CsisClientImpl : public CsisClient {
 
 #ifdef CSIS_DEBUG
     log::info("SIRK {}, address: {}", base::HexEncode(received_sirk.data(), 16),
-              ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+              device->addr);
 #endif
 
     log::verbose("Expected group size {},  actual group Size: {}",
@@ -1701,7 +1701,7 @@ class CsisClientImpl : public CsisClient {
   }
 
   void DoDisconnectCleanUp(std::shared_ptr<CsisDevice> device) {
-    log::info("{}", ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+    log::info("{}", device->addr);
 
     DeregisterNotifications(device);
 
@@ -1750,13 +1750,13 @@ class CsisClientImpl : public CsisClient {
             "{}",
             csis_inst->svc_data.lock_handle.val_hdl,
             csis_inst->svc_data.lock_handle.ccc_hdl,
-            ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+            device->addr);
       } else if (charac.uuid == kCsisRankUuid) {
         csis_inst->svc_data.rank_handle = charac.value_handle;
 
         log::debug("Rank UUID found handle: 0x{:04x}, device: {}",
                    csis_inst->svc_data.rank_handle,
-                   ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+                   device->addr);
       } else if (charac.uuid == kCsisSirkUuid) {
         /* Find the optional CCC descriptor */
         uint16_t ccc_handle =
@@ -1773,7 +1773,7 @@ class CsisClientImpl : public CsisClient {
             "{}",
             csis_inst->svc_data.sirk_handle.val_hdl,
             csis_inst->svc_data.sirk_handle.ccc_hdl,
-            ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+            device->addr);
       } else if (charac.uuid == kCsisSizeUuid) {
         /* Find the optional CCC descriptor */
         uint16_t ccc_handle =
@@ -1790,7 +1790,7 @@ class CsisClientImpl : public CsisClient {
             "{}",
             csis_inst->svc_data.size_handle.val_hdl,
             csis_inst->svc_data.size_handle.ccc_hdl,
-            ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+            device->addr);
       }
     }
 
@@ -1931,7 +1931,7 @@ class CsisClientImpl : public CsisClient {
 
   void OnGattConnected(const tBTA_GATTC_OPEN& evt) {
     log::info("{}, conn_id=0x{:04x}, transport={}, status={}(0x{:02x})",
-              ADDRESS_TO_LOGGABLE_CSTR(evt.remote_bda), evt.conn_id,
+              evt.remote_bda, evt.conn_id,
               bt_transport_text(evt.transport), gatt_status_text(evt.status),
               evt.status);
 
@@ -1945,14 +1945,14 @@ class CsisClientImpl : public CsisClient {
     auto device = FindDeviceByAddress(evt.remote_bda);
     if (device == nullptr) {
       log::debug("Skipping unknown device, address= {}",
-                 ADDRESS_TO_LOGGABLE_CSTR(evt.remote_bda));
+                 evt.remote_bda);
       BTA_GATTC_Close(evt.conn_id);
       return;
     }
 
     if (evt.status != GATT_SUCCESS) {
       log::error("Failed to connect to server device {}",
-                 ADDRESS_TO_LOGGABLE_CSTR(evt.remote_bda));
+                 evt.remote_bda);
       if (device->connecting_actively)
         callbacks_->OnConnectionState(evt.remote_bda,
                                       ConnectionState::DISCONNECTED);
@@ -1981,11 +1981,11 @@ class CsisClientImpl : public CsisClient {
                                    nullptr, BTM_BLE_SEC_ENCRYPT);
 
     log::info("Encryption required for {}. Request result: 0x{:02x}",
-              ADDRESS_TO_LOGGABLE_CSTR(device->addr), result);
+              device->addr, result);
 
     if (result == BTM_ERR_KEY_MISSING) {
       log::error("Link key unknown for {}, disconnect profile",
-                 ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+                 device->addr);
       BTA_GATTC_Close(device->conn_id);
     }
   }
@@ -1998,7 +1998,7 @@ class CsisClientImpl : public CsisClient {
       return;
     }
 
-    log::debug("device={}", ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+    log::debug("device={}", device->addr);
 
     callbacks_->OnConnectionState(evt.remote_bda,
                                   ConnectionState::DISCONNECTED);
@@ -2123,11 +2123,11 @@ class CsisClientImpl : public CsisClient {
   }
 
   void OnLeEncryptionComplete(const RawAddress& address, uint8_t status) {
-    log::info("{}", ADDRESS_TO_LOGGABLE_CSTR(address));
+    log::info("{}", address);
     auto device = FindDeviceByAddress(address);
     if (device == nullptr) {
       log::warn("Skipping unknown device {}",
-                ADDRESS_TO_LOGGABLE_CSTR(address));
+                address);
       return;
     }
 
@@ -2147,7 +2147,7 @@ class CsisClientImpl : public CsisClient {
 
   void ClearDeviceInformationAndStartSearch(
       std::shared_ptr<CsisDevice> device) {
-    log::info("{}", ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+    log::info("{}", device->addr);
     if (device->is_gatt_service_valid == false) {
       log::debug("Device database already invalidated.");
       return;
@@ -2164,11 +2164,11 @@ class CsisClientImpl : public CsisClient {
     auto device = FindDeviceByAddress(address);
     if (!device) {
       log::warn("Skipping unknown device {}",
-                ADDRESS_TO_LOGGABLE_CSTR(address));
+                address);
       return;
     }
 
-    log::info("{}", ADDRESS_TO_LOGGABLE_CSTR(address));
+    log::info("{}", address);
     ClearDeviceInformationAndStartSearch(device);
   }
 
@@ -2176,11 +2176,11 @@ class CsisClientImpl : public CsisClient {
     auto device = FindDeviceByAddress(address);
     if (!device) {
       log::warn("Skipping unknown device {}",
-                ADDRESS_TO_LOGGABLE_CSTR(address));
+                address);
       return;
     }
 
-    log::debug("address={}", ADDRESS_TO_LOGGABLE_CSTR(address));
+    log::debug("address={}", address);
 
     if (!device->is_gatt_service_valid)
       BTA_GATTC_ServiceSearchRequest(device->conn_id, &kCsisServiceUuid);
@@ -2245,12 +2245,12 @@ class CsisClientImpl : public CsisClient {
                                           const RawAddress& address,
                                           uint8_t sirk_type,
                                           Octet16& received_sirk) {
-    log::info("{}, status: 0x{:02x}", ADDRESS_TO_LOGGABLE_CSTR(address),
+    log::info("{}, status: 0x{:02x}", address,
               status);
 
     auto device = FindDeviceByAddress(address);
     if (device == nullptr) {
-      log::error("Unknown device {}", ADDRESS_TO_LOGGABLE_CSTR(address));
+      log::error("Unknown device {}", address);
       BTA_DmSirkConfirmDeviceReply(address, false);
       return;
     }
@@ -2280,7 +2280,7 @@ class CsisClientImpl : public CsisClient {
     Octet16 zero{};
     if (memcmp(zero.data(), received_sirk.data(), 16) == 0) {
       log::error("Received invalid zero SIRK address: {}",
-                 ADDRESS_TO_LOGGABLE_CSTR(address));
+                 address);
       BTA_DmSirkConfirmDeviceReply(address, false);
       return;
     }
@@ -2299,13 +2299,13 @@ class CsisClientImpl : public CsisClient {
        * match for group.
        */
       log::error("Joining device {}, does not match any existig group",
-                 ADDRESS_TO_LOGGABLE_CSTR(address));
+                 address);
       BTA_DmSirkConfirmDeviceReply(address, false);
       return;
     }
 
     log::info("Device {}, verified successfully by SIRK",
-              ADDRESS_TO_LOGGABLE_CSTR(address));
+              address);
     BTA_DmSirkConfirmDeviceReply(address, true);
 
     /* It was temporary device and we can remove it. When upper layer
@@ -2317,7 +2317,7 @@ class CsisClientImpl : public CsisClient {
   void VerifySetMember(const RawAddress& address) {
     auto device = FindDeviceByAddress(address);
 
-    log::info("Device: {}", ADDRESS_TO_LOGGABLE_CSTR(address));
+    log::info("Device: {}", address);
 
     /* It's ok for device to not be a CSIS device at all */
     if (!device) {
@@ -2331,7 +2331,7 @@ class CsisClientImpl : public CsisClient {
       log::warn(
           "Device {} (conn_id=0x{:04x}) is already known to CSIS (# of "
           "instances={}) but it is not scheduled to join any group.",
-          ADDRESS_TO_LOGGABLE_CSTR(address), device->conn_id,
+          address, device->conn_id,
           device->GetNumberOfCsisInstances());
       BTA_DmSirkConfirmDeviceReply(address, true);
       return;
@@ -2342,7 +2342,7 @@ class CsisClientImpl : public CsisClient {
             base::BindOnce(&CsisClientImpl::SirkValueReadCompleteDuringPairing,
                            weak_factory_.GetWeakPtr()))) {
       log::error("Could not read SIKR of {}",
-                 ADDRESS_TO_LOGGABLE_CSTR(address));
+                 address);
       BTA_DmSirkConfirmDeviceReply(address, false);
       return;
     }

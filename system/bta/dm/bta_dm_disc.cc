@@ -131,7 +131,7 @@ struct gatt_interface_t {
         [](tGATT_IF client_if, const RawAddress& remote_bda, bool is_direct) {
           disc_gatt_history_.Push(base::StringPrintf(
               "%-32s bd_addr:%s client_if:%hu is_direct:%c", "GATTC_CancelOpen",
-              ADDRESS_TO_LOGGABLE_CSTR(remote_bda), client_if,
+              remote_bda, client_if,
               (is_direct) ? 'T' : 'F'));
           BTA_GATTC_CancelOpen(client_if, remote_bda, is_direct);
         },
@@ -139,7 +139,7 @@ struct gatt_interface_t {
         [](const RawAddress& remote_bda) {
           disc_gatt_history_.Push(
               base::StringPrintf("%-32s bd_addr:%s", "GATTC_Refresh",
-                                 ADDRESS_TO_LOGGABLE_CSTR(remote_bda)));
+                                 remote_bda));
           BTA_GATTC_Refresh(remote_bda);
         },
     .BTA_GATTC_GetGattDb =
@@ -175,7 +175,7 @@ struct gatt_interface_t {
            tBTM_BLE_CONN_TYPE connection_type, bool opportunistic) {
           disc_gatt_history_.Push(base::StringPrintf(
               "%-32s bd_addr:%s client_if:%hu type:0x%x opportunistic:%c",
-              "GATTC_Open", ADDRESS_TO_LOGGABLE_CSTR(remote_bda), client_if,
+              "GATTC_Open", remote_bda, client_if,
               connection_type, (opportunistic) ? 'T' : 'F'));
           BTA_GATTC_Open(client_if, remote_bda, connection_type, opportunistic);
         },
@@ -354,7 +354,7 @@ static void bta_dm_discover(tBTA_DM_MSG* p_data) {
 
   log::info(
       "bta_dm_discovery: starting service discovery to {} , transport: {}",
-      ADDRESS_TO_LOGGABLE_CSTR(p_data->discover.bd_addr),
+      p_data->discover.bd_addr,
       bt_transport_text(p_data->discover.transport));
   bta_dm_discover_device(p_data->discover.bd_addr);
 }
@@ -553,7 +553,7 @@ static void store_avrcp_profile_feature(tSDP_DISC_REC* sdp_rec) {
     log::info("Saving avrcp_features: 0x{:x}", avrcp_features);
   } else {
     log::info("Failed to store avrcp_features 0x{:x} for {}", avrcp_features,
-              ADDRESS_TO_LOGGABLE_CSTR(sdp_rec->remote_bd_addr));
+              sdp_rec->remote_bd_addr);
   }
 }
 
@@ -594,7 +594,7 @@ static void bta_dm_store_audio_profiles_version() {
                               sizeof(profile_version))) {
       } else {
         log::info("Failed to store peer profile version for {}",
-                  ADDRESS_TO_LOGGABLE_CSTR(sdp_rec->remote_bd_addr));
+                  sdp_rec->remote_bd_addr);
       }
     }
     audio_profile.store_audio_profile_feature(sdp_rec);
@@ -1071,7 +1071,7 @@ static void bta_dm_queue_disc(tBTA_DM_MSG* p_data) {
   memcpy(p_pending_discovery, p_data, sizeof(tBTA_DM_API_DISCOVER));
 
   log::info("bta_dm_discovery: queuing service discovery to {}",
-            ADDRESS_TO_LOGGABLE_CSTR(p_pending_discovery->discover.bd_addr));
+            p_pending_discovery->discover.bd_addr);
   fixed_queue_enqueue(bta_dm_search_cb.pending_discovery_queue,
                       p_pending_discovery);
 }
@@ -1322,7 +1322,7 @@ static void bta_dm_discover_device(const RawAddress& remote_bd_addr) {
   const tBT_TRANSPORT transport =
       bta_dm_determine_discovery_transport(remote_bd_addr);
 
-  log::verbose("BDA: {}", ADDRESS_TO_LOGGABLE_STR(remote_bd_addr));
+  log::verbose("BDA: {}", remote_bd_addr);
 
   bta_dm_search_cb.peer_bdaddr = remote_bd_addr;
 
@@ -1351,7 +1351,7 @@ static void bta_dm_discover_device(const RawAddress& remote_bd_addr) {
       bluetooth::common::init_flags::sdp_skip_rnr_if_known_is_enabled()) {
     log::debug(
         "Security record already known skipping read remote name peer:{}",
-        ADDRESS_TO_LOGGABLE_CSTR(remote_bd_addr));
+        remote_bd_addr);
     bta_dm_search_cb.name_discover_done = true;
   }
 
@@ -1385,7 +1385,7 @@ static void bta_dm_discover_device(const RawAddress& remote_bd_addr) {
   bool sdp_disable = HID_HostSDPDisable(remote_bd_addr);
   if (sdp_disable)
     log::debug("peer:{} with HIDSDPDisable attribute.",
-               ADDRESS_TO_LOGGABLE_CSTR(remote_bd_addr));
+               remote_bd_addr);
 
   /* if application wants to discover service and HIDSDPDisable attribute is
      false.
@@ -1426,7 +1426,7 @@ static void bta_dm_discover_device(const RawAddress& remote_bd_addr) {
       if (transport == BT_TRANSPORT_LE) {
         if (bta_dm_search_cb.services_to_search & BTA_BLE_SERVICE_MASK) {
           log::info("bta_dm_discovery: starting GATT discovery on {}",
-                    ADDRESS_TO_LOGGABLE_CSTR(bta_dm_search_cb.peer_bdaddr));
+                    bta_dm_search_cb.peer_bdaddr);
           // set the raw data buffer here
           memset(g_disc_raw_data_buf, 0, sizeof(g_disc_raw_data_buf));
           /* start GATT for service discovery */
@@ -1435,7 +1435,7 @@ static void bta_dm_discover_device(const RawAddress& remote_bd_addr) {
         }
       } else {
         log::info("bta_dm_discovery: starting SDP discovery on {}",
-                  ADDRESS_TO_LOGGABLE_CSTR(bta_dm_search_cb.peer_bdaddr));
+                  bta_dm_search_cb.peer_bdaddr);
         bta_dm_search_cb.sdp_results = false;
         bta_dm_find_services(bta_dm_search_cb.peer_bdaddr);
         return;
@@ -1612,7 +1612,7 @@ static void bta_dm_remname_cback(const tBTM_REMOTE_DEV_NAME* p_remote_name) {
   log::info(
       "Remote name request complete peer:{} btm_status:{} hci_status:{} "
       "name[0]:{:c} length:{}",
-      ADDRESS_TO_LOGGABLE_CSTR(p_remote_name->bd_addr),
+      p_remote_name->bd_addr,
       btm_status_text(p_remote_name->status),
       hci_error_code_text(p_remote_name->hci_status),
       p_remote_name->remote_bd_name[0],
@@ -1631,12 +1631,12 @@ static void bta_dm_remname_cback(const tBTM_REMOTE_DEV_NAME* p_remote_name) {
       log::info(
           "Assume command failed due to disconnection hci_status:{} peer:{}",
           hci_error_code_text(p_remote_name->hci_status),
-          ADDRESS_TO_LOGGABLE_CSTR(p_remote_name->bd_addr));
+          p_remote_name->bd_addr);
     } else {
       log::info(
           "Ignored remote name response for the wrong address exp:{} act:{}",
-          ADDRESS_TO_LOGGABLE_CSTR(bta_dm_search_cb.peer_bdaddr),
-          ADDRESS_TO_LOGGABLE_CSTR(p_remote_name->bd_addr));
+          bta_dm_search_cb.peer_bdaddr,
+          p_remote_name->bd_addr);
       return;
     }
   }
@@ -1995,7 +1995,7 @@ static void btm_dm_start_gatt_discovery(const RawAddress& bd_addr) {
       log::debug(
           "Use existing gatt client connection for discovery peer:{} "
           "transport:{} opportunistic:{:c}",
-          ADDRESS_TO_LOGGABLE_CSTR(bd_addr), bt_transport_text(BT_TRANSPORT_LE),
+          bd_addr, bt_transport_text(BT_TRANSPORT_LE),
           (kUseOpportunistic) ? 'T' : 'F');
       get_gatt_interface().BTA_GATTC_Open(bta_dm_search_cb.client_if, bd_addr,
                                           BTM_BLE_DIRECT_CONNECTION,
@@ -2004,7 +2004,7 @@ static void btm_dm_start_gatt_discovery(const RawAddress& bd_addr) {
       log::debug(
           "Opening new gatt client connection for discovery peer:{} "
           "transport:{} opportunistic:{:c}",
-          ADDRESS_TO_LOGGABLE_CSTR(bd_addr), bt_transport_text(BT_TRANSPORT_LE),
+          bd_addr, bt_transport_text(BT_TRANSPORT_LE),
           (!kUseOpportunistic) ? 'T' : 'F');
       get_gatt_interface().BTA_GATTC_Open(bta_dm_search_cb.client_if, bd_addr,
                                           BTM_BLE_DIRECT_CONNECTION,
@@ -2025,15 +2025,15 @@ static void btm_dm_start_gatt_discovery(const RawAddress& bd_addr) {
 static void bta_dm_proc_open_evt(tBTA_GATTC_OPEN* p_data) {
   log::verbose("DM Search state= {} search_cb.peer_dbaddr:{} connected_bda={}",
                bta_dm_search_get_state(),
-               ADDRESS_TO_LOGGABLE_STR(bta_dm_search_cb.peer_bdaddr),
-               ADDRESS_TO_LOGGABLE_STR(p_data->remote_bda));
+               bta_dm_search_cb.peer_bdaddr,
+               p_data->remote_bda);
 
   log::debug("BTA_GATTC_OPEN_EVT conn_id = {} client_if={} status = {}",
              p_data->conn_id, p_data->client_if, p_data->status);
 
   disc_gatt_history_.Push(base::StringPrintf(
       "%-32s bd_addr:%s conn_id:%hu client_if:%hu event:%s",
-      "GATTC_EventCallback", ADDRESS_TO_LOGGABLE_CSTR(p_data->remote_bda),
+      "GATTC_EventCallback", p_data->remote_bda,
       p_data->conn_id, p_data->client_if,
       gatt_client_event_text(BTA_GATTC_OPEN_EVT).c_str()));
 
