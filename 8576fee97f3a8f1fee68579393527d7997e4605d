@@ -34,6 +34,24 @@
       "parentUuid": "964784b7_a75fc116",
       "revId": "8576fee97f3a8f1fee68579393527d7997e4605d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0254475_e3bd336c",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1138,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-04-02T13:17:49Z",
+      "side": 1,
+      "message": "`StopAudio()` would work.\n\nCan we consider moving it down to the stack so LeAudio is just calling some APIs and implementation below keep track on the current hint?",
+      "parentUuid": "caac1f3e_88ab0004",
+      "revId": "8576fee97f3a8f1fee68579393527d7997e4605d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
