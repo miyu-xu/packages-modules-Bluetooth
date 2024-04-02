@@ -24,6 +24,7 @@
 
 #define LOG_TAG "l2c_ble"
 
+#include <android_bluetooth_flags.h>
 #include <base/strings/stringprintf.h>
 #include <bluetooth/log.h>
 
@@ -34,6 +35,7 @@
 #include "btif/include/core_callbacks.h"
 #include "btif/include/stack_manager_t.h"
 #include "hci/controller_interface.h"
+#include "hci/hci_layer.h"
 #include "internal_include/bt_target.h"
 #include "main/shim/entry.h"
 #include "osi/include/allocator.h"
@@ -50,6 +52,7 @@
 #include "stack/include/l2c_api.h"
 #include "stack/include/l2cap_acl_interface.h"
 #include "stack/include/l2cdefs.h"
+#include "stack/include/main_thread.h"
 #include "stack/l2cap/l2c_int.h"
 #include "types/raw_address.h"
 
@@ -1423,4 +1426,25 @@ void L2CA_AdjustConnectionIntervals(uint16_t* min_interval,
                  *max_interval, phone_min_interval);
     *max_interval = phone_min_interval;
   }
+}
+
+void L2CA_SetEcosystemBaseInterval(uint32_t base_interval) {
+  if (!IS_FLAG_ENABLED(le_audio_base_ecosystem_interval)) return;
+
+  bluetooth::shim::GetHciLayer()->EnqueueCommand(
+      bluetooth::hci::SetEcosystemBaseIntervalBuilder::Create(base_interval),
+      get_main_thread()->BindOnce([](bluetooth::hci::CommandCompleteView view) {
+        ASSERT(view.IsValid());
+        auto status_view =
+            bluetooth::hci::SetEcosystemBaseIntervalCompleteView::Create(
+                bluetooth::hci::SetEcosystemBaseIntervalCompleteView::Create(
+                    view));
+        ASSERT(status_view.IsValid());
+
+        if (status_view.GetStatus() != bluetooth::hci::ErrorCode::SUCCESS) {
+          log::warn("Set Ecosystem Base Interval status {}",
+                    ErrorCodeText(status_view.GetStatus()));
+          return;
+        }
+      }));
 }
