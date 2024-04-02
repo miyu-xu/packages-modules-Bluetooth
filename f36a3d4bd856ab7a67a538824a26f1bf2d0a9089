@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3c6022d_437d2770",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1853,
+      "author": {
+        "id": 2023666
+      },
+      "writtenOn": "2024-04-02T22:01:00Z",
+      "side": 0,
+      "message": "Shouldn\u0027t `mDeviceBusy` always be reset to `false` if `mService.writeDescriptor()` returns an error ? (my understanding is that if it returns an error, `onDescriptorWrite` won\u0027t be called and `mDeviceBusy` will not be reset)",
+      "range": {
+        "startLine": 1848,
+        "startChar": 0,
+        "endLine": 1853,
+        "endChar": 50
+      },
+      "revId": "f36a3d4bd856ab7a67a538824a26f1bf2d0a9089",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
