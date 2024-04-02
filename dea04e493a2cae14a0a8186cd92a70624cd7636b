@@ -22,6 +22,30 @@
       },
       "revId": "dea04e493a2cae14a0a8186cd92a70624cd7636b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d78f8401_0cd91aca",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-02T21:54:43Z",
+      "side": 1,
+      "message": "This is now a local static method, not exposed anywhere.\n\nWith such short name, it\u0027s easier to fit whole calls as single line.\n\nSo if your opinion on naming is not strong, I would prefer to keep it as is.",
+      "parentUuid": "10e0a311_cdc4545b",
+      "range": {
+        "startLine": 84,
+        "startChar": 12,
+        "endLine": 84,
+        "endChar": 25
+      },
+      "revId": "dea04e493a2cae14a0a8186cd92a70624cd7636b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
