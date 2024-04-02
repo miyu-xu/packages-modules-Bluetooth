@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35ff5894_610ba297",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 862,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-02T21:21:19Z",
+      "side": 1,
+      "message": "maybe use this to reduce jumping from service to framework then back to service\n```\nadapterService.getSystemService(BluetoothManager.class).getAdapter().getRemoteLeDevice(foo, bar)\n```",
+      "range": {
+        "startLine": 861,
+        "startChar": 20,
+        "endLine": 862,
+        "endChar": 60
+      },
+      "revId": "87d9ee1e6196770b003c82791cabbabb3f488918",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
