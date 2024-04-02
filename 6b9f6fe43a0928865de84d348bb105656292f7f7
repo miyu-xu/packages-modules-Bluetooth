@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3bf9448b_923bc693",
+        "filename": "system/bta/sys/bta_sys.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-02T17:30:17Z",
+      "side": 0,
+      "message": "I used to have it in separate CL, but it was quite messy to keep them in chain, as they touch a lot of same places.\n\nIf you want, I can re-add this patch: aosp/3018874",
+      "parentUuid": "eca0d09a_a6b3ddd4",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 51
+      },
+      "revId": "6b9f6fe43a0928865de84d348bb105656292f7f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9fef3122_e8b2df5c",
         "filename": "system/bta/sys/bta_sys.h",
         "patchSetId": 6
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-02T16:17:27Z",
       "side": 0,
       "message": "looking at this, are we breaking a previously working pattern into something more fragmented? what is your plan with the remaining profiles listed here?",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 19
+      },
+      "revId": "6b9f6fe43a0928865de84d348bb105656292f7f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27660aeb_43be0fe0",
+        "filename": "system/bta/sys/bta_sys.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-02T17:30:17Z",
+      "side": 0,
+      "message": "My plan was initially to overload bta_sys_sendmsg, and have a separate version that accepts a event id and unique_ptr with message content\n\nTurns out it\u0027s not easy, especially if you want to have an option to provide optional memory-safe handler.\n\nI can do that in follow up CL.",
+      "parentUuid": "9fef3122_e8b2df5c",
       "range": {
         "startLine": 73,
         "startChar": 0,

@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "219e08d5_7f9822e2",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-02T17:30:17Z",
+      "side": 1,
+      "message": "There is follow up CL, see relation chain, aosp/3019667",
+      "parentUuid": "3004b1c2_6fbe4767",
+      "range": {
+        "startLine": 776,
+        "startChar": 19,
+        "endLine": 776,
+        "endChar": 29
+      },
+      "revId": "c8830dfa25171212c90c50bdf7679880c5748b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c020cdcb_afaf2c39",
         "filename": "system/bta/dm/bta_dm_disc.cc",
         "patchSetId": 6
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-02T16:17:27Z",
       "side": 1,
       "message": "agreed, when not switch to std::unique_ptr here?",
+      "range": {
+        "startLine": 1074,
+        "startChar": 43,
+        "endLine": 1074,
+        "endChar": 53
+      },
+      "revId": "c8830dfa25171212c90c50bdf7679880c5748b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e04a1656_bc601545",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1074,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-02T17:30:17Z",
+      "side": 1,
+      "message": "See aosp/3021983",
+      "parentUuid": "c020cdcb_afaf2c39",
       "range": {
         "startLine": 1074,
         "startChar": 43,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d666c976_1cb94821",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2194,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-02T17:30:17Z",
+      "side": 1,
+      "message": "But this would not have handling for the bad alternative being held ?\n\nI had a visitor in previous implementation, but agreed with Myles this is much simpler, and also add protection against pasing bad message with event.",
+      "parentUuid": "734020c2_38ba3b22",
+      "range": {
+        "startLine": 2193,
+        "startChar": 0,
+        "endLine": 2194,
+        "endChar": 44
+      },
+      "revId": "c8830dfa25171212c90c50bdf7679880c5748b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c22529ec_97785e23",
         "filename": "system/bta/dm/bta_dm_disc_int.h",
         "patchSetId": 6
@@ -83,6 +155,30 @@
       "writtenOn": "2024-04-02T16:17:27Z",
       "side": 1,
       "message": "I feel like switching to std::variant can be a CL by itself, could you extract that out and merge it first?",
+      "range": {
+        "startLine": 107,
+        "startChar": 1,
+        "endLine": 109,
+        "endChar": 80
+      },
+      "revId": "c8830dfa25171212c90c50bdf7679880c5748b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c27d28b8_7dce6250",
+        "filename": "system/bta/dm/bta_dm_disc_int.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-02T17:30:17Z",
+      "side": 1,
+      "message": "Variant must be passed in memory safe way, that\u0027s why it\u0027s single CL.",
+      "parentUuid": "c22529ec_97785e23",
       "range": {
         "startLine": 107,
         "startChar": 1,
