@@ -34,6 +34,24 @@
       "parentUuid": "e89614e3_7fe0d254",
       "revId": "b13b7dd933f9f87c8e7c34527d792fb64d2e0234",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c48e3493_cc59a254",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-02T19:09:58Z",
+      "side": 1,
+      "message": "\u003e could this be manual PTS testing?\n\nYes, I believe the uploader of this CL is talking about manual testing.\n\n----\n\nAccording to the list of [skipped](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/pandora/server/configs/pts_bot_tests_config.json;l\u003d742;drc\u003da944cb471471b831821ede46fdf47b56225707a0) test in pts-bot, the ICS for this are correctly defined but the test is not passing in automatic run.\nIt would be great to make it pass in the futur when doing the avrcp test plan for example",
+      "parentUuid": "05d99cf4_385267f6",
+      "revId": "b13b7dd933f9f87c8e7c34527d792fb64d2e0234",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
