@@ -278,6 +278,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "64be27dc_39aa2645",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 4265,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-04-02T08:46:28Z",
+      "side": 1,
+      "message": "Done in Patchset 19. Tested with Ying and it seems 8852 doesn\u0027t complain when Floss adds 2 monitors for the same address. This fix LGTM for now.",
+      "parentUuid": "43a01018_b7670373",
+      "range": {
+        "startLine": 4256,
+        "startChar": 0,
+        "endLine": 4265,
+        "endChar": 15
+      },
+      "revId": "a0cd02d477a040d13db456d8a9fdbbb3d422ad06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c6f86506_3fffefb9",

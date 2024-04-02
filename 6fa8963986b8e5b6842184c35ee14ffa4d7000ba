@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bcff65a_5d8a2389",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-04-02T08:46:28Z",
+      "side": 1,
+      "message": "Patchset 20 fixes the conflict marker in gap.aconfig and the line length in commit message.",
+      "revId": "6fa8963986b8e5b6842184c35ee14ffa4d7000ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
