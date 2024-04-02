@@ -26,6 +26,7 @@ use num_derive::{FromPrimitive, ToPrimitive};
 use std::sync::{Arc, Mutex};
 use tokio::sync::mpsc::channel;
 use tokio::sync::mpsc::{Receiver, Sender};
+use tokio::time::{sleep, Duration};
 
 use crate::battery_manager::{BatteryManager, BatterySet};
 use crate::battery_provider_manager::BatteryProviderManager;
@@ -49,6 +50,7 @@ use bt_topshim::{
     profiles::{
         a2dp::A2dpCallbacks,
         avrcp::AvrcpCallbacks,
+        csis::CsisClientCallbacks,
         gatt::GattAdvCallbacks,
         gatt::GattAdvInbandCallbacks,
         gatt::GattClientCallbacks,
@@ -57,7 +59,9 @@ use bt_topshim::{
         gatt::GattServerCallbacks,
         hfp::HfpCallbacks,
         hid_host::{BthhReportType, HHCallbacks},
+        le_audio::LeAudioClientCallbacks,
         sdp::SdpCallbacks,
+        vc::VolumeControlCallbacks,
     },
 };
 
@@ -77,8 +81,10 @@ pub enum Message {
     A2dp(A2dpCallbacks),
     Avrcp(AvrcpCallbacks),
     Base(BaseCallbacks),
+    CreateBond(BluetoothDevice, BtTransport, u32, Sender<Message>),
     GattClient(GattClientCallbacks),
     GattServer(GattServerCallbacks),
+    LeAudioClient(LeAudioClientCallbacks),
     LeScanner(GattScannerCallbacks),
     LeScannerInband(GattScannerInbandCallbacks),
     LeAdvInband(GattAdvInbandCallbacks),
@@ -86,6 +92,8 @@ pub enum Message {
     HidHost(HHCallbacks),
     Hfp(HfpCallbacks),
     Sdp(SdpCallbacks),
+    VolumeControl(VolumeControlCallbacks),
+    CsisClient(CsisClientCallbacks),
 
     // Actions within the stack
     Media(MediaActions),
@@ -258,12 +266,48 @@ impl Stack {
                     dispatch_base_callbacks(suspend.lock().unwrap().as_mut(), b);
                 }
 
+                Message::CreateBond(device, bt_transport, remaining_attempts, txl) => {
+                    if !bluetooth.lock().unwrap().is_pairing_busy() {
+                        bluetooth.lock().unwrap().create_bond(device, bt_transport);
+                        continue;
+                    }
+
+                    if remaining_attempts == 0 {
+                        continue;
+                    }
+
+                    let txll = txl.clone();
+                    tokio::spawn(async move {
+                        sleep(Duration::from_millis(500)).await;
+                        let _ = txl
+                            .send(Message::CreateBond(
+                                device,
+                                BtTransport::Le,
+                                remaining_attempts - 1,
+                                txll,
+                            ))
+                            .await;
+                    });
+                }
+
                 Message::GattClient(m) => {
                     dispatch_gatt_client_callbacks(bluetooth_gatt.lock().unwrap().as_mut(), m);
                 }
 
                 Message::GattServer(m) => {
                     dispatch_gatt_server_callbacks(bluetooth_gatt.lock().unwrap().as_mut(), m);
+                }
+
+                Message::LeAudioClient(a) => {
+                    bluetooth_media.lock().unwrap().dispatch_le_audio_callbacks(a);
+                }
+
+                Message::VolumeControl(a) => {
+                    bluetooth_media.lock().unwrap().dispatch_vc_callbacks(a);
+                }
+
+                Message::CsisClient(a) => {
+                    bluetooth_media.lock().unwrap().dispatch_csis_callbacks(a);
                 }
 
                 Message::LeScanner(m) => {
