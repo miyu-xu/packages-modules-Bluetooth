@@ -168,6 +168,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cd08adc8_8457c3f3",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2194,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-02T21:55:32Z",
+      "side": 1,
+      "message": "This is allowed as per C++ style guide:\n\n```\nFor historical reasons, we allow one exception to the above rules: the curly braces\n for the controlled statement or the line breaks inside the curly braces may be \n omitted if as a result the entire statement appears on either a single line (in \n which case there is a space between the closing parenthesis and the controlled \n statement) or on two lines (in which case there is a line break after the closing\n  parenthesis and there are no braces).\n```\n\n``\n// OK - condition fits on one line, body fits on another.\nif (x \u003d\u003d kBar)\n  Bar(arg1, arg2, arg3);\n``",
+      "parentUuid": "966eccb7_4bb25feb",
+      "range": {
+        "startLine": 2193,
+        "startChar": 0,
+        "endLine": 2194,
+        "endChar": 44
+      },
+      "revId": "c8830dfa25171212c90c50bdf7679880c5748b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c22529ec_97785e23",
         "filename": "system/bta/dm/bta_dm_disc_int.h",
         "patchSetId": 6
