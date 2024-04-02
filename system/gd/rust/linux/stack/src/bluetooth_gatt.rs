@@ -819,7 +819,7 @@ impl BluetoothGattService {
                             elem.uuid.uu,
                             elem.attribute_handle as i32,
                             elem.properties as i32,
-                            0,
+                            elem.permissions as i32,
                         )),
                         None => {
                             // TODO(b/193685325): Log error.
@@ -834,7 +834,7 @@ impl BluetoothGattService {
                             Some(c) => c.descriptors.push(BluetoothGattDescriptor::new(
                                 elem.uuid.uu,
                                 elem.attribute_handle as i32,
-                                0,
+                                elem.permissions as i32,
                             )),
                             None => {
                                 // TODO(b/193685325): Log error.
