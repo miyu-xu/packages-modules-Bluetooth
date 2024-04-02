@@ -16,6 +16,24 @@
       "message": "Shall we have a centralized module to manage multiple audio profiles coex control? Also for aosp/3016920.",
       "revId": "90753c67df6d570cb21bf9ce24f547cfceb2c62b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46919491_f1639f71",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-02T21:25:22Z",
+      "side": 1,
+      "message": "Hi Josh, on AG side, we suspend LE audio before SCO is connected, because some controllers cannot handle SCO and CIS coexistence case.   \nCurrently, AG handles that through PhoneStateChanged. Whenever there is going to have a phone call, and uses HFP, LE audio will be suspended before we create the SCO. Then, whenever there is AG\u0027s connectAudio, LE audio service removes LE audio active device, when it completes, it calls AG\u0027s connectAudio again (a work around does not sound good)\n\nYour current changes may work, but likely to be flaky because there is no mutual exclusion in between, When SCO is connecting, suspend LE audio will try to end CIS, but CIS might be still in transitioning state to closing. \nyou can check b/242908683 for more details about this.   \n\nAnd for centralized audio management, there is an ongoing project go/hfp-sco-management-improvement. It is mostly on AG side, just FYI",
+      "parentUuid": "df8c8f84_0b628992",
+      "revId": "90753c67df6d570cb21bf9ce24f547cfceb2c62b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
