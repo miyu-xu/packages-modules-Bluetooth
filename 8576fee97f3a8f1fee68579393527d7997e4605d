@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "964784b7_a75fc116",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1138,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-04-02T12:59:41Z",
+      "side": 1,
+      "message": "It is OK to provide the hint to the controller, but maybe we could improve it a bit in order to\n\n1. Make sure not to spam controller with multiple calls of the same command with very same HINT.\n2. Possibly remove the HINT when streaming is completed, unless we want to keep the HINT whenever there is a chance for the LeAudio streaming - but in such case, instead of `StartAudioSession` we should consider `Initialize` function.",
+      "revId": "8576fee97f3a8f1fee68579393527d7997e4605d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
