@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "aebe2a98_946771ad",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1105,
+      "author": {
+        "id": 1470368
+      },
+      "writtenOn": "2024-04-02T11:03:52Z",
+      "side": 1,
+      "message": "Please add scanPhyMask print",
+      "revId": "baece58ad42703838e2c6ed38a3bcf5e9e407d8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d8f1fef3_7cfa0b88",
         "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
         "patchSetId": 1
