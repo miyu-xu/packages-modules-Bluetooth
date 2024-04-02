@@ -176,6 +176,30 @@
       },
       "revId": "7c02af12708b8fdce823bde24adeabbb32f485f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da40ee16_0e2b7b40",
+        "filename": "system/btif/src/btif_gatt_server.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-04-02T17:34:07Z",
+      "side": 1,
+      "message": "Perhaps you could add a test for public address advertise case as well?",
+      "parentUuid": "d6f5c348_7a05510f",
+      "range": {
+        "startLine": 328,
+        "startChar": 12,
+        "endLine": 328,
+        "endChar": 44
+      },
+      "revId": "7c02af12708b8fdce823bde24adeabbb32f485f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
