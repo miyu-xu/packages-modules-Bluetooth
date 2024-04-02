@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 The Android Open Source Project
+ * Copyright 2023 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,14 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#pragma once
 
-#include "bta_le_audio_api.h"
-#include "osi/include/properties.h"
-
-bool LeAudioHalVerifier::SupportsLeAudio() {
-  return osi_property_get_bool("bluetooth.le_audio.enable_le_audio_only",
-                               false);
-}
-bool LeAudioHalVerifier::SupportsLeAudioHardwareOffload() { return false; }
-bool LeAudioHalVerifier::SupportsLeAudioBroadcast() { return false; }
-bool LeAudioHalVerifier::SupportsStreamActiveApi() { return false; }
+// TODO(b/305066880) - Deprecate once replaced with fmtlib implementation.
+// These log levels may need to be mapped to system values. These values are
+// used to control the log level and should match
+// `bluetooth::log_internal::Level`.
+enum LogLevels {
+  LOG_TAG_VERBOSE = 2,
+  LOG_TAG_DEBUG = 3,
+  LOG_TAG_INFO = 4,
+  LOG_TAG_WARN = 5,
+  LOG_TAG_ERROR = 6,
+  LOG_TAG_FATAL = 7,
+};
