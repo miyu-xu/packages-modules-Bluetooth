@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3af3320_8c93a949",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-02T03:49:34Z",
+      "side": 1,
+      "message": "on_msft_read_supported_features_complete is only being used by gatt_ble_scanner_shim.cc [1]. May I know any Android code use it?\n\n\n[1] https://cs.android.com/search?q\u003dmsft_adv_monitor_add\u0026sq\u003d\u0026ss\u003dandroid%2Fplatform%2Fsuperproject%2Fmain",
+      "parentUuid": "c183f0c7_a3396bd3",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 32
+      },
+      "revId": "a0cd02d477a040d13db456d8a9fdbbb3d422ad06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "179689b0_5742629c",
