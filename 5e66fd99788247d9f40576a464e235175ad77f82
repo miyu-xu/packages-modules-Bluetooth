@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f79829f_b5befe5c",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 3827,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-04-02T20:58:30Z",
+      "side": 1,
+      "message": "Use newer log::debug instead.\n\n```suggestion\n      log::debug(\"clear auth collision info after disconnection\");\n```",
+      "range": {
+        "startLine": 3827,
+        "startChar": 6,
+        "endLine": 3827,
+        "endChar": 15
+      },
+      "revId": "5e66fd99788247d9f40576a464e235175ad77f82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
