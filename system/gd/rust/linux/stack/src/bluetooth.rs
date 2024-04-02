@@ -155,6 +155,9 @@ pub trait IBluetooth {
     /// Checks when discovery ends in milliseconds from now.
     fn get_discovery_end_millis(&self) -> u64;
 
+    /// Checks whether pairing is not ready.
+    fn is_pairing_busy(&self) -> bool;
+
     /// Initiates pairing to a remote device. Triggers connection if not already started.
     fn create_bond(&mut self, device: BluetoothDevice, transport: BtTransport) -> BtStatus;
 
@@ -648,7 +651,12 @@ impl Bluetooth {
                 self.hh.as_mut().unwrap().activate_hogp(false);
             }
 
-            Profile::A2dpSource | Profile::Hfp | Profile::AvrcpTarget => {
+            Profile::A2dpSource
+            | Profile::Hfp
+            | Profile::AvrcpTarget
+            | Profile::LeAudio
+            | Profile::VolumeControl
+            | Profile::CoordinatedSet => {
                 self.bluetooth_media.lock().unwrap().disable_profile(profile);
             }
             // Ignore profiles that we don't connect.
@@ -670,7 +678,12 @@ impl Bluetooth {
                 self.hh.as_mut().unwrap().activate_hogp(true);
             }
 
-            Profile::A2dpSource | Profile::Hfp | Profile::AvrcpTarget => {
+            Profile::A2dpSource
+            | Profile::Hfp
+            | Profile::AvrcpTarget
+            | Profile::LeAudio
+            | Profile::VolumeControl
+            | Profile::CoordinatedSet => {
                 self.bluetooth_media.lock().unwrap().enable_profile(profile);
             }
             // Ignore profiles that we don't connect.
@@ -688,7 +701,12 @@ impl Bluetooth {
 
             Profile::Hogp => Some(self.hh.as_ref().unwrap().is_hogp_activated),
 
-            Profile::A2dpSource | Profile::Hfp | Profile::AvrcpTarget => {
+            Profile::A2dpSource
+            | Profile::Hfp
+            | Profile::AvrcpTarget
+            | Profile::LeAudio
+            | Profile::VolumeControl
+            | Profile::CoordinatedSet => {
                 self.bluetooth_media.lock().unwrap().is_profile_enabled(profile)
             }
             // Ignore profiles that we don't connect.
@@ -1076,6 +1094,15 @@ impl Bluetooth {
                                     .collect(),
                             ));
                         }
+                        if result.service_data.len() > 0 {
+                            props.push(BluetoothProperty::Uuids(
+                                result
+                                    .service_data
+                                    .keys()
+                                    .map(|v| UuidHelper::from_string(v).unwrap().into())
+                                    .collect(),
+                            ));
+                        }
                         props.push(BluetoothProperty::RemoteRssi(result.rssi));
                         props.push(BluetoothProperty::RemoteAddrType(
                             (result.addr_type as u32).into(),
@@ -1243,13 +1270,7 @@ pub(crate) trait BtifBluetoothCallbacks {
     fn discovery_state(&mut self, state: BtDiscoveryState) {}
 
     #[btif_callback(SspRequest)]
-    fn ssp_request(
-        &mut self,
-        remote_addr: RawAddress,
-        variant: BtSspVariant,
-        passkey: u32,
-    ) {
-    }
+    fn ssp_request(&mut self, remote_addr: RawAddress, variant: BtSspVariant, passkey: u32) {}
 
     #[btif_callback(BondState)]
     fn bond_state(
@@ -1609,12 +1630,7 @@ impl BtifBluetoothCallbacks for Bluetooth {
         }
     }
 
-    fn ssp_request(
-        &mut self,
-        remote_addr: RawAddress,
-        variant: BtSspVariant,
-        passkey: u32,
-    ) {
+    fn ssp_request(&mut self, remote_addr: RawAddress, variant: BtSspVariant, passkey: u32) {
         // Accept the Just-Works pairing that we initiated, reject otherwise.
         if variant == BtSspVariant::Consent {
             let initiated_by_us = Some(remote_addr.clone()) == self.active_pairing_address;
@@ -2279,6 +2295,10 @@ impl IBluetooth for Bluetooth {
         }
     }
 
+    fn is_pairing_busy(&self) -> bool {
+        self.intf.lock().unwrap().pairing_is_busy()
+    }
+
     fn create_bond(&mut self, device: BluetoothDevice, transport: BtTransport) -> BtStatus {
         let addr = RawAddress::from_string(device.address.clone());
 
@@ -2718,7 +2738,8 @@ impl IBluetooth for Bluetooth {
 
         // Check all remote uuids to see if they match enabled profiles and connect them.
         let mut has_enabled_uuids = false;
-        let mut has_media_profile = false;
+        let mut has_classic_media_profile = false;
+        let mut has_le_media_profile = false;
         let mut has_supported_profile = false;
         let uuids = self.get_remote_uuids(device.clone());
         for uuid in uuids.iter() {
@@ -2753,11 +2774,27 @@ impl IBluetooth for Bluetooth {
                                 }
                             }
 
+                            // TODO(b/317682584): implement policy to connect to LEA, VC, and CSIS
+                            Profile::LeAudio | Profile::VolumeControl | Profile::CoordinatedSet
+                                if !has_le_media_profile =>
+                            {
+                                has_le_media_profile = true;
+                                let txl = self.tx.clone();
+                                let address = device.address.clone();
+                                topstack::get_runtime().spawn(async move {
+                                    let _ = txl
+                                        .send(Message::Media(
+                                            MediaActions::ConnectLeGroupByMemberAddress(address),
+                                        ))
+                                        .await;
+                                });
+                            }
+
                             Profile::A2dpSink | Profile::A2dpSource | Profile::Hfp
-                                if !has_media_profile =>
+                                if !has_classic_media_profile =>
                             {
                                 has_supported_profile = true;
-                                has_media_profile = true;
+                                has_classic_media_profile = true;
                                 let txl = self.tx.clone();
                                 let address = device.address.clone();
                                 topstack::get_runtime().spawn(async move {
@@ -2831,7 +2868,7 @@ impl IBluetooth for Bluetooth {
 
         let addr = RawAddress::from_string(device.address.clone());
         if addr.is_none() {
-            warn!("Can't connect profiles on invalid address [{}]", &device.address);
+            warn!("Can't disconnect profiles on invalid address [{}]", &device.address);
             return false;
         }
 
@@ -2844,7 +2881,8 @@ impl IBluetooth for Bluetooth {
         }
 
         let uuids = self.get_remote_uuids(device.clone());
-        let mut has_media_profile = false;
+        let mut has_classic_media_profile = false;
+        let mut has_le_media_profile = false;
         for uuid in uuids.iter() {
             match UuidHelper::is_known_profile(uuid) {
                 Some(p) => {
@@ -2866,13 +2904,29 @@ impl IBluetooth for Bluetooth {
                                 );
                             }
 
+                            // TODO(b/317682584): implement policy to disconnect from LEA, VC, and CSIS
+                            Profile::LeAudio | Profile::VolumeControl | Profile::CoordinatedSet
+                                if !has_le_media_profile =>
+                            {
+                                has_le_media_profile = true;
+                                let txl = self.tx.clone();
+                                let address = device.address.clone();
+                                topstack::get_runtime().spawn(async move {
+                                    let _ = txl
+                                        .send(Message::Media(
+                                            MediaActions::DisconnectLeGroupByMemberAddress(address),
+                                        ))
+                                        .await;
+                                });
+                            }
+
                             Profile::A2dpSink
                             | Profile::A2dpSource
                             | Profile::Hfp
                             | Profile::AvrcpController
-                                if !has_media_profile =>
+                                if !has_classic_media_profile =>
                             {
-                                has_media_profile = true;
+                                has_classic_media_profile = true;
                                 let txl = self.tx.clone();
                                 let address = device.address.clone();
                                 topstack::get_runtime().spawn(async move {
