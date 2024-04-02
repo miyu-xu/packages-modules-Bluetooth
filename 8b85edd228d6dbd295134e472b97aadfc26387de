@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "32022c7e_f30ec538",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 786,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-04-02T09:04:19Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8a74f69a_5b75f8d4",
+      "range": {
+        "startLine": 786,
+        "startChar": 14,
+        "endLine": 786,
+        "endChar": 32
+      },
+      "revId": "8b85edd228d6dbd295134e472b97aadfc26387de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "79dad9b3_465c16db",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-29T18:57:23Z",
       "side": 1,
       "message": "wouldn\u0027t this wait for the operation forever?",
+      "range": {
+        "startLine": 808,
+        "startChar": 4,
+        "endLine": 809,
+        "endChar": 69
+      },
+      "revId": "8b85edd228d6dbd295134e472b97aadfc26387de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c5bf669_9432517e",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 809,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-04-02T09:04:19Z",
+      "side": 1,
+      "message": "it should be canceled when\n1. Notification will be received\n2. If GATT operation will timeout and device will be disconnected \n3. When GATT operation fail \n\nIt turns out that 2 and 3 is not really working and I fixed that with additional CLs.",
+      "parentUuid": "79dad9b3_465c16db",
       "range": {
         "startLine": 808,
         "startChar": 4,
