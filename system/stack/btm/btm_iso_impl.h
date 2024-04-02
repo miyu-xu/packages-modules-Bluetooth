@@ -562,16 +562,16 @@ struct iso_impl {
     iso->sync_info.seq_nb = (seq_nb + 1) & 0xffff;
 
     if (iso_credits_ == 0 || data_len > iso_buffer_size_) {
-      iso->cr_stats.credits_underflow_bytes += data_len;
-      iso->cr_stats.credits_underflow_count++;
-      iso->cr_stats.credits_last_underflow_us =
-          bluetooth::common::time_get_os_boottime_us();
+      // iso->cr_stats.credits_underflow_bytes += data_len;
+      // iso->cr_stats.credits_underflow_count++;
+      // iso->cr_stats.credits_last_underflow_us =
+      //     bluetooth::common::time_get_os_boottime_us();
 
       log::warn(
           ", dropping ISO packet, len: {}, iso credits: {}, iso handle: {}",
           static_cast<int>(data_len), static_cast<int>(iso_credits_),
           loghex(iso_handle));
-      return;
+      // return;
     }
 
     iso_credits_--;

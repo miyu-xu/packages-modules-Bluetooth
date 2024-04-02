@@ -61,9 +61,6 @@ void vlog(Level level, char const* tag, source_location location,
   switch (level) {
     case Level::kVerbose:
     case Level::kDebug:
-    default:
-      severity = LOG_DEBUG;
-      break;
     case Level::kInfo:
       severity = LOG_INFO;
       break;

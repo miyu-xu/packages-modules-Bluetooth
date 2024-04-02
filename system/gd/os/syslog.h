@@ -13,14 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#pragma once
 
-#include "bta_le_audio_api.h"
-#include "osi/include/properties.h"
+#include <cstdarg>
+#include <cstdint>
 
-bool LeAudioHalVerifier::SupportsLeAudio() {
-  return osi_property_get_bool("bluetooth.le_audio.enable_le_audio_only",
-                               false);
-}
-bool LeAudioHalVerifier::SupportsLeAudioHardwareOffload() { return false; }
-bool LeAudioHalVerifier::SupportsLeAudioBroadcast() { return false; }
-bool LeAudioHalVerifier::SupportsStreamActiveApi() { return false; }
+/**
+ * This header is used for systems targeting syslog as their log target (i.e.
+ * Floss builds).
+ */
+
+/**
+ * Write log to syslog.
+ */
+void write_syslog(int level, const char* tag, const char* format, ...);
