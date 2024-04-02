@@ -828,6 +828,9 @@ pub enum SupportedProfiles {
     Socket,
     HfClient,
     AvrcpCtrl,
+    LeAudio,
+    VolumeControl,
+    CoordinatedSet,
 }
 
 impl From<SupportedProfiles> for Vec<u8> {
@@ -841,6 +844,9 @@ impl From<SupportedProfiles> for Vec<u8> {
             SupportedProfiles::Socket => "socket",
             SupportedProfiles::HfClient => "handsfree_client",
             SupportedProfiles::AvrcpCtrl => "avrcp_ctrl",
+            SupportedProfiles::LeAudio => "le_audio",
+            SupportedProfiles::VolumeControl => "volume_control",
+            SupportedProfiles::CoordinatedSet => "csis_client",
         }
         .bytes()
         .chain("\0".bytes())
@@ -1281,6 +1287,10 @@ impl BluetoothInterface {
 
     pub fn cancel_discovery(&self) -> i32 {
         ccall!(self, cancel_discovery)
+    }
+
+    pub fn pairing_is_busy(&self) -> bool {
+        ccall!(self, pairing_is_busy)
     }
 
     pub fn create_bond(&self, addr: &RawAddress, transport: BtTransport) -> i32 {
