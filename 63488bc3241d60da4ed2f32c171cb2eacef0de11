@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9904c097_91ae76ca",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 958,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-04-02T23:34:32Z",
+      "side": 1,
+      "message": "```suggestion\n      if (p_lcb-\u003elink_xmit_data_q \u003d\u003d NULL || list_is_empty(p_lcb-\u003elink_xmit_data_q)) {\n```",
+      "range": {
+        "startLine": 958,
+        "startChar": 0,
+        "endLine": 958,
+        "endChar": 75
+      },
+      "revId": "63488bc3241d60da4ed2f32c171cb2eacef0de11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
