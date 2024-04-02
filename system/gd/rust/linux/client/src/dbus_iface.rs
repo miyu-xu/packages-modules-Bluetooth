@@ -2639,6 +2639,16 @@ impl IBluetoothMedia for BluetoothMediaDBus {
         dbus_generated!()
     }
 
+    #[dbus_method("ConnectVc")]
+    fn connect_vc(&mut self, address: String) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("DisconnectVc")]
+    fn disconnect_vc(&mut self, address: String) {
+        dbus_generated!()
+    }
+
     #[dbus_method("SetActiveDevice")]
     fn set_active_device(&mut self, address: String) {
         dbus_generated!()
@@ -2809,6 +2819,11 @@ impl IBluetoothMedia for BluetoothMediaDBus {
 
     #[dbus_method("GetGroupStreamStatus")]
     fn get_group_stream_status(&mut self, group_id: i32) -> BtLeAudioGroupStreamStatus {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SetGroupVolume")]
+    fn set_group_volume(&mut self, group_id: i32, volume: u8) {
         dbus_generated!()
     }
 }
