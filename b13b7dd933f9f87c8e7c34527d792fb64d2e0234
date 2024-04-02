@@ -16,6 +16,24 @@
       "message": "@etienne.ruffieux@codecoup.pl can you have a look ?\n\nIdeally the test should be enabled in pts-bot and run at presubmit, it looks like it is not the case.\nIdeally we should pass pts test without the need to set a property. Is this done in order to have some fake data to send ? Why the device cannot provide the data instead ?",
       "revId": "b13b7dd933f9f87c8e7c34527d792fb64d2e0234",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05d99cf4_385267f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3013946
+      },
+      "writtenOn": "2024-04-02T18:52:46Z",
+      "side": 1,
+      "message": "I have no idea why the test does not run at presubmit, and why we need a property to pass some AVRCP tests, could this be manual PTS testing?\n\nIn this case the only thing I could think of that would explain why we would skip the \"root\" folder created by Android is that it will return not a list of media but a list of browsable folders and PTS might want to play one of the folder items it received: it sends browsing event, then tries to play one item it received -\u003e as we return a media folder and not a media in root it might fail the test so we select directly a browsable player and fetch its content.\n\nIf this fix works, I\u0027m not sure why we would need the property though as it looks similar to what happens without it.\n\n@ruinali@amazon.com is the test passing without the property set (or without the conditions in the methods you are modifying)?\n\n@wescande@google.com you may want to contact whoever made the modification for the PTS tests and ask them why this has been done like that because I won\u0027t have a final answer here (can\u0027t run the tests locally right now). :)",
+      "parentUuid": "e89614e3_7fe0d254",
+      "revId": "b13b7dd933f9f87c8e7c34527d792fb64d2e0234",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
