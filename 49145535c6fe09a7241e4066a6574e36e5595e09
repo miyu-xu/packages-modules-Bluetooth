@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "044fb1aa_8353be84",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-02T23:00:47Z",
+      "side": 1,
+      "message": "Should this be debug?",
+      "range": {
+        "startLine": 504,
+        "startChar": 11,
+        "endLine": 504,
+        "endChar": 18
+      },
+      "revId": "49145535c6fe09a7241e4066a6574e36e5595e09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "944a7f25_da05f899",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-02T23:00:47Z",
+      "side": 1,
+      "message": "Device connection was pending?\n```suggestion\n      log::verbose(\"Device connection was pending for: {}, status: {}\",\n```",
+      "range": {
+        "startLine": 511,
+        "startChar": 20,
+        "endLine": 511,
+        "endChar": 59
+      },
+      "revId": "49145535c6fe09a7241e4066a6574e36e5595e09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
