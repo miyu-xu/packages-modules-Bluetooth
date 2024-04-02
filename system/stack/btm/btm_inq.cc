@@ -825,7 +825,7 @@ tBTM_STATUS BTM_StartInquiry(tBTM_INQ_RESULTS_CB* p_results_cb,
 tBTM_STATUS BTM_ReadRemoteDeviceName(const RawAddress& remote_bda,
                                      tBTM_NAME_CMPL_CB* p_cb,
                                      tBT_TRANSPORT transport) {
-  log::verbose("bd addr {}", ADDRESS_TO_LOGGABLE_STR(remote_bda));
+  log::verbose("bd addr {}", remote_bda);
   /* Use LE transport when LE is the only available option */
   if (transport == BT_TRANSPORT_LE) {
     return btm_ble_read_remote_name(remote_bda, p_cb);

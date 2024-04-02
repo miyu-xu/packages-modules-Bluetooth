@@ -293,8 +293,7 @@ void client_connect_cback(tGATT_IF, const RawAddress& bda, uint16_t conn_id,
                           tBT_TRANSPORT) {
   tGAP_CLCB* p_clcb = find_clcb_by_bd_addr(bda);
   if (p_clcb == NULL) {
-    log::info("No active GAP service found for peer:{} callback:{}",
-              ADDRESS_TO_LOGGABLE_CSTR(bda),
+    log::info("No active GAP service found for peer:{} callback:{}", bda,
               (connected) ? "Connected" : "Disconnected");
     return;
   }

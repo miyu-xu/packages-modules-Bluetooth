@@ -592,8 +592,7 @@ static tBTM_STATUS btm_send_connect_request(uint16_t acl_handle,
             acl_handle);
       }
     } else {
-      log::error("Received SCO connect from unknown peer:{}",
-                 ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+      log::error("Received SCO connect from unknown peer:{}", bd_addr);
     }
 
     p_setup->packet_types = temp_packet_types;
@@ -681,8 +680,7 @@ tBTM_STATUS BTM_CreateSco(const RawAddress* remote_bda, bool is_orig,
     }
     acl_handle = BTM_GetHCIConnHandle(*remote_bda, BT_TRANSPORT_BR_EDR);
     if (acl_handle == HCI_INVALID_HANDLE) {
-      log::error("cannot find ACL handle for remote device {}",
-                 ADDRESS_TO_LOGGABLE_STR(*remote_bda));
+      log::error("cannot find ACL handle for remote device {}", *remote_bda);
       return BTM_UNKNOWN_ADDR;
     }
   }
@@ -694,7 +692,7 @@ tBTM_STATUS BTM_CreateSco(const RawAddress* remote_bda, bool is_orig,
            (p->state == SCO_ST_PEND_UNPARK)) &&
           (p->esco.data.bd_addr == *remote_bda)) {
         log::error("a sco connection is already going on for {}, at state {}",
-                   ADDRESS_TO_LOGGABLE_STR(*remote_bda), unsigned(p->state));
+                   *remote_bda, unsigned(p->state));
         return BTM_BUSY;
       }
     }
@@ -720,16 +718,15 @@ tBTM_STATUS BTM_CreateSco(const RawAddress* remote_bda, bool is_orig,
           if (BTM_ReadPowerMode(*remote_bda, &state)) {
             if (state == BTM_PM_ST_SNIFF || state == BTM_PM_ST_PARK ||
                 state == BTM_PM_ST_PENDING) {
-              log::info("{} in sniff, park or pending mode {}",
-                        ADDRESS_TO_LOGGABLE_STR(*remote_bda), unsigned(state));
+              log::info("{} in sniff, park or pending mode {}", *remote_bda,
+                        unsigned(state));
               if (!BTM_SetLinkPolicyActiveMode(*remote_bda)) {
                 log::warn("Unable to set link policy active");
               }
               p->state = SCO_ST_PEND_UNPARK;
             }
           } else {
-            log::error("failed to read power mode for {}",
-                       ADDRESS_TO_LOGGABLE_STR(*remote_bda));
+            log::error("failed to read power mode for {}", *remote_bda);
           }
         }
         p->esco.data.bd_addr = *remote_bda;
@@ -777,8 +774,7 @@ tBTM_STATUS BTM_CreateSco(const RawAddress* remote_bda, bool is_orig,
 
           if ((btm_send_connect_request(acl_handle, p_setup)) !=
               BTM_CMD_STARTED) {
-            log::error("failed to send connect request for {}",
-                       ADDRESS_TO_LOGGABLE_STR(*remote_bda));
+            log::error("failed to send connect request for {}", *remote_bda);
             return (BTM_NO_RESOURCES);
           }
 
@@ -825,14 +821,13 @@ void btm_sco_chk_pend_unpark(tHCI_STATUS hci_status, uint16_t hci_handle) {
       log::info(
           "{} unparked, sending connection request, acl_handle={}, "
           "hci_status={}",
-          ADDRESS_TO_LOGGABLE_STR(p->esco.data.bd_addr), unsigned(acl_handle),
-          unsigned(hci_status));
+          p->esco.data.bd_addr, unsigned(acl_handle), unsigned(hci_status));
       if (btm_send_connect_request(acl_handle, &p->esco.setup) ==
           BTM_CMD_STARTED) {
         p->state = SCO_ST_CONNECTING;
       } else {
         log::error("failed to send connection request for {}",
-                   ADDRESS_TO_LOGGABLE_STR(p->esco.data.bd_addr));
+                   p->esco.data.bd_addr);
       }
     }
   }
@@ -970,7 +965,7 @@ void btm_sco_conn_req(const RawAddress& bda, const DEV_CLASS& dev_class,
   }
 
   /* If here, no one wants the SCO connection. Reject it */
-  log::warn("rejecting SCO for {}", ADDRESS_TO_LOGGABLE_CSTR(bda));
+  log::warn("rejecting SCO for {}", bda);
   btm_esco_conn_rsp(BTM_MAX_SCO_LINKS, HCI_ERR_HOST_REJECT_RESOURCES, bda,
                     nullptr);
 }
@@ -1011,8 +1006,7 @@ void btm_sco_connected(const RawAddress& bda, uint16_t hci_handle,
       BTM_LogHistory(kBtmLogTag, bda, "Connection success",
                      base::StringPrintf("handle:0x%04x %s", hci_handle,
                                         (spt) ? "listener" : "initiator"));
-      log::debug("Connected SCO link handle:0x{:04x} peer:{}", hci_handle,
-                 ADDRESS_TO_LOGGABLE_CSTR(bda));
+      log::debug("Connected SCO link handle:0x{:04x} peer:{}", hci_handle, bda);
 
       if (!btm_cb.sco_cb.esco_supported) {
         p->esco.data.link_type = BTM_LINK_TYPE_SCO;
@@ -1171,7 +1165,7 @@ tBTM_STATUS BTM_RemoveSco(uint16_t sco_inx) {
   GetInterface().Disconnect(p->Handle(), HCI_ERR_PEER_USER);
 
   log::debug("Disconnecting link sco_handle:0x{:04x} peer:{}", p->Handle(),
-             ADDRESS_TO_LOGGABLE_CSTR(p->esco.data.bd_addr));
+             p->esco.data.bd_addr);
   BTM_LogHistory(
       kBtmLogTag, p->esco.data.bd_addr, "Disconnecting",
       base::StringPrintf("local initiated handle:0x%04x previous_state:%s",

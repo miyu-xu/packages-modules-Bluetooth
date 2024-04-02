@@ -1256,7 +1256,7 @@ tBNEP_RESULT bnep_is_packet_allowed(tBNEP_CONN* p_bcb,
     if ((p_bcb->rcvd_mcast_filters == 0xFFFF) ||
         (i == p_bcb->rcvd_mcast_filters)) {
       log::verbose("Ignoring multicast address {} in BNEP data write",
-                   ADDRESS_TO_LOGGABLE_STR(dest_addr));
+                   dest_addr);
       return BNEP_IGNORE_CMD;
     }
   }
