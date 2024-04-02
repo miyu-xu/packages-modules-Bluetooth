@@ -5510,7 +5510,11 @@ class LeAudioClientImpl : public LeAudioClient {
       return;
     }
 
+#ifdef TARGET_FLOSS
+    GroupStreamStatus newGroupStreamStatus = groupStreamStatus;
+#else
     GroupStreamStatus newGroupStreamStatus = GroupStreamStatus::IDLE;
+#endif
     if (groupStreamStatus == GroupStreamStatus::STREAMING) {
       newGroupStreamStatus = GroupStreamStatus::STREAMING;
     }
@@ -5656,6 +5660,7 @@ class LeAudioClientImpl : public LeAudioClient {
          * STREAMING. Peer device uses cache. For the moment
          * it is handled same as IDLE
          */
+        [[fallthrough]];
       case GroupStreamStatus::IDLE: {
         if (sw_enc_left) sw_enc_left.reset();
         if (sw_enc_right) sw_enc_right.reset();
