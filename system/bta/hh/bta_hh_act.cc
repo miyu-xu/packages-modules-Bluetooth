@@ -521,7 +521,7 @@ void bta_hh_api_disc_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
 
   if (p_cb->link_spec.transport == BT_TRANSPORT_LE) {
     log::debug("Host initiating close to le device:{}",
-               ADDRESS_TO_LOGGABLE_CSTR(p_cb->link_spec));
+               ToLoggableStr(p_cb->link_spec));
 
     bta_hh_le_api_disc_act(p_cb);
 
@@ -532,11 +532,10 @@ void bta_hh_api_disc_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
     tHID_STATUS status = HID_HostCloseDev(hid_handle);
     if (status != HID_SUCCESS) {
       log::warn("Failed closing classic device:{} status:{}",
-                ADDRESS_TO_LOGGABLE_CSTR(p_cb->link_spec),
-                hid_status_text(status));
+                ToLoggableStr(p_cb->link_spec), hid_status_text(status));
     } else {
       log::debug("Host initiated close to classic device:{}",
-                 ADDRESS_TO_LOGGABLE_CSTR(p_cb->link_spec));
+                 ToLoggableStr(p_cb->link_spec));
     }
     tBTA_HH bta_hh = {
         .dev_status = {.status =

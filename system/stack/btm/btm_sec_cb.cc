@@ -139,7 +139,7 @@ bool tBTM_SEC_CB::IsDeviceEncrypted(const RawAddress bd_addr,
     return false;
   }
 
-  log::error("unknown device:{}", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+  log::error("unknown device:{}", bd_addr);
   return false;
 }
 
@@ -156,7 +156,7 @@ bool tBTM_SEC_CB::IsLinkKeyAuthenticated(const RawAddress bd_addr,
     return false;
   }
 
-  log::error("unknown device:{}", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+  log::error("unknown device:{}", bd_addr);
   return false;
 }
 
@@ -173,7 +173,7 @@ bool tBTM_SEC_CB::IsDeviceAuthenticated(const RawAddress bd_addr,
     return false;
   }
 
-  log::error("unknown device:{}", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+  log::error("unknown device:{}", bd_addr);
   return false;
 }
 
@@ -190,7 +190,7 @@ bool tBTM_SEC_CB::IsLinkKeyKnown(const RawAddress bd_addr,
     return false;
   }
 
-  log::error("unknown device:{}", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+  log::error("unknown device:{}", bd_addr);
   return false;
 }
 
@@ -203,8 +203,8 @@ bool tBTM_SEC_CB::IsDeviceBonded(const RawAddress bd_addr) {
                     p_dev_rec->sec_rec.is_link_key_known())) {
     is_bonded = true;
   }
-  log::debug("Device record bonded check peer:{} is_bonded:{}",
-             ADDRESS_TO_LOGGABLE_CSTR(bd_addr), is_bonded);
+  log::debug("Device record bonded check peer:{} is_bonded:{}", bd_addr,
+             is_bonded);
   return is_bonded;
 }
 

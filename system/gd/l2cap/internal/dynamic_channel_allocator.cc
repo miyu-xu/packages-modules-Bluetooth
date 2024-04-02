@@ -46,10 +46,7 @@ std::shared_ptr<DynamicChannelImpl> DynamicChannelAllocator::AllocateChannel(Psm
   auto elem =
       channels_.try_emplace(cid, std::make_shared<DynamicChannelImpl>(psm, cid, remote_cid, link_, l2cap_handler_));
   log::assert_that(
-      elem.second,
-      "Failed to create channel for psm 0x{:x} device {}",
-      psm,
-      ADDRESS_TO_LOGGABLE_CSTR(link_->GetDevice()));
+      elem.second, "Failed to create channel for psm 0x{:x} device {}", psm, link_->GetDevice());
   log::assert_that(elem.first->second != nullptr, "assert failed: elem.first->second != nullptr");
   used_remote_cid_.insert(remote_cid);
   used_cid_.insert(cid);
@@ -65,10 +62,7 @@ std::shared_ptr<DynamicChannelImpl> DynamicChannelAllocator::AllocateReservedCha
   auto elem = channels_.try_emplace(
       reserved_cid, std::make_shared<DynamicChannelImpl>(psm, reserved_cid, remote_cid, link_, l2cap_handler_));
   log::assert_that(
-      elem.second,
-      "Failed to create channel for psm 0x{:x} device {}",
-      psm,
-      ADDRESS_TO_LOGGABLE_CSTR(link_->GetDevice()));
+      elem.second, "Failed to create channel for psm 0x{:x} device {}", psm, link_->GetDevice());
   log::assert_that(elem.first->second != nullptr, "assert failed: elem.first->second != nullptr");
   used_remote_cid_.insert(remote_cid);
   return elem.first->second;
@@ -91,10 +85,7 @@ void DynamicChannelAllocator::FreeChannel(Cid cid) {
   used_cid_.erase(cid);
   auto channel = FindChannelByCid(cid);
   if (channel == nullptr) {
-    log::info(
-        "Channel is not in use: cid {}, device {}",
-        cid,
-        ADDRESS_TO_LOGGABLE_CSTR(link_->GetDevice()));
+    log::info("Channel is not in use: cid {}, device {}", cid, link_->GetDevice());
     return;
   }
   used_remote_cid_.erase(channel->GetRemoteCid());

@@ -1053,9 +1053,7 @@ static void sync_queue_cleanup(remove_sync_node_t* p_param) {
     if (sync_request->sid == p_param->sid &&
         sync_request->address == p_param->address) {
       log::info("removing connection request SID={:04X}, bd_addr={}, busy={}",
-                sync_request->sid,
-                ADDRESS_TO_LOGGABLE_CSTR(sync_request->address),
-                sync_request->busy);
+                sync_request->sid, sync_request->address, sync_request->busy);
       list_remove(sync_queue, sync_request);
     }
   }
@@ -1099,7 +1097,7 @@ static void btm_queue_sync_next() {
   sync_node_t* p_head = (sync_node_t*)list_front(sync_queue);
 
   log::info("executing sync request SID={:04X}, bd_addr={}", p_head->sid,
-            ADDRESS_TO_LOGGABLE_CSTR(p_head->address));
+            p_head->address);
   if (p_head->busy) {
     log::debug("BUSY");
     return;
@@ -1334,8 +1332,7 @@ static uint8_t btm_set_conn_mode_adv_init_addr(
         .type = *p_peer_addr_type,
         .bda = p_peer_addr_ptr,
     };
-    log::debug("Received BLE connect event {}",
-               ADDRESS_TO_LOGGABLE_CSTR(ble_bd_addr));
+    log::debug("Received BLE connect event {}", ble_bd_addr);
 
     evt_type = btm_cb.ble_ctr_cb.inq_var.directed_conn;
 
@@ -2259,7 +2256,7 @@ void btm_ble_process_adv_addr(RawAddress& bda, tBLE_ADDR_TYPE* addr_type) {
   /* map address to security record */
   bool match = btm_identity_addr_to_random_pseudo(&bda, addr_type, false);
 
-  log::verbose("bda={}", ADDRESS_TO_LOGGABLE_STR(bda));
+  log::verbose("bda={}", bda);
   /* always do RRA resolution on host */
   if (!match && BTM_BLE_IS_RESOLVE_BDA(bda)) {
     tBTM_SEC_DEV_REC* match_rec = btm_ble_resolve_random_addr(bda);
@@ -2320,8 +2317,7 @@ void btm_ble_process_adv_pkt_cont(uint16_t evt_type, tBLE_ADDR_TYPE addr_type,
 
   if (!data_complete) {
     // If we didn't receive whole adv data yet, don't report the device.
-    log::verbose("Data not complete yet, waiting for more {}",
-                 ADDRESS_TO_LOGGABLE_STR(bda));
+    log::verbose("Data not complete yet, waiting for more {}", bda);
     return;
   }
 
@@ -2329,7 +2325,7 @@ void btm_ble_process_adv_pkt_cont(uint16_t evt_type, tBLE_ADDR_TYPE addr_type,
       btm_cb.ble_ctr_cb.inq_var.scan_type == BTM_BLE_SCAN_MODE_ACTI;
   if (is_active_scan && is_scannable && !is_scan_resp) {
     // If we didn't receive scan response yet, don't report the device.
-    log::verbose(" Waiting for scan response {}", ADDRESS_TO_LOGGABLE_STR(bda));
+    log::verbose(" Waiting for scan response {}", bda);
     return;
   }
 

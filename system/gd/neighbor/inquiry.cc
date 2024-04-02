@@ -249,7 +249,7 @@ void neighbor::InquiryModule::impl::OnEvent(hci::EventView view) {
       log::assert_that(packet.IsValid(), "assert failed: packet.IsValid()");
       log::info(
           "Extended inquiry result addr:{} repetition_mode:{} cod:{} clock_offset:{} rssi:{}",
-          ADDRESS_TO_LOGGABLE_CSTR(packet.GetAddress()),
+          packet.GetAddress(),
           hci::PageScanRepetitionModeText(packet.GetPageScanRepetitionMode()),
           packet.GetClassOfDevice().ToString(),
           packet.GetClockOffset(),

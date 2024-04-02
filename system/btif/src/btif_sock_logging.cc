@@ -165,8 +165,7 @@ void SockConnectionEvent::dump(const int fd) {
   }
 
   dprintf(fd, "  %s\t%s\t%s   \t%s      \t%d         \t%s\t%s\n", eventtime,
-          ADDRESS_TO_LOGGABLE_CSTR(addr), str_state, str_role, channel,
-          str_type, server_name);
+          addr, str_state, str_role, channel, str_type, server_name);
 }
 
 static android::bluetooth::SocketConnectionstateEnum toConnectionStateEnum(

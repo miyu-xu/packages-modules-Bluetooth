@@ -63,7 +63,7 @@ void FixedChannelImpl::OnClosed(hci::ErrorCode status) {
   log::assert_that(
       !closed_,
       "Device {} Cid 0x{:x} closed twice, old status 0x{:x}, new status 0x{:x}",
-      ADDRESS_TO_LOGGABLE_CSTR(device_),
+      device_,
       cid_,
       static_cast<int>(close_reason_),
       static_cast<int>(status));
