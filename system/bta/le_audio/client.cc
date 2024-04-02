@@ -44,6 +44,7 @@
 #include "content_control_id_keeper.h"
 #include "devices.h"
 #include "hci/controller_interface.h"
+#include "hci/hci_interface.h"
 #include "include/check.h"
 #include "internal_include/bt_trace.h"
 #include "internal_include/stack_config.h"
@@ -1133,6 +1134,25 @@ class LeAudioClientImpl : public LeAudioClient {
     } else {
       ASSERT_LOG(true, "Both configs are invalid");
     }
+
+    uint32_t base_interval = frame_duration_us / 1250;
+    bluetooth::shim::GetHciLayer()->EnqueueCommand(
+        bluetooth::hci::SetEcosystemBaseIntervalBuilder::Create(base_interval),
+        get_main_thread()->BindOnce([](bluetooth::hci::CommandCompleteView
+                                           view) {
+          ASSERT(view.IsValid());
+          auto status_view =
+              bluetooth::hci::SetEcosystemBaseIntervalCompleteView::Create(
+                  bluetooth::hci::SetEcosystemBaseIntervalCompleteView::Create(
+                      view));
+          ASSERT(status_view.IsValid());
+
+          if (status_view.GetStatus() != bluetooth::hci::ErrorCode::SUCCESS) {
+            log::warn("Set Ecosystem Base Interval status {}",
+                      ErrorCodeText(status_view.GetStatus()));
+            return;
+          }
+        }));
 
     audio_framework_source_config.data_interval_us = frame_duration_us;
     le_audio_source_hal_client_->Start(audio_framework_source_config,
