@@ -22,6 +22,30 @@
       },
       "revId": "acf7b6b368e283c7e13bd9663da3aede0cffec91",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdaf7525_8214b536",
+        "filename": "system/stack/test/btm/stack_btm_sec_test.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-02T23:22:10Z",
+      "side": 1,
+      "message": "agreed...will debug-ify the log",
+      "parentUuid": "568d3959_925c1e69",
+      "range": {
+        "startLine": 306,
+        "startChar": 3,
+        "endLine": 307,
+        "endChar": 80
+      },
+      "revId": "acf7b6b368e283c7e13bd9663da3aede0cffec91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
