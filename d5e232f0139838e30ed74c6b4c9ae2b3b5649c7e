@@ -16,6 +16,24 @@
       "message": "\nRemoved the tests of connection with public address which were failing. Here\u0027s why:\n\nBackground:\n- Currently GattServer implementation cannot establish GATT using BREDR. (Need to file a bug for this)\n- Bumble device uses same public address for BR/EDR and LE. And some of the bumble tests (before the failing tests) leave a cache in native stack about the public address and its device type (i.e. this address is a BR/EDR type device).\n- There seems to be no way to clear that cache (`removeBond()` doesn\u0027t work since it was never bonded).\n\nTest failure reason:\n- Previous tests leave cache that the public address of Bumble is a BR/EDR device, which makes the transport is selected `BR/EDR` - which always fails.\n- When the test runs independently, it succeeds since the transport is selected as LE.\n\nSince the removed tests are not related to this bug, I\u0027ll remove them and go on.",
       "revId": "d5e232f0139838e30ed74c6b4c9ae2b3b5649c7e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d330d61_7226468f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-04-02T17:45:02Z",
+      "side": 1,
+      "message": "Can you share a bugreport for the failing test? \n\nIdeally we have coverage for public address type. \n\nAlso see comment on other CL.",
+      "parentUuid": "78ac5604_51d12813",
+      "revId": "d5e232f0139838e30ed74c6b4c9ae2b3b5649c7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
