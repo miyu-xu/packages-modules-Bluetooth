@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7f96be7_d30d059d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-02T23:52:16Z",
+      "side": 1,
+      "message": "There is an OWNERS file in /packages/modules/Bluetooth",
+      "revId": "d9058a6cd8d9cdac33f559a33a7b5ebebd86373a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
