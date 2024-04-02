@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ab5a2a9_2d0864ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-02T22:18:49Z",
+      "side": 1,
+      "message": "one general question, would it be better if we separate the PA_SYNC part from remove removing source?",
+      "revId": "1a409fcf7ae3438f94969f1046d181c0a8223005",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fcb1fc9_5a8b9e06",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2046,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-02T22:18:49Z",
+      "side": 1,
+      "message": "Can we consider to pass UPDATE_BCAST_SOURCE to state machines? and avoid adding paSync as the new parameters to modifySource.",
+      "revId": "1a409fcf7ae3438f94969f1046d181c0a8223005",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4e7c95b_b7ac3196",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassConstants.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-02T22:18:49Z",
+      "side": 1,
+      "message": "should we add one more invalid value to replace \u0027BluetoothLeBroadcastReceiveState.PA_SYNC_STATE_INVALID\u0027 ?",
+      "revId": "1a409fcf7ae3438f94969f1046d181c0a8223005",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63dffb6f_5295008a",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1213,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-02T22:18:49Z",
+      "side": 1,
+      "message": "any reason why we moved this here?\napplication is not using pauseBroadcast at this moment.",
+      "revId": "1a409fcf7ae3438f94969f1046d181c0a8223005",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
