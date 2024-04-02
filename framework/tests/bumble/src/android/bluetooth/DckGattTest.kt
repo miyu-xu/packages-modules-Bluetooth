@@ -106,10 +106,6 @@ public class DckGattTest(private val connected: Boolean) {
                     eq(BluetoothProfile.STATE_CONNECTED)
                 )
             advertiseContext.cancel(null)
-
-            // Wait a bit for the advertising to stop.
-            // b/332322761
-            Thread.sleep(1000)
         }
 
         clearInvocations(gattCallbackMock)
