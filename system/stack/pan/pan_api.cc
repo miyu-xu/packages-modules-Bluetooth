@@ -328,7 +328,7 @@ tPAN_RESULT PAN_Connect(const RawAddress& rem_bda, tPAN_ROLE src_role,
     return PAN_NO_RESOURCES;
   }
 
-  log::verbose("for BD Addr: {}", ADDRESS_TO_LOGGABLE_STR(rem_bda));
+  log::verbose("for BD Addr: {}", rem_bda);
   if (pcb->con_state == PAN_STATE_IDLE) {
     pan_cb.num_conns++;
   } else if (pcb->con_state == PAN_STATE_CONNECTED) {
@@ -683,7 +683,7 @@ void PAN_Dumpsys(int fd) {
   const tPAN_CONN* pcb = &pan_cb.pcb[0];
   for (int i = 0; i < MAX_PAN_CONNS; i++, pcb++) {
     if (pcb->con_state == PAN_STATE_IDLE) continue;
-    LOG_DUMPSYS(fd, "  Id:%d peer:%s", i, ADDRESS_TO_LOGGABLE_CSTR(pcb->rem_bda));
+    LOG_DUMPSYS(fd, "  Id:%d peer:%s", i, pcb->rem_bda);
     LOG_DUMPSYS(
         fd,
         "    rx_packets:%-5lu rx_octets:%-8lu rx_errors:%-5lu rx_drops:%-5lu",
