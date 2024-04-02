@@ -15,8 +15,12 @@
  */
 
 #include "bta_le_audio_api.h"
+#include "osi/include/properties.h"
 
-bool LeAudioHalVerifier::SupportsLeAudio() { return false; }
+bool LeAudioHalVerifier::SupportsLeAudio() {
+  return osi_property_get_bool("bluetooth.le_audio.enable_le_audio_only",
+                               false);
+}
 bool LeAudioHalVerifier::SupportsLeAudioHardwareOffload() { return false; }
 bool LeAudioHalVerifier::SupportsLeAudioBroadcast() { return false; }
 bool LeAudioHalVerifier::SupportsStreamActiveApi() { return false; }
