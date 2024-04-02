@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "756cab1a_55449e31",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-04-02T09:40:44Z",
+      "side": 1,
+      "message": "Patchset 21 fixed the packets unittest",
+      "revId": "9fc977cf212db385ef4602c5220e104e4805638b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
