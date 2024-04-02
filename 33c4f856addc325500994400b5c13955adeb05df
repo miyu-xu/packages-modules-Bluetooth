@@ -45,6 +45,30 @@
       },
       "revId": "33c4f856addc325500994400b5c13955adeb05df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "505e8630_84bcdfdf",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 719,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-04-02T14:47:02Z",
+      "side": 1,
+      "message": "Thanks, good point!",
+      "parentUuid": "ecf0a2cd_5dc6670e",
+      "range": {
+        "startLine": 716,
+        "startChar": 4,
+        "endLine": 719,
+        "endChar": 70
+      },
+      "revId": "33c4f856addc325500994400b5c13955adeb05df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
