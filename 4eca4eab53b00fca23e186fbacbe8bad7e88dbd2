@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "832a9a80_7598b3d6",
+        "filename": "system/gd/os/linux_generic/alarm_timerfd_unittest.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-02T21:39:22Z",
+      "side": 1,
+      "message": "wouldn\u0027t this just make the test pass without the 2nd alarm fired?",
+      "range": {
+        "startLine": 142,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 33
+      },
+      "revId": "4eca4eab53b00fca23e186fbacbe8bad7e88dbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e60ea869_bf61b7c1",
+        "filename": "system/gd/os/linux_generic/alarm_timerfd_unittest.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-02T21:39:22Z",
+      "side": 1,
+      "message": "maybe define a constant in front of the file or allow some command line argument to override a default value so that if someone wants to run the test with different timeouts, they can do it? \n\ne.g. \n\nkFirstTimerTimeout \u003d get_cmd_line(value1, default\u003dmilliseconds(10));\nkSecondTimerTimeout \u003d get_cmd_line(value2, default\u003dmilliseconds(10));\n\nand use `kFirstTimerTimeout` when only one timer is used",
+      "range": {
+        "startLine": 148,
+        "startChar": 19,
+        "endLine": 148,
+        "endChar": 21
+      },
+      "revId": "4eca4eab53b00fca23e186fbacbe8bad7e88dbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
