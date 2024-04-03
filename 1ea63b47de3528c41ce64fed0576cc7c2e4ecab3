@@ -16,6 +16,24 @@
       "message": "Trendy teams is a regression compared to our current owner file based test ownership attribution, @girardier@google.com is currently discussing with the team behind this change to know what we should do with Bluetooth. I think we should not merge this until we know what to do here.\n\nAlso in the future, for changes like that it would be good to have broader discussions.",
       "revId": "1ea63b47de3528c41ce64fed0576cc7c2e4ecab3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07573deb_cae023cd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-03T17:12:10Z",
+      "side": 1,
+      "message": "It costs us very little (one line in one build file).  What\u0027s the down side?  The other option for me is to disable their lint.\n\n\nUnless the change directly affects the team, it feels like a waste of time to discuss it.",
+      "parentUuid": "e6e1b3f0_c93939f5",
+      "revId": "1ea63b47de3528c41ce64fed0576cc7c2e4ecab3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
