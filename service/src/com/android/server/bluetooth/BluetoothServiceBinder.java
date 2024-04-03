@@ -287,8 +287,11 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
     }
 
     @Override
-    public boolean isBleScanAlwaysAvailable() {
-        return mBluetoothManagerService.isBleScanAlwaysAvailable();
+    public boolean isBleScanAvailable() {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
+        return mBluetoothManagerService.isBleScanAvailable();
     }
 
     @Override

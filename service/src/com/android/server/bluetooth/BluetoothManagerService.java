@@ -942,7 +942,7 @@ class BluetoothManagerService {
         }
     }
 
-    boolean isBleScanAlwaysAvailable() {
+    boolean isBleScanAvailable() {
         if (isAirplaneModeOn() && !mEnable) {
             return false;
         }
@@ -976,7 +976,7 @@ class BluetoothManagerService {
                 new ContentObserver(new Handler(mLooper)) {
                     @Override
                     public void onChange(boolean selfChange) {
-                        if (isBleScanAlwaysAvailable()) {
+                        if (isBleScanAvailable()) {
                             // Nothing to do
                             return;
                         }
