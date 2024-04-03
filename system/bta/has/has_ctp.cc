@@ -180,7 +180,7 @@ std::vector<uint8_t> HasCtpOp::ToCharacteristicValue() const {
     } break;
 
     default:
-      LOG_ASSERT(false) << __func__ << "Bad control point operation!";
+      log::assert_that(false, "Bad control point operation!");
       break;
   }
 

@@ -171,8 +171,8 @@ int A2dpAacEncoder::transcode(uint8_t* i_buf, int i_len, uint8_t* o_buf,
         pcm = *((int32_t*)buff);
         break;
       default:
-        LOG_ASSERT(false) << "Attempting to read " << nbits
-                          << " bits as bit depth";
+        log::assert_that(false, "Attempting to read {} bits as bit depth",
+                         nbits);
     }
 
     return pcm;
