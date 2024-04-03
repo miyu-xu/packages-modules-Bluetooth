@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9031255_eb06fcd4",
+        "filename": "system/gd/facade/facade_main.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-03T16:46:59Z",
+      "side": 1,
+      "message": "These came back, but weren\u0027t needed on patchset 15.",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 1
+      },
+      "revId": "f124f3c3ec069116cab6b417fd65abd3d1cd3dd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
