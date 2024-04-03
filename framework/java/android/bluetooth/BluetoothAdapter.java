@@ -2473,6 +2473,10 @@ public final class BluetoothAdapter {
     @SystemApi
     @RequiresNoPermission
     public boolean isBleScanAlwaysAvailable() {
+        if (Flags.systemServerMessenger()) {
+            var data = new SystemServiceMessage.IsBleScanAvailable();
+            return mSystemServiceMessenger.send(data).value;
+        }
         try {
             return mManagerService.isBleScanAvailable();
         } catch (RemoteException e) {
