@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "48264067_3d299920",
+        "filename": "system/gd/hci/msft.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-03T17:06:20Z",
+      "side": 1,
+      "message": "Ugly and obvious wins 😢",
+      "parentUuid": "b55aa347_0c84d5fa",
+      "range": {
+        "startLine": 17,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 16
+      },
+      "revId": "a1f3679cb87ee60a2faee5a668b7a468fc63ead4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b66350e1_59134dba",
