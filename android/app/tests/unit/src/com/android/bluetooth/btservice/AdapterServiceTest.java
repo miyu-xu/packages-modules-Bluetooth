@@ -675,6 +675,75 @@ public class AdapterServiceTest {
         assertThat(mAdapterService.getState()).isEqualTo(STATE_OFF);
     }
 
+    /** Test: Start GATT Profile instead of ScanController */
+    @Test
+    public void testStartGattProfileInsteadOfScanController() {
+        mSetFlagsRule.disableFlags(Flags.FLAG_SCAN_MANAGER_REFACTOR);
+
+        mAdapterService.bringUpBle();
+
+        assertThat(mAdapterService.getBluetoothGatt()).isNotNull();
+        assertThat(mAdapterService.getBluetoothScan()).isNull();
+
+        dropNextMessage(MESSAGE_PROFILE_SERVICE_REGISTERED);
+        dropNextMessage(MESSAGE_PROFILE_SERVICE_STATE_CHANGED);
+    }
+
+    /** Test: Start ScanController instead of GATT Profile */
+    @Test
+    public void testStartScanControllerInsteadOfGattProfile() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_SCAN_MANAGER_REFACTOR);
+
+        mAdapterService.bringUpBle();
+
+        assertThat(mAdapterService.getBluetoothGatt()).isNull();
+        assertThat(mAdapterService.getBluetoothScan()).isNotNull();
+    }
+
+    /** Test: Start ScanController and stop it gracefully */
+    @Test
+    public void testStartStopScanController() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_SCAN_MANAGER_REFACTOR);
+
+        assertThat(mAdapterService.getBluetoothScan()).isNull();
+        assertThat(mAdapterService.getBluetoothGatt()).isNull();
+
+        IBluetoothCallback callback = mock(IBluetoothCallback.class);
+        Binder binder = mock(Binder.class);
+        doReturn(binder).when(callback).asBinder();
+        mAdapterService.registerRemoteCallback(callback);
+
+        mAdapterService.enable(false);
+        if (Flags.fastBindToApp()) {
+            TestUtils.syncHandler(mLooper, 0);
+        }
+        TestUtils.syncHandler(mLooper, AdapterState.BLE_TURN_ON);
+        verifyStateChange(callback, STATE_OFF, STATE_BLE_TURNING_ON);
+
+        verify(mNativeInterface).enable();
+        mAdapterService.stateChangeCallback(AbstractionLayer.BT_STATE_ON);
+        TestUtils.syncHandler(mLooper, AdapterState.BLE_STARTED);
+        verifyStateChange(callback, STATE_BLE_TURNING_ON, STATE_BLE_ON);
+        assertThat(mAdapterService.getState()).isEqualTo(STATE_BLE_ON);
+        assertThat(mAdapterService.getBluetoothScan()).isNotNull();
+        assertThat(mAdapterService.getBluetoothGatt()).isNull();
+
+        mAdapterService.stopBle();
+        TestUtils.syncHandler(mLooper, AdapterState.BLE_TURN_OFF);
+        verifyStateChange(callback, STATE_BLE_ON, STATE_BLE_TURNING_OFF);
+
+        verify(mNativeInterface).disable();
+        mAdapterService.stateChangeCallback(AbstractionLayer.BT_STATE_OFF);
+        TestUtils.syncHandler(mLooper, AdapterState.BLE_STOPPED);
+        verifyStateChange(callback, STATE_BLE_TURNING_OFF, STATE_OFF);
+
+        assertThat(mAdapterService.getState()).isEqualTo(STATE_OFF);
+        mAdapterService.unregisterRemoteCallback(callback);
+
+        assertThat(mAdapterService.getBluetoothScan()).isNull();
+        assertThat(mAdapterService.getBluetoothGatt()).isNull();
+    }
+
     /**
      * Test: Don't start a classic profile
      * Check whether the AdapterService quits gracefully
