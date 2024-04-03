@@ -123,4 +123,12 @@ class SystemServiceMessenger {
             SystemServiceMessage.IsHearingAidSupported data) {
         return send(data, SystemServiceMessage.IsHearingAidSupported.Reply.class);
     }
+
+    SystemServiceMessage.SetSnoopLog.Reply send(SystemServiceMessage.SetSnoopLog data) {
+        return send(data, SystemServiceMessage.SetSnoopLog.Reply.class);
+    }
+
+    SystemServiceMessage.GetSnoopLog.Reply send(SystemServiceMessage.GetSnoopLog data) {
+        return send(data, SystemServiceMessage.GetSnoopLog.Reply.class);
+    }
 }
