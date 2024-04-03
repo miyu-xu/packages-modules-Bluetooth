@@ -675,6 +675,23 @@ public class AdapterServiceTest {
         assertThat(mAdapterService.getState()).isEqualTo(STATE_OFF);
     }
 
+    /** Test: Start ScanController instead of GATT Profile */
+    @Test
+    public void testStartScanControllerInsteadOfGattProfile() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_SCAN_MANAGER_REFACTOR);
+
+        offToBleOn(
+                mLooper,
+                mMockGattService,
+                mAdapterService,
+                mMockContext,
+                mIBluetoothCallback,
+                mNativeInterface);
+
+        assertThat(mAdapterService.getBluetoothGatt()).isNull();
+        assertThat(mAdapterService.getBluetoothScan()).isNotNull();
+    }
+
     /**
      * Test: Don't start a classic profile
      * Check whether the AdapterService quits gracefully
