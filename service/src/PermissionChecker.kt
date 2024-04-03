@@ -15,6 +15,7 @@
  */
 package com.android.server.bluetooth
 
+import android.Manifest.permission.BLUETOOTH_PRIVILEGED
 import android.app.ActivityManager
 import android.app.AppOpsManager
 import android.app.admin.DevicePolicyManager
@@ -56,6 +57,10 @@ internal class PermissionChecker(
 
     fun disableAllowed(uid: Int, source: AttributionSource, foregroundRequired: Boolean) =
         userCanToggle(uid, source, "disable", foregroundRequired)
+
+    fun factoryAllowed(source: AttributionSource) = enforceConnectPermission(source, "factoryReset")
+
+    fun enforcePrivileged(uid: Int) = context.enforcePermission(BLUETOOTH_PRIVILEGED, -1, uid, null)
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////// PRIVATE METHODS ///////////////////////////////////////
