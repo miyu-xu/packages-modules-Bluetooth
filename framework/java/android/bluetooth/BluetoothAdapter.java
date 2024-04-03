@@ -1818,9 +1818,23 @@ public final class BluetoothAdapter {
         mServiceLock.readLock().lock();
         try {
             if (mService != null) {
-                if (mService.factoryReset(mAttributionSource)
-                        && mManagerService.onFactoryReset(mAttributionSource)) {
-                    return true;
+                if (mService.factoryReset(mAttributionSource)) {
+                    boolean result = false;
+                    if (Flags.systemServerMessenger()) {
+                        var data = new BluetoothServiceMessages.FactoryReset();
+                        data.attributionSource = mAttributionSource;
+
+                        result =
+                                mMessenger.sendToService(
+                                                data,
+                                                BluetoothServiceMessages.FactoryReset.Reply.class)
+                                        .value;
+                    } else {
+                        result = mManagerService.onFactoryReset(mAttributionSource);
+                    }
+                    if (result) {
+                        return true;
+                    }
                 }
             }
             Log.e(TAG, "factoryReset(): Setting persist.bluetooth.factoryreset to retry later");
