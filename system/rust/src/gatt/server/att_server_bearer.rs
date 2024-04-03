@@ -189,7 +189,7 @@ impl<T: AttDatabase + Clone + 'static> WeakBoxRef<'_, AttServerBearer<T>> {
                 });
                 AttRequestState::Pending(Some(task.into()))
             }
-            AttRequestState::Pending(_) => {
+            AttRequestState::Pending(ref _owned_handle_is_used_so_drop_can_be_called) => {
                 warn!("multiple ATT operations cannot simultaneously take place, dropping one");
                 // TODO(aryarahul) - disconnect connection here;
                 curr_request
@@ -367,9 +367,14 @@ mod test {
             });
             conn.as_ref().handle_packet(req2.view());
             // handle first reply
-            let MockDatastoreEvents::Read(TCB_IDX, VALID_HANDLE, AttributeBackingType::Characteristic, data_resp) =
-                data_rx.recv().await.unwrap() else {
-                    unreachable!();
+            let MockDatastoreEvents::Read(
+                TCB_IDX,
+                VALID_HANDLE,
+                AttributeBackingType::Characteristic,
+                data_resp,
+            ) = data_rx.recv().await.unwrap()
+            else {
+                unreachable!();
             };
             data_resp.send(Ok(data.clone())).unwrap();
             trace!("reply sent from upper tester");
