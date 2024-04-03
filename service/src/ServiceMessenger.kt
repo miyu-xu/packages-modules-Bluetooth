@@ -92,6 +92,20 @@ internal class ServiceMessenger(
                     }
                 Bundle().apply { putBoolean("disable", disable) }
             }
+            BluetoothServiceMessages.FACTORY_RESET -> {
+                checker.enforcePrivileged(sendingUid)
+
+                val source = data.getParcelable("source", AttributionSource::class.java)!!
+                val factoryReset =
+                    try {
+                        checker.factoryAllowed(source)
+                        managerService.onFactoryReset_sync()
+                    } catch (e: PermissionChecker.BluetoothPermissionException) {
+                        Log.e(TAG, "${what}: FAILED", e)
+                        false
+                    }
+                Bundle().apply { putBoolean("factoryReset", factoryReset) }
+            }
             else -> throw IllegalArgumentException("command not implemented: ${what} - ${data}")
         }
     }
