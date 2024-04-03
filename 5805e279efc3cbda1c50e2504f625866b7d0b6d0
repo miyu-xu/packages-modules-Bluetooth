@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85d113e1_c47e789e",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothCodecConfigTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-03T18:33:06Z",
+      "side": 1,
+      "message": "FYI / nit / extra strectch:\n when asserting something in chain like this you can use expect instead.\nIn case of failure, ALL the check will be performed instead of stopping to the first one.\nHere there is no logic between the check, it could be nice to see everything wrong at one look instead of fixing one, re-running, fixing the other one.\n\n\n```\nimport com.google.common.truth.Expect\n```\n\nThen create a rule:\n```\n@Rule public Expect expect \u003d Expect.create();\n```\n\nand use almost like assertThat:\n```\nexpect.that(foo).isX()\n```",
+      "range": {
+        "startLine": 263,
+        "startChar": 12,
+        "endLine": 271,
+        "endChar": 75
+      },
+      "revId": "5805e279efc3cbda1c50e2504f625866b7d0b6d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0a1d3a8_e5483375",
+        "filename": "framework/tests/unit/src/android/bluetooth/le/ScanSettingsTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-03T18:33:06Z",
+      "side": 1,
+      "message": "It is the only case in with the junit Assert need to be use, when catching Exception.\n\nSee go/java-testing/exceptions and the exception in go/truth\n\n\n```suggestion\n        assertThrows(\n             IllegalArgumentException.class,\n             () -\u003e builder.setCallbackType(\n                    ScanSettings.CALLBACK_TYPE_ALL_MATCHES\n                    | ScanSettings.CALLBACK_TYPE_MATCH_LOST));\n```",
+      "range": {
+        "startLine": 39,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 9
+      },
+      "revId": "5805e279efc3cbda1c50e2504f625866b7d0b6d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
