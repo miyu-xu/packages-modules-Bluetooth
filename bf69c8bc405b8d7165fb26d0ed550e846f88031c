@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4205a8e5_bcb5b04f",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1435,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-04-03T07:50:04Z",
+      "side": 1,
+      "message": "just so we know from logcat that this was used:\n\n`log::info(\"base_interval {}\", base_interval);` ?",
+      "revId": "bf69c8bc405b8d7165fb26d0ed550e846f88031c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a66611d5_8ac5eb99",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1439,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-04-03T07:50:04Z",
+      "side": 1,
+      "message": "still base_interval is not stored anywhere, but since we use it internally, I will not push on that.",
+      "revId": "bf69c8bc405b8d7165fb26d0ed550e846f88031c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
