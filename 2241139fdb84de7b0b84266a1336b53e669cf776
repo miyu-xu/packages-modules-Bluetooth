@@ -46,6 +46,30 @@
       },
       "revId": "2241139fdb84de7b0b84266a1336b53e669cf776",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2364113b_821b91e1",
+        "filename": "system/main/shim/distance_measurement_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-04-03T17:04:19Z",
+      "side": 1,
+      "message": "Added more logic about OnRemoteData.\nI will implement following code from Shim to GD module with another patch.\nThanks!",
+      "parentUuid": "bfd0eff3_a6d7eb8d",
+      "range": {
+        "startLine": 119,
+        "startChar": 4,
+        "endLine": 119,
+        "endChar": 29
+      },
+      "revId": "2241139fdb84de7b0b84266a1336b53e669cf776",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
