@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2649120_de9f01e9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-03T23:55:17Z",
+      "side": 1,
+      "message": "That is twice correct.\n\nI have no idea how to write UI tests that will catch notifications",
+      "parentUuid": "01f45f69_3e4d30e7",
+      "revId": "ea29b69aef06a295d4bd23fdbf44355eddb5117f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d180711_f6a83c61",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-04-03T23:50:11Z",
       "side": 1,
       "message": "Is Settings.Secure the correct thing to use here, don\u0027t we want to store that inside the application data instead?",
+      "range": {
+        "startLine": 182,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 0
+      },
+      "revId": "ea29b69aef06a295d4bd23fdbf44355eddb5117f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7eee87f_513f89da",
+        "filename": "android/app/src/com/android/bluetooth/notification/NotificationHelperService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-03T23:55:17Z",
+      "side": 1,
+      "message": "Like in a sharedPreferences for example ?",
+      "parentUuid": "4d180711_f6a83c61",
       "range": {
         "startLine": 182,
         "startChar": 0,
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5028488a_9c10eb32",
+        "filename": "android/app/src/com/android/bluetooth/notification/NotificationHelperService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-03T23:55:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a5aa510_e0247558",
+      "revId": "ea29b69aef06a295d4bd23fdbf44355eddb5117f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bca1414b_05fb4371",
@@ -71,6 +131,24 @@
       "writtenOn": "2024-04-03T23:50:11Z",
       "side": 1,
       "message": "```suggestion\n                        + (\" countShown\u003d\" + countShown)\n```",
+      "revId": "ea29b69aef06a295d4bd23fdbf44355eddb5117f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7922fc1a_80cef1e7",
+        "filename": "android/app/src/com/android/bluetooth/notification/NotificationHelperService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-03T23:55:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bca1414b_05fb4371",
       "revId": "ea29b69aef06a295d4bd23fdbf44355eddb5117f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
