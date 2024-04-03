@@ -302,8 +302,8 @@ public class BluetoothServiceBinderTest {
     @Test
     public void isBleScanAlwaysAvailable() {
         // No permission needed for this call
-        mBinder.isBleScanAlwaysAvailable();
-        verify(mManagerService).isBleScanAlwaysAvailable();
+        mBinder.isBleScanAvailable();
+        verify(mManagerService).isBleScanAvailable();
         verifyMock();
     }
 

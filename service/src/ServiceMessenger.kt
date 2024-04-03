@@ -115,6 +115,11 @@ internal class ServiceMessenger(
                         }
                 }
             }
+            is BluetoothServiceMessages.IsBleScanAvailable -> {
+                BluetoothServiceMessages.IsBleScanAvailable.Reply().apply {
+                    value = managerService.isBleScanAvailable()
+                }
+            }
             else -> throw IllegalArgumentException("Invalid command: [${obj}] from ${sendingUid}")
         }
     }
