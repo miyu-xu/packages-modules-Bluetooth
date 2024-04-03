@@ -722,9 +722,10 @@ bool hal_bcast_capability_to_stack_format(
   return true;
 }
 
-std::vector<AudioSetConfiguration> get_offload_capabilities() {
+std::array<std::vector<AudioSetConfiguration>, 2> get_offload_capabilities() {
   log::info("");
   std::vector<AudioSetConfiguration> offload_capabilities;
+  std::vector<AudioSetConfiguration> broadcast_offload_capabilities;
   std::vector<AudioCapabilities> le_audio_hal_capabilities =
       BluetoothAudioSinkClientInterface::GetAudioCapabilities(
           SessionType::LE_AUDIO_HARDWARE_OFFLOAD_ENCODING_DATAPATH);
@@ -770,6 +771,7 @@ std::vector<AudioSetConfiguration> get_offload_capabilities() {
       // Set device_cnt, ase_cnt to zero to ignore these fields for broadcast
       audio_set_config.topology_info = {{{0, 0}}};
       audio_set_config.confs.sink.push_back(AseConfiguration(bcast_cap));
+      broadcast_offload_capabilities.push_back(audio_set_config);
       str_capability_log +=
           " Broadcast Capability: " + hal_bcast_cap.toString();
     }
@@ -784,7 +786,7 @@ std::vector<AudioSetConfiguration> get_offload_capabilities() {
     }
   }
 
-  return offload_capabilities;
+  return {offload_capabilities, broadcast_offload_capabilities};
 }
 
 AudioConfiguration offload_config_to_hal_audio_config(

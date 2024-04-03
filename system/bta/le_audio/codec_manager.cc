@@ -839,10 +839,8 @@ struct codec_manager_impl {
       return;
     }
 
-    std::vector<
-        ::bluetooth::le_audio::set_configurations::AudioSetConfiguration>
-        adsp_capabilities =
-            ::bluetooth::audio::le_audio::get_offload_capabilities();
+    auto [adsp_capabilities, bcast_adsp_capabilities] =
+        ::bluetooth::audio::le_audio::get_offload_capabilities();
 
     storeLocalCapa(adsp_capabilities, offloading_preference);
 
@@ -878,8 +876,7 @@ struct codec_manager_impl {
         }
       }
     }
-
-    UpdateSupportedBroadcastConfig(adsp_capabilities);
+    UpdateSupportedBroadcastConfig(bcast_adsp_capabilities);
   }
 
   CodecLocation codec_location_ = CodecLocation::HOST;
