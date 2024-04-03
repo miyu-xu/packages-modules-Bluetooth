@@ -63,4 +63,10 @@ interface BluetoothServiceMessages {
             boolean value;
         }
     }
+
+    parcelable IsHearingAidSupported {
+        parcelable Reply {
+            boolean value;
+        }
+    }
 }
