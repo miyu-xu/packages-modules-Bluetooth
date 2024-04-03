@@ -57,4 +57,10 @@ interface BluetoothServiceMessages {
             boolean value;
         }
     }
+
+    parcelable IsBleScanAvailable {
+        parcelable Reply {
+            boolean value;
+        }
+    }
 }
