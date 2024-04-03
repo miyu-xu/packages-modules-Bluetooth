@@ -34,6 +34,24 @@
       "parentUuid": "78ac5604_51d12813",
       "revId": "d5e232f0139838e30ed74c6b4c9ae2b3b5649c7e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c066581e_f7db761c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-04-03T04:36:32Z",
+      "side": 1,
+      "message": "Found the test that affects this test.\nThe device type was being cached as BR/EDR in the `DeviceDiscoveryTest`.\n\nWhen device discovery is done, the device type is stored here:\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/btif/src/btif_dm.cc;drc\u003d44b64827d2a6fee2b9e15956178e5987adc25d5b;l\u003d1652\n\nWill now try to find below things:\n- Is there any way to remove the cache in the test?\n- Why does it considered as BR/EDR, not DUAL?",
+      "parentUuid": "0d330d61_7226468f",
+      "revId": "d5e232f0139838e30ed74c6b4c9ae2b3b5649c7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
