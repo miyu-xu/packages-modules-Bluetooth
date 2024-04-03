@@ -2839,6 +2839,12 @@ public final class BluetoothAdapter {
      */
     @RequiresNoPermission
     private boolean isHearingAidProfileSupported() {
+        if (Flags.systemServerMessenger()) {
+            var data = new BluetoothServiceMessages.IsHearingAidSupported();
+            return mMessenger.sendToService(
+                            data, BluetoothServiceMessages.IsHearingAidSupported.Reply.class)
+                    .value;
+        }
         try {
             return mManagerService.isHearingAidProfileSupported();
         } catch (RemoteException e) {
