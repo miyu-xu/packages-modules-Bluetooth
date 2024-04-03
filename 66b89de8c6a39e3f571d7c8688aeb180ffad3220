@@ -16,6 +16,24 @@
       "message": "Hi Yuyang, since this also involves some refactoring so it would be a hard to put all of the change behind a flag.\n\nDo you think we should\n1. only put the logic change behind the flag, or\n2. don\u0027t refactor the original part at this change, or\n3. keep the refactor and the original code. Only run the refactor code when flag is enabled.\n\nOr do you have other idea? Please let me know, thanks!",
       "revId": "66b89de8c6a39e3f571d7c8688aeb180ffad3220",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ea3f36d_7f3a51c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-03T03:21:11Z",
+      "side": 1,
+      "message": "new variable definition and declaration doesn\u0027t need to be behind the flag.\nput logic change behind the flag, for example, when we do additional CVSD fallback. \n\nalso recommend first do logical change on existing code (yes, I know, it is ugly), then do additional refactor. As it is close to V release, we would like to reduce possible additional changes. \n\nThanks!",
+      "parentUuid": "dc966b81_102e3556",
+      "revId": "66b89de8c6a39e3f571d7c8688aeb180ffad3220",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
