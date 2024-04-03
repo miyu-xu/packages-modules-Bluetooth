@@ -52,6 +52,24 @@
       "parentUuid": "05d99cf4_385267f6",
       "revId": "b13b7dd933f9f87c8e7c34527d792fb64d2e0234",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a31bbc84_09c88341",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3235591
+      },
+      "writtenOn": "2024-04-03T10:54:15Z",
+      "side": 1,
+      "message": "@etienne.ruffieux@codecoup.pl You are correct. The test case require a empty folder found under \"root\" folder. By default we return a media player list, and each player usually has several folders like \"playlist\", \"albums\", etc. By enabling the property, the code call \"mBrowsablePlayers.get(BLUETOOTH_PLAYER_ID + 1)\" to get the actual installed player. Then we can make one folder of the app empty to pass the test",
+      "parentUuid": "c48e3493_cc59a254",
+      "revId": "b13b7dd933f9f87c8e7c34527d792fb64d2e0234",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
