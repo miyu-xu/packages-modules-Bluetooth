@@ -69,4 +69,15 @@ interface BluetoothServiceMessages {
             boolean value;
         }
     }
+
+    parcelable SetSnoopLog {
+        int mode;
+        parcelable Reply {}
+    }
+
+    parcelable GetSnoopLog {
+        parcelable Reply {
+            int value;
+        }
+    }
 }
