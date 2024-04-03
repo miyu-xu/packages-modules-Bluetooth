@@ -149,6 +149,11 @@ internal class ServiceMessenger(
                     value = managerService.isBleScanAvailable()
                 }
             }
+            is SystemServiceMessage.IsHearingAidSupported -> {
+                SystemServiceMessage.IsHearingAidSupported.Reply().apply {
+                    value = managerService.isHearingAidProfileSupported()
+                }
+            }
             else -> throw IllegalArgumentException("Invalid command: [${obj}] from ${sendingUid}")
         }
     }
