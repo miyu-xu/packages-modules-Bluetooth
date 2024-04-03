@@ -40,16 +40,13 @@ public class ScanController {
 
     private final BluetoothScanBinder mBinder;
 
-    private boolean isAvailable = false;
+    private boolean mIsAvailable;
 
     public ScanController(Context ctx) {
+        Log.d(TAG, "ScanController()");
         mTransitionalScanHelper = new TransitionalScanHelper(ctx, () -> false);
         mBinder = new BluetoothScanBinder(this);
-    }
-
-    public void start() {
-        Log.d(TAG, "start()");
-        isAvailable = true;
+        mIsAvailable = true;
         HandlerThread thread = new HandlerThread("BluetoothScanManager");
         thread.start();
         mTransitionalScanHelper.start(thread.getLooper());
@@ -57,7 +54,7 @@ public class ScanController {
 
     public void stop() {
         Log.d(TAG, "stop()");
-        isAvailable = false;
+        mIsAvailable = false;
         mTransitionalScanHelper.stop();
         mTransitionalScanHelper.cleanup();
     }
