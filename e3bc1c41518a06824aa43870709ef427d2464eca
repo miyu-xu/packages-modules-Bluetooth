@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f865974_f540d8d1",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2867,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-04-03T11:42:51Z",
+      "side": 1,
+      "message": "Good point, please check the changed code, thank you! : )",
+      "parentUuid": "54d11441_ebc73ae9",
+      "range": {
+        "startLine": 2867,
+        "startChar": 6,
+        "endLine": 2867,
+        "endChar": 32
+      },
+      "revId": "e3bc1c41518a06824aa43870709ef427d2464eca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4dabeddd_ba3ecf4f",
@@ -133,6 +157,30 @@
       "side": 1,
       "message": "Why check if the peer device is a source at all when AVRCP Target really only cares about sink devices?\n\nThe AVRCP Controller implementation can/should/already does it\u0027s own thing to help A2DP connect, as it leverages this btif_av state machine that you\u0027re dropping events onto.\n\nHave you tried:\n(1) Just check for the Sink SDP record of the remote device.\n(2) Don\u0027t alter the btif_av_sink_initiate_av_open_timer_timeout function\n\nI worry about altering the AVRCP Controller/A2DP Sink code path for concurrent source and sink devices like Android TVs and Cars. Scoping this down to deal with source devices only has a nice separation of responsibilities and keeps you from having to worry about what if the device you\u0027re connecting to is a source and a sink.",
       "parentUuid": "038d5d00_78e13fe3",
+      "range": {
+        "startLine": 4361,
+        "startChar": 1,
+        "endLine": 4365,
+        "endChar": 3
+      },
+      "revId": "e3bc1c41518a06824aa43870709ef427d2464eca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca6f2c90_42bc6a71",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 4365,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-04-03T11:42:51Z",
+      "side": 1,
+      "message": "You are right, thank you! I changed the code accordingly.\nI tested it with avatar test after changes.",
+      "parentUuid": "1cac5dc6_60e80406",
       "range": {
         "startLine": 4361,
         "startChar": 1,
