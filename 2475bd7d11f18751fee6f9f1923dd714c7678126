@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5ad2cfa_d320601c",
+        "filename": "Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-03T14:05:21Z",
+      "side": 1,
+      "message": "```suggestion\npackage {\n    default_visibility: [\":__subpackages__\"],\n    default_applicable_licenses: [\"system_bt_license\"],\n    default_team: \"trendy_team_bluetooth\",\n}\n```",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 1
+      },
+      "revId": "2475bd7d11f18751fee6f9f1923dd714c7678126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4379aea1_97474edc",
+        "filename": "Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-03T14:05:21Z",
+      "side": 1,
+      "message": "```suggestion\nfilegroup {\n```",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 11
+      },
+      "revId": "2475bd7d11f18751fee6f9f1923dd714c7678126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
