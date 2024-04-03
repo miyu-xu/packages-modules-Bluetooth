@@ -1221,10 +1221,49 @@ class BluetoothManagerService {
         return true;
     }
 
+    boolean enableBle_sync(String packageName, IBinder token) {
+        Log.i(
+                TAG,
+                ("enableBle_sync(" + packageName + ", " + token + "):")
+                        + (" mAdapter=" + mAdapter)
+                        + (" isBinding=" + isBinding())
+                        + (" mState=" + mState));
+
+        if (!isBleScanAvailable()) {
+            Log.d(TAG, "enableBle_sync: not enabling - Ble scan is not available");
+            return false;
+        }
+
+        if (isAirplaneModeOn()) {
+            Log.d(TAG, "enableBle_sync: not enabling - Airplane mode is on");
+            return false;
+        }
+
+        if (isSatelliteModeOn()) {
+            Log.d(TAG, "enableBle_sync: not enabling - Satellite mode is on.");
+            return false;
+        }
+
+        updateBleAppCount(token, true, packageName);
+
+        if (mState.oneOf(
+                STATE_ON,
+                STATE_BLE_ON,
+                STATE_TURNING_ON,
+                STATE_TURNING_OFF,
+                STATE_BLE_TURNING_ON)) {
+            Log.i(TAG, "enableBle_sync: Bluetooth is already in state" + mState);
+            return true;
+        }
+        addActiveLog(ENABLE_DISABLE_REASON_APPLICATION_REQUEST, packageName, true);
+        handleEnableMessage(false, true);
+        return true;
+    }
+
     boolean enable_sync(String packageName, boolean quiet) {
         Log.i(
                 TAG,
-                ("enable_sync(" + packageName + "):")
+                ("enable_sync(" + packageName + ", " + quiet + "):")
                         + (" mAdapter=" + mAdapter)
                         + (" isBinding=" + isBinding())
                         + (" mState=" + mState));

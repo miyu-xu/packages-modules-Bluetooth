@@ -67,12 +67,17 @@ internal class ServiceMessenger(
             }
             BluetoothServiceMessages.ENABLE -> {
                 val source = data.getParcelable("source", AttributionSource::class.java)!!
-                val quiet = data.getBoolean("quiet")
-                val foregroundRequired = quiet == false
+                val quiet = data.getBoolean("quiet") // enableNoAutoConnect will set this
+                val token = data.getBinder("token") // enableBle will set this
+                val foregroundRequired = quiet == false || token == null
                 val enable =
                     try {
                         checker.enableAllowed(sendingUid, source, foregroundRequired)
-                        managerService.enable_sync(source.getPackageName(), quiet)
+                        if (token != null) {
+                            managerService.enableBle_sync(source.getPackageName(), token)
+                        } else {
+                            managerService.enable_sync(source.getPackageName(), quiet)
+                        }
                     } catch (e: PermissionChecker.BluetoothPermissionException) {
                         Log.e(TAG, "${what}: FAILED", e)
                         false
