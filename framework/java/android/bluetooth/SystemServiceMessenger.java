@@ -118,4 +118,9 @@ class SystemServiceMessenger {
             SystemServiceMessage.IsBleScanAvailable data) {
         return send(data, SystemServiceMessage.IsBleScanAvailable.Reply.class);
     }
+
+    SystemServiceMessage.IsHearingAidSupported.Reply send(
+            SystemServiceMessage.IsHearingAidSupported data) {
+        return send(data, SystemServiceMessage.IsHearingAidSupported.Reply.class);
+    }
 }

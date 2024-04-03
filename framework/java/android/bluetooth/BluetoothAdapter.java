@@ -2820,6 +2820,10 @@ public final class BluetoothAdapter {
      */
     @RequiresNoPermission
     private boolean isHearingAidProfileSupported() {
+        if (Flags.systemServerMessenger()) {
+            var data = new SystemServiceMessage.IsHearingAidSupported();
+            return mSystemServiceMessenger.send(data).value;
+        }
         try {
             return mManagerService.isHearingAidProfileSupported();
         } catch (RemoteException e) {
