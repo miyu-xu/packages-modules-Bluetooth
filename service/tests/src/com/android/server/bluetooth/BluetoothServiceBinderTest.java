@@ -370,6 +370,7 @@ public class BluetoothServiceBinderTest {
 
     @Test
     public void setBtHciSnoopLogMode() {
+        mSetFlagsRule.disableFlags(Flags.FLAG_SYSTEM_SERVER_MESSENGER);
         assertThrows(SecurityException.class, () -> mBinder.setBtHciSnoopLogMode(0));
 
         InstrumentationRegistry.getInstrumentation()
@@ -382,6 +383,7 @@ public class BluetoothServiceBinderTest {
 
     @Test
     public void getBtHciSnoopLogMode() {
+        mSetFlagsRule.disableFlags(Flags.FLAG_SYSTEM_SERVER_MESSENGER);
         assertThrows(SecurityException.class, () -> mBinder.getBtHciSnoopLogMode());
 
         InstrumentationRegistry.getInstrumentation()
