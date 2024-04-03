@@ -96,3 +96,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "restrict_pkt_types_on_higher_settings"
+    namespace: "bluetooth"
+    description: "Restrict the allowed packet types of higher settings to its suggested packet type."
+    bug: "324157546"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
