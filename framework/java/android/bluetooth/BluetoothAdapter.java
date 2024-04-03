@@ -5819,6 +5819,13 @@ public final class BluetoothAdapter {
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     @BluetoothSnoopLogMode
     public int getBluetoothHciSnoopLoggingMode() {
+        if (Flags.systemServerMessenger()) {
+            return mMessenger
+                    .sendToService(BluetoothServiceMessages.GET_SNOOP_LOG)
+                    .thenApply(b -> b.getInt("snoopLog"))
+                    .orTimeout(1, TimeUnit.SECONDS)
+                    .join();
+        }
         try {
             return mManagerService.getBtHciSnoopLogMode();
         } catch (RemoteException e) {
