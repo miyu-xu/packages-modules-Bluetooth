@@ -96,3 +96,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "fix_cvsd_safe_setting_fallback"
+    namespace: "bluetooth"
+    description: "Fix CVSD to fallback to safe settings (S1) if default setting was failed"
+    bug: "324157546"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
