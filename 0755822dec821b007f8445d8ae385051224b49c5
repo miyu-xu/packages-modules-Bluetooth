@@ -39,6 +39,30 @@
       },
       "revId": "0755822dec821b007f8445d8ae385051224b49c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29ec67c0_dc139e2a",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-04-03T03:05:08Z",
+      "side": 1,
+      "message": "Done. Thanks for the suggestion. Will let the owner to review it. Thanks.",
+      "parentUuid": "949c8a70_435792c5",
+      "range": {
+        "startLine": 62,
+        "startChar": 33,
+        "endLine": 62,
+        "endChar": 50
+      },
+      "revId": "0755822dec821b007f8445d8ae385051224b49c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
