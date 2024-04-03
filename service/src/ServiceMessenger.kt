@@ -120,6 +120,11 @@ internal class ServiceMessenger(
             BluetoothServiceMessages.IS_BLE_SCAN_AVAILABLE -> {
                 Bundle().apply { putBoolean("bleAvailable", managerService.isBleScanAvailable()) }
             }
+            BluetoothServiceMessages.IS_HEARING_AID_SUPPORTED -> {
+                Bundle().apply {
+                    putBoolean("hearingAidSupported", managerService.isHearingAidProfileSupported())
+                }
+            }
             else -> throw IllegalArgumentException("command not implemented: ${what} - ${data}")
         }
     }
