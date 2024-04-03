@@ -55,6 +55,10 @@ public class PermissionChecker(
     fun disableAllowed(uid: Int, source: AttributionSource, foregroundRequired: Boolean) =
         userCanToggle(uid, source, "disable", foregroundRequired)
 
+    fun factoryAllowed(source: AttributionSource) = enforceConnectPermission(source, "factoryReset")
+
+    fun enforcePrivileged(uid: Int) = context.enforcePermission(BLUETOOTH_PRIVILEGED, -1, uid, null)
+
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////// PRIVATE METHODS ///////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////

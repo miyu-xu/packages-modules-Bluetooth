@@ -300,6 +300,7 @@ public class BluetoothServiceBinderTest {
 
     @Test
     public void onFactoryReset() {
+        mSetFlagsRule.disableFlags(Flags.FLAG_SYSTEM_SERVER_MESSENGER);
         assertThrows(NullPointerException.class, () -> mBinder.onFactoryReset(null));
 
         assertThrows(SecurityException.class, () -> mBinder.onFactoryReset(mSource));
