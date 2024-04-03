@@ -52,6 +52,24 @@
       "parentUuid": "0d330d61_7226468f",
       "revId": "d5e232f0139838e30ed74c6b4c9ae2b3b5649c7e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88c0fa06_e96e2194",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-04-03T06:03:00Z",
+      "side": 1,
+      "message": "I\u0027ve found the answer why it wasn\u0027t considered as dual.\n\nIn the above link, the device type is determined as a result of inquiry. \nHowever, when we do inquiry in `DeviceDiscoveryTest` the Bumble device doesn\u0027t advertise itself as a BLE device. Therefore the device is considered as BR/EDR.\n\nWhen I added `mBumble.advertise()` in `DeviceDiscoveryTest.setUp()`, I could see from the log that the device type is stored `DUAL`. That made the `GattServerTest#serverConnectToPublicAddress_withTransportAuto` succeeded.",
+      "parentUuid": "c066581e_f7db761c",
+      "revId": "d5e232f0139838e30ed74c6b4c9ae2b3b5649c7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
