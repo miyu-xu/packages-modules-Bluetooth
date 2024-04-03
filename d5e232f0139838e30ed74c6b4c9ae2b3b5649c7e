@@ -70,6 +70,24 @@
       "parentUuid": "c066581e_f7db761c",
       "revId": "d5e232f0139838e30ed74c6b4c9ae2b3b5649c7e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b32eedfd_8e52af2d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-04-03T06:54:30Z",
+      "side": 1,
+      "message": "This test was missing about the scanning process - that was why the device type is not recognized as DUAL (or LE).\n\nI\u0027ve checked the test succeeds with the scanning process.\n\nI\u0027ll upload the fix as a next patch set.",
+      "parentUuid": "88c0fa06_e96e2194",
+      "revId": "d5e232f0139838e30ed74c6b4c9ae2b3b5649c7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
