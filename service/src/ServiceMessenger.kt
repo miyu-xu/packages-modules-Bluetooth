@@ -100,6 +100,21 @@ internal class ServiceMessenger(
                         }
                 }
             }
+            is BluetoothServiceMessages.FactoryReset -> {
+                checker.enforcePrivileged(sendingUid)
+
+                val source = obj.attributionSource
+                BluetoothServiceMessages.FactoryReset.Reply().apply {
+                    value =
+                        try {
+                            checker.factoryAllowed(source)
+                            managerService.onFactoryReset_sync()
+                        } catch (e: PermissionChecker.BluetoothPermissionException) {
+                            Log.e(TAG, "${obj}: FAILED", e)
+                            false
+                        }
+                }
+            }
             else -> throw IllegalArgumentException("Invalid command: [${obj}] from ${sendingUid}")
         }
     }
