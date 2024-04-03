@@ -213,6 +213,7 @@ class Controller : public Module, public ControllerInterface {
   static constexpr uint64_t kLeEventMask41 = 0x000000000000003f;
 
   static uint64_t MaskLeEventMask(HciVersion version, uint64_t mask);
+  static uint64_t UnmaskSniffSubrating(uint64_t event_mask);
 
  protected:
   void ListDependencies(ModuleList* list) const override;

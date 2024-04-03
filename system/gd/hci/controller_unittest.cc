@@ -55,5 +55,10 @@ TEST_F(ControllerUnitTest, testLeEventMask) {
       Controller::MaskLeEventMask(version.hci_version_, Controller::kDefaultLeEventMask), Controller::kLeEventMask41);
 }
 
+TEST_F(ControllerUnitTest, testUnmaskSniffSubrating) {
+  uint64_t target_event_mask = 0x3dbfdfffffffffff;
+  ASSERT_EQ(Controller::UnmaskSniffSubrating(Controller::kDefaultEventMask), target_event_mask);
+}
+
 }  // namespace hci
 }  // namespace bluetooth

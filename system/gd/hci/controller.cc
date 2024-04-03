@@ -43,6 +43,8 @@ constexpr uint8_t kMinEncryptionKeySize = 7;  // #define MIN_ENCRYPTION_KEY_SIZE
 constexpr bool kDefaultVendorCapabilitiesEnabled = true;
 static const std::string kPropertyVendorCapabilitiesEnabled =
     "bluetooth.core.le.vendor_capabilities.enabled";
+static const std::string kPropertyUnmaskSniffSubratingEnabled =
+    "bluetooth.gd.hci.unmask_sniff_sub.enabled";
 
 using os::Handler;
 
@@ -55,7 +57,11 @@ struct Controller::impl {
     hci_->RegisterEventHandler(
         EventCode::NUMBER_OF_COMPLETED_PACKETS, handler->BindOn(this, &Controller::impl::NumberOfCompletedPackets));
 
-    set_event_mask(kDefaultEventMask);
+    uint64_t event_mask = kDefaultEventMask;
+    if (os::GetSystemPropertyBool(kPropertyUnmaskSniffSubratingEnabled, false)) {
+      event_mask = UnmaskSniffSubrating(event_mask);
+    }
+    set_event_mask(event_mask);
     write_le_host_support(Enable::ENABLED, Enable::DISABLED);
     hci_->EnqueueCommand(ReadLocalNameBuilder::Create(),
                          handler->BindOnceOn(this, &Controller::impl::read_local_name_complete_handler));
@@ -1368,6 +1374,10 @@ Address Controller::GetMacAddress() const {
 
 void Controller::SetEventMask(uint64_t event_mask) {
   CallOn(impl_.get(), &impl::set_event_mask, event_mask);
+}
+
+uint64_t Controller::UnmaskSniffSubrating(uint64_t event_mask) {
+  return (event_mask & ~(1ull << (static_cast<uint64_t>(EventCode::SNIFF_SUBRATING) - 1)));
 }
 
 void Controller::Reset() {
