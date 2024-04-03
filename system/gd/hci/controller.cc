@@ -25,6 +25,7 @@
 #include <utility>
 
 #include "common/init_flags.h"
+#include "common/strings.h"
 #include "dumpsys_data_generated.h"
 #include "hci/controller_interface.h"
 #include "hci/event_checkers.h"
@@ -43,6 +44,7 @@ constexpr uint8_t kMinEncryptionKeySize = 7;  // #define MIN_ENCRYPTION_KEY_SIZE
 constexpr bool kDefaultVendorCapabilitiesEnabled = true;
 static const std::string kPropertyVendorCapabilitiesEnabled =
     "bluetooth.core.le.vendor_capabilities.enabled";
+static const std::string kPropertyEventMask = "bluetooth.gd.hci.event_mask";
 
 using os::Handler;
 
@@ -55,7 +57,17 @@ struct Controller::impl {
     hci_->RegisterEventHandler(
         EventCode::NUMBER_OF_COMPLETED_PACKETS, handler->BindOn(this, &Controller::impl::NumberOfCompletedPackets));
 
-    set_event_mask(kDefaultEventMask);
+    // Use the value from system props else take default value
+    uint64_t event_mask = kDefaultEventMask;
+    auto event_mask_string = os::GetSystemProperty(kPropertyEventMask);
+    if (event_mask_string) {
+      auto event_mask_number = common::Uint64FromString(event_mask_string.value());
+      if (event_mask_number) {
+        event_mask = event_mask_number.value();
+      }
+    }
+    set_event_mask(event_mask);
+
     write_le_host_support(Enable::ENABLED, Enable::DISABLED);
     hci_->EnqueueCommand(ReadLocalNameBuilder::Create(),
                          handler->BindOnceOn(this, &Controller::impl::read_local_name_complete_handler));
