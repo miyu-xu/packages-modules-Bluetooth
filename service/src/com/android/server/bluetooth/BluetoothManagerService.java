@@ -352,6 +352,40 @@ class BluetoothManagerService {
         return false;
     }
 
+    boolean onFactoryReset_sync() {
+        // Wait for stable state if bluetooth is temporary state.
+        int state = getState();
+        if (state == STATE_BLE_TURNING_ON
+                || state == STATE_TURNING_ON
+                || state == STATE_TURNING_OFF) {
+            if (!waitForState(STATE_BLE_ON, STATE_ON)) {
+                return false;
+            }
+        }
+
+        // Clear registered LE apps to force shut-off Bluetooth
+        clearBleApps();
+        state = getState();
+
+        if (mAdapter == null) {
+            return false;
+        }
+        try {
+            if (state == STATE_BLE_ON) {
+                addActiveLog(ENABLE_DISABLE_REASON_FACTORY_RESET, false);
+                mAdapter.stopBle(mContext.getAttributionSource());
+                return true;
+            } else if (state == STATE_ON) {
+                addActiveLog(ENABLE_DISABLE_REASON_FACTORY_RESET, false);
+                mAdapter.disable(mContext.getAttributionSource());
+                return true;
+            }
+        } catch (RemoteException e) {
+            Log.e(TAG, "Unable to shutdown Bluetooth", e);
+        }
+        return false;
+    }
+
     private int estimateBusyTime(int state) {
         if (state == STATE_BLE_ON && isBluetoothPersistedStateOn()) {
             // Bluetooth is in BLE and is starting classic
