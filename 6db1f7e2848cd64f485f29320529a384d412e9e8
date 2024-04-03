@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fd406a4_be818d3f",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 2243,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-03T23:08:17Z",
+      "side": 1,
+      "message": "is there a way to print out what is the msg type?",
+      "range": {
+        "startLine": 2243,
+        "startChar": 0,
+        "endLine": 2243,
+        "endChar": 44
+      },
+      "revId": "6db1f7e2848cd64f485f29320529a384d412e9e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

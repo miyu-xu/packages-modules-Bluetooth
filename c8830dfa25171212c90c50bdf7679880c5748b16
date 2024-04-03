@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25fed05e_b454925c",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-03T23:08:17Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "219e08d5_7f9822e2",
+      "range": {
+        "startLine": 776,
+        "startChar": 19,
+        "endLine": 776,
+        "endChar": 29
+      },
+      "revId": "c8830dfa25171212c90c50bdf7679880c5748b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c020cdcb_afaf2c39",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "See aosp/3021983",
       "parentUuid": "c020cdcb_afaf2c39",
+      "range": {
+        "startLine": 1074,
+        "startChar": 43,
+        "endLine": 1074,
+        "endChar": 53
+      },
+      "revId": "c8830dfa25171212c90c50bdf7679880c5748b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09bc4744_39f6e902",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1074,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-03T23:08:17Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e04a1656_bc601545",
       "range": {
         "startLine": 1074,
         "startChar": 43,
@@ -190,6 +238,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59410dea_0aaed66e",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2194,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-03T23:08:17Z",
+      "side": 1,
+      "message": "fine, but in general, if you look at the style guide, the curly braces is always preferred, even though it is allowed here.",
+      "parentUuid": "cd08adc8_8457c3f3",
+      "range": {
+        "startLine": 2193,
+        "startChar": 0,
+        "endLine": 2194,
+        "endChar": 44
+      },
+      "revId": "c8830dfa25171212c90c50bdf7679880c5748b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c22529ec_97785e23",
@@ -227,6 +299,30 @@
       "side": 1,
       "message": "Variant must be passed in memory safe way, that\u0027s why it\u0027s single CL.",
       "parentUuid": "c22529ec_97785e23",
+      "range": {
+        "startLine": 107,
+        "startChar": 1,
+        "endLine": 109,
+        "endChar": 80
+      },
+      "revId": "c8830dfa25171212c90c50bdf7679880c5748b16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af95b81c_45a598a5",
+        "filename": "system/bta/dm/bta_dm_disc_int.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-03T23:08:17Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c27d28b8_7dce6250",
       "range": {
         "startLine": 107,
         "startChar": 1,
