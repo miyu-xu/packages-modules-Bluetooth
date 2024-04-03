@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b55aa347_0c84d5fa",
+        "filename": "system/gd/hci/msft.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-03T17:00:20Z",
+      "side": 1,
+      "message": "I wanted to make it obvious for the reader / reviewer of the code which code applies to floss and which one apply to android.\n\nThis whole file serve no purpose on android, and for now it can be included fine. But we have no guarantee it will stay that way.\nWe could simply keep the `ifdef` within .c files to make it obvious there that the include is only done of FLOSS, but then when looking inside msft file we would lack context and have to check elsewhere\n\nSame the other way around, if we keep it in the msft.h but remove it from .c file we could think we are including msft code while we aren\u0027t.\n\nI don\u0027t think we should remove them :/",
+      "parentUuid": "a18ddbd2_060b9165",
+      "range": {
+        "startLine": 17,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 16
+      },
+      "revId": "a1f3679cb87ee60a2faee5a668b7a468fc63ead4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b66350e1_59134dba",
         "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-03T14:01:20Z",
       "side": 1,
       "message": "I think this could be easier to read if we comment out the whole block.\n\n```suggestion\n#if TARGET_FLOSS\nbool BleScannerIntf::IsMsftSupported() {\n  return scanner_intf_-\u003eIsMsftSupported();\n}\n\nvoid BleScannerIntf::MsftAdvMonitorAdd(uint32_t call_id, const RustMsftAdvMonitor\u0026 monitor) {\n  scanner_intf_-\u003eMsftAdvMonitorAdd(\n      internal::ConvertAdvMonitor(monitor),\n      base::Bind(\u0026BleScannerIntf::OnMsftAdvMonitorAddCallback, base::Unretained(this), call_id));\n}\n\nvoid BleScannerIntf::MsftAdvMonitorRemove(uint32_t call_id, uint8_t monitor_handle) {\n  scanner_intf_-\u003eMsftAdvMonitorRemove(\n      monitor_handle, base::Bind(\u0026BleScannerIntf::OnMsftAdvMonitorRemoveCallback, base::Unretained(this), call_id));\n}\n\nvoid BleScannerIntf::MsftAdvMonitorEnable(uint32_t call_id, bool enable) {\n  scanner_intf_-\u003eMsftAdvMonitorEnable(\n      enable, base::Bind(\u0026BleScannerIntf::OnMsftAdvMonitorEnableCallback, base::Unretained(this), call_id));\n}\n#else\n\nbool BleScannerIntf::IsMsftSupported() { return false; }\nvoid BleScannerIntf::MsftAdvMonitorAdd(uint32_t call_id, /* const */ RustMsftAdvMonitor\u0026 /* monitor */) {}\nvoid BleScannerIntf::MsftAdvMonitorRemove(uint32_t /* call_id */, uint8_t /* monitor_handle */) {}\nvoid BleScannerIntf::MsftAdvMonitorEnable(uint32_t /* call_id */, bool /* enable */) {}\n\n#endif\n```",
+      "range": {
+        "startLine": 255,
+        "startChar": 0,
+        "endLine": 289,
+        "endChar": 1
+      },
+      "revId": "a1f3679cb87ee60a2faee5a668b7a468fc63ead4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d677d631_7fee7968",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-03T17:00:20Z",
+      "side": 1,
+      "message": "Indeed that looks way better ! Thanks\n\nDone",
+      "parentUuid": "b66350e1_59134dba",
       "range": {
         "startLine": 255,
         "startChar": 0,
