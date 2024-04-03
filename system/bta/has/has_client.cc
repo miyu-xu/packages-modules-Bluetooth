@@ -300,7 +300,7 @@ class HasClientImpl : public HasClient {
     }
 
     /* Journal update */
-    LOG_ASSERT(user_data != nullptr) << "Has operation context is missing!";
+    log::assert_that(user_data != nullptr, "Has operation context is missing!");
     auto context = HasGattOpContext(user_data);
     UpdateJournalOpEntryStatus(*device, context, status);
 
@@ -334,7 +334,7 @@ class HasClientImpl : public HasClient {
       return;
     }
 
-    LOG_ASSERT(user_data != nullptr) << "Has operation context is missing!";
+    log::assert_that(user_data != nullptr, "Has operation context is missing!");
     HasGattOpContext context(user_data);
 
     /* Journal update */
@@ -369,7 +369,7 @@ class HasClientImpl : public HasClient {
       return;
     }
 
-    LOG_ASSERT(user_data != nullptr) << "Has operation context is missing!";
+    log::assert_that(user_data != nullptr, "Has operation context is missing!");
     HasGattOpContext context(user_data);
 
     /* Journal update */
@@ -408,7 +408,7 @@ class HasClientImpl : public HasClient {
       return;
     }
 
-    LOG_ASSERT(user_data != nullptr) << "Has operation context is missing!";
+    log::assert_that(user_data != nullptr, "Has operation context is missing!");
     HasGattOpContext context(user_data);
 
     /* Journal update */
@@ -631,9 +631,9 @@ class HasClientImpl : public HasClient {
     if (status != ErrorCode::NO_ERROR) {
       switch (operation.opcode) {
         case PresetCtpOpcode::READ_PRESETS:
-          LOG_ASSERT(
-              std::holds_alternative<RawAddress>(operation.addr_or_group))
-              << " Unsupported group operation!";
+          log::assert_that(
+              std::holds_alternative<RawAddress>(operation.addr_or_group),
+              "Unsupported group operation!");
 
           callbacks_->OnPresetInfoError(
               std::get<RawAddress>(operation.addr_or_group), operation.index,
