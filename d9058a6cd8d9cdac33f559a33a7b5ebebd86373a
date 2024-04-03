@@ -39,6 +39,29 @@
       },
       "revId": "d9058a6cd8d9cdac33f559a33a7b5ebebd86373a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "528658df_f0be4894",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 8
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-03T00:09:07Z",
+      "side": 1,
+      "message": "team: \"trendy_team_bluetooth\"",
+      "range": {
+        "startLine": 408,
+        "startChar": 4,
+        "endLine": 408,
+        "endChar": 32
+      },
+      "revId": "d9058a6cd8d9cdac33f559a33a7b5ebebd86373a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
