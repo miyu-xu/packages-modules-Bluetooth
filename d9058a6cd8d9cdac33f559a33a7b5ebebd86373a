@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4ded36e_574f79b7",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-03T05:13:26Z",
+      "side": 1,
+      "message": "CL 3023077",
+      "parentUuid": "29d7017a_ff31dcd4",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "d9058a6cd8d9cdac33f559a33a7b5ebebd86373a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "528658df_f0be4894",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-04-03T00:09:07Z",
       "side": 1,
       "message": "team: \"trendy_team_bluetooth\"",
+      "range": {
+        "startLine": 408,
+        "startChar": 4,
+        "endLine": 408,
+        "endChar": 32
+      },
+      "revId": "d9058a6cd8d9cdac33f559a33a7b5ebebd86373a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb5dfe20_eeb60a70",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 8
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-03T05:13:26Z",
+      "side": 1,
+      "message": "CL 3023077",
+      "parentUuid": "528658df_f0be4894",
       "range": {
         "startLine": 408,
         "startChar": 4,
