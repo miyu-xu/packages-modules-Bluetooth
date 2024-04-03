@@ -22,6 +22,30 @@
       },
       "revId": "5e66fd99788247d9f40576a464e235175ad77f82",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b69d84d_7c6b20ed",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 3827,
+      "author": {
+        "id": 3211944
+      },
+      "writtenOn": "2024-04-03T01:04:50Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "6f79829f_b5befe5c",
+      "range": {
+        "startLine": 3827,
+        "startChar": 6,
+        "endLine": 3827,
+        "endChar": 15
+      },
+      "revId": "5e66fd99788247d9f40576a464e235175ad77f82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
