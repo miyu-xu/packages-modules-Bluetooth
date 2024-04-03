@@ -34,6 +34,24 @@
       "parentUuid": "e5f00980_15e01830",
       "revId": "efb90576e1ba62d154691d52c65c01950bfc1ed3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cec6f098_23caa385",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-04-03T07:24:56Z",
+      "side": 1,
+      "message": "hcidoc builds okay",
+      "parentUuid": "76896717_bb49296d",
+      "revId": "efb90576e1ba62d154691d52c65c01950bfc1ed3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
