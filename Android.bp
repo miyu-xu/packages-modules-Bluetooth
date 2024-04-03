@@ -31,6 +31,10 @@ license {
     ],
 }
 
+package {
+    default_team: "trendy_team_bluetooth",
+}
+
 filegroup {
     name: "BluetoothTestConfigTemplate",
     srcs: [
