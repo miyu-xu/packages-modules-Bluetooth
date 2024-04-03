@@ -16,13 +16,18 @@
 
 package android.bluetooth;
 
-import androidx.test.filters.SmallTest;
+import static com.google.common.truth.Truth.assertThat;
+
+import androidx.test.runner.AndroidJUnit4;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
 import java.util.List;
-import java.util.Objects;
-import junit.framework.TestCase;
 
 /** Unit test cases for {@link BluetoothCodecStatus}. */
-public class BluetoothCodecStatusTest extends TestCase {
+@RunWith(AndroidJUnit4.class)
+public class BluetoothCodecStatusTest {
 
     // Codec configs: A and B are same; C is different
     private static final BluetoothCodecConfig CONFIG_A =
@@ -547,30 +552,29 @@ public class BluetoothCodecStatusTest extends TestCase {
     private static final BluetoothCodecStatus BCS_C =
             new BluetoothCodecStatus(CONFIG_C, LOCAL_CAPABILITY_C, SELECTABLE_CAPABILITY_C);
 
-    @SmallTest
+    @Test
     public void testBluetoothCodecStatus_get_methods() {
+        assertThat(BCS_A.getCodecConfig()).isEqualTo(CONFIG_A);
+        assertThat(BCS_A.getCodecConfig()).isEqualTo(CONFIG_B);
+        assertThat(BCS_A.getCodecConfig()).isNotEqualTo(CONFIG_C);
 
-        assertTrue(Objects.equals(BCS_A.getCodecConfig(), CONFIG_A));
-        assertTrue(Objects.equals(BCS_A.getCodecConfig(), CONFIG_B));
-        assertFalse(Objects.equals(BCS_A.getCodecConfig(), CONFIG_C));
+        assertThat(BCS_A.getCodecsLocalCapabilities()).isEqualTo(LOCAL_CAPABILITY_A);
+        assertThat(BCS_A.getCodecsLocalCapabilities()).isEqualTo(LOCAL_CAPABILITY_B);
+        assertThat(BCS_A.getCodecsLocalCapabilities()).isNotEqualTo(LOCAL_CAPABILITY_C);
 
-        assertTrue(BCS_A.getCodecsLocalCapabilities().equals(LOCAL_CAPABILITY_A));
-        assertTrue(BCS_A.getCodecsLocalCapabilities().equals(LOCAL_CAPABILITY_B));
-        assertFalse(BCS_A.getCodecsLocalCapabilities().equals(LOCAL_CAPABILITY_C));
-
-        assertTrue(BCS_A.getCodecsSelectableCapabilities().equals(SELECTABLE_CAPABILITY_A));
-        assertTrue(BCS_A.getCodecsSelectableCapabilities().equals(SELECTABLE_CAPABILITY_B));
-        assertFalse(BCS_A.getCodecsSelectableCapabilities().equals(SELECTABLE_CAPABILITY_C));
+        assertThat(BCS_A.getCodecsSelectableCapabilities()).isEqualTo(SELECTABLE_CAPABILITY_A);
+        assertThat(BCS_A.getCodecsSelectableCapabilities()).isEqualTo(SELECTABLE_CAPABILITY_B);
+        assertThat(BCS_A.getCodecsSelectableCapabilities()).isNotEqualTo(SELECTABLE_CAPABILITY_C);
     }
 
-    @SmallTest
+    @Test
     public void testBluetoothCodecStatus_equals() {
-        assertTrue(BCS_A.equals(BCS_B));
-        assertTrue(BCS_B.equals(BCS_A));
-        assertTrue(BCS_A.equals(BCS_B_REORDERED));
-        assertTrue(BCS_B_REORDERED.equals(BCS_A));
-        assertFalse(BCS_A.equals(BCS_C));
-        assertFalse(BCS_C.equals(BCS_A));
+        assertThat(BCS_A).isEqualTo(BCS_B);
+        assertThat(BCS_B).isEqualTo(BCS_A);
+        assertThat(BCS_A).isEqualTo(BCS_B_REORDERED);
+        assertThat(BCS_B_REORDERED).isEqualTo(BCS_A);
+        assertThat(BCS_A).isNotEqualTo(BCS_C);
+        assertThat(BCS_C).isNotEqualTo(BCS_A);
     }
 
     private static BluetoothCodecConfig buildBluetoothCodecConfig(
