@@ -2847,6 +2847,13 @@ public final class BluetoothAdapter {
      */
     @RequiresNoPermission
     private boolean isHearingAidProfileSupported() {
+        if (Flags.systemServerMessenger()) {
+            return mMessenger
+                    .sendToService(BluetoothServiceMessages.ENABLE)
+                    .thenApply(b -> b.getBoolean("hearingAidSupported"))
+                    .orTimeout(1, TimeUnit.SECONDS)
+                    .join();
+        }
         try {
             return mManagerService.isHearingAidProfileSupported();
         } catch (RemoteException e) {
