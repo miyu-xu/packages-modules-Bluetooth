@@ -26,4 +26,5 @@ enum BluetoothServiceMessages {
     FACTORY_RESET = 5,
     IS_BLE_SCAN_AVAILABLE = 6,
     IS_HEARING_AID_SUPPORTED = 7,
+    SET_SNOOP_LOG = 8,
 }
