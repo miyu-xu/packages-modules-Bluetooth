@@ -106,6 +106,9 @@ internal class ServiceMessenger(
                     }
                 Bundle().apply { putBoolean("factoryReset", factoryReset) }
             }
+            BluetoothServiceMessages.IS_BLE_SCAN_AVAILABLE -> {
+                Bundle().apply { putBoolean("bleAvailable", managerService.isBleScanAvailable()) }
+            }
             else -> throw IllegalArgumentException("command not implemented: ${what} - ${data}")
         }
     }

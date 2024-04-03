@@ -24,4 +24,5 @@ enum BluetoothServiceMessages {
     ENABLE = 3,
     DISABLE = 4,
     FACTORY_RESET = 5,
+    IS_BLE_SCAN_AVAILABLE = 6,
 }
