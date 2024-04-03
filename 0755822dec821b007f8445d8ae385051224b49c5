@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "789d107a_90b125f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-03T02:28:13Z",
+      "side": 1,
+      "message": "I cannot approve this change as I am not sure of the consequence opening this settings via property.\nAlso, I am not owner of hci related code",
+      "revId": "0755822dec821b007f8445d8ae385051224b49c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "949c8a70_435792c5",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-03T02:28:13Z",
+      "side": 1,
+      "message": "can we add an utility method in packages/modules/Bluetooth/system/gd/os/system_properties_common.cc instead ?\n\nTaking example on the get.*uint32",
+      "range": {
+        "startLine": 62,
+        "startChar": 33,
+        "endLine": 62,
+        "endChar": 50
+      },
+      "revId": "0755822dec821b007f8445d8ae385051224b49c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
