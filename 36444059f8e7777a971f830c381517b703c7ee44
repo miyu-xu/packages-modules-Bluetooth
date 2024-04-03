@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c71c984_ad12e437",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-03T23:28:56Z",
+      "side": 1,
+      "message": "This won\u0027t pass presubmit with the current version of the Rust Compiler.  With 1.77.1 that I downloaded, it is necessary.",
+      "revId": "36444059f8e7777a971f830c381517b703c7ee44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
