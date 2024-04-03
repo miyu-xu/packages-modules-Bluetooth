@@ -101,4 +101,8 @@ class SystemServiceMessenger {
     SystemServiceMessage.Disable.Reply send(SystemServiceMessage.Disable data) {
         return send(data, SystemServiceMessage.Disable.Reply.class);
     }
+
+    SystemServiceMessage.FactoryReset.Reply send(SystemServiceMessage.FactoryReset data) {
+        return send(data, SystemServiceMessage.FactoryReset.Reply.class);
+    }
 }
