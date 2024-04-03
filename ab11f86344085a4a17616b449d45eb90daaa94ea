@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "d65428f5_4ba01e7b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-03T16:34:30Z",
+      "side": 1,
+      "message": "Replacing this with the commands to run your tests will remove the Test Lint warning.\n\nOr, if was truly manual, you can add a description to the test stanza, i.e.\n```\nTest: manual Connect a \u003cspecific device\u003e that connects AVRCP before A2DP\n```\n\nIf we don\u0027t have a test for this, I feel like we could write an avatar test that behaves this way and we could get solid coverage.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 12
+      },
+      "revId": "ab11f86344085a4a17616b449d45eb90daaa94ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "148e411e_e77d605f",
