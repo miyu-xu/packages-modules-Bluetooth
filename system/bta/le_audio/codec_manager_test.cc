@@ -107,8 +107,8 @@ const stack_config_t* stack_config_get_interface(void) {
 namespace bluetooth {
 namespace audio {
 namespace le_audio {
-std::vector<AudioSetConfiguration> get_offload_capabilities() {
-  return *offload_capabilities;
+std::array<std::vector<AudioSetConfiguration>, 2> get_offload_capabilities() {
+  return {*offload_capabilities, *offload_capabilities};
 }
 }  // namespace le_audio
 }  // namespace audio
