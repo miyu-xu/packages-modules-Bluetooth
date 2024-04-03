@@ -40,16 +40,12 @@ public class ScanController {
 
     private final BluetoothScanBinder mBinder;
 
-    private boolean isAvailable = false;
+    private boolean mIsAvailable;
 
     public ScanController(Context ctx) {
         mTransitionalScanHelper = new TransitionalScanHelper(ctx, () -> false);
         mBinder = new BluetoothScanBinder(this);
-    }
-
-    public void start() {
-        Log.d(TAG, "start()");
-        isAvailable = true;
+        mIsAvailable = true;
         HandlerThread thread = new HandlerThread("BluetoothScanManager");
         thread.start();
         mTransitionalScanHelper.start(thread.getLooper());
@@ -57,9 +53,15 @@ public class ScanController {
 
     public void stop() {
         Log.d(TAG, "stop()");
-        isAvailable = false;
+        mIsAvailable = false;
+        mBinder.clearScanController();
         mTransitionalScanHelper.stop();
         mTransitionalScanHelper.cleanup();
+    }
+
+    /** Notify Scan manager of bluetooth profile connection state changes */
+    public void notifyProfileConnectionStateChange(int profile, int fromState, int toState) {
+        mTransitionalScanHelper.notifyProfileConnectionStateChange(profile, fromState, toState);
     }
 
     TransitionalScanHelper getTransitionalScanHelper() {
@@ -71,18 +73,10 @@ public class ScanController {
     }
 
     static class BluetoothScanBinder extends IBluetoothScan.Stub {
-        private final ScanController mScanController;
+        private ScanController mScanController;
 
         BluetoothScanBinder(ScanController scanController) {
             mScanController = scanController;
-        }
-
-        private ScanController getScanController() {
-            if (mScanController.isAvailable) {
-                return mScanController;
-            }
-            Log.e(TAG, "getScanController() - ScanController requested, but not available!");
-            return null;
         }
 
         @Override
@@ -235,6 +229,18 @@ public class ScanController {
             return mScanController
                     .getTransitionalScanHelper()
                     .numHwTrackFiltersAvailable(attributionSource);
+        }
+
+        public void clearScanController() {
+            mScanController = null;
+        }
+
+        private ScanController getScanController() {
+            if (mScanController.mIsAvailable) {
+                return mScanController;
+            }
+            Log.e(TAG, "getScanController() - ScanController requested, but not available!");
+            return null;
         }
     }
 }
