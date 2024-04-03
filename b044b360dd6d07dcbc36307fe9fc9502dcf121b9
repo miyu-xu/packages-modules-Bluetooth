@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb7f95e0_bfa1d33f",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-04-03T17:29:16Z",
+      "side": 1,
+      "message": "nit: how verbose are these expected to be? Wondering if log::debug would make more sense here and in line 277.",
+      "range": {
+        "startLine": 302,
+        "startChar": 4,
+        "endLine": 302,
+        "endChar": 13
+      },
+      "revId": "b044b360dd6d07dcbc36307fe9fc9502dcf121b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2993fdc_6a48f33f",
+        "filename": "system/main/shim/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-04-03T17:29:16Z",
+      "side": 1,
+      "message": "nit: Can we add a bug link to the TODO format?",
+      "range": {
+        "startLine": 119,
+        "startChar": 7,
+        "endLine": 119,
+        "endChar": 11
+      },
+      "revId": "b044b360dd6d07dcbc36307fe9fc9502dcf121b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
