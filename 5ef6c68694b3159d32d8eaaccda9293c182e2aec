@@ -22,6 +22,30 @@
       },
       "revId": "5ef6c68694b3159d32d8eaaccda9293c182e2aec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46b43eb8_820e95aa",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-03T16:39:07Z",
+      "side": 1,
+      "message": "Yes, in order to be able to call it within the test package `com.android.bluetooth.opp;`",
+      "parentUuid": "51629db6_b273e010",
+      "range": {
+        "startLine": 372,
+        "startChar": 4,
+        "endLine": 372,
+        "endChar": 10
+      },
+      "revId": "5ef6c68694b3159d32d8eaaccda9293c182e2aec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
