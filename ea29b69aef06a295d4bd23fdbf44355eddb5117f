@@ -85,6 +85,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1d51283e_522b1bb8",
+        "filename": "android/app/src/com/android/bluetooth/notification/NotificationHelperService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-03T23:56:14Z",
+      "side": 1,
+      "message": "Yeah but it seems that sharePreferences is not recommended. But something like that.",
+      "parentUuid": "f7eee87f_513f89da",
+      "range": {
+        "startLine": 182,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 0
+      },
+      "revId": "ea29b69aef06a295d4bd23fdbf44355eddb5117f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a5aa510_e0247558",
         "filename": "android/app/src/com/android/bluetooth/notification/NotificationHelperService.java",
         "patchSetId": 3
