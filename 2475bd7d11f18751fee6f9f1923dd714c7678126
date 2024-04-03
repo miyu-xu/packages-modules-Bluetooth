@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4b065da_e3b68abf",
+        "filename": "Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-03T14:06:14Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "d5ad2cfa_d320601c",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 1
+      },
+      "revId": "2475bd7d11f18751fee6f9f1923dd714c7678126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4379aea1_97474edc",
