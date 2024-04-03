@@ -39,6 +39,24 @@
       "message": "Please add a safety comment explaining how all the safety preconditions are met.",
       "revId": "d55c6797a661cb23f914bd0d3547cc732eb6160a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cd87d24_323bcc45",
+        "filename": "system/gd/rust/topshim/src/sysprop.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-04-03T05:08:24Z",
+      "side": 1,
+      "message": "I\u0027m fixing it in a follow up CL https://r.android.com/3022226",
+      "parentUuid": "05d2c10d_9a1f4803",
+      "revId": "d55c6797a661cb23f914bd0d3547cc732eb6160a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
