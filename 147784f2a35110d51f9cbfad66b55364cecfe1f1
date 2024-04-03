@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7547a0ad_ea1f6fb6",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-03T03:26:06Z",
+      "side": 1,
+      "message": "for this part, I would recommend keep it in original place and change it on top right now. then maybe after May 8th android V release, add additional refactor",
+      "range": {
+        "startLine": 193,
+        "startChar": 12,
+        "endLine": 193,
+        "endChar": 32
+      },
+      "revId": "147784f2a35110d51f9cbfad66b55364cecfe1f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "805e8dfc_bf02cbe2",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1568,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-03T03:26:06Z",
+      "side": 1,
+      "message": "same suggestion to keep it after V release as well. \n\nI know it is very likely to be correct and work well, but just this part of code have been here a while, when we change that, it may bring accidentally working part to be not working 😭",
+      "range": {
+        "startLine": 1568,
+        "startChar": 25,
+        "endLine": 1568,
+        "endChar": 67
+      },
+      "revId": "147784f2a35110d51f9cbfad66b55364cecfe1f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
