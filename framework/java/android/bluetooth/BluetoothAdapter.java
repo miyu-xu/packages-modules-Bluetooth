@@ -2476,10 +2476,17 @@ public final class BluetoothAdapter {
     @SystemApi
     @RequiresNoPermission
     public boolean isBleScanAlwaysAvailable() {
+        if (Flags.systemServerMessenger()) {
+            return mMessenger
+                    .sendToService(BluetoothServiceMessages.IS_BLE_SCAN_AVAILABLE)
+                    .thenApply(b -> b.getBoolean("bleAvailable"))
+                    .orTimeout(1, TimeUnit.SECONDS)
+                    .join();
+        }
         try {
-            return mManagerService.isBleScanAlwaysAvailable();
+            return mManagerService.isBleScanAvailable();
         } catch (RemoteException e) {
-            Log.e(TAG, "remote exception when calling isBleScanAlwaysAvailable", e);
+            Log.e(TAG, "remote exception when calling isBleScanAvailable", e);
             return false;
         }
     }
@@ -4357,6 +4364,10 @@ public final class BluetoothAdapter {
                 Log.e(TAG, "RemoteException when calling getServiceMessenger", e);
                 throw e.rethrowAsRuntimeException();
             }
+        }
+
+        CompletableFuture<Bundle> sendToService(int what) {
+            return sendToService(what, null);
         }
 
         CompletableFuture<Bundle> sendToService(int what, Bundle arg) {
