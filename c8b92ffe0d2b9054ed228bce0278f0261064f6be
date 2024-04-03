@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e756583f_200667bf",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothCodecConfigTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-04-03T10:41:58Z",
+      "side": 1,
+      "message": "AndroidJunit4?",
+      "range": {
+        "startLine": 26,
+        "startChar": 9,
+        "endLine": 26,
+        "endChar": 15
+      },
+      "revId": "c8b92ffe0d2b9054ed228bce0278f0261064f6be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdcc560d_5059d125",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothCodecConfigTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-04-03T10:41:58Z",
+      "side": 1,
+      "message": "```suggestion\n        assertThat(bcc1).isEqualTo(bcc2_same);\n```\n\nHere and others",
+      "range": {
+        "startLine": 299,
+        "startChar": 8,
+        "endLine": 299,
+        "endChar": 24
+      },
+      "revId": "c8b92ffe0d2b9054ed228bce0278f0261064f6be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "314f7db2_6a8effeb",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothCodecConfigTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-04-03T10:41:58Z",
+      "side": 1,
+      "message": "```suggestion\n        assertThat(bcc1).isNotEqualTo(bcc3_codec_type);\n```\nHere and others",
+      "range": {
+        "startLine": 312,
+        "startChar": 9,
+        "endLine": 312,
+        "endChar": 24
+      },
+      "revId": "c8b92ffe0d2b9054ed228bce0278f0261064f6be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
