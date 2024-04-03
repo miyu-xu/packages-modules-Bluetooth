@@ -70,6 +70,30 @@
       },
       "revId": "f36a3d4bd856ab7a67a538824a26f1bf2d0a9089",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c7144d2_c96e7a75",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1853,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-03T01:27:56Z",
+      "side": 0,
+      "message": "Sure I can. Let me expand on what I was saying in my previous comment.\n\nWithout a `SynchronousResultReceiver` this code is unreachable. Bluetooth build system doesn\u0027t allow to keep unreachable code and generate build error. Therefor it **has** to be removed.\nAlso, as I explained, the *logic* removed was not correctly implemented in the first place, since the only path leading here was happening after a `TimeoutException` that already put back `mDeviceBusy` to false.\n\nThe comment from Mickaël apply on both before and after this CL.\n\nResolving the comment as it is not actionnable on this CL.",
+      "parentUuid": "a6c23ff0_c5762748",
+      "range": {
+        "startLine": 1848,
+        "startChar": 0,
+        "endLine": 1853,
+        "endChar": 50
+      },
+      "revId": "f36a3d4bd856ab7a67a538824a26f1bf2d0a9089",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
