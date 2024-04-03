@@ -149,6 +149,25 @@ internal class ServiceMessenger(
 
                 Bundle.EMPTY
             }
+            BluetoothServiceMessages.GET_SNOOP_LOG -> {
+                checker.enforcePrivileged(sendingUid)
+
+                Bundle().apply {
+                    putInt(
+                        "snoopLog",
+                        when (
+                            BluetoothProperties.snoop_log_mode()
+                                .orElse(BluetoothProperties.snoop_log_mode_values.DISABLED)
+                        ) {
+                            BluetoothProperties.snoop_log_mode_values.FILTERED ->
+                                BluetoothAdapter.BT_SNOOP_LOG_MODE_FILTERED
+                            BluetoothProperties.snoop_log_mode_values.FULL ->
+                                BluetoothAdapter.BT_SNOOP_LOG_MODE_FULL
+                            else -> BluetoothAdapter.BT_SNOOP_LOG_MODE_DISABLED
+                        }
+                    )
+                }
+            }
             else -> throw IllegalArgumentException("command not implemented: ${what} - ${data}")
         }
     }
