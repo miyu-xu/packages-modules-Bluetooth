@@ -1401,6 +1401,17 @@ public final class BluetoothAdapter {
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public boolean disableBLE() {
+        if (Flags.systemServerMessenger()) {
+            Bundle data = new Bundle();
+            data.putParcelable("source", mAttributionSource);
+            data.putBinder("token", mToken);
+
+            return mMessenger
+                    .sendToService(BluetoothServiceMessages.DISABLE, data)
+                    .thenApply(b -> b.getBoolean("disable"))
+                    .orTimeout(1, TimeUnit.SECONDS)
+                    .join();
+        }
         if (!isBleScanAlwaysAvailable()) {
             return false;
         }
