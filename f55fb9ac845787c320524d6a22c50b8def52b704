@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "754ed4f4_e8e081b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-04-03T09:20:46Z",
+      "side": 1,
+      "message": "Just sharing as FYI:\n\nMarking this as WIP as I\u0027m still going through the codebase and seeing if we missed anything. I\u0027m testing it out on my local device as well. There is a use case which I still have to work out which is:\n\n\u003e when Bluetooth toggle is off and scan toggle is on, you should not be able to initiate an LE connection, advertising but still be able to scan",
+      "revId": "f55fb9ac845787c320524d6a22c50b8def52b704",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9202d31f_55a8cd8e",
