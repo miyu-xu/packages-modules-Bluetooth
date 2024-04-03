@@ -1,0 +1,308 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fd33418_1c412d44",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 1366,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-03T08:36:34Z",
+      "side": 1,
+      "message": "Could you please add a TODO comment (e.g., \u0027TODO(b/xxxx): ...\u0027) as a reminder for us?",
+      "revId": "2fc965be709c2780130daaddfff94db2d48844ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "248fb19d_21cbcc3a",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth_media.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-03T08:36:34Z",
+      "side": 1,
+      "message": "Please help uprev Floss API version on m126 (see also go/floss-api-versioning).",
+      "revId": "2fc965be709c2780130daaddfff94db2d48844ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1383fcd4_c7bf82e3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-03T08:36:34Z",
+      "side": 1,
+      "message": "please avoid potential panic.",
+      "revId": "2fc965be709c2780130daaddfff94db2d48844ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "621f617c_99e07ac6",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-03T08:36:34Z",
+      "side": 1,
+      "message": "please avoid potential panic.",
+      "range": {
+        "startLine": 616,
+        "startChar": 65,
+        "endLine": 616,
+        "endChar": 71
+      },
+      "revId": "2fc965be709c2780130daaddfff94db2d48844ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "538ce8d1_016e1656",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-03T08:36:34Z",
+      "side": 1,
+      "message": "Please replace it with a constant for clarity (see [1] for example).\n\n[1]https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/include/bta_groups.h;l\u003d28?q\u003dkGroupUnknown",
+      "range": {
+        "startLine": 624,
+        "startChar": 90,
+        "endLine": 624,
+        "endChar": 92
+      },
+      "revId": "2fc965be709c2780130daaddfff94db2d48844ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa34b9d0_5188ebb8",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-03T08:36:34Z",
+      "side": 1,
+      "message": "unwrap_or(\u0026false)",
+      "range": {
+        "startLine": 655,
+        "startChar": 76,
+        "endLine": 655,
+        "endChar": 82
+      },
+      "revId": "2fc965be709c2780130daaddfff94db2d48844ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af9b6e56_f92e67c2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-03T08:36:34Z",
+      "side": 1,
+      "message": "Could you please add prefix or some context in the log messages for all LeAudioClientCallbacks:XXXX?",
+      "range": {
+        "startLine": 660,
+        "startChar": 23,
+        "endLine": 660,
+        "endChar": 31
+      },
+      "revId": "2fc965be709c2780130daaddfff94db2d48844ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1187576b_2655ba84",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 722,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-03T08:36:34Z",
+      "side": 1,
+      "message": "Can you please use get_mut() to avoid the clone?",
+      "range": {
+        "startLine": 714,
+        "startChar": 0,
+        "endLine": 722,
+        "endChar": 29
+      },
+      "revId": "2fc965be709c2780130daaddfff94db2d48844ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dab0e3a4_8e13b0ab",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 1948,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-03T08:36:34Z",
+      "side": 1,
+      "message": "Please replace it with a constant for clarity.",
+      "range": {
+        "startLine": 1948,
+        "startChar": 20,
+        "endLine": 1948,
+        "endChar": 22
+      },
+      "revId": "2fc965be709c2780130daaddfff94db2d48844ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a36408b7_b14c08e9",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 2025,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-03T08:36:34Z",
+      "side": 1,
+      "message": ".filter_map(|u| uuid::UuidHelper::is_known_profile(\u0026u))",
+      "range": {
+        "startLine": 2023,
+        "startChar": 17,
+        "endLine": 2025,
+        "endChar": 36
+      },
+      "revId": "2fc965be709c2780130daaddfff94db2d48844ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "387f4ee8_4084b36d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 3313,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-03T08:36:34Z",
+      "side": 1,
+      "message": "Uninitialized LEA for peer to start audio request",
+      "range": {
+        "startLine": 3313,
+        "startChar": 23,
+        "endLine": 3313,
+        "endChar": 63
+      },
+      "revId": "2fc965be709c2780130daaddfff94db2d48844ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3e50741_d96227a6",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 3323,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-03T08:36:34Z",
+      "side": 1,
+      "message": "Uninitialized LEA for peer to stop audio request",
+      "range": {
+        "startLine": 3323,
+        "startChar": 23,
+        "endLine": 3323,
+        "endChar": 62
+      },
+      "revId": "2fc965be709c2780130daaddfff94db2d48844ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b60e336_b0977b11",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 3332,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-03T08:36:34Z",
+      "side": 1,
+      "message": "host?",
+      "range": {
+        "startLine": 3332,
+        "startChar": 48,
+        "endLine": 3332,
+        "endChar": 54
+      },
+      "revId": "2fc965be709c2780130daaddfff94db2d48844ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b528222d_d98f252a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 3342,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-03T08:36:34Z",
+      "side": 1,
+      "message": "peer?",
+      "range": {
+        "startLine": 3342,
+        "startChar": 48,
+        "endLine": 3342,
+        "endChar": 54
+      },
+      "revId": "2fc965be709c2780130daaddfff94db2d48844ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
