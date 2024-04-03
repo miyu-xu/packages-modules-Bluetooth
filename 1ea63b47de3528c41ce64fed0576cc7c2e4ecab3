@@ -34,6 +34,24 @@
       "parentUuid": "e6e1b3f0_c93939f5",
       "revId": "1ea63b47de3528c41ce64fed0576cc7c2e4ecab3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ed41cca_b1be5c95",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-03T18:11:13Z",
+      "side": 1,
+      "message": "\u003e What\u0027s the down side?\n\nIt will disable owner file based test ownership attribution.\n\n\u003e The other option for me is to disable their lint.\n\nThe Lint is a warning that you can override.\n\n\u003e Unless the change directly affects the team, it feels like a waste of time to discuss it.\n\nIt does, it changes the way test failure bugs are assigned.",
+      "parentUuid": "07573deb_cae023cd",
+      "revId": "1ea63b47de3528c41ce64fed0576cc7c2e4ecab3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
