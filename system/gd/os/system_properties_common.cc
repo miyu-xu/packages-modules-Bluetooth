@@ -35,6 +35,19 @@ uint32_t GetSystemPropertyUint32Base(
   return default_value;
 }
 
+uint64_t GetSystemPropertyUint64(const std::string& property, uint64_t default_value) {
+  return GetSystemPropertyUint64Base(property, default_value, 10);
+}
+
+uint64_t GetSystemPropertyUint64Base(
+    const std::string& property, uint64_t default_value, int base) {
+  std::optional<std::string> result = GetSystemProperty(property);
+  if (result.has_value()) {
+    return static_cast<uint64_t>(std::stoul(*result, nullptr, base));
+  }
+  return default_value;
+}
+
 bool GetSystemPropertyBool(const std::string& property, bool default_value) {
   std::optional<std::string> result = GetSystemProperty(property);
   if (result.has_value()) {
