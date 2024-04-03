@@ -22,6 +22,30 @@
       },
       "revId": "2fed3bd69fa9c543cf73080be82cec2bf6e0ea20",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e42d136_186a8916",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-04-03T06:11:02Z",
+      "side": 1,
+      "message": "Done. Also added the hex string case in the unit test.",
+      "parentUuid": "c9de2ad5_68d4c784",
+      "range": {
+        "startLine": 59,
+        "startChar": 47,
+        "endLine": 59,
+        "endChar": 65
+      },
+      "revId": "2fed3bd69fa9c543cf73080be82cec2bf6e0ea20",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
