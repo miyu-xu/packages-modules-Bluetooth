@@ -113,4 +113,9 @@ class SystemServiceMessenger {
     SystemServiceMessage.GetName.Reply send(SystemServiceMessage.GetName data) {
         return send(data, SystemServiceMessage.GetName.Reply.class);
     }
+
+    SystemServiceMessage.IsBleScanAvailable.Reply send(
+            SystemServiceMessage.IsBleScanAvailable data) {
+        return send(data, SystemServiceMessage.IsBleScanAvailable.Reply.class);
+    }
 }
