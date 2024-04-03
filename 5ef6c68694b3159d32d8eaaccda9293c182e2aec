@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51629db6_b273e010",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-03T15:08:37Z",
+      "side": 1,
+      "message": "Do you need this public ? You seem to only use it in tests",
+      "range": {
+        "startLine": 372,
+        "startChar": 4,
+        "endLine": 372,
+        "endChar": 10
+      },
+      "revId": "5ef6c68694b3159d32d8eaaccda9293c182e2aec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
