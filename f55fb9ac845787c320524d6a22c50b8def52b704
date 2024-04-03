@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9202d31f_55a8cd8e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1080,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-04-03T08:21:12Z",
+      "side": 1,
+      "message": "As @okamil@google.com previously called out, we may not need this `start` method and move its contents to the constructor of `ScanController`. I need to investigate further.",
+      "range": {
+        "startLine": 1080,
+        "startChar": 8,
+        "endLine": 1080,
+        "endChar": 31
+      },
+      "revId": "f55fb9ac845787c320524d6a22c50b8def52b704",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
