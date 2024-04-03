@@ -87,10 +87,16 @@ internal class ServiceMessenger(
             BluetoothServiceMessages.DISABLE -> {
                 val source = data.getParcelable("source", AttributionSource::class.java)!!
                 val persist = data.getBoolean("persist")
+                val token = data.getBinder("token")
+                val foregroundRequired = token == null
                 val disable =
                     try {
-                        checker.disableAllowed(sendingUid, source)
-                        managerService.disable_sync(source.getPackageName(), persist)
+                        checker.disableAllowed(sendingUid, source, foregroundRequired)
+                        if (token != null) {
+                            managerService.disableBle_sync(source.getPackageName(), token)
+                        } else {
+                            managerService.disable_sync(source.getPackageName(), persist)
+                        }
                     } catch (e: PermissionChecker.BluetoothPermissionException) {
                         Log.e(TAG, "${what}: FAILED", e)
                         false

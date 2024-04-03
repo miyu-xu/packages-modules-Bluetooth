@@ -86,7 +86,6 @@ import androidx.annotation.RequiresApi;
 
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.flags.Flags;
-import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.expresslog.Counter;
 import com.android.server.BluetoothManagerServiceDumpProto;
@@ -204,9 +203,10 @@ class BluetoothManagerService {
             new RemoteCallbackList<IBluetoothManagerCallback>();
     private final BluetoothServiceBinder mBinder;
 
-    private final ReentrantReadWriteLock mAdapterLock = new ReentrantReadWriteLock();
+    private final ReentrantReadWriteLock mAdapterLock =
+            Flags.systemServerMessenger() ? null : new ReentrantReadWriteLock();
 
-    @GuardedBy("mAdapterLock")
+    // @GuardedBy("mAdapterLock") // Annotation is deprecated by the systemServerMessenger Flag
     private AdapterBinder mAdapter = null;
 
     private List<Integer> mSupportedProfileList = new ArrayList<>();
@@ -975,8 +975,23 @@ class BluetoothManagerService {
                             return;
                         }
                         // BLE scan is not available.
-                        disableBleScanMode();
+                        if (Flags.systemServerMessenger()) {
+                            disableBleScanMode_sync();
+                        } else {
+                            disableBleScanMode();
+                        }
                         clearBleApps();
+                        if (Flags.systemServerMessenger()) {
+                            try {
+                                if (mAdapter != null) {
+                                    addActiveLog(ENABLE_DISABLE_REASON_APPLICATION_REQUEST, false);
+                                    mAdapter.stopBle(mContext.getAttributionSource());
+                                }
+                            } catch (RemoteException e) {
+                                Log.e(TAG, "error when disabling bluetooth", e);
+                            }
+                            return;
+                        }
                         mAdapterLock.readLock().lock();
                         try {
                             if (mAdapter != null) {
@@ -1001,12 +1016,16 @@ class BluetoothManagerService {
     private void disableBleScanMode() {
         mAdapterLock.writeLock().lock();
         try {
-            if (mAdapter != null && mState.oneOf(STATE_ON)) {
-                Log.d(TAG, "disableBleScanMode: Resetting the mEnable flag for clean disable");
-                mEnable = false;
-            }
+            disableBleScanMode_sync();
         } finally {
             mAdapterLock.writeLock().unlock();
+        }
+    }
+
+    private void disableBleScanMode_sync() {
+        if (mAdapter != null && mState.oneOf(STATE_ON)) {
+            Log.d(TAG, "disableBleScanMode_sync: Resetting the mEnable flag for clean disable");
+            mEnable = false;
         }
     }
 
@@ -1340,6 +1359,43 @@ class BluetoothManagerService {
             setBluetoothPersistedState(BLUETOOTH_OFF);
         }
         mEnableExternal = false;
+    }
+
+    boolean disableBle_sync(String packageName, IBinder token) {
+        Log.i(
+                TAG,
+                ("disableBle_sync(" + packageName + ", " + token + "):")
+                        + (" mAdapter=" + mAdapter)
+                        + (" isBinding=" + isBinding())
+                        + (" mState=" + mState));
+
+        if (!isBleScanAvailable()) {
+            Log.d(TAG, "disableBle_sync: not disabling - Ble scan is not available");
+            return false;
+        }
+
+        if (isSatelliteModeOn()) {
+            Log.d(TAG, "disableBle_sync: not disabling - satellite mode is on.");
+            return false;
+        }
+
+        if (mState.oneOf(STATE_OFF)) {
+            Log.i(TAG, "disableBle_sync: Already disabled");
+            return false;
+        }
+
+        updateBleAppCount(token, false, packageName);
+
+        if (mState.oneOf(STATE_BLE_ON) && !isBleAppPresent()) {
+            if (mEnable) {
+                disableBleScanMode_sync();
+            }
+            if (!mEnableExternal) {
+                addActiveLog(ENABLE_DISABLE_REASON_APPLICATION_REQUEST, packageName, false);
+                sendBrEdrDownCallback();
+            }
+        }
+        return true;
     }
 
     boolean disable_sync(String packageName, boolean persist) {
