@@ -34,6 +34,24 @@
       "parentUuid": "6d129ccd_8336fd0f",
       "revId": "ad0c7cd9d6e71b7beeaeee5925cb56cafbbf0ec2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76647623_48194148",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-03T16:07:36Z",
+      "side": 1,
+      "message": "\u003e IMO the meaning of \"set_event_mask\" is to set the any mask.\n\nThe fact that we set the any mask right now is an implementation detail, but this is not a requirement and could change (The spec already defines behavior changes based on this mask).\n\n\u003e From the project perspective, I think they don\u0027t exactly use the same mask...right?\n\nWhat do you call project here?\n\n\u003e pass the value by sysprops based on different projects.\n\nMy point is that it should not differ per projects, the mask is tied to what the stack does support/handle.\n\nHaving it as a sysprop here also means that it much more cumbersome to mask/unmask events in the future (Since we mostly only control the default and the sysprop is an override of that).",
+      "parentUuid": "dd3df8fd_b342c993",
+      "revId": "ad0c7cd9d6e71b7beeaeee5925cb56cafbbf0ec2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
