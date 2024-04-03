@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6e1b3f0_c93939f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-03T15:38:36Z",
+      "side": 1,
+      "message": "Trendy teams is a regression compared to our current owner file based test ownership attribution, @girardier@google.com is currently discussing with the team behind this change to know what we should do with Bluetooth. I think we should not merge this until we know what to do here.\n\nAlso in the future, for changes like that it would be good to have broader discussions.",
+      "revId": "1ea63b47de3528c41ce64fed0576cc7c2e4ecab3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
