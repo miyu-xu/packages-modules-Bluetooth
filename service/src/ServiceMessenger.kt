@@ -15,6 +15,7 @@
  */
 package com.android.server.bluetooth
 
+import android.bluetooth.BluetoothAdapter
 import android.bluetooth.IBluetoothManagerCallback
 import android.content.AttributionSource
 import android.os.Bundle
@@ -23,6 +24,7 @@ import android.os.Looper
 import android.os.Message
 import android.os.Messenger
 import android.os.RemoteException
+import android.sysprop.BluetoothProperties
 
 private const val TAG = "ServiceMessenger"
 
@@ -124,6 +126,28 @@ internal class ServiceMessenger(
                 Bundle().apply {
                     putBoolean("hearingAidSupported", managerService.isHearingAidProfileSupported())
                 }
+            }
+            BluetoothServiceMessages.SET_SNOOP_LOG -> {
+                checker.enforcePrivileged(sendingUid)
+
+                val mode = data.getInt("mode", -1)
+
+                BluetoothProperties.snoop_log_mode(
+                    when (mode) {
+                        BluetoothAdapter.BT_SNOOP_LOG_MODE_DISABLED ->
+                            BluetoothProperties.snoop_log_mode_values.DISABLED
+                        BluetoothAdapter.BT_SNOOP_LOG_MODE_FILTERED ->
+                            BluetoothProperties.snoop_log_mode_values.FILTERED
+                        BluetoothAdapter.BT_SNOOP_LOG_MODE_FULL ->
+                            BluetoothProperties.snoop_log_mode_values.FULL
+                        else ->
+                            throw IllegalArgumentException(
+                                "Invalid Bluetooth HCI snoop log mode param value"
+                            )
+                    }
+                )
+
+                Bundle.EMPTY
             }
             else -> throw IllegalArgumentException("command not implemented: ${what} - ${data}")
         }
