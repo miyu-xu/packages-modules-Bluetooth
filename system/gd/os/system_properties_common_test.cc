@@ -60,4 +60,27 @@ TEST(SystemPropertiesTest, getUint32BaseHex) {
   ASSERT_EQ(bluetooth::os::GetSystemPropertyUint32Base(property, 1, 10), 0u);  // if parsed as a dec
 }
 
+TEST(SystemPropertiesTest, getUint64) {
+  std::string property("SystemPropertiesTest_getUint64");
+  uint64_t value = 0x3dbfffffffffffff;
+  ASSERT_TRUE(SetSystemProperty(property, std::to_string(value)));
+  ASSERT_EQ(bluetooth::os::GetSystemPropertyUint64(property, 0), value);
+}
+
+TEST(SystemPropertiesTest, getUint64BaseHex) {
+  std::string property("SystemPropertiesTest_getUint64BaseHex");
+  std::string str_value = "0x3dbfffffffffffff";
+  uint64_t value = std::stoul(str_value, nullptr, 16);
+
+  std::stringstream stream;
+  stream << std::showbase << std::hex << value;
+  ASSERT_TRUE(SetSystemProperty(property, stream.str()));
+  ASSERT_EQ(bluetooth::os::GetSystemPropertyUint64Base(property, 0), value);
+  ASSERT_EQ(bluetooth::os::GetSystemPropertyUint64Base(property, 1, 10), 0u);  // if parsed as a dec
+
+  // Test different base
+  ASSERT_TRUE(SetSystemProperty(property, str_value));
+  ASSERT_EQ(bluetooth::os::GetSystemPropertyUint64Base(property, 0, 16), value);
+}
+
 }  // namespace testing
