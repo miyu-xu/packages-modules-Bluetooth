@@ -43,6 +43,7 @@ constexpr uint8_t kMinEncryptionKeySize = 7;  // #define MIN_ENCRYPTION_KEY_SIZE
 constexpr bool kDefaultVendorCapabilitiesEnabled = true;
 static const std::string kPropertyVendorCapabilitiesEnabled =
     "bluetooth.core.le.vendor_capabilities.enabled";
+static const std::string kPropertyEventMask = "bluetooth.gd.hci.event_mask";
 
 using os::Handler;
 
@@ -55,7 +56,7 @@ struct Controller::impl {
     hci_->RegisterEventHandler(
         EventCode::NUMBER_OF_COMPLETED_PACKETS, handler->BindOn(this, &Controller::impl::NumberOfCompletedPackets));
 
-    set_event_mask(kDefaultEventMask);
+    set_event_mask(os::GetSystemPropertyUint64Base(kPropertyEventMask, kDefaultEventMask, 16));
     write_le_host_support(Enable::ENABLED, Enable::DISABLED);
     hci_->EnqueueCommand(ReadLocalNameBuilder::Create(),
                          handler->BindOnceOn(this, &Controller::impl::read_local_name_complete_handler));
