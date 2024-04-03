@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "148e411e_e77d605f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-03T16:30:30Z",
+      "side": 1,
+      "message": "This looks excellent! I only had one nit to help clean up the logic.\n\nThanks for your patience with me 😊",
+      "revId": "ab11f86344085a4a17616b449d45eb90daaa94ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8bbf760_a3a2e6f3",
+        "filename": "system/btif/avrcp/avrcp_service.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 680,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-03T16:30:30Z",
+      "side": 1,
+      "message": "I have a tiny concern here!\n\nAs written, this implies a device is connected if its in the device map at all. This appears to be the best we can do, as we don\u0027t seem to actually track device connection states in any other way! 😞\n\nThis seems halfway fine. A device (conceptually) going from DISCONNECTED -\u003e CONNECTING -\u003e CONNECTED won\u0027t be in the map until we get the CONNECTED event. **But**, a device going from CONNECTED -\u003e DISCONNECTING -\u003e DISCONNECTED remains in the map until we get the DISCONNECTED event from the layer below.\n\nSo, in theory, we might end up still trying to connect A2DP when AVRCP was disconnecting (maybe because it was _supposed_ to). This would probably then trigger the AVRCP connection again once A2DP is connected.\n\nThis a big race condition and I\u0027m not sure how much it will happen in practice. FWIW though, this seems to be on par with the non-new-avrcp (i.e. btif_rc_is_connected_peer) implementation, in that they don\u0027t seem to have a disconnecting state either. Its implemented in roughly the same way.\n\nI\u0027ll mark this as resolved, as I don\u0027t have great ideas, and it seems on par with the other implementation. But I still wanted to call it out 😊",
+      "range": {
+        "startLine": 678,
+        "startChar": 4,
+        "endLine": 680,
+        "endChar": 5
+      },
+      "revId": "ab11f86344085a4a17616b449d45eb90daaa94ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7946311_58108c27",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 2964,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-03T16:30:30Z",
+      "side": 1,
+      "message": "nit: You could just set `device_connected` to the value of `btif_rc_is_connected_peer(peer-\u003ePeerAddress())` when the flag isn\u0027t set and reduce this logic to `if (!device_connected) { /* ... */ }`.\n\n```\nbool device_connected \u003d false;\nif (IS_FLAG_ENABLED(/* ... */) {\n    // As you have it\n} else {\n    device_connected \u003d btif_rc_is_connected_peer(peer-\u003ePeerAddress());\n}\n\nif (!device_connected) {\n    // log\n    return;\n}\n\n```\n\nI think that will keep the functionality pre-flag and make the logic really readable, i.e. \"if new-avrcp -\u003e use this to get device connection state, else -\u003e use the old thing. if the device isn\u0027t connected -\u003e return\"",
+      "range": {
+        "startLine": 2964,
+        "startChar": 6,
+        "endLine": 2964,
+        "endChar": 74
+      },
+      "revId": "ab11f86344085a4a17616b449d45eb90daaa94ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
