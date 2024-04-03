@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2ed281a_099a1a9e",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-03T17:01:43Z",
+      "side": 1,
+      "message": "Should this be in the else?\n```suggestion\n    } else if (procedure_data-\u003eras_raw_data_.size() \u003c kMtuForRasData) { \n      log::info(\"waiting for more data, current size {}\", procedure_data-\u003eras_raw_data_.size());\n      return;\n    }\n```",
+      "range": {
+        "startLine": 736,
+        "startChar": 4,
+        "endLine": 740,
+        "endChar": 64
+      },
+      "revId": "514d1b793668af76d8a7e3ed76bc11fdcd983e0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a3993d7_f41560fb",
+        "filename": "system/pdl/ras/ras_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-03T17:01:43Z",
+      "side": 1,
+      "message": "Abort reason?\n\n```suggestion\n}\n\nenum AbortReason : 4 {\n  NO_ABORT \u003d 0x0,\n  LOCAL_HOST_OR_REMOTE \u003d 0x1,\n  INSUFFICIENT_FILTERED_CHANNELS \u003d 0x2,\n  INSTANT_HAS_PASSED \u003d 0x3,\n  UNSPECIFIED \u003d 0xF,\n}\n```",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 1
+      },
+      "revId": "514d1b793668af76d8a7e3ed76bc11fdcd983e0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44b056c8_4b0407d6",
+        "filename": "system/pdl/ras/ras_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-03T17:01:43Z",
+      "side": 1,
+      "message": "```suggestion\n  ranging_abort_reason : AbortReason,\n  subevent_abort_reason : AbortReason,\n```",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 28
+      },
+      "revId": "514d1b793668af76d8a7e3ed76bc11fdcd983e0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
