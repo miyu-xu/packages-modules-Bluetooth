@@ -310,6 +310,9 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
     @Override
     @RequiresPermission(BLUETOOTH_CONNECT)
     public boolean disableBle(AttributionSource source, IBinder token) {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
         requireNonNull(source, "AttributionSource cannot be null in disableBle");
         requireNonNull(token, "IBinder cannot be null in disableBle");
 
