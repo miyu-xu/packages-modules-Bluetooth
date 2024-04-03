@@ -1005,10 +1005,16 @@ public class AdapterService extends Service {
                     TAG,
                     "GATT is configured off but the stack assumes it to be enabled. Start anyway.");
         }
+        if (Flags.scanManagerRefactor()) {
+            startScanController();
+        }
         startGattProfileService();
     }
 
     void bringDownBle() {
+        if (Flags.scanManagerRefactor()) {
+            stopScanController();
+        }
         stopGattProfileService();
     }
 
@@ -1069,6 +1075,10 @@ public class AdapterService extends Service {
         onProfileServiceStateChanged(mGattService, BluetoothAdapter.STATE_ON);
     }
 
+    private void startScanController() {
+        mScanController = new ScanController(this);
+    }
+
     private void stopGattProfileService() {
         mAdapterProperties.onBleDisable();
         if (mRunningProfiles.size() == 0) {
@@ -1085,6 +1095,13 @@ public class AdapterService extends Service {
             mGattService.cleanup();
             mGattService.getBinder().cleanup();
             mGattService = null;
+        }
+    }
+
+    private void stopScanController() {
+        if (mScanController != null) {
+            mScanController.stop();
+            mScanController = null;
         }
     }
 
