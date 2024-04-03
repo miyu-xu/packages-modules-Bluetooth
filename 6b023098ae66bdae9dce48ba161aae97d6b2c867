@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f0feeb2_812dfb32",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-03T16:42:17Z",
+      "side": 1,
+      "message": "You\u0027ll need a Flag stanza to get document the exemption you\u0027re asking for here.\n\nSomething like the following might suffice:\n```\nFlag: EXEMPT, mechanical refactor to callback object\n```",
+      "revId": "6b023098ae66bdae9dce48ba161aae97d6b2c867",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea8223fb_d1ef1eaa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-03T16:42:17Z",
+      "side": 1,
+      "message": "The commit message linting is complaining about this. If you have a description on the manual test to be ran, you can add that.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 12
+      },
+      "revId": "6b023098ae66bdae9dce48ba161aae97d6b2c867",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e3050ce_673b4f82",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-03T16:42:17Z",
+      "side": 1,
+      "message": "I don\u0027t have official owners over anything in the native stack. But, this conceptually looks just fine, and it seems to be purely mechanical in nature. Only the commit message needs some work per our conventions.\n\nYou can pick your favorite core team member to get an owner review 😊",
+      "revId": "6b023098ae66bdae9dce48ba161aae97d6b2c867",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
