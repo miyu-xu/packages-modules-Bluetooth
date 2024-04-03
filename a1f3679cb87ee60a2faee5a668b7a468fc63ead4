@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a18ddbd2_060b9165",
+        "filename": "system/gd/hci/msft.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-03T14:01:20Z",
+      "side": 1,
+      "message": "I feel like we could remove these (or maybe better, the ones around every include).\n\nI\u0027m not a fan of #ifdef, so I\u0027d like to minimize its use.",
+      "range": {
+        "startLine": 17,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 16
+      },
+      "revId": "a1f3679cb87ee60a2faee5a668b7a468fc63ead4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b66350e1_59134dba",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-03T14:01:20Z",
+      "side": 1,
+      "message": "I think this could be easier to read if we comment out the whole block.\n\n```suggestion\n#if TARGET_FLOSS\nbool BleScannerIntf::IsMsftSupported() {\n  return scanner_intf_-\u003eIsMsftSupported();\n}\n\nvoid BleScannerIntf::MsftAdvMonitorAdd(uint32_t call_id, const RustMsftAdvMonitor\u0026 monitor) {\n  scanner_intf_-\u003eMsftAdvMonitorAdd(\n      internal::ConvertAdvMonitor(monitor),\n      base::Bind(\u0026BleScannerIntf::OnMsftAdvMonitorAddCallback, base::Unretained(this), call_id));\n}\n\nvoid BleScannerIntf::MsftAdvMonitorRemove(uint32_t call_id, uint8_t monitor_handle) {\n  scanner_intf_-\u003eMsftAdvMonitorRemove(\n      monitor_handle, base::Bind(\u0026BleScannerIntf::OnMsftAdvMonitorRemoveCallback, base::Unretained(this), call_id));\n}\n\nvoid BleScannerIntf::MsftAdvMonitorEnable(uint32_t call_id, bool enable) {\n  scanner_intf_-\u003eMsftAdvMonitorEnable(\n      enable, base::Bind(\u0026BleScannerIntf::OnMsftAdvMonitorEnableCallback, base::Unretained(this), call_id));\n}\n#else\n\nbool BleScannerIntf::IsMsftSupported() { return false; }\nvoid BleScannerIntf::MsftAdvMonitorAdd(uint32_t call_id, /* const */ RustMsftAdvMonitor\u0026 /* monitor */) {}\nvoid BleScannerIntf::MsftAdvMonitorRemove(uint32_t /* call_id */, uint8_t /* monitor_handle */) {}\nvoid BleScannerIntf::MsftAdvMonitorEnable(uint32_t /* call_id */, bool /* enable */) {}\n\n#endif\n```",
+      "range": {
+        "startLine": 255,
+        "startChar": 0,
+        "endLine": 289,
+        "endChar": 1
+      },
+      "revId": "a1f3679cb87ee60a2faee5a668b7a468fc63ead4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
