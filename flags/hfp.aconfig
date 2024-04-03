@@ -86,3 +86,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "fix_sco_retry_on_not_local"
+    namespace: "bluetooth"
+    description: "Don't retry sco settings unless we are initiator."
+    bug: "324157546"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
