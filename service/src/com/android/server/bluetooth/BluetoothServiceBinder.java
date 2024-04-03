@@ -348,12 +348,18 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
 
     @Override
     public boolean isHearingAidProfileSupported() {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
         return mBluetoothManagerService.isHearingAidProfileSupported();
     }
 
     @Override
     @RequiresPermission(BLUETOOTH_PRIVILEGED)
     public int setBtHciSnoopLogMode(int mode) {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
         BtPermissionUtils.enforcePrivileged(mContext);
 
         return mBluetoothManagerService.setBtHciSnoopLogMode(mode);
