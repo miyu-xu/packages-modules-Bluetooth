@@ -16,13 +16,17 @@
 
 package android.bluetooth.le;
 
-import androidx.test.filters.SmallTest;
-import junit.framework.TestCase;
+import static com.google.common.truth.Truth.assertWithMessage;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 /** Test for Bluetooth LE {@link ScanSettings}. */
-public class ScanSettingsTest extends TestCase {
+@RunWith(JUnit4.class)
+public class ScanSettingsTest {
 
-    @SmallTest
+    @Test
     public void testCallbackType() {
         ScanSettings.Builder builder = new ScanSettings.Builder();
         builder.setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES);
@@ -35,7 +39,7 @@ public class ScanSettingsTest extends TestCase {
         try {
             builder.setCallbackType(
                     ScanSettings.CALLBACK_TYPE_ALL_MATCHES | ScanSettings.CALLBACK_TYPE_MATCH_LOST);
-            fail("should have thrown IllegalArgumentException!");
+            assertWithMessage("Should have thrown IllegalArgumentException!").fail();
         } catch (IllegalArgumentException e) {
             // nothing to do
         }
@@ -44,7 +48,7 @@ public class ScanSettingsTest extends TestCase {
             builder.setCallbackType(
                     ScanSettings.CALLBACK_TYPE_ALL_MATCHES
                             | ScanSettings.CALLBACK_TYPE_FIRST_MATCH);
-            fail("should have thrown IllegalArgumentException!");
+            assertWithMessage("Should have thrown IllegalArgumentException!").fail();
         } catch (IllegalArgumentException e) {
             // nothing to do
         }
@@ -53,7 +57,7 @@ public class ScanSettingsTest extends TestCase {
             builder.setCallbackType(
                     ScanSettings.CALLBACK_TYPE_ALL_MATCHES
                             | ScanSettings.CALLBACK_TYPE_ALL_MATCHES_AUTO_BATCH);
-            fail("should have thrown IllegalArgumentException!");
+            assertWithMessage("Should have thrown IllegalArgumentException!").fail();
         } catch (IllegalArgumentException e) {
             // nothing to do
         }
@@ -63,7 +67,7 @@ public class ScanSettingsTest extends TestCase {
                     ScanSettings.CALLBACK_TYPE_ALL_MATCHES
                             | ScanSettings.CALLBACK_TYPE_FIRST_MATCH
                             | ScanSettings.CALLBACK_TYPE_MATCH_LOST);
-            fail("should have thrown IllegalArgumentException!");
+            assertWithMessage("Should have thrown IllegalArgumentException!").fail();
         } catch (IllegalArgumentException e) {
             // nothing to do
         }
@@ -72,7 +76,7 @@ public class ScanSettingsTest extends TestCase {
             builder.setCallbackType(
                     ScanSettings.CALLBACK_TYPE_ALL_MATCHES_AUTO_BATCH
                             | ScanSettings.CALLBACK_TYPE_MATCH_LOST);
-            fail("should have thrown IllegalArgumentException!");
+            assertWithMessage("Should have thrown IllegalArgumentException!").fail();
         } catch (IllegalArgumentException e) {
             // nothing to do
         }
@@ -81,7 +85,7 @@ public class ScanSettingsTest extends TestCase {
             builder.setCallbackType(
                     ScanSettings.CALLBACK_TYPE_ALL_MATCHES_AUTO_BATCH
                             | ScanSettings.CALLBACK_TYPE_FIRST_MATCH);
-            fail("should have thrown IllegalArgumentException!");
+            assertWithMessage("Should have thrown IllegalArgumentException!").fail();
         } catch (IllegalArgumentException e) {
             // nothing to do
         }
@@ -91,7 +95,7 @@ public class ScanSettingsTest extends TestCase {
                     ScanSettings.CALLBACK_TYPE_ALL_MATCHES_AUTO_BATCH
                             | ScanSettings.CALLBACK_TYPE_FIRST_MATCH
                             | ScanSettings.CALLBACK_TYPE_MATCH_LOST);
-            fail("should have thrown IllegalArgumentException!");
+            assertWithMessage("Should have thrown IllegalArgumentException!").fail();
         } catch (IllegalArgumentException e) {
             // nothing to do
         }
@@ -102,7 +106,7 @@ public class ScanSettingsTest extends TestCase {
                             | ScanSettings.CALLBACK_TYPE_ALL_MATCHES_AUTO_BATCH
                             | ScanSettings.CALLBACK_TYPE_FIRST_MATCH
                             | ScanSettings.CALLBACK_TYPE_MATCH_LOST);
-            fail("should have thrown IllegalArgumentException!");
+            assertWithMessage("Should have thrown IllegalArgumentException!").fail();
         } catch (IllegalArgumentException e) {
             // nothing to do
         }
@@ -111,7 +115,7 @@ public class ScanSettingsTest extends TestCase {
             builder.setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES_AUTO_BATCH)
                     .setReportDelay(0)
                     .build();
-            fail("should have thrown IllegalArgumentException!");
+            assertWithMessage("Should have thrown IllegalArgumentException!").fail();
         } catch (IllegalArgumentException e) {
             // nothing to do
         }
