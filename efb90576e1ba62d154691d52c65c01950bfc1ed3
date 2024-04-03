@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5f00980_15e01830",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-04-03T06:39:23Z",
+      "side": 1,
+      "message": "@apusaka@google.com linux build is probably not really building hcidoc. Could you help verify this patch doesn\u0027t break anything?",
+      "revId": "efb90576e1ba62d154691d52c65c01950bfc1ed3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
