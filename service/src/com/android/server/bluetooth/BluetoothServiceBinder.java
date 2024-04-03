@@ -265,6 +265,9 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
     @Override
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public boolean onFactoryReset(AttributionSource source) {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
         requireNonNull(source, "AttributionSource cannot be null in onFactoryReset");
 
         BtPermissionUtils.enforcePrivileged(mContext);
