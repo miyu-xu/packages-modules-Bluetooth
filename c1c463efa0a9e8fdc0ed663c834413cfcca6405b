@@ -16,6 +16,24 @@
       "message": "this will still crash if status code is not success and hence not matching the commit msg, what are we trying to do here?",
       "revId": "c1c463efa0a9e8fdc0ed663c834413cfcca6405b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9e9369a_8be3a633",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-03T05:00:40Z",
+      "side": 1,
+      "message": "We want to crash if it is a successful connection that we didn\u0027t know about.\n\nWe\u0027re asserting that the status isn\u0027t success.  The equivalent logic is:\nif (status \u003d\u003d ErrorCode::SUCCESS) {\n  log::fatal(\"...\");\n}",
+      "parentUuid": "c2007e85_b69ddb34",
+      "revId": "c1c463efa0a9e8fdc0ed663c834413cfcca6405b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
