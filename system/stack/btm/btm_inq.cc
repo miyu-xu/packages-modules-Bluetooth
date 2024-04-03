@@ -1959,31 +1959,29 @@ tBTM_STATUS btm_initiate_rem_name(const RawAddress& remote_bda, uint8_t origin,
  ******************************************************************************/
 void btm_process_remote_name(const RawAddress* bda, const BD_NAME bdn,
                              uint16_t evt_len, tHCI_STATUS hci_status) {
-  tBTM_REMOTE_DEV_NAME rem_name;
-  tBTM_NAME_CMPL_CB* p_cb = btm_cb.btm_inq_vars.p_remname_cmpl_cb;
+  tBTM_REMOTE_DEV_NAME rem_name = {
+      .status = BTM_BAD_VALUE_RET,
+      .bd_addr = bda ? *bda : RawAddress::kEmpty,
+      .remote_bd_name = {},
+      .hci_status = hci_status,
+  };
 
-  if (bda) {
-    rem_name.bd_addr = *bda;
-  } else {
-    rem_name.bd_addr = RawAddress::kEmpty;
-  }
-
-  log::info("btm_process_remote_name for {}",
-            ADDRESS_TO_LOGGABLE_CSTR(rem_name.bd_addr));
-
-  log::verbose("Inquire BDA {}",
-               ADDRESS_TO_LOGGABLE_CSTR(btm_cb.btm_inq_vars.remname_bda));
+  const bool on_le_link = BTM_UseLeLink(btm_cb.btm_inq_vars.remname_bda);
 
   /* If the inquire BDA and remote DBA are the same, then stop the timer and set
    * the active to false */
   if ((btm_cb.btm_inq_vars.remname_active) &&
-      (!bda || (*bda == btm_cb.btm_inq_vars.remname_bda))) {
-    if (BTM_UseLeLink(btm_cb.btm_inq_vars.remname_bda)) {
-      if (hci_status == HCI_ERR_UNSPECIFIED)
-        btm_ble_cancel_remote_name(btm_cb.btm_inq_vars.remname_bda);
+      (rem_name.bd_addr == btm_cb.btm_inq_vars.remname_bda)) {
+    btm_cb.btm_inq_vars.remname_active = false;
+
+    log::info("RNR received expected name bd_addr:{} hci_status:{} le_link:{}",
+              ADDRESS_TO_LOGGABLE_CSTR(rem_name.bd_addr),
+              hci_status_code_text(hci_status), logbool(on_le_link));
+
+    if (on_le_link && hci_status == HCI_ERR_UNSPECIFIED) {
+      btm_ble_cancel_remote_name(btm_cb.btm_inq_vars.remname_bda);
     }
     alarm_cancel(btm_cb.btm_inq_vars.remote_name_timer);
-    btm_cb.btm_inq_vars.remname_active = false;
     /* Clean up and return the status if the command was not successful */
     /* Note: If part of the inquiry, the name is not stored, and the    */
     /*       inquiry complete callback is called.                       */
@@ -1993,20 +1991,22 @@ void btm_process_remote_name(const RawAddress* bda, const BD_NAME bdn,
       /* Note that even if it is not being returned, it is used as a  */
       /*      temporary buffer.                                       */
       rem_name.status = BTM_SUCCESS;
-      rem_name.hci_status = hci_status;
       bd_name_copy(rem_name.remote_bd_name, bdn);
-    } else {
-      /* If processing a stand alone remote name then report the error in the
-         callback */
-      rem_name.status = BTM_BAD_VALUE_RET;
-      rem_name.hci_status = hci_status;
-      rem_name.remote_bd_name[0] = 0;
     }
-    /* Reset the remote BAD to zero and call callback if possible */
+    /* Reset the remote BDA and call callback if possible */
     btm_cb.btm_inq_vars.remname_bda = RawAddress::kEmpty;
 
-    btm_cb.btm_inq_vars.p_remname_cmpl_cb = NULL;
+    tBTM_NAME_CMPL_CB* p_cb = btm_cb.btm_inq_vars.p_remname_cmpl_cb;
+    btm_cb.btm_inq_vars.p_remname_cmpl_cb = nullptr;
     if (p_cb) (p_cb)(&rem_name);
+  } else {
+    log::info(
+        "RNR received UNEXPECTED name bd_addr:{} inq_addr:{} hci_status:{} "
+        "le_link:{} rnr_active:{}",
+        ADDRESS_TO_LOGGABLE_CSTR(rem_name.bd_addr),
+        ADDRESS_TO_LOGGABLE_CSTR(btm_cb.btm_inq_vars.remname_bda),
+        hci_status_code_text(hci_status), logbool(on_le_link),
+        logbool(btm_cb.btm_inq_vars.remname_active));
   }
 }
 
