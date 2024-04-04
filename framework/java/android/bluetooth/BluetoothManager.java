@@ -25,6 +25,7 @@ import android.bluetooth.annotations.RequiresLegacyBluetoothPermission;
 import android.content.AttributionSource;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.os.Handler;
 import android.os.RemoteException;
 import android.util.Log;
 
@@ -243,6 +244,34 @@ public final class BluetoothManager {
             BluetoothGattServerCallback callback,
             int transport,
             boolean eattSupport) {
+        return openGattServer(context, callback, transport, eattSupport, null);
+    }
+
+    /**
+     * Open a GATT Server The callback is used to deliver results to Caller, such as connection
+     * status as well as the results of any other GATT server operations. The method returns a
+     * BluetoothGattServer instance. You can use BluetoothGattServer to conduct GATT server
+     * operations.
+     *
+     * @param context App context
+     * @param callback GATT server callback handler that will receive asynchronous callbacks.
+     * @param transport preferred transport for GATT connections to remote dual-mode devices {@link
+     *     BluetoothDevice#TRANSPORT_AUTO} or {@link BluetoothDevice#TRANSPORT_BREDR} or {@link
+     *     BluetoothDevice#TRANSPORT_LE}
+     * @param eattSupport indicates if server should use eatt channel for notifications.
+     * @param handler handler to run {@param callback} on. If null, then the callback will run on
+     *     arbitrary thread.
+     * @return BluetoothGattServer instance
+     * @hide
+     */
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    public BluetoothGattServer openGattServer(
+            Context context,
+            BluetoothGattServerCallback callback,
+            int transport,
+            boolean eattSupport,
+            Handler handler) {
         if (context == null || callback == null) {
             throw new IllegalArgumentException("null parameter: " + context + " " + callback);
         }
@@ -255,7 +284,8 @@ public final class BluetoothManager {
             Log.e(TAG, "Fail to get GATT Server connection");
             return null;
         }
-        BluetoothGattServer mGattServer = new BluetoothGattServer(iGatt, transport, mAdapter);
+        BluetoothGattServer mGattServer =
+                new BluetoothGattServer(iGatt, transport, mAdapter, handler);
         Boolean regStatus = mGattServer.registerCallback(callback, eattSupport);
         return regStatus ? mGattServer : null;
     }
