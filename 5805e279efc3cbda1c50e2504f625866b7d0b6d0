@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5503e999_fa57a49c",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothCodecConfigTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-04-04T04:33:33Z",
+      "side": 1,
+      "message": "Updated as such. Thank you for the tip.",
+      "parentUuid": "580a8745_eb76bd5b",
+      "range": {
+        "startLine": 263,
+        "startChar": 12,
+        "endLine": 271,
+        "endChar": 75
+      },
+      "revId": "5805e279efc3cbda1c50e2504f625866b7d0b6d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f0a1d3a8_e5483375",
@@ -61,6 +85,30 @@
       "writtenOn": "2024-04-03T18:33:06Z",
       "side": 1,
       "message": "It is the only case in with the junit Assert need to be use, when catching Exception.\n\nSee go/java-testing/exceptions and the exception in go/truth\n\n\n```suggestion\n        assertThrows(\n             IllegalArgumentException.class,\n             () -\u003e builder.setCallbackType(\n                    ScanSettings.CALLBACK_TYPE_ALL_MATCHES\n                    | ScanSettings.CALLBACK_TYPE_MATCH_LOST));\n```",
+      "range": {
+        "startLine": 39,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 9
+      },
+      "revId": "5805e279efc3cbda1c50e2504f625866b7d0b6d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5586f891_33f326df",
+        "filename": "framework/tests/unit/src/android/bluetooth/le/ScanSettingsTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-04-04T04:33:33Z",
+      "side": 1,
+      "message": "\u003e See go/java-testing/exceptions and the exception in go/truth\n\nThank you for sharing this. I\u0027ve fixed the whole class.",
+      "parentUuid": "f0a1d3a8_e5483375",
       "range": {
         "startLine": 39,
         "startChar": 8,
