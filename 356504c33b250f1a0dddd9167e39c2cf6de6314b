@@ -33,6 +33,24 @@
       "message": "Seems there is a build error which is not caught by building apex.\n\nI\u0027ll upload a new patch set.",
       "revId": "356504c33b250f1a0dddd9167e39c2cf6de6314b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f083afa_c56d5237",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-04-04T01:59:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1266143b_44d1e908",
+      "revId": "356504c33b250f1a0dddd9167e39c2cf6de6314b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
