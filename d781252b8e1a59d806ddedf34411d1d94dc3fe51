@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e19c12a3_27a9fa98",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-04T18:48:39Z",
+      "side": 1,
+      "message": "Do we even need a `default` since it\u0027s an enum class ?",
+      "revId": "d781252b8e1a59d806ddedf34411d1d94dc3fe51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
