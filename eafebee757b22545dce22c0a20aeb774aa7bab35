@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91570622_980e4fa9",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-04T17:06:34Z",
+      "side": 1,
+      "message": "num_fds or count_fds?\n```suggestion\n                        int num_fds) {\n```",
+      "range": {
+        "startLine": 301,
+        "startChar": 28,
+        "endLine": 301,
+        "endChar": 33
+      },
+      "revId": "eafebee757b22545dce22c0a20aeb774aa7bab35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f1608a8_df64b500",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-04T17:06:34Z",
+      "side": 1,
+      "message": "num_fds\n```suggestion\n    ret \u003d poll(pfds, num_fds, BTA_HH_UHID_POLL_PERIOD_MS);\n```",
+      "revId": "eafebee757b22545dce22c0a20aeb774aa7bab35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dcee9bc_e74845ee",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-04T17:06:34Z",
+      "side": 1,
+      "message": "NUM_FDS\n```suggestion\n  struct pollfd pfds[NUM_FDS];\n```",
+      "range": {
+        "startLine": 341,
+        "startChar": 21,
+        "endLine": 341,
+        "endChar": 22
+      },
+      "revId": "eafebee757b22545dce22c0a20aeb774aa7bab35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba23d986_e1dabb44",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-04T17:06:34Z",
+      "side": 1,
+      "message": "NUM_FDS\n```suggestion\n    int ret \u003d uhid_fd_poll(p_dev, pfds, NUM_FDS);\n```",
+      "range": {
+        "startLine": 367,
+        "startChar": 40,
+        "endLine": 367,
+        "endChar": 41
+      },
+      "revId": "eafebee757b22545dce22c0a20aeb774aa7bab35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09ffd539_6223c6d6",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-04T17:06:34Z",
+      "side": 1,
+      "message": "I think it was more readable before, maybe change ret -\u003e result?\n```suggestion\n      int result \u003d uhid_read_event(p_dev);\n      if (result !\u003d 0) {\n```",
+      "range": {
+        "startLine": 380,
+        "startChar": 0,
+        "endLine": 380,
+        "endChar": 40
+      },
+      "revId": "eafebee757b22545dce22c0a20aeb774aa7bab35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
