@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b34c253c_ee437f3c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-04-04T00:26:22Z",
+      "side": 1,
+      "message": "Christine/Kyunglyul, can any of you give +2 on this CL? Thanks!",
+      "revId": "356504c33b250f1a0dddd9167e39c2cf6de6314b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
