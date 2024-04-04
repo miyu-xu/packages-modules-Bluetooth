@@ -68,6 +68,24 @@
       "message": "It\u0027s now inside a `TARGET_FLOSS` block. Do we still need it?",
       "revId": "9fc977cf212db385ef4602c5220e104e4805638b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c4cd1f9_01107f9d",
+        "filename": "system/gd/hci/msft.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-04T10:30:35Z",
+      "side": 1,
+      "message": "An extra safety net help prevent unexpected usage on msft.cc. Let\u0027s keep it.",
+      "parentUuid": "5ee4bf6a_6452d3ac",
+      "revId": "9fc977cf212db385ef4602c5220e104e4805638b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
