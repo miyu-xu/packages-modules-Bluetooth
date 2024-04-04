@@ -24,10 +24,13 @@ import android.annotation.SuppressLint;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.bluetooth.annotations.RequiresLegacyBluetoothPermission;
 import android.content.AttributionSource;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.ParcelUuid;
 import android.os.RemoteException;
 import android.util.Log;
+
+import com.android.bluetooth.flags.Flags;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -52,6 +55,7 @@ public final class BluetoothGattServer implements BluetoothProfile {
     private final IBluetoothGatt mService;
     private final BluetoothAdapter mAdapter;
     private final AttributionSource mAttributionSource;
+    private final Handler mHandler;
 
     private BluetoothGattServerCallback mCallback;
 
@@ -113,16 +117,15 @@ public final class BluetoothGattServer implements BluetoothProfile {
                                         + " device="
                                         + address);
                     }
-                    try {
-                        mCallback.onConnectionStateChange(
-                                mAdapter.getRemoteDevice(address),
-                                status,
-                                connected
-                                        ? BluetoothProfile.STATE_CONNECTED
-                                        : BluetoothProfile.STATE_DISCONNECTED);
-                    } catch (Exception ex) {
-                        Log.w(TAG, "Unhandled exception in callback", ex);
-                    }
+
+                    runOrQueueCallback(
+                            () ->
+                                    mCallback.onConnectionStateChange(
+                                            mAdapter.getRemoteDevice(address),
+                                            status,
+                                            connected
+                                                    ? BluetoothProfile.STATE_CONNECTED
+                                                    : BluetoothProfile.STATE_DISCONNECTED));
                 }
 
                 /**
@@ -169,11 +172,7 @@ public final class BluetoothGattServer implements BluetoothProfile {
 
                     mServices.add(tmp);
 
-                    try {
-                        mCallback.onServiceAdded((int) status, tmp);
-                    } catch (Exception ex) {
-                        Log.w(TAG, "Unhandled exception in callback", ex);
-                    }
+                    runOrQueueCallback(() -> mCallback.onServiceAdded(status, tmp));
                 }
 
                 /**
@@ -193,12 +192,10 @@ public final class BluetoothGattServer implements BluetoothProfile {
                         return;
                     }
 
-                    try {
-                        mCallback.onCharacteristicReadRequest(
-                                device, transId, offset, characteristic);
-                    } catch (Exception ex) {
-                        Log.w(TAG, "Unhandled exception in callback", ex);
-                    }
+                    runOrQueueCallback(
+                            () ->
+                                    mCallback.onCharacteristicReadRequest(
+                                            device, transId, offset, characteristic));
                 }
 
                 /**
@@ -218,11 +215,10 @@ public final class BluetoothGattServer implements BluetoothProfile {
                         return;
                     }
 
-                    try {
-                        mCallback.onDescriptorReadRequest(device, transId, offset, descriptor);
-                    } catch (Exception ex) {
-                        Log.w(TAG, "Unhandled exception in callback", ex);
-                    }
+                    runOrQueueCallback(
+                            () ->
+                                    mCallback.onDescriptorReadRequest(
+                                            device, transId, offset, descriptor));
                 }
 
                 /**
@@ -249,12 +245,16 @@ public final class BluetoothGattServer implements BluetoothProfile {
                         return;
                     }
 
-                    try {
-                        mCallback.onCharacteristicWriteRequest(
-                                device, transId, characteristic, isPrep, needRsp, offset, value);
-                    } catch (Exception ex) {
-                        Log.w(TAG, "Unhandled exception in callback", ex);
-                    }
+                    runOrQueueCallback(
+                            () ->
+                                    mCallback.onCharacteristicWriteRequest(
+                                            device,
+                                            transId,
+                                            characteristic,
+                                            isPrep,
+                                            needRsp,
+                                            offset,
+                                            value));
                 }
 
                 /**
@@ -281,12 +281,16 @@ public final class BluetoothGattServer implements BluetoothProfile {
                         return;
                     }
 
-                    try {
-                        mCallback.onDescriptorWriteRequest(
-                                device, transId, descriptor, isPrep, needRsp, offset, value);
-                    } catch (Exception ex) {
-                        Log.w(TAG, "Unhandled exception in callback", ex);
-                    }
+                    runOrQueueCallback(
+                            () ->
+                                    mCallback.onDescriptorWriteRequest(
+                                            device,
+                                            transId,
+                                            descriptor,
+                                            isPrep,
+                                            needRsp,
+                                            offset,
+                                            value));
                 }
 
                 /**
@@ -311,11 +315,7 @@ public final class BluetoothGattServer implements BluetoothProfile {
                     BluetoothDevice device = mAdapter.getRemoteDevice(address);
                     if (device == null) return;
 
-                    try {
-                        mCallback.onExecuteWrite(device, transId, execWrite);
-                    } catch (Exception ex) {
-                        Log.w(TAG, "Unhandled exception in callback", ex);
-                    }
+                    runOrQueueCallback(() -> mCallback.onExecuteWrite(device, transId, execWrite));
                 }
 
                 /**
@@ -338,11 +338,7 @@ public final class BluetoothGattServer implements BluetoothProfile {
                     BluetoothDevice device = mAdapter.getRemoteDevice(address);
                     if (device == null) return;
 
-                    try {
-                        mCallback.onNotificationSent(device, status);
-                    } catch (Exception ex) {
-                        Log.w(TAG, "Unhandled exception: " + ex);
-                    }
+                    runOrQueueCallback(() -> mCallback.onNotificationSent(device, status));
                 }
 
                 /**
@@ -359,11 +355,7 @@ public final class BluetoothGattServer implements BluetoothProfile {
                     BluetoothDevice device = mAdapter.getRemoteDevice(address);
                     if (device == null) return;
 
-                    try {
-                        mCallback.onMtuChanged(device, mtu);
-                    } catch (Exception ex) {
-                        Log.w(TAG, "Unhandled exception: " + ex);
-                    }
+                    runOrQueueCallback(() -> mCallback.onMtuChanged(device, mtu));
                 }
 
                 /**
@@ -388,11 +380,7 @@ public final class BluetoothGattServer implements BluetoothProfile {
                     BluetoothDevice device = mAdapter.getRemoteDevice(address);
                     if (device == null) return;
 
-                    try {
-                        mCallback.onPhyUpdate(device, txPhy, rxPhy, status);
-                    } catch (Exception ex) {
-                        Log.w(TAG, "Unhandled exception: " + ex);
-                    }
+                    runOrQueueCallback(() -> mCallback.onPhyUpdate(device, txPhy, rxPhy, status));
                 }
 
                 /**
@@ -417,11 +405,7 @@ public final class BluetoothGattServer implements BluetoothProfile {
                     BluetoothDevice device = mAdapter.getRemoteDevice(address);
                     if (device == null) return;
 
-                    try {
-                        mCallback.onPhyRead(device, txPhy, rxPhy, status);
-                    } catch (Exception ex) {
-                        Log.w(TAG, "Unhandled exception: " + ex);
-                    }
+                    runOrQueueCallback(() -> mCallback.onPhyRead(device, txPhy, rxPhy, status));
                 }
 
                 /**
@@ -449,11 +433,10 @@ public final class BluetoothGattServer implements BluetoothProfile {
                     BluetoothDevice device = mAdapter.getRemoteDevice(address);
                     if (device == null) return;
 
-                    try {
-                        mCallback.onConnectionUpdated(device, interval, latency, timeout, status);
-                    } catch (Exception ex) {
-                        Log.w(TAG, "Unhandled exception: " + ex);
-                    }
+                    runOrQueueCallback(
+                            () ->
+                                    mCallback.onConnectionUpdated(
+                                            device, interval, latency, timeout, status));
                 }
 
                 /**
@@ -491,20 +474,24 @@ public final class BluetoothGattServer implements BluetoothProfile {
                         return;
                     }
 
-                    try {
-                        mCallback.onSubrateChange(
-                                device, subrateFactor, latency, contNum, timeout, status);
-                    } catch (Exception ex) {
-                        Log.w(TAG, "Unhandled exception: " + ex);
-                    }
+                    runOrQueueCallback(
+                            () ->
+                                    mCallback.onSubrateChange(
+                                            device,
+                                            subrateFactor,
+                                            latency,
+                                            contNum,
+                                            timeout,
+                                            status));
                 }
             };
 
     /** Create a BluetoothGattServer proxy object. */
     /* package */ BluetoothGattServer(
-            IBluetoothGatt iGatt, int transport, BluetoothAdapter adapter) {
+            IBluetoothGatt iGatt, int transport, BluetoothAdapter adapter, Handler handler) {
         mService = iGatt;
         mAdapter = adapter;
+        mHandler = handler;
         mAttributionSource = adapter.getAttributionSource();
         mCallback = null;
         mServerIf = 0;
@@ -1095,5 +1082,21 @@ public final class BluetoothGattServer implements BluetoothProfile {
     public List<BluetoothDevice> getDevicesMatchingConnectionStates(int[] states) {
         throw new UnsupportedOperationException(
                 "Use BluetoothManager#getDevicesMatchingConnectionStates instead.");
+    }
+
+    /**
+     * Queue the runnable on a {@link Handler} provided by the user, or execute the runnable
+     * immediately if no Handler was provided.
+     */
+    private void runOrQueueCallback(final Runnable cb) {
+        if (!Flags.gattServerAddHandlerToRunCallbacksOn() || mHandler == null) {
+            try {
+                cb.run();
+            } catch (Exception ex) {
+                Log.w(TAG, "Unhandled exception in callback", ex);
+            }
+        } else {
+            mHandler.post(cb);
+        }
     }
 }
