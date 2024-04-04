@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0c33cc4e_bc1bc6b0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1008,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-04-04T22:03:52Z",
+      "side": 1,
+      "message": "Both this call and the one in bringDownBle() should be removed from this CL. There\u0027s a lot more work that needs to be done in AdapterService for this refactor, we should try to have a consolidated CL that addresses all of that.\n\nThe startScanController and stopScanController methods are then unused, up to you if you want to keep them in this CL or not.",
+      "range": {
+        "startLine": 1008,
+        "startChar": 8,
+        "endLine": 1008,
+        "endChar": 10
+      },
+      "revId": "ae01ce7b7a56db41eab51ebbfd16445251bb8719",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d1c50e73_9c0e4350",
         "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
         "patchSetId": 3
