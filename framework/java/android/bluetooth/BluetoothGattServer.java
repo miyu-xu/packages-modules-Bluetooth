@@ -24,16 +24,20 @@ import android.annotation.SuppressLint;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.bluetooth.annotations.RequiresLegacyBluetoothPermission;
 import android.content.AttributionSource;
+import android.os.Binder;
 import android.os.IBinder;
 import android.os.ParcelUuid;
 import android.os.RemoteException;
 import android.util.Log;
+
+import com.android.bluetooth.flags.Flags;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.Executor;
 
 /**
  * Public API for the Bluetooth GATT Profile server role.
@@ -53,6 +57,7 @@ public final class BluetoothGattServer implements BluetoothProfile {
     private final BluetoothAdapter mAdapter;
     private final AttributionSource mAttributionSource;
 
+    private Executor mExecutor;
     private BluetoothGattServerCallback mCallback;
 
     private final Object mServerIfLock = new Object();
@@ -113,16 +118,17 @@ public final class BluetoothGattServer implements BluetoothProfile {
                                         + " device="
                                         + address);
                     }
-                    try {
-                        mCallback.onConnectionStateChange(
-                                mAdapter.getRemoteDevice(address),
-                                status,
-                                connected
-                                        ? BluetoothProfile.STATE_CONNECTED
-                                        : BluetoothProfile.STATE_DISCONNECTED);
-                    } catch (Exception ex) {
-                        Log.w(TAG, "Unhandled exception in callback", ex);
-                    }
+
+                    BluetoothGattServerCallback callback = mCallback;
+                    runCallbackOnExecutor(
+                            mExecutor,
+                            () ->
+                                    callback.onConnectionStateChange(
+                                            mAdapter.getRemoteDevice(address),
+                                            status,
+                                            connected
+                                                    ? BluetoothProfile.STATE_CONNECTED
+                                                    : BluetoothProfile.STATE_DISCONNECTED));
                 }
 
                 /**
@@ -169,11 +175,8 @@ public final class BluetoothGattServer implements BluetoothProfile {
 
                     mServices.add(tmp);
 
-                    try {
-                        mCallback.onServiceAdded((int) status, tmp);
-                    } catch (Exception ex) {
-                        Log.w(TAG, "Unhandled exception in callback", ex);
-                    }
+                    BluetoothGattServerCallback callback = mCallback;
+                    runCallbackOnExecutor(mExecutor, () -> callback.onServiceAdded(status, tmp));
                 }
 
                 /**
@@ -193,12 +196,12 @@ public final class BluetoothGattServer implements BluetoothProfile {
                         return;
                     }
 
-                    try {
-                        mCallback.onCharacteristicReadRequest(
-                                device, transId, offset, characteristic);
-                    } catch (Exception ex) {
-                        Log.w(TAG, "Unhandled exception in callback", ex);
-                    }
+                    BluetoothGattServerCallback callback = mCallback;
+                    runCallbackOnExecutor(
+                            mExecutor,
+                            () ->
+                                    callback.onCharacteristicReadRequest(
+                                            device, transId, offset, characteristic));
                 }
 
                 /**
@@ -218,11 +221,12 @@ public final class BluetoothGattServer implements BluetoothProfile {
                         return;
                     }
 
-                    try {
-                        mCallback.onDescriptorReadRequest(device, transId, offset, descriptor);
-                    } catch (Exception ex) {
-                        Log.w(TAG, "Unhandled exception in callback", ex);
-                    }
+                    BluetoothGattServerCallback callback = mCallback;
+                    runCallbackOnExecutor(
+                            mExecutor,
+                            () ->
+                                    callback.onDescriptorReadRequest(
+                                            device, transId, offset, descriptor));
                 }
 
                 /**
@@ -249,12 +253,18 @@ public final class BluetoothGattServer implements BluetoothProfile {
                         return;
                     }
 
-                    try {
-                        mCallback.onCharacteristicWriteRequest(
-                                device, transId, characteristic, isPrep, needRsp, offset, value);
-                    } catch (Exception ex) {
-                        Log.w(TAG, "Unhandled exception in callback", ex);
-                    }
+                    BluetoothGattServerCallback callback = mCallback;
+                    runCallbackOnExecutor(
+                            mExecutor,
+                            () ->
+                                    callback.onCharacteristicWriteRequest(
+                                            device,
+                                            transId,
+                                            characteristic,
+                                            isPrep,
+                                            needRsp,
+                                            offset,
+                                            value));
                 }
 
                 /**
@@ -281,12 +291,18 @@ public final class BluetoothGattServer implements BluetoothProfile {
                         return;
                     }
 
-                    try {
-                        mCallback.onDescriptorWriteRequest(
-                                device, transId, descriptor, isPrep, needRsp, offset, value);
-                    } catch (Exception ex) {
-                        Log.w(TAG, "Unhandled exception in callback", ex);
-                    }
+                    BluetoothGattServerCallback callback = mCallback;
+                    runCallbackOnExecutor(
+                            mExecutor,
+                            () ->
+                                    callback.onDescriptorWriteRequest(
+                                            device,
+                                            transId,
+                                            descriptor,
+                                            isPrep,
+                                            needRsp,
+                                            offset,
+                                            value));
                 }
 
                 /**
@@ -311,11 +327,9 @@ public final class BluetoothGattServer implements BluetoothProfile {
                     BluetoothDevice device = mAdapter.getRemoteDevice(address);
                     if (device == null) return;
 
-                    try {
-                        mCallback.onExecuteWrite(device, transId, execWrite);
-                    } catch (Exception ex) {
-                        Log.w(TAG, "Unhandled exception in callback", ex);
-                    }
+                    BluetoothGattServerCallback callback = mCallback;
+                    runCallbackOnExecutor(
+                            mExecutor, () -> callback.onExecuteWrite(device, transId, execWrite));
                 }
 
                 /**
@@ -338,11 +352,9 @@ public final class BluetoothGattServer implements BluetoothProfile {
                     BluetoothDevice device = mAdapter.getRemoteDevice(address);
                     if (device == null) return;
 
-                    try {
-                        mCallback.onNotificationSent(device, status);
-                    } catch (Exception ex) {
-                        Log.w(TAG, "Unhandled exception: " + ex);
-                    }
+                    BluetoothGattServerCallback callback = mCallback;
+                    runCallbackOnExecutor(
+                            mExecutor, () -> callback.onNotificationSent(device, status));
                 }
 
                 /**
@@ -359,11 +371,8 @@ public final class BluetoothGattServer implements BluetoothProfile {
                     BluetoothDevice device = mAdapter.getRemoteDevice(address);
                     if (device == null) return;
 
-                    try {
-                        mCallback.onMtuChanged(device, mtu);
-                    } catch (Exception ex) {
-                        Log.w(TAG, "Unhandled exception: " + ex);
-                    }
+                    BluetoothGattServerCallback callback = mCallback;
+                    runCallbackOnExecutor(mExecutor, () -> callback.onMtuChanged(device, mtu));
                 }
 
                 /**
@@ -388,11 +397,9 @@ public final class BluetoothGattServer implements BluetoothProfile {
                     BluetoothDevice device = mAdapter.getRemoteDevice(address);
                     if (device == null) return;
 
-                    try {
-                        mCallback.onPhyUpdate(device, txPhy, rxPhy, status);
-                    } catch (Exception ex) {
-                        Log.w(TAG, "Unhandled exception: " + ex);
-                    }
+                    BluetoothGattServerCallback callback = mCallback;
+                    runCallbackOnExecutor(
+                            mExecutor, () -> callback.onPhyUpdate(device, txPhy, rxPhy, status));
                 }
 
                 /**
@@ -417,11 +424,9 @@ public final class BluetoothGattServer implements BluetoothProfile {
                     BluetoothDevice device = mAdapter.getRemoteDevice(address);
                     if (device == null) return;
 
-                    try {
-                        mCallback.onPhyRead(device, txPhy, rxPhy, status);
-                    } catch (Exception ex) {
-                        Log.w(TAG, "Unhandled exception: " + ex);
-                    }
+                    BluetoothGattServerCallback callback = mCallback;
+                    runCallbackOnExecutor(
+                            mExecutor, () -> callback.onPhyRead(device, txPhy, rxPhy, status));
                 }
 
                 /**
@@ -449,11 +454,12 @@ public final class BluetoothGattServer implements BluetoothProfile {
                     BluetoothDevice device = mAdapter.getRemoteDevice(address);
                     if (device == null) return;
 
-                    try {
-                        mCallback.onConnectionUpdated(device, interval, latency, timeout, status);
-                    } catch (Exception ex) {
-                        Log.w(TAG, "Unhandled exception: " + ex);
-                    }
+                    BluetoothGattServerCallback callback = mCallback;
+                    runCallbackOnExecutor(
+                            mExecutor,
+                            () ->
+                                    callback.onConnectionUpdated(
+                                            device, interval, latency, timeout, status));
                 }
 
                 /**
@@ -491,11 +497,38 @@ public final class BluetoothGattServer implements BluetoothProfile {
                         return;
                     }
 
+                    BluetoothGattServerCallback callback = mCallback;
+                    runCallbackOnExecutor(
+                            mExecutor,
+                            () ->
+                                    callback.onSubrateChange(
+                                            device,
+                                            subrateFactor,
+                                            latency,
+                                            contNum,
+                                            timeout,
+                                            status));
+                }
+
+                private void runCallbackOnExecutor(Executor executor, Runnable r) {
+                    if (executor == null) {
+                        Log.w(TAG, "runCallbackOnExecutor: Callback is already unregistered.");
+                        return;
+                    }
+
+                    long token = 0;
+                    if (Flags.gattServerAddHandlerToRunCallbacksOn()) {
+                        token = Binder.clearCallingIdentity();
+                    }
+
                     try {
-                        mCallback.onSubrateChange(
-                                device, subrateFactor, latency, contNum, timeout, status);
+                        executor.execute(r);
                     } catch (Exception ex) {
                         Log.w(TAG, "Unhandled exception: " + ex);
+                    } finally {
+                        if (Flags.gattServerAddHandlerToRunCallbacksOn()) {
+                            Binder.restoreCallingIdentity(token);
+                        }
                     }
                 }
             };
@@ -588,25 +621,8 @@ public final class BluetoothGattServer implements BluetoothProfile {
      * <p>This is an asynchronous call. The callback is used to notify success or failure if the
      * function returns true.
      *
-     * @param callback GATT callback handler that will receive asynchronous callbacks.
-     * @return true, the callback will be called to notify success or failure, false on immediate
-     *     error
-     */
-    @RequiresLegacyBluetoothPermission
-    @RequiresBluetoothConnectPermission
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-    /*package*/ boolean registerCallback(BluetoothGattServerCallback callback) {
-        return registerCallback(callback, false);
-    }
-
-    /**
-     * Register an application callback to start using GattServer.
-     *
-     * <p>This is an asynchronous call. The callback is used to notify success or failure if the
-     * function returns true.
-     *
-     * @param callback GATT callback handler that will receive asynchronous callbacks.
      * @param eattSupport indicates if server can use eatt
+     * @param callback GATT callback handler that will receive asynchronous callbacks.
      * @return true, the callback will be called to notify success or failure, false on immediate
      *     error
      * @hide
@@ -616,7 +632,7 @@ public final class BluetoothGattServer implements BluetoothProfile {
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     @SuppressWarnings("WaitNotInLoop") // TODO(b/314811467)
     /*package*/ boolean registerCallback(
-            BluetoothGattServerCallback callback, boolean eattSupport) {
+            boolean eattSupport, Executor executor, BluetoothGattServerCallback callback) {
         if (DBG) Log.d(TAG, "registerCallback()");
         if (mService == null) {
             Log.e(TAG, "GATT service not available");
@@ -631,6 +647,7 @@ public final class BluetoothGattServer implements BluetoothProfile {
                 return false;
             }
 
+            mExecutor = executor;
             mCallback = callback;
             try {
                 mService.registerServer(
@@ -640,6 +657,7 @@ public final class BluetoothGattServer implements BluetoothProfile {
                         mAttributionSource);
             } catch (RemoteException e) {
                 Log.e(TAG, "", e);
+                mExecutor = null;
                 mCallback = null;
                 return false;
             }
@@ -648,10 +666,12 @@ public final class BluetoothGattServer implements BluetoothProfile {
                 mServerIfLock.wait(CALLBACK_REG_TIMEOUT);
             } catch (InterruptedException e) {
                 Log.e(TAG, "" + e);
+                mExecutor = null;
                 mCallback = null;
             }
 
             if (mServerIf == 0) {
+                mExecutor = null;
                 mCallback = null;
                 return false;
             } else {
@@ -668,6 +688,7 @@ public final class BluetoothGattServer implements BluetoothProfile {
         if (mService == null || mServerIf == 0) return;
 
         try {
+            mExecutor = null;
             mCallback = null;
             mService.unregisterServer(mServerIf, mAttributionSource);
             mServerIf = 0;
