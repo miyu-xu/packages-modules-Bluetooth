@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24585f3a_27f3e385",
+        "filename": "system/rust/src/gatt/server/att_server_bearer.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-04T00:00:27Z",
+      "side": 1,
+      "message": "nit: Run the formatter",
+      "revId": "50991dc9636c6a1dddfb0c23a6cb9e77d461613e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
