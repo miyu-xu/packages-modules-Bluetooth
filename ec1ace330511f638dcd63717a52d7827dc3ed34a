@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69a8a6a0_e9fa0c71",
+        "filename": "system/stack/btm/btm_eir.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-04T17:31:19Z",
+      "side": 1,
+      "message": "Nit: 2024 😊",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "ec1ace330511f638dcd63717a52d7827dc3ed34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
