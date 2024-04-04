@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6968ad1f_138b847c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-04T17:11:25Z",
+      "side": 1,
+      "message": "Why 3s delay ? How did we came up with this number ?\nCan we bypass it for the known device this is happening for ?",
+      "range": {
+        "startLine": 12,
+        "startChar": 41,
+        "endLine": 14,
+        "endChar": 0
+      },
+      "revId": "78ff20a810fe56914a17a7533ff8e0a7bb758387",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "919a45db_6b0ed8cd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-04T17:11:25Z",
+      "side": 1,
+      "message": "Can we merge Test and fix altogether ? This helps a lot reviews",
+      "range": {
+        "startLine": 17,
+        "startChar": 140,
+        "endLine": 17,
+        "endChar": 155
+      },
+      "revId": "78ff20a810fe56914a17a7533ff8e0a7bb758387",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bde687f_8bcd5954",
+        "filename": "system/btif/avrcp/avrcp_service.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-04T17:11:25Z",
+      "side": 1,
+      "message": "replace with `ARRAY_SIZE` ?",
+      "range": {
+        "startLine": 73,
+        "startChar": 25,
+        "endLine": 73,
+        "endChar": 65
+      },
+      "revId": "78ff20a810fe56914a17a7533ff8e0a7bb758387",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cebd25f8_18a5bb71",
+        "filename": "system/btif/avrcp/avrcp_service.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-04T17:11:25Z",
+      "side": 1,
+      "message": "```suggestion\n    uint16_t attr_list[] \u003d {ATTR_ID_SERVICE_CLASS_ID_LIST,\n                            ATTR_ID_BT_PROFILE_DESC_LIST,\n                            ATTR_ID_SUPPORTED_FEATURES};\n\n    tA2DP_SDP_DB_PARAMS db_params \u003d {\n        .db_len \u003d BT_DEFAULT_BUFFER_SIZE,\n        .num_attr \u003d sizeof(attr_list) / sizeof(attr_list[0]),\n        .p_attrs \u003d attr_list,\n    };\n```\n\nThis will make sure there is no unitialized parameter in db_params",
+      "range": {
+        "startLine": 67,
+        "startChar": 4,
+        "endLine": 74,
+        "endChar": 34
+      },
+      "revId": "78ff20a810fe56914a17a7533ff8e0a7bb758387",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
