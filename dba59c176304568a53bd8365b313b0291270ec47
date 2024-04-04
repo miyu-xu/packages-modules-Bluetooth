@@ -16,6 +16,24 @@
       "message": "packages/modules/Bluetooth/system/types/bt_transport.h:23:10: fatal error: \u0027common/macros.h\u0027 file not found",
       "revId": "dba59c176304568a53bd8365b313b0291270ec47",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bea9d047_ccd13e1f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-04T17:40:02Z",
+      "side": 1,
+      "message": "It\u0027s because of the Rust wrapper.  It can only use libheaders.",
+      "parentUuid": "4c0f578d_67037baf",
+      "revId": "dba59c176304568a53bd8365b313b0291270ec47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
