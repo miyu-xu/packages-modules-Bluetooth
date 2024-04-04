@@ -34,6 +34,24 @@
       "parentUuid": "5bc7be3b_3794640a",
       "revId": "6003b701623f21795f64a4ab5026d44debd68a17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0002395_a45c7d7b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-04-04T16:34:08Z",
+      "side": 1,
+      "message": "FYI you will also need an Android FR for rolling out this flag. CC @siyuanh@google.com",
+      "parentUuid": "0b811bbf_a3a33252",
+      "revId": "6003b701623f21795f64a4ab5026d44debd68a17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
