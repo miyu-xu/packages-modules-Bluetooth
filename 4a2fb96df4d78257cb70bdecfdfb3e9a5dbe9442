@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61efd5a9_e2f372bd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-04T17:15:14Z",
+      "side": 1,
+      "message": "This may be a non applicable comment but I am asking anyway.\n\nIs it possible to write a test of a device that connect in avrcp only, and then in a2dp after a few delay. Ideally there would be multiple test with multiple delay.\n\nThis in order to trigger a situation where both side request the connection at the same time. (as I do not know if this can create conflict or not)",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 96
+      },
+      "revId": "4a2fb96df4d78257cb70bdecfdfb3e9a5dbe9442",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
