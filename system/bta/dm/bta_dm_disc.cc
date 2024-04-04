@@ -466,7 +466,7 @@ static void bta_dm_inq_cmpl() {
 }
 
 static void bta_dm_remote_name_cmpl(const tBTA_DM_MSG* p_data) {
-  CHECK(p_data != nullptr);
+  log::assert_that(p_data != nullptr, "assert failed: p_data != nullptr");
 
   const tBTA_DM_REMOTE_NAME& remote_name_msg = p_data->remote_name_msg;
 
@@ -1607,7 +1607,8 @@ static void bta_dm_service_search_remname_cback(const RawAddress& bd_addr,
  *
  ******************************************************************************/
 static void bta_dm_remname_cback(const tBTM_REMOTE_DEV_NAME* p_remote_name) {
-  CHECK(p_remote_name != nullptr);
+  log::assert_that(p_remote_name != nullptr,
+                   "assert failed: p_remote_name != nullptr");
 
   log::info(
       "Remote name request complete peer:{} btm_status:{} hci_status:{} "
