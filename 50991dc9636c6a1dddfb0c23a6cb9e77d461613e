@@ -18,6 +18,58 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f3763ac_42b8e83b",
+        "filename": "system/rust/src/gatt/server/att_server_bearer.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-04T00:11:17Z",
+      "side": 1,
+      "message": "```suggestion\n                AttRequestState::Pending { _task: task.into() }\n```",
+      "revId": "50991dc9636c6a1dddfb0c23a6cb9e77d461613e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7de7db12_1bbe9665",
+        "filename": "system/rust/src/gatt/server/att_server_bearer.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-04T00:11:17Z",
+      "side": 1,
+      "message": "Seems that rustfmt doesn\u0027t work for some reason, putting suggestions of the usual formatting for patterns and struct creations.",
+      "parentUuid": "24585f3a_27f3e385",
+      "revId": "50991dc9636c6a1dddfb0c23a6cb9e77d461613e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52f59df0_e80ae8b0",
+        "filename": "system/rust/src/gatt/server/att_server_bearer.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-04T00:11:17Z",
+      "side": 1,
+      "message": "```suggestion\n            AttRequestState::Pending { .. } \u003d\u003e {\n```",
+      "revId": "50991dc9636c6a1dddfb0c23a6cb9e77d461613e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "b93a65b6_efd82ff9",
