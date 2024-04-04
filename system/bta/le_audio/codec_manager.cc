@@ -203,7 +203,7 @@ struct codec_manager_impl {
     }
   }
 
-  const AudioSetConfigurations* GetSupportedCodecConfigurations(
+  AudioSetConfigurations GetSupportedCodecConfigurations(
       const CodecManager::UnicastConfigurationRequirements& requirements)
       const {
     if (GetCodecLocation() == le_audio::types::CodecLocation::ADSP) {
@@ -214,14 +214,14 @@ struct codec_manager_impl {
       // doesn't support.
       return context_type_offload_config_map_.count(
                  requirements.audio_context_type)
-                 ? &context_type_offload_config_map_.at(
+                 ? context_type_offload_config_map_.at(
                        requirements.audio_context_type)
-                 : nullptr;
+                 : AudioSetConfigurations();
     }
 
     log::verbose("Get software config for the context type: {}",
                  (int)requirements.audio_context_type);
-    return AudioSetConfigurationProvider::Get()->GetConfigurations(
+    return *AudioSetConfigurationProvider::Get()->GetConfigurations(
         requirements.audio_context_type);
   }
 
@@ -229,12 +229,26 @@ struct codec_manager_impl {
       const CodecManager::UnicastConfigurationRequirements& requirements,
       CodecManager::UnicastConfigurationVerifier verifier) {
     auto configs = GetSupportedCodecConfigurations(requirements);
+    if (configs.empty()) return nullptr;
+
+    // Remove the dual bidir SWB config if not supported
+    if (!IsDualBiDirSwbSupported()) {
+      configs.erase(
+          std::remove_if(configs.begin(), configs.end(),
+                         [](auto const& el) {
+                           if (el->confs.source.empty()) return false;
+                           return AudioSetConfigurationProvider::Get()
+                               ->CheckConfigurationIsDualBiDirSwb(*el);
+                         }),
+          configs.end());
+    }
+
     // Note: For the only supported right now legacy software configuration
     //       provider, we use the device group logic to match the proper
     //       configuration with group capabilities. Note that this path only
     //       supports the LC3 codec format. For the multicodec support we should
     //       rely on the configuration matcher behind the AIDL interface.
-    auto conf = verifier(requirements, configs);
+    auto conf = verifier(requirements, &configs);
     return conf ? std::make_unique<AudioSetConfiguration>(*conf) : nullptr;
   }
 
