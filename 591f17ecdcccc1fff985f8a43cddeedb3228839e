@@ -190,6 +190,30 @@
       },
       "revId": "591f17ecdcccc1fff985f8a43cddeedb3228839e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "caba8b6a_e81dd297",
+        "filename": "TEST_MAPPING",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-04T20:10:04Z",
+      "side": 1,
+      "message": "I\u0027m going to abandon this for now and revisit in the future",
+      "parentUuid": "b0fcfee1_df572f36",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "591f17ecdcccc1fff985f8a43cddeedb3228839e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
