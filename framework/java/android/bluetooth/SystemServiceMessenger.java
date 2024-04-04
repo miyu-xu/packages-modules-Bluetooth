@@ -131,4 +131,16 @@ class SystemServiceMessenger {
     SystemServiceMessage.GetSnoopLog.Reply send(SystemServiceMessage.GetSnoopLog data) {
         return send(data, SystemServiceMessage.GetSnoopLog.Reply.class);
     }
+
+    SystemServiceMessage.IsAutoSupported.Reply send(SystemServiceMessage.IsAutoSupported data) {
+        return send(data, SystemServiceMessage.IsAutoSupported.Reply.class);
+    }
+
+    SystemServiceMessage.IsAutoEnabled.Reply send(SystemServiceMessage.IsAutoEnabled data) {
+        return send(data, SystemServiceMessage.IsAutoEnabled.Reply.class);
+    }
+
+    SystemServiceMessage.SetAutoOnEnabled.Reply send(SystemServiceMessage.SetAutoOnEnabled data) {
+        return send(data, SystemServiceMessage.SetAutoOnEnabled.Reply.class);
+    }
 }
