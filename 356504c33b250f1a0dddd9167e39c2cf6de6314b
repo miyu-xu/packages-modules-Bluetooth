@@ -16,6 +16,23 @@
       "message": "Christine/Kyunglyul, can any of you give +2 on this CL? Thanks!",
       "revId": "356504c33b250f1a0dddd9167e39c2cf6de6314b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1266143b_44d1e908",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-04-04T01:37:06Z",
+      "side": 1,
+      "message": "Seems there is a build error which is not caught by building apex.\n\nI\u0027ll upload a new patch set.",
+      "revId": "356504c33b250f1a0dddd9167e39c2cf6de6314b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
