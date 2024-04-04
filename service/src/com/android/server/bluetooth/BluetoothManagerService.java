@@ -2867,6 +2867,30 @@ class BluetoothManagerService {
                                         this::enableFromAutoOn)));
     }
 
+    boolean isAutoOnSupported_sync() {
+        return mDeviceConfigAllowAutoOn
+                && AutoOnFeature.isUserSupported(mCurrentUserContext.getContentResolver());
+    }
+
+    boolean isAutoOnEnabled_sync() {
+        if (!mDeviceConfigAllowAutoOn) {
+            throw new IllegalStateException("AutoOnFeature is not supported in current config");
+        }
+        return AutoOnFeature.isUserEnabled(mCurrentUserContext);
+    }
+
+    void setAutoOnEnabled_sync(boolean status) {
+        if (!isAtLeastV()) {
+            // There is no support for sending a deferral intent prior to V. And no UI for it
+            throw new IllegalStateException("AutoOnFeature is only supported on android V+");
+        }
+        if (!mDeviceConfigAllowAutoOn) {
+            throw new IllegalStateException("AutoOnFeature is not supported in current config");
+        }
+        AutoOnFeature.setUserEnabled(
+                mLooper, mCurrentUserContext, mState, status, this::enableFromAutoOn);
+    }
+
     /**
      * Check if BLE is supported by this platform
      *

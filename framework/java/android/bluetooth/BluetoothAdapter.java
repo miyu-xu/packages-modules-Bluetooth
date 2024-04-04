@@ -5843,6 +5843,13 @@ public final class BluetoothAdapter {
     @FlaggedApi(Flags.FLAG_AUTO_ON_FEATURE)
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     public boolean isAutoOnSupported() {
+        if (Flags.systemServerMessenger()) {
+            return mMessenger
+                    .sendToService(BluetoothServiceMessages.IS_AUTO_ON_SUPPORTED)
+                    .thenApply(b -> b.getBoolean("isSupported"))
+                    .orTimeout(1, TimeUnit.SECONDS)
+                    .join();
+        }
         try {
             return mManagerService.isAutoOnSupported();
         } catch (RemoteException e) {
@@ -5861,6 +5868,13 @@ public final class BluetoothAdapter {
     @FlaggedApi(Flags.FLAG_AUTO_ON_FEATURE)
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     public boolean isAutoOnEnabled() {
+        if (Flags.systemServerMessenger()) {
+            return mMessenger
+                    .sendToService(BluetoothServiceMessages.GET_AUTO_ON_ENABLED)
+                    .thenApply(b -> b.getBoolean("isEnabled"))
+                    .orTimeout(1, TimeUnit.SECONDS)
+                    .join();
+        }
         try {
             return mManagerService.isAutoOnEnabled();
         } catch (RemoteException e) {
@@ -5880,6 +5894,15 @@ public final class BluetoothAdapter {
     @FlaggedApi(Flags.FLAG_AUTO_ON_FEATURE)
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     public void setAutoOnEnabled(boolean status) {
+        if (Flags.systemServerMessenger()) {
+            Bundle data = new Bundle();
+            data.putBoolean("enabledStatus", status);
+            mMessenger
+                    .sendToService(BluetoothServiceMessages.SET_AUTO_ON_ENABLED)
+                    .orTimeout(1, TimeUnit.SECONDS)
+                    .join();
+            return;
+        }
         try {
             mManagerService.setAutoOnEnabled(status);
         } catch (RemoteException e) {
