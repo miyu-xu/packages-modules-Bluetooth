@@ -18,19 +18,15 @@ package android.bluetooth;
 
 import static com.google.common.truth.Truth.assertThat;
 
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.anyInt;
-import static org.mockito.Mockito.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.timeout;
-import static org.mockito.Mockito.verify;
-
 import android.bluetooth.le.BluetoothLeScanner;
 import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanFilter;
 import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
 import android.content.Context;
+import android.os.Binder;
+import android.os.Looper;
+import android.os.Process;
 import android.platform.test.annotations.RequiresFlagsEnabled;
 import android.platform.test.flag.junit.CheckFlagsRule;
 import android.platform.test.flag.junit.DeviceFlagsValueProvider;
@@ -42,21 +38,22 @@ import androidx.test.runner.AndroidJUnit4;
 import com.android.bluetooth.flags.Flags;
 import com.android.compatibility.common.util.AdoptShellPermissionsRule;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 
 import pandora.HostProto.AdvertiseRequest;
 import pandora.HostProto.OwnAddressType;
 
-/** Test cases for {@link BluetoothGattServer}. */
 @RunWith(AndroidJUnit4.class)
-public class GattServerConnectWithScanTest {
-    private static final String TAG = "GattServerConnectWithScanTest";
+public class GattServerRunCallbackOnExecutorTest {
+    private static final String TAG = "GattServerRunCallbackOnExecutorTest";
 
     private static final int TIMEOUT_SCANNING_MS = 2_000;
     private static final int TIMEOUT_GATT_CONNECTION_MS = 2_000;
@@ -74,116 +71,81 @@ public class GattServerConnectWithScanTest {
     private final BluetoothAdapter mBluetoothAdapter = mBluetoothManager.getAdapter();
     private final BluetoothLeScanner mLeScanner = mBluetoothAdapter.getBluetoothLeScanner();
 
-    @Test
-    public void serverConnectToRandomAddress_withTransportAuto() throws Exception {
+    private final BluetoothDevice mRandomAddressDevice =
+            mBluetoothAdapter.getRemoteLeDevice(
+                    Utils.BUMBLE_RANDOM_ADDRESS, BluetoothDevice.ADDRESS_TYPE_RANDOM);
+
+    @Before
+    public void setUp() {
         advertiseWithBumble(OwnAddressType.RANDOM);
         assertThat(scanBumbleDevice(Utils.BUMBLE_RANDOM_ADDRESS)).isNotNull();
+    }
 
-        BluetoothGattServerCallback mockGattServerCallback =
-                mock(BluetoothGattServerCallback.class);
+    @Test
+    public void callbackRunsOnMainExecutor() throws Exception {
+        CompletableFuture<Thread> callbackThreadFuture = new CompletableFuture<>();
+        BluetoothGattServerCallback gattServerCallback =
+                new BluetoothGattServerCallback() {
+                    @Override
+                    public void onConnectionStateChange(
+                            BluetoothDevice device, int status, int newState) {
+                        callbackThreadFuture.complete(Thread.currentThread());
+                    }
+                };
+
         BluetoothGattServer gattServer =
                 mBluetoothManager.openGattServer(
                         mContext,
                         BluetoothDevice.TRANSPORT_AUTO,
                         false,
                         mContext.getMainExecutor(),
-                        mockGattServerCallback);
-
-        assertThat(gattServer).isNotNull();
+                        gattServerCallback);
 
         try {
-            BluetoothDevice device =
-                    mBluetoothAdapter.getRemoteLeDevice(
-                            Utils.BUMBLE_RANDOM_ADDRESS, BluetoothDevice.ADDRESS_TYPE_RANDOM);
+            gattServer.connect(mRandomAddressDevice, false);
 
-            gattServer.connect(device, false);
-            verify(mockGattServerCallback, timeout(TIMEOUT_GATT_CONNECTION_MS))
-                    .onConnectionStateChange(any(), anyInt(), eq(BluetoothProfile.STATE_CONNECTED));
+            Thread callbackThread =
+                    callbackThreadFuture
+                            .completeOnTimeout(
+                                    null, TIMEOUT_GATT_CONNECTION_MS, TimeUnit.MILLISECONDS)
+                            .join();
+            assertThat(callbackThread).isEqualTo(Looper.getMainLooper().getThread());
         } finally {
             gattServer.close();
         }
     }
 
     @Test
-    public void serverConnectToRandomAddress_withTransportLE() throws Exception {
-        advertiseWithBumble(OwnAddressType.RANDOM);
-        assertThat(scanBumbleDevice(Utils.BUMBLE_RANDOM_ADDRESS)).isNotNull();
+    @RequiresFlagsEnabled(Flags.FLAG_GATT_SERVER_ADD_HANDLER_TO_RUN_CALLBACKS_ON)
+    public void callbackRunsOnDirectExecutor_shouldClearCallingIdentity() throws Exception {
+        CompletableFuture<Integer> callingUidFuture = new CompletableFuture<>();
+        BluetoothGattServerCallback gattServerCallback =
+                new BluetoothGattServerCallback() {
+                    @Override
+                    public void onConnectionStateChange(
+                            BluetoothDevice device, int status, int newState) {
+                        callingUidFuture.complete(Binder.getCallingUid());
+                    }
+                };
 
-        BluetoothGattServerCallback mockGattServerCallback =
-                mock(BluetoothGattServerCallback.class);
-        BluetoothGattServer gattServer =
-                mBluetoothManager.openGattServer(
-                        mContext,
-                        BluetoothDevice.TRANSPORT_LE,
-                        false,
-                        mContext.getMainExecutor(),
-                        mockGattServerCallback);
-
-        assertThat(gattServer).isNotNull();
-
-        try {
-            BluetoothDevice device =
-                    mBluetoothAdapter.getRemoteLeDevice(
-                            Utils.BUMBLE_RANDOM_ADDRESS, BluetoothDevice.ADDRESS_TYPE_RANDOM);
-
-            gattServer.connect(device, false);
-            verify(mockGattServerCallback, timeout(TIMEOUT_GATT_CONNECTION_MS))
-                    .onConnectionStateChange(any(), anyInt(), eq(BluetoothProfile.STATE_CONNECTED));
-        } finally {
-            gattServer.close();
-        }
-    }
-
-    @Test
-    @RequiresFlagsEnabled(Flags.FLAG_BLE_GATT_SERVER_USE_ADDRESS_TYPE_IN_CONNECTION)
-    public void serverConnectToPublicAddress_withTransportAuto() throws Exception {
-        String publicAddress = mBumble.getRemoteDevice().getAddress();
-        advertiseWithBumble(OwnAddressType.PUBLIC);
-        assertThat(scanBumbleDevice(publicAddress)).isNotNull();
-
-        BluetoothGattServerCallback mockGattServerCallback =
-                mock(BluetoothGattServerCallback.class);
+        Executor directExecutor = Runnable::run;
         BluetoothGattServer gattServer =
                 mBluetoothManager.openGattServer(
                         mContext,
                         BluetoothDevice.TRANSPORT_AUTO,
                         false,
-                        mContext.getMainExecutor(),
-                        mockGattServerCallback);
-
-        assertThat(gattServer).isNotNull();
+                        directExecutor,
+                        gattServerCallback);
 
         try {
-            gattServer.connect(mBumble.getRemoteDevice(), false);
-            verify(mockGattServerCallback, timeout(TIMEOUT_GATT_CONNECTION_MS))
-                    .onConnectionStateChange(any(), anyInt(), eq(BluetoothProfile.STATE_CONNECTED));
-        } finally {
-            gattServer.close();
-        }
-    }
+            gattServer.connect(mRandomAddressDevice, false);
 
-    @Test
-    public void serverConnectToPublicAddress_withTransportLE() throws Exception {
-        String publicAddress = mBumble.getRemoteDevice().getAddress();
-        advertiseWithBumble(OwnAddressType.PUBLIC);
-        assertThat(scanBumbleDevice(publicAddress)).isNotNull();
-
-        BluetoothGattServerCallback mockGattServerCallback =
-                mock(BluetoothGattServerCallback.class);
-        BluetoothGattServer gattServer =
-                mBluetoothManager.openGattServer(
-                        mContext,
-                        BluetoothDevice.TRANSPORT_LE,
-                        false,
-                        mContext.getMainExecutor(),
-                        mockGattServerCallback);
-
-        assertThat(gattServer).isNotNull();
-
-        try {
-            gattServer.connect(mBumble.getRemoteDevice(), false);
-            verify(mockGattServerCallback, timeout(TIMEOUT_GATT_CONNECTION_MS))
-                    .onConnectionStateChange(any(), anyInt(), eq(BluetoothProfile.STATE_CONNECTED));
+            Integer callingUid =
+                    callingUidFuture
+                            .completeOnTimeout(
+                                    null, TIMEOUT_GATT_CONNECTION_MS, TimeUnit.MILLISECONDS)
+                            .join();
+            assertThat(callingUid).isEqualTo(Process.myUid());
         } finally {
             gattServer.close();
         }
