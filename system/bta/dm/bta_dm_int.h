@@ -47,6 +47,11 @@
 
 #define BTA_DM_NUM_PEER_DEVICE 7
 
+/* bond retrial interval (in milliseconds) */
+#ifndef BTA_DM_BOND_TIMER_RETRIAL_MS
+#define BTA_DM_BOND_TIMER_RETRIAL_MS 100
+#endif
+
 // TODO: Remove when flag wait_for_disconnect_before_unbond is shipped
 enum class tBTA_DM_CONN_STATE : uint8_t {
   BTA_DM_CONNECTED = 0,
@@ -232,6 +237,7 @@ typedef struct {
   tBTA_BLE_ENERGY_INFO_CBACK* p_energy_info_cback;
   bool disabling;
   alarm_t* disable_timer;
+  alarm_t* bond_retrail_timer;
   uint8_t pm_id;
   tBTA_PM_TIMER pm_timer[BTA_DM_NUM_PM_TIMER];
   uint8_t cur_av_count; /* current AV connections */
@@ -304,6 +310,15 @@ typedef struct {
   uint16_t lmp_sub_version;
   uint8_t lmp_version;
 } tBTA_DM_LMP_VER_INFO;
+
+/* data type for tBTA_DM_API_BOND */
+typedef struct {
+  BT_HDR_RIGID hdr;
+  RawAddress bd_addr;
+  tBLE_ADDR_TYPE addr_type;
+  tBT_DEVICE_TYPE device_type;
+  tBT_TRANSPORT transport;
+} tBTA_DM_API_BOND;
 
 extern const uint16_t bta_service_id_to_uuid_lkup_tbl[];
 
