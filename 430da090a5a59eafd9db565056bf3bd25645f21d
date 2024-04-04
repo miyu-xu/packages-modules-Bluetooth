@@ -33,6 +33,52 @@
       "message": "LGTM for Floss files",
       "revId": "430da090a5a59eafd9db565056bf3bd25645f21d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dacef1ae_dfe9041a",
+        "filename": "system/btif/src/btif_gatt_server.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-04-04T21:48:37Z",
+      "side": 1,
+      "message": "Why is device_type getting set here?\n\nWe shouldn\u0027t be modifying device type.",
+      "range": {
+        "startLine": 298,
+        "startChar": 4,
+        "endLine": 298,
+        "endChar": 37
+      },
+      "revId": "430da090a5a59eafd9db565056bf3bd25645f21d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1969b354_401cc57c",
+        "filename": "system/btif/src/btif_gatt_server.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-04-04T21:48:37Z",
+      "side": 1,
+      "message": "Remove unnecessary comment; should be clear from the if/else already.",
+      "range": {
+        "startLine": 314,
+        "startChar": 4,
+        "endLine": 314,
+        "endChar": 43
+      },
+      "revId": "430da090a5a59eafd9db565056bf3bd25645f21d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
