@@ -16,6 +16,29 @@
       "message": "Do we even need a `default` since it\u0027s an enum class ?",
       "revId": "d781252b8e1a59d806ddedf34411d1d94dc3fe51",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa041b6c_715c8521",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-04T19:00:45Z",
+      "side": 1,
+      "message": "remove\n```suggestion\n  }\n}\n```",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 72
+      },
+      "revId": "d781252b8e1a59d806ddedf34411d1d94dc3fe51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
