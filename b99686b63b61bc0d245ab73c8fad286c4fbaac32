@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "683af967_76a6a9b0",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1380,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-04T15:12:24Z",
+      "side": 1,
+      "message": "This looks like it clears 4 bits and sets 3 bits.  I think what you want is something like:\n```suggestion\n  // Clear bit 45 (SNIFF_SUBRATING - 1)\n  return (event_mask \u0026 ~(1ul \u003c\u003c (static_cast\u003cuint64_t\u003e(EventCode::SNIFF_SUBRATING) - 1));\n```\n\nIt might be more clear to say \"ClearSniffSubratingBit\" or something like that.  You\u0027re actually masking the event, because you don\u0027t want to handle it, right?",
+      "range": {
+        "startLine": 1380,
+        "startChar": 0,
+        "endLine": 1380,
+        "endChar": 64
+      },
+      "revId": "b99686b63b61bc0d245ab73c8fad286c4fbaac32",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
