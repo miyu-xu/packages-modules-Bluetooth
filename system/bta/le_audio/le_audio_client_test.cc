@@ -5851,16 +5851,14 @@ TEST_F(UnicastTest, TwoEarbudsStreaming) {
   Mock::VerifyAndClearExpectations(&mock_audio_hal_client_callbacks_);
 
   // Check if cache configuration is still present
-  ASSERT_TRUE(group
-                  ->GetCachedCodecConfigurationByDirection(
-                      types::LeAudioContextType::CONVERSATIONAL,
-                      bluetooth::le_audio::types::kLeAudioDirectionSink)
-                  .has_value());
-  ASSERT_TRUE(group
-                  ->GetCachedCodecConfigurationByDirection(
-                      types::LeAudioContextType::CONVERSATIONAL,
-                      bluetooth::le_audio::types::kLeAudioDirectionSource)
-                  .has_value());
+  ASSERT_TRUE(
+      group->GetCachedConfiguration(types::LeAudioContextType::CONVERSATIONAL)
+          ->confs.get(le_audio::types::kLeAudioDirectionSink)
+          .size());
+  ASSERT_TRUE(
+      group->GetCachedConfiguration(types::LeAudioContextType::CONVERSATIONAL)
+          ->confs.get(le_audio::types::kLeAudioDirectionSource)
+          .size());
 
   // Release
   EXPECT_CALL(*mock_le_audio_source_hal_client_, Stop()).Times(1);
@@ -5873,16 +5871,14 @@ TEST_F(UnicastTest, TwoEarbudsStreaming) {
   Mock::VerifyAndClearExpectations(&mock_le_audio_source_hal_client_);
 
   // Setting group inactive, shall not change cached configuration
-  ASSERT_TRUE(group
-                  ->GetCachedCodecConfigurationByDirection(
-                      types::LeAudioContextType::CONVERSATIONAL,
-                      bluetooth::le_audio::types::kLeAudioDirectionSink)
-                  .has_value());
-  ASSERT_TRUE(group
-                  ->GetCachedCodecConfigurationByDirection(
-                      types::LeAudioContextType::CONVERSATIONAL,
-                      bluetooth::le_audio::types::kLeAudioDirectionSource)
-                  .has_value());
+  ASSERT_TRUE(
+      group->GetCachedConfiguration(types::LeAudioContextType::CONVERSATIONAL)
+          ->confs.get(le_audio::types::kLeAudioDirectionSink)
+          .size());
+  ASSERT_TRUE(
+      group->GetCachedConfiguration(types::LeAudioContextType::CONVERSATIONAL)
+          ->confs.get(le_audio::types::kLeAudioDirectionSource)
+          .size());
 }
 
 TEST_F(UnicastTest, StreamingVxAospSampleSound) {
@@ -7190,11 +7186,8 @@ TEST_F(UnicastTest, StartStreamToSupportedContextTypeThenMixUnavailable) {
                               source_supported_context);
 
   // Verify cache has been removed due to available context change
-  ASSERT_FALSE(group
-                   ->GetCachedCodecConfigurationByDirection(
-                       types::LeAudioContextType::MEDIA,
-                       bluetooth::le_audio::types::kLeAudioDirectionSink)
-                   .has_value());
+  ASSERT_EQ(nullptr,
+            group->GetCachedConfiguration(types::LeAudioContextType::MEDIA));
   /* Start Media again */
   contexts.sink = types::AudioContexts(types::LeAudioContextType::MEDIA);
   EXPECT_CALL(
@@ -7207,11 +7200,12 @@ TEST_F(UnicastTest, StartStreamToSupportedContextTypeThenMixUnavailable) {
 
   SyncOnMainLoop();
 
-  ASSERT_TRUE(group
-                  ->GetCachedCodecConfigurationByDirection(
-                      types::LeAudioContextType::MEDIA,
-                      bluetooth::le_audio::types::kLeAudioDirectionSink)
-                  .has_value());
+  // Verify cache has been rebuilt
+  ASSERT_NE(nullptr,
+            group->GetCachedConfiguration(types::LeAudioContextType::MEDIA));
+  ASSERT_TRUE(group->GetCachedConfiguration(types::LeAudioContextType::MEDIA)
+                  ->confs.get(le_audio::types::kLeAudioDirectionSink)
+                  .size());
 
   Mock::VerifyAndClearExpectations(&mock_state_machine_);
   Mock::VerifyAndClearExpectations(&mock_audio_hal_client_callbacks_);
@@ -9276,16 +9270,14 @@ TEST_F_WITH_FLAGS(UnicastTestHandoverMode,
   StopStreaming(group_id, true);
 
   // Check if cache configuration is still present
-  ASSERT_TRUE(group
-                  ->GetCachedCodecConfigurationByDirection(
-                      types::LeAudioContextType::CONVERSATIONAL,
-                      bluetooth::le_audio::types::kLeAudioDirectionSink)
-                  .has_value());
-  ASSERT_TRUE(group
-                  ->GetCachedCodecConfigurationByDirection(
-                      types::LeAudioContextType::CONVERSATIONAL,
-                      bluetooth::le_audio::types::kLeAudioDirectionSource)
-                  .has_value());
+  ASSERT_TRUE(
+      group->GetCachedConfiguration(types::LeAudioContextType::CONVERSATIONAL)
+          ->confs.get(le_audio::types::kLeAudioDirectionSink)
+          .size());
+  ASSERT_TRUE(
+      group->GetCachedConfiguration(types::LeAudioContextType::CONVERSATIONAL)
+          ->confs.get(le_audio::types::kLeAudioDirectionSource)
+          .size());
 
   // Release, Sink HAL client should remain in monitor mode
   EXPECT_CALL(*mock_le_audio_source_hal_client_, Stop()).Times(1);
@@ -9303,16 +9295,14 @@ TEST_F_WITH_FLAGS(UnicastTestHandoverMode,
   RegisterSourceHalClientMock();
 
   // Setting group inactive, shall not change cached configuration
-  ASSERT_TRUE(group
-                  ->GetCachedCodecConfigurationByDirection(
-                      types::LeAudioContextType::CONVERSATIONAL,
-                      bluetooth::le_audio::types::kLeAudioDirectionSink)
-                  .has_value());
-  ASSERT_TRUE(group
-                  ->GetCachedCodecConfigurationByDirection(
-                      types::LeAudioContextType::CONVERSATIONAL,
-                      bluetooth::le_audio::types::kLeAudioDirectionSource)
-                  .has_value());
+  ASSERT_TRUE(
+      group->GetCachedConfiguration(types::LeAudioContextType::CONVERSATIONAL)
+          ->confs.get(le_audio::types::kLeAudioDirectionSink)
+          .size());
+  ASSERT_TRUE(
+      group->GetCachedConfiguration(types::LeAudioContextType::CONVERSATIONAL)
+          ->confs.get(le_audio::types::kLeAudioDirectionSource)
+          .size());
 
   EXPECT_CALL(mock_audio_hal_client_callbacks_,
               OnUnicastMonitorModeStatus(
@@ -9451,16 +9441,14 @@ TEST_F_WITH_FLAGS(UnicastTestHandoverMode,
   StopStreaming(group_id, true);
 
   // Check if cache configuration is still present
-  ASSERT_TRUE(group
-                  ->GetCachedCodecConfigurationByDirection(
-                      types::LeAudioContextType::CONVERSATIONAL,
-                      bluetooth::le_audio::types::kLeAudioDirectionSink)
-                  .has_value());
-  ASSERT_TRUE(group
-                  ->GetCachedCodecConfigurationByDirection(
-                      types::LeAudioContextType::CONVERSATIONAL,
-                      bluetooth::le_audio::types::kLeAudioDirectionSource)
-                  .has_value());
+  ASSERT_TRUE(
+      group->GetCachedConfiguration(types::LeAudioContextType::CONVERSATIONAL)
+          ->confs.get(le_audio::types::kLeAudioDirectionSink)
+          .size());
+  ASSERT_TRUE(
+      group->GetCachedConfiguration(types::LeAudioContextType::CONVERSATIONAL)
+          ->confs.get(le_audio::types::kLeAudioDirectionSource)
+          .size());
 
   // Release, Sink HAL client should remain in monitor mode
   EXPECT_CALL(*mock_le_audio_source_hal_client_, Stop()).Times(1);
@@ -9475,16 +9463,14 @@ TEST_F_WITH_FLAGS(UnicastTestHandoverMode,
   Mock::VerifyAndClearExpectations(&mock_le_audio_sink_hal_client_);
 
   // Setting group inactive, shall not change cached configuration
-  ASSERT_TRUE(group
-                  ->GetCachedCodecConfigurationByDirection(
-                      types::LeAudioContextType::CONVERSATIONAL,
-                      bluetooth::le_audio::types::kLeAudioDirectionSink)
-                  .has_value());
-  ASSERT_TRUE(group
-                  ->GetCachedCodecConfigurationByDirection(
-                      types::LeAudioContextType::CONVERSATIONAL,
-                      bluetooth::le_audio::types::kLeAudioDirectionSource)
-                  .has_value());
+  ASSERT_TRUE(
+      group->GetCachedConfiguration(types::LeAudioContextType::CONVERSATIONAL)
+          ->confs.get(le_audio::types::kLeAudioDirectionSink)
+          .size());
+  ASSERT_TRUE(
+      group->GetCachedConfiguration(types::LeAudioContextType::CONVERSATIONAL)
+          ->confs.get(le_audio::types::kLeAudioDirectionSource)
+          .size());
 }
 
 TEST_F_WITH_FLAGS(UnicastTestHandoverMode,
@@ -9569,16 +9555,14 @@ TEST_F_WITH_FLAGS(UnicastTestHandoverMode,
   Mock::VerifyAndClearExpectations(&mock_audio_hal_client_callbacks_);
 
   // Check if cache configuration is still present
-  ASSERT_TRUE(group
-                  ->GetCachedCodecConfigurationByDirection(
-                      types::LeAudioContextType::CONVERSATIONAL,
-                      bluetooth::le_audio::types::kLeAudioDirectionSink)
-                  .has_value());
-  ASSERT_TRUE(group
-                  ->GetCachedCodecConfigurationByDirection(
-                      types::LeAudioContextType::CONVERSATIONAL,
-                      bluetooth::le_audio::types::kLeAudioDirectionSource)
-                  .has_value());
+  ASSERT_TRUE(
+      group->GetCachedConfiguration(types::LeAudioContextType::CONVERSATIONAL)
+          ->confs.get(le_audio::types::kLeAudioDirectionSink)
+          .size());
+  ASSERT_TRUE(
+      group->GetCachedConfiguration(types::LeAudioContextType::CONVERSATIONAL)
+          ->confs.get(le_audio::types::kLeAudioDirectionSource)
+          .size());
 
   // Release of sink and source hals due to de-activating monitor mode
   EXPECT_CALL(*mock_le_audio_source_hal_client_, Stop()).Times(1);
@@ -9592,16 +9576,14 @@ TEST_F_WITH_FLAGS(UnicastTestHandoverMode,
   Mock::VerifyAndClearExpectations(&mock_le_audio_sink_hal_client_);
 
   // Setting group inactive, shall not change cached configuration
-  ASSERT_TRUE(group
-                  ->GetCachedCodecConfigurationByDirection(
-                      types::LeAudioContextType::CONVERSATIONAL,
-                      bluetooth::le_audio::types::kLeAudioDirectionSink)
-                  .has_value());
-  ASSERT_TRUE(group
-                  ->GetCachedCodecConfigurationByDirection(
-                      types::LeAudioContextType::CONVERSATIONAL,
-                      bluetooth::le_audio::types::kLeAudioDirectionSource)
-                  .has_value());
+  ASSERT_TRUE(
+      group->GetCachedConfiguration(types::LeAudioContextType::CONVERSATIONAL)
+          ->confs.get(le_audio::types::kLeAudioDirectionSink)
+          .size());
+  ASSERT_TRUE(
+      group->GetCachedConfiguration(types::LeAudioContextType::CONVERSATIONAL)
+          ->confs.get(le_audio::types::kLeAudioDirectionSource)
+          .size());
 }
 
 TEST_F_WITH_FLAGS(UnicastTestHandoverMode,
@@ -9769,16 +9751,14 @@ TEST_F_WITH_FLAGS(UnicastTestHandoverMode,
   StopStreaming(group_id, true);
 
   // Check if cache configuration is still present
-  ASSERT_TRUE(group
-                  ->GetCachedCodecConfigurationByDirection(
-                      types::LeAudioContextType::CONVERSATIONAL,
-                      bluetooth::le_audio::types::kLeAudioDirectionSink)
-                  .has_value());
-  ASSERT_TRUE(group
-                  ->GetCachedCodecConfigurationByDirection(
-                      types::LeAudioContextType::CONVERSATIONAL,
-                      bluetooth::le_audio::types::kLeAudioDirectionSource)
-                  .has_value());
+  ASSERT_TRUE(
+      group->GetCachedConfiguration(types::LeAudioContextType::CONVERSATIONAL)
+          ->confs.get(le_audio::types::kLeAudioDirectionSink)
+          .size());
+  ASSERT_TRUE(
+      group->GetCachedConfiguration(types::LeAudioContextType::CONVERSATIONAL)
+          ->confs.get(le_audio::types::kLeAudioDirectionSource)
+          .size());
 
   // Both Sink and Source HAL clients should be stopped
   EXPECT_CALL(*mock_le_audio_source_hal_client_, Stop()).Times(1);
@@ -9797,16 +9777,14 @@ TEST_F_WITH_FLAGS(UnicastTestHandoverMode,
   RegisterSinkHalClientMock();
 
   // Setting group inactive, shall not change cached configuration
-  ASSERT_TRUE(group
-                  ->GetCachedCodecConfigurationByDirection(
-                      types::LeAudioContextType::CONVERSATIONAL,
-                      bluetooth::le_audio::types::kLeAudioDirectionSink)
-                  .has_value());
-  ASSERT_TRUE(group
-                  ->GetCachedCodecConfigurationByDirection(
-                      types::LeAudioContextType::CONVERSATIONAL,
-                      bluetooth::le_audio::types::kLeAudioDirectionSource)
-                  .has_value());
+  ASSERT_TRUE(
+      group->GetCachedConfiguration(types::LeAudioContextType::CONVERSATIONAL)
+          ->confs.get(le_audio::types::kLeAudioDirectionSink)
+          .size());
+  ASSERT_TRUE(
+      group->GetCachedConfiguration(types::LeAudioContextType::CONVERSATIONAL)
+          ->confs.get(le_audio::types::kLeAudioDirectionSource)
+          .size());
 
   EXPECT_CALL(mock_audio_hal_client_callbacks_,
               OnUnicastMonitorModeStatus(
