@@ -46,6 +46,30 @@
       },
       "revId": "ccbd1f01cf7a9606738957c9205915daffa26817",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a550b72_4446f9b7",
+        "filename": "system/stack/a2dp/a2dp_api.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-04T21:55:47Z",
+      "side": 0,
+      "message": "Acknowledged",
+      "parentUuid": "87ab4106_94a15384",
+      "range": {
+        "startLine": 351,
+        "startChar": 0,
+        "endLine": 351,
+        "endChar": 32
+      },
+      "revId": "ccbd1f01cf7a9606738957c9205915daffa26817",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
