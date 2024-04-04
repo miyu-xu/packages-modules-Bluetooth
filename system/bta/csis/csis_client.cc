@@ -2412,7 +2412,7 @@ void CsisClient::Initialize(bluetooth::csis::CsisClientCallbacks* callbacks,
 bool CsisClient::IsCsisClientRunning() { return instance; }
 
 CsisClient* CsisClient::Get(void) {
-  CHECK(instance);
+  log::assert_that(instance, "assert failed: instance");
   return instance;
 }
 

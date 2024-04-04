@@ -1267,7 +1267,7 @@ void VolumeControl::Initialize(bluetooth::vc::VolumeControlCallbacks* callbacks,
 bool VolumeControl::IsVolumeControlRunning() { return instance; }
 
 VolumeControl* VolumeControl::Get(void) {
-  CHECK(instance);
+  log::assert_that(instance, "assert failed: instance");
   return instance;
 };
 

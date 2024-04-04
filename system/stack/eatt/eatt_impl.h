@@ -167,12 +167,13 @@ struct eatt_impl {
     if (!eatt_dev->eatt_tcb_) {
       eatt_dev->eatt_tcb_ =
           gatt_find_tcb_by_addr(eatt_dev->bda_, BT_TRANSPORT_LE);
-      CHECK(eatt_dev->eatt_tcb_);
+      log::assert_that(eatt_dev->eatt_tcb_,
+                       "assert failed: eatt_dev->eatt_tcb_");
     }
 
     for (uint16_t cid : lcids) {
       EattChannel* channel = find_eatt_channel_by_cid(bda, cid);
-      CHECK(!channel);
+      log::assert_that(!channel, "assert failed: !channel");
 
       auto chan = std::make_shared<EattChannel>(eatt_dev->bda_, cid, peer_mtu,
                                                 eatt_dev->rx_mtu_);
@@ -410,8 +411,9 @@ struct eatt_impl {
     channel->EattChannelSetState(EattChannelState::EATT_CHANNEL_OPENED);
     channel->EattChannelSetTxMTU(peer_mtu);
 
-    CHECK(eatt_dev->eatt_tcb_);
-    CHECK(eatt_dev->bda_ == channel->bda_);
+    log::assert_that(eatt_dev->eatt_tcb_, "assert failed: eatt_dev->eatt_tcb_");
+    log::assert_that(eatt_dev->bda_ == channel->bda_,
+                     "assert failed: eatt_dev->bda_ == channel->bda_");
     eatt_dev->eatt_tcb_->eatt++;
 
     log::info("Channel connected CID 0x{:04x}", lcid);
@@ -606,7 +608,7 @@ struct eatt_impl {
 
     eatt_dev->eatt_tcb_ =
         gatt_find_tcb_by_addr(eatt_dev->bda_, BT_TRANSPORT_LE);
-    CHECK(eatt_dev->eatt_tcb_);
+    log::assert_that(eatt_dev->eatt_tcb_, "assert failed: eatt_dev->eatt_tcb_");
   }
 
   EattChannel* find_eatt_channel_by_cid(const RawAddress& bd_addr,

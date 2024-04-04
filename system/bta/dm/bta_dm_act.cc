@@ -1041,8 +1041,8 @@ static void bta_dm_adjust_roles(bool delay_role_switch) {
  *
  ******************************************************************************/
 static size_t find_utf8_char_boundary(const char* utf8str, size_t offset) {
-  CHECK(utf8str);
-  CHECK(offset > 0);
+  log::assert_that(utf8str, "assert failed: utf8str");
+  log::assert_that(offset > 0, "assert failed: offset > 0");
 
   while (--offset) {
     uint8_t ch = (uint8_t)utf8str[offset];
