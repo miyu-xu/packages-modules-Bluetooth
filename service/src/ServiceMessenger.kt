@@ -168,6 +168,24 @@ internal class ServiceMessenger(
                     )
                 }
             }
+            BluetoothServiceMessages.IS_AUTO_ON_SUPPORTED -> {
+                checker.enforcePrivileged(sendingUid)
+                Bundle().apply {
+                    putBoolean("isSupported", managerService.isAutoOnSupported_sync())
+                }
+            }
+            BluetoothServiceMessages.SET_AUTO_ON_ENABLED -> {
+                checker.enforcePrivileged(sendingUid)
+
+                val enabledStatus = data.getBoolean("enabledStatus")
+
+                managerService.setAutoOnEnabled_sync(enabledStatus)
+                Bundle.EMPTY
+            }
+            BluetoothServiceMessages.GET_AUTO_ON_ENABLED -> {
+                checker.enforcePrivileged(sendingUid)
+                Bundle().apply { putBoolean("isEnabled", managerService.isAutoOnEnabled_sync()) }
+            }
             else -> throw IllegalArgumentException("command not implemented: ${what} - ${data}")
         }
     }
