@@ -16,6 +16,23 @@
       "message": "nit: Run the formatter",
       "revId": "50991dc9636c6a1dddfb0c23a6cb9e77d461613e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b93a65b6_efd82ff9",
+        "filename": "system/rust/src/gatt/server/att_server_bearer.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-04T00:01:33Z",
+      "side": 1,
+      "message": "This is just formatting.  I could split it out.",
+      "revId": "50991dc9636c6a1dddfb0c23a6cb9e77d461613e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
