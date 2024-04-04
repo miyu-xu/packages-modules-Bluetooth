@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e976d46_25ce318c",
+        "filename": "system/btif/src/btif_config.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-04T23:50:19Z",
+      "side": 0,
+      "message": "That\u0027s the only \u0027useful\u0027 information being dumped here,\nit resolves to \u0027Backup\u0027 or \u0027Empty\u0027 depending on the info available at init.\nI think this should be logged elsewhere.",
+      "parentUuid": "38d6b6f1_1f4fc2f7",
+      "range": {
+        "startLine": 368,
+        "startChar": 5,
+        "endLine": 369,
+        "endChar": 80
+      },
+      "revId": "a54d63e26fa714a42917d604846f9b876a2fec3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "c2f1e57b_09ccd62d",
