@@ -45,7 +45,6 @@ import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.a2dpsink.A2dpSinkNativeInterface;
 import com.android.bluetooth.a2dpsink.A2dpSinkService;
 import com.android.bluetooth.btservice.AdapterService;
-import com.android.bluetooth.btservice.storage.DatabaseManager;
 
 import org.hamcrest.core.IsInstanceOf;
 import org.junit.After;
@@ -73,21 +72,22 @@ public class AvrcpControllerStateMachineTest {
 
     private BluetoothAdapter mAdapter;
 
-    @Rule public final ServiceTestRule mAvrcpServiceRule = new ServiceTestRule();
-    @Rule public final ServiceTestRule mA2dpServiceRule = new ServiceTestRule();
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
-    @Mock private AdapterService mA2dpAdapterService;
-    @Mock private AdapterService mAvrcpAdapterService;
+    @Mock private AdapterService mAdapterService;
+
     @Mock private A2dpSinkService mA2dpSinkService;
-    @Mock private DatabaseManager mDatabaseManager;
-    @Mock private AudioManager mAudioManager;
     @Mock private Resources mMockResources;
-    private ArgumentCaptor<Intent> mIntentArgument = ArgumentCaptor.forClass(Intent.class);
+
     @Mock private AvrcpControllerService mAvrcpControllerService;
     @Mock private AvrcpControllerNativeInterface mNativeInterface;
-    @Mock private A2dpSinkNativeInterface mA2dpSinkNativeInterface;
     @Mock private AvrcpCoverArtManager mCoverArtManager;
+    @Mock private AudioManager mAudioManager;
+
+    @Rule
+    public final ServiceTestRule mBluetoothBrowserMediaServiceTestRule = new ServiceTestRule();
+
+    private ArgumentCaptor<Intent> mIntentArgument = ArgumentCaptor.forClass(Intent.class);
 
     private byte[] mTestAddress = new byte[]{01, 01, 01, 01, 01, 01};
     private BluetoothDevice mTestDevice = null;
@@ -100,17 +100,11 @@ public class AvrcpControllerStateMachineTest {
         }
         Assert.assertNotNull(Looper.myLooper());
 
+        // Set a mock Adapter Service for profile state change notifications
+        TestUtils.setAdapterService(mAdapterService);
 
-        // Start a real A2dpSinkService so we can replace the static instance with our mock
-        doReturn(mDatabaseManager).when(mA2dpAdapterService).getDatabase();
-        TestUtils.setAdapterService(mA2dpAdapterService);
-        A2dpSinkNativeInterface.setInstance(mA2dpSinkNativeInterface);
+        // Set a mock A2dpSinkService for audio focus calls
         A2dpSinkService.setA2dpSinkService(mA2dpSinkService);
-        TestUtils.clearAdapterService(mA2dpAdapterService);
-
-        // Start an AvrcpControllerService to get a real BluetoothMediaBrowserService up
-        TestUtils.setAdapterService(mAvrcpAdapterService);
-        AvrcpControllerNativeInterface.setInstance(mNativeInterface);
 
         // Mock an AvrcpControllerService to give to all state machines
         doReturn(BluetoothProfile.STATE_DISCONNECTED).when(mCoverArtManager).getState(any());
@@ -120,12 +114,20 @@ public class AvrcpControllerStateMachineTest {
         when(mMockResources.getBoolean(R.bool.a2dp_sink_automatically_request_audio_focus))
                 .thenReturn(true);
         doReturn(mMockResources).when(mAvrcpControllerService).getResources();
-        doReturn(mAudioManager).when(mAvrcpControllerService)
+        doReturn(mAudioManager)
+                .when(mAvrcpControllerService)
                 .getSystemService(Context.AUDIO_SERVICE);
-        doReturn(Context.AUDIO_SERVICE).when(mAvrcpControllerService)
+        doReturn(Context.AUDIO_SERVICE)
+                .when(mAvrcpControllerService)
                 .getSystemServiceName(AudioManager.class);
         doReturn(mCoverArtManager).when(mAvrcpControllerService).getCoverArtManager();
         mAvrcpControllerService.sBrowseTree = new BrowseTree(null);
+        AvrcpControllerService.setAvrcpControllerService(mAvrcpControllerService);
+
+        // Start the Bluetooth Media Browser Service
+        final Intent bluetoothBrowserMediaServiceStartIntent =
+                TestUtils.prepareIntentToStartBluetoothBrowserMediaService();
+        mBluetoothBrowserMediaServiceTestRule.startService(bluetoothBrowserMediaServiceStartIntent);
 
         // Ensure our MediaBrowserService starts with a blank state
         BluetoothMediaBrowserService.reset();
@@ -142,7 +144,7 @@ public class AvrcpControllerStateMachineTest {
     @After
     public void tearDown() throws Exception {
         destroyStateMachine(mAvrcpStateMachine);
-        TestUtils.clearAdapterService(mAvrcpAdapterService);
+        TestUtils.clearAdapterService(mMockAdapterService);
         A2dpSinkNativeInterface.setInstance(null);
         AvrcpControllerNativeInterface.setInstance(null);
     }
@@ -209,9 +211,8 @@ public class AvrcpControllerStateMachineTest {
         mAvrcpStateMachine.connect(StackEvent.connectionStateChanged(control, browsing));
 
         TestUtils.waitForLooperToFinishScheduledTask(mAvrcpStateMachine.getHandler().getLooper());
-        verify(mAvrcpControllerService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2)).sendBroadcast(
-                mIntentArgument.capture(), eq(BLUETOOTH_CONNECT),
-                any(Bundle.class));
+        verify(mAvrcpControllerService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
+                .sendBroadcast(mIntentArgument.capture(), eq(BLUETOOTH_CONNECT), any(Bundle.class));
         Assert.assertThat(mAvrcpStateMachine.getCurrentState(),
                 IsInstanceOf.instanceOf(AvrcpControllerStateMachine.Connected.class));
         Assert.assertEquals(mAvrcpStateMachine.getState(), BluetoothProfile.STATE_CONNECTED);
@@ -388,10 +389,8 @@ public class AvrcpControllerStateMachineTest {
     private void testDisconnectInternal(int numBroadcastsSent) {
         mAvrcpStateMachine.disconnect();
         numBroadcastsSent += 2;
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(numBroadcastsSent)).sendBroadcast(
-                mIntentArgument.capture(), eq(BLUETOOTH_CONNECT),
-                any(Bundle.class));
+        verify(mAvrcpControllerService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(numBroadcastsSent))
+                .sendBroadcast(mIntentArgument.capture(), eq(BLUETOOTH_CONNECT), any(Bundle.class));
         Assert.assertEquals(mTestDevice, mIntentArgument.getValue().getParcelableExtra(
                 BluetoothDevice.EXTRA_DEVICE));
         Assert.assertEquals(BluetoothAvrcpController.ACTION_CONNECTION_STATE_CHANGED,
@@ -417,10 +416,8 @@ public class AvrcpControllerStateMachineTest {
                 BluetoothMediaBrowserService.getPlaybackState().getState());
         mAvrcpStateMachine.disconnect();
         numBroadcastsSent += 2;
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(numBroadcastsSent)).sendBroadcast(
-                mIntentArgument.capture(), eq(BLUETOOTH_CONNECT),
-                any(Bundle.class));
+        verify(mAvrcpControllerService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(numBroadcastsSent))
+                .sendBroadcast(mIntentArgument.capture(), eq(BLUETOOTH_CONNECT), any(Bundle.class));
         Assert.assertEquals(mTestDevice, mIntentArgument.getValue().getParcelableExtra(
                 BluetoothDevice.EXTRA_DEVICE));
         Assert.assertEquals(BluetoothAvrcpController.ACTION_CONNECTION_STATE_CHANGED,
@@ -446,10 +443,8 @@ public class AvrcpControllerStateMachineTest {
                 BluetoothMediaBrowserService.getPlaybackState().getState());
         mAvrcpStateMachine.disconnect();
         numBroadcastsSent += 2;
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(numBroadcastsSent)).sendBroadcast(
-                mIntentArgument.capture(), eq(BLUETOOTH_CONNECT),
-                any(Bundle.class));
+        verify(mAvrcpControllerService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(numBroadcastsSent))
+                .sendBroadcast(mIntentArgument.capture(), eq(BLUETOOTH_CONNECT), any(Bundle.class));
         Assert.assertEquals(mTestDevice, mIntentArgument.getValue().getParcelableExtra(
                 BluetoothDevice.EXTRA_DEVICE));
         Assert.assertEquals(BluetoothAvrcpController.ACTION_CONNECTION_STATE_CHANGED,
