@@ -28,4 +28,7 @@ enum BluetoothServiceMessages {
     IS_HEARING_AID_SUPPORTED = 7,
     SET_SNOOP_LOG = 8,
     GET_SNOOP_LOG = 9,
+    IS_AUTO_ON_SUPPORTED = 10,
+    SET_AUTO_ON_ENABLED = 11,
+    GET_AUTO_ON_ENABLED = 12,
 }
