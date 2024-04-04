@@ -71,7 +71,11 @@ public class GattServerConnectWithoutScanTest {
                 mock(BluetoothGattServerCallback.class);
         BluetoothGattServer gattServer =
                 mBluetoothManager.openGattServer(
-                        mContext, mockGattServerCallback, BluetoothDevice.TRANSPORT_AUTO);
+                        mContext,
+                        BluetoothDevice.TRANSPORT_AUTO,
+                        false,
+                        mContext.getMainExecutor(),
+                        mockGattServerCallback);
 
         assertThat(gattServer).isNotNull();
 
@@ -97,7 +101,11 @@ public class GattServerConnectWithoutScanTest {
                 mock(BluetoothGattServerCallback.class);
         BluetoothGattServer gattServer =
                 mBluetoothManager.openGattServer(
-                        mContext, mockGattServerCallback, BluetoothDevice.TRANSPORT_LE);
+                        mContext,
+                        BluetoothDevice.TRANSPORT_LE,
+                        false,
+                        mContext.getMainExecutor(),
+                        mockGattServerCallback);
 
         assertThat(gattServer).isNotNull();
 
@@ -123,7 +131,11 @@ public class GattServerConnectWithoutScanTest {
                 mock(BluetoothGattServerCallback.class);
         BluetoothGattServer gattServer =
                 mBluetoothManager.openGattServer(
-                        mContext, mockGattServerCallback, BluetoothDevice.TRANSPORT_AUTO);
+                        mContext,
+                        BluetoothDevice.TRANSPORT_AUTO,
+                        false,
+                        mContext.getMainExecutor(),
+                        mockGattServerCallback);
 
         assertThat(gattServer).isNotNull();
 
@@ -144,7 +156,11 @@ public class GattServerConnectWithoutScanTest {
                 mock(BluetoothGattServerCallback.class);
         BluetoothGattServer gattServer =
                 mBluetoothManager.openGattServer(
-                        mContext, mockGattServerCallback, BluetoothDevice.TRANSPORT_LE);
+                        mContext,
+                        BluetoothDevice.TRANSPORT_LE,
+                        false,
+                        mContext.getMainExecutor(),
+                        mockGattServerCallback);
 
         assertThat(gattServer).isNotNull();
 
