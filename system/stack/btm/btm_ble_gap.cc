@@ -1331,32 +1331,6 @@ void btm_ble_periodic_adv_sync_lost(uint16_t sync_handle) {
   ps->remote_bda = RawAddress::kEmpty;
 }
 
-/*******************************************************************************
- *
- * Function        btm_ble_periodic_syc_transfer_cmd_cmpl
- *
- * Description     PAST complete callback
- *
- ******************************************************************************/
-void btm_ble_periodic_syc_transfer_cmd_cmpl(uint8_t status,
-                                            uint16_t conn_handle) {
-  log::debug("[PAST]: status = {}, conn_handle ={}", status, conn_handle);
-
-  int index = btm_ble_get_sync_transfer_index(conn_handle);
-  if (index == MAX_SYNC_TRANSACTION) {
-    log::error("[PAST]:Invalid, conn_handle {} not found in DB", conn_handle);
-    return;
-  }
-
-  tBTM_BLE_PERIODIC_SYNC_TRANSFER* p_sync_transfer =
-      &btm_ble_pa_sync_cb.sync_transfer[index];
-  p_sync_transfer->cb.Run(status, p_sync_transfer->addr);
-
-  p_sync_transfer->in_use = false;
-  p_sync_transfer->conn_handle = -1;
-  p_sync_transfer->addr = RawAddress::kEmpty;
-}
-
 void btm_ble_periodic_syc_transfer_param_cmpl(uint8_t status) {
   log::debug("[PAST]: status = {}", status);
 }
