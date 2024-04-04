@@ -80,4 +80,21 @@ interface BluetoothServiceMessages {
             int value;
         }
     }
+
+    parcelable IsAutoSupported {
+        parcelable Reply {
+            boolean value;
+        }
+    }
+
+    parcelable IsAutoEnabled {
+        parcelable Reply {
+            boolean value;
+        }
+    }
+
+    parcelable SetAutoOnEnabled {
+        boolean enabledStatus;
+        parcelable Reply {}
+    }
 }
