@@ -1,5 +1,138 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b01076f4_fe7b5c8e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-04T17:09:28Z",
+      "side": 1,
+      "message": "Instead of checking for the list to be null, is it possible to guarantee it to never be null ?",
+      "revId": "5b614fc424658b689eac8b55588620d1965842c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81a4ce5f_a07ddaa3",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-04T17:09:28Z",
+      "side": 1,
+      "message": "Is `link_xmit_data_q` guaranteed to be non null here?",
+      "range": {
+        "startLine": 366,
+        "startChar": 35,
+        "endLine": 366,
+        "endChar": 51
+      },
+      "revId": "5b614fc424658b689eac8b55588620d1965842c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a4094cb_3cdac31e",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 673,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-04T17:09:28Z",
+      "side": 1,
+      "message": "Is `link_xmit_data_q` guaranteed to be non null here?",
+      "range": {
+        "startLine": 673,
+        "startChar": 33,
+        "endLine": 673,
+        "endChar": 49
+      },
+      "revId": "5b614fc424658b689eac8b55588620d1965842c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83971a3d_191aeeea",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 801,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-04T17:09:28Z",
+      "side": 1,
+      "message": "Is `link_xmit_data_q` guaranteed to be non null here?",
+      "range": {
+        "startLine": 801,
+        "startChar": 27,
+        "endLine": 801,
+        "endChar": 43
+      },
+      "revId": "5b614fc424658b689eac8b55588620d1965842c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc89e2b8_8818c75d",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 850,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-04T17:09:28Z",
+      "side": 1,
+      "message": "Is `link_xmit_data_q` guaranteed to be non null here?\n\nMy guess is not since you are adding a check later in the function",
+      "range": {
+        "startLine": 850,
+        "startChar": 23,
+        "endLine": 850,
+        "endChar": 39
+      },
+      "revId": "5b614fc424658b689eac8b55588620d1965842c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab114b13_00b685cf",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1143,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-04T17:09:28Z",
+      "side": 1,
+      "message": "Is `link_xmit_data_q` guaranteed to be non null here?",
+      "range": {
+        "startLine": 1143,
+        "startChar": 22,
+        "endLine": 1143,
+        "endChar": 38
+      },
+      "revId": "5b614fc424658b689eac8b55588620d1965842c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
