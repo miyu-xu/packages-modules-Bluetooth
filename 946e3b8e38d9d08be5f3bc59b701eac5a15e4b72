@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6420cb9_31e1e4ef",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1238,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-04T04:54:55Z",
+      "side": 1,
+      "message": "does this mean if LE encryption is pending for one ACL, another ACL cannot enable encryption at the same time? is this disallowed by core spec?",
+      "range": {
+        "startLine": 1238,
+        "startChar": 38,
+        "endLine": 1238,
+        "endChar": 42
+      },
+      "revId": "946e3b8e38d9d08be5f3bc59b701eac5a15e4b72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b121a6fb_fd71c1c1",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1238,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-04T04:54:55Z",
+      "side": 1,
+      "message": "could you explain the logic among\n\n- is_security_state_encrypting\n- is_security_state_le_encrypting\n- is_security_state_bredr_encrypting\n\n?\n\nmy understanding is\n\nis_security_state_encrypting \u003d is_security_state_le_encrypting || is_security_state_bredr_encrypting\n\nis this correct?",
+      "range": {
+        "startLine": 1238,
+        "startChar": 21,
+        "endLine": 1238,
+        "endChar": 52
+      },
+      "revId": "946e3b8e38d9d08be5f3bc59b701eac5a15e4b72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adf1237a_f1a5b667",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1246,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-04T04:54:55Z",
+      "side": 1,
+      "message": "this is so hard to read as the boolean name is different from the sysprop name, could you invert the logic instead?\n\n```\nbool allow_le_enc_with_bredr \u003d\n      GET_SYSPROP(Ble, allow_enc_with_bredr, false);\n  if (!allow_le_enc_with_bredr \u0026\u0026\n```",
+      "range": {
+        "startLine": 1244,
+        "startChar": 0,
+        "endLine": 1246,
+        "endChar": 32
+      },
+      "revId": "946e3b8e38d9d08be5f3bc59b701eac5a15e4b72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
