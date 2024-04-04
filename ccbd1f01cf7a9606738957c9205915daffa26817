@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43e23bdd_9e1f9743",
+        "filename": "system/stack/a2dp/a2dp_api.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-04T15:36:30Z",
+      "side": 0,
+      "message": "Why can we do this safely ?\nIf we don\u0027t do that, aren\u0027t we keeping the cback around for when we no longer want it ?",
+      "range": {
+        "startLine": 351,
+        "startChar": 0,
+        "endLine": 351,
+        "endChar": 32
+      },
+      "revId": "ccbd1f01cf7a9606738957c9205915daffa26817",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
