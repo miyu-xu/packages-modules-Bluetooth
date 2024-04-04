@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c2d547a_cbd351d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-04-04T04:21:31Z",
+      "side": 1,
+      "message": "Adjusting other margins too - Will upload the screenshot to compare before/after.",
+      "revId": "034d21cb60857faf1ba75bed213e73dc4654ede7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
