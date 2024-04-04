@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47c1a861_aba88456",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/a2dp/A2dpServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1142,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-04T00:33:09Z",
+      "side": 1,
+      "message": "isFalse ?",
+      "range": {
+        "startLine": 1142,
+        "startChar": 59,
+        "endLine": 1142,
+        "endChar": 76
+      },
+      "revId": "a155fe2727eddd6e7658f1211b88854287baba2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
