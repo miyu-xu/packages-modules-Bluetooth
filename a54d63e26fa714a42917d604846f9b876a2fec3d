@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38d6b6f1_1f4fc2f7",
+        "filename": "system/btif/src/btif_config.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-04T22:30:06Z",
+      "side": 0,
+      "message": "Is this logged elsewhere ?",
+      "range": {
+        "startLine": 368,
+        "startChar": 5,
+        "endLine": 369,
+        "endChar": 80
+      },
+      "revId": "a54d63e26fa714a42917d604846f9b876a2fec3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2f1e57b_09ccd62d",
+        "filename": "system/btif/src/btif_config.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-04T22:30:06Z",
+      "side": 0,
+      "message": "Fine to deleted because no usage of it and deleted in immediate follow up aosp/3028090",
+      "range": {
+        "startLine": 376,
+        "startChar": 0,
+        "endLine": 376,
+        "endChar": 63
+      },
+      "revId": "a54d63e26fa714a42917d604846f9b876a2fec3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
