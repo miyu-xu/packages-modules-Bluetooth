@@ -22,6 +22,30 @@
       },
       "revId": "ccbd1f01cf7a9606738957c9205915daffa26817",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87ab4106_94a15384",
+        "filename": "system/stack/a2dp/a2dp_api.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-04-04T16:39:11Z",
+      "side": 0,
+      "message": "We probably can\u0027t ; | sorry, I think current version should work ; )",
+      "parentUuid": "43e23bdd_9e1f9743",
+      "range": {
+        "startLine": 351,
+        "startChar": 0,
+        "endLine": 351,
+        "endChar": 32
+      },
+      "revId": "ccbd1f01cf7a9606738957c9205915daffa26817",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
