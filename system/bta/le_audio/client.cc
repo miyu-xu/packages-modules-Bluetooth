@@ -6233,7 +6233,7 @@ bool LeAudioClient::IsLeAudioClientInStreaming(void) {
 }
 
 LeAudioClient* LeAudioClient::Get() {
-  CHECK(instance);
+  log::assert_that(instance != nullptr, "assert failed: instance != nullptr");
   return instance;
 }
 
