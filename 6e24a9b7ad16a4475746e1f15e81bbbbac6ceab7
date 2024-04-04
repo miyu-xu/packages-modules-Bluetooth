@@ -22,6 +22,30 @@
       },
       "revId": "6e24a9b7ad16a4475746e1f15e81bbbbac6ceab7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e85af864_efd762bf",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-04T19:03:14Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "73987920_53b393ee",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 3
+      },
+      "revId": "6e24a9b7ad16a4475746e1f15e81bbbbac6ceab7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
