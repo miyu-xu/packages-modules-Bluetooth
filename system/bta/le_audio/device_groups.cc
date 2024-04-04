@@ -1414,20 +1414,6 @@ bool LeAudioDeviceGroup::IsAudioSetConfigurationSupported(
     }
   }
 
-  /* when disabling 32k dual mic, for later join case, we need to
-   * make sure the device is always choosing the config that its
-   * sampling rate matches with the sampling rate which is used
-   * when all devices in the group are connected.
-   */
-  bool dual_bidirection_swb_supported_ =
-      CodecManager::GetInstance()->IsDualBiDirSwbSupported();
-  if (Size() > 1 && CodecManager::GetInstance()->CheckCodecConfigIsBiDirSwb(
-                        *audio_set_conf)) {
-    if (!dual_bidirection_swb_supported_) {
-      return false;
-    }
-  }
-
   log::debug("Chosen ASE Configuration for group: {}, configuration: {}",
              this->group_id_, audio_set_conf->name);
   return true;
