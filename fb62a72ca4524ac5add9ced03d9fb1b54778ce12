@@ -16,6 +16,24 @@
       "message": "Please add a flag stanza",
       "revId": "fb62a72ca4524ac5add9ced03d9fb1b54778ce12",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "963849d8_be4d40ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-04T20:08:18Z",
+      "side": 1,
+      "message": "Right...cleaning up old CLs.",
+      "parentUuid": "4ca9ceee_a412d74c",
+      "revId": "fb62a72ca4524ac5add9ced03d9fb1b54778ce12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
