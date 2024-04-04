@@ -16,6 +16,24 @@
       "message": "Also, you tagged the wrong Sarvesh, but I can\u0027t remove reviewers",
       "revId": "e41ccc4cb91638670c2d28713e3b549bde281ed4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "269165cd_3415ba90",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-04T10:41:17Z",
+      "side": 1,
+      "message": "Thanks",
+      "parentUuid": "6974319f_b7c36487",
+      "revId": "e41ccc4cb91638670c2d28713e3b549bde281ed4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
