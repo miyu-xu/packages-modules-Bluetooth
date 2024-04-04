@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0002ee57_ff543895",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 2298,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-04T17:06:39Z",
+      "side": 1,
+      "message": "log::assert_that",
+      "range": {
+        "startLine": 2298,
+        "startChar": 12,
+        "endLine": 2298,
+        "endChar": 22
+      },
+      "revId": "e8e7d59e0828c3506723b591072cc52de6adb6db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
