@@ -347,7 +347,7 @@ std::string dump_rc_notification_event_id(uint8_t event_id) {
     CASE_RETURN_STRING(AVRC_EVT_NOW_PLAYING_CHANGE);
     CASE_RETURN_STRING(AVRC_EVT_UIDS_CHANGE);
   }
-  RETURN_UNKNOWN_TYPE_STRING(rc_notifcation_event_id, event_id);
+  RETURN_UNKNOWN_TYPE_STRING(rc_notification_event_id, event_id);
 }
 
 std::string dump_rc_pdu(uint8_t pdu) {
