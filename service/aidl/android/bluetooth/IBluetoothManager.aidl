@@ -71,4 +71,5 @@ interface IBluetoothManager
     void setAutoOnEnabled(boolean status);
 
     Messenger getServiceMessenger();
+    const String ATTRIBUTION_SOURCE = "ATTRIBUTION_SOURCE";
 }

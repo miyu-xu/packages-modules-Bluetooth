@@ -59,11 +59,13 @@ import android.os.BluetoothServiceManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.IBinder;
 import android.os.IpcDataCache;
 import android.os.Looper;
 import android.os.Message;
 import android.os.Messenger;
+import android.os.Parcelable;
 import android.os.ParcelUuid;
 import android.os.Process;
 import android.os.RemoteException;
@@ -1159,7 +1161,11 @@ public final class BluetoothAdapter {
     /** Use {@link #getDefaultAdapter} to get the BluetoothAdapter instance. */
     BluetoothAdapter(IBluetoothManager managerService, AttributionSource attributionSource) {
         mManagerService = requireNonNull(managerService);
-        mMessenger = new BluetoothSystemServerMessenger(mManagerService);
+        if (Flags.systemServerMessenger()) {
+            mMessenger = new BluetoothSystemServerMessenger(mManagerService);
+        } else {
+            mMessenger = null;
+        }
         mAttributionSource = requireNonNull(attributionSource);
         mServiceLock.writeLock().lock();
         try {
@@ -1402,15 +1408,11 @@ public final class BluetoothAdapter {
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public boolean disableBLE() {
         if (Flags.systemServerMessenger()) {
-            Bundle data = new Bundle();
-            data.putParcelable("source", mAttributionSource);
-            data.putBinder("token", mToken);
+            BluetoothServiceMessages.Disable data = new BluetoothServiceMessages.Disable();
+            data.attributionSource = mAttributionSource;
+            data.bleToken = mToken;
 
-            return mMessenger
-                    .sendToService(BluetoothServiceMessages.DISABLE, data)
-                    .thenApply(b -> b.getBoolean("disable"))
-                    .orTimeout(1, TimeUnit.SECONDS)
-                    .join();
+            return mMessenger.sendToService(data, Boolean.class).join();
         }
         if (!isBleScanAlwaysAvailable()) {
             return false;
@@ -1457,15 +1459,11 @@ public final class BluetoothAdapter {
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public boolean enableBLE() {
         if (Flags.systemServerMessenger()) {
-            Bundle data = new Bundle();
-            data.putParcelable("source", mAttributionSource);
-            data.putBinder("token", mToken);
+            BluetoothServiceMessages.Enable data = new BluetoothServiceMessages.Enable();
+            data.attributionSource = mAttributionSource;
+            data.bleToken = mToken;
 
-            return mMessenger
-                    .sendToService(BluetoothServiceMessages.ENABLE, data)
-                    .thenApply(b -> b.getBoolean("enable"))
-                    .orTimeout(1, TimeUnit.SECONDS)
-                    .join();
+            return mMessenger.sendToService(data, Boolean.class).join();
         }
         if (!isBleScanAlwaysAvailable()) {
             return false;
@@ -1662,14 +1660,10 @@ public final class BluetoothAdapter {
             return true;
         }
         if (Flags.systemServerMessenger()) {
-            Bundle data = new Bundle();
-            data.putParcelable("source", mAttributionSource);
+            BluetoothServiceMessages.Enable data = new BluetoothServiceMessages.Enable();
+            data.attributionSource = mAttributionSource;
 
-            return mMessenger
-                    .sendToService(BluetoothServiceMessages.ENABLE, data)
-                    .thenApply(b -> b.getBoolean("enable"))
-                    .orTimeout(1, TimeUnit.SECONDS)
-                    .join();
+            return mMessenger.sendToService(data, Boolean.class).join();
         }
         try {
             return mManagerService.enable(mAttributionSource);
@@ -1733,15 +1727,11 @@ public final class BluetoothAdapter {
             })
     public boolean disable(boolean persist) {
         if (Flags.systemServerMessenger()) {
-            Bundle data = new Bundle();
-            data.putParcelable("source", mAttributionSource);
-            data.putBoolean("persist", persist);
+            BluetoothServiceMessages.Disable data = new BluetoothServiceMessages.Disable();
+            data.attributionSource = mAttributionSource;
+            data.persist = persist;
 
-            return mMessenger
-                    .sendToService(BluetoothServiceMessages.DISABLE, data)
-                    .thenApply(b -> b.getBoolean("disable"))
-                    .orTimeout(1, TimeUnit.SECONDS)
-                    .join();
+            return mMessenger.sendToService(data, Boolean.class).join();
         }
         try {
             return mManagerService.disable(mAttributionSource, persist);
@@ -1827,15 +1817,10 @@ public final class BluetoothAdapter {
                 if (mService.factoryReset(mAttributionSource)) {
                     boolean result = false;
                     if (Flags.systemServerMessenger()) {
-                        Bundle data = new Bundle();
-                        data.putParcelable("source", mAttributionSource);
+                        BluetoothServiceMessages.FactoryReset data = new BluetoothServiceMessages.FactoryReset();
+                        data.attributionSource = mAttributionSource;
 
-                        result =
-                                mMessenger
-                                        .sendToService(BluetoothServiceMessages.FACTORY_RESET, data)
-                                        .thenApply(b -> b.getBoolean("factoryReset"))
-                                        .orTimeout(1, TimeUnit.SECONDS)
-                                        .join();
+                        result = mMessenger.sendToService(data, Boolean.class).join();
                     } else {
                         result = mManagerService.onFactoryReset(mAttributionSource);
                     }
@@ -2499,11 +2484,7 @@ public final class BluetoothAdapter {
     @RequiresNoPermission
     public boolean isBleScanAlwaysAvailable() {
         if (Flags.systemServerMessenger()) {
-            return mMessenger
-                    .sendToService(BluetoothServiceMessages.IS_BLE_SCAN_AVAILABLE)
-                    .thenApply(b -> b.getBoolean("bleAvailable"))
-                    .orTimeout(1, TimeUnit.SECONDS)
-                    .join();
+            return mMessenger.sendToService(new BluetoothServiceMessages.IsBleScanAvailable(), Boolean.class).join();
         }
         try {
             return mManagerService.isBleScanAvailable();
@@ -2848,11 +2829,11 @@ public final class BluetoothAdapter {
     @RequiresNoPermission
     private boolean isHearingAidProfileSupported() {
         if (Flags.systemServerMessenger()) {
+            BluetoothServiceMessages.IsHearingAidSupported data = new BluetoothServiceMessages.IsHearingAidSupported();
             return mMessenger
-                    .sendToService(BluetoothServiceMessages.ENABLE)
-                    .thenApply(b -> b.getBoolean("hearingAidSupported"))
-                    .orTimeout(1, TimeUnit.SECONDS)
-                    .join();
+                .sendToService(data, BluetoothServiceMessages.BooleanValue.class)
+                .thenApply(b->b.value)
+                .join();
         }
         try {
             return mManagerService.isHearingAidProfileSupported();
@@ -4053,15 +4034,11 @@ public final class BluetoothAdapter {
             return true;
         }
         if (Flags.systemServerMessenger()) {
-            Bundle data = new Bundle();
-            data.putParcelable("source", mAttributionSource);
-            data.putBoolean("quiet", true);
+            BluetoothServiceMessages.Enable data = new BluetoothServiceMessages.Enable();
+            data.attributionSource = mAttributionSource;
+            data.isQuiet = true;
 
-            return mMessenger
-                    .sendToService(BluetoothServiceMessages.ENABLE, data)
-                    .thenApply(b -> b.getBoolean("enable"))
-                    .orTimeout(1, TimeUnit.SECONDS)
-                    .join();
+            return mMessenger.sendToService(data, Boolean.class).join();
         }
         try {
             return mManagerService.enableNoAutoConnect(mAttributionSource);
@@ -4385,45 +4362,51 @@ public final class BluetoothAdapter {
 
     class BluetoothSystemServerMessenger {
         private final Messenger mMessenger;
+        private final HandlerThread mHandlerThread;
 
         BluetoothSystemServerMessenger(IBluetoothManager managerService) {
             try {
                 mMessenger = requireNonNull(mManagerService.getServiceMessenger());
+                mHandlerThread = new HandlerThread("System Server Reply");
+                mHandlerThread.start();
             } catch (RemoteException e) {
                 Log.e(TAG, "RemoteException when calling getServiceMessenger", e);
                 throw e.rethrowAsRuntimeException();
             }
         }
 
-        CompletableFuture<Bundle> sendToService(int what) {
-            return sendToService(what, null);
+        <T extends Parcelable> void sendToServiceAndWait(T data) {
+            sendToService(data, null).join();
         }
 
-        CompletableFuture<Bundle> sendToService(int what, Bundle arg) {
-            CompletableFuture<Bundle> future = new CompletableFuture();
+        <T extends Parcelable, U > CompletableFuture<U> sendToService(T data, Class<U> replyClass) {
+            CompletableFuture<U> future = new CompletableFuture();
 
             Handler.Callback replyFn =
                     (reply) -> {
-                        Bundle replyData = reply.getData();
+                        Object replyObj = reply.obj;
                         RuntimeException exception =
-                                replyData.getSerializable("exception", RuntimeException.class);
+                                reply.getData().getSerializable("exception", RuntimeException.class);
                         if (exception != null) {
                             future.completeExceptionally(exception);
+                        } else if (replyClass == null || replyObj == null) {
+                            future.complete(null);
+                        } else if (replyClass.isInstance(replyObj)) {
+                            future.complete((U)replyObj);
                         } else {
-                            future.complete(replyData);
+                            future.completeExceptionally(new IllegalArgumentException("Unexpected Object [" + replyObj + "] returned when calling for [" + data + "]. Value expected was ["+ replyClass +"]"));
                         }
                         return true;
                     };
             Message msg = Message.obtain();
-            msg.what = what;
-            msg.setData(arg);
-            msg.replyTo = new Messenger(new Handler(Looper.getMainLooper(), replyFn));
+            msg.obj = data;
+            msg.replyTo = new Messenger(new Handler(mHandlerThread.getLooper(), replyFn));
             try {
                 mMessenger.send(msg);
             } catch (RemoteException e) {
-                throw e.rethrowAsRuntimeException();
+                throw e.rethrowFromSystemServer();
             }
-            return future;
+            return future.orTimeout(1, TimeUnit.SECONDS);
         }
     }
 
@@ -4438,22 +4421,16 @@ public final class BluetoothAdapter {
 
         if (isRegistered != wantRegistered) {
             if (Flags.systemServerMessenger()) {
-                Bundle data = new Bundle();
-                data.putBinder("callback", sManagerCallback.asBinder());
 
                 if (wantRegistered) {
-                    sService =
-                            mMessenger
-                                    .sendToService(BluetoothServiceMessages.REGISTER_ADAPTER, data)
-                                    .thenApply(b -> b.getBinder("service"))
-                                    .thenApply(IBluetooth.Stub::asInterface)
-                                    .orTimeout(1, TimeUnit.SECONDS)
-                                    .join();
+                    BluetoothServiceMessages.RegisterAdapter data = new BluetoothServiceMessages.RegisterAdapter();
+                    data.binder = sManagerCallback;
+
+                    sService = mMessenger.sendToService(data, BluetoothServiceMessages.BluetoothBinder.class).thenApply(b->b.binder).join();
                 } else {
-                    mMessenger
-                            .sendToService(BluetoothServiceMessages.UNREGISTER_ADAPTER, data)
-                            .orTimeout(1, TimeUnit.SECONDS)
-                            .join();
+                    BluetoothServiceMessages.UnregisterAdapter data = new BluetoothServiceMessages.UnregisterAdapter();
+                    data.binder = sManagerCallback;
+                    mMessenger.sendToServiceAndWait(data);
                     sService = null;
                 }
                 sServiceRegistered = wantRegistered;
@@ -5792,13 +5769,10 @@ public final class BluetoothAdapter {
             throw new IllegalArgumentException("Invalid Bluetooth HCI snoop log mode param value");
         }
         if (Flags.systemServerMessenger()) {
-            Bundle data = new Bundle();
-            data.putInt("mode", mode);
+            BluetoothServiceMessages.SetSnoopLog data = new BluetoothServiceMessages.SetSnoopLog();
+            data.mode = mode;
 
-            mMessenger
-                    .sendToService(BluetoothServiceMessages.SET_SNOOP_LOG, data)
-                    .orTimeout(1, TimeUnit.SECONDS)
-                    .join();
+            mMessenger.sendToServiceAndWait(data);
             return BluetoothStatusCodes.SUCCESS;
         }
         try {
@@ -5820,11 +5794,9 @@ public final class BluetoothAdapter {
     @BluetoothSnoopLogMode
     public int getBluetoothHciSnoopLoggingMode() {
         if (Flags.systemServerMessenger()) {
-            return mMessenger
-                    .sendToService(BluetoothServiceMessages.GET_SNOOP_LOG)
-                    .thenApply(b -> b.getInt("snoopLog"))
-                    .orTimeout(1, TimeUnit.SECONDS)
-                    .join();
+            BluetoothServiceMessages.GetSnoopLog data = new BluetoothServiceMessages.GetSnoopLog();
+
+            return mMessenger.sendToService(data, Integer.class).join();
         }
         try {
             return mManagerService.getBtHciSnoopLogMode();
@@ -5844,11 +5816,8 @@ public final class BluetoothAdapter {
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     public boolean isAutoOnSupported() {
         if (Flags.systemServerMessenger()) {
-            return mMessenger
-                    .sendToService(BluetoothServiceMessages.IS_AUTO_ON_SUPPORTED)
-                    .thenApply(b -> b.getBoolean("isSupported"))
-                    .orTimeout(1, TimeUnit.SECONDS)
-                    .join();
+            BluetoothServiceMessages.IsAutoSupported data = new BluetoothServiceMessages.IsAutoSupported();
+            return mMessenger.sendToService(data, Boolean.class).join();
         }
         try {
             return mManagerService.isAutoOnSupported();
@@ -5869,11 +5838,8 @@ public final class BluetoothAdapter {
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     public boolean isAutoOnEnabled() {
         if (Flags.systemServerMessenger()) {
-            return mMessenger
-                    .sendToService(BluetoothServiceMessages.GET_AUTO_ON_ENABLED)
-                    .thenApply(b -> b.getBoolean("isEnabled"))
-                    .orTimeout(1, TimeUnit.SECONDS)
-                    .join();
+            BluetoothServiceMessages.IsAutoEnabled data = new BluetoothServiceMessages.IsAutoEnabled();
+            return mMessenger.sendToService(data, Boolean.class).join();
         }
         try {
             return mManagerService.isAutoOnEnabled();
@@ -5895,12 +5861,9 @@ public final class BluetoothAdapter {
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     public void setAutoOnEnabled(boolean status) {
         if (Flags.systemServerMessenger()) {
-            Bundle data = new Bundle();
-            data.putBoolean("enabledStatus", status);
-            mMessenger
-                    .sendToService(BluetoothServiceMessages.SET_AUTO_ON_ENABLED)
-                    .orTimeout(1, TimeUnit.SECONDS)
-                    .join();
+            BluetoothServiceMessages.SetAutoOnEnabled data = new BluetoothServiceMessages.SetAutoOnEnabled();
+            data.enabledStatus = status;
+            mMessenger.sendToServiceAndWait(data);
             return;
         }
         try {

@@ -203,8 +203,8 @@ class BluetoothManagerService {
             new RemoteCallbackList<IBluetoothManagerCallback>();
     private final BluetoothServiceBinder mBinder;
 
-    private final ReentrantReadWriteLock mAdapterLock =
-            Flags.systemServerMessenger() ? null : new ReentrantReadWriteLock();
+    private final ReentrantReadWriteLock mAdapterLock =new ReentrantReadWriteLock();
+            // Flags.systemServerMessenger() ? null : new ReentrantReadWriteLock();
 
     // @GuardedBy("mAdapterLock") // Annotation is deprecated by the systemServerMessenger Flag
     private AdapterBinder mAdapter = null;

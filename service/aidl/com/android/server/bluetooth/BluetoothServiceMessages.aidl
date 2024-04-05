@@ -15,20 +15,62 @@
  */
 package com.android.server.bluetooth;
 
+import android.bluetooth.IBluetooth;
+import android.bluetooth.IBluetoothManagerCallback;
+import android.content.AttributionSource;
+
+
 /** {@hide} */
-@JavaDerive(toString=true)
-@Backing(type="int")
-enum BluetoothServiceMessages {
-    REGISTER_ADAPTER = 1,
-    UNREGISTER_ADAPTER = 2,
-    ENABLE = 3,
-    DISABLE = 4,
-    FACTORY_RESET = 5,
-    IS_BLE_SCAN_AVAILABLE = 6,
-    IS_HEARING_AID_SUPPORTED = 7,
-    SET_SNOOP_LOG = 8,
-    GET_SNOOP_LOG = 9,
-    IS_AUTO_ON_SUPPORTED = 10,
-    SET_AUTO_ON_ENABLED = 11,
-    GET_AUTO_ON_ENABLED = 12,
+interface BluetoothServiceMessages {
+
+    parcelable RegisterAdapter {
+        IBluetoothManagerCallback binder;
+    }
+
+    parcelable UnregisterAdapter {
+        IBluetoothManagerCallback binder;
+    }
+
+    parcelable Enable {
+        AttributionSource attributionSource;
+        IBinder bleToken;
+        boolean isQuiet;
+    }
+
+    parcelable Disable {
+        AttributionSource attributionSource;
+        IBinder bleToken;
+        boolean persist;
+    }
+
+    parcelable FactoryReset {
+        AttributionSource attributionSource;
+    }
+
+    parcelable IsBleScanAvailable {}
+
+    parcelable IsHearingAidSupported {}
+
+    parcelable SetSnoopLog {
+        int mode;
+    }
+
+    parcelable GetSnoopLog {}
+
+    parcelable IsAutoSupported {}
+
+    parcelable IsAutoEnabled {}
+
+    parcelable SetAutoOnEnabled {
+        boolean enabledStatus;
+    }
+
+    parcelable BluetoothBinder {
+        IBluetooth binder;
+    }
+
+    parcelable BooleanValue {
+        boolean value;
+    }
 }
+
