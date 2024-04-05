@@ -203,8 +203,8 @@ class BluetoothManagerService {
             new RemoteCallbackList<IBluetoothManagerCallback>();
     private final BluetoothServiceBinder mBinder;
 
-    private final ReentrantReadWriteLock mAdapterLock =
-            Flags.systemServerMessenger() ? null : new ReentrantReadWriteLock();
+    private final ReentrantReadWriteLock mAdapterLock = new ReentrantReadWriteLock();
+    // Flags.systemServerMessenger() ? null : new ReentrantReadWriteLock();
 
     // @GuardedBy("mAdapterLock") // Annotation is deprecated by the systemServerMessenger Flag
     private AdapterBinder mAdapter = null;
@@ -1547,7 +1547,7 @@ class BluetoothManagerService {
         if (Flags.systemServerMessenger()) {
             broadcastToAdapters(
                     "sendBluetoothServiceUpCallback",
-                    (item) -> item.onBluetoothServiceUp(mAdapter.getAdapterBinder()));
+                    (item) -> item.onBluetoothServiceUp(mAdapter.getAdapterBinder().asBinder()));
             return;
         }
         synchronized (mCallbacks) {
@@ -1559,7 +1559,7 @@ class BluetoothManagerService {
                     try {
                         mCallbacks
                                 .getBroadcastItem(i)
-                                .onBluetoothServiceUp(mAdapter.getAdapterBinder());
+                                .onBluetoothServiceUp(mAdapter.getAdapterBinder().asBinder());
                     } catch (RemoteException e) {
                         Log.e(TAG, "Unable to call onBluetoothServiceUp() on callback #" + i, e);
                     }
