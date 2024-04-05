@@ -41,7 +41,6 @@
 #include "main/shim/entry.h"
 #include "os/log.h"
 #include "osi/include/allocator.h"
-#include "osi/include/osi.h"  // UNUSED_ATTR
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_uuid16.h"
 #include "stack/include/btm_ble_api_types.h"
@@ -342,7 +341,7 @@ static void bta_gattc_process_enc_cmpl(tGATT_IF client_if,
 }
 
 void bta_gattc_cancel_open_error(tBTA_GATTC_CLCB* p_clcb,
-                                 UNUSED_ATTR const tBTA_GATTC_DATA* p_data) {
+                                 const tBTA_GATTC_DATA* /* p_data */) {
   tBTA_GATTC cb_data;
 
   cb_data.status = GATT_ERROR;
@@ -352,7 +351,7 @@ void bta_gattc_cancel_open_error(tBTA_GATTC_CLCB* p_clcb,
 }
 
 void bta_gattc_open_error(tBTA_GATTC_CLCB* p_clcb,
-                          UNUSED_ATTR const tBTA_GATTC_DATA* p_data) {
+                          const tBTA_GATTC_DATA* /* p_data */) {
   log::error("Connection already opened. wrong state");
 
   bta_gattc_send_open_cback(p_clcb->p_rcb, GATT_SUCCESS, p_clcb->bda,
@@ -360,7 +359,7 @@ void bta_gattc_open_error(tBTA_GATTC_CLCB* p_clcb,
 }
 
 void bta_gattc_open_fail(tBTA_GATTC_CLCB* p_clcb,
-                         UNUSED_ATTR const tBTA_GATTC_DATA* p_data) {
+                         const tBTA_GATTC_DATA* p_data) {
   if (IS_FLAG_ENABLED(enumerate_gatt_errors) &&
       p_data->int_conn.reason == GATT_CONN_TIMEOUT) {
     log::warn(
@@ -490,7 +489,7 @@ void bta_gattc_cancel_bk_conn(const tBTA_GATTC_API_CANCEL_OPEN* p_data) {
 }
 
 void bta_gattc_cancel_open_ok(tBTA_GATTC_CLCB* p_clcb,
-                              UNUSED_ATTR const tBTA_GATTC_DATA* p_data) {
+                              const tBTA_GATTC_DATA* /* p_data */) {
   tBTA_GATTC cb_data;
 
   if (p_clcb->p_rcb->p_cback) {
@@ -745,7 +744,7 @@ static void bta_gattc_set_discover_st(tBTA_GATTC_SERV* p_srcb) {
  * set status to be discovery cancel for current discovery.
  */
 void bta_gattc_restart_discover(tBTA_GATTC_CLCB* p_clcb,
-                                UNUSED_ATTR const tBTA_GATTC_DATA* p_data) {
+                                const tBTA_GATTC_DATA* /* p_data */) {
   p_clcb->status = GATT_CANCEL;
   p_clcb->auto_update = BTA_GATTC_DISC_WAITING;
 }
@@ -829,7 +828,7 @@ static void bta_gattc_continue_with_version_and_cache_known(
 
 /** Start a discovery on server */
 void bta_gattc_start_discover(tBTA_GATTC_CLCB* p_clcb,
-                              UNUSED_ATTR const tBTA_GATTC_DATA* p_data) {
+                              const tBTA_GATTC_DATA* /* p_data */) {
   log::verbose("conn_id:{} p_clcb->p_srcb->state:{}",
                loghex(p_clcb->bta_conn_id), p_clcb->p_srcb->state);
 
@@ -939,7 +938,7 @@ void bta_gattc_continue_with_version_and_cache_known(
 
 /** discovery on server is finished */
 void bta_gattc_disc_cmpl(tBTA_GATTC_CLCB* p_clcb,
-                         UNUSED_ATTR const tBTA_GATTC_DATA* p_data) {
+                         const tBTA_GATTC_DATA* /* p_data */) {
   const tBTA_GATTC_DATA* p_q_cmd = p_clcb->p_q_cmd;
 
   log::verbose("conn_id={}", loghex(p_clcb->bta_conn_id));
@@ -1366,7 +1365,7 @@ void bta_gattc_q_cmd(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* p_data) {
 
 /** report API call failure back to apps */
 void bta_gattc_fail(tBTA_GATTC_CLCB* p_clcb,
-                    UNUSED_ATTR const tBTA_GATTC_DATA* p_data) {
+                    const tBTA_GATTC_DATA* /* p_data */) {
   if (p_clcb->status == GATT_SUCCESS) {
     log::error("operation not supported at current state {}", p_clcb->state);
   }
