@@ -2858,6 +2858,7 @@ impl IBluetoothGatt for BluetoothGatt {
             let conn_id = self.server_context_map.get_conn_id_from_address(server_id, &addr)?;
             let handle = self.server_context_map.get_request_handle_from_id(request_id)?;
             let len = value.len() as u16;
+            // SK - We do not make it past here, regardless.
 
             let data: [u8; 512] = array_utils::to_sized_array(&value);
 
