@@ -93,6 +93,8 @@ public class BluetoothManagerServiceTest {
     @Mock IBluetooth mAdapterService;
     @Mock AdapterBinder mAdapterBinder;
 
+    @Mock NativeInterface mNativeInterface;
+
     TestLooper mLooper;
 
     boolean mHasException = false;
@@ -155,7 +157,8 @@ public class BluetoothManagerServiceTest {
 
         mLooper = new TestLooper();
 
-        mManagerService = new BluetoothManagerService(mContext, mLooper.getLooper());
+        mManagerService =
+                new BluetoothManagerService(mContext, mLooper.getLooper(), mNativeInterface);
         mManagerService.initialize(mUserHandle);
 
         mManagerService.registerAdapter(mManagerCallback);

@@ -32,6 +32,35 @@ filegroup {
     visibility: [":__subpackages__"],
 }
 
+// bluetooth_server_jni library
+// ==============================================================
+
+cc_library_shared {
+    name: "libbluetooth_server_jni",
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wextra",
+        "-Wno-unused-parameter",
+    ],
+    srcs: ["jni/**/*.cpp"],
+    header_libs: [
+        "jni_headers",
+    ],
+    stl: "libc++_static",
+    shared_libs: [
+        "liblog",
+        "libnativehelper",
+    ],
+    sanitize: {
+        scs: true,
+    },
+    apex_available: [
+        "com.android.btservices",
+    ],
+    min_sdk_version: "Tiramisu",
+}
+
 // pre-jarjar version of service-bluetooth that builds against pre-jarjar version of framework-bluetooth
 java_defaults {
     name: "service-bluetooth-pre-jarjar",
@@ -86,6 +115,8 @@ java_defaults {
         "modules-utils-build_system",
         "modules-utils-shell-command-handler",
     ],
+
+    jni_libs: ["libbluetooth_server_jni"],
 
     visibility: [":__subpackages__"],
 }

@@ -192,6 +192,7 @@ class BluetoothManagerService {
 
     private final Context mContext;
     private final Looper mLooper;
+    private final NativeInterface mNativeInterface;
 
     private final UserManager mUserManager;
 
@@ -616,10 +617,16 @@ class BluetoothManagerService {
                 }
             };
 
-    BluetoothManagerService(@NonNull Context context, @NonNull Looper looper) {
+    BluetoothManagerService(
+            @NonNull Context context,
+            @NonNull Looper looper,
+            @NonNull NativeInterface nativeInterface) {
         mContext = requireNonNull(context, "Context cannot be null");
         mContentResolver = requireNonNull(mContext.getContentResolver(), "Resolver cannot be null");
         mLooper = requireNonNull(looper, "Looper cannot be null");
+        mNativeInterface = nativeInterface;
+
+        updateProcessMinimumLogLevel();
 
         mUserManager =
                 requireNonNull(
@@ -1151,6 +1158,9 @@ class BluetoothManagerService {
             Log.d(TAG, "enable: not enabling - satellite mode is on.");
             return false;
         }
+
+        // Update the process minimum log level to match Bluetooth Service's log level
+        updateProcessMinimumLogLevel();
 
         synchronized (mReceiver) {
             mQuietEnableExternal = false;
@@ -2650,5 +2660,16 @@ class BluetoothManagerService {
         PackageManager pm = context.getPackageManager();
         return pm.hasSystemFeature(PackageManager.FEATURE_TELEVISION)
                 || pm.hasSystemFeature(PackageManager.FEATURE_LEANBACK);
+    }
+
+    /**
+     * Update the process minimum default log level to match the value of log.tag.bluetooth
+     *
+     * <p>This function leverages a native call and the logic to read log.tag.bluetooth resides
+     * there
+     */
+    private void updateProcessMinimumLogLevel() {
+        Log.i(TAG, "updateProcessMinimumLogLevel(): Set default log level to 'log.tag.bluetooth'");
+        mNativeInterface.updateProcessMinimumLogLevel();
     }
 }
