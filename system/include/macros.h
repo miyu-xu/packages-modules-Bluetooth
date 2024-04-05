@@ -16,6 +16,27 @@
 
 #pragma once
 
+#include <ios>
+#include <sstream>
+#include <string>
+
 #define CASE_RETURN_TEXT(code) \
   case code:                   \
     return #code
+
+#define CASE_RETURN_STRING(enumerator)                     \
+  case enumerator:                                         \
+    return []() {                                          \
+      std::stringstream builder;                           \
+      builder << #enumerator << "(0x" << std::hex          \
+              << static_cast<uint64_t>(enumerator) << ")"; \
+      return builder.str();                                \
+    }()
+
+#define RETURN_UNKNOWN_TYPE_STRING(type, variable)      \
+  return [variable]() {                                 \
+    std::stringstream builder;                          \
+    builder << "Unknown " << #type << "(0x" << std::hex \
+            << static_cast<uint64_t>(variable) << ")";  \
+    return builder.str();                               \
+  }()
