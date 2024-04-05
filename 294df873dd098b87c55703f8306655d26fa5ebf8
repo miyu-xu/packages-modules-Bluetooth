@@ -16,6 +16,24 @@
       "message": "I think the rule should be to provide a default case in stringifiers, to ensure against potential invalid values.",
       "revId": "294df873dd098b87c55703f8306655d26fa5ebf8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce15f151_a70f0c8b",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-05T03:11:57Z",
+      "side": 1,
+      "message": "I would rather outlaw casting for these types, but I understand that point.  William asked me to remove the default case from a different one today :)",
+      "parentUuid": "2c487250_ca57ba01",
+      "revId": "294df873dd098b87c55703f8306655d26fa5ebf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
