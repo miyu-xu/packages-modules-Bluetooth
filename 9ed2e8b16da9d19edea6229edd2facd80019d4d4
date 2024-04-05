@@ -729,6 +729,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccb12a3a_53fb0da5",
+        "filename": "system/btif/src/btif_a2dp_source.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-05T01:18:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13505038_4c500297",
+      "range": {
+        "startLine": 568,
+        "startChar": 2,
+        "endLine": 568,
+        "endChar": 33
+      },
+      "revId": "9ed2e8b16da9d19edea6229edd2facd80019d4d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f44ec6b1_f7cf224a",
@@ -1128,6 +1152,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5d93b7e_2b7b4ec0",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-05T01:18:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80767820_26800960",
+      "range": {
+        "startLine": 236,
+        "startChar": 19,
+        "endLine": 236,
+        "endChar": 45
+      },
+      "revId": "9ed2e8b16da9d19edea6229edd2facd80019d4d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "795675a8_90869e4d",
@@ -1329,6 +1377,30 @@
       "writtenOn": "2024-04-05T00:38:51Z",
       "side": 1,
       "message": "!\u003d null",
+      "range": {
+        "startLine": 1230,
+        "startChar": 19,
+        "endLine": 1230,
+        "endChar": 23
+      },
+      "revId": "9ed2e8b16da9d19edea6229edd2facd80019d4d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6b4614d_5d7e1ef4",
+        "filename": "system/device/src/interop.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1230,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-05T01:18:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "117675d4_5f2fd4e1",
       "range": {
         "startLine": 1230,
         "startChar": 19,
@@ -1704,6 +1776,30 @@
       "writtenOn": "2024-04-05T00:38:51Z",
       "side": 1,
       "message": "fatal",
+      "range": {
+        "startLine": 167,
+        "startChar": 9,
+        "endLine": 167,
+        "endChar": 20
+      },
+      "revId": "9ed2e8b16da9d19edea6229edd2facd80019d4d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f05043f_19dc1f3d",
+        "filename": "system/osi/src/alarm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-05T01:18:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "484954c0_ad10e023",
       "range": {
         "startLine": 167,
         "startChar": 9,
@@ -2583,6 +2679,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c26f3cde_29821ab4",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-05T01:18:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "267bb388_9dcd1a45",
+      "range": {
+        "startLine": 72,
+        "startChar": 19,
+        "endLine": 72,
+        "endChar": 33
+      },
+      "revId": "9ed2e8b16da9d19edea6229edd2facd80019d4d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "392de8f1_1fb4f498",
@@ -2747,6 +2867,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8b624bd_9a2073da",
+        "filename": "system/stack/eatt/eatt_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-05T01:18:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa594b05_fa0cb7a1",
+      "range": {
+        "startLine": 170,
+        "startChar": 33,
+        "endLine": 170,
+        "endChar": 42
+      },
+      "revId": "9ed2e8b16da9d19edea6229edd2facd80019d4d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3340f751_87444028",
@@ -2770,6 +2914,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6e70bd5_e81d85ec",
+        "filename": "system/stack/eatt/eatt_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-05T01:18:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3340f751_87444028",
+      "range": {
+        "startLine": 176,
+        "startChar": 24,
+        "endLine": 176,
+        "endChar": 31
+      },
+      "revId": "9ed2e8b16da9d19edea6229edd2facd80019d4d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "118ab25c_457deb8e",
@@ -2783,6 +2951,30 @@
       "writtenOn": "2024-04-05T00:38:51Z",
       "side": 1,
       "message": "!\u003d null",
+      "range": {
+        "startLine": 414,
+        "startChar": 31,
+        "endLine": 414,
+        "endChar": 40
+      },
+      "revId": "9ed2e8b16da9d19edea6229edd2facd80019d4d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a92bd7f_550ecb3f",
+        "filename": "system/stack/eatt/eatt_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-05T01:18:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "118ab25c_457deb8e",
       "range": {
         "startLine": 414,
         "startChar": 31,
@@ -2839,6 +3031,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "40c4b058_9f11424a",
+        "filename": "system/stack/eatt/eatt_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-05T01:18:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d95a65f_af7c4c24",
+      "range": {
+        "startLine": 611,
+        "startChar": 31,
+        "endLine": 611,
+        "endChar": 40
+      },
+      "revId": "9ed2e8b16da9d19edea6229edd2facd80019d4d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e5725bf_065cf630",
+        "filename": "system/stack/eatt/eatt_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-05T01:18:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef9a25a1_a061b5ac",
+      "range": {
+        "startLine": 611,
+        "startChar": 31,
+        "endLine": 611,
+        "endChar": 40
+      },
+      "revId": "9ed2e8b16da9d19edea6229edd2facd80019d4d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7cb088f9_81ebed00",
@@ -2852,6 +3092,30 @@
       "writtenOn": "2024-04-05T00:38:51Z",
       "side": 1,
       "message": "!\u003d null",
+      "range": {
+        "startLine": 232,
+        "startChar": 27,
+        "endLine": 232,
+        "endChar": 37
+      },
+      "revId": "9ed2e8b16da9d19edea6229edd2facd80019d4d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f90608b6_43e6af44",
+        "filename": "system/stack/gatt/gatt_cl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-05T01:18:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7cb088f9_81ebed00",
       "range": {
         "startLine": 232,
         "startChar": 27,
@@ -2903,6 +3167,54 @@
         "startChar": 11,
         "endLine": 281,
         "endChar": 22
+      },
+      "revId": "9ed2e8b16da9d19edea6229edd2facd80019d4d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff8dbf57_319dab07",
+        "filename": "system/stack/gatt/gatt_cl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-05T01:18:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e599fa2_d270dbff",
+      "range": {
+        "startLine": 281,
+        "startChar": 11,
+        "endLine": 281,
+        "endChar": 22
+      },
+      "revId": "9ed2e8b16da9d19edea6229edd2facd80019d4d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "568f55fa_051d5874",
+        "filename": "system/stack/gatt/gatt_cl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-05T01:18:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9bb66b2a_9f199c77",
+      "range": {
+        "startLine": 281,
+        "startChar": 49,
+        "endLine": 281,
+        "endChar": 50
       },
       "revId": "9ed2e8b16da9d19edea6229edd2facd80019d4d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
