@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5f4b725_467a05fd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-05T20:22:24Z",
+      "side": 0,
+      "message": "Can we delete the method in A2dpSinkNativeInterface ?",
+      "range": {
+        "startLine": 107,
+        "startChar": 32,
+        "endLine": 107,
+        "endChar": 43
+      },
+      "revId": "5ef0c449fa60bbba69a13b1b7c923937e5909583",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

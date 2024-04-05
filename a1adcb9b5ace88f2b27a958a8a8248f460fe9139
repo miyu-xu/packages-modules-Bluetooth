@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3acddf77_7abeb3c1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-05T20:22:24Z",
+      "side": 1,
+      "message": "Do we want to add `AvrcpControllerService.setAvrcpControllerService(null)` ?",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 55
+      },
+      "revId": "a1adcb9b5ace88f2b27a958a8a8248f460fe9139",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
