@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b6741e6_79a4da4e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-05T14:30:51Z",
+      "side": 1,
+      "message": "I moved the unknown return out of the switch, so I still get warned if a new enumeration is added.  What do you think?",
+      "revId": "4777591b98506fbaa09b59cd75fb5b7ee53fa4dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
