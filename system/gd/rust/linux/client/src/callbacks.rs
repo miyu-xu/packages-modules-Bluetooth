@@ -8,8 +8,8 @@ use crate::dbus_iface::{
     export_qa_callback_dbus_intf, export_scanner_callback_dbus_intf,
     export_socket_callback_dbus_intf, export_suspend_callback_dbus_intf,
 };
-use crate::ClientContext;
 use crate::{console_red, console_yellow, print_error, print_info};
+use crate::{ClientContext, GattRequest};
 use bt_topshim::btif::{BtBondState, BtPropertyType, BtSspVariant, BtStatus, Uuid128Bit};
 use bt_topshim::profiles::gatt::{AdvertisingStatus, GattStatus, LePhy};
 use bt_topshim::profiles::hfp::HfpCodecId;
@@ -890,12 +890,22 @@ impl IBluetoothGattServerCallback for BtGattServerCallback {
     ) {
         print_info!(
             "GATT characteristic read request for addr = {}, trans_id = {}, offset = {}, is_long = {}, handle = {}",
-            addr,
+            addr.clone(),
             trans_id,
             offset,
             is_long,
             handle
         );
+
+        match &self._context.lock().unwrap().pending_gatt_request {
+            Some(r) => print_info!(
+                "This request will be dropped because the previous one has not been responded to"
+            ),
+            None => {
+                self._context.lock().unwrap().pending_gatt_request =
+                    Some(GattRequest { address: addr, id: trans_id, offset: offset })
+            }
+        };
     }
 
     fn on_descriptor_read_request(
@@ -914,6 +924,16 @@ impl IBluetoothGattServerCallback for BtGattServerCallback {
             is_long,
             handle
         );
+
+        match &self._context.lock().unwrap().pending_gatt_request {
+            Some(r) => print_info!(
+                "This request will be dropped because the previous one has not been responded to"
+            ),
+            None => {
+                self._context.lock().unwrap().pending_gatt_request =
+                    Some(GattRequest { address: addr, id: trans_id, offset: offset })
+            }
+        };
     }
 
     fn on_characteristic_write_request(
@@ -939,6 +959,16 @@ impl IBluetoothGattServerCallback for BtGattServerCallback {
             handle,
             value
         );
+
+        match &self._context.lock().unwrap().pending_gatt_request {
+            Some(r) => print_info!(
+                "This request will be dropped because the previous one has not been responded to"
+            ),
+            None => {
+                self._context.lock().unwrap().pending_gatt_request =
+                    Some(GattRequest { address: addr, id: trans_id, offset: offset })
+            }
+        };
     }
 
     fn on_descriptor_write_request(
@@ -964,6 +994,16 @@ impl IBluetoothGattServerCallback for BtGattServerCallback {
             handle,
             value
         );
+
+        match &self._context.lock().unwrap().pending_gatt_request {
+            Some(r) => print_info!(
+                "This request will be dropped because the previous one has not been responded to"
+            ),
+            None => {
+                self._context.lock().unwrap().pending_gatt_request =
+                    Some(GattRequest { address: addr, id: trans_id, offset: offset })
+            }
+        };
     }
 
     fn on_execute_write(&mut self, addr: String, trans_id: i32, exec_write: bool) {
@@ -973,6 +1013,16 @@ impl IBluetoothGattServerCallback for BtGattServerCallback {
             trans_id,
             exec_write
         );
+
+        match &self._context.lock().unwrap().pending_gatt_request {
+            Some(r) => print_info!(
+                "This request will be dropped because the previous one has not been responded to"
+            ),
+            None => {
+                self._context.lock().unwrap().pending_gatt_request =
+                    Some(GattRequest { address: addr, id: trans_id, offset: 0 })
+            }
+        };
     }
 
     fn on_notification_sent(&mut self, addr: String, status: GattStatus) {
