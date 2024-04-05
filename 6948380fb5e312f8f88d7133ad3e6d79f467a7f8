@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9778cbe3_47fa1560",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-05T18:20:59Z",
+      "side": 1,
+      "message": "The change lgtm, but you might have to rebase to resolve the conflicts.\n@gkolodziejczyk@google.com please also help to take a look.",
+      "revId": "6948380fb5e312f8f88d7133ad3e6d79f467a7f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
