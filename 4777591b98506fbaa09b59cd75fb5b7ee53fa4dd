@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8cb717b8_71790afe",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-05T16:59:30Z",
+      "side": 1,
+      "message": "Should we update the convention to `ClientStateString` ?\n\nI guess it\u0027s a semantic discussion on difference between `text` and `string`",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 69
+      },
+      "revId": "4777591b98506fbaa09b59cd75fb5b7ee53fa4dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "be48f33e_09fb38ea",
         "filename": "system/include/macros.h",
         "patchSetId": 2
