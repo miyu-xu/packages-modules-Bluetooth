@@ -22,6 +22,30 @@
       },
       "revId": "a3d5a03e6fd91011a0b5a8216b0c3580d8dca7ee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "933838cd_49eb1dcc",
+        "filename": "system/types/bt_transport.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-05T21:47:52Z",
+      "side": 1,
+      "message": "It\u0027s defined in macros.h",
+      "parentUuid": "7d769a65_e4416b29",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 19
+      },
+      "revId": "a3d5a03e6fd91011a0b5a8216b0c3580d8dca7ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
