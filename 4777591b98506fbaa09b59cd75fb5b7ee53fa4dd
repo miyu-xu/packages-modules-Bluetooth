@@ -39,6 +39,30 @@
       },
       "revId": "4777591b98506fbaa09b59cd75fb5b7ee53fa4dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7baaad50_da8299bb",
+        "filename": "system/include/macros.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-05T15:44:53Z",
+      "side": 1,
+      "message": "I get a message about throw_format_error not being able to be used in a constant expression. 😕",
+      "parentUuid": "be48f33e_09fb38ea",
+      "range": {
+        "startLine": 30,
+        "startChar": 6,
+        "endLine": 32,
+        "endChar": 60
+      },
+      "revId": "4777591b98506fbaa09b59cd75fb5b7ee53fa4dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
