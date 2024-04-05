@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8412751_5e823d01",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1105,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-05T06:17:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb1718ba_819569ca",
+      "range": {
+        "startLine": 1105,
+        "startChar": 8,
+        "endLine": 1105,
+        "endChar": 42
+      },
+      "revId": "2a7ac784668b16a68ea4dbcc66a73e4cbb746cc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8e14b79d_137a73cb",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "34a33f03_df4da11f",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2319,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-05T06:17:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e14b79d_137a73cb",
+      "range": {
+        "startLine": 2319,
+        "startChar": 0,
+        "endLine": 2319,
+        "endChar": 80
+      },
+      "revId": "2a7ac784668b16a68ea4dbcc66a73e4cbb746cc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dcd05e65_14c5234b",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-04-02T18:34:32Z",
       "side": 1,
       "message": "same as above",
+      "range": {
+        "startLine": 2328,
+        "startChar": 0,
+        "endLine": 2328,
+        "endChar": 80
+      },
+      "revId": "2a7ac784668b16a68ea4dbcc66a73e4cbb746cc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be784c9e_172300fd",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2328,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-05T06:17:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dcd05e65_14c5234b",
       "range": {
         "startLine": 2328,
         "startChar": 0,
