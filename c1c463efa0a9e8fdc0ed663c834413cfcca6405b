@@ -34,6 +34,24 @@
       "parentUuid": "c2007e85_b69ddb34",
       "revId": "c1c463efa0a9e8fdc0ed663c834413cfcca6405b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3879f4bc_f8a17d23",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-05T18:34:09Z",
+      "side": 1,
+      "message": "we asserted before but this loosens the requirement held prior",
+      "parentUuid": "c9e9369a_8be3a633",
+      "revId": "c1c463efa0a9e8fdc0ed663c834413cfcca6405b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
