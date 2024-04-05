@@ -90,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4b70e809_db340dcb",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassConstants.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-05T17:49:09Z",
+      "side": 1,
+      "message": "That\u0027s fine to me, just like INVALID_BROADCAST_ID, we can define a invalid value together with that above and call it INVALID_PA_SYNC_VALUE or something. what do you think?\n    public static final int INVALID_ADV_INTERVAL \u003d -1;\n    public static final int INVALID_BROADCAST_ID \u003d -1;\n    + public static final int INVALID_PA_SYNC_VALUE \u003d -1;\n    public static final int BROADCAST_ASSIST_ADDRESS_TYPE_PUBLIC \u003d 0;",
+      "parentUuid": "a0f3be4e_5eeda644",
+      "revId": "1a409fcf7ae3438f94969f1046d181c0a8223005",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "63dffb6f_5295008a",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 3
@@ -119,6 +137,24 @@
       "side": 1,
       "message": "The reason is that the sources needs to be cached only for pause request. This pause method is also called from handleSinkStreamStatusChange context.",
       "parentUuid": "63dffb6f_5295008a",
+      "revId": "1a409fcf7ae3438f94969f1046d181c0a8223005",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39637a26_42728ca4",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1213,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-05T17:49:09Z",
+      "side": 1,
+      "message": "i see, thanks for clarifying this.",
+      "parentUuid": "220bb2f0_d91c5c5f",
       "revId": "1a409fcf7ae3438f94969f1046d181c0a8223005",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
