@@ -16,13 +16,12 @@
 package com.android.server.bluetooth
 
 import android.bluetooth.BluetoothAdapter
-import android.bluetooth.IBluetoothManagerCallback
-import android.content.AttributionSource
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
 import android.os.Messenger
+import android.os.Parcelable
 import android.os.RemoteException
 import android.sysprop.BluetoothProperties
 
@@ -36,10 +35,10 @@ internal class ServiceMessenger(
     val messenger = Messenger(this)
 
     override fun handleMessage(msg: Message) {
-        Log.d(TAG, "handleMessage: ${msg}")
+        Log.i(TAG, "handleMessage: ${msg}")
         val reply = Message.obtain()
         try {
-            reply.setData(handleMessage(msg.sendingUid, msg.what, msg.data))
+            reply.obj = handleMessage(msg.sendingUid, msg.obj as Parcelable)
         } catch (e: RuntimeException) {
             reply.setData(Bundle().apply { putSerializable("exception", e) })
         } finally {
@@ -51,86 +50,87 @@ internal class ServiceMessenger(
         }
     }
 
-    private fun handleMessage(sendingUid: Int, what: Int, data: Bundle): Bundle {
-        return when (what) {
-            BluetoothServiceMessages.REGISTER_ADAPTER -> {
-                val callback =
-                    IBluetoothManagerCallback.Stub.asInterface(data.getBinder("callback")!!)
-
-                val adapterBinder = managerService.registerAdapter_sync(callback)
-                Bundle().apply { putBinder("service", adapterBinder?.asBinder()) }
-            }
-            BluetoothServiceMessages.UNREGISTER_ADAPTER -> {
-                val callback =
-                    IBluetoothManagerCallback.Stub.asInterface(data.getBinder("callback")!!)
-
-                managerService.unregisterAdapter_sync(callback)
-                Bundle.EMPTY
-            }
-            BluetoothServiceMessages.ENABLE -> {
-                val source = data.getParcelable("source", AttributionSource::class.java)!!
-                val quiet = data.getBoolean("quiet") // enableNoAutoConnect will set this
-                val token = data.getBinder("token") // enableBle will set this
-                val foregroundRequired = quiet == false || token == null
-                val enable =
-                    try {
-                        checker.enableAllowed(sendingUid, source, foregroundRequired)
-                        if (token != null) {
-                            managerService.enableBle_sync(source.getPackageName(), token)
-                        } else {
-                            managerService.enable_sync(source.getPackageName(), quiet)
-                        }
-                    } catch (e: PermissionChecker.BluetoothPermissionException) {
-                        Log.e(TAG, "${what}: FAILED", e)
-                        false
-                    }
-                Bundle().apply { putBoolean("enable", enable) }
-            }
-            BluetoothServiceMessages.DISABLE -> {
-                val source = data.getParcelable("source", AttributionSource::class.java)!!
-                val persist = data.getBoolean("persist")
-                val token = data.getBinder("token")
-                val foregroundRequired = token == null
-                val disable =
-                    try {
-                        checker.disableAllowed(sendingUid, source, foregroundRequired)
-                        if (token != null) {
-                            managerService.disableBle_sync(source.getPackageName(), token)
-                        } else {
-                            managerService.disable_sync(source.getPackageName(), persist)
-                        }
-                    } catch (e: PermissionChecker.BluetoothPermissionException) {
-                        Log.e(TAG, "${what}: FAILED", e)
-                        false
-                    }
-                Bundle().apply { putBoolean("disable", disable) }
-            }
-            BluetoothServiceMessages.FACTORY_RESET -> {
-                checker.enforcePrivileged(sendingUid)
-
-                val source = data.getParcelable("source", AttributionSource::class.java)!!
-                val factoryReset =
-                    try {
-                        checker.factoryAllowed(source)
-                        managerService.onFactoryReset_sync()
-                    } catch (e: PermissionChecker.BluetoothPermissionException) {
-                        Log.e(TAG, "${what}: FAILED", e)
-                        false
-                    }
-                Bundle().apply { putBoolean("factoryReset", factoryReset) }
-            }
-            BluetoothServiceMessages.IS_BLE_SCAN_AVAILABLE -> {
-                Bundle().apply { putBoolean("bleAvailable", managerService.isBleScanAvailable()) }
-            }
-            BluetoothServiceMessages.IS_HEARING_AID_SUPPORTED -> {
-                Bundle().apply {
-                    putBoolean("hearingAidSupported", managerService.isHearingAidProfileSupported())
+    private fun handleMessage(sendingUid: Int, obj: Parcelable): Parcelable {
+        return when (obj) {
+            is BluetoothServiceMessages.RegisterAdapter -> {
+                BluetoothServiceMessages.RegisterAdapter.Reply().apply {
+                    value = managerService.registerAdapter_sync(obj.binder)?.asBinder()
                 }
             }
-            BluetoothServiceMessages.SET_SNOOP_LOG -> {
+            is BluetoothServiceMessages.UnregisterAdapter -> {
+                managerService.unregisterAdapter_sync(obj.binder)
+                BluetoothServiceMessages.UnregisterAdapter.Reply()
+            }
+            is BluetoothServiceMessages.Enable -> {
+                val source = obj.attributionSource
+                val isQuiet = obj.isQuiet
+                val bleToken = obj.bleToken
+
+                val foregroundRequired = isQuiet == false || bleToken == null
+                BluetoothServiceMessages.Enable.Reply().apply {
+                    value =
+                        try {
+                            checker.enableAllowed(sendingUid, source, foregroundRequired)
+                            if (bleToken != null) {
+                                managerService.enableBle_sync(source.getPackageName(), bleToken)
+                            } else {
+                                managerService.enable_sync(source.getPackageName(), isQuiet)
+                            }
+                        } catch (e: PermissionChecker.BluetoothPermissionException) {
+                            Log.e(TAG, "${obj}: FAILED", e)
+                            false
+                        }
+                }
+            }
+            is BluetoothServiceMessages.Disable -> {
+                val source = obj.attributionSource
+                val persist = obj.persist
+                val bleToken = obj.bleToken
+                val foregroundRequired = bleToken == null
+                BluetoothServiceMessages.Disable.Reply().apply {
+                    value =
+                        try {
+                            checker.disableAllowed(sendingUid, source, foregroundRequired)
+                            if (bleToken != null) {
+                                managerService.disableBle_sync(source.getPackageName(), bleToken)
+                            } else {
+                                managerService.disable_sync(source.getPackageName(), persist)
+                            }
+                        } catch (e: PermissionChecker.BluetoothPermissionException) {
+                            Log.e(TAG, "${obj}: FAILED", e)
+                            false
+                        }
+                }
+            }
+            is BluetoothServiceMessages.FactoryReset -> {
                 checker.enforcePrivileged(sendingUid)
 
-                val mode = data.getInt("mode", -1)
+                val source = obj.attributionSource
+                BluetoothServiceMessages.FactoryReset.Reply().apply {
+                    value =
+                        try {
+                            checker.factoryAllowed(source)
+                            managerService.onFactoryReset_sync()
+                        } catch (e: PermissionChecker.BluetoothPermissionException) {
+                            Log.e(TAG, "${obj}: FAILED", e)
+                            false
+                        }
+                }
+            }
+            is BluetoothServiceMessages.IsBleScanAvailable -> {
+                BluetoothServiceMessages.IsBleScanAvailable.Reply().apply {
+                    value = managerService.isBleScanAvailable()
+                }
+            }
+            is BluetoothServiceMessages.IsHearingAidSupported -> {
+                BluetoothServiceMessages.IsHearingAidSupported.Reply().apply {
+                    value = managerService.isHearingAidProfileSupported()
+                }
+            }
+            is BluetoothServiceMessages.SetSnoopLog -> {
+                checker.enforcePrivileged(sendingUid)
+
+                val mode = obj.mode
 
                 BluetoothProperties.snoop_log_mode(
                     when (mode) {
@@ -146,15 +146,12 @@ internal class ServiceMessenger(
                             )
                     }
                 )
-
-                Bundle.EMPTY
+                BluetoothServiceMessages.SetSnoopLog.Reply()
             }
-            BluetoothServiceMessages.GET_SNOOP_LOG -> {
+            is BluetoothServiceMessages.GetSnoopLog -> {
                 checker.enforcePrivileged(sendingUid)
-
-                Bundle().apply {
-                    putInt(
-                        "snoopLog",
+                BluetoothServiceMessages.GetSnoopLog.Reply().apply {
+                    value =
                         when (
                             BluetoothProperties.snoop_log_mode()
                                 .orElse(BluetoothProperties.snoop_log_mode_values.DISABLED)
@@ -165,28 +162,26 @@ internal class ServiceMessenger(
                                 BluetoothAdapter.BT_SNOOP_LOG_MODE_FULL
                             else -> BluetoothAdapter.BT_SNOOP_LOG_MODE_DISABLED
                         }
-                    )
                 }
             }
-            BluetoothServiceMessages.IS_AUTO_ON_SUPPORTED -> {
+            is BluetoothServiceMessages.IsAutoSupported -> {
                 checker.enforcePrivileged(sendingUid)
-                Bundle().apply {
-                    putBoolean("isSupported", managerService.isAutoOnSupported_sync())
+                BluetoothServiceMessages.IsAutoSupported.Reply().apply {
+                    value = managerService.isAutoOnSupported_sync()
                 }
             }
-            BluetoothServiceMessages.SET_AUTO_ON_ENABLED -> {
+            is BluetoothServiceMessages.SetAutoOnEnabled -> {
                 checker.enforcePrivileged(sendingUid)
-
-                val enabledStatus = data.getBoolean("enabledStatus")
-
-                managerService.setAutoOnEnabled_sync(enabledStatus)
-                Bundle.EMPTY
+                managerService.setAutoOnEnabled_sync(obj.enabledStatus)
+                BluetoothServiceMessages.SetAutoOnEnabled.Reply()
             }
-            BluetoothServiceMessages.GET_AUTO_ON_ENABLED -> {
+            is BluetoothServiceMessages.IsAutoEnabled -> {
                 checker.enforcePrivileged(sendingUid)
-                Bundle().apply { putBoolean("isEnabled", managerService.isAutoOnEnabled_sync()) }
+                BluetoothServiceMessages.IsAutoEnabled.Reply().apply {
+                    value = managerService.isAutoOnEnabled_sync()
+                }
             }
-            else -> throw IllegalArgumentException("command not implemented: ${what} - ${data}")
+            else -> throw IllegalArgumentException("Command does not exist: ${obj}")
         }
     }
 }

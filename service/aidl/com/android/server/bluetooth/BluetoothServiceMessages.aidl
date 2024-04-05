@@ -15,20 +15,88 @@
  */
 package com.android.server.bluetooth;
 
+import android.bluetooth.IBluetoothManagerCallback;
+import android.content.AttributionSource;
+
+
 /** {@hide} */
-@JavaDerive(toString=true)
-@Backing(type="int")
-enum BluetoothServiceMessages {
-    REGISTER_ADAPTER = 1,
-    UNREGISTER_ADAPTER = 2,
-    ENABLE = 3,
-    DISABLE = 4,
-    FACTORY_RESET = 5,
-    IS_BLE_SCAN_AVAILABLE = 6,
-    IS_HEARING_AID_SUPPORTED = 7,
-    SET_SNOOP_LOG = 8,
-    GET_SNOOP_LOG = 9,
-    IS_AUTO_ON_SUPPORTED = 10,
-    SET_AUTO_ON_ENABLED = 11,
-    GET_AUTO_ON_ENABLED = 12,
+interface BluetoothServiceMessages {
+
+    parcelable RegisterAdapter {
+        IBluetoothManagerCallback binder;
+        parcelable Reply {
+            @nullable IBinder value;
+        }
+    }
+
+    parcelable UnregisterAdapter {
+        IBluetoothManagerCallback binder;
+        parcelable Reply {}
+    }
+
+    parcelable Enable {
+        AttributionSource attributionSource;
+        @nullable IBinder bleToken;
+        boolean isQuiet;
+        parcelable Reply {
+            boolean value;
+        }
+    }
+
+    parcelable Disable {
+        AttributionSource attributionSource;
+        @nullable IBinder bleToken;
+        boolean persist;
+        parcelable Reply {
+            boolean value;
+        }
+    }
+
+    parcelable FactoryReset {
+        AttributionSource attributionSource;
+        parcelable Reply {
+            boolean value;
+        }
+    }
+
+    parcelable IsBleScanAvailable {
+        parcelable Reply {
+            boolean value;
+        }
+    }
+
+    parcelable IsHearingAidSupported {
+        parcelable Reply {
+            boolean value;
+        }
+    }
+
+    parcelable SetSnoopLog {
+        int mode;
+        parcelable Reply {}
+    }
+
+    parcelable GetSnoopLog {
+        parcelable Reply {
+            int value;
+        }
+    }
+
+    parcelable IsAutoSupported {
+        parcelable Reply {
+            boolean value;
+        }
+    }
+
+    parcelable IsAutoEnabled {
+        parcelable Reply {
+            boolean value;
+        }
+    }
+
+    parcelable SetAutoOnEnabled {
+        boolean enabledStatus;
+        parcelable Reply {}
+    }
 }
+
