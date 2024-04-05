@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "51c062a9_4114ae2d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 2843,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-05T08:56:31Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c3e83413_15a7bba1",
+      "revId": "a88d49bffafb456ac171e17da9d4f3197d821f82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "31cfadd4_de09f0a3",
@@ -49,6 +67,24 @@
       "side": 1,
       "message": "nit",
       "parentUuid": "31cfadd4_de09f0a3",
+      "revId": "a88d49bffafb456ac171e17da9d4f3197d821f82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "475f44db_09e3334a",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 2902,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-05T08:56:31Z",
+      "side": 1,
+      "message": "Ok! That was my initial thought to do this way.",
+      "parentUuid": "d4f37391_c293dd68",
       "revId": "a88d49bffafb456ac171e17da9d4f3197d821f82",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
