@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "939f638d_7f5379c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-05T15:20:05Z",
+      "side": 1,
+      "message": "``git grep tGATT_REG | grep memcmp``\n``git grep tGATT_REG | grep memset``\n\nYou have some tests to fix :)",
+      "revId": "c8eb2ee5cea98b8d6734338e1eb5a4551bcdba27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
