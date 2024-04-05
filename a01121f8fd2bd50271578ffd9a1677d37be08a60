@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7227637c_48cfe353",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-05T17:21:11Z",
+      "side": 0,
+      "message": "it is allocated here, trying to see where it was freed before this change",
+      "range": {
+        "startLine": 776,
+        "startChar": 19,
+        "endLine": 776,
+        "endChar": 29
+      },
+      "revId": "a01121f8fd2bd50271578ffd9a1677d37be08a60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a756c3e3_a570f946",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1908,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-05T17:21:11Z",
+      "side": 0,
+      "message": "assigned to null but not freed",
+      "range": {
+        "startLine": 1908,
+        "startChar": 30,
+        "endLine": 1908,
+        "endChar": 49
+      },
+      "revId": "a01121f8fd2bd50271578ffd9a1677d37be08a60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
