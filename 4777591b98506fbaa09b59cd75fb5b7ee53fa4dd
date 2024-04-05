@@ -16,6 +16,29 @@
       "message": "I moved the unknown return out of the switch, so I still get warned if a new enumeration is added.  What do you think?",
       "revId": "4777591b98506fbaa09b59cd75fb5b7ee53fa4dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be48f33e_09fb38ea",
+        "filename": "system/include/macros.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-05T14:56:33Z",
+      "side": 1,
+      "message": "You may also implement it using `fmt::format`, the equivalent would be\n```\nreturn fmt::format(#enumerator \"(0x{:x})\", \n                   static_cast\u003cuint64_t\u003e(enumerator));\n```",
+      "range": {
+        "startLine": 30,
+        "startChar": 6,
+        "endLine": 32,
+        "endChar": 60
+      },
+      "revId": "4777591b98506fbaa09b59cd75fb5b7ee53fa4dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
