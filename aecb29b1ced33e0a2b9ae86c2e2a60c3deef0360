@@ -33,6 +33,23 @@
       "message": "No test results.\npackages/modules/Bluetooth/system/gd/hci/remote_name_request.cc:224 check_cancel_status: Invalid packet\nAborted",
       "revId": "aecb29b1ced33e0a2b9ae86c2e2a60c3deef0360",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ee6ae1b_4797e28d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-05T19:48:08Z",
+      "side": 1,
+      "message": "No test results.\npackages/modules/Bluetooth/system/gd/hci/remote_name_request.cc:224 check_cancel_status: Invalid packet\nAborted",
+      "revId": "aecb29b1ced33e0a2b9ae86c2e2a60c3deef0360",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
