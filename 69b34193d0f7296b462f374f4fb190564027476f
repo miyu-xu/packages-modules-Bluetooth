@@ -16,6 +16,24 @@
       "message": "If this change is not flagged and you\u0027d prefer Dr.No, you might need to add Flag: Exempt, \u003creason\u003e.",
       "revId": "69b34193d0f7296b462f374f4fb190564027476f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff611647_3c82d8d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-05T08:16:58Z",
+      "side": 1,
+      "message": "I\u0027ve add a flag for that: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3029223",
+      "parentUuid": "a5f4553e_c9fff37a",
+      "revId": "69b34193d0f7296b462f374f4fb190564027476f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
