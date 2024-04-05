@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4aabee8_288a59ee",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1899,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-05T03:07:39Z",
+      "side": 1,
+      "message": "unrelated, but interesting.",
+      "range": {
+        "startLine": 1899,
+        "startChar": 12,
+        "endLine": 1899,
+        "endChar": 17
+      },
+      "revId": "0ec4902b98aa284e602d394ccdbcb7cda64a3f02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
