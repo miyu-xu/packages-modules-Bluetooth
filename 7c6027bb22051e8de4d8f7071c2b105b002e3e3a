@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b0deac2_fedd68b5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattServerTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-04-05T03:19:54Z",
+      "side": 1,
+      "message": "Just curious, when the flag will be removed at the end, what will this line do ? Act as if the flag doesn\u0027t exist and don\u0027t run the test ?",
+      "revId": "7c6027bb22051e8de4d8f7071c2b105b002e3e3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a627f3ac_05911f55",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattServerTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-04-05T03:19:54Z",
+      "side": 1,
+      "message": "Are the logs needed ?",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 205,
+        "endChar": 18
+      },
+      "revId": "7c6027bb22051e8de4d8f7071c2b105b002e3e3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d96c22eb_cd7a83b1",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattServerTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-04-05T03:19:54Z",
+      "side": 1,
+      "message": "Is the async API needed here ? Otherwise we can use the blocking one, it will avoid using a responserObserver. Something similar to what the Dck Tests are doing can be used as reference: https://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/tests/bumble/src/android/bluetooth/DckGattTest.kt;l\u003d313\n\nNote that the CancellableContext is needed only to cancel the advertisement in some tests or/and setup.",
+      "revId": "7c6027bb22051e8de4d8f7071c2b105b002e3e3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae70e774_7017aa88",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattServerTest.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-04-05T03:19:54Z",
+      "side": 1,
+      "message": "I am wondering if we really would like to perform an assert in this helper function. Should the future be returned by the function instead and assert into the test ?\n\nIt\u0027s an open question, I don\u0027t really know what is the best behavior here.",
+      "revId": "7c6027bb22051e8de4d8f7071c2b105b002e3e3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
