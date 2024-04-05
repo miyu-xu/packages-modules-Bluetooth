@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "222a86d3_0e9fc2eb",
+        "filename": "system/btif/src/btif_gatt_server.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-04-05T18:23:45Z",
+      "side": 1,
+      "message": "It seems this should be changed back to consider transport param.",
+      "range": {
+        "startLine": 317,
+        "startChar": 8,
+        "endLine": 317,
+        "endChar": 40
+      },
+      "revId": "90f61230a4776229897d7725693ade0bc6b35c12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
