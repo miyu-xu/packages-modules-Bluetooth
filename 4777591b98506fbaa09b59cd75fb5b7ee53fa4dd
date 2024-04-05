@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "525206cb_a24d69b4",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-05T21:40:00Z",
+      "side": 1,
+      "message": "I would suggest against using a new standard here, since every other function is named xxText. It would be mandated if both versions needed to be implemented at the same time, but I don\u0027t think that it will be the case.",
+      "parentUuid": "8cb717b8_71790afe",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 69
+      },
+      "revId": "4777591b98506fbaa09b59cd75fb5b7ee53fa4dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "be48f33e_09fb38ea",
         "filename": "system/include/macros.h",
         "patchSetId": 2
