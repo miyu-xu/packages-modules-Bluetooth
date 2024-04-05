@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30828933_7883ee37",
+        "filename": "system/log/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-05T02:13:57Z",
+      "side": 1,
+      "message": "I think this could be just as powerful and clearer without mentioning internal and external.\n\nI wouldn\u0027t sign myself up for the burden of maintaining the dependencies, even if that\u0027s the case in practice.\n\nI wold\n\n```suggestion\n    // This is the Bluetooth logging library.  Do not add it to external\n    // repositories without signing up with the OWNERS for the long-term\n    // maintenance of each usage.\n```",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 6
+      },
+      "revId": "baa3c0f131362860433e5fa24d2cbd258e77835f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
