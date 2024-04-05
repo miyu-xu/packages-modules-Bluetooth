@@ -22,6 +22,30 @@
       },
       "revId": "0ec4902b98aa284e602d394ccdbcb7cda64a3f02",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6acc5d92_aa8800b5",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1899,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-05T06:06:16Z",
+      "side": 1,
+      "message": "Yes...an interesting pattern...all this could be compressed to 2 lines",
+      "parentUuid": "c4aabee8_288a59ee",
+      "range": {
+        "startLine": 1899,
+        "startChar": 12,
+        "endLine": 1899,
+        "endChar": 17
+      },
+      "revId": "0ec4902b98aa284e602d394ccdbcb7cda64a3f02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
