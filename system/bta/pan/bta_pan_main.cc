@@ -26,7 +26,6 @@
 #include <cstdint>
 
 #include "bta/pan/bta_pan_int.h"
-#include "include/check.h"
 #include "internal_include/bt_target.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
 #include "stack/include/bt_hdr.h"
