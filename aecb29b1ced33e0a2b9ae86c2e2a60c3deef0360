@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f347354_2f9a5c35",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-05T00:36:03Z",
+      "side": 1,
+      "message": "Dr. No based on unit test coverage and scope of change",
+      "revId": "aecb29b1ced33e0a2b9ae86c2e2a60c3deef0360",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
