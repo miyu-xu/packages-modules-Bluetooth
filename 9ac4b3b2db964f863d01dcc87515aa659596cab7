@@ -16,6 +16,23 @@
       "message": "David, any concerned on such a change ?",
       "revId": "9ac4b3b2db964f863d01dcc87515aa659596cab7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9d6363c_94d33332",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-05T22:42:36Z",
+      "side": 1,
+      "message": "Has mentioned in the bug, I believe this will be risky to submit and may break compatibility with old devices.\n\nIf we are just updating the value because \"we think it\u0027s better to use 1.5\", we may be lacking some data / expertise",
+      "revId": "9ac4b3b2db964f863d01dcc87515aa659596cab7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
