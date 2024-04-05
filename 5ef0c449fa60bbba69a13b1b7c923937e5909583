@@ -70,6 +70,30 @@
       },
       "revId": "5ef0c449fa60bbba69a13b1b7c923937e5909583",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "463544d9_1ee12366",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-05T22:54:18Z",
+      "side": 0,
+      "message": "I did remove it from the file!\n\nOr do you mean all together?",
+      "parentUuid": "3ea6ff0e_d0eb1e5a",
+      "range": {
+        "startLine": 107,
+        "startChar": 32,
+        "endLine": 107,
+        "endChar": 43
+      },
+      "revId": "5ef0c449fa60bbba69a13b1b7c923937e5909583",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
