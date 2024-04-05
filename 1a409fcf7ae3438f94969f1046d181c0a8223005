@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "40ad1659_0ab639f8",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2046,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-05T15:31:49Z",
+      "side": 1,
+      "message": "Yes, we can. Please check updated version.",
+      "parentUuid": "6fcb1fc9_5a8b9e06",
+      "revId": "1a409fcf7ae3438f94969f1046d181c0a8223005",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4e7c95b_b7ac3196",
@@ -54,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a0f3be4e_5eeda644",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassConstants.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-05T15:31:49Z",
+      "side": 1,
+      "message": "I was thinking about that, but I\u0027m not sure if there should be a PA_Sync value that is not from spec.\n\nProblem is that this parameter is mixed Service vs State Machine.\n\nDo you have any idea ?",
+      "parentUuid": "a4e7c95b_b7ac3196",
+      "revId": "1a409fcf7ae3438f94969f1046d181c0a8223005",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "63dffb6f_5295008a",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 3
@@ -65,6 +101,24 @@
       "writtenOn": "2024-04-02T22:18:49Z",
       "side": 1,
       "message": "any reason why we moved this here?\napplication is not using pauseBroadcast at this moment.",
+      "revId": "1a409fcf7ae3438f94969f1046d181c0a8223005",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "220bb2f0_d91c5c5f",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1213,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-05T15:31:49Z",
+      "side": 1,
+      "message": "The reason is that the sources needs to be cached only for pause request. This pause method is also called from handleSinkStreamStatusChange context.",
+      "parentUuid": "63dffb6f_5295008a",
       "revId": "1a409fcf7ae3438f94969f1046d181c0a8223005",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
