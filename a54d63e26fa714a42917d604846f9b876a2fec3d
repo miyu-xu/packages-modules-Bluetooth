@@ -50,6 +50,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "12a4ced7_32eea319",
+        "filename": "system/btif/src/btif_config.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-05T00:22:27Z",
+      "side": 0,
+      "message": "Make sense, LGTM",
+      "parentUuid": "7e976d46_25ce318c",
+      "range": {
+        "startLine": 368,
+        "startChar": 5,
+        "endLine": 369,
+        "endChar": 80
+      },
+      "revId": "a54d63e26fa714a42917d604846f9b876a2fec3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "c2f1e57b_09ccd62d",
         "filename": "system/btif/src/btif_config.cc",
         "patchSetId": 1
