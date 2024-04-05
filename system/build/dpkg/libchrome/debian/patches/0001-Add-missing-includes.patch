@@ -20,7 +20,7 @@ index 09f179b24a..9f651de0cf 100644
  #include <algorithm>
 +#include <string.h>
  
- #include <base/logging.h>
+ 
  #include <crypto/p224.h>
  
 diff --git a/libchrome/base/functional/function_ref.h b/libchrome/base/functional/function_ref.h

@@ -21,5 +21,5 @@
 #include <base/check.h> // CHECK/DCHECK
 #include <base/check_op.h> // CHECK_LE/DCHECK_LE/CHECK/_GT, etc
 #else
-#include <base/logging.h>
+
 #endif
