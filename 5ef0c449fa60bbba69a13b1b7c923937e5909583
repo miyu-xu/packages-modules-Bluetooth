@@ -46,6 +46,30 @@
       },
       "revId": "5ef0c449fa60bbba69a13b1b7c923937e5909583",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ea6ff0e_d0eb1e5a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-05T22:44:44Z",
+      "side": 0,
+      "message": "`A2dpSinkNativeInterface.setInstance`",
+      "parentUuid": "ed864726_0c7216c2",
+      "range": {
+        "startLine": 107,
+        "startChar": 32,
+        "endLine": 107,
+        "endChar": 43
+      },
+      "revId": "5ef0c449fa60bbba69a13b1b7c923937e5909583",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
