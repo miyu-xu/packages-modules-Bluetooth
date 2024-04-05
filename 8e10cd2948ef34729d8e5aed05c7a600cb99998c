@@ -16,6 +16,24 @@
       "message": "I think this twice, do we need to keep the remote active for audio sharing case?\nShouldn\u0027t we only need it for private broadcast(assistant)?\nAlso it might conflict with our handover if I understand it correctly, audio sharing -\u003e no active unicast device.",
       "revId": "8e10cd2948ef34729d8e5aed05c7a600cb99998c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31f60038_eac0b5d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-05T18:22:54Z",
+      "side": 1,
+      "message": "Do we still need this change?",
+      "parentUuid": "7b33cd32_20873edc",
+      "revId": "8e10cd2948ef34729d8e5aed05c7a600cb99998c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
