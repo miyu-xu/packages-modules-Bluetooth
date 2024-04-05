@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a0de504_234efaf9",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-05T16:19:54Z",
+      "side": 1,
+      "message": "Maybe without ASSERT?\n```suggestion\n                               log::assert_that(is_on_jni_thread(), \"Not on JNI thread\");\n```",
+      "range": {
+        "startLine": 608,
+        "startChar": 31,
+        "endLine": 608,
+        "endChar": 37
+      },
+      "revId": "2b69060f32023dcaaa20e841b193be0f4bc67e0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
