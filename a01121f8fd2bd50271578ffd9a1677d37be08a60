@@ -45,6 +45,30 @@
       },
       "revId": "a01121f8fd2bd50271578ffd9a1677d37be08a60",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8e0a393_74048c10",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1908,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-05T17:49:51Z",
+      "side": 0,
+      "message": "This is different, just created disc_result, so it\u0027s just created as null, not cleaning previously allocated pointer.",
+      "parentUuid": "a756c3e3_a570f946",
+      "range": {
+        "startLine": 1908,
+        "startChar": 30,
+        "endLine": 1908,
+        "endChar": 49
+      },
+      "revId": "a01121f8fd2bd50271578ffd9a1677d37be08a60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
