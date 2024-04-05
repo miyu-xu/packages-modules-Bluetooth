@@ -20,5 +20,5 @@
 #if defined(BASE_VER) && BASE_VER >= 822064
 #include <base/notreached.h>
 #else
-#include <base/logging.h>
+
 #endif
