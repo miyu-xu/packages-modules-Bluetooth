@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b888fb3_442f8a77",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-05T17:22:23Z",
+      "side": 1,
+      "message": "There are presubmit failures related to device discovery\n\nraceback (most recent call last):\n  File \"mobly/base_test.py\", line 783, in exec_one_test\n  File \"bt_discovery_test.py\", line 20, in test_bluetooth_discovery\n  File \"utilities/bt_utils.py\", line 73, in discover_secondary_from_primary\n  File \"mobly/asserts.py\", line 353, in assert_true\n  File \"mobly/asserts.py\", line 475, in fail\nmobly.signals.TestFailure: Details\u003dFailed to discover the target device Cuttlefish x86_64 auto over Bluetooth., Extras\u003dNone\n\ncould you take a look?",
+      "revId": "49167f3c76069e992e03db6948e5fd776709bced",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
