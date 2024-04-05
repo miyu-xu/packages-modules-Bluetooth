@@ -16,6 +16,24 @@
       "message": "should we have a `a2dp_cb.find.p_cback.is_null()` here ?",
       "revId": "572ee855aa1839add4b5af264a8fbe48737bc2c6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a961bbeb_96d6c5f7",
+        "filename": "system/stack/a2dp/a2dp_api.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-04-05T13:11:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "113a91ca_dee69844",
+      "revId": "572ee855aa1839add4b5af264a8fbe48737bc2c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
