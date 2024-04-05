@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0994251a_5dd6df4d",
+        "filename": "system/stack/gatt/gatt_int.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-05T11:12:45Z",
+      "side": 1,
+      "message": "std::set guarantees uniquess of elements",
+      "range": {
+        "startLine": 200,
+        "startChar": 11,
+        "endLine": 200,
+        "endChar": 13
+      },
+      "revId": "f96cc1f6dabc9dd51ac137854bc9bd2d37f8ae04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
