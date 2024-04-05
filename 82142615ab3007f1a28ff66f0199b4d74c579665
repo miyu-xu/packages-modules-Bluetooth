@@ -212,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9399c6c_306a0f05",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-05T12:47:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37e40de6_213b9948",
+      "range": {
+        "startLine": 269,
+        "startChar": 0,
+        "endLine": 269,
+        "endChar": 51
+      },
+      "revId": "82142615ab3007f1a28ff66f0199b4d74c579665",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60224cda_60a94692",
@@ -225,6 +249,24 @@
       "writtenOn": "2024-04-05T11:11:32Z",
       "side": 1,
       "message": "Can this be a const reference?\n```suggestion\n                                 const std::vector\u003cbluetooth::Uuid\u003e\u0026 uuids,\n```",
+      "revId": "82142615ab3007f1a28ff66f0199b4d74c579665",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d76fbb91_43f50dda",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-05T12:47:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60224cda_60a94692",
       "revId": "82142615ab3007f1a28ff66f0199b4d74c579665",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
