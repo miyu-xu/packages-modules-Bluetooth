@@ -32,6 +32,7 @@ apex {
             // Extractor process runs only with the primary ABI.
             jni_libs: [
                 "libbluetooth_jni",
+                "libbluetooth_server_jni",
             ],
         },
     },

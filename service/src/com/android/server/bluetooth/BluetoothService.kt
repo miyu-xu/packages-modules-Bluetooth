@@ -27,12 +27,19 @@ class BluetoothService(context: Context) : SystemService(context) {
     private val mHandlerThread: HandlerThread
     private val mBluetoothManagerService: BluetoothManagerService
     private var mInitialized = false
+    private val mNativeInterface: NativeInterface
 
     init {
         mHandlerThread = HandlerThread("BluetoothManagerService")
         mHandlerThread.start()
+        mNativeInterface = NativeInterface()
         mBluetoothManagerService =
-            BluetoothManagerService(context, mHandlerThread.getLooper(), FeatureFlagsImpl())
+            BluetoothManagerService(
+                context,
+                mHandlerThread.getLooper(),
+                FeatureFlagsImpl(),
+                mNativeInterface
+            )
     }
 
     private fun initialize(user: TargetUser) {

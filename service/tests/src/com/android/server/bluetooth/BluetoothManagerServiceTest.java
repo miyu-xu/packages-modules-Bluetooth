@@ -108,6 +108,8 @@ public class BluetoothManagerServiceTest {
 
     @Parameter public FlagsValue mFlagsValue;
 
+    @Mock NativeInterface mNativeInterface;
+
     static class FlagsValue {
         final Map<String, Boolean> mFlagsValue;
 
@@ -229,7 +231,8 @@ public class BluetoothManagerServiceTest {
         mFlagsValue.mFlagsValue.forEach(mFakeFlagsImpl::setFlag);
 
         mManagerService =
-                new BluetoothManagerService(mContext, mLooper.getLooper(), mFakeFlagsImpl);
+                new BluetoothManagerService(
+                        mContext, mLooper.getLooper(), mFakeFlagsImpl, mNativeInterface);
         mManagerService.initialize(mUserHandle);
 
         mManagerService.registerAdapter(mManagerCallback);
