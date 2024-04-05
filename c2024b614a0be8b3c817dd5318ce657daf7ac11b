@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4f53ccb_fb385c7f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-05T23:14:50Z",
+      "side": 1,
+      "message": "I +2 LGTM as my comment are nit picking, but I believe you could use expect WAY more in theses tests.\nEspecially since they are built around just checking values and almost never calls into logic between the \"assert\"\n\n\nI +2 anyway as I understand I may start to ask you too much while it is already way better to use truth than the junit assert",
+      "revId": "c2024b614a0be8b3c817dd5318ce657daf7ac11b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04c872a8_a155f53e",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothCodecConfigTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-05T23:14:50Z",
+      "side": 1,
+      "message": "That could be expect too",
+      "range": {
+        "startLine": 239,
+        "startChar": 16,
+        "endLine": 263,
+        "endChar": 24
+      },
+      "revId": "c2024b614a0be8b3c817dd5318ce657daf7ac11b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "503f8e02_2d3cf584",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothCodecConfigTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-05T23:14:50Z",
+      "side": 1,
+      "message": "expect evverywhere in this method too ?",
+      "range": {
+        "startLine": 280,
+        "startChar": 16,
+        "endLine": 280,
+        "endChar": 47
+      },
+      "revId": "c2024b614a0be8b3c817dd5318ce657daf7ac11b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a99ae02d_56f89a20",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothCodecStatusTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-05T23:14:50Z",
+      "side": 1,
+      "message": "expect ?",
+      "range": {
+        "startLine": 557,
+        "startChar": 8,
+        "endLine": 567,
+        "endChar": 18
+      },
+      "revId": "c2024b614a0be8b3c817dd5318ce657daf7ac11b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8aea3729_27b5dc66",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothCodecStatusTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-05T23:14:50Z",
+      "side": 1,
+      "message": "expect ?",
+      "range": {
+        "startLine": 572,
+        "startChar": 7,
+        "endLine": 577,
+        "endChar": 19
+      },
+      "revId": "c2024b614a0be8b3c817dd5318ce657daf7ac11b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92c4b7a8_45d4de81",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothLeAudioCodecConfigTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-05T23:14:50Z",
+      "side": 1,
+      "message": "expect ?",
+      "range": {
+        "startLine": 44,
+        "startChar": 7,
+        "endLine": 52,
+        "endChar": 9
+      },
+      "revId": "c2024b614a0be8b3c817dd5318ce657daf7ac11b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a91990fa_8a67f9a1",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothUuidTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-05T23:14:50Z",
+      "side": 1,
+      "message": "This should be 3 tests and not just one, but since it is only one -\u003e expect ?",
+      "range": {
+        "startLine": 32,
+        "startChar": 16,
+        "endLine": 32,
+        "endChar": 30
+      },
+      "revId": "c2024b614a0be8b3c817dd5318ce657daf7ac11b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a21dfa1e_f9f4c4ef",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothUuidTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-05T23:14:50Z",
+      "side": 1,
+      "message": "expect",
+      "range": {
+        "startLine": 66,
+        "startChar": 8,
+        "endLine": 84,
+        "endChar": 28
+      },
+      "revId": "c2024b614a0be8b3c817dd5318ce657daf7ac11b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99818e00_3b744f4b",
+        "filename": "framework/tests/unit/src/android/bluetooth/le/ScanFilterTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-05T23:14:50Z",
+      "side": 1,
+      "message": "Yup this one is an assert and should stay that way 😊",
+      "range": {
+        "startLine": 50,
+        "startChar": 8,
+        "endLine": 50,
+        "endChar": 18
+      },
+      "revId": "c2024b614a0be8b3c817dd5318ce657daf7ac11b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
