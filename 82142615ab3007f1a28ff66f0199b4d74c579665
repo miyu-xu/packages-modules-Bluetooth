@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fc15e36_fdda516d",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 758,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-05T11:11:32Z",
+      "side": 1,
+      "message": "Can we move the vector?\n\n```suggestion\n      disc_result.uuids \u003d std::move(uuid_list);\n```",
+      "range": {
+        "startLine": 758,
+        "startChar": 6,
+        "endLine": 758,
+        "endChar": 36
+      },
+      "revId": "82142615ab3007f1a28ff66f0199b4d74c579665",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "529c84a0_89b9d127",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1429,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-05T11:11:32Z",
+      "side": 1,
+      "message": "```suggestion\n  auto\u0026 svc_result \u003d std::get\u003ctBTA_DM_SVC_RES\u003e(*msg);\n\n  /* initialize the data structure */\n  svc_result.result \u003d BTA_SUCCESS;\n  svc_result.services \u003d bta_dm_search_cb.services_found;\n  svc_result.bd_addr \u003d bta_dm_search_cb.peer_bdaddr;\n\n```",
+      "range": {
+        "startLine": 1423,
+        "startChar": 0,
+        "endLine": 1429,
+        "endChar": 0
+      },
+      "revId": "82142615ab3007f1a28ff66f0199b4d74c579665",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1392f13b_d1094d1c",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1876,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-05T11:11:32Z",
+      "side": 1,
+      "message": "```suggestion\n  auto\u0026 svc_result \u003d std::get\u003ctBTA_DM_SVC_RES\u003e(*msg);\n\n  /* no more services to be discovered */\n  svc_result.result \u003d (status \u003d\u003d GATT_SUCCESS) ? BTA_SUCCESS : BTA_FAILURE;\n  log::verbose(\"service found: 0x{:08x}\", bta_dm_search_cb.services_found);\n  svc_result.services \u003d bta_dm_search_cb.services_found;\n  svc_result.bd_addr \u003d bta_dm_search_cb.peer_bdaddr;\n  svc_result.device_type |\u003d BT_DEVICE_TYPE_BLE;\n```",
+      "range": {
+        "startLine": 1869,
+        "startChar": 0,
+        "endLine": 1876,
+        "endChar": 48
+      },
+      "revId": "82142615ab3007f1a28ff66f0199b4d74c579665",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d085d260_61176876",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2432,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-05T11:11:32Z",
+      "side": 1,
+      "message": "```suggestion\nvoid bta_dm_search_result(tBTA_DM_SVC_RES\u0026 svc_result) {\n  ::bta_dm_search_result(svc_result);\n```",
+      "range": {
+        "startLine": 2431,
+        "startChar": 0,
+        "endLine": 2432,
+        "endChar": 38
+      },
+      "revId": "82142615ab3007f1a28ff66f0199b4d74c579665",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37e40de6_213b9948",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-05T11:11:32Z",
+      "side": 1,
+      "message": "nit: Update comment or remove.",
+      "range": {
+        "startLine": 269,
+        "startChar": 0,
+        "endLine": 269,
+        "endChar": 51
+      },
+      "revId": "82142615ab3007f1a28ff66f0199b4d74c579665",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60224cda_60a94692",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-05T11:11:32Z",
+      "side": 1,
+      "message": "Can this be a const reference?\n```suggestion\n                                 const std::vector\u003cbluetooth::Uuid\u003e\u0026 uuids,\n```",
+      "revId": "82142615ab3007f1a28ff66f0199b4d74c579665",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55331b64_5a56b125",
+        "filename": "system/bta/test/bta_disc_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-05T11:11:32Z",
+      "side": 1,
+      "message": "nit: update name\n```suggestion\n  tBTA_DM_SVC_RES svc_result \u003d {};\n  bluetooth::legacy::testing::bta_dm_search_result(svc_result);\n```",
+      "range": {
+        "startLine": 169,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 64
+      },
+      "revId": "82142615ab3007f1a28ff66f0199b4d74c579665",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
