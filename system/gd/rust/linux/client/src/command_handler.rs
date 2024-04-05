@@ -10,9 +10,10 @@ use crate::callbacks::{BtGattCallback, BtGattServerCallback};
 use crate::ClientContext;
 use crate::{console_red, console_yellow, print_error, print_info};
 use bt_topshim::btif::{BtConnectionState, BtDiscMode, BtStatus, BtTransport, Uuid, INVALID_RSSI};
+use bt_topshim::profiles::gatt::{GattStatus, LePhy};
 use bt_topshim::profiles::hid_host::BthhReportType;
 use bt_topshim::profiles::sdp::{BtSdpMpsRecord, BtSdpRecord};
-use bt_topshim::profiles::{gatt::LePhy, ProfileConnectionState};
+use bt_topshim::profiles::ProfileConnectionState;
 use btstack::battery_manager::IBatteryManager;
 use btstack::bluetooth::{BluetoothDevice, IBluetooth};
 use btstack::bluetooth_gatt::{
@@ -243,6 +244,7 @@ fn build_commands() -> HashMap<String, CommandOption> {
                 ),
                 String::from("gatt server-remove-service <server_id> <service_handle>"),
                 String::from("gatt server-clear-all-services <server_id>"),
+                String::from("gatt server-send-response <server_id> <GattStatus>"),
                 String::from("gatt server-set-direct-connect <true|false>"),
                 String::from("gatt server-set-connect-transport <Bredr|LE|Auto>"),
             ],
@@ -1468,6 +1470,28 @@ impl CommandHandler {
                     .parse::<i32>()
                     .or(Err("Failed to parse server_id"))?;
                 self.lock_context().gatt_dbus.as_mut().unwrap().clear_services(server_id);
+            }
+            "server-send-response" => {
+                let server_id = String::from(get_arg(args, 1)?)
+                    .parse::<i32>()
+                    .or(Err("Failed to parse server_id"))?;
+                let raw_status = String::from(get_arg(args, 2)?)
+                    .parse::<i32>()
+                    .or(Err("Failed to parse success status"))?;
+                let status = GattStatus::from(raw_status);
+
+                match &self.lock_context().pending_gatt_request {
+                    None => return Err("No pending request to send response to".into()),
+                    Some(r) => self.lock_context().gatt_dbus.as_mut().unwrap().send_response(
+                        /*server_id=*/ 0,
+                        r.address.clone(),
+                        r.id,
+                        status,
+                        r.offset,
+                        /*value=*/ vec![0],
+                    ),
+                };
+                self.lock_context().pending_gatt_request = None;
             }
             "server-set-direct-connect" => {
                 let is_direct = String::from(get_arg(args, 1)?)
