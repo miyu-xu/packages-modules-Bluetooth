@@ -89,6 +89,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2c3d5ee_4a682144",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-05T22:31:30Z",
+      "side": 1,
+      "message": "Not for this CL.",
+      "parentUuid": "740ec398_07c3cd6a",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 69
+      },
+      "revId": "4777591b98506fbaa09b59cd75fb5b7ee53fa4dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be48f33e_09fb38ea",
