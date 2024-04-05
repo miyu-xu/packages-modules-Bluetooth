@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16d11954_05709a29",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-05T20:47:45Z",
+      "side": 1,
+      "message": "Once the flag CL is merged, you\u0027d need to do a rebase here to trigger auto dr.no.",
+      "revId": "e6099f977007b705267f771359cb862626e96132",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
