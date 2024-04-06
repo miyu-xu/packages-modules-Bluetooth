@@ -22,6 +22,7 @@
 #include <functional>
 #include <future>
 #include <map>
+#include <memory>
 #include <string>
 #include <utility>
 #include <vector>
@@ -29,7 +30,6 @@
 #include "common/bind.h"
 #include "module_state_dumper.h"
 #include "os/handler.h"
-#include "os/log.h"
 #include "os/thread.h"
 
 namespace bluetooth {
@@ -152,12 +152,13 @@ class ModuleRegistry {
 
  protected:
   Module* Get(const ModuleFactory* module) const;
+  std::shared_ptr<Module> GetShared(const ModuleFactory* module) const;
 
   void set_registry_and_handler(Module* instance, ::bluetooth::os::Thread* thread) const;
 
   os::Handler* GetModuleHandler(const ModuleFactory* module) const;
 
-  std::map<const ModuleFactory*, Module*> started_modules_;
+  std::map<const ModuleFactory*, std::shared_ptr<Module>> started_modules_;
   std::vector<const ModuleFactory*> start_order_;
   std::string last_instance_;
 };
@@ -166,7 +167,7 @@ class TestModuleRegistry : public ModuleRegistry {
  public:
   void InjectTestModule(const ModuleFactory* module, Module* instance) {
     start_order_.push_back(module);
-    started_modules_[module] = instance;
+    started_modules_[module] = std::shared_ptr<Module>(instance);
     set_registry_and_handler(instance, &test_thread);
     instance->Start();
   }
