@@ -116,7 +116,8 @@ void BTA_JvDisable(void) {
  * Returns          void
  *
  ******************************************************************************/
-void BTA_JvGetChannelId(int conn_type, uint32_t id, int32_t channel) {
+void BTA_JvGetChannelId(tBTA_JV_CONN_TYPE conn_type, uint32_t id,
+                        int32_t channel) {
   log::verbose("conn_type:{}, id:{}, channel:{}", conn_type, id, channel);
 
   if (conn_type != BTA_JV_CONN_TYPE_RFCOMM &&
@@ -281,7 +282,8 @@ tBTA_JV_STATUS BTA_JvL2capClose(uint32_t handle) {
  * Returns          void
  *
  ******************************************************************************/
-void BTA_JvL2capStartServer(int conn_type, tBTA_SEC sec_mask, tBTA_JV_ROLE role,
+void BTA_JvL2capStartServer(tBTA_JV_CONN_TYPE conn_type, tBTA_SEC sec_mask,
+                            tBTA_JV_ROLE role,
                             std::unique_ptr<tL2CAP_ERTM_INFO> ertm_info,
                             uint16_t local_psm, uint16_t rx_mtu,
                             std::unique_ptr<tL2CAP_CFG_INFO> cfg,
