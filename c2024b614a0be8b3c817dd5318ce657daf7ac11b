@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a4abcaa_51d014b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-06T18:13:47Z",
+      "side": 1,
+      "message": "Thanks, everything looks fine to me !",
+      "parentUuid": "1ff92af3_24175100",
+      "revId": "c2024b614a0be8b3c817dd5318ce657daf7ac11b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04c872a8_a155f53e",

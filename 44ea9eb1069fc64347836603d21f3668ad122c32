@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfb4ea01_1e0c9a65",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothCodecConfigTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-06T18:13:47Z",
+      "side": 1,
+      "message": "Thanks you for theses names ! 🙏",
+      "range": {
+        "startLine": 336,
+        "startChar": 16,
+        "endLine": 336,
+        "endChar": 65
+      },
+      "revId": "44ea9eb1069fc64347836603d21f3668ad122c32",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
