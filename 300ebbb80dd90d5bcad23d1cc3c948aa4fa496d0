@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47ebaf9b_c6568820",
+        "filename": "system/btif/test/btif_core_test.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-06T00:52:59Z",
+      "side": 1,
+      "message": "I like the replacement of `STREQ` which I find a little kludgey",
+      "revId": "300ebbb80dd90d5bcad23d1cc3c948aa4fa496d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
