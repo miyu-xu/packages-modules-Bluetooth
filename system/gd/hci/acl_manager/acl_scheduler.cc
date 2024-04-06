@@ -22,6 +22,8 @@
 #include <unordered_set>
 #include <variant>
 
+#include "os/logging/log_adapter.h"
+
 namespace bluetooth {
 namespace hci {
 
