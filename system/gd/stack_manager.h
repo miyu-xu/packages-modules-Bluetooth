@@ -33,6 +33,11 @@ class StackManager {
   }
 
   template <class T>
+  std::weak_ptr<T> GetSharedInstance() const {
+    return static_cast<T*>(registry_.GetShared(&T::Factory));
+  }
+
+  template <class T>
   bool IsStarted() const {
     return registry_.IsStarted(&T::Factory);
   }

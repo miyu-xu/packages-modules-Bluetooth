@@ -19,8 +19,6 @@
 
 #include <bluetooth/log.h>
 
-#include "common/init_flags.h"
-
 using ::bluetooth::os::Handler;
 using ::bluetooth::os::Thread;
 
@@ -62,6 +60,14 @@ Module* ModuleRegistry::Get(const ModuleFactory* module) const {
   log::assert_that(
       instance != started_modules_.end(),
       "Request for module not started up, maybe not in Start(ModuleList)?");
+  return instance->second.get();
+}
+
+std::weak_ptr<Module> ModuleRegistry::GetShared(const ModuleFactory* module) const {
+  auto instance = started_modules_.find(module);
+  log::assert_that(
+      instance != started_modules_.end(),
+      "Request for module not started up, maybe not in Start(ModuleList)?");
   return instance->second;
 }
 
@@ -83,7 +89,7 @@ void ModuleRegistry::set_registry_and_handler(Module* instance, Thread* thread) 
 Module* ModuleRegistry::Start(const ModuleFactory* module, Thread* thread) {
   auto started_instance = started_modules_.find(module);
   if (started_instance != started_modules_.end()) {
-    return started_instance->second;
+    return started_instance->second.get();
   }
 
   log::info("Constructing next module");
@@ -99,7 +105,7 @@ Module* ModuleRegistry::Start(const ModuleFactory* module, Thread* thread) {
   last_instance_ = "starting " + instance->ToString();
   instance->Start();
   start_order_.push_back(module);
-  started_modules_[module] = instance;
+  started_modules_[module] = std::shared_ptr<Module>(instance);
   log::info("Started {}", instance->ToString());
   return instance;
 }
@@ -124,7 +130,7 @@ void ModuleRegistry::StopAll() {
     log::assert_that(
         instance != started_modules_.end(), "assert failed: instance != started_modules_.end()");
     delete instance->second->handler_;
-    delete instance->second;
+    instance->second.reset();
     started_modules_.erase(instance);
   }
 
