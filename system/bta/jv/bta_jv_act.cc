@@ -1062,9 +1062,10 @@ void bta_jv_l2cap_connect(tBTA_JV_CONN_TYPE type, tBTA_SEC sec_mask,
         (bta_jv_check_psm(remote_psm))) /* allowed */
     {
       uint16_t max_mps = 0xffff;  // Let GAP_ConnOpen set the max_mps.
-      handle = GAP_ConnOpen("", sec_id, 0, &peer_bd_addr, remote_psm, max_mps,
-                            &cfg, ertm_info.get(), sec_mask,
-                            bta_jv_l2cap_client_cback, type);
+      handle =
+          GAP_ConnOpen("", sec_id, 0, &peer_bd_addr, remote_psm, max_mps, &cfg,
+                       ertm_info.get(), sec_mask, bta_jv_l2cap_client_cback,
+                       connection_type_to_transport(type));
       if (handle != GAP_INVALID_HANDLE) {
         evt_data.status = tBTA_JV_STATUS::SUCCESS;
       }
@@ -1208,10 +1209,10 @@ void bta_jv_l2cap_start_server(tBTA_JV_CONN_TYPE type, tBTA_SEC sec_mask,
   /* PSM checking is not required for LE COC */
   if (0 == sec_id ||
       ((type == BTA_JV_CONN_TYPE_L2CAP) && (!bta_jv_check_psm(local_psm))) ||
-      (handle = GAP_ConnOpen("JV L2CAP", sec_id, 1, nullptr, local_psm, max_mps,
-                             &cfg, ertm_info.get(), sec_mask,
-                             bta_jv_l2cap_server_cback, type)) ==
-          GAP_INVALID_HANDLE) {
+      (handle = GAP_ConnOpen(
+           "JV L2CAP", sec_id, 1, nullptr, local_psm, max_mps, &cfg,
+           ertm_info.get(), sec_mask, bta_jv_l2cap_server_cback,
+           connection_type_to_transport(type))) == GAP_INVALID_HANDLE) {
     bta_jv_free_sec_id(&sec_id);
     evt_data.status = tBTA_JV_STATUS::FAILURE;
   } else {
