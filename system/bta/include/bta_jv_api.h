@@ -108,18 +108,6 @@ typedef uint16_t tBTA_JV_DISC;
 
 typedef uint32_t tBTA_JV_ROLE;
 
-#define BTA_JV_SERVICE_LMTD_DISCOVER                                       \
-  BTM_COD_SERVICE_LMTD_DISCOVER                                  /* 0x0020 \
-                                                                    */
-#define BTA_JV_SERVICE_POSITIONING BTM_COD_SERVICE_POSITIONING   /* 0x0100 */
-#define BTA_JV_SERVICE_NETWORKING BTM_COD_SERVICE_NETWORKING     /* 0x0200 */
-#define BTA_JV_SERVICE_RENDERING BTM_COD_SERVICE_RENDERING       /* 0x0400 */
-#define BTA_JV_SERVICE_CAPTURING BTM_COD_SERVICE_CAPTURING       /* 0x0800 */
-#define BTA_JV_SERVICE_OBJ_TRANSFER BTM_COD_SERVICE_OBJ_TRANSFER /* 0x1000 */
-#define BTA_JV_SERVICE_AUDIO BTM_COD_SERVICE_AUDIO               /* 0x2000 */
-#define BTA_JV_SERVICE_TELEPHONY BTM_COD_SERVICE_TELEPHONY       /* 0x4000 */
-#define BTA_JV_SERVICE_INFORMATION BTM_COD_SERVICE_INFORMATION   /* 0x8000 */
-
 /* JV ID type */
 #define BTA_JV_PM_ID_1 1     /* PM example profile 1 */
 #define BTA_JV_PM_ID_2 2     /* PM example profile 2 */
