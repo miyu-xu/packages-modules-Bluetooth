@@ -165,22 +165,33 @@ inline std::string bta_jv_conn_state_text(const tBTA_JV_CONN_STATE& state) {
   }
 }
 
-/* JV Connection types */
-#define BTA_JV_CONN_TYPE_RFCOMM 0
-#define BTA_JV_CONN_TYPE_L2CAP 1
-#define BTA_JV_CONN_TYPE_L2CAP_LE 2
-typedef int tBTA_JV_CONN_TYPE;
+/* JV Connection socket types */
+enum class tBTA_JV_CONN_TYPE {
+  UNKNOWN = -1,
+  RFCOMM = 0,
+  L2CAP = 1,
+  L2CAP_LE = 2,
+};
+
+inline std::string bta_jv_conn_type_text(const tBTA_JV_CONN_TYPE& type) {
+  switch (type) {
+    CASE_RETURN_TEXT(tBTA_JV_CONN_TYPE::UNKNOWN);
+    CASE_RETURN_TEXT(tBTA_JV_CONN_TYPE::RFCOMM);
+    CASE_RETURN_TEXT(tBTA_JV_CONN_TYPE::L2CAP);
+    CASE_RETURN_TEXT(tBTA_JV_CONN_TYPE::L2CAP_LE);
+  }
+}
 
 // Given a client or server socket type
 // return the associated transport
 inline tBT_TRANSPORT connection_type_to_transport(
     const tBTA_JV_CONN_TYPE& conn_type) {
   switch (conn_type) {
-    case BTA_JV_CONN_TYPE_L2CAP:
+    case tBTA_JV_CONN_TYPE::L2CAP:
       return BT_TRANSPORT_BR_EDR;
-    case BTA_JV_CONN_TYPE_L2CAP_LE:
+    case tBTA_JV_CONN_TYPE::L2CAP_LE:
       return BT_TRANSPORT_LE;
-    case BTA_JV_CONN_TYPE_RFCOMM:
+    case tBTA_JV_CONN_TYPE::RFCOMM:
     default:
       return BT_TRANSPORT_AUTO;
   }
