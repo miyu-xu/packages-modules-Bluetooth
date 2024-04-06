@@ -22,6 +22,30 @@
       },
       "revId": "90f61230a4776229897d7725693ade0bc6b35c12",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5bcbdd3_ae44e0df",
+        "filename": "system/btif/src/btif_gatt_server.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-04-06T12:33:32Z",
+      "side": 1,
+      "message": "I removed the code since it is unreachable code.\nWhen the code reaches here, `transport_param` is always `BT_TRANSPORT_AUTO`.",
+      "parentUuid": "222a86d3_0e9fc2eb",
+      "range": {
+        "startLine": 317,
+        "startChar": 8,
+        "endLine": 317,
+        "endChar": 40
+      },
+      "revId": "90f61230a4776229897d7725693ade0bc6b35c12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
