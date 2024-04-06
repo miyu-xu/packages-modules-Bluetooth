@@ -720,7 +720,7 @@ void bta_jv_get_channel_id(
   uint16_t psm = 0;
 
   switch (type) {
-    case BTA_JV_CONN_TYPE_RFCOMM: {
+    case tBTA_JV_CONN_TYPE::RFCOMM: {
       uint8_t scn = 0;
       if (channel > 0) {
         if (BTA_TryAllocateSCN(channel)) {
@@ -741,14 +741,14 @@ void bta_jv_get_channel_id(
       }
       return;
     }
-    case BTA_JV_CONN_TYPE_L2CAP:
+    case tBTA_JV_CONN_TYPE::L2CAP:
       psm = bta_jv_get_free_psm();
       if (psm == 0) {
         psm = bta_jv_allocate_l2cap_classic_psm();
         log::verbose("returned PSM={}", loghex(psm));
       }
       break;
-    case BTA_JV_CONN_TYPE_L2CAP_LE:
+    case tBTA_JV_CONN_TYPE::L2CAP_LE:
       psm = L2CA_AllocateLePSM();
       if (psm == 0) {
         log::error("Error: No free LE PSM available");
@@ -769,14 +769,14 @@ void bta_jv_get_channel_id(
 void bta_jv_free_scn(tBTA_JV_CONN_TYPE type /* One of BTA_JV_CONN_TYPE_ */,
                      uint16_t scn) {
   switch (type) {
-    case BTA_JV_CONN_TYPE_RFCOMM:
+    case tBTA_JV_CONN_TYPE::RFCOMM:
       BTA_FreeSCN(scn);
       break;
-    case BTA_JV_CONN_TYPE_L2CAP:
+    case tBTA_JV_CONN_TYPE::L2CAP:
       bta_jv_set_free_psm(scn);
       break;
-    case BTA_JV_CONN_TYPE_L2CAP_LE:
-      log::verbose("type=BTA_JV_CONN_TYPE_L2CAP_LE. psm={}", scn);
+    case tBTA_JV_CONN_TYPE::L2CAP_LE:
+      log::verbose("type=BTA_JV_CONN_TYPE::L2CAP_LE. psm={}", scn);
       L2CA_FreeLePSM(scn);
       break;
     default:
@@ -1057,7 +1057,7 @@ void bta_jv_l2cap_connect(tBTA_JV_CONN_TYPE type, tBTA_SEC sec_mask,
 
   if (sec_id) {
     /* PSM checking is not required for LE COC */
-    if ((type != BTA_JV_CONN_TYPE_L2CAP) ||
+    if ((type != tBTA_JV_CONN_TYPE::L2CAP) ||
         (bta_jv_check_psm(remote_psm))) /* allowed */
     {
       // Given a client socket type
@@ -1894,7 +1894,7 @@ void bta_jv_set_pm_profile(uint32_t handle, tBTA_JV_PM_ID app_id,
   tBTA_JV_PM_CB* p_cb;
 
   log::verbose("handle={}, app_id={}, init_st={}", loghex(handle), app_id,
-               init_st);
+               bta_jv_conn_state_text(init_st));
 
   /* clear PM control block */
   if (app_id == BTA_JV_PM_ID_CLEAR) {
@@ -1961,7 +1961,8 @@ static void bta_jv_pm_state_change(tBTA_JV_PM_CB* p_cb,
                                    const tBTA_JV_CONN_STATE state) {
   log::verbose(
       "p_cb={}, handle={}, busy/idle_state={}, app_id={}, conn_state={}",
-      fmt::ptr(p_cb), loghex(p_cb->handle), p_cb->state, p_cb->app_id, state);
+      fmt::ptr(p_cb), loghex(p_cb->handle), p_cb->state, p_cb->app_id,
+      bta_jv_conn_state_text(state));
 
   switch (state) {
     case BTA_JV_CONN_OPEN:
@@ -1999,7 +2000,7 @@ static void bta_jv_pm_state_change(tBTA_JV_PM_CB* p_cb,
       break;
 
     default:
-      log::warn("Invalid state={}", state);
+      log::warn("Invalid state={}", bta_jv_conn_state_text(state));
       break;
   }
 }
