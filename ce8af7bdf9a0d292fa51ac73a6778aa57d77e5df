@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1736ddc_16173aca",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-07T03:57:51Z",
+      "side": 1,
+      "message": "I really like the fact that the responses go directly to JNI.\n\nI wonder if it would be easier to read if the two callbacks were bound separately, then passed to StartDiscovery.\n\nAuto-generated suggestion below :)  I would do it outside the CallOn.\n```suggestion\n                             });\n                         auto device_found_cb \u003d\n                             get_jni()-\u003eBind([](std::vector\u003c\n                                                   std::shared_ptr\u003c\n                                                       property::BtProperty\u003e\u003e\n                                                      bt_properties) {\n                               auto properties \u003d\n                                   property::BtPropertyLegacy(bt_properties);\n                               HAL_CBACK(bt_hal_cbacks, device_found_cb,\n                                         properties.Len(), properties.Ptr());\n                             });\n                         manager-\u003eStartDiscovery(state_changed_cb,\n                                                 device_found_cb);\n```",
+      "revId": "ce8af7bdf9a0d292fa51ac73a6778aa57d77e5df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b73103aa_c4e1f77a",
+        "filename": "system/gd/discovery/device/manager.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-07T03:57:51Z",
+      "side": 1,
+      "message": "nit: Can we add an log::info unknown after the case?\n```suggestion\n  return fmt::format(\"Unknown device discovery state({:x})\", static_cast\u003cuint64\u003e(state));\n}\n```",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 1
+      },
+      "revId": "ce8af7bdf9a0d292fa51ac73a6778aa57d77e5df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
