@@ -241,6 +241,7 @@ cc_library {
     ],
     static_libs: [
         "libbluetooth-types",
+        "libbt-common",
         "libchrome",
         "libosi",
     ],
