@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fa806f8_6f9b28f1",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 863,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-07T03:59:40Z",
+      "side": 1,
+      "message": "Do we need to define constants?\n```suggestion\n      RasSubeventHeader subevent_header;\n      if (remaining_data_size \u003c subevent_header.size()) {\n```",
+      "range": {
+        "startLine": 863,
+        "startChar": 0,
+        "endLine": 863,
+        "endChar": 56
+      },
+      "revId": "22638aef3f891926ee911996a6cd3f1b4b69123b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
