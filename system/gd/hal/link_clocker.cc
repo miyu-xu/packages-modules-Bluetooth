@@ -15,6 +15,7 @@
  */
 
 #include "hal/link_clocker.h"
+#include "common/time_util.h"
 
 #include <bluetooth/log.h>
 
@@ -87,8 +88,9 @@ void LinkClocker::OnHciEvent(const HciPacket& packet) {
   // getting the local timestamp from the bound gd HCI event callback
   // adds jitter.
 
-  auto timestamp = std::chrono::system_clock::now().time_since_epoch();
-  unsigned timestamp_us = std::chrono::duration_cast<std::chrono::microseconds>(timestamp).count();
+  // auto timestamp = std::chrono::system_clock::now().time_since_epoch();
+  // unsigned timestamp_us = std::chrono::duration_cast<std::chrono::microseconds>(timestamp).count();
+  auto timestamp_us = bluetooth::common::time_get_os_monotonic_raw_us();
 
   (*g_read_clock_handler).OnEvent(timestamp_us, bt_clock << 4);
 }

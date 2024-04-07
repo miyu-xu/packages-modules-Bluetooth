@@ -75,7 +75,8 @@ class SourceImpl : public LeAudioSourceAudioHalClient {
   // Internal functionality
   SourceImpl(bool is_broadcaster)
       : le_audio_sink_hal_state_(HAL_UNINITIALIZED),
-        is_broadcaster_(is_broadcaster){};
+        audio_timer_(/* is_clock_monotonic_raw= */ true),
+        is_broadcaster_(is_broadcaster){}
   ~SourceImpl() override {
     if (le_audio_sink_hal_state_ != HAL_UNINITIALIZED) Release();
   }
