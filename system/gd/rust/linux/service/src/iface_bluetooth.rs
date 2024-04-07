@@ -556,6 +556,11 @@ impl IBluetooth for IBluetoothDBus {
         dbus_generated!()
     }
 
+    #[dbus_method("IsPairingBusy")]
+    fn is_pairing_busy(&self) -> bool {
+        dbus_generated!()
+    }
+
     #[dbus_method("CreateBond")]
     fn create_bond(&mut self, device: BluetoothDevice, transport: BtTransport) -> bool {
         dbus_generated!()

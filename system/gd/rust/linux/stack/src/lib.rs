@@ -20,8 +20,9 @@ pub mod socket_manager;
 pub mod suspend;
 pub mod uuid;
 
+use tokio::time::{sleep, Duration};
 use bluetooth_qa::{BluetoothQA, IBluetoothQA};
-use log::debug;
+use log::{debug, warn};
 use num_derive::{FromPrimitive, ToPrimitive};
 use std::sync::{Arc, Mutex};
 use tokio::sync::mpsc::channel;
@@ -80,6 +81,7 @@ pub enum Message {
     A2dp(A2dpCallbacks),
     Avrcp(AvrcpCallbacks),
     Base(BaseCallbacks),
+    CreateBond(BluetoothDevice, BtTransport, u32, Sender<Message>),
     GattClient(GattClientCallbacks),
     GattServer(GattServerCallbacks),
     LeAudioClient(LeAudioClientCallbacks),
@@ -262,6 +264,23 @@ impl Stack {
                 Message::Base(b) => {
                     dispatch_base_callbacks(bluetooth.lock().unwrap().as_mut(), b.clone());
                     dispatch_base_callbacks(suspend.lock().unwrap().as_mut(), b);
+                }
+
+                Message::CreateBond(device, bt_transport, remaining_attempts, txl) => {
+                    if !bluetooth.lock().unwrap().is_pairing_busy() {
+                        bluetooth.lock().unwrap().create_bond(device, bt_transport);
+                        continue;
+                    }
+
+                    if remaining_attempts == 0 {
+                        continue;
+                    }
+
+                    let txll = txl.clone();
+                    tokio::spawn(async move {
+                        sleep(Duration::from_millis(500)).await;
+                        let _ = txl.send(Message::CreateBond(device, BtTransport::Le, remaining_attempts - 1, txll)).await;
+                    });
                 }
 
                 Message::GattClient(m) => {

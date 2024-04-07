@@ -2,7 +2,7 @@
 
 use bt_topshim::btif::{
     BluetoothInterface, BtBondState, BtConnectionDirection, BtStatus, DisplayAddress, RawAddress,
-    ToggleableProfile,
+    ToggleableProfile, BtTransport,
 };
 use bt_topshim::profiles::a2dp::{
     A2dp, A2dpCallbacks, A2dpCallbacksDispatcher, A2dpCodecBitsPerSample, A2dpCodecChannelMode,
@@ -665,8 +665,6 @@ impl BluetoothMedia {
                 info!("[{}]: csis connection state {:?}", DisplayAddress(&addr), state);
                 match state {
                     BtCsisConnectionState::Connected => {
-                        // TODO
-
                         self.csis_states.insert(addr, state);
                     }
                     BtCsisConnectionState::Disconnected => {
@@ -689,6 +687,12 @@ impl BluetoothMedia {
             }
             CsisClientCallbacks::SetMemberAvailable(addr, group_id) => {
                 info!("[{}]: csis group_id={:?}", DisplayAddress(&addr), group_id);
+                let device = BluetoothDevice::new(addr.to_string(), "".to_string());
+                let txl = self.tx.clone();
+                let txll = self.tx.clone();
+                topstack::get_runtime().spawn(async move {
+                    let _ = txl.send(Message::CreateBond(device, BtTransport::Le, 30, txll)).await;
+                });
             }
             CsisClientCallbacks::GroupLockChanged(group_id, locked, status) => {
                 info!("csis group_id={:?}, locked={:?}, status={:?}", group_id, locked, status);
@@ -785,28 +789,9 @@ impl BluetoothMedia {
                 info!("[{}]: le_audio connection state {:?}", DisplayAddress(&addr), state);
                 match state {
                     BtLeAudioConnectionState::Connected => {
-                        let group_id = *self.le_audio_node_to_group.get(&addr).unwrap_or(&-1);
-
-                        let device = BluetoothAudioDevice::new(
-                            addr.to_string(),
-                            self.adapter_get_remote_name(addr).clone(),
-                            Vec::new(),
-                            HfpCodecFormat::NONE,
-                            false,
-                            group_id,
-                        );
-
-                        self.callbacks.lock().unwrap().for_all_callbacks(|callback| {
-                            callback.on_ble_bluetooth_audio_device_added(device.clone());
-                        });
-
                         self.le_audio_states.insert(addr, state);
                     }
                     BtLeAudioConnectionState::Disconnected => {
-                        self.callbacks.lock().unwrap().for_all_callbacks(|callback| {
-                            callback.on_ble_bluetooth_audio_device_removed(addr.to_string());
-                        });
-
                         self.le_audio_states.remove(&addr);
                     }
                     _ => {
@@ -861,6 +846,21 @@ impl BluetoothMedia {
                             }
                         }
 
+                        if self.le_audio_groups.get(&group_id).is_none() {
+                            let device = BluetoothAudioDevice::new(
+                                addr.to_string(),
+                                self.adapter_get_remote_name(addr).clone(),
+                                Vec::new(),
+                                HfpCodecFormat::NONE,
+                                false,
+                                group_id,
+                            );
+
+                            self.callbacks.lock().unwrap().for_all_callbacks(|callback| {
+                                callback.on_ble_bluetooth_audio_device_added(device.clone());
+                            });
+                        }
+
                         self.le_audio_groups.entry(group_id).or_insert(HashSet::new()).insert(addr);
                         self.le_audio_node_to_group.insert(addr, group_id);
                     }
@@ -879,6 +879,9 @@ impl BluetoothMedia {
                                 let mut updated_group = old_group.clone();
                                 updated_group.remove(&addr);
                                 if updated_group.is_empty() {
+                                    self.callbacks.lock().unwrap().for_all_callbacks(|callback| {
+                                        callback.on_ble_bluetooth_audio_device_removed(addr.to_string());
+                                    });
                                     self.le_audio_groups.remove(old_group_id);
                                 } else {
                                     self.le_audio_groups.insert(*old_group_id, updated_group);

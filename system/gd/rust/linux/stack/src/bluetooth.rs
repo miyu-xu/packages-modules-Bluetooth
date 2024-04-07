@@ -155,6 +155,9 @@ pub trait IBluetooth {
     /// Checks when discovery ends in milliseconds from now.
     fn get_discovery_end_millis(&self) -> u64;
 
+    /// Checks whether pairing is not ready.
+    fn is_pairing_busy(&self) -> bool;
+
     /// Initiates pairing to a remote device. Triggers connection if not already started.
     fn create_bond(&mut self, device: BluetoothDevice, transport: BtTransport) -> bool;
 
@@ -2242,6 +2245,10 @@ impl IBluetooth for Bluetooth {
         } else {
             DEFAULT_DISCOVERY_TIMEOUT_MS - elapsed_ms
         }
+    }
+
+    fn is_pairing_busy(&self) -> bool {
+        self.intf.lock().unwrap().pairing_is_busy()
     }
 
     fn create_bond(&mut self, device: BluetoothDevice, transport: BtTransport) -> bool {
