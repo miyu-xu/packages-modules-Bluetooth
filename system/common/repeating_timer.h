@@ -23,6 +23,8 @@
 #include <chrono>
 #include <future>
 
+#include "time_util.h"
+
 namespace bluetooth {
 
 namespace common {
@@ -33,12 +35,19 @@ class MessageLoopThread;
  * An alarm clock that posts a delayed task to a specified MessageLoopThread
  * periodically.
  *
+ * Specify the |ClockDomain| that it wishes to align to. The underlying
+ * scheduler may have small deviations within each interval, but will
+ * keep adjusting to the specified anchor points so that the errors do
+ * not accumulate. This is default to |BOOTTIME| as Android generally
+ * prefers |BOOTTIME|.
+ *
  * Warning: MessageLoopThread must be running when any task is scheduled or
  * being executed
  */
 class RepeatingTimer final {
  public:
-  RepeatingTimer() : expected_time_next_task_us_(0) {}
+  RepeatingTimer(ClockDomain clock_domain = ClockDomain::BOOTTIME)
+      : expected_time_next_task_us_(0), clock_domain_(clock_domain) {}
   RepeatingTimer(const RepeatingTimer&) = delete;
   RepeatingTimer& operator=(const RepeatingTimer&) = delete;
 
@@ -83,7 +92,9 @@ class RepeatingTimer final {
   base::CancelableClosure task_wrapper_;
   base::RepeatingClosure task_;
   std::chrono::microseconds period_;
-  uint64_t expected_time_next_task_us_;  // Using clock boot time in time_util.h
+  // Using clock time in |time_util.h| specified by |clock_domain_|
+  uint64_t expected_time_next_task_us_;
+  ClockDomain clock_domain_;
   mutable std::recursive_mutex api_mutex_;
   void CancelHelper(std::promise<void> promise);
   void CancelClosure(std::promise<void> promise);

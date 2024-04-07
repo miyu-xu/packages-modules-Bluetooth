@@ -16,14 +16,30 @@
  *
  ******************************************************************************/
 
+#include "common/time_util.h"
+
+#include <bluetooth/log.h>
 #include <sys/time.h>
 #include <time.h>
-
-#include "common/time_util.h"
 
 namespace bluetooth {
 
 namespace common {
+
+uint64_t time_get_domain_us(ClockDomain domain) {
+  switch (domain) {
+    case ClockDomain::BOOTTIME:
+      return time_get_os_boottime_us();
+    case ClockDomain::MONOTONIC_RAW:
+      return time_get_os_monotonic_raw_us();
+    case ClockDomain::TIME_OF_DAY:
+      return time_gettimeofday_us();
+    default:
+      log::error("Unknown clock domain {}", domain);
+      break;
+  }
+  return 0;
+}
 
 uint64_t time_get_os_boottime_ms() { return time_get_os_boottime_us() / 1000; }
 
