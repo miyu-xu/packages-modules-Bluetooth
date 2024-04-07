@@ -38,7 +38,9 @@ class MessageLoopThread;
  */
 class RepeatingTimer final {
  public:
-  RepeatingTimer() : expected_time_next_task_us_(0) {}
+  RepeatingTimer(bool is_clock_monotonic_raw = false)
+      : expected_time_next_task_us_(0),
+        is_clock_monotonic_raw_(is_clock_monotonic_raw) {}
   RepeatingTimer(const RepeatingTimer&) = delete;
   RepeatingTimer& operator=(const RepeatingTimer&) = delete;
 
@@ -83,7 +85,8 @@ class RepeatingTimer final {
   base::CancelableClosure task_wrapper_;
   base::RepeatingClosure task_;
   std::chrono::microseconds period_;
-  uint64_t expected_time_next_task_us_;  // Using clock boot time in time_util.h
+  uint64_t expected_time_next_task_us_;  // Using clock time in time_util.h
+  bool is_clock_monotonic_raw_;
   mutable std::recursive_mutex api_mutex_;
   void CancelHelper(std::promise<void> promise);
   void CancelClosure(std::promise<void> promise);
