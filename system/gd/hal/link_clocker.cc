@@ -20,6 +20,8 @@
 
 #include <algorithm>
 
+#include "common/time_util.h"
+
 namespace bluetooth::hal {
 
 static class : public ReadClockHandler {
@@ -87,8 +89,12 @@ void LinkClocker::OnHciEvent(const HciPacket& packet) {
   // getting the local timestamp from the bound gd HCI event callback
   // adds jitter.
 
+#ifdef TARGET_FLOSS
+  auto timestamp_us = bluetooth::common::time_get_os_monotonic_raw_us();
+#else
   auto timestamp = std::chrono::system_clock::now().time_since_epoch();
   unsigned timestamp_us = std::chrono::duration_cast<std::chrono::microseconds>(timestamp).count();
+#endif
 
   (*g_read_clock_handler).OnEvent(timestamp_us, bt_clock << 4);
 }
