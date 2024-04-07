@@ -24,6 +24,15 @@ namespace bluetooth {
 
 namespace common {
 
+enum class ClockDomain {
+  BOOTTIME,
+  MONOTONIC_RAW,
+  TIME_OF_DAY,
+};
+
+// Get the time specified by the |ClockDomain| parameter, in microseconds.
+uint64_t time_get_domain_us(ClockDomain domain);
+
 // Get the OS boot time in milliseconds.
 uint64_t time_get_os_boottime_ms();
 

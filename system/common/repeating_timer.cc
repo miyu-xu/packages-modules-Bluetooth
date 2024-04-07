@@ -47,7 +47,7 @@ bool RepeatingTimer::SchedulePeriodic(
     return false;
   }
 
-  uint64_t time_now_us = time_get_os_boottime_us();
+  uint64_t time_now_us = time_get_domain_us();
   uint64_t time_next_task_us = time_now_us + period.count();
   std::lock_guard<std::recursive_mutex> api_lock(api_mutex_);
   if (thread == nullptr) {
@@ -61,7 +61,7 @@ bool RepeatingTimer::SchedulePeriodic(
       base::Bind(&RepeatingTimer::RunTask, base::Unretained(this)));
   message_loop_thread_ = thread;
   period_ = period;
-  uint64_t time_until_next_us = time_next_task_us - time_get_os_boottime_us();
+  uint64_t time_until_next_us = time_next_task_us - time_get_domain_us();
   if (!thread->DoInThreadDelayed(
           from_here, task_wrapper_.callback(),
           std::chrono::microseconds(time_until_next_us))) {
@@ -139,7 +139,7 @@ void RepeatingTimer::RunTask() {
 
   int64_t period_us = period_.count();
   expected_time_next_task_us_ += period_us;
-  uint64_t time_now_us = time_get_os_boottime_us();
+  uint64_t time_now_us = time_get_domain_us();
   int64_t remaining_time_us = expected_time_next_task_us_ - time_now_us;
   if (remaining_time_us < 0) {
     // if remaining_time_us is negative, schedule the task to the nearest
@@ -150,9 +150,9 @@ void RepeatingTimer::RunTask() {
       FROM_HERE, task_wrapper_.callback(),
       std::chrono::microseconds(remaining_time_us));
 
-  uint64_t time_before_task_us = time_get_os_boottime_us();
+  uint64_t time_before_task_us = time_get_domain_us();
   task_.Run();
-  uint64_t time_after_task_us = time_get_os_boottime_us();
+  uint64_t time_after_task_us = time_get_domain_us();
   auto task_time_us =
       static_cast<int64_t>(time_after_task_us - time_before_task_us);
   if (task_time_us > period_.count()) {
