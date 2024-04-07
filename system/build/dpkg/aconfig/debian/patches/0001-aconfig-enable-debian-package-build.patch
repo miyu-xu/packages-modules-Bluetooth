@@ -1,0 +1,38 @@
+From 20417c175c021d179efd79d3d47b54ea2e3f061f Mon Sep 17 00:00:00 2001
+From: Ying Hsu <yinghsu@google.com>
+Date: Sun, 7 Apr 2024 00:55:22 +0000
+Subject: [PATCH] aconfig: enable debian package build
+
+To support Android trun stable flags in Floss, this patch adds
+metadata information for building a Debian package, which will
+be installed in the Floss Linux build process.
+
+Bug: b/307006275
+Test: cargo test && cargo deb
+Change-Id: Iab08d6974e7a5e52bf96d0e9c258e6894c44a116
+---
+ tools/aconfig/aconfig/Cargo.toml | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/tools/aconfig/aconfig/Cargo.toml b/tools/aconfig/aconfig/Cargo.toml
+index abd3ee01e8..5d935ad3bf 100644
+--- a/tools/aconfig/aconfig/Cargo.toml
++++ b/tools/aconfig/aconfig/Cargo.toml
+@@ -17,3 +17,14 @@ serde_json = "1.0.93"
+ tinytemplate = "1.2.1"
+ aconfig_protos = { path = "../aconfig_protos" }
+ aconfig_storage_file = { path = "../aconfig_storage_file" }
++
++[package.metadata.deb]
++maintainer = "Dennis Shen <dzshen@google.com>"
++copyright = "Copyright (C) 2024 The Android Open Source Project"
++extended-description = """aconfig is a build time tool to manage build time configurations, such as feature flags."""
++depends = "$auto"
++section = "utility"
++priority = "optional"
++assets = [
++ ["target/release/aconfig", "usr/bin/", "755"],
++]
+-- 
+2.44.0.478.gd926399ef9-goog
+
