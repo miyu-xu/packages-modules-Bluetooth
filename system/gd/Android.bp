@@ -175,6 +175,7 @@ cc_defaults {
         "libbluetooth_crypto_toolbox",
         "libbluetooth_log",
         "libbluetooth_rust_interop",
+        "libbt-common",
         "libbt-platform-protos-lite",
         "libbt_shim_bridge",
         "libbt_shim_ffi",
@@ -241,6 +242,7 @@ cc_library {
     ],
     static_libs: [
         "libbluetooth-types",
+        "libbt-common",
         "libchrome",
         "libosi",
     ],
