@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ae482411_cb326f9f",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-07T04:27:24Z",
+      "side": 1,
+      "message": "This feels like one more layer of indirection than is needed.  Do we want to remove the HAL_CBACK wrapper?",
+      "range": {
+        "startLine": 639,
+        "startChar": 31,
+        "endLine": 639,
+        "endChar": 40
+      },
+      "revId": "ce8af7bdf9a0d292fa51ac73a6778aa57d77e5df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b73103aa_c4e1f77a",
         "filename": "system/gd/discovery/device/manager.cc",
         "patchSetId": 15
