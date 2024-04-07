@@ -69,13 +69,14 @@ to your local environment.
 
 * libchrome
 * modp_b64
+* aconfig
 
 We provide a script to produce debian packages for those components. Please
 see the instructions in build/dpkg/README.txt for more details.
 
 ```sh
 cd system/build/dpkg
-mkdir -p outdir/{modp_b64,libchrome}
+mkdir -p outdir/{modp_b64,libchrome,aconfig}
 
 # Build and install modp_b64
 pushd modp_b64
@@ -88,6 +89,12 @@ pushd libchrome
 ./gen-src-pkg.sh $(readlink -f ../outdir/libchrome)
 popd
 sudo dpkg -i outdir/libchrome/*.deb
+
+# Build and install aconfig
+pushd aconfig
+./gen-src-pkg.sh $(readlink -f ../outdir/aconfig)
+popd
+sudo dpkg -i outdir/aconfig/*.deb
 ```
 
 ### Rust dependencies
@@ -96,7 +103,7 @@ sudo dpkg -i outdir/libchrome/*.deb
 
 Run the following to install Rust dependencies:
 ```
-cargo install cxxbridge-cmd
+cargo install cxxbridge-cmd pdl-compiler cargo-deb
 ```
 
 ### Stage your build environment
