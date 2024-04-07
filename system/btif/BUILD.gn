@@ -33,6 +33,7 @@ static_library("btif") {
 
     # HAL layer
     "src/bluetooth.cc",
+    "src/main_callbacks.cc",
 
     # BTIF implementation
     "src/btif_a2dp.cc",
