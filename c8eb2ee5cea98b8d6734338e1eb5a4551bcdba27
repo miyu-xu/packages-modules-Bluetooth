@@ -34,6 +34,52 @@
       "parentUuid": "939f638d_7f5379c1",
       "revId": "c8eb2ee5cea98b8d6734338e1eb5a4551bcdba27",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "403d94e9_b5650e01",
+        "filename": "system/stack/test/gatt/stack_gatt_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-08T12:17:49Z",
+      "side": 1,
+      "message": "you can\u0027t clear std::set like that.\n\n```suggestion\n    reg1.direct_connect_request.clear();\n```",
+      "range": {
+        "startLine": 132,
+        "startChar": 4,
+        "endLine": 132,
+        "endChar": 74
+      },
+      "revId": "c8eb2ee5cea98b8d6734338e1eb5a4551bcdba27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "660dbdc3_be5d3fea",
+        "filename": "system/stack/test/gatt/stack_gatt_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-08T12:17:49Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Please use language idioms to initialize or assign\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nPlease use language idioms to initialize or assign",
+      "range": {
+        "startLine": 132,
+        "startChar": 4,
+        "endLine": 132,
+        "endChar": 11
+      },
+      "revId": "c8eb2ee5cea98b8d6734338e1eb5a4551bcdba27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
