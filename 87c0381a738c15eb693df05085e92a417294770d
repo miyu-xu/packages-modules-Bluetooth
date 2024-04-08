@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95e9f08a_80bce311",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1406,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-04-08T19:20:39Z",
+      "side": 1,
+      "message": "CCC_DESCRIPTOR_UUID?",
+      "revId": "87c0381a738c15eb693df05085e92a417294770d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c72921f_e0752d6d",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1413,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-04-08T19:20:39Z",
+      "side": 1,
+      "message": "it\u0027s pretty unclear from the command names that you first need to call `server-add-battery-service` and then this. Can we do this all in one command?",
+      "revId": "87c0381a738c15eb693df05085e92a417294770d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47e2bda9_94e17709",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1434,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-04-08T19:20:39Z",
+      "side": 1,
+      "message": "Why do we need this extra descriptor?",
+      "revId": "87c0381a738c15eb693df05085e92a417294770d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a915b34_2e0d783f",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1442,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-04-08T19:20:39Z",
+      "side": 1,
+      "message": "You should give this read/write permissions",
+      "revId": "87c0381a738c15eb693df05085e92a417294770d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
