@@ -178,7 +178,7 @@ void VolumeControlIntf::connect(RawAddress addr) {
 }
 
 void VolumeControlIntf::disconnect(RawAddress addr) {
-  return intf_->Connect(addr);
+  return intf_->Disconnect(addr);
 }
 
 void VolumeControlIntf::remove_device(RawAddress addr) {

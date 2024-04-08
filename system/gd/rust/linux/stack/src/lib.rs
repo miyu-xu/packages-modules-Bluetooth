@@ -22,7 +22,7 @@ pub mod uuid;
 
 use tokio::time::{sleep, Duration};
 use bluetooth_qa::{BluetoothQA, IBluetoothQA};
-use log::{debug, warn};
+use log::debug;
 use num_derive::{FromPrimitive, ToPrimitive};
 use std::sync::{Arc, Mutex};
 use tokio::sync::mpsc::channel;

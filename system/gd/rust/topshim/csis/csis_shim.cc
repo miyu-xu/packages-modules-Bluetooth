@@ -151,7 +151,7 @@ void CsisClientIntf::connect(RawAddress addr) {
 }
 
 void CsisClientIntf::disconnect(RawAddress addr) {
-  return intf_->Connect(addr);
+  return intf_->Disconnect(addr);
 }
 
 void CsisClientIntf::lock_group(int group_id, bool lock) {

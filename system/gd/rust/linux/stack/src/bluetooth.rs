@@ -2691,6 +2691,7 @@ impl IBluetooth for Bluetooth {
         // Check all remote uuids to see if they match enabled profiles and connect them.
         let mut has_enabled_uuids = false;
         let mut has_classic_media_profile = false;
+        let mut has_le_media_profile = false;
         let mut has_supported_profile = false;
         let uuids = self.get_remote_uuids(device.clone());
         for uuid in uuids.iter() {
@@ -2726,32 +2727,17 @@ impl IBluetooth for Bluetooth {
                             }
 
                             // TODO(b/317682584): implement policy to connect to LEA, VC, and CSIS
-                            Profile::LeAudio => {
+                            Profile::LeAudio
+                            | Profile::VolumeControl
+                            | Profile::CoordinatedSet
+                                if !has_le_media_profile =>
+                            {
+                                has_le_media_profile = true;
                                 let txl = self.tx.clone();
                                 let address = device.address.clone();
                                 topstack::get_runtime().spawn(async move {
                                     let _ = txl
-                                        .send(Message::Media(MediaActions::ConnectLe(address)))
-                                        .await;
-                                });
-                            }
-
-                            Profile::VolumeControl => {
-                                let txl = self.tx.clone();
-                                let address = device.address.clone();
-                                topstack::get_runtime().spawn(async move {
-                                    let _ = txl
-                                        .send(Message::Media(MediaActions::ConnectVc(address)))
-                                        .await;
-                                });
-                            }
-
-                            Profile::CoordinatedSet => {
-                                let txl = self.tx.clone();
-                                let address = device.address.clone();
-                                topstack::get_runtime().spawn(async move {
-                                    let _ = txl
-                                        .send(Message::Media(MediaActions::ConnectCsis(address)))
+                                        .send(Message::Media(MediaActions::ConnectLeGroupByMemberAddress(address)))
                                         .await;
                                 });
                             }
@@ -2834,7 +2820,7 @@ impl IBluetooth for Bluetooth {
 
         let addr = RawAddress::from_string(device.address.clone());
         if addr.is_none() {
-            warn!("Can't connect profiles on invalid address [{}]", &device.address);
+            warn!("Can't disconnect profiles on invalid address [{}]", &device.address);
             return false;
         }
 
@@ -2848,6 +2834,7 @@ impl IBluetooth for Bluetooth {
 
         let uuids = self.get_remote_uuids(device.clone());
         let mut has_classic_media_profile = false;
+        let mut has_le_media_profile = false;
         for uuid in uuids.iter() {
             match UuidHelper::is_known_profile(uuid) {
                 Some(p) => {
@@ -2870,32 +2857,17 @@ impl IBluetooth for Bluetooth {
                             }
 
                             // TODO(b/317682584): implement policy to disconnect from LEA, VC, and CSIS
-                            Profile::LeAudio => {
+                            Profile::LeAudio
+                            | Profile::VolumeControl
+                            | Profile::CoordinatedSet
+                                if !has_le_media_profile =>
+                            {
+                                has_le_media_profile = true;
                                 let txl = self.tx.clone();
                                 let address = device.address.clone();
                                 topstack::get_runtime().spawn(async move {
                                     let _ = txl
-                                        .send(Message::Media(MediaActions::DisconnectLe(address)))
-                                        .await;
-                                });
-                            }
-
-                            Profile::VolumeControl => {
-                                let txl = self.tx.clone();
-                                let address = device.address.clone();
-                                topstack::get_runtime().spawn(async move {
-                                    let _ = txl
-                                        .send(Message::Media(MediaActions::DisconnectVc(address)))
-                                        .await;
-                                });
-                            }
-
-                            Profile::CoordinatedSet => {
-                                let txl = self.tx.clone();
-                                let address = device.address.clone();
-                                topstack::get_runtime().spawn(async move {
-                                    let _ = txl
-                                        .send(Message::Media(MediaActions::DisconnectCsis(address)))
+                                        .send(Message::Media(MediaActions::DisconnectLeGroupByMemberAddress(address)))
                                         .await;
                                 });
                             }

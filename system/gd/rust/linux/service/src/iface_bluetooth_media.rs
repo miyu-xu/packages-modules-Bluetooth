@@ -271,6 +271,16 @@ impl IBluetoothMedia for IBluetoothMediaDBus {
         dbus_generated!()
     }
 
+    #[dbus_method("ConnectLeGroupByMemberAddress")]
+    fn connect_le_group_by_member_address(&mut self, address: String) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("DisconnectLeGroupByMemberAddress")]
+    fn disconnect_le_group_by_member_address(&mut self, address: String) {
+        dbus_generated!()
+    }
+
     #[dbus_method("ConnectLe")]
     fn connect_le(&mut self, address: String) {
         dbus_generated!()
