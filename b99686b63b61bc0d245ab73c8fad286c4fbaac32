@@ -22,6 +22,30 @@
       },
       "revId": "b99686b63b61bc0d245ab73c8fad286c4fbaac32",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7daab28_b2cf2ba6",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1380,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-04-08T06:23:43Z",
+      "side": 1,
+      "message": "Wow... This is more readable. Thanks for the advice!",
+      "parentUuid": "683af967_76a6a9b0",
+      "range": {
+        "startLine": 1380,
+        "startChar": 0,
+        "endLine": 1380,
+        "endChar": 64
+      },
+      "revId": "b99686b63b61bc0d245ab73c8fad286c4fbaac32",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
