@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "084dd137_3185efba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-04-08T15:35:55Z",
+      "side": 1,
+      "message": "I\u0027m still a little confused why we need to unsync LL privacy and own address and own address type on Floss.",
+      "revId": "44cd0acd14960f211013850195c8b9c2164f804b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "589a14c6_5d0d7ad7",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-04-08T15:35:55Z",
+      "side": 1,
+      "message": "nit: \"privacy\"",
+      "revId": "44cd0acd14960f211013850195c8b9c2164f804b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25662b8b_6701d0ba",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-04-08T15:35:55Z",
+      "side": 1,
+      "message": "You already do this check on line 248 so don\u0027t need it again?",
+      "revId": "44cd0acd14960f211013850195c8b9c2164f804b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "517eefa7_6a046099",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 955,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-04-08T15:35:55Z",
+      "side": 1,
+      "message": "I don\u0027t think this file is the right place to put these helper functions since they\u0027re not related to what\u0027s being done here.",
+      "revId": "44cd0acd14960f211013850195c8b9c2164f804b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
