@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "523d5ba0_e8130b3c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-08T16:01:19Z",
+      "side": 1,
+      "message": "It was an odd data structure that acted as a boolean",
+      "revId": "548a217fa3795f6cff303e2c9b27b16fab4b1dcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
