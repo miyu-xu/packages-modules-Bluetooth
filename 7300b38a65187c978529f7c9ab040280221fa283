@@ -22,6 +22,30 @@
       },
       "revId": "7300b38a65187c978529f7c9ab040280221fa283",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3a266d6_4168a2d3",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1622,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-08T23:37:50Z",
+      "side": 1,
+      "message": "I mean, not twice because `btif_hf_features_from_property` will be set, but that looks weird to have 2 entry point to initialize the value that are doing different things",
+      "parentUuid": "b3ec8132_cdb5a466",
+      "range": {
+        "startLine": 1622,
+        "startChar": 0,
+        "endLine": 1622,
+        "endChar": 41
+      },
+      "revId": "7300b38a65187c978529f7c9ab040280221fa283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
