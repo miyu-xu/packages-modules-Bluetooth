@@ -25,6 +25,7 @@
 #include "bta/sys/bta_sys.h"
 #include "macros.h"
 #include "stack/btm/neighbor_inquiry.h"
+#include "stack/include/bt_hdr.h"
 #include "stack/include/sdp_status.h"
 #include "stack/sdp/sdp_discovery_db.h"
 #include "types/bluetooth/uuid.h"
@@ -103,19 +104,9 @@ typedef struct {
   bool enable;
 } tBTA_DM_API_BLE_FEATURE;
 
-typedef struct {
-  RawAddress bd_addr;          /* BD address peer device. */
-  tBTA_SERVICE_MASK services;  /* Services found on peer device. */
-  tBT_DEVICE_TYPE device_type; /* device type in case it is BLE device */
-  std::vector<bluetooth::Uuid> uuids;
-  tBTA_STATUS result;
-  tHCI_STATUS hci_status;
-} tBTA_DM_SVC_RES;
-
 using tBTA_DM_MSG =
     std::variant<tBTA_DM_API_SEARCH, tBTA_DM_API_DISCOVER, tBTA_DM_REMOTE_NAME,
-                 tBTA_DM_DISC_RESULT, tBTA_DM_INQUIRY_CMPL, tBTA_DM_SDP_RESULT,
-                 tBTA_DM_SVC_RES>;
+                 tBTA_DM_DISC_RESULT, tBTA_DM_INQUIRY_CMPL, tBTA_DM_SDP_RESULT>;
 
 /* DM search state */
 typedef enum {
