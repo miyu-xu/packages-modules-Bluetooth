@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40a84178_79c85e1c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-04-08T19:41:51Z",
+      "side": 1,
+      "message": "Please add how you tested this.",
+      "revId": "8dc297bedd89ce9efd7d8a90b1f6fe83a824ec70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd4d24b5_ba392686",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 820,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-04-08T19:41:51Z",
+      "side": 1,
+      "message": "doesn\u0027t permissions include key size?",
+      "revId": "8dc297bedd89ce9efd7d8a90b1f6fe83a824ec70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
