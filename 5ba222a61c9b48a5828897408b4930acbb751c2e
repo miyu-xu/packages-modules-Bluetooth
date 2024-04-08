@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e12802c_d3b873ed",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-04-08T19:38:07Z",
+      "side": 1,
+      "message": "Can you add what manual testing you did?",
+      "revId": "5ba222a61c9b48a5828897408b4930acbb751c2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "585988b6_9f4f1305",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 871,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-04-08T19:38:07Z",
+      "side": 1,
+      "message": "Instead of passing the entire map plus a server_id, can we instead just pass the list of services?",
+      "revId": "5ba222a61c9b48a5828897408b4930acbb751c2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fd3ab75_4fab366e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 896,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-04-08T19:38:07Z",
+      "side": 1,
+      "message": "where does this math come from?",
+      "revId": "5ba222a61c9b48a5828897408b4930acbb751c2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
