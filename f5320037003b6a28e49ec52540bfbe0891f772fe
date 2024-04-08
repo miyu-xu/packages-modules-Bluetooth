@@ -33,6 +33,24 @@
       "message": "null check for leAudioService?",
       "revId": "f5320037003b6a28e49ec52540bfbe0891f772fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31572390_6ea3d329",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2151,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-08T17:59:47Z",
+      "side": 1,
+      "message": "good point, let me correct this",
+      "parentUuid": "e8eef950_744ce7a5",
+      "revId": "f5320037003b6a28e49ec52540bfbe0891f772fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
