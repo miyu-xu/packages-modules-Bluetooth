@@ -879,7 +879,7 @@ bool bta_av_chk_start(tBTA_AV_SCB* p_scb) {
       "features:0x{:x} start:{}",
       ADDRESS_TO_LOGGABLE_CSTR(p_scb->PeerAddress()), p_scb->chnl,
       bta_av_cb.audio_open_cnt, p_scb->role, bta_av_cb.features,
-      logbool(start));
+      start);
   return start;
 }
 

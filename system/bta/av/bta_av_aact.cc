@@ -1875,7 +1875,7 @@ void bta_av_do_start(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
       "A2dp stream start peer:{} sco_occupied:{} av_role:0x{:x} started:{} "
       "wait:0x{:x}",
       ADDRESS_TO_LOGGABLE_CSTR(p_scb->PeerAddress()),
-      logbool(bta_av_cb.sco_occupied), p_scb->role, logbool(p_scb->started),
+      bta_av_cb.sco_occupied, p_scb->role, p_scb->started,
       p_scb->wait);
   if (bta_av_cb.sco_occupied) {
     log::warn("A2dp stream start failed");
@@ -1890,7 +1890,7 @@ void bta_av_do_start(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
           "peer {} start stream request ignored: already waiting: "
           "sco_occupied:{} role:0x{:x} started:{} wait:0x{:x}",
           ADDRESS_TO_LOGGABLE_CSTR(p_scb->PeerAddress()),
-          logbool(bta_av_cb.sco_occupied), p_scb->role, logbool(p_scb->started),
+          bta_av_cb.sco_occupied, p_scb->role, p_scb->started,
           p_scb->wait);
       return;
     }
@@ -1910,7 +1910,7 @@ void bta_av_do_start(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
         "peer {} start stream request ignored: already initiated: "
         "sco_occupied:{} role:0x{:x} started:{} wait:0x{:x}",
         ADDRESS_TO_LOGGABLE_CSTR(p_scb->PeerAddress()),
-        logbool(bta_av_cb.sco_occupied), p_scb->role, logbool(p_scb->started),
+        bta_av_cb.sco_occupied, p_scb->role, p_scb->started,
         p_scb->wait);
     return;
   }
@@ -1941,7 +1941,7 @@ void bta_av_do_start(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
       "peer {} start requested: sco_occupied:{} role:0x{:x} started:{} "
       "wait:0x{:x}",
       ADDRESS_TO_LOGGABLE_CSTR(p_scb->PeerAddress()),
-      logbool(bta_av_cb.sco_occupied), p_scb->role, logbool(p_scb->started),
+      bta_av_cb.sco_occupied, p_scb->role, p_scb->started,
       p_scb->wait);
 }
 
@@ -2462,7 +2462,7 @@ void bta_av_start_failed(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* /* p_data */) {
   log::error(
       "peer {} bta_handle:0x{:x} audio_open_cnt:{} started:{} co_started:{}",
       ADDRESS_TO_LOGGABLE_CSTR(p_scb->PeerAddress()), p_scb->hndl,
-      bta_av_cb.audio_open_cnt, logbool(p_scb->started), p_scb->co_started);
+      bta_av_cb.audio_open_cnt, p_scb->started, p_scb->co_started);
 
   if (!p_scb->started && !p_scb->co_started) {
     bta_sys_idle(BTA_ID_AV, bta_av_cb.audio_open_cnt, p_scb->PeerAddress());

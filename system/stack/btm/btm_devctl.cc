@@ -776,7 +776,7 @@ tBTM_STATUS BTM_BT_Quality_Report_VSE_Register(
 
   if (retval != BTM_SUCCESS) {
     log::warn("Fail to (un)register VSEvents: {}, is_register: {}", retval,
-              logbool(is_register));
+              is_register);
     return retval;
   }
 
@@ -787,6 +787,6 @@ tBTM_STATUS BTM_BT_Quality_Report_VSE_Register(
   }
 
   log::info("Success to (un)register VSEvents. is_register: {}",
-            logbool(is_register));
+            is_register);
   return retval;
 }
