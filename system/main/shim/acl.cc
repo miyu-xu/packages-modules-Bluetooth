@@ -268,8 +268,7 @@ struct ConnectionDescriptor {
     return base::StringPrintf(
         "peer:%s handle:0x%04x is_locally_initiated:%s"
         " creation_time:%s teardown_time:%s disconnect_reason:%s",
-        GetPrivateRemoteAddress().c_str(), handle_,
-        logbool(is_locally_initiated_).c_str(),
+        GetPrivateRemoteAddress().c_str(), handle_, is_locally_initiated_,
         common::StringFormatTimeWithMilliseconds(
             kConnectionDescriptorTimeFormat, creation_time_)
             .c_str(),
