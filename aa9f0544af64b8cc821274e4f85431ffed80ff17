@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09b5479d_fa193980",
+        "filename": "flags/rnr.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-08T23:20:28Z",
+      "side": 1,
+      "message": "This doesn\u0027t seems to be the correct bug, this one is for `rnr_present_during_service_discovery` (the flag above this one)",
+      "revId": "aa9f0544af64b8cc821274e4f85431ffed80ff17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
