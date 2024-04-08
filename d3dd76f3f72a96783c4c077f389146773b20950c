@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d855b81_a3249ebf",
+        "filename": "system/bta/jv/bta_jv_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-04-08T16:47:52Z",
+      "side": 1,
+      "message": "while you\u0027re here might as well fix the typo\n```suggestion\n *   conn_type      one of BTA_JV_CONN_TYPE\n```",
+      "range": {
+        "startLine": 111,
+        "startChar": 27,
+        "endLine": 111,
+        "endChar": 44
+      },
+      "revId": "d3dd76f3f72a96783c4c077f389146773b20950c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
