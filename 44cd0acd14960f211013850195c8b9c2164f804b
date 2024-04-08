@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "60ec7b9d_f861722b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-04-08T17:39:56Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b6aed24f_42d782db",
+      "revId": "44cd0acd14960f211013850195c8b9c2164f804b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "589a14c6_5d0d7ad7",
@@ -83,6 +101,40 @@
       "writtenOn": "2024-04-08T15:35:55Z",
       "side": 1,
       "message": "I don\u0027t think this file is the right place to put these helper functions since they\u0027re not related to what\u0027s being done here.",
+      "revId": "44cd0acd14960f211013850195c8b9c2164f804b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f868664e_9ad2be2a",
+        "filename": "system/main/shim/acl_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-04-08T17:39:56Z",
+      "side": 1,
+      "message": "nit: can we combine this line with line 99?\n```\nif (osi_property_get_bool(PROPERTY_BLE_PRIVACY_OWN_ADDRESS_ENABLED, false))\n```",
+      "revId": "44cd0acd14960f211013850195c8b9c2164f804b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22d05e1e_abf09acd",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 978,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-04-08T17:39:56Z",
+      "side": 1,
+      "message": "nit: can we just combine these lines and remove the /**/\n```\nif (osi_property_get_bool(kLeAddressPrivacy, false))\n```\nSame with above.",
       "revId": "44cd0acd14960f211013850195c8b9c2164f804b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
