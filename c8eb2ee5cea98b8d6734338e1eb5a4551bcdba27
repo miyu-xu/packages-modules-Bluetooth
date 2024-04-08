@@ -80,6 +80,30 @@
       },
       "revId": "c8eb2ee5cea98b8d6734338e1eb5a4551bcdba27",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcc3cafd_5de4388a",
+        "filename": "system/stack/test/gatt/stack_gatt_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-04-08T12:21:58Z",
+      "side": 1,
+      "message": "this test pass now. what it test I don\u0027t know, but it is does same thing as for \"std::string\".\n\nImho we could remove those test cases - but this is not part of my CL.",
+      "parentUuid": "660dbdc3_be5d3fea",
+      "range": {
+        "startLine": 132,
+        "startChar": 4,
+        "endLine": 132,
+        "endChar": 11
+      },
+      "revId": "c8eb2ee5cea98b8d6734338e1eb5a4551bcdba27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
