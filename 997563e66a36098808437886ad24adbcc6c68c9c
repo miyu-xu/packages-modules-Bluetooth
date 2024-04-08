@@ -69,6 +69,24 @@
       "parentUuid": "e5a7f4a6_8ac93fea",
       "revId": "997563e66a36098808437886ad24adbcc6c68c9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6eb42aa4_cfb4c6a4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-04-08T08:28:13Z",
+      "side": 1,
+      "message": "merge the flag in `\nFloss: Don\u0027t retry sco settings if we are not initiator` and `\nFloss: Allow fallback to CVSD S1 from CVSD S3 or S4`. The other 2 CLs should be able to work separately.",
+      "parentUuid": "5455bd33_e612a410",
+      "revId": "997563e66a36098808437886ad24adbcc6c68c9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
