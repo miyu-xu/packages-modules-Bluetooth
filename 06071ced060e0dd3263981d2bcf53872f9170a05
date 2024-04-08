@@ -16,6 +16,24 @@
       "message": "Is this a mechanical refactor? If not, this should be flagged",
       "revId": "06071ced060e0dd3263981d2bcf53872f9170a05",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c1dd2f6_744fbd4c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-04-08T17:18:50Z",
+      "side": 1,
+      "message": "It is a mechanical refactor + logging change",
+      "parentUuid": "d7421183_9caaadeb",
+      "revId": "06071ced060e0dd3263981d2bcf53872f9170a05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
