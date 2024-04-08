@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb1d402a_c2f5fa1f",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-08T23:22:27Z",
+      "side": 1,
+      "message": "should here be `true \u0026\u0026`? I guess you would like to do codec fallback if AG is the initiator\n\nsame for else part and next flag usage",
+      "range": {
+        "startLine": 237,
+        "startChar": 11,
+        "endLine": 237,
+        "endChar": 19
+      },
+      "revId": "3e13ad581cff691083f986aa081a5b7b2225128f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
