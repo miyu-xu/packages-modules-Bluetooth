@@ -78,10 +78,6 @@ namespace headset {
   { BTIF_HSAG_SERVICE_NAME, BTIF_HFAG_SERVICE_NAME }
 #endif
 
-static uint32_t get_hf_features();
-/* HF features supported at runtime */
-static uint32_t btif_hf_features = get_hf_features();
-
 #define BTIF_HF_INVALID_IDX (-1)
 
 /* Max HF clients supported from App */
@@ -149,6 +145,8 @@ static tBTA_SERVICE_MASK get_BTIF_HF_SERVICES() {
 }
 
 /* HF features supported at runtime */
+static uint32_t btif_hf_features_ = 0;
+
 static uint32_t get_hf_features() {
 #if TARGET_FLOSS
 #define DEFAULT_BTIF_HF_FEATURES                            \
@@ -161,7 +159,6 @@ static uint32_t get_hf_features() {
    BTA_AG_FEAT_CODEC | BTA_AG_FEAT_HF_IND | BTA_AG_FEAT_ESCO_S4 | \
    BTA_AG_FEAT_UNAT)
 #endif
-
   return GET_SYSPROP(Hfp, hf_features, DEFAULT_BTIF_HF_FEATURES);
 }
 
@@ -890,9 +887,9 @@ class HeadsetInterface : Interface {
 bt_status_t HeadsetInterface::Init(Callbacks* callbacks, int max_hf_clients,
                                    bool inband_ringing_enabled) {
   if (inband_ringing_enabled) {
-    btif_hf_features |= BTA_AG_FEAT_INBAND;
+    btif_hf_features_ |= BTA_AG_FEAT_INBAND;
   } else {
-    btif_hf_features &= ~BTA_AG_FEAT_INBAND;
+    btif_hf_features_ &= ~BTA_AG_FEAT_INBAND;
   }
   log::assert_that(max_hf_clients <= BTA_AG_MAX_NUM_CLIENTS,
                    "Too many HF clients, maximum is {}, was given {}",
@@ -900,7 +897,7 @@ bt_status_t HeadsetInterface::Init(Callbacks* callbacks, int max_hf_clients,
   btif_max_hf_clients = max_hf_clients;
   log::verbose(
       "btif_hf_features={}, max_hf_clients={}, inband_ringing_enabled={}",
-      btif_hf_features, btif_max_hf_clients, inband_ringing_enabled);
+      btif_hf_features_, btif_max_hf_clients, inband_ringing_enabled);
   bt_hf_callbacks = callbacks;
   for (btif_hf_cb_t& hf_cb : btif_hf_cb) {
     reset_control_block(&hf_cb);
@@ -1623,10 +1620,12 @@ bt_status_t ExecuteService(bool b_enable) {
     }
   }
   if (b_enable) {
+    btif_hf_features_ = get_hf_features();
+
     /* Enable and register with BTA-AG */
     BTA_AgEnable(bte_hf_evt);
     for (uint8_t app_id = 0; app_id < btif_max_hf_clients; app_id++) {
-      BTA_AgRegister(get_BTIF_HF_SERVICES(), btif_hf_features, service_names,
+      BTA_AgRegister(get_BTIF_HF_SERVICES(), btif_hf_features_, service_names,
                      app_id);
     }
   } else {
