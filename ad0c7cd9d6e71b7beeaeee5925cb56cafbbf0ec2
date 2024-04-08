@@ -70,6 +70,24 @@
       "parentUuid": "76647623_48194148",
       "revId": "ad0c7cd9d6e71b7beeaeee5925cb56cafbbf0ec2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0dd2383c_f9fb578a",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-04-08T07:28:02Z",
+      "side": 1,
+      "message": "Mark as resolved first. I made it more specific to the sniff subrating. Please help to review it.",
+      "parentUuid": "2a85cae5_afa20248",
+      "revId": "ad0c7cd9d6e71b7beeaeee5925cb56cafbbf0ec2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
