@@ -101,7 +101,8 @@ static void bta_dm_sdp_callback(const RawAddress& bd_addr,
 static void bta_dm_search_timer_cback(void* data);
 static bool bta_dm_read_remote_device_name(const RawAddress& bd_addr,
                                            tBT_TRANSPORT transport);
-static void bta_dm_discover_device(const RawAddress& remote_bd_addr);
+static void bta_dm_discover_name(const RawAddress& remote_bd_addr);
+static void bta_dm_discover_services(const RawAddress& remote_bd_addr);
 
 static void bta_dm_disable_search_and_disc(void);
 
@@ -363,7 +364,7 @@ static void bta_dm_discover(tBTA_DM_API_DISCOVER& discover) {
       "bta_dm_discovery: starting service discovery to {} , transport: {}",
       ADDRESS_TO_LOGGABLE_CSTR(discover.bd_addr),
       bt_transport_text(discover.transport));
-  bta_dm_discover_device(discover.bd_addr);
+  bta_dm_discover_services(discover.bd_addr);
 }
 
 /*******************************************************************************
@@ -460,11 +461,11 @@ static void bta_dm_inq_cmpl() {
   bta_dm_search_cb.p_btm_inq_info =
       get_btm_client_interface().db.BTM_InqDbFirst();
   if (bta_dm_search_cb.p_btm_inq_info != NULL) {
-    /* start name and service discovery from the first device on inquiry result
+    /* start name discovery from the first device on inquiry result
      */
     bta_dm_search_cb.name_discover_done = false;
     bta_dm_search_cb.peer_name[0] = 0;
-    bta_dm_discover_device(
+    bta_dm_discover_name(
         bta_dm_search_cb.p_btm_inq_info->results.remote_bd_addr);
   } else {
     bta_dm_search_cb.services = 0;
@@ -512,10 +513,11 @@ static void bta_dm_remote_name_cmpl(
 
   switch (bta_dm_search_get_state()) {
     case BTA_DM_SEARCH_ACTIVE:
-      bta_dm_discover_device(bta_dm_search_cb.peer_bdaddr);
+      bta_dm_discover_name(bta_dm_search_cb.peer_bdaddr);
       break;
     case BTA_DM_DISCOVER_ACTIVE:
-      bta_dm_discover_device(remote_name_msg.bd_addr);
+      /* TODO: Get rid of this case when Name and Service discovery state machines are separated */
+      bta_dm_discover_name(remote_name_msg.bd_addr);
       break;
     case BTA_DM_SEARCH_IDLE:
     case BTA_DM_SEARCH_CANCELLING:
@@ -1236,7 +1238,7 @@ static void bta_dm_discover_next_device(void) {
   if (bta_dm_search_cb.p_btm_inq_info != NULL) {
     bta_dm_search_cb.name_discover_done = false;
     bta_dm_search_cb.peer_name[0] = 0;
-    bta_dm_discover_device(
+    bta_dm_discover_name(
         bta_dm_search_cb.p_btm_inq_info->results.remote_bd_addr);
   } else {
     /* no devices, search complete */
@@ -1248,7 +1250,7 @@ static void bta_dm_discover_next_device(void) {
 
 /*******************************************************************************
  *
- * Function         bta_dm_discover_device
+ * Function         bta_dm_determine_discovery_transport
  *
  * Description      Starts name and service discovery on the device
  *
@@ -1281,7 +1283,7 @@ static tBT_TRANSPORT bta_dm_determine_discovery_transport(
   return transport;
 }
 
-static void bta_dm_discover_device(const RawAddress& remote_bd_addr) {
+static void bta_dm_discover_name(const RawAddress& remote_bd_addr) {
   const tBT_TRANSPORT transport =
       bta_dm_determine_discovery_transport(remote_bd_addr);
 
@@ -1345,6 +1347,19 @@ static void bta_dm_discover_device(const RawAddress& remote_bd_addr) {
   /* Reset transport state for next discovery */
   bta_dm_search_cb.transport = BT_TRANSPORT_AUTO;
 
+}
+
+static void bta_dm_discover_services(const RawAddress& remote_bd_addr) {
+  const tBT_TRANSPORT transport =
+      bta_dm_determine_discovery_transport(remote_bd_addr);
+
+  log::verbose("BDA: {}, transport={}, state = {}", ADDRESS_TO_LOGGABLE_STR(remote_bd_addr), transport, bta_dm_search_get_state());
+
+  bta_dm_search_cb.peer_bdaddr = remote_bd_addr;
+
+  /* Reset transport state for next discovery */
+  bta_dm_search_cb.transport = BT_TRANSPORT_AUTO;
+
   bool sdp_disable = HID_HostSDPDisable(remote_bd_addr);
   if (sdp_disable)
     log::debug("peer:{} with HIDSDPDisable attribute.",
@@ -1377,14 +1392,6 @@ static void bta_dm_discover_device(const RawAddress& remote_bd_addr) {
         else
           bta_dm_search_cb.wait_disc = true;
       }
-      if (bta_dm_search_cb.p_btm_inq_info) {
-        log::verbose(
-            "p_btm_inq_info 0x{} results.device_type 0x{:x} services_to_search "
-            "0x{:x}",
-            fmt::ptr(bta_dm_search_cb.p_btm_inq_info),
-            bta_dm_search_cb.p_btm_inq_info->results.device_type,
-            bta_dm_search_cb.services_to_search);
-      }
 
       if (transport == BT_TRANSPORT_LE) {
         if (bta_dm_search_cb.services_to_search & BTA_BLE_SERVICE_MASK) {
@@ -1406,7 +1413,7 @@ static void bta_dm_discover_device(const RawAddress& remote_bd_addr) {
     }
   }
 
-  /* name discovery and service discovery are done for this device */
+  /* service discovery is done for this device */
   auto msg = std::make_unique<tBTA_DM_MSG>(tBTA_DM_SVC_RES{});
   auto& svc_result = std::get<tBTA_DM_SVC_RES>(*msg);
 
