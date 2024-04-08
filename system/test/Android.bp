@@ -192,6 +192,7 @@ filegroup {
         ":TestMockBtaSdp",
         ":TestMockBtaSys",
         ":TestMockBtaVc",
+        "mock/mock_bta_scn.cc",
     ],
 }
 
@@ -578,6 +579,14 @@ filegroup {
     name: "TestMockGdOsLoggingLogRedaction",
     srcs: [
         "mock/mock_gd_os_logging_log_redaction.cc",
+    ],
+}
+
+filegroup {
+    name: "TestMockBtifStackManager",
+    srcs: [
+        ":TestCommonCoreInterface",
+        "mock/mock_btif_stack_manager.cc",
     ],
 }
 
