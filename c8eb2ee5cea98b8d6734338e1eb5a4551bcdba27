@@ -104,6 +104,30 @@
       },
       "revId": "c8eb2ee5cea98b8d6734338e1eb5a4551bcdba27",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3360781_741e9853",
+        "filename": "system/stack/test/gatt/stack_gatt_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-04-08T12:23:22Z",
+      "side": 1,
+      "message": "I don \u0027t think it will work due to line 126.\n\nAs mentioned in other comment, we should consider removing those test cases.",
+      "parentUuid": "403d94e9_b5650e01",
+      "range": {
+        "startLine": 132,
+        "startChar": 4,
+        "endLine": 132,
+        "endChar": 74
+      },
+      "revId": "c8eb2ee5cea98b8d6734338e1eb5a4551bcdba27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
