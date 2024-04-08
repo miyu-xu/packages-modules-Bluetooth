@@ -16,6 +16,24 @@
       "message": "Please remove the unused variable",
       "revId": "86d54f183ca86dea4cf8a081d598081d4c21126d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e822c0b9_179ce9ac",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattServerConnectWithoutScanTest.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-04-08T01:02:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10056978_ee5a6fe9",
+      "revId": "86d54f183ca86dea4cf8a081d598081d4c21126d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
