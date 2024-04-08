@@ -112,8 +112,8 @@ void BTA_DmAddBleKey(const RawAddress& bd_addr, tBTA_LE_KEY_VALUE* p_le_key,
   inc_func_call_count(__func__);
   test::mock::bta_dm_api::BTA_DmAddBleKey(bd_addr, p_le_key, key_type);
 }
-void BTA_DmAddDevice(const RawAddress& bd_addr, DEV_CLASS dev_class,
-                     const LinkKey& link_key, uint8_t key_type,
+void BTA_DmAddDevice(const RawAddress bd_addr, DEV_CLASS dev_class,
+                     const LinkKey link_key, uint8_t key_type,
                      uint8_t pin_length) {
   inc_func_call_count(__func__);
   test::mock::bta_dm_api::BTA_DmAddDevice(bd_addr, dev_class, link_key,
@@ -213,10 +213,11 @@ void BTA_DmDisconnectAllAcls() {
   inc_func_call_count(__func__);
   test::mock::bta_dm_api::BTA_DmDisconnectAllAcls();
 }
-void BTA_DmDiscover(const RawAddress& bd_addr, tBTA_DM_SEARCH_CBACK* p_cback,
+void BTA_DmDiscover(const RawAddress& bd_addr,
+                    service_discovery_callbacks cback,
                     tBT_TRANSPORT transport) {
   inc_func_call_count(__func__);
-  test::mock::bta_dm_api::BTA_DmDiscover(bd_addr, p_cback, transport);
+  test::mock::bta_dm_api::BTA_DmDiscover(bd_addr, cback, transport);
 }
 bool BTA_DmGetConnectionState(const RawAddress& bd_addr) {
   inc_func_call_count(__func__);

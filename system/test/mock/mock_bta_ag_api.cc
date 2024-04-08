@@ -74,3 +74,7 @@ bt_status_t enable_aptx_swb_codec(bool /* enable */,
   inc_func_call_count(__func__);
   return BT_STATUS_SUCCESS;
 }
+bool bta_ag_is_sco_managed_by_audio() {
+  inc_func_call_count(__func__);
+  return false;
+}
