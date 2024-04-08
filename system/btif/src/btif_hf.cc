@@ -78,9 +78,9 @@ namespace headset {
   { BTIF_HSAG_SERVICE_NAME, BTIF_HFAG_SERVICE_NAME }
 #endif
 
-static uint32_t get_hf_features();
 /* HF features supported at runtime */
-static uint32_t btif_hf_features = get_hf_features();
+static uint32_t btif_hf_features = 0;
+static bool btif_hf_features_from_property = false;
 
 #define BTIF_HF_INVALID_IDX (-1)
 
@@ -161,7 +161,7 @@ static uint32_t get_hf_features() {
    BTA_AG_FEAT_CODEC | BTA_AG_FEAT_HF_IND | BTA_AG_FEAT_ESCO_S4 | \
    BTA_AG_FEAT_UNAT)
 #endif
-
+  btif_hf_features_from_property = true;
   return GET_SYSPROP(Hfp, hf_features, DEFAULT_BTIF_HF_FEATURES);
 }
 
@@ -889,6 +889,10 @@ class HeadsetInterface : Interface {
 
 bt_status_t HeadsetInterface::Init(Callbacks* callbacks, int max_hf_clients,
                                    bool inband_ringing_enabled) {
+  if (!btif_hf_features_from_property) {
+    btif_hf_features = get_hf_features();
+  }
+
   if (inband_ringing_enabled) {
     btif_hf_features |= BTA_AG_FEAT_INBAND;
   } else {
@@ -1614,6 +1618,10 @@ bt_status_t HeadsetInterface::DebugDump() {
  *
  ******************************************************************************/
 bt_status_t ExecuteService(bool b_enable) {
+  if (!btif_hf_features_from_property) {
+    btif_hf_features = get_hf_features();
+  }
+
   log::info("service starts to: {}", b_enable ? "Initialize" : "Shutdown");
   const char* service_names_raw[] = BTIF_HF_SERVICE_NAMES;
   std::vector<std::string> service_names;
