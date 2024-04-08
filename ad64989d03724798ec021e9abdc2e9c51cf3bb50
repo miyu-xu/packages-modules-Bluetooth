@@ -1,6 +1,52 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e065828_6f57b743",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-08T22:28:50Z",
+      "side": 1,
+      "message": "Where did you encounter this failure ? I didn\u0027t find the associated bug",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 55
+      },
+      "revId": "ad64989d03724798ec021e9abdc2e9c51cf3bb50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edf40b6f_848f4af3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-08T22:28:50Z",
+      "side": 1,
+      "message": "Is this a consequence of aosp/3018571 ?",
+      "range": {
+        "startLine": 9,
+        "startChar": 168,
+        "endLine": 9,
+        "endChar": 220
+      },
+      "revId": "ad64989d03724798ec021e9abdc2e9c51cf3bb50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "88853a90_851883dd",
@@ -14,6 +60,52 @@
       "writtenOn": "2024-04-08T07:27:20Z",
       "side": 1,
       "message": "Due to aosp/3018571, `Utils.getBrEdrAddress` is now using `AdapterService.getIdentityAddress`, therefore setting the AdapterService is needed to make the test work and allow enabling the flag `identity_address_null_if_unknown`",
+      "revId": "ad64989d03724798ec021e9abdc2e9c51cf3bb50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30486fd7_a95b5866",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterPropertiesTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-08T22:28:50Z",
+      "side": 1,
+      "message": "if it is set, this need to be removed in cleanup",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 35
+      },
+      "revId": "ad64989d03724798ec021e9abdc2e9c51cf3bb50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a15fabae_e9eb0913",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterPropertiesTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-08T22:28:50Z",
+      "side": 1,
+      "message": "the adapter is injected into the properties here, it will be more reliable (especially in test) to use the one already provided instead of AdapterService.getAdapterService.",
+      "range": {
+        "startLine": 100,
+        "startChar": 51,
+        "endLine": 100,
+        "endChar": 66
+      },
       "revId": "ad64989d03724798ec021e9abdc2e9c51cf3bb50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
