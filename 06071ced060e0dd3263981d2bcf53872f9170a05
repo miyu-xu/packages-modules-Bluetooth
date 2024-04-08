@@ -34,6 +34,24 @@
       "parentUuid": "d7421183_9caaadeb",
       "revId": "06071ced060e0dd3263981d2bcf53872f9170a05",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ab3d6b3_2a3b14cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-04-08T17:27:39Z",
+      "side": 1,
+      "message": "Got it, approved! Next time you should indicate that the refactor is mechanical in the Flag stanza.",
+      "parentUuid": "3c1dd2f6_744fbd4c",
+      "revId": "06071ced060e0dd3263981d2bcf53872f9170a05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
