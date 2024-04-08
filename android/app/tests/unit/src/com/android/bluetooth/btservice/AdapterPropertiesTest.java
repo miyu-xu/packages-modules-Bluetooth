@@ -33,8 +33,10 @@ import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.MediumTest;
 import androidx.test.runner.AndroidJUnit4;
 
+import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.Utils;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -69,6 +71,8 @@ public class AdapterPropertiesTest {
         mHandlerThread = new HandlerThread("RemoteDevicesTestHandlerThread");
         mHandlerThread.start();
 
+        TestUtils.setAdapterService(mAdapterService);
+
         mBluetoothManager = mTargetContext.getSystemService(BluetoothManager.class);
         when(mAdapterService.getSystemService(Context.BLUETOOTH_SERVICE))
                 .thenReturn(mBluetoothManager);
@@ -96,6 +100,11 @@ public class AdapterPropertiesTest {
         // Must be called to initialize services
         mAdapterProperties = new AdapterProperties(mAdapterService);
         mAdapterProperties.init(mRemoteDevices);
+    }
+
+    @After
+    public void tearDown() {
+        TestUtils.clearAdapterService(mAdapterService);
     }
 
     @Test
