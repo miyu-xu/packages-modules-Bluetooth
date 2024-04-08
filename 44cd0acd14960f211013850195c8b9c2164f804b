@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b6aed24f_42d782db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-04-08T16:36:39Z",
+      "side": 1,
+      "message": "Let me answer this question first. The reason is, if the user pairs a LE device with the host address as public, then when the host address switches to RPA, the LE device will not be able to reconnect. This can also happen if a chromebook has two accounts, we need to make sure two accounts have the same address type. Otherwise, the device cannot reconnect at the login screen.",
+      "parentUuid": "084dd137_3185efba",
+      "revId": "44cd0acd14960f211013850195c8b9c2164f804b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "589a14c6_5d0d7ad7",
         "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
         "patchSetId": 4
