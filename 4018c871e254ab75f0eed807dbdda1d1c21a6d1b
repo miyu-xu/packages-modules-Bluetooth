@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df85f7e4_476c3c75",
+        "filename": "floss/pandora/server/hfp.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-04-08T01:40:33Z",
+      "side": 1,
+      "message": "This function is a no-op. Is it a mistake?",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 0
+      },
+      "revId": "4018c871e254ab75f0eed807dbdda1d1c21a6d1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
