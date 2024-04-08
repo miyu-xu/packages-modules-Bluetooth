@@ -22,6 +22,30 @@
       },
       "revId": "4018c871e254ab75f0eed807dbdda1d1c21a6d1b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7849e21f_1d2ce5d0",
+        "filename": "floss/pandora/server/hfp.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-04-08T06:55:44Z",
+      "side": 1,
+      "message": "Good catch! \nyes, it was by mistake\n\u0027pass\u0027 has no effect here, the function will run normally and execute line 36 and 37 \nI will remove it, thanks!",
+      "parentUuid": "df85f7e4_476c3c75",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 0
+      },
+      "revId": "4018c871e254ab75f0eed807dbdda1d1c21a6d1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
