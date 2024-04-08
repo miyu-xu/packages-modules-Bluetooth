@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88853a90_851883dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-04-08T07:27:20Z",
+      "side": 1,
+      "message": "Due to aosp/3018571, `Utils.getBrEdrAddress` is now using `AdapterService.getIdentityAddress`, therefore setting the AdapterService is needed to make the test work and allow enabling the flag `identity_address_null_if_unknown`",
+      "revId": "ad64989d03724798ec021e9abdc2e9c51cf3bb50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
