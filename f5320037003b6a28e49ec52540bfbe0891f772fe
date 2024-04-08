@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a2880a1_cf50cdca",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 643,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-08T17:55:23Z",
+      "side": 1,
+      "message": "nit, would this look better than duplicating the line?\n```suggestion\n                    if (!Flags.leaudioResumeActiveAfterHfpHandover() || device !\u003d null) {\n                            setLeAudioActiveDevice(null, true);\n```",
+      "revId": "f5320037003b6a28e49ec52540bfbe0891f772fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8eef950_744ce7a5",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2151,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-08T17:55:23Z",
+      "side": 1,
+      "message": "null check for leAudioService?",
+      "revId": "f5320037003b6a28e49ec52540bfbe0891f772fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
