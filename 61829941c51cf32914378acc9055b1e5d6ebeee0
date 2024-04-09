@@ -22,6 +22,30 @@
       },
       "revId": "61829941c51cf32914378acc9055b1e5d6ebeee0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e447bea_f1cdca52",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1357,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-09T10:35:19Z",
+      "side": 1,
+      "message": "Name was already passed when we received name result. This event was just to loop to next result.\n\nPlease see aosp/3033252 for more context",
+      "parentUuid": "1cf768bb_82b07e79",
+      "range": {
+        "startLine": 1351,
+        "startChar": 0,
+        "endLine": 1357,
+        "endChar": 52
+      },
+      "revId": "61829941c51cf32914378acc9055b1e5d6ebeee0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
