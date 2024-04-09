@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c1e5ae59_ed71fbf2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-04-09T01:07:51Z",
+      "side": 1,
+      "message": "I encountered this test failure in https://googleplex-android-review.git.corp.google.com/c/platform/vendor/google/release/+/26777993 which was automatically created when I was advancing flag `identity_address_null_if_unknown` to staging. The flag couldn\u0027t advance due to this failure.",
+      "parentUuid": "38c7f0e7_0207d0fc",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 55
+      },
+      "revId": "ad64989d03724798ec021e9abdc2e9c51cf3bb50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "edf40b6f_848f4af3",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -153,6 +177,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b543d90_238ab569",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterPropertiesTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-04-09T01:07:51Z",
+      "side": 1,
+      "message": "Added removal in cleanup",
+      "parentUuid": "30486fd7_a95b5866",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 35
+      },
+      "revId": "ad64989d03724798ec021e9abdc2e9c51cf3bb50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a15fabae_e9eb0913",
@@ -166,6 +214,30 @@
       "writtenOn": "2024-04-08T22:28:50Z",
       "side": 1,
       "message": "the adapter is injected into the properties here, it will be more reliable (especially in test) to use the one already provided instead of AdapterService.getAdapterService.",
+      "range": {
+        "startLine": 100,
+        "startChar": 51,
+        "endLine": 100,
+        "endChar": 66
+      },
+      "revId": "ad64989d03724798ec021e9abdc2e9c51cf3bb50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cac5eba_e0f3daf9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterPropertiesTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-04-09T01:07:51Z",
+      "side": 1,
+      "message": "I see. So based on your other comment \u0027Can we implement a Utils.getBrEdrAddress that take a AdapterService in parameter instead ?\u0027, would it be better to implement that new `Utils.getBrEdrAddress` that takes in an AdapterService and use it with the AdapterService provided within AdapterProperties?",
+      "parentUuid": "a15fabae_e9eb0913",
       "range": {
         "startLine": 100,
         "startChar": 51,
