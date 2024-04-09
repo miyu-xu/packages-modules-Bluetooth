@@ -81,9 +81,17 @@ public class BrowseTree {
                     .setUuid(ROOT).setTitle(ROOT).setBrowsable(true).build());
             mRootNode.setCached(true);
         } else {
-            mRootNode = new BrowseNode(new AvrcpItem.Builder().setDevice(device)
-                    .setUuid(ROOT + device.getAddress().toString())
-                    .setTitle(Utils.getName(device)).setBrowsable(true).build());
+            mRootNode =
+                    new BrowseNode(
+                            new AvrcpItem.Builder()
+                                    .setDevice(device)
+                                    .setUuid(
+                                            ROOT
+                                                    + device.getAddress().toString()
+                                                    + UUID.randomUUID().toString())
+                                    .setTitle(Utils.getName(device))
+                                    .setBrowsable(true)
+                                    .build());
         }
 
         mRootNode.mBrowseScope = AvrcpControllerService.BROWSE_SCOPE_PLAYER_LIST;
@@ -101,6 +109,7 @@ public class BrowseTree {
         mBrowseMap.put(NOW_PLAYING_PREFIX, mNowPlayingNode);
 
         mCurrentBrowseNode = mRootNode;
+
     }
 
     public void clear() {

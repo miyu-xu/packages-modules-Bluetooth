@@ -90,6 +90,17 @@ public class BrowseTreeTest {
     }
 
     @Test
+    public void sameDeviceDifferentBrowseTrees_uniqueMediaIds() {
+        BrowseTree browseTree1 = new BrowseTree(mTestDevice);
+        BrowseTree browseTree2 = new BrowseTree(mTestDevice);
+
+        String mediaId1 = browseTree1.mRootNode.getID();
+        String mediaId2 = browseTree2.mRootNode.getID();
+
+        assertThat(mediaId1).isNotEqualTo(mediaId2);
+    }
+
+    @Test
     public void findBrowseNodeByIDForRoot() {
         BrowseTree browseTree = new BrowseTree(null);
         assertThat(browseTree.findBrowseNodeByID(BrowseTree.ROOT)).isEqualTo(browseTree.mRootNode);
@@ -98,7 +109,7 @@ public class BrowseTreeTest {
     @Test
     public void findBrowseNodeByIDForDevice() {
         BrowseTree browseTree = new BrowseTree(mTestDevice);
-        final String deviceId = BrowseTree.ROOT + mTestDevice.getAddress().toString();
+        final String deviceId = browseTree.mRootNode.getID();
         assertThat(browseTree.findBrowseNodeByID(deviceId)).isEqualTo(browseTree.mRootNode);
     }
 
