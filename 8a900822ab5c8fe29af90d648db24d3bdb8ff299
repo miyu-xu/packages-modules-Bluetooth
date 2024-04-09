@@ -16,6 +16,74 @@
       "message": "This lgtm, giving a bit more time to @rlukasz@google.com to review as well, since he was the original author of this logic.\nYou put a different account :p.",
       "revId": "8a900822ab5c8fe29af90d648db24d3bdb8ff299",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "271b6d07_d5cc00e8",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-04-09T21:20:59Z",
+      "side": 1,
+      "message": "nit: maybe you could  use more elaborate name:  mLeAudioDeviceInactivatedForHfpHandover ?",
+      "revId": "8a900822ab5c8fe29af90d648db24d3bdb8ff299",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c92b9056_e12dee2e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3520,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-04-09T21:20:59Z",
+      "side": 1,
+      "message": "mDeviceHandoverFromHfp \u003d mExposedActiveDevice;",
+      "revId": "8a900822ab5c8fe29af90d648db24d3bdb8ff299",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3846b3d4_1ffb081c",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3535,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-04-09T21:20:59Z",
+      "side": 1,
+      "message": "what should happen if during the call user will switch back to LeAudio headset?",
+      "revId": "8a900822ab5c8fe29af90d648db24d3bdb8ff299",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2aa1b07a_82d13e3e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 4802,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-04-09T21:20:59Z",
+      "side": 1,
+      "message": "can we print new device here?",
+      "revId": "8a900822ab5c8fe29af90d648db24d3bdb8ff299",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
