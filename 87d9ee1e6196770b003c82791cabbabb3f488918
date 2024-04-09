@@ -22,6 +22,30 @@
       },
       "revId": "87d9ee1e6196770b003c82791cabbabb3f488918",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4267629_dfb822b8",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 862,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-09T07:28:19Z",
+      "side": 1,
+      "message": "Thank you Yuyang for suggestion. I used here BluetoothMethodProxy to make this call mockable. Would be it possible with you suggestion to mock this ?",
+      "parentUuid": "35ff5894_610ba297",
+      "range": {
+        "startLine": 861,
+        "startChar": 20,
+        "endLine": 862,
+        "endChar": 60
+      },
+      "revId": "87d9ee1e6196770b003c82791cabbabb3f488918",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
