@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e1f7993_4091f4a6",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 890,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-09T04:14:27Z",
+      "side": 1,
+      "message": "set here on value that is 0, aka this line does nothing",
+      "range": {
+        "startLine": 890,
+        "startChar": 0,
+        "endLine": 890,
+        "endChar": 44
+      },
+      "revId": "26e2a77f133d0a8518a5214c8dfa4a1e91fd58db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5c77c16_38934750",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 910,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-09T04:14:27Z",
+      "side": 1,
+      "message": "call to the executeService that will erase any data set",
+      "range": {
+        "startLine": 910,
+        "startChar": 0,
+        "endLine": 910,
+        "endChar": 44
+      },
+      "revId": "26e2a77f133d0a8518a5214c8dfa4a1e91fd58db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fe66c05_d7617545",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1623,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-09T04:14:27Z",
+      "side": 1,
+      "message": "erase anything set previously",
+      "range": {
+        "startLine": 1623,
+        "startChar": 0,
+        "endLine": 1623,
+        "endChar": 42
+      },
+      "revId": "26e2a77f133d0a8518a5214c8dfa4a1e91fd58db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

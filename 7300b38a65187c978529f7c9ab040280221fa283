@@ -118,6 +118,30 @@
       },
       "revId": "7300b38a65187c978529f7c9ab040280221fa283",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd340b34_64ee75be",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1622,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-09T04:14:27Z",
+      "side": 1,
+      "message": "I don\u0027t understand your message.\n\nInit is called first, there is no native available before init. How can you call it before ?",
+      "parentUuid": "cb0b27e4_fd0a9bee",
+      "range": {
+        "startLine": 1622,
+        "startChar": 0,
+        "endLine": 1622,
+        "endChar": 41
+      },
+      "revId": "7300b38a65187c978529f7c9ab040280221fa283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
