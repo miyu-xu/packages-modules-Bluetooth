@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "200e432d_5fcc166e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1011,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-09T20:27:56Z",
+      "side": 1,
+      "message": "nit: Understand we\u0027re just copying the original logic into this function. Just to mention this if it makes sense to you, similar concern was raised by @belusiak@google.com recently. Do we really need to throw exception here or just return with some error status? \n\n```suggestion\n            Log.e(TAG, \"modifySource: source operation already pending\");\n            return BluetoothStatusCodes.ERROR_GATT_WRITE_REQUEST_BUSY(or something);\n```",
+      "revId": "31f846a72ee99bc75c7942fc0b3dba3de51497f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e5d9d67_4a38a40b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1529,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-09T20:27:56Z",
+      "side": 1,
+      "message": "Could you help me to understand a bit more why we need this isPlaying check here?\nAs I understand, we don\u0027t have such use case like audio sharing is ongoing and we\u0027re adding new source.",
+      "revId": "31f846a72ee99bc75c7942fc0b3dba3de51497f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0e5b60f_77503d91",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1779,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-09T20:27:56Z",
+      "side": 1,
+      "message": "should we update this as well?\n```suggestion\n                message.arg2 \u003d BassConstants.PA_SYNC_DO_NOT_SYNC;\n```",
+      "revId": "31f846a72ee99bc75c7942fc0b3dba3de51497f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aefa500b_d3a920e5",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2111,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-09T20:27:56Z",
+      "side": 1,
+      "message": "should we flag this as well?",
+      "revId": "31f846a72ee99bc75c7942fc0b3dba3de51497f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d538ab0e_48595ada",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2174,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-09T20:27:56Z",
+      "side": 1,
+      "message": "should we keep null check if flag is disabled?\n        \n```suggestion\n            if (metadata !\u003d null) {\n                addSource(sink, metadata, false);\n            }\n```",
+      "revId": "31f846a72ee99bc75c7942fc0b3dba3de51497f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
