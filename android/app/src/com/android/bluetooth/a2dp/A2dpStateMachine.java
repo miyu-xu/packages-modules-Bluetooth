@@ -136,7 +136,7 @@ final class A2dpStateMachine extends StateMachine {
     public void doQuit() {
         log("doQuit for device " + mDevice);
         if (mIsPlaying) {
-            // Stop if auido is still playing
+            // Stop if audio is still playing
             log("doQuit: stopped playing " + mDevice);
             mIsPlaying = false;
             broadcastAudioState(BluetoothA2dp.STATE_NOT_PLAYING,
