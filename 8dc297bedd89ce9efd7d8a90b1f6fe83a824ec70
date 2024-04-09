@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5454c15_a3bc3554",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-04-09T01:40:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40a84178_79c85e1c",
+      "revId": "8dc297bedd89ce9efd7d8a90b1f6fe83a824ec70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd4d24b5_ba392686",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-04-08T19:41:51Z",
       "side": 1,
       "message": "doesn\u0027t permissions include key size?",
+      "revId": "8dc297bedd89ce9efd7d8a90b1f6fe83a824ec70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3aaa6871_9951744e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 820,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-04-09T01:40:10Z",
+      "side": 1,
+      "message": "The key size should remain encoded within the permissions as per Android\u0027s implementation (https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/gatt/GattService.java;l\u003d2427). This should not affect actual permission settings, since the key size is encoded within reserved bits.",
+      "parentUuid": "bd4d24b5_ba392686",
       "revId": "8dc297bedd89ce9efd7d8a90b1f6fe83a824ec70",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
