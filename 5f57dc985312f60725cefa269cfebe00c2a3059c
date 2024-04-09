@@ -33,6 +33,23 @@
       "message": "in commit message, based on [here](https://g3doc.corp.google.com/company/teams/android-bluetooth/contribution-guide/create-a-flag.md#create-a-aconfig-flag), please add `Bug: 315241296` same for other flags",
       "revId": "5f57dc985312f60725cefa269cfebe00c2a3059c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b8072c1_20073a8c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-09T00:20:12Z",
+      "side": 1,
+      "message": "another question, do 3 flags independent to each other? or have dependency? or mutual dependency?",
+      "revId": "5f57dc985312f60725cefa269cfebe00c2a3059c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
