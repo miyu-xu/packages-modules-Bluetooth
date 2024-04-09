@@ -22,6 +22,30 @@
       },
       "revId": "68cf8e408f6df12902e350549871bfa7c3185395",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da9f5087_da74f688",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2164,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-04-09T06:03:14Z",
+      "side": 1,
+      "message": "\u003e So if the client calls with specified settings, the quirk will be ignored?\n\u003e \n\u003e Is our clients currently call with settings?\n\nYes the quirk would be ignored if the client explicitly specifies it.\n\nCurrently Chrome is not passing the settings at all; The BluetoothLowEnergyScan API doesn\u0027t allow the caller to do it actually.",
+      "parentUuid": "211a36da_18075ef2",
+      "range": {
+        "startLine": 2164,
+        "startChar": 32,
+        "endLine": 2164,
+        "endChar": 46
+      },
+      "revId": "68cf8e408f6df12902e350549871bfa7c3185395",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
