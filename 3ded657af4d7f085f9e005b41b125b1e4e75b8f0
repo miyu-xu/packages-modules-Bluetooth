@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd8360ec_cfbc55c0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-09T17:58:50Z",
+      "side": 1,
+      "message": "b/316005152 is launched to nextfood now. Let\u0027s avoid using it for flagging in commit message.\n\nIf you\u0027d like to flag this change, we can use Bug: 333050419 in the commit message and flag the code here.\nOr we can remove Bug: 316005152 and ask for Dr.No considering this is just small refactor and no logical impact in this change.",
+      "revId": "3ded657af4d7f085f9e005b41b125b1e4e75b8f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc702783_be7134de",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1578,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-09T17:58:50Z",
+      "side": 1,
+      "message": "Those are defined in the next CL, should we moving the BassConstants to this CL?\n\n    // PA_Sync parameter value\n    public static final int PA_SYNC_DO_NOT_SYNC \u003d 0x00;\n    public static final int PA_SYNC_PAST_AVAILABLE \u003d 0x01;\n    public static final int PA_SYNC_PAST_NOT_AVAILABLE \u003d 0x02;",
+      "revId": "3ded657af4d7f085f9e005b41b125b1e4e75b8f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8d09557_2674122f",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1587,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-09T17:58:50Z",
+      "side": 1,
+      "message": "Move this ++ out of this? recvStateIndex++\n\nOr why not just keep using \u0027i\u0027 and use it to get the subgroup? this can also avoid adding extra recvStateIndex.\n        for (int i \u003d 0; i \u003c numSubGroups; i++) {\n        ...\n        bisIndexValue \u003d getBisSyncFromChannelPreference(subGroups.get(i).getChannels());\n        ...",
+      "revId": "3ded657af4d7f085f9e005b41b125b1e4e75b8f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
