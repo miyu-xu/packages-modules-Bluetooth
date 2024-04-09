@@ -16,6 +16,29 @@
       "message": "It was an odd data structure that acted as a boolean",
       "revId": "548a217fa3795f6cff303e2c9b27b16fab4b1dcf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ce8726b_f1b5fa42",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 941,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-09T04:20:46Z",
+      "side": 1,
+      "message": "nit: log info in next patch",
+      "range": {
+        "startLine": 941,
+        "startChar": 7,
+        "endLine": 941,
+        "endChar": 14
+      },
+      "revId": "548a217fa3795f6cff303e2c9b27b16fab4b1dcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

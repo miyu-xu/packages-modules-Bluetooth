@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8596f1dd_d611deb9",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 934,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-09T04:20:46Z",
+      "side": 0,
+      "message": "```\n#define BTA_BLE_SERVICE_MASK 0x40000000  /* GATT based service */\n#define BTA_ALL_SERVICE_MASK 0x7FFFFFFF  /* All services supported by BTA. */\n#define BTA_USER_SERVICE_MASK 0x80000000 /* Message Notification Profile */\n```\n\n`(0x7FFFFFFF | 0x80000000) \u0026 0x40000000` \u003d 0x7FFFFFFF\n\n`0x7FFFFFFF \u0026 0x7FFFFFFF` \u003d `0x7FFFFFFF` \u003d\u003d `true`",
+      "range": {
+        "startLine": 933,
+        "startChar": 0,
+        "endLine": 934,
+        "endChar": 55
+      },
+      "revId": "c43974cfdf81535803c97c292598f46197ac6206",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
