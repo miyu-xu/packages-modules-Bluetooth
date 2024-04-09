@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72f76ebb_15e3348f",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 947,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-09T08:59:05Z",
+      "side": 0,
+      "message": "Note for reviewers: this is still called in bta_dm_disc_result , in case service discovery and device search are performed simulteanously.",
+      "range": {
+        "startLine": 945,
+        "startChar": 5,
+        "endLine": 947,
+        "endChar": 24
+      },
+      "revId": "6b44dd9adb09e66d76cff3e7e983444852d94544",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
