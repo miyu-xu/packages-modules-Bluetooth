@@ -106,6 +106,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "414b8395_51f3ad26",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassConstants.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-09T14:25:40Z",
+      "side": 1,
+      "message": "I think you suggestion make sense. As long as it\u0027s totally out of possible specification scope (one byte) it can work.\n\nUploaded here, possible solution with suggested change - PTAL:\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3033753/",
+      "parentUuid": "4b70e809_db340dcb",
+      "revId": "1a409fcf7ae3438f94969f1046d181c0a8223005",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "63dffb6f_5295008a",
