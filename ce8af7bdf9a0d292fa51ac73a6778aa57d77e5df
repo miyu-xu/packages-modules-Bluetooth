@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c74a49a2_5347ff7e",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-09T23:47:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1736ddc_16173aca",
+      "revId": "ce8af7bdf9a0d292fa51ac73a6778aa57d77e5df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ae482411_cb326f9f",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b879a5d_9918c518",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-09T23:47:17Z",
+      "side": 1,
+      "message": "I have another CL for that...HAL_CBACK is a general use macro used throughout btif for a variety of callbacks (a2dp, etc.)",
+      "parentUuid": "ae482411_cb326f9f",
+      "range": {
+        "startLine": 639,
+        "startChar": 31,
+        "endLine": 639,
+        "endChar": 40
+      },
+      "revId": "ce8af7bdf9a0d292fa51ac73a6778aa57d77e5df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b73103aa_c4e1f77a",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-04-07T03:57:51Z",
       "side": 1,
       "message": "nit: Can we add an log::info unknown after the case?\n```suggestion\n  return fmt::format(\"Unknown device discovery state({:x})\", static_cast\u003cuint64\u003e(state));\n}\n```",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 1
+      },
+      "revId": "ce8af7bdf9a0d292fa51ac73a6778aa57d77e5df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d74bd1d9_f31cb0c8",
+        "filename": "system/gd/discovery/device/manager.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-09T23:47:17Z",
+      "side": 1,
+      "message": "But this is an enum class and would never trigger ?",
+      "parentUuid": "b73103aa_c4e1f77a",
       "range": {
         "startLine": 53,
         "startChar": 0,
