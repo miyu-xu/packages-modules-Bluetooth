@@ -94,6 +94,30 @@
       },
       "revId": "68cf8e408f6df12902e350549871bfa7c3185395",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75975254_7769680f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2164,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-04-09T06:18:03Z",
+      "side": 1,
+      "message": "I agree. \n\nBut that is not what your comment described. \"Offloaded filtering + Active scan is broken on some QCA chips\" means the scan operation is broken. \n\nUpdate the comment please.",
+      "parentUuid": "002e6e2f_3947249e",
+      "range": {
+        "startLine": 2164,
+        "startChar": 32,
+        "endLine": 2164,
+        "endChar": 46
+      },
+      "revId": "68cf8e408f6df12902e350549871bfa7c3185395",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
