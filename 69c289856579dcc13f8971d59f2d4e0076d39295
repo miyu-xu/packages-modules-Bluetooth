@@ -45,6 +45,40 @@
       },
       "revId": "69c289856579dcc13f8971d59f2d4e0076d39295",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db726eab_d27c9c32",
+        "filename": "system/gd/rust/topshim/src/profiles/le_audio.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2024-04-09T10:28:46Z",
+      "side": 1,
+      "message": "Please add a safety comment explaining why this is valid.",
+      "revId": "69c289856579dcc13f8971d59f2d4e0076d39295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42e9e065_bec6d37f",
+        "filename": "system/gd/rust/topshim/src/profiles/le_audio.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2024-04-09T10:28:46Z",
+      "side": 1,
+      "message": "Please add a safety comment. See http://go/android-rust-style#unsafe.",
+      "revId": "69c289856579dcc13f8971d59f2d4e0076d39295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
