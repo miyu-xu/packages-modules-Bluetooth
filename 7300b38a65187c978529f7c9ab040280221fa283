@@ -94,6 +94,30 @@
       },
       "revId": "7300b38a65187c978529f7c9ab040280221fa283",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb0b27e4_fd0a9bee",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1622,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-09T01:52:26Z",
+      "side": 1,
+      "message": "totally agreed...I just did a tour myself...\n\nThe problem is that the hf interface, in theory, could be accessed before `init`, but practically it should not.  This would be the `Interface` profile access that would miss the service start.",
+      "parentUuid": "7865d44d_190f06e4",
+      "range": {
+        "startLine": 1622,
+        "startChar": 0,
+        "endLine": 1622,
+        "endChar": 41
+      },
+      "revId": "7300b38a65187c978529f7c9ab040280221fa283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
