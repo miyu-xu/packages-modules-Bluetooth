@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5a4f9a1_cfd68d1e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-09T01:30:06Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c1e5ae59_ed71fbf2",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 55
+      },
+      "revId": "ad64989d03724798ec021e9abdc2e9c51cf3bb50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "edf40b6f_848f4af3",
@@ -238,6 +262,30 @@
       "side": 1,
       "message": "I see. So based on your other comment \u0027Can we implement a Utils.getBrEdrAddress that take a AdapterService in parameter instead ?\u0027, would it be better to implement that new `Utils.getBrEdrAddress` that takes in an AdapterService and use it with the AdapterService provided within AdapterProperties?",
       "parentUuid": "a15fabae_e9eb0913",
+      "range": {
+        "startLine": 100,
+        "startChar": 51,
+        "endLine": 100,
+        "endChar": 66
+      },
+      "revId": "ad64989d03724798ec021e9abdc2e9c51cf3bb50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a775ee8_cca8bfed",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterPropertiesTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-09T01:30:06Z",
+      "side": 1,
+      "message": "Yeah, I think so.",
+      "parentUuid": "6cac5eba_e0f3daf9",
       "range": {
         "startLine": 100,
         "startChar": 51,
