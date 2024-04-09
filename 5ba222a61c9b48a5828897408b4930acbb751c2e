@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4e25b67_95fef356",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-04-09T01:39:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e12802c_d3b873ed",
+      "revId": "5ba222a61c9b48a5828897408b4930acbb751c2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "585988b6_9f4f1305",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "078ace00_14148366",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 871,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-04-09T01:39:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "585988b6_9f4f1305",
+      "revId": "5ba222a61c9b48a5828897408b4930acbb751c2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7fd3ab75_4fab366e",
@@ -48,6 +84,24 @@
       "writtenOn": "2024-04-08T19:38:07Z",
       "side": 1,
       "message": "where does this math come from?",
+      "revId": "5ba222a61c9b48a5828897408b4930acbb751c2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2a1a1cf_da297d78",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 896,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-04-09T01:39:57Z",
+      "side": 1,
+      "message": "I wrote this to align with Android (https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/gatt/GattService.java;l\u003d2772). I believe subtracting by 7 (to get 9) allows the key size to be stored within the reserved bits of the permissions field, though I\u0027m not sure exactly why it\u0027s done this way.",
+      "parentUuid": "7fd3ab75_4fab366e",
       "revId": "5ba222a61c9b48a5828897408b4930acbb751c2e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
