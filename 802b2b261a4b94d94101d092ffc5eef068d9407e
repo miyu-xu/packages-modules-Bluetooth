@@ -16,6 +16,29 @@
       "message": "actually, I am thinking, as current lines do not have logical impact, then what if we remove current lines? Will that still work for floss pts test?",
       "revId": "802b2b261a4b94d94101d092ffc5eef068d9407e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e9e585c_eb0682f5",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-09T00:42:29Z",
+      "side": 1,
+      "message": "this line\u0027s cast is wrong, it is not `tSCO_STATE`, but `tBTA_AG_SCO`, I will fix it separately",
+      "range": {
+        "startLine": 197,
+        "startChar": 40,
+        "endLine": 197,
+        "endChar": 50
+      },
+      "revId": "802b2b261a4b94d94101d092ffc5eef068d9407e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
