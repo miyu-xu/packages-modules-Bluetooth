@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4344267f_57908fae",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-09T22:14:48Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "271b6d07_d5cc00e8",
+      "revId": "8a900822ab5c8fe29af90d648db24d3bdb8ff299",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c92b9056_e12dee2e",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 5
@@ -48,6 +66,24 @@
       "writtenOn": "2024-04-09T21:20:59Z",
       "side": 1,
       "message": "mDeviceHandoverFromHfp \u003d mExposedActiveDevice;",
+      "revId": "8a900822ab5c8fe29af90d648db24d3bdb8ff299",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f454103_3b62be46",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3520,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-09T22:14:48Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c92b9056_e12dee2e",
       "revId": "8a900822ab5c8fe29af90d648db24d3bdb8ff299",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -71,6 +107,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "31735ed2_132a1c25",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3535,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-09T22:14:48Z",
+      "side": 1,
+      "message": "it will also be triggered because SCO is going from connected to disconnected state.  \nThat\u0027s the reason I resume active device in `HeadsetService#onAudioStateChangedFromStateMachine`, not in `phoneStateChanged` or `inCallService`.",
+      "parentUuid": "3846b3d4_1ffb081c",
+      "revId": "8a900822ab5c8fe29af90d648db24d3bdb8ff299",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2aa1b07a_82d13e3e",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 5
@@ -82,6 +136,24 @@
       "writtenOn": "2024-04-09T21:20:59Z",
       "side": 1,
       "message": "can we print new device here?",
+      "revId": "8a900822ab5c8fe29af90d648db24d3bdb8ff299",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4f5b20d_70d57549",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 4802,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-09T22:14:48Z",
+      "side": 1,
+      "message": "Sure",
+      "parentUuid": "2aa1b07a_82d13e3e",
       "revId": "8a900822ab5c8fe29af90d648db24d3bdb8ff299",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
