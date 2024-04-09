@@ -22,6 +22,30 @@
       },
       "revId": "3e13ad581cff691083f986aa081a5b7b2225128f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6068801f_c46b33a3",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-04-09T03:54:54Z",
+      "side": 1,
+      "message": "the logic here is to check the connection is local only if the flag is enabled, i.e. skip the check if the flag is not enabled. It would be more clear to see why I put `false ||` here if you look at the non-floss case below.",
+      "parentUuid": "cb1d402a_c2f5fa1f",
+      "range": {
+        "startLine": 237,
+        "startChar": 11,
+        "endLine": 237,
+        "endChar": 19
+      },
+      "revId": "3e13ad581cff691083f986aa081a5b7b2225128f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
