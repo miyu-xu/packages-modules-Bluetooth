@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9bcfdcd_c894263d",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-09T04:20:34Z",
+      "side": 1,
+      "message": "I would prefer to consider that the service cannot be null in this case.\nSince it is provided by the caller.",
+      "range": {
+        "startLine": 249,
+        "startChar": 26,
+        "endLine": 249,
+        "endChar": 43
+      },
+      "revId": "a91a435e19e73a3f7f138d0fd1b1c1c578232e77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
