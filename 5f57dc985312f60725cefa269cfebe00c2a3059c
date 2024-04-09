@@ -50,6 +50,24 @@
       "message": "another question, do 3 flags independent to each other? or have dependency? or mutual dependency?",
       "revId": "5f57dc985312f60725cefa269cfebe00c2a3059c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee217647_c3d4eaff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-04-09T04:05:16Z",
+      "side": 1,
+      "message": "They can be enabled separately but with certain dependency. \n\nThe flag `restrict_pkt_types_on_higher_settings` and `fix_sco_state_on_retry` have their own effects.\n\nEnabling `restrict_pkt_types_on_higher_settings` could result in different SCO settings and possibly causing some failure on headsets with only CVSD S1 capable.\n\nEnabling `fix_sco_state_on_retry` has unknown effects but the code is obviously a bug. IMO, we should fix further issues caused by this fix.\n\nThe flag `fix_cvsd_safe_setting_fallback` only takes effect when both `restrict_pkt_types_on_higher_settings` and `fix_sco_state_on_retry` are enabled.",
+      "parentUuid": "2b8072c1_20073a8c",
+      "revId": "5f57dc985312f60725cefa269cfebe00c2a3059c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
