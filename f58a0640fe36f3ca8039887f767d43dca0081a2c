@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3ff3b7e_526ecdf2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1003,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-09T10:07:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e15bc13_ee838991",
+      "revId": "f58a0640fe36f3ca8039887f767d43dca0081a2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ae419d0_05d9606f",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-04-01T13:46:23Z",
       "side": 1,
       "message": "ditto",
+      "revId": "f58a0640fe36f3ca8039887f767d43dca0081a2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2e3e3e5_864e1152",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1015,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-09T10:07:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ae419d0_05d9606f",
       "revId": "f58a0640fe36f3ca8039887f767d43dca0081a2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbd537a8_17b1f745",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1032,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-09T10:07:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5084439_0d146c72",
+      "revId": "f58a0640fe36f3ca8039887f767d43dca0081a2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "296396a9_fc866138",
@@ -69,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af02cac3_60ebcf20",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1034,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-09T10:07:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "296396a9_fc866138",
+      "revId": "f58a0640fe36f3ca8039887f767d43dca0081a2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1cb0c2ae_7a58b1b6",
@@ -82,6 +154,30 @@
       "writtenOn": "2024-04-01T13:46:23Z",
       "side": 1,
       "message": "nit\n```suggestion\n    fn uhid_send_answer_call_input_report(\u0026mut self, addr: \u0026RawAddress) {\n```",
+      "range": {
+        "startLine": 1208,
+        "startChar": 29,
+        "endLine": 1208,
+        "endChar": 35
+      },
+      "revId": "f58a0640fe36f3ca8039887f767d43dca0081a2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8bdce15_75fd8d57",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1208,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-09T10:07:52Z",
+      "side": 1,
+      "message": "Not longer need this function.",
+      "parentUuid": "1cb0c2ae_7a58b1b6",
       "range": {
         "startLine": 1208,
         "startChar": 29,
@@ -115,6 +211,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e328e423_f896b16f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1231,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-09T10:07:52Z",
+      "side": 1,
+      "message": "Not longer need this function.",
+      "parentUuid": "67066b3a_ba2691e1",
+      "range": {
+        "startLine": 1231,
+        "startChar": 28,
+        "endLine": 1231,
+        "endChar": 29
+      },
+      "revId": "f58a0640fe36f3ca8039887f767d43dca0081a2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "596f4eb5_d0be5f64",
@@ -132,6 +252,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80625493_5651a4db",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1236,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-09T10:07:52Z",
+      "side": 1,
+      "message": "This is not clear enough here. Not longer need this function so close this comment.",
+      "parentUuid": "596f4eb5_d0be5f64",
+      "revId": "f58a0640fe36f3ca8039887f767d43dca0081a2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a22f3d44_01ea5754",
@@ -145,6 +283,30 @@
       "writtenOn": "2024-04-01T13:46:23Z",
       "side": 1,
       "message": "This function is a bit awkward. It\u0027s currently used in 3 places:\n* send mute\n* send unmute\n* send active call (in `dispatch_uhid_hfp_output_callback`)\n\nHowever, \"send active call\" behaves exactly the same as `uhid_send_answer_call_report`. So how about to do this instead:\n* `uhid_send_phone_mute_input_report(\u0026mut self, addr: \u0026RawAddress, muted: bool)`: use in `MicVolumeUpdate`\n* `uhid_send_hook_switch_input_report(\u0026mut self, addr: \u0026RawAddress, hook: bool)`: use in `Answer`/`HangupCall` and `dispatch_uhid_hfp_output_callback`\n\nFor send_phone_mute, it should keep the hook switch bit based on `self.phone_state.num_active`. Similarly, send_hook_switch should keep the mute bit based on `uhid.muted`.",
+      "range": {
+        "startLine": 1250,
+        "startChar": 7,
+        "endLine": 1250,
+        "endChar": 48
+      },
+      "revId": "f58a0640fe36f3ca8039887f767d43dca0081a2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3d49dc4_c9ac1f3f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1250,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-09T10:07:52Z",
+      "side": 1,
+      "message": "I feel like this is way more better to understand. Thanks for advise.",
+      "parentUuid": "a22f3d44_01ea5754",
       "range": {
         "startLine": 1250,
         "startChar": 7,
