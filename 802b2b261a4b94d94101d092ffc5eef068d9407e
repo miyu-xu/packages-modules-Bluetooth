@@ -39,6 +39,29 @@
       },
       "revId": "802b2b261a4b94d94101d092ffc5eef068d9407e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce3b7282_7eeae3eb",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-09T00:46:45Z",
+      "side": 1,
+      "message": "I find a bugreport that has codec fallback. In [this](https://android-bug-tool.corp.google.com/bug_tool?issue\u003d306664551\u0026attachments\u003d48378006\u0026section\u003dBUG%2CPersistent+Logcat\u0026vo\u003d-4\u0026sl\u003d7329\u0026cl\u003d7351\u0026ss\u003dChYKEFNDT19zdGF0ZV9jaGFuZ2UQAyACCg8KB3Njb19pZHgQARgBIAI), I find at this stage, the `state` is in `BTA_AG_SCO_OPEN_ST`. If we directly move it to `BTA_AG_SCO_CODEC_ST`, then there might be potential issues",
+      "range": {
+        "startLine": 241,
+        "startChar": 32,
+        "endLine": 241,
+        "endChar": 51
+      },
+      "revId": "802b2b261a4b94d94101d092ffc5eef068d9407e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
