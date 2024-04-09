@@ -39,6 +39,30 @@
       },
       "revId": "548a217fa3795f6cff303e2c9b27b16fab4b1dcf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c70b0b86_ace55821",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 941,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-09T07:10:02Z",
+      "side": 1,
+      "message": "This method will be gone in 3-4 patches.",
+      "parentUuid": "5ce8726b_f1b5fa42",
+      "range": {
+        "startLine": 941,
+        "startChar": 7,
+        "endLine": 941,
+        "endChar": 14
+      },
+      "revId": "548a217fa3795f6cff303e2c9b27b16fab4b1dcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
