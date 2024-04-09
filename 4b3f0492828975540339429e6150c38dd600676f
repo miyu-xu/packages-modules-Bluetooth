@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c9e705dc_1bd75c89",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-04-09T03:56:00Z",
+      "side": 1,
+      "message": "Acked. Will modify it accordingly.",
+      "parentUuid": "7b0b60b7_0caa8105",
+      "revId": "4b3f0492828975540339429e6150c38dd600676f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9d066d9a_a8e787f5",
         "filename": "system/bta/ag/bta_ag_sco.cc",
         "patchSetId": 10
@@ -31,6 +49,30 @@
       "writtenOn": "2024-04-09T00:43:44Z",
       "side": 1,
       "message": "this is the place for using same codec, but with different `retransmission_effort` to retry. So might not be suitable for codec fallback.\n\nYou can move this part above, after the msbc codec fallback.",
+      "range": {
+        "startLine": 298,
+        "startChar": 0,
+        "endLine": 302,
+        "endChar": 6
+      },
+      "revId": "4b3f0492828975540339429e6150c38dd600676f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40530a6b_b789c34b",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-04-09T03:56:00Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9d066d9a_a8e787f5",
       "range": {
         "startLine": 298,
         "startChar": 0,
@@ -54,6 +96,30 @@
       "writtenOn": "2024-04-09T00:43:44Z",
       "side": 1,
       "message": "I am wondering do we need this, as other codec does not require this",
+      "range": {
+        "startLine": 1609,
+        "startChar": 66,
+        "endLine": 1610,
+        "endChar": 50
+      },
+      "revId": "4b3f0492828975540339429e6150c38dd600676f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "255f644d_a1854ccc",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1610,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-04-09T03:56:00Z",
+      "side": 1,
+      "message": "We need some flag to check if we have already tried CVSD S1. Without this, we will always keep trying reopening the sco.",
+      "parentUuid": "78c03e4c_a556b7c3",
       "range": {
         "startLine": 1609,
         "startChar": 66,
