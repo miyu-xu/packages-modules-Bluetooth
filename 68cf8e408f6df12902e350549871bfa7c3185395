@@ -46,6 +46,30 @@
       },
       "revId": "68cf8e408f6df12902e350549871bfa7c3185395",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66fb3907_8850825b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2164,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-04-09T06:05:52Z",
+      "side": 1,
+      "message": "Assume the client layer doesn\u0027t have the knowledge, they will expect active scan + filter works. The right thing for the platform to do here is to overwrite the client\u0027s setting and perform passive scan instead.",
+      "parentUuid": "da9f5087_da74f688",
+      "range": {
+        "startLine": 2164,
+        "startChar": 32,
+        "endLine": 2164,
+        "endChar": 46
+      },
+      "revId": "68cf8e408f6df12902e350549871bfa7c3185395",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
