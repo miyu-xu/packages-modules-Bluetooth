@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b62dccb4_1d256201",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1406,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-04-09T01:39:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95e9f08a_80bce311",
+      "revId": "87c0381a738c15eb693df05085e92a417294770d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c72921f_e0752d6d",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-04-08T19:20:39Z",
       "side": 1,
       "message": "it\u0027s pretty unclear from the command names that you first need to call `server-add-battery-service` and then this. Can we do this all in one command?",
+      "revId": "87c0381a738c15eb693df05085e92a417294770d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2555313_f3abcb80",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1413,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-04-09T01:39:42Z",
+      "side": 1,
+      "message": "As per an offline discussion, I will rename the commands and add a description for the sake of user clarity.",
+      "parentUuid": "5c72921f_e0752d6d",
       "revId": "87c0381a738c15eb693df05085e92a417294770d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -54,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "423441a6_2368814a",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1434,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-04-09T01:39:42Z",
+      "side": 1,
+      "message": "So users can test reading to/writing from a descriptor as well.",
+      "parentUuid": "47e2bda9_94e17709",
+      "revId": "87c0381a738c15eb693df05085e92a417294770d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2a915b34_2e0d783f",
         "filename": "system/gd/rust/linux/client/src/command_handler.rs",
         "patchSetId": 2
@@ -65,6 +119,24 @@
       "writtenOn": "2024-04-08T19:20:39Z",
       "side": 1,
       "message": "You should give this read/write permissions",
+      "revId": "87c0381a738c15eb693df05085e92a417294770d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94b12115_5fd5073b",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1442,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-04-09T01:39:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a915b34_2e0d783f",
       "revId": "87c0381a738c15eb693df05085e92a417294770d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
