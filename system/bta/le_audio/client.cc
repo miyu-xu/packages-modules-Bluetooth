@@ -4013,7 +4013,14 @@ class LeAudioClientImpl : public LeAudioClient {
         leAudioHealthStatus_->AddStatisticForGroup(
             group, LeAudioHealthGroupStatType::STREAM_CONTEXT_NOT_AVAILABLE);
       }
-      return false;
+      if (!sink_monitor_mode_ && source_monitor_mode_) {
+        log::debug(
+            "Sinks are receiving broadcast, proceed with unicast handover to "
+            "handle {}",
+            configuration_context_type_);
+      } else {
+        return false;
+      }
     }
 
     return GroupStream(active_group_id_, configuration_context_type_,
@@ -4139,6 +4146,13 @@ class LeAudioClientImpl : public LeAudioClient {
             bluetooth::le_audio::types::kLeAudioDirectionSink)) {
       log::error("invalid resume request for context type: {}",
                  ToHexString(configuration_context_type_));
+      CancelLocalAudioSourceStreamingRequest();
+      return;
+    }
+
+    if (!sink_monitor_mode_ && source_monitor_mode_ &&
+        configuration_context_type_ == LeAudioContextType::SOUNDEFFECTS) {
+      log::warn("Block soundeffect handover if sinks are receiving broadcast");
       CancelLocalAudioSourceStreamingRequest();
       return;
     }
