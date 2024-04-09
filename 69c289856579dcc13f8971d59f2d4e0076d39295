@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcf7793b_e06cd448",
+        "filename": "system/gd/rust/topshim/le_audio/le_audio_shim.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-09T10:18:26Z",
+      "side": 1,
+      "message": "2024?",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "69c289856579dcc13f8971d59f2d4e0076d39295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "850873ae_5f8a5da4",
+        "filename": "system/gd/rust/topshim/src/profiles/le_audio.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-09T10:18:26Z",
+      "side": 1,
+      "message": "How about aligning this enum to the definition of btle_audio_codec_index_t?",
+      "range": {
+        "startLine": 19,
+        "startChar": 8,
+        "endLine": 19,
+        "endChar": 11
+      },
+      "revId": "69c289856579dcc13f8971d59f2d4e0076d39295",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
