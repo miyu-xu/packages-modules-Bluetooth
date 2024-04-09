@@ -1744,3 +1744,9 @@ btav_a2dp_scmst_info_t bta_av_co_get_scmst_info(
 }
 
 void btif_a2dp_codec_debug_dump(int fd) { bta_av_co_cb.DebugDump(fd); }
+
+uint8_t* get_codec_config_for_peer(const RawAddress& peer_address) {
+  BtaAvCoPeer* p_peer = bta_av_co_cb.peer_cache_->FindPeer(peer_address);
+  CHECK(p_peer != nullptr);
+  return p_peer->codec_config;
+}
