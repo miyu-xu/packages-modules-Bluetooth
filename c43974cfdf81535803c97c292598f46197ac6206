@@ -65,6 +65,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f6d6250_18535072",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-09T07:17:00Z",
+      "side": 1,
+      "message": "Sorry, commented in bad window.\n\nYes I\u0027m certain, this is only when service discovery is triggered from btif. When requests are queued, they will also call bta_dm_discover, so end up in this place too.",
+      "parentUuid": "42bd01c5_e6a895e2",
+      "range": {
+        "startLine": 367,
+        "startChar": 2,
+        "endLine": 367,
+        "endChar": 26
+      },
+      "revId": "c43974cfdf81535803c97c292598f46197ac6206",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "938d36d7_13290b9a",
