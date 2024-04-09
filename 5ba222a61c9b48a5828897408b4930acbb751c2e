@@ -104,6 +104,24 @@
       "parentUuid": "7fd3ab75_4fab366e",
       "revId": "5ba222a61c9b48a5828897408b4930acbb751c2e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53fcc1e3_f29cda7d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 896,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-04-09T15:03:39Z",
+      "side": 1,
+      "message": "OK I don\u0027t love that it\u0027s just seemingly random math, but I guess Android also does not document where this comes from",
+      "parentUuid": "b2a1a1cf_da297d78",
+      "revId": "5ba222a61c9b48a5828897408b4930acbb751c2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

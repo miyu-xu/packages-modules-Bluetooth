@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf3a963e_dc3ddede",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 2670,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-04-09T15:03:39Z",
+      "side": 1,
+      "message": "`unwrap` will panic if we can\u0027t find the server",
+      "revId": "46ce348cbcb28adbb854dcf2c45dcc827c62c6f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
