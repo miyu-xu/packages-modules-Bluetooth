@@ -1561,7 +1561,6 @@ cc_test {
         ":TestCommonMockFunctions",
         ":TestCommonStackConfig",
         ":TestFakeLooper",
-        ":TestFakeOsi",
         ":TestFakeThread",
         ":TestMockBta",
         ":TestMockBtif",

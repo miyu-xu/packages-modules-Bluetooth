@@ -18,12 +18,14 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
+#include <cstddef>
 #include <iostream>
 #include <sstream>
 
 #include "common/init_flags.h"
 #include "hci/controller_interface_mock.h"
 #include "hci/hci_layer_mock.h"
+#include "internal_include/bt_target.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/btm/btm_sco.h"
@@ -33,7 +35,6 @@
 #include "stack/include/acl_hci_link_interface.h"
 #include "stack/include/btm_client_interface.h"
 #include "stack/l2cap/l2c_int.h"
-#include "stack/test/btm/btm_test_fixtures.h"
 #include "test/common/mock_functions.h"
 #include "test/mock/mock_legacy_hci_interface.h"
 #include "test/mock/mock_main_shim_entry.h"
@@ -55,16 +56,15 @@ namespace {
 using testing::Return;
 using testing::Test;
 
-class StackBtmTest : public BtmWithMocksTest {
+class StackBtmTest : public Test {
  public:
  protected:
   void SetUp() override {
-    BtmWithMocksTest::SetUp();
+    reset_mock_function_count_map();
     bluetooth::hci::testing::mock_controller_ = &controller_;
   }
   void TearDown() override {
     bluetooth::hci::testing::mock_controller_ = nullptr;
-    BtmWithMocksTest::TearDown();
   }
   bluetooth::hci::testing::MockControllerInterface controller_;
 };
