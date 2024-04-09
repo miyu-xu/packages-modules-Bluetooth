@@ -429,7 +429,7 @@ void btgattc_batchscan_threshold_cb(int client_if) {
 void btgattc_track_adv_event_cb(btgatt_track_adv_info_t* p_adv_track_info) {
   std::shared_lock<std::shared_mutex> lock(callbacks_mutex);
   CallbackEnv sCallbackEnv(__func__);
-  if (!sCallbackEnv.valid() || !mCallbacksObj) return;
+  if (!sCallbackEnv.valid() || !mCallbacksObj || !mCallbacksObj) return;
 
   ScopedLocalRef<jstring> address(
       sCallbackEnv.get(),
@@ -1033,7 +1033,7 @@ class JniScanningCallbacks : ScanningCallbacks {
   void OnTrackAdvFoundLost(AdvertisingTrackInfo track_info) {
     std::shared_lock<std::shared_mutex> lock(callbacks_mutex);
     CallbackEnv sCallbackEnv(__func__);
-    if (!sCallbackEnv.valid() || !mCallbacksObj) return;
+    if (!sCallbackEnv.valid() || !mCallbacksObj || !mCallbacksObj) return;
 
     ScopedLocalRef<jstring> address(
         sCallbackEnv.get(),
