@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cf768bb_82b07e79",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1357,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-09T07:37:15Z",
+      "side": 1,
+      "message": "then how was the name passed to upper layers if the array is not included in this event? \n\ni.e. how do you know this is a name discovery result event? \n\nthis looks exactly like line 1430\n\nor are we saying name and service discovery are mutually exclusive?",
+      "range": {
+        "startLine": 1351,
+        "startChar": 0,
+        "endLine": 1357,
+        "endChar": 52
+      },
+      "revId": "61829941c51cf32914378acc9055b1e5d6ebeee0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
