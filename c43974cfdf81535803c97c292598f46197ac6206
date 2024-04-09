@@ -16,6 +16,52 @@
       "message": "Definitely the right approach...will defer to Jack",
       "revId": "c43974cfdf81535803c97c292598f46197ac6206",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8db38eb_56d30a74",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-09T04:14:44Z",
+      "side": 1,
+      "message": "Are you sure this is the only place where we want to discovery services? \n\nHow did we know other places do not expect service UUIDs from the result? \n\nCould you add some comments or commit message to explain?",
+      "range": {
+        "startLine": 367,
+        "startChar": 2,
+        "endLine": 367,
+        "endChar": 26
+      },
+      "revId": "c43974cfdf81535803c97c292598f46197ac6206",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "938d36d7_13290b9a",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1351,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-09T04:14:44Z",
+      "side": 1,
+      "message": "this is a bit counter-intuitive, why would `bta_dm_discover_name` trigger service discovery completion? \n\nCould you explain more in the comment here? \n\nThis is not trivial",
+      "range": {
+        "startLine": 1351,
+        "startChar": 2,
+        "endLine": 1351,
+        "endChar": 49
+      },
+      "revId": "c43974cfdf81535803c97c292598f46197ac6206",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
