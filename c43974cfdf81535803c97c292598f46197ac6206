@@ -134,6 +134,30 @@
       },
       "revId": "c43974cfdf81535803c97c292598f46197ac6206",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0bebe10_02f1cd9f",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1351,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-09T07:18:07Z",
+      "side": 1,
+      "message": "Copy-paste error, this should say \"name discovery\"\n\nComment added in commit message.",
+      "parentUuid": "49d31d15_30e6fad2",
+      "range": {
+        "startLine": 1351,
+        "startChar": 2,
+        "endLine": 1351,
+        "endChar": 49
+      },
+      "revId": "c43974cfdf81535803c97c292598f46197ac6206",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
