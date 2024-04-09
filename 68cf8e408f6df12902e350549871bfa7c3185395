@@ -70,6 +70,30 @@
       },
       "revId": "68cf8e408f6df12902e350549871bfa7c3185395",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "002e6e2f_3947249e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2164,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-04-09T06:14:54Z",
+      "side": 1,
+      "message": "If the client expects active scan but Floss overwrites it to passive, then it would cause functionality breakage (not receiving scan response data).\n\nIf Floss still allows it, then in the worst case we would consume more power, while no functionality would be impacted.\n\nI\u0027d prefer the latter though I have no strong opinion.",
+      "parentUuid": "66fb3907_8850825b",
+      "range": {
+        "startLine": 2164,
+        "startChar": 32,
+        "endLine": 2164,
+        "endChar": 46
+      },
+      "revId": "68cf8e408f6df12902e350549871bfa7c3185395",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
