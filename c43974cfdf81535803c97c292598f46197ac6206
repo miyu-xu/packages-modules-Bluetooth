@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "42bd01c5_e6a895e2",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-09T07:15:30Z",
+      "side": 1,
+      "message": "Copy-paste error, this should say \"name discovery\"\n\nComment added in commit message.",
+      "parentUuid": "f8db38eb_56d30a74",
+      "range": {
+        "startLine": 367,
+        "startChar": 2,
+        "endLine": 367,
+        "endChar": 26
+      },
+      "revId": "c43974cfdf81535803c97c292598f46197ac6206",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "938d36d7_13290b9a",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-04-09T04:14:44Z",
       "side": 1,
       "message": "this is a bit counter-intuitive, why would `bta_dm_discover_name` trigger service discovery completion? \n\nCould you explain more in the comment here? \n\nThis is not trivial",
+      "range": {
+        "startLine": 1351,
+        "startChar": 2,
+        "endLine": 1351,
+        "endChar": 49
+      },
+      "revId": "c43974cfdf81535803c97c292598f46197ac6206",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49d31d15_30e6fad2",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1351,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-09T07:15:30Z",
+      "side": 1,
+      "message": "service discovery event is now used by both name request and service discovery.\nFor name request This is used just to iterate through inquiry results.\n\nBTA_DM_DISCOVERY_RESULT_EVT -\u003e bta_dm_search_result -\u003e bta_dm_discover_next_device\n\nThis will be cleaned up in 3-4 patches.",
+      "parentUuid": "938d36d7_13290b9a",
       "range": {
         "startLine": 1351,
         "startChar": 2,
