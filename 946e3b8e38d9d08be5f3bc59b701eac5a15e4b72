@@ -47,6 +47,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0745546_18bff2a6",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1238,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-04-09T05:49:40Z",
+      "side": 1,
+      "message": "`tBTM_SEC_DEV_REC` belongs to individual devices. This means that the links to  multiple devices can be encrypted at the same time.\n\nCore specification does not restrict the controllers from encrypting multiple links at the same time.\nIt does not even forbid the host from sending encryption request back to back for the same link. It is the controller\u0027s responsibility to handle the requests in order. However, it may not be a good idea to do that.",
+      "parentUuid": "a6420cb9_31e1e4ef",
+      "range": {
+        "startLine": 1238,
+        "startChar": 38,
+        "endLine": 1238,
+        "endChar": 42
+      },
+      "revId": "946e3b8e38d9d08be5f3bc59b701eac5a15e4b72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83673ddf_55dcfa68",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1238,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-04-09T05:49:40Z",
+      "side": 1,
+      "message": "Yes.\n\n```\nis_security_state_encrypting \u003d is_security_state_le_encrypting || is_security_state_bredr_encrypting\n```",
+      "parentUuid": "b121a6fb_fd71c1c1",
+      "range": {
+        "startLine": 1238,
+        "startChar": 21,
+        "endLine": 1238,
+        "endChar": 52
+      },
+      "revId": "946e3b8e38d9d08be5f3bc59b701eac5a15e4b72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "adf1237a_f1a5b667",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-04-04T04:54:55Z",
       "side": 1,
       "message": "this is so hard to read as the boolean name is different from the sysprop name, could you invert the logic instead?\n\n```\nbool allow_le_enc_with_bredr \u003d\n      GET_SYSPROP(Ble, allow_enc_with_bredr, false);\n  if (!allow_le_enc_with_bredr \u0026\u0026\n```",
+      "range": {
+        "startLine": 1244,
+        "startChar": 0,
+        "endLine": 1246,
+        "endChar": 32
+      },
+      "revId": "946e3b8e38d9d08be5f3bc59b701eac5a15e4b72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b353f68_e186a8c4",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1246,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-04-09T05:49:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "adf1237a_f1a5b667",
       "range": {
         "startLine": 1244,
         "startChar": 0,
