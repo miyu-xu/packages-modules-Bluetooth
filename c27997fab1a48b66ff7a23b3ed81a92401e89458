@@ -46,6 +46,30 @@
       },
       "revId": "c27997fab1a48b66ff7a23b3ed81a92401e89458",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c09ba68_48350824",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 6198,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-04-09T09:07:34Z",
+      "side": 1,
+      "message": "This is triggered by BluetoothDevice.isConnected() to check if the remote device connected. There is no related framework API with return value @ConnectionState defined with this function.\n\nmNativeInterface.getConnectionState call btif_dm_get_connection_state to get connection status. The return value is \"0 if not connected; 1 if connected and \u003e 1 if connection is encrypted\". It doesn\u0027t match @ConnectionState even without this patch.",
+      "parentUuid": "df1efaac_e3b1baf4",
+      "range": {
+        "startLine": 6197,
+        "startChar": 16,
+        "endLine": 6198,
+        "endChar": 96
+      },
+      "revId": "c27997fab1a48b66ff7a23b3ed81a92401e89458",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
