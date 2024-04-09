@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c7be6881_09275d2d",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 890,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-09T16:14:51Z",
+      "side": 1,
+      "message": "That depends on the order of operations.\n\nThis is the interface that is received from `bluetoothInterface::get_profile_interface` and presumably is run after `bluetoothInterface::init`\n\nhttps://source.corp.google.com/h/android/platform/superproject/+/refs/tags/android-4.4.1_r1.0.1:external/bluetooth/bluedroid/btif/src/bluetooth.c;l\u003d386;drc\u003dbad70b1d0071ee9b16a029ff145e8e53038571ff\n\nIf `init` is run first, then the value is set as expected.  if `get_profile_interface` is run first, possible I supposed but not recommended, then it would be zero.",
+      "parentUuid": "6e1f7993_4091f4a6",
+      "range": {
+        "startLine": 890,
+        "startChar": 0,
+        "endLine": 890,
+        "endChar": 44
+      },
+      "revId": "26e2a77f133d0a8518a5214c8dfa4a1e91fd58db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b5c77c16_38934750",
         "filename": "system/btif/src/btif_hf.cc",
         "patchSetId": 4
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "973dbfff_45cadc69",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 910,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-09T16:14:51Z",
+      "side": 1,
+      "message": "I was hoping to avoid any logic changes as I\u0027m only concerned with UB static initialization.\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:system/libbase/properties.cpp;l\u003d39;drc\u003d1a34bb67c4f3ba0a1ea6f4f20ac9fe117ba4fe64",
+      "parentUuid": "b5c77c16_38934750",
+      "range": {
+        "startLine": 910,
+        "startChar": 0,
+        "endLine": 910,
+        "endChar": 44
+      },
+      "revId": "26e2a77f133d0a8518a5214c8dfa4a1e91fd58db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2fe66c05_d7617545",
         "filename": "system/btif/src/btif_hf.cc",
         "patchSetId": 4
@@ -60,6 +108,30 @@
       "writtenOn": "2024-04-09T04:14:27Z",
       "side": 1,
       "message": "erase anything set previously",
+      "range": {
+        "startLine": 1623,
+        "startChar": 0,
+        "endLine": 1623,
+        "endChar": 42
+      },
+      "revId": "26e2a77f133d0a8518a5214c8dfa4a1e91fd58db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b74e6325_150bea32",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1623,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-09T16:14:51Z",
+      "side": 1,
+      "message": "It depends on order of operations...\n\nI think that\u0027s why you put this in static initialization in the first place to avoid this mess of trying to determine order of operations.\n\nMy first CL covered both code path operations but you were correctly concerned that this initializes in two spots.  My only concern was the static initialization failure between:\n\n```\nsystem/btif/src/btif_hf.cc::\nstatic uint32_t get_hf_features();\n/* HF features supported at runtime */\nstatic uint32_t btif_hf_features \u003d get_hf_features();\n```\n\nand\n\n```\nsystem/libbase/properties.cpp::\nstatic std::map\u003cstd::string, std::string\u003e\u0026 g_properties \u003d *new std::map\u003cstd::string, std::string\u003e;\n```\n\nthere is no guarantee that the map is created at this point.",
+      "parentUuid": "2fe66c05_d7617545",
       "range": {
         "startLine": 1623,
         "startChar": 0,
