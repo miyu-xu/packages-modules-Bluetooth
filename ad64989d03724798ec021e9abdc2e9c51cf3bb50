@@ -294,6 +294,30 @@
       },
       "revId": "ad64989d03724798ec021e9abdc2e9c51cf3bb50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7317281_a0b49412",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterPropertiesTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-04-09T02:45:23Z",
+      "side": 1,
+      "message": "Got it. Uploaded a new patch set with the changes.",
+      "parentUuid": "9a775ee8_cca8bfed",
+      "range": {
+        "startLine": 100,
+        "startChar": 51,
+        "endLine": 100,
+        "endChar": 66
+      },
+      "revId": "ad64989d03724798ec021e9abdc2e9c51cf3bb50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
