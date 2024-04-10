@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e09fa152_8c675c26",
+        "filename": "system/audio_hal_interface/le_audio_software_host.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-04-10T04:41:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05b739b6_bca895a0",
+      "revId": "41b9200f0508c75f2178de18be9064742f0bafc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7d86b6c6_724deb24",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "151f8754_e651380b",
+        "filename": "system/audio_hal_interface/le_audio_software_host_transport.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-04-10T04:41:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d86b6c6_724deb24",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "41b9200f0508c75f2178de18be9064742f0bafc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c06f417b_4fd6ed59",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-04-09T10:23:13Z",
       "side": 1,
       "message": "2024?",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "41b9200f0508c75f2178de18be9064742f0bafc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a1a523c_8283b9c2",
+        "filename": "system/audio_hal_interface/le_audio_software_host_transport.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-04-10T04:41:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c06f417b_4fd6ed59",
       "range": {
         "startLine": 2,
         "startChar": 13,
