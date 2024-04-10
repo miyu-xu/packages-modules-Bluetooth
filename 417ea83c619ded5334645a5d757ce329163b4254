@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5280cd8_b5d4a2e4",
+        "filename": "system/gd/rust/topshim/src/profiles/csis.rs",
+        "patchSetId": 16
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-04-10T07:34:48Z",
+      "side": 1,
+      "message": "In Rust, the underscore prefix for a field name is used to silence warnings about unused fields. These field are not unused, so I don\u0027t think it should be prefixed with an underscore.",
+      "revId": "417ea83c619ded5334645a5d757ce329163b4254",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a4262d5_e81f7512",
+        "filename": "system/gd/rust/topshim/src/profiles/csis.rs",
+        "patchSetId": 16
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-04-10T07:34:48Z",
+      "side": 1,
+      "message": "Is it okay to call `init` twice? Because right now, there\u0027s no check for that.",
+      "revId": "417ea83c619ded5334645a5d757ce329163b4254",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48c21a73_6079fff2",
+        "filename": "system/gd/rust/topshim/src/profiles/csis.rs",
+        "patchSetId": 16
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-04-10T07:34:48Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this check be first? Otherwise, the initialization code could run twice?\n\nAlso, it seems like you should set `_is_init` to `true` in this function.",
+      "revId": "417ea83c619ded5334645a5d757ce329163b4254",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
