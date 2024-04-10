@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cc254ea_a748b6d0",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3745,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-10T12:56:05Z",
+      "side": 1,
+      "message": "For me it looks like a workaround for lack of Audio Policy filtering policy (https://b.corp.google.com/issues/291047717)\n\nI think it\u0027s a far-reaching assumption. As long as available context would expose peripheral availability it doesn\u0027t mean that group would be available to stream e.g. no configuration for stream, local block of some contexts.",
+      "revId": "0266f92cff02f95111d536e00f36266522597673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
