@@ -1334,7 +1334,7 @@ class BluetoothManagerService {
                     try {
                         mCallbacks
                                 .getBroadcastItem(i)
-                                .onBluetoothServiceUp(mAdapter.getAdapterBinder());
+                                .onBluetoothServiceUp(mAdapter.getAdapterBinder().asBinder());
                     } catch (RemoteException e) {
                         Log.e(TAG, "Unable to call onBluetoothServiceUp() on callback #" + i, e);
                     }
