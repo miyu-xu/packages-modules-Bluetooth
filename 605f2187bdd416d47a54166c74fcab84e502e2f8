@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5820a93_71e024dd",
+        "filename": "system/gd/rust/topshim/src/profiles/csis.rs",
+        "patchSetId": 15
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-04-10T06:16:57Z",
+      "side": 1,
+      "message": "Unsafe Rust review: I would guess that the safety requirement here is something along the lines of \"`intf.as_raw_ptr()` is a valid pointer to a bluetooth interface\" or something like that?",
+      "revId": "605f2187bdd416d47a54166c74fcab84e502e2f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6eba70ff_aab22819",
+        "filename": "system/gd/rust/topshim/src/profiles/csis.rs",
+        "patchSetId": 15
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-04-10T06:16:57Z",
+      "side": 1,
+      "message": "If you move the semicolon outside the unsafe block, this formats on one line.",
+      "revId": "605f2187bdd416d47a54166c74fcab84e502e2f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
