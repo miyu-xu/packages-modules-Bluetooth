@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d3928da_04d5cf40",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 3211944
+      },
+      "writtenOn": "2024-04-10T01:42:57Z",
+      "side": 1,
+      "message": "Sorry for the mistake. Fixed now.",
+      "parentUuid": "470f617f_55da0eaf",
+      "range": {
+        "startLine": 539,
+        "startChar": 3,
+        "endLine": 539,
+        "endChar": 28
+      },
+      "revId": "5f0f03f76d4dec7aa143378e97628846bca9ea06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "48ba0a55_5bc9b98d",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-10T01:35:14Z",
       "side": 1,
       "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"thses\" -- should it be \"these\"?\n\nAnalyzer Description: Linter for catching common typos motivated by go/todo-fail and go/lol-codesearch. Shared with google3 common typos library go/common-typos.\nOwner: ayeaye-team@google.com\n\nCommon typo found: \"thses\" -- should it be \"these\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 870,
+        "startChar": 2,
+        "endLine": 870,
+        "endChar": 7
+      },
+      "revId": "5f0f03f76d4dec7aa143378e97628846bca9ea06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30c745cc_49325b98",
+        "filename": "system/conf/interop_database.conf",
+        "patchSetId": 2
+      },
+      "lineNbr": 870,
+      "author": {
+        "id": 3211944
+      },
+      "writtenOn": "2024-04-10T01:42:57Z",
+      "side": 1,
+      "message": "Fixed.",
+      "parentUuid": "48ba0a55_5bc9b98d",
       "range": {
         "startLine": 870,
         "startChar": 2,
