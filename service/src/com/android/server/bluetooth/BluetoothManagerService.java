@@ -525,6 +525,17 @@ class BluetoothManagerService {
 
                 // If state is BLE_ON make sure we trigger stopBle
                 if (st == STATE_BLE_ON) {
+                    if (Flags.systemServerMessenger()) {
+                        try {
+                            addActiveLog(ENABLE_DISABLE_REASON_AIRPLANE_MODE, false);
+                            mAdapter.stopBle(mContext.getAttributionSource());
+                            mEnable = false;
+                            mEnableExternal = false;
+                        } catch (RemoteException e) {
+                            Log.e(TAG, "Unable to call stopBle", e);
+                        }
+                        return;
+                    }
                     mAdapterLock.readLock().lock();
                     try {
                         if (mAdapter != null) {
