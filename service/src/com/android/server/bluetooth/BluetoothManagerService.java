@@ -86,7 +86,6 @@ import androidx.annotation.RequiresApi;
 
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.flags.Flags;
-import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.expresslog.Counter;
 import com.android.server.BluetoothManagerServiceDumpProto;
@@ -204,9 +203,10 @@ class BluetoothManagerService {
             new RemoteCallbackList<IBluetoothManagerCallback>();
     private final BluetoothServiceBinder mBinder;
 
-    private final ReentrantReadWriteLock mAdapterLock = new ReentrantReadWriteLock();
+    private final ReentrantReadWriteLock mAdapterLock =
+            Flags.systemServerMessenger() ? null : new ReentrantReadWriteLock();
 
-    @GuardedBy("mAdapterLock")
+    // @GuardedBy("mAdapterLock") // Annotation is deprecated by the systemServerMessenger Flag
     private AdapterBinder mAdapter = null;
 
     private List<Integer> mSupportedProfileList = new ArrayList<>();
@@ -509,6 +509,17 @@ class BluetoothManagerService {
         if (currentState == STATE_ON) {
             sendDisableMsg(reason);
         } else if (currentState == STATE_BLE_ON) {
+            if (Flags.systemServerMessenger()) {
+                try {
+                    addActiveLog(reason, false);
+                    mAdapter.stopBle(mContext.getAttributionSource());
+                    mEnable = false;
+                    mEnableExternal = false;
+                } catch (RemoteException e) {
+                    Log.e(TAG, "Unable to call stopBle", e);
+                }
+                return;
+            }
             // If currentState is BLE_ON make sure we trigger stopBle
             mAdapterLock.readLock().lock();
             try {
