@@ -46,6 +46,30 @@
       },
       "revId": "893d43ba9a184d02f0941d02b665ccdce17b3a0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7def153f_11e677af",
+        "filename": "service/src/PermissionChecker.kt",
+        "patchSetId": 15
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-10T21:40:46Z",
+      "side": 1,
+      "message": "Isn\u0027t this the purpose of marking the function private 😁 ?",
+      "parentUuid": "ee9ed8a7_528c57b5",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 0
+      },
+      "revId": "893d43ba9a184d02f0941d02b665ccdce17b3a0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
