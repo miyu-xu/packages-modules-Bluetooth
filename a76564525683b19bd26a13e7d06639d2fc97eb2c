@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9b9e044_dd722cdd",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-04-10T21:26:35Z",
+      "side": 1,
+      "message": "_context implies this arg is not being used. If you want to use it now, remove the _",
+      "revId": "a76564525683b19bd26a13e7d06639d2fc97eb2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78ed1cee_d4702cbb",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-04-10T21:26:35Z",
+      "side": 1,
+      "message": "Why don\u0027t we just limit GattStatus to be success/fail so user doesn\u0027t need to have a ton of knowledge about all the different gatt statuses.\nSo we can have `gatt server-send-response \u003cserver_id\u003e \u003csuccess|fail\u003e`",
+      "revId": "a76564525683b19bd26a13e7d06639d2fc97eb2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b8783bc_14bd2e7f",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1491,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-04-10T21:26:35Z",
+      "side": 1,
+      "message": "Can you combine these 5 lines into a match",
+      "revId": "a76564525683b19bd26a13e7d06639d2fc97eb2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
