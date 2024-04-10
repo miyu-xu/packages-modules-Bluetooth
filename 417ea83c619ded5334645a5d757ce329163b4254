@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "07053353_75729fe3",
+        "filename": "system/gd/rust/topshim/src/profiles/csis.rs",
+        "patchSetId": 16
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-04-10T10:06:45Z",
+      "side": 1,
+      "message": "I had imagined that you would just call it `is_init`. Why the suffix? This kind of thing may be a convention in C++, but it isn\u0027t in Rust. The field is private, after all.",
+      "parentUuid": "f8b121c1_399996e0",
+      "revId": "417ea83c619ded5334645a5d757ce329163b4254",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0a4262d5_e81f7512",
         "filename": "system/gd/rust/topshim/src/profiles/csis.rs",
         "patchSetId": 16
