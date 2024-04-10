@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82312604_389da990",
+        "filename": "system/gd/rust/topshim/src/profiles/csis.rs",
+        "patchSetId": 15
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-04-10T07:22:55Z",
+      "side": 1,
+      "message": "Thanks for catching this!",
+      "parentUuid": "f5820a93_71e024dd",
+      "revId": "605f2187bdd416d47a54166c74fcab84e502e2f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6eba70ff_aab22819",
@@ -49,6 +67,24 @@
       "side": 1,
       "message": "In fact, this could be `csis_if \u003d unsafe { ffi::GetCsisClientProfile(intf.as_raw_ptr()) };`",
       "parentUuid": "6eba70ff_aab22819",
+      "revId": "605f2187bdd416d47a54166c74fcab84e502e2f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27e1d98e_1cec2dc1",
+        "filename": "system/gd/rust/topshim/src/profiles/csis.rs",
+        "patchSetId": 15
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-04-10T07:22:55Z",
+      "side": 1,
+      "message": "Thanks for the suggestion!",
+      "parentUuid": "e664e0e5_bd89d483",
       "revId": "605f2187bdd416d47a54166c74fcab84e502e2f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
