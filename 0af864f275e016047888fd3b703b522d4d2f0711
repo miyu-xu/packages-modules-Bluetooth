@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac23567b_5114130b",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 804,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-10T16:10:38Z",
+      "side": 1,
+      "message": "Can we replicate the command for method above:\n```\n    /* LE Audio capable device is discoverable over both LE and Classic using\n     * same address. Prefer to use LE transport, as we don\u0027t know if it can do\n     * CTKD from Classic to LE */\n```\n\nOr even better, this looks like there is common logic between the two, should we have a single method that does all the checks ?",
+      "revId": "0af864f275e016047888fd3b703b522d4d2f0711",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
