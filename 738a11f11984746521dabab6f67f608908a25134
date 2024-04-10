@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54f2cd66_0805d0bd",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1063,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-10T04:58:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57c72ac4_e0c2c4f5",
+      "revId": "738a11f11984746521dabab6f67f608908a25134",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db418584_33187136",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-04-01T13:45:52Z",
       "side": 1,
       "message": "Since ChromeOS is not going to support this, how about just removing `phone_ops_enabled` in the \"held\" functions?",
+      "range": {
+        "startLine": 2020,
+        "startChar": 13,
+        "endLine": 2020,
+        "endChar": 35
+      },
+      "revId": "738a11f11984746521dabab6f67f608908a25134",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b959f16_bb372975",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 2020,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-10T04:58:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db418584_33187136",
       "range": {
         "startLine": 2020,
         "startChar": 13,
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10d121a4_95efa71a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 2042,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-10T04:58:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30006502_644668d5",
+      "range": {
+        "startLine": 2042,
+        "startChar": 18,
+        "endLine": 2042,
+        "endChar": 35
+      },
+      "revId": "738a11f11984746521dabab6f67f608908a25134",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e614585_6b76fda7",
@@ -77,6 +143,30 @@
       "writtenOn": "2024-04-01T13:45:52Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 2074,
+        "startChar": 18,
+        "endLine": 2074,
+        "endChar": 35
+      },
+      "revId": "738a11f11984746521dabab6f67f608908a25134",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a189d343_ae3aa276",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 2074,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-10T04:58:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e614585_6b76fda7",
       "range": {
         "startLine": 2074,
         "startChar": 18,
