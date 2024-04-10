@@ -746,6 +746,20 @@ static void btif_update_remote_properties(const RawAddress& bdaddr,
       status, bdaddr, num_properties, properties);
 }
 
+/* Check the device type to see if it supports BLE */
+bool is_device_type_ble(const RawAddress bd_addr) {
+  tBT_DEVICE_TYPE tmp_dev_type;
+  tBLE_ADDR_TYPE addr_type = BLE_ADDR_PUBLIC;
+
+  BTM_ReadDevInfo(bd_addr, &tmp_dev_type, &addr_type);
+
+  if (tmp_dev_type & BT_DEVICE_TYPE_BLE) {
+    return true;
+  }
+
+  return false;
+}
+
 /* If device is LE Audio capable, we prefer LE connection first, this speeds
  * up LE profile connection, and limits all possible service discovery
  * ordering issues (first Classic, GATT over SDP, etc) */
@@ -773,13 +787,10 @@ bool is_device_le_audio_capable(const RawAddress bd_addr) {
     return true;
   }
 
-  tBT_DEVICE_TYPE tmp_dev_type;
-  tBLE_ADDR_TYPE addr_type = BLE_ADDR_PUBLIC;
-  BTM_ReadDevInfo(bd_addr, &tmp_dev_type, &addr_type);
-  if (tmp_dev_type & BT_DEVICE_TYPE_BLE) {
-    /* LE Audio capable device is discoverable over both LE and Classic using
-     * same address. Prefer to use LE transport, as we don't know if it can do
-     * CTKD from Classic to LE */
+  /* LE Audio capable device is discoverable over both LE and Classic using
+   * same address. Prefer to use LE transport, as we don't know if it can do
+   * CTKD from Classic to LE */
+  if (is_device_type_ble(bd_addr)) {
     return true;
   }
 
@@ -795,6 +806,11 @@ bool is_le_audio_capable_during_service_discovery(const RawAddress& bd_addr) {
   }
 
   if (bd_addr != pairing_cb.bd_addr && bd_addr != pairing_cb.static_bdaddr) {
+    return false;
+  }
+
+  /* LE Support is necessary to detect LE Audio support */
+  if (false == is_device_type_ble(bd_addr)) {
     return false;
   }
 
