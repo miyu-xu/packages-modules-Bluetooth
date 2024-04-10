@@ -33,6 +33,24 @@
       "message": "If you move the semicolon outside the unsafe block, this formats on one line.",
       "revId": "605f2187bdd416d47a54166c74fcab84e502e2f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e664e0e5_bd89d483",
+        "filename": "system/gd/rust/topshim/src/profiles/csis.rs",
+        "patchSetId": 15
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-04-10T06:17:40Z",
+      "side": 1,
+      "message": "In fact, this could be `csis_if \u003d unsafe { ffi::GetCsisClientProfile(intf.as_raw_ptr()) };`",
+      "parentUuid": "6eba70ff_aab22819",
+      "revId": "605f2187bdd416d47a54166c74fcab84e502e2f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
