@@ -798,6 +798,13 @@ bool is_le_audio_capable_during_service_discovery(const RawAddress& bd_addr) {
     return false;
   }
 
+  tBT_DEVICE_TYPE tmp_dev_type;
+  tBLE_ADDR_TYPE addr_type = BLE_ADDR_PUBLIC;
+  BTM_ReadDevInfo(bd_addr, &tmp_dev_type, &addr_type);
+  if (!(tmp_dev_type & BT_DEVICE_TYPE_BLE)) {
+    return false;
+  }
+
   if (check_cod_le_audio(bd_addr) ||
       metadata_cb.le_audio_cache.contains(bd_addr) ||
       metadata_cb.le_audio_cache.contains(pairing_cb.bd_addr) ||
