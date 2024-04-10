@@ -19,7 +19,6 @@
 
 #include "stack/btm/btm_ble_sec.h"
 
-#include <android_bluetooth_sysprop.h>
 #include <base/strings/stringprintf.h>
 #include <bluetooth/log.h>
 
@@ -1235,16 +1234,8 @@ tBTM_STATUS btm_ble_start_encrypt(const RawAddress& bda, bool use_stk,
     return BTM_WRONG_MODE;
   }
 
-  if (p_rec->sec_rec.is_security_state_le_encrypting()) {
-    log::warn("LE link encryption is active, Busy!");
-    return BTM_BUSY;
-  }
-
-  // Some controllers may not like encrypting both transports at the same time
-  bool allow_le_enc_with_bredr = GET_SYSPROP(Ble, allow_enc_with_bredr, false);
-  if (!allow_le_enc_with_bredr &&
-      p_rec->sec_rec.is_security_state_bredr_encrypting()) {
-    log::warn("BR/EDR link encryption is active, Busy!");
+  if (p_rec->sec_rec.is_security_state_encrypting()) {
+    log::warn("Link Encryption is active, Busy!");
     return BTM_BUSY;
   }
 
