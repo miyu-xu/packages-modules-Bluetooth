@@ -2215,6 +2215,61 @@ public class LeAudioServiceTest {
         assertThat(profileInfo.getValue().getVolume()).isEqualTo(volume);
     }
 
+    /** Test volume setting for broadcast sink devices */
+    @Test
+    public void testSetVolumeForBroadcastSinks() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_BROADCAST_VOLUME_CONTROL_WITH_SET_VOLUME);
+        int groupId = 1;
+        int volume = 100;
+        int newVolume = 120;
+        /* AUDIO_DIRECTION_OUTPUT_BIT = 0x01 */
+        int direction = 1;
+        int availableContexts = 4;
+
+        doReturn(true).when(mNativeInterface).connectLeAudio(any(BluetoothDevice.class));
+        connectTestDevice(mLeftDevice, groupId);
+        connectTestDevice(mRightDevice, groupId);
+
+        assertThat(mService.setActiveDevice(mLeftDevice)).isTrue();
+
+        ArgumentCaptor<BluetoothProfileConnectionInfo> profileInfo =
+                ArgumentCaptor.forClass(BluetoothProfileConnectionInfo.class);
+
+        // Add location support.
+        injectAudioConfChanged(groupId, availableContexts, direction);
+
+        doReturn(volume).when(mVolumeControlService).getAudioDeviceGroupVolume(groupId);
+        // Set group and device as active.
+        injectGroupStatusChange(groupId, LeAudioStackEvent.GROUP_STATUS_ACTIVE);
+
+        verify(mAudioManager, times(1))
+                .handleBluetoothActiveDeviceChanged(any(), eq(null), profileInfo.capture());
+        assertThat(profileInfo.getValue().getVolume()).isEqualTo(volume);
+
+        // Set group to inactive, only keep them connected as broadcast sink devices.
+        injectGroupStatusChange(groupId, LeAudioStackEvent.GROUP_STATUS_INACTIVE);
+
+        verify(mAudioManager, times(1))
+                .handleBluetoothActiveDeviceChanged(
+                        eq(null), any(), any(BluetoothProfileConnectionInfo.class));
+
+        doReturn(List.of(mLeftDevice, mRightDevice))
+                .when(mBassClientService)
+                .getActiveBroadcastSinks();
+
+        mService.setVolume(newVolume);
+        verify(mVolumeControlService, times(1)).setGroupVolume(groupId, newVolume);
+
+        doReturn(newVolume).when(mVolumeControlService).getAudioDeviceGroupVolume(groupId);
+        // Set back to active and check if last volume is restored.
+        injectGroupStatusChange(groupId, LeAudioStackEvent.GROUP_STATUS_ACTIVE);
+
+        verify(mAudioManager, times(2))
+                .handleBluetoothActiveDeviceChanged(any(), eq(null), profileInfo.capture());
+
+        assertThat(profileInfo.getValue().getVolume()).isEqualTo(newVolume);
+    }
+
     @Test
     public void testGetAudioDeviceGroupVolume_whenVolumeControlServiceIsNull() {
         mService.mVolumeControlService = null;
