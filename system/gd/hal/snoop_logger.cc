@@ -1143,11 +1143,16 @@ void SnoopLogger::SetL2capChannelClose(uint16_t handle, uint16_t local_cid, uint
 }
 
 void SnoopLogger::FilterCapturedPacket(
-    HciPacket& packet,
+    const HciPacket& immutable_packet,
     Direction direction,
     PacketType type,
     uint32_t& length,
     PacketHeaderType header) {
+  //// NEED TO BE FIXED : The code below modify the packet ////
+  HciPacket mutable_packet(immutable_packet);
+  HciPacket& packet = mutable_packet;
+  /////////////////////////////////////////////////////////////
+
   if (btsnoop_mode_ != kBtSnoopLogModeFiltered || type != PacketType::ACL) {
     return;
   }
@@ -1187,7 +1192,7 @@ void SnoopLogger::FilterCapturedPacket(
   }
 }
 
-void SnoopLogger::Capture(HciPacket& packet, Direction direction, PacketType type) {
+void SnoopLogger::Capture(const HciPacket& packet, Direction direction, PacketType type) {
   uint64_t timestamp_us =
       std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch())
           .count();
