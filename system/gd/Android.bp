@@ -134,7 +134,6 @@ cc_defaults {
         ":BluetoothDumpsysSources",
         ":BluetoothHalSources",
         ":BluetoothHciSources",
-        ":BluetoothIsoSources",
         ":BluetoothL2capSources",
         ":BluetoothLogRedactionSources",
         ":BluetoothMetricsSources",
