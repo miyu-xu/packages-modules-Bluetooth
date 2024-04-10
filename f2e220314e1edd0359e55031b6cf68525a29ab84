@@ -16,6 +16,24 @@
       "message": "nit: Put the `min_sdk_version` directly, this default is not usefull.",
       "revId": "f2e220314e1edd0359e55031b6cf68525a29ab84",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fc21cc2_0cfeabbb",
+        "filename": "service/aidl/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-10T22:09:16Z",
+      "side": 1,
+      "message": "This is being addressed in follow-up, to completly remove the default from the codebase",
+      "parentUuid": "4e855385_f23cfbac",
+      "revId": "f2e220314e1edd0359e55031b6cf68525a29ab84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
