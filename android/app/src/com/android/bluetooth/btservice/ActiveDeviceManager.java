@@ -306,7 +306,7 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
      * @param device is the device that was connected to A2DP
      */
     private void handleHfpConnected(BluetoothDevice device) {
-        synchronized (mLock) {
+        synchronized (mLock) {h
             Log.d(TAG, "handleHfpConnected: " + device);
             if (mHfpConnectedDevices.contains(device)) {
                 Log.d(TAG, "This device is already connected: " + device);
@@ -419,6 +419,11 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
                         TAG,
                         "LE Audio Broadcast is streaming, skip setting le audio device as active: "
                                 + device);
+                return;
+            }
+
+            if (!leAudioService.isGroupAvailableForStream(leAudioService.getGroupId(device))) {
+                Log.i(TAG, "LE Audio device is not available for streaming now." + device);
                 return;
             }
 
