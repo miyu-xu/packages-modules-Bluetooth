@@ -22,6 +22,30 @@
       },
       "revId": "893d43ba9a184d02f0941d02b665ccdce17b3a0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee9ed8a7_528c57b5",
+        "filename": "service/src/PermissionChecker.kt",
+        "patchSetId": 15
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-10T21:24:32Z",
+      "side": 1,
+      "message": "This is present in all the kotlin code I wrote:\n[Airplane](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/service/src/airplane/ModeListener.kt;l\u003d147;drc\u003d5e29ffab544703143c3d7385b2255ea5c412c09f)\n[AutoOn](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/service/src/AutoOnFeature.kt;l\u003d144;drc\u003d6fc592b659fb1ad0959e14b498546f2f4b78dc53)\n\nIt is a clear delimiter that everything below is 100% private and shouldn\u0027t be called elsewhere",
+      "parentUuid": "636864bf_9558c3ae",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 0
+      },
+      "revId": "893d43ba9a184d02f0941d02b665ccdce17b3a0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
