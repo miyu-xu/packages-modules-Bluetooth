@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0b5a2fc3_1ead77e0",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1529,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-10T12:29:20Z",
+      "side": 1,
+      "message": "Sure.\n\nThis is a guard function that avoids adding source which is not \"playing\" yet (for local broadcast only - since it\u0027s known if it\u0027s started or not). Since it\u0027s updated in UI and now add source is triggered after `onPlaybackStarted`. Adding source of not streaming broadcast make no sense - BIG is not in air.",
+      "parentUuid": "5e5d9d67_4a38a40b",
+      "revId": "31f846a72ee99bc75c7942fc0b3dba3de51497f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b0e5b60f_77503d91",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 7
@@ -48,6 +66,24 @@
       "writtenOn": "2024-04-09T20:27:56Z",
       "side": 1,
       "message": "should we update this as well?\n```suggestion\n                message.arg2 \u003d BassConstants.PA_SYNC_DO_NOT_SYNC;\n```",
+      "revId": "31f846a72ee99bc75c7942fc0b3dba3de51497f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e122538c_3287c581",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1779,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-10T12:29:20Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b0e5b60f_77503d91",
       "revId": "31f846a72ee99bc75c7942fc0b3dba3de51497f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -69,6 +105,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "733709b7_a10f8b7f",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2111,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-10T12:29:20Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "aefa500b_d3a920e5",
+      "revId": "31f846a72ee99bc75c7942fc0b3dba3de51497f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d538ab0e_48595ada",
@@ -82,6 +136,24 @@
       "writtenOn": "2024-04-09T20:27:56Z",
       "side": 1,
       "message": "should we keep null check if flag is disabled?\n        \n```suggestion\n            if (metadata !\u003d null) {\n                addSource(sink, metadata, false);\n            }\n```",
+      "revId": "31f846a72ee99bc75c7942fc0b3dba3de51497f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9efb9375_ea1aad99",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2174,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-10T12:29:20Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d538ab0e_48595ada",
       "revId": "31f846a72ee99bc75c7942fc0b3dba3de51497f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
