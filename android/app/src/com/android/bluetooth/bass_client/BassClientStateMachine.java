@@ -87,6 +87,8 @@ public class BassClientStateMachine extends StateMachine {
     private static final byte OPCODE_REMOVE_SOURCE = 0x05;
     private static final int UPDATE_SOURCE_FIXED_LENGTH = 6;
 
+    private static final int MAX_ACTIVE_SYNCED_SOURCES_NUM = 4;
+
     static final int CONNECT = 1;
     static final int DISCONNECT = 2;
     static final int CONNECTION_STATE_CHANGED = 3;
@@ -1762,6 +1764,22 @@ public class BassClientStateMachine extends StateMachine {
                     }
                     break;
                 case SELECT_BCAST_SOURCE:
+                    if (Flags.leaudioBroadcastBassMaxSyncedSourcesFix()) {
+                        List<Integer> activeSyncedSrc = mService.getActiveSyncedSources(mDevice);
+                        if (activeSyncedSrc != null
+                                && activeSyncedSrc.size() >= MAX_ACTIVE_SYNCED_SOURCES_NUM) {
+                            log("SELECT_BCAST_SOURCE reached max allowed active source");
+                            int syncHandle = activeSyncedSrc.get(0);
+                            // removing the 1st synced source before proceeding to add new
+                            Message msg = obtainMessage(REACHED_MAX_SOURCE_LIMIT);
+                            msg.arg1 = syncHandle;
+                            sendMessage(msg);
+
+                            // Add SELECT_BCAST_SOURCE message again
+                            sendMessage(message);
+                        }
+                    }
+
                     ScanResult scanRes = (ScanResult) message.obj;
                     boolean auto = ((int) message.arg1) == BassConstants.AUTO;
                     // check if invalid sync handle exists indicating a pending sync request

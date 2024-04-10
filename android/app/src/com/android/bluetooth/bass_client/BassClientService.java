@@ -1457,21 +1457,25 @@ public class BassClientService extends ProfileService {
     }
 
     void selectSource(BluetoothDevice sink, ScanResult result, boolean autoTrigger) {
-        List<Integer> activeSyncedSrc = getActiveSyncedSources(sink);
-        if (activeSyncedSrc != null && activeSyncedSrc.size() >= MAX_ACTIVE_SYNCED_SOURCES_NUM) {
-            log("selectSource : reached max allowed active source");
-            int syncHandle = activeSyncedSrc.get(0);
-            // removing the 1st synced source before proceeding to add new
-            synchronized (mStateMachines) {
-                BassClientStateMachine stateMachine = getOrCreateStateMachine(sink);
-                if (stateMachine == null) {
-                    Log.e(TAG, "Can't get state machine for device: " + sink);
-                    return;
+        if (!Flags.leaudioBroadcastBassMaxSyncedSourcesFix()) {
+            List<Integer> activeSyncedSrc = getActiveSyncedSources(sink);
+            if (activeSyncedSrc != null
+                    && activeSyncedSrc.size() >= MAX_ACTIVE_SYNCED_SOURCES_NUM) {
+                log("selectSource : reached max allowed active source");
+                int syncHandle = activeSyncedSrc.get(0);
+                // removing the 1st synced source before proceeding to add new
+                synchronized (mStateMachines) {
+                    BassClientStateMachine stateMachine = getOrCreateStateMachine(sink);
+                    if (stateMachine == null) {
+                        Log.e(TAG, "Can't get state machine for device: " + sink);
+                        return;
+                    }
+                    Message message =
+                            stateMachine.obtainMessage(
+                                    BassClientStateMachine.REACHED_MAX_SOURCE_LIMIT);
+                    message.arg1 = syncHandle;
+                    stateMachine.sendMessage(message);
                 }
-                Message message =
-                        stateMachine.obtainMessage(BassClientStateMachine.REACHED_MAX_SOURCE_LIMIT);
-                message.arg1 = syncHandle;
-                stateMachine.sendMessage(message);
             }
         }
 
