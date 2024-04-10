@@ -2248,6 +2248,27 @@ public class BassClientService extends ProfileService {
         return false;
     }
 
+    /** Get the active broadcast sink devices receiving broadcast stream */
+    public List<BluetoothDevice> getActiveBroadcastSinks() {
+        List<BluetoothDevice> activeSinks = new ArrayList<>();
+
+        for (BluetoothDevice device : getConnectedDevices()) {
+            // Check if any device's source in active sync state
+            if (getAllSources(device).stream()
+                    .anyMatch(
+                            receiveState ->
+                                    (receiveState.getBisSyncState().stream()
+                                            .anyMatch(
+                                                    syncState ->
+                                                            syncState != 0x00000000L
+                                                                    && syncState
+                                                                            != 0xFFFFFFFFL)))) {
+                activeSinks.add(device);
+            }
+        }
+        return activeSinks;
+    }
+
     /** Handle broadcast state changed */
     public void notifyBroadcastStateChanged(int state, int broadcastId) {
         switch (state) {
