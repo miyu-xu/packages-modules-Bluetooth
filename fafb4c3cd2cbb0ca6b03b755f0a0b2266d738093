@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "320f9ccc_a48d4aca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-10T01:51:37Z",
+      "side": 1,
+      "message": "Looks good to me, Flagging seems irrelevant due to the interoperability aspect of the patch.",
+      "revId": "fafb4c3cd2cbb0ca6b03b755f0a0b2266d738093",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
