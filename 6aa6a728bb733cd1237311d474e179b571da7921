@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7a28fec_b6361cb6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-10T15:51:15Z",
+      "side": 1,
+      "message": "FYI:\n```\n    metadata {\n        purpose: PURPOSE_BUGFIX\n    }\n```\n\ncan be added to bug fix flag",
+      "revId": "6aa6a728bb733cd1237311d474e179b571da7921",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
