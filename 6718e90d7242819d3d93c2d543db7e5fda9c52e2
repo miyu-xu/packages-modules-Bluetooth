@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5957ae25_26faeabc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-10T17:32:02Z",
+      "side": 1,
+      "message": "There are test associated with fallback devices for other profiles.\n\nhttps://source.corp.google.com/search?q\u003dfallbackDevice%20f:test%20f:modules%2Fbluetooth%20\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%2Fmain%20b:main\n\nCan we extend them to include a2dpsink ?",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 52
+      },
+      "revId": "6718e90d7242819d3d93c2d543db7e5fda9c52e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
