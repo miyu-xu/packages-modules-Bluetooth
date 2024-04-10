@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cad5f69_1bc96fc0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-10T17:07:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd8360ec_cfbc55c0",
+      "revId": "3ded657af4d7f085f9e005b41b125b1e4e75b8f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc702783_be7134de",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd0e6718_272173d5",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1578,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-10T17:07:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc702783_be7134de",
+      "revId": "3ded657af4d7f085f9e005b41b125b1e4e75b8f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8d09557_2674122f",
@@ -48,6 +84,24 @@
       "writtenOn": "2024-04-09T17:58:50Z",
       "side": 1,
       "message": "Move this ++ out of this? recvStateIndex++\n\nOr why not just keep using \u0027i\u0027 and use it to get the subgroup? this can also avoid adding extra recvStateIndex.\n        for (int i \u003d 0; i \u003c numSubGroups; i++) {\n        ...\n        bisIndexValue \u003d getBisSyncFromChannelPreference(subGroups.get(i).getChannels());\n        ...",
+      "revId": "3ded657af4d7f085f9e005b41b125b1e4e75b8f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "254ac350_364962b8",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1587,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-10T17:07:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8d09557_2674122f",
       "revId": "3ded657af4d7f085f9e005b41b125b1e4e75b8f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
