@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94d6bbc2_a909e338",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 1489,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-04-11T00:52:35Z",
+      "side": 1,
+      "message": "Sorry, what I meant by this was\n```\nlet request \u003d match self.lock_context().pending_gatt_request.clone() {\n  Some(r) \u003d\u003e r,\n  None \u003d\u003e {return Err(\"No pending request to send response to\".into());}\n};\n```",
+      "revId": "de7f68394975241230b7d087feda8ad6ee10996d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
