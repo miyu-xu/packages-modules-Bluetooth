@@ -52,6 +52,24 @@
       "parentUuid": "91b1ab5b_154721fe",
       "revId": "0af864f275e016047888fd3b703b522d4d2f0711",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cec47887_7597411a",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 804,
+      "author": {
+        "id": 2059052
+      },
+      "writtenOn": "2024-04-11T03:58:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f56ce0b_81b91125",
+      "revId": "0af864f275e016047888fd3b703b522d4d2f0711",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
