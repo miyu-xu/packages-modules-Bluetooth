@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49bae071_3829458a",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 815,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-11T22:49:28Z",
+      "side": 1,
+      "message": "per your commit message, shouldn\u0027t this be`bta_dm_gatt_service_discovery_cmpl` ? \n\nso that is it clear that this is only called when GATT service discovery is done",
+      "range": {
+        "startLine": 815,
+        "startChar": 12,
+        "endLine": 815,
+        "endChar": 41
+      },
+      "revId": "4e7dc60b75f0ae4adb348efa43d574bd114b2cb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3f05050_1a31520a",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 843,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-11T22:49:28Z",
+      "side": 1,
+      "message": "nit: in `bta_gattc_get_gatt_db_impl`, if we just pass in a std::vector\u003cbtgatt_db_element_t\u003e* or reference, it won\u0027t need to do `osi_malloc` and `osi_free` across method boundaries which is erroprone.",
+      "range": {
+        "startLine": 843,
+        "startChar": 70,
+        "endLine": 843,
+        "endChar": 73
+      },
+      "revId": "4e7dc60b75f0ae4adb348efa43d574bd114b2cb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
