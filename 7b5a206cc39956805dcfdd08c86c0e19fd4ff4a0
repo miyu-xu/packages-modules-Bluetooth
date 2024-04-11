@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc1645f3_ebef15f2",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1258,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-11T20:40:22Z",
+      "side": 1,
+      "message": "```\n  if (bta_dm_search_get_state() \u003d\u003d BTA_DM_SEARCH_ACTIVE) {\n    // if p_btm_inq_info is nullptr, there is no more inquiry results to discover\n    // name for\n    if (bta_dm_search_cb.p_btm_inq_info !\u003d nullptr) {\n      bta_dm_discover_next_device();\n    } else {\n      log::info(\"end of parsing inquiry result\");\n    }\n  } else {\n    log::info()\n  }\n```",
+      "range": {
+        "startLine": 1256,
+        "startChar": 0,
+        "endLine": 1258,
+        "endChar": 10
+      },
+      "revId": "7b5a206cc39956805dcfdd08c86c0e19fd4ff4a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5cacab8_f8b1934e",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1259,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-11T20:40:22Z",
+      "side": 1,
+      "message": "nit:warn?",
+      "range": {
+        "startLine": 1259,
+        "startChar": 9,
+        "endLine": 1259,
+        "endChar": 13
+      },
+      "revId": "7b5a206cc39956805dcfdd08c86c0e19fd4ff4a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3f71680_0ab23470",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2110,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-11T20:40:22Z",
+      "side": 1,
+      "message": "let\u0027s make sure `bta_dm_disc_result` and `bta_dm_search_result` indeed has the same effect",
+      "range": {
+        "startLine": 2110,
+        "startChar": 10,
+        "endLine": 2110,
+        "endChar": 28
+      },
+      "revId": "7b5a206cc39956805dcfdd08c86c0e19fd4ff4a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
