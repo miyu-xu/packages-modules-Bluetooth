@@ -16,6 +16,24 @@
       "message": "Peripheral latency doesn\u0027t mean they MUST skip events, especially if there is data with udpates. As per spec: \n```\nPeripheral latency also allows a Peripheral to use a reduced number of\nconnection events. The connPeripheralLatency parameter defines the number\nof consecutive subrated connection events that the Peripheral is not required\nto listen for the Central.\n```\n\nSo if Mad mouse is misbehaving, and this doesn\u0027t happen on other HID devices, I would recommend latency to be set to 0 just for Mad devices, so the well behaving devices can still use latency if they prefer. You can add entry interop_database entry for that.",
       "revId": "cb9d5c6449182ceb49903d5c69e155dead759554",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9ae67ef_5168fb62",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-04-11T16:21:01Z",
+      "side": 1,
+      "message": "+1\nThis change will drain power on all HOGP devices.",
+      "parentUuid": "7597e596_8272bf1f",
+      "revId": "cb9d5c6449182ceb49903d5c69e155dead759554",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
