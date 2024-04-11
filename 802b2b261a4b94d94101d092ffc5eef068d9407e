@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ee3bca8_d6989b24",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-04-11T10:12:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3074edb1_e9a15ee5",
+      "revId": "802b2b261a4b94d94101d092ffc5eef068d9407e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e9e585c_eb0682f5",
@@ -102,6 +120,30 @@
       "side": 1,
       "message": "I\u0027m not sure which part could be affected. It will be used as an indicator of \"we are retrying\". Please see this comment: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3005184/comment/78c03e4c_a556b7c3/\n\nI think the state should be in `BTA_AG_SCO_CODEC_ST`. The state `BTA_AG_SCO_OPEN_ST` looks like the SCO connection has been established.",
       "parentUuid": "ce3b7282_7eeae3eb",
+      "range": {
+        "startLine": 241,
+        "startChar": 32,
+        "endLine": 241,
+        "endChar": 51
+      },
+      "revId": "802b2b261a4b94d94101d092ffc5eef068d9407e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97c280f0_7ea10353",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-04-11T10:12:45Z",
+      "side": 1,
+      "message": "Per offline discussion, make the SCO state no change if the flag is enabled.",
+      "parentUuid": "72fe092c_6f09f4d7",
       "range": {
         "startLine": 241,
         "startChar": 32,
