@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "573d5481_320b858c",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2263,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-11T18:32:26Z",
+      "side": 1,
+      "message": "nit: as this value is also used in `isAnyReceiverReceivingBroadcast`, maybe add a constant for this, same for `0xFFFFFFFF `",
+      "range": {
+        "startLine": 2263,
+        "startChar": 73,
+        "endLine": 2263,
+        "endChar": 84
+      },
+      "revId": "de95b84be38dd4f892df294d6b9ca191c4319b00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
