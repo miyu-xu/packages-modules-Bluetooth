@@ -1685,6 +1685,12 @@ public final class BluetoothAdapter {
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
     public String getAddress() {
+        if (Flags.systemServerMessenger()) {
+            var data = new SystemServiceMessage.GetAddress();
+            data.attributionSource = mAttributionSource;
+
+            return mSystemServiceMessenger.send(data).value;
+        }
         try {
             return mManagerService.getAddress(mAttributionSource);
         } catch (RemoteException e) {
