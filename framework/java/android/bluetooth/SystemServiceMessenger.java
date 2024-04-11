@@ -105,4 +105,8 @@ class SystemServiceMessenger {
     SystemServiceMessage.FactoryReset.Reply send(SystemServiceMessage.FactoryReset data) {
         return send(data, SystemServiceMessage.FactoryReset.Reply.class);
     }
+
+    SystemServiceMessage.GetAddress.Reply send(SystemServiceMessage.GetAddress data) {
+        return send(data, SystemServiceMessage.GetAddress.Reply.class);
+    }
 }
