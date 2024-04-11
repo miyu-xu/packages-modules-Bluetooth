@@ -674,7 +674,8 @@ class AdapterProperties {
                 Flags.identityAddressNullIfUnknown()
                         ? Utils.getBrEdrAddress(device, mService)
                         : mService.getIdentityAddress(address);
-        debugLog("cleanupPrevBondRecordsFor: " + device);
+        int deviceType = mRemoteDevices.getDeviceProperties(device).getDeviceType();
+        debugLog("cleanupPrevBondRecordsFor: " + device + ", device type: " + deviceType);
         if (identityAddress == null) {
             return;
         }
@@ -685,23 +686,47 @@ class AdapterProperties {
                     Flags.identityAddressNullIfUnknown()
                             ? Utils.getBrEdrAddress(existingDevice, mService)
                             : mService.getIdentityAddress(existingAddress);
+            int existingDeviceType =
+                    mRemoteDevices.getDeviceProperties(existingDevice).getDeviceType();
 
             if (identityAddress.equals(existingIdentityAddress)
                     && !address.equals(existingAddress)) {
-                if (mService.getNative().removeBond(Utils.getBytesFromAddress(existingAddress))) {
-                    mBondedDevices.remove(existingDevice);
-                    infoLog(
-                            "Removing old bond record: "
-                                    + existingDevice
-                                    + " for current device: "
-                                    + device);
-                } else {
-                    Log.e(
-                            TAG,
-                            "Unexpected error while removing old bond record:"
-                                    + existingDevice
-                                    + " for current device: "
-                                    + device);
+                boolean removeExisting = true;
+                if (Flags.cleanupLeOnlyDeviceType()) {
+                    // Existing device record should be removed only if the device type is LE-only
+                    if (existingDeviceType == BluetoothDevice.DEVICE_TYPE_LE
+                            && deviceType == BluetoothDevice.DEVICE_TYPE_LE) {
+                        removeExisting = true;
+                    } else {
+                        removeExisting = false;
+                        Log.w(
+                                TAG,
+                                "Device type of existing bond does not match: "
+                                        + device
+                                        + ", new device type: "
+                                        + deviceType
+                                        + ", existing device type: "
+                                        + existingDeviceType);
+                    }
+                }
+
+                if (removeExisting) {
+                    if (mService.getNative()
+                            .removeBond(Utils.getBytesFromAddress(existingAddress))) {
+                        mBondedDevices.remove(existingDevice);
+                        infoLog(
+                                "Removing old bond record: "
+                                        + existingDevice
+                                        + " for current device: "
+                                        + device);
+                    } else {
+                        Log.e(
+                                TAG,
+                                "Unexpected error while removing old bond record:"
+                                        + existingDevice
+                                        + " for current device: "
+                                        + device);
+                    }
                 }
                 break;
             }
