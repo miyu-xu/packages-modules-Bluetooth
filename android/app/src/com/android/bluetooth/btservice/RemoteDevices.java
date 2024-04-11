@@ -51,6 +51,7 @@ import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.hfp.HeadsetHalConstants;
 import com.android.internal.annotations.VisibleForTesting;
 
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -1223,15 +1224,41 @@ public class RemoteDevices {
         }
     }
 
+<<<<<<< PATCH SET (08b5fb Log address maps)
+    private void removeAddressMapping(byte[] address) {
+        String key = Utils.getAddressStringFromByte(address);
+        String pseudoAddress;
+=======
     private void removeAddressMapping(String address) {
+>>>>>>> BASE      (7f66be Allow pairing over unseen transport)
         synchronized (mDevices) {
+<<<<<<< PATCH SET (08b5fb Log address maps)
+            pseudoAddress = mDualDevicesMap.get(key);
+
+            mDevices.remove(key);
+            mDeviceQueue.remove(key); // Remove from LRU cache
+=======
             mDevices.remove(address);
             mDeviceQueue.remove(address); // Remove from LRU cache
+>>>>>>> BASE      (7f66be Allow pairing over unseen transport)
 
+<<<<<<< PATCH SET (08b5fb Log address maps)
+            // Remove all related address mappings
+            mDualDevicesMap.values().remove(key);
+            mDualDevicesMap.remove(key);
+=======
             // Remove from dual mode device mappings
             mDualDevicesMap.values().remove(address);
             mDualDevicesMap.remove(address);
+>>>>>>> BASE      (7f66be Allow pairing over unseen transport)
         }
+        Log.d(
+                TAG,
+                "removeAddressMapping: "
+                        + Utils.getRedactedAddressStringFromByte(address)
+                        + " -> "
+                        + Utils.getRedactedAddressStringFromByte(
+                                Utils.getBytesFromAddress(pseudoAddress)));
     }
 
     void onBondStateChange(BluetoothDevice device, int newState) {
@@ -1546,4 +1573,28 @@ public class RemoteDevices {
         Log.w(TAG, msg);
     }
 
+    /**
+     * Dump database info to a PrintWriter
+     *
+     * @param writer the PrintWriter to write log
+     */
+    public void dump(PrintWriter writer) {
+        writer.println("\n" + TAG + ":");
+        writer.println("  Address map: " + mDualDevicesMap.size());
+        for (String address : mDualDevicesMap.keySet()) {
+            String pseudoAddress = mDualDevicesMap.get(address);
+            writer.println(
+                    "    "
+                            + Utils.getRedactedAddressStringFromByte(
+                                    Utils.getBytesFromAddress(address))
+                            + " -> "
+                            + Utils.getRedactedAddressStringFromByte(
+                                    Utils.getBytesFromAddress(pseudoAddress)));
+        }
+
+        writer.println("  SDP tracker: " + mSdpTracker.size());
+        for (BluetoothDevice device : mSdpTracker) {
+            writer.println("    " + device);
+        }
+    }
 }
