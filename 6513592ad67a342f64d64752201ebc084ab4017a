@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "455620ca_37114f90",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-11T17:05:22Z",
+      "side": 1,
+      "message": "Could we remove the `unmask` from here as well?",
+      "revId": "6513592ad67a342f64d64752201ebc084ab4017a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
