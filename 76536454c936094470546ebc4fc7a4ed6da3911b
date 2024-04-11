@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "6a596dc7_f999baba",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-04-11T06:24:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6a16793_547923f3",
+      "revId": "76536454c936094470546ebc4fc7a4ed6da3911b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "3c006a4d_ebfd99ce",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 10
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "I think, I see why this was named unmask, I find it confusion, wdyt about naming this `RemoveSniffSubrating[From]Mask` or something like that?\n\nWdyt @mylesgw@google.com ?",
       "parentUuid": "2af03926_fd6fddaf",
+      "revId": "76536454c936094470546ebc4fc7a4ed6da3911b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3aa31753_5062e15e",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1379,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-04-11T06:24:23Z",
+      "side": 1,
+      "message": "It seems like there\u0027re two masks. LE mask and event mask. Let me change to use `RemoveSniffSubratingEventMask`.",
+      "parentUuid": "e38c5584_61937128",
       "revId": "76536454c936094470546ebc4fc7a4ed6da3911b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
