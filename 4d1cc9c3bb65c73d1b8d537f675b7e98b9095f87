@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffe3a771_bcc3b8de",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2115,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-11T20:17:19Z",
+      "side": 1,
+      "message": "This is key to separate these namespaces",
+      "revId": "4d1cc9c3bb65c73d1b8d537f675b7e98b9095f87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
