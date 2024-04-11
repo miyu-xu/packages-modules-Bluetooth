@@ -68,6 +68,11 @@ public class PermissionChecker(
         if (uid != SYSTEM_UID) enforceCallerIsForegroundUser(uid)
     }
 
+    @Throws(BluetoothPermissionException::class)
+    fun getStateAllowed(uid: Int) {
+        if (uid != SYSTEM_UID) enforceCallerIsForegroundUser(uid)
+    }
+
     fun enforcePrivileged(uid: Int) = context.enforcePermission(BLUETOOTH_PRIVILEGED, -1, uid, null)
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
