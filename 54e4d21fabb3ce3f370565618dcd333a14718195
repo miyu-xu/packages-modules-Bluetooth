@@ -52,6 +52,24 @@
       "parentUuid": "02feabd2_01f489ab",
       "revId": "54e4d21fabb3ce3f370565618dcd333a14718195",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03b6b431_bde0b1ad",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-04-11T17:59:47Z",
+      "side": 1,
+      "message": "Resolving since we have taken ownership of this in AOSP.",
+      "parentUuid": "ccb6cb9d_918a3f69",
+      "revId": "54e4d21fabb3ce3f370565618dcd333a14718195",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
