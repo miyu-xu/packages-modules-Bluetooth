@@ -991,6 +991,17 @@ class BluetoothManagerService {
                         // BLE scan is not available.
                         disableBleScanMode();
                         clearBleApps();
+                        if (Flags.systemServerMessenger()) {
+                            try {
+                                if (mAdapter != null) {
+                                    addActiveLog(ENABLE_DISABLE_REASON_APPLICATION_REQUEST, false);
+                                    mAdapter.stopBle(mContext.getAttributionSource());
+                                }
+                            } catch (RemoteException e) {
+                                Log.e(TAG, "error when disabling bluetooth", e);
+                            }
+                            return;
+                        }
                         mAdapterLock.readLock().lock();
                         try {
                             if (mAdapter != null) {
@@ -1013,14 +1024,22 @@ class BluetoothManagerService {
 
     // Disable ble scan only mode.
     private void disableBleScanMode() {
+        if (Flags.systemServerMessenger()) {
+            disableBleScanMode_sync();
+            return;
+        }
         mAdapterLock.writeLock().lock();
         try {
-            if (mAdapter != null && mState.oneOf(STATE_ON)) {
-                Log.d(TAG, "disableBleScanMode: Resetting the mEnable flag for clean disable");
-                mEnable = false;
-            }
+            disableBleScanMode_sync();
         } finally {
             mAdapterLock.writeLock().unlock();
+        }
+    }
+
+    private void disableBleScanMode_sync() {
+        if (mAdapter != null && mState.oneOf(STATE_ON)) {
+            Log.d(TAG, "disableBleScanMode_sync: Resetting the mEnable flag for clean disable");
+            mEnable = false;
         }
     }
 
