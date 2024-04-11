@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac950c29_3d7f3904",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-11T15:45:15Z",
+      "side": 1,
+      "message": "@cmanton@google.com, any comments as SDP dri ?",
+      "revId": "006f93fc07743024f7854a9412eeab2f1058825d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f92922b5_8c6b50f1",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-11T15:45:15Z",
+      "side": 1,
+      "message": "I believe we will want to flag this change \ncf https://g3doc.corp.google.com/company/teams/android-bluetooth/contribution-guide/create-a-flag.md#flag-guidelines\n\nTL;DR:\nCreate a bug there https://b.corp.google.com/issues/new?component\u003d1387432\u0026template\u003d1839586\nCreate a flag in packages/modules/bluetooth/flags/avrcp.aconfig (or create the file if missing) and reference the bug.\n\nOnce merge reference the flag here with IS_FLAG_ENABLED macro\n\n\nI don\u0027t think external contributor have access to this process. That may need to be handled internally",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 5
+      },
+      "revId": "006f93fc07743024f7854a9412eeab2f1058825d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
