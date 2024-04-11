@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26e004e3_14406a72",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-04-11T10:12:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9e705dc_1bd75c89",
+      "revId": "4b3f0492828975540339429e6150c38dd600676f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9d066d9a_a8e787f5",
@@ -120,6 +138,30 @@
       "side": 1,
       "message": "We need some flag to check if we have already tried CVSD S1. Without this, we will always keep trying reopening the sco.",
       "parentUuid": "78c03e4c_a556b7c3",
+      "range": {
+        "startLine": 1609,
+        "startChar": 66,
+        "endLine": 1610,
+        "endChar": 50
+      },
+      "revId": "4b3f0492828975540339429e6150c38dd600676f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df29c0de_03ffc595",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1610,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-04-11T10:12:56Z",
+      "side": 1,
+      "message": "Per offline discussion, use a new indicator to track if we were trying CVSD safe settings.",
+      "parentUuid": "255f644d_a1854ccc",
       "range": {
         "startLine": 1609,
         "startChar": 66,
