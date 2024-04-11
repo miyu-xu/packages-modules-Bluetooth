@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94f21807_82eec0f6",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 4319,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-11T18:20:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e24415b9_2383a366",
+      "range": {
+        "startLine": 4317,
+        "startChar": 0,
+        "endLine": 4319,
+        "endChar": 9
+      },
+      "revId": "f739a99eed08c7e287c9aa72420fd9d8e675580a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64faa40a_c90faff6",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-10T21:16:20Z",
       "side": 1,
       "message": "Remove ?",
+      "range": {
+        "startLine": 4343,
+        "startChar": 0,
+        "endLine": 4344,
+        "endChar": 57
+      },
+      "revId": "f739a99eed08c7e287c9aa72420fd9d8e675580a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2e8e441_9f6285e5",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 4344,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-11T18:20:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64faa40a_c90faff6",
       "range": {
         "startLine": 4343,
         "startChar": 0,
@@ -64,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62e67220_c3104dc2",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 4346,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-11T18:20:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5884f447_11238688",
+      "revId": "f739a99eed08c7e287c9aa72420fd9d8e675580a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ba0d781_df09c76d",
@@ -77,6 +143,30 @@
       "writtenOn": "2024-04-10T21:16:20Z",
       "side": 1,
       "message": "A new messenger each time?\n\nShould you not store an instance and always return the same?",
+      "range": {
+        "startLine": 85,
+        "startChar": 14,
+        "endLine": 85,
+        "endChar": 70
+      },
+      "revId": "f739a99eed08c7e287c9aa72420fd9d8e675580a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8dd6870_0e2ebc8f",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothServiceBinder.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-11T18:20:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ba0d781_df09c76d",
       "range": {
         "startLine": 85,
         "startChar": 14,
