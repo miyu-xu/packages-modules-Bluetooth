@@ -22,6 +22,29 @@
       },
       "revId": "6718e90d7242819d3d93c2d543db7e5fda9c52e2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff6eff06_1391c265",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1914,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-04-11T06:32:47Z",
+      "side": 1,
+      "message": "Could we add the fallback device address in the log?",
+      "range": {
+        "startLine": 1914,
+        "startChar": 69,
+        "endLine": 1914,
+        "endChar": 91
+      },
+      "revId": "6718e90d7242819d3d93c2d543db7e5fda9c52e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
