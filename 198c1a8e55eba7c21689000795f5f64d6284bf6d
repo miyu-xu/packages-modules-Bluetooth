@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "556cb8d5_0d467fcd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-11T18:03:09Z",
+      "side": 1,
+      "message": "I am not that familiar with sysprop management, let William to take a look while Myles is OOO",
+      "revId": "198c1a8e55eba7c21689000795f5f64d6284bf6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
