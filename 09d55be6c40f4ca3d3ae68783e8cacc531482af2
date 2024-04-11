@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cadc309e_1152fab5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-04-11T17:21:37Z",
+      "side": 1,
+      "message": "Bypassing presubmit due to unrelated failures in an A2DP test.",
+      "revId": "09d55be6c40f4ca3d3ae68783e8cacc531482af2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
