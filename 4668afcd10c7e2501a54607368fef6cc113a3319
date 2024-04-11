@@ -22,6 +22,30 @@
       },
       "revId": "4668afcd10c7e2501a54607368fef6cc113a3319",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "516f0f12_ca156348",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-04-11T15:59:13Z",
+      "side": 1,
+      "message": "Acknowledged, but realistically won\u0027t get a chance to take a look at adding test coverage for a couple of weeks. So proceeding to submit to get the crash fixed sooner.",
+      "parentUuid": "0399ef74_2eb341dc",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 5
+      },
+      "revId": "4668afcd10c7e2501a54607368fef6cc113a3319",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
