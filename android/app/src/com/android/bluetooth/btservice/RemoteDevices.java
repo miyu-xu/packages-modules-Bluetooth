@@ -51,6 +51,7 @@ import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.hfp.HeadsetHalConstants;
 import com.android.internal.annotations.VisibleForTesting;
 
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -1225,14 +1226,24 @@ public class RemoteDevices {
 
     private void removeAddressMapping(byte[] address) {
         String key = Utils.getAddressStringFromByte(address);
+        String pseudoAddress;
         synchronized (mDevices) {
+            pseudoAddress = mDualDevicesMap.get(key);
+
             mDevices.remove(key);
             mDeviceQueue.remove(key); // Remove from LRU cache
 
-            // Remove from dual mode device mappings
+            // Remove all related address mappings
             mDualDevicesMap.values().remove(key);
             mDualDevicesMap.remove(key);
         }
+        Log.d(
+                TAG,
+                "removeAddressMapping: "
+                        + Utils.getRedactedAddressStringFromByte(address)
+                        + " -> "
+                        + Utils.getRedactedAddressStringFromByte(
+                                Utils.getBytesFromAddress(pseudoAddress)));
     }
 
     void onBondStateChange(byte[] address, int newState) {
@@ -1547,4 +1558,28 @@ public class RemoteDevices {
         Log.w(TAG, msg);
     }
 
+    /**
+     * Dump database info to a PrintWriter
+     *
+     * @param writer the PrintWriter to write log
+     */
+    public void dump(PrintWriter writer) {
+        writer.println("\n" + TAG + ":");
+        writer.println("  Address map: " + mDualDevicesMap.size());
+        for (String address : mDualDevicesMap.keySet()) {
+            String pseudoAddress = mDualDevicesMap.get(address);
+            writer.println(
+                    "    "
+                            + Utils.getRedactedAddressStringFromByte(
+                                    Utils.getBytesFromAddress(address))
+                            + " -> "
+                            + Utils.getRedactedAddressStringFromByte(
+                                    Utils.getBytesFromAddress(pseudoAddress)));
+        }
+
+        writer.println("  SDP tracker: " + mSdpTracker.size());
+        for (BluetoothDevice device : mSdpTracker) {
+            writer.println("    " + device);
+        }
+    }
 }
