@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3aa95ce_39a5d6a2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-11T23:52:38Z",
+      "side": 1,
+      "message": "+2\u0027ed this CL, but please upload follow-up CLs to resolve the nit",
+      "revId": "fc7824bd034a893c28d40008698304c75a663eaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "456f7b9b_1dd298eb",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-11T23:52:38Z",
+      "side": 1,
+      "message": "nit: \u003e 0\n\ncan resolve in a follow-up CL\n\nfor readability, be more explicit on what we are checking\n\nor why can\u0027t we use \n\ncontext_type_offload_config_map_.contains(key)\n\n?\n\nwe have c++20 enabled",
+      "range": {
+        "startLine": 216,
+        "startChar": 47,
+        "endLine": 216,
+        "endChar": 49
+      },
+      "revId": "fc7824bd034a893c28d40008698304c75a663eaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccef4177_31acd76f",
+        "filename": "system/bta/le_audio/codec_manager.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-11T23:52:38Z",
+      "side": 1,
+      "message": "nit: can we add some comments on what this function does?\n\nIt seem like it verifies if `confs` matches the requirement in `requirements`\n\nbut what are its return value? why it returns a pointer to another audio set configuration? \n\nAs a reader, I cannot understand what this function is doing",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 35
+      },
+      "revId": "fc7824bd034a893c28d40008698304c75a663eaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40c4a01c_71a3a6f0",
+        "filename": "system/bta/le_audio/codec_manager.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-11T23:52:38Z",
+      "side": 1,
+      "message": "nit: I assume unint8_t is the quality?\n\nCould this be a unit8_t backed enum so that it is clear about what the value means?",
+      "range": {
+        "startLine": 72,
+        "startChar": 65,
+        "endLine": 72,
+        "endChar": 75
+      },
+      "revId": "fc7824bd034a893c28d40008698304c75a663eaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
