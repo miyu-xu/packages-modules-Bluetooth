@@ -1,5 +1,4 @@
 #include <stddef.h>
-#include <stdio.h>
 #include "oi_codec_sbc.h"
 
 #define CODEC_DATA_WORDS(numChannels, numBuffers)                              \
