@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a8bea89_7510d2f0",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 1605,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-11T21:24:13Z",
+      "side": 1,
+      "message": "I guess based on our discussion, we don\u0027t need to use this state as indicator?",
+      "range": {
+        "startLine": 1605,
+        "startChar": 6,
+        "endLine": 1605,
+        "endChar": 50
+      },
+      "revId": "7e234958cba6ceb5d1048e3f52ac2ed737c99ea7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
