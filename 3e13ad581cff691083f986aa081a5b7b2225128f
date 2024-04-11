@@ -46,6 +46,30 @@
       },
       "revId": "3e13ad581cff691083f986aa081a5b7b2225128f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf3c5b67_f38e8974",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-04-11T10:12:51Z",
+      "side": 1,
+      "message": "Explained the logic in offline discussion.",
+      "parentUuid": "6068801f_c46b33a3",
+      "range": {
+        "startLine": 237,
+        "startChar": 11,
+        "endLine": 237,
+        "endChar": 19
+      },
+      "revId": "3e13ad581cff691083f986aa081a5b7b2225128f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
