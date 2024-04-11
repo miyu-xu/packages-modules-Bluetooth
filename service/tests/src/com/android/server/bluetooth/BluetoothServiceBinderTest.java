@@ -254,6 +254,7 @@ public class BluetoothServiceBinderTest {
 
     @Test
     public void getAddress() {
+        mSetFlagsRule.disableFlags(Flags.FLAG_SYSTEM_SERVER_MESSENGER);
         assertThrows(NullPointerException.class, () -> mBinder.getAddress(null));
 
         assertThrows(SecurityException.class, () -> mBinder.getAddress(mSource));

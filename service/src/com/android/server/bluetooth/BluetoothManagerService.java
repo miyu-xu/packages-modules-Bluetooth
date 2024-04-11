@@ -1594,6 +1594,14 @@ class BluetoothManagerService {
     String getAddress() {
         mAdapterLock.readLock().lock();
         try {
+            return getAddress_sync();
+        } finally {
+            mAdapterLock.readLock().unlock();
+        }
+    }
+
+    String getAddress_sync() {
+        try {
             if (mAdapter != null) {
                 return mAdapter.getAddress(mContext.getAttributionSource());
             }
@@ -1602,8 +1610,6 @@ class BluetoothManagerService {
                     TAG,
                     "getAddress(): Unable to retrieve address remotely. Returning cached address",
                     e);
-        } finally {
-            mAdapterLock.readLock().unlock();
         }
 
         // mAddress is accessed from outside.
