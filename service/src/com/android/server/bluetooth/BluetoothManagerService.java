@@ -1962,7 +1962,7 @@ class BluetoothManagerService {
                         UserHandle.CURRENT)) {
                     mHandler.removeMessages(MESSAGE_TIMEOUT_BIND);
                 }
-            } else if (!Flags.fastBindToApp() && mAdapter != null) {
+            } else if (mAdapter != null) {
                 // Enable bluetooth
                 try {
                     mAdapter.enable(mQuietEnable, mContext.getAttributionSource());
