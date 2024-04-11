@@ -45,8 +45,6 @@ const StackManager* Stack::GetStackManager() const { return nullptr; }
 
 legacy::Acl* Stack::GetAcl() { return testing::acl_; }
 
-Btm* Stack::GetBtm() { return testing::btm_; }
-
 os::Handler* Stack::GetHandler() { return stack_handler_; }
 
 bool Stack::IsDumpsysModuleStarted() const { return false; }
