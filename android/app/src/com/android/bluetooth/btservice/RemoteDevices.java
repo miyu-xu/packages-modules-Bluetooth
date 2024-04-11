@@ -52,7 +52,14 @@ import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.hfp.HeadsetHalConstants;
 import com.android.internal.annotations.VisibleForTesting;
 
+<<<<<<< PATCH SET (f0fdba Log address maps)
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+||||||| BASE
+import java.io.UnsupportedEncodingException;
+=======
 import java.nio.charset.StandardCharsets;
+>>>>>>> BASE      (bef61e Merge changes I4f6fc40d,Ifb1081e8,I5c77108f into main)
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -1330,6 +1337,10 @@ public class RemoteDevices {
     }
 
     private void removeAddressMapping(String address) {
+<<<<<<< PATCH SET (f0fdba Log address maps)
+        String pseudoAddress;
+||||||| BASE
+=======
         if (Flags.temporaryPairingDeviceProperties()) {
             DeviceProperties deviceProperties = mDevices.get(address);
             if (deviceProperties != null) {
@@ -1352,7 +1363,9 @@ public class RemoteDevices {
             }
         }
 
+>>>>>>> BASE      (bef61e Merge changes I4f6fc40d,Ifb1081e8,I5c77108f into main)
         synchronized (mDevices) {
+            pseudoAddress = mDualDevicesMap.get(address);
             mDevices.remove(address);
             mDeviceQueue.remove(address); // Remove from LRU cache
 
@@ -1360,6 +1373,12 @@ public class RemoteDevices {
             mDualDevicesMap.values().remove(address);
             mDualDevicesMap.remove(address);
         }
+        Log.d(
+                TAG,
+                "removeAddressMapping: "
+                        + Utils.getRedactedAddressString(address)
+                        + " -> "
+                        + Utils.getRedactedAddressString(pseudoAddress));
     }
 
     void onBondStateChange(BluetoothDevice device, int newState) {
@@ -1721,4 +1740,32 @@ public class RemoteDevices {
     private static void warnLog(String msg) {
         Log.w(TAG, msg);
     }
+<<<<<<< PATCH SET (f0fdba Log address maps)
+
+    /**
+     * Dump database info to a PrintWriter
+     *
+     * @param writer the PrintWriter to write log
+     */
+    public void dump(PrintWriter writer) {
+        writer.println("\n" + TAG + ":");
+        writer.println("  Address map: " + mDualDevicesMap.size());
+        for (String address : mDualDevicesMap.keySet()) {
+            String pseudoAddress = mDualDevicesMap.get(address);
+            writer.println(
+                    "    "
+                            + Utils.getRedactedAddressString(address)
+                            + " -> "
+                            + Utils.getRedactedAddressString(pseudoAddress));
+        }
+
+        writer.println("  SDP tracker: " + mSdpTracker.size());
+        for (BluetoothDevice device : mSdpTracker) {
+            writer.println("    " + device);
+        }
+    }
+||||||| BASE
+
+=======
+>>>>>>> BASE      (bef61e Merge changes I4f6fc40d,Ifb1081e8,I5c77108f into main)
 }
