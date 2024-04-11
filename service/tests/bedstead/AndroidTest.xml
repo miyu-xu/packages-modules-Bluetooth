@@ -15,14 +15,14 @@
 -->
 <configuration description="Runs Service Bluetooth Tests.">
     <target_preparer class="com.android.tradefed.targetprep.suite.SuiteApkInstaller">
-        <option name="test-file-name" value="ServiceBluetoothTests.apk" />
+        <option name="test-file-name" value="ServiceBluetoothBedSteadTests.apk" />
     </target_preparer>
     <!-- <target_preparer class="com.android.tradefed.targetprep.RootTargetPreparer"> -->
     <!--     <option name="force-root" value="true" /> -->
     <!-- </target_preparer> -->
 
     <option name="test-suite-tag" value="apct" />
-    <option name="test-tag" value="ServiceBluetoothTests" />
+    <option name="test-tag" value="ServiceBluetoothBedSteadTests" />
     <option name="config-descriptor:metadata" key="mainline-param"
             value="com.google.android.btservices.apex" />
     <test class="com.android.tradefed.testtype.AndroidJUnitTest" >
