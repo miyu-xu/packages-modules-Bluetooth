@@ -249,6 +249,9 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
     @Override
     @RequiresPermission(BLUETOOTH_CONNECT)
     public String getName(AttributionSource source) {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
         requireNonNull(source, "AttributionSource cannot be null in getName");
 
         if (!checkConnectPermissionForDataDelivery(

@@ -1648,13 +1648,19 @@ class BluetoothManagerService {
     String getName() {
         mAdapterLock.readLock().lock();
         try {
+            return getName_sync();
+        } finally {
+            mAdapterLock.readLock().unlock();
+        }
+    }
+
+    String getName_sync() {
+        try {
             if (mAdapter != null) {
                 return mAdapter.getName(mContext.getAttributionSource());
             }
         } catch (RemoteException e) {
             Log.e(TAG, "getName(): Unable to retrieve name remotely. Returning cached name", e);
-        } finally {
-            mAdapterLock.readLock().unlock();
         }
 
         // mName is accessed from outside.

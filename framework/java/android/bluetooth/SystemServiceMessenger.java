@@ -109,4 +109,8 @@ class SystemServiceMessenger {
     SystemServiceMessage.GetAddress.Reply send(SystemServiceMessage.GetAddress data) {
         return send(data, SystemServiceMessage.GetAddress.Reply.class);
     }
+
+    SystemServiceMessage.GetName.Reply send(SystemServiceMessage.GetName data) {
+        return send(data, SystemServiceMessage.GetName.Reply.class);
+    }
 }
