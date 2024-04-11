@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3125b182_6426ca82",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-11T16:36:35Z",
+      "side": 1,
+      "message": "I meant headsetService.\n\nBut as discussed offline this whole policy is only trigger on wear devices.",
+      "parentUuid": "5957ae25_26faeabc",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 52
+      },
+      "revId": "6718e90d7242819d3d93c2d543db7e5fda9c52e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff6eff06_1391c265",
