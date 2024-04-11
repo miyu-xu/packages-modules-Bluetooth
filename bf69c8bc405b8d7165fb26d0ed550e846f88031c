@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6d540e5e_443e8bc5",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1432,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-11T17:48:47Z",
+      "side": 1,
+      "message": "can we move this into GD into ACL or HCI layer so that Myles\u0027 connection manager work will not be interrupted by this",
+      "range": {
+        "startLine": 1432,
+        "startChar": 5,
+        "endLine": 1432,
+        "endChar": 34
+      },
+      "revId": "bf69c8bc405b8d7165fb26d0ed550e846f88031c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4205a8e5_bcb5b04f",
         "filename": "system/stack/l2cap/l2c_ble.cc",
         "patchSetId": 2
