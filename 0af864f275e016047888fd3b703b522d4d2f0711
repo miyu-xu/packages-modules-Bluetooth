@@ -16,6 +16,24 @@
       "message": "Can we replicate the command for method above:\n```\n    /* LE Audio capable device is discoverable over both LE and Classic using\n     * same address. Prefer to use LE transport, as we don\u0027t know if it can do\n     * CTKD from Classic to LE */\n```\n\nOr even better, this looks like there is common logic between the two, should we have a single method that does all the checks ?",
       "revId": "0af864f275e016047888fd3b703b522d4d2f0711",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91b1ab5b_154721fe",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 804,
+      "author": {
+        "id": 2059052
+      },
+      "writtenOn": "2024-04-11T03:24:40Z",
+      "side": 1,
+      "message": "I have added a different comment here to reflect the need in the second function.\n\n/* LE Support is necessary to detect LE Audio support */\n\nI have created a method that does the LE device type check and called them from both the functions.\n\nOr you would rather have extract all the checks ?",
+      "parentUuid": "ac23567b_5114130b",
+      "revId": "0af864f275e016047888fd3b703b522d4d2f0711",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
