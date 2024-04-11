@@ -209,8 +209,17 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
 
     @Override
     public int getState() {
-        if (Flags.getStateFromSystemServer()) {
+        if (Flags.getstatefromsystemserver()) {
             return mBluetoothManagerService.getState();
+        }
+        if (Flags.systemServerMessenger()) {
+            try {
+                mPermissionChecker.getStateAllowed(getCallingAppId());
+                return mBluetoothManagerService.getState();
+            } catch (PermissionChecker.BluetoothPermissionException e) {
+                Log.e(TAG, "getSate: FAILED", e);
+                return BluetoothAdapter.STATE_OFF;
+            }
         }
         if (!isCallerSystem(getCallingAppId())
                 && !mPermissionUtils.checkIfCallerIsForegroundUser(mUserManager)) {
