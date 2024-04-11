@@ -67,10 +67,6 @@ hci::DistanceMeasurementManager* GetDistanceMeasurementManager() {
 hci::VendorSpecificEventManager* GetVendorSpecificEventManager() {
   return nullptr;
 }
-neighbor::ConnectabilityModule* GetConnectability() { return nullptr; }
-neighbor::DiscoverabilityModule* GetDiscoverability() { return nullptr; }
-neighbor::InquiryModule* GetInquiry() { return nullptr; }
-neighbor::PageModule* GetPage() { return nullptr; }
 os::Handler* GetGdShimHandler() { return hci::testing::mock_gd_shim_handler_; }
 hal::SnoopLogger* GetSnoopLogger() { return nullptr; }
 storage::StorageModule* GetStorage() { return nullptr; }
