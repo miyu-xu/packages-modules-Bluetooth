@@ -68,6 +68,42 @@
       "parentUuid": "2b8072c1_20073a8c",
       "revId": "5f57dc985312f60725cefa269cfebe00c2a3059c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c63bd978_65cf2112",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-04-11T10:12:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c6af005_2d719d44",
+      "revId": "5f57dc985312f60725cefa269cfebe00c2a3059c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2777981e_df0da8a5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-04-11T10:12:39Z",
+      "side": 1,
+      "message": "Per offline discussion, merged the flags to 1.",
+      "parentUuid": "ee217647_c3d4eaff",
+      "revId": "5f57dc985312f60725cefa269cfebe00c2a3059c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
