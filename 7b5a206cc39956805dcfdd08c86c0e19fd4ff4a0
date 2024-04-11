@@ -50,6 +50,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "cf14f046_34382203",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1258,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-11T20:49:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc1645f3_ebef15f2",
+      "range": {
+        "startLine": 1256,
+        "startChar": 0,
+        "endLine": 1258,
+        "endChar": 10
+      },
+      "revId": "7b5a206cc39956805dcfdd08c86c0e19fd4ff4a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a5cacab8_f8b1934e",
         "filename": "system/bta/dm/bta_dm_disc.cc",
         "patchSetId": 2
@@ -107,6 +131,30 @@
       "writtenOn": "2024-04-11T20:44:12Z",
       "side": 1,
       "message": "I think this is fine after Chris\u0027 review.",
+      "parentUuid": "e3f71680_0ab23470",
+      "range": {
+        "startLine": 2110,
+        "startChar": 10,
+        "endLine": 2110,
+        "endChar": 28
+      },
+      "revId": "7b5a206cc39956805dcfdd08c86c0e19fd4ff4a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9f05367_8d6d4e70",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2110,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-11T20:49:02Z",
+      "side": 1,
+      "message": "Done",
       "parentUuid": "e3f71680_0ab23470",
       "range": {
         "startLine": 2110,
