@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "d02d4062_2514469a",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1258,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-11T20:44:12Z",
+      "side": 1,
+      "message": "Given this is a standalone patch, could you address it and add more logging before merging?",
+      "parentUuid": "fc1645f3_ebef15f2",
+      "range": {
+        "startLine": 1256,
+        "startChar": 0,
+        "endLine": 1258,
+        "endChar": 10
+      },
+      "revId": "7b5a206cc39956805dcfdd08c86c0e19fd4ff4a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "a5cacab8_f8b1934e",
@@ -60,6 +84,30 @@
       "writtenOn": "2024-04-11T20:40:22Z",
       "side": 1,
       "message": "let\u0027s make sure `bta_dm_disc_result` and `bta_dm_search_result` indeed has the same effect",
+      "range": {
+        "startLine": 2110,
+        "startChar": 10,
+        "endLine": 2110,
+        "endChar": 28
+      },
+      "revId": "7b5a206cc39956805dcfdd08c86c0e19fd4ff4a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a08ae43_eaa0b217",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2110,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-11T20:44:12Z",
+      "side": 1,
+      "message": "I think this is fine after Chris\u0027 review.",
+      "parentUuid": "e3f71680_0ab23470",
       "range": {
         "startLine": 2110,
         "startChar": 10,
