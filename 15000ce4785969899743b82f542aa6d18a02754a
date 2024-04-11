@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdee5ba0_538ecb7a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-04-11T07:05:59Z",
+      "side": 1,
+      "message": "Talked to Jayden offline, decided to apply immediate fixes that loosen the test criteria just to fix the flakiness since a scan metrics and scan manager refactor is going on. After the refactor is finished, will work on adding a customer timer for tests if needed for tests related with metrics and scan duration. Both tests were ran with the change a 1000 times in local environment without failure.",
+      "revId": "15000ce4785969899743b82f542aa6d18a02754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
