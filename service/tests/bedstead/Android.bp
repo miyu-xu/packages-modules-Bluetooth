@@ -18,11 +18,10 @@ package {
 }
 
 android_test {
-    name: "ServiceBluetoothTests",
+    name: "ServiceBluetoothBedSteadTests",
     defaults: ["service-bluetooth-buildflags"],
     srcs: [
-        "src/**/*.java",
-        "src/**/*.kt",
+        "src/PermissionCheckerTest.kt",
     ],
 
     static_libs: [
