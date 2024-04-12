@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a03d405_90bd5842",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-12T07:24:23Z",
+      "side": 1,
+      "message": "oldDevice or formerDevice ?\n\n\"existing\" as I understand refers to a thing that was in the past, and still is in the present.",
+      "range": {
+        "startLine": 682,
+        "startChar": 29,
+        "endLine": 682,
+        "endChar": 43
+      },
+      "revId": "92b73ca22f6485566667fa52de66458e4b2d63f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "230aaae7_70f671c3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-12T07:24:23Z",
+      "side": 1,
+      "message": "for readability, please reverse this condition to reduce code indendation.\n```suggestion\n            if (!identityAddress.equals(existingIdentityAddress)\n                    || address.equals(existingAddress)) {\n                continue;\n            }\n            if (mService.getNative().removeBond(Utils.getBytesFromAddress(existingAddress))) {\n                mBondedDevices.remove(existingDevice);\n                infoLog(\n                        \"Removing old bond record: \"\n                                + existingDevice\n                                + \" for current device: \"\n                                + device);\n            } else {\n                Log.e(\n                        TAG,\n                        \"Unexpected error while removing old bond record:\"\n                                + existingDevice\n                                + \" for current device: \"\n                                + device);\n```",
+      "range": {
+        "startLine": 689,
+        "startChar": 12,
+        "endLine": 690,
+        "endChar": 58
+      },
+      "revId": "92b73ca22f6485566667fa52de66458e4b2d63f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
