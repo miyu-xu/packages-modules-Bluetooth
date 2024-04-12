@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a44459b6_9c53cac5",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-04-12T09:22:58Z",
+      "side": 1,
+      "message": "Unfortunately we are still at C++17 and `contains` is not yet available for us.",
+      "parentUuid": "456f7b9b_1dd298eb",
+      "range": {
+        "startLine": 216,
+        "startChar": 47,
+        "endLine": 216,
+        "endChar": 49
+      },
+      "revId": "fc7824bd034a893c28d40008698304c75a663eaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ccef4177_31acd76f",
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8893f8c6_95ea77cf",
+        "filename": "system/bta/le_audio/codec_manager.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-04-12T09:22:58Z",
+      "side": 1,
+      "message": "Sure. I\u0027ll add a comment here. It basically checks which configuration matches the requirements to find the correct one from all the configurations for the given audio context. Here we are passing the matcher function that looks through the configurations we get from the json file and selects the best one for the current scenario, requirements and capabilities. This is used only for the existing json configrations provider, and for the new AIDL config provider it will be an unused function parameter as the provider will already select a single configurations for us based on the requirements.",
+      "parentUuid": "ccef4177_31acd76f",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 35
+      },
+      "revId": "fc7824bd034a893c28d40008698304c75a663eaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40c4a01c_71a3a6f0",
@@ -77,6 +125,30 @@
       "writtenOn": "2024-04-11T23:52:38Z",
       "side": 1,
       "message": "nit: I assume unint8_t is the quality?\n\nCould this be a unit8_t backed enum so that it is clear about what the value means?",
+      "range": {
+        "startLine": 72,
+        "startChar": 65,
+        "endLine": 72,
+        "endChar": 75
+      },
+      "revId": "fc7824bd034a893c28d40008698304c75a663eaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83a84cc4_56a62a19",
+        "filename": "system/bta/le_audio/codec_manager.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-04-12T09:22:58Z",
+      "side": 1,
+      "message": "Ok, I\u0027ll use a dedicated enum type here.",
+      "parentUuid": "40c4a01c_71a3a6f0",
       "range": {
         "startLine": 72,
         "startChar": 65,
