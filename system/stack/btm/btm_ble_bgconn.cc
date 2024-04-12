@@ -114,8 +114,13 @@ bool BTM_AcceptlistAdd(const RawAddress& address, bool is_direct) {
     return false;
   }
 
+#if TARGET_FLOSS
+  return bluetooth::shim::ACL_AcceptLeConnectionFrom(
+      BTM_Sec_Bgconn_GetAddressWithType(address), is_direct);
+#else
   return bluetooth::shim::ACL_AcceptLeConnectionFrom(
       BTM_Sec_GetAddressWithType(address), is_direct);
+#endif
 }
 
 /** Removes the device from acceptlist */
@@ -125,8 +130,13 @@ void BTM_AcceptlistRemove(const RawAddress& address) {
     return;
   }
 
+#if TARGET_FLOSS
+  bluetooth::shim::ACL_IgnoreLeConnectionFrom(
+      BTM_Sec_Bgconn_GetAddressWithType(address));
+#else
   bluetooth::shim::ACL_IgnoreLeConnectionFrom(
       BTM_Sec_GetAddressWithType(address));
+#endif
   return;
 }
 

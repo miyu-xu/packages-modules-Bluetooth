@@ -761,6 +761,37 @@ bool BTM_Sec_AddressKnown(const RawAddress& address) {
   return false;
 }
 
+#if TARGET_FLOSS
+const tBLE_BD_ADDR BTM_Sec_Bgconn_GetAddressWithType(
+    const RawAddress& bd_addr) {
+  tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bd_addr);
+  if (p_dev_rec == nullptr || !p_dev_rec->is_device_type_has_ble()) {
+    return {
+        .type = BLE_ADDR_PUBLIC,
+        .bda = bd_addr,
+    };
+  }
+
+  if (p_dev_rec->ble.identity_address_with_type.bda.IsEmpty()) {
+    return {
+        .type = p_dev_rec->ble.AddressType(),
+        .bda = bd_addr,
+    };
+  } else {
+    // Floss doesn't support LL Privacy (yet). To expedite ARC testing, always
+    // connect to the latest LE random address (if available) for background
+    // connection rather than redesign.
+    if (!p_dev_rec->ble.cur_rand_addr.IsEmpty()) {
+      return {
+          .type = BLE_ADDR_RANDOM,
+          .bda = p_dev_rec->ble.cur_rand_addr,
+      };
+    }
+    return p_dev_rec->ble.identity_address_with_type;
+  }
+}
+#endif
+
 const tBLE_BD_ADDR BTM_Sec_GetAddressWithType(const RawAddress& bd_addr) {
   tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bd_addr);
   if (p_dev_rec == nullptr || !p_dev_rec->is_device_type_has_ble()) {
