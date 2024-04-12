@@ -2690,6 +2690,41 @@ public class LeAudioService extends ProfileService {
         mDialingOutTimeoutEvent = null;
     }
 
+    void notifyAudioFrameworkForCodecConfigUpdate(int groupId, LeAudioGroupDescriptor descriptor) {
+        Log.i(TAG, " notifyAudioFrameworkForCodecConfigUpdate groupId: " + groupId);
+
+        if (!Flags.leaudioCodecConfigCallbackOrderFix()) {
+            Log.d(TAG, " leaudio_codec_config_callback_order_fix is not enabled");
+            return;
+        }
+
+        if (mActiveAudioOutDevice != null) {
+            int volume = getAudioDeviceGroupVolume(groupId);
+
+            final BluetoothProfileConnectionInfo connectionInfo;
+            if (isAtLeastU()) {
+                connectionInfo =
+                        BluetoothProfileConnectionInfo.createLeAudioOutputInfo(true, volume);
+            } else {
+                connectionInfo = BluetoothProfileConnectionInfo.createLeAudioInfo(true, true);
+            }
+
+            mAudioManager.handleBluetoothActiveDeviceChanged(
+                    mActiveAudioOutDevice, mActiveAudioOutDevice, connectionInfo);
+
+            // Update on output device should be enought
+            return;
+        }
+
+        // In case this is Input only device, lets update AF here.
+        if (mActiveAudioInDevice != null) {
+            mAudioManager.handleBluetoothActiveDeviceChanged(
+                    mActiveAudioOutDevice,
+                    mActiveAudioOutDevice,
+                    BluetoothProfileConnectionInfo.createLeAudioInfo(false, false));
+        }
+    }
+
     // Suppressed since this is part of a local process
     @SuppressLint("AndroidFrameworkRequiresPermission")
     void messageFromNative(LeAudioStackEvent stackEvent) {
@@ -2848,6 +2883,11 @@ public class LeAudioService extends ProfileService {
 
             descriptor.mCodecStatus = status;
             notifyUnicastCodecConfigChanged(groupId, status);
+
+            if (descriptor.isActive()) {
+                // Audio framework needs to be notified so it get new codec config
+                notifyAudioFrameworkForCodecConfigUpdate(groupId, descriptor);
+            }
         } else if (stackEvent.type == LeAudioStackEvent.EVENT_TYPE_AUDIO_CONF_CHANGED) {
             int direction = stackEvent.valueInt1;
             int groupId = stackEvent.valueInt2;
