@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c6989b5_99c3171d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-04-12T17:06:48Z",
+      "side": 1,
+      "message": "\"device\" is the protagonist of the story here. It should have a pleasant name.\nExisting devices are in contention with the new device. They play the role of antagonists, so they deserve an unpleasant name. They existed before the \"device\"\ncan into the scene. They may or may not be removed in favor of the \"device\".\nSo I think the names are appropriate. 🤓",
+      "parentUuid": "0a03d405_90bd5842",
+      "range": {
+        "startLine": 682,
+        "startChar": 29,
+        "endLine": 682,
+        "endChar": 43
+      },
+      "revId": "92b73ca22f6485566667fa52de66458e4b2d63f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "230aaae7_70f671c3",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-12T07:24:23Z",
       "side": 1,
       "message": "for readability, please reverse this condition to reduce code indendation.\n```suggestion\n            if (!identityAddress.equals(existingIdentityAddress)\n                    || address.equals(existingAddress)) {\n                continue;\n            }\n            if (mService.getNative().removeBond(Utils.getBytesFromAddress(existingAddress))) {\n                mBondedDevices.remove(existingDevice);\n                infoLog(\n                        \"Removing old bond record: \"\n                                + existingDevice\n                                + \" for current device: \"\n                                + device);\n            } else {\n                Log.e(\n                        TAG,\n                        \"Unexpected error while removing old bond record:\"\n                                + existingDevice\n                                + \" for current device: \"\n                                + device);\n```",
+      "range": {
+        "startLine": 689,
+        "startChar": 12,
+        "endLine": 690,
+        "endChar": 58
+      },
+      "revId": "92b73ca22f6485566667fa52de66458e4b2d63f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08a0c88d_097d6e8a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-04-12T17:06:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "230aaae7_70f671c3",
       "range": {
         "startLine": 689,
         "startChar": 12,
