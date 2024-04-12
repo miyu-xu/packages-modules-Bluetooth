@@ -25,16 +25,14 @@
 #include "stack_manager.h"
 
 // The shim layer implementation on the Gd stack side.
-namespace bluetooth {
-namespace shim {
-
-class Btm;
+namespace bluetooth::shim {
 
 namespace legacy {
 class Acl;
 };  // namespace legacy
 
-// GD shim stack, having modes corresponding to legacy stack
+/// GD stack entry point. Tracks GD modules and thread.
+/// The GD stack exists as a singleton accessed by `Stack::GetInstance`.
 class Stack {
  public:
   static Stack* GetInstance();
@@ -42,21 +40,15 @@ class Stack {
   Stack();
   Stack(const Stack&) = delete;
   Stack& operator=(const Stack&) = delete;
-
   ~Stack() = default;
 
-  // Running mode, everything is up
-  void StartEverything();
-
+  void Start();
   void Stop();
+
   bool IsRunning();
   bool IsDumpsysModuleStarted() const;
 
-  StackManager* GetStackManager();
-  const StackManager* GetStackManager() const;
-
   legacy::Acl* GetAcl();
-
   os::Handler* GetHandler();
 
   bool LockForDumpsys(std::function<void()> dumpsys_callback);
@@ -75,20 +67,14 @@ class Stack {
     return false;
   }
 
-  size_t NumModules() const { return num_modules_; }
-
  private:
   struct impl;
-  std::shared_ptr<impl> pimpl_;
 
   mutable std::recursive_mutex mutex_;
-  StackManager stack_manager_;
+  std::shared_ptr<impl> pimpl_{};
+
   bool is_running_ = false;
-  os::Thread* stack_thread_ = nullptr;
-  os::Handler* stack_handler_ = nullptr;
-  size_t num_modules_{0};
   void Start(ModuleList* modules);
 };
 
-}  // namespace shim
-}  // namespace bluetooth
+}  // namespace bluetooth::shim
