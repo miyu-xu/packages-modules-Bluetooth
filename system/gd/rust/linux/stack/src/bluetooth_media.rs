@@ -854,6 +854,12 @@ impl BluetoothMedia {
                         uhid.volume = volume;
                         if uhid.muted {
                             uhid.muted = false;
+                            // TODO: b/333847153 remove it after RingCentral
+                            // fixes the problem on its end. RingCentral mute
+                            // feature is set to toggle instead of on/off
+                            // control. To workaround this, we set the mute flag
+                            // to 1 to trigger a toggle event.
+                            self.uhid_send_phone_mute_input_report(&addr, true);
                             self.uhid_send_phone_mute_input_report(&addr, false);
                         }
                     }
