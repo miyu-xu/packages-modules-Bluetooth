@@ -16,6 +16,24 @@
       "message": "Please note the line length limit is 72.",
       "revId": "b9e83de5e3048da19ff6b93baedcda85815665ad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0029e430_3381ee95",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-12T08:49:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a7e8a4e_00b0b6cf",
+      "revId": "b9e83de5e3048da19ff6b93baedcda85815665ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
