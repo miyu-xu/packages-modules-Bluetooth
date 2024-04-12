@@ -16,6 +16,23 @@
       "message": "If I read this correctly, you just skip waiting for LE service discovery for devices that set CoD as LE Audio capable. If that is the case, you will break pairing for devices that do SDP then LE GATT service discovery, as SDP will report without waiting for LE GATT results.\n\nIf \"Soundcore liberty HS\" have flags set incorrectly, and this is only device like this, you need a device-specific fix in iterop_database.",
       "revId": "2a5ee2fd542ecab6e0129cdce3151c37aa2814e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "564bf49a_f74163fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-12T18:01:34Z",
+      "side": 1,
+      "message": "As Jakub mentioned, this is a headset specific issue and should not impact pairing with other devices. Either the earbud should fix their firmware or this can only be an interop fix.",
+      "revId": "2a5ee2fd542ecab6e0129cdce3151c37aa2814e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
