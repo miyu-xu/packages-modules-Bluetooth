@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99d2b971_fd4fb97b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-04-12T11:48:37Z",
+      "side": 1,
+      "message": "Previous aosp/3020003 got reverted since it caused pairing regression on RTK controllers (b/333497436). Specifically, if we send Write Scan Enable when Remote Name Request is ongoing, the RNR will fail immediately. It seems to be the controller\u0027s issue but we don\u0027t actually need to update connectable mode while bonding, so I think there is no need to ask vendor to fix it.\n\nPTAL, thanks!",
+      "revId": "51c0f8c6a743a0c5a712151a8ee6ed133c9618a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
