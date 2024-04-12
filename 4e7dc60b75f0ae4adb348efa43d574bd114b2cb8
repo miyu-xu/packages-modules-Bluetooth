@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "b3cbd2be_5873d23a",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 815,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-12T07:01:38Z",
+      "side": 1,
+      "message": "bta_dm_disc_result, only place that calls this function is common to SDP and GATT.\n\nEven though it calls only GATT callback, it still changes the state and schedule next request execution for both LE GATT and SDP, so the name is accurate.",
+      "parentUuid": "49bae071_3829458a",
+      "range": {
+        "startLine": 815,
+        "startChar": 12,
+        "endLine": 815,
+        "endChar": 41
+      },
+      "revId": "4e7dc60b75f0ae4adb348efa43d574bd114b2cb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a3f05050_1a31520a",
         "filename": "system/bta/dm/bta_dm_disc.cc",
         "patchSetId": 1
