@@ -54,11 +54,17 @@ public fun resetAutoOnTimerForUser(
     looper: Looper,
     context: Context,
     state: BluetoothAdapterState,
+    wasOn: Boolean,
     callback_on: () -> Unit
 ) {
     // Remove any previous timer
     timer?.cancel()
     timer = null
+
+    if (wasOn) {
+        Log.d(TAG, "Bluetooth was previously ON: Reset stored time to avoid immediate restart")
+        Timer.resetStorage(context.contentResolver)
+    }
 
     if (!isFeatureEnabledForUser(context.contentResolver)) {
         Log.d(TAG, "Not Enabled for current user: ${context.getUser()}")
@@ -85,7 +91,7 @@ public fun resetAutoOnTimerForUser(
             override fun onReceive(ctx: Context, intent: Intent) {
                 Log.i(TAG, "Received ${intent.action} that trigger a new alarm scheduling")
                 pause()
-                resetAutoOnTimerForUser(looper, context, state, callback_on)
+                resetAutoOnTimerForUser(looper, context, state, false, callback_on)
             }
         }
 
@@ -138,7 +144,8 @@ public fun setUserEnabled(
     Counter.logIncrement(
         if (status) "bluetooth.value_auto_on_enabled" else "bluetooth.value_auto_on_disabled"
     )
-    resetAutoOnTimerForUser(looper, context, state, callback_on)
+    Timer.resetStorage(context.contentResolver)
+    resetAutoOnTimerForUser(looper, context, state, false, callback_on)
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -204,7 +211,7 @@ private constructor(
             return date?.let { LocalDateTime.parse(it) }
         }
 
-        private fun resetStorage(resolver: ContentResolver) {
+        fun resetStorage(resolver: ContentResolver) {
             Settings.Secure.putString(resolver, STORAGE_KEY, null)
         }
 

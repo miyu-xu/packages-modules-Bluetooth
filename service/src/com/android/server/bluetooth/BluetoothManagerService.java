@@ -515,7 +515,7 @@ class BluetoothManagerService {
             } else if (mEnableExternal) {
                 sendEnableMsg(mQuietEnableExternal, ENABLE_DISABLE_REASON_AIRPLANE_MODE);
             } else if (currentState != STATE_ON) {
-                autoOnSetupTimer();
+                autoOnSetupTimer(false);
             }
         }
     }
@@ -530,7 +530,7 @@ class BluetoothManagerService {
         } else if (!isSatelliteModeOn
                 && !shouldBluetoothBeOn(isSatelliteModeOn)
                 && currentState != STATE_ON) {
-            autoOnSetupTimer();
+            autoOnSetupTimer(false);
         }
     }
 
@@ -1277,7 +1277,7 @@ class BluetoothManagerService {
             Log.i(TAG, "internalHandleOnBootPhase: Getting adapter name and address");
             mHandler.sendEmptyMessage(MESSAGE_GET_NAME_AND_ADDRESS);
         } else {
-            autoOnSetupTimer();
+            autoOnSetupTimer(false);
         }
     }
 
@@ -1875,7 +1875,7 @@ class BluetoothManagerService {
                                         + (" isBinding=" + isBinding())
                                         + (" mAdapter=" + mAdapter));
                     } else {
-                        autoOnSetupTimer();
+                        autoOnSetupTimer(false);
                     }
                     break;
 
@@ -2043,7 +2043,7 @@ class BluetoothManagerService {
         }
 
         if (prevState == STATE_ON) {
-            autoOnSetupTimer();
+            autoOnSetupTimer(true);
         }
 
         // Notify all proxy objects first of adapter state change
@@ -2571,13 +2571,13 @@ class BluetoothManagerService {
 
     private final boolean mDeviceConfigAllowAutoOn;
 
-    private void autoOnSetupTimer() {
+    private void autoOnSetupTimer(boolean wasOn) {
         if (!mDeviceConfigAllowAutoOn) {
             Log.d(TAG, "No support for AutoOn feature: Not creating a timer");
             return;
         }
         AutoOnFeature.resetAutoOnTimerForUser(
-                mLooper, mCurrentUserContext, mState, this::enableFromAutoOn);
+                mLooper, mCurrentUserContext, mState, wasOn, this::enableFromAutoOn);
     }
 
     private <T> T postAndWait(Callable<T> callable) {
