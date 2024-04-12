@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9116d42d_e293648d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-04-12T22:24:26Z",
+      "side": 1,
+      "message": "nit: If state !\u003d STATE_CONNECTING, getRemoteDeviceInfoProto() appears redundant",
+      "revId": "f8fdb78579765855c55fa1f6b489528a41760027",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
