@@ -168,6 +168,12 @@ class Device {
   // For first time use, please SetDeviceType() to the right value
   LeDevice Le();
 
+  // Only invoke this interface when the device is LE or DUAL device definitely
+  LeDevice MakeLe()
+  {
+    return LeDevice(config_, memory_only_config_, section_);
+  }
+
   // For logging purpose only, you can't get a Device object from parsing a std::string
   std::string ToLogString() const;
 

@@ -834,7 +834,7 @@ void BleScannerInterfaceImpl::handle_remote_properties(
 
   // update address type
   auto mutation2 = storage_module->Modify();
-  bluetooth::storage::LeDevice le_device = device.Le();
+  bluetooth::storage::LeDevice le_device = device.MakeLe();
   mutation2.Add(
       le_device.SetAddressType((bluetooth::hci::AddressType)addr_type));
   mutation2.Commit();
