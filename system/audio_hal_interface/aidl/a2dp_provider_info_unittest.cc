@@ -546,6 +546,9 @@ TEST_F_WITH_FLAGS(ProviderInfoTest,
   ASSERT_FALSE(a2dp_codec_index_opt.has_value());
 }
 
+// The test deliberately triggers undefined behaviour with an out of bound
+// index.
+__attribute__((no_sanitize("undefined")))
 TEST_F_WITH_FLAGS(ProviderInfoTest, TestCodecIndexStr,
                   REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(
                       TEST_BT, a2dp_offload_codec_extensibility))) {
