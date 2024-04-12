@@ -84,7 +84,7 @@ class AutoOnFeatureTest {
     }
 
     private fun setupTimer() {
-        resetAutoOnTimerForUser(looper, context, state, this::callback_on)
+        resetAutoOnTimerForUser(looper, context, state, false, this::callback_on)
     }
 
     private fun setUserEnabled(status: Boolean) {
@@ -435,6 +435,20 @@ class AutoOnFeatureTest {
         setupTimer()
 
         AirplaneListener.setupAirplaneModeToOff(resolver, looper)
+        expect.that(timer).isNotNull()
+        expect.that(callback_count).isEqualTo(0)
+        expectStorageTime()
+    }
+
+    @Test
+    @kotlin.time.ExperimentalTime
+    fun setupTimer_whenTimeAlreadyExpireButFromBtOn_isRescheduledButNotTriggered() {
+        val pastTime = timerTarget.minusDays(3)
+        Settings.Secure.putString(resolver, Timer.STORAGE_KEY, pastTime.toString())
+        shadowOf(looper).idle()
+
+        resetAutoOnTimerForUser(looper, context, state, true, this::callback_on)
+
         expect.that(timer).isNotNull()
         expect.that(callback_count).isEqualTo(0)
         expectStorageTime()
