@@ -22,6 +22,30 @@
       },
       "revId": "06f471fb2eea7ac88deea52f827455631ef88f41",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38f132c4_4d1ef96a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1016,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-12T09:18:36Z",
+      "side": 0,
+      "message": "Update my commit message to explain this.",
+      "parentUuid": "85b02f0c_628f0788",
+      "range": {
+        "startLine": 1016,
+        "startChar": 24,
+        "endLine": 1016,
+        "endChar": 57
+      },
+      "revId": "06f471fb2eea7ac88deea52f827455631ef88f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
