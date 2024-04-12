@@ -33,6 +33,24 @@
       "message": "Hello Benson, Chris, Chienyuan and Jack\n\n   Please review this change. It is not easy to reproduce this issue.\n   But this issue will cause bluetooth crash.\n   I think we should not depend on the result of previous database( the StorageModule seems like a database here ) in next operation.\n   Since other one may change the StorageModule state any time.",
       "revId": "100017dd1331b4556218b1dc53ecae03c92fc78d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3627e16e_6ac55eb4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968840
+      },
+      "writtenOn": "2024-04-12T16:52:48Z",
+      "side": 1,
+      "message": "\u003e Hello Benson, Chris, Chienyuan and Jack\n\u003e \n\u003e    Please review this change. It is not easy to reproduce this issue.\n\u003e    But this issue will cause bluetooth crash.\n\u003e    I think we should not depend on the result of previous operation to the database( the StorageModule seems like a database here ) in next operation.\n\u003e    Since other one may change the StorageModule state any time.",
+      "parentUuid": "cea0587c_098d6d86",
+      "revId": "100017dd1331b4556218b1dc53ecae03c92fc78d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
