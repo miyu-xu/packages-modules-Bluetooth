@@ -309,3 +309,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "leaudio_broadcast_bass_max_synced_sources_fix"
+    namespace: "bluetooth"
+    description: "Move checking max allowed synced sources to BassClientStateMachine where is request queue"
+    bug: "333691526"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
