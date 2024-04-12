@@ -140,6 +140,24 @@
       "parentUuid": "2936f679_b5079d98",
       "revId": "76536454c936094470546ebc4fc7a4ed6da3911b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1dd6f2e_95b2576b",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1379,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-04-12T01:42:10Z",
+      "side": 1,
+      "message": "Hey David, sorry for making you feel like this. I just want to keep the review moving. I totally respect your idea and Myles idea and his vacation. The aim in this cl is clear and simple now. Unit test is also written. So no logical risk here to me. I think we could decide the naming part ourself. The current name of function is clear and distinct. So...this cl makes sense to me. (Thanks for the reviewing btw). This is why I want to ask for review and +2! I think there\u0027s no reason for this cl to review for couple days and also this cl is important to us.\n\nPlease let me know your thoughts on this. I don\u0027t want to give you the impression that I\u0027m rushing the cl.",
+      "parentUuid": "96842469_938e4d0a",
+      "revId": "76536454c936094470546ebc4fc7a4ed6da3911b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
