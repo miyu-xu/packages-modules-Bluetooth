@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10161919_74a97004",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-12T23:00:53Z",
+      "side": 1,
+      "message": "maybe move atest to the front to resolve lint issue",
+      "range": {
+        "startLine": 16,
+        "startChar": 21,
+        "endLine": 16,
+        "endChar": 26
+      },
+      "revId": "95a3fc0b9befa1c97a34300d8dbd0cde2ad952ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
