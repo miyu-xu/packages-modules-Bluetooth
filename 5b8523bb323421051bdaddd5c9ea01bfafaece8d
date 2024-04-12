@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95aea515_396a4620",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BrowseTree.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-12T18:52:27Z",
+      "side": 1,
+      "message": "You\u0027ll want to flag your change now with your new flag, i.e.:\n```\nif (Flags.randomizeDeviceLevelMediaIds()) {\n    // Your code\n} else {\n    // The old way, to be deleted once proven stable\n}\n```",
+      "range": {
+        "startLine": 84,
+        "startChar": 12,
+        "endLine": 94,
+        "endChar": 46
+      },
+      "revId": "5b8523bb323421051bdaddd5c9ea01bfafaece8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c982da8_dd09c907",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-12T18:52:27Z",
+      "side": 1,
+      "message": "You won\u0027t need this or the other device 2 objects below once you move the one test to `AvrcpControllerServiceTest`",
+      "range": {
+        "startLine": 96,
+        "startChar": 4,
+        "endLine": 96,
+        "endChar": 71
+      },
+      "revId": "5b8523bb323421051bdaddd5c9ea01bfafaece8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fae1b847_cbdb7f6b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 735,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-12T18:52:27Z",
+      "side": 1,
+      "message": "In order to avoid copy/pasting these ~8 tests with different flag values, I would remove each of these asserts in the existing tests and make a new test that asserts that a state machine creates a browse tree with the proper node id. You can make one test for the old format without the flag, and copy/paste _that only_ and add the flag in the second one. i.e.:\n```\n@Test\npublic void testStateMachineCreatesBrowseTreeWithProperRootNodeId() {\n    setUpConnectedState(true, true);\n    final String rootName \u003d \"__ROOT__\" + mTestDevice.getAddress().toString();\n    BrowseTree.BrowseNode results \u003d mAvrcpStateMachine.mBrowseTree.mRootNode;\n    assertThat(results.getID()).isEqualTo(rootName);\n}\n\n@Test\npublic void testStateMachineCreatesBrowseTreeWithRandomRootNodeId() {\n    // Setup your flag rule elsewhere in code\n    mSetFlagsRule.enableFlags(Flags.FLAG_RANDOMIZE_DEVICE_LEVEL_MEDIA_IDS);\n    setUpConnectedState(true, true);\n    final String rootName \u003d \"__ROOT__\" + mTestDevice.getAddress().toString();\n    BrowseTree.BrowseNode results \u003d mAvrcpStateMachine.mBrowseTree.mRootNode;\n    final String uuidPart \u003d results.getID().substring(UUID_END);\n    assertThat(results.getID()).startsWith(rootName);\n    assertThat(uuidPart.length()).isEqualTo(UUID_LENGTH /* 36 */);\n}\n```",
+      "range": {
+        "startLine": 735,
+        "startChar": 8,
+        "endLine": 735,
+        "endChar": 92
+      },
+      "revId": "5b8523bb323421051bdaddd5c9ea01bfafaece8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3397612f_11e275e4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2129,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-12T18:52:27Z",
+      "side": 1,
+      "message": "This type of test should be done in `AvrcpControllerServiceTest`, since that\u0027s the class that actually controls this logic.",
+      "range": {
+        "startLine": 2128,
+        "startChar": 4,
+        "endLine": 2129,
+        "endChar": 99
+      },
+      "revId": "5b8523bb323421051bdaddd5c9ea01bfafaece8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cefc84ae_bc803314",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/BrowseTreeTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-12T18:52:27Z",
+      "side": 1,
+      "message": "You\u0027ll want to set your flag value for this test. The flag can be removed later on:\n\ni.e.:\n```\n// Setup your flag rule elsewhere in code\nmSetFlagsRule.enableFlags(Flags.FLAG_RANDOMIZE_DEVICE_LEVEL_MEDIA_IDS);\n```",
+      "range": {
+        "startLine": 94,
+        "startChar": 8,
+        "endLine": 94,
+        "endChar": 61
+      },
+      "revId": "5b8523bb323421051bdaddd5c9ea01bfafaece8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
