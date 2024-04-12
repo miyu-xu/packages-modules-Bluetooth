@@ -16,6 +16,24 @@
       "message": "nit: maybe add a comment about reason for removal, e.g. `p_curr_scb-\u003estate` is in BTA_AG_OPEN_ST, which has same value as BTA_AG_SCO_CODEC_ST, remove unnecessary line",
       "revId": "00574db9c904311a845557c535efb9e2de4c33a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bb516da_49eb9c8d",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-04-12T03:49:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d3adede_b52068d9",
+      "revId": "00574db9c904311a845557c535efb9e2de4c33a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
