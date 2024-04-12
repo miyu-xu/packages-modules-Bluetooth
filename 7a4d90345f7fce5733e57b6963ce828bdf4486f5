@@ -22,6 +22,30 @@
       },
       "revId": "7a4d90345f7fce5733e57b6963ce828bdf4486f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc32320a_ebb97aae",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-04-12T18:37:43Z",
+      "side": 1,
+      "message": "BluetoothDevice already logs as redacted address string",
+      "parentUuid": "77443fc0_91159730",
+      "range": {
+        "startLine": 699,
+        "startChar": 26,
+        "endLine": 699,
+        "endChar": 40
+      },
+      "revId": "7a4d90345f7fce5733e57b6963ce828bdf4486f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
