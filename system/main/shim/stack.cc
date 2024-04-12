@@ -61,89 +61,125 @@ using ::bluetooth::common::InitFlags;
 using ::bluetooth::common::StringFormat;
 
 struct Stack::impl {
-  legacy::Acl* acl_ = nullptr;
+  impl();
+  ~impl()
+
+  void Start();
+
+  os::Thread* thread_;
+  os::Handler* handler_;
+
+  // Keep the modules here sorted by reverse dependency order
+  // to improve init readability.
+  Dumpsys* dumpsys_{nullptr};
+  sysprops::SyspropsModule* sysprops_{nullptr};
+  metrics::CounterMetrics* counter_metrics_{nullptr};
+  storage::StorageModule* storage_{nullptr};
+  hci::acl_manager::AclScheduler* acl_scheduler_{nullptr};
+
+  hal::HciHal* hci_hal_{nullptr};
+  hci::HciLayer* hci_layer_{nullptr};
+  hci::Controller* controller_{nullptr};
+  hci::VendorSpecificEventManager* vendor_specific_event_manager_{nullptr};
+  hci::RemoteNameRequestModule* remote_name_request_{nullptr};
+  hci::AclManager* acl_manager_{nullptr};
+  hci::LeAdvertisingManager* le_advertising_manager_{nullptr};
+  hci::LeScanningManager* le_scanning_manager_{nullptr};
+  hci::DistanceMeasurementManager* distance_measurement_manager_{nullptr};
+#if TARGET_FLOSS
+  hci::MsftExtensionManager* msft_extension_manager_{nullptr};
+#endif
+
+  legacy::Acl* acl_{nullptr};
 };
 
-Stack::Stack() { pimpl_ = std::make_shared<Stack::impl>(); }
+Stack::impl::impl() {
+  thread_ = new os::Thread("gd_stack_thread", os::Thread::Priority::REAL_TIME);
+  handler_ = new os::Handler(thread_);
+
+  dumpsys_ = new Dumpsys();
+  sysprops_ = new sysprops::SyspropsModule();
+  counter_metrics_ = new metrics::CounterMetrics();
+  storage_ = new storage::StorageModule(counter_metrics_);
+  acl_scheduler_ = new hci::acl_manager::AclScheduler();
+
+  hci_hal_ = new hal::HciHal();
+  hci_layer_ = new hal::HciLayer(hci_hal_, storage_module_);
+  controller_ = new hci::Controller(hci_layer_, sysprops_);
+  vendor_specific_event_manager_ = new hci::VendorSpecificEventManager(hci_layer_, controller_);
+  remote_name_request_ = new hci::RemoteNameRequestModule(hci_layer_, acl_scheduler_);
+  acl_manager_ = new hci::AclManager(
+      hci_layer_, controller_, storage_, acl_scheduler_, remote_name_request_);
+  le_advertising_manager_ = new hci::LeAdvertisingManager(
+      hci_layer_, controller_, acl_manager_, vendor_specific_event_manager_);
+  le_scanning_manager_ = new hci::LeScanningManager(
+      hci_layer_, controller_, acl_manager_, vendor_specific_event_manager_,
+      storage_module_);
+  distance_measurement_manager_ = new hci::DistanceMeasurementManager(
+      hci_layer_, acl_manager_);
+#if TARGET_FLOSS
+  msft_extension_manager_ = new hci::MsftExtensionManager(
+      hci_hal_, hci_layer_, vendor_specific_event_manager_);
+#endif
+}
+
+void Stack::impl::Start(std::promise<()> promise) {
+  dumpsys_->Start();
+  sysprops_->Start();
+  counter_metrics_->Start();
+  storage_->Start();
+  acl_scheduler_->Start();
+  hci_hal_->Start();
+  hci_layer_->Start();
+  controller_->Start();
+  vendor_specific_event_manager_->Start();
+  remote_name_request_->Start();
+  acl_manager_->Start();
+  le_advertising_manager_->Start();
+  le_scanning_manager_->Start();
+  distance_measurement_manager_->Start();
+#if TARGET_FLOSS
+  msft_extension_manager_->Start();
+#endif
+
+  acl_ = new legacy::Acl(handler_, legacy::GetAclInterface(),
+                                 controller_->GetLeFilterAcceptListSize(),
+                                 controller_->GetLeResolvingListSize());
+
+  promise.set_value();
+}
+
+Stack::Stack() {}
 
 Stack* Stack::GetInstance() {
   static Stack instance;
   return &instance;
 }
 
-void Stack::StartEverything() {
+void Stack::Start() {
   std::lock_guard<std::recursive_mutex> lock(mutex_);
-  log::assert_that(!is_running_, "Gd stack already running");
+  log::assert_that(pimpl_ != nullptr, "Gd stack is already running");
   log::info("Starting Gd stack");
-  ModuleList modules;
 
-  modules.add<metrics::CounterMetrics>();
-  modules.add<hal::HciHal>();
-  modules.add<hci::HciLayer>();
-  modules.add<storage::StorageModule>();
-  modules.add<shim::Dumpsys>();
-  modules.add<hci::VendorSpecificEventManager>();
-  modules.add<sysprops::SyspropsModule>();
+  pimpl_ = new Stack::impl();
 
-  modules.add<hci::Controller>();
-  modules.add<hci::acl_manager::AclScheduler>();
-  modules.add<hci::AclManager>();
-  modules.add<hci::RemoteNameRequestModule>();
-  modules.add<hci::LeAdvertisingManager>();
-#if TARGET_FLOSS
-  modules.add<hci::MsftExtensionManager>();
-#endif
-  modules.add<hci::LeScanningManager>();
-  modules.add<hci::DistanceMeasurementManager>();
-  Start(&modules);
-  is_running_ = true;
-  // Make sure the leaf modules are started
+  std::promise<void> promise;
+  std::future<void> future = promise.get_future();
+
+  pimpl_->handler_->Post(
+      common::BindOnce(&impl::Start, common::Unretained(pimpl_), std::move(promise)));
+
+  auto status = future.wait_for(std::chrono::milliseconds(3000));
+
+  log::info("Gd stack start completed with status {}", int(status));
   log::assert_that(
-      stack_manager_.GetInstance<storage::StorageModule>() != nullptr,
-      "assert failed: stack_manager_.GetInstance<storage::StorageModule>() != "
-      "nullptr");
-  log::assert_that(
-      stack_manager_.GetInstance<shim::Dumpsys>() != nullptr,
-      "assert failed: stack_manager_.GetInstance<shim::Dumpsys>() != nullptr");
-  if (stack_manager_.IsStarted<hci::Controller>()) {
-    pimpl_->acl_ = new legacy::Acl(stack_handler_, legacy::GetAclInterface(),
-                                   GetController()->GetLeFilterAcceptListSize(),
-                                   GetController()->GetLeResolvingListSize());
-  } else {
-    log::error("Unable to create shim ACL layer as Controller has not started");
-  }
+      status == std::future_status::ready,
+      "Gd stack failed to start within a 3000ms delay");
 
   bluetooth::shim::hci_on_reset_complete();
   bluetooth::shim::init_advertising_manager();
   bluetooth::shim::init_scanning_manager();
   bluetooth::shim::init_distance_measurement_manager();
-}
-
-void Stack::StartModuleStack(const ModuleList* modules,
-                             const os::Thread* thread) {
-  std::lock_guard<std::recursive_mutex> lock(mutex_);
-  log::assert_that(!is_running_, "Gd stack already running");
-  stack_thread_ = const_cast<os::Thread*>(thread);
-  log::info("Starting Gd stack");
-
-  stack_manager_.StartUp(const_cast<ModuleList*>(modules), stack_thread_);
-  stack_handler_ = new os::Handler(stack_thread_);
-
-  num_modules_ = modules->NumModules();
-  is_running_ = true;
-}
-
-void Stack::Start(ModuleList* modules) {
-  log::assert_that(!is_running_, "Gd stack already running");
-  log::info("Starting Gd stack");
-
-  stack_thread_ =
-      new os::Thread("gd_stack_thread", os::Thread::Priority::REAL_TIME);
-  stack_manager_.StartUp(modules, stack_thread_);
-
-  stack_handler_ = new os::Handler(stack_thread_);
-
-  log::info("Successfully toggled Gd stack");
 }
 
 void Stack::Stop() {
@@ -177,18 +213,6 @@ void Stack::Stop() {
 bool Stack::IsRunning() {
   std::lock_guard<std::recursive_mutex> lock(mutex_);
   return is_running_;
-}
-
-StackManager* Stack::GetStackManager() {
-  std::lock_guard<std::recursive_mutex> lock(mutex_);
-  log::assert_that(is_running_, "assert failed: is_running_");
-  return &stack_manager_;
-}
-
-const StackManager* Stack::GetStackManager() const {
-  std::lock_guard<std::recursive_mutex> lock(mutex_);
-  log::assert_that(is_running_, "assert failed: is_running_");
-  return &stack_manager_;
 }
 
 legacy::Acl* Stack::GetAcl() {
