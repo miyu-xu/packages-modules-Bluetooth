@@ -16,6 +16,24 @@
       "message": "Please provide more background on why this wasn\u0027t observed in other cases. (or it was but we didn\u0027t test/catch it?)",
       "revId": "923f7669d4021195abb563fb9be17a70d78a33aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30f1c986_1cebbb62",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-12T08:56:26Z",
+      "side": 1,
+      "message": "We tested the rejected call on `libhidtelephony`. But the implementation of `libhidtelephony` seems different from RingCentral. `libhidtelephony` can trigger reject call vi hook-switch\u003d0. RingCentral need hook-switch\u003d0 + drop\u003d1 to trigger reject call.",
+      "parentUuid": "0a693469_303c44ea",
+      "revId": "923f7669d4021195abb563fb9be17a70d78a33aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
