@@ -71,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69492c8b_8dfd765b",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-04-12T05:08:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "589a14c6_5d0d7ad7",
+      "revId": "44cd0acd14960f211013850195c8b9c2164f804b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "25662b8b_6701d0ba",
@@ -84,6 +102,24 @@
       "writtenOn": "2024-04-08T15:35:55Z",
       "side": 1,
       "message": "You already do this check on line 248 so don\u0027t need it again?",
+      "revId": "44cd0acd14960f211013850195c8b9c2164f804b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a9a3cea_550828e5",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-04-12T05:08:26Z",
+      "side": 1,
+      "message": "This is a bit confusing. I rewrote this part. Restart is required if any settings are changed. Please let me know if it is clear now.",
+      "parentUuid": "25662b8b_6701d0ba",
       "revId": "44cd0acd14960f211013850195c8b9c2164f804b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -105,6 +141,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5062f310_5c0c7eb4",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 955,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-04-12T05:08:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "517eefa7_6a046099",
+      "revId": "44cd0acd14960f211013850195c8b9c2164f804b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f868664e_9ad2be2a",
@@ -122,6 +176,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "98c1030d_af985a60",
+        "filename": "system/main/shim/acl_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-04-12T05:08:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f868664e_9ad2be2a",
+      "revId": "44cd0acd14960f211013850195c8b9c2164f804b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "22d05e1e_abf09acd",
@@ -135,6 +207,24 @@
       "writtenOn": "2024-04-08T17:39:56Z",
       "side": 1,
       "message": "nit: can we just combine these lines and remove the /**/\n```\nif (osi_property_get_bool(kLeAddressPrivacy, false))\n```\nSame with above.",
+      "revId": "44cd0acd14960f211013850195c8b9c2164f804b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e787e5e6_7fdd26eb",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 978,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-04-12T05:08:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22d05e1e_abf09acd",
       "revId": "44cd0acd14960f211013850195c8b9c2164f804b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
