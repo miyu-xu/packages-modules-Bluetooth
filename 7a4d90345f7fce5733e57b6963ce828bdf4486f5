@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77443fc0_91159730",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-12T18:35:47Z",
+      "side": 1,
+      "message": "TO_LOGGABLE_C_STR, here and in other places  ?\n```suggestion\n                        + Utils.toLoggableString(existingDevice)\n```",
+      "range": {
+        "startLine": 699,
+        "startChar": 26,
+        "endLine": 699,
+        "endChar": 40
+      },
+      "revId": "7a4d90345f7fce5733e57b6963ce828bdf4486f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
