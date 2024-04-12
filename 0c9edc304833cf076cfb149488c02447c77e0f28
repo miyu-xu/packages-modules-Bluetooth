@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "674e232c_44937dca",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1240,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-12T07:45:33Z",
+      "side": 1,
+      "message": "Is there something like TO_LOGGABLE_C_STR but for Java ?\nYou want to print full address to logs ?",
+      "range": {
+        "startLine": 1240,
+        "startChar": 46,
+        "endLine": 1240,
+        "endChar": 49
+      },
+      "revId": "0c9edc304833cf076cfb149488c02447c77e0f28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
