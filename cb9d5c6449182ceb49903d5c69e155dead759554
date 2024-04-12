@@ -34,6 +34,24 @@
       "parentUuid": "7597e596_8272bf1f",
       "revId": "cb9d5c6449182ceb49903d5c69e155dead759554",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44766095_17234814",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3235591
+      },
+      "writtenOn": "2024-04-12T12:13:19Z",
+      "side": 1,
+      "message": "Yes. This actually also related to peer behavior. So you recommend to use IOT table checking, correct? We have another option that is to delay the connection update to bta_hh_le_open_cmpl which is a more generic fix. But we see that the bta_hh_le.cc is being refactored and the comment in the code say \"this should be done by GAP profile, remove when GAP is fixed.\". Then this option will be not that suitable. What\u0027s your suggestion? use IOT table or delay the connection update to bta_hh_le_open_cmpl?",
+      "parentUuid": "d9ae67ef_5168fb62",
+      "revId": "cb9d5c6449182ceb49903d5c69e155dead759554",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
