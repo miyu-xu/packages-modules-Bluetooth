@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76af9c95_da86680e",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-04-12T02:46:03Z",
+      "side": 1,
+      "message": "loos like this just removed 2 32k bidirectional CIS on dual/single device. Have we tested the case of later join? e.g., when connecting only one device, it seems to be single device with 32k and when connecting the other device in the same set, all configs on all ASEs would turn to 16k. The logic to deal with single device connection not being 32k, which all group should not be SWB, was removed in other files in this CLs. not sure if we deal with this.\n\nplease correct me if i am wrong, thanks.",
+      "range": {
+        "startLine": 235,
+        "startChar": 4,
+        "endLine": 235,
+        "endChar": 37
+      },
+      "revId": "581a9eea5797f8ae1113a145a435f503e2c7ad50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0e2993e_e55db436",
+        "filename": "system/bta/le_audio/codec_manager_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-04-12T02:46:03Z",
+      "side": 1,
+      "message": "can we add tests case of later join when device not support dual swb?",
+      "range": {
+        "startLine": 223,
+        "startChar": 4,
+        "endLine": 223,
+        "endChar": 63
+      },
+      "revId": "581a9eea5797f8ae1113a145a435f503e2c7ad50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
