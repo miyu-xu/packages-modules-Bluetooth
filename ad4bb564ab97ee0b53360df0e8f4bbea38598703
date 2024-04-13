@@ -16,6 +16,23 @@
       "message": "Re-stamp Dr. No since only change was discussed in core stack sync to reduce risk and Muhammad already Dr. No\u0027d.",
       "revId": "ad4bb564ab97ee0b53360df0e8f4bbea38598703",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df30b81e_7e750b82",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-04-13T00:51:24Z",
+      "side": 1,
+      "message": "To correct the comment on the commit, the default and minimum max value is 8 now instead of 7.",
+      "revId": "ad4bb564ab97ee0b53360df0e8f4bbea38598703",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
