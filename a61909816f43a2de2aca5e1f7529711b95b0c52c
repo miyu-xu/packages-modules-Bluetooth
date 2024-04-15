@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "17ac7db9_4fc89d1e",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-04-15T16:35:35Z",
+      "side": 1,
+      "message": "Yes you right, I overlooked it ! Would it make sense to add it in the setup ?",
+      "parentUuid": "ff4b0695_2f1577a7",
+      "revId": "a61909816f43a2de2aca5e1f7529711b95b0c52c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ffecc9ad_f3b6ce30",
         "filename": "android/pandora/test/a2dp_test.py",
         "patchSetId": 6
