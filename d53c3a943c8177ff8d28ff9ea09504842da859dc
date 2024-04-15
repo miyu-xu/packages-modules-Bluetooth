@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f078b8c3_65126cbd",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-15T07:07:43Z",
+      "side": 1,
+      "message": "can you just return a named struct like\n\n```\nstruct OffloadCapablities {\n  std::vector\u003cAudioSetConfiguration\u003e unicast_offload_capabilities;\n  std::vector\u003cAudioSetConfiguration\u003e broadcast_offload_capabilities;\n}\n```\n\nso that we don\u0027t risk counting array indices?",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 49
+      },
+      "revId": "d53c3a943c8177ff8d28ff9ea09504842da859dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8cb89bf_633b3ed8",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 844,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-15T07:07:43Z",
+      "side": 1,
+      "message": "nit: broadcast_adsp_capabilies ?\n\nwhy shorten it?",
+      "revId": "d53c3a943c8177ff8d28ff9ea09504842da859dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
