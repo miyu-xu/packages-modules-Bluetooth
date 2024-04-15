@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5446557_3d385c65",
+        "filename": "system/bta/include/bta_jv_api.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-15T15:07:08Z",
+      "side": 1,
+      "message": "I think RFCOMM can be BR_EDR.\n\nMaybe we should add a warning if something other than a BTA_JV_CONN_TYPE is passed in?\n\n```suggestion\n  switch (conn_type) {\n    case BTA_JV_CONN_TYPE_L2CAP:\n    case BTA_JV_CONN_TYPE_RFCOMM:\n      return BT_TRANSPORT_BR_EDR;\n    case BTA_JV_CONN_TYPE_L2CAP_LE:\n      return BT_TRANSPORT_LE;\n  }\n  return BT_TRANSPORT_AUTO;\n```",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 3
+      },
+      "revId": "61fc3f55d5f8f446579825a23fcc31573a9630cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
