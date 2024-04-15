@@ -169,6 +169,7 @@ public class LeAudioService extends ProfileService {
     private BluetoothDevice mExposedActiveDevice;
     private LeAudioCodecConfig mLeAudioCodecConfig;
     private final ReentrantLock mGroupLock = new ReentrantLock();
+    private final ReentrantLock mCallbackLock = new ReentrantLock();
     private final ReentrantReadWriteLock mGroupReadWriteLock = new ReentrantReadWriteLock();
     private final Lock mGroupReadLock =
             leaudioApiSynchronizedBlockFix() ? mGroupReadWriteLock.readLock() : mGroupLock;
@@ -3992,158 +3993,223 @@ public class LeAudioService extends ProfileService {
 
     private void notifyGroupNodeRemoved(BluetoothDevice device, int groupId) {
         if (mLeAudioCallbacks != null) {
-            int n = mLeAudioCallbacks.beginBroadcast();
-            for (int i = 0; i < n; i++) {
-                try {
-                    mLeAudioCallbacks.getBroadcastItem(i).onGroupNodeRemoved(device, groupId);
-                } catch (RemoteException e) {
-                    continue;
+            mCallbackLock.lock();
+            try {
+                int n = mLeAudioCallbacks.beginBroadcast();
+                for (int i = 0; i < n; i++) {
+                    try {
+                        mLeAudioCallbacks.getBroadcastItem(i).onGroupNodeRemoved(device, groupId);
+                    } catch (RemoteException e) {
+                        continue;
+                    }
                 }
+                mLeAudioCallbacks.finishBroadcast();
+            } finally {
+                mCallbackLock.unlock();
             }
-            mLeAudioCallbacks.finishBroadcast();
         }
     }
 
     private void notifyGroupStatusChanged(int groupId, int status) {
         if (mLeAudioCallbacks != null) {
-            int n = mLeAudioCallbacks.beginBroadcast();
-            for (int i = 0; i < n; i++) {
-                try {
-                    mLeAudioCallbacks.getBroadcastItem(i).onGroupStatusChanged(groupId, status);
-                } catch (RemoteException e) {
-                    continue;
+            mCallbackLock.lock();
+            try {
+                int n = mLeAudioCallbacks.beginBroadcast();
+                for (int i = 0; i < n; i++) {
+                    try {
+                        mLeAudioCallbacks.getBroadcastItem(i).onGroupStatusChanged(groupId, status);
+                    } catch (RemoteException e) {
+                        continue;
+                    }
                 }
+                mLeAudioCallbacks.finishBroadcast();
+            } finally {
+                mCallbackLock.unlock();
             }
-            mLeAudioCallbacks.finishBroadcast();
         }
     }
 
     private void notifyUnicastCodecConfigChanged(int groupId, BluetoothLeAudioCodecStatus status) {
         if (mLeAudioCallbacks != null) {
-            int n = mLeAudioCallbacks.beginBroadcast();
-            for (int i = 0; i < n; i++) {
-                try {
-                    mLeAudioCallbacks.getBroadcastItem(i).onCodecConfigChanged(groupId, status);
-                } catch (RemoteException e) {
-                    continue;
+            mCallbackLock.lock();
+            try {
+                int n = mLeAudioCallbacks.beginBroadcast();
+                for (int i = 0; i < n; i++) {
+                    try {
+                        mLeAudioCallbacks.getBroadcastItem(i).onCodecConfigChanged(groupId, status);
+                    } catch (RemoteException e) {
+                        continue;
+                    }
                 }
+                mLeAudioCallbacks.finishBroadcast();
+            } finally {
+                mCallbackLock.unlock();
             }
-            mLeAudioCallbacks.finishBroadcast();
         }
     }
 
     private void notifyBroadcastStarted(Integer broadcastId, int reason) {
         if (mBroadcastCallbacks != null) {
-            int n = mBroadcastCallbacks.beginBroadcast();
-            for (int i = 0; i < n; i++) {
-                try {
-                    mBroadcastCallbacks.getBroadcastItem(i).onBroadcastStarted(reason, broadcastId);
-                } catch (RemoteException e) {
-                    continue;
+            mCallbackLock.lock();
+            try {
+                int n = mBroadcastCallbacks.beginBroadcast();
+                for (int i = 0; i < n; i++) {
+                    try {
+                        mBroadcastCallbacks
+                                .getBroadcastItem(i)
+                                .onBroadcastStarted(reason, broadcastId);
+                    } catch (RemoteException e) {
+                        continue;
+                    }
                 }
+                mBroadcastCallbacks.finishBroadcast();
+            } finally {
+                mCallbackLock.unlock();
             }
-            mBroadcastCallbacks.finishBroadcast();
         }
     }
 
     private void notifyBroadcastStartFailed(int reason) {
         if (mBroadcastCallbacks != null) {
-            int n = mBroadcastCallbacks.beginBroadcast();
-            for (int i = 0; i < n; i++) {
-                try {
-                    mBroadcastCallbacks.getBroadcastItem(i).onBroadcastStartFailed(reason);
-                } catch (RemoteException e) {
-                    continue;
+            mCallbackLock.lock();
+            try {
+                int n = mBroadcastCallbacks.beginBroadcast();
+                for (int i = 0; i < n; i++) {
+                    try {
+                        mBroadcastCallbacks.getBroadcastItem(i).onBroadcastStartFailed(reason);
+                    } catch (RemoteException e) {
+                        continue;
+                    }
                 }
+                mBroadcastCallbacks.finishBroadcast();
+            } finally {
+                mCallbackLock.unlock();
             }
-            mBroadcastCallbacks.finishBroadcast();
         }
     }
 
     private void notifyOnBroadcastStopped(Integer broadcastId, int reason) {
         if (mBroadcastCallbacks != null) {
-            int n = mBroadcastCallbacks.beginBroadcast();
-            for (int i = 0; i < n; i++) {
-                try {
-                    mBroadcastCallbacks.getBroadcastItem(i).onBroadcastStopped(reason, broadcastId);
-                } catch (RemoteException e) {
-                    continue;
+            mCallbackLock.lock();
+            try {
+                int n = mBroadcastCallbacks.beginBroadcast();
+                for (int i = 0; i < n; i++) {
+                    try {
+                        mBroadcastCallbacks
+                                .getBroadcastItem(i)
+                                .onBroadcastStopped(reason, broadcastId);
+                    } catch (RemoteException e) {
+                        continue;
+                    }
                 }
+                mBroadcastCallbacks.finishBroadcast();
+            } finally {
+                mCallbackLock.unlock();
             }
-            mBroadcastCallbacks.finishBroadcast();
         }
     }
 
     private void notifyOnBroadcastStopFailed(int reason) {
         if (mBroadcastCallbacks != null) {
-            int n = mBroadcastCallbacks.beginBroadcast();
-            for (int i = 0; i < n; i++) {
-                try {
-                    mBroadcastCallbacks.getBroadcastItem(i).onBroadcastStopFailed(reason);
-                } catch (RemoteException e) {
-                    continue;
+            mCallbackLock.lock();
+            try {
+                int n = mBroadcastCallbacks.beginBroadcast();
+                for (int i = 0; i < n; i++) {
+                    try {
+                        mBroadcastCallbacks.getBroadcastItem(i).onBroadcastStopFailed(reason);
+                    } catch (RemoteException e) {
+                        continue;
+                    }
                 }
+                mBroadcastCallbacks.finishBroadcast();
+            } finally {
+                mCallbackLock.unlock();
             }
-            mBroadcastCallbacks.finishBroadcast();
         }
     }
 
     private void notifyPlaybackStarted(Integer broadcastId, int reason) {
         if (mBroadcastCallbacks != null) {
-            int n = mBroadcastCallbacks.beginBroadcast();
-            for (int i = 0; i < n; i++) {
-                try {
-                    mBroadcastCallbacks.getBroadcastItem(i).onPlaybackStarted(reason, broadcastId);
-                } catch (RemoteException e) {
-                    continue;
+            mCallbackLock.lock();
+            try {
+                int n = mBroadcastCallbacks.beginBroadcast();
+                for (int i = 0; i < n; i++) {
+                    try {
+                        mBroadcastCallbacks
+                                .getBroadcastItem(i)
+                                .onPlaybackStarted(reason, broadcastId);
+                    } catch (RemoteException e) {
+                        continue;
+                    }
                 }
+                mBroadcastCallbacks.finishBroadcast();
+            } finally {
+                mCallbackLock.unlock();
             }
-            mBroadcastCallbacks.finishBroadcast();
         }
     }
 
     private void notifyPlaybackStopped(Integer broadcastId, int reason) {
         if (mBroadcastCallbacks != null) {
-            int n = mBroadcastCallbacks.beginBroadcast();
-            for (int i = 0; i < n; i++) {
-                try {
-                    mBroadcastCallbacks.getBroadcastItem(i).onPlaybackStopped(reason, broadcastId);
-                } catch (RemoteException e) {
-                    continue;
+            mCallbackLock.lock();
+            try {
+                int n = mBroadcastCallbacks.beginBroadcast();
+                for (int i = 0; i < n; i++) {
+                    try {
+                        mBroadcastCallbacks
+                                .getBroadcastItem(i)
+                                .onPlaybackStopped(reason, broadcastId);
+                    } catch (RemoteException e) {
+                        continue;
+                    }
                 }
+                mBroadcastCallbacks.finishBroadcast();
+            } finally {
+                mCallbackLock.unlock();
             }
-            mBroadcastCallbacks.finishBroadcast();
         }
     }
 
     private void notifyBroadcastUpdateFailed(int broadcastId, int reason) {
         if (mBroadcastCallbacks != null) {
-            int n = mBroadcastCallbacks.beginBroadcast();
-            for (int i = 0; i < n; i++) {
-                try {
-                    mBroadcastCallbacks.getBroadcastItem(i)
-                            .onBroadcastUpdateFailed(reason, broadcastId);
-                } catch (RemoteException e) {
-                    continue;
+            mCallbackLock.lock();
+            try {
+                int n = mBroadcastCallbacks.beginBroadcast();
+                for (int i = 0; i < n; i++) {
+                    try {
+                        mBroadcastCallbacks
+                                .getBroadcastItem(i)
+                                .onBroadcastUpdateFailed(reason, broadcastId);
+                    } catch (RemoteException e) {
+                        continue;
+                    }
                 }
+                mBroadcastCallbacks.finishBroadcast();
+            } finally {
+                mCallbackLock.unlock();
             }
-            mBroadcastCallbacks.finishBroadcast();
         }
     }
 
     private void notifyBroadcastMetadataChanged(int broadcastId,
             BluetoothLeBroadcastMetadata metadata) {
         if (mBroadcastCallbacks != null) {
-            int n = mBroadcastCallbacks.beginBroadcast();
-            for (int i = 0; i < n; i++) {
-                try {
-                    mBroadcastCallbacks.getBroadcastItem(i)
-                            .onBroadcastMetadataChanged(broadcastId, metadata);
-                } catch (RemoteException e) {
-                    continue;
+            mCallbackLock.lock();
+            try {
+                int n = mBroadcastCallbacks.beginBroadcast();
+                for (int i = 0; i < n; i++) {
+                    try {
+                        mBroadcastCallbacks
+                                .getBroadcastItem(i)
+                                .onBroadcastMetadataChanged(broadcastId, metadata);
+                    } catch (RemoteException e) {
+                        continue;
+                    }
                 }
+                mBroadcastCallbacks.finishBroadcast();
+            } finally {
+                mCallbackLock.unlock();
             }
-            mBroadcastCallbacks.finishBroadcast();
         }
     }
 
