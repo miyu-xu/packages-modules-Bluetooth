@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b32167c_c22db1a0",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1432,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-15T17:50:40Z",
+      "side": 1,
+      "message": "L2CA_AdjustConnectionIntervals is also here.  I don\u0027t think this will be a big problem.  Thanks for calling it out, though.",
+      "parentUuid": "6d540e5e_443e8bc5",
+      "range": {
+        "startLine": 1432,
+        "startChar": 5,
+        "endLine": 1432,
+        "endChar": 34
+      },
+      "revId": "bf69c8bc405b8d7165fb26d0ed550e846f88031c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4205a8e5_bcb5b04f",
