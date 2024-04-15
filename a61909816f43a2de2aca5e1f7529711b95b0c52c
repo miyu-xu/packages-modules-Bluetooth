@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "86ffceac_840d63ba",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-04-15T13:24:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5133b74_0c9c0116",
+      "revId": "a61909816f43a2de2aca5e1f7529711b95b0c52c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42f3a052_08eed92b",
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ff4b0695_2f1577a7",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-04-15T13:24:01Z",
+      "side": 1,
+      "message": "This adds audio sink sdp record which I am checking, it\u0027s not added by default - or am I missing something?",
+      "parentUuid": "42f3a052_08eed92b",
+      "revId": "a61909816f43a2de2aca5e1f7529711b95b0c52c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ffecc9ad_f3b6ce30",
         "filename": "android/pandora/test/a2dp_test.py",
         "patchSetId": 6
@@ -48,6 +84,30 @@
       "writtenOn": "2024-04-05T17:56:23Z",
       "side": 1,
       "message": "Please avoid magic number, a constant is available in Bumble: https://github.com/google/bumble/blob/2698d4534e21046a8e3744a9fe59b903ebbc5d65/bumble/avctp.py#L37",
+      "range": {
+        "startLine": 131,
+        "startChar": 80,
+        "endLine": 131,
+        "endChar": 86
+      },
+      "revId": "a61909816f43a2de2aca5e1f7529711b95b0c52c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1f9ed2c_f0b79391",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-04-15T13:24:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ffecc9ad_f3b6ce30",
       "range": {
         "startLine": 131,
         "startChar": 80,
