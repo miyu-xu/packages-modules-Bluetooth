@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "288fc0a9_be4a1d3c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-15T06:17:34Z",
+      "side": 1,
+      "message": "Also, could a flag similar to `le_audio_dev_type_detection_fix` be added here? \n\nlike `le_audio_dev_type_detection_during_service_discovery_fix`",
+      "parentUuid": "3a5ddf3f_5fe58891",
+      "revId": "2a5ee2fd542ecab6e0129cdce3151c37aa2814e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "748b36a0_7db6827c",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 3
