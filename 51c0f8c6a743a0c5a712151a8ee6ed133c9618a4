@@ -51,6 +51,29 @@
       "message": "Hi,",
       "revId": "51c0f8c6a743a0c5a712151a8ee6ed133c9618a4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92893c7e_85805cc3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1973,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-15T07:24:56Z",
+      "side": 1,
+      "message": "It seems that trigger_update_connectable_mode must be skipped for RTK and will be updated after bonding is complete from your comment. If in that case, can we remove this if block completely?",
+      "range": {
+        "startLine": 1967,
+        "startChar": 20,
+        "endLine": 1973,
+        "endChar": 21
+      },
+      "revId": "51c0f8c6a743a0c5a712151a8ee6ed133c9618a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
