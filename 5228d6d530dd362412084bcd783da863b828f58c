@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "40c05681_c2b99087",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2205,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-15T21:41:42Z",
+      "side": 1,
+      "message": "This covers both LE GATT and SDP discovery. Will be further cleaned up after the state machines are separated.",
+      "parentUuid": "b33df2cb_a25c9583",
+      "range": {
+        "startLine": 2205,
+        "startChar": 13,
+        "endLine": 2205,
+        "endChar": 40
+      },
+      "revId": "5228d6d530dd362412084bcd783da863b828f58c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c8eec1ff_7483e86d",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-04-15T17:39:05Z",
       "side": 1,
       "message": "AFAIK, this covers `BluetoothAdapter#startDiscovery()` only as it covers Inquiry and Remote Name Request when name is not available in EIR?",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 163,
+        "endChar": 43
+      },
+      "revId": "5228d6d530dd362412084bcd783da863b828f58c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96e031f9_031f516c",
+        "filename": "system/bta/dm/bta_dm_disc_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-15T21:41:42Z",
+      "side": 1,
+      "message": "Yes, this covers inquiry and name request. This is now referred to as \"device search\" or \"search\", as opposed to \"service discovery\"",
+      "parentUuid": "c8eec1ff_7483e86d",
       "range": {
         "startLine": 163,
         "startChar": 0,
@@ -105,6 +153,54 @@
         "startChar": 34,
         "endLine": 164,
         "endChar": 49
+      },
+      "revId": "5228d6d530dd362412084bcd783da863b828f58c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bde4104_602277c9",
+        "filename": "system/bta/dm/bta_dm_disc_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-15T21:41:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "536b1d27_75eefa0f",
+      "range": {
+        "startLine": 164,
+        "startChar": 34,
+        "endLine": 164,
+        "endChar": 49
+      },
+      "revId": "5228d6d530dd362412084bcd783da863b828f58c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f9a1e6c_1dae9d0e",
+        "filename": "system/bta/dm/bta_dm_disc_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-15T21:41:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8171f1fa_da76c850",
+      "range": {
+        "startLine": 164,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 50
       },
       "revId": "5228d6d530dd362412084bcd783da863b828f58c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
