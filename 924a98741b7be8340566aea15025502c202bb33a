@@ -22,6 +22,30 @@
       },
       "revId": "924a98741b7be8340566aea15025502c202bb33a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abfc2f4b_c2057982",
+        "filename": "system/gd/rust/topshim/vc/vc_shim.h",
+        "patchSetId": 19
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-04-15T08:18:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71a2cd32_5d702457",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "924a98741b7be8340566aea15025502c202bb33a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
