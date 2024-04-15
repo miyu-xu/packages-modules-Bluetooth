@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a4ec296_487b738d",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1244,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-15T16:18:42Z",
+      "side": 0,
+      "message": "Note for reviewers: This was needed when state machines were mixed. It\u0027s no longer needed now.",
+      "range": {
+        "startLine": 1241,
+        "startChar": 0,
+        "endLine": 1244,
+        "endChar": 7
+      },
+      "revId": "b6e3809ad74e21451d0eacb07d0cba63765e923e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
