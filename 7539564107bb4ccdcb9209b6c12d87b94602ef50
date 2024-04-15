@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd729d10_617ff491",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-15T14:27:52Z",
+      "side": 1,
+      "message": "nit:\n\nThanks for making it debug.  Should it be verbose?\n```suggestion\n      log::verbose(\"waiting for more data, current size {}\", procedure_data-\u003eras_raw_data_.size());\n```",
+      "range": {
+        "startLine": 747,
+        "startChar": 11,
+        "endLine": 747,
+        "endChar": 16
+      },
+      "revId": "7539564107bb4ccdcb9209b6c12d87b94602ef50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ab8becd_ce03d81f",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 830,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-15T14:27:52Z",
+      "side": 1,
+      "message": "nit: Probably only need one of these (line 842 or line 830)",
+      "range": {
+        "startLine": 830,
+        "startChar": 4,
+        "endLine": 830,
+        "endChar": 17
+      },
+      "revId": "7539564107bb4ccdcb9209b6c12d87b94602ef50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea50d7e5_c9558620",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 880,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-15T14:27:52Z",
+      "side": 1,
+      "message": "```suggestion\n          log::warn(\"Received invalid step_mode data\");\n```",
+      "range": {
+        "startLine": 880,
+        "startChar": 30,
+        "endLine": 880,
+        "endChar": 39
+      },
+      "revId": "7539564107bb4ccdcb9209b6c12d87b94602ef50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
