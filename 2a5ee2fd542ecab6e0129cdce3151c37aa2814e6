@@ -33,6 +33,111 @@
       "message": "As Jakub mentioned, this is a headset specific issue and should not impact pairing with other devices. Either the earbud should fix their firmware or this can only be an interop fix.",
       "revId": "2a5ee2fd542ecab6e0129cdce3151c37aa2814e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "208ad17d_c8deb9d8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-15T05:58:19Z",
+      "side": 1,
+      "message": "After double checking the bug, I am more open to this CL given the context, but someone should reach out to the earbud manufacturer to see if a fix can be done there as well\n\nLet\u0027s work together to see if we can get a common code solution to this. \n\nRemoving my -2, but please work with Jakub to resolve all comments before merging. \n\nIf necessary, we may want to add a flag on checking device device in `is_le_audio_capable_during_service_discovery`",
+      "parentUuid": "564bf49a_f74163fa",
+      "revId": "2a5ee2fd542ecab6e0129cdce3151c37aa2814e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a5ddf3f_5fe58891",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-15T05:58:19Z",
+      "side": 1,
+      "message": "Yes, I am actually worry about this, too. \n\nAfter this CL, `is_le_audio_capable_during_service_discovery()` will return `false` if the remote device indicate LE audio support in CoD, but no LE host or controller supported in remote features. \n\nThis will cause GATT service discovery to be skipped for all such devices. Is there any risk that this will break other dual mode devices\u0027 GATT service discovery?\n\nCurrently `sdp_return_classic_services_when_le_discovery_fails_is_enabled` flag handles GATT service discovery failure if LE ACL is established successfully. \n\nThis bug is furthermore that LE ACL cannot be established and the question is do we want to preserve the classic bonding?",
+      "parentUuid": "e466bfb5_3fb57263",
+      "revId": "2a5ee2fd542ecab6e0129cdce3151c37aa2814e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "748b36a0_7db6827c",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 751,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-15T05:58:19Z",
+      "side": 1,
+      "message": "see comment below, I think we can avoid this helper function as:\n\n1. checking `IsLeAudioClientRunning()` is not a very logical grouping to check LE device type, keeping them together is not very straightforward. \n\n2. this function does 3 things\n - 1. check if LE audio client is running\n - 2. check if btif device type contains LE\n - 3. check if lower layer device type for this session contains LE\n\nOnly 1 and 3 are shared code and you have to introduce a boolean parameter to switch from 1-2-3 to 1-3. I think this is less readable than just copy 3 into `is_le_audio_capable_during_service_discovery`\n\nThanks",
+      "range": {
+        "startLine": 751,
+        "startChar": 5,
+        "endLine": 751,
+        "endChar": 44
+      },
+      "revId": "2a5ee2fd542ecab6e0129cdce3151c37aa2814e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca69991e_5e9afcd7",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 778,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-15T05:58:19Z",
+      "side": 1,
+      "message": "this is the only piece of logic that is shared between `is_device_le_audio_capable` and `is_le_audio_capable_during_service_discovery` since `check_bitf` is false there, hence I would recommend adding it to `is_le_audio_capable_during_service_discovery` and get rid of this helper function",
+      "range": {
+        "startLine": 773,
+        "startChar": 0,
+        "endLine": 778,
+        "endChar": 3
+      },
+      "revId": "2a5ee2fd542ecab6e0129cdce3151c37aa2814e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30ed4971_d253f53f",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 806,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-15T05:58:19Z",
+      "side": 1,
+      "message": "why btif check is not needed in `is_le_audio_capable_during_service_discovery` but needed in `is_device_le_audio_capable`?",
+      "range": {
+        "startLine": 806,
+        "startChar": 0,
+        "endLine": 806,
+        "endChar": 33
+      },
+      "revId": "2a5ee2fd542ecab6e0129cdce3151c37aa2814e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
