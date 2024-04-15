@@ -219,6 +219,8 @@ public class MediaPlayerList {
                     .getPackageManager()
                     .queryIntentServices(intent, PackageManager.MATCH_ALL);
 
+
+        // TODO: Construct Browsable players, then media players instead
         mBrowsablePlayerConnector = BrowsablePlayerConnector.connectToPlayers(mContext, mLooper,
                 playerList, (List<BrowsedPlayerWrapper> players) -> {
                 Log.i(TAG, "init: Browsable Player list size is " + players.size());
