@@ -39,12 +39,7 @@ using namespace blueberry::facade::neighbor;
 class NeighborFacadeService : public NeighborFacade::Service {
  public:
   NeighborFacadeService(
-      DiscoverabilityModule*,
-      InquiryModule*,
-      hci::RemoteNameRequestModule*,
-      PageModule*,
-      ScanModule* scan_module,
-      ::bluetooth::os::Handler*)
+      ScanModule* scan_module)
       : scan_module_(scan_module) {}
 
   ::grpc::Status EnablePageScan(
@@ -65,22 +60,12 @@ class NeighborFacadeService : public NeighborFacade::Service {
 
 void NeighborFacadeModule::ListDependencies(ModuleList* list) const {
   ::bluetooth::grpc::GrpcFacadeModule::ListDependencies(list);
-  list->add<DiscoverabilityModule>();
-  list->add<InquiryModule>();
-  list->add<hci::RemoteNameRequestModule>();
-  list->add<PageModule>();
   list->add<ScanModule>();
 }
 
 void NeighborFacadeModule::Start() {
   ::bluetooth::grpc::GrpcFacadeModule::Start();
-  service_ = new NeighborFacadeService(
-      GetDependency<DiscoverabilityModule>(),
-      GetDependency<InquiryModule>(),
-      GetDependency<hci::RemoteNameRequestModule>(),
-      GetDependency<PageModule>(),
-      GetDependency<ScanModule>(),
-      GetHandler());
+  service_ = new NeighborFacadeService(GetDependency<ScanModule>());
 }
 
 void NeighborFacadeModule::Stop() {
