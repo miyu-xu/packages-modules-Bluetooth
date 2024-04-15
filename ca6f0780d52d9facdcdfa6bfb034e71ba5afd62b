@@ -16,6 +16,29 @@
       "message": "Unsafe Rust LGTM.",
       "revId": "ca6f0780d52d9facdcdfa6bfb034e71ba5afd62b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba5e8ea6_f6b5ffb1",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-15T07:53:28Z",
+      "side": 1,
+      "message": "We can pass Uuid from Rust to C++ now. May I know why ExternType trait is required for CSIS?",
+      "range": {
+        "startLine": 425,
+        "startChar": 0,
+        "endLine": 425,
+        "endChar": 33
+      },
+      "revId": "ca6f0780d52d9facdcdfa6bfb034e71ba5afd62b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
