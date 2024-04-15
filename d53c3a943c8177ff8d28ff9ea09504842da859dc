@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0119db2c_a01e1088",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-15T22:00:37Z",
+      "side": 1,
+      "message": "+1, also, a struct is easier for reading",
+      "parentUuid": "f078b8c3_65126cbd",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 49
+      },
+      "revId": "d53c3a943c8177ff8d28ff9ea09504842da859dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a8cb89bf_633b3ed8",
         "filename": "system/bta/le_audio/codec_manager.cc",
         "patchSetId": 3
