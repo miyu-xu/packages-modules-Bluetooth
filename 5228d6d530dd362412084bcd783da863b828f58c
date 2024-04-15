@@ -16,6 +16,98 @@
       "message": "Generally looks good to separate them",
       "revId": "5228d6d530dd362412084bcd783da863b828f58c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b33df2cb_a25c9583",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2205,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-15T17:39:05Z",
+      "side": 1,
+      "message": "once you understand what this is, name it properly, like \n\nBTA_DM_GATT_RESULT_EVT ?",
+      "range": {
+        "startLine": 2205,
+        "startChar": 13,
+        "endLine": 2205,
+        "endChar": 40
+      },
+      "revId": "5228d6d530dd362412084bcd783da863b828f58c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8eec1ff_7483e86d",
+        "filename": "system/bta/dm/bta_dm_disc_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-15T17:39:05Z",
+      "side": 1,
+      "message": "AFAIK, this covers `BluetoothAdapter#startDiscovery()` only as it covers Inquiry and Remote Name Request when name is not available in EIR?",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 163,
+        "endChar": 43
+      },
+      "revId": "5228d6d530dd362412084bcd783da863b828f58c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8171f1fa_da76c850",
+        "filename": "system/bta/dm/bta_dm_disc_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-15T17:39:05Z",
+      "side": 1,
+      "message": "// Covers both SDP and Service discovery after bonding only\n\nIt does not cover BluetoothGatt#discoveryServices(), this is a layer below.\n\nBut, what about BluetoothDevice#fetchUuuidWithSdp() API?\n\nThen please add comments here about which state affects what",
+      "range": {
+        "startLine": 164,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 50
+      },
+      "revId": "5228d6d530dd362412084bcd783da863b828f58c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "536b1d27_75eefa0f",
+        "filename": "system/bta/dm/bta_dm_disc_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-15T17:39:05Z",
+      "side": 1,
+      "message": "service_discovery_state",
+      "range": {
+        "startLine": 164,
+        "startChar": 34,
+        "endLine": 164,
+        "endChar": 49
+      },
+      "revId": "5228d6d530dd362412084bcd783da863b828f58c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
