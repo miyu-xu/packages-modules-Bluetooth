@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7a00116f_4c647c02",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-15T20:41:01Z",
+      "side": 1,
+      "message": "nit: `from the`, and `also` on line 12",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 5
+      },
+      "revId": "95a3fc0b9befa1c97a34300d8dbd0cde2ad952ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "10161919_74a97004",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
@@ -19,6 +42,29 @@
         "startChar": 21,
         "endLine": 16,
         "endChar": 26
+      },
+      "revId": "95a3fc0b9befa1c97a34300d8dbd0cde2ad952ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c474e25_e89634c4",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-15T20:41:01Z",
+      "side": 1,
+      "message": "nit: right",
+      "range": {
+        "startLine": 284,
+        "startChar": 56,
+        "endLine": 284,
+        "endChar": 61
       },
       "revId": "95a3fc0b9befa1c97a34300d8dbd0cde2ad952ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
