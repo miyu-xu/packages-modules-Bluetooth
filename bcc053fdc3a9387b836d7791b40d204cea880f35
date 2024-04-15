@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15aff089_3d41c9f4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-15T17:57:38Z",
+      "side": 1,
+      "message": "It looks like it is flagged.",
+      "range": {
+        "startLine": 13,
+        "startChar": 6,
+        "endLine": 13,
+        "endChar": 67
+      },
+      "revId": "bcc053fdc3a9387b836d7791b40d204cea880f35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b07ff30_533644bb",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1450,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-15T17:57:38Z",
+      "side": 1,
+      "message": "nit: newline?\n```suggestion\n}\n\n```",
+      "range": {
+        "startLine": 1450,
+        "startChar": 0,
+        "endLine": 1450,
+        "endChar": 1
+      },
+      "revId": "bcc053fdc3a9387b836d7791b40d204cea880f35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
