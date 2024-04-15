@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "006f4668_1898754e",
+        "filename": "framework/java/android/bluetooth/BluetoothManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-04-15T13:44:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97e715b5_46e6c4b6",
+      "range": {
+        "startLine": 251,
+        "startChar": 0,
+        "endLine": 254,
+        "endChar": 18
+      },
+      "revId": "22fb438139f80da61111016dca1edd79b88eb7a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34125136_9b294ca2",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83d1d316_8522ad8e",
+        "filename": "framework/java/android/bluetooth/BluetoothManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-04-15T13:44:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34125136_9b294ca2",
+      "range": {
+        "startLine": 274,
+        "startChar": 12,
+        "endLine": 274,
+        "endChar": 19
+      },
+      "revId": "22fb438139f80da61111016dca1edd79b88eb7a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52573527_17f27ed2",
@@ -60,6 +108,24 @@
       "writtenOn": "2024-04-15T05:45:18Z",
       "side": 1,
       "message": "Q) Usually when we open a GATT server from Android device, it advertises and remote devices scan. Is there a reason Android being a central?",
+      "revId": "22fb438139f80da61111016dca1edd79b88eb7a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c32ef45_d353caa0",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattServerRunCallbackOnHandlerTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-04-15T13:44:57Z",
+      "side": 1,
+      "message": "Hmm... could you tell me more about that? Are the below steps what you mean?\n\n1. Android advertises with `BluetoothLeAdvertiser`.\n2. Android opens GATT server with `BluetoothManager.openGattServer`\n3. Bumble connects to Android device - which means `BluetoothGattServer.connect()` is not called anywhere in test\n\nIs this right?",
+      "parentUuid": "52573527_17f27ed2",
       "revId": "22fb438139f80da61111016dca1edd79b88eb7a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
