@@ -74,6 +74,30 @@
       },
       "revId": "51c0f8c6a743a0c5a712151a8ee6ed133c9618a4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67a37f6c_d0c8e9da",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1973,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-04-15T08:47:36Z",
+      "side": 1,
+      "message": "We need this when a bonded Classic device connected. One possible scenario is:\n\n0. DUT is bonded with one classic mouse. No connection is established.\n\u003d\u003e Since there is one classic device bonded but not connected, we should enable page scan.\n\n1. DUT connected with the classic mouse.\n\u003d\u003e Since there is no bonded classic device to be connected, we should disable page scan.",
+      "parentUuid": "92893c7e_85805cc3",
+      "range": {
+        "startLine": 1967,
+        "startChar": 20,
+        "endLine": 1973,
+        "endChar": 21
+      },
+      "revId": "51c0f8c6a743a0c5a712151a8ee6ed133c9618a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
