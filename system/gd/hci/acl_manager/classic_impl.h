@@ -398,11 +398,15 @@ struct classic_impl : public security::ISecurityManagerListener {
                 Address address,
                 ErrorCode status,
                 std::string valid_incoming_addresses) {
+#ifndef TARGET_FLOSS
+              // Relax this assertion as BT controllers of ChromeOS devices
+              // do complete with status other than UNKNOWN_CONNECTION.
               log::assert_that(
                   status == ErrorCode::UNKNOWN_CONNECTION,
                   "No prior connection request for {} expecting:{}",
                   ADDRESS_TO_LOGGABLE_CSTR(address),
                   valid_incoming_addresses);
+#endif
               log::warn(
                   "No matching connection to {} ({})",
                   ADDRESS_TO_LOGGABLE_CSTR(address),
