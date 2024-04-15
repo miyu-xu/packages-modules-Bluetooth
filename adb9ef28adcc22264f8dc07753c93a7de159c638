@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4deb3dd7_c020c263",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 783,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-15T06:32:28Z",
+      "side": 1,
+      "message": "Always use current LE random addresses to prevent unexpected disconnection.",
+      "range": {
+        "startLine": 781,
+        "startChar": 7,
+        "endLine": 783,
+        "endChar": 39
+      },
+      "revId": "adb9ef28adcc22264f8dc07753c93a7de159c638",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46e327ed_1193f30c",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 822,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-15T06:32:28Z",
+      "side": 1,
+      "message": "After introducing BTM_Sec_Bgconn_GetAddressWithType, is it still needed?",
+      "range": {
+        "startLine": 814,
+        "startChar": 0,
+        "endLine": 822,
+        "endChar": 6
+      },
+      "revId": "adb9ef28adcc22264f8dc07753c93a7de159c638",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
