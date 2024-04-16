@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "84839e56_74deb879",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-16T18:22:06Z",
+      "side": 1,
+      "message": "fixed, thanks. I thought that log is not needed because it is inside parsePublicBroadcastData but there is no info about wrong Broadcast ID. This should never happen as it is checked in BassClientService#onScanResult but it\u0027s fine to have it here too.",
+      "parentUuid": "b0a4e750_ca14c59c",
+      "revId": "4c9b8b485caf4e60208d18877bc15a75d272ee0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a95f9b01_e02a9921",
