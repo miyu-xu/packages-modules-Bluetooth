@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb0c599f_4b0e2224",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-04-16T15:13:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0119db2c_a01e1088",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 49
+      },
+      "revId": "d53c3a943c8177ff8d28ff9ea09504842da859dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8cb89bf_633b3ed8",
@@ -61,6 +85,24 @@
       "writtenOn": "2024-04-15T07:07:43Z",
       "side": 1,
       "message": "nit: broadcast_adsp_capabilies ?\n\nwhy shorten it?",
+      "revId": "d53c3a943c8177ff8d28ff9ea09504842da859dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87d5b423_429ea440",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 844,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-04-16T15:13:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8cb89bf_633b3ed8",
       "revId": "d53c3a943c8177ff8d28ff9ea09504842da859dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
