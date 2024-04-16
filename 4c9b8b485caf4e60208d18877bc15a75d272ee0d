@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0a4e750_ca14c59c",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-16T17:54:51Z",
+      "side": 1,
+      "message": "INVALID_BROADCAST_ID?\nAnd is it necessary to log this error case broadcastId? In one scanning, one source will only be tried to select once, so it should be fine.\n```suggestion\n            if (broadcastId \u003d\u003d BassConstants.INVALID_BROADCAST_ID || pbData \u003d\u003d null) {\n                Log.e(TAG, \"Invalid broadcast ID or public broadcast data\");\n```",
+      "revId": "4c9b8b485caf4e60208d18877bc15a75d272ee0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a95f9b01_e02a9921",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/PublicBroadcastDataTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-16T17:54:51Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Use go/truth instead of junit asserts.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nUse go/truth instead of junit asserts.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 30
+      },
+      "revId": "4c9b8b485caf4e60208d18877bc15a75d272ee0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
