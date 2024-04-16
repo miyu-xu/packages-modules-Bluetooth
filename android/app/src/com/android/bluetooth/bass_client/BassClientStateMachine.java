@@ -432,6 +432,11 @@ public class BassClientStateMachine extends StateMachine {
                     pbData = PublicBroadcastData.parsePublicBroadcastData(pbAnnouncement);
                 }
             }
+
+            if (broadcastId == BassConstants.INVALID_BROADCAST_ID || pbData == null) {
+                return false;
+            }
+
             // Check if broadcast name present in scan record and parse
             // null if no name present
             String broadcastName = checkAndParseBroadcastName(scanRecord);
