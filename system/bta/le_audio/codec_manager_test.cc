@@ -184,6 +184,8 @@ static constexpr char kPropLeAudioOffloadSupported[] =
     "ro.bluetooth.leaudio_offload.supported";
 static constexpr char kPropLeAudioOffloadDisabled[] =
     "persist.bluetooth.leaudio_offload.disabled";
+static constexpr char kPropLeAudioBidirSwbSupported[] =
+    "bluetooth.leaudio.dual_bidirection_swb.supported";
 
 class CodecManagerTestBase : public Test {
  public:
@@ -217,6 +219,9 @@ class CodecManagerTestAdsp : public CodecManagerTestBase {
     // Enable the HW offloader
     osi_property_set_bool(kPropLeAudioOffloadSupported, true);
     osi_property_set_bool(kPropLeAudioOffloadDisabled, false);
+
+    // Allow for bidir SWB configurations
+    osi_property_set_bool(kPropLeAudioBidirSwbSupported, true);
 
     CodecManagerTestBase::SetUp();
   }
@@ -463,6 +468,7 @@ TEST_F(CodecManagerTestAdsp, test_capabilities) {
     };
     auto cfg = codec_manager->GetCodecConfig(requirements, match_first_config);
     ASSERT_NE(nullptr, cfg);
+    // Note: These should be equal when dual bidir SWB is supported
     ASSERT_EQ(offload_capabilities.size(), available_configs_size);
 
     // Clean up the before testing any other offload capabilities.
