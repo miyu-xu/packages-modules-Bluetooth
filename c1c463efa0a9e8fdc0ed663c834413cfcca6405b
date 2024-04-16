@@ -106,6 +106,24 @@
       "parentUuid": "454a1a60_60edb26c",
       "revId": "c1c463efa0a9e8fdc0ed663c834413cfcca6405b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bab8dad_62d3ef04",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-16T17:56:09Z",
+      "side": 1,
+      "message": "Since this is merged, let\u0027s discuss with a new CL.",
+      "parentUuid": "268afd84_7ed0d79a",
+      "revId": "c1c463efa0a9e8fdc0ed663c834413cfcca6405b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
