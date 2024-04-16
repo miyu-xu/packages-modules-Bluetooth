@@ -148,6 +148,8 @@ void Reactor::Run() {
       idle_promise_ = nullptr;
     }
 
+    log::warn("reactor count num: {}", count);
+
     for (int i = 0; i < count; ++i) {
       auto event = events[i];
       log::assert_that(event.events != 0u, "assert failed: event.events != 0u");
@@ -158,10 +160,12 @@ void Reactor::Run() {
         eventfd_read(control_fd_, &value);
         if ((value & kStopReactor) != 0) {
           is_running_ = false;
+          log::warn("reactor kStopReactor");
           return;
         } else if ((value & kWaitForIdle) != 0) {
           timeout_ms = 30;
           waiting_for_idle = true;
+          log::warn("reactor kWaitForIdle");
           continue;
         } else {
           log::error("Unknown control_fd value {:x}", value);
@@ -173,6 +177,7 @@ void Reactor::Run() {
       executing_reactable_finished_ = nullptr;
       // See if this reactable has been removed in the meantime.
       if (std::find(invalidation_list_.begin(), invalidation_list_.end(), reactable) != invalidation_list_.end()) {
+        log::warn("reactor this reactable has been removed in the meantime");
         continue;
       }
 
