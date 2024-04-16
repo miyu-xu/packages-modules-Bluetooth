@@ -204,7 +204,7 @@ TEST_F(BtaInitializedTest, bta_dm_disc_stop_device_discovery) {
 TEST_F(BtaInitializedTest,
        bta_dm_disc_start_service_discovery__BT_TRANSPORT_AUTO) {
   bta_dm_disc_start_service_discovery(
-      {nullptr, nullptr, nullptr,
+      {nullptr, nullptr,
        [](RawAddress, tBTA_SERVICE_MASK, tBT_DEVICE_TYPE,
           const std::vector<bluetooth::Uuid>&, tBTA_STATUS, tHCI_STATUS) {}},
       kRawAddress, BT_TRANSPORT_AUTO);
@@ -213,7 +213,7 @@ TEST_F(BtaInitializedTest,
 TEST_F(BtaInitializedTest,
        bta_dm_disc_start_service_discovery__BT_TRANSPORT_BR_EDR) {
   bta_dm_disc_start_service_discovery(
-      {nullptr, nullptr, nullptr,
+      {nullptr, nullptr,
        [](RawAddress, tBTA_SERVICE_MASK, tBT_DEVICE_TYPE,
           const std::vector<bluetooth::Uuid>&, tBTA_STATUS, tHCI_STATUS) {}},
       kRawAddress, BT_TRANSPORT_BR_EDR);
@@ -222,7 +222,7 @@ TEST_F(BtaInitializedTest,
 TEST_F(BtaInitializedTest,
        bta_dm_disc_start_service_discovery__BT_TRANSPORT_LE) {
   bta_dm_disc_start_service_discovery(
-      {nullptr, nullptr, nullptr,
+      {nullptr, nullptr,
        [](RawAddress, tBTA_SERVICE_MASK, tBT_DEVICE_TYPE,
           const std::vector<bluetooth::Uuid>&, tBTA_STATUS, tHCI_STATUS) {}},
       kRawAddress, BT_TRANSPORT_LE);

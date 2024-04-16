@@ -54,9 +54,6 @@ void bta_energy_info_cb(tBTM_BLE_TX_TIME_MS tx_time,
                         tBTM_BLE_ENERGY_USED energy_used,
                         tBTM_CONTRL_STATE ctrl_state, tBTA_STATUS status);
 
-void btif_on_name_read(RawAddress bd_addr, tHCI_ERROR_CODE hci_status,
-                       const BD_NAME bd_name);
-
 }  // namespace testing
 }  // namespace legacy
 }  // namespace bluetooth
@@ -142,55 +139,6 @@ class BtifDmWithStackTest : public BtifDmTest {
   }
   bluetooth::ModuleList modules_;
 };
-
-#define MY_PACKAGE com::android::bluetooth::flags
-
-TEST_F_WITH_FLAGS(BtifDmWithStackTest,
-                  btif_dm_search_services_evt__BTA_DM_NAME_READ_EVT,
-                  REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(
-                      MY_PACKAGE, rnr_present_during_service_discovery))) {
-  static struct {
-    bt_status_t status;
-    RawAddress bd_addr;
-    int num_properties;
-    std::vector<bt_property_t> properties;
-  } invoke_remote_device_properties_cb{
-      .status = BT_STATUS_NOT_READY,
-      .bd_addr = RawAddress::kEmpty,
-      .num_properties = -1,
-      .properties = {},
-  };
-
-  bluetooth::core::testing::mock_event_callbacks
-      .invoke_remote_device_properties_cb =
-      [](bt_status_t status, RawAddress bd_addr, int num_properties,
-         bt_property_t* properties) {
-        invoke_remote_device_properties_cb = {
-            .status = status,
-            .bd_addr = bd_addr,
-            .num_properties = num_properties,
-            .properties = std::vector<bt_property_t>(
-                properties, properties + (size_t)num_properties),
-        };
-      };
-
-  BD_NAME bd_name;
-  bd_name_from_char_pointer(bd_name, kBdName);
-
-  bluetooth::legacy::testing::btif_on_name_read(kRawAddress, HCI_SUCCESS,
-                                                bd_name);
-
-  ASSERT_EQ(BT_STATUS_SUCCESS, invoke_remote_device_properties_cb.status);
-  ASSERT_EQ(kRawAddress, invoke_remote_device_properties_cb.bd_addr);
-  ASSERT_EQ(1, invoke_remote_device_properties_cb.num_properties);
-  ASSERT_EQ(BT_PROPERTY_BDNAME,
-            invoke_remote_device_properties_cb.properties[0].type);
-  ASSERT_EQ((int)strlen(kBdName),
-            invoke_remote_device_properties_cb.properties[0].len);
-  ASSERT_STREQ(
-      kBdName,
-      (const char*)invoke_remote_device_properties_cb.properties[0].val);
-}
 
 TEST_F(BtifDmWithStackTest, btif_dm_get_local_class_of_device__default) {
   DEV_CLASS dev_class = btif_dm_get_local_class_of_device();
