@@ -51,6 +51,24 @@
       "parentUuid": "cea0587c_098d6d86",
       "revId": "100017dd1331b4556218b1dc53ecae03c92fc78d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f9f4d4b_bf8ad8e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968840
+      },
+      "writtenOn": "2024-04-16T07:25:40Z",
+      "side": 1,
+      "message": "Hi @cmanton@google.com, @mylesgw@google.com, @chienyuanhuang@google.com, @bensonli@google.com and @siyuanh@google.com\n  Could you please review this change? This issue is reported by end user.\n  He said that the bluetooth crashed.\n  And this modification is simple and can avoid this issue.",
+      "parentUuid": "5d840897_13a60d9b",
+      "revId": "100017dd1331b4556218b1dc53ecae03c92fc78d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
