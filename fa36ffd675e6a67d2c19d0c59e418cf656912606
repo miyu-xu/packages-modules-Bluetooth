@@ -22,6 +22,30 @@
       },
       "revId": "fa36ffd675e6a67d2c19d0c59e418cf656912606",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b08beecd_d61d4a21",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-16T19:15:31Z",
+      "side": 1,
+      "message": "I think this is what you want given the condition to trigger.\n\n```\ntemplate\u003cT...\u003e fatal(fmt::format_string\u003cT...\u003e fmt, T\u0026\u0026 args...);\ntemplate\u003cT...\u003e assert_that(bool cond, fmt::format_string\u003cT...\u003e fmt, T\u0026\u0026 args...);\n```",
+      "parentUuid": "47bafe4d_57c5366e",
+      "range": {
+        "startLine": 266,
+        "startChar": 2,
+        "endLine": 266,
+        "endChar": 18
+      },
+      "revId": "fa36ffd675e6a67d2c19d0c59e418cf656912606",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
