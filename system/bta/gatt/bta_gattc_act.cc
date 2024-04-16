@@ -706,15 +706,36 @@ void bta_gattc_reset_discover_st(tBTA_GATTC_SERV* p_srcb, tGATT_STATUS status) {
   }
 }
 
+static void bta_gattc_continue_read_db_hash_if_needed(tBTA_GATTC_CLCB* p_clcb) {
+  tBTA_GATTC_SERV* p_srcb = p_clcb->p_srcb;
+  for (size_t i = 0; i < BTA_GATTC_CLCB_MAX; i++) {
+    if (&bta_gattc_cb.clcb[i] != p_clcb &&
+        bta_gattc_cb.clcb[i].p_srcb == p_srcb &&
+        bta_gattc_cb.clcb[i].state == BTA_GATTC_DISCOVER_ST) {
+      bta_gattc_start_discover(&bta_gattc_cb.clcb[i], NULL);
+      break;
+    }
+  }
+}
+
 /** close a GATTC connection while in discovery state */
 void bta_gattc_disc_close(tBTA_GATTC_CLCB* p_clcb,
                           const tBTA_GATTC_DATA* p_data) {
   log::verbose("Discovery cancel conn_id={}", loghex(p_clcb->bta_conn_id));
 
-  if (p_clcb->disc_active)
+  if (p_clcb->disc_active) {
     bta_gattc_reset_discover_st(p_clcb->p_srcb, GATT_ERROR);
-  else
+  } else {
     p_clcb->state = BTA_GATTC_CONN_ST;
+    // If it was reading db hash, retry from another clcb.
+    if (IS_FLAG_ENABLED(gatt_rediscover_on_canceled) &&
+        (p_clcb->request_during_discovery ==
+             BTA_GATTC_DISCOVER_REQ_READ_DB_HASH ||
+         p_clcb->request_during_discovery ==
+             BTA_GATTC_DISCOVER_REQ_READ_DB_HASH_FOR_SVC_CHG)) {
+      bta_gattc_continue_read_db_hash_if_needed(p_clcb);
+    }
+  }
 
   // This function only gets called as the result of a BTA_GATTC_API_CLOSE_EVT
   // while in the BTA_GATTC_DISCOVER_ST state. Once the state changes, the
