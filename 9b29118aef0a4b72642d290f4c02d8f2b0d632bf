@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad65b62d_4413c410",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-16T19:17:24Z",
+      "side": 1,
+      "message": "remove ?",
+      "revId": "9b29118aef0a4b72642d290f4c02d8f2b0d632bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
