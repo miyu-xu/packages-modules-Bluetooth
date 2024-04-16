@@ -88,6 +88,24 @@
       "parentUuid": "bd82f7f5_985b2f57",
       "revId": "c1c463efa0a9e8fdc0ed663c834413cfcca6405b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "268afd84_7ed0d79a",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-16T17:26:38Z",
+      "side": 1,
+      "message": "I\u0027m sorry I didn\u0027t see this comment.  If you unresolve it, I\u0027ll see it.",
+      "parentUuid": "454a1a60_60edb26c",
+      "revId": "c1c463efa0a9e8fdc0ed663c834413cfcca6405b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
