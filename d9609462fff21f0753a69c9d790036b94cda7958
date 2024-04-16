@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "209d1458_fa8ea2c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-04-16T14:55:59Z",
+      "side": 1,
+      "message": "Why is this patch only targeting Floss?",
+      "revId": "d9609462fff21f0753a69c9d790036b94cda7958",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
