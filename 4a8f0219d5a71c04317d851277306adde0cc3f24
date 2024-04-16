@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff164200_41064b54",
+        "filename": "flags/avrcp.aconfig",
+        "patchSetId": 16
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-16T16:50:13Z",
+      "side": 1,
+      "message": "Best practice says you should break this into its own change at the front of the CL chain, and the subsequent changes can reference the flag bug in their commit message.",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 1
+      },
+      "revId": "4a8f0219d5a71c04317d851277306adde0cc3f24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
