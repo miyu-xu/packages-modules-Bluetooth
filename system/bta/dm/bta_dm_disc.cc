@@ -112,7 +112,8 @@ static void bta_dm_sdp_callback(const RawAddress& bd_addr,
 static bool bta_dm_read_remote_device_name(const RawAddress& bd_addr,
                                            tBT_TRANSPORT transport);
 static void bta_dm_discover_name(const RawAddress& remote_bd_addr);
-static void bta_dm_discover_services(const RawAddress& remote_bd_addr);
+static void bta_dm_discover_services(const RawAddress& remote_bd_addr,
+                                     tBT_TRANSPORT transport);
 
 static void bta_dm_disable_search_and_disc(void);
 
@@ -370,7 +371,6 @@ static void bta_dm_discover(tBTA_DM_API_DISCOVER& discover) {
   bta_dm_search_cb.peer_name[0] = 0;
   bta_dm_search_cb.p_btm_inq_info =
       get_btm_client_interface().db.BTM_InqDbRead(discover.bd_addr);
-  bta_dm_search_cb.transport = discover.transport;
 
   bta_dm_search_cb.name_discover_done = false;
 
@@ -378,7 +378,7 @@ static void bta_dm_discover(tBTA_DM_API_DISCOVER& discover) {
       "bta_dm_discovery: starting service discovery to {} , transport: {}",
       ADDRESS_TO_LOGGABLE_CSTR(discover.bd_addr),
       bt_transport_text(discover.transport));
-  bta_dm_discover_services(discover.bd_addr);
+  bta_dm_discover_services(discover.bd_addr, discover.transport);
 }
 
 /*******************************************************************************
@@ -1193,28 +1193,23 @@ static void bta_dm_discover_next_device(void) {
  ******************************************************************************/
 static tBT_TRANSPORT bta_dm_determine_discovery_transport(
     const RawAddress& remote_bd_addr) {
-  tBT_TRANSPORT transport = BT_TRANSPORT_BR_EDR;
-  if (bta_dm_search_cb.transport == BT_TRANSPORT_AUTO) {
-    tBT_DEVICE_TYPE dev_type;
-    tBLE_ADDR_TYPE addr_type;
+  tBT_DEVICE_TYPE dev_type;
+  tBLE_ADDR_TYPE addr_type;
 
-    get_btm_client_interface().peer.BTM_ReadDevInfo(remote_bd_addr, &dev_type,
-                                                    &addr_type);
-    if (dev_type == BT_DEVICE_TYPE_BLE || addr_type == BLE_ADDR_RANDOM) {
-      transport = BT_TRANSPORT_LE;
-    } else if (dev_type == BT_DEVICE_TYPE_DUMO) {
-      if (get_btm_client_interface().peer.BTM_IsAclConnectionUp(
-              remote_bd_addr, BT_TRANSPORT_BR_EDR)) {
-        transport = BT_TRANSPORT_BR_EDR;
-      } else if (get_btm_client_interface().peer.BTM_IsAclConnectionUp(
-                     remote_bd_addr, BT_TRANSPORT_LE)) {
-        transport = BT_TRANSPORT_LE;
-      }
+  get_btm_client_interface().peer.BTM_ReadDevInfo(remote_bd_addr, &dev_type,
+                                                  &addr_type);
+  if (dev_type == BT_DEVICE_TYPE_BLE || addr_type == BLE_ADDR_RANDOM) {
+    return BT_TRANSPORT_LE;
+  } else if (dev_type == BT_DEVICE_TYPE_DUMO) {
+    if (get_btm_client_interface().peer.BTM_IsAclConnectionUp(
+            remote_bd_addr, BT_TRANSPORT_BR_EDR)) {
+      return BT_TRANSPORT_BR_EDR;
+    } else if (get_btm_client_interface().peer.BTM_IsAclConnectionUp(
+                   remote_bd_addr, BT_TRANSPORT_LE)) {
+      return BT_TRANSPORT_LE;
     }
-  } else {
-    transport = bta_dm_search_cb.transport;
   }
-  return transport;
+  return BT_TRANSPORT_BR_EDR;
 }
 
 static void bta_dm_discover_name(const RawAddress& remote_bd_addr) {
@@ -1274,9 +1269,6 @@ static void bta_dm_discover_name(const RawAddress& remote_bd_addr) {
     bta_dm_search_cb.name_discover_done = true;
   }
 
-  /* Reset transport state for next discovery */
-  bta_dm_search_cb.transport = BT_TRANSPORT_AUTO;
-
   /* name discovery is done for this device */
   if (bta_dm_search_get_state() == BTA_DM_SEARCH_ACTIVE) {
     // if p_btm_inq_info is nullptr, there is no more inquiry results to
@@ -1292,18 +1284,17 @@ static void bta_dm_discover_name(const RawAddress& remote_bd_addr) {
   }
 }
 
-static void bta_dm_discover_services(const RawAddress& remote_bd_addr) {
-  const tBT_TRANSPORT transport =
-      bta_dm_determine_discovery_transport(remote_bd_addr);
+static void bta_dm_discover_services(const RawAddress& remote_bd_addr,
+                                     tBT_TRANSPORT transport) {
+  if (transport == BT_TRANSPORT_AUTO) {
+    transport = bta_dm_determine_discovery_transport(remote_bd_addr);
+  }
 
   log::verbose("BDA: {}, transport={}, state = {}",
                ADDRESS_TO_LOGGABLE_STR(remote_bd_addr), transport,
                bta_dm_search_get_state());
 
   bta_dm_search_cb.peer_bdaddr = remote_bd_addr;
-
-  /* Reset transport state for next discovery */
-  bta_dm_search_cb.transport = BT_TRANSPORT_AUTO;
 
   bool sdp_disable = HID_HostSDPDisable(remote_bd_addr);
   if (sdp_disable)
@@ -1554,10 +1545,6 @@ static void bta_dm_remname_cback(const tBTM_REMOTE_DEV_NAME* p_remote_name) {
   /* remote name discovery is done but it could be failed */
   bta_dm_search_cb.name_discover_done = true;
   bd_name_copy(bta_dm_search_cb.peer_name, p_remote_name->remote_bd_name);
-
-  if (bta_dm_search_cb.transport == BT_TRANSPORT_LE) {
-    GAP_BleReadPeerPrefConnParams(bta_dm_search_cb.peer_bdaddr);
-  }
 
   auto msg = std::make_unique<tBTA_DM_MSG>(tBTA_DM_REMOTE_NAME{});
   auto& rmt_name_msg = std::get<tBTA_DM_REMOTE_NAME>(*msg);
@@ -2231,7 +2218,6 @@ static void bta_dm_disc_init_search_cb(tBTA_DM_SEARCH_CB& bta_dm_search_cb) {
   bta_dm_search_cb.search_state = BTA_DM_SEARCH_IDLE;
   bta_dm_search_cb.service_discovery_state = BTA_DM_DISCOVER_IDLE;
   bta_dm_search_cb.conn_id = GATT_INVALID_CONN_ID;
-  bta_dm_search_cb.transport = BT_TRANSPORT_AUTO;
 }
 
 static void bta_dm_disc_reset() {
