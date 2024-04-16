@@ -25,8 +25,8 @@
 
 #include "btif/include/bta_av_co.h"
 
-#include <android_bluetooth_flags.h>
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 
 #include <mutex>
 #include <optional>
@@ -133,7 +133,7 @@ A2dpCodecConfig* BtaAvCo::GetActivePeerCurrentCodec() {
   std::lock_guard<std::recursive_mutex> lock(peer_cache_->codec_lock_);
 
   BtaAvCoState* reference_state = nullptr;
-  if (IS_FLAG_ENABLED(a2dp_concurrent_source_sink)) {
+  if (com::android::bluetooth::flags::a2dp_concurrent_source_sink()) {
     reference_state = &bta_av_source_state_;
   } else {
     reference_state = &bta_av_legacy_state_;
@@ -707,7 +707,7 @@ BT_HDR* BtaAvCo::GetNextSourceDataPacket(const uint8_t* p_codec_info,
   }
 
   BtaAvCoState* reference_state = nullptr;
-  if (IS_FLAG_ENABLED(a2dp_concurrent_source_sink)) {
+  if (com::android::bluetooth::flags::a2dp_concurrent_source_sink()) {
     reference_state = &bta_av_source_state_;
   } else {
     reference_state = &bta_av_legacy_state_;
@@ -793,7 +793,7 @@ bool BtaAvCo::SetActivePeer(const RawAddress& peer_address,
 }
 
 BtaAvCoState* BtaAvCo::getStateFromLocalProfile(const uint8_t t_local_sep) {
-  if (IS_FLAG_ENABLED(a2dp_concurrent_source_sink)) {
+  if (com::android::bluetooth::flags::a2dp_concurrent_source_sink()) {
     if (t_local_sep == AVDT_TSEP_SRC) {
       return &bta_av_source_state_;
     } else if (t_local_sep == AVDT_TSEP_SNK) {
@@ -808,7 +808,7 @@ BtaAvCoState* BtaAvCo::getStateFromLocalProfile(const uint8_t t_local_sep) {
 }
 
 void BtaAvCo::SaveCodec(const uint8_t* new_codec_config) {
-  if (IS_FLAG_ENABLED(a2dp_concurrent_source_sink)) {
+  if (com::android::bluetooth::flags::a2dp_concurrent_source_sink()) {
     bta_av_sink_state_.setCodecConfig(new_codec_config);
   } else {
     bta_av_legacy_state_.setCodecConfig(new_codec_config);
@@ -844,7 +844,7 @@ void BtaAvCo::GetPeerEncoderParameters(
 
 const tA2DP_ENCODER_INTERFACE* BtaAvCo::GetSourceEncoderInterface() {
   std::lock_guard<std::recursive_mutex> lock(peer_cache_->codec_lock_);
-  if (IS_FLAG_ENABLED(a2dp_concurrent_source_sink)) {
+  if (com::android::bluetooth::flags::a2dp_concurrent_source_sink()) {
     return A2DP_GetEncoderInterface(bta_av_source_state_.getCodecConfig());
   }
   return A2DP_GetEncoderInterface(bta_av_legacy_state_.getCodecConfig());
@@ -942,7 +942,7 @@ done:
 
   // Find the peer that is currently open
   BtaAvCoPeer* active_peer;
-  if (IS_FLAG_ENABLED(a2dp_concurrent_source_sink)) {
+  if (com::android::bluetooth::flags::a2dp_concurrent_source_sink()) {
     active_peer = bta_av_source_state_.getActivePeer();
   } else {
     active_peer = bta_av_legacy_state_.getActivePeer();
@@ -965,7 +965,7 @@ bool BtaAvCo::SetCodecAudioConfig(
 
   // Find the peer that is currently open
   BtaAvCoPeer* p_peer;
-  if (IS_FLAG_ENABLED(a2dp_concurrent_source_sink)) {
+  if (com::android::bluetooth::flags::a2dp_concurrent_source_sink()) {
     p_peer = bta_av_source_state_.getActivePeer();
   } else {
     p_peer = bta_av_legacy_state_.getActivePeer();
@@ -1026,7 +1026,7 @@ bool BtaAvCo::SetCodecAudioConfig(
 int BtaAvCo::GetSourceEncoderEffectiveFrameSize() {
   std::lock_guard<std::recursive_mutex> lock(peer_cache_->codec_lock_);
 
-  if (IS_FLAG_ENABLED(a2dp_concurrent_source_sink)) {
+  if (com::android::bluetooth::flags::a2dp_concurrent_source_sink()) {
     return A2DP_GetEecoderEffectiveFrameSize(
         bta_av_source_state_.getCodecConfig());
   }
@@ -1433,7 +1433,7 @@ void BtaAvCo::SaveNewCodecConfig(BtaAvCoPeer* p_peer,
 }
 
 BtaAvCoState* BtaAvCo::getStateFromPeer(const BtaAvCoPeer* p_peer) {
-  if (IS_FLAG_ENABLED(a2dp_concurrent_source_sink)) {
+  if (com::android::bluetooth::flags::a2dp_concurrent_source_sink()) {
     if (p_peer->uuid_to_connect == UUID_SERVCLASS_AUDIO_SINK) {
       return &bta_av_source_state_;
     } else if (p_peer->uuid_to_connect == UUID_SERVCLASS_AUDIO_SOURCE) {

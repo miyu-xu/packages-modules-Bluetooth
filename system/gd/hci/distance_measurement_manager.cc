@@ -15,8 +15,8 @@
  */
 #include "hci/distance_measurement_manager.h"
 
-#include <android_bluetooth_flags.h>
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 #include <math.h>
 
 #include <complex>
@@ -139,8 +139,8 @@ struct DistanceMeasurementManager::impl {
     hci_layer_->RegisterLeEventHandler(
         hci::SubeventCode::TRANSMIT_POWER_REPORTING,
         handler_->BindOn(this, &impl::on_transmit_power_reporting));
-    if (!IS_FLAG_ENABLED(channel_sounding_in_stack)) {
-      log::info("IS_FLAG_ENABLED channel_sounding_in_stack: false");
+    if (!com::android::bluetooth::flags::channel_sounding_in_stack()) {
+      log::info("com::android::bluetooth::flags::channel_sounding_in_stack: false");
       return;
     }
     distance_measurement_interface_ = hci_layer_->GetDistanceMeasurementInterface(
@@ -201,7 +201,7 @@ struct DistanceMeasurementManager::impl {
         "connection_handle: {}, address: {}",
         connection_handle,
         ADDRESS_TO_LOGGABLE_CSTR(cs_remote_address));
-    if (!IS_FLAG_ENABLED(channel_sounding_in_stack)) {
+    if (!com::android::bluetooth::flags::channel_sounding_in_stack()) {
       log::error("Channel Sounding is not enabled");
       distance_measurement_callbacks_->OnDistanceMeasurementStartFail(
           cs_remote_address, REASON_INTERNAL_ERROR, METHOD_CS);

@@ -22,9 +22,9 @@
  *
  ******************************************************************************/
 
-#include <android_bluetooth_flags.h>
 #include <base/functional/bind.h>
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 
 #include <cstdint>
 
@@ -260,7 +260,8 @@ static void bta_ag_sco_disc_cback(uint16_t sco_idx) {
         }
       }
     } else if (bta_ag_sco_is_opening(bta_ag_cb.sco.p_curr_scb)) {
-      if (IS_FLAG_ENABLED(retry_esco_with_zero_retransmission_effort) &&
+      if (com::android::bluetooth::flags::
+              retry_esco_with_zero_retransmission_effort() &&
           bta_ag_cb.sco.p_curr_scb->retransmission_effort_retries == 0) {
         bta_ag_cb.sco.p_curr_scb->retransmission_effort_retries++;
         bta_ag_cb.sco.p_curr_scb->state = BTA_AG_SCO_CODEC_ST;
@@ -507,7 +508,8 @@ void bta_ag_create_sco(tBTA_AG_SCB* p_scb, bool is_orig) {
 
   updateCodecParametersFromProviderInfo(esco_codec, params);
 
-  if (IS_FLAG_ENABLED(retry_esco_with_zero_retransmission_effort) &&
+  if (com::android::bluetooth::flags::
+          retry_esco_with_zero_retransmission_effort() &&
       p_scb->retransmission_effort_retries == 1) {
     log::info("change retransmission_effort to 0, retry");
     p_scb->retransmission_effort_retries++;
@@ -1522,7 +1524,8 @@ void bta_ag_sco_conn_close(tBTA_AG_SCB* p_scb, const tBTA_AG_DATA& /* data */) {
         p_scb->codec_msbc_settings == BTA_AG_SCO_MSBC_SETTINGS_T1) ||
        (p_scb->sco_codec == BTM_SCO_CODEC_LC3 &&
         p_scb->codec_lc3_settings == BTA_AG_SCO_LC3_SETTINGS_T1) ||
-       (IS_FLAG_ENABLED(retry_esco_with_zero_retransmission_effort) &&
+       (com::android::bluetooth::flags::
+            retry_esco_with_zero_retransmission_effort() &&
         p_scb->retransmission_effort_retries == 1) ||
        aptx_voice)) {
     bta_ag_sco_event(p_scb, BTA_AG_SCO_REOPEN_E);
@@ -1597,7 +1600,7 @@ void bta_ag_set_sco_allowed(bool value) {
 
 bool bta_ag_is_sco_managed_by_audio() {
   bool value = false;
-  if (IS_FLAG_ENABLED(is_sco_managed_by_audio)) {
+  if (com::android::bluetooth::flags::is_sco_managed_by_audio()) {
     value = osi_property_get_bool("bluetooth.sco.managed_by_audio", false);
     log::verbose("is_sco_managed_by_audio enabled={}",
                  value ? "true" : "false");

@@ -27,8 +27,8 @@
 
 #define LOG_TAG "bt_btif"
 
-#include <android_bluetooth_flags.h>
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 #include <hardware/bluetooth.h>
 #include <hardware/bluetooth_headset_interface.h>
 #include <hardware/bt_av.h>
@@ -333,7 +333,7 @@ struct CoreInterfaceImpl : bluetooth::core::CoreInterface {
   }
 
   void onLinkDown(const RawAddress& bd_addr) override {
-    if (IS_FLAG_ENABLED(a2dp_concurrent_source_sink)) {
+    if (com::android::bluetooth::flags::a2dp_concurrent_source_sink()) {
       btif_av_acl_disconnected(bd_addr, A2dpType::kSource);
       btif_av_acl_disconnected(bd_addr, A2dpType::kSink);
     } else {
@@ -674,7 +674,7 @@ static int get_connection_state(const RawAddress* bd_addr) {
 
   if (bd_addr == nullptr) return 0;
 
-  if (IS_FLAG_ENABLED(api_get_connection_state_sync_on_main)) {
+  if (com::android::bluetooth::flags::api_get_connection_state_sync_on_main()) {
     return btif_dm_get_connection_state_sync(*bd_addr);
   } else {
     return btif_dm_get_connection_state(*bd_addr);

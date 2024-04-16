@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-#include <android_bluetooth_flags.h>
 #include <base/functional/bind.h>
 #include <base/strings/string_number_conversions.h>
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 #include <lc3.h>
 
 #include <deque>
@@ -266,7 +266,7 @@ class LeAudioClientImpl : public LeAudioClient {
       reconnection_mode_ = BTM_BLE_BKG_CONNECT_ALLOW_LIST;
     }
 
-    if (IS_FLAG_ENABLED(leaudio_enable_health_based_actions)) {
+    if (com::android::bluetooth::flags::leaudio_enable_health_based_actions()) {
       log::info("Loading health status module");
       leAudioHealthStatus_ = LeAudioHealthStatus::Get();
       leAudioHealthStatus_->RegisterCallback(
@@ -909,7 +909,8 @@ class LeAudioClientImpl : public LeAudioClient {
     /* If assistant have some connected delegators that needs to be informed
      * when there would be request to stream unicast.
      */
-    if (IS_FLAG_ENABLED(leaudio_broadcast_audio_handover_policies) &&
+    if (com::android::bluetooth::flags::
+            leaudio_broadcast_audio_handover_policies() &&
         !sink_monitor_mode_ && source_monitor_mode_ && !group->IsStreaming()) {
       callbacks_->OnUnicastMonitorModeStatus(
           bluetooth::le_audio::types::kLeAudioDirectionSource,
@@ -1036,7 +1037,8 @@ class LeAudioClientImpl : public LeAudioClient {
   }
 
   void SetUnicastMonitorMode(uint8_t direction, bool enable) override {
-    if (!IS_FLAG_ENABLED(leaudio_broadcast_audio_handover_policies)) {
+    if (!com::android::bluetooth::flags::
+            leaudio_broadcast_audio_handover_policies()) {
       log::warn(
           "Monitor mode is disabled, Set Unicast Monitor mode is ignored");
       return;
@@ -1122,7 +1124,7 @@ class LeAudioClientImpl : public LeAudioClient {
                      "Sink session not acquired");
 
     DsaModes dsa_modes = {DsaMode::DISABLED};
-    if (IS_FLAG_ENABLED(leaudio_dynamic_spatial_audio)) {
+    if (com::android::bluetooth::flags::leaudio_dynamic_spatial_audio()) {
       dsa_modes = group->GetAllowedDsaModes();
     }
 
@@ -1310,7 +1312,8 @@ class LeAudioClientImpl : public LeAudioClient {
 
     /* Reset sink listener notified status */
     sink_monitor_notified_status_ = std::nullopt;
-    if (IS_FLAG_ENABLED(leaudio_codec_config_callback_order_fix)) {
+    if (com::android::bluetooth::flags::
+            leaudio_codec_config_callback_order_fix()) {
       SendAudioGroupSelectableCodecConfigChanged(group);
       callbacks_->OnGroupStatus(active_group_id_, GroupStatus::ACTIVE);
     } else {
@@ -3245,7 +3248,7 @@ class LeAudioClientImpl : public LeAudioClient {
         "{},  {}", ADDRESS_TO_LOGGABLE_CSTR(leAudioDevice->address_),
         bluetooth::common::ToString(leAudioDevice->GetConnectionState()));
 
-    if (IS_FLAG_ENABLED(le_audio_fast_bond_params)) {
+    if (com::android::bluetooth::flags::le_audio_fast_bond_params()) {
       L2CA_LockBleConnParamsForProfileConnection(leAudioDevice->address_,
                                                  false);
     }
@@ -5058,7 +5061,7 @@ class LeAudioClientImpl : public LeAudioClient {
 
   bool DsaReconfigureNeeded(LeAudioDeviceGroup* group,
                             LeAudioContextType context) {
-    if (!IS_FLAG_ENABLED(leaudio_dynamic_spatial_audio)) {
+    if (!com::android::bluetooth::flags::leaudio_dynamic_spatial_audio()) {
       return false;
     }
 
@@ -5456,7 +5459,8 @@ class LeAudioClientImpl : public LeAudioClient {
 
   void notifyGroupStreamStatus(int group_id,
                                GroupStreamStatus groupStreamStatus) {
-    if (!IS_FLAG_ENABLED(leaudio_callback_on_group_stream_status)) {
+    if (!com::android::bluetooth::flags::
+            leaudio_callback_on_group_stream_status()) {
       return;
     }
 
@@ -5830,7 +5834,7 @@ class LeAudioClientImpl : public LeAudioClient {
   }
 
   bool DsaDataConsume(bluetooth::hci::iso_manager::cis_data_evt* event) {
-    if (!IS_FLAG_ENABLED(leaudio_dynamic_spatial_audio)) {
+    if (!com::android::bluetooth::flags::leaudio_dynamic_spatial_audio()) {
       return false;
     }
 
@@ -6270,7 +6274,7 @@ void LeAudioClient::Cleanup(void) {
 }
 
 bool LeAudioClient::RegisterIsoDataConsumer(LeAudioIsoDataCallback callback) {
-  if (!IS_FLAG_ENABLED(leaudio_dynamic_spatial_audio)) {
+  if (!com::android::bluetooth::flags::leaudio_dynamic_spatial_audio()) {
     return false;
   }
 
