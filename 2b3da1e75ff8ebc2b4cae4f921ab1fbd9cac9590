@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aec8a051_f6211ba6",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1217,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-16T18:44:53Z",
+      "side": 1,
+      "message": "note fore reviewers: name discovery shouldn\u0027t check the transport stored in control block, should just use search result from BTM layer, as it will do now.",
+      "range": {
+        "startLine": 1217,
+        "startChar": 6,
+        "endLine": 1217,
+        "endChar": 42
+      },
+      "revId": "2b3da1e75ff8ebc2b4cae4f921ab1fbd9cac9590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
