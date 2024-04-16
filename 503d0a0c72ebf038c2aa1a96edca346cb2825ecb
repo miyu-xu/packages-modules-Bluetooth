@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e4864cc1_fabaa63f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-16T22:23:14Z",
+      "side": 1,
+      "message": "Since these are all callbacks, I think it is better to schedule / post the callback on the same thread since callbacks are async anyway. \n\nIn this case, we can use make sure all the notify*** function are called on the same thread to avoid race conditions. \n\nFeel free to use the getMainLooper() or mStateMachinesThread\u0027s handler",
+      "revId": "503d0a0c72ebf038c2aa1a96edca346cb2825ecb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7b1098b4_3e1e1f5d",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 2
@@ -31,6 +48,29 @@
       "writtenOn": "2024-04-16T17:07:31Z",
       "side": 1,
       "message": "Unicast lock?",
+      "revId": "503d0a0c72ebf038c2aa1a96edca346cb2825ecb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b77e8ee8_095b10c2",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3995,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-16T22:23:14Z",
+      "side": 1,
+      "message": "this one only has one caller in line 3977, why does it need a lock?",
+      "range": {
+        "startLine": 3995,
+        "startChar": 17,
+        "endLine": 3995,
+        "endChar": 39
+      },
       "revId": "503d0a0c72ebf038c2aa1a96edca346cb2825ecb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
