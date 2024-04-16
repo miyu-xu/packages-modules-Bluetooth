@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0fdf060_d0c22e54",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2715,
+      "author": {
+        "id": 1003259
+      },
+      "writtenOn": "2024-04-16T14:41:42Z",
+      "side": 1,
+      "message": "I think we should update both because the audio framework does not link the codec configs between input and output",
+      "range": {
+        "startLine": 2715,
+        "startChar": 0,
+        "endLine": 2715,
+        "endChar": 56
+      },
+      "revId": "dc899eeafe939a48bc183098d6467080a905e726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
