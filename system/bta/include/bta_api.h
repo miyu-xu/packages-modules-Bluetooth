@@ -289,7 +289,7 @@ typedef void(tBTA_DM_GATT_DISC_CBACK)(RawAddress bd_addr, BD_NAME bd_name,
 typedef void(tBTA_DM_DID_RES_CBACK)(RawAddress bd_addr, uint8_t vendor_id_src,
                                     uint16_t vendor_id, uint16_t product_id,
                                     uint16_t version);
-
+// TODO: delete after separate_service_and_device_discovery rolls out
 typedef void(tBTA_DM_NAME_READ_CBACK)(RawAddress bd_addr,
                                       tHCI_ERROR_CODE hci_status,
                                       const BD_NAME bd_name);
@@ -301,6 +301,7 @@ struct service_discovery_callbacks {
   /* legacy callback I'll tear apart and get rid of */
   tBTA_DM_GATT_DISC_CBACK* on_gatt_results;
   tBTA_DM_DID_RES_CBACK* on_did_received;
+  // TODO: delete after separate_service_and_device_discovery rolls out
   tBTA_DM_NAME_READ_CBACK* on_name_read;
   tBTA_DM_DISC_CBACK* on_service_discovery_results;
 };
