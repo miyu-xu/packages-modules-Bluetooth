@@ -104,6 +104,7 @@ public class BassClientStateMachine extends StateMachine {
     static final int CONNECT_TIMEOUT = 15;
     static final int REACHED_MAX_SOURCE_LIMIT = 16;
     static final int SWITCH_BCAST_SOURCE = 17;
+    static final int CANCEL_PENDING_SOURCE_OPERATION = 18;
 
     // NOTE: the value is not "final" - it is modified in the unit tests
     @VisibleForTesting
@@ -263,6 +264,17 @@ public class BassClientStateMachine extends StateMachine {
 
     Boolean hasPendingSourceOperation() {
         return mPendingMetadata != null;
+    }
+
+    Boolean hasPendingSourceOperation(int broadcastId) {
+        return mPendingMetadata != null && mPendingMetadata.getBroadcastId() == broadcastId;
+    }
+
+    private void cancelPendingSourceOperation(int broadcastId) {
+        if ((mPendingMetadata != null) && (mPendingMetadata.getBroadcastId() == broadcastId)) {
+            Log.d(TAG, "clearPendingSourceOperation: broadcast ID: " + broadcastId);
+            mPendingMetadata = null;
+        }
     }
 
     BluetoothLeBroadcastMetadata getCurrentBroadcastMetadata(Integer sourceId) {
@@ -897,6 +909,7 @@ public class BassClientStateMachine extends StateMachine {
             if (oldRecvState.getSourceDevice() == null
                     || oldRecvState.getSourceDevice().getAddress().equals(emptyBluetoothDevice)) {
                 log("New Source Addition");
+                removeMessages(CANCEL_PENDING_SOURCE_OPERATION);
                 mService.getCallbacks()
                         .notifySourceAdded(
                                 mDevice, recvState, BluetoothStatusCodes.REASON_LOCAL_APP_REQUEST);
@@ -939,6 +952,7 @@ public class BassClientStateMachine extends StateMachine {
                         setCurrentBroadcastMetadata(recvState.getSourceId(), mPendingMetadata);
                         mPendingMetadata = null;
                     }
+                    removeMessages(CANCEL_PENDING_SOURCE_OPERATION);
                     mService.getCallbacks().notifySourceModified(mDevice,
                             recvState.getSourceId(), BluetoothStatusCodes.REASON_LOCAL_APP_REQUEST);
                     checkAndUpdateBroadcastCode(recvState);
@@ -1842,7 +1856,14 @@ public class BassClientStateMachine extends StateMachine {
                             mSetBroadcastCodePending = true;
                         }
                         transitionTo(mConnectedProcessing);
-                        sendMessageDelayed(GATT_TXN_TIMEOUT, BassConstants.GATT_TXN_TIMEOUT_MS);
+                        sendMessageDelayed(
+                                GATT_TXN_TIMEOUT,
+                                ADD_BCAST_SOURCE,
+                                BassConstants.GATT_TXN_TIMEOUT_MS);
+                        sendMessageDelayed(
+                                CANCEL_PENDING_SOURCE_OPERATION,
+                                metaData.getBroadcastCode(),
+                                BassConstants.SOURCE_OPERATION_TIMEOUT_MS);
                     } else {
                         Log.e(TAG, "ADD_BCAST_SOURCE: no Bluetooth Gatt handle, Fatal");
                         mService.getCallbacks().notifySourceAddFailed(mDevice,
@@ -1872,7 +1893,14 @@ public class BassClientStateMachine extends StateMachine {
                         }
                         mPendingMetadata = metaData;
                         transitionTo(mConnectedProcessing);
-                        sendMessageDelayed(GATT_TXN_TIMEOUT, BassConstants.GATT_TXN_TIMEOUT_MS);
+                        sendMessageDelayed(
+                                GATT_TXN_TIMEOUT,
+                                UPDATE_BCAST_SOURCE,
+                                BassConstants.GATT_TXN_TIMEOUT_MS);
+                        sendMessageDelayed(
+                                CANCEL_PENDING_SOURCE_OPERATION,
+                                metaData.getBroadcastCode(),
+                                BassConstants.SOURCE_OPERATION_TIMEOUT_MS);
                     } else {
                         Log.e(TAG, "UPDATE_BCAST_SOURCE: no Bluetooth Gatt handle, Fatal");
                         mService.getCallbacks().notifySourceModifyFailed(
@@ -1909,7 +1937,10 @@ public class BassClientStateMachine extends StateMachine {
                         mPendingOperation = message.what;
                         mPendingSourceId = (byte) recvState.getSourceId();
                         transitionTo(mConnectedProcessing);
-                        sendMessageDelayed(GATT_TXN_TIMEOUT, BassConstants.GATT_TXN_TIMEOUT_MS);
+                        sendMessageDelayed(
+                                GATT_TXN_TIMEOUT,
+                                SET_BCAST_CODE,
+                                BassConstants.GATT_TXN_TIMEOUT_MS);
                     }
                     break;
                 case REMOVE_BCAST_SOURCE:
@@ -1927,7 +1958,10 @@ public class BassClientStateMachine extends StateMachine {
                         mPendingOperation = message.what;
                         mPendingSourceId = sid;
                         transitionTo(mConnectedProcessing);
-                        sendMessageDelayed(GATT_TXN_TIMEOUT, BassConstants.GATT_TXN_TIMEOUT_MS);
+                        sendMessageDelayed(
+                                GATT_TXN_TIMEOUT,
+                                REMOVE_BCAST_SOURCE,
+                                BassConstants.GATT_TXN_TIMEOUT_MS);
                     } else {
                         Log.e(TAG, "REMOVE_BCAST_SOURCE: no Bluetooth Gatt handle, Fatal");
                         mService.getCallbacks().notifySourceRemoveFailed(mDevice,
@@ -1946,6 +1980,10 @@ public class BassClientStateMachine extends StateMachine {
                     break;
                 case PSYNC_ACTIVE_TIMEOUT:
                     cancelActiveSync(null);
+                    break;
+                case CANCEL_PENDING_SOURCE_OPERATION:
+                    int broadcastId = message.arg1;
+                    cancelPendingSourceOperation(broadcastId);
                     break;
                 default:
                     log("CONNECTED: not handled message:" + message.what);
@@ -1989,6 +2027,7 @@ public class BassClientStateMachine extends StateMachine {
                                 .notifySourceAddFailed(mDevice, mPendingMetadata, status);
                         mPendingMetadata = null;
                     }
+                    removeMessages(CANCEL_PENDING_SOURCE_OPERATION);
                 }
                 break;
             case UPDATE_BCAST_SOURCE:
@@ -2105,11 +2144,13 @@ public class BassClientStateMachine extends StateMachine {
                     break;
                 case GATT_TXN_TIMEOUT:
                     log("GATT transaction timeout for" + mDevice);
-                    sendPendingCallbacks(
-                            mPendingOperation,
-                            BluetoothStatusCodes.ERROR_UNKNOWN);
+                    sendPendingCallbacks(mPendingOperation, BluetoothStatusCodes.ERROR_UNKNOWN);
                     mPendingOperation = -1;
                     mPendingSourceId = -1;
+                    if ((message.arg1 == UPDATE_BCAST_SOURCE)
+                            || (message.arg1 == ADD_BCAST_SOURCE)) {
+                        mPendingMetadata = null;
+                    }
                     transitionTo(mConnected);
                     break;
                 case START_SCAN_OFFLOAD:
@@ -2121,10 +2162,15 @@ public class BassClientStateMachine extends StateMachine {
                 case REACHED_MAX_SOURCE_LIMIT:
                 case SWITCH_BCAST_SOURCE:
                 case PSYNC_ACTIVE_TIMEOUT:
-                    log("defer the message: "
-                            + messageWhatToString(message.what)
-                            + ", so that it will be processed later");
+                    log(
+                            "defer the message: "
+                                    + messageWhatToString(message.what)
+                                    + ", so that it will be processed later");
                     deferMessage(message);
+                    break;
+                case CANCEL_PENDING_SOURCE_OPERATION:
+                    int broadcastId = message.arg1;
+                    cancelPendingSourceOperation(broadcastId);
                     break;
                 default:
                     log("CONNECTEDPROCESSING: not handled message:" + message.what);
@@ -2218,6 +2264,8 @@ public class BassClientStateMachine extends StateMachine {
                 return "PSYNC_ACTIVE_TIMEOUT";
             case CONNECT_TIMEOUT:
                 return "CONNECT_TIMEOUT";
+            case CANCEL_PENDING_SOURCE_OPERATION:
+                return "CANCEL_PENDING_SOURCE_OPERATION";
             default:
                 break;
         }
