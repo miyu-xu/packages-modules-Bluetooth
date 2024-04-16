@@ -331,6 +331,11 @@ public class BassClientStateMachine extends StateMachine {
     }
 
     void parseBaseData(BluetoothDevice device, int syncHandle, byte[] serviceData) {
+        if (Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
+            throw new RuntimeException(
+                    "Should never be executed with"
+                            + " leaudioBroadcastExtractPeriodicScannerFromStateMachine flag");
+        }
         log("parseBaseData" + Arrays.toString(serviceData));
         BaseData base = BaseData.parseBaseData(serviceData);
         if (base != null) {
@@ -361,6 +366,11 @@ public class BassClientStateMachine extends StateMachine {
     }
 
     void parseScanRecord(int syncHandle, ScanRecord record) {
+        if (Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
+            throw new RuntimeException(
+                    "Should never be executed with"
+                            + " leaudioBroadcastExtractPeriodicScannerFromStateMachine flag");
+        }
         log("parseScanRecord: " + record);
         Map<ParcelUuid, byte[]> bmsAdvDataMap = record.getServiceData();
         if (bmsAdvDataMap != null) {
@@ -383,6 +393,11 @@ public class BassClientStateMachine extends StateMachine {
     }
 
     private String checkAndParseBroadcastName(ScanRecord record) {
+        if (Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
+            throw new RuntimeException(
+                    "Should never be executed with"
+                            + " leaudioBroadcastExtractPeriodicScannerFromStateMachine flag");
+        }
         log("checkAndParseBroadcastName");
         byte[] rawBytes = record.getBytes();
         List<TypeValueEntry> entries = BluetoothUtils.parseLengthTypeValueBytes(rawBytes);
@@ -408,8 +423,12 @@ public class BassClientStateMachine extends StateMachine {
         return broadcastName;
     }
 
-    private boolean selectSource(
-            ScanResult scanRes, boolean autoTriggered) {
+    private boolean selectSource(ScanResult scanRes, boolean autoTriggered) {
+        if (Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
+            throw new RuntimeException(
+                    "Should never be executed with"
+                            + " leaudioBroadcastExtractPeriodicScannerFromStateMachine flag");
+        }
         log("selectSource: ScanResult " + scanRes);
         mAutoTriggered = autoTriggered;
         mPASyncRetryCounter = 1;
@@ -488,6 +507,11 @@ public class BassClientStateMachine extends StateMachine {
     }
 
     private void cancelActiveSync(Integer syncHandle) {
+        if (Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
+            throw new RuntimeException(
+                    "Should never be executed with"
+                            + " leaudioBroadcastExtractPeriodicScannerFromStateMachine flag");
+        }
         log("cancelActiveSync: syncHandle = " + syncHandle);
         if (syncHandle == null) {
             // clean up the pending sync request if syncHandle is null
@@ -518,6 +542,11 @@ public class BassClientStateMachine extends StateMachine {
     }
 
     private boolean unsyncSource(int syncHandle) {
+        if (Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
+            throw new RuntimeException(
+                    "Should never be executed with"
+                            + " leaudioBroadcastExtractPeriodicScannerFromStateMachine flag");
+        }
         if (syncHandle != BassConstants.INVALID_SYNC_HANDLE
                 && mPeriodicAdvCallbacksMap.containsKey(syncHandle)) {
             try {
@@ -547,6 +576,11 @@ public class BassClientStateMachine extends StateMachine {
 
     private BluetoothLeBroadcastMetadata getBroadcastMetadataFromBaseData(
             BaseData baseData, BluetoothDevice device, int syncHandle, boolean encrypted) {
+        if (Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
+            throw new RuntimeException(
+                    "Should never be executed with"
+                            + " leaudioBroadcastExtractPeriodicScannerFromStateMachine flag");
+        }
         BluetoothLeBroadcastMetadata.Builder metaData =
                 new BluetoothLeBroadcastMetadata.Builder();
         int index = 0;
@@ -917,8 +951,11 @@ public class BassClientStateMachine extends StateMachine {
                         || recvState.getSourceDevice().getAddress().equals(emptyBluetoothDevice)) {
                     BluetoothDevice removedDevice = oldRecvState.getSourceDevice();
                     log("sourceInfo removal" + removedDevice);
-                    cancelActiveSync(
-                            mService.getSyncHandleForBroadcastId(recvState.getBroadcastId()));
+                    // Here cancel always was for invalid syncHandle, can it be valid in some case?
+                    if (!Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
+                        cancelActiveSync(
+                                mService.getSyncHandleForBroadcastId(recvState.getBroadcastId()));
+                    }
                     setCurrentBroadcastMetadata(oldRecvState.getSourceId(), null);
                     if (mPendingSourceToSwitch != null) {
                         // Source remove is triggered by switch source request
@@ -1106,6 +1143,11 @@ public class BassClientStateMachine extends StateMachine {
                 int skip,
                 int timeout,
                 int status) {
+            if (Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
+                throw new RuntimeException(
+                        "Should never be executed with"
+                                + " leaudioBroadcastExtractPeriodicScannerFromStateMachine flag");
+            }
             log("onSyncEstablished syncHandle: " + syncHandle
                     + ", device: " + device
                     + ", advertisingSid: " + advertisingSid
@@ -1162,6 +1204,11 @@ public class BassClientStateMachine extends StateMachine {
 
         @Override
         public void onPeriodicAdvertisingReport(PeriodicAdvertisingReport report) {
+            if (Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
+                throw new RuntimeException(
+                        "Should never be executed with"
+                                + " leaudioBroadcastExtractPeriodicScannerFromStateMachine flag");
+            }
             log("onPeriodicAdvertisingReport");
             Boolean first = mFirstTimeBisDiscoveryMap.get(report.getSyncHandle());
             // Parse the BIS indices from report's service data
@@ -1173,6 +1220,11 @@ public class BassClientStateMachine extends StateMachine {
 
         @Override
         public void onSyncLost(int syncHandle) {
+            if (Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
+                throw new RuntimeException(
+                        "Should never be executed with"
+                                + " leaudioBroadcastExtractPeriodicScannerFromStateMachine flag");
+            }
             log("OnSyncLost" + syncHandle);
             if (Flags.leaudioBroadcastMonitorSourceSyncStatus()) {
                 int broadcastId = mService.getBroadcastIdForSyncHandle(syncHandle);
@@ -1186,6 +1238,11 @@ public class BassClientStateMachine extends StateMachine {
 
         @Override
         public void onBigInfoAdvertisingReport(int syncHandle, boolean encrypted) {
+            if (Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
+                throw new RuntimeException(
+                        "Should never be executed with"
+                                + " leaudioBroadcastExtractPeriodicScannerFromStateMachine flag");
+            }
             log(
                     "onBIGInfoAdvertisingReport: syncHandle="
                             + syncHandle
@@ -1720,7 +1777,9 @@ public class BassClientStateMachine extends StateMachine {
                         mBluetoothGatt.disconnect();
                         mBluetoothGatt.close();
                         mBluetoothGatt = null;
-                        cancelActiveSync(null);
+                        if (!Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
+                            cancelActiveSync(null);
+                        }
                         transitionTo(mDisconnected);
                     } else {
                         log("mBluetoothGatt is null");
@@ -1735,7 +1794,9 @@ public class BassClientStateMachine extends StateMachine {
                         Log.w(TAG, "unexpected disconnected from " + mDevice);
                         mService.handleDeviceDisconnection(mDevice, false);
                         resetBluetoothGatt();
-                        cancelActiveSync(null);
+                        if (!Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
+                            cancelActiveSync(null);
+                        }
                         transitionTo(mDisconnected);
                     }
                     break;
@@ -1768,6 +1829,12 @@ public class BassClientStateMachine extends StateMachine {
                     }
                     break;
                 case SELECT_BCAST_SOURCE:
+                    if (Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
+                        throw new RuntimeException(
+                                "Should never be executed with"
+                                        + " leaudioBroadcastExtractPeriodicScannerFromStateMachine"
+                                        + " flag");
+                    }
                     ScanResult scanRes = (ScanResult) message.obj;
                     boolean auto = ((int) message.arg1) == BassConstants.AUTO;
                     // check if invalid sync handle exists indicating a pending sync request
@@ -1782,6 +1849,12 @@ public class BassClientStateMachine extends StateMachine {
                     }
                     break;
                 case REACHED_MAX_SOURCE_LIMIT:
+                    if (Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
+                        throw new RuntimeException(
+                                "Should never be executed with"
+                                        + " leaudioBroadcastExtractPeriodicScannerFromStateMachine"
+                                        + " flag");
+                    }
                     int handle = message.arg1;
                     cancelActiveSync(handle);
                     break;
@@ -1810,29 +1883,34 @@ public class BassClientStateMachine extends StateMachine {
                 case ADD_BCAST_SOURCE:
                     metaData = (BluetoothLeBroadcastMetadata) message.obj;
 
-                    List<Integer> activeSyncedSrc = mService.getActiveSyncedSources(mDevice);
-                    BluetoothDevice sourceDevice = metaData.getSourceDevice();
-                    if (!mService.isLocalBroadcast(metaData)
-                            && (activeSyncedSrc == null
-                                    || !activeSyncedSrc.contains(
-                                            mService.getSyncHandleForBroadcastId(
-                                                    metaData.getBroadcastId())))) {
-                        log("Adding inactive source: " + sourceDevice);
-                        int broadcastId = metaData.getBroadcastId();
-                        if (broadcastId != BassConstants.INVALID_BROADCAST_ID
-                                && mService.getCachedBroadcast(broadcastId) != null) {
-                            // If the source has been synced before, try to re-sync(auto/true)
-                            // with the source by previously cached scan result
-                            Message msg = obtainMessage(SELECT_BCAST_SOURCE);
-                            msg.obj = mService.getCachedBroadcast(broadcastId);
-                            msg.arg1 = BassConstants.AUTO;
-                            sendMessage(msg);
-                            mPendingSourceToAdd = metaData;
-                        } else {
-                            mService.getCallbacks().notifySourceAddFailed(mDevice, metaData,
-                                    BluetoothStatusCodes.ERROR_UNKNOWN);
+                    if (!Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
+                        List<Integer> activeSyncedSrc = mService.getActiveSyncedSources(mDevice);
+                        BluetoothDevice sourceDevice = metaData.getSourceDevice();
+                        if (!mService.isLocalBroadcast(metaData)
+                                && (activeSyncedSrc == null
+                                        || !activeSyncedSrc.contains(
+                                                mService.getSyncHandleForBroadcastId(
+                                                        metaData.getBroadcastId())))) {
+                            log("Adding inactive source: " + sourceDevice);
+                            int broadcastId = metaData.getBroadcastId();
+                            if (broadcastId != BassConstants.INVALID_BROADCAST_ID
+                                    && mService.getCachedBroadcast(broadcastId) != null) {
+                                // If the source has been synced before, try to re-sync(auto/true)
+                                // with the source by previously cached scan result
+                                Message msg = obtainMessage(SELECT_BCAST_SOURCE);
+                                msg.obj = mService.getCachedBroadcast(broadcastId);
+                                msg.arg1 = BassConstants.AUTO;
+                                sendMessage(msg);
+                                mPendingSourceToAdd = metaData;
+                            } else {
+                                mService.getCallbacks()
+                                        .notifySourceAddFailed(
+                                                mDevice,
+                                                metaData,
+                                                BluetoothStatusCodes.ERROR_UNKNOWN);
+                            }
+                            break;
                         }
-                        break;
                     }
 
                     byte[] addSourceInfo = convertMetadataToAddSourceByteArray(metaData);
@@ -1979,17 +2057,22 @@ public class BassClientStateMachine extends StateMachine {
     void sendPendingCallbacks(int pendingOp, int status) {
         switch (pendingOp) {
             case START_SCAN_OFFLOAD:
-                if (!isSuccess(status)) {
-                    if (!mAutoTriggered) {
-                        cancelActiveSync(null);
-                    } else {
-                        mAutoTriggered = false;
+                // Do not want to cancel sync because one remote does not receive START_SCAN_OFFLOAD
+                if (!Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
+                    if (!isSuccess(status)) {
+                        if (!mAutoTriggered) {
+                            cancelActiveSync(null);
+                        } else {
+                            mAutoTriggered = false;
+                        }
                     }
                 }
                 break;
             case ADD_BCAST_SOURCE:
                 if (!isSuccess(status)) {
-                    cancelActiveSync(null);
+                    if (!Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
+                        cancelActiveSync(null);
+                    }
                     if (mPendingMetadata != null) {
                         mService.getCallbacks()
                                 .notifySourceAddFailed(mDevice, mPendingMetadata, status);
@@ -1998,7 +2081,8 @@ public class BassClientStateMachine extends StateMachine {
                 }
                 break;
             case UPDATE_BCAST_SOURCE:
-                if (!mAutoTriggered) {
+                if (!mAutoTriggered
+                        || Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
                     if (!isSuccess(status)) {
                         mService.getCallbacks().notifySourceModifyFailed(mDevice,
                                 mPendingSourceId, status);
@@ -2071,7 +2155,9 @@ public class BassClientStateMachine extends StateMachine {
                         mBluetoothGatt.disconnect();
                         mBluetoothGatt.close();
                         mBluetoothGatt = null;
-                        cancelActiveSync(null);
+                        if (!Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
+                            cancelActiveSync(null);
+                        }
                         transitionTo(mDisconnected);
                     } else {
                         log("mBluetoothGatt is null");
@@ -2090,7 +2176,9 @@ public class BassClientStateMachine extends StateMachine {
                         Log.w(TAG, "Unexpected disconnection " + mDevice);
                         mService.handleDeviceDisconnection(mDevice, false);
                         resetBluetoothGatt();
-                        cancelActiveSync(null);
+                        if (!Flags.leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
+                            cancelActiveSync(null);
+                        }
                         transitionTo(mDisconnected);
                     }
                     break;
