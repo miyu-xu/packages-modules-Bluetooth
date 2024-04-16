@@ -50,6 +50,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "9f0ce8b7_458e7d05",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-16T15:42:37Z",
+      "side": 1,
+      "message": "It looks like I can lint+2 and (hopefully) bypass.\n\nPerhaps our tools team managing that lint rule should add avatar tests 😊\n\nIf William is fine with the lint bypass and gives the owner review, then I\u0027m fine too.",
+      "parentUuid": "587162c9_bf281e88",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 12
+      },
+      "revId": "ab11f86344085a4a17616b449d45eb90daaa94ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "148e411e_e77d605f",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 11
