@@ -22,3 +22,11 @@ flag {
     description: "Remove complexity and non necessary initialization when simply binding"
     bug: "328698375"
 }
+
+flag {
+    name: "audio_port_binder_inherit_rt"
+    namespace: "bluetooth"
+    description: "Allow audio port AIDL thread to inherit thread priority from its caller"
+    bug: "335049159"
+}
+
