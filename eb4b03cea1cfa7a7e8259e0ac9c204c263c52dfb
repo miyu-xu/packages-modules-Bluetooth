@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cebafa5d_7eb28111",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-04-16T14:54:46Z",
+      "side": 1,
+      "message": "Have the PTS tests mentioned be integrated and run in PTS-bot for Android as well? @yuyangh@google.com",
+      "revId": "eb4b03cea1cfa7a7e8259e0ac9c204c263c52dfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
