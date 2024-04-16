@@ -2058,42 +2058,6 @@ void btif_on_gatt_results(RawAddress bd_addr, BD_NAME bd_name,
       BT_STATUS_SUCCESS, bd_addr, num_properties, prop);
 }
 
-void btif_on_name_read(RawAddress bd_addr, tHCI_ERROR_CODE hci_status,
-                       const BD_NAME bd_name) {
-  if (!IS_FLAG_ENABLED(rnr_present_during_service_discovery)) {
-    log::info("Skipping name read event - called on bad callback.");
-    return;
-  }
-
-  if (hci_status != HCI_SUCCESS) {
-    log::warn("Received RNR event with bad status addr:{} hci_status:{}",
-              ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
-              hci_error_code_text(hci_status));
-    return;
-  }
-  if (bd_name[0] == '\0') {
-    log::warn("Received RNR event without valid name addr:{}",
-              ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
-    return;
-  }
-  bt_property_t properties[] = {{
-      .type = BT_PROPERTY_BDNAME,
-      .len = (int)strnlen((char*)bd_name, BD_NAME_LEN),
-      .val = (void*)bd_name,
-  }};
-  const bt_status_t status =
-      btif_storage_set_remote_device_property(&bd_addr, properties);
-  log::assert_that(status == BT_STATUS_SUCCESS,
-                   "Failed to save remote device property status:{}",
-                   bt_status_text(status));
-  const size_t num_props = sizeof(properties) / sizeof(bt_property_t);
-  GetInterfaceToProfiles()->events->invoke_remote_device_properties_cb(
-      status, bd_addr, (int)num_props, properties);
-  log::info("Callback for read name event addr:{} name:{}",
-            ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
-            PRIVATE_NAME(reinterpret_cast<char const*>(bd_name)));
-}
-
 void btif_on_did_received(RawAddress bd_addr, uint8_t vendor_id_src,
                           uint16_t vendor_id, uint16_t product_id,
                           uint16_t version) {
@@ -3119,7 +3083,6 @@ void btif_dm_get_remote_services(RawAddress remote_addr, const int transport) {
       service_discovery_callbacks{
           .on_gatt_results = btif_on_gatt_results,
           .on_did_received = btif_on_did_received,
-          .on_name_read = btif_on_name_read,
           .on_service_discovery_results = btif_on_service_discovery_results},
       transport);
 }
@@ -4252,11 +4215,6 @@ void bta_energy_info_cb(tBTM_BLE_TX_TIME_MS tx_time,
                         tBTM_CONTRL_STATE ctrl_state, tBTA_STATUS status) {
   ::bta_energy_info_cb(tx_time, rx_time, idle_time, energy_used, ctrl_state,
                        status);
-}
-
-void btif_on_name_read(RawAddress bd_addr, tHCI_ERROR_CODE hci_status,
-                       const BD_NAME bd_name) {
-  ::btif_on_name_read(bd_addr, hci_status, bd_name);
 }
 
 }  // namespace testing
