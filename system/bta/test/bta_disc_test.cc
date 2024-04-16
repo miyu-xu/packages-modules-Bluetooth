@@ -209,7 +209,7 @@ TEST_F(BtaInitializedTest, bta_dm_disc_stop_device_discovery) {
 TEST_F(BtaInitializedTest,
        bta_dm_disc_start_service_discovery__BT_TRANSPORT_AUTO) {
   bta_dm_disc_start_service_discovery(
-      {nullptr, nullptr, nullptr,
+      {nullptr, nullptr,
        [](RawAddress, tBTA_SERVICE_MASK, tBT_DEVICE_TYPE,
           const std::vector<bluetooth::Uuid>&, tBTA_STATUS, tHCI_STATUS) {}},
       kRawAddress, BT_TRANSPORT_AUTO);
@@ -218,7 +218,7 @@ TEST_F(BtaInitializedTest,
 TEST_F(BtaInitializedTest,
        bta_dm_disc_start_service_discovery__BT_TRANSPORT_BR_EDR) {
   bta_dm_disc_start_service_discovery(
-      {nullptr, nullptr, nullptr,
+      {nullptr, nullptr,
        [](RawAddress, tBTA_SERVICE_MASK, tBT_DEVICE_TYPE,
           const std::vector<bluetooth::Uuid>&, tBTA_STATUS, tHCI_STATUS) {}},
       kRawAddress, BT_TRANSPORT_BR_EDR);
@@ -227,22 +227,20 @@ TEST_F(BtaInitializedTest,
 TEST_F(BtaInitializedTest,
        bta_dm_disc_start_service_discovery__BT_TRANSPORT_LE) {
   bta_dm_disc_start_service_discovery(
-      {nullptr, nullptr, nullptr,
+      {nullptr, nullptr,
        [](RawAddress, tBTA_SERVICE_MASK, tBT_DEVICE_TYPE,
           const std::vector<bluetooth::Uuid>&, tBTA_STATUS, tHCI_STATUS) {}},
       kRawAddress, BT_TRANSPORT_LE);
 }
 
 TEST_F(BtaInitializedTest, init_bta_dm_search_cb__conn_id) {
-  constexpr uint16_t kConnId = 123;
-
   // Set the global search block target field to some non-reset value
   tBTA_DM_SEARCH_CB& search_cb =
       bluetooth::legacy::testing::bta_dm_disc_search_cb();
-  search_cb.conn_id = kConnId;
+  search_cb.name_discover_done = true;
 
   bluetooth::legacy::testing::bta_dm_disc_init_search_cb(search_cb);
 
   // Verify global search block field reset value is correct
-  ASSERT_EQ(search_cb.conn_id, GATT_INVALID_CONN_ID);
+  ASSERT_EQ(search_cb.name_discover_done, false);
 }
