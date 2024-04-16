@@ -128,6 +128,30 @@
       },
       "revId": "ce8af7bdf9a0d292fa51ac73a6778aa57d77e5df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d015ddc2_2f5b8c88",
+        "filename": "system/gd/discovery/device/manager.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-16T17:19:33Z",
+      "side": 1,
+      "message": "I guess it comes down to what happens if someone uses a cast to create the value.  Are you worried about line coverage?",
+      "parentUuid": "d74bd1d9_f31cb0c8",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 1
+      },
+      "revId": "ce8af7bdf9a0d292fa51ac73a6778aa57d77e5df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
