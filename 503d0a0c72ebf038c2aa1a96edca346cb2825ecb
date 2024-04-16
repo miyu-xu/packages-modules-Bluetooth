@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b1098b4_3e1e1f5d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2435,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-16T17:07:31Z",
+      "side": 1,
+      "message": "Do we need the unicast lock here?",
+      "revId": "503d0a0c72ebf038c2aa1a96edca346cb2825ecb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "366b7aba_c1f05120",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3914,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-16T17:07:31Z",
+      "side": 1,
+      "message": "Unicast lock?",
+      "revId": "503d0a0c72ebf038c2aa1a96edca346cb2825ecb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
