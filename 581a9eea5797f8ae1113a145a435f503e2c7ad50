@@ -45,6 +45,30 @@
       },
       "revId": "581a9eea5797f8ae1113a145a435f503e2c7ad50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9b8d926_a983650c",
+        "filename": "system/bta/le_audio/codec_manager_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-04-16T17:41:10Z",
+      "side": 1,
+      "message": "You are right. Let me add a test to confirm it still works as intended.",
+      "parentUuid": "a0e2993e_e55db436",
+      "range": {
+        "startLine": 223,
+        "startChar": 4,
+        "endLine": 223,
+        "endChar": 63
+      },
+      "revId": "581a9eea5797f8ae1113a145a435f503e2c7ad50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
