@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47bafe4d_57c5366e",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-04-16T18:15:47Z",
+      "side": 1,
+      "message": "is it cleaner to delete this and put a log::fatal in the above if statement?",
+      "range": {
+        "startLine": 266,
+        "startChar": 2,
+        "endLine": 266,
+        "endChar": 18
+      },
+      "revId": "fa36ffd675e6a67d2c19d0c59e418cf656912606",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
