@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fbcd408_b4ee886b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-16T22:13:17Z",
+      "side": 1,
+      "message": "Also since you\u0027ve mentioned Bug: 333050419, maybe you can guard your change with that flag.",
+      "revId": "9f2b71a79494624267298ac8299e743cdb7ec7c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "093de207_077f0a5e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1925,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-16T22:13:17Z",
+      "side": 1,
+      "message": "Instead of directly modifying this pending source, should we considering to send a message to SM and handle the cleanup from their?\nIdeally, service reads info from SM and send message for operations. What do you think?\nSimilar to REACHED_MAX_SOURCE_LIMIT.",
+      "revId": "9f2b71a79494624267298ac8299e743cdb7ec7c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
