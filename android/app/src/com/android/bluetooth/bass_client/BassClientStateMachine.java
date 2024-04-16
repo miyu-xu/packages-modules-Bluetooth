@@ -265,6 +265,13 @@ public class BassClientStateMachine extends StateMachine {
         return mPendingMetadata != null;
     }
 
+    void clearPendingSourceOperation(int broadcastId) {
+        if ((mPendingMetadata != null) && (mPendingMetadata.getBroadcastId() == broadcastId)) {
+            Log.d(TAG, "clearPendingSourceOperation: broadcast ID: " + broadcastId);
+            mPendingMetadata = null;
+        }
+    }
+
     BluetoothLeBroadcastMetadata getCurrentBroadcastMetadata(Integer sourceId) {
         return mCurrentMetadata.getOrDefault(sourceId, null);
     }

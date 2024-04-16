@@ -1904,6 +1904,15 @@ public class BassClientService extends ProfileService {
         return list;
     }
 
+    private void clearPendingSourceOperations(int broadcastId) {
+        for (BluetoothDevice device : getConnectedDevices()) {
+            BassClientStateMachine stateMachine = getOrCreateStateMachine(device);
+            if (stateMachine != null) {
+                stateMachine.clearPendingSourceOperation(broadcastId);
+            }
+        }
+    }
+
     private void stopSourceReceivers(int broadcastId) {
         List<Pair<BluetoothLeBroadcastReceiveState, BluetoothDevice>> sourcesToRemove =
                 getReceiveStateDevicePairs(broadcastId);
@@ -1911,6 +1920,9 @@ public class BassClientService extends ProfileService {
         for (Pair<BluetoothLeBroadcastReceiveState, BluetoothDevice> pair : sourcesToRemove) {
             removeSource(pair.second, pair.first.getSourceId());
         }
+
+        /* There may be some pending add source operations */
+        clearPendingSourceOperations(broadcastId);
     }
 
     private void stopSourceReceivers(int broadcastId, boolean store) {
