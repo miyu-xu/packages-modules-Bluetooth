@@ -1,5 +1,40 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb18e062_302671c1",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 780,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2024-04-16T16:57:51Z",
+      "side": 1,
+      "message": "Same question about if we want to take `raw_data` by const reference, instead of making a copy like we are now.",
+      "revId": "9a6244ada4fad4d22fb82e613a5be74603a26d2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7eba9d06_2f79235e",
+        "filename": "system/gd/hci/distance_measurement_manager.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2024-04-16T16:57:51Z",
+      "side": 1,
+      "message": "We\u0027re taking `address` by const reference.  But we\u0027re taking `raw_data` by copy.  Did we intend to add an `\u0026` to take this vector by const reference instead?",
+      "revId": "9a6244ada4fad4d22fb82e613a5be74603a26d2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
