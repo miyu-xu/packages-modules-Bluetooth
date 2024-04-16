@@ -70,6 +70,24 @@
       "parentUuid": "3879f4bc_f8a17d23",
       "revId": "c1c463efa0a9e8fdc0ed663c834413cfcca6405b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "454a1a60_60edb26c",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 2056228
+      },
+      "writtenOn": "2024-04-16T11:40:10Z",
+      "side": 1,
+      "message": "Can we revise the logic to crash it as long as status is not REMOTE_USER_TERMINATED_CONNECTION?",
+      "parentUuid": "bd82f7f5_985b2f57",
+      "revId": "c1c463efa0a9e8fdc0ed663c834413cfcca6405b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
