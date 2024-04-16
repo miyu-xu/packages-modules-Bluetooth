@@ -106,6 +106,24 @@
       "parentUuid": "a6cd47f1_fb7d73af",
       "revId": "f305228879a9a734e03aee69fd6c25927d1fa726",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "662a205c_4aca03e7",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-16T17:26:47Z",
+      "side": 1,
+      "message": "@gkolodziejczyk@google.com Just fyi, this has been implemented by UI team in the latest build. Maybe we can abandon this and keep only the aosp/2985512 if needed.",
+      "parentUuid": "a8d03401_3b730ac6",
+      "revId": "f305228879a9a734e03aee69fd6c25927d1fa726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
