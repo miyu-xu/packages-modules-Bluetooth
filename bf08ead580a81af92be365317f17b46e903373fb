@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "55ca7bdc_7ed84afc",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_client.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-04-16T01:02:09Z",
+      "side": 1,
+      "message": "1. Currently we have the flags enabled by leveraging sysprops (crrev.com/c/5399300), and audio is almost inaudible without ASRC.\n\n2. Regarding SoC, Android uses the NTP-adjusted clock while CrOS uses the non-adjusted clock. If we were to use this without modification, there will be 3 time domains and the issue will be between the audio server (non-adjusted) and the BT stack (NTP-adjusted).",
+      "parentUuid": "85815e36_22efff6d",
+      "range": {
+        "startLine": 78,
+        "startChar": 8,
+        "endLine": 78,
+        "endChar": 20
+      },
+      "revId": "bf08ead580a81af92be365317f17b46e903373fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d29a6fc5_0720abdc",
         "filename": "system/gd/hal/link_clocker.cc",
         "patchSetId": 13
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-15T15:49:29Z",
       "side": 1,
       "message": "Ideally floss specific code should not propagate to this module.\nYou should be able to swap the system_clock to steady_clock (monotonic) here.",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 5
+      },
+      "revId": "bf08ead580a81af92be365317f17b46e903373fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ce288bf_03efbc13",
+        "filename": "system/gd/hal/link_clocker.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-04-16T01:02:09Z",
+      "side": 1,
+      "message": "CrOS uses `monotonic_raw`, which seems not an option in `chrono`. We can consider abstracting the \"audio clock\" out of this function if that serves better.",
+      "parentUuid": "d29a6fc5_0720abdc",
       "range": {
         "startLine": 91,
         "startChar": 0,
