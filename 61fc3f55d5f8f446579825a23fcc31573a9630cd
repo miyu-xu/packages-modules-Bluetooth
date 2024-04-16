@@ -46,6 +46,76 @@
       },
       "revId": "61fc3f55d5f8f446579825a23fcc31573a9630cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93dc6dd5_2fc92bdc",
+        "filename": "system/bta/include/bta_jv_api.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-16T17:15:36Z",
+      "side": 1,
+      "message": "In that case, I\u0027d rather not add the function.  Let\u0027s just use the correct transport in the functions.\n\nIn the current usage, RFCoMM will never be passed into this function, so there\u0027s no change (it\u0027s only called from L2CAP code).\n\nI don\u0027t want to invite misuse later.",
+      "parentUuid": "7474acb5_34918c26",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 3
+      },
+      "revId": "61fc3f55d5f8f446579825a23fcc31573a9630cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04076ff6_6db2ecde",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1067,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-16T17:15:36Z",
+      "side": 1,
+      "message": "```suggestion\n      tBT_TRANSPORT transport \u003d BT_TRANSPORT_BR_EDR;\n      if (type \u003d\u003d BTA_JV_CONN_TYPE_L2CAP_LE) {\n        transport \u003d BT_TRANSPORT_LE;\n      }\n      handle \u003d\n          GAP_ConnOpen(\"\", sec_id, 0, \u0026peer_bd_addr, remote_psm, max_mps, \u0026cfg,\n                       ertm_info.get(), sec_mask, bta_jv_l2cap_client_cback,\n                       transport);\n```",
+      "range": {
+        "startLine": 1064,
+        "startChar": 0,
+        "endLine": 1067,
+        "endChar": 59
+      },
+      "revId": "61fc3f55d5f8f446579825a23fcc31573a9630cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5483759e_5ee3f398",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1214,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-16T17:15:36Z",
+      "side": 1,
+      "message": "```suggestion\n  tBT_TRANSPORT transport \u003d BT_TRANSPORT_BR_EDR;\n  if (type \u003d\u003d BTA_JV_CONN_TYPE_L2CAP_LE) {\n    transport \u003d BT_TRANSPORT_LE;\n  }\n  /* PSM checking is not required for LE COC */\n  if (0 \u003d\u003d sec_id ||\n      ((type \u003d\u003d BTA_JV_CONN_TYPE_L2CAP) \u0026\u0026 (!bta_jv_check_psm(local_psm))) ||\n      (handle \u003d GAP_ConnOpen(\n           \"JV L2CAP\", sec_id, 1, nullptr, local_psm, max_mps, \u0026cfg,\n           ertm_info.get(), sec_mask, bta_jv_l2cap_server_cback,\n           transport)) \u003d\u003d GAP_INVALID_HANDLE) {\n```",
+      "range": {
+        "startLine": 1208,
+        "startChar": 0,
+        "endLine": 1214,
+        "endChar": 72
+      },
+      "revId": "61fc3f55d5f8f446579825a23fcc31573a9630cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
