@@ -127,6 +127,7 @@ class InternalHciCallbacks : public IBluetoothHciCallbacks_1_1 {
     link_clocker_->OnHciEvent(received_hci_packet);
     btsnoop_logger_->Capture(
         received_hci_packet, SnoopLogger::Direction::INCOMING, SnoopLogger::PacketType::EVT);
+    log::warn("hciEventReceived");
     {
       std::lock_guard<std::mutex> incoming_packet_callback_lock(incoming_packet_callback_mutex_);
       if (callback_ != nullptr) {

@@ -89,7 +89,9 @@ void Handler::handle_next_event() {
     closure = std::move(tasks_->front());
     tasks_->pop();
   }
+  log::warn("handle_next_event start");
   std::move(closure).Run();
+  log::warn("handle_next_event stop");
 }
 
 }  // namespace os
