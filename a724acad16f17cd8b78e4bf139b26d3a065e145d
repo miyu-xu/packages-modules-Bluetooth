@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fb0df37_733a2e6f",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1559,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-17T22:32:38Z",
+      "side": 0,
+      "message": "why this can be skipped? If do not call it here, when should we read the LE preferred configuration parameter?",
+      "range": {
+        "startLine": 1559,
+        "startChar": 4,
+        "endLine": 1559,
+        "endChar": 64
+      },
+      "revId": "a724acad16f17cd8b78e4bf139b26d3a065e145d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
