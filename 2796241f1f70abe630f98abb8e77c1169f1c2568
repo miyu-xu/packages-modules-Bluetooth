@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b21e8503_46092480",
+        "filename": "system/osi/test/fuzzers/alarm/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1958854
+      },
+      "writtenOn": "2024-04-17T15:09:23Z",
+      "side": 1,
+      "message": "nit:\n\n```\ndescription: \"Targets the APIs of libosi\",\n...\n```",
+      "range": {
+        "startLine": 41,
+        "startChar": 59,
+        "endLine": 45,
+        "endChar": 32
+      },
+      "revId": "2796241f1f70abe630f98abb8e77c1169f1c2568",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
