@@ -39,6 +39,30 @@
       },
       "revId": "006f93fc07743024f7854a9412eeab2f1058825d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76e61573_c5f2c788",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 3235591
+      },
+      "writtenOn": "2024-04-17T02:22:46Z",
+      "side": 1,
+      "message": "I updated bug id in commit message. But that should be not the bug for flag you mentioned here. I\u0027m not able to access the two links. What should I do next? create avrcp.aconfig and add a flag?",
+      "parentUuid": "f92922b5_8c6b50f1",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 5
+      },
+      "revId": "006f93fc07743024f7854a9412eeab2f1058825d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
