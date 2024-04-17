@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2b3466ce_bdccd260",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-04-17T15:11:29Z",
+      "side": 1,
+      "message": "I guess the intended behavior this piece of code forced was not so obvious to me at first and I removed it thinking it would be handled in the CodecManager. And after that it slipped under my radar when testing as there was not unit test covering that.\n\nJust to be clear on that... the expected behavior is to configure a single microphone for 16kHz even though we could use 32kHz, because in future the second device with another microphone could join in seamlessly. Otherwise if we would start with a single 32kHz, we would have to reconfigure both devices due to dual bidir SWB being disabled. Please let me know if I misunderstood something again.\n\n...I\u0027ll try to translate this requirement into a unit test so that it won\u0027t get lost.",
+      "parentUuid": "76af9c95_da86680e",
+      "range": {
+        "startLine": 235,
+        "startChar": 4,
+        "endLine": 235,
+        "endChar": 37
+      },
+      "revId": "581a9eea5797f8ae1113a145a435f503e2c7ad50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a0e2993e_e55db436",
         "filename": "system/bta/le_audio/codec_manager_test.cc",
         "patchSetId": 4
