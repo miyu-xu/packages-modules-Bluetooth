@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbc47aae_63210d9b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-17T02:59:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90debdbc_b1a45d26",
+      "revId": "51c0f8c6a743a0c5a712151a8ee6ed133c9618a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92893c7e_85805cc3",
@@ -90,6 +108,30 @@
       "side": 1,
       "message": "We need this when a bonded Classic device connected. One possible scenario is:\n\n0. DUT is bonded with one classic mouse. No connection is established.\n\u003d\u003e Since there is one classic device bonded but not connected, we should enable page scan.\n\n1. DUT connected with the classic mouse.\n\u003d\u003e Since there is no bonded classic device to be connected, we should disable page scan.",
       "parentUuid": "92893c7e_85805cc3",
+      "range": {
+        "startLine": 1967,
+        "startChar": 20,
+        "endLine": 1973,
+        "endChar": 21
+      },
+      "revId": "51c0f8c6a743a0c5a712151a8ee6ed133c9618a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "325986d3_991c76d2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1973,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-17T02:59:06Z",
+      "side": 1,
+      "message": "To summarize, this behavior is essential for RTK controllers. As it avoid unwanted page scan, it make sense to extend it to all BT controllers here.\n\nLGTM, but you can refine the comment \"Since update connectable mode during bonding is not needed, we don\u0027t need to ask vendor to fix the issue.\"",
+      "parentUuid": "67a37f6c_d0c8e9da",
       "range": {
         "startLine": 1967,
         "startChar": 20,
