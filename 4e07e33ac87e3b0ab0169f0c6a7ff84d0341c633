@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62b2f6c8_36138ca5",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2063,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-17T22:49:54Z",
+      "side": 0,
+      "message": "is this making the flag obsolete? \n\n`rnr_present_during_service_discovery`\n\nSee b/321809163 and b/316383772",
+      "range": {
+        "startLine": 2063,
+        "startChar": 0,
+        "endLine": 2063,
+        "endChar": 63
+      },
+      "revId": "4e07e33ac87e3b0ab0169f0c6a7ff84d0341c633",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
