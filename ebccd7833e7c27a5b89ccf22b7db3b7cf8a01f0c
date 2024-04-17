@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02d16966_6bdbf90a",
+        "filename": "system/gd/module.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-17T23:06:57Z",
+      "side": 1,
+      "message": "Should we warn here if the count is higher than one? (not formatted)\n```suggestion\n    log::assert_that(instance-\u003esecond.use_count() \u003d\u003d 1, \"{} references to {} are still held, expecting 1\", instance-\u003esecond.use_count(), instance-\u003esecond-\u003eToString());\n    instance-\u003esecond.reset();\n```",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 29
+      },
+      "revId": "ebccd7833e7c27a5b89ccf22b7db3b7cf8a01f0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
