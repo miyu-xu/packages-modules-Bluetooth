@@ -29,9 +29,11 @@ import android.media.AudioPlaybackConfiguration;
 import android.media.session.MediaSession;
 import android.media.session.MediaSessionManager;
 import android.media.session.PlaybackState;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemProperties;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -51,16 +53,7 @@ import java.util.regex.Pattern;
 
 /**
  * This class is directly responsible of maintaining the list of Browsable Players as well as
- * the list of Addressable Players. This variation of the list doesn't actually list all the
- * available players for a getAvailableMediaPlayers request. Instead it only reports one media
- * player with ID=0 and all the other browsable players are folders in the root of that player.
- *
- * Changing the directory to a browsable player will allow you to traverse that player as normal.
- * By only having one root player, we never have to send Addressed Player Changed notifications,
- * UIDs Changed notifications, or Available Players Changed notifications.
- *
- * TODO (apanicke): Add non-browsable players as song items to the root folder. Selecting that
- * player would effectively cause player switch by sending a play command to that player.
+ * the list of Addressable Players.
  */
 public class MediaPlayerList {
     private static final String TAG = MediaPlayerList.class.getSimpleName();
@@ -69,7 +62,6 @@ public class MediaPlayerList {
     private static final String PACKAGE_SCHEME = "package";
     private static final int NO_ACTIVE_PLAYER = 0;
     private static final int BLUETOOTH_PLAYER_ID = 0;
-    private static final String BLUETOOTH_PLAYER_NAME = "Bluetooth Player";
     private static final int ACTIVE_PLAYER_LOGGER_SIZE = 5;
     private static final String ACTIVE_PLAYER_LOGGER_TITLE = "BTAudio Active Player Events";
     private static final int AUDIO_PLAYBACK_STATE_LOGGER_SIZE = 15;
@@ -79,11 +71,6 @@ public class MediaPlayerList {
     // mediaId's for the now playing list will be in the form of "NowPlayingId[XX]" where [XX]
     // is the Queue ID for the requested item.
     private static final String NOW_PLAYING_ID_PATTERN = Util.NOW_PLAYING_PREFIX + "([0-9]*)";
-
-    // mediaId's for folder browsing will be in the form of [XX][mediaid],  where [XX] is a
-    // two digit representation of the player id and [mediaid] is the original media id as a
-    // string.
-    private static final String BROWSE_ID_PATTERN = "\\d\\d.*";
 
     private Context mContext;
     private Looper mLooper; // Thread all media player callbacks and timeouts happen on
@@ -101,9 +88,10 @@ public class MediaPlayerList {
             Collections.synchronizedMap(new HashMap<Integer, MediaPlayerWrapper>());
     private Map<String, Integer> mMediaPlayerIds =
             Collections.synchronizedMap(new HashMap<String, Integer>());
-    private Map<Integer, BrowsedPlayerWrapper> mBrowsablePlayers =
-            Collections.synchronizedMap(new HashMap<Integer, BrowsedPlayerWrapper>());
+    private Map<Integer, BrowsedPlayerWrapper2> mBrowsablePlayers =
+            Collections.synchronizedMap(new HashMap<Integer, BrowsedPlayerWrapper2>());
     private int mActivePlayerId = NO_ACTIVE_PLAYER;
+    private int mBrowsingPlayerId = NO_ACTIVE_PLAYER;
 
     private MediaUpdateCallback mCallback;
     private boolean mAudioPlaybackIsActive = false;
@@ -199,63 +187,35 @@ public class MediaPlayerList {
         }
     }
 
-    /** Initiates browsable players and calls {@link #constructCurrentPlayers}. */
+    /** Initiates the media and browsable players list. */
     public void init(MediaUpdateCallback callback) {
         Log.v(TAG, "Initializing MediaPlayerList");
         mCallback = callback;
 
+        // Instantiate the media players list
+        constructCurrentPlayers();
+
         if (!SystemProperties.getBoolean("bluetooth.avrcp.browsable_media_player.enabled", true)) {
             // Allow to disable BrowsablePlayerConnector with systemproperties.
-            // This is useful when for watches because:
-            //   1. It is not a regular use case
-            //   2. Registering to all players is a very loading task
+            // This is useful when for watches because it is not a regular use case
 
             Log.i(TAG, "init: without Browsable Player");
-            constructCurrentPlayers();
             return;
         }
 
-        // Build the list of browsable players and afterwards, build the list of media players
-        Intent intent = new Intent(android.service.media.MediaBrowserService.SERVICE_INTERFACE);
-        if (Flags.keepStoppedMediaBrowserService()) {
-            // Don't query stopped apps, that would end up unstopping them
-            intent.addFlags(Intent.FLAG_EXCLUDE_STOPPED_PACKAGES);
+        // Instantiate the browsable players list
+        for (ResolveInfo info : getValidBrowsablePlayersPackages()) {
+            BrowsedPlayerWrapper2 wrapper = new BrowsedPlayerWrapper2(
+                    mContext,
+                    mLooper,
+                    info.serviceInfo.packageName,
+                    info.serviceInfo.name);
+
+            if (!havePlayerId(wrapper.getPackageName())) {
+                mMediaPlayerIds.put(wrapper.getPackageName(), getFreeMediaPlayerId());
+            }
+            mBrowsablePlayers.put(mMediaPlayerIds.get(wrapper.getPackageName()), wrapper);
         }
-        List<ResolveInfo> playerList =
-                mContext
-                    .getApplicationContext()
-                    .getPackageManager()
-                    .queryIntentServices(intent, PackageManager.MATCH_ALL);
-
-        mBrowsablePlayerConnector = BrowsablePlayerConnector.connectToPlayers(mContext, mLooper,
-                playerList, (List<BrowsedPlayerWrapper> players) -> {
-                Log.i(TAG, "init: Browsable Player list size is " + players.size());
-
-                // Check to see if the list has been cleaned up before this completed
-                if (mMediaSessionManager == null) {
-                    return;
-                }
-
-                for (BrowsedPlayerWrapper wrapper : players) {
-                    // Generate new id and add the browsable player
-                    if (!havePlayerId(wrapper.getPackageName())) {
-                        mMediaPlayerIds.put(wrapper.getPackageName(), getFreeMediaPlayerId());
-                    }
-
-                    d("Adding Browser Wrapper for " + wrapper.getPackageName() + " with id "
-                            + mMediaPlayerIds.get(wrapper.getPackageName()));
-
-                    mBrowsablePlayers.put(mMediaPlayerIds.get(wrapper.getPackageName()), wrapper);
-
-                    wrapper.getFolderItems(wrapper.getRootId(),
-                            (int status, String mediaId, List<ListItem> results) -> {
-                                d("Got the contents for: " + mediaId + " : num results="
-                                        + results.size());
-                            });
-                }
-
-                constructCurrentPlayers();
-            });
     }
 
     public void cleanup() {
@@ -263,6 +223,7 @@ public class MediaPlayerList {
         mContext.unregisterReceiver(mPackageChangedBroadcastReceiver);
 
         mActivePlayerId = NO_ACTIVE_PLAYER;
+        mBrowsingPlayerId = NO_ACTIVE_PLAYER;
 
         mMediaSessionManager.removeOnActiveSessionsChangedListener(mActiveSessionsChangedListener);
         mMediaSessionManager.removeOnMediaKeyEventSessionChangedListener(
@@ -281,19 +242,15 @@ public class MediaPlayerList {
         if (mBrowsablePlayerConnector != null) {
             mBrowsablePlayerConnector.cleanup();
         }
-        for (BrowsedPlayerWrapper player : mBrowsablePlayers.values()) {
+        for (BrowsedPlayerWrapper2 player : mBrowsablePlayers.values()) {
             player.disconnect();
         }
         mBrowsablePlayers.clear();
     }
 
-    /**
-     * Current player ID is always Bluetooth player ID.
-     *
-     * <p>All browsable players are subdirectories of Bluetooth player.
-     */
+    /** returns the current player ID. */
     public int getCurrentPlayerId() {
-        return BLUETOOTH_PLAYER_ID;
+        return mBrowsingPlayerId;
     }
 
     /** Get the next ID available in the IDs map. */
@@ -310,53 +267,56 @@ public class MediaPlayerList {
         return mMediaPlayers.get(mActivePlayerId);
     }
 
-    /**
-     * This is used by setBrowsedPlayer as the browsed player is always the Bluetooth player.
-     *
-     * <p>If the requested player ID is not {@link #BLUETOOTH_PLAYER_ID}, success will be false.
-     *
-     * <p>The number of items will be the number of browsable players as they all are direct
-     * subdirectories of the Bluetooth player ID.
-     *
-     * <p>The root ID will always be an empty string to correspond to bluetooth player ID.
-     */
     public void getPlayerRoot(int playerId, GetPlayerRootCallback cb) {
+        mBrowsingPlayerId = playerId;
         /** M: Fix PTS AVRCP/TG/MCN/CB/BI-02-C fail @{ */
         if (Utils.isPtsTestMode()) {
             d("PTS test mode: getPlayerRoot");
-            BrowsedPlayerWrapper wrapper = mBrowsablePlayers.get(BLUETOOTH_PLAYER_ID + 1);
-            String itemId = wrapper.getRootId();
-
-            wrapper.getFolderItems(itemId, (status, id, results) -> {
-                if (status != BrowsedPlayerWrapper.STATUS_SUCCESS) {
-                    cb.run(playerId, playerId == BLUETOOTH_PLAYER_ID, "", 0);
-                    return;
-                }
-                cb.run(playerId, playerId == BLUETOOTH_PLAYER_ID, "", results.size());
+            BrowsedPlayerWrapper2 wrapper = mBrowsablePlayers.get(BLUETOOTH_PLAYER_ID + 1);
+            wrapper.getRootId((rootId) -> {
+                wrapper.getFolderItems(rootId, (parentId, itemList) -> {
+                    cb.run(playerId, playerId == BLUETOOTH_PLAYER_ID, "", itemList.size());
+                });
             });
             return;
         }
-        /** @} */
-        cb.run(playerId, playerId == BLUETOOTH_PLAYER_ID, "", mBrowsablePlayers.size());
+        //cb.run(playerId, playerId == BLUETOOTH_PLAYER_ID, "", mBrowsablePlayers.size());
+        BrowsedPlayerWrapper2 wrapper = mBrowsablePlayers.get(playerId);
+        wrapper.getRootId((rootId) -> {
+            wrapper.getFolderItems(rootId, (parentId, itemList) -> {
+                cb.run(playerId, true, rootId, itemList.size());
+            });
+        });
+
+        sendFolderUpdate(false, true, false);
     }
 
-    /**
-     * Returns a list containing only the Bluetooth player.
-     *
-     * <p>See class documentation.
-     */
+    /** Returns a list valid browsable players. */
     public List<PlayerInfo> getMediaPlayerList() {
-        PlayerInfo info = new PlayerInfo();
-        info.id = BLUETOOTH_PLAYER_ID;
-        info.name = BLUETOOTH_PLAYER_NAME;
-        info.browsable = true;
-        if (mBrowsablePlayers.size() == 0) {
-            // Set Bluetooth Player as non-browable if there is not browsable player exist.
-            info.browsable = false;
-        }
         List<PlayerInfo> ret = new ArrayList<PlayerInfo>();
-        ret.add(info);
-
+        // Add actual browsable players
+        for (BrowsedPlayerWrapper2 browsablePlayer : mBrowsablePlayers.values()) {
+            Log.i(TAG, "getMediaPlayerList: Added browsable player: " + browsablePlayer.getPackageName());
+            PlayerInfo info = new PlayerInfo();
+            info.id = mMediaPlayerIds.get(browsablePlayer.getPackageName());
+            info.name = Util.getDisplayName(mContext, browsablePlayer.getPackageName());
+            info.browsable = true;
+            ret.add(info);
+        }
+        Log.i(TAG, "getMediaPlayerList: number of mediaplayers: " + mMediaPlayers.size());
+        // Also list non-browsable players so that they can be selected
+        for (MediaPlayerWrapper mediaPlayer : mMediaPlayers.values()) {
+            // Skip player if already added as browsable
+            if (haveMediaBrowser(mMediaPlayerIds.get(mediaPlayer.getPackageName()))) {
+                continue;
+            }
+            Log.i(TAG, "getMediaPlayerList: Added non browsable player: " + mediaPlayer.getPackageName());
+            PlayerInfo info = new PlayerInfo();
+            info.id = mMediaPlayerIds.get(mediaPlayer.getPackageName());
+            info.name = Util.getDisplayName(mContext, mediaPlayer.getPackageName());
+            info.browsable = false;
+            ret.add(info);
+        }
         return ret;
     }
 
@@ -449,7 +409,7 @@ public class MediaPlayerList {
      *
      * <p>If the {@code nowPlaying} parameter is true, this will try to select the item from the
      * current active player's queue. Otherwise this means that the item is from a browsable player
-     * and this calls {@link BrowsedPlayerWrapper} to handle the change.
+     * and this calls {@link BrowsedPlayerWrapper2} to handle the change.
      */
     public void playItem(int playerId, boolean nowPlaying, String mediaId) {
         if (nowPlaying) {
@@ -482,56 +442,33 @@ public class MediaPlayerList {
     }
 
     /**
-     * Retrieves the {@link BrowsedPlayerWrapper} corresponding to the {@code mediaId} and plays it.
+     * Retrieves the {@link BrowsedPlayerWrapper2} corresponding to the {@code mediaId} and plays it.
      *
      * <p>See {@link #playItem}.
      */
     private void playFolderItem(String mediaId) {
-        d("playFolderItem: mediaId=" + mediaId);
+        Log.d(TAG, "playFolderItem: mediaId=" + mediaId);
 
-        if (!mediaId.matches(BROWSE_ID_PATTERN)) {
-            // This should never happen since we control the media ID's reported
-            Log.wtf(TAG, "playFolderItem: mediaId didn't match pattern: mediaId=" + mediaId);
-        }
-
-        int playerIndex = Integer.parseInt(mediaId.substring(0, 2));
-        if (!haveMediaBrowser(playerIndex)) {
-            e("playFolderItem: Do not have the a browsable player with ID " + playerIndex);
+        if (!haveMediaBrowser(mBrowsingPlayerId)) {
+            Log.e(TAG, "playFolderItem: Do not have the a browsable player with ID " + mBrowsingPlayerId);
             return;
         }
 
-        BrowsedPlayerWrapper wrapper = mBrowsablePlayers.get(playerIndex);
-        String itemId = mediaId.substring(2);
-        if (TextUtils.isEmpty(itemId)) {
-            itemId = wrapper.getRootId();
-            if (TextUtils.isEmpty(itemId)) {
-                e("playFolderItem: Failed to start playback with an empty media id.");
-                return;
-            }
-            Log.i(TAG, "playFolderItem: Empty media id, trying with the root id for "
-                    + wrapper.getPackageName());
-        }
-        wrapper.playItem(itemId);
+        BrowsedPlayerWrapper2 wrapper = mBrowsablePlayers.get(mBrowsingPlayerId);
+        wrapper.playItem(mediaId);
     }
 
-    /**
-     * Calls {@code cb} with the list of browsable players as folder items.
-     *
-     * <p>As browsable players are subdirectories of the root Bluetooth player, the list always
-     * contains all the browsable players.
-     *
-     * <p>See {@link #getFolderItems}.
-     */
+    /** Calls {@code cb} with the list of browsable players as folder items. */
     void getFolderItemsMediaPlayerList(GetFolderItemsCallback cb) {
-        d("getFolderItemsMediaPlayerList: Sending Media Player list for root directory");
+        Log.d(TAG, "getFolderItemsMediaPlayerList: Sending Media Player list for root directory");
 
         ArrayList<ListItem> playerList = new ArrayList<ListItem>();
-        for (BrowsedPlayerWrapper player : mBrowsablePlayers.values()) {
+        for (BrowsedPlayerWrapper2 player : mBrowsablePlayers.values()) {
 
             String displayName = Util.getDisplayName(mContext, player.getPackageName());
             int id = mMediaPlayerIds.get(player.getPackageName());
 
-            d("getFolderItemsMediaPlayerList: Adding player " + displayName);
+            Log.d(TAG, "getFolderItemsMediaPlayerList: Adding player " + displayName);
             Folder playerFolder = new Folder(String.format("%02d", id), false, displayName);
             playerList.add(new ListItem(playerFolder));
         }
@@ -542,35 +479,13 @@ public class MediaPlayerList {
     /**
      * Calls {@code cb} with a list of browsable folders.
      *
-     * <p>If {@code mediaId} is empty, {@code cb} will be called with all the browsable players as
-     * they are subdirectories of the root Bluetooth player.
+     * <p>If {@code mediaId} is empty, {@code cb} will be called with all the browsable players.
      *
-     * <p>If {@code mediaId} corresponds to a known {@link BrowsedPlayerWrapper}, {@code cb} will be
-     * called with the folder items list of the {@link BrowsedPlayerWrapper}.
+     * <p>If {@code mediaId} corresponds to a known {@link BrowsedPlayerWrapper2}, {@code cb} will be
+     * called with the folder items list of the {@link BrowsedPlayerWrapper2}.
      */
     public void getFolderItems(int playerId, String mediaId, GetFolderItemsCallback cb) {
-        // The playerId is unused since we always assume the remote device is using the
-        // Bluetooth Player.
-        d("getFolderItems(): playerId=" + playerId + ", mediaId=" + mediaId);
-        /** M: Fix PTS AVRCP/TG/MCN/CB/BI-02-C fail @{ */
-        if (Utils.isPtsTestMode()) {
-            d("PTS test mode: getFolderItems");
-            BrowsedPlayerWrapper wrapper = mBrowsablePlayers.get(BLUETOOTH_PLAYER_ID + 1);
-            String itemId = mediaId;
-            if (mediaId.equals("")) {
-                itemId = wrapper.getRootId();
-            }
-
-            wrapper.getFolderItems(itemId, (status, id, results) -> {
-                if (status != BrowsedPlayerWrapper.STATUS_SUCCESS) {
-                    cb.run(mediaId, new ArrayList<ListItem>());
-                    return;
-                }
-                cb.run(mediaId, results);
-            });
-            return;
-        }
-        /** @} */
+        Log.d(TAG, "getFolderItems(): playerId=" + playerId + ", mediaId=" + mediaId);
 
         // The device is requesting the content of the root folder. This folder contains a list of
         // Browsable Media Players displayed as folders with their contents contained within.
@@ -579,41 +494,18 @@ public class MediaPlayerList {
             return;
         }
 
-        if (!mediaId.matches(BROWSE_ID_PATTERN)) {
-            // This should never happen since we control the media ID's reported
-            Log.wtf(TAG, "getFolderItems: mediaId didn't match pattern: mediaId=" + mediaId);
-        }
-
-        int playerIndex = Integer.parseInt(mediaId.substring(0, 2));
-        String itemId = mediaId.substring(2);
-
-        // TODO (apanicke): Add timeouts for looking up folder items since media browsers don't
-        // have to respond.
-        if (haveMediaBrowser(playerIndex)) {
-            BrowsedPlayerWrapper wrapper = mBrowsablePlayers.get(playerIndex);
-            if (itemId.equals("")) {
-                Log.i(TAG, "Empty media id, getting the root for "
-                        + wrapper.getPackageName());
-                itemId = wrapper.getRootId();
-            }
-
-            wrapper.getFolderItems(itemId, (status, id, results) -> {
-                if (status != BrowsedPlayerWrapper.STATUS_SUCCESS) {
-                    cb.run(mediaId, new ArrayList<ListItem>());
-                    return;
-                }
-
-                String playerPrefix = String.format("%02d", playerIndex);
+        if (mBrowsablePlayers.containsKey(playerId)) {
+            BrowsedPlayerWrapper2 wrapper = mBrowsablePlayers.get(playerId);
+            wrapper.getFolderItems(mediaId, (id, results) -> {
                 for (ListItem item : results) {
                     if (item.isFolder) {
-                        item.folder.mediaId = playerPrefix.concat(item.folder.mediaId);
+                        item.folder.mediaId = item.folder.mediaId;
                     } else {
-                        item.song.mediaId = playerPrefix.concat(item.song.mediaId);
+                        item.song.mediaId = item.song.mediaId;
                     }
                 }
                 cb.run(mediaId, results);
             });
-            return;
         } else {
             cb.run(mediaId, new ArrayList<ListItem>());
         }
@@ -681,6 +573,48 @@ public class MediaPlayerList {
         }
 
         return addMediaPlayer(MediaControllerFactory.wrap(controller));
+    }
+
+    /** Retrieves a list of all packages that both are browsable and play audio */
+    List<ResolveInfo> getValidBrowsablePlayersPackages() {
+        List<ResolveInfo> validBrowsablePackagesList = new ArrayList<>();
+
+        Intent intentPlayer = new Intent(Intent.ACTION_VIEW);
+        Intent intentBrowsable = new Intent(
+                android.service.media.MediaBrowserService.SERVICE_INTERFACE);
+
+        Uri uri = Uri.withAppendedPath(
+                MediaStore.Audio.Media.INTERNAL_CONTENT_URI, "1");
+        intentPlayer.setDataAndType(uri, "audio/*");
+        List<ResolveInfo> audioPlayerList = mContext
+                    .getApplicationContext()
+                    .getPackageManager().queryIntentActivities(intentPlayer, 0);
+
+        if (Flags.keepStoppedMediaBrowserService()) {
+            // Don't query stopped apps, that would end up unstopping them
+            intentBrowsable.addFlags(Intent.FLAG_EXCLUDE_STOPPED_PACKAGES);
+        }
+        List<ResolveInfo> browsablePlayerList =
+                mContext
+                    .getApplicationContext()
+                    .getPackageManager()
+                    .queryIntentServices(intentBrowsable, PackageManager.MATCH_ALL);
+
+        for (ResolveInfo browsablePlayerInfo : browsablePlayerList) {
+            boolean isAnAudioPlayer = false;
+            // We can't add the player to the list in this loop as a package could have multiple
+            // matching activities.
+            for (ResolveInfo audioPlayerInfo : audioPlayerList) {
+                if (audioPlayerInfo.activityInfo.packageName
+                        .equals(browsablePlayerInfo.serviceInfo.packageName)) {
+                    isAnAudioPlayer = true;
+                }
+            }
+            if (isAnAudioPlayer) {
+                validBrowsablePackagesList.add(browsablePlayerInfo);
+            }
+        }
+        return validBrowsablePackagesList;
     }
 
     /** Returns true if {@code packageName} is present in {@link #mMediaPlayerIds}. */
@@ -908,17 +842,41 @@ public class MediaPlayerList {
                 if (intent.getBooleanExtra(Intent.EXTRA_REPLACING, false)) return;
 
                 String packageName = intent.getData().getSchemeSpecificPart();
-                if (haveMediaPlayer(packageName)) {
-                    removeMediaPlayer(mMediaPlayerIds.get(packageName));
+                Integer playerId = mMediaPlayerIds.get(packageName);
+                if (haveMediaPlayer(playerId)) {
+                    removeMediaPlayer(playerId);
+                }
+                if (haveMediaBrowser(playerId)) {
+                    Log.i(TAG, "package removed from browsable list: "
+                            + packageName);
+                    mBrowsablePlayers.get(playerId).disconnect();
+                    mBrowsablePlayers.remove(playerId);
+                    sendFolderUpdate(true, false, false);
                 }
             } else if (action.equals(Intent.ACTION_PACKAGE_ADDED)
                     || action.equals(Intent.ACTION_PACKAGE_CHANGED)) {
                 String packageName = intent.getData().getSchemeSpecificPart();
                 if (packageName != null) {
-                    Log.d(TAG, "Name of package changed: " + packageName);
-                    // TODO (apanicke): Handle either updating or adding the new package.
-                    // Check if its browsable and send the UIDS changed to update the
-                    // root folder
+                    for (ResolveInfo info : getValidBrowsablePlayersPackages()) {
+                        // Check if added package is browsable
+                        if (info.serviceInfo.packageName.equals(packageName)) {
+                            // Add it to the existing list
+                            BrowsedPlayerWrapper2 wrapper = new BrowsedPlayerWrapper2(
+                                mContext,
+                                mLooper,
+                                info.serviceInfo.packageName,
+                                info.serviceInfo.name);
+                            if (!havePlayerId(wrapper.getPackageName())) {
+                                Log.i(TAG, "package added to browsable list: "
+                                        + info.serviceInfo.packageName);
+                                mMediaPlayerIds.put(
+                                        wrapper.getPackageName(), getFreeMediaPlayerId());
+                                mBrowsablePlayers.put(
+                                        mMediaPlayerIds.get(wrapper.getPackageName()), wrapper);
+                                sendFolderUpdate(true, false, false);
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -1133,7 +1091,7 @@ public class MediaPlayerList {
         }
 
         sb.append("List of Browsers: size=" + mBrowsablePlayers.size() + "\n");
-        for (BrowsedPlayerWrapper player : mBrowsablePlayers.values()) {
+        for (BrowsedPlayerWrapper2 player : mBrowsablePlayers.values()) {
             sb.append(player.toString().replaceAll("(?m)^", "  "));
             sb.append("\n");
         }
