@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b725884_c39fc9ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-17T22:52:19Z",
+      "side": 1,
+      "message": "Now that it is cleaned up and separated, any plan to move each control block into a GD module in C++?",
+      "revId": "88e3fd76a2a77998b1a3954deb7d3ffb95637389",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0acd86f_12d6861d",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-17T22:52:19Z",
+      "side": 1,
+      "message": "Since you are creating a new one, I would like this to be called with its full name\n\n```\ntBTA_DM_SERVICE_DISCOVERY_CB bta_dm_service_discovery_cb;\n```\nSo that people don\u0027t question what discovery this is.",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 20
+      },
+      "revId": "88e3fd76a2a77998b1a3954deb7d3ffb95637389",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
