@@ -22,6 +22,30 @@
       },
       "revId": "4e07e33ac87e3b0ab0169f0c6a7ff84d0341c633",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3de7b490_ee28a884",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2063,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-17T23:41:55Z",
+      "side": 0,
+      "message": "TLDR: I will break this weird device.\n\nSearch state machine only in state BTA_DM_SEARCH_ACTIVE handles BTA_DM_REMT_NAME_EVT.\n\nIt would then send the BTA_DM_NAME_READ_EVT to btif_dm_search_devices_evt.\n\nSo if the name read finished while you were searching thorugh settings, it would be passed up. Otherwise event would be dropped in search state machine.\n\nGood thing is, fixing it would be super easy after this refactor.",
+      "parentUuid": "62b2f6c8_36138ca5",
+      "range": {
+        "startLine": 2063,
+        "startChar": 0,
+        "endLine": 2063,
+        "endChar": 63
+      },
+      "revId": "4e07e33ac87e3b0ab0169f0c6a7ff84d0341c633",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
