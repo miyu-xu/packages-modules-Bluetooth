@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9507a3b3_886ce6c6",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-17T02:40:44Z",
+      "side": 1,
+      "message": "nit: Is there a reason for the different log levels (info here, debug at line 537)?",
+      "range": {
+        "startLine": 533,
+        "startChar": 16,
+        "endLine": 533,
+        "endChar": 20
+      },
+      "revId": "74e5ef40005db9e6181e844792e212aa3b647623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
