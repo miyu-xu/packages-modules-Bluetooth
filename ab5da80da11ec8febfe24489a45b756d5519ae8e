@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a9885e2_ec64709e",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 643,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-17T21:22:11Z",
+      "side": 1,
+      "message": "Where does it get set to zero after successfully setting the data length?",
+      "range": {
+        "startLine": 643,
+        "startChar": 5,
+        "endLine": 643,
+        "endChar": 23
+      },
+      "revId": "ab5da80da11ec8febfe24489a45b756d5519ae8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
