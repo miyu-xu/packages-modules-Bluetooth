@@ -22,6 +22,30 @@
       },
       "revId": "74e5ef40005db9e6181e844792e212aa3b647623",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01db7d03_a37c3972",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-04-17T06:54:33Z",
+      "side": 1,
+      "message": "I think what differentiates the two log levels mentioned is the informativeness - the timing that we get this audio state callback is often so critical that we wish it is always logged, whereas the audio config has nearly never required our attention.",
+      "parentUuid": "9507a3b3_886ce6c6",
+      "range": {
+        "startLine": 533,
+        "startChar": 16,
+        "endLine": 533,
+        "endChar": 20
+      },
+      "revId": "74e5ef40005db9e6181e844792e212aa3b647623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
