@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "717254ef_f23f815f",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1006,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-17T22:35:40Z",
+      "side": 1,
+      "message": "nit: add some log like\n\n```\n  if (!bta_dm_search_cb.p_pending_search) {\n    log::info(\"end of pending service discovery result\");\n    return;\n  }\n```\n\nHowever, shouldn\u0027t `p_pending_search` be refactored to an actual `std::queue`?",
+      "range": {
+        "startLine": 1006,
+        "startChar": 0,
+        "endLine": 1006,
+        "endChar": 49
+      },
+      "revId": "4e07e33ac87e3b0ab0169f0c6a7ff84d0341c633",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "348e853a_416a908c",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1015,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-17T22:35:40Z",
+      "side": 1,
+      "message": "nit: add some log like\n\n```\n  if (bta_dm_search_cb.pending_discovery_queue.empty()) {\n    log::info(\"end of pending service discovery result\");\n    return;\n  }\n```",
+      "range": {
+        "startLine": 1015,
+        "startChar": 1,
+        "endLine": 1015,
+        "endChar": 63
+      },
+      "revId": "4e07e33ac87e3b0ab0169f0c6a7ff84d0341c633",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
