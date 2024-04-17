@@ -276,31 +276,22 @@ struct codec_manager_impl {
     return conf ? std::make_unique<AudioSetConfiguration>(*conf) : nullptr;
   }
 
-  bool CheckCodecConfigIsBiDirSwb(const AudioSetConfiguration& config) {
-    return AudioSetConfigurationProvider::Get()->CheckConfigurationIsBiDirSwb(
-        config);
-  }
-
   void UpdateSupportedBroadcastConfig(
       const std::vector<AudioSetConfiguration>& adsp_capabilities) {
     log::info("UpdateSupportedBroadcastConfig");
 
     for (const auto& adsp_audio_set_conf : adsp_capabilities) {
-      log::assert_that(
-          adsp_audio_set_conf.topology_info.has_value(),
-          "No topology info, which is required to properly configure the ASEs");
-      if (adsp_audio_set_conf.confs.sink.size() != 1 ||
-          adsp_audio_set_conf.topology_info->device_count.sink != 0 ||
-          adsp_audio_set_conf.topology_info->device_count.source != 0) {
+      if (adsp_audio_set_conf.confs.sink.size() == 0 ||
+          adsp_audio_set_conf.confs.source.size() != 0) {
         continue;
       }
+
       auto& adsp_config = adsp_audio_set_conf.confs.sink[0];
 
       const types::LeAudioCoreCodecConfig core_config =
           adsp_config.codec.params.GetAsCoreCodecConfig();
       bluetooth::le_audio::broadcast_offload_config broadcast_config;
-      broadcast_config.stream_map.resize(
-          core_config.GetChannelCountPerIsoStream());
+      broadcast_config.stream_map.resize(adsp_audio_set_conf.confs.sink.size());
 
       // Enable the individual channels per BIS in the stream map
       for (auto& [_, channels] : broadcast_config.stream_map) {
@@ -717,17 +708,8 @@ struct codec_manager_impl {
       size_t match_cnt = 0;
       size_t expected_match_cnt = 0;
 
-      log::assert_that(adsp_audio_set_conf.topology_info.has_value(),
-                       "ADSP capability is missing the topology information.");
-
       for (auto direction : {le_audio::types::kLeAudioDirectionSink,
                              le_audio::types::kLeAudioDirectionSource}) {
-        if (software_audio_set_conf->topology_info->device_count.get(
-                direction) !=
-            adsp_audio_set_conf.topology_info->device_count.get(direction)) {
-          continue;
-        }
-
         auto const& software_set_ase_confs =
             software_audio_set_conf->confs.get(direction);
         auto const& adsp_set_ase_confs =
@@ -1049,12 +1031,12 @@ std::unique_ptr<AudioSetConfiguration> CodecManager::GetCodecConfig(
   return nullptr;
 }
 
-bool CodecManager::CheckCodecConfigIsBiDirSwb(
+bool CodecManager::CheckCodecConfigIsDualBiDirSwb(
     const set_configurations::AudioSetConfiguration& config) const {
   if (pimpl_->IsRunning()) {
-    return pimpl_->codec_manager_impl_->CheckCodecConfigIsBiDirSwb(config);
+    return AudioSetConfigurationProvider::Get()
+        ->CheckConfigurationIsDualBiDirSwb(config);
   }
-
   return false;
 }
 
