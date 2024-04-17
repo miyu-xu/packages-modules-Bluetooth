@@ -331,7 +331,12 @@ bool BluetoothAudioClientInterface::UpdateAudioConfig(
 
   auto aidl_retval = provider_->updateAudioConfiguration(audio_config);
   if (!aidl_retval.isOk()) {
-    log::error("BluetoothAudioHal failure: {}", aidl_retval.getDescription());
+    log::warn(
+        "BluetoothAudioHal is not ready or audio config type: {} doesn't "
+        "match. {}",
+        ::aidl::android::hardware::bluetooth::audio::toString(
+            audio_config.getTag()),
+        aidl_retval.getDescription());
   }
   return true;
 }
