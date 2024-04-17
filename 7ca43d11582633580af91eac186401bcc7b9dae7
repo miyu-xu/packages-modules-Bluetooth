@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c035bcbb_eacbb6c0",
+        "filename": "system/gd/hal/hci_backend.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-04-17T22:13:57Z",
+      "side": 1,
+      "message": "HciTransport sounds like USB/UART implementation.\nNot abstraction over HIDL/AIDL.\nHciInterface ?",
+      "parentUuid": "8948cc81_39e1a60c",
+      "range": {
+        "startLine": 31,
+        "startChar": 6,
+        "endLine": 31,
+        "endChar": 25
+      },
+      "revId": "7ca43d11582633580af91eac186401bcc7b9dae7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0ab04192_131eccdc",
         "filename": "system/gd/hal/hci_backend.h",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-17T21:40:27Z",
       "side": 1,
       "message": "Do we need this in the common interface?",
+      "range": {
+        "startLine": 53,
+        "startChar": 2,
+        "endLine": 55,
+        "endChar": 3
+      },
+      "revId": "7ca43d11582633580af91eac186401bcc7b9dae7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6466105e_19e235a1",
+        "filename": "system/gd/hal/hci_backend.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-04-17T22:13:57Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0ab04192_131eccdc",
       "range": {
         "startLine": 53,
         "startChar": 2,
@@ -89,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "25c369c5_225f8561",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1152,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-04-17T22:13:57Z",
+      "side": 1,
+      "message": "How so?",
+      "parentUuid": "bbece436_14776009",
+      "range": {
+        "startLine": 1152,
+        "startChar": 0,
+        "endLine": 1152,
+        "endChar": 45
+      },
+      "revId": "7ca43d11582633580af91eac186401bcc7b9dae7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8cf436e6_e06aa6b4",
         "filename": "system/gd/hal/snoop_logger.cc",
         "patchSetId": 3
@@ -100,6 +172,30 @@
       "writtenOn": "2024-04-17T21:30:58Z",
       "side": 1,
       "message": "This doesn\u0027t look like the filtered packet, since there was a copy made in FilterCapturePacket.",
+      "range": {
+        "startLine": 1240,
+        "startChar": 25,
+        "endLine": 1240,
+        "endChar": 31
+      },
+      "revId": "7ca43d11582633580af91eac186401bcc7b9dae7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d85a45c_22872d81",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1240,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-04-17T22:13:57Z",
+      "side": 1,
+      "message": "Can you point to the line where the copy is made?",
+      "parentUuid": "8cf436e6_e06aa6b4",
       "range": {
         "startLine": 1240,
         "startChar": 25,
