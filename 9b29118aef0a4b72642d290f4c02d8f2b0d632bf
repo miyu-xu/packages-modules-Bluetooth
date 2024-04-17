@@ -16,6 +16,24 @@
       "message": "remove ?",
       "revId": "9b29118aef0a4b72642d290f4c02d8f2b0d632bf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "588d077e_689fbc31",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-17T11:06:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad65b62d_4413c410",
+      "revId": "9b29118aef0a4b72642d290f4c02d8f2b0d632bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
