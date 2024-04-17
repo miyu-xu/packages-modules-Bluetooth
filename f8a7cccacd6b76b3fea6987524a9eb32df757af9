@@ -134,6 +134,24 @@
       "parentUuid": "fdb0c6b7_17e01699",
       "revId": "f8a7cccacd6b76b3fea6987524a9eb32df757af9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75d9e2a3_6879a8a7",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 871,
+      "author": {
+        "id": 1707594
+      },
+      "writtenOn": "2024-04-17T06:05:52Z",
+      "side": 1,
+      "message": "In patchset 4, we add bta_dm_check_if_only_hh_connected() condition to check if there is only HID host profile. Please help to review. Thanks.",
+      "parentUuid": "39baf8c7_6d4c1754",
+      "revId": "f8a7cccacd6b76b3fea6987524a9eb32df757af9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

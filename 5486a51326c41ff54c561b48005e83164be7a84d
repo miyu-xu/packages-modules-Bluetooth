@@ -16,6 +16,24 @@
       "message": "This may be problematic for devices which support other profiles besides HID. For example, A2DP spatial audio uses HID. It\u0027s not always used. It is possible HID is disconnected when spatial audio is not used, but that does not mean that we should disconnect all other profiles as well.\n\nNormally, BT host stack disconnects the link after a short idle timeout, if there are no service level connections. If that is not happening, we should figure out why and fix that.\n\nWas the profile disconnection initiated by the phone or the remote device? It is generally accepted that the device initiating the service level disconnections should also disconnect the link if there are no service level connections anymore.",
       "revId": "5486a51326c41ff54c561b48005e83164be7a84d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65c1a670_7eb18c21",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 875,
+      "author": {
+        "id": 1707594
+      },
+      "writtenOn": "2024-04-17T06:05:52Z",
+      "side": 1,
+      "message": "In patchset 4, we add bta_dm_check_if_only_hh_connected() condition to check if there is only HID host profile. Please help to review. Thanks.",
+      "parentUuid": "0b19cc67_6eba5374",
+      "revId": "5486a51326c41ff54c561b48005e83164be7a84d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
