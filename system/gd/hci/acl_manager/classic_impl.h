@@ -286,7 +286,7 @@ struct classic_impl {
     log::assert_that(client_callbacks_ != nullptr, "assert failed: client_callbacks_ != nullptr");
     std::unique_ptr<CreateConnectionBuilder> packet = CreateConnectionBuilder::Create(
         address, packet_type, page_scan_repetition_mode, clock_offset, clock_offset_valid, allow_role_switch);
-
+    log::warn("at create_connection");
     acl_scheduler_->EnqueueOutgoingAclConnection(
         address, handler_->BindOnceOn(this, &classic_impl::actually_create_connection, address, std::move(packet)));
   }
@@ -297,6 +297,7 @@ struct classic_impl {
       acl_scheduler_->ReportOutgoingAclConnectionFailure();
       return;
     }
+    log::warn("at actually_create_connection");
     acl_connection_interface_->EnqueueCommand(
         std::move(packet), handler_->BindOnceOn(this, &classic_impl::on_create_connection_status, address));
   }

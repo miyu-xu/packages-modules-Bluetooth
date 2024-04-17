@@ -564,7 +564,7 @@ tBTM_STATUS BTM_GetRole(const RawAddress& remote_bd_addr, tHCI_ROLE* p_role) {
  ******************************************************************************/
 tBTM_STATUS BTM_SwitchRoleToCentral(const RawAddress& remote_bd_addr) {
   if (!bluetooth::shim::GetController()->SupportsRoleSwitch()) {
-    log::info("Local controller does not support role switching");
+    log::warn("Local controller does not support role switching");
     return BTM_MODE_UNSUPPORTED;
   }
 
@@ -576,27 +576,27 @@ tBTM_STATUS BTM_SwitchRoleToCentral(const RawAddress& remote_bd_addr) {
   }
 
   if (p_acl->link_role == HCI_ROLE_CENTRAL) {
-    log::info("Requested role is already in effect");
+    log::warn("Requested role is already in effect");
     return BTM_SUCCESS;
   }
 
   if (interop_match_addr(INTEROP_DISABLE_ROLE_SWITCH, &remote_bd_addr)) {
-    log::info("Remote device is on list preventing role switch");
+    log::warn("Remote device is on list preventing role switch");
     return BTM_DEV_RESTRICT_LISTED;
   }
 
   if (BTM_IsScoActiveByBdaddr(remote_bd_addr)) {
-    log::info("An active SCO to device prevents role switch at this time");
+    log::warn("An active SCO to device prevents role switch at this time");
     return BTM_NO_RESOURCES;
   }
 
   if (!p_acl->is_switch_role_idle()) {
-    log::info("Role switch is already progress");
+    log::warn("Role switch is already progress");
     return BTM_BUSY;
   }
 
   if (interop_match_addr(INTEROP_DYNAMIC_ROLE_SWITCH, &remote_bd_addr)) {
-    log::debug("Device restrict listed under INTEROP_DYNAMIC_ROLE_SWITCH");
+    log::warn("Device restrict listed under INTEROP_DYNAMIC_ROLE_SWITCH");
     return BTM_DEV_RESTRICT_LISTED;
   }
 
@@ -619,9 +619,11 @@ tBTM_STATUS BTM_SwitchRoleToCentral(const RawAddress& remote_bd_addr) {
   else {
     if (p_acl->is_encrypted && !IsEprAvailable(*p_acl)) {
       /* bypass turning off encryption if change link key is already doing it */
+      log::warn("at set_encryption_off");
       p_acl->set_encryption_off();
       p_acl->set_switch_role_encryption_off();
     } else {
+      log::warn("at hci_start_role_switch_to_central");
       internal_.hci_start_role_switch_to_central(*p_acl);
     }
   }

@@ -1495,7 +1495,7 @@ void shim::legacy::Acl::Flush(HciHandle handle) {
 
 void shim::legacy::Acl::CreateClassicConnection(const hci::Address& address) {
   GetAclManager()->CreateConnection(address);
-  log::debug("Connection initiated for classic to remote:{}",
+  log::warn("Connection initiated for classic to remote:{}",
              ADDRESS_TO_LOGGABLE_CSTR(address));
   BTM_LogHistory(kBtmLogTag, ToRawAddress(address), "Initiated connection",
                  "classic");

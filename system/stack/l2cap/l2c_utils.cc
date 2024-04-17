@@ -2104,6 +2104,7 @@ void l2cu_create_conn_br_edr(tL2C_LCB* p_lcb) {
 
       if (BTM_SwitchRoleToCentral(p_lcb_cur->remote_bd_addr) ==
           BTM_CMD_STARTED) {
+        log::warn("at BTM_SwitchRoleToCentral");
         alarm_set_on_mloop(p_lcb->l2c_lcb_timer,
                            L2CAP_LINK_ROLE_SWITCH_TIMEOUT_MS,
                            l2c_lcb_timer_timeout, p_lcb);
@@ -2112,6 +2113,7 @@ void l2cu_create_conn_br_edr(tL2C_LCB* p_lcb) {
     }
   }
   p_lcb->link_state = LST_CONNECTING;
+  log::warn("at l2cu_create_conn_br_edr");
   l2cu_create_conn_after_switch(p_lcb);
 }
 
@@ -2148,7 +2150,7 @@ uint8_t l2cu_get_num_hi_priority(void) {
 void l2cu_create_conn_after_switch(tL2C_LCB* p_lcb) {
   const bool there_are_high_priority_channels =
       (l2cu_get_num_hi_priority() > 0);
-
+  log::warn("at l2cu_create_conn_after_switch");
   acl_create_classic_connection(p_lcb->remote_bd_addr,
                                 there_are_high_priority_channels,
                                 p_lcb->IsBonding());
