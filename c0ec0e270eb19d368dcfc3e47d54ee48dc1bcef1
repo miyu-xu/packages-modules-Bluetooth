@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ccda041_e1cee0c9",
+        "filename": "flags/system_service.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-04-17T02:26:41Z",
+      "side": 1,
+      "message": "Please use a Bug fix flag since this is a bug fix: go/trunk-stable-bug-fix.",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 4
+      },
+      "revId": "c0ec0e270eb19d368dcfc3e47d54ee48dc1bcef1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
