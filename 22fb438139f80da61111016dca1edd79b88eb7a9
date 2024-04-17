@@ -128,6 +128,24 @@
       "parentUuid": "52573527_17f27ed2",
       "revId": "22fb438139f80da61111016dca1edd79b88eb7a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c26c6cd_2a277c3a",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattServerRunCallbackOnHandlerTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-04-17T09:38:12Z",
+      "side": 1,
+      "message": "Tried to change tests in the way you mentioned, but it wasn\u0027t a simple change.\nSince this test is enough for checking callback thread, let\u0027s keep this.",
+      "parentUuid": "7c32ef45_d353caa0",
+      "revId": "22fb438139f80da61111016dca1edd79b88eb7a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
