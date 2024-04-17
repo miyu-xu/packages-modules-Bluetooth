@@ -144,6 +144,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ed1ef10_59e9c3e3",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_client.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-04-17T22:37:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f15ad8aa_2af6b802",
+      "range": {
+        "startLine": 78,
+        "startChar": 8,
+        "endLine": 78,
+        "endChar": 20
+      },
+      "revId": "bf08ead580a81af92be365317f17b46e903373fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d29a6fc5_0720abdc",
@@ -229,6 +253,30 @@
       "side": 1,
       "message": "The description about `steady_clock` seems to be quite unclear and there seems no guarantee which exact time domain it uses.\n\nI\u0027ve looked into the implementation (https://github.com/gcc-mirror/gcc/blob/master/libstdc++-v3/src/c++11/chrono.cc#L84) and that seemed to indicate it was grabbing `CLOCK_MONOTONIC`, which is NTP-adjusted and therefore could skew, rather than `CLOCK_MONOTONIC_RAW`.",
       "parentUuid": "91867a02_17bf1172",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 5
+      },
+      "revId": "bf08ead580a81af92be365317f17b46e903373fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52fd4894_571eb72a",
+        "filename": "system/gd/hal/link_clocker.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-04-17T22:37:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "daf23a2a_a65763fa",
       "range": {
         "startLine": 91,
         "startChar": 0,
