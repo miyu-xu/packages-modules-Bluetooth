@@ -3,6 +3,69 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8948cc81_39e1a60c",
+        "filename": "system/gd/hal/hci_backend.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-17T21:40:27Z",
+      "side": 1,
+      "message": "HciTransport ?\nThat\u0027s nitpick",
+      "range": {
+        "startLine": 31,
+        "startChar": 6,
+        "endLine": 31,
+        "endChar": 25
+      },
+      "revId": "7ca43d11582633580af91eac186401bcc7b9dae7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ab04192_131eccdc",
+        "filename": "system/gd/hal/hci_backend.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-17T21:40:27Z",
+      "side": 1,
+      "message": "Do we need this in the common interface?",
+      "range": {
+        "startLine": 53,
+        "startChar": 2,
+        "endLine": 55,
+        "endChar": 3
+      },
+      "revId": "7ca43d11582633580af91eac186401bcc7b9dae7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56ac1721_65c38fe6",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1146,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-17T21:40:27Z",
+      "side": 1,
+      "message": "This fix should be submitted in a separate CL, with a bug to track the fix to the snoop logger.",
+      "revId": "7ca43d11582633580af91eac186401bcc7b9dae7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bbece436_14776009",
         "filename": "system/gd/hal/snoop_logger.cc",
         "patchSetId": 3
