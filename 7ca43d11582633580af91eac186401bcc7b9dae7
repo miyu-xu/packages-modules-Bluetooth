@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbece436_14776009",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1152,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-17T21:30:58Z",
+      "side": 1,
+      "message": "This looks problematic.",
+      "range": {
+        "startLine": 1152,
+        "startChar": 0,
+        "endLine": 1152,
+        "endChar": 45
+      },
+      "revId": "7ca43d11582633580af91eac186401bcc7b9dae7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cf436e6_e06aa6b4",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1240,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-17T21:30:58Z",
+      "side": 1,
+      "message": "This doesn\u0027t look like the filtered packet, since there was a copy made in FilterCapturePacket.",
+      "range": {
+        "startLine": 1240,
+        "startChar": 25,
+        "endLine": 1240,
+        "endChar": 31
+      },
+      "revId": "7ca43d11582633580af91eac186401bcc7b9dae7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
