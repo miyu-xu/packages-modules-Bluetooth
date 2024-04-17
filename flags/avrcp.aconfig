@@ -17,3 +17,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "browsing_refactor"
+    namespace: "bluetooth"
+    description: "WIP - TO BE REMOVED ON FINAL VERSION - MERGED IN SEPARATE CHANGE"
+    bug: "338156685"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
