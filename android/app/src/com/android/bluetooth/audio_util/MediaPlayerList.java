@@ -101,8 +101,8 @@ public class MediaPlayerList {
             Collections.synchronizedMap(new HashMap<Integer, MediaPlayerWrapper>());
     private Map<String, Integer> mMediaPlayerIds =
             Collections.synchronizedMap(new HashMap<String, Integer>());
-    private Map<Integer, BrowsedPlayerWrapper> mBrowsablePlayers =
-            Collections.synchronizedMap(new HashMap<Integer, BrowsedPlayerWrapper>());
+    private Map<Integer, BrowsedPlayerWrapper2> mBrowsablePlayers =
+            Collections.synchronizedMap(new HashMap<Integer, BrowsedPlayerWrapper2>());
     private int mActivePlayerId = NO_ACTIVE_PLAYER;
 
     private MediaUpdateCallback mCallback;
@@ -227,35 +227,21 @@ public class MediaPlayerList {
                     .getPackageManager()
                     .queryIntentServices(intent, PackageManager.MATCH_ALL);
 
-        mBrowsablePlayerConnector = BrowsablePlayerConnector.connectToPlayers(mContext, mLooper,
-                playerList, (List<BrowsedPlayerWrapper> players) -> {
-                Log.i(TAG, "init: Browsable Player list size is " + players.size());
 
-                // Check to see if the list has been cleaned up before this completed
-                if (mMediaSessionManager == null) {
-                    return;
-                }
+        for (ResolveInfo info : playerList) {
+            BrowsedPlayerWrapper2 wrapper = new BrowsedPlayerWrapper2(
+                    mContext,
+                    mLooper,
+                    info.serviceInfo.packageName,
+                    info.serviceInfo.name);
 
-                for (BrowsedPlayerWrapper wrapper : players) {
-                    // Generate new id and add the browsable player
-                    if (!havePlayerId(wrapper.getPackageName())) {
-                        mMediaPlayerIds.put(wrapper.getPackageName(), getFreeMediaPlayerId());
-                    }
+            if (!havePlayerId(wrapper.getPackageName())) {
+                mMediaPlayerIds.put(wrapper.getPackageName(), getFreeMediaPlayerId());
+            }
+            mBrowsablePlayers.put(mMediaPlayerIds.get(wrapper.getPackageName()), wrapper);
+        }
 
-                    d("Adding Browser Wrapper for " + wrapper.getPackageName() + " with id "
-                            + mMediaPlayerIds.get(wrapper.getPackageName()));
-
-                    mBrowsablePlayers.put(mMediaPlayerIds.get(wrapper.getPackageName()), wrapper);
-
-                    wrapper.getFolderItems(wrapper.getRootId(),
-                            (int status, String mediaId, List<ListItem> results) -> {
-                                d("Got the contents for: " + mediaId + " : num results="
-                                        + results.size());
-                            });
-                }
-
-                constructCurrentPlayers();
-            });
+        constructCurrentPlayers();
     }
 
     public void cleanup() {
@@ -281,7 +267,7 @@ public class MediaPlayerList {
         if (mBrowsablePlayerConnector != null) {
             mBrowsablePlayerConnector.cleanup();
         }
-        for (BrowsedPlayerWrapper player : mBrowsablePlayers.values()) {
+        for (BrowsedPlayerWrapper2 player : mBrowsablePlayers.values()) {
             player.disconnect();
         }
         mBrowsablePlayers.clear();
@@ -324,15 +310,11 @@ public class MediaPlayerList {
         /** M: Fix PTS AVRCP/TG/MCN/CB/BI-02-C fail @{ */
         if (Utils.isPtsTestMode()) {
             d("PTS test mode: getPlayerRoot");
-            BrowsedPlayerWrapper wrapper = mBrowsablePlayers.get(BLUETOOTH_PLAYER_ID + 1);
-            String itemId = wrapper.getRootId();
-
-            wrapper.getFolderItems(itemId, (status, id, results) -> {
-                if (status != BrowsedPlayerWrapper.STATUS_SUCCESS) {
-                    cb.run(playerId, playerId == BLUETOOTH_PLAYER_ID, "", 0);
-                    return;
-                }
-                cb.run(playerId, playerId == BLUETOOTH_PLAYER_ID, "", results.size());
+            BrowsedPlayerWrapper2 wrapper = mBrowsablePlayers.get(BLUETOOTH_PLAYER_ID + 1);
+            wrapper.getRootId((rootId) -> {
+                wrapper.getFolderItems(rootId, (parentId, itemList) -> {
+                    cb.run(playerId, playerId == BLUETOOTH_PLAYER_ID, "", itemList.size());
+                });
             });
             return;
         }
@@ -449,7 +431,7 @@ public class MediaPlayerList {
      *
      * <p>If the {@code nowPlaying} parameter is true, this will try to select the item from the
      * current active player's queue. Otherwise this means that the item is from a browsable player
-     * and this calls {@link BrowsedPlayerWrapper} to handle the change.
+     * and this calls {@link BrowsedPlayerWrapper2} to handle the change.
      */
     public void playItem(int playerId, boolean nowPlaying, String mediaId) {
         if (nowPlaying) {
@@ -482,7 +464,7 @@ public class MediaPlayerList {
     }
 
     /**
-     * Retrieves the {@link BrowsedPlayerWrapper} corresponding to the {@code mediaId} and plays it.
+     * Retrieves the {@link BrowsedPlayerWrapper2} corresponding to the {@code mediaId} and plays it.
      *
      * <p>See {@link #playItem}.
      */
@@ -500,18 +482,21 @@ public class MediaPlayerList {
             return;
         }
 
-        BrowsedPlayerWrapper wrapper = mBrowsablePlayers.get(playerIndex);
+        BrowsedPlayerWrapper2 wrapper = mBrowsablePlayers.get(playerIndex);
         String itemId = mediaId.substring(2);
         if (TextUtils.isEmpty(itemId)) {
-            itemId = wrapper.getRootId();
-            if (TextUtils.isEmpty(itemId)) {
-                e("playFolderItem: Failed to start playback with an empty media id.");
-                return;
-            }
-            Log.i(TAG, "playFolderItem: Empty media id, trying with the root id for "
-                    + wrapper.getPackageName());
+            wrapper.getRootId((rootId) -> {
+                if (TextUtils.isEmpty(rootId)) {
+                    e("playFolderItem: Failed to start playback with an empty media id.");
+                    return;
+                }
+                Log.i(TAG, "playFolderItem: Empty media id, trying with the root id for "
+                        + wrapper.getPackageName());
+                wrapper.playItem(rootId);
+            });
+        } else {
+            wrapper.playItem(itemId);
         }
-        wrapper.playItem(itemId);
     }
 
     /**
@@ -526,7 +511,7 @@ public class MediaPlayerList {
         d("getFolderItemsMediaPlayerList: Sending Media Player list for root directory");
 
         ArrayList<ListItem> playerList = new ArrayList<ListItem>();
-        for (BrowsedPlayerWrapper player : mBrowsablePlayers.values()) {
+        for (BrowsedPlayerWrapper2 player : mBrowsablePlayers.values()) {
 
             String displayName = Util.getDisplayName(mContext, player.getPackageName());
             int id = mMediaPlayerIds.get(player.getPackageName());
@@ -545,8 +530,8 @@ public class MediaPlayerList {
      * <p>If {@code mediaId} is empty, {@code cb} will be called with all the browsable players as
      * they are subdirectories of the root Bluetooth player.
      *
-     * <p>If {@code mediaId} corresponds to a known {@link BrowsedPlayerWrapper}, {@code cb} will be
-     * called with the folder items list of the {@link BrowsedPlayerWrapper}.
+     * <p>If {@code mediaId} corresponds to a known {@link BrowsedPlayerWrapper2}, {@code cb} will be
+     * called with the folder items list of the {@link BrowsedPlayerWrapper2}.
      */
     public void getFolderItems(int playerId, String mediaId, GetFolderItemsCallback cb) {
         // The playerId is unused since we always assume the remote device is using the
@@ -555,19 +540,18 @@ public class MediaPlayerList {
         /** M: Fix PTS AVRCP/TG/MCN/CB/BI-02-C fail @{ */
         if (Utils.isPtsTestMode()) {
             d("PTS test mode: getFolderItems");
-            BrowsedPlayerWrapper wrapper = mBrowsablePlayers.get(BLUETOOTH_PLAYER_ID + 1);
-            String itemId = mediaId;
+            BrowsedPlayerWrapper2 wrapper = mBrowsablePlayers.get(BLUETOOTH_PLAYER_ID + 1);
             if (mediaId.equals("")) {
-                itemId = wrapper.getRootId();
+                wrapper.getRootId((rootId) -> {
+                    wrapper.getFolderItems(rootId, (id, results) -> {
+                        cb.run(mediaId, results);
+                    });
+                });
+            } else {
+                wrapper.getFolderItems(mediaId, (id, results) -> {
+                    cb.run(mediaId, results);
+                });
             }
-
-            wrapper.getFolderItems(itemId, (status, id, results) -> {
-                if (status != BrowsedPlayerWrapper.STATUS_SUCCESS) {
-                    cb.run(mediaId, new ArrayList<ListItem>());
-                    return;
-                }
-                cb.run(mediaId, results);
-            });
             return;
         }
         /** @} */
@@ -590,30 +574,35 @@ public class MediaPlayerList {
         // TODO (apanicke): Add timeouts for looking up folder items since media browsers don't
         // have to respond.
         if (haveMediaBrowser(playerIndex)) {
-            BrowsedPlayerWrapper wrapper = mBrowsablePlayers.get(playerIndex);
+            BrowsedPlayerWrapper2 wrapper = mBrowsablePlayers.get(playerIndex);
+
+            BrowsedPlayerWrapper2.GetPlayerRootCallback playerRootCb
+                    = new BrowsedPlayerWrapper2.GetPlayerRootCallback() {
+                @Override
+                public void run(String cbItemId) {
+                    wrapper.getFolderItems(cbItemId, (id, results) -> {
+                        String playerPrefix = String.format("%02d", playerIndex);
+                        for (ListItem item : results) {
+                            if (item.isFolder) {
+                                item.folder.mediaId = playerPrefix.concat(item.folder.mediaId);
+                            } else {
+                                item.song.mediaId = playerPrefix.concat(item.song.mediaId);
+                            }
+                        }
+                        cb.run(mediaId, results);
+                    });
+                }
+            };
+
             if (itemId.equals("")) {
                 Log.i(TAG, "Empty media id, getting the root for "
                         + wrapper.getPackageName());
-                itemId = wrapper.getRootId();
+                wrapper.getRootId((rootId) -> {
+                    playerRootCb.run(rootId);
+                });
+            } else {
+                playerRootCb.run(itemId);
             }
-
-            wrapper.getFolderItems(itemId, (status, id, results) -> {
-                if (status != BrowsedPlayerWrapper.STATUS_SUCCESS) {
-                    cb.run(mediaId, new ArrayList<ListItem>());
-                    return;
-                }
-
-                String playerPrefix = String.format("%02d", playerIndex);
-                for (ListItem item : results) {
-                    if (item.isFolder) {
-                        item.folder.mediaId = playerPrefix.concat(item.folder.mediaId);
-                    } else {
-                        item.song.mediaId = playerPrefix.concat(item.song.mediaId);
-                    }
-                }
-                cb.run(mediaId, results);
-            });
-            return;
         } else {
             cb.run(mediaId, new ArrayList<ListItem>());
         }
@@ -1133,7 +1122,7 @@ public class MediaPlayerList {
         }
 
         sb.append("List of Browsers: size=" + mBrowsablePlayers.size() + "\n");
-        for (BrowsedPlayerWrapper player : mBrowsablePlayers.values()) {
+        for (BrowsedPlayerWrapper2 player : mBrowsablePlayers.values()) {
             sb.append(player.toString().replaceAll("(?m)^", "  "));
             sb.append("\n");
         }
