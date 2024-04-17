@@ -16,6 +16,24 @@
       "message": "Have the PTS tests mentioned be integrated and run in PTS-bot for Android as well? @yuyangh@google.com",
       "revId": "eb4b03cea1cfa7a7e8259e0ac9c204c263c52dfb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83a27a5a_64a1d988",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-04-17T02:41:49Z",
+      "side": 1,
+      "message": "IIRC, the PTS software needs to be upgraded to a newer version to have these tests (CrOS tested in v8.5.1).",
+      "parentUuid": "cebafa5d_7eb28111",
+      "revId": "eb4b03cea1cfa7a7e8259e0ac9c204c263c52dfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
