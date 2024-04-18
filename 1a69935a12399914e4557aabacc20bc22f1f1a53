@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a61df96_078b63a7",
+        "filename": "framework/java/android/bluetooth/BluetoothGattServer.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-04-18T03:38:41Z",
+      "side": 1,
+      "message": "Are these two lines necessary?",
+      "range": {
+        "startLine": 122,
+        "startChar": 20,
+        "endLine": 123,
+        "endChar": 69
+      },
+      "revId": "1a69935a12399914e4557aabacc20bc22f1f1a53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc02c02a_59c6a781",
+        "filename": "framework/java/android/bluetooth/BluetoothGattServer.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-04-18T03:38:41Z",
+      "side": 1,
+      "message": "insert `catch (Exception ex)` as before just in case. There could be a scenario depending on it. (e.g. NPE for mCallback is caught in here?)",
+      "revId": "1a69935a12399914e4557aabacc20bc22f1f1a53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
