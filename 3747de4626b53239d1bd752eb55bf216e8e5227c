@@ -33,6 +33,24 @@
       "message": "bta_dm_device_search.cc ?",
       "revId": "3747de4626b53239d1bd752eb55bf216e8e5227c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34e62ce7_52063d50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-18T20:18:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb2c0599_db6b9f91",
+      "revId": "3747de4626b53239d1bd752eb55bf216e8e5227c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
