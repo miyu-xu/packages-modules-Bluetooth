@@ -17,6 +17,7 @@
 #include "btif/include/btif_dm.h"
 
 #include <android_bluetooth_flags.h>
+#include <bluetooth/log.h>
 #include <flag_macros.h>
 #include <gtest/gtest.h>
 
@@ -32,6 +33,8 @@
 #include "storage/storage_module.h"
 #include "test/fake/fake_osi.h"
 #include "test/mock/mock_osi_properties.h"
+
+using namespace bluetooth;
 
 using bluetooth::core::testing::MockCoreInterface;
 using ::testing::ElementsAre;
@@ -68,18 +71,30 @@ constexpr tBTM_BLE_IDLE_TIME_MS idle_time = 0x2468acd0;
 constexpr tBTM_BLE_ENERGY_USED energy_used = 0x13579bdf;
 }  // namespace
 
-class BtifDmTest : public ::testing::Test {
+class BtifDmWithMocksTest : public ::testing::Test {
+ protected:
+  void SetUp() override { fake_osi_ = std::make_unique<test::fake::FakeOsi>(); }
+
+  void TearDown() override { fake_osi_.reset(); }
+
+  std::unique_ptr<test::fake::FakeOsi> fake_osi_;
+};
+
+class BtifDmTest : public BtifDmWithMocksTest {
  protected:
   void SetUp() override {
-    fake_osi_ = std::make_unique<test::fake::FakeOsi>();
+    BtifDmWithMocksTest::SetUp();
     mock_core_interface_ = std::make_unique<MockCoreInterface>();
     bluetooth::legacy::testing::set_interface_to_profiles(
         mock_core_interface_.get());
   }
 
-  void TearDown() override {}
+  void TearDown() override {
+    bluetooth::legacy::testing::set_interface_to_profiles(nullptr);
+    mock_core_interface_.reset();
+    BtifDmWithMocksTest::TearDown();
+  }
 
-  std::unique_ptr<test::fake::FakeOsi> fake_osi_;
   std::unique_ptr<MockCoreInterface> mock_core_interface_;
 };
 
@@ -106,7 +121,7 @@ class BtifDmWithUidTest : public BtifDmTest {
   }
 
   void TearDown() override {
-    void btif_dm_cleanup();
+    btif_dm_cleanup();
     BtifDmTest::TearDown();
   }
 };
