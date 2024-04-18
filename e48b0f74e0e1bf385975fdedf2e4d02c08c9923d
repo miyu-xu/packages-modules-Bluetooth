@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27c79417_730c4d7f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-04-18T18:07:55Z",
+      "side": 1,
+      "message": "What a nasty rebase glitch. Thanks for finding it!",
+      "revId": "e48b0f74e0e1bf385975fdedf2e4d02c08c9923d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
