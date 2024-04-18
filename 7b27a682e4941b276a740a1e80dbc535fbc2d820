@@ -46,6 +46,30 @@
       },
       "revId": "7b27a682e4941b276a740a1e80dbc535fbc2d820",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22707cf7_b5af9271",
+        "filename": "system/bta/include/bta_jv_api.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-18T23:37:44Z",
+      "side": 1,
+      "message": "I will move this out in the enum-class-ify CL",
+      "parentUuid": "473ab54d_cbb55376",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 0
+      },
+      "revId": "7b27a682e4941b276a740a1e80dbc535fbc2d820",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
