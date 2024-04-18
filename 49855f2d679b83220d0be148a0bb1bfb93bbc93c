@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7509ef7b_bddd7574",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-18T10:52:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "440cca7d_bed00dd1",
+      "revId": "49855f2d679b83220d0be148a0bb1bfb93bbc93c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b70c2932_17c39279",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-04-18T00:36:42Z",
       "side": 1,
       "message": "same as the other one, log and continue;?",
+      "revId": "49855f2d679b83220d0be148a0bb1bfb93bbc93c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "098104b7_599181fb",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1565,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-18T10:52:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b70c2932_17c39279",
       "revId": "49855f2d679b83220d0be148a0bb1bfb93bbc93c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4deb2977_4bb359de",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1909,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-18T10:52:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "def8e308_e01d52ab",
+      "revId": "49855f2d679b83220d0be148a0bb1bfb93bbc93c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6d66dfb_cfd1a1d4",
@@ -65,6 +119,24 @@
       "writtenOn": "2024-04-18T00:36:42Z",
       "side": 1,
       "message": "how about this?\n```suggestion\n        return mPendingMetadata !\u003d null \u0026\u0026 mPendingMetadata.getBroadcastId() \u003d\u003d broadcastId;\n```",
+      "revId": "49855f2d679b83220d0be148a0bb1bfb93bbc93c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3396aa21_a653a10b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-18T10:52:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d6d66dfb_cfd1a1d4",
       "revId": "49855f2d679b83220d0be148a0bb1bfb93bbc93c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a734caa4_2f2273d4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 915,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-18T10:52:59Z",
+      "side": 1,
+      "message": "yeah, it\u0027ll be worth to just cover all cases where mPendingMetadata is cleared. Thank you for pointing this.",
+      "parentUuid": "071e3384_f5723971",
+      "revId": "49855f2d679b83220d0be148a0bb1bfb93bbc93c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ebf9c124_3123a2da",
@@ -99,6 +189,24 @@
       "writtenOn": "2024-04-18T00:36:42Z",
       "side": 1,
       "message": "did we miss this definition SOURCE_OPERATION_TIMEOUT_MS in this CL?\nand also need to pass broadcast id?\n\n                        sendMessageDelayed(\n                                CANCEL_PENDING_SOURCE_OPERATION,\n                                metaData.getBroadcastId(),\n                                BassConstants.SOURCE_OPERATION_TIMEOUT_MS);",
+      "revId": "49855f2d679b83220d0be148a0bb1bfb93bbc93c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bce27b17_f7be5a76",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1865,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-18T10:52:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ebf9c124_3123a2da",
       "revId": "49855f2d679b83220d0be148a0bb1bfb93bbc93c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -120,6 +228,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "60e3a63c_d00a9cc2",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1897,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-18T10:52:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a30488c4_f8b7304e",
+      "revId": "49855f2d679b83220d0be148a0bb1bfb93bbc93c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9517b817_6b4c0117",
@@ -133,6 +259,24 @@
       "writtenOn": "2024-04-18T00:36:42Z",
       "side": 1,
       "message": "We may not want to always clear this here? otherwise, all operation timeout can clear this pending source. and this should be handled by CANCEL_PENDING_SOURCE_OPERATION now?",
+      "revId": "49855f2d679b83220d0be148a0bb1bfb93bbc93c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac85662f_9dcfe53b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2140,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-18T10:52:59Z",
+      "side": 1,
+      "message": "Please check updated version",
+      "parentUuid": "9517b817_6b4c0117",
       "revId": "49855f2d679b83220d0be148a0bb1bfb93bbc93c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
