@@ -170,6 +170,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d58912f9_4f12dbb6",
+        "filename": "system/common/repeating_timer.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-18T17:53:40Z",
+      "side": 1,
+      "message": "In order to make it more explicit why we are changing the clock, I would like to suggest a different change:\n\n- implement `time_get_os_audio_us` that returns the clock in the same domain as the audio server (monotonic for android, monotonic_raw for floss)\n\n- pass the clock getter to the timer constructor directly:\n\n```\nRepeatingTimer(std::function\u003cuint64_t()\u003e get_time)\n      : expected_time_next_task_us_(0),\n        get_time_(get_time) {}\n```\n\nAlternatively introduce an enum describing the clock domains and use it for selecting a clock.\n\n```\nenum ClockDomain {\n   kMonotonic,\n   kMonotonicRaw,\n   kBootime,\n}\n```\n\nAny of these changes would ensure that the clock for the audio domain is specified only once for android and floss, your change adds two such selections and without looking at the commit neither explains why a particular clock is picked.",
+      "range": {
+        "startLine": 51,
+        "startChar": 31,
+        "endLine": 51,
+        "endChar": 59
+      },
+      "revId": "bf08ead580a81af92be365317f17b46e903373fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d29a6fc5_0720abdc",
         "filename": "system/gd/hal/link_clocker.cc",
         "patchSetId": 13
