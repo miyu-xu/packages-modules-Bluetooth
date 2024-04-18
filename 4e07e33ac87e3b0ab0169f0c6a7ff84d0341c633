@@ -70,6 +70,30 @@
       },
       "revId": "4e07e33ac87e3b0ab0169f0c6a7ff84d0341c633",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1373c26f_bfc4b035",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2063,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-18T19:21:40Z",
+      "side": 0,
+      "message": "Issue fixed in this patch.",
+      "parentUuid": "4534b87c_ac304292",
+      "range": {
+        "startLine": 2063,
+        "startChar": 0,
+        "endLine": 2063,
+        "endChar": 63
+      },
+      "revId": "4e07e33ac87e3b0ab0169f0c6a7ff84d0341c633",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
