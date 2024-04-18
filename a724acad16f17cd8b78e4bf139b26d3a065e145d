@@ -16,6 +16,24 @@
       "message": "Should be flagged.",
       "revId": "a724acad16f17cd8b78e4bf139b26d3a065e145d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc554e3a_3616cb3b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-18T21:01:29Z",
+      "side": 1,
+      "message": "Could you suggest a good way to flag it? Current idea is to duplicate files, but it can become very messy",
+      "parentUuid": "b003106d_f13d3050",
+      "revId": "a724acad16f17cd8b78e4bf139b26d3a065e145d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
