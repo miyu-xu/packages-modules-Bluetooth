@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "499e5ab5_b1c2674d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-18T20:02:43Z",
+      "side": 1,
+      "message": "@gkolodziejczyk@google.com fyi, I have applied similar fix to some other data length.",
+      "revId": "f4989928aa293eb4ffbaae89a70533f64e3ce06f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
