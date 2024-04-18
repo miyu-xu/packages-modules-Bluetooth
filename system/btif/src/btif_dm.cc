@@ -319,13 +319,21 @@ static bool is_bonding_or_sdp() {
          (pairing_cb.state == BT_BOND_STATE_BONDED && pairing_cb.sdp_attempts);
 }
 
-void btif_dm_init(uid_set_t* set) { uid_set = set; }
+void btif_on_name_read_from_btm(const RawAddress& bd_addr, DEV_CLASS /* dc */, BD_NAME bd_name);
+
+void btif_dm_init(uid_set_t* set) {
+  uid_set = set;
+
+  BTM_SecAddRmtNameNotifyCallback(&btif_on_name_read_from_btm);
+}
 
 void btif_dm_cleanup(void) {
   if (uid_set) {
     uid_set_destroy(uid_set);
     uid_set = NULL;
   }
+
+  BTM_SecDeleteRmtNameNotifyCallback(&btif_on_name_read_from_btm);
 }
 
 bt_status_t btif_in_execute_service_request(tBTA_SERVICE_ID service_id,
@@ -1432,43 +1440,6 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event,
   log::verbose("event={}", dump_dm_search_event(event));
 
   switch (event) {
-    case BTA_DM_NAME_READ_EVT: {
-      /* Remote name update */
-      if (strlen((const char*)p_search_data->name_res.bd_name)) {
-        /** Fix inquiry time too long @{ */
-        bt_property_t properties[3];
-        /** @} */
-        bt_status_t status;
-
-        properties[0].type = BT_PROPERTY_BDNAME;
-        properties[0].val = p_search_data->name_res.bd_name;
-        properties[0].len = strlen((char*)p_search_data->name_res.bd_name);
-        RawAddress& bdaddr = p_search_data->name_res.bd_addr;
-
-        status =
-            btif_storage_set_remote_device_property(&bdaddr, &properties[0]);
-        ASSERTC(status == BT_STATUS_SUCCESS,
-                "failed to save remote device property", status);
-        GetInterfaceToProfiles()->events->invoke_remote_device_properties_cb(
-            status, bdaddr, 1, properties);
-        /** Fix inquiry time too long @{ */
-        uint32_t cod = get_cod(&bdaddr);
-        if (cod != 0) {
-          BTIF_STORAGE_FILL_PROPERTY(&properties[1], BT_PROPERTY_BDADDR, sizeof(bdaddr), &bdaddr);
-          BTIF_STORAGE_FILL_PROPERTY(&properties[2], BT_PROPERTY_CLASS_OF_DEVICE, sizeof(uint32_t), &cod);
-          log::debug("report new device to JNI");
-          GetInterfaceToProfiles()->events->invoke_device_found_cb(3, properties);
-        } else {
-          log::info("Skipping RNR callback because cod is zero addr:{} name:{}",
-                    ADDRESS_TO_LOGGABLE_CSTR(bdaddr),
-                    PRIVATE_NAME(reinterpret_cast<char const*>(
-                        p_search_data->name_res.bd_name)));
-        }
-        /** @} */
-      }
-      /* TODO: Services? */
-    } break;
-
     case BTA_DM_INQ_RES_EVT: {
       /* inquiry result */
       bt_bdname_t bdname;
@@ -2058,6 +2029,62 @@ void btif_on_gatt_results(RawAddress bd_addr, BD_NAME bd_name,
       BT_STATUS_SUCCESS, bd_addr, num_properties, prop);
 }
 
+void btif_on_name_read(RawAddress bd_addr, tHCI_ERROR_CODE hci_status,
+                       const BD_NAME bd_name, bool during_device_search) {
+  if (hci_status != HCI_SUCCESS) {
+    log::warn("Received RNR event with bad status addr:{} hci_status:{}",
+              ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
+              hci_error_code_text(hci_status));
+    return;
+  }
+  if (bd_name[0] == '\0') {
+    log::warn("Received RNR event without valid name addr:{}",
+              ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+    return;
+  }
+
+  bt_property_t properties[3] = {{
+      .type = BT_PROPERTY_BDNAME,
+      .len = (int)strnlen((char*)bd_name, BD_NAME_LEN),
+      .val = (void*)bd_name,
+  }};
+
+  const bt_status_t status =
+      btif_storage_set_remote_device_property(&bd_addr, properties);
+  log::assert_that(status == BT_STATUS_SUCCESS,
+                   "Failed to save remote device property status:{}",
+                   bt_status_text(status));
+  GetInterfaceToProfiles()->events->invoke_remote_device_properties_cb(
+      status, bd_addr, 1, properties);
+  log::info("Callback for read name event addr:{} name:{}",
+            ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
+            PRIVATE_NAME(reinterpret_cast<char const*>(bd_name)));
+
+  if (!during_device_search) {
+    return;
+  }
+
+  uint32_t cod = get_cod(&bd_addr);
+  if (cod != 0) {
+    BTIF_STORAGE_FILL_PROPERTY(&properties[1], BT_PROPERTY_BDADDR,
+                               sizeof(bd_addr), &bd_addr);
+    BTIF_STORAGE_FILL_PROPERTY(&properties[2], BT_PROPERTY_CLASS_OF_DEVICE,
+                               sizeof(uint32_t), &cod);
+    log::debug("report new device to JNI");
+    GetInterfaceToProfiles()->events->invoke_device_found_cb(3, properties);
+  } else {
+    log::info(
+        "Skipping device found callback because cod is zero addr:{} name:{}",
+        ADDRESS_TO_LOGGABLE_CSTR(bd_addr),
+        PRIVATE_NAME(reinterpret_cast<char const*>(bd_name)));
+  }
+}
+
+void btif_on_name_read_from_btm(const RawAddress& bd_addr, DEV_CLASS /* dc */, BD_NAME bd_name) {
+  log::info("{} {}", ADDRESS_TO_LOGGABLE_CSTR(bd_addr), reinterpret_cast<char const*>(bd_name));
+  btif_on_name_read(bd_addr, HCI_SUCCESS, bd_name, false /* duirng_device_search */);
+}
+
 void btif_on_did_received(RawAddress bd_addr, uint8_t vendor_id_src,
                           uint16_t vendor_id, uint16_t product_id,
                           uint16_t version) {
@@ -2160,6 +2187,8 @@ void BTIF_dm_enable() {
 
   log::info("Local BLE Privacy enabled:{}", ble_privacy_enabled);
   BTA_DmBleConfigLocalPrivacy(ble_privacy_enabled);
+
+  BTA_DmSetNameReadCompleteCb(btif_on_name_read);
 
   /* for each of the enabled services in the mask, trigger the profile
    * enable */

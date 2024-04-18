@@ -239,6 +239,7 @@ const uint16_t bta_service_id_to_uuid_lkup_tbl[BTA_MAX_SERVICE_ID] = {
 static uint8_t g_disc_raw_data_buf[MAX_DISC_RAW_DATA_BUF];
 
 static void bta_dm_discovery_set_state(tBTA_DM_SERVICE_DISCOVERY_STATE state) {
+  log::info("{} -> {}", bta_dm_state_text(bta_dm_discovery_cb.service_discovery_state), bta_dm_state_text(state));
   bta_dm_discovery_cb.service_discovery_state = state;
 }
 static tBTA_DM_SERVICE_DISCOVERY_STATE bta_dm_discovery_get_state() {
@@ -499,11 +500,6 @@ static void bta_dm_sdp_result(tBTA_DM_SDP_RESULT& sdp_event) {
     } else {
       /* callbacks */
       /* start next bd_addr if necessary */
-
-      // TODO: this seems unneded now. Double check
-      //  get_btm_client_interface().security.BTM_SecDeleteRmtNameNotifyCallback(
-      //      &bta_dm_service_search_remname_cback);
-
       BTM_LogHistory(
           kBtmLogTag, bta_dm_discovery_cb.peer_bdaddr, "Discovery completed",
           base::StringPrintf("Result:%s services_found:0x%x service_index:0x%d",
@@ -560,10 +556,6 @@ static void bta_dm_sdp_result(tBTA_DM_SDP_RESULT& sdp_event) {
     if (bta_dm_discovery_cb.p_sdp_db)
       osi_free_and_reset((void**)&bta_dm_discovery_cb.p_sdp_db);
 
-    // TODO: this seems unneeded now
-    // get_btm_client_interface().security.BTM_SecDeleteRmtNameNotifyCallback(
-    //     &bta_dm_service_search_remname_cback);
-
     auto msg = std::make_unique<tBTA_DM_MSG>(tBTA_DM_SVC_RES{});
     auto& disc_result = std::get<tBTA_DM_SVC_RES>(*msg);
 
@@ -592,6 +584,7 @@ static void bta_dm_read_dis_cmpl(const RawAddress& addr,
 #endif
 
 static void bta_dm_service_discovery_cmpl() {
+  log::info("bta_dm_service_discovery_cmpl");
   bta_dm_discovery_set_state(BTA_DM_DISCOVER_IDLE);
 
   uint16_t conn_id = bta_dm_discovery_cb.conn_id;
@@ -613,6 +606,11 @@ static void bta_dm_service_discovery_cmpl() {
     } else {
       log::info("No BLE connection, processing classic results");
     }
+
+    log::info("Will do name discovery on {}", ADDRESS_TO_LOGGABLE_CSTR(bta_dm_discovery_cb.peer_bdaddr));
+    /* TODO: split name reading from device search logic */
+    bta_dm_discover_name(bta_dm_discovery_cb.peer_bdaddr);
+
   } else {
     btgatt_db_element_t* db = NULL;
     int count = 0;

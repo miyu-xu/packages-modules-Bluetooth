@@ -216,8 +216,7 @@ typedef enum : uint8_t {
   BTA_DM_DISC_RES_EVT = 2,  /* Service Discovery result for a peer device. */
   BTA_DM_DISC_CMPL_EVT = 3, /* Discovery complete. */
   BTA_DM_SEARCH_CANCEL_CMPL_EVT = 4, /* Search cancelled */
-  BTA_DM_NAME_READ_EVT = 5,          /* Name read complete. */
-  BTA_DM_OBSERVE_CMPL_EVT = 6,       /* Observe complete. */
+  BTA_DM_OBSERVE_CMPL_EVT = 5,       /* Observe complete. */
 } tBTA_DM_SEARCH_EVT;
 
 inline std::string bta_dm_search_evt_text(const tBTA_DM_SEARCH_EVT& event) {
@@ -227,7 +226,6 @@ inline std::string bta_dm_search_evt_text(const tBTA_DM_SEARCH_EVT& event) {
     CASE_RETURN_TEXT(BTA_DM_DISC_RES_EVT);
     CASE_RETURN_TEXT(BTA_DM_DISC_CMPL_EVT);
     CASE_RETURN_TEXT(BTA_DM_SEARCH_CANCEL_CMPL_EVT);
-    CASE_RETURN_TEXT(BTA_DM_NAME_READ_EVT);
     CASE_RETURN_TEXT(BTA_DM_OBSERVE_CMPL_EVT);
     default:
       return base::StringPrintf("UNKNOWN[%hhu]", event);
@@ -267,20 +265,17 @@ typedef struct {
   uint8_t num_resps; /* Number of responses. */
 } tBTA_DM_OBSERVE_CMPL;
 
-/* Structure associated with BTA_DM_NAME_READ_EVT */
-typedef struct {
-  RawAddress bd_addr;          /* BD address peer device. */
-  BD_NAME bd_name;             /* Name of peer device. */
-} tBTA_DM_NAME_READ_CMPL;
-
 /* Union of all search callback structures */
 typedef union {
-  tBTA_DM_INQ_RES inq_res;   /* Inquiry result for a peer device. */
-  tBTA_DM_NAME_READ_CMPL name_res;   /* Name read result for a peer device. */
+  tBTA_DM_INQ_RES inq_res;           /* Inquiry result for a peer device. */
   tBTA_DM_OBSERVE_CMPL observe_cmpl; /* Observe complete. */
 } tBTA_DM_SEARCH;
 
 /* Search callback */
+typedef void(tBTA_DM_NAME_READ_CBACK)(RawAddress bd_addr,
+                                      tHCI_ERROR_CODE hci_status,
+                                      const BD_NAME bd_name,
+                                      bool during_device_search);
 typedef void(tBTA_DM_SEARCH_CBACK)(tBTA_DM_SEARCH_EVT event,
                                    tBTA_DM_SEARCH* p_data);
 typedef void(tBTA_DM_GATT_DISC_CBACK)(RawAddress bd_addr, BD_NAME bd_name,
@@ -513,6 +508,8 @@ void BTA_DmSetDeviceName(const char* p_name);
  *
  ******************************************************************************/
 bool BTA_DmSetVisibility(bt_scan_mode_t mode);
+
+void BTA_DmSetNameReadCompleteCb(tBTA_DM_NAME_READ_CBACK* p_cback);
 
 /*******************************************************************************
  *
