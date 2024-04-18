@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0840fb6f_e7ce6d32",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2024-04-18T18:47:40Z",
+      "side": 1,
+      "message": "I\u0027ve requested Ying + other Chromeos-Bluetooth members have push permission to our docker image registry so that they can push newly built iamges. This change looks fine as long as it\u0027s tested.",
+      "revId": "5d0d5e840cc706d1914a2436356cd2da85197d2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
