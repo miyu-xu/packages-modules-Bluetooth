@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "732f4f44_91597298",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1213,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-18T00:18:57Z",
+      "side": 0,
+      "message": "Did you mean to remove this?",
+      "range": {
+        "startLine": 1213,
+        "startChar": 10,
+        "endLine": 1213,
+        "endChar": 28
+      },
+      "revId": "9a684c9ed794cb580fc4dde529fd8b72bf64232d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
