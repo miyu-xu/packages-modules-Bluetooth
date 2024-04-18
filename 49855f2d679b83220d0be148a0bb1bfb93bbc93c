@@ -1,0 +1,163 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "440cca7d_bed00dd1",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-18T00:36:42Z",
+      "side": 1,
+      "message": "Now since we\u0027ve fixed this in another way, should we also return the error status instead of exception?\n\nlike what mentioned by @belusiak@google.com in the bug.",
+      "revId": "49855f2d679b83220d0be148a0bb1bfb93bbc93c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b70c2932_17c39279",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1565,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-18T00:36:42Z",
+      "side": 1,
+      "message": "same as the other one, log and continue;?",
+      "revId": "49855f2d679b83220d0be148a0bb1bfb93bbc93c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "def8e308_e01d52ab",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1909,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-18T00:36:42Z",
+      "side": 1,
+      "message": "Should we better add this to avoid race condition on the message operations?\n\n```suggestion\n            synchronized (mStateMachines) {\n                BassClientStateMachine sm \u003d getOrCreateStateMachine(device);\n                if (sm !\u003d null \u0026\u0026 sm.hasPendingSourceOperation(broadcastId)) {\n                    Message message \u003d\n                        sm.obtainMessage(BassClientStateMachine.CANCEL_PENDING_SOURCE_OPERATION);\n                    message.arg1 \u003d broadcastId;\n                    sm.sendMessage(message);\n                }\n            }\n```",
+      "revId": "49855f2d679b83220d0be148a0bb1bfb93bbc93c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6d66dfb_cfd1a1d4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-18T00:36:42Z",
+      "side": 1,
+      "message": "how about this?\n```suggestion\n        return mPendingMetadata !\u003d null \u0026\u0026 mPendingMetadata.getBroadcastId() \u003d\u003d broadcastId;\n```",
+      "revId": "49855f2d679b83220d0be148a0bb1bfb93bbc93c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "071e3384_f5723971",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 915,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-18T00:36:42Z",
+      "side": 1,
+      "message": "What about the failing case like line.2017? do we need to do something similar when we set mPendingMetadata \u003d null;?",
+      "revId": "49855f2d679b83220d0be148a0bb1bfb93bbc93c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebf9c124_3123a2da",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1865,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-18T00:36:42Z",
+      "side": 1,
+      "message": "did we miss this definition SOURCE_OPERATION_TIMEOUT_MS in this CL?\nand also need to pass broadcast id?\n\n                        sendMessageDelayed(\n                                CANCEL_PENDING_SOURCE_OPERATION,\n                                metaData.getBroadcastId(),\n                                BassConstants.SOURCE_OPERATION_TIMEOUT_MS);",
+      "revId": "49855f2d679b83220d0be148a0bb1bfb93bbc93c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a30488c4_f8b7304e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1897,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-18T00:36:42Z",
+      "side": 1,
+      "message": "same as above for broadcast id.",
+      "revId": "49855f2d679b83220d0be148a0bb1bfb93bbc93c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9517b817_6b4c0117",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2140,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-18T00:36:42Z",
+      "side": 1,
+      "message": "We may not want to always clear this here? otherwise, all operation timeout can clear this pending source. and this should be handled by CANCEL_PENDING_SOURCE_OPERATION now?",
+      "revId": "49855f2d679b83220d0be148a0bb1bfb93bbc93c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef2d77da_3c23fdfc",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2087,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-18T00:36:42Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"an cancel\" -- should it be \"a cancel\"?\n\nAnalyzer Description: Linter for catching common typos motivated by go/todo-fail and go/lol-codesearch. Shared with google3 common typos library go/common-typos.\nOwner: ayeaye-team@google.com\n\nCommon typo found: \"an cancel\" -- should it be \"a cancel\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 2087,
+        "startChar": 18,
+        "endLine": 2087,
+        "endChar": 27
+      },
+      "revId": "49855f2d679b83220d0be148a0bb1bfb93bbc93c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

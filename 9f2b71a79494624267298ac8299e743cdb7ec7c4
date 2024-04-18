@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "afb48c2d_5d1e0abb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-18T00:36:42Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8dd4e679_a14950fe",
+      "revId": "9f2b71a79494624267298ac8299e743cdb7ec7c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "093de207_077f0a5e",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "would the new CL be ok for you ?",
       "parentUuid": "093de207_077f0a5e",
+      "revId": "9f2b71a79494624267298ac8299e743cdb7ec7c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2e0d1f9_4c2be061",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1925,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-18T00:36:42Z",
+      "side": 1,
+      "message": "Thanks for the update.",
+      "parentUuid": "f12beb46_a4692e8c",
       "revId": "9f2b71a79494624267298ac8299e743cdb7ec7c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
