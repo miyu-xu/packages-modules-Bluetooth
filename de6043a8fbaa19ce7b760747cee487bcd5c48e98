@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8c6ad53_8902aee2",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1018,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-18T20:49:56Z",
+      "side": 1,
+      "message": "Should we remove this? if parameter check failed, we\u0027re going to trigger modify source callback with the error code in line.1708.",
+      "revId": "de6043a8fbaa19ce7b760747cee487bcd5c48e98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c814300a_9b44f8d6",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2038,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-18T20:49:56Z",
+      "side": 1,
+      "message": "This also needed?\n\n```suggestion\n                        mPendingMetadata \u003d null;\n                        removeMessages(CANCEL_PENDING_SOURCE_OPERATION);\n```",
+      "revId": "de6043a8fbaa19ce7b760747cee487bcd5c48e98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21aa1265_0d14e5fb",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassConstants.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-18T20:49:56Z",
+      "side": 1,
+      "message": "Can you help to share a bit why we use 3s here?",
+      "revId": "de6043a8fbaa19ce7b760747cee487bcd5c48e98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
