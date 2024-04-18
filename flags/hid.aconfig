@@ -25,3 +25,10 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "add_hid_reports_to_queue_when_uhid_not_opened"
+    namespace: "bluetooth"
+    description: "queue the UHID_INPUT events when UHID device is not opened and send them all at once when UHID is opened"
+    bug: "299192582"
+}

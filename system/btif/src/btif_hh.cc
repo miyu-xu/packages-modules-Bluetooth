@@ -155,7 +155,8 @@ void bta_hh_co_send_hid_info(btif_hh_device_t* p_dev, const char* dev_name,
                              uint16_t vendor_id, uint16_t product_id,
                              uint16_t version, uint8_t ctry_code, int dscp_len,
                              uint8_t* p_dscp);
-void bta_hh_co_write(int fd, uint8_t* rpt, uint16_t len);
+void bta_hh_co_write(btif_hh_device_t* p_dev, uint8_t* rpt, uint16_t len);
+void bta_hh_co_rpt_data(tBTA_HH_RPT_DATA& rpt_data);
 static void bte_hh_evt(tBTA_HH_EVT event, tBTA_HH* p_data);
 void btif_dm_hh_open_failed(RawAddress* bdaddr);
 void btif_hd_service_registration();
@@ -188,8 +189,10 @@ static void set_keylockstate(int keymask, bool isSet) {
  * Returns          void
  ******************************************************************************/
 
-static void toggle_os_keylockstates(int fd, int changedlockstates) {
-  log::verbose("fd = {}, changedlockstates = 0x{:x}", fd, changedlockstates);
+static void toggle_os_keylockstates(btif_hh_device_t* p_dev,
+                                    int changedlockstates) {
+  log::verbose("fd = {}, changedlockstates = 0x{:x}", p_dev->fd,
+               changedlockstates);
   uint8_t hidreport[9];
   int reportIndex;
   memset(hidreport, 0, 9);
@@ -215,7 +218,7 @@ static void toggle_os_keylockstates(int fd, int changedlockstates) {
   log::verbose("| {:x} {:x} {:x}", hidreport[0], hidreport[1], hidreport[2]);
   log::verbose("| {:x} {:x} {:x}", hidreport[3], hidreport[4], hidreport[5]);
   log::verbose("| {:x} {:x} {:x}", hidreport[6], hidreport[7], hidreport[8]);
-  bta_hh_co_write(fd, hidreport, sizeof(hidreport));
+  bta_hh_co_write(p_dev, hidreport, sizeof(hidreport));
   usleep(200000);
   memset(hidreport, 0, 9);
   hidreport[0] = 1;
@@ -223,7 +226,7 @@ static void toggle_os_keylockstates(int fd, int changedlockstates) {
   log::verbose("| {:x} {:x} {:x}", hidreport[0], hidreport[1], hidreport[2]);
   log::verbose("| {:x} {:x} {:x}", hidreport[3], hidreport[4], hidreport[5]);
   log::verbose("| {:x} {:x} {:x}", hidreport[6], hidreport[7], hidreport[8]);
-  bta_hh_co_write(fd, hidreport, sizeof(hidreport));
+  bta_hh_co_write(p_dev, hidreport, sizeof(hidreport));
 }
 
 /*******************************************************************************
@@ -298,7 +301,7 @@ static void sync_lockstate_on_connect(btif_hh_device_t* p_dev) {
         "Sending hid report to kernel indicating lock key state 0x{:x}",
         keylockstates);
     usleep(200000);
-    toggle_os_keylockstates(p_dev->fd, keylockstates);
+    toggle_os_keylockstates(p_dev, keylockstates);
   } else {
     log::verbose(
         "NOT sending hid report to kernel indicating lock key state 0x{:x}",
@@ -1016,6 +1019,10 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
       hh_open_handler(p_data->conn);
       break;
 
+    case BTA_HH_RPT_DATA_EVT:
+      bta_hh_co_rpt_data(p_data->rpt_data);
+      break;
+
     case BTA_HH_CLOSE_EVT:
       log::verbose("BTA_HH_CLOSE_EVT: status = {}, handle = {}",
                    p_data->dev_status.status, p_data->dev_status.handle);
@@ -1386,6 +1393,8 @@ static void bte_hh_evt(tBTA_HH_EVT event, tBTA_HH* p_data) {
     param_len = sizeof(tBTA_HH_DEV_INFO);
   else if (BTA_HH_API_ERR_EVT == event)
     param_len = 0;
+  else if (BTA_HH_RPT_DATA_EVT == event)
+    param_len = sizeof(tBTA_HH_RPT_DATA);
   /* switch context to btif task context (copy full union size for convenience)
    */
   status = btif_transfer_context(btif_hh_upstreams_evt, (uint16_t)event,

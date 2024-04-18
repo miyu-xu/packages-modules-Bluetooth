@@ -1647,6 +1647,26 @@ static void bta_hh_le_input_rpt_notify(tBTA_GATTC_NOTIFY* p_data) {
     p_buf = p_data->value;
   }
 
+  if (IS_FLAG_ENABLED(add_hid_reports_to_queue_when_uhid_not_opened)) {
+    tBTA_HH data = {
+        .rpt_data =
+            {
+                .p_buf = p_buf,
+                .len = p_data->len,
+                .need_free_buf = (p_buf != p_data->value),
+                .hid_handle = (uint8_t)p_dev_cb->hid_handle,
+                .mode = p_dev_cb->mode,
+                .ctry_code = p_dev_cb->dscp_info.ctry_code,
+                .spec = p_dev_cb->link_spec,
+                .app_id = app_id,
+            },
+    };
+
+    /* LE report data event */
+    (*bta_hh_cb.p_cback)(BTA_HH_RPT_DATA_EVT, &data);
+    return;
+  }
+
   bta_hh_co_data((uint8_t)p_dev_cb->hid_handle, p_buf, p_data->len,
                  p_dev_cb->mode, 0, /* no sub class*/
                  p_dev_cb->dscp_info.ctry_code, p_dev_cb->link_spec, app_id);

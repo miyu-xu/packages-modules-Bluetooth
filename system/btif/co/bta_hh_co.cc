@@ -51,6 +51,7 @@ static tBTA_HH_RPT_CACHE_ENTRY sReportCache[BTA_HH_NV_LOAD_MAX];
 #define BTA_HH_UHID_POLL_PERIOD_MS 50
 /* Max number of polling interrupt allowed */
 #define BTA_HH_UHID_INTERRUPT_COUNT_MAX 100
+#define BTA_HH_DEFAULT_WAIT_AFTER_UHID_OPEN_US 30000
 
 using namespace bluetooth;
 
@@ -163,7 +164,12 @@ static int uhid_read_event(btif_hh_device_t* p_dev) {
   switch (ev.type) {
     case UHID_START:
       log::verbose("UHID_START from uhid-dev\n");
-      p_dev->ready_for_data = true;
+      if (IS_FLAG_ENABLED(add_hid_reports_to_queue_when_uhid_not_opened)) {
+        std::lock_guard<std::mutex> lock(*p_dev->uhid_event_mutex);
+        p_dev->ready_for_data = false;
+      } else {
+        p_dev->ready_for_data = true;
+      }
       break;
     case UHID_STOP:
       log::verbose("UHID_STOP from uhid-dev\n");
@@ -171,7 +177,25 @@ static int uhid_read_event(btif_hh_device_t* p_dev) {
       break;
     case UHID_OPEN:
       log::verbose("UHID_OPEN from uhid-dev\n");
-      p_dev->ready_for_data = true;
+      if (IS_FLAG_ENABLED(add_hid_reports_to_queue_when_uhid_not_opened)) {
+        /* UHID_OPEN is not an accurate indicator since it indicates a thread
+         * has opened the uhid device but it might not be Android Input. So the
+         * current workaround is to wait for some time after UHID_OPEN has
+         received.
+
+         * See https://kernel.org/doc/Documentation/hid/uhid.txt */
+        usleep(BTA_HH_DEFAULT_WAIT_AFTER_UHID_OPEN_US);
+        std::lock_guard<std::mutex> lock(*p_dev->uhid_event_mutex);
+        struct uhid_event* p_ev = nullptr;
+        while ((p_ev = (struct uhid_event*)fixed_queue_try_dequeue(
+                    p_dev->uhid_event_queue))) {
+          uhid_write(p_dev->fd, p_ev);
+          osi_free(p_ev);
+        }
+        p_dev->ready_for_data = true;
+      } else {
+        p_dev->ready_for_data = true;
+      }
       break;
     case UHID_CLOSE:
       log::verbose("UHID_CLOSE from uhid-dev\n");
@@ -290,6 +314,17 @@ static bool uhid_fd_open(btif_hh_device_t* p_dev) {
 
   if (p_dev->hh_keep_polling == 0) {
     p_dev->hh_keep_polling = 1;
+
+    if (IS_FLAG_ENABLED(add_hid_reports_to_queue_when_uhid_not_opened)) {
+      log::info("Uhid event queue initializing ");
+      p_dev->uhid_event_mutex = new std::mutex;
+      CHECK(p_dev->uhid_event_mutex);
+
+      p_dev->uhid_event_queue = fixed_queue_new(SIZE_MAX);
+      CHECK(p_dev->uhid_event_queue);
+    } else {
+      p_dev->uhid_event_mutex = nullptr;
+    }
     p_dev->hh_poll_thread_id = create_thread(btif_hh_poll_event_thread, p_dev);
   }
   return true;
@@ -404,9 +439,37 @@ static void* btif_hh_poll_event_thread(void* arg) {
   return 0;
 }
 
-int bta_hh_co_write(int fd, uint8_t* rpt, uint16_t len) {
+int bta_hh_co_write(btif_hh_device_t* p_dev, uint8_t* rpt, uint16_t len) {
   log::verbose("UHID write {}", len);
 
+  if (IS_FLAG_ENABLED(add_hid_reports_to_queue_when_uhid_not_opened)) {
+    std::lock_guard<std::mutex> lock(*p_dev->uhid_event_mutex);
+
+    if (!p_dev->ready_for_data) {
+      struct uhid_event* p_ev =
+          (struct uhid_event*)osi_malloc(sizeof(struct uhid_event));
+      if (!p_ev) {
+        log::error("allocate uhid_event failed");
+        return -2;
+      }
+      memset(p_ev, 0, sizeof(*p_ev));
+      p_ev->type = UHID_INPUT;
+      p_ev->u.input.size = len;
+      if (len > sizeof(p_ev->u.input.data)) {
+        log::error("{}: Report size greater than allowed size", __func__);
+        osi_free(p_ev);
+        return -ENOMEM;
+      }
+      memcpy(p_ev->u.input.data, rpt, len);
+
+      if (!fixed_queue_try_enqueue(p_dev->uhid_event_queue, (void*)p_ev)) {
+        osi_free(p_ev);
+        log::error("uhid_event_queue is full, dropping event");
+        return -1;
+      }
+      return 0;
+    }
+  }
   struct uhid_event ev;
   memset(&ev, 0, sizeof(ev));
   ev.type = UHID_INPUT;
@@ -417,7 +480,7 @@ int bta_hh_co_write(int fd, uint8_t* rpt, uint16_t len) {
   }
   memcpy(ev.u.input.data, rpt, len);
 
-  return uhid_write(fd, &ev);
+  return uhid_write(p_dev->fd, &ev);
 }
 
 /*******************************************************************************
@@ -519,6 +582,15 @@ void bta_hh_co_close(btif_hh_device_t* p_dev) {
     p_dev->hh_keep_polling = 0;
     pthread_join(p_dev->hh_poll_thread_id, NULL);
     p_dev->hh_poll_thread_id = -1;
+
+    if (IS_FLAG_ENABLED(add_hid_reports_to_queue_when_uhid_not_opened)) {
+      fixed_queue_flush(p_dev->uhid_event_queue, osi_free);
+      fixed_queue_free(p_dev->uhid_event_queue, nullptr);
+      p_dev->uhid_event_queue = nullptr;
+
+      delete p_dev->uhid_event_mutex;
+      p_dev->uhid_event_mutex = nullptr;
+    }
   }
   /* UHID file descriptor is closed by the polling thread */
 }
@@ -556,6 +628,12 @@ void bta_hh_co_data(uint8_t dev_handle, uint8_t* p_rpt, uint16_t len,
     return;
   }
 
+  if (IS_FLAG_ENABLED(add_hid_reports_to_queue_when_uhid_not_opened)) {
+    if (bta_hh_co_write(p_dev, p_rpt, len) < 0) {
+      log::warn("Error: len = %d", len);
+    }
+    return;
+  }
   // Wait a maximum of MAX_POLLING_ATTEMPTS x POLLING_SLEEP_DURATION in case
   // device creation is pending.
   if (p_dev->fd >= 0) {
@@ -568,13 +646,38 @@ void bta_hh_co_data(uint8_t dev_handle, uint8_t* p_rpt, uint16_t len,
 
   // Send the HID data to the kernel.
   if ((p_dev->fd >= 0) && p_dev->ready_for_data) {
-    bta_hh_co_write(p_dev->fd, p_rpt, len);
+    bta_hh_co_write(p_dev, p_rpt, len);
   } else {
     log::warn("Error: fd = {}, ready {}, len = {}", p_dev->fd,
               p_dev->ready_for_data, len);
   }
 }
 
+/*******************************************************************************
+ *
+ * Function         bta_hh_co_rpt_data
+ *
+ * Description      This function is executed by BTA when HID host receive a
+ *                  le data report.
+ *
+ * Parameters       rpt_data      - le report data
+ *
+ * Returns          void
+ ******************************************************************************/
+void bta_hh_co_rpt_data(tBTA_HH_RPT_DATA& rpt_data) {
+  btif_hh_device_t* p_dev =
+      btif_hh_find_connected_dev_by_handle(rpt_data.hid_handle);
+  if (p_dev == NULL) {
+    log::warn("Error: unknown HID device handle {}", rpt_data.hid_handle);
+    return;
+  }
+
+  bta_hh_co_data((uint8_t)rpt_data.hid_handle, rpt_data.p_buf, rpt_data.len,
+                 rpt_data.mode, 0, /* no sub class*/
+                 rpt_data.ctry_code, rpt_data.spec, rpt_data.app_id);
+
+  if (rpt_data.need_free_buf) osi_free(rpt_data.p_buf);
+}
 /*******************************************************************************
  *
  * Function         bta_hh_co_send_hid_info
