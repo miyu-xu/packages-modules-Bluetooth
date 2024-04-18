@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3b6e406_fe1bb3af",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1008,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-04-18T05:37:16Z",
+      "side": 1,
+      "message": "Added remainder of work into this CL. Thank you.",
+      "parentUuid": "0c33cc4e_bc1bc6b0",
+      "range": {
+        "startLine": 1008,
+        "startChar": 8,
+        "endLine": 1008,
+        "endChar": 10
+      },
+      "revId": "ae01ce7b7a56db41eab51ebbfd16445251bb8719",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1c50e73_9c0e4350",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-04T19:07:51Z",
       "side": 1,
       "message": "nit: Is this log necessary?",
+      "range": {
+        "startLine": 46,
+        "startChar": 8,
+        "endLine": 46,
+        "endChar": 13
+      },
+      "revId": "ae01ce7b7a56db41eab51ebbfd16445251bb8719",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "365764e0_a8950225",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-04-18T05:37:16Z",
+      "side": 1,
+      "message": "Removed. Thank you.",
+      "parentUuid": "d1c50e73_9c0e4350",
       "range": {
         "startLine": 46,
         "startChar": 8,
