@@ -484,6 +484,10 @@ uint8_t avdt_ad_write_req(uint8_t type, AvdtpCcb* p_ccb, AvdtpScb* p_scb,
   /* get tcid from type, scb */
   tcid = avdt_ad_type_to_tcid(type, p_scb);
 
+  extern uint16_t avdtp_stream_id;
+  L2CA_GetRemoteCid(
+        avdtp_cb.ad.rt_tbl[avdt_ccb_to_idx(p_ccb)][tcid].lcid, &avdtp_stream_id);
+
   return L2CA_DataWrite(avdtp_cb.ad.rt_tbl[avdt_ccb_to_idx(p_ccb)][tcid].lcid,
                         p_buf);
 }

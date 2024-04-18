@@ -16,6 +16,8 @@
 
 #include "hci/hci_layer.h"
 
+#include <cutils/trace.h>
+
 #ifdef TARGET_FLOSS
 #include <signal.h>
 #endif
@@ -381,6 +383,7 @@ struct HciLayer::impl {
 
   void on_hci_event(EventView event) {
     log::assert_that(event.IsValid(), "assert failed: event.IsValid()");
+    atrace_async_end(ATRACE_TAG_AUDIO, "hci_event", static_cast<int32_t>(event.GetEventCode()));
     if (command_queue_.empty()) {
       auto event_code = event.GetEventCode();
       // BT Core spec 5.2 (Volume 4, Part E section 4.4) allows anytime
@@ -511,6 +514,7 @@ struct HciLayer::hal_callbacks : public hal::HciHalCallbacks {
   }
 
   void aclDataReceived(hal::HciPacket data_bytes) override {
+    atrace_async_end(ATRACE_TAG_AUDIO, "hci_acl_rx", 0);
     auto packet = packet::PacketView<packet::kLittleEndian>(
         std::make_shared<std::vector<uint8_t>>(std::move(data_bytes)));
     auto acl = std::make_unique<AclView>(AclView::Create(packet));

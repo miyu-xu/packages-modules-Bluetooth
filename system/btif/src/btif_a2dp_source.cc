@@ -1058,6 +1058,10 @@ static bool btif_a2dp_source_enqueue_callback(BT_HDR* p_buf, size_t frames_n,
       btif_a2dp_source_cb.encoder_interface != nullptr,
       "assert failed: btif_a2dp_source_cb.encoder_interface != nullptr");
 
+  static int avdtp_pkt_counter = 0;
+  extern std::queue<int> avdtp_pkt_queue;
+  avdtp_pkt_queue.push(avdtp_pkt_counter);
+  atrace_async_begin(ATRACE_TAG_AUDIO, "a2dp_tx", avdtp_pkt_counter++);
   fixed_queue_enqueue(btif_a2dp_source_cb.tx_audio_queue, p_buf);
 
   return true;

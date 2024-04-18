@@ -70,6 +70,16 @@ filegroup {
 }
 
 filegroup {
+    name: "BluetoothOsSources_linux_generic_lean",
+    srcs: [
+        "handler.cc",
+        "linux_generic/reactive_semaphore.cc",
+        "linux_generic/reactor.cc",
+        "linux_generic/thread.cc",
+    ],
+}
+
+filegroup {
     name: "BluetoothOsTestSources_linux_generic",
     srcs: [
         "linux_generic/alarm_unittest.cc",

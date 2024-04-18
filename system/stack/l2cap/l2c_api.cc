@@ -1696,6 +1696,10 @@ void L2CA_SetMediaStreamChannel(uint16_t local_media_cid, bool status) {
         av_media_channels[set_channel].local_cid,
         av_media_channels[set_channel].p_ccb->remote_cid);
 
+
+    //extern int avdtp_stream_id;
+    //avdtp_stream_id = av_media_channels[set_channel].p_ccb->remote_cid;
+
     log::verbose(
         "Set A2DP media snoop filtering for local_cid: {}, remote_cid: {}",
         local_media_cid, av_media_channels[set_channel].p_ccb->remote_cid);

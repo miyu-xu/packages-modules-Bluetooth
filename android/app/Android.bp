@@ -163,6 +163,9 @@ cc_library_shared {
     apex_available: [
         "com.android.btservices",
     ],
+    strip: {
+        keep_symbols: true,
+    },
     min_sdk_version: "Tiramisu",
 }
 

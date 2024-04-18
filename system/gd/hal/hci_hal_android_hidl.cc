@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+#include <cutils/trace.h>
 #include <aidl/android/hardware/bluetooth/BnBluetoothHci.h>
 #include <aidl/android/hardware/bluetooth/BnBluetoothHciCallbacks.h>
 #include <aidl/android/hardware/bluetooth/IBluetoothHci.h>
@@ -55,6 +56,9 @@ using aidl::android::hardware::bluetooth::IBluetoothHci;
 using AidlStatus = ::aidl::android::hardware::bluetooth::Status;
 using IBluetoothHci_1_0 = ::android::hardware::bluetooth::V1_0::IBluetoothHci;
 using bluetooth::common::BindOnce;
+
+std::queue<int> avdtp_pkt_queue;
+uint16_t avdtp_stream_id;
 
 namespace fmt {
 template <>
@@ -122,6 +126,7 @@ class InternalHciCallbacks : public IBluetoothHciCallbacks_1_1 {
   }
 
   Return<void> hciEventReceived(const hidl_vec<uint8_t>& event) override {
+    atrace_async_begin(ATRACE_TAG_AUDIO, "hci_event", event[0]);
     common::StopWatch stop_watch(GetTimerText(__func__, event));
     std::vector<uint8_t> received_hci_packet(event.begin(), event.end());
     link_clocker_->OnHciEvent(received_hci_packet);
@@ -137,6 +142,7 @@ class InternalHciCallbacks : public IBluetoothHciCallbacks_1_1 {
   }
 
   Return<void> aclDataReceived(const hidl_vec<uint8_t>& data) override {
+    atrace_async_begin(ATRACE_TAG_AUDIO, "hci_acl_rx", 0);
     common::StopWatch stop_watch(GetTimerText(__func__, data));
     std::vector<uint8_t> received_hci_packet(data.begin(), data.end());
     btsnoop_logger_->Capture(
@@ -221,6 +227,7 @@ class AidlHciCallbacks : public ::aidl::android::hardware::bluetooth::BnBluetoot
   }
 
   ::ndk::ScopedAStatus hciEventReceived(const std::vector<uint8_t>& event) override {
+    atrace_async_begin(ATRACE_TAG_AUDIO, "hci_event", event[0]);
     common::StopWatch stop_watch(GetTimerText(__func__, event));
     std::vector<uint8_t> received_hci_packet(event.begin(), event.end());
     link_clocker_->OnHciEvent(received_hci_packet);
@@ -338,6 +345,18 @@ class HciHalHidl : public HciHal {
   }
 
   void sendAclData(HciPacket packet) override {
+    int pbf = (packet[1] >> 4) & 0x3;
+    if (pbf == 0 || pbf == 2) {
+        uint16_t cid = ((uint16_t)packet[7] << 8) | packet[6];
+        //static int packet_counter = 0;
+        log::info("YAYA cid={:x}, stream cid={:x}", cid, avdtp_stream_id);
+        if (cid == avdtp_stream_id && !avdtp_pkt_queue.empty()) {
+            atrace_async_end(ATRACE_TAG_AUDIO, "a2dp_tx",
+avdtp_pkt_queue.front());
+            avdtp_pkt_queue.pop();
+        }
+    }
+
     btsnoop_logger_->Capture(
         packet, SnoopLogger::Direction::OUTGOING, SnoopLogger::PacketType::ACL);
     if (aidl_hci_) {

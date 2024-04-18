@@ -1,0 +1,56 @@
+
+cc_binary_host {
+    name: "custom_looper_test",
+    srcs: [
+        "src/custom_looper.cc",
+        "src/looper_test.cc",
+    ],
+    local_include_dirs: [
+        "include",
+    ],
+    cflags: ["-std=c++20"],
+}
+
+cc_binary_host {
+    name: "libchrome_looper_test",
+    srcs: [
+        "src/libchrome_looper.cc",
+        "src/looper_test.cc",
+    ],
+    local_include_dirs: [
+        "include",
+    ],
+    static_libs: [
+        "libchrome",
+        "libevent",
+    ],
+}
+
+cc_binary_host {
+    name: "looper_test",
+    srcs: [
+        "src/custom_looper.cc",
+        "src/custom_looper_bis.cc",
+        "src/libchrome_looper.cc",
+        "src/gd_looper.cc",
+        "src/looper_test.cc",
+        ":BluetoothOsSources_linux_generic_lean",
+    ],
+    cflags: ["-std=c++20", "-O2"],
+    local_include_dirs: [
+        "include",
+    ],
+    include_dirs: [
+        "packages/modules/Bluetooth/system/gd",
+    ],
+    static_libs: [
+        "libbase",
+        "liblog",
+        "libbluetooth_log",
+        "libchrome",
+        "libevent",
+    ],
+    shared_libs: [
+        "libflatbuffers-cpp",
+    ],
+}
