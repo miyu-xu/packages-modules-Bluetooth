@@ -93,6 +93,30 @@
       },
       "revId": "7b27a682e4941b276a740a1e80dbc535fbc2d820",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1f04cfd_d94944c1",
+        "filename": "system/bta/include/bta_jv_api.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-18T23:41:55Z",
+      "side": 1,
+      "message": "These are template formatters reserved for the bluetooth log library.  Notice the namespace `fmt` which is carved out to support this template and this gives guidance on what the data type is and how to format for logging.",
+      "parentUuid": "78125013_d7f8fc3c",
+      "range": {
+        "startLine": 170,
+        "startChar": 7,
+        "endLine": 170,
+        "endChar": 16
+      },
+      "revId": "7b27a682e4941b276a740a1e80dbc535fbc2d820",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
