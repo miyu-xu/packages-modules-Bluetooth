@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0c8b523_9b3815a4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2024-04-18T09:21:19Z",
+      "side": 1,
+      "message": "Hi Myles, should this one be abandoned as obsolete? I guess all new changes should go to https://github.com/google/pdl",
+      "revId": "aa10ddaeb9204e931a72e2926ddbf3b15e4ba066",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
