@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "414332ab_bef16f45",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-18T19:56:19Z",
+      "side": 1,
+      "message": "Must first move to separate files (see next patch).\nThen once it\u0027s merged we can move either to GD ,or clean modules further, as separate entities.",
+      "parentUuid": "6b725884_c39fc9ab",
+      "revId": "88e3fd76a2a77998b1a3954deb7d3ffb95637389",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f0acd86f_12d6861d",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-04-17T22:52:19Z",
       "side": 1,
       "message": "Since you are creating a new one, I would like this to be called with its full name\n\n```\ntBTA_DM_SERVICE_DISCOVERY_CB bta_dm_service_discovery_cb;\n```\nSo that people don\u0027t question what discovery this is.",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 20
+      },
+      "revId": "88e3fd76a2a77998b1a3954deb7d3ffb95637389",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3dc90cf_5f067ef7",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-18T19:56:19Z",
+      "side": 1,
+      "message": "Renamed the type, but having such long name for control block will break all the formatting. Can we reconsider that couple patches down the way ?",
+      "parentUuid": "f0acd86f_12d6861d",
       "range": {
         "startLine": 75,
         "startChar": 0,
