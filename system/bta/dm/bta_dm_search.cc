@@ -49,11 +49,9 @@
 #include "stack/include/btm_client_interface.h"
 #include "stack/include/btm_log_history.h"
 #include "stack/include/btm_sec_api.h"  // BTM_IsRemoteNameKnown
-#include "stack/include/gap_api.h"      // GAP_BleReadPeerPrefConnParams
 #include "stack/include/hidh_api.h"
 #include "stack/include/main_thread.h"
 #include "stack/include/sdp_status.h"
-#include "stack/sdp/sdpint.h"  // is_sdp_pbap_pce_disabled
 #include "storage/config_keys.h"
 #include "types/raw_address.h"
 
@@ -62,6 +60,7 @@ using namespace bluetooth;
 namespace {
 constexpr char kBtmLogTag[] = "DEV_SEARCH";
 
+tBTA_DM_NAME_READ_CBACK* p_name_read_cback;
 tBTA_DM_SEARCH_CB bta_dm_search_cb;
 }  // namespace
 
@@ -77,7 +76,6 @@ static void bta_dm_remname_cback(const tBTM_REMOTE_DEV_NAME* p);
 
 static bool bta_dm_read_remote_device_name(const RawAddress& bd_addr,
                                            tBT_TRANSPORT transport);
-static void bta_dm_discover_name(const RawAddress& remote_bd_addr);
 static void bta_dm_execute_queued_search_request();
 static void bta_dm_search_cancel_notify();
 static void bta_dm_disable_search();
@@ -464,14 +462,10 @@ static void bta_dm_remote_name_cmpl(
   }
 
   // Callback with this property
-  if (bta_dm_search_cb.p_device_search_cback != nullptr) {
-    tBTA_DM_SEARCH search_data = {
-        .name_res = {.bd_addr = remote_name_msg.bd_addr, .bd_name = {}},
-    };
-    if (remote_name_msg.hci_status == HCI_SUCCESS) {
-      bd_name_copy(search_data.name_res.bd_name, remote_name_msg.bd_name);
-    }
-    bta_dm_search_cb.p_device_search_cback(BTA_DM_NAME_READ_EVT, &search_data);
+  if (p_name_read_cback != nullptr) {
+    p_name_read_cback(remote_name_msg.bd_addr, remote_name_msg.hci_status,
+                      remote_name_msg.bd_name,
+                      bta_dm_search_get_state() == BTA_DM_SEARCH_ACTIVE);
   } else {
     log::warn("Received remote name complete without callback");
   }
@@ -598,7 +592,7 @@ static tBT_TRANSPORT bta_dm_determine_discovery_transport(
   return BT_TRANSPORT_BR_EDR;
 }
 
-static void bta_dm_discover_name(const RawAddress& remote_bd_addr) {
+void bta_dm_discover_name(const RawAddress& remote_bd_addr) {
   const tBT_TRANSPORT transport =
       bta_dm_determine_discovery_transport(remote_bd_addr);
 
@@ -939,6 +933,12 @@ static void bta_dm_search_sm_execute(tBTA_DM_DEV_SEARCH_EVT event,
           bta_dm_search_clear_queue();
           bta_dm_search_cancel_notify();
           break;
+        case BTA_DM_REMT_NAME_EVT:
+          log::assert_that(std::holds_alternative<tBTA_DM_REMOTE_NAME>(*msg),
+                           "bad message type: {}", msg->index());
+
+          bta_dm_remote_name_cmpl(std::get<tBTA_DM_REMOTE_NAME>(*msg));
+          break;
         default:
           log::info("Received unexpected event {}[0x{:x}] in state {}",
                     bta_dm_event_text(event), event,
@@ -980,6 +980,13 @@ static void bta_dm_search_sm_execute(tBTA_DM_DEV_SEARCH_EVT event,
           bta_dm_search_cancel_notify();
           break;
         case BTA_DM_REMT_NAME_EVT:
+          log::assert_that(std::holds_alternative<tBTA_DM_REMOTE_NAME>(*msg),
+                           "bad message type: {}", msg->index());
+
+          bta_dm_remote_name_cmpl(std::get<tBTA_DM_REMOTE_NAME>(*msg));
+
+          [[fallthrough]];
+
         case BTA_DM_SEARCH_CMPL_EVT:
           bta_dm_search_set_state(BTA_DM_SEARCH_IDLE);
           bta_dm_search_cancel_notify();
@@ -1032,6 +1039,10 @@ static void bta_dm_search_reset() {
 void bta_dm_search_stop() { bta_dm_search_reset(); }
 
 void bta_dm_disc_discover_next_device() { bta_dm_discover_next_device(); }
+
+void bta_dm_disc_set_name_read_complete_cb(tBTA_DM_NAME_READ_CBACK* p_cback) {
+  p_name_read_cback = p_cback;
+}
 
 #define DUMPSYS_TAG "shim::legacy::bta::dm"
 void DumpsysBtaDmSearch(int fd) {

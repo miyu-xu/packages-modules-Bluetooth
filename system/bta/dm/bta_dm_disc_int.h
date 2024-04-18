@@ -33,6 +33,8 @@
 
 #define BTA_SERVICE_ID_TO_SERVICE_MASK(id) (1 << (id))
 
+void bta_dm_discover_name(const RawAddress& remote_bd_addr);
+
 /* DM search events */
 typedef enum : uint16_t {
   /* DM search API events */

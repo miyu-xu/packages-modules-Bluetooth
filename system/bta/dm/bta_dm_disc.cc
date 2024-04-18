@@ -685,6 +685,9 @@ static void bta_dm_disc_result(tBTA_DM_SVC_RES& disc_result) {
     auto& r = disc_result;
     bta_dm_discovery_cb.service_search_cbacks.on_service_discovery_results(
         r.bd_addr, r.services, r.device_type, r.uuids, r.result, r.hci_status);
+
+    /* TODO: split name reading from device search logic */
+    bta_dm_discover_name(r.bd_addr);
   } else {
     GAP_BleReadPeerPrefConnParams(bta_dm_discovery_cb.peer_bdaddr);
   }

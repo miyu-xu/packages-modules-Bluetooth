@@ -30,6 +30,8 @@ void bta_dm_search_stop();
 void bta_dm_disc_start_device_discovery(tBTA_DM_SEARCH_CBACK*);
 void bta_dm_disc_stop_device_discovery();
 
+void bta_dm_disc_set_name_read_complete_cb(tBTA_DM_NAME_READ_CBACK* p_cback);
+
 // Bta service discovery start and stop entry points
 void bta_dm_disc_start_service_discovery(service_discovery_callbacks cbacks,
                                          const RawAddress& bd_addr,

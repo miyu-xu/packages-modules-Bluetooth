@@ -70,6 +70,10 @@ void BTA_DmSetDeviceName(const char* p_name) {
   do_in_main_thread(FROM_HERE, base::BindOnce(bta_dm_set_dev_name, name));
 }
 
+void BTA_DmSetNameReadCompleteCb(tBTA_DM_NAME_READ_CBACK* p_cback) {
+  bta_dm_disc_set_name_read_complete_cb(p_cback);
+}
+
 /*******************************************************************************
  *
  * Function         BTA_DmSearch
