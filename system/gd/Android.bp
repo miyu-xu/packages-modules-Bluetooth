@@ -131,7 +131,6 @@ cc_defaults {
     },
     srcs: [
         ":BluetoothCommonSources",
-        ":BluetoothDumpsysSources",
         ":BluetoothHalSources",
         ":BluetoothHciSources",
         ":BluetoothL2capSources",
@@ -522,7 +521,6 @@ cc_test {
     host_supported: true,
     srcs: [
         ":BluetoothDiscoveryTestSources",
-        ":BluetoothDumpsysTestSources",
         ":BluetoothShimTestSources",
         ":TestCommonMockFunctions",
         ":TestMockMainShimStack",

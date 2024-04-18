@@ -7,24 +7,6 @@ package {
     default_applicable_licenses: ["system_bt_license"],
 }
 
-filegroup {
-    name: "BluetoothDumpsysSources",
-    srcs: [
-        "filter.cc",
-        "internal/filter_internal.cc",
-        "reflection_schema.cc",
-    ],
-}
-
-filegroup {
-    name: "BluetoothDumpsysTestSources",
-    srcs: [
-        "filter_test.cc",
-        "internal/filter_internal_test.cc",
-        "reflection_schema_test.cc",
-    ],
-}
-
 genrule {
     name: "BluetoothGeneratedDumpsysTestData_h",
     visibility: ["//visibility:public"],

@@ -68,7 +68,6 @@ static_library("libbluetooth_gd") {
     "//bt/system/gd/rust/topshim:libbluetooth_topshim",
     "//bt/system/gd/rust/shim:libbluetooth_rust_interop",
     "//bt/system/gd/common:BluetoothCommonSources",
-    "//bt/system/gd/dumpsys:BluetoothDumpsysSources",
     "//bt/system/gd/hal:BluetoothHalSources",
     "//bt/system/gd/hal:BluetoothHalSources_hci_host",
     "//bt/system/gd/l2cap:BluetoothL2capSources",

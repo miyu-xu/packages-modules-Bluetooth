@@ -70,7 +70,7 @@ bool SimpleJsonValidator(int fd, int* dumpsys_byte_cnt) {
 class DumpsysTest : public Test {
  protected:
   void SetUp() override {
-    dumpsys_module_ = new bluetooth::shim::Dumpsys(bluetooth::test::GetBundledSchemaData());
+    dumpsys_module_ = new bluetooth::shim::Dumpsys();
     fake_registry_.InjectTestModule(&shim::Dumpsys::Factory, dumpsys_module_);
   }
 

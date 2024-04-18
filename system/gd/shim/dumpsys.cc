@@ -30,7 +30,6 @@
 #include "main/shim/stack.h"
 #include "module.h"
 #include "module_dumper.h"
-#include "os/log.h"
 #include "os/system_properties.h"
 #include "shim/dumpsys.h"
 #include "shim/dumpsys_args.h"
@@ -48,14 +47,11 @@ constexpr char kDumpsysTitle[] = "----- Gd Dumpsys ------";
 struct Dumpsys::impl {
  public:
   void DumpWithArgsSync(int fd, const char** args, std::promise<void> promise);
-  int GetNumberOfBundledSchemas() const;
 
-  impl(const Dumpsys& dumpsys_module, const dumpsys::ReflectionSchema& reflection_schema);
+  impl(const Dumpsys& dumpsys_module);
   ~impl() = default;
 
  protected:
-  void FilterAsUser(std::string* dumpsys_data) const;
-  void FilterAsDeveloper(std::string* dumpsys_data) const;
   std::string PrintAsJson(std::string* dumpsys_data) const;
 
   bool IsDebuggable() const;
@@ -64,61 +60,22 @@ struct Dumpsys::impl {
   void DumpWithArgsAsync(int fd, const char** args) const;
 
   const Dumpsys& dumpsys_module_;
-  const dumpsys::ReflectionSchema reflection_schema_;
 };
 
-const ModuleFactory Dumpsys::Factory =
-    ModuleFactory([]() { return new Dumpsys(bluetooth::dumpsys::GetBundledSchemaData()); });
+const ModuleFactory Dumpsys::Factory = ModuleFactory([]() { return new Dumpsys(); });
 
-Dumpsys::impl::impl(const Dumpsys& dumpsys_module, const dumpsys::ReflectionSchema& reflection_schema)
-    : dumpsys_module_(dumpsys_module), reflection_schema_(std::move(reflection_schema)) {}
-
-int Dumpsys::impl::GetNumberOfBundledSchemas() const {
-  return reflection_schema_.GetNumberOfBundledSchemas();
-}
+Dumpsys::impl::impl(const Dumpsys& dumpsys_module) : dumpsys_module_(dumpsys_module) {}
 
 bool Dumpsys::impl::IsDebuggable() const {
   return (os::GetSystemProperty(kReadOnlyDebuggableProperty) == "1");
 }
 
-void Dumpsys::impl::FilterAsDeveloper(std::string* dumpsys_data) const {
-  log::assert_that(dumpsys_data != nullptr, "assert failed: dumpsys_data != nullptr");
-  dumpsys::FilterInPlace(dumpsys::FilterType::AS_DEVELOPER, reflection_schema_, dumpsys_data);
-}
-
-void Dumpsys::impl::FilterAsUser(std::string* dumpsys_data) const {
-  log::assert_that(dumpsys_data != nullptr, "assert failed: dumpsys_data != nullptr");
-  dumpsys::FilterInPlace(dumpsys::FilterType::AS_USER, reflection_schema_, dumpsys_data);
-}
-
 std::string Dumpsys::impl::PrintAsJson(std::string* dumpsys_data) const {
   log::assert_that(dumpsys_data != nullptr, "assert failed: dumpsys_data != nullptr");
-
-  const std::string root_name = reflection_schema_.GetRootName();
-  if (root_name.empty()) {
-    char buf[255];
-    snprintf(buf, sizeof(buf), "ERROR: Unable to find root name in prebundled reflection schema\n");
-    log::warn("{}", buf);
-    return std::string(buf);
-  }
-
-  const reflection::Schema* schema = reflection_schema_.FindInReflectionSchema(root_name);
-  if (schema == nullptr) {
-    char buf[255];
-    snprintf(buf, sizeof(buf), "ERROR: Unable to find schema root name:%s\n", root_name.c_str());
-    log::warn("{}", buf);
-    return std::string(buf);
-  }
 
   flatbuffers::IDLOptions options{};
   options.output_default_scalars_in_json = true;
   flatbuffers::Parser parser{options};
-  if (!parser.Deserialize(schema)) {
-    char buf[255];
-    snprintf(buf, sizeof(buf), "ERROR: Unable to deserialize bundle root name:%s\n", root_name.c_str());
-    log::warn("{}", buf);
-    return std::string(buf);
-  }
 
   std::string jsongen;
   // GenerateText was renamed to GenText in 23.5.26 because the return behavior was changed.
@@ -149,10 +106,6 @@ void Dumpsys::impl::DumpWithArgsAsync(int fd, const char** args) const {
   std::string dumpsys_data;
   std::ostringstream oss;
   dumper.DumpState(&dumpsys_data, oss);
-
-  dprintf(fd, " ----- Filtering as Developer -----\n");
-  FilterAsDeveloper(&dumpsys_data);
-
   dprintf(fd, "%s", PrintAsJson(&dumpsys_data).c_str());
 }
 
@@ -170,8 +123,7 @@ void Dumpsys::impl::DumpWithArgsSync(int fd, const char** args, std::promise<voi
   promise.set_value();
 }
 
-Dumpsys::Dumpsys(const std::string& pre_bundled_schema)
-    : reflection_schema_(dumpsys::ReflectionSchema(pre_bundled_schema)) {}
+Dumpsys::Dumpsys() {}
 
 // DEPRECATED Flag: dumpsys_acquire_stack_when_executing
 void Dumpsys::Dump(int fd, const char** args) {
@@ -203,7 +155,7 @@ os::Handler* Dumpsys::GetGdShimHandler() {
 void Dumpsys::ListDependencies(ModuleList* /* list */) const {}
 
 void Dumpsys::Start() {
-  pimpl_ = std::make_unique<impl>(*this, reflection_schema_);
+  pimpl_ = std::make_unique<impl>(*this);
 }
 
 void Dumpsys::Stop() {
@@ -215,7 +167,7 @@ DumpsysDataFinisher Dumpsys::GetDumpsysData(flatbuffers::FlatBufferBuilder* fb_b
 
   DumpsysModuleDataBuilder builder(*fb_builder);
   builder.add_title(name);
-  builder.add_number_of_bundled_schemas(pimpl_->GetNumberOfBundledSchemas());
+  builder.add_number_of_bundled_schemas(123);
   auto dumpsys_data = builder.Finish();
 
   return [dumpsys_data](DumpsysDataBuilder* builder) { builder->add_shim_dumpsys_data(dumpsys_data); };
