@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e54bcc76_75087c2c",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1072,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-18T00:13:57Z",
+      "side": 1,
+      "message": "Do we need a default?  If we do, can we put it after the last case?",
+      "range": {
+        "startLine": 1072,
+        "startChar": 10,
+        "endLine": 1072,
+        "endChar": 18
+      },
+      "revId": "712e6c18197b8d694da365ea12a1e7f33c503b6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
