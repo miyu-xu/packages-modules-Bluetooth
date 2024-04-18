@@ -1293,7 +1293,8 @@ class HearingAidImpl : public HearingAid {
     std::vector<uint8_t> start({CONTROL_POINT_OP_START, codec_in_use,
                                 AUDIOTYPE_UNKNOWN, (uint8_t)current_volume,
                                 OTHER_SIDE_NOT_STREAMING});
-
+    log::info("SendStart, device={}, audio_running={}",
+               ADDRESS_TO_LOGGABLE_CSTR(device->address), loghex(audio_running));
     if (!audio_running) {
       if (!device->playback_started) {
         log::info("Skip Send Start since audio is not running, device={}",
@@ -1307,10 +1308,10 @@ class HearingAidImpl : public HearingAid {
 
     if (current_volume == VOLUME_UNKNOWN) start[3] = (uint8_t)VOLUME_MIN;
 
-    if (device->playback_started) {
-      log::error("Playback already started, skip send Start cmd, device={}",
-                 ADDRESS_TO_LOGGABLE_CSTR(device->address));
-    } else {
+    // if (device->playback_started) {
+      // log::error("Playback already started, skip send Start cmd, device={}",
+                 // ADDRESS_TO_LOGGABLE_CSTR(device->address));
+    // } else {
       start[4] = GetOtherSideStreamStatus(device);
       log::info(
           "send Start cmd, volume={}, audio type={}, device={}, other side "
@@ -1321,7 +1322,7 @@ class HearingAidImpl : public HearingAid {
       BtaGattQueue::WriteCharacteristic(
           device->conn_id, device->audio_control_point_handle, start,
           GATT_WRITE, HearingAidImpl::StartAudioCtrlCallbackStatic, nullptr);
-    }
+    // }
   }
 
   static void StartAudioCtrlCallbackStatic(uint16_t conn_id,
@@ -1912,6 +1913,7 @@ class HearingAidImpl : public HearingAid {
   }
 
   void DoDisconnectAudioStop() {
+    log::debug("DoDisconnectAudioStop");
     HearingAidAudioSource::Stop();
     audio_running = false;
     encoder_state_release();
