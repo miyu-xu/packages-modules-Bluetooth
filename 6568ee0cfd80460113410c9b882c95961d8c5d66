@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3af6302_037b4846",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-18T20:31:35Z",
+      "side": 1,
+      "message": "I think it would be good to add this line:\n\nFlag: EXEMPT, fuzzing-only change",
+      "revId": "6568ee0cfd80460113410c9b882c95961d8c5d66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
