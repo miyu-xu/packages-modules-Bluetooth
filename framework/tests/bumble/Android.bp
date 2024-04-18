@@ -45,35 +45,11 @@ android_test_helper_app {
     ],
 }
 
-// This empty test host is needed for building required host binary
-// "bumble_pandora_server" and include it in test zip
-java_test_host {
+python_test_host {
     name: "BumbleBluetoothTests",
-
-    libs: [
-        "tradefed",
-    ],
-
-    data: [
-        ":BumbleBluetoothTestsApp",
-        "bumble_config.json",
-    ],
-    data_native_bins: [
-        "bumble_pandora_server",
-    ],
-
-    required: ["bumble_pandora_server"],
-
-    test_suites: [
-        "general-tests",
-    ],
-}
-
-python_binary_host {
-    name: "bumble_pandora_server",
-    main: "src/bumble_server.py",
+    main: "src/main.py",
     srcs: [
-        "src/bumble_server.py",
+        "src/main.py",
     ],
     version: {
         py3: {
@@ -81,9 +57,16 @@ python_binary_host {
         },
     },
     libs: [
-        "bumble-pandora",
         "bumble_services_experimental-python",
-        "pandora-python",
-        "pandora_experimental-python",
+        "libavatar",
     ],
+    data: [
+        ":BumbleBluetoothTestsApp",
+        "config.yml",
+    ],
+    test_suites: ["general-tests"],
+    test_options: {
+        unit_test: false,
+        tags: ["mobly"],
+    },
 }
