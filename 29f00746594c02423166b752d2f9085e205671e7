@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37fc7fad_98082000",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-18T15:46:43Z",
+      "side": 1,
+      "message": "I want to remove GetRegistry from Module.  The Module shouldn\u0027t need to know about the registry.  I am hoping to lose a few friends here.",
+      "revId": "29f00746594c02423166b752d2f9085e205671e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
