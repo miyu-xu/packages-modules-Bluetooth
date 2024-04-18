@@ -29,7 +29,6 @@
 #include "hci/hci_layer.h"
 #include "hci/hci_packets.h"
 #include "hci/include/packet_fragmenter.h"
-#include "hci/vendor_specific_event_manager.h"
 #include "main/shim/entry.h"
 #include "os/log.h"
 #include "osi/include/allocator.h"
@@ -407,7 +406,7 @@ void bluetooth::shim::hci_on_reset_complete() {
   }
 
   // TODO handle BQR event in GD
-  bluetooth::shim::GetVendorSpecificEventManager()->RegisterEventHandler(
+  bluetooth::shim::GetHciLayer()->RegisterVendorSpecificEventHandler(
       bluetooth::hci::VseSubeventCode::BQR_EVENT,
       get_main_thread()->Bind(cpp::vendor_specific_event_callback));
 
