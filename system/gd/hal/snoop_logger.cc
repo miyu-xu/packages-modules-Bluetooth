@@ -1187,7 +1187,11 @@ void SnoopLogger::FilterCapturedPacket(
   }
 }
 
-void SnoopLogger::Capture(HciPacket& packet, Direction direction, PacketType type) {
+void SnoopLogger::Capture(const HciPacket& immutable_packet, Direction direction, PacketType type) {
+  //// NEED TO BE FIXED : The code below modify the packet ////
+  HciPacket mutable_packet(immutable_packet);
+  HciPacket& packet = mutable_packet;
+  /////////////////////////////////////////////////////////////
   uint64_t timestamp_us =
       std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch())
           .count();
