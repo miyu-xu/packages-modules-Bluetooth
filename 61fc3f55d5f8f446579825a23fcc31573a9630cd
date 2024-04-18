@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54358b1a_2257ac42",
+        "filename": "system/bta/include/bta_jv_api.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-18T00:11:23Z",
+      "side": 1,
+      "message": "Pulled out of header in localized to compilation unit",
+      "parentUuid": "93dc6dd5_2fc92bdc",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 3
+      },
+      "revId": "61fc3f55d5f8f446579825a23fcc31573a9630cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04076ff6_6db2ecde",
@@ -95,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a13760f_fa561602",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1067,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-18T00:11:23Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "04076ff6_6db2ecde",
+      "range": {
+        "startLine": 1064,
+        "startChar": 0,
+        "endLine": 1067,
+        "endChar": 59
+      },
+      "revId": "61fc3f55d5f8f446579825a23fcc31573a9630cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5483759e_5ee3f398",
@@ -108,6 +156,30 @@
       "writtenOn": "2024-04-16T17:15:36Z",
       "side": 1,
       "message": "```suggestion\n  tBT_TRANSPORT transport \u003d BT_TRANSPORT_BR_EDR;\n  if (type \u003d\u003d BTA_JV_CONN_TYPE_L2CAP_LE) {\n    transport \u003d BT_TRANSPORT_LE;\n  }\n  /* PSM checking is not required for LE COC */\n  if (0 \u003d\u003d sec_id ||\n      ((type \u003d\u003d BTA_JV_CONN_TYPE_L2CAP) \u0026\u0026 (!bta_jv_check_psm(local_psm))) ||\n      (handle \u003d GAP_ConnOpen(\n           \"JV L2CAP\", sec_id, 1, nullptr, local_psm, max_mps, \u0026cfg,\n           ertm_info.get(), sec_mask, bta_jv_l2cap_server_cback,\n           transport)) \u003d\u003d GAP_INVALID_HANDLE) {\n```",
+      "range": {
+        "startLine": 1208,
+        "startChar": 0,
+        "endLine": 1214,
+        "endChar": 72
+      },
+      "revId": "61fc3f55d5f8f446579825a23fcc31573a9630cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbe2067f_67de42f3",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1214,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-18T00:11:23Z",
+      "side": 1,
+      "message": "I think a better abstraction should be done in the future; e.g. the transport should be passed in not figured out at this step.  Future CLs should pull this further up.",
+      "parentUuid": "5483759e_5ee3f398",
       "range": {
         "startLine": 1208,
         "startChar": 0,
