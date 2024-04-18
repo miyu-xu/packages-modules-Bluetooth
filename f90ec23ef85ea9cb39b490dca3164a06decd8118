@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6c7a286_b9389f25",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-18T17:24:36Z",
+      "side": 1,
+      "message": "this is AddressWithtType but using PDL generated types",
+      "range": {
+        "startLine": 122,
+        "startChar": 17,
+        "endLine": 122,
+        "endChar": 39
+      },
+      "revId": "f90ec23ef85ea9cb39b490dca3164a06decd8118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88ce260e_1dd4f6b5",
+        "filename": "system/pdl/hci/include/hci/address.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-18T17:24:36Z",
+      "side": 1,
+      "message": "this is the PDL generated address",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 68
+      },
+      "revId": "f90ec23ef85ea9cb39b490dca3164a06decd8118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "861695a4_dd4ad5b4",
+        "filename": "system/types/ble_address_with_type.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-18T17:24:36Z",
+      "side": 1,
+      "message": "nit: couldn\u0027t this be replaced with AddressWithType?",
+      "range": {
+        "startLine": 199,
+        "startChar": 17,
+        "endLine": 199,
+        "endChar": 29
+      },
+      "revId": "f90ec23ef85ea9cb39b490dca3164a06decd8118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5d95a46_0be37c83",
+        "filename": "system/types/raw_address.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-18T17:24:36Z",
+      "side": 1,
+      "message": "nit: this is the host stack definition of Address that can be used as a POD if hci::Address cannot be used.",
+      "range": {
+        "startLine": 120,
+        "startChar": 17,
+        "endLine": 120,
+        "endChar": 27
+      },
+      "revId": "f90ec23ef85ea9cb39b490dca3164a06decd8118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
