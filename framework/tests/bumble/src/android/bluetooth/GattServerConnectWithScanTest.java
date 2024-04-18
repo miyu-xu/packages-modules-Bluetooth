@@ -46,12 +46,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import pandora.HostProto.AdvertiseRequest;
+import pandora.HostProto.OwnAddressType;
+
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
-
-import pandora.HostProto.AdvertiseRequest;
-import pandora.HostProto.OwnAddressType;
 
 /** Test cases for {@link BluetoothGattServer}. */
 @RunWith(AndroidJUnit4.class)
@@ -61,11 +61,13 @@ public class GattServerConnectWithScanTest {
     private static final int TIMEOUT_SCANNING_MS = 2_000;
     private static final int TIMEOUT_GATT_CONNECTION_MS = 2_000;
 
-    @Rule public final AdoptShellPermissionsRule mPermissionRule = new AdoptShellPermissionsRule();
+    @Rule(order = 2)
+    public final AdoptShellPermissionsRule mPermissionRule = new AdoptShellPermissionsRule();
 
-    @Rule public final PandoraDevice mBumble = new PandoraDevice();
+    @Rule(order = 1)
+    public final PandoraDevice mBumble = new PandoraDevice();
 
-    @Rule
+    @Rule(order = 0)
     public final CheckFlagsRule mCheckFlagsRule = DeviceFlagsValueProvider.createCheckFlagsRule();
 
     private final Context mContext = ApplicationProvider.getApplicationContext();
