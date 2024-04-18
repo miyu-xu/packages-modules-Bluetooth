@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "313c68a2_cad88948",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-04-18T09:04:13Z",
+      "side": 1,
+      "message": "Got it. I\u0027ve added additional unit tests. Indeed for now the late attaching device handling code in `device_groups.cc` had to be left as is. However I would like to move it to CodecManager after we extend the `CodecManager::UnicastConfigurationRequirements` struct with individual direction requirements, allowing us to express the requirements more precisely (including the dual bidir SWB toggle state).\n\nThanks for catching this.",
+      "parentUuid": "f0239837_2f57b57a",
+      "range": {
+        "startLine": 235,
+        "startChar": 4,
+        "endLine": 235,
+        "endChar": 37
+      },
+      "revId": "581a9eea5797f8ae1113a145a435f503e2c7ad50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a0e2993e_e55db436",
         "filename": "system/bta/le_audio/codec_manager_test.cc",
         "patchSetId": 4
@@ -109,6 +133,30 @@
       "side": 1,
       "message": "You are right. Let me add a test to confirm it still works as intended.",
       "parentUuid": "a0e2993e_e55db436",
+      "range": {
+        "startLine": 223,
+        "startChar": 4,
+        "endLine": 223,
+        "endChar": 63
+      },
+      "revId": "581a9eea5797f8ae1113a145a435f503e2c7ad50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcf8cbde_642eaef3",
+        "filename": "system/bta/le_audio/codec_manager_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-04-18T09:04:13Z",
+      "side": 1,
+      "message": "I\u0027ve added additional CodecManager tests, and the 2nd device late connecting tests for the state machine to verify that when dual bidir SWB is disabled, we use non-SWB config for the first device if the target group size is \u003e 1.",
+      "parentUuid": "a9b8d926_a983650c",
       "range": {
         "startLine": 223,
         "startChar": 4,
