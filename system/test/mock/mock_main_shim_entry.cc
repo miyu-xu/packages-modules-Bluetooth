@@ -63,9 +63,6 @@ hci::LeScanningManager* GetScanning() {
 hci::DistanceMeasurementManager* GetDistanceMeasurementManager() {
   return hci::testing::mock_distance_measurement_manager_;
 }
-hci::VendorSpecificEventManagerInterface* GetVendorSpecificEventManager() {
-  return hci::testing::mock_vendor_specific_event_manager_;
-}
 os::Handler* GetGdShimHandler() { return hci::testing::mock_gd_shim_handler_; }
 hal::SnoopLogger* GetSnoopLogger() { return nullptr; }
 storage::StorageModule* GetStorage() { return nullptr; }
