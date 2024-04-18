@@ -98,7 +98,7 @@ class Module {
   virtual void ListDependencies(ModuleList* list) const = 0;
 
   // You can grab your started dependencies during or after this call
-  // using GetDependency(), or access the module registry via GetModuleRegistry()
+  // using GetDependency()
   virtual void Start() = 0;
 
   // Release all resources, you're about to be deleted
@@ -107,8 +107,6 @@ class Module {
   virtual std::string ToString() const = 0;
 
   ::bluetooth::os::Handler* GetHandler() const;
-
-  const ModuleRegistry* GetModuleRegistry() const;
 
   template <class T>
   T* GetDependency() const {
@@ -133,13 +131,12 @@ class Module {
   ::bluetooth::os::Handler* handler_ = nullptr;
   ModuleList dependencies_;
   ModuleMap dependency_map_;
-  const ModuleRegistry* registry_;
 };
 
 class ModuleRegistry {
- friend Module;
- friend ModuleDumper;
- friend class StackManager;
+  friend ModuleDumper;
+  friend class StackManager;
+
  public:
   template <class T>
   bool IsStarted() const {

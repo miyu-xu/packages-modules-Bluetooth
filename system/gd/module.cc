@@ -37,10 +37,6 @@ Handler* Module::GetHandler() const {
   return handler_;
 }
 
-const ModuleRegistry* Module::GetModuleRegistry() const {
-  return registry_;
-}
-
 void Module::SetDependencyMap(const ModuleMap map) {
   dependency_map_ = std::move(map);
 }

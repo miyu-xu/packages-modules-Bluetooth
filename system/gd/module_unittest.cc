@@ -60,15 +60,10 @@ class TestModuleNoDependency : public Module {
   void ListDependencies(ModuleList* /* list */) const {}
 
   void Start() override {
-    // A module is not considered started until Start() finishes
-    EXPECT_FALSE(GetModuleRegistry()->IsStarted<TestModuleNoDependency>());
     test_module_no_dependency_handler = GetHandler();
   }
 
-  void Stop() override {
-    // A module is not considered stopped until after Stop() finishes
-    EXPECT_TRUE(GetModuleRegistry()->IsStarted<TestModuleNoDependency>());
-  }
+  void Stop() override {}
 
   std::string ToString() const override {
     return std::string("TestModuleNoDependency");
@@ -91,19 +86,12 @@ class TestModuleOneDependency : public Module {
   }
 
   void Start() override {
-    EXPECT_TRUE(GetModuleRegistry()->IsStarted<TestModuleNoDependency>());
+    ASSERT_NE(nullptr, GetDependency<TestModuleNoDependency>());
 
-    // A module is not considered started until Start() finishes
-    EXPECT_FALSE(GetModuleRegistry()->IsStarted<TestModuleOneDependency>());
     test_module_one_dependency_handler = GetHandler();
   }
 
-  void Stop() override {
-    EXPECT_TRUE(GetModuleRegistry()->IsStarted<TestModuleNoDependency>());
-
-    // A module is not considered stopped until after Stop() finishes
-    EXPECT_TRUE(GetModuleRegistry()->IsStarted<TestModuleOneDependency>());
-  }
+  void Stop() override {}
 
   std::string ToString() const override {
     return std::string("TestModuleOneDependency");
@@ -122,15 +110,9 @@ class TestModuleNoDependencyTwo : public Module {
  protected:
   void ListDependencies(ModuleList* /* list */) const {}
 
-  void Start() override {
-    // A module is not considered started until Start() finishes
-    EXPECT_FALSE(GetModuleRegistry()->IsStarted<TestModuleNoDependencyTwo>());
-  }
+  void Start() override {}
 
-  void Stop() override {
-    // A module is not considered stopped until after Stop() finishes
-    EXPECT_TRUE(GetModuleRegistry()->IsStarted<TestModuleNoDependencyTwo>());
-  }
+  void Stop() override {}
 
   std::string ToString() const override {
     return std::string("TestModuleNoDependencyTwo");
@@ -152,20 +134,11 @@ class TestModuleTwoDependencies : public Module {
   }
 
   void Start() override {
-    EXPECT_TRUE(GetModuleRegistry()->IsStarted<TestModuleOneDependency>());
-    EXPECT_TRUE(GetModuleRegistry()->IsStarted<TestModuleNoDependencyTwo>());
-
-    // A module is not considered started until Start() finishes
-    EXPECT_FALSE(GetModuleRegistry()->IsStarted<TestModuleTwoDependencies>());
+    ASSERT_NE(nullptr, GetDependency<TestModuleOneDependency>());
+    ASSERT_NE(nullptr, GetDependency<TestModuleNoDependencyTwo>());
   }
 
-  void Stop() override {
-    EXPECT_TRUE(GetModuleRegistry()->IsStarted<TestModuleOneDependency>());
-    EXPECT_TRUE(GetModuleRegistry()->IsStarted<TestModuleNoDependencyTwo>());
-
-    // A module is not considered stopped until after Stop() finishes
-    EXPECT_TRUE(GetModuleRegistry()->IsStarted<TestModuleTwoDependencies>());
-  }
+  void Stop() override {}
 
   std::string ToString() const override {
     return std::string("TestModuleTwoDependencies");
@@ -190,19 +163,11 @@ class TestModuleDumpState : public Module {
   }
 
   void Start() override {
-    EXPECT_TRUE(GetModuleRegistry()->IsStarted<TestModuleNoDependency>());
-
-    // A module is not considered started until Start() finishes
-    EXPECT_FALSE(GetModuleRegistry()->IsStarted<TestModuleDumpState>());
+    ASSERT_NE(nullptr, GetDependency<TestModuleNoDependency>());
     test_module_one_dependency_handler = GetHandler();
   }
 
-  void Stop() override {
-    EXPECT_TRUE(GetModuleRegistry()->IsStarted<TestModuleNoDependency>());
-
-    // A module is not considered stopped until after Stop() finishes
-    EXPECT_TRUE(GetModuleRegistry()->IsStarted<TestModuleDumpState>());
-  }
+  void Stop() override {}
 
   std::string ToString() const override {
     return std::string("TestModuleDumpState");
@@ -224,6 +189,12 @@ const ModuleFactory TestModuleDumpState::Factory = ModuleFactory([]() { return n
 TEST_F(ModuleTest, no_dependency) {
   ModuleList list;
   list.add<TestModuleNoDependency>();
+
+  EXPECT_FALSE(registry_->IsStarted<TestModuleNoDependency>());
+  EXPECT_FALSE(registry_->IsStarted<TestModuleOneDependency>());
+  EXPECT_FALSE(registry_->IsStarted<TestModuleNoDependencyTwo>());
+  EXPECT_FALSE(registry_->IsStarted<TestModuleTwoDependencies>());
+
   registry_->Start(&list, thread_);
 
   EXPECT_TRUE(registry_->IsStarted<TestModuleNoDependency>());
@@ -242,6 +213,12 @@ TEST_F(ModuleTest, no_dependency) {
 TEST_F(ModuleTest, one_dependency) {
   ModuleList list;
   list.add<TestModuleOneDependency>();
+
+  EXPECT_FALSE(registry_->IsStarted<TestModuleNoDependency>());
+  EXPECT_FALSE(registry_->IsStarted<TestModuleOneDependency>());
+  EXPECT_FALSE(registry_->IsStarted<TestModuleNoDependencyTwo>());
+  EXPECT_FALSE(registry_->IsStarted<TestModuleTwoDependencies>());
+
   registry_->Start(&list, thread_);
 
   EXPECT_TRUE(registry_->IsStarted<TestModuleNoDependency>());
@@ -260,6 +237,12 @@ TEST_F(ModuleTest, one_dependency) {
 TEST_F(ModuleTest, two_dependencies) {
   ModuleList list;
   list.add<TestModuleTwoDependencies>();
+
+  EXPECT_FALSE(registry_->IsStarted<TestModuleNoDependency>());
+  EXPECT_FALSE(registry_->IsStarted<TestModuleOneDependency>());
+  EXPECT_FALSE(registry_->IsStarted<TestModuleNoDependencyTwo>());
+  EXPECT_FALSE(registry_->IsStarted<TestModuleTwoDependencies>());
+
   registry_->Start(&list, thread_);
 
   EXPECT_TRUE(registry_->IsStarted<TestModuleNoDependency>());
