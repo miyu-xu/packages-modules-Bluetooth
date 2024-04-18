@@ -70,6 +70,29 @@
       },
       "revId": "7b27a682e4941b276a740a1e80dbc535fbc2d820",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78125013_d7f8fc3c",
+        "filename": "system/bta/include/bta_jv_api.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-04-18T23:39:14Z",
+      "side": 1,
+      "message": "What does this do?",
+      "range": {
+        "startLine": 170,
+        "startChar": 7,
+        "endLine": 170,
+        "endChar": 16
+      },
+      "revId": "7b27a682e4941b276a740a1e80dbc535fbc2d820",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
