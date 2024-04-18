@@ -1,8 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="android.bluetooth" >
 
-    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="21" />
-
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -12,7 +10,7 @@
     <application>
         <uses-library android:name="android.test.runner" />
 
-        <receiver android:name="android.bluetooth.PendingIntentScanReceiver" >
+        <receiver android:name="android.bluetooth.PendingIntentScanReceiver" android:exported="true">
             <intent-filter>
                 <action android:name="android.bluetooth.test.ACTION_SCAN_RESULT" />
             </intent-filter>
@@ -21,5 +19,5 @@
 
     <instrumentation android:name="androidx.test.runner.AndroidJUnitRunner"
                      android:targetPackage="android.bluetooth"
-                     android:label="Bumble Bluetooth Test"/>
+                     android:label="Bumble Bluetooth Test" />
 </manifest>
