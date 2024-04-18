@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "837f32cf_fff7535f",
+        "filename": "framework/java/android/bluetooth/BluetoothGattServer.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-04-18T07:39:23Z",
+      "side": 1,
+      "message": "This is for atomizing the pair (executor, callback).\n\nIf callback is changed before runnable actually runs, then I think a different (new) callback can be run by the old executor.",
+      "parentUuid": "9a61df96_078b63a7",
+      "range": {
+        "startLine": 122,
+        "startChar": 20,
+        "endLine": 123,
+        "endChar": 69
+      },
+      "revId": "1a69935a12399914e4557aabacc20bc22f1f1a53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc02c02a_59c6a781",
