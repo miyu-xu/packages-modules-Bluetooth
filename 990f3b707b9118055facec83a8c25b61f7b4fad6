@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56a69791_0c8ff26b",
+        "filename": "system/gd/module.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-18T16:08:17Z",
+      "side": 0,
+      "message": "This doesn\u0027t build yet, because DumpWithArgsAsync uses GetModuleRegistry().  I\u0027m hoping that we can refactor that and simplify the architecture here.",
+      "range": {
+        "startLine": 40,
+        "startChar": 30,
+        "endLine": 40,
+        "endChar": 47
+      },
+      "revId": "990f3b707b9118055facec83a8c25b61f7b4fad6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
