@@ -159,6 +159,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3925f442_4f00f0c8",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1152,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-04-18T00:05:45Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "25c369c5_225f8561",
+      "range": {
+        "startLine": 1152,
+        "startChar": 0,
+        "endLine": 1152,
+        "endChar": 45
+      },
+      "revId": "7ca43d11582633580af91eac186401bcc7b9dae7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8cf436e6_e06aa6b4",
@@ -220,6 +244,30 @@
       "side": 1,
       "message": "I thought line 1152 (\"This looks problematic.\") was the copy.",
       "parentUuid": "0d85a45c_22872d81",
+      "range": {
+        "startLine": 1240,
+        "startChar": 25,
+        "endLine": 1240,
+        "endChar": 31
+      },
+      "revId": "7ca43d11582633580af91eac186401bcc7b9dae7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f632944d_23b53f56",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1240,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-04-18T00:05:45Z",
+      "side": 1,
+      "message": "Thanks!",
+      "parentUuid": "d9ea30d5_ebfaa414",
       "range": {
         "startLine": 1240,
         "startChar": 25,
