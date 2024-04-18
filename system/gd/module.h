@@ -70,6 +70,8 @@ public:
   std::vector<const ModuleFactory*> list_;
 };
 
+using ModuleMap = std::map<const ModuleFactory*, std::shared_ptr<Module>>;
+
 struct DumpsysDataBuilder;
 using DumpsysDataFinisher = std::function<void(DumpsysDataBuilder*)>;
 
@@ -89,6 +91,7 @@ class Module {
 
  public:
   virtual ~Module() = default;
+  void SetDependencyMap(const ModuleMap map);
 
  protected:
   // Populate the provided list with modules that must start before yours
@@ -129,6 +132,7 @@ class Module {
 
   ::bluetooth::os::Handler* handler_ = nullptr;
   ModuleList dependencies_;
+  ModuleMap dependency_map_;
   const ModuleRegistry* registry_;
 };
 

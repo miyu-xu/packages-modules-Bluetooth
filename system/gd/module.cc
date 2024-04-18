@@ -41,13 +41,14 @@ const ModuleRegistry* Module::GetModuleRegistry() const {
   return registry_;
 }
 
-Module* Module::GetDependency(const ModuleFactory* module) const {
-  for (auto& dependency : dependencies_.list_) {
-    if (dependency == module) {
-      return registry_->Get(module);
-    }
-  }
+void Module::SetDependencyMap(const ModuleMap map) {
+  dependency_map_ = std::move(map);
+}
 
+Module* Module::GetDependency(const ModuleFactory* module) const {
+  if (dependency_map_.count(module) > 0) {
+    return dependency_map_.at(module).get();
+  }
   log::fatal("Module was not listed as a dependency in ListDependencies");
 }
 
@@ -104,8 +105,13 @@ Module* ModuleRegistry::Start(const ModuleFactory* module, Thread* thread) {
   Start(&instance->dependencies_, thread);
 
   log::info("Finished starting dependencies and calling Start() of {}", instance->ToString());
+  ModuleMap dependencies;
+  for (auto factory : instance->dependencies_.list_) {
+    dependencies[factory] = started_modules_.find(factory)->second;
+  }
 
   last_instance_ = "starting " + instance->ToString();
+  instance->SetDependencyMap(std::move(dependencies));
   instance->Start();
   start_order_.push_back(module);
   started_modules_[module] = std::shared_ptr<Module>(instance);
