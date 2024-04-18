@@ -46,6 +46,53 @@
       },
       "revId": "11f687d6714441f4ca0e22b4d3e0fa361adf96c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2af3e21a_a65b2bb5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1006,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-04-18T08:25:18Z",
+      "side": 1,
+      "message": "Now I notice `HfpCallbacks::AnswerCall` is pretty similar to `self.answer_call()`\n\ncan we consolidate to something like:\n\n```\nHfpCallbacks::AnswerCall(addr) \u003d\u003e {\n  // We expect the application to send back UHID output report and\n  // trigger dispatch_uhid_hfp_output_callback later.\n  self.uhid_send_hook_switch_input_report(\u0026addr, true);\n  \n  // In qualification mode we expect no application to interact with.\n  // So we just jump right in to the telephony ops implementation.\n  if self.mps_qualification_enabled {\n    self.answer_call();\n  }\n}\n```\n\nand remove `self.mps_qualification_enabled` from answer_call() since we don\u0027t need the guard in that many layers - only put the guard at entry points.",
+      "parentUuid": "3a6781dc_aab2dc35",
+      "range": {
+        "startLine": 1003,
+        "startChar": 16,
+        "endLine": 1006,
+        "endChar": 17
+      },
+      "revId": "11f687d6714441f4ca0e22b4d3e0fa361adf96c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "817cff49_70da952c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1015,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-04-18T08:25:18Z",
+      "side": 1,
+      "message": "Similar to my comment above. Please see if it\u0027s reasonable to rewrite this as well as other ops.",
+      "range": {
+        "startLine": 1015,
+        "startChar": 29,
+        "endLine": 1015,
+        "endChar": 38
+      },
+      "revId": "11f687d6714441f4ca0e22b4d3e0fa361adf96c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
