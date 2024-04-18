@@ -63,6 +63,24 @@
       "message": "insert `catch (Exception ex)` as before just in case. There could be a scenario depending on it. (e.g. NPE for mCallback is caught in here?)",
       "revId": "1a69935a12399914e4557aabacc20bc22f1f1a53",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9573d3b8_ce324c59",
+        "filename": "framework/java/android/bluetooth/BluetoothGattServer.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-04-18T07:43:10Z",
+      "side": 1,
+      "message": "Thanks for catching. Done.",
+      "parentUuid": "bc02c02a_59c6a781",
+      "revId": "1a69935a12399914e4557aabacc20bc22f1f1a53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
