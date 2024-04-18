@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "668360fe_df88c842",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1072,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-18T00:15:26Z",
+      "side": 1,
+      "message": "Done.\n\nAfter our discussion it seems having defaults is convention and I will move it underneath",
+      "parentUuid": "e54bcc76_75087c2c",
+      "range": {
+        "startLine": 1072,
+        "startChar": 10,
+        "endLine": 1072,
+        "endChar": 18
+      },
+      "revId": "712e6c18197b8d694da365ea12a1e7f33c503b6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5ca6ce8d_cea87610",
