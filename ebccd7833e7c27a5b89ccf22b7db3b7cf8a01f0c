@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bd56a40b_bc53afdb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-18T00:50:51Z",
+      "side": 1,
+      "message": "The problem is how to serve modules access that are not part of the `gd` module registry outside the `gd` stack manager.\n\nThis is the entirety the problem of all the code in main/shim which has very little guarantee on how the module accesses are used and as long as the stack never shuts down we are always ok.\n\nWe can talk more.",
+      "parentUuid": "572f945b_a20f4fb0",
+      "revId": "ebccd7833e7c27a5b89ccf22b7db3b7cf8a01f0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "02d16966_6bdbf90a",
         "filename": "system/gd/module.cc",
         "patchSetId": 9
