@@ -22,6 +22,30 @@
       },
       "revId": "9a684c9ed794cb580fc4dde529fd8b72bf64232d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bf4b012_4bddfa74",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1213,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-18T00:20:34Z",
+      "side": 0,
+      "message": "Done.\n\nclumsy vim-fingers must have eaten that one...",
+      "parentUuid": "732f4f44_91597298",
+      "range": {
+        "startLine": 1213,
+        "startChar": 10,
+        "endLine": 1213,
+        "endChar": 28
+      },
+      "revId": "9a684c9ed794cb580fc4dde529fd8b72bf64232d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
