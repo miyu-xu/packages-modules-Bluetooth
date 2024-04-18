@@ -24,6 +24,10 @@
 
 #include "packet/bit_inserter.h"
 
+#ifndef ASSERT
+#define ASSERT(cond) assert(cond)
+#endif
+
 namespace bluetooth {
 namespace packet {
 
