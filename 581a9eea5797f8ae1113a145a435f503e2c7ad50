@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f0239837_2f57b57a",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-04-18T08:15:41Z",
+      "side": 1,
+      "message": "yes, if we disable dual 32k swb, and when we only have single device, we will use 32k but after that the second device is reconnected, the configuration will change from single 32k to dual 16k, and this will make the assert fail (https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/le_audio/state_machine.cc;drc\u003db5acd327c2f2320095dbd370acb6bcc8b275e2e9;l\u003d1369) and the device would disconnect and reconnect.",
+      "parentUuid": "2b3466ce_bdccd260",
+      "range": {
+        "startLine": 235,
+        "startChar": 4,
+        "endLine": 235,
+        "endChar": 37
+      },
+      "revId": "581a9eea5797f8ae1113a145a435f503e2c7ad50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a0e2993e_e55db436",
         "filename": "system/bta/le_audio/codec_manager_test.cc",
         "patchSetId": 4
