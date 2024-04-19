@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ec097b1_fea3572f",
+        "filename": "system/bta/dm/bta_dm_device_search.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-19T09:55:15Z",
+      "side": 1,
+      "message": "can we turn this new file into proper C++ classes so that later we can cover it with unit test? or is this the same thing that Chris is implementing?",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 61
+      },
+      "revId": "98468ce86621a3f16ebdbb92dc3f28a57c487063",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26f5c5a0_cfc9376e",
+        "filename": "system/bta/dm/bta_dm_device_search.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-19T09:55:15Z",
+      "side": 1,
+      "message": "please clean-up before submitting",
+      "range": {
+        "startLine": 467,
+        "startChar": 0,
+        "endLine": 471,
+        "endChar": 9
+      },
+      "revId": "98468ce86621a3f16ebdbb92dc3f28a57c487063",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
