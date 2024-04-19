@@ -39,6 +39,7 @@ import android.annotation.SuppressLint;
 import android.app.BroadcastOptions;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothLeAudio;
 import android.companion.AssociationInfo;
 import android.companion.CompanionDeviceManager;
 import android.content.AttributionSource;
@@ -110,6 +111,20 @@ public final class Utils {
 
     /** Thread pool to handle background and outgoing blocking task */
     public static final ExecutorService BackgroundExecutor = Executors.newSingleThreadExecutor();
+
+    public static final int CONTEXTS_ALL =
+            BluetoothLeAudio.CONTEXT_TYPE_UNSPECIFIED
+                    | BluetoothLeAudio.CONTEXT_TYPE_CONVERSATIONAL
+                    | BluetoothLeAudio.CONTEXT_TYPE_MEDIA
+                    | BluetoothLeAudio.CONTEXT_TYPE_GAME
+                    | BluetoothLeAudio.CONTEXT_TYPE_INSTRUCTIONAL
+                    | BluetoothLeAudio.CONTEXT_TYPE_VOICE_ASSISTANTS
+                    | BluetoothLeAudio.CONTEXT_TYPE_LIVE
+                    | BluetoothLeAudio.CONTEXT_TYPE_SOUND_EFFECTS
+                    | BluetoothLeAudio.CONTEXT_TYPE_NOTIFICATIONS
+                    | BluetoothLeAudio.CONTEXT_TYPE_RINGTONE
+                    | BluetoothLeAudio.CONTEXT_TYPE_ALERTS
+                    | BluetoothLeAudio.CONTEXT_TYPE_EMERGENCY_ALARM;
 
     /*
      * Special character

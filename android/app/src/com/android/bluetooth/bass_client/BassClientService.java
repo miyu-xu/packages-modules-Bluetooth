@@ -17,14 +17,17 @@
 package com.android.bluetooth.bass_client;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
+import static android.bluetooth.IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;
 
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastAudioHandoverPolicies;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastFeatureSupport;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastAssistantPeripheralEntrustment;
+import static com.android.bluetooth.flags.Flags.leaudioAllowedContextMask;
 import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothLeAudio;
 import android.bluetooth.BluetoothLeBroadcastMetadata;
 import android.bluetooth.BluetoothLeBroadcastReceiveState;
 import android.bluetooth.BluetoothProfile;
@@ -97,6 +100,20 @@ public class BassClientService extends ProfileService {
     /* 1 minute timeout for primary device reconnection in Private Broadcast case */
     private static final int DIALING_OUT_TIMEOUT_MS = 60000;
 
+    private static final int ALL_CONTEXTS =
+            BluetoothLeAudio.CONTEXT_TYPE_UNSPECIFIED
+                    | BluetoothLeAudio.CONTEXT_TYPE_CONVERSATIONAL
+                    | BluetoothLeAudio.CONTEXT_TYPE_MEDIA
+                    | BluetoothLeAudio.CONTEXT_TYPE_GAME
+                    | BluetoothLeAudio.CONTEXT_TYPE_INSTRUCTIONAL
+                    | BluetoothLeAudio.CONTEXT_TYPE_VOICE_ASSISTANTS
+                    | BluetoothLeAudio.CONTEXT_TYPE_LIVE
+                    | BluetoothLeAudio.CONTEXT_TYPE_SOUND_EFFECTS
+                    | BluetoothLeAudio.CONTEXT_TYPE_NOTIFICATIONS
+                    | BluetoothLeAudio.CONTEXT_TYPE_RINGTONE
+                    | BluetoothLeAudio.CONTEXT_TYPE_ALERTS
+                    | BluetoothLeAudio.CONTEXT_TYPE_EMERGENCY_ALARM;
+
     private static BassClientService sService;
 
     private final Map<BluetoothDevice, BassClientStateMachine> mStateMachines = new HashMap<>();
@@ -139,6 +156,7 @@ public class BassClientService extends ProfileService {
     private ScanCallback mSearchScanCallback;
     private Callbacks mCallbacks;
     private boolean mIsAssistantActive = false;
+    private boolean mIsAllowedContextOfActiveGroupModified = false;
     Optional<Integer> mUnicastSourceStreamStatus = Optional.empty();
 
     private static final int LOG_NB_EVENTS = 100;
@@ -428,6 +446,15 @@ public class BassClientService extends ProfileService {
             if (leAudioService != null) {
                 leAudioService.activeBroadcastAssistantNotification(false);
             }
+            mIsAssistantActive = false;
+        }
+
+        if (mIsAllowedContextOfActiveGroupModified) {
+            LeAudioService leAudioService = mServiceFactory.getLeAudioService();
+            if (leAudioService != null) {
+                leAudioService.setActiveGroupAllowedContextMask(ALL_CONTEXTS, ALL_CONTEXTS);
+            }
+            mIsAllowedContextOfActiveGroupModified = false;
         }
 
         synchronized (mStateMachines) {
@@ -632,7 +659,22 @@ public class BassClientService extends ProfileService {
         }
     }
 
-    private void localNotifyReceiveStateChanged() {
+    private boolean isDevicePartOfActiveUnicastGroup(BluetoothDevice device) {
+        LeAudioService leAudioService = mServiceFactory.getLeAudioService();
+        if (leAudioService == null) {
+            return false;
+        }
+
+        return (leAudioService.getActiveGroupId() != LE_AUDIO_GROUP_ID_INVALID)
+                && (leAudioService.getActiveDevices().contains(device));
+    }
+
+    private boolean isAnyDeviceFromActiveUnicastGroupReceivingBroadcast() {
+        return getActiveBroadcastSinks().stream()
+                .anyMatch(d -> isDevicePartOfActiveUnicastGroup(d));
+    }
+
+    private void localNotifyReceiveStateChanged(BluetoothDevice sink) {
         LeAudioService leAudioService = mServiceFactory.getLeAudioService();
         if (leAudioService == null) {
             return;
@@ -645,7 +687,17 @@ public class BassClientService extends ProfileService {
             if (!mIsAssistantActive) {
                 mIsAssistantActive = true;
                 leAudioService.activeBroadcastAssistantNotification(true);
-                return;
+            }
+
+            if (leaudioAllowedContextMask()) {
+                /* Don't bother active group (external broadcaster scenario) with SOUND EFFECTS */
+                if (!mIsAllowedContextOfActiveGroupModified
+                        && isDevicePartOfActiveUnicastGroup(sink)) {
+                    leAudioService.setActiveGroupAllowedContextMask(
+                            ALL_CONTEXTS & ~BluetoothLeAudio.CONTEXT_TYPE_SOUND_EFFECTS,
+                            ALL_CONTEXTS);
+                    mIsAllowedContextOfActiveGroupModified = true;
+                }
             }
         } else {
             /* Assistant become inactive */
@@ -653,8 +705,16 @@ public class BassClientService extends ProfileService {
                 mIsAssistantActive = false;
                 mUnicastSourceStreamStatus = Optional.empty();
                 leAudioService.activeBroadcastAssistantNotification(false);
+            }
 
-                return;
+            if (leaudioAllowedContextMask()) {
+                /* Restore allowed context mask for active device */
+                if (mIsAllowedContextOfActiveGroupModified) {
+                    if (!isAnyDeviceFromActiveUnicastGroupReceivingBroadcast()) {
+                        leAudioService.setActiveGroupAllowedContextMask(ALL_CONTEXTS, ALL_CONTEXTS);
+                    }
+                    mIsAllowedContextOfActiveGroupModified = false;
+                }
             }
         }
     }
@@ -2571,7 +2631,7 @@ public class BassClientService extends ProfileService {
                 BluetoothLeBroadcastReceiveState state) {
             ObjParams param = new ObjParams(sink, state);
 
-            sService.localNotifyReceiveStateChanged();
+            sService.localNotifyReceiveStateChanged(sink);
 
             String subgroupState = " / SUB GROUPS: ";
             for (int i = 0; i < state.getNumSubgroups(); i++) {
