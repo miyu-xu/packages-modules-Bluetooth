@@ -22,6 +22,30 @@
       },
       "revId": "6b1f088b383876a0559a83d478a471b6ab0a1543",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ad9c5ca_383e8924",
+        "filename": "flags/exported_include/android_bluetooth_flags.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-19T18:11:10Z",
+      "side": 0,
+      "message": "What is the benefit of doing this in two steps?\n\nThis wrapper was added only for floss, I don\u0027t see the value of having an intermediate step with only the wrapper.",
+      "parentUuid": "1bf772f8_8c23a76d",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 6
+      },
+      "revId": "6b1f088b383876a0559a83d478a471b6ab0a1543",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
