@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "105c63d6_992f27b0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-19T08:56:44Z",
+      "side": 1,
+      "message": "This is not checking wether device don\u0027t support CTKD, it just checks if device is not LE.\nDo you think this check accurately represents non-CTKD capable devices? Can such devices be marked as DEVICE_TYPE_DUAL ?\n\nCan you add a comment explaining what is the purpose behind this check in code ? \n\n\nHaving proper check of CTKD/non-CTKD capability can be do down in BTM layer. Maybe this logic should be moved there ?",
+      "range": {
+        "startLine": 683,
+        "startChar": 12,
+        "endLine": 683,
+        "endChar": 91
+      },
+      "revId": "61db73db65578fd843cbeef2efd0e732a86f25d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
