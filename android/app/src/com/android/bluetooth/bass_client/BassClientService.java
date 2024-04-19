@@ -17,6 +17,7 @@
 package com.android.bluetooth.bass_client;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
+import static android.bluetooth.IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;
 
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastAudioHandoverPolicies;
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastFeatureSupport;
@@ -25,6 +26,7 @@ import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothLeAudio;
 import android.bluetooth.BluetoothLeBroadcastMetadata;
 import android.bluetooth.BluetoothLeBroadcastReceiveState;
 import android.bluetooth.BluetoothProfile;
@@ -97,6 +99,19 @@ public class BassClientService extends ProfileService {
     /* 1 minute timeout for primary device reconnection in Private Broadcast case */
     private static final int DIALING_OUT_TIMEOUT_MS = 60000;
 
+    private static final int ALL_CONTEXTS = BluetoothLeAudio.CONTEXT_TYPE_UNSPECIFIED |
+            BluetoothLeAudio.CONTEXT_TYPE_CONVERSATIONAL |
+            BluetoothLeAudio.CONTEXT_TYPE_MEDIA |
+            BluetoothLeAudio.CONTEXT_TYPE_GAME |
+            BluetoothLeAudio.CONTEXT_TYPE_INSTRUCTIONAL |
+            BluetoothLeAudio.CONTEXT_TYPE_VOICE_ASSISTANTS |
+            BluetoothLeAudio.CONTEXT_TYPE_LIVE |
+            BluetoothLeAudio.CONTEXT_TYPE_SOUND_EFFECTS |
+            BluetoothLeAudio.CONTEXT_TYPE_NOTIFICATIONS |
+            BluetoothLeAudio.CONTEXT_TYPE_RINGTONE |
+            BluetoothLeAudio.CONTEXT_TYPE_ALERTS |
+            BluetoothLeAudio.CONTEXT_TYPE_EMERGENCY_ALARM;
+
     private static BassClientService sService;
 
     private final Map<BluetoothDevice, BassClientStateMachine> mStateMachines = new HashMap<>();
@@ -114,6 +129,7 @@ public class BassClientService extends ProfileService {
     private final Deque<AddSourceData> mPendingAddSources = new ArrayDeque<>();
     private final Map<Integer, HashSet<BluetoothDevice>> mLocalBroadcastReceivers =
             new ConcurrentHashMap<>();
+    private final ArrayList<Integer> mModifiedAllowedContextMaskGroups = new ArrayList<>();
 
     private HandlerThread mStateMachinesThread;
     private HandlerThread mCallbackHandlerThread;
@@ -139,6 +155,7 @@ public class BassClientService extends ProfileService {
     private ScanCallback mSearchScanCallback;
     private Callbacks mCallbacks;
     private boolean mIsAssistantActive = false;
+    private boolean mAreModifiedAllowedConextOfActiveGroup = false;
     Optional<Integer> mUnicastSourceStreamStatus = Optional.empty();
 
     private static final int LOG_NB_EVENTS = 100;
@@ -430,6 +447,13 @@ public class BassClientService extends ProfileService {
             }
         }
 
+        if (mAreModifiedAllowedConextOfActiveGroup) {
+            LeAudioService leAudioService = mServiceFactory.getLeAudioService();
+            if (leAudioService != null) {
+                leAudioService.setActiveGroupAllowedContextMask(ALL_CONTEXTS, ALL_CONTEXTS);
+            }
+        }
+
         synchronized (mStateMachines) {
             for (BassClientStateMachine sm : mStateMachines.values()) {
                 BassObjectsFactory.getInstance().destroyStateMachine(sm);
@@ -465,6 +489,9 @@ public class BassClientService extends ProfileService {
         }
         if (mLocalBroadcastReceivers != null) {
             mLocalBroadcastReceivers.clear();
+        }
+        if (mModifiedAllowedContextMaskGroups != null) {
+            mModifiedAllowedContextMaskGroups.clear();
         }
         if (mPendingGroupOp != null) {
             mPendingGroupOp.clear();
@@ -645,7 +672,17 @@ public class BassClientService extends ProfileService {
             if (!mIsAssistantActive) {
                 mIsAssistantActive = true;
                 leAudioService.activeBroadcastAssistantNotification(true);
+
                 return;
+            }
+
+            /* Don't bother active group (external broadcaster scenario) with SOUND EFFECTS */
+            if (!mAreModifiedAllowedConextOfActiveGroup
+                    && leAudioService.getActiveGroupId() != LE_AUDIO_GROUP_ID_INVALID) {
+                leAudioService.setActiveGroupAllowedContextMask(
+                        ALL_CONTEXTS & ~BluetoothLeAudio.CONTEXT_TYPE_SOUND_EFFECTS,
+                        ALL_CONTEXTS);
+                mAreModifiedAllowedConextOfActiveGroup = true;
             }
         } else {
             /* Assistant become inactive */
@@ -655,6 +692,11 @@ public class BassClientService extends ProfileService {
                 leAudioService.activeBroadcastAssistantNotification(false);
 
                 return;
+            }
+
+            if (mAreModifiedAllowedConextOfActiveGroup) {
+                leAudioService.setActiveGroupAllowedContextMask(ALL_CONTEXTS, ALL_CONTEXTS);
+                mAreModifiedAllowedConextOfActiveGroup = false;
             }
         }
     }
