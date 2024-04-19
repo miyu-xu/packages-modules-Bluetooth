@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c84c6e2c_33b6e6b4",
+        "filename": "flags/bta_dm.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-04-19T01:58:30Z",
+      "side": 1,
+      "message": "Can you keep as a standard flag for now? We can still accelerate the rollout later.",
+      "range": {
+        "startLine": 52,
+        "startChar": 6,
+        "endLine": 52,
+        "endChar": 29
+      },
+      "revId": "5612b2cc3028511f31bb3aa461a81ff1ccbbd6ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
