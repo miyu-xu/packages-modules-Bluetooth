@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "459dc484_fe1743ba",
+        "filename": "system/bta/dm/bta_dm_device_search.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-19T16:10:10Z",
+      "side": 1,
+      "message": "As next steps, not as part of this refactor.\nI would prefer to focus on service discovery related code first.",
+      "parentUuid": "0ec097b1_fea3572f",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 61
+      },
+      "revId": "98468ce86621a3f16ebdbb92dc3f28a57c487063",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26f5c5a0_cfc9376e",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-19T09:55:15Z",
       "side": 1,
       "message": "please clean-up before submitting",
+      "range": {
+        "startLine": 467,
+        "startChar": 0,
+        "endLine": 471,
+        "endChar": 9
+      },
+      "revId": "98468ce86621a3f16ebdbb92dc3f28a57c487063",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad0f2462_1de5cb84",
+        "filename": "system/bta/dm/bta_dm_device_search.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-19T16:10:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26f5c5a0_cfc9376e",
       "range": {
         "startLine": 467,
         "startChar": 0,
