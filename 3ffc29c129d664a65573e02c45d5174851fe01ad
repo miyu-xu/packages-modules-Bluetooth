@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d30b8225_0c2d7dd1",
+        "filename": "system/bta/dm/bta_dm_disc.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-19T09:10:21Z",
+      "side": 1,
+      "message": "can you pull all device search related methods into a separate header to match the new cc file?",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 26
+      },
+      "revId": "3ffc29c129d664a65573e02c45d5174851fe01ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
