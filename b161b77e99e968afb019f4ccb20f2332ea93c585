@@ -16,6 +16,29 @@
       "message": "Hi, PTAL, thanks!",
       "revId": "b161b77e99e968afb019f4ccb20f2332ea93c585",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d969436b_e55ded11",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-04-19T10:07:23Z",
+      "side": 1,
+      "message": "What the quirk exactly specifies has always seemed ambiguous to me. At first glance it appears to be the indication of WBS support (whether through SW or HW path), but reading L102 it seems to be implying the availability of SW path WBS support.\n\nIf L102 is valid, I\u0027m worried that adding this check will rule out boards like Corsola that support WBS only via HW path.\n\nWe\u0027ve also been investigating the benefits of using WBS without EDR and it seems to be simply better, so I think we can defer the fix if we\u0027re not sure. chharry@ has the most updated context about this.",
+      "range": {
+        "startLine": 114,
+        "startChar": 12,
+        "endLine": 114,
+        "endChar": 37
+      },
+      "revId": "b161b77e99e968afb019f4ccb20f2332ea93c585",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
