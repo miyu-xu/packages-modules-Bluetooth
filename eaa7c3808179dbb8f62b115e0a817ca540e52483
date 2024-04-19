@@ -16,6 +16,24 @@
       "message": "Should be flagged. This is touching a very critical Bluetooth functionality and unit testing is not enough here. What end-to-end tests and how much code coverage do you have here?",
       "revId": "eaa7c3808179dbb8f62b115e0a817ca540e52483",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43f5233b_96ff158d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-19T14:33:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b69d3eb2_cc109e0f",
+      "revId": "eaa7c3808179dbb8f62b115e0a817ca540e52483",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
