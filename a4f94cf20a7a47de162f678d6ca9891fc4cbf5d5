@@ -1,0 +1,228 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c90d99d_cf90f070",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-04-19T06:47:59Z",
+      "side": 1,
+      "message": "a",
+      "revId": "a4f94cf20a7a47de162f678d6ca9891fc4cbf5d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cab078d1_6116918a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-04-19T06:47:59Z",
+      "side": 1,
+      "message": "Need to handle the refactor flag on case. Basically:\n\nif (GattService.class.getSimpleName().equals(profile.getName()) \u0026\u0026 !Flags.scanManagerRefactor()) {\n                        mNativeInterface.enable();",
+      "range": {
+        "startLine": 527,
+        "startChar": 20,
+        "endLine": 542,
+        "endChar": 21
+      },
+      "revId": "a4f94cf20a7a47de162f678d6ca9891fc4cbf5d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91fb6b54_61667182",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 998,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-04-19T06:47:59Z",
+      "side": 1,
+      "message": "Should be under else case.",
+      "range": {
+        "startLine": 998,
+        "startChar": 8,
+        "endLine": 998,
+        "endChar": 31
+      },
+      "revId": "a4f94cf20a7a47de162f678d6ca9891fc4cbf5d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4c90af8_4310933c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1005,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-04-19T06:47:59Z",
+      "side": 1,
+      "message": "Should be under else case.",
+      "range": {
+        "startLine": 1005,
+        "startChar": 8,
+        "endLine": 1005,
+        "endChar": 30
+      },
+      "revId": "a4f94cf20a7a47de162f678d6ca9891fc4cbf5d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f4b3338_d85b4ffe",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1024,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-04-19T06:47:59Z",
+      "side": 1,
+      "message": "```suggestion\n            // This will check other profile services.\n```",
+      "range": {
+        "startLine": 1024,
+        "startChar": 20,
+        "endLine": 1024,
+        "endChar": 22
+      },
+      "revId": "a4f94cf20a7a47de162f678d6ca9891fc4cbf5d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ccf66f0_40fcda5e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1055,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-04-19T06:47:59Z",
+      "side": 1,
+      "message": "```suggestion\n            // This will check other profile services.\n```",
+      "range": {
+        "startLine": 1055,
+        "startChar": 20,
+        "endLine": 1055,
+        "endChar": 22
+      },
+      "revId": "a4f94cf20a7a47de162f678d6ca9891fc4cbf5d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76f5211b_4f826195",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1089,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-04-19T06:47:59Z",
+      "side": 1,
+      "message": "Add call to mNativeInterface.enable()",
+      "range": {
+        "startLine": 1089,
+        "startChar": 17,
+        "endLine": 1089,
+        "endChar": 36
+      },
+      "revId": "a4f94cf20a7a47de162f678d6ca9891fc4cbf5d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4f378e2_96af1daf",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1117,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-04-19T06:47:59Z",
+      "side": 1,
+      "message": "Add call to mNativeInterface.disable()",
+      "range": {
+        "startLine": 1117,
+        "startChar": 10,
+        "endLine": 1117,
+        "endChar": 14
+      },
+      "revId": "a4f94cf20a7a47de162f678d6ca9891fc4cbf5d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93675839_44dbc5ae",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-04-19T06:47:59Z",
+      "side": 1,
+      "message": "This should be private, right?",
+      "range": {
+        "startLine": 234,
+        "startChar": 8,
+        "endLine": 234,
+        "endChar": 14
+      },
+      "revId": "a4f94cf20a7a47de162f678d6ca9891fc4cbf5d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d5e14e3_b682ee1b",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-04-19T06:47:59Z",
+      "side": 1,
+      "message": "Check for null first\n```suggestion\n            if (mScanController !\u003d null \u0026\u0026 mScanController.mIsAvailable) {\n```",
+      "range": {
+        "startLine": 239,
+        "startChar": 16,
+        "endLine": 239,
+        "endChar": 31
+      },
+      "revId": "a4f94cf20a7a47de162f678d6ca9891fc4cbf5d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
