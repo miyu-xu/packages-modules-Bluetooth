@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "410da401_05b20094",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-19T21:05:23Z",
+      "side": 1,
+      "message": "Looks like it broke the test for the snoop logger.  You can run it locally with atest bluetooth_test_gd_unit -- --gtest_filter\u003d*SnoopLoggerModuleTest*\n\n(I think)\n\nOr cd $ANDROID_TOP\nout/target/host/linux64/nativetest64/bluetooth_test_gd_unit/bluetooth_test_gd_unit64 --gtest_filter\u003d*SnoopLoggerModuleTest*",
+      "revId": "a5d15d9dd17818b9315b9e97235b423b586442e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "06f9658d_7f324aae",
         "filename": "system/gd/hal/hci_backend.h",
         "patchSetId": 1
