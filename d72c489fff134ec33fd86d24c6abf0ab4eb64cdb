@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "790be448_8cc0db2c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-19T23:50:11Z",
+      "side": 1,
+      "message": "Hey Jakub, I noticed you made a similar logical change in the code recently. I figured you would be a good candidate to review this is as well.",
+      "revId": "d72c489fff134ec33fd86d24c6abf0ab4eb64cdb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
