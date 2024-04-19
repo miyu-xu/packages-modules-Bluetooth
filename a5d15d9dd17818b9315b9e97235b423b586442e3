@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "44d5a2f1_6ef76ae4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-04-19T23:18:43Z",
+      "side": 1,
+      "message": "I am trying to figure out what filtering is supposed to do.\nThe check that fails verifies what is captured is identical to the given data while enabling the filtering mode. I suppose filtered content would be different using filtering mode...\nBefore the commit, it was probably the same because it modified the source packet.",
+      "parentUuid": "410da401_05b20094",
+      "revId": "a5d15d9dd17818b9315b9e97235b423b586442e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "06f9658d_7f324aae",
         "filename": "system/gd/hal/hci_backend.h",
         "patchSetId": 1
