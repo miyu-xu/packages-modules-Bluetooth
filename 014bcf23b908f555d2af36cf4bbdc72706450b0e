@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bcec7b6_984b2a90",
+        "filename": "system/bta/test/bta_sdp_test.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-19T09:52:16Z",
+      "side": 1,
+      "message": "Please remember to do this",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 38
+      },
+      "revId": "014bcf23b908f555d2af36cf4bbdc72706450b0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
