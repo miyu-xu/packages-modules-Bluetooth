@@ -22,6 +22,30 @@
       },
       "revId": "3ffc29c129d664a65573e02c45d5174851fe01ad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06f07735_22204174",
+        "filename": "system/bta/dm/bta_dm_disc.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-19T09:46:51Z",
+      "side": 1,
+      "message": "I planned to have that in separate patch, and also bta_dm_disc_int separated.\n\nWhile doing this separation I found one more issue:\nwe should not be calling bta_dm_get_remname() from service discovery methods.\n\nI will get that fixed in couple hours, must verify it doesn\u0027t break any name passing flows.",
+      "parentUuid": "d30b8225_0c2d7dd1",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 26
+      },
+      "revId": "3ffc29c129d664a65573e02c45d5174851fe01ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
