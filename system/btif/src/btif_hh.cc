@@ -808,11 +808,13 @@ bt_status_t btif_hh_connect(const tAclLinkSpec& link_spec) {
       return BT_STATUS_NOMEM;
     }
 
-    // Reset the connection policy to allow incoming reconnections
     if (IS_FLAG_ENABLED(allow_switching_hid_and_hogp)) {
       added_dev->reconnect_allowed = true;
-      btif_storage_set_hid_connection_policy(link_spec, true);
     }
+  }
+  // Reset the connection policy to allow incoming reconnections
+  if (IS_FLAG_ENABLED(allow_switching_hid_and_hogp)) {
+    btif_storage_set_hid_connection_policy(link_spec, true);
   }
 
   if (p_dev && p_dev->dev_status == BTHH_CONN_STATE_CONNECTED) {
