@@ -34,6 +34,24 @@
       "parentUuid": "0a693469_303c44ea",
       "revId": "923f7669d4021195abb563fb9be17a70d78a33aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21c1c98b_3a135d99",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-04-19T04:16:00Z",
+      "side": 1,
+      "message": "Thanks for the info.\nI\u0027d be good to create a bug for libhidtelephony, potentially we can extend it for wider compatibility.",
+      "parentUuid": "30f1c986_1cebbb62",
+      "revId": "923f7669d4021195abb563fb9be17a70d78a33aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
