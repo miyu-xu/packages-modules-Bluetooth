@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a00a8416_94615ede",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-04-19T04:12:02Z",
+      "side": 1,
+      "message": "This doesn\u0027t sound right to use workaround on device side.\n\nHow do USB headsets interact with RingCentral? Do they have mic mute work?",
+      "revId": "cf4abaa3307218988601f7a680190f1746c67650",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
