@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ad4352c8_796a27ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-19T23:20:05Z",
+      "side": 1,
+      "message": "Unfortunately, I don\u0027t know what it does...",
+      "parentUuid": "44d5a2f1_6ef76ae4",
+      "revId": "a5d15d9dd17818b9315b9e97235b423b586442e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "06f9658d_7f324aae",
         "filename": "system/gd/hal/hci_backend.h",
         "patchSetId": 1
