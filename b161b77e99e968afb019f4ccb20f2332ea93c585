@@ -39,6 +39,30 @@
       },
       "revId": "b161b77e99e968afb019f4ccb20f2332ea93c585",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc6d6227_2d0ea935",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-04-19T10:09:46Z",
+      "side": 1,
+      "message": "Just to clarify: that the investigation of using WBS without EDR is not related to chharry@, I mentioned him for detailed review of this patch.",
+      "parentUuid": "d969436b_e55ded11",
+      "range": {
+        "startLine": 114,
+        "startChar": 12,
+        "endLine": 114,
+        "endChar": 37
+      },
+      "revId": "b161b77e99e968afb019f4ccb20f2332ea93c585",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
