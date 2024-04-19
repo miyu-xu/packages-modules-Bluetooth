@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88b39aee_f5f6fe91",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-19T22:03:39Z",
+      "side": 1,
+      "message": "LGTM, thanks!",
+      "parentUuid": "519af352_18ef273f",
+      "revId": "503d0a0c72ebf038c2aa1a96edca346cb2825ecb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b1098b4_3e1e1f5d",
@@ -143,6 +161,30 @@
       "side": 1,
       "message": "Thank you Jack for review.\n\nWhen it comes to this caller, the problem is not with this particular entity but an access to \"mLeAudioCallbacks\". Once there is another concurrent call of beginBroadcast (RemoteCallbackList) an exception is thrown (https://cs.android.com/android/platform/superproject/main/+/main:frameworks/base/core/java/android/os/RemoteCallbackList.java;drc\u003d353464aadcab7996a739d838fa743196363ba09a;l\u003d244).",
       "parentUuid": "b77e8ee8_095b10c2",
+      "range": {
+        "startLine": 3995,
+        "startChar": 17,
+        "endLine": 3995,
+        "endChar": 39
+      },
+      "revId": "503d0a0c72ebf038c2aa1a96edca346cb2825ecb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e5cd254_d131174c",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3995,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-19T22:03:39Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "37ed978e_544ba0b8",
       "range": {
         "startLine": 3995,
         "startChar": 17,
