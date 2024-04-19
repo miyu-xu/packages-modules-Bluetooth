@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06f9658d_7f324aae",
+        "filename": "system/gd/hal/hci_backend.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-19T17:16:34Z",
+      "side": 1,
+      "message": "Is this still true?\n```suggestion\n#include \"os/handler.h\"\n\nnamespace bluetooth::hal {\n\nclass HciBackendCallbacks {\n```",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 23
+      },
+      "revId": "a5d15d9dd17818b9315b9e97235b423b586442e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b306d4a_abb721f0",
+        "filename": "system/gd/hal/hci_hal_android.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-19T17:16:34Z",
+      "side": 1,
+      "message": "If we do something like this:\n```suggestion\n    callbacks_ \u003d std::make_unique\u003cHciProxyCallbacks\u003e(btsnoop_logger_, link_clocker_);\n    auto\u0026 init_promise \u003d \u0026callbacks_-\u003einit_promise;\n    backend_-\u003einitialize(std::move(callbacks_));\n    init_promise-\u003eget_future();\n```\n\nCan callbacks_ be unique, as well?",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 43
+      },
+      "revId": "a5d15d9dd17818b9315b9e97235b423b586442e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ed4a264_fc694f3b",
+        "filename": "system/gd/hal/hci_hal_android.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-19T17:16:34Z",
+      "side": 1,
+      "message": "nit: .reset() makes it obvious that we\u0027re expecting this to deallocate, as well.\n```suggestion\n    backend_.reset();\n    callbacks_.reset();\n```",
+      "range": {
+        "startLine": 178,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 25
+      },
+      "revId": "a5d15d9dd17818b9315b9e97235b423b586442e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "368350ef_5deb8dda",
+        "filename": "system/gd/hal/hci_hal_android.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-19T17:16:34Z",
+      "side": 1,
+      "message": "Can this be a unique_ptr?\n```suggestion\n  std::unique_ptr\u003cHciBackend\u003e backend_;\n```",
+      "range": {
+        "startLine": 190,
+        "startChar": 7,
+        "endLine": 190,
+        "endChar": 17
+      },
+      "revId": "a5d15d9dd17818b9315b9e97235b423b586442e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
