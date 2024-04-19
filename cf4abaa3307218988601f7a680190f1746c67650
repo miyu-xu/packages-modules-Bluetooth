@@ -16,6 +16,24 @@
       "message": "This doesn\u0027t sound right to use workaround on device side.\n\nHow do USB headsets interact with RingCentral? Do they have mic mute work?",
       "revId": "cf4abaa3307218988601f7a680190f1746c67650",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbe8c1c1_e2ad81d2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-19T07:50:19Z",
+      "side": 1,
+      "message": "USB headset did exactly the same thing here. They also send additional events when unmute.\n\nI agree this should not be fixed on the device side. So I think we should create a bug and ask RingCentral to fix it.\n\nDue to the fact that I expect it will take a long time to contact RingCentral and request them to fix it from them. We can temperately workaround until they fix the problem. Otherwise, the user will think this is bt telephony issue since USB works fine.",
+      "parentUuid": "a00a8416_94615ede",
+      "revId": "cf4abaa3307218988601f7a680190f1746c67650",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
