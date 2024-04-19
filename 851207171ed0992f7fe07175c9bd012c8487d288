@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "226feb44_1dbcc03f",
+        "filename": "system/bta/dm/bta_dm_disc.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-19T09:59:30Z",
+      "side": 0,
+      "message": "probably shouldn\u0027t change this in this CL, but it won\u0027t hurt 😞",
+      "range": {
+        "startLine": 44,
+        "startChar": 30,
+        "endLine": 44,
+        "endChar": 37
+      },
+      "revId": "851207171ed0992f7fe07175c9bd012c8487d288",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
