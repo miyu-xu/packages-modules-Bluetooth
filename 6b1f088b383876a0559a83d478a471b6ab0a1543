@@ -46,6 +46,30 @@
       },
       "revId": "6b1f088b383876a0559a83d478a471b6ab0a1543",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "792eafff_49810834",
+        "filename": "flags/exported_include/android_bluetooth_flags.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-19T18:33:46Z",
+      "side": 0,
+      "message": "- I prefer IS_FLAG_ENABLED() because it looks ugly and asks to be removed 😊\n  - I guess com::android::bluetooth::flags:: is ugly in its own right...\n\n- I feel like this CL is harder to review well because it does both.",
+      "parentUuid": "9ad9c5ca_383e8924",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 6
+      },
+      "revId": "6b1f088b383876a0559a83d478a471b6ab0a1543",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
