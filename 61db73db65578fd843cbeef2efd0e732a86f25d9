@@ -22,6 +22,30 @@
       },
       "revId": "61db73db65578fd843cbeef2efd0e732a86f25d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e236c36_f4542dd8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-04-19T16:07:11Z",
+      "side": 1,
+      "message": "Only dual mode devices can support CTKD. This function was added to accommodate a specific LE-only device which changed its IRK frequently. But it broke the dual mode devices.\n\nThe proposed change ensures that the old record is removed only if both the new and old devices are LE-only devices. This is already stricter than what you are suggesting.",
+      "parentUuid": "105c63d6_992f27b0",
+      "range": {
+        "startLine": 683,
+        "startChar": 12,
+        "endLine": 683,
+        "endChar": 91
+      },
+      "revId": "61db73db65578fd843cbeef2efd0e732a86f25d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
