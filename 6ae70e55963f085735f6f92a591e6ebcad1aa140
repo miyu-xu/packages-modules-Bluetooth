@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8f260b3_cce8ad2e",
+        "filename": "system/bta/dm/bta_dm_disc_legacy.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-19T13:52:23Z",
+      "side": 1,
+      "message": "For another time, this would be much easier to review if the file copy was done in a CL by itself.  Then the next CL could add it to Android.bp and modify it so it still builds.  It\u0027s pretty difficult to review this on Gerrit.  Downloading the CL makes it pretty clear what\u0027s going on, though.",
+      "revId": "6ae70e55963f085735f6f92a591e6ebcad1aa140",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
