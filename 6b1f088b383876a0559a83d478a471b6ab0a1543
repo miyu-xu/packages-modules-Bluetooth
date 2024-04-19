@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b09701d_61505397",
+        "filename": "flags/aconfig.gni",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-19T02:38:33Z",
+      "side": 1,
+      "message": "I\u0027ll +2 once the chrome side patch is landed\n\n+ https://chrome-internal-review.googlesource.com/c/chromeos/manifest-internal/+/7188498?tab\u003dcomments\n+ crrev/c/5462842",
+      "range": {
+        "startLine": 47,
+        "startChar": 14,
+        "endLine": 47,
+        "endChar": 21
+      },
+      "revId": "6b1f088b383876a0559a83d478a471b6ab0a1543",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
