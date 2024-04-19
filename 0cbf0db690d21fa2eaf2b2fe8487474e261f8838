@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33fff957_8cee9347",
+        "filename": "system/gd/security/internal/security_manager_impl.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 859,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-19T00:16:18Z",
+      "side": 0,
+      "message": "Did you mean to remove this std::move?  Is it not needed anymore?",
+      "range": {
+        "startLine": 859,
+        "startChar": 2,
+        "endLine": 859,
+        "endChar": 11
+      },
+      "revId": "0cbf0db690d21fa2eaf2b2fe8487474e261f8838",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
