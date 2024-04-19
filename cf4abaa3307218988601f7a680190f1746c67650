@@ -34,6 +34,47 @@
       "parentUuid": "a00a8416_94615ede",
       "revId": "cf4abaa3307218988601f7a680190f1746c67650",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce3d19e1_fda2ce97",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-04-19T08:37:40Z",
+      "side": 1,
+      "message": "I don\u0027t know much about UHID here, a wild question:\n - is it possible an argument is passed to USB headset when the app opens the WebHID so headset knows it needs to send additional event at unmute operation?\n \nIf the answer is NO, then do most of the USB headsets send the same additional event at unmute? (could use a doc to summarize)\n\nAssuming (almost)all USB headsets do this, then it\u0027s a golden reference that we shouldn\u0027t treat it as a workaround. It could be a convention established by vendors for a long time, and we should give that some study first.\n\na possible approach is - we don\u0027t bother to ask RingCentral to fix anything and we shall never remove this code(since USB headset won\u0027t update its FW easily).\n\nand one more question, if RingCentral treat phone mute as toggle, how does it communicate the initial state with the device?",
+      "parentUuid": "dbe8c1c1_e2ad81d2",
+      "revId": "cf4abaa3307218988601f7a680190f1746c67650",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d266f78f_da028a81",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 862,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-04-19T08:37:40Z",
+      "side": 1,
+      "message": "Don\u0027t call this function twice, but embed this mute-toggle-handling into the function.\n```\npub fn uid_send_phone_mute_input_report(..., muted: bool) {\n  if muted {\n    // prepare data and uhid.send_input(data)\n  } else {\n    // Explain USB is doing it so we follow. A possible reason we guess\n    // is because of blablabla.\n    // prepare data1, data2\n    // uhid.send_input(data1);\n    // uhid.send_input(data2);\n  }\n}\n```",
+      "range": {
+        "startLine": 862,
+        "startChar": 57,
+        "endLine": 862,
+        "endChar": 78
+      },
+      "revId": "cf4abaa3307218988601f7a680190f1746c67650",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
