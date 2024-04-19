@@ -109,11 +109,15 @@ void cache_codec_capabilities(struct mgmt_rp_get_codec_capabilities* rp) {
   auto codecs =
       bluetooth::shim::GetController()->GetLocalSupportedBrEdrCodecIds();
   if (std::find(codecs.begin(), codecs.end(), kCodecMsbc) != codecs.end()) {
-    offload_supported = true;
-    cached_codecs.push_back({
-        .inner = {.codec = codec::MSBC, .data_path = rp->hci_data_path_id},
-        .pkt_size = rp->wbs_pkt_len,
-    });
+    // Some devices claims it supports MSBC, but it lacks erroneous data
+    // reporting. Don't enable WBS on such devices.
+    if (rp->transparent_wbs_supported) {
+      offload_supported = true;
+      cached_codecs.push_back({
+          .inner = {.codec = codec::MSBC, .data_path = rp->hci_data_path_id},
+          .pkt_size = rp->wbs_pkt_len,
+      });
+    }
   }
 
   for (const auto& c : cached_codecs) {
