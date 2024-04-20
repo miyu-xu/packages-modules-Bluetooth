@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a67dc88_ebd708b1",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-20T13:37:48Z",
+      "side": 1,
+      "message": "It was actually fixed in parent patch, but you will see it in diff between patchsets on this patch.",
+      "parentUuid": "989cae7e_f3ea1cf1",
+      "range": {
+        "startLine": 690,
+        "startChar": 0,
+        "endLine": 690,
+        "endChar": 69
+      },
+      "revId": "88b4489b1b8b0c2cb66bcb541f3faa84adf9635c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "942d3649_2baa69c0",
