@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50d6a7f0_2e64b6de",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-20T00:22:06Z",
+      "side": 1,
+      "message": "same as below",
+      "range": {
+        "startLine": 690,
+        "startChar": 0,
+        "endLine": 690,
+        "endChar": 69
+      },
+      "revId": "88b4489b1b8b0c2cb66bcb541f3faa84adf9635c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "942d3649_2baa69c0",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 889,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-20T00:22:06Z",
+      "side": 1,
+      "message": "this is just an empty name now? why the change?",
+      "range": {
+        "startLine": 889,
+        "startChar": 43,
+        "endLine": 889,
+        "endChar": 52
+      },
+      "revId": "88b4489b1b8b0c2cb66bcb541f3faa84adf9635c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae0cea87_3ad3d987",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 2299,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-20T00:22:06Z",
+      "side": 1,
+      "message": "why was this added since last patch set?",
+      "range": {
+        "startLine": 2297,
+        "startChar": 0,
+        "endLine": 2299,
+        "endChar": 1
+      },
+      "revId": "88b4489b1b8b0c2cb66bcb541f3faa84adf9635c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
