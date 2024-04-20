@@ -16,6 +16,24 @@
       "message": "Please mention the bug in comments, e.g.:\n```\n// TODO(b/335520123) update FilterCapture to stop modifying packets.\n```",
       "revId": "a5cd10e852a6e32d388505da9666a61aa762d035",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11642ae7_b76baf48",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1191,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-04-20T00:23:25Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "40bedaa7_7c82d264",
+      "revId": "a5cd10e852a6e32d388505da9666a61aa762d035",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cba40020_a84d9eaa",
+        "filename": "system/gd/hal/hci_backend.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-04-20T00:23:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c035bcbb_eacbb6c0",
+      "range": {
+        "startLine": 31,
+        "startChar": 6,
+        "endLine": 31,
+        "endChar": 25
+      },
+      "revId": "7ca43d11582633580af91eac186401bcc7b9dae7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ab04192_131eccdc",
