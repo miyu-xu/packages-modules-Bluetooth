@@ -478,7 +478,7 @@ static bool check_eir_appearance(tBTA_DM_SEARCH* p_search_data,
  *                  Populate p_remote_name, if provided and remote name found
  *
  ******************************************************************************/
-static bool check_cached_remote_name(tBTA_DM_SEARCH* p_search_data,
+static bool check_cached_remote_name(const RawAddress& bd_addr,
                                      uint8_t* p_remote_name,
                                      uint8_t* p_remote_name_len) {
   bt_bdname_t bdname;
@@ -488,8 +488,8 @@ static bool check_cached_remote_name(tBTA_DM_SEARCH* p_search_data,
 
   BTIF_STORAGE_FILL_PROPERTY(&prop_name, BT_PROPERTY_BDNAME,
                              sizeof(bt_bdname_t), &bdname);
-  if (btif_storage_get_remote_device_property(
-          &p_search_data->inq_res.bd_addr, &prop_name) == BT_STATUS_SUCCESS) {
+  if (btif_storage_get_remote_device_property(&bd_addr, &prop_name) ==
+      BT_STATUS_SUCCESS) {
     if (p_remote_name && p_remote_name_len) {
       strcpy((char*)p_remote_name, (char*)bdname.name);
       *p_remote_name_len = strlen((char*)p_remote_name);
@@ -1451,7 +1451,8 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event,
       bdname.name[0] = 0;
 
       if (!check_eir_remote_name(p_search_data, bdname.name, &remote_name_len))
-        check_cached_remote_name(p_search_data, bdname.name, &remote_name_len);
+        check_cached_remote_name(p_search_data->inq_res.bd_addr, bdname.name,
+                                 &remote_name_len);
 
       /* Check EIR for services */
       if (p_search_data->inq_res.p_eir) {
@@ -3851,16 +3852,19 @@ static void btif_dm_ble_passkey_req_evt(tBTA_DM_PIN_REQ* p_pin_req) {
 }
 static void btif_dm_ble_key_nc_req_evt(tBTA_DM_SP_KEY_NOTIF* p_notif_req) {
   /* TODO implement key notification for numeric comparison */
-  log::verbose("addr:{}", p_notif_req->bd_addr);
-
-  /* Remote name update */
-  btif_update_remote_properties(p_notif_req->bd_addr, p_notif_req->bd_name,
-                                kDevClassEmpty, BT_DEVICE_TYPE_BLE);
 
   RawAddress bd_addr = p_notif_req->bd_addr;
+  log::verbose("addr:{}", bd_addr);
 
-  bt_bdname_t bd_name;
-  bd_name_copy(bd_name.name, p_notif_req->bd_name);
+  bt_bdname_t bd_name{};
+  uint8_t remote_name_len;
+  if (bd_name_is_empty(p_notif_req->bd_name)) {
+    bd_name_copy(bd_name.name, p_notif_req->bd_name);
+  } else {
+    bool found =
+        check_cached_remote_name(bd_addr, bd_name.name, &remote_name_len);
+    log::info("remote name for nc_req_evt found: {}", found);
+  }
 
   bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING);
   pairing_cb.is_ssp = false;
