@@ -150,6 +150,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bb8a8408_676ca0a4",
+        "filename": "system/gd/hal/hci_hal_android.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-04-20T00:23:48Z",
+      "side": 1,
+      "message": "It\u0027s also used in \"registerIncomingPacketCallback()\" and \"unregisterIncomingPacketCallback()\".\nBut especially, I plan to call it on VSC \"Start A2DP Offload\" / \"Stop A2DP Offload\", to return command complete status (so need to be shared for clarity).",
+      "parentUuid": "52ed4e18_72c9c104",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 43
+      },
+      "revId": "a5d15d9dd17818b9315b9e97235b423b586442e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ed4a264_fc694f3b",
         "filename": "system/gd/hal/hci_hal_android.cc",
         "patchSetId": 1
@@ -161,6 +185,30 @@
       "writtenOn": "2024-04-19T17:16:34Z",
       "side": 1,
       "message": "nit: .reset() makes it obvious that we\u0027re expecting this to deallocate, as well.\n```suggestion\n    backend_.reset();\n    callbacks_.reset();\n```",
+      "range": {
+        "startLine": 178,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 25
+      },
+      "revId": "a5d15d9dd17818b9315b9e97235b423b586442e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52aff290_ad8a66a4",
+        "filename": "system/gd/hal/hci_hal_android.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-04-20T00:23:48Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9ed4a264_fc694f3b",
       "range": {
         "startLine": 178,
         "startChar": 0,
@@ -208,6 +256,30 @@
       "side": 1,
       "message": "Same as above, yes can be changed. (using internally raw pointers).",
       "parentUuid": "368350ef_5deb8dda",
+      "range": {
+        "startLine": 190,
+        "startChar": 7,
+        "endLine": 190,
+        "endChar": 17
+      },
+      "revId": "a5d15d9dd17818b9315b9e97235b423b586442e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c0e090b_bc606ce1",
+        "filename": "system/gd/hal/hci_hal_android.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-04-20T00:23:48Z",
+      "side": 1,
+      "message": "It looks confusing when duplication of this pointer is made internally. I will prefer to keep \"shared_ptr\" for clarity and uniformity.",
+      "parentUuid": "e8d6c13a_9b5ffe73",
       "range": {
         "startLine": 190,
         "startChar": 7,
