@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "989cae7e_f3ea1cf1",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-20T13:22:13Z",
+      "side": 1,
+      "message": "BTIF layer would register for name change events (see https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3044394/11/system/btif/src/btif_dm.cc#2188 )\n\nSo there is no more need to pass name in unrelated events.\n\nBTW. there was a bug, where at bad timing search would overwrite the name in control block, and service discovery would later pass bad name to BTIF",
+      "parentUuid": "50d6a7f0_2e64b6de",
+      "range": {
+        "startLine": 690,
+        "startChar": 0,
+        "endLine": 690,
+        "endChar": 69
+      },
+      "revId": "88b4489b1b8b0c2cb66bcb541f3faa84adf9635c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "942d3649_2baa69c0",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b4a8275_0dfbfad8",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 889,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-20T13:22:13Z",
+      "side": 1,
+      "message": "see comment above.",
+      "parentUuid": "942d3649_2baa69c0",
+      "range": {
+        "startLine": 889,
+        "startChar": 43,
+        "endLine": 889,
+        "endChar": 52
+      },
+      "revId": "88b4489b1b8b0c2cb66bcb541f3faa84adf9635c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ae0cea87_3ad3d987",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-04-20T00:22:06Z",
       "side": 1,
       "message": "why was this added since last patch set?",
+      "range": {
+        "startLine": 2297,
+        "startChar": 0,
+        "endLine": 2299,
+        "endChar": 1
+      },
+      "revId": "88b4489b1b8b0c2cb66bcb541f3faa84adf9635c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a15755d2_21abb82c",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 2299,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-20T13:22:13Z",
+      "side": 1,
+      "message": "Part of fixing tests. I need ot access discovery control block in tests.",
+      "parentUuid": "ae0cea87_3ad3d987",
       "range": {
         "startLine": 2297,
         "startChar": 0,
