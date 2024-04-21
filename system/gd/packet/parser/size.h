@@ -23,25 +23,25 @@
 
 class Size {
  public:
-  Size() {}
+  constexpr Size() {}
 
-  Size(int bits) {
+  constexpr Size(int bits) {
     is_valid_ = true;
     bits_ = bits;
   }
 
-  Size(std::string dynamic) {
+  constexpr Size(std::string dynamic) {
     is_valid_ = true;
-    dynamic_.push_back(dynamic);
+    dynamic_.push_back(std::move(dynamic));
   }
 
-  Size(int bits, std::string dynamic) {
+  constexpr Size(int bits, std::string dynamic) {
     is_valid_ = true;
     bits_ = bits;
-    dynamic_.push_back(dynamic);
+    dynamic_.push_back(std::move(dynamic));
   }
 
-  Size(const Size& size) {
+  constexpr Size(const Size& size) {
     is_valid_ = size.is_valid_;
     bits_ = size.bits_;
     dynamic_ = size.dynamic_;
