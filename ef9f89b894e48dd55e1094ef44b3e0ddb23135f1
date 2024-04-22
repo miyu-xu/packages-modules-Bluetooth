@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "19a2a064_c76d2251",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 863,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-22T20:06:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba00f299_c92c9dfe",
+      "range": {
+        "startLine": 863,
+        "startChar": 9,
+        "endLine": 863,
+        "endChar": 14
+      },
+      "revId": "ef9f89b894e48dd55e1094ef44b3e0ddb23135f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d78e2cc2_b261aab3",
@@ -70,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cb8bd60_e33f2c24",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 891,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-22T20:06:40Z",
+      "side": 1,
+      "message": "Probably there is but I\u0027m not touching it in this patch.",
+      "parentUuid": "d78e2cc2_b261aab3",
+      "range": {
+        "startLine": 891,
+        "startChar": 11,
+        "endLine": 891,
+        "endChar": 30
+      },
+      "revId": "ef9f89b894e48dd55e1094ef44b3e0ddb23135f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb5956b7_71c7459a",
@@ -83,6 +131,30 @@
       "writtenOn": "2024-04-22T19:40:13Z",
       "side": 1,
       "message": "this is not necessary right? the if-else above already make sure this is unreachable",
+      "range": {
+        "startLine": 902,
+        "startChar": 0,
+        "endLine": 902,
+        "endChar": 28
+      },
+      "revId": "ef9f89b894e48dd55e1094ef44b3e0ddb23135f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c082c90_3d29a6a7",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 902,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-22T20:06:40Z",
+      "side": 1,
+      "message": "Yes, I\u0027m just being little paranoid here. Would you like this removed ?",
+      "parentUuid": "eb5956b7_71c7459a",
       "range": {
         "startLine": 902,
         "startChar": 0,
