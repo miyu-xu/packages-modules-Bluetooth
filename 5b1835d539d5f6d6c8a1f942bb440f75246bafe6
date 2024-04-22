@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f128137a_db188ae9",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2046,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-22T16:41:58Z",
+      "side": 1,
+      "message": "This might be a nit pick since we\u0027re not passing success for now, but should we move this up to only apply for !isSuccess(status) case?\n                    mPendingMetadata \u003d null;\n                    removeMessages(CANCEL_PENDING_SOURCE_OPERATION);\n                    \nPlease feel free to mark this as resolved and merge it if intended here.",
+      "revId": "5b1835d539d5f6d6c8a1f942bb440f75246bafe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

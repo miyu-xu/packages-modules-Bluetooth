@@ -104,6 +104,24 @@
       "parentUuid": "21aa1265_0d14e5fb",
       "revId": "de6043a8fbaa19ce7b760747cee487bcd5c48e98",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2324c25c_836d17e8",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassConstants.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-22T16:41:58Z",
+      "side": 1,
+      "message": "Got it, thanks for the details. Sure, let\u0027s start with this.",
+      "parentUuid": "c967b76d_6575fab1",
+      "revId": "de6043a8fbaa19ce7b760747cee487bcd5c48e98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
