@@ -22,6 +22,30 @@
       },
       "revId": "c9462b40ef3ef88555b1a86bd71e7259fe0a71cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bdbfcca_ab36115a",
+        "filename": "system/bta/dm/bta_dm_disc_int.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-22T19:33:00Z",
+      "side": 0,
+      "message": "it is never used even before refactor.",
+      "parentUuid": "35d04add_be012d86",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 25
+      },
+      "revId": "c9462b40ef3ef88555b1a86bd71e7259fe0a71cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

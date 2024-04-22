@@ -22,6 +22,30 @@
       },
       "revId": "9d897c3fde66fb76565d4b02455b054bb404c171",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfe7693d_26a8427c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-22T19:33:00Z",
+      "side": 1,
+      "message": "Few patches down the way please, when this code can perform siumlteanous LE and Classic discovery.",
+      "parentUuid": "5d0a0f1b_c74bf09d",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 22
+      },
+      "revId": "9d897c3fde66fb76565d4b02455b054bb404c171",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
