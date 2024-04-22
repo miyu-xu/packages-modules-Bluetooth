@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d78e2cc2_b261aab3",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 891,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-22T19:35:35Z",
+      "side": 1,
+      "message": "is there really no better way of getting rid of this static array?",
+      "range": {
+        "startLine": 891,
+        "startChar": 11,
+        "endLine": 891,
+        "endChar": 30
+      },
+      "revId": "ef9f89b894e48dd55e1094ef44b3e0ddb23135f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
