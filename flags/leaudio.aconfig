@@ -462,3 +462,10 @@ flag {
     description: "Add OPUS codec type"
     bug: "380029892"
 }
+
+flag {
+    name: "leaudio_audio_location_integer"
+    namespace: "bluetooth"
+    description: "Allow using the integer definition of Audio Location field"
+    bug: "335544211"
+}
