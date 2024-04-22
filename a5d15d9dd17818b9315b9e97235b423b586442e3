@@ -125,6 +125,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9548725e_b9b48394",
+        "filename": "system/gd/hal/hci_backend.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-22T18:17:26Z",
+      "side": 1,
+      "message": "Looks like I was wrong.  It\u0027s not that simple.",
+      "parentUuid": "a511ee0b_759bc0e0",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 23
+      },
+      "revId": "a5d15d9dd17818b9315b9e97235b423b586442e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7413d70c_47985984",
@@ -138,6 +162,30 @@
       "writtenOn": "2024-04-22T18:09:58Z",
       "side": 1,
       "message": "I think if you remove this include, you can get rid of the \"undef LOG_*\" in the other file.",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 19
+      },
+      "revId": "a5d15d9dd17818b9315b9e97235b423b586442e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e769717_9773414a",
+        "filename": "system/gd/hal/hci_backend_hidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-22T18:17:26Z",
+      "side": 1,
+      "message": "... sadly not that simple.",
+      "parentUuid": "7413d70c_47985984",
       "range": {
         "startLine": 28,
         "startChar": 0,
