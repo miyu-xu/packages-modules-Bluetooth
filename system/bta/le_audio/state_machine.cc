@@ -728,13 +728,13 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
       uint32_t crcErrorPackets, uint32_t rxUnreceivedPackets,
       uint32_t duplicatePackets) {
     log::info(
-        "conn_handle: {}, txUnackedPackets: {}, txFlushedPackets: {}, "
-        "txLastSubeventPackets: {}, retransmittedPackets: {}, crcErrorPackets: "
-        "{}, rxUnreceivedPackets: {}, duplicatePackets: {}",
-        loghex(conn_handle), loghex(txUnackedPackets), loghex(txFlushedPackets),
-        loghex(txLastSubeventPackets), loghex(retransmittedPackets),
-        loghex(crcErrorPackets), loghex(rxUnreceivedPackets),
-        loghex(duplicatePackets));
+        "conn_handle: {:x}, txUnackedPackets: {:x}, txFlushedPackets: {:x}, "
+        "txLastSubeventPackets: {:x}, retransmittedPackets: {:x}, "
+        "crcErrorPackets: {:x}, rxUnreceivedPackets: {:x}, duplicatePackets: "
+        "{:x}",
+        conn_handle, txUnackedPackets, txFlushedPackets, txLastSubeventPackets,
+        retransmittedPackets, crcErrorPackets, rxUnreceivedPackets,
+        duplicatePackets);
   }
 
   void ReleaseCisIds(LeAudioDeviceGroup* group) {
@@ -1700,8 +1700,8 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
             BTM_GetHCIConnHandle(leAudioDevice->address_, BT_TRANSPORT_LE);
         conn_pairs.push_back({.cis_conn_handle = ase->cis_conn_hdl,
                               .acl_conn_handle = acl_handle});
-        log::debug("cis handle: {} acl handle : {}", ase->cis_conn_hdl,
-                   loghex(+acl_handle));
+        log::debug("cis handle: {} acl handle : {:x}", ase->cis_conn_hdl,
+                   acl_handle);
 
       } while ((ase = leAudioDevice->GetNextActiveAse(ase)));
     } while ((leAudioDevice = group->GetNextActiveDevice(leAudioDevice)));
