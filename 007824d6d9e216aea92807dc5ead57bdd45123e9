@@ -22,6 +22,30 @@
       },
       "revId": "007824d6d9e216aea92807dc5ead57bdd45123e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0de9761c_f180f2b2",
+        "filename": "system/gd/hal/snoop_logger_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1606,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-04-22T19:10:35Z",
+      "side": 1,
+      "message": "According to https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/gd/hal/snoop_logger.cc;l\u003d750;drc\u003d3d19fbcc09b1b44928639b06cd0b88f735cd988d It looks like it\u0027s wanted to strip all contents after \"CLCC:\" AT Command.\n(Looks like there is another bug, I think we should read `clcc_pat_len` instead of `cpbr_pat_len`, btw the lengths are same).",
+      "parentUuid": "7f91bf7d_55952553",
+      "range": {
+        "startLine": 1603,
+        "startChar": 0,
+        "endLine": 1606,
+        "endChar": 83
+      },
+      "revId": "007824d6d9e216aea92807dc5ead57bdd45123e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
