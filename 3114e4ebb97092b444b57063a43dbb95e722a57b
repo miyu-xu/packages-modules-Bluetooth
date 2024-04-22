@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0158a1ee_5464b282",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-22T19:20:39Z",
+      "side": 1,
+      "message": "What about SinkImpl? \n\nIs this the only place we need to call StopSession?",
+      "range": {
+        "startLine": 141,
+        "startChar": 5,
+        "endLine": 141,
+        "endChar": 15
+      },
+      "revId": "3114e4ebb97092b444b57063a43dbb95e722a57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
