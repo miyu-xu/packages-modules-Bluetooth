@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "448dfd3a_17c060bb",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 751,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-22T21:04:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e44413ca_4c36158f",
+      "range": {
+        "startLine": 743,
+        "startChar": 0,
+        "endLine": 751,
+        "endChar": 3
+      },
+      "revId": "f7b6af6b5b5ae2a59f91dbd8904df2f1a80ed836",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "903738b6_7917de22",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-22T19:48:52Z",
       "side": 1,
       "message": "nit: use // for comments per Google C++ style guide",
+      "range": {
+        "startLine": 754,
+        "startChar": 4,
+        "endLine": 754,
+        "endChar": 6
+      },
+      "revId": "f7b6af6b5b5ae2a59f91dbd8904df2f1a80ed836",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a099435_500e9eee",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-22T21:04:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "903738b6_7917de22",
       "range": {
         "startLine": 754,
         "startChar": 4,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55e2e5c8_9e25b15f",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 781,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-22T21:04:22Z",
+      "side": 1,
+      "message": "Not yet",
+      "parentUuid": "c5acb343_f848d445",
+      "range": {
+        "startLine": 781,
+        "startChar": 9,
+        "endLine": 781,
+        "endChar": 28
+      },
+      "revId": "f7b6af6b5b5ae2a59f91dbd8904df2f1a80ed836",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "faee4b1b_49ffaf73",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "704ef782_1882b5c4",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-22T21:04:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "faee4b1b_49ffaf73",
+      "range": {
+        "startLine": 802,
+        "startChar": 11,
+        "endLine": 802,
+        "endChar": 16
+      },
+      "revId": "f7b6af6b5b5ae2a59f91dbd8904df2f1a80ed836",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb2f46d3_6eb162c4",
@@ -106,6 +202,30 @@
       "writtenOn": "2024-04-22T19:48:52Z",
       "side": 1,
       "message": "after this is incremented, do we expect `bta_dm_find_services` to be called later?\n\nIs there a giant for-loop involving multiple calls to `bta_dm_find_services` that is not obvious in this CL?",
+      "range": {
+        "startLine": 806,
+        "startChar": 0,
+        "endLine": 806,
+        "endChar": 38
+      },
+      "revId": "f7b6af6b5b5ae2a59f91dbd8904df2f1a80ed836",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39745469_db0ae950",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 806,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-22T21:04:22Z",
+      "side": 1,
+      "message": "As I understand, there is. I am no SDP expert, but must clean that up a little for patches to come.\n\n``services_index`` and others are part of control block, not local variables.\n\nbta_dm_find_services is called first to initate SDP, and then again from function parsing SDP results. So it\u0027s big loop through SDP results, as they arrive in big chunks from remote.",
+      "parentUuid": "fb2f46d3_6eb162c4",
       "range": {
         "startLine": 806,
         "startChar": 0,

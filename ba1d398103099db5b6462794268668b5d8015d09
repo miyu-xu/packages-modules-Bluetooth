@@ -22,6 +22,30 @@
       },
       "revId": "ba1d398103099db5b6462794268668b5d8015d09",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9913f4c6_3f00da5d",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 778,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-22T21:04:22Z",
+      "side": 0,
+      "message": "No, before this CL, we would also init SDP only once.\n\nYou wouldn\u0027t move to next one if you end up in this line, bcause you set ``bta_dm_discovery_cb.service_index \u003d BTA_MAX_SERVICE_ID``, you will jump out of while loop, and end up finishing discovery.\n\n\nSo this is not a loop of starting SDP, it always started SDP just once. Having it inside while loop was super confusing.",
+      "parentUuid": "77cedc5b_47c8d97f",
+      "range": {
+        "startLine": 775,
+        "startChar": 0,
+        "endLine": 778,
+        "endChar": 11
+      },
+      "revId": "ba1d398103099db5b6462794268668b5d8015d09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
