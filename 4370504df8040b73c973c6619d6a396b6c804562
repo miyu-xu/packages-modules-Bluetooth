@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cc7981e_b3ee1f89",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-04-22T04:34:18Z",
+      "side": 1,
+      "message": "Chromium side API uprev: crrev/c/5447985",
+      "revId": "4370504df8040b73c973c6619d6a396b6c804562",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
