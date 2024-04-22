@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e664c218_65c95fd4",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 837,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-22T20:47:23Z",
+      "side": 1,
+      "message": "I\u0027m trying to not break anything.\n\nIt is already called when stack is initialized, so this should be safe to delete.\n\nMaybe in separate patch ?",
+      "parentUuid": "c14c7af4_21645be1",
+      "range": {
+        "startLine": 837,
+        "startChar": 2,
+        "endLine": 837,
+        "endChar": 23
+      },
+      "revId": "8a095302abae54912b31a1682c814bce7a138c50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f204dcc_ff542585",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-22T20:35:57Z",
       "side": 1,
       "message": "Maybe everything from here to the end should be combined into a single if?",
+      "range": {
+        "startLine": 875,
+        "startChar": 2,
+        "endLine": 875,
+        "endChar": 4
+      },
+      "revId": "8a095302abae54912b31a1682c814bce7a138c50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0536e35a_98c4ca67",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 875,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-22T20:47:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f204dcc_ff542585",
       "range": {
         "startLine": 875,
         "startChar": 2,
