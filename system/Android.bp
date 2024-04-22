@@ -158,3 +158,83 @@ cc_library_headers {
     ],
     min_sdk_version: "30",
 }
+
+HOST_EXECUTABLES = [
+    "bluetooth_stack_with_facade",
+    "bt_topshim_facade",
+    "root-canal"
+]
+
+HOST_TARGET_SHARED_LIBRARIES = [
+    "libbase",
+    "libbinder",
+    "libbinder_ndk",
+    "libc++",
+    "libcrypto",
+    "libcutils",
+    "libgrpc++",
+    "libgrpc_wrap",
+    "liblog",
+    "liblzma",
+    "libprotobuf-cpp-full",
+    "libunwindstack",
+    "libutils",
+    "libssl",
+    "libz",
+    "server_configurable_flags",
+]
+
+HOST_LIBRARIES = HOST_TARGET_SHARED_LIBRARIES +[
+    "libbluetooth",
+    "libbluetooth_gd",
+    "libchrome",
+    // "libcrypto-host",
+    "libevent",
+    "libflatbuffers-cpp",
+    // "libssl-host",
+    // "libz-host",
+]
+
+TARGET_LIBRARIES = HOST_TARGET_SHARED_LIBRARIES + [
+    "android.hardware.bluetooth@1.0",
+    "android.hardware.bluetooth@1.1",
+    "libandroid_runtime_lazy",
+    "libhidlbase",
+    // "libssl",
+    "libstatslog_bt",
+    // "libz",
+ ]
+
+genrule {
+    name: "bluetooth_cert_src_and_bin.zip",
+    tools: [
+        "soong_zip",
+    ],
+    srcs: [
+        "setup.py",
+        "blueberry/**/*.py",
+        "blueberry/**/*.yaml",
+        // host executables
+        ":bluetooth_stack_with_facade",
+        ":bt_topshim_facade",
+        ":root-canal",
+    ],
+    // host_required: HOST_EXECUTABLES + HOST_LIBRARIES,
+    required: [
+        // host_python_hci_packets_library
+        "hci_packets_python3_gen",
+        // host_python_smp_packets_library
+        "gd_smp_packets_python3_gen",
+    ] + HOST_LIBRARIES + TARGET_LIBRARIES,
+    // target_required: TARGET_LIBRARIES,
+    out: ["bluetooth_cert_src_and_bin.zip"],
+    cmd: "$(soong_zip) -d -o $(out) \" +
+        "-C packages/modules/Bluetooth/system \" +
+        "-f packages/modules/Bluetooth/system/**/* \" +
+        "-C dirname $(location hci_packets.py) \" +
+        "-f $(location hci_packets.py) \" +
+        "-C dirname $(location smp_packets.py) \" +
+        "-f $(location smp_packets.py) \" +
+        "-C dirname $(location bluetooth_stack_with_facade) \" + // how to tell it's from product_out or host_out
+        "-f $(location bluetooth_stack_with_facade)",
+}
