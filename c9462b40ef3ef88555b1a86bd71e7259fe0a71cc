@@ -22,6 +22,30 @@
       },
       "revId": "c9462b40ef3ef88555b1a86bd71e7259fe0a71cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14c2c514_ece135a3",
+        "filename": "system/bta/dm/bta_dm_device_search_int.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-22T21:17:23Z",
+      "side": 1,
+      "message": "It\u0027s just splitting header file. I\u0027ll do that in next patch.",
+      "parentUuid": "b0e971e6_c833f224",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 19
+      },
+      "revId": "c9462b40ef3ef88555b1a86bd71e7259fe0a71cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
