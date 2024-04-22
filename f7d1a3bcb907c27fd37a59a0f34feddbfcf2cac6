@@ -16,6 +16,24 @@
       "message": "`loghex` seems to put a prefix + pad the output to the type size, I think we want to maintain that (at least the prefix)",
       "revId": "f7d1a3bcb907c27fd37a59a0f34feddbfcf2cac6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcc3400d_4e3d8379",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-22T23:40:16Z",
+      "side": 1,
+      "message": "It is not possible to introduce the padding using a script based on regex matching since it is missing the type information.\nI am updating the patch with the 0x{} prefix.",
+      "parentUuid": "a0f30ac4_2c08b4a4",
+      "revId": "f7d1a3bcb907c27fd37a59a0f34feddbfcf2cac6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
