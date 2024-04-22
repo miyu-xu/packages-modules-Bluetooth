@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "849be84c_9967444b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-22T19:15:50Z",
+      "side": 1,
+      "message": "Would monitoring this log:\n https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/btif/src/btif_dm.cc;l\u003d711?q\u003dbtif_dm.cc \n\nbe enough for CoD logging?",
+      "revId": "af7e5c16779b19878a3bf262f8e78828f026aa27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
