@@ -16,10 +16,11 @@
 
 #pragma once
 
+#include <utility>
+
 #include "../le_audio_software.h"
-#include "audio_aidl_interfaces.h"
+#include "aidl/client_interface_aidl.h"
 #include "bta/le_audio/le_audio_types.h"
-#include "client_interface_aidl.h"
 
 namespace bluetooth {
 namespace audio {
@@ -57,7 +58,7 @@ using ::bluetooth::audio::le_audio::StreamCallbacks;
 
 void flush_source();
 bool hal_ucast_capability_to_stack_format(const UnicastCapability& ucast_capability,
-                                          CodecConfigSetting& stack_capability);
+                                          CodecConfigSetting* stack_capability);
 AudioConfiguration offload_config_to_hal_audio_config(
         const ::bluetooth::le_audio::offload_config& offload_config);
 AudioConfiguration broadcast_config_to_hal_audio_config(
