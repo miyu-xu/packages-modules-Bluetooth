@@ -402,8 +402,28 @@ public class MediaControlProfile implements MediaControlServiceCallbacks {
                         + Request.Opcodes.toString(request.getOpcode()));
         Request.Results status = Request.Results.COMMAND_CANNOT_BE_COMPLETED;
 
-        if (mMediaPlayerList.getActivePlayer() == null && mGMcsService != null) {
-            mGMcsService.setMediaControlRequestResult(request, status);
+        if (Utils.isPtsTestMode()) {
+            if (mMediaPlayerList.getActivePlayer() == null && mGMcsService != null) {
+                mGMcsService.setMediaControlRequestResult(request, status);
+            }
+        }
+
+        if (mMediaPlayerList.getActivePlayer() == null
+                && request.getOpcode() == Request.Opcodes.PLAY) {
+            Log.d(TAG, "Player is not active. GMCS send media key for PLAY");
+            int passthroughIdPlay = 0x44;
+            mMediaPlayerList.sendMediaKeyEvent(passthroughIdPlay, true);
+            mMediaPlayerList.sendMediaKeyEvent(passthroughIdPlay, false);
+            return;
+        }
+
+        if (mMediaPlayerList.getActivePlayer() == null || mCurrentData.state == null) {
+            if (mGMcsService != null) {
+                mGMcsService.setMediaControlRequestResult(request, status);
+            } else {
+                Log.e(TAG, "mGMcsService is null");
+            }
+            return;
         }
 
         long actions = getCurrentPlayerSupportedActions();
