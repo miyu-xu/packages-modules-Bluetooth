@@ -391,3 +391,10 @@ flag {
     description: "New apis to set codec config preference"
     bug: "353909820"
 }
+
+flag {
+    name: "leaudio_audio_location_integer"
+    namespace: "bluetooth"
+    description: "Allow using the integer definition of Audio Location field"
+    bug: "335544211"
+}
