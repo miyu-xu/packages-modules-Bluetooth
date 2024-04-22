@@ -22,6 +22,30 @@
       },
       "revId": "1df3e520f3c4b004e48f0962886c3ef3cea29cbd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e787db3_603fb6c9",
+        "filename": "system/device/src/device_iot_config_int.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-22T20:08:04Z",
+      "side": 1,
+      "message": "We could either leave the parameters or just remove them totally as they are extraneous and not really part of the signature anyway.",
+      "parentUuid": "861ed82d_0507987f",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 55
+      },
+      "revId": "1df3e520f3c4b004e48f0962886c3ef3cea29cbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
