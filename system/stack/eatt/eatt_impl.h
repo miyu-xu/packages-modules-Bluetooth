@@ -180,7 +180,7 @@ struct eatt_impl {
       chan->EattChannelSetState(EattChannelState::EATT_CHANNEL_OPENED);
       eatt_dev->eatt_tcb_->eatt++;
 
-      log::info("Channel connected CID {}", loghex(cid));
+      log::info("Channel connected CID {:x}", cid);
     }
 
     return true;
@@ -387,12 +387,12 @@ struct eatt_impl {
 
     EattChannel* channel = this->find_channel_by_cid(bda, lcid);
     if (!channel) {
-      log::error("unknown cid: {}", loghex(lcid));
+      log::error("unknown cid: {:x}", lcid);
       return;
     }
 
     if (result != L2CAP_CONN_OK) {
-      log::error("Could not connect CoC result: {}", loghex(result));
+      log::error("Could not connect CoC result: {:x}", result);
       remove_channel_by_cid(eatt_dev, lcid);
 
       /* If there is no channels connected, check if there was collision */
@@ -421,7 +421,7 @@ struct eatt_impl {
   void eatt_l2cap_reconfig_completed(const RawAddress& bda, uint16_t lcid,
                                      bool is_local_cfg,
                                      tL2CAP_LE_CFG_INFO* p_cfg) {
-    log::info("lcid: {} local cfg?: {}", loghex(lcid), is_local_cfg);
+    log::info("lcid: {:x} local cfg?: {}", lcid, is_local_cfg);
 
     EattChannel* channel = find_channel_by_cid(bda, lcid);
     if (!channel) return;
@@ -430,8 +430,7 @@ struct eatt_impl {
     channel->EattChannelSetState(EattChannelState::EATT_CHANNEL_OPENED);
 
     if (p_cfg->result != L2CAP_CFG_OK) {
-      log::info("reconfig failed lcid: {} result: {}", loghex(lcid),
-                loghex(p_cfg->result));
+      log::info("reconfig failed lcid: {:x} result: {:x}", lcid, p_cfg->result);
       return;
     }
 
@@ -466,26 +465,25 @@ struct eatt_impl {
   void eatt_l2cap_error_cb(uint16_t lcid, uint16_t reason) {
     EattChannel* channel = find_channel_by_cid(lcid);
     if (!channel) {
-      log::error("Unknown cid: {}, reason: {}", loghex(lcid), loghex(reason));
+      log::error("Unknown cid: {:x}, reason: {:x}", lcid, reason);
       return;
     }
 
     eatt_device* eatt_dev = find_device_by_address(channel->bda_);
     switch (channel->state_) {
       case EattChannelState::EATT_CHANNEL_PENDING:
-        log::warn("Channel for cid: {} is not extablished, reason: {}",
-                  loghex(lcid), loghex(reason));
+        log::warn("Channel for cid: {:x} is not extablished, reason: {:x}",
+                  lcid, reason);
         remove_channel_by_cid(eatt_dev, lcid);
         break;
       case EattChannelState::EATT_CHANNEL_RECONFIGURING:
         /* Just go back to open state */
-        log::error("Reconfig failed fo cid: {}, reason: {}", loghex(lcid),
-                   loghex(reason));
+        log::error("Reconfig failed fo cid: {:x}, reason: {:x}", lcid, reason);
         channel->EattChannelSetState(EattChannelState::EATT_CHANNEL_OPENED);
         break;
       default:
-        log::error("cid: {}, reason: {}, invalid state: {}", loghex(lcid),
-                   loghex(reason), static_cast<uint8_t>(channel->state_));
+        log::error("cid: {:x}, reason: {:x}, invalid state: {}", lcid, reason,
+                   static_cast<uint8_t>(channel->state_));
         break;
     }
 
@@ -495,10 +493,10 @@ struct eatt_impl {
   }
 
   void eatt_l2cap_disconnect_ind(uint16_t lcid, bool please_confirm) {
-    log::info("cid: {}", loghex(lcid));
+    log::info("cid: {:x}", lcid);
     eatt_device* eatt_dev = find_device_by_cid(lcid);
     if (!eatt_dev) {
-      log::error("unknown cid: {}", loghex(lcid));
+      log::error("unknown cid: {:x}", lcid);
       return;
     }
 
@@ -507,16 +505,16 @@ struct eatt_impl {
   }
 
   void eatt_l2cap_data_ind(uint16_t lcid, BT_HDR* data_p) {
-    log::info("cid: {}", loghex(lcid));
+    log::info("cid: {:x}", lcid);
     eatt_device* eatt_dev = find_device_by_cid(lcid);
     if (!eatt_dev) {
-      log::error("unknown cid: {}", loghex(lcid));
+      log::error("unknown cid: {:x}", lcid);
       return;
     }
 
     EattChannel* channel = find_channel_by_cid(eatt_dev->bda_, lcid);
     if (!channel) {
-      log::error("Received data on closed channel {}", loghex(lcid));
+      log::error("Received data on closed channel {:x}", lcid);
       return;
     }
 
@@ -586,7 +584,7 @@ struct eatt_impl {
               connecting_cids.size());
 
     for (uint16_t cid : connecting_cids) {
-      log::info("\t cid: {}", loghex(cid));
+      log::info("\t cid: {:x}", cid);
 
       auto chan = std::make_shared<EattChannel>(eatt_dev->bda_, cid, 0,
                                                 eatt_dev->rx_mtu_);
@@ -741,7 +739,7 @@ struct eatt_impl {
   void start_indication_confirm_timer(const RawAddress& bd_addr, uint16_t cid) {
     EattChannel* channel = find_eatt_channel_by_cid(bd_addr, cid);
     if (!channel) {
-      log::error("Unknown cid: {} or device {}", loghex(cid), bd_addr);
+      log::error("Unknown cid: {:x} or device {}", cid, bd_addr);
       return;
     }
 
@@ -753,7 +751,7 @@ struct eatt_impl {
   void stop_indication_confirm_timer(const RawAddress& bd_addr, uint16_t cid) {
     EattChannel* channel = find_eatt_channel_by_cid(bd_addr, cid);
     if (!channel) {
-      log::error("Unknown cid: {} or device {}", loghex(cid), bd_addr);
+      log::error("Unknown cid: {:x} or device {}", cid, bd_addr);
       return;
     }
 
@@ -763,7 +761,7 @@ struct eatt_impl {
   void start_app_indication_timer(const RawAddress& bd_addr, uint16_t cid) {
     EattChannel* channel = find_eatt_channel_by_cid(bd_addr, cid);
     if (!channel) {
-      log::error("Unknown cid: {} or device {}", loghex(cid), bd_addr);
+      log::error("Unknown cid: {:x} or device {}", cid, bd_addr);
       return;
     }
 
@@ -774,7 +772,7 @@ struct eatt_impl {
   void stop_app_indication_timer(const RawAddress& bd_addr, uint16_t cid) {
     EattChannel* channel = find_eatt_channel_by_cid(bd_addr, cid);
     if (!channel) {
-      log::error("Unknown cid: {} or device {}", loghex(cid), bd_addr);
+      log::error("Unknown cid: {:x} or device {}", cid, bd_addr);
       return;
     }
 
@@ -790,12 +788,12 @@ struct eatt_impl {
 
     EattChannel* channel = find_eatt_channel_by_cid(bd_addr, cid);
     if (!channel) {
-      log::error("Unknown cid: {} or device {}", loghex(cid), bd_addr);
+      log::error("Unknown cid: {:x} or device {}", cid, bd_addr);
       return;
     }
 
     if (new_mtu <= channel->rx_mtu_) {
-      log::error("Invalid mtu: {}", loghex(new_mtu));
+      log::error("Invalid mtu: {:x}", new_mtu);
       return;
     }
 
@@ -804,7 +802,7 @@ struct eatt_impl {
     tL2CAP_LE_CFG_INFO cfg = {.mtu = new_mtu, .mps = eatt_dev->rx_mps_};
 
     if (!L2CA_ReconfigCreditBasedConnsReq(eatt_dev->bda_, cids, &cfg)) {
-      log::error("Could not start reconfig cid: {} or device {}", loghex(cid),
+      log::error("Could not start reconfig cid: {:x} or device {}", cid,
                  bd_addr);
       return;
     }
@@ -836,7 +834,7 @@ struct eatt_impl {
     }
 
     if (new_mtu <= EATT_MIN_MTU_MPS) {
-      log::error("Invalid mtu: {}", loghex(new_mtu));
+      log::error("Invalid mtu: {:x}", new_mtu);
       return;
     }
 
