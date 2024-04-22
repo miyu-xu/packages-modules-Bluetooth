@@ -46,6 +46,30 @@
       },
       "revId": "007824d6d9e216aea92807dc5ead57bdd45123e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66b1fc76_73018f00",
+        "filename": "system/gd/hal/snoop_logger_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1606,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-04-22T21:15:01Z",
+      "side": 1,
+      "message": "@yuyangh@google.com Can you have a look and open a bug if it\u0027s relevant?\nThanks.",
+      "parentUuid": "0de9761c_f180f2b2",
+      "range": {
+        "startLine": 1603,
+        "startChar": 0,
+        "endLine": 1606,
+        "endChar": 83
+      },
+      "revId": "007824d6d9e216aea92807dc5ead57bdd45123e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
