@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae53a9e1_a06ecfd3",
+        "filename": "system/btif/test/btif_dm_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-22T19:34:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f470d7b0_a27ea252",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 26
+      },
+      "revId": "802edc572bc8afdd15dd4cc7b648fbca7d765939",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b84c8b04_5437b368",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-19T15:56:33Z",
       "side": 1,
       "message": "are you using this using?  I see a lot of \"bluetooth::\" still.",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 26
+      },
+      "revId": "802edc572bc8afdd15dd4cc7b648fbca7d765939",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71f0e784_7102cf65",
+        "filename": "system/btif/test/btif_dm_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-22T19:34:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b84c8b04_5437b368",
       "range": {
         "startLine": 37,
         "startChar": 0,
