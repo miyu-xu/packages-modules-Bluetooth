@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0f30ac4_2c08b4a4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-22T23:33:37Z",
+      "side": 1,
+      "message": "`loghex` seems to put a prefix + pad the output to the type size, I think we want to maintain that (at least the prefix)",
+      "revId": "f7d1a3bcb907c27fd37a59a0f34feddbfcf2cac6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
