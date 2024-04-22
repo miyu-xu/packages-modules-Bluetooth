@@ -269,6 +269,12 @@ cc_library {
 
 cc_binary {
     name: "bluetooth_stack_with_facade",
+    defaults: ["bluetooth_stack_with_facade_defaults"],
+    host_supported: true,
+}
+
+cc_defaults {
+    name: "bluetooth_stack_with_facade_defaults",
     defaults: [
         "gd_defaults",
     ],
@@ -277,7 +283,7 @@ cc_binary {
         "packages/modules/Bluetooth/system/include",
         "packages/modules/Bluetooth/system/types",
     ],
-    host_supported: true,
+
     srcs: [
         ":BluetoothFacade_hci_hal",
         ":BluetoothFacade_hci_layer",
@@ -359,6 +365,18 @@ cc_binary {
         address: true,
         cfi: true,
     },
+}
+
+// build and install bluetooth_stack_with_facade to host out only.
+cc_binary_host {
+    name: "bluetooth_stack_with_facade-host",
+    defaults: ["bluetooth_stack_with_facade_defaults"],
+}
+
+// build and install bluetooth_stack_with_facade to product out only.
+cc_binary {
+    name: "bluetooth_stack_with_facade-target",
+    defaults: ["bluetooth_stack_with_facade_defaults"],
 }
 
 cc_test {

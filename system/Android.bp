@@ -126,7 +126,7 @@ genrule {
     ],
     cmd: "mkdir -p $(genDir)/files && " +
         "$(location aprotoc) -Ipackages/modules/Bluetooth/system -Iexternal/protobuf/src --plugin=protoc-gen-grpc=$(location protoc-gen-grpc-python-plugin) $(locations :BlueberryFacadeProto) --grpc_out=$(genDir)/files --python_out=$(genDir)/files && " +
-        "find $(genDir)/files -type d -exec touch {}/__init__.py \\; &&" +
+        "for dir in `find $(genDir)/files -type d`; do touch $$dir/__init__.py; done &&" +
         "$(location soong_zip) -C $(genDir)/files -D $(genDir)/files -o $(out)",
     srcs: [
         ":BlueberryFacadeProto",
@@ -157,4 +157,131 @@ cc_library_headers {
         "com.android.btservices",
     ],
     min_sdk_version: "30",
+}
+
+genrule {
+    name: "bluetooth_stack_with_facade_hostbin",
+    tools: [":bluetooth_stack_with_facade-host"],
+    out: ["bluetooth_stack_with_facade"],
+    cmd: "mv $(location :bluetooth_stack_with_facade-host) $(out)",
+}
+
+genrule {
+    name: "bluetooth_stack_with_facade_targetbin",
+    tool_files: [":bluetooth_stack_with_facade-target"],
+    out: ["bluetooth_stack_with_facade"],
+    cmd: "mv $(location :bluetooth_stack_with_facade-target) $(out)",
+}
+
+HOST_TARGET_SHARED_LIBS = [
+    ":libbase",
+    ":libbinder",
+    ":libbinder_ndk",
+    ":libc++",
+    ":libcrypto",
+    ":libcutils",
+    ":libgrpc++",
+    ":libgrpc_wrap",
+    ":liblog",
+    ":liblzma",
+    ":libprotobuf-cpp-full",
+    ":libunwindstack",
+    ":libutils",
+    ":libssl",
+    ":libz",
+    ":server_configurable_flags",
+]
+
+HOST_LIBRARIES = HOST_TARGET_SHARED_LIBS + [
+    ":libbluetooth",
+    ":libbluetooth_gd",
+    ":libchrome",
+    ":libevent",
+    ":libflatbuffers-cpp",
+]
+
+TARGET_LIBRARIES = HOST_TARGET_SHARED_LIBS + [
+    ":android.hardware.bluetooth@1.0",
+    ":android.hardware.bluetooth@1.1",
+    ":libandroid_runtime_lazy",
+    ":libhidlbase",
+    ":libstatslog_bt",
+]
+
+// HOST_TARGET_SHARED_LIBS = [
+//     "libbase",
+//     "libbinder",
+//     "libbinder_ndk",
+//     "libc++",
+//     "libcrypto",
+//     "libcutils",
+//     "libgrpc++",
+//     "libgrpc_wrap",
+//     "liblog",
+//     "liblzma",
+//     "libprotobuf-cpp-full",
+//     "libunwindstack",
+//     "libutils",
+//     "libssl",
+//     "libz",
+//     "server_configurable_flags",
+// ]
+
+// HOST_LIBRARIES = HOST_TARGET_SHARED_LIBS + [
+//     "libbluetooth",
+//     "libbluetooth_gd",
+//     "libchrome",
+//     "libevent",
+//     "libflatbuffers-cpp",
+// ]
+
+// TARGET_LIBRARIES = HOST_TARGET_SHARED_LIBS + [
+//     "android.hardware.bluetooth@1.0",
+//     "android.hardware.bluetooth@1.1",
+//     "libandroid_runtime_lazy",
+//     "libhidlbase",
+//     "libstatslog_bt",
+// ]
+
+genrule {
+    name: "bluetooth_host_libraries",
+    srcs: [
+        ":libbase",
+    ],
+    // tools: ["soong_zip"],
+    out: ["host_libs.zip"],
+    cmd: "find $(genDir) | tee $(out)",
+}
+
+genrule {
+    name: "archive_bluetooth_cert_src_and_bin",
+    tools: [
+        "soong_zip",
+        // host executables
+        ":bluetooth_stack_with_facade",
+        ":bt_topshim_facade",
+        ":root-canal",
+    ],
+    // tool_files: [
+    // ],
+    srcs: [
+        // cert_test_sources
+        "setup.py",
+        "blueberry/**/*.py",
+        "blueberry/**/*.yaml",
+        ":hci_packets_python3_gen", // host_python_hci_packets_library
+        ":gd_smp_packets_python3_gen", // host_python_smp_packets_library
+        ":bluetooth_stack_with_facade_targetbin", // target executables
+    ],
+    out: ["bluetooth_cert_src_and_bin.zip"],
+
+    cmd: "$(location soong_zip) -d -o $(out) " +
+        "-C packages/modules/Bluetooth/system -D packages/modules/Bluetooth/system " +
+        "-C `dirname $(location :hci_packets_python3_gen)` -f $(location :hci_packets_python3_gen) " +
+        "-C `dirname $(location :gd_smp_packets_python3_gen)` -f $(location :gd_smp_packets_python3_gen) " +
+        "-C `dirname $(location :bluetooth_stack_with_facade)` -f $(location :bluetooth_stack_with_facade) " +
+        "-C `dirname $(location :bt_topshim_facade)` -f $(location :bt_topshim_facade) " +
+        "-C `dirname $(location :root-canal)` -f $(location :root-canal) " +
+        "-P target " +
+        "-C `dirname $(location :bluetooth_stack_with_facade_targetbin)` -f $(location :bluetooth_stack_with_facade_targetbin) ",
 }
