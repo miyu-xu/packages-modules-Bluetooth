@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ee70941_e634b62b",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-22T19:31:30Z",
+      "side": 1,
+      "message": "you did not \"return\" here. Hence, the logic will be different before and after, it is intended? \n\nBefore:\n\n```\nif (XXXX) {\n   // do A\n} else {\n  // do B\n}\n```\n\nAfter\"\n\n```\n  if (!XXX) {\n     // do B\n  }\n  // do A\n```",
+      "range": {
+        "startLine": 442,
+        "startChar": 0,
+        "endLine": 443,
+        "endChar": 72
+      },
+      "revId": "92a88dd2f093c66f00551b083ddab0b052f317e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
