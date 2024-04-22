@@ -46,6 +46,29 @@
       },
       "revId": "439f0d2428698beaf858020192aae45ad6d82446",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07587b9b_6901ff3f",
+        "filename": "android/app/jni/com_android_bluetooth_hearing_aid.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-22T22:48:22Z",
+      "side": 1,
+      "message": "does this end up printing a character or a number?",
+      "range": {
+        "startLine": 65,
+        "startChar": 47,
+        "endLine": 65,
+        "endChar": 59
+      },
+      "revId": "439f0d2428698beaf858020192aae45ad6d82446",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
