@@ -22,6 +22,30 @@
       },
       "revId": "8a095302abae54912b31a1682c814bce7a138c50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ca5198a_03cbb11c",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 897,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-22T20:31:53Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "3b357f8e_ac819bfa",
+      "range": {
+        "startLine": 890,
+        "startChar": 3,
+        "endLine": 897,
+        "endChar": 28
+      },
+      "revId": "8a095302abae54912b31a1682c814bce7a138c50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
