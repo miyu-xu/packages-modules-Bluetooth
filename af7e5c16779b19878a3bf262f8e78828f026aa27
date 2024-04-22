@@ -16,6 +16,24 @@
       "message": "Would monitoring this log:\n https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/btif/src/btif_dm.cc;l\u003d711?q\u003dbtif_dm.cc \n\nbe enough for CoD logging?",
       "revId": "af7e5c16779b19878a3bf262f8e78828f026aa27",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14e0cd2a_32b0284d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-22T20:13:56Z",
+      "side": 1,
+      "message": "That one was more or less perfect for the native stack!\n\nWhen I was still fishing for the root cause of my issue, I was trying to see what events the Java stack was getting from native so I could work backwards. The type of debugging I added in this change helps do that. I didn\u0027t add any log lines. I just added the obfuscated MAC address to most of them so you can actually tell which device they belong to.\n\nI also added a class of device section to dumpsys so you can quickly tell what we think the class of device is/ultimately what we\u0027re sending out `BluetoothDevice#getBluetoothClass()`, i.e.:\n```\nBonded devices:\n    AA:BB:CC:DD:EE:FF [ DUAL ][ 0x001F00 ] Pixel 6 Pro\n```\n\nI figured it might be useful in something like LE Audio debugging too where we\u0027re curious if the remote device has the proper bits set in its class of device.",
+      "parentUuid": "849be84c_9967444b",
+      "revId": "af7e5c16779b19878a3bf262f8e78828f026aa27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
