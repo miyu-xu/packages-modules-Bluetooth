@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d161050e_440a726b",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-22T19:18:07Z",
+      "side": 1,
+      "message": "A better way is to log them separately\n\n```\n  if (provider_ \u003d\u003d nullptr) {\n    log::info(\"BluetoothAudioHal nullptr, update it as session started\");\n    return true;\n  }\n  \n  if (!session_started_) {\n    log::info(\"BluetoothAudioHal session has not started\");\n    return true;\n  }\n```",
+      "range": {
+        "startLine": 327,
+        "startChar": 0,
+        "endLine": 330,
+        "endChar": 3
+      },
+      "revId": "19f19c805efa4ffdf64ebf5c83c04e56430ede5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
