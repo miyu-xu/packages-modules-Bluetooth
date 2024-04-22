@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7f3b0b8_1c8ffcd7",
+        "filename": "system/bta/test/bta_disc_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-22T11:20:47Z",
+      "side": 0,
+      "message": "note for reviewers: only service discovery related thing in search test, plus this test was verifying nothing",
+      "range": {
+        "startLine": 168,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 1
+      },
+      "revId": "de95de359b888e6518d02eff76d3a706f29a5367",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
