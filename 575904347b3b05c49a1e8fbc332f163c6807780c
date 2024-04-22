@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a743d0ba_2062cce9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-22T19:00:54Z",
+      "side": 1,
+      "message": "Hey Himanshu, I removed myself from this CL and added Thomas because I want him to review this CL 😊",
+      "revId": "575904347b3b05c49a1e8fbc332f163c6807780c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
