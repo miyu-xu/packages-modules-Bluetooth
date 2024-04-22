@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2fd29ec_be73c42f",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1018,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-22T10:58:09Z",
+      "side": 1,
+      "message": "Definitely! Thank you for your constant vigilance! Is invaluable in development!",
+      "parentUuid": "d8c6ad53_8902aee2",
+      "revId": "de6043a8fbaa19ce7b760747cee487bcd5c48e98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c814300a_9b44f8d6",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "839962f7_ae63c3de",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2038,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-22T10:58:09Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c814300a_9b44f8d6",
+      "revId": "de6043a8fbaa19ce7b760747cee487bcd5c48e98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "21aa1265_0d14e5fb",
@@ -48,6 +84,24 @@
       "writtenOn": "2024-04-18T20:49:56Z",
       "side": 1,
       "message": "Can you help to share a bit why we use 3s here?",
+      "revId": "de6043a8fbaa19ce7b760747cee487bcd5c48e98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c967b76d_6575fab1",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassConstants.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-22T10:58:09Z",
+      "side": 1,
+      "message": "There is no specific guideline here for this value - if it should be exactly 3 seconds, but...\n\nThere is a timeout for:\n- GATT operation (30 sec)\n- Broadcast start operation (5 sec)\n\nSo I did a assumption this value has to be lower that smallest timeout already implemented value since this is a part of \"Broadcast start operation\".\n\nIf you have any suggestion on what number it should be - feel free to suggest here.",
+      "parentUuid": "21aa1265_0d14e5fb",
       "revId": "de6043a8fbaa19ce7b760747cee487bcd5c48e98",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

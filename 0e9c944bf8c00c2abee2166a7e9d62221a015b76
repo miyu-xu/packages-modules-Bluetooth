@@ -22,6 +22,30 @@
       },
       "revId": "0e9c944bf8c00c2abee2166a7e9d62221a015b76",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25478bce_4b5a26da",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2087,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-22T10:58:09Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e1aa8367_a3dd4c27",
+      "range": {
+        "startLine": 2087,
+        "startChar": 18,
+        "endLine": 2087,
+        "endChar": 27
+      },
+      "revId": "0e9c944bf8c00c2abee2166a7e9d62221a015b76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
