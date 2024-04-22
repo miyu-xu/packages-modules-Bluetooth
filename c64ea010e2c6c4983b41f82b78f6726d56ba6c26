@@ -16,6 +16,24 @@
       "message": "Requires flag to progress to staging",
       "revId": "c64ea010e2c6c4983b41f82b78f6726d56ba6c26",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e29920c_7f80c295",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3211944
+      },
+      "writtenOn": "2024-04-22T02:20:07Z",
+      "side": 1,
+      "message": "I see the flag clear_collision_state_on_pairing_complete has been merged in https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2980012. What should we do next?",
+      "parentUuid": "78d20da8_d530f605",
+      "revId": "c64ea010e2c6c4983b41f82b78f6726d56ba6c26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
