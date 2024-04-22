@@ -103,6 +103,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7413d70c_47985984",
+        "filename": "system/gd/hal/hci_backend_hidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-22T18:09:58Z",
+      "side": 1,
+      "message": "I think if you remove this include, you can get rid of the \"undef LOG_*\" in the other file.",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 19
+      },
+      "revId": "a5d15d9dd17818b9315b9e97235b423b586442e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8b306d4a_abb721f0",
         "filename": "system/gd/hal/hci_hal_android.cc",
         "patchSetId": 1
@@ -162,6 +185,30 @@
       "side": 1,
       "message": "It\u0027s also used in \"registerIncomingPacketCallback()\" and \"unregisterIncomingPacketCallback()\".\nBut especially, I plan to call it on VSC \"Start A2DP Offload\" / \"Stop A2DP Offload\", to return command complete status (so need to be shared for clarity).",
       "parentUuid": "52ed4e18_72c9c104",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 43
+      },
+      "revId": "a5d15d9dd17818b9315b9e97235b423b586442e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5518366b_01eb1dd7",
+        "filename": "system/gd/hal/hci_hal_android.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-22T18:09:58Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "bb8a8408_676ca0a4",
       "range": {
         "startLine": 171,
         "startChar": 0,
