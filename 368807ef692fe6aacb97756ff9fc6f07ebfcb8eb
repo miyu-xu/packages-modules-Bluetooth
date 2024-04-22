@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "472e783b_17248a97",
+        "filename": "system/bta/le_audio/broadcaster/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-22T17:28:49Z",
+      "side": 1,
+      "message": "Nit: Can we add some comment here to explain that state is going to be changed in the OnAddressResponse?",
+      "revId": "368807ef692fe6aacb97756ff9fc6f07ebfcb8eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
