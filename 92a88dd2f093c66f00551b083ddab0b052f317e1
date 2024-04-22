@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "109175bf_bcffe7da",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-22T19:40:45Z",
+      "side": 1,
+      "message": "Good catch!",
+      "parentUuid": "9ee70941_e634b62b",
+      "range": {
+        "startLine": 442,
+        "startChar": 0,
+        "endLine": 443,
+        "endChar": 72
+      },
+      "revId": "92a88dd2f093c66f00551b083ddab0b052f317e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8ceafbd0_4b4e2029",
