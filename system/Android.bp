@@ -158,3 +158,72 @@ cc_library_headers {
     ],
     min_sdk_version: "30",
 }
+
+HOST_EXECUTABLES = [
+    "bluetooth_stack_with_facade",
+    "bt_topshim_facade",
+    "root-canel"
+]
+
+HOST_TARGET_SHARED_LIBRARIES = [
+    "libbase",
+    "libbinder",
+    "libbinder_ndk",
+    "libc++",
+    "libcutils",
+    "libgrpc++",
+    "libgrpc_wrap",
+    "liblog",
+    "liblzma",
+    "libprotobuf-cpp-full",
+    "libunwindstack",
+    "libutils",
+    "server_configurable_flags",
+]
+
+HOST_LIBRARIES = HOST_TARGET_SHARED_LIBRARIES +[
+    "libbluetooth",
+    "libbluetooth_gd",
+    "libchrome",
+    "libcrypto-host",
+    "libevent-host",
+    "libflatbuffers-cpp",
+    "libssl-host",
+    "libz-host",
+]
+
+TARGET_LIBRARIES = HOST_TARGET_SHARED_LIBRARIES + [
+    "android.hardware.bluetooth@1.0",
+    "android.hardware.bluetooth@1.1",
+    "libandroid_runtime_lazy",
+    "libcrypto",
+    "libhidlbase",
+    "libssl",
+    "libstatslog_bt",
+    "libz",
+ ]
+
+filegroup {
+    name: "BlueberryCertTestResources",
+    srcs: [
+        "setup.py",
+        "blueberry/**/*.py",
+        "blueberry/**/*.yaml",
+    ],
+}
+
+genrule {
+    name: "Archive_Bluetooth_cert_src_and_bin",
+    tools: ["soong_zip"],
+    srcs: [":BlueberryCertTestResources"],
+    host_required: HOST_EXECUTABLES + HOST_LIBRARIES,
+    required: [
+        // host_python_hci_packets_library
+        "hci_packets_python3_gen",
+        // host_python_smp_packets_library
+        "gd_smp_packets_python3_gen",
+    ],
+    target_required: [":bluetooth_stack_with_facade"] + TARGET_LIBRARIES,
+    out: ["bluetooth_cert_src_and_bin.zip"],
+    cmd: "echo hello world",
+}
