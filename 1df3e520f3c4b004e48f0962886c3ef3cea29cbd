@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "861ed82d_0507987f",
+        "filename": "system/device/src/device_iot_config_int.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-22T18:00:25Z",
+      "side": 1,
+      "message": "Maybe we should leave the parameters in the function prototypes.\n```suggestion\nvoid device_iot_config_timer_save_cb(void* data);\n```",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 55
+      },
+      "revId": "1df3e520f3c4b004e48f0962886c3ef3cea29cbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
