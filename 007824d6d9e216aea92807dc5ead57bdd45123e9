@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f91bf7d_55952553",
+        "filename": "system/gd/hal/snoop_logger_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1606,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-22T18:53:39Z",
+      "side": 1,
+      "message": "I wasn\u0027t expecting this many 0s.  Can you ask the HFP DRI or file a bug to fix this feature and test?\n\nBefore filtering: CLCC: 1,1,4,0,0,\"+99123456789\",145\nAfter filtering: CLCC:\\0\\0\\0\\0\\0\\0\\0\\0...",
+      "range": {
+        "startLine": 1603,
+        "startChar": 0,
+        "endLine": 1606,
+        "endChar": 83
+      },
+      "revId": "007824d6d9e216aea92807dc5ead57bdd45123e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
