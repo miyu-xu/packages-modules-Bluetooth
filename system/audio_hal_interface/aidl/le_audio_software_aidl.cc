@@ -17,14 +17,15 @@
 
 #define LOG_TAG "BTAudioLeAudioAIDL"
 
-#include "le_audio_software_aidl.h"
+#include "aidl/le_audio_software_aidl.h"
 
 #include <bluetooth/log.h>
 #include <com_android_bluetooth_flags.h>
 
 #include <atomic>
-#include <bitset>
+#include <string>
 #include <unordered_map>
+#include <utility>
 #include <vector>
 
 #include "hal_version_manager.h"
@@ -37,6 +38,7 @@ namespace le_audio {
 using ::aidl::android::hardware::bluetooth::audio::AudioConfiguration;
 using ::aidl::android::hardware::bluetooth::audio::AudioLocation;
 using ::aidl::android::hardware::bluetooth::audio::ChannelMode;
+using ::aidl::android::hardware::bluetooth::audio::CodecSpecificConfigurationLtv;
 using ::aidl::android::hardware::bluetooth::audio::CodecType;
 using ::aidl::android::hardware::bluetooth::audio::Lc3Configuration;
 using ::aidl::android::hardware::bluetooth::audio::LeAudioCodecConfiguration;
@@ -154,7 +156,7 @@ void LeAudioTransport::SetLatencyMode(LatencyMode latency_mode) {
       dsa_mode_ = DsaMode::ISO_HW;
       break;
     default:
-      log::warn(", invalid latency mode: {}", (int)latency_mode);
+      log::warn(", invalid latency mode: {}", static_cast<int>(latency_mode));
       return;
   }
 
@@ -202,7 +204,7 @@ void LeAudioTransport::SourceMetadataChanged(const source_metadata_v7_t& source_
     log::info(", caching source metadata");
 
     playback_track_metadata_v7* tracks;
-    tracks = (playback_track_metadata_v7*)malloc(sizeof(*tracks) * track_count);
+    tracks = reinterpret_cast<playback_track_metadata_v7*>(malloc(sizeof(*tracks) * track_count));
     memcpy(tracks, source_metadata.tracks, sizeof(*tracks) * track_count);
 
     cached_source_metadata_.track_count = track_count;
@@ -288,7 +290,7 @@ bool LeAudioTransport::IsRequestCompletedAfterUpdate(
   }
 
   auto ret = std::get<1>(result);
-  log::verbose("new state: {}, return {}", (int)(start_request_state_.load()), ret);
+  log::verbose("new state: {}, return {}", static_cast<int>(start_request_state_.load()), ret);
 
   return ret;
 }
@@ -531,8 +533,45 @@ std::unordered_map<AudioLocation, uint32_t> audio_location_map{
          ::bluetooth::le_audio::codec_spec_conf::kLeAudioLocationFrontLeft |
                  ::bluetooth::le_audio::codec_spec_conf::kLeAudioLocationFrontRight}};
 
-bool hal_ucast_capability_to_stack_format(const UnicastCapability& hal_capability,
-                                          CodecConfigSetting& stack_capability) {
+static bool is_valid_audio_location_bitmask(int32_t audio_location_bitmask) {
+  if (com::android::bluetooth::flags::leaudio_audio_location_integer() &&
+      audio_location_bitmask >= 0) {
+    return true;
+  }
+  log::warn("Audio location integer is not supported, skipping...");
+  return false;
+}
+
+static bool is_valid_audio_location(
+        std::optional<CodecSpecificConfigurationLtv::AudioChannelAllocation> audio_location,
+        AudioLocation supported_channel) {
+  if (audio_location.has_value()) {
+    if (is_valid_audio_location_bitmask(audio_location.value().bitmask)) {
+      return true;
+    }
+  }
+  // Check for valid supportedChannel
+  if (audio_location_map.find(supported_channel) != audio_location_map.end()) {
+    return true;
+  }
+  log::error("Invalid supported channel: {}", toString(supported_channel));
+  return false;
+}
+
+static uint32_t get_audio_location(
+        std::optional<CodecSpecificConfigurationLtv::AudioChannelAllocation> audio_location,
+        AudioLocation supported_channel) {
+  if (audio_location.has_value()) {
+    // Prioritize audio location int if present
+    if (is_valid_audio_location_bitmask(audio_location.value().bitmask)) {
+      return audio_location.value().bitmask;
+    }
+  }
+  return audio_location_map[supported_channel];
+}
+
+static bool hal_ucast_capability_to_stack_format(const UnicastCapability& hal_capability,
+                                                 CodecConfigSetting& stack_capability) {
   if (hal_capability.codecType != CodecType::LC3) {
     log::warn("Unsupported codecType: {}", toString(hal_capability.codecType));
     return false;
@@ -543,10 +582,16 @@ bool hal_ucast_capability_to_stack_format(const UnicastCapability& hal_capabilit
     return false;
   }
 
+  auto audio_location = hal_capability.audioLocation;
+  auto supported_channel = hal_capability.supportedChannel;
+  // Check and populate valid audio location
+  if (!is_valid_audio_location(audio_location, supported_channel)) {
+    return false;
+  }
+
   auto& hal_lc3_capability =
           hal_capability.leAudioCodecCapabilities
                   .get<UnicastCapability::LeAudioCodecCapabilities::lc3Capabilities>();
-  auto supported_channel = hal_capability.supportedChannel;
   auto sample_rate_hz = hal_lc3_capability.samplingFrequencyHz[0];
   auto frame_duration_us = hal_lc3_capability.frameDurationUs[0];
   auto octets_per_frame = hal_lc3_capability.octetsPerFrame[0];
@@ -554,14 +599,13 @@ bool hal_ucast_capability_to_stack_format(const UnicastCapability& hal_capabilit
 
   if (sampling_freq_map.find(sample_rate_hz) == sampling_freq_map.end() ||
       frame_duration_map.find(frame_duration_us) == frame_duration_map.end() ||
-      octets_per_frame_map.find(octets_per_frame) == octets_per_frame_map.end() ||
-      audio_location_map.find(supported_channel) == audio_location_map.end()) {
+      octets_per_frame_map.find(octets_per_frame) == octets_per_frame_map.end()) {
     log::error(
             "Failed to convert HAL format to stack format\nsample rate hz = "
-            "{}\nframe duration us = {}\noctets per frame= {}\nsupported channel = "
-            "{}\nchannel count per device = {}\ndevice count = {}",
-            sample_rate_hz, frame_duration_us, octets_per_frame, toString(supported_channel),
-            channel_count, hal_capability.deviceCount);
+            "{}\nframe duration us = {}\noctets per frame= {}\n"
+            "channel count per device = {}\ndevice count = {}",
+            sample_rate_hz, frame_duration_us, octets_per_frame, channel_count,
+            hal_capability.deviceCount);
 
     return false;
   }
@@ -575,7 +619,7 @@ bool hal_ucast_capability_to_stack_format(const UnicastCapability& hal_capabilit
                               frame_duration_map[frame_duration_us]);
   stack_capability.params.Add(
           ::bluetooth::le_audio::codec_spec_conf::kLeAudioLtvTypeAudioChannelAllocation,
-          audio_location_map[supported_channel]);
+          get_audio_location(audio_location, supported_channel));
   stack_capability.params.Add(
           ::bluetooth::le_audio::codec_spec_conf::kLeAudioLtvTypeOctetsPerCodecFrame,
           octets_per_frame_map[octets_per_frame]);
@@ -602,7 +646,13 @@ static bool hal_bcast_capability_to_stack_format(const BroadcastCapability& hal_
     log::warn("The number of config is not supported yet.");
   }
 
+  auto audio_location = hal_bcast_capability.audioLocation;
   auto supported_channel = hal_bcast_capability.supportedChannel;
+  // Check and populate valid audio location
+  if (!is_valid_audio_location(audio_location, supported_channel)) {
+    return false;
+  }
+
   auto sample_rate_hz = (*hal_lc3_capabilities)[0]->samplingFrequencyHz[0];
   auto frame_duration_us = (*hal_lc3_capabilities)[0]->frameDurationUs[0];
   auto octets_per_frame = (*hal_lc3_capabilities)[0]->octetsPerFrame[0];
@@ -610,14 +660,12 @@ static bool hal_bcast_capability_to_stack_format(const BroadcastCapability& hal_
 
   if (sampling_freq_map.find(sample_rate_hz) == sampling_freq_map.end() ||
       frame_duration_map.find(frame_duration_us) == frame_duration_map.end() ||
-      octets_per_frame_map.find(octets_per_frame) == octets_per_frame_map.end() ||
-      audio_location_map.find(supported_channel) == audio_location_map.end()) {
+      octets_per_frame_map.find(octets_per_frame) == octets_per_frame_map.end()) {
     log::warn(
             "Failed to convert HAL format to stack format\nsample rate hz = "
-            "{}\nframe duration us = {}\noctets per frame= {}\nsupported channel = "
-            "{}\nchannel count per stream = {}",
-            sample_rate_hz, frame_duration_us, octets_per_frame, toString(supported_channel),
-            channel_count);
+            "{}\nframe duration us = {}\noctets per frame= {}"
+            "\nchannel count per stream = {}",
+            sample_rate_hz, frame_duration_us, octets_per_frame, channel_count);
 
     return false;
   }
@@ -631,7 +679,7 @@ static bool hal_bcast_capability_to_stack_format(const BroadcastCapability& hal_
                               frame_duration_map[frame_duration_us]);
   stack_capability.params.Add(
           ::bluetooth::le_audio::codec_spec_conf::kLeAudioLtvTypeAudioChannelAllocation,
-          audio_location_map[supported_channel]);
+          get_audio_location(audio_location, supported_channel));
   stack_capability.params.Add(
           ::bluetooth::le_audio::codec_spec_conf::kLeAudioLtvTypeOctetsPerCodecFrame,
           octets_per_frame_map[octets_per_frame]);
