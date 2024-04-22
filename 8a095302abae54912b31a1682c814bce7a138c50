@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b357f8e_ac819bfa",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 897,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-22T20:27:50Z",
+      "side": 1,
+      "message": "I\u0027d rather make it obvious that SDP is the default and end there.\n\n```suggestion\n  }\n  log::info(\"bta_dm_discovery: starting SDP discovery on {}\", bd_addr);\n  bta_dm_discovery_cb.sdp_results \u003d false;\n  bta_dm_find_services(bd_addr);\n```",
+      "range": {
+        "startLine": 890,
+        "startChar": 3,
+        "endLine": 897,
+        "endChar": 28
+      },
+      "revId": "8a095302abae54912b31a1682c814bce7a138c50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
