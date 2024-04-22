@@ -361,6 +361,14 @@ cc_binary {
     },
 }
 
+cc_genrule {
+    name: "bluetooth_stack_with_facade-target",
+    srcs: [":bluetooth_stack_with_facade"],
+    compile_multilib: "first",
+    out: ["bluetooth_stack_with_facade-target"],
+    cmd: "cp $(location :bluetooth_stack_with_facade) $(out)",
+}
+
 cc_test {
     name: "bluetooth_test_with_timerfd",
     test_suites: ["general-tests"],
