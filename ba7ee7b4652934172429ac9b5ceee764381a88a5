@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99460064_76aa2695",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-04-22T07:43:04Z",
+      "side": 1,
+      "message": "This CL should wait for the merge of aosp/3051022 and chromium/5465014.",
+      "revId": "ba7ee7b4652934172429ac9b5ceee764381a88a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
