@@ -87,6 +87,30 @@
       },
       "revId": "b161b77e99e968afb019f4ccb20f2332ea93c585",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11a129d2_f07a0bec",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-04-22T11:04:52Z",
+      "side": 1,
+      "message": "According to the changed lines this is my understanding: This CL aims to disable the **hardware offloaded** WBS support on old QCA and Intel chipsets, because they don\u0027t support **erroneous data reporting**. Is this correct?\n\nIf it\u0027s true, then I have some questions:\n1. How is it done in BlueZ? Simply not setting the quirk on those chipsets?\n2. Per http://b/321623049#comment7, erroneous data reporting doesn\u0027t matter the HW offloaded path. This is against what the comment says.\n3. Per http://b/321180937#comment8, to enable HW offloaded WBS the PCM name is required - While the PCM name is hard-coded in the CRAS config. If we don\u0027t support WBS on these devices, then why do we have the PCM name?\n\nWell, no matter what the answers are I think we just need to get back to the BlueZ settings. I\u0027d not recommend the WBS QUIRK for this use case because it is against the refactor http://b/322088207. The quirk should only be used for the SW path. Some possible solutions:\n1. Read the erroneous data reporting support flag through the GD controller interface. Though as I mentioned above it doesn\u0027t make much sense.\n   * This reminds me of this bug http://b/236922299. I just tested on WCN3991 and unfortunately the issue is still there ¯\\\\\\_(ツ)\\_/¯\n2. Remove the PCM names from CRAS config, so CRAS won\u0027t attempt to enable WBS on these devices per https://crrev.com/c/5312827",
+      "parentUuid": "d683b697_ae2ff856",
+      "range": {
+        "startLine": 114,
+        "startChar": 12,
+        "endLine": 114,
+        "endChar": 37
+      },
+      "revId": "b161b77e99e968afb019f4ccb20f2332ea93c585",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
