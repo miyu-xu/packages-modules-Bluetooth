@@ -49,6 +49,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c5acb343_f848d445",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 781,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-22T19:49:36Z",
+      "side": 1,
+      "message": "again: no better way?",
+      "range": {
+        "startLine": 781,
+        "startChar": 9,
+        "endLine": 781,
+        "endChar": 28
+      },
+      "revId": "f7b6af6b5b5ae2a59f91dbd8904df2f1a80ed836",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "faee4b1b_49ffaf73",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-22T19:49:36Z",
+      "side": 1,
+      "message": "make this info",
+      "range": {
+        "startLine": 802,
+        "startChar": 11,
+        "endLine": 802,
+        "endChar": 16
+      },
+      "revId": "f7b6af6b5b5ae2a59f91dbd8904df2f1a80ed836",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fb2f46d3_6eb162c4",
         "filename": "system/bta/dm/bta_dm_disc.cc",
         "patchSetId": 2
