@@ -16,6 +16,24 @@
       "message": "The change looks fine, but it makes me a little nervous that there\u0027s no good explanation why this fixes compilation.",
       "revId": "ce2729f2e67bfaf04b4f8862b867f1949ba8b894",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3d7b211_1929a801",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1229339
+      },
+      "writtenOn": "2024-04-22T23:43:03Z",
+      "side": 1,
+      "message": "Yeah, that would be nice to know. I (or someone else) could probably debug the reduced test case:\n\nhttps://github.com/llvm/llvm-project/issues/89496#issuecomment-2067642681\n\nAlso, from the TreeHugger failures, it seems that this code doesn\u0027t compile with the old libc++ because std::vector and std::string aren\u0027t constexpr yet, even though we build with -std\u003dgnu++20. I may have to try another fix/workaround.",
+      "parentUuid": "f139630f_0b79f8db",
+      "revId": "ce2729f2e67bfaf04b4f8862b867f1949ba8b894",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
