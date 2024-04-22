@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b271259a_98dd3f23",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 522,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-22T20:20:42Z",
+      "side": 1,
+      "message": "I don\u0027t like assignments in conditionals.  What do you think about something like this:\n```suggestion\n  p_sdp_rec \u003d get_legacy_stack_sdp_api()-\u003edb.SDP_FindServiceInDb_128bit(\n        bta_dm_discovery_cb.p_sdp_db, p_sdp_rec);\n  while (p_sdp_rec !\u003d nullptr) {\n    // SDP_FindServiceUUIDInRec_128bit is used only once, refactor?\n    Uuid temp_uuid;\n    if (get_legacy_stack_sdp_api()-\u003erecord.SDP_FindServiceUUIDInRec_128bit(\n            p_sdp_rec, \u0026temp_uuid)) {\n      uuid_list.push_back(temp_uuid);\n    }\n    p_sdp_rec \u003d get_legacy_stack_sdp_api()-\u003edb.SDP_FindServiceInDb_128bit(\n          bta_dm_discovery_cb.p_sdp_db, p_sdp_rec);\n  }\n```\n\nAnother way would be to have SDP_FindServiceUUIDInRec_128bit return false when p_sdp_rec is null.",
+      "range": {
+        "startLine": 514,
+        "startChar": 0,
+        "endLine": 522,
+        "endChar": 3
+      },
+      "revId": "c90239fef0c70fd6b7e47f28d0239883cae88ae2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
