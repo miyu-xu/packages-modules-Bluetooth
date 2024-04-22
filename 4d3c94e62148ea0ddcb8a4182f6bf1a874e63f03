@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4734242a_2e8c9481",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-22T19:42:31Z",
+      "side": 0,
+      "message": "????? why is this here, do you need to rebase?",
+      "range": {
+        "startLine": 410,
+        "startChar": 0,
+        "endLine": 410,
+        "endChar": 24
+      },
+      "revId": "4d3c94e62148ea0ddcb8a4182f6bf1a874e63f03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
