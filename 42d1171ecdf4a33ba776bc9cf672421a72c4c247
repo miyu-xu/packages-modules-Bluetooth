@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec07003b_49c9d01c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-22T21:26:34Z",
+      "side": 1,
+      "message": "NIT: maybe value should be read on different layer, or from different client that is always there.\n\nhaving this logic depended on client logic is risky.",
+      "revId": "42d1171ecdf4a33ba776bc9cf672421a72c4c247",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
