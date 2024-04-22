@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e44413ca_4c36158f",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 751,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-22T19:48:52Z",
+      "side": 1,
+      "message": "maybe add a comment that this section is just to find the right service_index which service_mask matches the services__to_search so that people can jump straight to conclusion when reading this",
+      "range": {
+        "startLine": 743,
+        "startChar": 0,
+        "endLine": 751,
+        "endChar": 3
+      },
+      "revId": "f7b6af6b5b5ae2a59f91dbd8904df2f1a80ed836",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "903738b6_7917de22",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-22T19:48:52Z",
+      "side": 1,
+      "message": "nit: use // for comments per Google C++ style guide",
+      "range": {
+        "startLine": 754,
+        "startChar": 4,
+        "endLine": 754,
+        "endChar": 6
+      },
+      "revId": "f7b6af6b5b5ae2a59f91dbd8904df2f1a80ed836",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb2f46d3_6eb162c4",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 806,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-22T19:48:52Z",
+      "side": 1,
+      "message": "after this is incremented, do we expect `bta_dm_find_services` to be called later?\n\nIs there a giant for-loop involving multiple calls to `bta_dm_find_services` that is not obvious in this CL?",
+      "range": {
+        "startLine": 806,
+        "startChar": 0,
+        "endLine": 806,
+        "endChar": 38
+      },
+      "revId": "f7b6af6b5b5ae2a59f91dbd8904df2f1a80ed836",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

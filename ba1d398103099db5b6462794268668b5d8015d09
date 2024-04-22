@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77cedc5b_47c8d97f",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 778,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-22T19:48:52Z",
+      "side": 0,
+      "message": "I don\u0027t get why this CL does not introduce logical change. \n\nBefore the CL, we init SDP for every service whose mask matches with our services to search mask. \n\nIf SDP failed to be initiated, we move on to the next one. \n\nAfter the change, it seems we stop the while loop at the first instances where the service to search mask matches with the service mask. \n\nThen we try with that service and increment service_index",
+      "range": {
+        "startLine": 775,
+        "startChar": 0,
+        "endLine": 778,
+        "endChar": 11
+      },
+      "revId": "ba1d398103099db5b6462794268668b5d8015d09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
