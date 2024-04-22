@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18c0da49_c1a2243f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-04-22T06:02:58Z",
+      "side": 1,
+      "message": "Hi @yuyangh@google.com, Floss team noticed that Intel chips could send out an invalid handle (0xffff) when there\u0027s an internal error. I don\u0027t see a good reason to assert it when status !\u003d success so I\u0027m proposing to relax it. PTAL, thanks!",
+      "revId": "564c4ce872d18f48a4daf4ffe44fbc6219e4ab88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
