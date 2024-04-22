@@ -103,6 +103,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a511ee0b_759bc0e0",
+        "filename": "system/gd/hal/hci_backend.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-22T18:10:40Z",
+      "side": 1,
+      "message": "I added a comment in system/gd/hal/hci_backend_hidl.cc to address this",
+      "parentUuid": "a824ea9b_04d45413",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 23
+      },
+      "revId": "a5d15d9dd17818b9315b9e97235b423b586442e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7413d70c_47985984",
         "filename": "system/gd/hal/hci_backend_hidl.cc",
         "patchSetId": 1
@@ -327,6 +351,30 @@
       "side": 1,
       "message": "It looks confusing when duplication of this pointer is made internally. I will prefer to keep \"shared_ptr\" for clarity and uniformity.",
       "parentUuid": "e8d6c13a_9b5ffe73",
+      "range": {
+        "startLine": 190,
+        "startChar": 7,
+        "endLine": 190,
+        "endChar": 17
+      },
+      "revId": "a5d15d9dd17818b9315b9e97235b423b586442e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff0dba2a_24776fff",
+        "filename": "system/gd/hal/hci_hal_android.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-22T18:10:40Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2c0e090b_bc606ce1",
       "range": {
         "startLine": 190,
         "startChar": 7,
