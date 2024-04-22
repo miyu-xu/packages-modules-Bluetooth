@@ -821,9 +821,9 @@ LeAudioDeviceGroup::GetLatestAvailableContexts() const {
 
 bool LeAudioDeviceGroup::ReloadAudioLocations(void) {
   AudioLocations updated_snk_audio_locations_ =
-      codec_spec_conf::kLeAudioLocationNotAllowed;
+      codec_spec_conf::kLeAudioLocationMono;
   AudioLocations updated_src_audio_locations_ =
-      codec_spec_conf::kLeAudioLocationNotAllowed;
+      codec_spec_conf::kLeAudioLocationMono;
 
   for (const auto& device : leAudioDevices_) {
     if (device.expired() || (device.lock().get()->GetConnectionState() !=
