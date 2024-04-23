@@ -1320,7 +1320,7 @@ bool LeAudioDeviceGroup::IsAudioSetConfigurationSupported(
   for (auto direction :
        {types::kLeAudioDirectionSink, types::kLeAudioDirectionSource}) {
     log::debug("Looking for configuration: {} - {}", audio_set_conf->name,
-               (direction == types::kLeAudioDirectionSink ? "Sink" : "Source"));
+               direction == types::kLeAudioDirectionSink ? "Sink" : "Source");
     auto const& ase_confs = audio_set_conf->confs.get(direction);
 
     log::assert_that(
@@ -1380,7 +1380,7 @@ bool LeAudioDeviceGroup::IsAudioSetConfigurationSupported(
         if (!utils::GetConfigurationSupportedPac(pacs, ent.codec)) {
           log::debug(
               "Insufficient PAC for {}",
-              (direction == types::kLeAudioDirectionSink ? "sink" : "source"));
+              direction == types::kLeAudioDirectionSink ? "sink" : "source");
           continue;
         }
 
@@ -1409,9 +1409,8 @@ bool LeAudioDeviceGroup::IsAudioSetConfigurationSupported(
 
     if (required_device_cnt > 0) {
       /* Don't left any active devices if requirements are not met */
-      log::debug(
-          "Could not configure all the devices for direction: {}",
-          (direction == types::kLeAudioDirectionSink ? "Sink" : "Source"));
+      log::debug("Could not configure all the devices for direction: {}",
+                 direction == types::kLeAudioDirectionSink ? "Sink" : "Source");
       return false;
     }
   }
