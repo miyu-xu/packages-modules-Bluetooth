@@ -135,6 +135,30 @@
       },
       "revId": "b161b77e99e968afb019f4ccb20f2332ea93c585",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f3932fe_19d7c77d",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-04-23T07:02:37Z",
+      "side": 1,
+      "message": "Ok I understood. So this patch actually attempts to change the behavior of `hfp_hal_interface::get_wbs_supported` (DBus method `is_wbs_supported`), which is how we check the WBS capability in Tauto. Note that it\u0027s actually not used by CRAS.\n\nLooked into an AC7265 WBS test log CRAS correctly disabled MSBC so I believe no users are affected: `dbus in: org.chromium.bluetooth.BluetoothMedia: StartScoCall: \"E4:5F:01:5D:3E:2A\", \"false\", \"MSBC | LC3\"`\n\nIn the current design I\u0027d say whether or not WBS is available is decided by CRAS, not Floss[*]. So I guess we should remove the wbs check in Tauto and block the tests in a chipset-based manner.\n\n*: WBS supported \u003d\u003d HW supported | SW supported; HW supported \u003d\u003d kCodecMsbc \u0026 CRAS has PCM; SW supported \u003d\u003d quirk is set. Floss doesn\u0027t know whether CRAS has PCM so the final decision is always made by CRAS.",
+      "parentUuid": "365c3776_e677611b",
+      "range": {
+        "startLine": 114,
+        "startChar": 12,
+        "endLine": 114,
+        "endChar": 37
+      },
+      "revId": "b161b77e99e968afb019f4ccb20f2332ea93c585",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
