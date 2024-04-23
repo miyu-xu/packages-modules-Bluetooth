@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d84aec22_4f9a9edf",
+        "filename": "build.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 709,
+      "author": {
+        "id": 1874901
+      },
+      "writtenOn": "2024-04-23T00:47:17Z",
+      "side": 1,
+      "message": "Nit: maybe rename to tries, since it technically includes try + one retry.",
+      "range": {
+        "startLine": 709,
+        "startChar": 16,
+        "endLine": 709,
+        "endChar": 23
+      },
+      "revId": "4bf280c393be119431490a025802c0ab4aec1b39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
