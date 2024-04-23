@@ -22,6 +22,30 @@
       },
       "revId": "3114e4ebb97092b444b57063a43dbb95e722a57b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b813f63_371f79ff",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-04-23T14:53:18Z",
+      "side": 1,
+      "message": "Indeed, the same scheme should also apply to SinkImpl.",
+      "parentUuid": "0158a1ee_5464b282",
+      "range": {
+        "startLine": 141,
+        "startChar": 5,
+        "endLine": 141,
+        "endChar": 15
+      },
+      "revId": "3114e4ebb97092b444b57063a43dbb95e722a57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
