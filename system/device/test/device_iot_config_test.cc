@@ -35,16 +35,6 @@
 
 using namespace testing;
 
-const char* test_flags_feature_enabled[] = {
-    "INIT_device_iot_config_logging=true",
-    nullptr,
-};
-
-const char* test_flags_feature_disabled[] = {
-    "INIT_device_iot_config_logging=false",
-    nullptr,
-};
-
 extern module_t device_iot_config_module;
 
 bt_status_t btif_transfer_context(tBTIF_CBACK* p_cback, uint16_t event,
@@ -71,8 +61,6 @@ std::string true_val = "true";
 class DeviceIotConfigModuleTest : public testing::Test {
  protected:
   void SetUp() override {
-    bluetooth::common::InitFlags::Load(test_flags_feature_enabled);
-
     test::mock::osi_alarm::alarm_new.body = [&](const char* name) -> alarm_t* {
       return &placeholder_alarm;
     };
@@ -810,8 +798,6 @@ TEST_F(DeviceIotConfigModuleTest, test_device_iot_config_module_clean_up) {
 class DeviceIotConfigTest : public testing::Test {
  protected:
   void SetUp() override {
-    bluetooth::common::InitFlags::Load(test_flags_feature_enabled);
-
     test::mock::osi_alarm::alarm_new.body = [&](const char* name) -> alarm_t* {
       return &placeholder_alarm;
     };

@@ -49,7 +49,6 @@ extern std::mutex config_lock;  // protects operations on |config|.
 extern std::unique_ptr<config_t> config;
 extern alarm_t* config_timer;
 
-using bluetooth::common::InitFlags;
 using namespace bluetooth;
 
 static void cleanup() {
@@ -190,8 +189,6 @@ EXPORT_SYMBOL module_t device_iot_config_module = {
     .clean_up = device_iot_config_module_clean_up};
 
 void device_iot_config_write(uint16_t event, UNUSED_ATTR char* p_param) {
-  if (!InitFlags::IsDeviceIotConfigLoggingEnabled()) return;
-
   log::assert_that(config != NULL, "assert failed: config != NULL");
   log::assert_that(config_timer != NULL, "assert failed: config_timer != NULL");
 
@@ -229,8 +226,6 @@ bool device_iot_config_has_key_value(const std::string& section,
 }
 
 void device_iot_config_save_async(void) {
-  if (!InitFlags::IsDeviceIotConfigLoggingEnabled()) return;
-
   log::assert_that(config != NULL, "assert failed: config != NULL");
   log::assert_that(config_timer != NULL, "assert failed: config_timer != NULL");
 
@@ -240,8 +235,6 @@ void device_iot_config_save_async(void) {
 }
 
 int device_iot_config_get_device_num(const config_t& conf) {
-  if (!InitFlags::IsDeviceIotConfigLoggingEnabled()) return 0;
-
   int devices = 0;
 
   for (const auto& entry : conf.sections) {
