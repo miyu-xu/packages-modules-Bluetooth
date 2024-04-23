@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a04d8007_42000fab",
+        "filename": "system/stack/smp/smp_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-23T22:51:03Z",
+      "side": 1,
+      "message": "I thought we were going to keep them in the declaration ?",
+      "revId": "a85cdf613588faedfe4238297bc54f4b5ee5883c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
