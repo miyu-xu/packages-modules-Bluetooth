@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d1847ef_335b316d",
+        "filename": "system/device/src/device_iot_config_int.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-23T17:30:55Z",
+      "side": 0,
+      "message": "You are activating the flag instead of removing it as no-op",
+      "range": {
+        "startLine": 193,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 60
+      },
+      "revId": "33a40b47d2534d3ca06d97ea14c04dcf9f2cc37c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2aff19c6_fdeb37fa",
+        "filename": "system/device/test/device_iot_config_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3292,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-23T17:30:55Z",
+      "side": 0,
+      "message": "Since we are removing a flag that as never been enabled, I expect the test running with the flag disabled to still pass. Shouldn\u0027t we keep them ?",
+      "range": {
+        "startLine": 3292,
+        "startChar": 6,
+        "endLine": 3292,
+        "endChar": 33
+      },
+      "revId": "33a40b47d2534d3ca06d97ea14c04dcf9f2cc37c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
