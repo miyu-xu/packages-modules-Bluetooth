@@ -111,6 +111,30 @@
       },
       "revId": "b161b77e99e968afb019f4ccb20f2332ea93c585",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "365c3776_e677611b",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-04-23T06:13:40Z",
+      "side": 1,
+      "message": "\u003e This CL aims to disable the **hardware offloaded** WBS support on old QCA and Intel chipsets, because they don\u0027t support **erroneous data reporting**. Is this correct?\n \nClose, but no.\\\nThis CL aims to report \"WBS not supported\" on old QCA and Intel chipsets because they don\u0027t support erroneous data reporting.\nIf you look into the bug, we run WBS test on devices that doesn\u0027t support WBS (according to BlueZ). Those test fails.\n \n\u003e How is it done in BlueZ? Simply not setting the quirk on those chipsets?\n\nYes.\n\nThe other two questions are about HW offloading - I am not familiar with that.\n\n\u003e The quirk should only be used for the SW path\n\nI am not sure whether this is called only on SW path or HW path as well. \\\nThe fact that enabling the test simply pass on QCA6174A3 baffles me.",
+      "parentUuid": "11a129d2_f07a0bec",
+      "range": {
+        "startLine": 114,
+        "startChar": 12,
+        "endLine": 114,
+        "endChar": 37
+      },
+      "revId": "b161b77e99e968afb019f4ccb20f2332ea93c585",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
