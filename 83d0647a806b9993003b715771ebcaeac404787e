@@ -16,6 +16,24 @@
       "message": "It should always be removed.\n```suggestion\n  btif_config_remove(bdstr, BTIF_STORAGE_KEY_HOGP_REPORT);\n  btif_config_remove(bdstr, BTIF_STORAGE_KEY_HOGP_REPORT_VERSION);\n\n  if (IS_FLAG_ENABLED(allow_switching_hid_and_hogp)) {\n```",
       "revId": "83d0647a806b9993003b715771ebcaeac404787e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ddcdc39_adeb17de",
+        "filename": "system/btif/src/btif_profile_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-04-23T10:07:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38de67f7_e5e7c415",
+      "revId": "83d0647a806b9993003b715771ebcaeac404787e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
