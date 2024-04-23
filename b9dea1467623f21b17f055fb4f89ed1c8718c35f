@@ -26,6 +26,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8b8c935a_6c64f05d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-23T17:31:53Z",
+      "side": 1,
+      "message": "whenever you write a name to the search control block, do you guarantee the name is also written to storage cache? \n\ncould there be a cache where someone pair a new device after doing Inquiry or BLE scanning; the name is only in the search control block, but not in the storage cache yet. \n\nIn this case, `check_cached_remote_name` would return empty value",
+      "range": {
+        "startLine": 9,
+        "startChar": 47,
+        "endLine": 9,
+        "endChar": 68
+      },
+      "revId": "b9dea1467623f21b17f055fb4f89ed1c8718c35f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3a57f3e_8fe476c4",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-23T17:31:53Z",
+      "side": 1,
+      "message": "nit: a better name to this method is\n\n`bool get_cached_remote_name()`\n\nwhich returns true if name is found",
+      "range": {
+        "startLine": 481,
+        "startChar": 12,
+        "endLine": 481,
+        "endChar": 36
+      },
+      "revId": "b9dea1467623f21b17f055fb4f89ed1c8718c35f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d9e7d402_20fd27ee",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 2
