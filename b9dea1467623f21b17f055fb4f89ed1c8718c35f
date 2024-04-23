@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fb12fdf_6a419e8a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-23T19:50:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9536cf79_bbdd3f26",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "b9dea1467623f21b17f055fb4f89ed1c8718c35f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8b8c935a_6c64f05d",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-23T17:31:53Z",
       "side": 1,
       "message": "whenever you write a name to the search control block, do you guarantee the name is also written to storage cache? \n\ncould there be a cache where someone pair a new device after doing Inquiry or BLE scanning; the name is only in the search control block, but not in the storage cache yet. \n\nIn this case, `check_cached_remote_name` would return empty value",
+      "range": {
+        "startLine": 9,
+        "startChar": 47,
+        "endLine": 9,
+        "endChar": 68
+      },
+      "revId": "b9dea1467623f21b17f055fb4f89ed1c8718c35f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2f0567b_403dc19b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-23T19:50:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8b8c935a_6c64f05d",
       "range": {
         "startLine": 9,
         "startChar": 47,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f5b03d6_b53ced07",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-23T19:50:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b3a57f3e_8fe476c4",
+      "range": {
+        "startLine": 481,
+        "startChar": 12,
+        "endLine": 481,
+        "endChar": 36
+      },
+      "revId": "b9dea1467623f21b17f055fb4f89ed1c8718c35f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9e7d402_20fd27ee",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-04-23T17:28:52Z",
       "side": 1,
       "message": "this method only gets remote name from local storage cache\n\n`bta_dm_get_remname` calls `BTM_SecReadDevName` which looks for remote name from in-memory cache in security device record. \n\nIs the security device record always synced with the local storage cache? Do we guarantee this?",
+      "range": {
+        "startLine": 3865,
+        "startChar": 8,
+        "endLine": 3865,
+        "endChar": 32
+      },
+      "revId": "b9dea1467623f21b17f055fb4f89ed1c8718c35f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba2cab8a_23e9c8dd",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3865,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-23T19:50:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d9e7d402_20fd27ee",
       "range": {
         "startLine": 3865,
         "startChar": 8,
