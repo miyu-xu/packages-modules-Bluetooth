@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8d833378_d981cea7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-23T20:30:24Z",
+      "side": 1,
+      "message": "please fix this test stanza",
+      "range": {
+        "startLine": 14,
+        "startChar": 1,
+        "endLine": 14,
+        "endChar": 9
+      },
+      "revId": "7fa6d7c379e90e5998608d2db08d5882713bf4e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "edff4384_a2b05233",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 4
