@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "38e86bc5_1b951a0e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-23T23:05:21Z",
+      "side": 1,
+      "message": "Verified that `testCreateBroadcastTimeout` only tests the Java layer and the root cause is different, not related to this change.",
+      "parentUuid": "185d41f5_4bc415ce",
+      "revId": "b43465af55eda65b96c270d024e57c9a93dee955",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "2804b36b_e3a55250",
         "filename": "system/bta/le_audio/le_audio_types.h",
         "patchSetId": 13
