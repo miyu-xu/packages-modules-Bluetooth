@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "896efdd9_5c8a92c0",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-23T22:52:00Z",
+      "side": 1,
+      "message": "Hah ! It\u0027s USED !!",
+      "revId": "d9e3cc8c9fd35c1a407f0fe3e4a3400e649de50c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
