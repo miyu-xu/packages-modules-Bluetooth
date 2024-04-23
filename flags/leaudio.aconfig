@@ -329,3 +329,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "leaudio_no_context_validate_streaming_request"
+    namespace: "bluetooth"
+    description: "Request streaming would be send without available cotext validation"
+    bug: "336468573"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
