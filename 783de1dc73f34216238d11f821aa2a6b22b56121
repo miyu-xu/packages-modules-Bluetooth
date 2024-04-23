@@ -22,6 +22,53 @@
       },
       "revId": "783de1dc73f34216238d11f821aa2a6b22b56121",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b51092bb_7eb66917",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-23T23:22:18Z",
+      "side": 1,
+      "message": "also, is this only for SDP or GATT is also involved? \n\nIf GATT is involved, then address type needs to be checked?\n\ndid notice that bd_addr was not used even before this change\n\nhence not blocking this CL for this comment",
+      "parentUuid": "842b0b52_2a435a30",
+      "range": {
+        "startLine": 378,
+        "startChar": 50,
+        "endLine": 378,
+        "endChar": 63
+      },
+      "revId": "783de1dc73f34216238d11f821aa2a6b22b56121",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b65f4a1_9c6df2f9",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-23T23:22:18Z",
+      "side": 1,
+      "message": "I think the key thing is there, by handling IDLE state here, you don\u0027t have to use the state machine any more\n\nonly risk I see is when `bta_dm_sdp_callback` runs on different thread, then you have to schedule the state check and `bta_dm_free_sdp_db` after do_in_main_thread\n\nHence, would we have `bta_dm_sdp_callback` be like:\n\n```\nstatic void bta_dm_sdp_callback(const RawAddress\u0026 /* bd_addr */,\n                                tSDP_STATUS sdp_status) {\n  do_in_main_thread(FROM_HERE, [sdp_status] {\n    log::info(\"{}\", bta_dm_state_text(bta_dm_discovery_get_state()));\n    if (bta_dm_discovery_get_state() \u003d\u003d BTA_DM_DISCOVER_IDLE) {\n      bta_dm_free_sdp_db();\n      return;\n    }\n    bta_dm_sdp_result(sdp_status);\n  }                           \n}\n```\n\nThis more accurately reflect what the previous version of code was doing",
+      "range": {
+        "startLine": 382,
+        "startChar": 1,
+        "endLine": 385,
+        "endChar": 3
+      },
+      "revId": "783de1dc73f34216238d11f821aa2a6b22b56121",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
