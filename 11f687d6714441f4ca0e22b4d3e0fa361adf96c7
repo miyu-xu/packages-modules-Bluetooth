@@ -194,6 +194,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6299b761_0131cea5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1006,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-23T08:54:57Z",
+      "side": 1,
+      "message": "Can we do this in another separate following patch? Feel like it will be much more clear for a dedicated patch for those suggestions.",
+      "parentUuid": "ac145239_2534be29",
+      "range": {
+        "startLine": 1003,
+        "startChar": 16,
+        "endLine": 1006,
+        "endChar": 17
+      },
+      "revId": "11f687d6714441f4ca0e22b4d3e0fa361adf96c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "817cff49_70da952c",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 3
