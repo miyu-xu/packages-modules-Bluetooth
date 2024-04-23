@@ -722,8 +722,8 @@ static void setUnicastMonitorModeNative(JNIEnv* /* env */, jobject /* object */,
 }
 
 static void sendAudioProfilePreferencesNative(
-    JNIEnv* /* env */, jint groupId, jboolean isOutputPreferenceLeAudio,
-    jboolean isDuplexPreferenceLeAudio) {
+    JNIEnv* /* env */, jobject /* object */, jint groupId,
+    jboolean isOutputPreferenceLeAudio, jboolean isDuplexPreferenceLeAudio) {
   std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
   if (!sLeAudioClientInterface) {
     log::error("Failed to get the Bluetooth LeAudio Interface");
