@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "841f31bf_f9390bc3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1006,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-04-23T02:53:31Z",
+      "side": 1,
+      "message": "There is still a small difference: The callbacks have the peer address while the DBus calls don\u0027t (and shouldn\u0027t). I\u0027d still prefer the current style - `xxx_impl` to handle the call state change and let the callbacks/DBus calls handle anything that involves LibBluetooth.",
+      "parentUuid": "2af3e21a_a65b2bb5",
+      "range": {
+        "startLine": 1003,
+        "startChar": 16,
+        "endLine": 1006,
+        "endChar": 17
+      },
+      "revId": "11f687d6714441f4ca0e22b4d3e0fa361adf96c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "817cff49_70da952c",
