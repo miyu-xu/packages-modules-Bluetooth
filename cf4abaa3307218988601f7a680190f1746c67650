@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "353a553e_0b2d363c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-23T09:03:48Z",
+      "side": 1,
+      "message": "correction: The **RingCentral** original mute initial state is always unmute.",
+      "parentUuid": "9bb11e09_145f87d3",
+      "revId": "cf4abaa3307218988601f7a680190f1746c67650",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d266f78f_da028a81",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 10
