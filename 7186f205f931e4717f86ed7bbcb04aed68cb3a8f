@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "134ff0d8_96a6e551",
+        "filename": "flags/leaudio.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-23T21:18:14Z",
+      "side": 1,
+      "message": "This bug number is already used",
+      "range": {
+        "startLine": 337,
+        "startChar": 10,
+        "endLine": 337,
+        "endChar": 19
+      },
+      "revId": "7186f205f931e4717f86ed7bbcb04aed68cb3a8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
