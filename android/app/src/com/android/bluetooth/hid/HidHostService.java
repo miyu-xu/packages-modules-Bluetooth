@@ -29,11 +29,11 @@ import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothUuid;
 import android.bluetooth.IBluetoothHidHost;
 import android.content.AttributionSource;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.ParcelUuid;
 import android.os.UserHandle;
 import android.sysprop.BluetoothProperties;
 import android.util.Log;
@@ -106,7 +106,7 @@ public class HidHostService extends ProfileService {
     private BluetoothDevice mTargetDevice = null;
 
     private DatabaseManager mDatabaseManager;
-    private AdapterService mAdapterService;
+    private final AdapterService mAdapterService;
     private final HidHostNativeInterface mNativeInterface;
 
     private static final int MESSAGE_CONNECT = 1;
@@ -133,8 +133,9 @@ public class HidHostService extends ProfileService {
     public static final int STATE_DISCONNECTING = BluetoothProfile.STATE_DISCONNECTING;
     public static final int STATE_ACCEPTING = BluetoothProfile.STATE_DISCONNECTING + 1;
 
-    public HidHostService(Context ctx) {
-        super(ctx);
+    public HidHostService(AdapterService adapterService) {
+        super(adapterService);
+        mAdapterService = adapterService;
         mNativeInterface = requireNonNull(HidHostNativeInterface.getInstance());
     }
 
@@ -151,12 +152,8 @@ public class HidHostService extends ProfileService {
     public void start() {
         mDatabaseManager =
                 requireNonNull(
-                        AdapterService.getAdapterService().getDatabase(),
+                        mAdapterService.getDatabase(),
                         "DatabaseManager cannot be null when HidHostService starts");
-        mAdapterService =
-                requireNonNull(
-                        AdapterService.getAdapterService(),
-                        "AdapterService cannot be null when HidHostService starts");
 
         mNativeInterface.init(this);
         mNativeAvailable = true;
@@ -201,8 +198,11 @@ public class HidHostService extends ProfileService {
     }
 
     private byte[] getByteAddress(BluetoothDevice device, int transport) {
+        ParcelUuid[] uuids = mAdapterService.getRemoteUuids(device);
+
         if (!Flags.allowSwitchingHidAndHogp()) {
-            if (Utils.arrayContains(device.getUuids(), BluetoothUuid.HOGP)) {
+            boolean hogpSupported = Utils.arrayContains(uuids, BluetoothUuid.HOGP);
+            if (hogpSupported) {
                 // Use pseudo address when HOGP is available
                 return Utils.getByteAddress(device);
             } else {
@@ -218,8 +218,9 @@ public class HidHostService extends ProfileService {
             // Use identity address if HID is to be used
             return getIdentityAddress(device);
         } else { // BluetoothDevice.TRANSPORT_AUTO
+            boolean hidSupported = Utils.arrayContains(uuids, BluetoothUuid.HID);
             // Prefer HID over HOGP
-            if (Utils.arrayContains(device.getUuids(), BluetoothUuid.HID)) {
+            if (hidSupported) {
                 // Use identity address if HID is available
                 return getIdentityAddress(device);
             } else {
@@ -804,8 +805,7 @@ public class HidHostService extends ProfileService {
             // Locally initiated connection, move out of quiet mode
             Log.i(TAG, "updateQuiteMode: " + " Move out of quite mode for device: " + device);
             mTargetDevice = null;
-            AdapterService adapterService = AdapterService.getAdapterService();
-            adapterService.enable(false);
+            mAdapterService.enable(false);
         }
     }
 
@@ -1122,14 +1122,14 @@ public class HidHostService extends ProfileService {
      */
     boolean setPreferredTransport(BluetoothDevice device, int transport) {
         Log.i(TAG, "setPreferredTransport: " + device + " transport: " + transport);
-
-        if (device.getBondState() != BluetoothDevice.BOND_BONDED) {
+        if (mAdapterService.getBondState(device) != BluetoothDevice.BOND_BONDED) {
             Log.w(TAG, "Device not bonded" + device);
             return false;
         }
 
-        boolean hidSupported = Utils.arrayContains(device.getUuids(), BluetoothUuid.HID);
-        boolean hogpSupported = Utils.arrayContains(device.getUuids(), BluetoothUuid.HOGP);
+        ParcelUuid[] uuids = mAdapterService.getRemoteUuids(device);
+        boolean hidSupported = Utils.arrayContains(uuids, BluetoothUuid.HID);
+        boolean hogpSupported = Utils.arrayContains(uuids, BluetoothUuid.HOGP);
         if (transport == BluetoothDevice.TRANSPORT_BREDR && !hidSupported) {
             Log.w(TAG, "HID not supported: " + device);
             return false;
@@ -1432,11 +1432,8 @@ public class HidHostService extends ProfileService {
                         + "->"
                         + newState);
 
-        AdapterService adapterService = AdapterService.getAdapterService();
-        if (adapterService != null) {
-            adapterService.updateProfileConnectionAdapterProperties(
-                    device, BluetoothProfile.HID_HOST, newState, prevState);
-        }
+        mAdapterService.updateProfileConnectionAdapterProperties(
+                device, BluetoothProfile.HID_HOST, newState, prevState);
 
         Intent intent = new Intent(BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED);
         intent.putExtra(BluetoothProfile.EXTRA_PREVIOUS_STATE, prevState);
@@ -1505,20 +1502,14 @@ public class HidHostService extends ProfileService {
      */
     @VisibleForTesting(otherwise = VisibleForTesting.PACKAGE_PRIVATE)
     public boolean okToConnect(BluetoothDevice device) {
-        AdapterService adapterService = AdapterService.getAdapterService();
-        // Check if adapter service is null.
-        if (adapterService == null) {
-            Log.w(TAG, "okToConnect: adapter service is null");
-            return false;
-        }
         // Check if this is an incoming connection in Quiet mode.
-        if (adapterService.isQuietModeEnabled() && mTargetDevice == null) {
+        if (mAdapterService.isQuietModeEnabled() && mTargetDevice == null) {
             Log.w(TAG, "okToConnect: return false as quiet mode enabled");
             return false;
         }
         // Check connection policy and accept or reject the connection.
         int connectionPolicy = getConnectionPolicy(device);
-        int bondState = adapterService.getBondState(device);
+        int bondState = mAdapterService.getBondState(device);
         // Allow this connection only if the device is bonded. Any attempt to connect while
         // bonding would potentially lead to an unauthorized connection.
         if (bondState != BluetoothDevice.BOND_BONDED) {
