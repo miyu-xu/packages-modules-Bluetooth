@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9536cf79_bbdd3f26",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-23T17:28:52Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Test Validation: \"Test: m \u003ctarget\u003e\" or \"Test: atest \u003cautomated-test\u003e\" is required to be in the commit message.\n\nAnalyzer Description: Validates that commit messages indicate how changes were tested\nOwner: ayeaye-team@google.com\n\n\"Test: m \u003ctarget\u003e\" or \"Test: atest \u003cautomated-test\u003e\" is required to be in the commit message.",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "b9dea1467623f21b17f055fb4f89ed1c8718c35f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9e7d402_20fd27ee",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3865,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-23T17:28:52Z",
+      "side": 1,
+      "message": "this method only gets remote name from local storage cache\n\n`bta_dm_get_remname` calls `BTM_SecReadDevName` which looks for remote name from in-memory cache in security device record. \n\nIs the security device record always synced with the local storage cache? Do we guarantee this?",
+      "range": {
+        "startLine": 3865,
+        "startChar": 8,
+        "endLine": 3865,
+        "endChar": 32
+      },
+      "revId": "b9dea1467623f21b17f055fb4f89ed1c8718c35f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
