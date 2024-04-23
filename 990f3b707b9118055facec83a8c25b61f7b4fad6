@@ -22,6 +22,30 @@
       },
       "revId": "990f3b707b9118055facec83a8c25b61f7b4fad6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b20b79c_60ffe6b2",
+        "filename": "system/gd/module.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-23T22:56:34Z",
+      "side": 0,
+      "message": "looks like we need something like:\n\n```\nfor (const auto\u0026 m : GetModuleKeys()) {\n  m-\u003eDump();\n}\n```",
+      "parentUuid": "56a69791_0c8ff26b",
+      "range": {
+        "startLine": 40,
+        "startChar": 30,
+        "endLine": 40,
+        "endChar": 47
+      },
+      "revId": "990f3b707b9118055facec83a8c25b61f7b4fad6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
