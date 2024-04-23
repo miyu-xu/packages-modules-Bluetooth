@@ -96,6 +96,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7cf21212_7a00fe36",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1006,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-04-23T03:32:46Z",
+      "side": 1,
+      "message": "We can keep the additional `addr` play its role here by delegate to `dispatch_uhid_hfp_output_callback`\n\nE.g\n```\nif self.mps_qualification_enabled {\n  // prepare ID and data\n  self.dispatch_uhid_hfp_output_callback(addr, id, data);\n} else {\n  self.uhid_send_hook_switch_input_report(\u0026addr, true);\n}\n```\n\nIt just isn\u0027t right to have the below code duplicated with `answer_call`. Since both paths invoke the same operation in the end, they shall be merged.",
+      "parentUuid": "841f31bf_f9390bc3",
+      "range": {
+        "startLine": 1003,
+        "startChar": 16,
+        "endLine": 1006,
+        "endChar": 17
+      },
+      "revId": "11f687d6714441f4ca0e22b4d3e0fa361adf96c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "817cff49_70da952c",
