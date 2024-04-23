@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4469105a_10a514a1",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 946,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-23T16:08:29Z",
+      "side": 0,
+      "message": "That seems arbitrary, I prefer applying the same rule everywhere so long as code formatting is not completely broken.",
+      "parentUuid": "54167f6b_c4990c09",
+      "range": {
+        "startLine": 946,
+        "startChar": 48,
+        "endLine": 946,
+        "endChar": 73
+      },
+      "revId": "1236502d978a6ba1b2b55cdaf0abe0e5a85908e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cdaa2ddf_396aa66a",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-23T04:19:01Z",
       "side": 0,
       "message": "Maybe this could be done in the previous CL?  Or are you going to re-run the script for functions that return boolean values?",
+      "range": {
+        "startLine": 4457,
+        "startChar": 20,
+        "endLine": 4457,
+        "endChar": 72
+      },
+      "revId": "1236502d978a6ba1b2b55cdaf0abe0e5a85908e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bf3f2ff_fe81606d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 4457,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-23T16:08:29Z",
+      "side": 0,
+      "message": "Not sure what you mean here.\nPrevious CL is for loghex, next CL does the bool formatting",
+      "parentUuid": "cdaa2ddf_396aa66a",
       "range": {
         "startLine": 4457,
         "startChar": 20,
