@@ -234,6 +234,30 @@
       },
       "revId": "f7b6af6b5b5ae2a59f91dbd8904df2f1a80ed836",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f49b8662_b92f27fa",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 806,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-23T00:18:33Z",
+      "side": 1,
+      "message": "Could we find out before merging this? \n\nHave a ++ as the last line of a method makes me feel that we are missing something",
+      "parentUuid": "39745469_db0ae950",
+      "range": {
+        "startLine": 806,
+        "startChar": 0,
+        "endLine": 806,
+        "endChar": 38
+      },
+      "revId": "f7b6af6b5b5ae2a59f91dbd8904df2f1a80ed836",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
