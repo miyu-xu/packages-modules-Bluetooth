@@ -146,6 +146,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1380b999_0ec9cb33",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1006,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-04-23T06:56:26Z",
+      "side": 1,
+      "message": "I agree with (1), (3) and (4). \n\nRegarding callbacks in (2), I\u0027d prefer we hook the `HfpCallbacks` to uhid functions(like in my previous comment) and then indirectly calls into `xxx_impl`.\nThis makes it clear that, we\u0027re stubbing the app\u0027s behavior(who dispatches UHID output) in MPS mode.",
+      "parentUuid": "81e138ea_9408c653",
+      "range": {
+        "startLine": 1003,
+        "startChar": 16,
+        "endLine": 1006,
+        "endChar": 17
+      },
+      "revId": "11f687d6714441f4ca0e22b4d3e0fa361adf96c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "817cff49_70da952c",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 3
