@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2804b36b_e3a55250",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 1159,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-23T17:11:55Z",
+      "side": 1,
+      "message": "nit: these two variable names do not align with other variables in the same file, should be sdu_interval_us and max_sdu instead",
+      "range": {
+        "startLine": 1158,
+        "startChar": 0,
+        "endLine": 1159,
+        "endChar": 13
+      },
+      "revId": "b43465af55eda65b96c270d024e57c9a93dee955",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
