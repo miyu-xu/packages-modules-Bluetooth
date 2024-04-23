@@ -22,6 +22,30 @@
       },
       "revId": "3599c7de179a9273298b30b9d1694167e6ed110a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff11fcea_c3fc40d5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-23T08:44:30Z",
+      "side": 1,
+      "message": "The primary issue is not the occurrence of \"double phone ops.\"\n\nThe actual problem arises when the HfpCallback receives an AT command, but the VC app does not receive the headset event due to network instability. So if the first attempt to answer the call is unsuccessful(due to an event that does not propagate correctly to the central web server) , the user is unable to re-answer the call on the second attempt because the call state is already changed when receiving an AT command.\n\nEven in current code, call state change will only change once. The major difference of this change is that we want to change the call state at \n* at dispatch UHID output\n* instead of at HfpCallbak receiving AT command\n\nAnd the `at dispatch UHID output` is better since that is the moment VC app confirm the phone_state change on their side.",
+      "parentUuid": "3cc254a2_bcf97c0a",
+      "range": {
+        "startLine": 20,
+        "startChar": 23,
+        "endLine": 22,
+        "endChar": 31
+      },
+      "revId": "3599c7de179a9273298b30b9d1694167e6ed110a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
