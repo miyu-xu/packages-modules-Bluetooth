@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55aa92e6_2f1fbaf7",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-23T20:29:17Z",
+      "side": 0,
+      "message": "yes, this does make it more obvious that these two values are never used in upper layer",
+      "range": {
+        "startLine": 596,
+        "startChar": 44,
+        "endLine": 596,
+        "endChar": 65
+      },
+      "revId": "2809a5c9444b8ae666638767c952d2c890b86578",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
