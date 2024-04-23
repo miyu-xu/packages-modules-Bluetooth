@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bcbecb0_b6a408ba",
+        "filename": "android/app/jni/com_android_bluetooth_le_audio.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-23T17:53:11Z",
+      "side": 1,
+      "message": "Noticed we have log with info for such across different layers. Does it make sense to remove some or change some to debug level?",
+      "revId": "f9d2f185d34581a12184482cc4978852e3052de3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8b1569a_5ad69ea7",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-23T17:53:11Z",
+      "side": 1,
+      "message": "To avoid duplicated code, should we consider to move those to one place, e.g. BluetoothLeAudio or LeAudioService?",
+      "revId": "f9d2f185d34581a12184482cc4978852e3052de3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc025128_c4629358",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-23T17:53:11Z",
+      "side": 1,
+      "message": "the name of this is a bit confusing, how about this? mAreModifiedAllowedContextOfActiveGroup -\u003e mIsAllowedContextOfActiveGroupModified?",
+      "revId": "f9d2f185d34581a12184482cc4978852e3052de3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89065299_862f18e2",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-23T17:53:11Z",
+      "side": 1,
+      "message": "nit: this part of logic is not that complicated, would it be better to just\n\nreturn leAudioService.getActiveGroupId() !\u003d LE_AUDIO_GROUP_ID_INVALID \u0026\u0026 leAudioService.getActiveDevices().contains(device);",
+      "revId": "f9d2f185d34581a12184482cc4978852e3052de3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86ff79f6_1c5374e8",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-23T17:53:11Z",
+      "side": 1,
+      "message": "I think we can simplify this by using existing functions.\n\n```suggestion\n    private boolean isAnyDeviceFromActiveUnicastGroupReceivingBroadcast() {\n        return getActiveBroadcastSinks().stream()\n                    .anyMatch(d -\u003e isDevicePartOfActiveUnicastGroup(d));\n    }\n```",
+      "revId": "f9d2f185d34581a12184482cc4978852e3052de3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b130764_6f248307",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 721,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-23T17:53:11Z",
+      "side": 1,
+      "message": "nit: the original way Flags.leaudioAllowedContextMask() is more clear to me in terms of flagging.",
+      "revId": "f9d2f185d34581a12184482cc4978852e3052de3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa0e5401_e0e836bd",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-23T17:53:11Z",
+      "side": 1,
+      "message": "There is some presubmit testing failure, could you take a look?\n\nIf it\u0027s because flags is not enabled, maybe you can try to use Flags.leaudioAllowedContextMask to replace this static and see if the failure is resolved.",
+      "revId": "f9d2f185d34581a12184482cc4978852e3052de3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16df141c_054a8fac",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1494,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-23T17:53:11Z",
+      "side": 1,
+      "message": "renaming to getFirstGroupIdInGettingActiveState?",
+      "revId": "f9d2f185d34581a12184482cc4978852e3052de3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64154c5b_57bb10c8",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3149,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-23T17:53:11Z",
+      "side": 1,
+      "message": "gettingActiveGroupDescriptor is not being used here, should we remove this?\nAlso valid gettingActiveGroupDescriptor means group descriptor exists.",
+      "revId": "f9d2f185d34581a12184482cc4978852e3052de3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a44d2d5_b4f88a10",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3873,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-23T17:53:11Z",
+      "side": 1,
+      "message": "It seems like it\u0027s almost the same as private setActiveGroupAllowedContextMask(), then why do we need to duplicate this?",
+      "revId": "f9d2f185d34581a12184482cc4978852e3052de3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
