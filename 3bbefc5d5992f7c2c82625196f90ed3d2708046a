@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccbcb327_54aa99e6",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 892,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-23T00:16:38Z",
+      "side": 1,
+      "message": "nit: \n\n```\nbta_dm_discovery_cb.wait_disc \u003d !get_btm_client_interface().peer.BTM_IsAclConnectionUp(\n          bd_addr, BT_TRANSPORT_BR_EDR))\n```\n\ndo this in a follow-up please",
+      "range": {
+        "startLine": 888,
+        "startChar": 0,
+        "endLine": 892,
+        "endChar": 41
+      },
+      "revId": "3bbefc5d5992f7c2c82625196f90ed3d2708046a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
