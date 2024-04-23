@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac1f432a_125f06a0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-23T23:00:11Z",
+      "side": 1,
+      "message": "atest HidHostServiceTest",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 36
+      },
+      "revId": "2b77231b3211eb0ff7f6d12f16cf4c859cf10729",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a78bfe92_b5737778",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-23T23:00:11Z",
+      "side": 1,
+      "message": "We should modified the associated test and remove the no longer needed \n`TestUtils.setAdapterService(mAdapterService);`",
+      "revId": "2b77231b3211eb0ff7f6d12f16cf4c859cf10729",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
