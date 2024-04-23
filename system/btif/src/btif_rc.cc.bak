@@ -3400,7 +3400,7 @@ void init_all_transactions(btif_rc_device_cb_t* p_dev) {
   }
   for (uint8_t j = 0;j < eTYPE_MAX;j++) {
     for (uint8_t i = 0; i < MAX_TRANSACTIONS_PER_SESSION; ++i) {
-      initialize_transaction(p_dev, i, (rc_channel_type)j);
+      initialize_transaction(p_dev, i);
     }
   }
 }
