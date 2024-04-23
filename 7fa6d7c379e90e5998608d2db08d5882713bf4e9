@@ -39,6 +39,23 @@
       "message": "Abort message: \u0027No pending exception expected: java.lang.NoSuchMethodError: no non-static method \"Lcom/android/bluetooth/btservice/JniCallbacks;.sspRequestCallback([B[BIII)V\"\n  at java.lang.String java.lang.Runtime.nativeLoad(java.lang.String, java.lang.ClassLoader, java.lang.Class) (Runtime.java:-2)\n  at void java.lang.Runtime.loadLibrary0(java.lang.ClassLoader, java.lang.Class, java.lang.String) (Runtime.java:1079)\n  at void java.lang.Runtime.loadLibrary0(java.lang.Class, java.lang.String) (Runtime.java:1003)\n  at void java.lang.System.loadLibrary(java.lang.String) (System.java:1765)\n  at void com.android.bluetooth.btservice.AdapterService.\u003cclinit\u003e() (AdapterService.java:352)\n  at java.lang.Object java.lang.Class.newInstance() (Class.java:-2)\n  at android.app.Service android.app.AppComponentFactory.instantiateService(java.lang.ClassLoader, java.lang.String, android.content.Intent) (AppComponentFactory.java:129)\n  at android.app.Service androidx.core.app.CoreComponentFactory.instantiateService(java.lang.ClassLoader, java.lang.String, android.content.Intent) (CoreComponentFactory.java:74)\n  at void android.app.ActivityThread.handleCreateService(android.app.ActivityThread$CreateServiceData) (ActivityThread.java:4932)",
       "revId": "7fa6d7c379e90e5998608d2db08d5882713bf4e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4e58ada_3cf3a35b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-23T21:45:10Z",
+      "side": 1,
+      "message": "Please fix the runtime crashes if possible",
+      "revId": "7fa6d7c379e90e5998608d2db08d5882713bf4e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
