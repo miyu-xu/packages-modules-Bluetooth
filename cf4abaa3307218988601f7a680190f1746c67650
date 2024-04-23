@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9bb11e09_145f87d3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-23T09:02:43Z",
+      "side": 1,
+      "message": "Re: If the answer is NO, then do most of the USB headsets send the same additional event at unmute? (could use a doc to summarize)\n\nWill do the experiment.\n\nRe: and one more question, if RingCentral treat phone mute as toggle, how does it communicate the initial state with the device?\n\nThe original mute initial state is always unmute. If the headset initial state is muted, the headset will send an event to trigger mute. If the headset initial state is unmute, then no event will be sent from the headset.",
+      "parentUuid": "ce3d19e1_fda2ce97",
+      "revId": "cf4abaa3307218988601f7a680190f1746c67650",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d266f78f_da028a81",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 10
