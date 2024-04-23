@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ad92a8e4_9a96acd0",
+        "filename": "system/stack/btm/btm_ble_bgconn.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2024-04-23T00:42:00Z",
+      "side": 1,
+      "message": "We should have common behavior with Android.\n\nLet\u0027s get rid of the #if TARGET_FLOSS and get the core team to review.",
+      "revId": "adb9ef28adcc22264f8dc07753c93a7de159c638",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4deb3dd7_c020c263",
         "filename": "system/stack/btm/btm_dev.cc",
         "patchSetId": 1
