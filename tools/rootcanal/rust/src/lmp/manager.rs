@@ -282,6 +282,7 @@ impl LinkManager {
     }
 
     pub fn tick(&self) {
+        let _timer = Timer::new("LinkManager::tick");
         let waker = noop_waker();
 
         for procedures in self.procedures.borrow_mut().iter_mut().filter_map(Option::as_mut) {
@@ -291,6 +292,29 @@ impl LinkManager {
 
     fn link(&self, idx: u8) -> &Link {
         &self.links[idx as usize]
+    }
+}
+
+struct Timer {
+    start_time: std::time::Instant,
+    description: String,
+}
+
+impl Timer {
+    fn new(description: &str) -> Self {
+        Timer {
+            start_time: std::time::Instant::now(),
+            description: description.into(),
+        }
+    }
+}
+
+impl Drop for Timer {
+    fn drop(&mut self) {
+        let elapsed = self.start_time.elapsed();
+        if elapsed > std::time::Duration::from_millis(200) {
+            println!("{} | Elapsed: {:?}ms", self.description, elapsed.as_millis());
+        }
     }
 }
 
