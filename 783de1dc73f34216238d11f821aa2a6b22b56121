@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "842b0b52_2a435a30",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-23T21:43:36Z",
+      "side": 1,
+      "message": "nit: Should we check if `peer_bdaddr` matches the `bd_addr` here? What if they do not match?",
+      "range": {
+        "startLine": 378,
+        "startChar": 50,
+        "endLine": 378,
+        "endChar": 63
+      },
+      "revId": "783de1dc73f34216238d11f821aa2a6b22b56121",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
