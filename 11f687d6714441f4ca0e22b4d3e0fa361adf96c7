@@ -122,6 +122,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "81e138ea_9408c653",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1006,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-04-23T06:02:22Z",
+      "side": 1,
+      "message": "The additional `addr` argument works. Another problem is that `answer_call()` is a DBus handler so I\u0027d like to block it unless we\u0027re in the MPS mode. How about:\n1. Move as many duplicated code (such as `phone_state_change` / `start_sco_call_impl` / `simple_at_response`) into the `xxxx_impl` functions\n2. Callbacks / DBus handlers simply call the impl functions with / without `addr`\n3. All DBus handlers, `HfpCallbacks::DialCall`, and `HfpCallbacks::CallHold` early return if not in MPS mode\n4. Remove most of the MPS mode check.",
+      "parentUuid": "7cf21212_7a00fe36",
+      "range": {
+        "startLine": 1003,
+        "startChar": 16,
+        "endLine": 1006,
+        "endChar": 17
+      },
+      "revId": "11f687d6714441f4ca0e22b4d3e0fa361adf96c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "817cff49_70da952c",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 3
