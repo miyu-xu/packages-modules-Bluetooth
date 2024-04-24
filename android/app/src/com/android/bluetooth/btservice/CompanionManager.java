@@ -58,6 +58,7 @@ public class CompanionManager {
     private final int[] mGattConnBalanceDefault;
     private final int[] mGattConnLowDefault;
     private final int[] mGattConnDckDefault;
+    private final int[] mGattConnHeartRateStreamingDefault;
 
     @VisibleForTesting static final int COMPANION_TYPE_NONE      = 0;
     @VisibleForTesting static final int COMPANION_TYPE_PRIMARY   = 1;
@@ -85,6 +86,12 @@ public class CompanionManager {
     static final String PROPERTY_DCK_MIN_INTERVAL = "bluetooth.gatt.dck_priority_min.interval";
     static final String PROPERTY_DCK_MAX_INTERVAL = "bluetooth.gatt.dck_priority_max.interval";
     static final String PROPERTY_DCK_LATENCY = "bluetooth.gatt.dck_priority.latency";
+    static final String PROPERTY_HEART_RATE_STREAMING_MIN_INTERVAL =
+            "bluetooth.gatt.heart_rate_streaming_priority_min.interval";
+    static final String PROPERTY_HEART_RATE_STREAMING_MAX_INTERVAL =
+            "bluetooth.gatt.heart_rate_streaming_priority_max.interval";
+    static final String PROPERTY_HEART_RATE_STREAMING_LATENCY =
+            "bluetooth.gatt.heart_rate_streaming_priority.latency";
     static final String PROPERTY_SUFFIX_PRIMARY = ".primary";
     static final String PROPERTY_SUFFIX_SECONDARY = ".secondary";
 
@@ -117,7 +124,13 @@ public class CompanionManager {
                 getGattConfig(PROPERTY_DCK_MIN_INTERVAL, R.integer.gatt_dck_priority_min_interval),
                 getGattConfig(PROPERTY_DCK_MAX_INTERVAL, R.integer.gatt_dck_priority_max_interval),
                 getGattConfig(PROPERTY_DCK_LATENCY, R.integer.gatt_dck_priority_latency)};
-
+        mGattConnHeartRateStreamingDefault = new int[] {
+                getGattConfig(PROPERTY_HEART_RATE_STREAMING_MIN_INTERVAL,
+                        R.integer.gatt_heart_rate_streaming_priority_min_interval),
+                getGattConfig(PROPERTY_HEART_RATE_STREAMING_MAX_INTERVAL,
+                        R.integer.gatt_heart_rate_streaming_priority_max_interval),
+                getGattConfig(PROPERTY_HEART_RATE_STREAMING_LATENCY,
+                    R.integer.gatt_heart_rate_streaming_priority_latency)};
         mGattConnHighPrimary = new int[] {
                 getGattConfig(PROPERTY_HIGH_MIN_INTERVAL + PROPERTY_SUFFIX_PRIMARY,
                         R.integer.gatt_high_priority_min_interval_primary),
@@ -407,6 +420,8 @@ public class CompanionManager {
                 return mGattConnLowDefault[type];
             case BluetoothGatt.CONNECTION_PRIORITY_DCK:
                 return mGattConnDckDefault[type];
+            case BluetoothGatt.CONNECTION_PRIORITY_HEART_RATE_STREAMING:
+                return mGattConnHeartRateStreamingDefault[type];
         }
         return mGattConnBalanceDefault[type];
     }

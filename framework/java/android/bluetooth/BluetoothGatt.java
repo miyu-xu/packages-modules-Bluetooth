@@ -2006,15 +2006,22 @@ public final class BluetoothGatt implements BluetoothProfile {
      *
      * @param connectionPriority Request a specific connection priority. Must be one of {@link
      *     BluetoothGatt#CONNECTION_PRIORITY_BALANCED}, {@link
-     *     BluetoothGatt#CONNECTION_PRIORITY_HIGH} {@link
+     *     BluetoothGatt#CONNECTION_PRIORITY_HIGH}, {@link
      *     BluetoothGatt#CONNECTION_PRIORITY_LOW_POWER}, or {@link
      *     BluetoothGatt#CONNECTION_PRIORITY_DCK}.
+     *
      * @throws IllegalArgumentException If the parameters are outside of their specified range.
      */
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public boolean requestConnectionPriority(int connectionPriority) {
-        if (connectionPriority < CONNECTION_PRIORITY_BALANCED
+
+        if (Flags.connectionPriorityHeartRateStreaming()) {
+            if (connectionPriority < CONNECTION_PRIORITY_BALANCED
+                || connectionPriority > CONNECTION_PRIORITY_HEART_RATE_STREAMING) {
+                throw new IllegalArgumentException("connectionPriority not within valid range");
+            }
+        } else if (connectionPriority < CONNECTION_PRIORITY_BALANCED
                 || connectionPriority > CONNECTION_PRIORITY_DCK) {
             throw new IllegalArgumentException("connectionPriority not within valid range");
         }
