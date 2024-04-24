@@ -143,6 +143,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0209a9c9_ede6b709",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-24T22:11:38Z",
+      "side": 1,
+      "message": "Now you are the owner since aritra isn\u0027t in the team anymore.\nI don\u0027t mind having it split but if we can merge them I believe it\u0027s better",
+      "parentUuid": "66b0c83e_26b17dd3",
+      "range": {
+        "startLine": 17,
+        "startChar": 140,
+        "endLine": 17,
+        "endChar": 155
+      },
+      "revId": "78ff20a810fe56914a17a7533ff8e0a7bb758387",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5bde687f_8bcd5954",
