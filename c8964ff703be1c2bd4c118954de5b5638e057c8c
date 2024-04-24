@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f10a7c2_8abb90bd",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1606,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-24T22:25:34Z",
+      "side": 1,
+      "message": "Why are you adding it here ?",
+      "range": {
+        "startLine": 1605,
+        "startChar": 0,
+        "endLine": 1606,
+        "endChar": 50
+      },
+      "revId": "c8964ff703be1c2bd4c118954de5b5638e057c8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
