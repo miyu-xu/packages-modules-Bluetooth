@@ -204,12 +204,64 @@ void tSCO_CB::Free() {
 /* Buffer used for reading PCM data from audio server that will be encoded into
  * mSBC packet. The BTM_SCO_DATA_SIZE_MAX should be set to a number divisible by
  * BTM_MSBC_CODE_SIZE(240) */
-static int16_t btm_pcm_buf[BTM_SCO_DATA_SIZE_MAX] = {0};
+static uint8_t btm_pcm_buf[BTM_SCO_DATA_SIZE_MAX] = {0};
+static uint8_t packet_buf[BTM_SCO_DATA_SIZE_MAX] = {0};
 
 /* The read and write offset for btm_pcm_buf.
  * They are only used for WBS and the unit is byte. */
 static size_t btm_pcm_buf_read_offset = 0;
 static size_t btm_pcm_buf_write_offset = 0;
+
+bool btm_pcm_buf_write_mirror = false;
+bool btm_pcm_buf_read_mirror = false;
+
+enum btm_pcm_buf_state {
+  DECODE_BUF_EMPTY,
+  DECODE_BUF_FULL,
+
+  // Neither empty nor full.
+  DECODE_BUF_HALFFULL,
+};
+
+void incr_btm_pcm_buf_offset(size_t& offset, bool& mirror, size_t bsize,
+                             size_t amount) {
+  if (bsize - offset > amount) {
+    offset += amount;
+    return;
+  }
+
+  mirror = !mirror;
+  offset = amount - (bsize - offset);
+}
+
+btm_pcm_buf_state btm_pcm_buf_status() {
+  if (btm_pcm_buf_read_offset == btm_pcm_buf_write_offset) {
+    if (btm_pcm_buf_read_mirror == btm_pcm_buf_write_mirror)
+      return DECODE_BUF_EMPTY;
+    return DECODE_BUF_FULL;
+  }
+  return DECODE_BUF_HALFFULL;
+}
+
+size_t btm_pcm_buf_data_len() {
+  switch (btm_pcm_buf_status()) {
+    case DECODE_BUF_EMPTY:
+      return 0;
+    case DECODE_BUF_FULL:
+      return BTM_SCO_DATA_SIZE_MAX;
+    case DECODE_BUF_HALFFULL:
+    default:
+      if (btm_pcm_buf_write_offset > btm_pcm_buf_read_offset)
+        return btm_pcm_buf_write_offset - btm_pcm_buf_read_offset;
+      return BTM_SCO_DATA_SIZE_MAX -
+             (btm_pcm_buf_read_offset - btm_pcm_buf_write_offset);
+  };
+}
+
+size_t btm_pcm_buf_avail_len() {
+  return BTM_SCO_DATA_SIZE_MAX - btm_pcm_buf_data_len();
+}
+
 /******************************************************************************/
 /*            L O C A L    F U N C T I O N     P R O T O T Y P E S            */
 /******************************************************************************/
@@ -341,6 +393,7 @@ static void btm_route_sco_data(bluetooth::hci::ScoView valid_packet) {
   auto rx_data = data.data();
   const uint8_t* decoded = nullptr;
   size_t written = 0, rc = 0;
+
   if (codec_type == BTM_SCO_CODEC_MSBC || codec_type == BTM_SCO_CODEC_LC3) {
     auto status = valid_packet.GetPacketStatusFlag();
 
@@ -372,22 +425,36 @@ static void btm_route_sco_data(bluetooth::hci::ScoView valid_packet) {
    * server, so that we can keep the data read/write rate balanced */
   size_t read = 0, avail = 0;
   const uint8_t* encoded = nullptr;
+
   if (codec_type == BTM_SCO_CODEC_MSBC || codec_type == BTM_SCO_CODEC_LC3) {
     while (written) {
-      avail = BTM_SCO_DATA_SIZE_MAX - btm_pcm_buf_write_offset;
+      avail = btm_pcm_buf_avail_len();
       if (avail) {
         size_t to_read = written < avail ? written : avail;
-        read = bluetooth::audio::sco::read(
-            (uint8_t*)btm_pcm_buf + btm_pcm_buf_write_offset, to_read);
-        if (read != to_read) {
-          log::assert_that(
-              btm_pcm_buf_write_offset + read <= BTM_SCO_DATA_SIZE_MAX,
-              "Read more {} data ({}) than available buffer ({}) guarded by "
-              "read",
-              codec, (unsigned long)read,
-              (unsigned long)(BTM_SCO_DATA_SIZE_MAX -
-                              btm_pcm_buf_write_offset));
 
+        // Read to the packet_buf first and then copy to the btm_pcm_buf.
+        read = bluetooth::audio::sco::read(packet_buf, to_read);
+
+        log::assert_that(
+            read <= avail,
+            "Read more {} data ({}) than available buffer ({}) guarded by "
+            "read",
+            codec, (unsigned long)read, (unsigned long)avail);
+
+        if (BTM_SCO_DATA_SIZE_MAX - btm_pcm_buf_write_offset > read) {
+          std::copy(packet_buf, packet_buf + BTM_SCO_DATA_SIZE_MAX,
+                    btm_pcm_buf + btm_pcm_buf_write_offset);
+        } else {
+          std::copy(
+              packet_buf,
+              packet_buf + BTM_SCO_DATA_SIZE_MAX - btm_pcm_buf_write_offset,
+              btm_pcm_buf + btm_pcm_buf_write_offset);
+          std::copy(
+              packet_buf + BTM_SCO_DATA_SIZE_MAX - btm_pcm_buf_write_offset,
+              packet_buf + BTM_SCO_DATA_SIZE_MAX, btm_pcm_buf);
+        }
+
+        if (read != to_read) {
           log::info(
               "Requested to read {} bytes of {} data but got {} bytes of PCM "
               "data from audio server: WriteOffset:{} ReadOffset:{}",
@@ -404,25 +471,33 @@ static void btm_route_sco_data(bluetooth::hci::ScoView valid_packet) {
         log::warn(
             "Buffer is full when we try to read {} packet from audio server",
             codec);
-        log::assert_that(
-            btm_pcm_buf_write_offset - btm_pcm_buf_read_offset >=
-                (codec_type == BTM_SCO_CODEC_MSBC ? BTM_MSBC_CODE_SIZE
-                                                  : BTM_LC3_CODE_SIZE),
-            "PCM buffer is full but fails to encode an {} packet. This is "
-            "abnormal and can cause busy loop: WriteOffset:{}, ReadOffset:{}, "
-            "BufferSize:{}",
-            codec, (unsigned long)btm_pcm_buf_write_offset,
-            (unsigned long)btm_pcm_buf_read_offset,
-            (unsigned long)sizeof(btm_pcm_buf));
       }
 
-      btm_pcm_buf_write_offset += read;
+      incr_btm_pcm_buf_offset(btm_pcm_buf_write_offset,
+                              btm_pcm_buf_write_mirror, BTM_SCO_DATA_SIZE_MAX,
+                              read);
 
       auto encode = codec_type == BTM_SCO_CODEC_LC3
                         ? &bluetooth::audio::sco::swb::encode
                         : &bluetooth::audio::sco::wbs::encode;
-      rc = encode(&btm_pcm_buf[btm_pcm_buf_read_offset / sizeof(*btm_pcm_buf)],
-                  btm_pcm_buf_write_offset - btm_pcm_buf_read_offset);
+
+      // Copy all data to the packet_buf first and then call encode.
+      size_t data_len = btm_pcm_buf_data_len();
+
+      if (BTM_SCO_DATA_SIZE_MAX - btm_pcm_buf_read_offset > data_len) {
+        std::copy(btm_pcm_buf + btm_pcm_buf_read_offset,
+                  btm_pcm_buf + btm_pcm_buf_read_offset + data_len, packet_buf);
+      } else {
+        std::copy(btm_pcm_buf + btm_pcm_buf_read_offset,
+                  btm_pcm_buf + BTM_SCO_DATA_SIZE_MAX, packet_buf);
+        std::copy(
+            btm_pcm_buf,
+            btm_pcm_buf + data_len -
+                (BTM_SCO_DATA_SIZE_MAX - btm_pcm_buf_read_offset),
+            packet_buf + (BTM_SCO_DATA_SIZE_MAX - btm_pcm_buf_read_offset));
+      }
+
+      rc = encode((int16_t*)packet_buf, data_len);
 
       if (!rc)
         log::debug(
@@ -431,14 +506,8 @@ static void btm_route_sco_data(bluetooth::hci::ScoView valid_packet) {
             codec, (unsigned long)btm_pcm_buf_read_offset,
             (unsigned long)btm_pcm_buf_write_offset);
 
-      /* The offsets should reset some time as the buffer length should always
-       * divisible by 480 and `encode` only returns 480(LC3), 240(MSBC), or 0.
-       */
-      btm_pcm_buf_read_offset += rc;
-      if (btm_pcm_buf_write_offset == btm_pcm_buf_read_offset) {
-        btm_pcm_buf_write_offset = 0;
-        btm_pcm_buf_read_offset = 0;
-      }
+      incr_btm_pcm_buf_offset(btm_pcm_buf_read_offset, btm_pcm_buf_read_mirror,
+                              BTM_SCO_DATA_SIZE_MAX, rc);
 
       /* Send all of the available SCO packets buffered in the queue */
       while (1) {
@@ -455,7 +524,7 @@ static void btm_route_sco_data(bluetooth::hci::ScoView valid_packet) {
   } else {
     while (written) {
       read = bluetooth::audio::sco::read(
-          (uint8_t*)btm_pcm_buf,
+          btm_pcm_buf,
           written < BTM_SCO_DATA_SIZE_MAX ? written : BTM_SCO_DATA_SIZE_MAX);
       if (read == 0) {
         log::info("Failed to read {} bytes of PCM data from audio server",
@@ -470,8 +539,7 @@ static void btm_route_sco_data(bluetooth::hci::ScoView valid_packet) {
        * send PCM data directly to SCO.
        * We don't maintain buffer read/write offset for NB as we send all data
        * that we read from the audio server. */
-      auto data = std::vector<uint8_t>((uint8_t*)btm_pcm_buf,
-                                       (uint8_t*)btm_pcm_buf + read);
+      auto data = std::vector<uint8_t>(btm_pcm_buf, btm_pcm_buf + read);
       btm_send_sco_packet(std::move(data));
     }
   }
