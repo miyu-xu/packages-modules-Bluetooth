@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f90353d0_4beffa0a",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-24T08:50:51Z",
+      "side": 1,
+      "message": "This is just for SDP.\nIf there was no check on bd_addr, I would like to not modify that in this patch.",
+      "parentUuid": "b51092bb_7eb66917",
+      "range": {
+        "startLine": 378,
+        "startChar": 50,
+        "endLine": 378,
+        "endChar": 63
+      },
+      "revId": "783de1dc73f34216238d11f821aa2a6b22b56121",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8b65f4a1_9c6df2f9",
         "filename": "system/bta/dm/bta_dm_disc.cc",
         "patchSetId": 1
@@ -61,6 +85,30 @@
       "writtenOn": "2024-04-23T23:22:18Z",
       "side": 1,
       "message": "I think the key thing is there, by handling IDLE state here, you don\u0027t have to use the state machine any more\n\nonly risk I see is when `bta_dm_sdp_callback` runs on different thread, then you have to schedule the state check and `bta_dm_free_sdp_db` after do_in_main_thread\n\nHence, would we have `bta_dm_sdp_callback` be like:\n\n```\nstatic void bta_dm_sdp_callback(const RawAddress\u0026 /* bd_addr */,\n                                tSDP_STATUS sdp_status) {\n  do_in_main_thread(FROM_HERE, [sdp_status] {\n    log::info(\"{}\", bta_dm_state_text(bta_dm_discovery_get_state()));\n    if (bta_dm_discovery_get_state() \u003d\u003d BTA_DM_DISCOVER_IDLE) {\n      bta_dm_free_sdp_db();\n      return;\n    }\n    bta_dm_sdp_result(sdp_status);\n  }                           \n}\n```\n\nThis more accurately reflect what the previous version of code was doing",
+      "range": {
+        "startLine": 382,
+        "startChar": 1,
+        "endLine": 385,
+        "endChar": 3
+      },
+      "revId": "783de1dc73f34216238d11f821aa2a6b22b56121",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ea43a81_8dccc6d7",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-24T08:50:51Z",
+      "side": 1,
+      "message": "It is being called on main thread, so no need to switch threads here.\n\nThe reason why I switch threads for acll to bta_dm_sdp_result is I\u0027m not sure if scheduling next SDP from sdp callback is safe.\n\nI added a fatal log to crash the stack, you can see the bt_main_thread in crash log\n\n```\n04-24 10:47:43.749  9598  9598 F DEBUG   : *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***\n04-24 10:47:43.749  9598  9598 F DEBUG   : Build fingerprint: \u0027google/husky/husky:VanillaIceCream/MAIN/eng.jpawlo.20240410.191621:eng/dev-keys\u0027\n04-24 10:47:43.749  9598  9598 F DEBUG   : Revision: \u0027EVT1.1\u0027\n04-24 10:47:43.749  9598  9598 F DEBUG   : ABI: \u0027arm64\u0027\n04-24 10:47:43.749  9598  9598 F DEBUG   : Timestamp: 2024-04-24 10:47:43.413135960+0200\n04-24 10:47:43.749  9598  9598 F DEBUG   : Process uptime: 0s\n04-24 10:47:43.749  9598  9598 F DEBUG   : Cmdline: com.google.android.bluetooth\n04-24 10:47:43.749  9598  9598 F DEBUG   : pid: 2193, tid: 2469, name: bt_main_thread  \u003e\u003e\u003e com.google.android.bluetooth \u003c\u003c\u003c\n04-24 10:47:43.749  9598  9598 F DEBUG   : uid: 1002\n04-24 10:47:43.749  9598  9598 F DEBUG   : tagged_addr_ctrl: 0000000000000001 (PR_TAGGED_ADDR_ENABLE)\n04-24 10:47:43.749  9598  9598 F DEBUG   : pac_enabled_keys: 000000000000000f (PR_PAC_APIAKEY, PR_PAC_APIBKEY, PR_PAC_APDAKEY, PR_PAC_APDBKEY)\n04-24 10:47:43.749  9598  9598 F DEBUG   : signal 6 (SIGABRT), code -1 (SI_QUEUE), fault addr --------\n04-24 10:47:43.749  9598  9598 F DEBUG   : Abort message: \u0027packages/modules/Bluetooth/system/bta/dm/bta_dm_disc.cc:381 bta_dm_sdp_callback: failure asdfasdfasdf!\u0027\n04-24 10:47:43.749  9598  9598 F DEBUG   :     x0  0000000000000000  x1  00000000000009a5  x2  0000000000000006  x3  0000007779952660\n04-24 10:47:43.749  9598  9598 F DEBUG   :     x4  64737278722e6773  x5  64737278722e6773  x6  64737278722e6773  x7  7f7f7f7f7f7f7f7f\n04-24 10:47:43.749  9598  9598 F DEBUG   :     x8  00000000000000f0  x9  0000007b3d0272a0  x10 0000000000000001  x11 0000007b3d077ff0\n04-24 10:47:43.749  9598  9598 F DEBUG   :     x12 0000007779951568  x13 0000000000000067  x14 00000077799527b8  x15 00000002a108ce39\n04-24 10:47:43.749  9598  9598 F DEBUG   :     x16 0000007b3d0defd0  x17 0000007b3d0ca980  x18 0000007779118078  x19 0000000000000891\n04-24 10:47:43.749  9598  9598 F DEBUG   :     x20 00000000000009a5  x21 00000000ffffffff  x22 0000000000000000  x23 00000078943df0f8\n04-24 10:47:43.749  9598  9598 F DEBUG   :     x24 000000777c9b57cb  x25 0000007779952c20  x26 0000007779953a80  x27 00000077799527b8\n04-24 10:47:43.749  9598  9598 F DEBUG   :     x28 000000777d5128e8  x29 00000077799526e0\n04-24 10:47:43.749  9598  9598 F DEBUG   :     lr  0000007b3d061778  sp  0000007779952640  pc  0000007b3d0617a4  pst 0000000000001000\n04-24 10:47:43.749  9598  9598 F DEBUG   : 20 total frames\n04-24 10:47:43.749  9598  9598 F DEBUG   : backtrace:\n04-24 10:47:43.749  9598  9598 F DEBUG   :       #00 pc 000000000005d7a4  /apex/com.android.runtime/lib64/bionic/libc.so (abort+164) (BuildId: fd714889f012fe747a86884cea1c2381)\n04-24 10:47:43.749  9598  9598 F DEBUG   :       #01 pc 00000000007caa8c  /apex/com.android.art/lib64/libart.so (art::Runtime::Abort(char const*)+92) (BuildId: 39e6a012a097c129f718e0b52a09a918)\n04-24 10:47:43.749  9598  9598 F DEBUG   :       #02 pc 0000000000016080  /apex/com.android.art/lib64/libbase.so (android::base::SetAborter(std::__1::function\u003cvoid (char const*)\u003e\u0026\u0026)::$_0::__invoke(char const*)+80) (BuildId: 66bf14ba7cfdbf578b1eb68532f164aa)\n04-24 10:47:43.749  9598  9598 F DEBUG   :       #03 pc 0000000000b67a40  /apex/com.android.btservices/lib64/libbluetooth_jni.so (bluetooth::log_internal::vlog(bluetooth::log_internal::Level, char const*, bluetooth::log_internal::source_location, fmt::v10::basic_string_view\u003cchar\u003e, fmt::v10::basic_format_args\u003cfmt::v10::basic_format_context\u003cfmt::v10::appender, char\u003e \u003e)+1152) (BuildId: 5d9cc1491c20d160a21a097a639f3c40)\n04-24 10:47:43.749  9598  9598 F DEBUG   :       #04 pc 0000000000651c34  /apex/com.android.btservices/lib64/libbluetooth_jni.so (bluetooth::log::fatal(fmt::v10::basic_format_string\u003cchar\u003e, bluetooth::log_internal::source_location)+68) (BuildId: 5d9cc1491c20d160a21a097a639f3c40)\n04-24 10:47:43.749  9598  9598 F DEBUG   :       #05 pc 0000000000651bec  /apex/com.android.btservices/lib64/libbluetooth_jni.so (bta_dm_sdp_callback(RawAddress const\u0026, tSDP_STATUS)+188) (BuildId: 5d9cc1491c20d160a21a097a639f3c40)\n04-24 10:47:43.749  9598  9598 F DEBUG   :       #06 pc 0000000000995ae8  /apex/com.android.btservices/lib64/libbluetooth_jni.so (sdp_disconnect_cfm(unsigned short, unsigned short)+136) (BuildId: 5d9cc1491c20d160a21a097a639f3c40)\n04-24 10:47:43.749  9598  9598 F DEBUG   :       #07 pc 0000000000a275d8  /apex/com.android.btservices/lib64/libbluetooth_jni.so (l2c_csm_execute(t_l2c_ccb*, tL2CEVT, void*)+10360) (BuildId: 5d9cc1491c20d160a21a097a639f3c40)\n04-24 10:47:43.749  9598  9598 F DEBUG   :       #08 pc 0000000000a31e9c  /apex/com.android.btservices/lib64/libbluetooth_jni.so (process_l2cap_cmd(t_l2c_linkcb*, unsigned char*, unsigned short)+396) (BuildId: 5d9cc1491c20d160a21a097a639f3c40)\n04-24 10:47:43.749  9598  9598 F DEBUG   :       #09 pc 0000000000a31a70  /apex/com.android.btservices/lib64/libbluetooth_jni.so (l2c_rcv_acl_data(BT_HDR*)+624) (BuildId: 5d9cc1491c20d160a21a097a639f3c40)\n04-24 10:47:43.749  9598  9598 F DEBUG   :       #10 pc 0000000000a748e4  /apex/com.android.btservices/lib64/libbluetooth_jni.so (base::debug::TaskAnnotator::RunTask(char const*, base::PendingTask*)+196) (BuildId: 5d9cc1491c20d160a21a097a639f3c40)\n04-24 10:47:43.749  9598  9598 F DEBUG   :       #11 pc 0000000000a73e28  /apex/com.android.btservices/lib64/libbluetooth_jni.so (base::MessageLoop::RunTask(base::PendingTask*)+360) (BuildId: 5d9cc1491c20d160a21a097a639f3c40)\n04-24 10:47:43.749  9598  9598 F DEBUG   :       #12 pc 0000000000a7414c  /apex/com.android.btservices/lib64/libbluetooth_jni.so (base::MessageLoop::DoWork()+460) (BuildId: 5d9cc1491c20d160a21a097a639f3c40)\n04-24 10:47:43.749  9598  9598 F DEBUG   :       #13 pc 0000000000a766c4  /apex/com.android.btservices/lib64/libbluetooth_jni.so (base::MessagePumpDefault::Run(base::MessagePump::Delegate*)+100) (BuildId: 5d9cc1491c20d160a21a097a639f3c40)\n04-24 10:47:43.749  9598  9598 F DEBUG   :       #14 pc 0000000000a82be0  /apex/com.android.btservices/lib64/libbluetooth_jni.so (base::RunLoop::Run()+64) (BuildId: 5d9cc1491c20d160a21a097a639f3c40)\n04-24 10:47:43.749  9598  9598 F DEBUG   :       #15 pc 00000000009868a4  /apex/com.android.btservices/lib64/libbluetooth_jni.so (bluetooth::common::MessageLoopThread::Run(std::__1::promise\u003cvoid\u003e)+324) (BuildId: 5d9cc1491c20d160a21a097a639f3c40)\n04-24 10:47:43.749  9598  9598 F DEBUG   :       #16 pc 0000000000986460  /apex/com.android.btservices/lib64/libbluetooth_jni.so (bluetooth::common::MessageLoopThread::RunThread(bluetooth::common::MessageLoopThread*, std::__1::promise\u003cvoid\u003e)+48) (BuildId: 5d9cc1491c20d160a21a097a639f3c40)\n04-24 10:47:43.749  9598  9598 F DEBUG   :       #17 pc 0000000000987114  /apex/com.android.btservices/lib64/libbluetooth_jni.so (void* std::__1::__thread_proxy\u003cstd::__1::tuple\u003cstd::__1::unique_ptr\u003cstd::__1::__thread_struct, std::__1::default_delete\u003cstd::__1::__thread_struct\u003e \u003e, void (*)(bluetooth::common::MessageLoopThread*, std::__1::promise\u003cvoid\u003e), bluetooth::common::MessageLoopThread*, std::__1::promise\u003cvoid\u003e \u003e \u003e(void*)+84) (BuildId: 5d9cc1491c20d160a21a097a639f3c40)\n04-24 10:47:43.749  9598  9598 F DEBUG   :       #18 pc 000000000006eeac  /apex/com.android.runtime/lib64/bionic/libc.so (__pthread_start(void*)+204) (BuildId: fd714889f012fe747a86884cea1c2381)\n```",
+      "parentUuid": "8b65f4a1_9c6df2f9",
       "range": {
         "startLine": 382,
         "startChar": 1,
