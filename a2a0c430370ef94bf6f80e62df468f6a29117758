@@ -46,6 +46,30 @@
       },
       "revId": "a2a0c430370ef94bf6f80e62df468f6a29117758",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bd7e68b_ed7d24c5",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 628,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-24T21:42:27Z",
+      "side": 0,
+      "message": "Acknowledged",
+      "parentUuid": "527d503b_34d424e5",
+      "range": {
+        "startLine": 628,
+        "startChar": 25,
+        "endLine": 628,
+        "endChar": 35
+      },
+      "revId": "a2a0c430370ef94bf6f80e62df468f6a29117758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

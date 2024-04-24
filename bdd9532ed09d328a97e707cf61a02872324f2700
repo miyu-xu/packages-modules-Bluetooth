@@ -46,6 +46,53 @@
       },
       "revId": "bdd9532ed09d328a97e707cf61a02872324f2700",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04491257_8b168805",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-24T21:42:27Z",
+      "side": 1,
+      "message": "```suggestion\n  } else {\n    GAP_BleReadPeerPrefConnParams(bta_dm_discovery_cb.peer_bdaddr);\n  }\n\n  get_gatt_interface().BTA_GATTC_CancelOpen(0, bta_dm_discovery_cb.peer_bdaddr,\n                                            true);\n\n  bta_dm_discovery_set_state(BTA_DM_DISCOVER_IDLE);\n\n\n  bta_dm_discovery_cb.service_search_cbacks.on_gatt_results(\n      bta_dm_discovery_cb.peer_bdaddr, BD_NAME{}, disc_result.gatt_uuids,\n      /* transport_le */ true);\n```",
+      "range": {
+        "startLine": 614,
+        "startChar": 0,
+        "endLine": 625,
+        "endChar": 51
+      },
+      "revId": "bdd9532ed09d328a97e707cf61a02872324f2700",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46ea46a2_a893ee33",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-24T21:42:27Z",
+      "side": 1,
+      "message": "I would feel more confident if we called it in the same order for this change.    Moving it into the if also changes when it is called.  Before it was called either way.",
+      "parentUuid": "e559e62f_262919b6",
+      "range": {
+        "startLine": 622,
+        "startChar": 0,
+        "endLine": 625,
+        "endChar": 51
+      },
+      "revId": "bdd9532ed09d328a97e707cf61a02872324f2700",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
