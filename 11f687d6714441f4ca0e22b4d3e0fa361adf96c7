@@ -242,6 +242,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ddae7bc5_820781eb",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1006,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-24T09:57:30Z",
+      "side": 1,
+      "message": "Sorry I don\u0027t make it clear. I mean split the CL into two patches. So I can make the commit message clear about the change of the diff.\n\nPatch 1\n1. Purely a function refactor. consolidate and code reduction in functions like `HfpCallbacks::AnswerCall` and other HFP callbacks. No actual behaviour change.\n\nPatch 2\n2. Review HFP callback and change the behaviour that only changes the call state at dispatch UHID output.\n\nDoes that sound good to you?",
+      "parentUuid": "1dfe6f38_b5d8400c",
+      "range": {
+        "startLine": 1003,
+        "startChar": 16,
+        "endLine": 1006,
+        "endChar": 17
+      },
+      "revId": "11f687d6714441f4ca0e22b4d3e0fa361adf96c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "817cff49_70da952c",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 3
