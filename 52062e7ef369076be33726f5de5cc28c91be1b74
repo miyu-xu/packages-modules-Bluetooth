@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dbda281_b9a72937",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 991,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-24T17:31:57Z",
+      "side": 1,
+      "message": "this eventually lead to `bta_dm_discover_services` with `transport`\n\ndo you need to make sure if SDP is executed in the end, p_sdp_db is cleaned up?",
+      "range": {
+        "startLine": 991,
+        "startChar": 6,
+        "endLine": 991,
+        "endChar": 45
+      },
+      "revId": "52062e7ef369076be33726f5de5cc28c91be1b74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
