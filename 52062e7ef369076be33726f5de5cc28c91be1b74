@@ -22,6 +22,30 @@
       },
       "revId": "52062e7ef369076be33726f5de5cc28c91be1b74",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a75406f_d3f4d43b",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 991,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-24T18:44:55Z",
+      "side": 1,
+      "message": "p_sdp_db is cleaned up in either bta_dm_sdp_callback or bta_dm_sdp_result.",
+      "parentUuid": "2dbda281_b9a72937",
+      "range": {
+        "startLine": 991,
+        "startChar": 6,
+        "endLine": 991,
+        "endChar": 45
+      },
+      "revId": "52062e7ef369076be33726f5de5cc28c91be1b74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
