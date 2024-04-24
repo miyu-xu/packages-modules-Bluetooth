@@ -3946,6 +3946,16 @@ class LeAudioClientImpl : public LeAudioClient {
 
     if (!remote_contexts.sink.any() && !remote_contexts.source.any()) {
       log::warn("Requested context type not available on the remote side");
+
+      if (IS_FLAG_ENABLED(leaudio_no_context_validate_streaming_request) &&
+          source_monitor_mode_) {
+        callbacks_->OnUnicastMonitorModeStatus(
+            bluetooth::le_audio::types::kLeAudioDirectionSource,
+            UnicastMonitorModeStatus::STREAMING_REQUESTED_NO_CONTEXT_VALIDATE);
+
+        return false;
+      }
+
       if (leAudioHealthStatus_) {
         leAudioHealthStatus_->AddStatisticForGroup(
             group, LeAudioHealthGroupStatType::STREAM_CONTEXT_NOT_AVAILABLE);
