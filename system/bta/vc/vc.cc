@@ -673,6 +673,8 @@ class VolumeControlImpl : public VolumeControl {
       return;
     }
 
+    log::info("{}", remote_bda);
+
     if (!device->IsConnected()) {
       log::error(
           "Skipping disconnect of the already disconnected device, "
