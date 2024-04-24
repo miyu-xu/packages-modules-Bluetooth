@@ -173,6 +173,7 @@ static void GattInit() {
       .p_phy_update_cb = nullptr,
       .p_conn_update_cb = nullptr,
       .p_subrate_chg_cb = nullptr,
+      .p_addr_consolidate_cb = nullptr,
   };
 
   s_AppIf = GATT_Register(app_uuid, "Gap", &gap_cback, false);

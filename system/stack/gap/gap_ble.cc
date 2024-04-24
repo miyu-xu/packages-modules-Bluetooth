@@ -76,6 +76,7 @@ tGATT_CBACK gap_cback = {
     .p_phy_update_cb = nullptr,
     .p_conn_update_cb = nullptr,
     .p_subrate_chg_cb = nullptr,
+    .p_addr_consolidate_cb = nullptr,
 };
 
 constexpr int GAP_CHAR_DEV_NAME_SIZE = BD_NAME_LEN;

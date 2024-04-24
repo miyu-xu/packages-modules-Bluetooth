@@ -745,6 +745,11 @@ typedef void(tGATT_SUBRATE_CHG_CB)(tGATT_IF gatt_if, uint16_t conn_id,
                                    uint16_t cont_num, uint16_t timeout,
                                    tGATT_STATUS status);
 
+/* Define a callback function when an address consolidation happened */
+typedef void(tGATT_ADDR_CONSOLIDATE_CB)(uint16_t conn_id,
+                                        const RawAddress& identity_addr,
+                                        const RawAddress& rpa);
+
 /* Define the structure that applications use to register with
  * GATT. This structure includes callback functions. All functions
  * MUST be provided.
@@ -760,6 +765,7 @@ typedef struct {
   tGATT_PHY_UPDATE_CB* p_phy_update_cb{nullptr};
   tGATT_CONN_UPDATE_CB* p_conn_update_cb{nullptr};
   tGATT_SUBRATE_CHG_CB* p_subrate_chg_cb{nullptr};
+  tGATT_ADDR_CONSOLIDATE_CB* p_addr_consolidate_cb{nullptr};
 } tGATT_CBACK;
 
 /*****************  Start Handle Management Definitions   *********************/

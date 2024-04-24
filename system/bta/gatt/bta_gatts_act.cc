@@ -76,6 +76,7 @@ static tGATT_CBACK bta_gatts_cback = {
     .p_phy_update_cb = bta_gatts_phy_update_cback,
     .p_conn_update_cb = bta_gatts_conn_update_cback,
     .p_subrate_chg_cb = bta_gatts_subrate_chg_cback,
+    .p_addr_consolidate_cb = nullptr,
 };
 
 tGATT_APPL_INFO bta_gatts_nv_cback = {bta_gatts_nv_save_cback,
