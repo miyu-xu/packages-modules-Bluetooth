@@ -22,6 +22,30 @@
       },
       "revId": "3822739297d90b6082c9a930745ec6ac4d301779",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb1fd0c0_fb2642ca",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-04-24T11:58:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8d52b3e_85b889f9",
+      "range": {
+        "startLine": 676,
+        "startChar": 4,
+        "endLine": 676,
+        "endChar": 32
+      },
+      "revId": "3822739297d90b6082c9a930745ec6ac4d301779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
