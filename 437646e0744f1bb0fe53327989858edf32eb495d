@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7583b3cc_f671fa59",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BrowseTree.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-24T22:44:35Z",
+      "side": 1,
+      "message": "nit: no need for the extra line below 😊",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 39
+      },
+      "revId": "437646e0744f1bb0fe53327989858edf32eb495d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12ec35e2_698f1757",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-24T22:44:35Z",
+      "side": 1,
+      "message": "I would follow the precedent set by the other variable name, i.e.\n```\nprivate static final String REMOTE_DEVICE_ADDRESS_2 \u003d \"11:11:11:11:11:11\";\nprivate BluetoothDevice mRemoteDevice2;\n@Mock private AvrcpControllerStateMachine mStateMachine2;\n\npublic void setup() {\n    // ...\n    mRemoteDevice2 \u003d mAdapter.getRemoteDevice(REMOTE_DEVICE_ADDRESS_2);\n    mService.mDeviceStateMap.put(mRemoteDevice2, mAvrcpStateMachine2);\n}\n```",
+      "range": {
+        "startLine": 117,
+        "startChar": 8,
+        "endLine": 117,
+        "endChar": 61
+      },
+      "revId": "437646e0744f1bb0fe53327989858edf32eb495d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb4fa63b_e5cef159",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-24T22:44:35Z",
+      "side": 1,
+      "message": "As much as I don\u0027t love magic numbers, something like the following might suffice:\n```\nmService.onConnectionStateChanged(/* control\u003d */ true, /* browse\u003d */ true, mRemoteDevice);\n```\n\nIt seems a big much to define 4 local variables to hold true and false two times each.",
+      "range": {
+        "startLine": 532,
+        "startChar": 7,
+        "endLine": 532,
+        "endChar": 100
+      },
+      "revId": "437646e0744f1bb0fe53327989858edf32eb495d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed1c73d6_e98dc6b5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-24T22:44:35Z",
+      "side": 1,
+      "message": "It looks like you\u0027re testing that the root name UUID matches the pre-flag \"__ROOT__\" + MAC address format here and not active device.\n\nPerhaps the success criteria could be included in a name like\n```\ntestGetDeviceRootNode_flagRandomDeviceIdDisabled_rootNodeMatchesUuidFormat\n```",
+      "range": {
+        "startLine": 474,
+        "startChar": 60,
+        "endLine": 474,
+        "endChar": 83
+      },
+      "revId": "437646e0744f1bb0fe53327989858edf32eb495d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d9839d5_76f3621d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-24T22:44:35Z",
+      "side": 1,
+      "message": "for the \"without the feature/flag\" test, you don\u0027t need to assert the substring",
+      "range": {
+        "startLine": 479,
+        "startChar": 36,
+        "endLine": 479,
+        "endChar": 72
+      },
+      "revId": "437646e0744f1bb0fe53327989858edf32eb495d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57bb9e4c_1534b5c1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-24T22:44:35Z",
+      "side": 1,
+      "message": "I\u0027d expect a second test for when the feature flag _is_ enabled following the new test above. It should basically be a copy/pate with a flag enable at the beginning and a slightly different assert statement.\n\nThat way you have a test that asserts the old format and test that asserts the new one",
+      "range": {
+        "startLine": 481,
+        "startChar": 0,
+        "endLine": 482,
+        "endChar": 5
+      },
+      "revId": "437646e0744f1bb0fe53327989858edf32eb495d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb8e054d_82fec8f7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/BrowseTreeTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-24T22:44:35Z",
+      "side": 1,
+      "message": "I _think_ you should be able to leave this pre-feature flag logic as it was",
+      "range": {
+        "startLine": 118,
+        "startChar": 32,
+        "endLine": 118,
+        "endChar": 61
+      },
+      "revId": "437646e0744f1bb0fe53327989858edf32eb495d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e837188_e9938f19",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/BrowseTreeTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-24T22:44:35Z",
+      "side": 1,
+      "message": "Not sure what happened here! This can be removed",
+      "range": {
+        "startLine": 119,
+        "startChar": 8,
+        "endLine": 119,
+        "endChar": 9
+      },
+      "revId": "437646e0744f1bb0fe53327989858edf32eb495d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
