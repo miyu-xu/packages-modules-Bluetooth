@@ -133,6 +133,7 @@ public class CompanionManagerTest {
         checkReasonableConnParameterHelper(BluetoothGatt.CONNECTION_PRIORITY_BALANCED);
         checkReasonableConnParameterHelper(BluetoothGatt.CONNECTION_PRIORITY_LOW_POWER);
         checkReasonableConnParameterHelper(BluetoothGatt.CONNECTION_PRIORITY_DCK);
+        checkReasonableConnParameterHelper(BluetoothGatt.CONNECTION_PRIORITY_HEART_RATE_STREAMING);
     }
 
     private void loadCompanionInfoHelper(String address, int companionType) {
