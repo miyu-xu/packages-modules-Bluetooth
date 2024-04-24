@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d8c9d173_38bfed55",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3141,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-24T15:39:01Z",
+      "side": 1,
+      "message": "It may be due to this code is breaking the auto-format capabilities\n\nthe entire method need to be refactored for readibility\n\n```\n void messageFromNative(LeAudioStackEvent stackEvent) {\n\n        if (EVENT_TYPE_CONNECTION_STATE_CHANGED) {\n  // ~60 lines of code to find the matching else, not acceptable, move to a method\n        } else if (EVENT_TYPE_GROUP_NODE_STATUS_CHANGED) {\n  // ~10 lines, it is a bit too much, move to another method\n        } else if (EVENT_TYPE_AUDIO_LOCAL_CODEC_CONFIG_CAPA_CHANGED) {\n        // 2 lines only, acceptable to stay if needed\n        } else if (EVENT_TYPE_AUDIO_GROUP_SELECTABLE_CODEC_CONFIG_CHANGED) {\n  // ~15 lines -\u003e move to a method\n        } else if (EVENT_TYPE_AUDIO_GROUP_CURRENT_CODEC_CONFIG_CHANGED) {\n  // ~20 lines\n        } else if (EVENT_TYPE_AUDIO_CONF_CHANGED) {\n  // ~30 lines\n        } else if (EVENT_TYPE_SINK_AUDIO_LOCATION_AVAILABLE) {\n  // ~15 lines\n        } else if (EVENT_TYPE_GROUP_STATUS_CHANGED) {\n            switch (groupStatus) {\n                case LeAudioStackEvent.GROUP_STATUS_INACTIVE: {\n                    if (Flags.leaudioGettingActiveStateSupport()) {\n                        if (gettingActiveGroupId !\u003d LE_AUDIO_GROUP_ID_INVALID) {\n                            if (leaudioAllowedContextMask()) {\n                                if (descriptor.areAllowedContextsModified()) {\n                                 // code that has already 34 of indentation ......\n```",
+      "parentUuid": "b03f48a1_0242cc7e",
+      "range": {
+        "startLine": 3141,
+        "startChar": 0,
+        "endLine": 3141,
+        "endChar": 112
+      },
+      "revId": "6603605255cea7ef382216b428eb616f918edb25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "be9cc644_a03134cb",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 3
