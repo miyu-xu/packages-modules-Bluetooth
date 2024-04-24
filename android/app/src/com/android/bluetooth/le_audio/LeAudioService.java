@@ -22,6 +22,7 @@ import static android.bluetooth.IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;
 
 import static com.android.bluetooth.flags.Flags.leaudioBroadcastFeatureSupport;
 import static com.android.bluetooth.flags.Flags.leaudioApiSynchronizedBlockFix;
+import static com.android.bluetooth.flags.Flags.leaudioBroadcastStopOnStreamingRequest;
 import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
 import static com.android.modules.utils.build.SdkLevel.isAtLeastU;
 
@@ -2471,7 +2472,11 @@ public class LeAudioService extends ProfileService {
             }
 
             mBroadcastIdDeactivatedForUnicastTransition = Optional.of(broadcastId.get());
-            pauseBroadcast(broadcastId.get());
+            if (leaudioBroadcastStopOnStreamingRequest()) {
+                stopBroadcast(broadcastId.get());
+            } else {
+                pauseBroadcast(broadcastId.get());
+            }
         } else if (status == LeAudioStackEvent.STATUS_LOCAL_STREAM_SUSPENDED) {
             if (!areAllGroupsInNotActiveState()) {
                 removeActiveDevice(true);
@@ -3185,7 +3190,9 @@ public class LeAudioService extends ProfileService {
                                             BluetoothStatusCodes.REASON_LOCAL_APP_REQUEST));
 
                     transitionFromBroadcastToUnicast();
-                    destroyBroadcast(broadcastId);
+                    if (!mBroadcastIdDeactivatedForUnicastTransition.isPresent()) {
+                        destroyBroadcast(broadcastId);
+                    }
                     break;
                 case LeAudioStackEvent.BROADCAST_STATE_CONFIGURING:
                     Log.d(TAG, "Broadcast broadcastId: " + broadcastId + " configuring.");
