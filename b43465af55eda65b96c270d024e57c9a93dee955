@@ -38,6 +38,40 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "f04ca265_a6f8ae0b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2024-04-24T13:37:09Z",
+      "side": 1,
+      "message": "nnel_count",
+      "revId": "b43465af55eda65b96c270d024e57c9a93dee955",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c887dc6_32521f57",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 1066,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2024-04-24T13:37:09Z",
+      "side": 1,
+      "message": "Do we want to give a default value here (like `cis_conn_hdl` does), or a default value in the constructor above, like most other fields do?  That will help us assure that the field isn\u0027t used uninitialized.",
+      "revId": "b43465af55eda65b96c270d024e57c9a93dee955",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "2804b36b_e3a55250",
         "filename": "system/bta/le_audio/le_audio_types.h",
         "patchSetId": 13
