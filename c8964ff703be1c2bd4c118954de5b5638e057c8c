@@ -22,6 +22,30 @@
       },
       "revId": "c8964ff703be1c2bd4c118954de5b5638e057c8c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28b8ad37_b02e1fd3",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1606,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-24T23:08:52Z",
+      "side": 1,
+      "message": "This should have been in a different CL as this was intended to only update using interfaces.\n\nI think the intent of this was that *if* there was a direct LE connection outstanding then we should cancel it.\n\nSince the client_if is `0` I\u0027m not sure this actually does anything as it won\u0027t match the actual client interface.  I\u0027m not sure if `0` is reserved or not.",
+      "parentUuid": "5f10a7c2_8abb90bd",
+      "range": {
+        "startLine": 1605,
+        "startChar": 0,
+        "endLine": 1606,
+        "endChar": 50
+      },
+      "revId": "c8964ff703be1c2bd4c118954de5b5638e057c8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
