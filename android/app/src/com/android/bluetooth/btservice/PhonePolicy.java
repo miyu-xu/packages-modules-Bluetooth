@@ -329,9 +329,13 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
 
         // Set profile priorities only for the profiles discovered on the remote device.
         // This avoids needless auto-connect attempts to profiles non-existent on the remote device
+        boolean headtracker =
+                Flags.androidHeadtrackerService()
+                        && Utils.arrayContains(uuids, HidHostService.ANDROID_HEADTRACKER);
         if ((hidService != null)
                 && (Utils.arrayContains(uuids, BluetoothUuid.HID)
-                        || Utils.arrayContains(uuids, BluetoothUuid.HOGP))
+                        || Utils.arrayContains(uuids, BluetoothUuid.HOGP)
+                        || headtracker)
                 && (hidService.getConnectionPolicy(device)
                         == BluetoothProfile.CONNECTION_POLICY_UNKNOWN)) {
             if (mAutoConnectProfilesSupported) {
