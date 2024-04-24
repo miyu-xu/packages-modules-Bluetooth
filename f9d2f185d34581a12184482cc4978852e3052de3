@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fff81e56_240d2796",
+        "filename": "android/app/jni/com_android_bluetooth_le_audio.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-24T14:34:30Z",
+      "side": 1,
+      "message": "ok, lets make it debug!",
+      "parentUuid": "6bcbecb0_b6a408ba",
+      "revId": "f9d2f185d34581a12184482cc4978852e3052de3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e8b1569a_5ad69ea7",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-04-23T17:53:11Z",
       "side": 1,
       "message": "To avoid duplicated code, should we consider to move those to one place, e.g. BluetoothLeAudio or LeAudioService?",
+      "revId": "f9d2f185d34581a12184482cc4978852e3052de3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7440f4f_0b69ff59",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-24T14:34:30Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e8b1569a_5ad69ea7",
       "revId": "f9d2f185d34581a12184482cc4978852e3052de3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -75,6 +111,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cce780ef_2ba94aa2",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-24T14:34:30Z",
+      "side": 1,
+      "message": "Ops... sorry for this development leftover.",
+      "parentUuid": "cd2c3b61_2e9ec71c",
+      "range": {
+        "startLine": 134,
+        "startChar": 37,
+        "endLine": 134,
+        "endChar": 70
+      },
+      "revId": "f9d2f185d34581a12184482cc4978852e3052de3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "172ba193_c4ad436f",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-24T14:34:30Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "cc025128_c4629358",
+      "revId": "f9d2f185d34581a12184482cc4978852e3052de3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd3e1726_c9f50439",
@@ -88,6 +166,30 @@
       "writtenOn": "2024-04-23T18:26:29Z",
       "side": 1,
       "message": "It is not possible for this to be null, the null check can be remove\n```suggestion\n        mModifiedAllowedContextMaskGroups.clear();\n```",
+      "range": {
+        "startLine": 497,
+        "startChar": 6,
+        "endLine": 499,
+        "endChar": 9
+      },
+      "revId": "f9d2f185d34581a12184482cc4978852e3052de3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8363fe8f_a30fe43b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-24T14:34:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd3e1726_c9f50439",
       "range": {
         "startLine": 497,
         "startChar": 6,
@@ -115,6 +217,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "23fd8f02_90d1af01",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-24T14:34:30Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "89065299_862f18e2",
+      "revId": "f9d2f185d34581a12184482cc4978852e3052de3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86ff79f6_1c5374e8",
@@ -128,6 +248,24 @@
       "writtenOn": "2024-04-23T17:53:11Z",
       "side": 1,
       "message": "I think we can simplify this by using existing functions.\n\n```suggestion\n    private boolean isAnyDeviceFromActiveUnicastGroupReceivingBroadcast() {\n        return getActiveBroadcastSinks().stream()\n                    .anyMatch(d -\u003e isDevicePartOfActiveUnicastGroup(d));\n    }\n```",
+      "revId": "f9d2f185d34581a12184482cc4978852e3052de3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d44fe7df_6a19aa18",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-24T14:34:30Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "86ff79f6_1c5374e8",
       "revId": "f9d2f185d34581a12184482cc4978852e3052de3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -183,6 +321,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5afc4504_49cdac2e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1494,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-24T14:34:30Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "16df141c_054a8fac",
+      "revId": "f9d2f185d34581a12184482cc4978852e3052de3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64154c5b_57bb10c8",
@@ -196,6 +352,24 @@
       "writtenOn": "2024-04-23T17:53:11Z",
       "side": 1,
       "message": "gettingActiveGroupDescriptor is not being used here, should we remove this?\nAlso valid gettingActiveGroupDescriptor means group descriptor exists.",
+      "revId": "f9d2f185d34581a12184482cc4978852e3052de3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71f95b26_7abb0076",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3149,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-24T14:34:30Z",
+      "side": 1,
+      "message": "yeah... this is a leftover from some previous idea... forgot to clean up thi.",
+      "parentUuid": "64154c5b_57bb10c8",
       "revId": "f9d2f185d34581a12184482cc4978852e3052de3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -223,6 +397,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b8abd35_5bcf4aa7",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3869,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-24T14:34:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2fcdadb_7d36f494",
+      "range": {
+        "startLine": 3869,
+        "startChar": 0,
+        "endLine": 3869,
+        "endChar": 73
+      },
+      "revId": "f9d2f185d34581a12184482cc4978852e3052de3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a44d2d5_b4f88a10",
@@ -236,6 +434,24 @@
       "writtenOn": "2024-04-23T17:53:11Z",
       "side": 1,
       "message": "It seems like it\u0027s almost the same as private setActiveGroupAllowedContextMask(), then why do we need to duplicate this?",
+      "revId": "f9d2f185d34581a12184482cc4978852e3052de3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ab51622_c7731499",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3873,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-24T14:34:30Z",
+      "side": 1,
+      "message": "what about new version ? Idea here is to expose a method that would do it for active group only.",
+      "parentUuid": "2a44d2d5_b4f88a10",
       "revId": "f9d2f185d34581a12184482cc4978852e3052de3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
