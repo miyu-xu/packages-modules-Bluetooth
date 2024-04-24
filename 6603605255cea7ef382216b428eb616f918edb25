@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc7a4292_a4df4a47",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-04-24T15:20:38Z",
+      "side": 1,
+      "message": "On the first look this is what we need. Will  make full review, but please add unit tests in Java an Native. Thanks.",
+      "revId": "6603605255cea7ef382216b428eb616f918edb25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b03f48a1_0242cc7e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3141,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-04-24T15:20:38Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.",
+      "range": {
+        "startLine": 3141,
+        "startChar": 0,
+        "endLine": 3141,
+        "endChar": 112
+      },
+      "revId": "6603605255cea7ef382216b428eb616f918edb25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be9cc644_a03134cb",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3150,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-04-24T15:20:38Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.",
+      "range": {
+        "startLine": 3150,
+        "startChar": 0,
+        "endLine": 3150,
+        "endChar": 108
+      },
+      "revId": "6603605255cea7ef382216b428eb616f918edb25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb2a37ef_e21f9bdd",
+        "filename": "system/bta/le_audio/device_groups.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-04-24T15:20:38Z",
+      "side": 1,
+      "message": "maybe group_user_allowed_context_mask_ ?",
+      "revId": "6603605255cea7ef382216b428eb616f918edb25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
