@@ -56,7 +56,7 @@ import java.util.UUID;
 public final class BluetoothGatt implements BluetoothProfile {
     private static final String TAG = "BluetoothGatt";
     private static final boolean DBG = true;
-    private static final boolean VDBG = false;
+    private static final boolean VDBG = true;
 
     @UnsupportedAppUsage private IBluetoothGatt mService;
     @UnsupportedAppUsage private volatile BluetoothGattCallback mCallback;
@@ -305,7 +305,12 @@ public final class BluetoothGatt implements BluetoothProfile {
                                         + (" rxPhy=" + rxPhy));
                     }
                     if (!address.equals(mDevice.getAddress())) {
-                        return;
+                        Log.w(
+                                "XXX",
+                                "Address is not equal, but keep sending! deviceAddr="
+                                        + mDevice.getAddress()
+                                        + " , addressFromEvent="
+                                        + address);
                     }
 
                     runOrQueueCallback(
@@ -338,7 +343,12 @@ public final class BluetoothGatt implements BluetoothProfile {
                                         + (" rxPhy=" + rxPhy));
                     }
                     if (!address.equals(mDevice.getAddress())) {
-                        return;
+                        Log.w(
+                                "XXX",
+                                "Address is not equal, but keep sending! deviceAddr="
+                                        + mDevice.getAddress()
+                                        + " , addressFromEvent="
+                                        + address);
                     }
 
                     runOrQueueCallback(
@@ -371,7 +381,12 @@ public final class BluetoothGatt implements BluetoothProfile {
                                         + (" device=" + address));
                     }
                     if (!address.equals(mDevice.getAddress())) {
-                        return;
+                        Log.w(
+                                "XXX",
+                                "Address is not equal, but keep sending! deviceAddr="
+                                        + mDevice.getAddress()
+                                        + " , addressFromEvent="
+                                        + address);
                     }
                     int profileState =
                             connected
@@ -417,7 +432,12 @@ public final class BluetoothGatt implements BluetoothProfile {
                         Log.d(TAG, "onSearchComplete() = Device=" + address + " Status=" + status);
                     }
                     if (!address.equals(mDevice.getAddress())) {
-                        return;
+                        Log.w(
+                                "XXX",
+                                "Address is not equal, but keep sending! deviceAddr="
+                                        + mDevice.getAddress()
+                                        + " , addressFromEvent="
+                                        + address);
                     }
 
                     for (BluetoothGattService s : services) {
@@ -478,7 +498,12 @@ public final class BluetoothGatt implements BluetoothProfile {
                     }
 
                     if (!address.equals(mDevice.getAddress())) {
-                        return;
+                        Log.w(
+                                "XXX",
+                                "Address is not equal, but keep sending! deviceAddr="
+                                        + mDevice.getAddress()
+                                        + " , addressFromEvent="
+                                        + address);
                     }
 
                     synchronized (mDeviceBusyLock) {
@@ -545,7 +570,12 @@ public final class BluetoothGatt implements BluetoothProfile {
                     }
 
                     if (!address.equals(mDevice.getAddress())) {
-                        return;
+                        Log.w(
+                                "XXX",
+                                "Address is not equal, but keep sending! deviceAddr="
+                                        + mDevice.getAddress()
+                                        + " , addressFromEvent="
+                                        + address);
                     }
 
                     synchronized (mDeviceBusyLock) {
@@ -616,7 +646,12 @@ public final class BluetoothGatt implements BluetoothProfile {
                     if (VDBG) Log.d(TAG, "onNotify() - Device=" + address + " handle=" + handle);
 
                     if (!address.equals(mDevice.getAddress())) {
-                        return;
+                        Log.w(
+                                "XXX",
+                                "Address is not equal, but keep sending! deviceAddr="
+                                        + mDevice.getAddress()
+                                        + " , addressFromEvent="
+                                        + address);
                     }
 
                     BluetoothGattCharacteristic characteristic =
@@ -650,7 +685,12 @@ public final class BluetoothGatt implements BluetoothProfile {
                     }
 
                     if (!address.equals(mDevice.getAddress())) {
-                        return;
+                        Log.w(
+                                "XXX",
+                                "Address is not equal, but keep sending! deviceAddr="
+                                        + mDevice.getAddress()
+                                        + " , addressFromEvent="
+                                        + address);
                     }
 
                     synchronized (mDeviceBusyLock) {
@@ -707,7 +747,12 @@ public final class BluetoothGatt implements BluetoothProfile {
                     }
 
                     if (!address.equals(mDevice.getAddress())) {
-                        return;
+                        Log.w(
+                                "XXX",
+                                "Address is not equal, but keep sending! deviceAddr="
+                                        + mDevice.getAddress()
+                                        + " , addressFromEvent="
+                                        + address);
                     }
 
                     synchronized (mDeviceBusyLock) {
@@ -760,7 +805,12 @@ public final class BluetoothGatt implements BluetoothProfile {
                         Log.d(TAG, "onExecuteWrite() - Device=" + address + " status=" + status);
                     }
                     if (!address.equals(mDevice.getAddress())) {
-                        return;
+                        Log.w(
+                                "XXX",
+                                "Address is not equal, but keep sending! deviceAddr="
+                                        + mDevice.getAddress()
+                                        + " , addressFromEvent="
+                                        + address);
                     }
 
                     synchronized (mDeviceBusyLock) {
@@ -796,7 +846,12 @@ public final class BluetoothGatt implements BluetoothProfile {
                                         + (" status=" + status));
                     }
                     if (!address.equals(mDevice.getAddress())) {
-                        return;
+                        Log.w(
+                                "XXX",
+                                "Address is not equal, but keep sending! deviceAddr="
+                                        + mDevice.getAddress()
+                                        + " , addressFromEvent="
+                                        + address);
                     }
                     runOrQueueCallback(
                             new Runnable() {
@@ -826,7 +881,12 @@ public final class BluetoothGatt implements BluetoothProfile {
                                         + (" status=" + status));
                     }
                     if (!address.equals(mDevice.getAddress())) {
-                        return;
+                        Log.w(
+                                "XXX",
+                                "Address is not equal, but keep sending! deviceAddr="
+                                        + mDevice.getAddress()
+                                        + " , addressFromEvent="
+                                        + address);
                     }
 
                     runOrQueueCallback(
@@ -860,7 +920,12 @@ public final class BluetoothGatt implements BluetoothProfile {
                                         + (" status=" + status));
                     }
                     if (!address.equals(mDevice.getAddress())) {
-                        return;
+                        Log.w(
+                                "XXX",
+                                "Address is not equal, but keep sending! deviceAddr="
+                                        + mDevice.getAddress()
+                                        + " , addressFromEvent="
+                                        + address);
                     }
 
                     runOrQueueCallback(
@@ -892,7 +957,12 @@ public final class BluetoothGatt implements BluetoothProfile {
                     }
 
                     if (!address.equals(mDevice.getAddress())) {
-                        return;
+                        Log.w(
+                                "XXX",
+                                "Address is not equal, but keep sending! deviceAddr="
+                                        + mDevice.getAddress()
+                                        + " , addressFromEvent="
+                                        + address);
                     }
 
                     runOrQueueCallback(
@@ -931,7 +1001,12 @@ public final class BluetoothGatt implements BluetoothProfile {
                                     + (" status=" + status));
 
                     if (!address.equals(mDevice.getAddress())) {
-                        return;
+                        Log.w(
+                                "XXX",
+                                "Address is not equal, but keep sending! deviceAddr="
+                                        + mDevice.getAddress()
+                                        + " , addressFromEvent="
+                                        + address);
                     }
 
                     runOrQueueCallback(

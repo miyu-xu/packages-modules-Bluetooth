@@ -52,6 +52,7 @@ static tGATT_CBACK srvc_gatt_cback = {
     .p_phy_update_cb = nullptr,
     .p_conn_update_cb = nullptr,
     .p_subrate_chg_cb = nullptr,
+    .p_addr_consolidate_cb = nullptr,
 };
 
 /* type for action functions */

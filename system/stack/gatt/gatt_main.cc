@@ -977,12 +977,31 @@ static void gatt_send_conn_cback(tGATT_TCB* p_tcb) {
   }
 }
 
+static void gatt_send_consolidate_cback(tGATT_TCB* p_tcb,
+                                        const RawAddress& identity_addr,
+                                        const RawAddress& rpa) {
+  uint8_t i;
+  tGATT_REG* p_reg;
+
+  /* notifying all applications for the consolidation */
+  for (i = 0, p_reg = gatt_cb.cl_rcb; i < GATT_MAX_APPS; i++, p_reg++) {
+    if (!p_reg->in_use) continue;
+
+    if (p_reg->app_cb.p_addr_consolidate_cb) {
+      uint16_t conn_id = GATT_CREATE_CONN_ID(p_tcb->tcb_idx, p_reg->gatt_if);
+      (*p_reg->app_cb.p_addr_consolidate_cb)(conn_id, identity_addr, rpa);
+    }
+  }
+}
+
 void gatt_consolidate(const RawAddress& identity_addr, const RawAddress& rpa) {
   tGATT_TCB* p_tcb = gatt_find_tcb_by_addr(rpa, BT_TRANSPORT_LE);
   if (p_tcb == NULL) return;
 
   log::info("consolidate {} -> {}", rpa, identity_addr);
   p_tcb->peer_bda = identity_addr;
+
+  gatt_send_consolidate_cback(p_tcb, identity_addr, rpa);
 
   // Address changed, notify GATT clients/servers device is available under new
   // address
