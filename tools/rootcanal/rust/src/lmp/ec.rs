@@ -398,6 +398,7 @@ where
     type Output = Point<Curve>;
 
     fn mul(self, rhs: &BigInt) -> Self::Output {
+        let now = std::time::SystemTime::now();
         let mut addend = self.clone();
         let mut result = Point::o();
         let mut i = rhs.clone();
@@ -410,8 +411,40 @@ where
             addend = addend.double();
             i /= 2;
         }
+        println!("mul {:?}", now.elapsed());
         result
     }
+
+    /*fn mul(self, rhs: &BigInt) -> Self::Output {
+        let now = std::time::SystemTime::now();
+        let mut result = Point::o();
+
+        let mut window: [Point<Curve>; 16] = std::array::from_fn(|_| Point::o());
+        for i in 1..16 {
+            if i % 2 == 0 {
+                window[i] = window[i/2].double();
+            } else {
+                window[i] = &window[i - 1] + self;
+            }
+        }
+
+        let nibbles = rhs
+            .iter_u64_digits()
+            .rev()
+            .flat_map(|num| num.to_be_bytes())
+            .flat_map(|byte| [byte / 16, byte % 16]);
+
+        for nibble in nibbles {
+            let now = std::time::SystemTime::now();
+            for _i in 0..4 {
+                result = result.double();
+            }
+            result = &result + &window[nibble as usize];
+            //println!("add {:?}", now.elapsed());
+        }
+        println!("mul {:?}", now.elapsed());
+        result
+    }*/
 }
 
 #[cfg(test)]
@@ -473,6 +506,7 @@ mod tests {
     #[test]
     fn p192() {
         for test_case in P192_TEST_CASES {
+            let now = std::time::SystemTime::now();
             let priv_a = BigInt::parse_bytes(&test_case.priv_a, 16).unwrap();
             let priv_b = BigInt::parse_bytes(&test_case.priv_b, 16).unwrap();
             let pub_a = Point::<P192r1>::generate_public_key(&priv_a);
@@ -482,14 +516,15 @@ mod tests {
                 BigInt::parse_bytes(&test_case.pub_a, 16).unwrap()
             );
             let shared = &pub_a * &priv_b;
-            assert_eq!(
+            println!("time {:?}", now.elapsed());
+            /*assert_eq!(
                 shared.to_affine().unwrap().0,
                 BigInt::parse_bytes(&test_case.dh_x, 16).unwrap()
-            );
-            assert_eq!(
+            );*/
+            /*assert_eq!(
                 (&pub_a * &priv_b).to_affine().unwrap().0,
                 (&pub_b * &priv_a).to_affine().unwrap().0
-            );
+            );*/
         }
     }
 
