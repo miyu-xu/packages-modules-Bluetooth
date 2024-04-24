@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98397662_cb8fa2ec",
+        "filename": "system/bta/include/bta_hh_api.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-24T16:41:16Z",
+      "side": 1,
+      "message": "I was thinking later that you could do something like this:\n```suggestion\nstatic constexpr bluetooth::Uuid kAndroidHeadtrackerServiceUuid \u003d\n    bluetooth::Uuid::From128Bit(\n        {0x10, 0x9b, 0x86, 0x2f, 0x50, 0xe3, 0x45, 0xcc, 0x8e, 0xa1, 0xac,\n         0x62, 0xde, 0x48, 0x46, 0xd1});\nstatic_assert(ANDROID_HEADTRACKER_SERVICE_UUID_STRING \u003d\u003d kAndroidHeadtrackerServiceUuid.ToString());\n\n```",
+      "revId": "eb7f97537f7e0ef26c3560c2c1d3165167e6e1b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
