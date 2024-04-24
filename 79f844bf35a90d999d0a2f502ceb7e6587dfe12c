@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38277f54_7e7615bc",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-24T17:17:53Z",
+      "side": 1,
+      "message": "this is forward declaration and is discouraged\n\nshouldn\u0027t you have something like bta_dm_disc_sdp.h ?",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 53
+      },
+      "revId": "79f844bf35a90d999d0a2f502ceb7e6587dfe12c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d1de114_dbbfceb7",
+        "filename": "system/bta/dm/bta_dm_disc_sdp.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-24T17:17:53Z",
+      "side": 1,
+      "message": "this is also concerning. \n\nIf there is a joint state with another .cc file, it is better to access values through API or separate the control blocks",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 56
+      },
+      "revId": "79f844bf35a90d999d0a2f502ceb7e6587dfe12c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19c0b3df_c97f74b2",
+        "filename": "system/bta/dm/bta_dm_disc_sdp.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-24T17:17:53Z",
+      "side": 1,
+      "message": "this method should be more sdp specific if it is in the sdp.cc file",
+      "range": {
+        "startLine": 383,
+        "startChar": 5,
+        "endLine": 383,
+        "endChar": 25
+      },
+      "revId": "79f844bf35a90d999d0a2f502ceb7e6587dfe12c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
