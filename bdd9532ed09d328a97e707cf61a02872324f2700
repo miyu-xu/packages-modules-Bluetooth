@@ -95,6 +95,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af38900a_4f2cebc0",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-24T22:45:26Z",
+      "side": 1,
+      "message": "As discussed offline, this order doesn\u0027t matter .",
+      "parentUuid": "46ea46a2_a893ee33",
+      "range": {
+        "startLine": 622,
+        "startChar": 0,
+        "endLine": 625,
+        "endChar": 51
+      },
+      "revId": "bdd9532ed09d328a97e707cf61a02872324f2700",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45001fdc_7d1d3be9",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-24T22:45:26Z",
+      "side": 1,
+      "message": "As discussed offline, on_gatt_results  should be called just for LE, so this is not good.",
+      "parentUuid": "04491257_8b168805",
+      "range": {
+        "startLine": 614,
+        "startChar": 0,
+        "endLine": 625,
+        "endChar": 51
+      },
+      "revId": "bdd9532ed09d328a97e707cf61a02872324f2700",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99627f0c_1fd54df9",
