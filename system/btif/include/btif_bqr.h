@@ -20,7 +20,7 @@
 #include <bluetooth/log.h>
 
 #include "btm_api_types.h"
-#include "common/leaky_bonded_queue.h"
+#include "common/postable_context.h"
 #include "include/hardware/bt_bqr.h"
 #include "osi/include/osi.h"
 #include "raw_address.h"
@@ -412,9 +412,8 @@ std::string PacketTypeToString(uint8_t packet_type);
 // And the minimum time interval of quality event reporting depends on the
 // setting of property "persist.bluetooth.bqr.min_interval_ms".
 //
-// @param is_enable True/False to enable/disable Bluetooth Quality Report
-//   mechanism in the Bluetooth controller.
-void EnableBtQualityReport(bool is_enable);
+// @param to_bind gives the postable for the callback, or null if disabling.
+void EnableBtQualityReport(common::PostableContext* to_bind);
 
 // Configure Bluetooth Quality Report setting to the Bluetooth controller.
 //
