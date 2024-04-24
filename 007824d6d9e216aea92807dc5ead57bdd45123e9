@@ -94,6 +94,30 @@
       },
       "revId": "007824d6d9e216aea92807dc5ead57bdd45123e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "623a8db2_a019c434",
+        "filename": "system/gd/hal/snoop_logger_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1606,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-24T18:50:29Z",
+      "side": 1,
+      "message": "thanks for filing! I agree, the original test has some issue that modifies the original packet content",
+      "parentUuid": "d61374f8_5abedc00",
+      "range": {
+        "startLine": 1603,
+        "startChar": 0,
+        "endLine": 1606,
+        "endChar": 83
+      },
+      "revId": "007824d6d9e216aea92807dc5ead57bdd45123e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
