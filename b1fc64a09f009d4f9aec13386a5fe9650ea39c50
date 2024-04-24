@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "311cc3fa_7d8c155c",
+        "filename": "system/gd/storage/config_keys.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-24T07:10:58Z",
+      "side": 1,
+      "message": "If you change the actual string value, what about previously paired devices storing their config using `HidReport` and `HidReportVersion` as their key? \n\nWhen was `HidReport` and `HidReportVersion` introduced? Has there been any public Android release using these two keys? \n\n\nIf Android upgrades from earlier version without this CL to a newer version with this CL, would those devices stop working?",
+      "range": {
+        "startLine": 68,
+        "startChar": 38,
+        "endLine": 68,
+        "endChar": 48
+      },
+      "revId": "b1fc64a09f009d4f9aec13386a5fe9650ea39c50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
