@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b666822c_5f3fb2b4",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1548,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-24T16:45:20Z",
+      "side": 1,
+      "message": "nit: Is this a performance optimization?  I would just remove it.",
+      "range": {
+        "startLine": 1546,
+        "startChar": 0,
+        "endLine": 1548,
+        "endChar": 7
+      },
+      "revId": "6284b9d80da868760f6c6c5a91f22c45d6412cd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
