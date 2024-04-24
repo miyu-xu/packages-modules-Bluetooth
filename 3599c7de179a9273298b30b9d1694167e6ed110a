@@ -70,6 +70,30 @@
       },
       "revId": "3599c7de179a9273298b30b9d1694167e6ed110a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fcd02e3_ac8e4e43",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-04-24T08:39:24Z",
+      "side": 1,
+      "message": "Let me reword a bit.\n\nAccording to the base patchset, call state change was arranged at two places - (a) at HfpCallback and (b) at dispatch UHID output. \n\nAnd that is the typical problem: when some respect (a) and others respect (b), it becomes state out-of-sync - and which is a pretty big issue.\n\nI was trying to point out here that, \"Unable to re-answer\" is just one example of this bigger out-of-sync problem.\n\nHighly suggest you use a proper fix to address the fundamental out-of-sync problem for good.",
+      "parentUuid": "9300b948_91cfa191",
+      "range": {
+        "startLine": 20,
+        "startChar": 23,
+        "endLine": 22,
+        "endChar": 31
+      },
+      "revId": "3599c7de179a9273298b30b9d1694167e6ed110a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
