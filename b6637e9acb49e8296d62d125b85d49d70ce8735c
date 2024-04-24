@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4602396_255e88e8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-24T16:36:29Z",
+      "side": 1,
+      "message": "I\u0027d prefer consistency with the flags.  Either both as a separate boolean, or both inline.\n```suggestion\n                        || (Flags.androidHeadtrackerService()\n                            \u0026\u0026 Utils.arrayContains(\n                                    remoteDeviceUuids, HidHostService.ANDROID_HEADTRACKER));\n```",
+      "range": {
+        "startLine": 338,
+        "startChar": 27,
+        "endLine": 338,
+        "endChar": 38
+      },
+      "revId": "b6637e9acb49e8296d62d125b85d49d70ce8735c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "372b9ceb_20276b9f",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-24T16:36:29Z",
+      "side": 1,
+      "message": "Is there a way to use the same UUID in native and here?",
+      "range": {
+        "startLine": 68,
+        "startChar": 35,
+        "endLine": 68,
+        "endChar": 71
+      },
+      "revId": "b6637e9acb49e8296d62d125b85d49d70ce8735c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
