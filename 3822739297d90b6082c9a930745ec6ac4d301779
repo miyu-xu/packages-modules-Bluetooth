@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8d52b3e_85b889f9",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-24T11:55:39Z",
+      "side": 1,
+      "message": "If this is leftover from debugging please delete.\nOtherwise move to line 685 ?",
+      "range": {
+        "startLine": 676,
+        "startChar": 4,
+        "endLine": 676,
+        "endChar": 32
+      },
+      "revId": "3822739297d90b6082c9a930745ec6ac4d301779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
