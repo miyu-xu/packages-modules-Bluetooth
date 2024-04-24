@@ -34,6 +34,8 @@
     <integer name="gatt_low_power_max_interval">100</integer>
     <integer name="gatt_dck_priority_min_interval">24</integer>
     <integer name="gatt_dck_priority_max_interval">24</integer>
+    <integer name="gatt_heart_rate_streaming_priority_min_interval">80</integer>
+    <integer name="gatt_heart_rate_streaming_priority_max_interval">100</integer>
 
     <!-- min/max connection intervals/latencies for companion devices -->
     <!-- Primary companion -->
@@ -70,6 +72,7 @@
     <integer name="gatt_balanced_priority_latency">0</integer>
     <integer name="gatt_low_power_latency">2</integer>
     <integer name="gatt_dck_priority_latency">0</integer>
+    <integer name="gatt_heart_rate_streaming_priority_latency">9</integer>
 
     <!-- Specifies the min/max subrate factor parameters for high priority,
          balanced and low power subrate request configurations. -->
