@@ -163,6 +163,12 @@ public final class BluetoothGatt implements BluetoothProfile {
     public static final int CONNECTION_PRIORITY_DCK = 3;
 
     /**
+     * Connection parameter update - Request the priority preferred for Heart Rate Streaming.
+     */
+    @FlaggedApi(Flags.FLAG_CONNECTION_PRIORITY_HEART_RATE_STREAMING)
+    public static final int CONNECTION_PRIORITY_HEART_RATE_STREAMING = 4;
+
+    /**
      * Connection subrate request - Balanced.
      *
      * @hide
