@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e940ca8c_c42ea478",
+        "filename": "system/gd/hal/hci_hal_android.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-24T16:06:58Z",
+      "side": 0,
+      "message": "I think we still need this.  It wasn\u0027t allowed to call the methods if they weren\u0027t supported.  Have you tested it on a device that doesn\u0027t support AIDL?",
+      "range": {
+        "startLine": 165,
+        "startChar": 8,
+        "endLine": 165,
+        "endChar": 64
+      },
+      "revId": "83fa17bb776247791b49deda5416c71973280c0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
