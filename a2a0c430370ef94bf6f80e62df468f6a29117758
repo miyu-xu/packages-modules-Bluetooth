@@ -22,6 +22,30 @@
       },
       "revId": "a2a0c430370ef94bf6f80e62df468f6a29117758",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "527d503b_34d424e5",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 628,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-24T21:32:04Z",
+      "side": 0,
+      "message": "This is only usage of this flag, except for unflagged version of this file (bta_dm_disc_legacy.cc) .\n\nIf possible, I would like to keep it as is for this patch.",
+      "parentUuid": "f0036751_a6e662c7",
+      "range": {
+        "startLine": 628,
+        "startChar": 25,
+        "endLine": 628,
+        "endChar": 35
+      },
+      "revId": "a2a0c430370ef94bf6f80e62df468f6a29117758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

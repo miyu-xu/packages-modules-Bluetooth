@@ -22,6 +22,30 @@
       },
       "revId": "bdd9532ed09d328a97e707cf61a02872324f2700",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e559e62f_262919b6",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 625,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-24T21:32:04Z",
+      "side": 1,
+      "message": "From tests, it is irrevelant if it\u0027s called before or after the callback.\n\nI don\u0027t know why this is called at all.\n\nWill get rid of it in separate CL.",
+      "parentUuid": "0128ba0e_07149e97",
+      "range": {
+        "startLine": 622,
+        "startChar": 0,
+        "endLine": 625,
+        "endChar": 51
+      },
+      "revId": "bdd9532ed09d328a97e707cf61a02872324f2700",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
