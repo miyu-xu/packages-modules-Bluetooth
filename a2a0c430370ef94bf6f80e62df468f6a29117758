@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0036751_a6e662c7",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 628,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-24T21:02:37Z",
+      "side": 0,
+      "message": "Separate CL for removing the flag everywhere?",
+      "range": {
+        "startLine": 628,
+        "startChar": 25,
+        "endLine": 628,
+        "endChar": 35
+      },
+      "revId": "a2a0c430370ef94bf6f80e62df468f6a29117758",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
