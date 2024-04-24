@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eb233380_9865421d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-24T18:09:39Z",
+      "side": 1,
+      "message": "This variable doesn\u0027t exist anymore.\n\nI commented that we were creating it and clearing it without ever using it",
+      "parentUuid": "8720eb1e_bc400cf3",
+      "revId": "6603605255cea7ef382216b428eb616f918edb25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b03f48a1_0242cc7e",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 3
