@@ -16,6 +16,91 @@
       "message": "Currently working on unit tests but the rest is ready to go.",
       "revId": "7ff106e064a68c13f66ef11c1b48ab329f80581e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe24d46c_3d9bf278",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1521,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-24T21:53:05Z",
+      "side": 1,
+      "message": "Why do we want to remove all syncs when stopping scan?\nThis API will be called when user exits the searching dialog, but in this case, we\u0027d like to keep the sync links.",
+      "revId": "7ff106e064a68c13f66ef11c1b48ab329f80581e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db716789_9f2c1a2b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1548,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-24T21:53:05Z",
+      "side": 1,
+      "message": "It\u0027s a bit hard to review those by comparing the logics with original ones in StateMachine, when you have time, could you help to put the new design flow into some one page design doc? \n\nThat would be helpful for us to understand the change better.",
+      "revId": "7ff106e064a68c13f66ef11c1b48ab329f80581e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e60bd6c_94709d79",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-24T21:53:05Z",
+      "side": 1,
+      "message": "One general question, what\u0027s the plan with those exceptions? remove after flag validated in trunk?",
+      "revId": "7ff106e064a68c13f66ef11c1b48ab329f80581e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c152f8a_9063252a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1780,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-24T21:53:05Z",
+      "side": 1,
+      "message": "Are we adding this flag to avoid calling cancelActiveSync in this file?\nIf yes, we can consider to return if flag enabled in cancelActiveSync?\nSo that we don\u0027t need to add this check for all places, also noticed some places are missing like in REACHED_MAX_SOURCE_LIMIT.",
+      "revId": "7ff106e064a68c13f66ef11c1b48ab329f80581e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e95fc55e_7e1c161a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2084,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-24T21:53:05Z",
+      "side": 1,
+      "message": "my understanding is this should not matter since mAutoTriggered is true for our use cases. why do we need || flag here?",
+      "revId": "7ff106e064a68c13f66ef11c1b48ab329f80581e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
