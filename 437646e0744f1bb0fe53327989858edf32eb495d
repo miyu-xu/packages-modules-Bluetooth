@@ -236,6 +236,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c0b9791_e69dc4e9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-04-25T17:43:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3c32e03_712341ca",
+      "range": {
+        "startLine": 479,
+        "startChar": 36,
+        "endLine": 479,
+        "endChar": 72
+      },
+      "revId": "437646e0744f1bb0fe53327989858edf32eb495d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "57bb9e4c_1534b5c1",
@@ -273,6 +297,30 @@
       "side": 1,
       "message": "This was a completely new test to consolidate required changes in eight other tests. I can flag this test but I don\u0027t think I need another test?",
       "parentUuid": "57bb9e4c_1534b5c1",
+      "range": {
+        "startLine": 481,
+        "startChar": 0,
+        "endLine": 482,
+        "endChar": 5
+      },
+      "revId": "437646e0744f1bb0fe53327989858edf32eb495d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c1722c5_c427f1a4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-04-25T17:43:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8b60385_88f8f418",
       "range": {
         "startLine": 481,
         "startChar": 0,
