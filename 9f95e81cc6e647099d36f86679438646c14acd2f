@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "20c8365e_8a09c5b2",
+        "filename": "system/bta/le_audio/devices_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1530,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-04-25T08:41:29Z",
+      "side": 1,
+      "message": "it is injected in line 997.",
+      "parentUuid": "490840a4_cff5d9a8",
+      "range": {
+        "startLine": 1530,
+        "startChar": 2,
+        "endLine": 1530,
+        "endChar": 24
+      },
+      "revId": "9f95e81cc6e647099d36f86679438646c14acd2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dd2079f7_69a8a9c2",
         "filename": "system/bta/le_audio/devices_test.cc",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-25T08:22:40Z",
       "side": 1,
       "message": "I think this is audio location like left/right? not sure why we put sink? should it be left or right as one earbud audio location?",
+      "range": {
+        "startLine": 1531,
+        "startChar": 46,
+        "endLine": 1531,
+        "endChar": 67
+      },
+      "revId": "9f95e81cc6e647099d36f86679438646c14acd2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73b544ee_2f420744",
+        "filename": "system/bta/le_audio/devices_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1531,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-04-25T08:41:29Z",
+      "side": 1,
+      "message": "ah this is typo, thank you. It works because it has same value.",
+      "parentUuid": "dd2079f7_69a8a9c2",
       "range": {
         "startLine": 1531,
         "startChar": 46,
