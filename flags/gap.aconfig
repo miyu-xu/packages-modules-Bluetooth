@@ -206,3 +206,11 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "connection_priority_heart_rate_streaming"
+    is_exported: true
+    namespace: "bluetooth"
+    description: "Add heart rate streaming connection priority"
+    bug: "337299718"
+}
