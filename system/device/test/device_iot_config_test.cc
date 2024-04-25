@@ -18,13 +18,14 @@
 
 #include "device/include/device_iot_config.h"
 
+#include <android_bluetooth_flags.h>
+#include <flag_macros.h>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 #include <sys/mman.h>
 
 #include "btcore/include/module.h"
 #include "btif/include/btif_common.h"
-#include "common/init_flags.h"
 #include "device/src/device_iot_config_int.h"
 #include "test/common/mock_functions.h"
 #include "test/mock/mock_osi_alarm.h"
@@ -33,6 +34,9 @@
 #include "test/mock/mock_osi_future.h"
 #include "test/mock/mock_osi_properties.h"
 
+#define TEST_BT com::android::bluetooth::flags
+
+using namespace bluetooth;
 using namespace testing;
 
 extern module_t device_iot_config_module;
@@ -129,8 +133,10 @@ class DeviceIotConfigModuleTest : public testing::Test {
   }
 };
 
-TEST_F(DeviceIotConfigModuleTest,
-       test_device_iot_config_module_init_is_factory_reset) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigModuleTest,
+    test_device_iot_config_module_init_is_factory_reset,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   bool is_factory_reset = false;
   config_t* config_new_return_value = NULL;
   config_t* config_new_empty_return_value = NULL;
@@ -192,8 +198,9 @@ TEST_F(DeviceIotConfigModuleTest,
   test::mock::osi_config::config_new_empty.body = {};
 }
 
-TEST_F(DeviceIotConfigModuleTest,
-       test_device_iot_config_module_init_no_config) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigModuleTest, test_device_iot_config_module_init_no_config,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   test::mock::osi_config::config_new.body = [&](const char* filename) {
     return std::unique_ptr<config_t>(nullptr);
   };
@@ -217,7 +224,9 @@ TEST_F(DeviceIotConfigModuleTest,
   test::mock::osi_config::config_new_empty.body = {};
 }
 
-TEST_F(DeviceIotConfigModuleTest, test_device_iot_config_module_init_original) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigModuleTest, test_device_iot_config_module_init_original,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   std::string enable_logging_property_get_value;
   std::string factory_reset_property_get_value;
   config_t* config_new_return_value = NULL;
@@ -268,7 +277,9 @@ TEST_F(DeviceIotConfigModuleTest, test_device_iot_config_module_init_original) {
   test::mock::osi_config::config_new_empty.body = {};
 }
 
-TEST_F(DeviceIotConfigModuleTest, test_device_iot_config_module_init_backup) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigModuleTest, test_device_iot_config_module_init_backup,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   std::string enable_logging_property_get_value;
   std::string factory_reset_property_get_value;
   config_t* config_new_return_value = NULL;
@@ -322,7 +333,9 @@ TEST_F(DeviceIotConfigModuleTest, test_device_iot_config_module_init_backup) {
   test::mock::osi_config::config_new_empty.body = {};
 }
 
-TEST_F(DeviceIotConfigModuleTest, test_device_iot_config_module_init_new_file) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigModuleTest, test_device_iot_config_module_init_new_file,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   std::string enable_logging_property_get_value;
   std::string factory_reset_property_get_value;
   config_t* config_new_return_value = NULL;
@@ -367,8 +380,10 @@ TEST_F(DeviceIotConfigModuleTest, test_device_iot_config_module_init_new_file) {
   test::mock::osi_config::config_new_empty.body = {};
 }
 
-TEST_F(DeviceIotConfigModuleTest,
-       test_device_iot_config_module_init_version_invalid) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigModuleTest,
+    test_device_iot_config_module_init_version_invalid,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   std::string enable_logging_property_get_value;
   std::string factory_reset_property_get_value;
   config_t* config_new_return_value = NULL;
@@ -419,9 +434,10 @@ TEST_F(DeviceIotConfigModuleTest,
   test::mock::osi_config::config_new_empty.body = {};
 }
 
-TEST_F(
+TEST_F_WITH_FLAGS(
     DeviceIotConfigModuleTest,
-    test_device_iot_config_module_init_version_new_config_new_empty_success) {
+    test_device_iot_config_module_init_version_new_config_new_empty_success,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   std::string enable_logging_property_get_value;
   std::string factory_reset_property_get_value;
   config_t* config_new_return_value = NULL;
@@ -498,8 +514,10 @@ TEST_F(
   test::mock::osi_config::config_new_empty.body = {};
 }
 
-TEST_F(DeviceIotConfigModuleTest,
-       test_device_iot_config_module_init_version_new_config_new_empty_fail) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigModuleTest,
+    test_device_iot_config_module_init_version_new_config_new_empty_fail,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   std::string enable_logging_property_get_value;
   std::string factory_reset_property_get_value;
   config_t* config_new_return_value = NULL;
@@ -576,8 +594,10 @@ TEST_F(DeviceIotConfigModuleTest,
   test::mock::osi_config::config_new_empty.body = {};
 }
 
-TEST_F(DeviceIotConfigModuleTest,
-       test_device_iot_config_module_init_original_timestamp_null) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigModuleTest,
+    test_device_iot_config_module_init_original_timestamp_null,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   std::string enable_logging_property_get_value;
   std::string factory_reset_property_get_value;
   config_t* config_new_return_value = NULL;
@@ -626,8 +646,10 @@ TEST_F(DeviceIotConfigModuleTest,
   test::mock::osi_config::config_new_empty.body = {};
 }
 
-TEST_F(DeviceIotConfigModuleTest,
-       test_device_iot_config_module_init_alarm_new_fail) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigModuleTest,
+    test_device_iot_config_module_init_alarm_new_fail,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   std::string enable_logging_property_get_value;
   std::string factory_reset_property_get_value;
   config_t* config_new_return_value = NULL;
@@ -682,7 +704,9 @@ TEST_F(DeviceIotConfigModuleTest,
   test::mock::osi_config::config_new_empty.body = {};
 }
 
-TEST_F(DeviceIotConfigModuleTest, test_device_iot_config_module_start_up) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigModuleTest, test_device_iot_config_module_start_up,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   std::string enable_logging_property_get_value;
   std::string factory_reset_property_get_value;
 
@@ -705,7 +729,9 @@ TEST_F(DeviceIotConfigModuleTest, test_device_iot_config_module_start_up) {
   test::mock::osi_config::config_new_empty.body = {};
 }
 
-TEST_F(DeviceIotConfigModuleTest, test_device_iot_config_module_shutdown) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigModuleTest, test_device_iot_config_module_shutdown,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   bool return_value;
   std::string enable_logging_property_get_value;
   std::string factory_reset_property_get_value;
@@ -749,7 +775,9 @@ TEST_F(DeviceIotConfigModuleTest, test_device_iot_config_module_shutdown) {
   test::mock::osi_alarm::alarm_is_scheduled.body = {};
 }
 
-TEST_F(DeviceIotConfigModuleTest, test_device_iot_config_module_clean_up) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigModuleTest, test_device_iot_config_module_clean_up,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   bool return_value;
   std::string enable_logging_property_get_value;
   std::string factory_reset_property_get_value;
@@ -869,7 +897,9 @@ class DeviceIotConfigTest : public testing::Test {
   }
 };
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_sections_sort_by_entry_key) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_sections_sort_by_entry_key,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   {
     config_t conf;
     device_iot_config_sections_sort_by_entry_key(conf, NULL);
@@ -927,7 +957,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_sections_sort_by_entry_key) {
   }
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_has_section) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_has_section,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   std::string actual_section, expected_section = "abc";
   bool return_value = false;
 
@@ -959,7 +991,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_has_section) {
   test::mock::osi_config::config_has_section.body = {};
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_exist) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_exist,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   std::string actual_section, actual_key, expected_section = "abc",
                                           expected_key = "def";
   bool return_value = false;
@@ -997,7 +1031,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_exist) {
   test::mock::osi_config::config_has_key.body = {};
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_has_key_value) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_has_key_value,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   std::string actual_section, actual_key, expected_section = "abc",
                                           expected_key = "def";
   std::string expected_value_str = "xyz", actual_value_str;
@@ -1084,7 +1120,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_has_key_value) {
   test::mock::osi_config::config_get_string.body = {};
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_get_int) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_get_int,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   std::string actual_section, actual_key, expected_section = "abc",
                                           expected_key = "def";
   bool return_value = false;
@@ -1135,7 +1173,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_get_int) {
   test::mock::osi_config::config_get_int.body = {};
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_addr_get_int) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_addr_get_int,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   const RawAddress peer_addr{};
   std::string actual_section, actual_key,
       expected_section = "00:00:00:00:00:00", expected_key = "def";
@@ -1187,7 +1227,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_addr_get_int) {
   test::mock::osi_config::config_get_int.body = {};
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_set_int) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_set_int,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   std::string actual_section, actual_key, expected_section = "abc",
                                           expected_key = "def";
   std::string string_return_value = "123456789";
@@ -1245,7 +1287,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_set_int) {
   test::mock::osi_alarm::alarm_set.body = {};
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_addr_set_int) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_addr_set_int,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   const RawAddress peer_addr{};
   std::string actual_key, expected_key = "def";
   std::string actual_section, expected_section = "00:00:00:00:00:00";
@@ -1304,7 +1348,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_addr_set_int) {
   test::mock::osi_alarm::alarm_set.body = {};
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_int_add_one) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_int_add_one,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   std::string actual_section, actual_key, expected_section = "abc",
                                           expected_key = "def";
   int int_value = 0, get_default_value, set_value;
@@ -1412,7 +1458,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_int_add_one) {
   test::mock::osi_alarm::alarm_set.body = {};
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_addr_int_add_one) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_addr_int_add_one,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   const RawAddress peer_addr{};
   std::string actual_section, actual_key,
       expected_section = "00:00:00:00:00:00", expected_key = "def";
@@ -1520,7 +1568,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_addr_int_add_one) {
   test::mock::osi_alarm::alarm_set.body = {};
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_get_hex) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_get_hex,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   std::string actual_section, actual_key,
       expected_section = "00:00:00:00:00:00", expected_key = "def";
   int int_value = 0;
@@ -1690,7 +1740,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_get_hex) {
   test::mock::osi_config::config_get_string.body = {};
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_addr_get_hex) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_addr_get_hex,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   const RawAddress peer_addr{};
   std::string actual_section, actual_key,
       expected_section = "00:00:00:00:00:00", expected_key = "def";
@@ -1856,7 +1908,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_addr_get_hex) {
   test::mock::osi_config::config_get_string.body = {};
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_set_hex) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_set_hex,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   std::string actual_key, expected_key = "def";
   std::string actual_section, expected_section = "00:00:00:00:00:00";
   std::string string_return_value;
@@ -2011,7 +2065,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_set_hex) {
   test::mock::osi_alarm::alarm_set.body = {};
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_addr_set_hex) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_addr_set_hex,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   const RawAddress peer_addr{};
   std::string actual_key, expected_key = "def";
   std::string actual_section, expected_section = "00:00:00:00:00:00";
@@ -2171,7 +2227,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_addr_set_hex) {
   test::mock::osi_alarm::alarm_set.body = {};
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_addr_set_hex_if_greater) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_addr_set_hex_if_greater,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   const RawAddress peer_addr{};
   std::string actual_key, expected_key = "def";
   std::string actual_section, expected_section = "00:00:00:00:00:00";
@@ -2257,7 +2315,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_addr_set_hex_if_greater) {
   test::mock::osi_alarm::alarm_set.body = {};
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_get_str) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_get_str,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   std::string actual_section, actual_key, expected_section = "abc",
                                           expected_key = "def";
   std::string actual_value_str;
@@ -2313,7 +2373,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_get_str) {
   test::mock::osi_config::config_get_string.body = {};
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_set_str) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_set_str,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   std::string actual_key, expected_key = "def";
   std::string actual_section, expected_section = "00:00:00:00:00:00";
   std::string input_value;
@@ -2379,7 +2441,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_set_str) {
   test::mock::osi_alarm::alarm_set.body = {};
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_addr_set_str) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_addr_set_str,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   const RawAddress peer_addr{};
   std::string actual_key, expected_key = "def";
   std::string actual_section, expected_section = "00:00:00:00:00:00";
@@ -2446,7 +2510,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_addr_set_str) {
   test::mock::osi_alarm::alarm_set.body = {};
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_get_bin) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_get_bin,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   std::string actual_section, actual_key, expected_section = "abc",
                                           expected_key = "def";
   std::string actual_value_str;
@@ -2558,7 +2624,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_get_bin) {
   test::mock::osi_config::config_get_string.body = {};
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_get_bin_length) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_get_bin_length,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   std::string actual_section, actual_key, expected_section = "abc",
                                           expected_key = "def";
   std::string actual_value_str;
@@ -2640,7 +2708,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_get_bin_length) {
   test::mock::osi_config::config_get_string.body = {};
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_set_bin) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_set_bin,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   std::string actual_key, expected_key = "def";
   std::string actual_section, expected_section = "00:00:00:00:00:00";
   std::string string_return_value;
@@ -2755,7 +2825,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_set_bin) {
   test::mock::osi_alarm::alarm_set.body = {};
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_addr_set_bin) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_addr_set_bin,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   const RawAddress peer_addr{};
   std::string actual_key, expected_key = "def";
   std::string actual_section, expected_section = "00:00:00:00:00:00";
@@ -2871,7 +2943,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_addr_set_bin) {
   test::mock::osi_alarm::alarm_set.body = {};
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_remove) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_remove,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   std::string actual_key, expected_key = "def";
   std::string actual_section, expected_section = "00:00:00:00:00:00";
   bool return_value;
@@ -2913,7 +2987,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_remove) {
   test::mock::osi_config::config_remove_key.body = {};
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_save_async) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_save_async,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   {
     reset_mock_function_count_map();
 
@@ -2923,7 +2999,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_save_async) {
   }
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_flush) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_flush,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   bool return_value;
 
   test::mock::osi_alarm::alarm_is_scheduled.body =
@@ -2958,7 +3036,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_flush) {
   test::mock::osi_alarm::alarm_is_scheduled.body = {};
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_clear) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_clear,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   config_t* config_new_empty_return_value;
   bool config_save_return_value;
 
@@ -3016,7 +3096,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_clear) {
   test::mock::osi_config::config_save.body = {};
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_timer_save_cb) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_timer_save_cb,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   {
     reset_mock_function_count_map();
 
@@ -3026,7 +3108,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_timer_save_cb) {
   }
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_set_modified_time) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_set_modified_time,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   {
     reset_mock_function_count_map();
 
@@ -3036,7 +3120,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_set_modified_time) {
   }
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_get_device_num) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_get_device_num,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   {
     config_t config;
     auto num = device_iot_config_get_device_num(config);
@@ -3058,7 +3144,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_get_device_num) {
   }
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_restrict_device_num) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_restrict_device_num,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   section_t section = {.name = "00:01:02:03:04:05"};
 
   {
@@ -3109,7 +3197,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_restrict_device_num) {
   }
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_compare_key) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_compare_key,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   {
     entry_t first =
                 {
@@ -3171,7 +3261,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_compare_key) {
   }
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_write) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_write,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   test::mock::osi_config::config_save.body =
       [&](const config_t& config, const std::string& filename) -> bool {
     return true;
@@ -3199,7 +3291,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_write) {
   test::mock::osi_config::config_save.body = {};
 }
 
-TEST_F(DeviceIotConfigTest, test_device_debug_iot_config_dump) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_debug_iot_config_dump,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   {
     errno = 0;
     int fd = -1;
@@ -3229,7 +3323,9 @@ TEST_F(DeviceIotConfigTest, test_device_debug_iot_config_dump) {
   }
 }
 
-TEST_F(DeviceIotConfigTest, test_device_iot_config_is_factory_reset) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_iot_config_is_factory_reset,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   bool return_value;
   test::mock::osi_properties::osi_property_get_bool.body =
       [&](const char* key, bool default_value) -> bool { return return_value; };
@@ -3245,7 +3341,9 @@ TEST_F(DeviceIotConfigTest, test_device_iot_config_is_factory_reset) {
   }
 }
 
-TEST_F(DeviceIotConfigTest, test_device_debug_iot_config_delete_files) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigTest, test_device_debug_iot_config_delete_files,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   {
     errno = 0;
     int file_fd = -1;
@@ -3278,8 +3376,6 @@ TEST_F(DeviceIotConfigTest, test_device_debug_iot_config_delete_files) {
 class DeviceIotConfigDisabledTest : public testing::Test {
  protected:
   void SetUp() override {
-    bluetooth::common::InitFlags::Load(test_flags_feature_disabled);
-
     test::mock::osi_alarm::alarm_new.body = [&](const char* name) -> alarm_t* {
       return &placeholder_alarm;
     };
@@ -3348,7 +3444,9 @@ class DeviceIotConfigDisabledTest : public testing::Test {
   }
 };
 
-TEST_F(DeviceIotConfigDisabledTest, test_device_iot_config_disabled) {
+TEST_F_WITH_FLAGS(
+    DeviceIotConfigDisabledTest, test_device_iot_config_disabled,
+    REQUIRES_FLAGS_DISABLED(ACONFIG_FLAG(TEST_BT, device_iot_config_logging))) {
   const RawAddress peer_addr{};
   std::string section, key, value_str;
   int value_int{};
