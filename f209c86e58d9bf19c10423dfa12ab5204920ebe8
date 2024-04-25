@@ -34,6 +34,24 @@
       "parentUuid": "b785dadd_3489a7bb",
       "revId": "f209c86e58d9bf19c10423dfa12ab5204920ebe8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33af2942_e8318e5e",
+        "filename": "tools/rootcanal/rust/src/lmp/ec.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-25T18:18:54Z",
+      "side": 1,
+      "message": "There is no visible impact on performance, will upload a follow up CL to change that, thanks Palash !",
+      "parentUuid": "b92a0c84_eb79904b",
+      "revId": "f209c86e58d9bf19c10423dfa12ab5204920ebe8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
