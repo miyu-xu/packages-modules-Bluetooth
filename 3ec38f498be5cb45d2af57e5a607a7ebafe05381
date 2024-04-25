@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc080176_4b0d1723",
+        "filename": "flags/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-25T00:26:26Z",
+      "side": 0,
+      "message": "Remove folder too ?",
+      "range": {
+        "startLine": 37,
+        "startChar": 27,
+        "endLine": 37,
+        "endChar": 43
+      },
+      "revId": "3ec38f498be5cb45d2af57e5a607a7ebafe05381",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
