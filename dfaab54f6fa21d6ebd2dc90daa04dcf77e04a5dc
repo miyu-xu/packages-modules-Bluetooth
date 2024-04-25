@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67492cd9_b33586bb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-04-25T01:59:42Z",
+      "side": 1,
+      "message": "sometimes",
+      "range": {
+        "startLine": 9,
+        "startChar": 59,
+        "endLine": 9,
+        "endChar": 67
+      },
+      "revId": "dfaab54f6fa21d6ebd2dc90daa04dcf77e04a5dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2af48f2a_0753e9f2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-04-25T01:59:42Z",
+      "side": 1,
+      "message": "happens",
+      "range": {
+        "startLine": 11,
+        "startChar": 10,
+        "endLine": 11,
+        "endChar": 16
+      },
+      "revId": "dfaab54f6fa21d6ebd2dc90daa04dcf77e04a5dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38337e83_65fad41c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-04-25T01:59:42Z",
+      "side": 1,
+      "message": "LGTM % nits.\n\nThis is very clear with an aligned fix and commit message. Thanks for the work.",
+      "revId": "dfaab54f6fa21d6ebd2dc90daa04dcf77e04a5dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
