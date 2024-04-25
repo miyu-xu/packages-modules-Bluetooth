@@ -87,6 +87,30 @@
       },
       "revId": "006f93fc07743024f7854a9412eeab2f1058825d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71f0fff6_14552e71",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-04-25T09:21:40Z",
+      "side": 1,
+      "message": "I created the flag here: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3060323",
+      "parentUuid": "935e2ad3_4e0cc907",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 5
+      },
+      "revId": "006f93fc07743024f7854a9412eeab2f1058825d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
