@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f4360da_8a9bee58",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-25T00:26:45Z",
+      "side": 1,
+      "message": "Can we add some unit tests for this?",
+      "revId": "3e2e8cfe73f104fc2aa8845a7fa968d2745bb28c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56ab6c5e_6ec5af2e",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3952,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-25T00:26:45Z",
+      "side": 1,
+      "message": "Could you add some logging for this with configuration_context_type_?",
+      "revId": "3e2e8cfe73f104fc2aa8845a7fa968d2745bb28c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27dd852d_df7c8922",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3956,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-25T00:26:45Z",
+      "side": 1,
+      "message": "Won\u0027t there be a problem if we drop this request by skipping GroupStream()?",
+      "revId": "3e2e8cfe73f104fc2aa8845a7fa968d2745bb28c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
