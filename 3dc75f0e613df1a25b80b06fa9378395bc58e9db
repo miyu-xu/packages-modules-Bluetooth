@@ -192,6 +192,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "771d3589_94cce645",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1290,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-25T08:06:38Z",
+      "side": 1,
+      "message": "Is it possible that the off-hook event comes without an incoming call (e.g. GVC)? Yes, I mean this part is not reasonable.\n\nIt should direct place an active call instead of dialing_call_impl + `answer_call_impl`\n\nJust as you said, if the state exist incoming-call we should go `answer_call_impl`",
+      "parentUuid": "a9cc302d_d99115d8",
+      "range": {
+        "startLine": 1290,
+        "startChar": 21,
+        "endLine": 1290,
+        "endChar": 50
+      },
+      "revId": "3dc75f0e613df1a25b80b06fa9378395bc58e9db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0a3c213b_4382d331",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 1
