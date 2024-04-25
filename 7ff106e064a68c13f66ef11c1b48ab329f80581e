@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e148c215_e0803d7e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1521,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-25T05:38:26Z",
+      "side": 1,
+      "message": "IMHO there is no need to keep it, they will only spam with unnecessary BigInfo and AdvertisingReports handling which is not needed after adding a source.\nIn original code it was stopped after 5 minutes using PSYNC_ACTIVE_TIMEOUT.",
+      "parentUuid": "fe24d46c_3d9bf278",
+      "revId": "7ff106e064a68c13f66ef11c1b48ab329f80581e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "db716789_9f2c1a2b",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 6
@@ -48,6 +66,24 @@
       "writtenOn": "2024-04-24T21:53:05Z",
       "side": 1,
       "message": "It\u0027s a bit hard to review those by comparing the logics with original ones in StateMachine, when you have time, could you help to put the new design flow into some one page design doc? \n\nThat would be helpful for us to understand the change better.",
+      "revId": "7ff106e064a68c13f66ef11c1b48ab329f80581e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dbac2b1_d4341f71",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1548,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-25T05:38:26Z",
+      "side": 1,
+      "message": "Got your point. General logic flow is the same with few improvements. I will add some comments on Gerrit to show places which are not changed an places with changes with description.",
+      "parentUuid": "db716789_9f2c1a2b",
       "revId": "7ff106e064a68c13f66ef11c1b48ab329f80581e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -71,6 +107,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7fe38bdb_62e7bdbd",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-25T05:38:26Z",
+      "side": 1,
+      "message": "Yes, as in this whole flag flow, at the end, flag should be removed then all that unused code will be removed too. I added it for two reasons, the main is that I want to be sure that none of the old code is used, the second reason is to simplify removing code when the flag will be removed.",
+      "parentUuid": "4e60bd6c_94709d79",
+      "revId": "7ff106e064a68c13f66ef11c1b48ab329f80581e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7c152f8a_9063252a",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
         "patchSetId": 6
@@ -88,6 +142,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0365b2a7_879e4aae",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1780,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-25T05:38:26Z",
+      "side": 1,
+      "message": "Yes and i want to leave it as it is. I want to have exception throw in cancelActiveSync to be sure that this code is not called from any place. So flagging here is needed.\n\nWhole REACHED_MAX_SOURCE_LIMIT will throw exception when called, reason the same as above. It this way even when fixing unit test it will check me automatically:)",
+      "parentUuid": "7c152f8a_9063252a",
+      "revId": "7ff106e064a68c13f66ef11c1b48ab329f80581e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e95fc55e_7e1c161a",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
         "patchSetId": 6
@@ -99,6 +171,24 @@
       "writtenOn": "2024-04-24T21:53:05Z",
       "side": 1,
       "message": "my understanding is this should not matter since mAutoTriggered is true for our use cases. why do we need || flag here?",
+      "revId": "7ff106e064a68c13f66ef11c1b48ab329f80581e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6af3392_f13d0233",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2084,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-25T05:38:26Z",
+      "side": 1,
+      "message": "In BassClientStateMachine mAutoTriggered could be false (when normal selectSource called) or true when addSource called to unsynced source. mAutoTriggered will trigger call of processPASyncState in parseBaseData. I validated that it is not needed at all, processPASyncState will be called on each GATT change.\n\nMy changes here make sure that independent of mAutoTriggered will be executed the same code.",
+      "parentUuid": "e95fc55e_7e1c161a",
       "revId": "7ff106e064a68c13f66ef11c1b48ab329f80581e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
