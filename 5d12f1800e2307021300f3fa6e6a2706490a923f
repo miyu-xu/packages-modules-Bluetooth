@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9243191_8c323578",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-25T04:18:20Z",
+      "side": 1,
+      "message": "hi @henrichataing@google.com can you help with this external contribution ?\n\nIt may need flagging (or exempt ?) but someone need to take a deeper look into it.",
+      "revId": "5d12f1800e2307021300f3fa6e6a2706490a923f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
