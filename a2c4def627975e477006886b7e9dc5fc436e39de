@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6a8238a_376e205c",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-25T09:17:02Z",
+      "side": 1,
+      "message": "if the device is dual mode\n\n`disc_result.device_type \u0026 BT_DEVICE_TYPE_BLE` will not be zero\n\nthen `is_gatt_over_ble` will be `true`\n\nthen this branch won\u0027t trigger\n\nand you will miss the GATT services discovered through SDP for dual mode device",
+      "range": {
+        "startLine": 605,
+        "startChar": 2,
+        "endLine": 605,
+        "endChar": 26
+      },
+      "revId": "a2c4def627975e477006886b7e9dc5fc436e39de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
