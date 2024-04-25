@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b785dadd_3489a7bb",
+        "filename": "tools/rootcanal/rust/src/lmp/ec.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2024-04-25T18:05:27Z",
+      "side": 1,
+      "message": "Out of curiosity - Is there a reason not to use h.pow(2) here? Even though overflow is unlikely, you could consider this for consistency.",
+      "revId": "f209c86e58d9bf19c10423dfa12ab5204920ebe8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
