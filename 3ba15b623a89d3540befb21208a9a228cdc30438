@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "666233ff_be9c138f",
+        "filename": "system/gd/hal/hci_backend_hidl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-04-25T05:03:33Z",
+      "side": 1,
+      "message": "Should be \"GetHandler()\".\n@asoulier@google.com",
+      "revId": "3ba15b623a89d3540befb21208a9a228cdc30438",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
