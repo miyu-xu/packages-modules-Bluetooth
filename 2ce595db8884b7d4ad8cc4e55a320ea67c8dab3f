@@ -62,6 +62,29 @@
       },
       "revId": "2ce595db8884b7d4ad8cc4e55a320ea67c8dab3f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "329f4554_b4901d8a",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-25T18:17:34Z",
+      "side": 1,
+      "message": "It is not the best solution (as it is return the highest importance of the uid and not the real package caller) but I believe it is good enough to avoid under scanning.\n\nWe may endup scanning a bit too much in some condition.\n\nI believe checking with only the UID is therefore not enough, we need the package name. The name is provided (as nullable) in the attributionSource and that may be correct enough to have a better filtering of the importance ? (it may need to be passed around for the pendingIntent restart too)",
+      "range": {
+        "startLine": 717,
+        "startChar": 0,
+        "endLine": 717,
+        "endChar": 78
+      },
+      "revId": "2ce595db8884b7d4ad8cc4e55a320ea67c8dab3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
