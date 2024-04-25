@@ -165,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0966246_7bd22932",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-04-25T17:42:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed1c73d6_e98dc6b5",
+      "range": {
+        "startLine": 474,
+        "startChar": 60,
+        "endLine": 474,
+        "endChar": 83
+      },
+      "revId": "437646e0744f1bb0fe53327989858edf32eb495d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9d9839d5_76f3621d",
@@ -190,6 +214,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f3c32e03_712341ca",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-04-25T17:42:54Z",
+      "side": 1,
+      "message": "see below",
+      "parentUuid": "9d9839d5_76f3621d",
+      "range": {
+        "startLine": 479,
+        "startChar": 36,
+        "endLine": 479,
+        "endChar": 72
+      },
+      "revId": "437646e0744f1bb0fe53327989858edf32eb495d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "57bb9e4c_1534b5c1",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
         "patchSetId": 2
@@ -201,6 +249,30 @@
       "writtenOn": "2024-04-24T22:44:35Z",
       "side": 1,
       "message": "I\u0027d expect a second test for when the feature flag _is_ enabled following the new test above. It should basically be a copy/pate with a flag enable at the beginning and a slightly different assert statement.\n\nThat way you have a test that asserts the old format and test that asserts the new one",
+      "range": {
+        "startLine": 481,
+        "startChar": 0,
+        "endLine": 482,
+        "endChar": 5
+      },
+      "revId": "437646e0744f1bb0fe53327989858edf32eb495d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8b60385_88f8f418",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-04-25T17:42:54Z",
+      "side": 1,
+      "message": "This was a completely new test to consolidate required changes in eight other tests. I can flag this test but I don\u0027t think I need another test?",
+      "parentUuid": "57bb9e4c_1534b5c1",
       "range": {
         "startLine": 481,
         "startChar": 0,
