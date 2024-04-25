@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "490840a4_cff5d9a8",
+        "filename": "system/bta/le_audio/devices_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1530,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-04-25T08:22:40Z",
+      "side": 1,
+      "message": "looking into this test, looks like we put `Two-OneChan-SnkAse-Lc3_32_2-Two-OneChan-SrcAse-Lc3_32_2` into the device, i believe this is the configuration that we have two devices, each device has one sink and one source as one bidirectional 32k cis so two devices we have two bidirectional 32k cis.\n\nBut in the scenario we met before, if dual devices supports `Two-OneChan-SnkAse-Lc3_32_2-Two-OneChan-SrcAse-Lc3_32_2`, then in single device, it will choose `One-OneChan-SnkAse-Lc3_32_2-One-OneChan-SrcAse-Lc3_32_2`, and when we disable dual 32k swb, the single device should choose `One-OneChan-SnkAse-Lc3_16_2-One-OneChan-SrcAse-Lc3_16_2` instead of `One-OneChan-SnkAse-Lc3_32_2-One-OneChan-SrcAse-Lc3_32_2` and after the second device is reconnected, group will choose `Two-OneChan-SnkAse-Lc3_16_2-Two-OneChan-SrcAse-Lc3_16_2`.\n\nIn this case, could we inject `One-OneChan-SnkAse-Lc3_32_2-One-OneChan-SrcAse-Lc3_32_2` to single device so that we can make sure group would not choose this config?",
+      "range": {
+        "startLine": 1530,
+        "startChar": 2,
+        "endLine": 1530,
+        "endChar": 24
+      },
+      "revId": "9f95e81cc6e647099d36f86679438646c14acd2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd2079f7_69a8a9c2",
+        "filename": "system/bta/le_audio/devices_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1531,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-04-25T08:22:40Z",
+      "side": 1,
+      "message": "I think this is audio location like left/right? not sure why we put sink? should it be left or right as one earbud audio location?",
+      "range": {
+        "startLine": 1531,
+        "startChar": 46,
+        "endLine": 1531,
+        "endChar": 67
+      },
+      "revId": "9f95e81cc6e647099d36f86679438646c14acd2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
