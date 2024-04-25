@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20a1eb9f_d4fa6c98",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-25T18:03:10Z",
+      "side": 1,
+      "message": "Hey, I have put two comment that I believe would improve readability a bit.\n\nCan you look at them and do them in another CL ? (to not bloat this change)",
+      "revId": "2ce595db8884b7d4ad8cc4e55a320ea67c8dab3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48398f4c_0f58f11d",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-25T18:03:10Z",
+      "side": 1,
+      "message": "Move to final",
+      "range": {
+        "startLine": 139,
+        "startChar": 28,
+        "endLine": 139,
+        "endChar": 44
+      },
+      "revId": "2ce595db8884b7d4ad8cc4e55a320ea67c8dab3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "407dfac2_f8ee036d",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-25T18:03:10Z",
+      "side": 1,
+      "message": "Can you get it with a requireNonNull to make it obvious this will never be null (it cannot by construction of the [systemServer](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:frameworks/base/services/java/com/android/server/SystemServer.java;l\u003d935?q\u003df:systemserver.java\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%2Fmain%20b:main)\n\n\nAnd remove all the null check associated with mActivityManager",
+      "range": {
+        "startLine": 180,
+        "startChar": 27,
+        "endLine": 180,
+        "endChar": 35
+      },
+      "revId": "2ce595db8884b7d4ad8cc4e55a320ea67c8dab3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
