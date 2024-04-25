@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "599da7f6_0fa0e44a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-25T01:11:21Z",
+      "side": 1,
+      "message": "Could you elaborate on why you want to merge Vendor Specific Event management from its own module to the HCI layer module?",
+      "revId": "b113acd672963191d955c9200eda3629ac7fb65d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
