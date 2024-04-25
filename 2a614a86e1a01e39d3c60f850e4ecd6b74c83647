@@ -22,6 +22,30 @@
       },
       "revId": "2a614a86e1a01e39d3c60f850e4ecd6b74c83647",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4274f36_cfb70c24",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-25T00:36:35Z",
+      "side": 1,
+      "message": "Should these have been split into two separate CLs then ?",
+      "parentUuid": "9a3e4694_47984244",
+      "range": {
+        "startLine": 9,
+        "startChar": 14,
+        "endLine": 10,
+        "endChar": 14
+      },
+      "revId": "2a614a86e1a01e39d3c60f850e4ecd6b74c83647",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
