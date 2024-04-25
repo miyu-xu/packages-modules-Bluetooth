@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62e48ce6_9ca1290d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-25T20:53:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f976893f_9776e9df",
+      "range": {
+        "startLine": 7,
+        "startChar": 17,
+        "endLine": 7,
+        "endChar": 32
+      },
+      "revId": "84b534cf5e487f005847bf9de3a8d03e54941ee8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7ae46c0b_031808c6",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1208cc08_02c21e12",
+        "filename": "system/bta/hh/bta_hh_headtracker.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-25T20:53:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ae46c0b_031808c6",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 2
+      },
+      "revId": "84b534cf5e487f005847bf9de3a8d03e54941ee8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "17bb89b6_33cc4e9a",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-04-25T17:03:41Z",
       "side": 1,
       "message": "I feel like there\u0027s not enough context here.  Maybe \"using_headtracker\"\n```suggestion\n  bool using_headtracker;\n```",
+      "range": {
+        "startLine": 171,
+        "startChar": 7,
+        "endLine": 171,
+        "endChar": 18
+      },
+      "revId": "84b534cf5e487f005847bf9de3a8d03e54941ee8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "971868d3_a3b3550f",
+        "filename": "system/bta/hh/bta_hh_int.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-25T20:53:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17bb89b6_33cc4e9a",
       "range": {
         "startLine": 171,
         "startChar": 7,
