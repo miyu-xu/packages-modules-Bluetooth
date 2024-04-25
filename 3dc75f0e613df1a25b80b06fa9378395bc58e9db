@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81b2dc61_613fcc8c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1290,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-04-25T01:52:23Z",
+      "side": 1,
+      "message": "Now I notice we have a dialing call right before the answer call.  What\u0027s the purpose here since we don\u0027t manage call list localy when interacts with an VC app?\nIs it because if we don\u0027t change the phone state to \"Dialing\" then something would break?\n\nI got this question because seeing `HfpCallbacks::DialCall` is guarded as MPS qual only.",
+      "range": {
+        "startLine": 1290,
+        "startChar": 21,
+        "endLine": 1290,
+        "endChar": 50
+      },
+      "revId": "3dc75f0e613df1a25b80b06fa9378395bc58e9db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
