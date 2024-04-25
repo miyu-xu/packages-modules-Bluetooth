@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "026c438b_21edc582",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-25T19:45:08Z",
+      "side": 1,
+      "message": "Had some offline discussion with Yuyang on this as well. \nMaybe a better place to define this is in BluetoothLeAudio?\n\n    /**\n     * Indicates all context types.\n     *\n     * @hide\n     */\n    public static final int CONTEXT_TYPE_ALL \u003d ...\n    \nIn this way, we define all those context types in one place, and use it with BluetoothLeAudio.CONTEXT_TYPE_ALL.\nAnd Utils is more for BT profiles common constants, not le audio specific.\n\nWhat do you think?",
+      "revId": "6603605255cea7ef382216b428eb616f918edb25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8720eb1e_bc400cf3",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 3
