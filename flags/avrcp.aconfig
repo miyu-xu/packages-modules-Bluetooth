@@ -1,0 +1,9 @@
+package: "com.android.bluetooth.flags"
+container: "com.android.btservices"
+
+flag {
+    name: "abs_volume_sdp_conflict"
+    namespace: "bluetooth"
+    description: "Check connection state after SDP discovery to prevent connection collision resulting in no absolute volume support"
+    bug: "335331242"
+}
