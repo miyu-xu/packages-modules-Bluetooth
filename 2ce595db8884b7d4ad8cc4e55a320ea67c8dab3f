@@ -85,6 +85,30 @@
       },
       "revId": "2ce595db8884b7d4ad8cc4e55a320ea67c8dab3f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a82e8200_ee6aa26a",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-04-25T21:25:18Z",
+      "side": 1,
+      "message": "FYI. we had a permission issue on multi-user environment when using `mActivityManager.getUidImportance()` but `mActivityManager.getPackageImportance()` didn\u0027t. That\u0027s the reason to use `mActivityManager.getPackageImportance()`.",
+      "parentUuid": "329f4554_b4901d8a",
+      "range": {
+        "startLine": 717,
+        "startChar": 0,
+        "endLine": 717,
+        "endChar": 78
+      },
+      "revId": "2ce595db8884b7d4ad8cc4e55a320ea67c8dab3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
