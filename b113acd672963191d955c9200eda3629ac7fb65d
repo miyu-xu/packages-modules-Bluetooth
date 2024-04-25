@@ -16,6 +16,24 @@
       "message": "Could you elaborate on why you want to merge Vendor Specific Event management from its own module to the HCI layer module?",
       "revId": "b113acd672963191d955c9200eda3629ac7fb65d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f814b22f_385b4365",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-25T16:17:24Z",
+      "side": 1,
+      "message": "The VendorSpecificEventManager brings no further logic than registering handlers for vendor events. Would you have an LEMetaEventManager ? because it would be similar.\nThe way I see it, modules should represent interfaces which tests would benefit from mocking; I don\u0027t see it as being the case here.",
+      "parentUuid": "599da7f6_0fa0e44a",
+      "revId": "b113acd672963191d955c9200eda3629ac7fb65d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
