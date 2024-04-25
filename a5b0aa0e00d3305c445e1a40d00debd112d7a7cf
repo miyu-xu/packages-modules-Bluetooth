@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6316376b_9476cd38",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 500,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-25T21:05:43Z",
+      "side": 1,
+      "message": "this seems to be a refactor and is better put in a separate CL below this one to make it more clear which CL introduce new code and which one is just moving code around",
+      "range": {
+        "startLine": 500,
+        "startChar": 5,
+        "endLine": 500,
+        "endChar": 30
+      },
+      "revId": "a5b0aa0e00d3305c445e1a40d00debd112d7a7cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b8ce1fe_0f039241",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1332,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-25T21:05:43Z",
+      "side": 1,
+      "message": "this should be part of the refactor / code moving CL below",
+      "range": {
+        "startLine": 1328,
+        "startChar": 0,
+        "endLine": 1332,
+        "endChar": 3
+      },
+      "revId": "a5b0aa0e00d3305c445e1a40d00debd112d7a7cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e683ecc_01ac41c6",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1421,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-25T21:05:43Z",
+      "side": 1,
+      "message": "this is only called once, should remove and restore back to original",
+      "range": {
+        "startLine": 1421,
+        "startChar": 12,
+        "endLine": 1421,
+        "endChar": 45
+      },
+      "revId": "a5b0aa0e00d3305c445e1a40d00debd112d7a7cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "501d9f50_b102b91f",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1432,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-25T21:05:43Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 1432,
+        "startChar": 12,
+        "endLine": 1432,
+        "endChar": 41
+      },
+      "revId": "a5b0aa0e00d3305c445e1a40d00debd112d7a7cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
