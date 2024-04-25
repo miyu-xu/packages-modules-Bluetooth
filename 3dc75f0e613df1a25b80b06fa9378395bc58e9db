@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "aedea0c6_5d988ffe",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1030,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-25T07:56:39Z",
+      "side": 1,
+      "message": "I thought [`map_or`](https://doc.rust-lang.org/std/option/enum.Option.html#method.map_or) is Returns the provided default result (if none), or applies a function to the contained value (if any). \n\nSo I expect if the number is None, the `dialing_call_impl` don\u0027t even be called. So I do this refactor.\n\nOr you mean `dialing_call_impl` also possible to false to success here?\n\nBy the way, it just can\u0027t work because you will need to pass addr into `dialing_call_impl` for DBUS path. Maybe send empty addr when `dialing_call_impl` is not coming from DBUS?",
+      "parentUuid": "781aa8a8_28c15245",
+      "range": {
+        "startLine": 1025,
+        "startChar": 0,
+        "endLine": 1030,
+        "endChar": 17
+      },
+      "revId": "3dc75f0e613df1a25b80b06fa9378395bc58e9db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9f09d661_1e24f8ab",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 1
