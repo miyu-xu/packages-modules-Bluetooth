@@ -47,6 +47,7 @@ import android.view.Display;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.BluetoothAdapterProxy;
+import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.gatt.FilterParams;
 import com.android.bluetooth.gatt.GattObjectsFactory;
 import com.android.bluetooth.gatt.GattServiceConfig;
@@ -711,15 +712,20 @@ public class ScanManager {
         }
 
         private void fetchAppForegroundState(ScanClient client) {
-            PackageManager packageManager = mAdapterService.getPackageManager();
-            if (mActivityManager == null || packageManager == null) {
-                return;
+            int importance;
+            if (Flags.leScanUseUidForImportance()) {
+                importance = mActivityManager.getUidImportance(client.appUid);
+            } else {
+                PackageManager packageManager = mAdapterService.getPackageManager();
+                if (mActivityManager == null || packageManager == null) {
+                    return;
+                }
+                String[] packages = packageManager.getPackagesForUid(client.appUid);
+                if (packages == null || packages.length == 0) {
+                    return;
+                }
+                importance = mActivityManager.getPackageImportance(packages[0]);
             }
-            String[] packages = packageManager.getPackagesForUid(client.appUid);
-            if (packages == null || packages.length == 0) {
-                return;
-            }
-            int importance = mActivityManager.getPackageImportance(packages[0]);
             boolean isForeground =
                     importance
                             <= ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND_SERVICE;
