@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f2e26f3_4de6d628",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-25T18:56:29Z",
+      "side": 1,
+      "message": "Instead of:\n1. Deleting old flag and it\u0027s usage\n2. creating new flag\n3. Adding new usage\n\nCan we do:\n1. Creating new flag\n2. Replace usage from old to new flag\n3. Deleting old flag\n\nThat will make it very easy to review this way !",
+      "revId": "0fcba74770daa6d76b61f3895c1700f56fbf7718",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
