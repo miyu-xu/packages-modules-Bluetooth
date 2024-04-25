@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8aabe28a_8500d948",
+        "filename": "system/device/src/device_iot_config_int.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-04-25T12:47:55Z",
+      "side": 0,
+      "message": "Changed, please review again ; )",
+      "parentUuid": "6d1847ef_335b316d",
+      "range": {
+        "startLine": 193,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 60
+      },
+      "revId": "33a40b47d2534d3ca06d97ea14c04dcf9f2cc37c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2aff19c6_fdeb37fa",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-23T17:30:55Z",
       "side": 0,
       "message": "Since we are removing a flag that as never been enabled, I expect the test running with the flag disabled to still pass. Shouldn\u0027t we keep them ?",
+      "range": {
+        "startLine": 3292,
+        "startChar": 6,
+        "endLine": 3292,
+        "endChar": 33
+      },
+      "revId": "33a40b47d2534d3ca06d97ea14c04dcf9f2cc37c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9282ecc_a609415c",
+        "filename": "system/device/test/device_iot_config_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3292,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-04-25T12:47:55Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "2aff19c6_fdeb37fa",
       "range": {
         "startLine": 3292,
         "startChar": 6,
