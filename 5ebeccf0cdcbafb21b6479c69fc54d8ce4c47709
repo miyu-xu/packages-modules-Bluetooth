@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1166b09_b4bf9e0c",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-25T09:36:12Z",
+      "side": 1,
+      "message": "could you remove this argument in tBTA_DM_DISC_CBACK, the only instance is `btif_on_service_discovery_results` and it is unused variable AFAIK\n\notherwise, you should use BT_DEVICE_TYPE_UNKNOWN instead of a magic number",
+      "range": {
+        "startLine": 610,
+        "startChar": 31,
+        "endLine": 610,
+        "endChar": 32
+      },
+      "revId": "5ebeccf0cdcbafb21b6479c69fc54d8ce4c47709",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
