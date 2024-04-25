@@ -554,15 +554,17 @@ static void gatt_le_connect_cback(uint16_t chan, const RawAddress& bd_addr,
                                                        advertising_set.value());
   }
 
-  if (is_device_le_audio_capable(bd_addr)) {
-    log::info("Read model name for le audio capable device");
-    if (!check_cached_model_name(bd_addr)) {
-      if (!DIS_ReadDISInfo(bd_addr, read_dis_cback, DIS_ATTR_MODEL_NUM_BIT)) {
-        log::warn("Read DIS failed");
+  if (!IS_FLAG_ENABLED(read_model_num_fix)) {
+    if (is_device_le_audio_capable(bd_addr)) {
+      log::info("Read model name for le audio capable device");
+      if (!check_cached_model_name(bd_addr)) {
+        if (!DIS_ReadDISInfo(bd_addr, read_dis_cback, DIS_ATTR_MODEL_NUM_BIT)) {
+          log::warn("Read DIS failed");
+        }
       }
+    } else if (check_cached_model_name(bd_addr)) {
+      log::info("Get cache model name for device");
     }
-  } else if (check_cached_model_name(bd_addr)) {
-    log::info("Get cache model name for device");
   }
 
   if (stack_config_get_interface()->get_pts_connect_eatt_before_encryption()) {
