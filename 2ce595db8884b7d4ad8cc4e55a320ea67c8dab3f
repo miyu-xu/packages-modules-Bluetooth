@@ -109,6 +109,30 @@
       },
       "revId": "2ce595db8884b7d4ad8cc4e55a320ea67c8dab3f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8c6ba8b_5aaec413",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-25T21:31:27Z",
+      "side": 1,
+      "message": "Mmm this is weird as bluetooth is [allowed to interract accros user](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/apex/permissions/com.android.bluetooth.xml;l\u003d25;drc\u003d4b3f331149025ee02deeacf2745ca375505d28a8) and it also have the [PACKAGE_USAGE_STATS](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/apex/permissions/com.android.bluetooth.xml;l\u003d32;drc\u003d4b3f331149025ee02deeacf2745ca375505d28a8) required by the getUidImportance api.\n\nBut this may due because the threading is **NOT** handled correctly (or actually in this case, not handled at all as we don\u0027t even look into it) and we still have the identity of the caller/binder when making the external call.",
+      "parentUuid": "a82e8200_ee6aa26a",
+      "range": {
+        "startLine": 717,
+        "startChar": 0,
+        "endLine": 717,
+        "endChar": 78
+      },
+      "revId": "2ce595db8884b7d4ad8cc4e55a320ea67c8dab3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
