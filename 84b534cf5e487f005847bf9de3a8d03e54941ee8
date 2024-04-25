@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f976893f_9776e9df",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-25T17:03:41Z",
+      "side": 1,
+      "message": "nit: prefer to remove than use odd abbreviations.\n\nMap headtracking to HOGP report",
+      "range": {
+        "startLine": 7,
+        "startChar": 17,
+        "endLine": 7,
+        "endChar": 32
+      },
+      "revId": "84b534cf5e487f005847bf9de3a8d03e54941ee8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ae46c0b_031808c6",
+        "filename": "system/bta/hh/bta_hh_headtracker.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-25T17:03:41Z",
+      "side": 1,
+      "message": "update license",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 2
+      },
+      "revId": "84b534cf5e487f005847bf9de3a8d03e54941ee8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17bb89b6_33cc4e9a",
+        "filename": "system/bta/hh/bta_hh_int.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-25T17:03:41Z",
+      "side": 1,
+      "message": "I feel like there\u0027s not enough context here.  Maybe \"using_headtracker\"\n```suggestion\n  bool using_headtracker;\n```",
+      "range": {
+        "startLine": 171,
+        "startChar": 7,
+        "endLine": 171,
+        "endChar": 18
+      },
+      "revId": "84b534cf5e487f005847bf9de3a8d03e54941ee8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
