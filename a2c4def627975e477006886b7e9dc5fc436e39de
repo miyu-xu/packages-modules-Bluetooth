@@ -22,6 +22,30 @@
       },
       "revId": "a2c4def627975e477006886b7e9dc5fc436e39de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff182194_24259294",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-25T09:20:57Z",
+      "side": 1,
+      "message": "no, the device_type is set only for LE devices. Otherwise it\u0027s left empty.",
+      "parentUuid": "c6a8238a_376e205c",
+      "range": {
+        "startLine": 605,
+        "startChar": 2,
+        "endLine": 605,
+        "endChar": 26
+      },
+      "revId": "a2c4def627975e477006886b7e9dc5fc436e39de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
