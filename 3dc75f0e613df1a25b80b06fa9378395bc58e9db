@@ -22,6 +22,30 @@
       },
       "revId": "3dc75f0e613df1a25b80b06fa9378395bc58e9db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3447024b_d7f2d253",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1290,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-25T03:44:26Z",
+      "side": 1,
+      "message": "Good Catch. I don\u0027t think this part is reasonable. I think it just works and I never notice this.\n\nIn theory, we should directly put an active call and directly update it instead of `dialing_call_impl` and then `answer_call_impl`.\n\nBut this is not causing any problems now. Let me fix on another patch.",
+      "parentUuid": "81b2dc61_613fcc8c",
+      "range": {
+        "startLine": 1290,
+        "startChar": 21,
+        "endLine": 1290,
+        "endChar": 50
+      },
+      "revId": "3dc75f0e613df1a25b80b06fa9378395bc58e9db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

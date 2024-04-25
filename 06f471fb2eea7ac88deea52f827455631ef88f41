@@ -22,6 +22,30 @@
       },
       "revId": "06f471fb2eea7ac88deea52f827455631ef88f41",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5af79bc_5bc66e83",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1024,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-25T03:44:26Z",
+      "side": 0,
+      "message": "`should_insert_call_when_sco_start` block AT+CHUP command if the headset doesn\u0027t work properly in telephony. However, telephony doesn\u0027t even work. The UHID won\u0027t even be created.\n\nOnly `hangup_call_impl` will be executed. That will cause desync problem because the call state is change in HFP callback. However, this problem is fixed at aosp/3058085",
+      "parentUuid": "f9bb114f_f3f0bce2",
+      "range": {
+        "startLine": 1016,
+        "startChar": 16,
+        "endLine": 1024,
+        "endChar": 17
+      },
+      "revId": "06f471fb2eea7ac88deea52f827455631ef88f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
