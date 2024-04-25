@@ -16,6 +16,8 @@
 
 package com.android.bluetooth.le_scan;
 
+import static java.util.Objects.requireNonNull;
+
 import android.annotation.RequiresPermission;
 import android.app.ActivityManager;
 import android.app.AlarmManager;
@@ -47,6 +49,7 @@ import android.view.Display;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.BluetoothAdapterProxy;
+import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.gatt.FilterParams;
 import com.android.bluetooth.gatt.GattObjectsFactory;
 import com.android.bluetooth.gatt.GattServiceConfig;
@@ -135,7 +138,8 @@ public class ScanManager {
 
     private DisplayManager mDm;
 
-    private ActivityManager mActivityManager;
+    private final ActivityManager mActivityManager;
+    private final PackageManager mPackageManager;
     private LocationManager mLocationManager;
     private static final int FOREGROUND_IMPORTANCE_CUTOFF =
             ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND_SERVICE;
@@ -176,8 +180,9 @@ public class ScanManager {
         mAdapterService = adapterService;
         mScanNative = new ScanNative(scanHelper);
         mDm = mContext.getSystemService(DisplayManager.class);
-        mActivityManager = mContext.getSystemService(ActivityManager.class);
+        mActivityManager = requireNonNull(mContext.getSystemService(ActivityManager.class));
         mLocationManager = mAdapterService.getSystemService(LocationManager.class);
+        mPackageManager = mAdapterService.getPackageManager();
         mBluetoothAdapterProxy = bluetoothAdapterProxy;
         mIsConnecting = false;
 
@@ -197,10 +202,8 @@ public class ScanManager {
         mScreenOn = isScreenOn();
         AppScanStats.initScanRadioState();
         AppScanStats.setScreenState(mScreenOn);
-        if (mActivityManager != null) {
-            mActivityManager.addOnUidImportanceListener(mUidImportanceListener,
-                    FOREGROUND_IMPORTANCE_CUTOFF);
-        }
+        mActivityManager.addOnUidImportanceListener(
+                mUidImportanceListener, FOREGROUND_IMPORTANCE_CUTOFF);
         IntentFilter locationIntentFilter = new IntentFilter(LocationManager.MODE_CHANGED_ACTION);
         locationIntentFilter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
         mContext.registerReceiver(mLocationReceiver, locationIntentFilter);
@@ -212,12 +215,10 @@ public class ScanManager {
         mSuspendedScanClients.clear();
         mScanNative.cleanup();
 
-        if (mActivityManager != null) {
-            try {
-                mActivityManager.removeOnUidImportanceListener(mUidImportanceListener);
-            } catch (IllegalArgumentException e) {
-                Log.w(TAG, "exception when invoking removeOnUidImportanceListener", e);
-            }
+        try {
+            mActivityManager.removeOnUidImportanceListener(mUidImportanceListener);
+        } catch (IllegalArgumentException e) {
+            Log.w(TAG, "exception when invoking removeOnUidImportanceListener", e);
         }
 
         if (mDm != null) {
@@ -711,18 +712,26 @@ public class ScanManager {
         }
 
         private void fetchAppForegroundState(ScanClient client) {
-            PackageManager packageManager = mAdapterService.getPackageManager();
-            if (mActivityManager == null || packageManager == null) {
-                return;
-            }
-            String[] packages = packageManager.getPackagesForUid(client.appUid);
+            boolean isForeground = false;
+            String[] packages = mPackageManager.getPackagesForUid(client.appUid);
             if (packages == null || packages.length == 0) {
                 return;
             }
-            int importance = mActivityManager.getPackageImportance(packages[0]);
-            boolean isForeground =
-                    importance
-                            <= ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND_SERVICE;
+            // Workaround for ActivityManager#getUidImportance throwing SecurityException
+            // in multi-user settings.
+            if (Flags.leScanUseUidForImportance()) {
+                for (String pkg : packages) {
+                    isForeground |=
+                            mActivityManager.getPackageImportance(pkg)
+                                    <= ActivityManager.RunningAppProcessInfo
+                                            .IMPORTANCE_FOREGROUND_SERVICE;
+                }
+            } else {
+                isForeground =
+                        mActivityManager.getPackageImportance(packages[0])
+                                <= ActivityManager.RunningAppProcessInfo
+                                        .IMPORTANCE_FOREGROUND_SERVICE;
+            }
             mIsUidForegroundMap.put(client.appUid, isForeground);
         }
 
