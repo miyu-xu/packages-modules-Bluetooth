@@ -16,6 +16,24 @@
       "message": "Should be \"GetHandler()\".\n@asoulier@google.com",
       "revId": "3ba15b623a89d3540befb21208a9a228cdc30438",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f95055d3_161eda84",
+        "filename": "system/gd/hal/hci_backend_hidl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-04-25T05:52:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "666233ff_be9c138f",
+      "revId": "3ba15b623a89d3540befb21208a9a228cdc30438",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
