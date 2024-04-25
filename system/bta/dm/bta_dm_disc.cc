@@ -399,6 +399,8 @@ static void bta_dm_sdp_result(tSDP_STATUS sdp_result) {
   if ((sdp_result == SDP_SUCCESS) || (sdp_result == SDP_NO_RECS_MATCH) ||
       (sdp_result == SDP_DB_FULL)) {
     log::verbose("sdp_result::0x{:x}", sdp_result);
+    std::vector<Uuid> gatt_uuids;
+
     do {
       p_sdp_rec = NULL;
       if (bta_dm_discovery_cb.service_index == (BTA_USER_SERVICE_ID + 1)) {
@@ -419,9 +421,6 @@ static void bta_dm_sdp_result(tSDP_STATUS sdp_result) {
        * service UUID */
       if (bta_dm_discovery_cb.service_index == BTA_MAX_SERVICE_ID) {
         /* all GATT based services */
-
-        std::vector<Uuid> gatt_uuids;
-
         do {
           /* find a service record, report it */
           p_sdp_rec = get_legacy_stack_sdp_api()->db.SDP_FindServiceInDb(
@@ -437,11 +436,6 @@ static void bta_dm_sdp_result(tSDP_STATUS sdp_result) {
 
         if (!gatt_uuids.empty()) {
           log::info("GATT services discovered using SDP");
-
-          // send all result back to app
-          bta_dm_discovery_cb.service_search_cbacks.on_gatt_results(
-              bta_dm_discovery_cb.peer_bdaddr, BD_NAME{}, gatt_uuids,
-              /* transport_le */ false);
         }
       } else {
         if ((p_sdp_rec != NULL)) {
@@ -518,6 +512,7 @@ static void bta_dm_sdp_result(tSDP_STATUS sdp_result) {
 
       disc_result.result = BTA_SUCCESS;
       disc_result.uuids = std::move(uuid_list);
+      disc_result.gatt_uuids = std::move(gatt_uuids);
       // Copy the raw_data to the discovery result structure
       if (bta_dm_discovery_cb.p_sdp_db != NULL &&
           bta_dm_discovery_cb.p_sdp_db->raw_used != 0 &&
@@ -609,6 +604,12 @@ static void bta_dm_disc_result(tBTA_DM_SVC_RES& disc_result) {
   /* if any BR/EDR service discovery has been done, report the event */
   if (!is_gatt_over_ble) {
     auto& r = disc_result;
+    if (!r.gatt_uuids.empty()) {
+      log::info("Sending GATT services discovered using SDP");
+      // send GATT result back to app, if any
+      bta_dm_discovery_cb.service_search_cbacks.on_gatt_results(
+          r.bd_addr, BD_NAME{}, r.gatt_uuids, /* transport_le */ false);
+    }
     bta_dm_discovery_cb.service_search_cbacks.on_service_discovery_results(
         r.bd_addr, r.services, r.device_type, r.uuids, r.result, r.hci_status);
   } else {
