@@ -96,6 +96,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0c796ac_e20fa335",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1030,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-25T10:17:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5310d8be_2c7204c0",
+      "range": {
+        "startLine": 1025,
+        "startChar": 0,
+        "endLine": 1030,
+        "endChar": 17
+      },
+      "revId": "3dc75f0e613df1a25b80b06fa9378395bc58e9db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f09d661_1e24f8ab",
@@ -109,6 +133,30 @@
       "writtenOn": "2024-04-25T07:43:29Z",
       "side": 1,
       "message": "Although this is not used by the WebHID project, please also apply the refactor to the held features for consistency. Similar to dialing_call_impl, please add the argument to release_held_impl, release_active_accept_held_impl, and hold_active_accept_held_impl.",
+      "range": {
+        "startLine": 1033,
+        "startChar": 0,
+        "endLine": 1058,
+        "endChar": 13
+      },
+      "revId": "3dc75f0e613df1a25b80b06fa9378395bc58e9db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48e793a9_c6445e4b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1058,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-25T10:17:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f09d661_1e24f8ab",
       "range": {
         "startLine": 1033,
         "startChar": 0,
@@ -227,6 +275,30 @@
       "writtenOn": "2024-04-25T07:43:29Z",
       "side": 1,
       "message": "I\u0027d like to test this outside the xxxx_impl functions. The xxxx_impl functions are currently used in 3 different places: HfpCallbacks, DBus command, and UHID output. For now the flag protection should be like:\n* HfpCallbacks -\u003e Only allowed in telephony or mps mode\n* DBus command -\u003e Only allowed in mps mode\n* UHID output -\u003e  -\u003e Only allowed in telephony mode\n\nAfter telephony is fully launched:\n* HfpCallbacks -\u003e No need to test\n* DBus command -\u003e Only allowed in mps mode\n* UHID output -\u003e  -\u003e No need to test",
+      "range": {
+        "startLine": 1970,
+        "startChar": 0,
+        "endLine": 1972,
+        "endChar": 9
+      },
+      "revId": "3dc75f0e613df1a25b80b06fa9378395bc58e9db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd3ae9e5_beae2bd6",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1972,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-25T10:17:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a3c213b_4382d331",
       "range": {
         "startLine": 1970,
         "startChar": 0,
