@@ -91,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "35b80325_69933a48",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-04-25T11:21:52Z",
+      "side": 1,
+      "message": "If I would add a2dp sink to setup it would also make sense to add a2dp source to the setup as well. But then we won\u0027t be able to configure it for reference devices - we will always have devices that state support for a2dp sink and source. \nMaybe it wouldn\u0027t be bad 😄 but maybe it\u0027d be better to leave it configurable?",
+      "parentUuid": "17ac7db9_4fc89d1e",
+      "revId": "a61909816f43a2de2aca5e1f7529711b95b0c52c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ffecc9ad_f3b6ce30",
         "filename": "android/pandora/test/a2dp_test.py",
         "patchSetId": 6
