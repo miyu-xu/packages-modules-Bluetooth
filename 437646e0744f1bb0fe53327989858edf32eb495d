@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "192bbfda_448a4662",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BrowseTree.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-04-25T17:35:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7583b3cc_f671fa59",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 39
+      },
+      "revId": "437646e0744f1bb0fe53327989858edf32eb495d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "12ec35e2_698f1757",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71a5d1b2_6cea6e4d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-04-25T17:35:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12ec35e2_698f1757",
+      "range": {
+        "startLine": 117,
+        "startChar": 8,
+        "endLine": 117,
+        "endChar": 61
+      },
+      "revId": "437646e0744f1bb0fe53327989858edf32eb495d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb4fa63b_e5cef159",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-04-24T22:44:35Z",
       "side": 1,
       "message": "As much as I don\u0027t love magic numbers, something like the following might suffice:\n```\nmService.onConnectionStateChanged(/* control\u003d */ true, /* browse\u003d */ true, mRemoteDevice);\n```\n\nIt seems a big much to define 4 local variables to hold true and false two times each.",
+      "range": {
+        "startLine": 532,
+        "startChar": 7,
+        "endLine": 532,
+        "endChar": 100
+      },
+      "revId": "437646e0744f1bb0fe53327989858edf32eb495d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acb96a56_8e6c2588",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-04-25T17:35:46Z",
+      "side": 1,
+      "message": "Yeh, I agree",
+      "parentUuid": "cb4fa63b_e5cef159",
       "range": {
         "startLine": 532,
         "startChar": 7,
@@ -164,6 +236,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "31fcfc0e_20783b8f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/BrowseTreeTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-04-25T17:35:46Z",
+      "side": 1,
+      "message": "But then it would fail on the next line at browseTree.findBrowseNodeByID(deviceId))?",
+      "parentUuid": "bb8e054d_82fec8f7",
+      "range": {
+        "startLine": 118,
+        "startChar": 32,
+        "endLine": 118,
+        "endChar": 61
+      },
+      "revId": "437646e0744f1bb0fe53327989858edf32eb495d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8e837188_e9938f19",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/BrowseTreeTest.java",
         "patchSetId": 2
@@ -175,6 +271,30 @@
       "writtenOn": "2024-04-24T22:44:35Z",
       "side": 1,
       "message": "Not sure what happened here! This can be removed",
+      "range": {
+        "startLine": 119,
+        "startChar": 8,
+        "endLine": 119,
+        "endChar": 9
+      },
+      "revId": "437646e0744f1bb0fe53327989858edf32eb495d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e71bf9ce_14472e09",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/BrowseTreeTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-04-25T17:35:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e837188_e9938f19",
       "range": {
         "startLine": 119,
         "startChar": 8,
