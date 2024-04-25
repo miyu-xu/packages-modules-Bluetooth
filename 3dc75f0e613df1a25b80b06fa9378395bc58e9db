@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5310d8be_2c7204c0",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1030,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-04-25T08:02:52Z",
+      "side": 1,
+      "message": "Yes that works\n```\nfn dialing_call_impl(\u0026mut self, number: String, addr: Option\u003cRawAddress\u003e) -\u003e bool\n```",
+      "parentUuid": "dd2b2873_6e07fa44",
+      "range": {
+        "startLine": 1025,
+        "startChar": 0,
+        "endLine": 1030,
+        "endChar": 17
+      },
+      "revId": "3dc75f0e613df1a25b80b06fa9378395bc58e9db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9f09d661_1e24f8ab",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 1
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "Good Catch. I don\u0027t think this part is reasonable. I think it just works and I never notice this.\n\nIn theory, we should directly put an active call and directly update it instead of `dialing_call_impl` and then `answer_call_impl`.\n\nBut this is not causing any problems now. Let me fix on another patch.",
       "parentUuid": "81b2dc61_613fcc8c",
+      "range": {
+        "startLine": 1290,
+        "startChar": 21,
+        "endLine": 1290,
+        "endChar": 50
+      },
+      "revId": "3dc75f0e613df1a25b80b06fa9378395bc58e9db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9cc302d_d99115d8",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1290,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-04-25T08:02:52Z",
+      "side": 1,
+      "message": "In https://r.android.com/c/3058085/ from the perspective of MPS, we would like the behavior here to be exactly `answer_call_impl`. Is it possible that the off-hook event comes without an incoming call (e.g. GVC)? If that\u0027s yes, then we probably need to check the call state first; If the state is idle, simply add an active call, otherwise call answer_call_impl to switch the state from Incoming/Dialing.",
+      "parentUuid": "3447024b_d7f2d253",
       "range": {
         "startLine": 1290,
         "startChar": 21,
