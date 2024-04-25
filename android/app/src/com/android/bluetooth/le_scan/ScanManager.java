@@ -47,6 +47,7 @@ import android.view.Display;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.BluetoothAdapterProxy;
+import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.gatt.FilterParams;
 import com.android.bluetooth.gatt.GattObjectsFactory;
 import com.android.bluetooth.gatt.GattServiceConfig;
@@ -711,6 +712,7 @@ public class ScanManager {
         }
 
         private void fetchAppForegroundState(ScanClient client) {
+            boolean isForeground = false;
             PackageManager packageManager = mAdapterService.getPackageManager();
             if (mActivityManager == null || packageManager == null) {
                 return;
@@ -719,10 +721,21 @@ public class ScanManager {
             if (packages == null || packages.length == 0) {
                 return;
             }
-            int importance = mActivityManager.getPackageImportance(packages[0]);
-            boolean isForeground =
-                    importance
-                            <= ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND_SERVICE;
+            // Workaround for ActivityManager#getUidImportance throwing SecurityException
+            // in multi-user settings.
+            if (Flags.leScanUseUidForImportance()) {
+                for (String pkg : packages) {
+                    isForeground |=
+                            mActivityManager.getPackageImportance(pkg)
+                                    <= ActivityManager.RunningAppProcessInfo
+                                            .IMPORTANCE_FOREGROUND_SERVICE;
+                }
+            } else {
+                isForeground =
+                        mActivityManager.getPackageImportance(packages[0])
+                                <= ActivityManager.RunningAppProcessInfo
+                                        .IMPORTANCE_FOREGROUND_SERVICE;
+            }
             mIsUidForegroundMap.put(client.appUid, isForeground);
         }
 
