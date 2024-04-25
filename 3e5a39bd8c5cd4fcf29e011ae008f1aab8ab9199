@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e49831b_2aaee3e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-04-25T22:26:56Z",
+      "side": 1,
+      "message": "Code patch counter is Android specific and not compiled in other platform. The logging point should be above btif layer. Suggested to do it in the `system/stack` layer.",
+      "revId": "3e5a39bd8c5cd4fcf29e011ae008f1aab8ab9199",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
