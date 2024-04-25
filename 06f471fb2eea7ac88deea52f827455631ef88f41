@@ -46,6 +46,30 @@
       },
       "revId": "06f471fb2eea7ac88deea52f827455631ef88f41",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ce083ca_534f04ac",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1024,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-25T07:28:13Z",
+      "side": 0,
+      "message": "Originally `should_insert_call_when_sco_start` just want to block headset call `hangup_call_impl` if telephony not enable.\n\nThe block is prevent user  trigger the hangup call button when there is an active call created by CRAS.\n\nBut after we remove HFP callback stat change behavior. We no longer need this block to prevent this problem anymore. I just remove here because it is cleaner for review because it make HangupCall and AnswerCall look like the same.",
+      "parentUuid": "f5af79bc_5bc66e83",
+      "range": {
+        "startLine": 1016,
+        "startChar": 16,
+        "endLine": 1024,
+        "endChar": 17
+      },
+      "revId": "06f471fb2eea7ac88deea52f827455631ef88f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
