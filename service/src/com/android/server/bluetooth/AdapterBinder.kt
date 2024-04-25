@@ -27,6 +27,12 @@ class AdapterBinder(rawBinder: IBinder) {
     val adapterBinder: IBluetooth = IBluetooth.Stub.asInterface(rawBinder)
     val createdAt = System.currentTimeMillis()
 
+    // Indicate that enable has already been called on the binder. It should never be called twice,
+    // even after calling disable. Instead another binder will be provided
+    // TODO: b/319685396 -- A proper state machine should know by design not to call it twice
+    var isEnabled = false
+        private set
+
     override fun toString(): String =
         "[Binder=" + adapterBinder.hashCode() + ", createdAt=" + timeToLog(createdAt) + "]"
 
@@ -37,6 +43,7 @@ class AdapterBinder(rawBinder: IBinder) {
 
     @Throws(RemoteException::class)
     fun enable(quietMode: Boolean, source: AttributionSource) {
+        isEnabled = true
         adapterBinder.enable(quietMode, source)
     }
 

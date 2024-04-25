@@ -1210,6 +1210,7 @@ class BluetoothManagerService {
                     Log.e(TAG, "Unable to unregister BluetoothCallback", e);
                 }
                 mAdapter = null;
+                Log.i(TAG, "Adapter is reset to null");
                 mContext.unbindService(mConnection);
                 mHandler.removeMessages(MESSAGE_TIMEOUT_BIND);
             }
@@ -1582,6 +1583,7 @@ class BluetoothManagerService {
                         mHandler.removeMessages(MESSAGE_TIMEOUT_BIND);
 
                         mAdapter = BluetoothServerProxy.getInstance().createAdapterBinder(service);
+                        Log.i(TAG, "Created new adapter: " + mAdapter);
 
                         int foregroundUserId = ActivityManager.getCurrentUser();
                         propagateForegroundUserId(foregroundUserId);
@@ -1684,6 +1686,7 @@ class BluetoothManagerService {
                             break;
                         }
                         mAdapter = null;
+                        Log.i(TAG, "Adapter is reset to null");
                     } finally {
                         mAdapterLock.writeLock().unlock();
                     }
@@ -1729,6 +1732,7 @@ class BluetoothManagerService {
                     } else {
                         mAdapterLock.writeLock().lock();
                         mAdapter = null;
+                        Log.i(TAG, "Adapter is reset to null");
                         mAdapterLock.writeLock().unlock();
                         Log.e(TAG, "Reach maximum retry to restart Bluetooth!");
                     }
@@ -1952,7 +1956,7 @@ class BluetoothManagerService {
                         UserHandle.CURRENT)) {
                     mHandler.removeMessages(MESSAGE_TIMEOUT_BIND);
                 }
-            } else if (!Flags.fastBindToApp() && mAdapter != null) {
+            } else if (!Flags.fastBindToApp() && mAdapter != null && !mAdapter.isEnabled()) {
                 // Enable bluetooth
                 try {
                     mAdapter.enable(mQuietEnable, mContext.getAttributionSource());
@@ -2175,6 +2179,7 @@ class BluetoothManagerService {
         try {
             if (mAdapter != null) {
                 mAdapter = null;
+                Log.i(TAG, "Adapter is reset to null");
                 // Unbind
                 mContext.unbindService(mConnection);
             }
