@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fab751e_b7977c32",
+        "filename": "system/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1311067
+      },
+      "writtenOn": "2024-04-25T01:10:39Z",
+      "side": 1,
+      "message": "should use `:bluetooth_stack_with_facade-hostbin`, but encounter `missing variant` error.",
+      "range": {
+        "startLine": 261,
+        "startChar": 37,
+        "endLine": 261,
+        "endChar": 38
+      },
+      "revId": "562e6a43744780439179edbb7799e42510e8caba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
