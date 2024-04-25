@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2050385b_89b469d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966998
+      },
+      "writtenOn": "2024-04-25T00:41:44Z",
+      "side": 1,
+      "message": "Based on internal discussion b/w William, Myles and Pomai",
+      "revId": "3137fb32351db3d4507716068b4cd655b1bbf91c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
