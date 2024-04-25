@@ -16,6 +16,24 @@
       "message": "Talked to Jayden offline, decided to apply immediate fixes that loosen the test criteria just to fix the flakiness since a scan metrics and scan manager refactor is going on. After the refactor is finished, will work on adding a customer timer for tests if needed for tests related with metrics and scan duration. Both tests were ran with the change a 1000 times in local environment without failure.",
       "revId": "15000ce4785969899743b82f542aa6d18a02754a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9bcc11c_99586c3d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-25T04:00:30Z",
+      "side": 1,
+      "message": "Relaxing the test should not be the way to go.\nThe metric should not be reported \"1 or 2\" times randomly\n\nWhere you able to identify where the issue start ? I could help you finding a better fix if this is possible",
+      "parentUuid": "bdee5ba0_538ecb7a",
+      "revId": "15000ce4785969899743b82f542aa6d18a02754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
