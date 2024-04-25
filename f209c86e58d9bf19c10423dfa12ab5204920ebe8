@@ -16,6 +16,24 @@
       "message": "Out of curiosity - Is there a reason not to use h.pow(2) here? Even though overflow is unlikely, you could consider this for consistency.",
       "revId": "f209c86e58d9bf19c10423dfa12ab5204920ebe8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b92a0c84_eb79904b",
+        "filename": "tools/rootcanal/rust/src/lmp/ec.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-25T18:16:03Z",
+      "side": 1,
+      "message": "No there is no specific reason, I did it mostly for consistency with the line under it where I could have used `h.pow(3)` as well.\n\nLet me look quickly if this has an impact on performance, if not I\u0027ll just replace both with a `h.pow` call.",
+      "parentUuid": "b785dadd_3489a7bb",
+      "revId": "f209c86e58d9bf19c10423dfa12ab5204920ebe8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
