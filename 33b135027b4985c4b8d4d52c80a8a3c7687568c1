@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be32974b_e114942a",
+        "filename": "sysprop/sysprop.gni",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-26T10:52:08Z",
+      "side": 1,
+      "message": "1. Can you please provide more context for this change or point us to a document? Loop in Kaitherine for sysprop.\n\n2. We need to add `sysprop_cpp` to ChromeOS SDK as this patch create a build-time dependency for Floss. Current Chrome milestone (m126) is feature frozen (4/26-5/13), but we can prepare ChromeOS side change and submit it in next milestone (m127) on 5/14.",
+      "range": {
+        "startLine": 38,
+        "startChar": 9,
+        "endLine": 38,
+        "endChar": 20
+      },
+      "revId": "33b135027b4985c4b8d4d52c80a8a3c7687568c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
