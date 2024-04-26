@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d9bf04d_381e55aa",
+        "filename": "system/bta/hh/bta_hh_headtracker.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-04-26T01:59:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b030ab93_b801f98e",
+      "range": {
+        "startLine": 35,
+        "startChar": 6,
+        "endLine": 35,
+        "endChar": 23
+      },
+      "revId": "09a64758fd3ab1aa1fce09315e8d1c993845cf31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f9a43429_da0cdb95",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a3360fa_004244e8",
+        "filename": "system/bta/hh/bta_hh_headtracker.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-04-26T01:59:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9a43429_da0cdb95",
+      "range": {
+        "startLine": 47,
+        "startChar": 2,
+        "endLine": 47,
+        "endChar": 25
+      },
+      "revId": "09a64758fd3ab1aa1fce09315e8d1c993845cf31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6e248f5a_c7ace43b",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-04-26T01:49:01Z",
       "side": 1,
       "message": "same as above",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 24
+      },
+      "revId": "09a64758fd3ab1aa1fce09315e8d1c993845cf31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "844add35_6b68549a",
+        "filename": "system/bta/hh/bta_hh_headtracker.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-04-26T01:59:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e248f5a_c7ace43b",
       "range": {
         "startLine": 59,
         "startChar": 0,
