@@ -158,6 +158,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "74bd5247_1dde7e9f",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 3645,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-26T00:32:06Z",
+      "side": 1,
+      "message": "also DIS_ReadDISInfo will trigger GATT connection if it does not exist yet",
+      "range": {
+        "startLine": 3645,
+        "startChar": 13,
+        "endLine": 3645,
+        "endChar": 28
+      },
+      "revId": "925a379b5c53ce26c739bf5598ba1c7887bd7795",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1f323ea5_e706b19c",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 5
