@@ -181,6 +181,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ed91cbd4_0e7beee0",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 3645,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-26T01:39:18Z",
+      "side": 1,
+      "message": "Because `DIS_ReadDISInfo` is asynchronous, upper layer may report BONDED state before DIS read is completely. \n\nThen when phone policy is being setup, we don\u0027t have model number yet and hence allowlist will be ignored.",
+      "range": {
+        "startLine": 3645,
+        "startChar": 13,
+        "endLine": 3645,
+        "endChar": 28
+      },
+      "revId": "925a379b5c53ce26c739bf5598ba1c7887bd7795",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1f323ea5_e706b19c",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 5
