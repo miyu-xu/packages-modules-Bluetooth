@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7644aea2_e21729c0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-04-26T10:35:49Z",
+      "side": 1,
+      "message": "LGTM % some nits. Thanks for the efforts, the MPS/phone_ops flags are quite clean now.",
+      "revId": "cfc3b374870fce0a8a3d418dfef82ad4e4d68582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bc0b9d4_1e8893ff",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 2053,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-04-26T10:35:49Z",
+      "side": 1,
+      "message": "nit: Switch these 2 lines so you don\u0027t need the `.clone()`. Same below.",
+      "range": {
+        "startLine": 2052,
+        "startChar": 0,
+        "endLine": 2053,
+        "endChar": 89
+      },
+      "revId": "cfc3b374870fce0a8a3d418dfef82ad4e4d68582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d675ec7_f0dabede",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 2100,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-04-26T10:35:49Z",
+      "side": 1,
+      "message": "Redundant `.clone()` call. Same below.",
+      "range": {
+        "startLine": 2100,
+        "startChar": 51,
+        "endLine": 2100,
+        "endChar": 59
+      },
+      "revId": "cfc3b374870fce0a8a3d418dfef82ad4e4d68582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
