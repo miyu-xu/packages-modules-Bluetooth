@@ -349,6 +349,30 @@
       },
       "revId": "2ce595db8884b7d4ad8cc4e55a320ea67c8dab3f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a78ec86_51e08c70",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-26T21:12:59Z",
+      "side": 1,
+      "message": "Mmmm I see what your mean.\n\nThey both do the same check:\n```\n       if (!hasUsageStatsPermission(callingPackage)) {\n            enforceCallingPermission(android.Manifest.permission.PACKAGE_USAGE_STATS,\n                    \"getUidProcessState\");\n        }\n```\n\nBut then uid is making [this check](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:out/soong/.intermediates/frameworks/base/services/core/services.core.unboosted/android_common/e81986d0fdbc7fd1cfb6129a176a7913/xref37/srcjars.xref/frameworks/base/services/core/java/com/android/server/am/ActivityManagerService.java;l\u003d7906;drc\u003da42e5bd845b7f4b09fa5608f4fb433b0cd2eebcf)\n\n```\n        // In case the caller is requesting processState of an app in a different user,\n        // then verify the caller has INTERACT_ACROSS_USERS_FULL permission\n        mUserController.handleIncomingUser(Binder.getCallingPid(), Binder.getCallingUid(),\n                UserHandle.getUserId(uid), false /* allowAll */, ALLOW_FULL_ONLY,\n                \"getUidProcessState\", callingPackage); // Ignore return value\n```\n\nI believe it is a mistake that getPackageImportance doesn\u0027t check that, we should raise a bug to the activitymanager team.\n\nAs I said above Bluetooth has the permission [INTERACT_ACROSS_USERS_FULL](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/apex/permissions/com.android.bluetooth.xml;l\u003d25;drc\u003d4b3f331149025ee02deeacf2745ca375505d28a8)\n\nwe just cannot call the method with the client binder identity and need to call it as bluetooth.\nSimply calling clearBinderIdentity will fix that.\nmanaging our threading will also fix that (and in a way more elegant way)",
+      "parentUuid": "3e1a31f1_104ed8d8",
+      "range": {
+        "startLine": 717,
+        "startChar": 0,
+        "endLine": 717,
+        "endChar": 78
+      },
+      "revId": "2ce595db8884b7d4ad8cc4e55a320ea67c8dab3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
