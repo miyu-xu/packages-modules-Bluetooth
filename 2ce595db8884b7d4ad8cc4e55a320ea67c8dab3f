@@ -157,6 +157,30 @@
       },
       "revId": "2ce595db8884b7d4ad8cc4e55a320ea67c8dab3f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10dfa51c_ca695484",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-26T02:41:51Z",
+      "side": 1,
+      "message": "This can be workaround by calling clearCallingIdentity before calling the external API.\n\nBut Calling getPackageImportance on the package present in the attribution source maybe best in the end",
+      "parentUuid": "5198b220_76a1e81c",
+      "range": {
+        "startLine": 717,
+        "startChar": 0,
+        "endLine": 717,
+        "endChar": 78
+      },
+      "revId": "2ce595db8884b7d4ad8cc4e55a320ea67c8dab3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
