@@ -63,6 +63,30 @@
       },
       "revId": "0a17f9201d7428828972e30e6bcced5ccdd3bd0c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95715c4b_34c65395",
+        "filename": "floss/android-base/include/log/log.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-26T21:13:46Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0755e549_2c95f387",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 18
+      },
+      "revId": "0a17f9201d7428828972e30e6bcced5ccdd3bd0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
