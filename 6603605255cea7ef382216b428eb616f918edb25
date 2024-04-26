@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbbd2fdb_1350543f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-26T13:19:03Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "dc7a4292_a4df4a47",
+      "revId": "6603605255cea7ef382216b428eb616f918edb25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "026c438b_21edc582",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-04-25T19:45:08Z",
       "side": 1,
       "message": "Had some offline discussion with Yuyang on this as well. \nMaybe a better place to define this is in BluetoothLeAudio?\n\n    /**\n     * Indicates all context types.\n     *\n     * @hide\n     */\n    public static final int CONTEXT_TYPE_ALL \u003d ...\n    \nIn this way, we define all those context types in one place, and use it with BluetoothLeAudio.CONTEXT_TYPE_ALL.\nAnd Utils is more for BT profiles common constants, not le audio specific.\n\nWhat do you think?",
+      "revId": "6603605255cea7ef382216b428eb616f918edb25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b833c0db_40b610f1",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-26T13:19:03Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "026c438b_21edc582",
       "revId": "6603605255cea7ef382216b428eb616f918edb25",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -135,6 +171,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6955ed53_fef743d8",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3141,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-26T13:19:03Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d8c9d173_38bfed55",
+      "range": {
+        "startLine": 3141,
+        "startChar": 0,
+        "endLine": 3141,
+        "endChar": 112
+      },
+      "revId": "6603605255cea7ef382216b428eb616f918edb25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be9cc644_a03134cb",
@@ -158,6 +218,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c3290c4_66ebbfa9",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3150,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-26T13:19:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be9cc644_a03134cb",
+      "range": {
+        "startLine": 3150,
+        "startChar": 0,
+        "endLine": 3150,
+        "endChar": 108
+      },
+      "revId": "6603605255cea7ef382216b428eb616f918edb25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb2a37ef_e21f9bdd",
@@ -171,6 +255,24 @@
       "writtenOn": "2024-04-24T15:20:38Z",
       "side": 1,
       "message": "maybe group_user_allowed_context_mask_ ?",
+      "revId": "6603605255cea7ef382216b428eb616f918edb25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89302f42_56a6d97e",
+        "filename": "system/bta/le_audio/device_groups.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-26T13:19:03Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "bb2a37ef_e21f9bdd",
       "revId": "6603605255cea7ef382216b428eb616f918edb25",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
