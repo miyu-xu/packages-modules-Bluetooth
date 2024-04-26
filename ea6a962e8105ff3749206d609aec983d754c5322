@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "734e40d1_cc6f646f",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 4235,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-26T20:25:52Z",
+      "side": 1,
+      "message": "could we check if we already have a cached model name before doing the read?",
+      "range": {
+        "startLine": 4235,
+        "startChar": 6,
+        "endLine": 4235,
+        "endChar": 58
+      },
+      "revId": "ea6a962e8105ff3749206d609aec983d754c5322",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
