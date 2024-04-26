@@ -17,6 +17,7 @@
 #ifndef FUZZER_SDP_FUNCTIONS_H_
 #define FUZZER_SDP_FUNCTIONS_H_
 
+#include <base/bind.h>
 #include <fuzzer/FuzzedDataProvider.h>
 
 #include <vector>
@@ -109,7 +110,8 @@ static const std::vector<std::function<void(FuzzedDataProvider*)>>
           if (db) {
             get_legacy_stack_sdp_api()
                 ->service.SDP_ServiceSearchAttributeRequest2(
-                    bd_addr, db, &sdp_disc_cmpl_cb2, user_data.data());
+                    bd_addr, db,
+                    base::BindRepeating(&sdp_disc_cmpl_cb2, user_data));
           }
         },
 
