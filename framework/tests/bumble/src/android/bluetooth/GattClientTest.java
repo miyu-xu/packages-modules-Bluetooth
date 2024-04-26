@@ -16,6 +16,7 @@
 
 package android.bluetooth;
 
+
 import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth8.assertThat;
 
@@ -40,9 +41,9 @@ import androidx.test.core.app.ApplicationProvider;
 
 import com.android.bluetooth.flags.Flags;
 import com.android.compatibility.common.util.AdoptShellPermissionsRule;
+import com.android.compatibility.common.util.SystemUtil;
 
 import com.google.protobuf.ByteString;
-import com.google.testing.junit.testparameterinjector.TestParameter;
 import com.google.testing.junit.testparameterinjector.TestParameterInjector;
 
 import org.junit.Assume;
@@ -52,10 +53,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InOrder;
+import org.mockito.Mockito;
 import org.mockito.invocation.Invocation;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
+import java.util.Set;
 import java.util.UUID;
 
 import pandora.GattProto.AttStatusCode;
@@ -69,6 +72,7 @@ import pandora.GattProto.RegisterServiceRequest;
 import pandora.HostProto.AdvertiseRequest;
 import pandora.HostProto.AdvertiseResponse;
 import pandora.HostProto.OwnAddressType;
+import pandora.SecurityProto;
 
 @RunWith(TestParameterInjector.class)
 public class GattClientTest {
@@ -77,6 +81,7 @@ public class GattClientTest {
     private static final int MTU_REQUESTED = 23;
     private static final int ANOTHER_MTU_REQUESTED = 42;
     private static final String NOTIFICATION_VALUE = "hello world";
+    private static final String NOTIFICATION_VALUE2 = "hello world 2!!!";
 
     private static final UUID GAP_UUID = UUID.fromString("00001800-0000-1000-8000-00805f9b34fb");
     private static final UUID CCCD_UUID = UUID.fromString("00002902-0000-1000-8000-00805f9b34fb");
@@ -235,8 +240,18 @@ public class GattClientTest {
     }
 
     @Test
-    public void clientGattNotifyOrIndicateCharacteristic(@TestParameter boolean isIndicate)
-            throws Exception {
+    public void clientGattNotifyOrIndicateCharacteristic_afterBonding() throws Exception {
+        // 1. Setup
+        BluetoothDevice bumbleDevice = mBumble.getRemoteDevice();
+        Set<BluetoothDevice> bondedDevices = mAdapter.getBondedDevices();
+        if (bondedDevices.contains(bumbleDevice)) {
+            bumbleDevice.removeBond();
+        }
+        Thread.sleep(2_000);
+
+        // 2. Check notification works
+
+        boolean isIndicate = false;
         registerNotificationIndicationGattService(isIndicate);
 
         BluetoothGattCallback gattCallback = mock(BluetoothGattCallback.class);
@@ -274,9 +289,61 @@ public class GattClientTest {
                     .onCharacteristicChanged(
                             any(), any(), eq(NOTIFICATION_VALUE.getBytes(StandardCharsets.UTF_8)));
 
+            ///////////////////////////////////////////////
+            // 3. Test notification after bonding
+            ///////////////////////////////////////////////
+
+            StreamObserverSpliterator<SecurityProto.PairingEvent> mPairingEventStreamObserver =
+                    new StreamObserverSpliterator<>();
+            mBumble.security().onPairing(mPairingEventStreamObserver);
+
+            BluetoothDevice device;
+
+            //            device = mAdapter.getRemoteLeDevice(Utils.BUMBLE_RANDOM_ADDRESS,
+            // BluetoothDevice.ADDRESS_TYPE_RANDOM);
+            device = mBumble.getRemoteDevice();
+
+            Log.d("XXX", "createBond() called!");
+            assertThat(device.createBond(BluetoothDevice.TRANSPORT_BREDR)).isTrue();
+            Thread.sleep(2_000);
+
+            Log.d("XXX", "setPairingConfirmation(true) called!");
+            SystemUtil.runWithShellPermissionIdentity(
+                    () -> device.setPairingConfirmation(true),
+                    android.Manifest.permission.BLUETOOTH_PRIVILEGED);
+            Thread.sleep(2_000);
+
+            assertThat(mAdapter.getBondedDevices()).contains(device);
+            Mockito.clearInvocations(gattCallback);
+
+            if (isIndicate) {
+                Log.i(TAG, "Triggering characteristic indication");
+                triggerCharacteristicIndication(characteristic.getInstanceId());
+            } else {
+                Log.i(TAG, "Triggering characteristic notification");
+                triggerCharacteristicNotification(characteristic.getInstanceId());
+            }
+
+            verify(gattCallback, timeout(5000))
+                    .onCharacteristicChanged(
+                            any(), any(), eq(NOTIFICATION_VALUE2.getBytes(StandardCharsets.UTF_8)));
+
         } finally {
             disconnectAndWaitDisconnection(gatt, gattCallback);
+            if (bondedDevices.contains(bumbleDevice)) {
+                bumbleDevice.removeBond();
+            }
         }
+    }
+
+    private void triggerCharacteristicNotification2(int instanceId) {
+        NotifyOnCharacteristicRequest req =
+                NotifyOnCharacteristicRequest.newBuilder()
+                        .setHandle(instanceId)
+                        .setValue(ByteString.copyFromUtf8(NOTIFICATION_VALUE2))
+                        .build();
+        NotifyOnCharacteristicResponse resp = mBumble.gattBlocking().notifyOnCharacteristic(req);
+        assertThat(resp.getStatus()).isEqualTo(AttStatusCode.SUCCESS);
     }
 
     @Test
