@@ -16,6 +16,29 @@
       "message": "Katherine, would you please take a look of this change? I have no concern to add a shim layer for android-base.",
       "revId": "0a17f9201d7428828972e30e6bcced5ccdd3bd0c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48aee0d6_4f06d38c",
+        "filename": "floss/android-base/include/log/log.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-26T19:08:55Z",
+      "side": 1,
+      "message": "Is this still needed now that the log refactor has been done ?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 18
+      },
+      "revId": "0a17f9201d7428828972e30e6bcced5ccdd3bd0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
