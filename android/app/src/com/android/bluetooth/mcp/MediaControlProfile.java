@@ -36,6 +36,7 @@ import com.android.bluetooth.Utils;
 import com.android.bluetooth.audio_util.MediaData;
 import com.android.bluetooth.audio_util.MediaPlayerList;
 import com.android.bluetooth.audio_util.MediaPlayerWrapper;
+import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.le_audio.ContentControlIdKeeper;
 import com.android.internal.annotations.VisibleForTesting;
 
@@ -401,6 +402,17 @@ public class MediaControlProfile implements MediaControlServiceCallbacks {
                 "GMCS onMediaControlRequest: opcode= "
                         + Request.Opcodes.toString(request.getOpcode()));
         Request.Results status = Request.Results.COMMAND_CANNOT_BE_COMPLETED;
+
+        if (Flags.mcpAllowPlayWithoutActivePlayer()
+                && !Utils.isPtsTestMode()
+                && mMediaPlayerList.getActivePlayer() == null
+                && request.getOpcode() == Request.Opcodes.PLAY) {
+            Log.d(TAG, "Player is not active. GMCS send media key for PLAY");
+            int passthroughIdPlay = 0x44;
+            mMediaPlayerList.sendMediaKeyEvent(passthroughIdPlay, true);
+            mMediaPlayerList.sendMediaKeyEvent(passthroughIdPlay, false);
+            return;
+        }
 
         if (mMediaPlayerList.getActivePlayer() == null || mCurrentData.state == null) {
             Log.w(TAG, "no active MediaPlayer or mCurrentData is null");
