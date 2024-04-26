@@ -49,6 +49,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dcd2f52c_4ca81b16",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-26T00:19:19Z",
+      "side": 1,
+      "message": "Another question: would changing this order hinder some allowlist operations that is blocked on the DIS model name value?\n\nthis change will make DIS read happen later",
+      "revId": "925a379b5c53ce26c739bf5598ba1c7887bd7795",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "558425f5_20892ec0",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 5
