@@ -439,6 +439,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6bc7482f_2373335b",
+        "filename": "framework/java/android/bluetooth/BluetoothManager.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-04-26T12:55:10Z",
+      "side": 1,
+      "message": "Yes, but it was inevitable choice because I didn\u0027t want to change the thread selection (i.e. callback runs on binder thread) when the flag is turned on.\n\nOtherwise, all the current usages of the `openGattServer` which don\u0027t get executor should be changed to the newly created one. However it isn\u0027t possible since there are public API usages.\n\nAdditionaly, since this is a hidden API so it isn\u0027t under the strict rule of the API guideline 😂.\nWhat do you think?",
+      "parentUuid": "4597fcf4_916ea0e4",
+      "range": {
+        "startLine": 257,
+        "startChar": 14,
+        "endLine": 257,
+        "endChar": 23
+      },
+      "revId": "96a501ad3cc4ac9147b2fb175a5164a61cad776f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e9d27af9_becc599e",
         "filename": "framework/tests/bumble/AndroidTest.xml",
         "patchSetId": 15
