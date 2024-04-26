@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c20ad17_b65f6cef",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1032,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-04-26T05:39:21Z",
+      "side": 1,
+      "message": "Number could be None.\n```suggestion\n                if let Some(number) \u003d number {\n                    self.dialing_call_impl(number, Some(addr));\n                } else {\n                    self.simple_at_response(false, addr);\n                }\n```",
+      "range": {
+        "startLine": 1032,
+        "startChar": 16,
+        "endLine": 1032,
+        "endChar": 68
+      },
+      "revId": "c5f3c31c139e5ac0948defbb95771fd70520b0a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff861f33_9ffb9b6e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1294,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-04-26T05:39:21Z",
+      "side": 1,
+      "message": "Shall be `None` since the headset would not expect an AT response here.",
+      "range": {
+        "startLine": 1294,
+        "startChar": 50,
+        "endLine": 1294,
+        "endChar": 60
+      },
+      "revId": "c5f3c31c139e5ac0948defbb95771fd70520b0a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "429fed34_71a50beb",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 2041,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-04-26T05:39:21Z",
+      "side": 1,
+      "message": "Prevent `unwrap()` call by using `if let` syntax. Change the order so don\u0027t need to clone.\n\nSimilar to the below and the held impl functions.\n```suggestion\n            if let Some(addr) \u003d addr {\n                warn!(\"[{}]: Unexpected dialing command from HF\", DisplayAddress(\u0026addr));\n                self.simple_at_response(false, addr);\n            }\n```",
+      "range": {
+        "startLine": 2038,
+        "startChar": 0,
+        "endLine": 2041,
+        "endChar": 13
+      },
+      "revId": "c5f3c31c139e5ac0948defbb95771fd70520b0a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
