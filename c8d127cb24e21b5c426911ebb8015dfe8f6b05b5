@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54217a20_915833eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-26T18:35:34Z",
+      "side": 1,
+      "message": "Fixed the test failure.\nFound one small issue in the ver.4, fixed on Grzegorz\u0027s behalf by using the previous approved ver.3 change. Let\u0027s plan some refactoring work as the follow-up of this.",
+      "revId": "c8d127cb24e21b5c426911ebb8015dfe8f6b05b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
