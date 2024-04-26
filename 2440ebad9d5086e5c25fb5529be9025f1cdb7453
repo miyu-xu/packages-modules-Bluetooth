@@ -16,6 +16,24 @@
       "message": "looks good to me on MCP side, invite AVRCP DRI to take a look of MediaPlayerList change",
       "revId": "2440ebad9d5086e5c25fb5529be9025f1cdb7453",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c70fbb20_954572fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-26T21:05:11Z",
+      "side": 1,
+      "message": "@etienne.ruffieux@codecoup.pl",
+      "parentUuid": "4036740f_65212fec",
+      "revId": "2440ebad9d5086e5c25fb5529be9025f1cdb7453",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
