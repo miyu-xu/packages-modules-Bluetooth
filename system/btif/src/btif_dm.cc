@@ -98,6 +98,7 @@
 #include "stack/include/btm_sec_api.h"
 #include "stack/include/btm_sec_api_types.h"
 #include "stack/include/smp_api.h"
+#include "stack/include/srvc_api.h"  // tDIS_VALUE
 #include "stack/sdp/sdpint.h"
 #include "storage/config_keys.h"
 #include "types/raw_address.h"
@@ -4194,6 +4195,33 @@ void btif_dm_set_event_filter_inquiry_result_all_devices() {
   BTA_DmSetEventFilterInquiryResultAllDevices();
 }
 
+static void read_dis_cback(const RawAddress& bd_addr, tDIS_VALUE* p_dis_value) {
+  if (p_dis_value == nullptr) {
+    log::warn("received unexpected/error DIS callback");
+    return;
+  }
+
+  if (!(p_dis_value->attr_mask & DIS_ATTR_MODEL_NUM_BIT)) {
+    log::warn("unknown bit, mask: {}", (int)p_dis_value->attr_mask);
+    return;
+  }
+
+  for (int i = 0; i < DIS_MAX_STRING_DATA; i++) {
+    if (p_dis_value->data_string[i] == nullptr) continue;
+
+    bt_property_t prop;
+    prop.type = BT_PROPERTY_REMOTE_MODEL_NUM;
+    prop.val = p_dis_value->data_string[i];
+    prop.len = strlen((char*)prop.val);
+
+    log::info("Device {}, model name: {}", bd_addr, (char*)prop.val);
+
+    btif_storage_set_remote_device_property(&bd_addr, &prop);
+    GetInterfaceToProfiles()->events->invoke_remote_device_properties_cb(
+        BT_STATUS_SUCCESS, bd_addr, 1, &prop);
+  }
+}
+
 void btif_dm_metadata_changed(const RawAddress& remote_bd_addr, int key,
                               std::vector<uint8_t> value) {
   static const int METADATA_LE_AUDIO = 26;
@@ -4201,6 +4229,13 @@ void btif_dm_metadata_changed(const RawAddress& remote_bd_addr, int key,
   if (key == METADATA_LE_AUDIO) {
     log::info("Device is LE Audio Capable {}", remote_bd_addr);
     metadata_cb.le_audio_cache.insert_or_assign(remote_bd_addr, value);
+
+    if (com::android::bluetooth::flags::read_model_num_fix()) {
+      log::info("Read model name for le audio capable device");
+      if (!DIS_ReadDISInfo(remote_bd_addr, read_dis_cback, DIS_ATTR_MODEL_NUM_BIT)) {
+        log::warn("Read DIS failed");
+      }
+    }
   }
 }
 
