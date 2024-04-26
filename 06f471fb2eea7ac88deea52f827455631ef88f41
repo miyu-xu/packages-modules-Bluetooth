@@ -70,6 +70,30 @@
       },
       "revId": "06f471fb2eea7ac88deea52f827455631ef88f41",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1210047_ccbb23b4",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1024,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-04-26T03:12:53Z",
+      "side": 0,
+      "message": "I still don\u0027t understand your explanation.\n\nAre you saying\n(a) we can remove this `should_insert_call_when_sco_start` because of other refactors in this CL?, or\n(b) This `should_insert_call_when_sco_start` check can already be removed\n\nIf (a) please provide clearer explanation.\nif (b) then please create a separate CL as the rationale deserved explanation in its own commit message.",
+      "parentUuid": "7ce083ca_534f04ac",
+      "range": {
+        "startLine": 1016,
+        "startChar": 16,
+        "endLine": 1024,
+        "endChar": 17
+      },
+      "revId": "06f471fb2eea7ac88deea52f827455631ef88f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
