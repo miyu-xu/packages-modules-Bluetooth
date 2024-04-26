@@ -87,8 +87,10 @@ static void post_disc_evt(tBTA_DM_DISC_EVT event,
 }
 
 static void bta_dm_gatt_disc_complete(uint16_t conn_id, tGATT_STATUS status);
-static void bta_dm_find_services(const RawAddress& bd_addr);
-static void bta_dm_sdp_callback(const RawAddress& bd_addr,
+static void bta_dm_find_services(const RawAddress& bd_addr,
+                                 tBTA_DM_SDP_STATE sdp_state);
+static void bta_dm_sdp_callback(tBTA_DM_SDP_STATE sdp_state,
+                                const RawAddress& bd_addr,
                                 tSDP_STATUS sdp_status);
 static void bta_dm_disable_disc(void);
 static void bta_dm_gattc_register(void);
@@ -377,10 +379,12 @@ static void bta_dm_store_audio_profiles_version() {
   }
 }
 
-static void bta_dm_sdp_result(tSDP_STATUS sdp_result);
+static void bta_dm_sdp_result(tSDP_STATUS sdp_result,
+                              tBTA_DM_SDP_STATE sdp_state);
 
 /* Callback from sdp with discovery status */
-static void bta_dm_sdp_callback(const RawAddress& /* bd_addr */,
+static void bta_dm_sdp_callback(tBTA_DM_SDP_STATE sdp_state,
+                                const RawAddress& /* bd_addr */,
                                 tSDP_STATUS sdp_status) {
   log::info("{}", bta_dm_state_text(bta_dm_discovery_get_state()));
 
@@ -389,11 +393,13 @@ static void bta_dm_sdp_callback(const RawAddress& /* bd_addr */,
     return;
   }
 
-  do_in_main_thread(FROM_HERE, base::BindOnce(&bta_dm_sdp_result, sdp_status));
+  do_in_main_thread(FROM_HERE,
+                    base::BindOnce(&bta_dm_sdp_result, sdp_status, sdp_state));
 }
 
 /* Process the discovery result from sdp */
-static void bta_dm_sdp_result(tSDP_STATUS sdp_result) {
+static void bta_dm_sdp_result(tSDP_STATUS sdp_result,
+                              tBTA_DM_SDP_STATE sdp_state) {
   tSDP_DISC_REC* p_sdp_rec = NULL;
   bool scn_found = false;
   uint16_t service = 0xFFFF;
@@ -408,23 +414,21 @@ static void bta_dm_sdp_result(tSDP_STATUS sdp_result) {
 
     do {
       p_sdp_rec = NULL;
-      if (bta_dm_discovery_cb.service_index == (BTA_USER_SERVICE_ID + 1)) {
+      if (sdp_state.service_index == (BTA_USER_SERVICE_ID + 1)) {
         if (p_sdp_rec &&
             get_legacy_stack_sdp_api()->record.SDP_FindProtocolListElemInRec(
                 p_sdp_rec, UUID_PROTOCOL_RFCOMM, &pe)) {
-          bta_dm_discovery_cb.peer_scn = (uint8_t)pe.params[0];
+          sdp_state.peer_scn = (uint8_t)pe.params[0];
           scn_found = true;
         }
       } else {
-        service =
-            bta_service_id_to_uuid_lkup_tbl[bta_dm_discovery_cb.service_index -
-                                            1];
+        service = bta_service_id_to_uuid_lkup_tbl[sdp_state.service_index - 1];
         p_sdp_rec = get_legacy_stack_sdp_api()->db.SDP_FindServiceInDb(
             bta_dm_discovery_cb.p_sdp_db, service, p_sdp_rec);
       }
       /* finished with BR/EDR services, now we check the result for GATT based
        * service UUID */
-      if (bta_dm_discovery_cb.service_index == BTA_MAX_SERVICE_ID) {
+      if (sdp_state.service_index == BTA_MAX_SERVICE_ID) {
         /* all GATT based services */
         do {
           /* find a service record, report it */
@@ -445,25 +449,25 @@ static void bta_dm_sdp_result(tSDP_STATUS sdp_result) {
       } else {
         if ((p_sdp_rec != NULL)) {
           if (service != UUID_SERVCLASS_PNP_INFORMATION) {
-            bta_dm_discovery_cb.services_found |=
+            sdp_state.services_found |=
                 (tBTA_SERVICE_MASK)(BTA_SERVICE_ID_TO_SERVICE_MASK(
-                    bta_dm_discovery_cb.service_index - 1));
-            uint16_t tmp_svc = bta_service_id_to_uuid_lkup_tbl
-                [bta_dm_discovery_cb.service_index - 1];
+                    sdp_state.service_index - 1));
+            uint16_t tmp_svc =
+                bta_service_id_to_uuid_lkup_tbl[sdp_state.service_index - 1];
             /* Add to the list of UUIDs */
             uuid_list.push_back(Uuid::From16Bit(tmp_svc));
           }
         }
       }
 
-      if (bta_dm_discovery_cb.services_to_search == 0) {
-        bta_dm_discovery_cb.service_index++;
+      if (sdp_state.services_to_search == 0) {
+        sdp_state.service_index++;
       } else /* regular one service per search or PNP search */
         break;
 
-    } while (bta_dm_discovery_cb.service_index <= BTA_MAX_SERVICE_ID);
+    } while (sdp_state.service_index <= BTA_MAX_SERVICE_ID);
 
-    log::verbose("services_found = {:04x}", bta_dm_discovery_cb.services_found);
+    log::verbose("services_found = {:04x}", sdp_state.services_found);
 
     /* Collect the 128-bit services here and put them into the list */
     p_sdp_rec = NULL;
@@ -483,7 +487,7 @@ static void bta_dm_sdp_result(tSDP_STATUS sdp_result) {
 
     if (bluetooth::common::init_flags::
             dynamic_avrcp_version_enhancement_is_enabled() &&
-        bta_dm_discovery_cb.services_to_search == 0) {
+        sdp_state.services_to_search == 0) {
       bta_dm_store_audio_profiles_version();
     }
 
@@ -498,10 +502,10 @@ static void bta_dm_sdp_result(tSDP_STATUS sdp_result) {
 #endif
 
     /* if there are more services to search for */
-    if (bta_dm_discovery_cb.services_to_search) {
+    if (sdp_state.services_to_search) {
       /* Free up the p_sdp_db before checking the next one */
       bta_dm_free_sdp_db();
-      bta_dm_find_services(bta_dm_discovery_cb.peer_bdaddr);
+      bta_dm_find_services(bta_dm_discovery_cb.peer_bdaddr, sdp_state);
       return;
     }
 
@@ -510,9 +514,8 @@ static void bta_dm_sdp_result(tSDP_STATUS sdp_result) {
     BTM_LogHistory(
         kBtmLogTag, bta_dm_discovery_cb.peer_bdaddr, "Discovery completed",
         base::StringPrintf("Result:%s services_found:0x%x service_index:0x%d",
-                            sdp_result_text(sdp_result).c_str(),
-                            bta_dm_discovery_cb.services_found,
-                            bta_dm_discovery_cb.service_index));
+                           sdp_result_text(sdp_result).c_str(),
+                           sdp_state.services_found, sdp_state.service_index));
 
     auto msg = std::make_unique<tBTA_DM_MSG>(tBTA_DM_SVC_RES{});
     auto& disc_result = std::get<tBTA_DM_SVC_RES>(*msg);
@@ -537,16 +540,15 @@ static void bta_dm_sdp_result(tSDP_STATUS sdp_result) {
     }
     /* Done with p_sdp_db. Free it */
     bta_dm_free_sdp_db();
-    disc_result.services = bta_dm_discovery_cb.services_found;
+    disc_result.services = sdp_state.services_found;
 
     // Piggy back the SCN over result field
     if (scn_found) {
-      disc_result.result =
-          static_cast<tBTA_STATUS>((3 + bta_dm_discovery_cb.peer_scn));
+      disc_result.result = static_cast<tBTA_STATUS>((3 + sdp_state.peer_scn));
       disc_result.services |= BTA_USER_SERVICE_MASK;
 
       log::verbose("Piggy back the SCN over result field  SCN={}",
-                    bta_dm_discovery_cb.peer_scn);
+                   sdp_state.peer_scn);
     }
     disc_result.bd_addr = bta_dm_discovery_cb.peer_bdaddr;
 
@@ -565,7 +567,7 @@ static void bta_dm_sdp_result(tSDP_STATUS sdp_result) {
     auto& disc_result = std::get<tBTA_DM_SVC_RES>(*msg);
 
     disc_result.result = BTA_FAILURE;
-    disc_result.services = bta_dm_discovery_cb.services_found;
+    disc_result.services = sdp_state.services_found;
     disc_result.bd_addr = bta_dm_discovery_cb.peer_bdaddr;
 
     bta_dm_disc_sm_execute(BTA_DM_DISCOVERY_RESULT_EVT, std::move(msg));
@@ -685,37 +687,37 @@ static void bta_dm_execute_queued_discovery_request() {
  * Returns          void
  *
  ******************************************************************************/
-static void bta_dm_find_services(const RawAddress& bd_addr) {
-  while (bta_dm_discovery_cb.service_index < BTA_MAX_SERVICE_ID) {
-    if (bta_dm_discovery_cb.services_to_search &
+static void bta_dm_find_services(const RawAddress& bd_addr,
+                                 tBTA_DM_SDP_STATE sdp_state) {
+  while (sdp_state.service_index < BTA_MAX_SERVICE_ID) {
+    if (sdp_state.services_to_search &
         (tBTA_SERVICE_MASK)(BTA_SERVICE_ID_TO_SERVICE_MASK(
-            bta_dm_discovery_cb.service_index))) {
+            sdp_state.service_index))) {
       break;
     }
-    bta_dm_discovery_cb.service_index++;
+    sdp_state.service_index++;
   }
 
   /* no more services to be discovered */
-  if (bta_dm_discovery_cb.service_index >= BTA_MAX_SERVICE_ID) {
+  if (sdp_state.service_index >= BTA_MAX_SERVICE_ID) {
     log::info("SDP - no more services to discover");
     bta_dm_disc_sm_execute(BTA_DM_DISCOVERY_RESULT_EVT,
                            std::make_unique<tBTA_DM_MSG>(tBTA_DM_SVC_RES{
                                .bd_addr = bta_dm_discovery_cb.peer_bdaddr,
-                               .services = bta_dm_discovery_cb.services_found,
+                               .services = sdp_state.services_found,
                                .result = BTA_SUCCESS}));
     return;
   }
 
   /* try to search all services by search based on L2CAP UUID */
-  log::info("services_to_search={:08x}",
-            bta_dm_discovery_cb.services_to_search);
+  log::info("services_to_search={:08x}", sdp_state.services_to_search);
   Uuid uuid = Uuid::kEmpty;
-  if (bta_dm_discovery_cb.services_to_search & BTA_RES_SERVICE_MASK) {
+  if (sdp_state.services_to_search & BTA_RES_SERVICE_MASK) {
     uuid = Uuid::From16Bit(bta_service_id_to_uuid_lkup_tbl[0]);
-    bta_dm_discovery_cb.services_to_search &= ~BTA_RES_SERVICE_MASK;
+    sdp_state.services_to_search &= ~BTA_RES_SERVICE_MASK;
   } else {
     uuid = Uuid::From16Bit(UUID_PROTOCOL_L2CAP);
-    bta_dm_discovery_cb.services_to_search = 0;
+    sdp_state.services_to_search = 0;
   }
 
   bta_dm_discovery_cb.p_sdp_db =
@@ -730,19 +732,20 @@ static void bta_dm_find_services(const RawAddress& bd_addr) {
 
   bta_dm_discovery_cb.p_sdp_db->raw_size = MAX_DISC_RAW_DATA_BUF;
 
-  if (!get_legacy_stack_sdp_api()->service.SDP_ServiceSearchAttributeRequest(
-          bd_addr, bta_dm_discovery_cb.p_sdp_db, &bta_dm_sdp_callback)) {
+  if (!get_legacy_stack_sdp_api()->service.SDP_ServiceSearchAttributeRequest2(
+          bd_addr, bta_dm_discovery_cb.p_sdp_db,
+          base::BindRepeating(&bta_dm_sdp_callback, sdp_state))) {
     /*
      * If discovery is not successful with this device, then
      * proceed with the next one.
      */
     osi_free_and_reset((void**)&bta_dm_discovery_cb.p_sdp_db);
-    bta_dm_discovery_cb.service_index = BTA_MAX_SERVICE_ID;
+    sdp_state.service_index = BTA_MAX_SERVICE_ID;
     log::info("SDP not successful");
     bta_dm_disc_sm_execute(BTA_DM_DISCOVERY_RESULT_EVT,
                            std::make_unique<tBTA_DM_MSG>(tBTA_DM_SVC_RES{
                                .bd_addr = bta_dm_discovery_cb.peer_bdaddr,
-                               .services = bta_dm_discovery_cb.services_found,
+                               .services = sdp_state.services_found,
                                .result = BTA_SUCCESS}));
     return;
   }
@@ -753,7 +756,8 @@ static void bta_dm_find_services(const RawAddress& bd_addr) {
       BTA_SdpSearch(bd_addr, Uuid::From16Bit(UUID_SERVCLASS_PBAP_PCE));
     }
   }
-  bta_dm_discovery_cb.service_index++;
+  // TODO: this change must happen on same sdp_state that's Bound
+  sdp_state.service_index++;
 }
 
 /*******************************************************************************
@@ -799,9 +803,6 @@ static void bta_dm_discover_services(tBTA_DM_API_DISCOVER& discover) {
             bt_transport_text(transport));
 
   bta_dm_discovery_cb.service_search_cbacks = discover.cbacks;
-  bta_dm_discovery_cb.services_to_search = BTA_ALL_SERVICE_MASK;
-  bta_dm_discovery_cb.service_index = 0;
-  bta_dm_discovery_cb.services_found = 0;
 
   bta_dm_discovery_cb.peer_bdaddr = bd_addr;
 
@@ -832,7 +833,11 @@ static void bta_dm_discover_services(tBTA_DM_API_DISCOVER& discover) {
   // transport == BT_TRANSPORT_BR_EDR
 
   log::info("starting SDP discovery on {}", bd_addr);
-  bta_dm_find_services(bd_addr);
+  bta_dm_find_services(bd_addr, tBTA_DM_SDP_STATE{
+                                    .services_to_search = BTA_ALL_SERVICE_MASK,
+                                    .services_found = 0,
+                                    .service_index = 0,
+                                });
 }
 
 #ifndef BTA_DM_GATT_CLOSE_DELAY_TOUT
@@ -890,8 +895,7 @@ static void gatt_close_timer_cb(void*) {
  *
  ******************************************************************************/
 static void bta_dm_gatt_disc_complete(uint16_t conn_id, tGATT_STATUS status) {
-  log::verbose("conn_id = {},  service found: 0x{:08x}", conn_id,
-               bta_dm_discovery_cb.services_found);
+  log::verbose("conn_id = {}", conn_id);
 
   std::vector<Uuid> gatt_services;
 
@@ -918,7 +922,6 @@ static void bta_dm_gatt_disc_complete(uint16_t conn_id, tGATT_STATUS status) {
       BTA_DM_DISCOVERY_RESULT_EVT,
       std::make_unique<tBTA_DM_MSG>(tBTA_DM_SVC_RES{
           .bd_addr = bta_dm_discovery_cb.peer_bdaddr,
-          .services = bta_dm_discovery_cb.services_found,
           .is_gatt_over_ble = true,
           .gatt_uuids = std::move(gatt_services),
           .result = (status == GATT_SUCCESS) ? BTA_SUCCESS : BTA_FAILURE}));
@@ -1114,8 +1117,8 @@ tBT_TRANSPORT bta_dm_determine_discovery_transport(const RawAddress& bd_addr) {
   return ::bta_dm_determine_discovery_transport(bd_addr);
 }
 
-void bta_dm_sdp_result(tSDP_STATUS sdp_status) {
-  ::bta_dm_sdp_result(sdp_status);
+void bta_dm_sdp_result(tSDP_STATUS sdp_status, tBTA_DM_SDP_STATE state) {
+  ::bta_dm_sdp_result(sdp_status, state);
 }
 
 }  // namespace testing
@@ -1289,8 +1292,9 @@ tBTA_DM_SERVICE_DISCOVERY_CB& bta_dm_discovery_cb() {
   return ::bta_dm_discovery_cb;
 }
 
-void bta_dm_find_services(const RawAddress& bd_addr) {
-  ::bta_dm_find_services(bd_addr);
+void bta_dm_find_services(const RawAddress& bd_addr,
+                          tBTA_DM_SDP_STATE sdp_state) {
+  ::bta_dm_find_services(bd_addr, sdp_state);
 }
 
 void store_avrcp_profile_feature(tSDP_DISC_REC* sdp_rec) {
