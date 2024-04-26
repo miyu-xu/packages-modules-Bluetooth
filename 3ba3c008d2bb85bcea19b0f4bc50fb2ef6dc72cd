@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20c9a306_8535f4c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-26T11:01:24Z",
+      "side": 1,
+      "message": "Hsin-chen, Howard: m126 cherry-picks after this patch might need to resolve merge conflict manually. Please coordinate to avoid issues.",
+      "revId": "3ba3c008d2bb85bcea19b0f4bc50fb2ef6dc72cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
