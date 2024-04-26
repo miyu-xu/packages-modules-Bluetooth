@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "200d9ddd_2de9d574",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-26T16:06:18Z",
+      "side": 1,
+      "message": "I just submitted a CL that remove IS_FLAG_ENABLED, https://r.android.com/3042562\n\nPlease be careful to replace this before submitting your CL.",
+      "revId": "24379f96b6e2208cce230fe622fdf78ec5f0cf48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
