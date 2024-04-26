@@ -286,8 +286,10 @@ bool LeAudioDevice::ConfigureAses(
 
   // Before we activate the ASEs, make sure we have the right configuration
   // Check for matching PACs only if we know that the LTV format is being used.
-  uint8_t max_required_ase_per_dev = ase_configs.size() / num_of_devices +
-                                     (ase_configs.size() % num_of_devices);
+  uint8_t max_required_ase_per_dev =
+      static_cast<uint8_t>(std::ceil(static_cast<float>(ase_configs.size()) /
+                                     static_cast<float>(num_of_devices)));
+
   int needed_ase = std::min((int)(max_required_ase_per_dev),
                             (int)(ase_configs.size() - active_ases));
   for (int i = 0; i < needed_ase; ++i) {

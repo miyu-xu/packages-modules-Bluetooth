@@ -1420,8 +1420,8 @@ bool LeAudioDeviceGroup::IsAudioSetConfigurationSupported(
       continue;
     }
 
-    uint8_t const max_required_ase_per_dev =
-        ase_cnt / device_cnt + (ase_cnt % device_cnt);
+    uint8_t max_required_ase_per_dev = static_cast<uint8_t>(std::ceil(
+        static_cast<float>(ase_cnt) / static_cast<float>(device_cnt)));
 
     // Use strategy for the whole group (not only the connected devices)
     auto const strategy = utils::GetStrategyForAseConfig(ase_confs, device_cnt);
@@ -1455,6 +1455,10 @@ bool LeAudioDeviceGroup::IsAudioSetConfigurationSupported(
                    static_cast<int>(ase_cnt - active_ase_cnt));
 
       for (auto const& ent : ase_confs) {
+        if (needed_ase_per_dev == 0) {
+          break;
+        }
+
         // Verify PACS only if this is transparent LTV format
         auto const& pacs = (direction == types::kLeAudioDirectionSink)
                                ? device->snk_pacs_
@@ -1566,6 +1570,7 @@ bool LeAudioDeviceGroup::ConfigureAses(
     auto required_device_cnt = max_required_device_cnt;
     uint8_t active_ase_cnt = 0;
 
+    std::list<LeAudioDevice*> configured_devices;
     auto configuration_closure = [&](LeAudioDevice* dev) -> void {
       /* For the moment, we configure only connected devices and when it is
        * ready to stream i.e. All ASEs are discovered and dev is reported as
@@ -1585,6 +1590,7 @@ bool LeAudioDeviceGroup::ConfigureAses(
         return;
       }
 
+      configured_devices.push_back(dev);
       required_device_cnt--;
     };
 
@@ -1594,20 +1600,27 @@ bool LeAudioDeviceGroup::ConfigureAses(
          device = GetNextDeviceWithAvailableContext(device, context_type)) {
       configuration_closure(device);
     }
+
     // In case some devices do not support this scenario - us them anyway if
     // they are required for the scenario - we will not put this context into
-    // their metadata anyway
+    // their metadata and use UNSPECIFIED instead.
     if (required_device_cnt > 0) {
-      for (auto* device = GetFirstDevice();
+      for (auto* device = GetFirstDeviceWithAvailableContext(
+               types::LeAudioContextType::UNSPECIFIED);
            device != nullptr && required_device_cnt > 0;
-           device = GetNextDevice(device)) {
+           device = GetNextDeviceWithAvailableContext(
+               device, types::LeAudioContextType::UNSPECIFIED)) {
+        // Skip the already configured device
+        if (std::find(configured_devices.begin(), configured_devices.end(),
+                      device) != configured_devices.end()) {
+          continue;
+        }
         configuration_closure(device);
       }
     }
 
-    if (required_device_cnt > 0) {
-      /* Don't left any active devices if requirements are not met */
-      log::error("could not configure all the devices");
+    if (required_device_cnt == max_required_device_cnt) {
+      log::error("Could not configure any device.");
       Deactivate();
       return false;
     }
