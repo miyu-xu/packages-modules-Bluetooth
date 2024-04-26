@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e36056e_a278f978",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-04-26T14:53:59Z",
+      "side": 1,
+      "message": "Thanks, LGTM and also checked with multiple audio scenarios",
+      "revId": "00391605f37cbb0b6b326b54761439217adac9c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
