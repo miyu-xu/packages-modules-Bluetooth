@@ -22,6 +22,30 @@
       },
       "revId": "33b135027b4985c4b8d4d52c80a8a3c7687568c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80eba3f3_505972be",
+        "filename": "sysprop/sysprop.gni",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-26T17:57:25Z",
+      "side": 1,
+      "message": "Hi Ying,\n\nI do not have a doc for this change, but the goal of this change is kinda like the one for aconfig flags.\n\nsysprop is a tool that generate files to access system properties. Right now for floss we need to do a workaround like we did for aconfig https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/sysprop/exported_include/android_bluetooth_sysprop.h;l\u003d33;drc\u003d8a9a567f5bd0eb1ee66180ece9e55f83cd93a570.\n\nI would like to remove this workaround and also allows floss to be able to configure things using the sysprop wrapper.\n\nFor new system properties it\u0027s recommended to use sysprop rather that giving the key as a string https://source.android.com/docs/core/architecture/configuration/sysprops-apis.",
+      "parentUuid": "be32974b_e114942a",
+      "range": {
+        "startLine": 38,
+        "startChar": 9,
+        "endLine": 38,
+        "endChar": 20
+      },
+      "revId": "33b135027b4985c4b8d4d52c80a8a3c7687568c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
