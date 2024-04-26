@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e4661b7_89e37eb6",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-04-26T16:54:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48398f4c_0f58f11d",
+      "range": {
+        "startLine": 139,
+        "startChar": 28,
+        "endLine": 139,
+        "endChar": 44
+      },
+      "revId": "2ce595db8884b7d4ad8cc4e55a320ea67c8dab3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "407dfac2_f8ee036d",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-04-25T18:03:10Z",
       "side": 1,
       "message": "Can you get it with a requireNonNull to make it obvious this will never be null (it cannot by construction of the [systemServer](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:frameworks/base/services/java/com/android/server/SystemServer.java;l\u003d935?q\u003df:systemserver.java\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%2Fmain%20b:main)\n\n\nAnd remove all the null check associated with mActivityManager",
+      "range": {
+        "startLine": 180,
+        "startChar": 27,
+        "endLine": 180,
+        "endChar": 35
+      },
+      "revId": "2ce595db8884b7d4ad8cc4e55a320ea67c8dab3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "275060ab_aff48417",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-04-26T16:54:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "407dfac2_f8ee036d",
       "range": {
         "startLine": 180,
         "startChar": 27,
@@ -196,6 +244,30 @@
       "writtenOn": "2024-04-26T07:49:07Z",
       "side": 1,
       "message": "See ag/27114944 for WIP CL on how to propagate the package name here, either through the AttributionSource or the PendingIntentInfo.",
+      "parentUuid": "10dfa51c_ca695484",
+      "range": {
+        "startLine": 717,
+        "startChar": 0,
+        "endLine": 717,
+        "endChar": 78
+      },
+      "revId": "2ce595db8884b7d4ad8cc4e55a320ea67c8dab3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6689dcc6_b62aee3f",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-04-26T16:54:44Z",
+      "side": 1,
+      "message": "For now, we will iterate all the package names and use the highest one. \n\nEven though we check the correct package importance, ActivityManager.OnUidImportanceListener could override it with highest importance during uids.",
       "parentUuid": "10dfa51c_ca695484",
       "range": {
         "startLine": 717,
