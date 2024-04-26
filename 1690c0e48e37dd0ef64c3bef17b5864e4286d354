@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59fcee60_df52b1cf",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1156,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-26T01:52:46Z",
+      "side": 1,
+      "message": "nit: transport \u003d\u003d BluetoothDevice.TRANSPORT_LE \u0026\u0026 !hogpSupported \u0026\u0026 !headtrackerSupported",
+      "range": {
+        "startLine": 1155,
+        "startChar": 19,
+        "endLine": 1156,
+        "endChar": 59
+      },
+      "revId": "1690c0e48e37dd0ef64c3bef17b5864e4286d354",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
