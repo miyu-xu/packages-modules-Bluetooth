@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac19698e_3e277461",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1540,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-26T16:06:52Z",
+      "side": 1,
+      "message": "I just submitted a CL that remove IS_FLAG_ENABLED, https://r.android.com/3042562\n\nPlease be careful to replace this before submitting your CL.",
+      "revId": "945dfee254e9f05f1d294873dac9fb31e0f154b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
