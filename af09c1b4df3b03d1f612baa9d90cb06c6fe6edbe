@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7cab2b4_fc018bbd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-04-26T02:48:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a680638_00e18167",
+      "revId": "af09c1b4df3b03d1f612baa9d90cb06c6fe6edbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2129c14d_96801e44",
@@ -52,6 +70,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a118a317_a3f9a7e0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-04-26T02:48:21Z",
+      "side": 1,
+      "message": "It\u0027s \n\nCRAS \u003c-- BT \u003c-- Peer\nCRAS --\u003e BT --\u003e Peer\n\nAfter receiving data from the peer, BT pulls data from the CRAS and attempts to send the same amount of data back to the peer. The bug occurs when the peer sends excessive data, and the BT stack fails to consume the buffer at the same rate (\nbuffer overflow). I\u0027ve added more detailed descriptions in the commit message.",
+      "parentUuid": "2129c14d_96801e44",
+      "revId": "af09c1b4df3b03d1f612baa9d90cb06c6fe6edbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cce0ec39_c0889be3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-04-26T02:48:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86060ab3_7c3ba0e0",
+      "revId": "af09c1b4df3b03d1f612baa9d90cb06c6fe6edbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e8471e32_ad948975",
@@ -71,6 +125,47 @@
         "endLine": 11,
         "endChar": 10
       },
+      "revId": "af09c1b4df3b03d1f612baa9d90cb06c6fe6edbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb9ffcbf_f780295c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-04-26T02:48:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8471e32_ad948975",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 10
+      },
+      "revId": "af09c1b4df3b03d1f612baa9d90cb06c6fe6edbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d478ca4a_cf9f5a56",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-04-26T02:48:21Z",
+      "side": 1,
+      "message": "Hi reviewers, this patch addresses a Floss crash when streaming the SCO, please\nhelp to take a look, thanks!",
       "revId": "af09c1b4df3b03d1f612baa9d90cb06c6fe6edbe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
