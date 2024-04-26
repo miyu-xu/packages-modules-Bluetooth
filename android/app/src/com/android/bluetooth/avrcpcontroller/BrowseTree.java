@@ -182,7 +182,6 @@ public class BrowseTree {
         }
 
         BrowseNode(BluetoothDevice device) {
-            mIsPlayer = true;
             String playerKey = PLAYER_PREFIX + device.getAddress().toString();
 
             AvrcpItem.Builder aid = new AvrcpItem.Builder();
@@ -304,10 +303,11 @@ public class BrowseTree {
         }
 
         synchronized void setCached(boolean cached) {
-            Log.d(TAG, "Set Cache" + cached + "Node" + toString());
+            Log.d(TAG, "Set cached=" + cached + ", node=" + toString());
             mCached = cached;
             if (!cached) {
                 for (BrowseNode child : mChildren) {
+                    child.setCached(false);
                     mBrowseMap.remove(child.getID());
                     indicateCoverArtUnused(child.getID(), child.getCoverArtUuid());
                 }
@@ -373,11 +373,13 @@ public class BrowseTree {
 
         @Override
         public synchronized String toString() {
-            return "[Id: "
+            return "[id="
                     + getID()
-                    + " Name: "
+                    + ", name="
                     + getMediaItem().getDescription().getTitle()
-                    + " Size: "
+                    + ", cached="
+                    + isCached()
+                    + ", size="
                     + mChildren.size()
                     + "]";
         }
