@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf2c4393_b99a83b1",
+        "filename": "system/bta/hh/bta_hh_headtracker.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-26T16:06:39Z",
+      "side": 1,
+      "message": "I just submitted a CL that remove IS_FLAG_ENABLED, https://r.android.com/3042562\n\nPlease be careful to replace this before submitting your CL.",
+      "revId": "448c3913ff92097149ed2517f1a676f2fefbca3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
