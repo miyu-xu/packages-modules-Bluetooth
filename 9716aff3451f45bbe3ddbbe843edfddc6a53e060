@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a38acfed_80d8cc95",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-04-26T17:25:03Z",
+      "side": 0,
+      "message": "You could pull this out into a static function which would also reduce indentation and maybe make it more readable\n\n```\n  static void process_discovery_result() {\n      log::verbose(\"sdp_result::0x{:x}\", sdp_event.sdp_result);\n      do {\n         p_sdp_rec \u003d NULL;\n         ...\n      }\n  }\n```",
+      "revId": "9716aff3451f45bbe3ddbbe843edfddc6a53e060",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
