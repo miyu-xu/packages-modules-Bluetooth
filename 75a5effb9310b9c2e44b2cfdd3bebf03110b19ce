@@ -16,6 +16,24 @@
       "message": "Can you add:\n```\n    metadata {\n        purpose: PURPOSE_BUGFIX\n    }\n```\n\nthis will mark this as bugfix and facilitate release process",
       "revId": "75a5effb9310b9c2e44b2cfdd3bebf03110b19ce",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4e5f88f_ed5613ab",
+        "filename": "flags/avrcp.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-04-26T06:13:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5ad7627_07fada9d",
+      "revId": "75a5effb9310b9c2e44b2cfdd3bebf03110b19ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
