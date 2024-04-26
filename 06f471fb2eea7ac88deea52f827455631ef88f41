@@ -94,6 +94,30 @@
       },
       "revId": "06f471fb2eea7ac88deea52f827455631ef88f41",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e995127a_532db5ab",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1024,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-26T08:52:21Z",
+      "side": 0,
+      "message": "Let me create a separate CL and give a a valid rationale behind this. Shouldn\u0027t just directly remove here.\n\nRegarding about the reason, Actually is (c) `should_insert_call_when_sco_start` can be removed on next cl because next cl will make `should_insert_call_when_sco_start` useless. But I remove here because it can make next CL look nicer.\n\nHowever, I think that approach make you confuse about the deletion here. So let me  separate CL into another one.",
+      "parentUuid": "b1210047_ccbb23b4",
+      "range": {
+        "startLine": 1016,
+        "startChar": 16,
+        "endLine": 1024,
+        "endChar": 17
+      },
+      "revId": "06f471fb2eea7ac88deea52f827455631ef88f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
