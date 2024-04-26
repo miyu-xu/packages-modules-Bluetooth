@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d9b935a8_34db963f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-26T21:17:13Z",
+      "side": 1,
+      "message": "Using `Bug: 315241296` in the commit message will allow you to have an automatic DrNo (only when creating the flag)",
+      "revId": "a88ee5213bee7ca0e726a0c6539820f863f3bcba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "289d87a9_8cd7da81",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
