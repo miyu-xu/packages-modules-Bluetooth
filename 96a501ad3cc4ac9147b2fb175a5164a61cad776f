@@ -463,6 +463,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5b49ca79_b7b6e26b",
+        "filename": "framework/java/android/bluetooth/BluetoothManager.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-04-26T13:21:49Z",
+      "side": 1,
+      "message": "There is another way, but it doesn\u0027t seem natural to me:\n\n```\nBluetoothGattServer openGattServer(context, callback) {\n    // Methods that don\u0027t get executor uses a direct executor (instead of null)\n    // in order to preserve binder thread usage\n    return openGattServer(..., directExecutor, callback);\n}\n```",
+      "parentUuid": "6bc7482f_2373335b",
+      "range": {
+        "startLine": 257,
+        "startChar": 14,
+        "endLine": 257,
+        "endChar": 23
+      },
+      "revId": "96a501ad3cc4ac9147b2fb175a5164a61cad776f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e9d27af9_becc599e",
         "filename": "framework/tests/bumble/AndroidTest.xml",
         "patchSetId": 15
