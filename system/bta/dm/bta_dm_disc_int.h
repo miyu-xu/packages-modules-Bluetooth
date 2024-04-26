@@ -92,20 +92,24 @@ typedef struct {
    * BluetoothDevice.fetchUuidsWithSdp(). Responsible for LE GATT Service
    * Discovery and SDP */
   tBTA_DM_SERVICE_DISCOVERY_STATE service_discovery_state;
-  tBTA_SERVICE_MASK services_to_search;
-  tBTA_SERVICE_MASK services_found;
 
   tSDP_DISCOVERY_DB* p_sdp_db;
   alarm_t* search_timer;
-  uint8_t service_index;
   bool sdp_results;
   bool wait_disc;
-  uint8_t peer_scn;
 
   uint16_t conn_id;
   alarm_t* gatt_close_timer;    /* GATT channel close delay timer */
   RawAddress pending_close_bda; /* pending GATT channel remote device address */
 } tBTA_DM_SERVICE_DISCOVERY_CB;
+
+typedef struct {
+  tBTA_SERVICE_MASK services_to_search;
+  tBTA_SERVICE_MASK services_found;
+
+  uint8_t service_index;
+  uint8_t peer_scn;
+} tBTA_DM_SDP_STATE;
 
 extern const uint32_t bta_service_id_to_btm_srv_id_lkup_tbl[];
 extern const uint16_t bta_service_id_to_uuid_lkup_tbl[];
