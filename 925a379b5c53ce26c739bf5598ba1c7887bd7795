@@ -106,6 +106,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ca6f0e49_9a6c0ace",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2468,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-26T19:32:05Z",
+      "side": 1,
+      "message": "```\n#include \u003ccom_android_bluetooth_flags.h\u003e\n\ncom::android::bluetooth::flags::read_model_num_fix()\n```",
+      "parentUuid": "65829dff_06b111a5",
+      "revId": "925a379b5c53ce26c739bf5598ba1c7887bd7795",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aff89e5f_801cb15e",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 5
