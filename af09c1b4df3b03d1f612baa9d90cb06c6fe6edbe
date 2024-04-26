@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a680638_00e18167",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1993150
+      },
+      "writtenOn": "2024-04-26T01:32:24Z",
+      "side": 1,
+      "message": "What does \"generalize\" mean here? Please elaborate it below.",
+      "revId": "af09c1b4df3b03d1f612baa9d90cb06c6fe6edbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2129c14d_96801e44",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1993150
+      },
+      "writtenOn": "2024-04-26T01:32:24Z",
+      "side": 1,
+      "message": "What\u0027s the data flow? peer-\u003eBT-\u003eCRAS ? Based on current description, it looks like peer-\u003eBT\u003c-CRAS, which does not make sense.\n\nIf the data flow is the former, you shall modify the sentence:\n\nCRAS (ChromeOS Audio Server)\u0027s data consumption rate could be slower than the ingress data rate from the peer side.",
+      "revId": "af09c1b4df3b03d1f612baa9d90cb06c6fe6edbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86060ab3_7c3ba0e0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1993150
+      },
+      "writtenOn": "2024-04-26T01:32:24Z",
+      "side": 1,
+      "message": "CRAS",
+      "revId": "af09c1b4df3b03d1f612baa9d90cb06c6fe6edbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8471e32_ad948975",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1993150
+      },
+      "writtenOn": "2024-04-26T01:32:24Z",
+      "side": 1,
+      "message": "elaborate this",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 10
+      },
+      "revId": "af09c1b4df3b03d1f612baa9d90cb06c6fe6edbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
