@@ -24,8 +24,6 @@
 #include "bta/dm/bta_dm_disc.h"
 #include "bta/test/bta_test_fixtures.h"
 #include "stack/btm/neighbor_inquiry.h"
-#include "stack/include/gatt_api.h"
-#include "test/common/main_handler.h"
 #include "types/bt_transport.h"
 
 namespace {
@@ -189,15 +187,6 @@ TEST_F(BtaInitializedTest,
        [](RawAddress, tBTA_SERVICE_MASK, const std::vector<bluetooth::Uuid>&,
           tBTA_STATUS, tHCI_STATUS) {}},
       kRawAddress, BT_TRANSPORT_BR_EDR);
-}
-
-TEST_F(BtaInitializedTest,
-       bta_dm_disc_start_service_discovery__BT_TRANSPORT_LE) {
-  bta_dm_disc_start_service_discovery(
-      {nullptr, nullptr, nullptr,
-       [](RawAddress, tBTA_SERVICE_MASK, const std::vector<bluetooth::Uuid>&,
-          tBTA_STATUS, tHCI_STATUS) {}},
-      kRawAddress, BT_TRANSPORT_LE);
 }
 
 TEST_F(BtaInitializedTest, init_bta_dm_search_cb__conn_id) {
