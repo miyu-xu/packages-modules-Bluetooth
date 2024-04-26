@@ -1,0 +1,548 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a41536e_ec7ffc1e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "@rongxuan@google.com\nInstead of creating a document with design flow (which in general is the same as in original code but per central instead of remotes), I put comments in Gerrit which point places with no changes from stateMachine code and what is more desirable rationale of places where changes are made.\n\nPlease resolve comments when understanding is clear and you agree with the solution.",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d25895b_87f15325",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "mActiveSyncedSources is no longer per remote device, but common to all. Logic the same as above for map version",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3de9031c_74d48c61",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "It was missed",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea2b3536_8fe671eb",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1438,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "In new version we always add requests to the list.",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdfae268_68a8490c",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1456,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "No need to clear it when starting because all stuff is cleared in one place when stopSearchingForSources is called.",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a6f74d9_85ee169f",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1523,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "All stuff is cleared here and unsynced the sources.\nIn original version because of not clearing some of variables there was issue with \"Adding inactive source fails because of lack of cached broadcast\" b/336264717.\n\nNow it is fixed and we have clear room to next start of searching.",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52147851_0cb4d477",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1538,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "Moved here even without flag because we should inform remotes when scanning is actually stopped.",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c8f8419_450feef0",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1590,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "No starting a timeout here as it was in state machine (PSYNC_ACTIVE_TIMEOUT) because now logic is that we unsync on stop searching instead of stopping after 5 minutes independent on everything.",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc6786e8_1613b922",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1608,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "If application calls addSource with one broadcast ID but for few remotes (default android works in this way that does not use grouping but instead, calls addSource for buds separately), then few pending devices will be added and selectSource with priority will be called few times, but controller will be triggered only one time in selectSource (rest will be \"Skip duplicated sync request to broadcast.\"). OnSyncEstablished will be called one time so we have to itarate here and addSource from pending list for each device.",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d3a880e_bba8888f",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1621,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "Always call selectSource, inside there is check if anything is in queue.",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7db465a1_f40b7f84",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1625,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "Exact the same as in stateMachine.",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de4c926e_23bdd403",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1646,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "Clean all data for such sync handle, there is no need to keep it if sync is lost or canceled because on that sync handle there is nothing in controller.",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae6a0b91_6e47a78d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1648,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "As comment above said, we have to remove from cache such device to make possible sync again to it. onSyncLost is called only if lost if because of remote side, if we canceled it by ourself i.e. because of max limit then we do not remove it from cache.",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00da9bcb_17ead825",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1652,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "Exact the same as in stateMachine.",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7789f355_2681b1e1",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1708,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "Exact the same as in stateMachine.",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29dcab01_09845529",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1810,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "In original code there was only removing pending sync without calling unsycSource. This lead to left pending sync request in PeriodicScanManager and in the le_periodic_sync_manager.",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe8a6dce_6747ae0c",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1819,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "Calling only unsyncSource, removeActiveSyncedSource is called inside unsync together with whole cleanup of such handle.",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3ec39da_d8c9213c",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1825,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "Because we clean all stuff for that syncHandle inside unsycSource, there is no need to check and clearNotifiedFlags here.",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f701980_2b9b1f14",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1831,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "Add possibility to call unsyncSource with INVALID_SYNC_HANDLE which is crucial to cancelSync instead of stopSync. That was an issue in original code which blocks such functionality and already pending sources cannot be canceled in PeriodicScanManager#stopSync and further in le_periodic_sync_manager.",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "490bc7d7_193ca278",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1845,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "clean all data after when we cancel sync as on this syncHandle there will be no longer such device/broadcaster. Cleaning activeSyncSource is here too.",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ffc8a31_f1f4bc44",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1849,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "As in stateMachine but removed part with mAutoTriggered",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfe0c16c_b446b061",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1861,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "As in stateMachine but removed part with mAutoTriggered",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84f36f25_cf73ad0a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1882,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "Exact the same as in stateMachine.",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6c3a56e_00fe81e3",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1908,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "All request are queued on the list which simplify logic of getting them in correct order and gives ability to put request with priority.",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "633bb656_4d0e5996",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1918,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "Do not add to the queue invalid scanRecords. There is only very raw check. More accurate will be in selectSource.",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0df55378_62e230f6",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1933,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "Combination of selectSource from service (check the limit) and stateMachine (SELECT_BCAST_SOURCE where was queuing and selectSource with whole logic)",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b41242ba_27b38ab8",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1937,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "Exit immediately if no sync request in queue.",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0daa3c2a_a06350de",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1940,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "Exit if sync is already pending",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3518d0cb_0deb3e17",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1944,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "Lock the new execution of selectSource by putting INVALID_SYNC_HANDLE which inform about already pending sync. It is done at the beginning of selectSource (in synchronize block) to prevent from double call of it as it was possible in original code. These cause that any of failed below need to remove this lock, and execute selectSource again to check the queue.",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c29ccc41_0cc641c7",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1953,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "Whole below logic is almost the same as in stateMachine.",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5ddc52a_5e663cfe",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2118,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "Same logic as in stateMachine. addSelectSourceSyncRequest is called with priority.",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f045dc7b_67a7f923",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1904,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-04-26T11:11:19Z",
+      "side": 1,
+      "message": "Moved to the service with exact same logic.",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
