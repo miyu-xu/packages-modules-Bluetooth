@@ -46,6 +46,30 @@
       },
       "revId": "33b135027b4985c4b8d4d52c80a8a3c7687568c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6f8d060_00c4298a",
+        "filename": "sysprop/sysprop.gni",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-04-26T18:07:13Z",
+      "side": 1,
+      "message": "Forgot to answer to your second point 😅\n\nThat\u0027s fine by me to wait, thanks for the explanation !",
+      "parentUuid": "80eba3f3_505972be",
+      "range": {
+        "startLine": 38,
+        "startChar": 9,
+        "endLine": 38,
+        "endChar": 20
+      },
+      "revId": "33b135027b4985c4b8d4d52c80a8a3c7687568c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
