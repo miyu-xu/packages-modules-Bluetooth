@@ -51,6 +51,24 @@
       "message": "@eruffieux@google.com, aren\u0027t you working on something similar ?\n\nI may be completely wrong but I prefer both of you to get in touch to make sure we are not doing this work twice",
       "revId": "a88ee5213bee7ca0e726a0c6539820f863f3bcba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0dbce1d9_afd0559e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-26T22:08:08Z",
+      "side": 1,
+      "message": "Etienne is working on the Target side. This will be the controller side.\n\nHe actually found the issue while testing and I root caused it",
+      "parentUuid": "289d87a9_8cd7da81",
+      "revId": "a88ee5213bee7ca0e726a0c6539820f863f3bcba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
