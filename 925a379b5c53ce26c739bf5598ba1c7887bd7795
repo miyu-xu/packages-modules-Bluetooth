@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d128359a_a6a2cd97",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-26T21:27:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd7d59f0_28278660",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "925a379b5c53ce26c739bf5598ba1c7887bd7795",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35007f0c_5b1e11da",
@@ -87,6 +111,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "efe34e85_e1ba27d1",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2416,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-26T21:27:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "558425f5_20892ec0",
+      "range": {
+        "startLine": 2416,
+        "startChar": 12,
+        "endLine": 2416,
+        "endChar": 40
+      },
+      "revId": "925a379b5c53ce26c739bf5598ba1c7887bd7795",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65829dff_06b111a5",
@@ -122,6 +170,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "21b44418_6fe0768c",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2468,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-26T21:27:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca6f0e49_9a6c0ace",
+      "revId": "925a379b5c53ce26c739bf5598ba1c7887bd7795",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aff89e5f_801cb15e",
@@ -135,6 +201,30 @@
       "writtenOn": "2024-04-25T22:25:00Z",
       "side": 1,
       "message": "nit nullptr for new code",
+      "range": {
+        "startLine": 3577,
+        "startChar": 21,
+        "endLine": 3577,
+        "endChar": 25
+      },
+      "revId": "925a379b5c53ce26c739bf5598ba1c7887bd7795",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "385b43a7_14652a20",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 3577,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-26T21:27:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aff89e5f_801cb15e",
       "range": {
         "startLine": 3577,
         "startChar": 21,
@@ -168,6 +258,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df31aaaf_5ff44034",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 3588,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-26T21:27:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce3b91a5_47d87844",
+      "range": {
+        "startLine": 3588,
+        "startChar": 0,
+        "endLine": 3588,
+        "endChar": 4
+      },
+      "revId": "925a379b5c53ce26c739bf5598ba1c7887bd7795",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6fe45927_8237fb5b",
@@ -181,6 +295,30 @@
       "writtenOn": "2024-04-25T22:25:00Z",
       "side": 1,
       "message": "nit: can probably do something like\n\nbt_property_t prop {\n .type \u003d xxx;\n .val \u003d xxx;\n .len \u003d xxx;\n}",
+      "range": {
+        "startLine": 3590,
+        "startChar": 0,
+        "endLine": 3593,
+        "endChar": 39
+      },
+      "revId": "925a379b5c53ce26c739bf5598ba1c7887bd7795",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4f37fd9_95469747",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 3593,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-26T21:27:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fe45927_8237fb5b",
       "range": {
         "startLine": 3590,
         "startChar": 0,
@@ -237,6 +375,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbd2e6f8_a228083a",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 3645,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-26T21:27:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed91cbd4_0e7beee0",
+      "range": {
+        "startLine": 3645,
+        "startChar": 13,
+        "endLine": 3645,
+        "endChar": 28
+      },
+      "revId": "925a379b5c53ce26c739bf5598ba1c7887bd7795",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51f221d8_0b7ded97",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 3645,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-26T21:27:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74bd5247_1dde7e9f",
+      "range": {
+        "startLine": 3645,
+        "startChar": 13,
+        "endLine": 3645,
+        "endChar": 28
+      },
+      "revId": "925a379b5c53ce26c739bf5598ba1c7887bd7795",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1f323ea5_e706b19c",
@@ -250,6 +436,30 @@
       "writtenOn": "2024-04-25T22:25:00Z",
       "side": 1,
       "message": "Could you explain in commit message why DIS read needs to be scheduled right after authentication complete instead of after first GATT connection? \n\nAre we worries about some use cases may have a GATT connection before pairing?",
+      "range": {
+        "startLine": 3642,
+        "startChar": 0,
+        "endLine": 3648,
+        "endChar": 7
+      },
+      "revId": "925a379b5c53ce26c739bf5598ba1c7887bd7795",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbe58e31_77161295",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 3648,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-26T21:27:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f323ea5_e706b19c",
       "range": {
         "startLine": 3642,
         "startChar": 0,
