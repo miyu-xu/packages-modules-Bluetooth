@@ -46,6 +46,30 @@
       },
       "revId": "87d9ee1e6196770b003c82791cabbabb3f488918",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fa94f77_0b3e6b92",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 862,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-26T22:28:59Z",
+      "side": 1,
+      "message": "I guess it would be hard to mock as above.  \n\nBut after talking with David, we got a new idea. In [getRemoteLeDevice](https://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothAdapter.java;l\u003d1205?q\u003dgetRemoteLeDevice\u0026sq\u003drepo:android%2Fplatform%2Fsuperproject%2Fmain%20b:main), it just creates `new BluetoothDevice(address, addressType);`, so maybe we can directly create a new Bluetooth Device instead of calling `getRemoteLeDevice`\n\nThen in the test, we can assert or compare whether this is the device that we want",
+      "parentUuid": "c4267629_dfb822b8",
+      "range": {
+        "startLine": 861,
+        "startChar": 20,
+        "endLine": 862,
+        "endChar": 60
+      },
+      "revId": "87d9ee1e6196770b003c82791cabbabb3f488918",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
