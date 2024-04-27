@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b350b41d_b423bb63",
+        "filename": "flags/gap.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-27T18:22:06Z",
+      "side": 1,
+      "message": "it looks like this will be an API flag, in this case you want to use:\n```\n    is_exported: true\n```",
+      "range": {
+        "startLine": 211,
+        "startChar": 11,
+        "endLine": 211,
+        "endChar": 51
+      },
+      "revId": "25423ec6e2840442ac553d1cface8a6360be583c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
