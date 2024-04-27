@@ -8,6 +8,7 @@ aconfig("bluetooth_flags_c_lib") {
     "avrcp.aconfig",
     "avrcp_controller.aconfig",
     "bta_dm.aconfig",
+    "btm_ble.aconfig",
     "btif_dm.aconfig",
     "connectivity.aconfig",
     "did.aconfig",
