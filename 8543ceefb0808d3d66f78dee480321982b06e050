@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9224f1b6_981dc6b8",
+        "filename": "system/log/src/vlog_android.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-27T11:57:40Z",
+      "side": 1,
+      "message": "having \"p/m/B/\" as a prefix would be nice, makes it easy to grep for logs from Bluetooth",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 13
+      },
+      "revId": "8543ceefb0808d3d66f78dee480321982b06e050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
