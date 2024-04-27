@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "547afc71_7b43d244",
+        "filename": "flags/a2dp.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-27T00:48:43Z",
+      "side": 1,
+      "message": "Nit: can add purpose metadata bugfix for easier release",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 20
+      },
+      "revId": "2d72aff450fc3dc6a35ede59e22178677d9f6759",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
