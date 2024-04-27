@@ -445,6 +445,30 @@
       },
       "revId": "2ce595db8884b7d4ad8cc4e55a320ea67c8dab3f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6814ef84_aad036b6",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-04-27T05:26:50Z",
+      "side": 1,
+      "message": "Please make sure that the permission issue b/300866864 is not reproduced with this proposal. Reproduce steps are described in the bug. To reproduce the issue, we had to flash Pixel binary not AOSP binary because the scan causing permission issue in multi-user was triggered by GMSCore.",
+      "parentUuid": "eba015d4_079af063",
+      "range": {
+        "startLine": 717,
+        "startChar": 0,
+        "endLine": 717,
+        "endChar": 78
+      },
+      "revId": "2ce595db8884b7d4ad8cc4e55a320ea67c8dab3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
