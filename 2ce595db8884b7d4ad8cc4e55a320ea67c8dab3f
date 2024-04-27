@@ -469,6 +469,30 @@
       },
       "revId": "2ce595db8884b7d4ad8cc4e55a320ea67c8dab3f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffb22455_699e8dd8",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-04-27T06:19:26Z",
+      "side": 1,
+      "message": "To reduce the risk of this change (at this late stage), let\u0027s do the following:\n\n1. Stick to getPackageImportance, even with the flag on. With the flag on iterate through all of the packages and evaluate the highest importance.\n2. Back out the changes to the null checks for mActivityManager. Let\u0027s do that in a separate CL so that potential rollbacks when needed can be more straightforward.\n\nOnce we have the smaller isolated change in, we can follow up with looking into getUidImportance as well as potentially propagating the package name from TransitionalScanHelper. I\u0027d like to see either of those approaches to be robustly tested.\n\nThe updates to require non null mActivityManager and related changes are more straightforward and can be done in a simple follow-up CL.",
+      "parentUuid": "6814ef84_aad036b6",
+      "range": {
+        "startLine": 717,
+        "startChar": 0,
+        "endLine": 717,
+        "endChar": 78
+      },
+      "revId": "2ce595db8884b7d4ad8cc4e55a320ea67c8dab3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
