@@ -36,6 +36,7 @@ import android.media.AudioManager;
 import android.media.BluetoothProfileConnectionInfo;
 import android.os.Looper;
 import android.os.ParcelUuid;
+import android.os.test.TestLooper;
 
 import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.MediumTest;
@@ -85,11 +86,15 @@ public class A2dpServiceTest {
     @Mock private SilenceDeviceManager mSilenceDeviceManager;
     private InOrder mInOrder = null;
 
+    private TestLooper mLooper;
     private A2dpService mA2dpService;
 
     @Before
     public void setUp() throws Exception {
         mInOrder = inOrder(mAdapterService);
+        mLooper = new TestLooper();
+
+        // mLooper.startAutoDispatch();
 
         TestUtils.mockGetSystemService(
                 mAdapterService, Context.AUDIO_SERVICE, AudioManager.class, mAudioManager);
@@ -108,7 +113,7 @@ public class A2dpServiceTest {
         doReturn(mActiveDeviceManager).when(mAdapterService).getActiveDeviceManager();
         doReturn(mSilenceDeviceManager).when(mAdapterService).getSilenceDeviceManager();
 
-        mA2dpService = new A2dpService(mAdapterService, mMockNativeInterface);
+        mA2dpService = new A2dpService(mAdapterService, mMockNativeInterface, mLooper.getLooper());
         mA2dpService.start();
         mA2dpService.setAvailable(true);
 
@@ -126,17 +131,23 @@ public class A2dpServiceTest {
 
     @After
     public void tearDown() {
-        // A2dpService handler is running on main looper. Calling `stop` remove the messages but
-        // assume it is already on the correct thread.
-        // Calling it from another thread may lead to having messages still being processed and
-        // executed after tearDown is called.
-        InstrumentationRegistry.getInstrumentation().runOnMainSync(mA2dpService::stop);
+        android.os.Message msg = mLooper.nextMessage();
+        if (msg != null) {
+            android.util.Log.e("WILLIAM", "Message not null: " + msg);
+        }
+        // mLooper.stopAutoDispatchAndIgnoreExceptions();
+        mA2dpService.stop();
     }
 
     @SafeVarargs
     private void verifyIntentSent(Matcher<Intent>... matchers) {
-        mInOrder.verify(mAdapterService, timeout(TIMEOUT.toMillis() * 2))
+        if (com.android.bluetooth.flags.Flags.a2dpServiceLooper()) {
+            mInOrder.verify(mAdapterService)
                 .sendBroadcast(MockitoHamcrest.argThat(AllOf.allOf(matchers)), any(), any());
+        } else {
+            mInOrder.verify(mAdapterService, timeout(TIMEOUT.toMillis() * 2))
+                .sendBroadcast(MockitoHamcrest.argThat(AllOf.allOf(matchers)), any(), any());
+        }
     }
 
     private void verifyConnectionStateIntent(BluetoothDevice device, int newState, int prevState) {
@@ -336,6 +347,7 @@ public class A2dpServiceTest {
         connCompletedEvent.device = sTestDevice;
         connCompletedEvent.valueInt = A2dpStackEvent.CONNECTION_STATE_CONNECTED;
         mA2dpService.messageFromNative(connCompletedEvent);
+        syncHandler(A2dpStateMachine.STACK_EVENT);
 
         // Verify the connection state broadcast, and that we are in Connected state
         verifyConnectionStateIntent(
@@ -362,6 +374,7 @@ public class A2dpServiceTest {
         connCompletedEvent.device = sTestDevice;
         connCompletedEvent.valueInt = A2dpStackEvent.CONNECTION_STATE_DISCONNECTED;
         mA2dpService.messageFromNative(connCompletedEvent);
+        syncHandler(A2dpStateMachine.STACK_EVENT);
 
         // Verify the connection state broadcast, and that we are in Disconnected state
         verifyConnectionStateIntent(
@@ -406,6 +419,7 @@ public class A2dpServiceTest {
             connCompletedEvent.device = testDevice;
             connCompletedEvent.valueInt = A2dpStackEvent.CONNECTION_STATE_CONNECTED;
             mA2dpService.messageFromNative(connCompletedEvent);
+        syncHandler(A2dpStateMachine.STACK_EVENT);
 
             // Verify the connection state broadcast, and that we are in Connected state
             verifyConnectionStateIntent(
@@ -700,6 +714,8 @@ public class A2dpServiceTest {
                 BluetoothProfile.STATE_CONNECTING);
         assertThat(mA2dpService.getConnectionState(sTestDevice))
                 .isEqualTo(BluetoothProfile.STATE_DISCONNECTED);
+        // mLooper.stopAutoDispatch();
+        mLooper.dispatchAll();
         assertThat(mA2dpService.getDevices()).doesNotContain(sTestDevice);
     }
 
@@ -1009,8 +1025,19 @@ public class A2dpServiceTest {
 
         // Send a connect request
         assertThat(mA2dpService.connect(device)).isTrue();
+        // mLooper.stopAutoDispatchAndIgnoreExceptions();
+        mLooper.dispatchAll();
+        // if (com.android.bluetooth.flags.Flags.a2dpServiceLooper()) {
+        //         try {
+        //             android.util.Log.e("WILLIAM", "waiting 300 ms...");
+        //             Thread.sleep(300);
+        //         } catch (InterruptedException e) {
+        //             android.util.Log.e("WILLIAM", "interrupted");
+        //         }
+        // }
 
         // Verify the connection state broadcast, and that we are in Connecting state
+        android.util.Log.e("WILLIAM", "Will now verify from connecting to disconnected");
         verifyConnectionStateIntent(
                 device, BluetoothProfile.STATE_CONNECTING, BluetoothProfile.STATE_DISCONNECTED);
         assertThat(mA2dpService.getConnectionState(device))
@@ -1025,6 +1052,7 @@ public class A2dpServiceTest {
         connCompletedEvent.device = device;
         connCompletedEvent.valueInt = A2dpStackEvent.CONNECTION_STATE_CONNECTED;
         mA2dpService.messageFromNative(connCompletedEvent);
+        syncHandler(A2dpStateMachine.STACK_EVENT);
 
         // Verify the connection state broadcast, and that we are in Connected state
         verifyConnectionStateIntent(
@@ -1038,15 +1066,19 @@ public class A2dpServiceTest {
         for (BluetoothDevice prevDevice : prevConnectedDevices) {
             assertThat(mA2dpService.getConnectedDevices()).contains(prevDevice);
         }
+
+        assertThat(mLooper.nextMessage()).isNull();
     }
 
     private void generateConnectionMessageFromNative(
             BluetoothDevice device, int newConnectionState, int oldConnectionState) {
+        android.util.Log.e("WILLIAM", "Sending message now, connection from " + oldConnectionState + " to " + newConnectionState);
         A2dpStackEvent stackEvent =
                 new A2dpStackEvent(A2dpStackEvent.EVENT_TYPE_CONNECTION_STATE_CHANGED);
         stackEvent.device = device;
         stackEvent.valueInt = newConnectionState;
         mA2dpService.messageFromNative(stackEvent);
+        syncHandler(A2dpStateMachine.STACK_EVENT);
         // Verify the connection state broadcast
         verifyConnectionStateIntent(device, newConnectionState, oldConnectionState);
     }
@@ -1070,6 +1102,7 @@ public class A2dpServiceTest {
         stackEvent.device = device;
         stackEvent.valueInt = audioStackEvent;
         mA2dpService.messageFromNative(stackEvent);
+        syncHandler(A2dpStateMachine.STACK_EVENT);
         // Verify the audio state broadcast
         verifyIntentSent(
                 hasAction(BluetoothA2dp.ACTION_PLAYING_STATE_CHANGED),
@@ -1097,10 +1130,17 @@ public class A2dpServiceTest {
         stackEvent.device = device;
         stackEvent.codecStatus = codecStatus;
         mA2dpService.messageFromNative(stackEvent);
+        syncHandler(A2dpStateMachine.STACK_EVENT);
         verifyIntentSent(
                 hasAction(BluetoothA2dp.ACTION_CODEC_CONFIG_CHANGED),
                 hasExtra(BluetoothDevice.EXTRA_DEVICE, device),
                 hasExtra(BluetoothCodecStatus.EXTRA_CODEC_STATUS, codecStatus));
+    }
+
+    private void syncHandler(int... what) {
+
+        android.util.Log.w("WILLIAM", "checking for what=" + what[0] + " from " + android.util.Log.getStackTraceString(new Throwable()));
+        TestUtils.syncHandler(mLooper, what);
     }
 
     private void generateUnexpectedCodecMessageFromNative(
@@ -1111,8 +1151,12 @@ public class A2dpServiceTest {
         stackEvent.codecStatus = codecStatus;
         mA2dpService.messageFromNative(stackEvent);
         // Verify the codec status broadcast
-        mInOrder.verify(mAdapterService, timeout(TIMEOUT.toMillis()).times(0))
-                .sendBroadcast(any(), any(), any());
+        if (com.android.bluetooth.flags.Flags.a2dpServiceLooper()) {
+            mInOrder.verify(mAdapterService, never()).sendBroadcast(any(), any(), any());
+        } else {
+            mInOrder.verify(mAdapterService, timeout(TIMEOUT.toMillis()).times(0))
+                    .sendBroadcast(any(), any(), any());
+        }
     }
 
     /**
