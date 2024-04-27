@@ -54,7 +54,7 @@ TEST(BluetoothLogTest, verbose) {
   EXPECT_EQ(androidLogMessage->file, nullptr);
   EXPECT_EQ(androidLogMessage->line, 0);
   EXPECT_STREQ(androidLogMessage->message,
-               "packages/modules/Bluetooth/system/log/src/vlog_test.cc:49 "
+               "system/log/src/vlog_test.cc:49 "
                "TestBody: verbose test");
 }
 
@@ -69,7 +69,7 @@ TEST(BluetoothLogTest, debug) {
   EXPECT_STREQ(androidLogMessage->file, nullptr);
   EXPECT_EQ(androidLogMessage->line, 0);
   EXPECT_STREQ(androidLogMessage->message,
-               "packages/modules/Bluetooth/system/log/src/vlog_test.cc:64 "
+               "system/log/src/vlog_test.cc:64 "
                "TestBody: debug test");
 }
 
@@ -84,7 +84,7 @@ TEST(BluetoothLogTest, info) {
   EXPECT_STREQ(androidLogMessage->file, nullptr);
   EXPECT_EQ(androidLogMessage->line, 0);
   EXPECT_STREQ(androidLogMessage->message,
-               "packages/modules/Bluetooth/system/log/src/vlog_test.cc:79 "
+               "system/log/src/vlog_test.cc:79 "
                "TestBody: info test");
 }
 
@@ -99,7 +99,7 @@ TEST(BluetoothLogTest, warn) {
   EXPECT_STREQ(androidLogMessage->file, nullptr);
   EXPECT_EQ(androidLogMessage->line, 0);
   EXPECT_STREQ(androidLogMessage->message,
-               "packages/modules/Bluetooth/system/log/src/vlog_test.cc:94 "
+               "system/log/src/vlog_test.cc:94 "
                "TestBody: warn test");
 }
 
@@ -114,7 +114,7 @@ TEST(BluetoothLogTest, error) {
   EXPECT_STREQ(androidLogMessage->file, nullptr);
   EXPECT_EQ(androidLogMessage->line, 0);
   EXPECT_STREQ(androidLogMessage->message,
-               "packages/modules/Bluetooth/system/log/src/vlog_test.cc:109 "
+               "system/log/src/vlog_test.cc:109 "
                "TestBody: error test");
 }
 
@@ -166,7 +166,7 @@ TEST(BluetoothLogTest, null_string_parameter) {
   char const* const_null_str = nullptr;
   log::info("input: {}", const_null_str);
   EXPECT_STREQ(androidLogMessage->message,
-               "packages/modules/Bluetooth/system/log/src/vlog_test.cc:167 "
+               "system/log/src/vlog_test.cc:167 "
                "TestBody: input: (nullptr)");
 
   androidLogMessage.reset();
@@ -174,7 +174,7 @@ TEST(BluetoothLogTest, null_string_parameter) {
   char* null_str = nullptr;
   log::info("input: {}", null_str);
   EXPECT_STREQ(androidLogMessage->message,
-               "packages/modules/Bluetooth/system/log/src/vlog_test.cc:175 "
+               "system/log/src/vlog_test.cc:175 "
                "TestBody: input: (nullptr)");
 
   androidLogMessage.reset();
@@ -182,6 +182,6 @@ TEST(BluetoothLogTest, null_string_parameter) {
   char const* nonnull_str = "hello world";
   log::info("input: {}", nonnull_str);
   EXPECT_STREQ(androidLogMessage->message,
-               "packages/modules/Bluetooth/system/log/src/vlog_test.cc:183 "
+               "system/log/src/vlog_test.cc:183 "
                "TestBody: input: hello world");
 }
