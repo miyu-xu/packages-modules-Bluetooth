@@ -22,6 +22,30 @@
       },
       "revId": "8543ceefb0808d3d66f78dee480321982b06e050",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b03f915_c6b8ac47",
+        "filename": "system/log/src/vlog_android.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-27T18:20:50Z",
+      "side": 1,
+      "message": "You mean having a common tag for all native logs (and something more readable for outsider than `p/m/B` ?\n\ntag could be something like `BluetoothStackC` or idk... and the current LOG_TAG could be moved to the content of the log...\n\nPlenty of possibility, feel free to propose a change and we will review",
+      "parentUuid": "9224f1b6_981dc6b8",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 13
+      },
+      "revId": "8543ceefb0808d3d66f78dee480321982b06e050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
