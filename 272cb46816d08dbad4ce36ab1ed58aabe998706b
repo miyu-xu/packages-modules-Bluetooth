@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfe7cb2d_1d49def9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/a2dp/A2dpServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-27T00:55:29Z",
+      "side": 1,
+      "message": "final only if you reuse the same looper between the test.\n\nI think it may work but will be error prone, remove final to pass test ;)",
+      "range": {
+        "startLine": 89,
+        "startChar": 12,
+        "endLine": 89,
+        "endChar": 17
+      },
+      "revId": "272cb46816d08dbad4ce36ab1ed58aabe998706b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
