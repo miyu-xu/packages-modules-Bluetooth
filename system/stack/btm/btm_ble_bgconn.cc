@@ -26,6 +26,7 @@
 
 #include "stack/btm/btm_ble_bgconn.h"
 
+#include <android_bluetooth_flags.h>
 #include <bluetooth/log.h>
 
 #include <cstdint>
@@ -114,6 +115,14 @@ bool BTM_AcceptlistAdd(const RawAddress& address, bool is_direct) {
     return false;
   }
 
+  if (IS_FLAG_ENABLED(verify_handle_before_add_accept_list)) {
+    // Type is set to 0x01, because it is not used in the function.
+    if (bluetooth::shim::ACL_DeviceAlreadyConnected(
+            {.type = 0x01, .bda = address})) {
+      log::info("Already connected, not adding to accept list.");
+      return true;
+    }
+  }
   return bluetooth::shim::ACL_AcceptLeConnectionFrom(
       BTM_Sec_GetAddressWithType(address), is_direct);
 }
