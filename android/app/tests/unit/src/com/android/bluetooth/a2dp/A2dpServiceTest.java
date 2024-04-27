@@ -36,6 +36,7 @@ import android.media.AudioManager;
 import android.media.BluetoothProfileConnectionInfo;
 import android.os.Looper;
 import android.os.ParcelUuid;
+import android.os.test.TestLooper;
 
 import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.MediumTest;
@@ -85,11 +86,15 @@ public class A2dpServiceTest {
     @Mock private SilenceDeviceManager mSilenceDeviceManager;
     private InOrder mInOrder = null;
 
+    private final TestLooper mLooper;
     private A2dpService mA2dpService;
 
     @Before
     public void setUp() throws Exception {
         mInOrder = inOrder(mAdapterService);
+        mLooper = new TestLooper();
+
+        mLooper.startAutoDispath();
 
         TestUtils.mockGetSystemService(
                 mAdapterService, Context.AUDIO_SERVICE, AudioManager.class, mAudioManager);
@@ -108,7 +113,7 @@ public class A2dpServiceTest {
         doReturn(mActiveDeviceManager).when(mAdapterService).getActiveDeviceManager();
         doReturn(mSilenceDeviceManager).when(mAdapterService).getSilenceDeviceManager();
 
-        mA2dpService = new A2dpService(mAdapterService, mMockNativeInterface);
+        mA2dpService = new A2dpService(mAdapterService, mMockNativeInterface, mLooper.getLooper());
         mA2dpService.start();
         mA2dpService.setAvailable(true);
 
@@ -700,6 +705,8 @@ public class A2dpServiceTest {
                 BluetoothProfile.STATE_CONNECTING);
         assertThat(mA2dpService.getConnectionState(sTestDevice))
                 .isEqualTo(BluetoothProfile.STATE_DISCONNECTED);
+        mLooper.stopAutoDispatch();
+        mLooper.dispatchAll();
         assertThat(mA2dpService.getDevices()).doesNotContain(sTestDevice);
     }
 
