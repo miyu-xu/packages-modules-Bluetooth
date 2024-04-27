@@ -51,6 +51,41 @@
       "message": "Dr. no because of flags added at the bottom",
       "revId": "2440ebad9d5086e5c25fb5529be9025f1cdb7453",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c07f72f0_456c5f14",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-04-27T06:56:01Z",
+      "side": 1,
+      "message": "I didn\u0027t see the notification, please use my @google email next time :)",
+      "parentUuid": "c70fbb20_954572fb",
+      "revId": "2440ebad9d5086e5c25fb5529be9025f1cdb7453",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0f56fe3_f53ccffa",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-04-27T06:56:01Z",
+      "side": 1,
+      "message": "This already exists in AvrcpTargetService, I think we should remove from there and call this one instead.",
+      "revId": "2440ebad9d5086e5c25fb5529be9025f1cdb7453",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
