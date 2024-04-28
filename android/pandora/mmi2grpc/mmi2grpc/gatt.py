@@ -551,6 +551,151 @@ class GATTProxy(ProfileProxy):
                      UNKNOWN_ERROR in status_list
         return "Yes"
 
+    def MMI_IUT_CONFIRM_READ_BY_TYPE_RESP(self, description: str, **kwargs):
+        """
+        Please confirm IUT received %s in random selected adopted database.
+        ATT_READ_BLOB_REQ PDU can be used to read the remaining octets of a
+        long attribute value. Click Yes if IUT received it, otherwise click No.
+
+        Description: Verify that the
+        Implementation Under Test (IUT) can send Read by type request
+        to PTS random select adopted database.
+        """
+        p = r'Please confirm IUT received(.*?)in random selected adopted database'
+        att_pattern = r"Attribute Handle = '([A-F0-9]+)'O Value = '([A-F0-9]+)'O"
+        received_string = re.findall(p, description)[0]
+        if "Attribute Handle" in received_string:
+            match = re.findall(att_pattern, received_string)
+            if match:
+                tmp = match[0]
+                attribute_handle = tmp[0]
+                attribute_value = tmp[1]
+        if type(self.read_response) is ReadCharacteristicResponse:
+            char_value = self.read_response.value
+            assert char_value is not None
+            value = char_value.value
+            handle = char_value.handle
+            assert int(attribute_handle, 16) == handle
+            assert bytes.fromhex(attribute_value) == value
+        elif type(self.read_response) is ReadCharacteristicsFromUuidResponse:
+            assert self.read_response.characteristics_read is not None
+            char_value_list = list(
+                map(lambda characteristic_read: characteristic_read.value,
+                    self.read_response.characteristics_read))
+            value_list, handle_list = zip(
+                *[(data.value, data.handle) for data in char_value_list])
+            assert int(attribute_handle, 16) in handle_list
+            assert bytes.fromhex(attribute_value) in value_list
+        return "Yes"
+
+    def MMI_IUT_ENTER_HANDLE_INVALID_ATTRIBUTE_LEN(self, handle_value,
+        **kwargs):
+        """
+        Please input a handle(0x)(Range 0x0001-0xFFFF) that is fixed length
+        and it is smaller than MTU-3.
+
+        Description: Verify that the Implementation Under Test (IUT) can issue
+        an Invalid Handle Response.
+        """
+        # Provide the handle value for required test.
+        return handle_value
+
+    def MMI_IUT_CONFIRM_WRITE(self, **kwargs):
+        """
+        Please confirm IUT Write characteristic handle= 'XXXX'O value= 'XX'O .
+        Click Yes if IUT received it, otherwise click No.
+
+        Description: Verify that the Implementation Under Test (IUT) can Write
+        characteristic.
+        """
+
+        return "Yes"
+
+    @assert_description
+    def MMI_IUT_CONFIRM_READ_AUTHORIZATION(self, **kwargs):
+        """
+        Please confirm IUT received authorization error. Click Yes if IUT
+        received it, otherwise click No.
+
+        Description: Verify that the
+        Implementation Under Test (IUT) indicate
+        authorization error when read a
+        characteristic.
+        """
+
+        if type(self.read_response) is ReadCharacteristicResponse:
+            assert self.read_response.status == INSUFFICIENT_AUTHORIZATION
+        elif type(self.read_response) is ReadCharacteristicsFromUuidResponse:
+            assert self.read_response.characteristics_read is not None
+            assert INSUFFICIENT_AUTHORIZATION in list(
+                map(lambda characteristic_read: characteristic_read.status,
+                    self.read_response.characteristics_read))
+        return "Yes"
+
+    @assert_description
+    def MMI_IUT_ENTER_UUID_INSUFFICIENT_AUTHORIZATION(self, **kwargs):
+        """
+        Enter UUID(0x) response with Insufficient Authorization.
+
+        Description:
+        Verify that the Implementation
+        Under Test (IUT) can respond Insufficient
+        Authorization.
+        """
+        self.last_added_service = self.gatt.RegisterService(
+            service=GattServiceParams(uuid=CUSTOM_SERVICE_UUID,
+            characteristics=[GattCharacteristicParams(
+                uuid=UNAUTHORIZED_CHAR_UUID,
+                properties=(PROPERTY_READ | PROPERTY_WRITE),
+                permissions=(PERMISSION_READ | PERMISSION_WRITE),),], ))
+      return UNAUTHORIZED_CHAR_UUID[4:8].upper()
+
+
+    @assert_description
+    def MMI_IUT_CONFIRM_WRITE_AUTHORIZATION(self, **kwargs):
+        """
+        Please confirm IUT received write authorization
+        error. Click Yes if IUT
+        received it, otherwise click No.
+
+        Description: Verify that the
+        Implementation Under Test
+        (IUT) indicate authorization error when write
+        a characteristic.
+        """
+
+        assert self.write_response is not None
+        assert self.write_response.status == INSUFFICIENT_AUTHORIZATION
+        return "Yes"
+
+    @assert_description
+    def MMI_IUT_CONFIRM_WRITE_AUTHENTICATION(self, **kwargs):
+        """
+        Please confirm IUT received write authentication
+        error. Click Yes if IUT
+        received it, otherwise click
+        No.
+
+        Description: Verify that the
+        Implementation Under Test
+        (IUT) indicate authentication error when write
+        a characteristic.
+        """
+
+        assert self.write_response is not None
+        assert self.write_response.status == INSUFFICIENT_AUTHENTICATION
+        return "Yes"
+
+    def MMI_IUT_ENTER_HANDLE_INSUFFICIENT_AUTHORIZATIOND(self, **kwargs):
+        """
+        Enter Handle(0x)(Range 0x0001-0xFFFF) response with Insufficient
+        Authorization.
+
+        Description: Verify that the Implementation Under Test
+        (IUT) can respond Insufficient Authorization.
+        """
+        return "{:04x}".format(self.last_added_service.service.characteristics[0].handle)
+
     @assert_description
     def MMI_IUT_CONFIRM_READ_AUTHENTICATION(self, **kwargs):
         """
@@ -691,7 +836,7 @@ class GATTProxy(ProfileProxy):
         """
 
         assert self.connection is not None
-        matches = re.findall("'([a0-Z9]*)'O", description)
+        matches = re.findall("'([a0-Z9-]*)'O", description)
         self.read_response = self.gatt.ReadCharacteristicsFromUuid(\
                 connection=self.connection, uuid=formatUuid(matches[0]),\
                 start_handle=0x0001,\
