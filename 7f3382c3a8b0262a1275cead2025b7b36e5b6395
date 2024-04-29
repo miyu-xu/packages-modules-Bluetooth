@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2779da60_9526a175",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-29T17:36:50Z",
+      "side": 1,
+      "message": "Can you help to add the flag task to the description?",
+      "revId": "7f3382c3a8b0262a1275cead2025b7b36e5b6395",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e49ea56_61e34c93",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3971,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-29T17:36:50Z",
+      "side": 1,
+      "message": "com::android::bluetooth::flags::leaudio_no_context_validate_streaming_request()?\n\n\n```\nPlease fix this ERROR reported by Build Warnings: use of undeclared identifier \u0027leaudio_no_context_validate_streaming_request\u0027\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    use of undeclared identifier \u0027leaudio_no_context_validate_streaming_request\u0027\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P73887283/targets/aosp_cf_x86_64_phone-trunk_staging-userdebug, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the aosp-main branch.",
+      "range": {
+        "startLine": 3971,
+        "startChar": 26,
+        "endLine": 3971,
+        "endChar": 75
+      },
+      "revId": "7f3382c3a8b0262a1275cead2025b7b36e5b6395",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
