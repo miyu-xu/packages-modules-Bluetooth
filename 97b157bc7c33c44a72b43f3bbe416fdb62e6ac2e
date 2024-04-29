@@ -16,6 +16,24 @@
       "message": "Replacing C function pointers with the standard chrome bind is the correct direction.\n\nDoes it make sense to add a 3rd one `sdp_disc_cmpl_cb3` and then move to using this one and retire the first 2 ? `sdp_disc_cmpl_cb` and `sdp_disc_cmpl_cb2`",
       "revId": "97b157bc7c33c44a72b43f3bbe416fdb62e6ac2e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89da63f3_57096c92",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-04-29T18:23:57Z",
+      "side": 1,
+      "message": "I already converted all sdp_disc_cmpl_cb2 usages. Can we get this one merged, and then I\u0027ll move all sdp_disc_cmpl_cb usages to it too ?",
+      "parentUuid": "53200926_70b24580",
+      "revId": "97b157bc7c33c44a72b43f3bbe416fdb62e6ac2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
