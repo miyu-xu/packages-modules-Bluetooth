@@ -16,6 +16,29 @@
       "message": "```\njava.lang.IllegalStateException: stopAutoDispatch called without startAutoDispatch.\n\tat android.os.test.TestLooper.stopAutoDispatch(TestLooper.java:319)\n\tat com.android.bluetooth.a2dp.A2dpServiceTest.tearDown(A2dpServiceTest.java:139)\n```\n\nYou may want to use `stopAutoDispatchAndIgnoreExceptions` but please double check if it is actually the case.",
       "revId": "98c83f57115ce21361c2a63baa298649df47f5c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3bf7749_d435a174",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/a2dp/A2dpServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-29T20:27:19Z",
+      "side": 1,
+      "message": "Is this still true when taking the looper in parameter ?",
+      "range": {
+        "startLine": 134,
+        "startChar": 7,
+        "endLine": 137,
+        "endChar": 45
+      },
+      "revId": "98c83f57115ce21361c2a63baa298649df47f5c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
