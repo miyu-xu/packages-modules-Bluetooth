@@ -104,6 +104,24 @@
       "parentUuid": "27dd852d_df7c8922",
       "revId": "3e2e8cfe73f104fc2aa8845a7fa968d2745bb28c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7d97eae_d98751a9",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3956,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-04-29T16:51:27Z",
+      "side": 1,
+      "message": "Acknowledged, just want to confirm if I understood this right, so we intended to skip this and wait for retry. It\u0027s okay.",
+      "parentUuid": "f487cae6_9a64b9ae",
+      "revId": "3e2e8cfe73f104fc2aa8845a7fa968d2745bb28c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
