@@ -22,6 +22,30 @@
       },
       "revId": "46bf17737df5f30fe7f73e1f05495404ecead674",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d5855fe_9490eb74",
+        "filename": "system/stack/btm/btm_ble_bgconn.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-04-29T16:12:48Z",
+      "side": 1,
+      "message": "Hi Ying, you did not attach the link. Do you mean behind a normal AOSP flag and enable by sysprop in chromeos?",
+      "parentUuid": "331df3e9_c56dce07",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 16
+      },
+      "revId": "46bf17737df5f30fe7f73e1f05495404ecead674",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
