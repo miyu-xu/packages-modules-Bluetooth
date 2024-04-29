@@ -22,6 +22,30 @@
       },
       "revId": "49042d71e2d81bc1f183ab03c30853d296f0ecef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d36a591_2411ae1a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-04-29T21:17:41Z",
+      "side": 1,
+      "message": "Discussed offline, some additional verification done through running tests with flag on in the cuttlefish instance.",
+      "parentUuid": "e8b76fa7_202613ed",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 32
+      },
+      "revId": "49042d71e2d81bc1f183ab03c30853d296f0ecef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
