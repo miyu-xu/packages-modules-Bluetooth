@@ -15,6 +15,11 @@
  */
 #include "hci/distance_measurement_manager.h"
 
+#include <aidl/android/hardware/bluetooth/ranging/BnBluetoothChannelSounding.h>
+#include <aidl/android/hardware/bluetooth/ranging/BnBluetoothChannelSoundingSession.h>
+#include <aidl/android/hardware/bluetooth/ranging/BnBluetoothChannelSoundingSessionCallback.h>
+#include <aidl/android/hardware/bluetooth/ranging/IBluetoothChannelSounding.h>
+#include <android/binder_manager.h>
 #include <bluetooth/log.h>
 #include <com_android_bluetooth_flags.h>
 #include <math.h>
@@ -36,6 +41,15 @@
 #include "ras/ras_packets.h"
 
 using namespace bluetooth::ras;
+using aidl::android::hardware::bluetooth::ranging::BluetoothChannelSoundingParameters;
+using aidl::android::hardware::bluetooth::ranging::BnBluetoothChannelSoundingSessionCallback;
+using aidl::android::hardware::bluetooth::ranging::ChannelSoudingRawData;
+using aidl::android::hardware::bluetooth::ranging::ComplexNumber;
+using aidl::android::hardware::bluetooth::ranging::IBluetoothChannelSounding;
+using aidl::android::hardware::bluetooth::ranging::IBluetoothChannelSoundingSession;
+using aidl::android::hardware::bluetooth::ranging::IBluetoothChannelSoundingSessionCallback;
+using aidl::android::hardware::bluetooth::ranging::StepTonePct;
+using aidl::android::hardware::bluetooth::ranging::VendorSpecificData;
 using bluetooth::hci::acl_manager::PacketViewForRecombination;
 
 namespace bluetooth {
@@ -151,6 +165,31 @@ struct DistanceMeasurementManager::impl {
     distance_measurement_interface_->EnqueueCommand(
         LeCsReadLocalSupportedCapabilitiesBuilder::Create(),
         handler_->BindOnceOn(this, &impl::on_cs_read_local_supported_capabilities));
+
+    std::string instance = std::string() + IBluetoothChannelSounding::descriptor + "/default";
+    log::info(
+        "CYDBG HAL AServiceManager_isDeclared {}", AServiceManager_isDeclared(instance.c_str()));
+
+    if (AServiceManager_isDeclared(instance.c_str())) {
+      ::ndk::SpAIBinder binder(AServiceManager_waitForService(instance.c_str()));
+      bluetooth_channel_sounding_ = IBluetoothChannelSounding::fromBinder(binder);
+      if (bluetooth_channel_sounding_ != nullptr) {
+        std::optional<std::vector<std::optional<VendorSpecificData>>> vendorSpecificDataOptional;
+        bluetooth_channel_sounding_->getVendorSpecificData(&vendorSpecificDataOptional);
+        if (vendorSpecificDataOptional.has_value()) {
+          log::info("CYDBG HAL has_value");
+          for (auto vendor_specific_data : vendorSpecificDataOptional.value()) {
+            Uuid uuid = Uuid::From128BitBE(vendor_specific_data->characteristicUuid);
+            log::info(
+                "CYDBG HAL uuid {}, {}", uuid.ToString(), vendor_specific_data->opaqueValue[0]);
+          }
+        } else {
+          log::info("CYDBG HAL not has_value");
+        }
+      } else {
+        log::info("CYDBG HAL Can't get IBluetoothChannelSounding fromBinder");
+      }
+    }
   }
 
   void stop() {
@@ -1386,6 +1425,7 @@ struct DistanceMeasurementManager::impl {
       {1, 2, 4, 3}, {2, 1, 4, 3}, {1, 4, 2, 3}, {4, 1, 2, 3}, {4, 2, 1, 3}, {2, 4, 1, 3},
       {1, 4, 3, 2}, {4, 1, 3, 2}, {1, 3, 4, 2}, {3, 1, 4, 2}, {3, 4, 1, 2}, {4, 3, 1, 2},
       {4, 2, 3, 1}, {2, 4, 3, 1}, {4, 3, 2, 1}, {3, 4, 2, 1}, {3, 2, 4, 1}, {2, 3, 4, 1}};
+  std::shared_ptr<IBluetoothChannelSounding> bluetooth_channel_sounding_ = nullptr;
 };
 
 DistanceMeasurementManager::DistanceMeasurementManager() {
