@@ -106,11 +106,6 @@ void SinkImpl::Release() {
 
   log::info("");
   if (halSourceInterface_) {
-    if (le_audio_source_hal_state == HAL_STARTED) {
-      halSourceInterface_->StopSession();
-      le_audio_source_hal_state = HAL_STOPPED;
-    }
-
     halSourceInterface_->Cleanup();
 
     auto halInterface = audio::le_audio::LeAudioClientInterface::Get();
