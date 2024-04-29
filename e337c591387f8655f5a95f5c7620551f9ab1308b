@@ -22,6 +22,30 @@
       },
       "revId": "e337c591387f8655f5a95f5c7620551f9ab1308b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b025803_c4b024c0",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-04-29T06:00:09Z",
+      "side": 1,
+      "message": "I also changed the btm_pcm_buf in line 207: \n```static uint8_t btm_pcm_buf```\nso the change in here will be a no-op",
+      "parentUuid": "edc00c43_1f192922",
+      "range": {
+        "startLine": 545,
+        "startChar": 52,
+        "endLine": 545,
+        "endChar": 63
+      },
+      "revId": "e337c591387f8655f5a95f5c7620551f9ab1308b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
