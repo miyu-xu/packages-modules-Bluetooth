@@ -535,6 +535,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ddb13012_1b5a0022",
+        "filename": "framework/java/android/bluetooth/BluetoothManager.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-29T20:40:46Z",
+      "side": 1,
+      "message": "Oh... I see...\nThat explain why we are misaligned on it.\n\nIn a proper architecture, the code in framework is for other application. We should not need to make re-entrant call within bluetooth when we already are in the bluetooth service.\n\nIdeally we should look on how to replace the call in tbsservice to a direct call to gattService.registerServer (or smth like this I haven\u0027t investigate).\n\nThen all you are fixing here should be for external usage.\n\nIf we have no plan to change them, my first feedback would be that we shouldn\u0027t do the change.",
+      "parentUuid": "dab97bc1_c5f11ec8",
+      "range": {
+        "startLine": 257,
+        "startChar": 14,
+        "endLine": 257,
+        "endChar": 23
+      },
+      "revId": "96a501ad3cc4ac9147b2fb175a5164a61cad776f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e9d27af9_becc599e",
         "filename": "framework/tests/bumble/AndroidTest.xml",
         "patchSetId": 15
