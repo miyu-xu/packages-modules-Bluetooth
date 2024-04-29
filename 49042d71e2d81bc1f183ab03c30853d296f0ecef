@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8b76fa7_202613ed",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-29T18:01:36Z",
+      "side": 1,
+      "message": "I don\u0027t think that this is something tested by the bumble test.\n\nThe proper stanza should be `Test: None` in this case, that will tricker a warning that need to be bypass.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 32
+      },
+      "revId": "49042d71e2d81bc1f183ab03c30853d296f0ecef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
