@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb237800_a1337fc8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-29T20:26:35Z",
+      "side": 1,
+      "message": "```\njava.lang.IllegalStateException: stopAutoDispatch called without startAutoDispatch.\n\tat android.os.test.TestLooper.stopAutoDispatch(TestLooper.java:319)\n\tat com.android.bluetooth.a2dp.A2dpServiceTest.tearDown(A2dpServiceTest.java:139)\n```\n\nYou may want to use `stopAutoDispatchAndIgnoreExceptions` but please double check if it is actually the case.",
+      "revId": "98c83f57115ce21361c2a63baa298649df47f5c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
