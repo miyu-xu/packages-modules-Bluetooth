@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b36d1403_f34a7008",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958854
+      },
+      "writtenOn": "2024-04-29T16:17:08Z",
+      "side": 1,
+      "message": "Are we planning to address the ownership lints, or should we discuss a strategy for these, since there are multiple CL\u0027s with this lint error?",
+      "revId": "ae07fef09aeae93980a8ab9a9c57655987b1f5e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
