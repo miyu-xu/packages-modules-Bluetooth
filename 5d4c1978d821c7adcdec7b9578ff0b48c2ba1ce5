@@ -16,6 +16,23 @@
       "message": "Hi, PTAL, thanks~!",
       "revId": "5d4c1978d821c7adcdec7b9578ff0b48c2ba1ce5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e2c8da4_7caf0f1d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-04-29T04:22:13Z",
+      "side": 1,
+      "message": "Thomas going to OOO. William, could you help to review? Thanks!",
+      "revId": "5d4c1978d821c7adcdec7b9578ff0b48c2ba1ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
