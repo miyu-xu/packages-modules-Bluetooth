@@ -329,11 +329,6 @@ bool BluetoothAudioClientInterface::UpdateAudioConfig(
     return true;
   }
 
-  if (!session_started_) {
-    log::info("BluetoothAudioHal session has not started");
-    return true;
-  }
-
   auto aidl_retval = provider_->updateAudioConfiguration(audio_config);
   if (!aidl_retval.isOk()) {
     log::error("BluetoothAudioHal failure: {}", aidl_retval.getDescription());
