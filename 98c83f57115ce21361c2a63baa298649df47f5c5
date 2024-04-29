@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "58fc1aba_d342add9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-29T23:41:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb237800_a1337fc8",
+      "revId": "98c83f57115ce21361c2a63baa298649df47f5c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b3bf7749_d435a174",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-04-29T20:27:19Z",
       "side": 1,
       "message": "Is this still true when taking the looper in parameter ?",
+      "range": {
+        "startLine": 134,
+        "startChar": 7,
+        "endLine": 137,
+        "endChar": 45
+      },
+      "revId": "98c83f57115ce21361c2a63baa298649df47f5c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bc7b6f2_d8e9b54e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/a2dp/A2dpServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-04-29T23:41:09Z",
+      "side": 1,
+      "message": "a2dpservice now runs on the test looper, removed the runOnMainSync.\nThis also means that the change potentially introduces bugs into A2dpService since now the handler and caller of A2dpService::stop are not running on the same thread.\nWill run more tests to validate.",
+      "parentUuid": "b3bf7749_d435a174",
       "range": {
         "startLine": 134,
         "startChar": 7,
