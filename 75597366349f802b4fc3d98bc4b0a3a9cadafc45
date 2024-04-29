@@ -52,6 +52,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c407785_1c25606b",
+        "filename": "system/audio_hal_interface/fuzzer/libbt_audio_hal_le_audio_software_fuzzer.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 2046581
+      },
+      "writtenOn": "2024-04-29T20:09:04Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "ef723711_015baa54",
+      "revId": "75597366349f802b4fc3d98bc4b0a3a9cadafc45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4c00fdb_e8e56459",
@@ -65,6 +83,24 @@
       "writtenOn": "2024-02-27T01:12:11Z",
       "side": 1,
       "message": "Size should be based on a value consumed from the fuzz data (eg. fdp.ConsumeIntegral\u003cuint16_t\u003e()), rather than the total size of all the fuzz data.  That\u0027ll make it easier for the fuzz mutator to explore any issues with different read buffer sizes.",
+      "revId": "75597366349f802b4fc3d98bc4b0a3a9cadafc45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8de288fd_9c84b21a",
+        "filename": "system/audio_hal_interface/fuzzer/libbt_audio_hal_le_audio_software_fuzzer.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 2046581
+      },
+      "writtenOn": "2024-04-29T20:09:04Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "a4c00fdb_e8e56459",
       "revId": "75597366349f802b4fc3d98bc4b0a3a9cadafc45",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
