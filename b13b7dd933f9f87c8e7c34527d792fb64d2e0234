@@ -88,6 +88,24 @@
       "parentUuid": "a31bbc84_09c88341",
       "revId": "b13b7dd933f9f87c8e7c34527d792fb64d2e0234",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2c76040_f6f45eff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-29T22:17:50Z",
+      "side": 1,
+      "message": "Tagging with correct mail: @eruffieux@google.com\n\nI believe he is working on a fix",
+      "parentUuid": "bc6ba693_6959d846",
+      "revId": "b13b7dd933f9f87c8e7c34527d792fb64d2e0234",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
