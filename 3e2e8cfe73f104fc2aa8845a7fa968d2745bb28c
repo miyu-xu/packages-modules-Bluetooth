@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a43ee9ad_48857a5d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-29T10:15:56Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7f4360da_8a9bee58",
+      "revId": "3e2e8cfe73f104fc2aa8845a7fa968d2745bb28c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56ab6c5e_6ec5af2e",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1f76186_ab7bd648",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3952,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-29T10:15:56Z",
+      "side": 1,
+      "message": "Sure!",
+      "parentUuid": "56ab6c5e_6ec5af2e",
+      "revId": "3e2e8cfe73f104fc2aa8845a7fa968d2745bb28c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "27dd852d_df7c8922",
@@ -48,6 +84,24 @@
       "writtenOn": "2024-04-25T00:26:45Z",
       "side": 1,
       "message": "Won\u0027t there be a problem if we drop this request by skipping GroupStream()?",
+      "revId": "3e2e8cfe73f104fc2aa8845a7fa968d2745bb28c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f487cae6_9a64b9ae",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3956,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-04-29T10:15:56Z",
+      "side": 1,
+      "message": "If I good understand your question - Audio Framework should ask again about audio resume. Canceling it\u0027s a typical procedure, it can be treated as - \"I\u0027m not ready YET (Bluetooth native), please request streaming again\".",
+      "parentUuid": "27dd852d_df7c8922",
       "revId": "3e2e8cfe73f104fc2aa8845a7fa968d2745bb28c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
