@@ -34,6 +34,24 @@
       "parentUuid": "bdee5ba0_538ecb7a",
       "revId": "15000ce4785969899743b82f542aa6d18a02754a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22fac0cc_998dfaee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-04-29T07:45:14Z",
+      "side": 1,
+      "message": "Hi William. I agree that relaxing the test should not be the way to go. The thing is I talked to Jayden about this and he suggested a looser check since a BLE scan metrics refactor is going on anyways and not spending too much time on this.\n\nThe issue start identification is in b/326336517#comment4. The problem seems to stem from using [testSleep](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java;l\u003d234?q\u003dScanManagerTest\u0026sq\u003drepo:%22googleplex-android%2Fplatform%2Fsuperproject%2Fmain%22%20branch:%22main%22) to configure scan duration which is flaky and doesn\u0027t result in the same amount of time passing for every test. (Thus the tests related with scan duration being flaky). Do you think I should abandon this CL and wait for the metrics refactor and come up with a better fix then? I\u0027m thinking about using a custom timer in `ScanManager` to control the scan duration during tests.",
+      "parentUuid": "b9bcc11c_99586c3d",
+      "revId": "15000ce4785969899743b82f542aa6d18a02754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
