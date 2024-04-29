@@ -511,6 +511,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dab97bc1_c5f11ec8",
+        "filename": "framework/java/android/bluetooth/BluetoothManager.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-04-29T18:30:38Z",
+      "side": 1,
+      "message": "\u003e I thought this was the goal of this CL.\n\nNo, this CL\u0027s purpose is to add a hidden API with executor. After it is merged, I\u0027ll change internal BT usages (i.e. under p/m/Bluetooth) one by one after this CL is merged. We can check with the owners of those usages whether the thread change is okay.\n\nFor external usages, I have no plan to change them. \nAlso, currently no plan to make the new API as public.\n\nIf we just change the behavior to post in the main thread, it would be a disruptive change and possibly break things (e.g. user waits in the main thread, but it is never finished).\n\n---\n\nFor DirectExecutor - yes, it just directly runs the runnable. It is indeed using binder thread again for preserving current behavior.",
+      "parentUuid": "e88f2b07_a4f6988e",
+      "range": {
+        "startLine": 257,
+        "startChar": 14,
+        "endLine": 257,
+        "endChar": 23
+      },
+      "revId": "96a501ad3cc4ac9147b2fb175a5164a61cad776f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e9d27af9_becc599e",
         "filename": "framework/tests/bumble/AndroidTest.xml",
         "patchSetId": 15
