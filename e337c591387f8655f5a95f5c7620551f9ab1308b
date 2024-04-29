@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0773005_bf36ae30",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-04-29T09:41:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd77d872_15edbddb",
+      "range": {
+        "startLine": 215,
+        "startChar": 0,
+        "endLine": 215,
+        "endChar": 4
+      },
+      "revId": "e337c591387f8655f5a95f5c7620551f9ab1308b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "edc00c43_1f192922",
