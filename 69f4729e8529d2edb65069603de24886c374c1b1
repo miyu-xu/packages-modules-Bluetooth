@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90c6515e_7aff8237",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-04-29T15:05:10Z",
+      "side": 1,
+      "message": "Do you want to early return here too?",
+      "revId": "69f4729e8529d2edb65069603de24886c374c1b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
