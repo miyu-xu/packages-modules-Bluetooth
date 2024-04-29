@@ -58,6 +58,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7349807_2c2cf1a3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 1004,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-29T08:45:05Z",
+      "side": 1,
+      "message": "After crrev/c/5493420. self.phone_ops_enabled will become the default true. So As long as we don\u0027t disable bluetooth telephony in the future. We should not see the log spam.",
+      "parentUuid": "ce376158_18a6e282",
+      "range": {
+        "startLine": 1004,
+        "startChar": 20,
+        "endLine": 1004,
+        "endChar": 57
+      },
+      "revId": "cfc3b374870fce0a8a3d418dfef82ad4e4d68582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9bc0b9d4_1e8893ff",
@@ -81,6 +105,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6809787_18a717fb",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 2053,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-29T08:45:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9bc0b9d4_1e8893ff",
+      "range": {
+        "startLine": 2052,
+        "startChar": 0,
+        "endLine": 2053,
+        "endChar": 89
+      },
+      "revId": "cfc3b374870fce0a8a3d418dfef82ad4e4d68582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7d675ec7_f0dabede",
@@ -94,6 +142,30 @@
       "writtenOn": "2024-04-26T10:35:49Z",
       "side": 1,
       "message": "Redundant `.clone()` call. Same below.",
+      "range": {
+        "startLine": 2100,
+        "startChar": 51,
+        "endLine": 2100,
+        "endChar": 59
+      },
+      "revId": "cfc3b374870fce0a8a3d418dfef82ad4e4d68582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d68e2fe_ba10a2fe",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 2100,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-04-29T08:45:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d675ec7_f0dabede",
       "range": {
         "startLine": 2100,
         "startChar": 51,
