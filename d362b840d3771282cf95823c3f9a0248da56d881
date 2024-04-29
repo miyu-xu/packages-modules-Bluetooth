@@ -22,6 +22,30 @@
       },
       "revId": "d362b840d3771282cf95823c3f9a0248da56d881",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d85f3fbf_95b9e68c",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 3858,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-29T22:41:04Z",
+      "side": 0,
+      "message": "Indeed, this should be added back to avoid unexpected logical changes\n\nSee: https://r.android.com/3066184",
+      "parentUuid": "7f89a13e_547cb641",
+      "range": {
+        "startLine": 3857,
+        "startChar": 2,
+        "endLine": 3858,
+        "endChar": 68
+      },
+      "revId": "d362b840d3771282cf95823c3f9a0248da56d881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
