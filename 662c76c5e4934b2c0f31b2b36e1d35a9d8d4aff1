@@ -16,6 +16,24 @@
       "message": "nit: maybe add your `Android Headtracker Metadata` structure here so people can know the structure",
       "revId": "662c76c5e4934b2c0f31b2b36e1d35a9d8d4aff1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7283a5b8_c2c8fe57",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-04-30T23:18:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d1804ab_b665e15d",
+      "revId": "662c76c5e4934b2c0f31b2b36e1d35a9d8d4aff1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
