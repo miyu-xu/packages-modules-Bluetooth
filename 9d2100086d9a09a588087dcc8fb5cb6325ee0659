@@ -16,6 +16,24 @@
       "message": "Unfamiliar with Android roll outs, etc. So maybe a dumb question, but is there anything to guard these changes (similar to @flaggedapi)?\nHow is this managed to avoid leaking before the android update?",
       "revId": "9d2100086d9a09a588087dcc8fb5cb6325ee0659",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09fac9d4_e92d0dff",
+        "filename": "android/app/res/values/config.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 3398188
+      },
+      "writtenOn": "2024-04-30T20:37:41Z",
+      "side": 1,
+      "message": "Ambiguous wording, rephrasing: Is there any issue with the .xml changes not being behind an XML flag? Is this how it\u0027s normally done?",
+      "parentUuid": "14527b49_c7547236",
+      "revId": "9d2100086d9a09a588087dcc8fb5cb6325ee0659",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
