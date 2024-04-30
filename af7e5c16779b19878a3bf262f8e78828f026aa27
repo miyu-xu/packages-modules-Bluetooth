@@ -34,6 +34,24 @@
       "parentUuid": "849be84c_9967444b",
       "revId": "af7e5c16779b19878a3bf262f8e78828f026aa27",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78f902b3_c38d6cae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-04-30T20:29:15Z",
+      "side": 1,
+      "message": "I\u0027ll call this resolved. Happy to refine on top if you have any concerns!",
+      "parentUuid": "14e0cd2a_32b0284d",
+      "revId": "af7e5c16779b19878a3bf262f8e78828f026aa27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
