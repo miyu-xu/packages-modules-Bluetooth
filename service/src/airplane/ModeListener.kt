@@ -27,6 +27,7 @@ import android.os.Looper
 import android.provider.Settings
 import android.widget.Toast
 import com.android.bluetooth.BluetoothStatsLog
+import com.android.bluetooth.flags.Flags
 import com.android.server.bluetooth.BluetoothAdapterState
 import com.android.server.bluetooth.Log
 import com.android.server.bluetooth.initializeRadioModeListener
@@ -38,6 +39,15 @@ private const val TAG = "AirplaneModeListener"
 
 /** @return true if Bluetooth state is currently impacted by airplane mode */
 public var isOnForBluetooth = false
+    private set
+
+/**
+ * @return true if airplane is ON on the device.
+ *
+ * This need to be used instead of reading the settings properties to avoid race condition from
+ * within the BluetoothManagerService thread
+ */
+public var isOnForSystem = false
     private set
 
 /**
@@ -80,6 +90,7 @@ public fun initialize(
             Settings.Global.AIRPLANE_MODE_RADIOS,
             Settings.Global.AIRPLANE_MODE_ON,
             fun(newMode: Boolean) {
+                isOnForSystem = newMode
                 val previousMode = isOnForBluetooth
                 val isBluetoothOn = state.oneOf(STATE_ON, STATE_TURNING_ON, STATE_TURNING_OFF)
                 val isMediaConnected = isBluetoothOn && mediaCallback()
@@ -105,6 +116,11 @@ public fun initialize(
 
                 if (previousMode == isOnForBluetooth) {
                     Log.d(TAG, "Ignore airplane mode change because is already: $isOnForBluetooth")
+                    return
+                } else if (
+                    Flags.airplaneModeXBleOn() && isOnForBluetooth == false && state.oneOf(STATE_ON)
+                ) {
+                    Log.d(TAG, "Ignore airplane mode deactivation because bluetooth is already ON")
                     return
                 }
 
