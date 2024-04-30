@@ -70,6 +70,24 @@
       "parentUuid": "22fac0cc_998dfaee",
       "revId": "15000ce4785969899743b82f542aa6d18a02754a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebb2f7ed_9799988d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-04-30T06:19:55Z",
+      "side": 1,
+      "message": "In b/326336517#comment4, Kihong explained well why the metrics could be called twice. This test case could depend on system latency where `weighted duration \u003e 0` or `\u003c\u003d 0` in quick switching screen state. atMost(2) seems good enough to include this situation.",
+      "parentUuid": "277933ec_1eb711a0",
+      "revId": "15000ce4785969899743b82f542aa6d18a02754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
