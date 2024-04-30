@@ -46,6 +46,30 @@
       },
       "revId": "b1fc64a09f009d4f9aec13386a5fe9650ea39c50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a33f6589_c2ce3cc5",
+        "filename": "system/gd/storage/config_keys.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-04-30T07:31:25Z",
+      "side": 1,
+      "message": "key string reverted",
+      "parentUuid": "66862eaf_aaac3b10",
+      "range": {
+        "startLine": 68,
+        "startChar": 38,
+        "endLine": 68,
+        "endChar": 48
+      },
+      "revId": "b1fc64a09f009d4f9aec13386a5fe9650ea39c50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
