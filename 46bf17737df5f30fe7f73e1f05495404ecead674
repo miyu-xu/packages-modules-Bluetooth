@@ -46,6 +46,30 @@
       },
       "revId": "46bf17737df5f30fe7f73e1f05495404ecead674",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b767e98_51baf3b5",
+        "filename": "system/stack/btm/btm_ble_bgconn.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-04-30T03:53:23Z",
+      "side": 1,
+      "message": "1. flag definition on AOSP:\n  + packages/modules/Bluetooth/flags/\n  + sample CL: aosp/2915150\n\n2. Static value on ChromeOS:\n  + src/third_party/chromiumos-overlay/net-wireless/floss/files/config/aflags.conf\n  + sample CL: crrev/c/5382179",
+      "parentUuid": "6d5855fe_9490eb74",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 16
+      },
+      "revId": "46bf17737df5f30fe7f73e1f05495404ecead674",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
