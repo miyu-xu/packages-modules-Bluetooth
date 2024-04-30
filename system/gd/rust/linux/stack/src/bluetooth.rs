@@ -1246,6 +1246,8 @@ pub(crate) trait BtifBluetoothCallbacks {
     fn ssp_request(
         &mut self,
         remote_addr: RawAddress,
+        remote_name: String,
+        cod: u32,
         variant: BtSspVariant,
         passkey: u32,
     ) {
@@ -1612,6 +1614,8 @@ impl BtifBluetoothCallbacks for Bluetooth {
     fn ssp_request(
         &mut self,
         remote_addr: RawAddress,
+        remote_name: String,
+        cod: u32,
         variant: BtSspVariant,
         passkey: u32,
     ) {
@@ -1619,7 +1623,7 @@ impl BtifBluetoothCallbacks for Bluetooth {
         if variant == BtSspVariant::Consent {
             let initiated_by_us = Some(remote_addr.clone()) == self.active_pairing_address;
             self.set_pairing_confirmation(
-                BluetoothDevice::new(remote_addr.to_string(), "".to_string()),
+                BluetoothDevice::new(remote_addr.to_string(), remote_name.clone()),
                 initiated_by_us,
             );
             return;
@@ -1628,13 +1632,9 @@ impl BtifBluetoothCallbacks for Bluetooth {
         // Currently this supports many agent because we accept many callbacks.
         // TODO(b/274706838): We need a way to select the default agent.
         self.callbacks.for_all_callbacks(|callback| {
-            // TODO(b/336960912): libbluetooth changed their API so that we no longer
-            // get the Device name and CoD, which were included in our DBus API.
-            // Now we simply put random values since we aren't ready to change our DBus API
-            // and it works because our Clients are not using these anyway.
             callback.on_ssp_request(
-                BluetoothDevice::new(remote_addr.to_string(), "".to_string()),
-                0,
+                BluetoothDevice::new(remote_addr.to_string(), remote_name.clone()),
+                cod,
                 variant.clone(),
                 passkey,
             );
