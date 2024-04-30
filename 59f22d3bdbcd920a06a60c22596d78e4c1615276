@@ -16,6 +16,24 @@
       "message": "No matter what you do, t1-t0 should be greater than 0, right?  Maybe you could use a future to make sure SetUp calls initialize?",
       "revId": "59f22d3bdbcd920a06a60c22596d78e4c1615276",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40ff1005_91ac2169",
+        "filename": "system/gd/hal/hci_hal_android_test.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-04-30T22:22:52Z",
+      "side": 1,
+      "message": "Previously I had a bug with the future/promise into the HAL.\nThis is intended to ensure the `Start()` of the module will not return before the `initializationComplete()` callback is called by the HAL.\nThe `TestBackend::initialization_delay`, do a sleep of this amount of time before calling the `initializationComplete()` signal. I check we can observe this sleep (at least 100ms before return of the \"Start()\").\nSo the purpose is to verify that `initialize()` is called, and the function does not return until `initializationComplete()` is called.\nI don\u0027t know how to check that we effectively block on the semaphore (promise/future), without enforcing a very long (100ms) asynchronous acknowledgement.\n\n(This test would fail if you remove the \".wait()\" here: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3063345/5/system/gd/hal/hci_hal_android.cc#169)",
+      "parentUuid": "0db746f3_a0db294a",
+      "revId": "59f22d3bdbcd920a06a60c22596d78e4c1615276",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
