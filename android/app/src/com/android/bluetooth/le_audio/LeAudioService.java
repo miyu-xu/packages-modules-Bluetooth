@@ -1314,12 +1314,17 @@ public class LeAudioService extends ProfileService {
     }
 
     /**
-     * Check if broadcast is active
+     * Check if broadcast is active streaming state
      *
-     * @return true if there is active broadcast, false otherwise
+     * @return true if there is active streaming broadcast, false otherwise
      */
     public boolean isBroadcastActive() {
-        return !mBroadcastDescriptors.isEmpty();
+        if (Flags.leaudioGettingActiveStateSupport()) {
+            return mBroadcastDescriptors.values().stream()
+                    .anyMatch(d -> d.mState.equals(LeAudioStackEvent.BROADCAST_STATE_STREAMING));
+        } else {
+            return !mBroadcastDescriptors.isEmpty();
+        }
     }
 
     /**
@@ -2059,14 +2064,29 @@ public class LeAudioService extends ProfileService {
                         + ", mExposedActiveDevice: "
                         + mExposedActiveDevice);
 
-        if (isBroadcastActive()
-                && currentlyActiveGroupId == LE_AUDIO_GROUP_ID_INVALID
-                && mUnicastGroupIdDeactivatedForBroadcastTransition != LE_AUDIO_GROUP_ID_INVALID
-                && groupId != LE_AUDIO_GROUP_ID_INVALID) {
-            // If broadcast is ongoing and need to update unicast fallback active group
-            // we need to update the cached group id and skip changing the active device
-            updateFallbackUnicastGroupIdForBroadcast(groupId);
-            return true;
+        if (!mBroadcastDescriptors.isEmpty()) {
+            if (isBroadcastActive()
+                    && currentlyActiveGroupId == LE_AUDIO_GROUP_ID_INVALID
+                    && mUnicastGroupIdDeactivatedForBroadcastTransition != LE_AUDIO_GROUP_ID_INVALID
+                    && groupId != LE_AUDIO_GROUP_ID_INVALID) {
+                // If broadcast is streaming and device needs to update unicast fallback active
+                // group, we should only update the cached group id and skip changing the active
+                // device
+                updateFallbackUnicastGroupIdForBroadcast(groupId);
+                return true;
+            }
+
+            if (Flags.leaudioGettingActiveStateSupport()
+                    && currentlyActiveGroupId != LE_AUDIO_GROUP_ID_INVALID
+                    && mBroadcastIdDeactivatedForUnicastTransition.isPresent()) {
+                // If device is in unicast active state, handover from broadcast and device
+                // wants to change active device, we should stop the broadcast and stay with
+                // unicast
+                updateFallbackUnicastGroupIdForBroadcast(LE_AUDIO_GROUP_ID_INVALID);
+                mQueuedInCallValue = Optional.empty();
+                stopBroadcast(mBroadcastIdDeactivatedForUnicastTransition.get());
+                mBroadcastIdDeactivatedForUnicastTransition = Optional.empty();
+            }
         }
 
         LeAudioGroupDescriptor groupDescriptor = getGroupDescriptor(currentlyActiveGroupId);
@@ -2693,8 +2713,7 @@ public class LeAudioService extends ProfileService {
         if (mUnicastGroupIdDeactivatedForBroadcastTransition == LE_AUDIO_GROUP_ID_INVALID) {
             Log.d(TAG, "No deactivated group due for broadcast transmission");
             // Notify audio manager
-            if (mBroadcastDescriptors.values().stream()
-                    .noneMatch(d -> d.mState.equals(LeAudioStackEvent.BROADCAST_STATE_STREAMING))) {
+            if (!isBroadcastActive()) {
                 updateBroadcastActiveDevice(null, mActiveBroadcastAudioDevice, false);
             }
             return;
@@ -3235,11 +3254,7 @@ public class LeAudioService extends ProfileService {
                     }
 
                     // Notify audio manager
-                    if (mBroadcastDescriptors.values().stream()
-                            .anyMatch(
-                                    d ->
-                                            d.mState.equals(
-                                                    LeAudioStackEvent.BROADCAST_STATE_STREAMING))) {
+                    if (isBroadcastActive()) {
                         if (!Objects.equals(device, mActiveBroadcastAudioDevice)) {
                             updateBroadcastActiveDevice(device, mActiveBroadcastAudioDevice, true);
                         }

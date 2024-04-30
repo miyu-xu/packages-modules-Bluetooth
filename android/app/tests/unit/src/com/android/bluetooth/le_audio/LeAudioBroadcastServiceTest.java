@@ -19,6 +19,8 @@ package com.android.bluetooth.le_audio;
 
 import static android.bluetooth.IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;
 
+import static com.google.common.truth.Truth.assertThat;
+
 import static org.mockito.Mockito.*;
 
 import android.annotation.Nullable;
@@ -654,6 +656,8 @@ public class LeAudioBroadcastServiceTest {
 
     @Test
     public void testIsBroadcastActive() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_GETTING_ACTIVE_STATE_SUPPORT);
+
         int broadcastId = 243;
         byte[] code = {0x00, 0x01, 0x00, 0x02};
 
@@ -677,7 +681,15 @@ public class LeAudioBroadcastServiceTest {
         state_event.broadcastMetadata = createBroadcastMetadata();
         mService.messageFromNative(state_event);
 
-        // Verify if broadcast is active
+        // Verify if broadcast is inactive if not in streaming
+        Assert.assertFalse(mService.isBroadcastActive());
+
+        state_event = new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_BROADCAST_STATE);
+        state_event.valueInt1 = broadcastId;
+        state_event.valueInt2 = LeAudioStackEvent.BROADCAST_STATE_STREAMING;
+        mService.messageFromNative(state_event);
+
+        // Verify if broadcast is active if in streaming
         Assert.assertTrue(mService.isBroadcastActive());
 
         mService.stopBroadcast(broadcastId);
@@ -696,6 +708,114 @@ public class LeAudioBroadcastServiceTest {
 
         // Verify if broadcast is not active
         Assert.assertFalse(mService.isBroadcastActive());
+    }
+
+    /** Test update unicast fallback active group when broadcast is ongoing */
+    @Test
+    public void testUpdateUnicastFallbackActiveDeviceGroupDuringBroadcast() {
+        int groupId = 1;
+        int preGroupId = 2;
+        int broadcastId = 243;
+        int direction = 1;
+        int snkAudioLocation = 3;
+        int srcAudioLocation = 4;
+        int availableContexts = 5;
+
+        // Connected device
+        prepareConnectedUnicastDevice(groupId);
+
+        mService.mUnicastGroupIdDeactivatedForBroadcastTransition = preGroupId;
+        // mock create broadcast and currentlyActiveGroupId remains LE_AUDIO_GROUP_ID_INVALID
+        LeAudioStackEvent create_event =
+                new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_BROADCAST_CREATED);
+        create_event.valueInt1 = broadcastId;
+        create_event.valueBool1 = true;
+        mService.messageFromNative(create_event);
+
+        // Inject metadata stack event and verify if getter API works as expected
+        LeAudioStackEvent state_event =
+                new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_BROADCAST_METADATA_CHANGED);
+        state_event.valueInt1 = broadcastId;
+        state_event.broadcastMetadata = createBroadcastMetadata();
+        mService.messageFromNative(state_event);
+
+        state_event = new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_BROADCAST_STATE);
+        state_event.valueInt1 = broadcastId;
+        state_event.valueInt2 = LeAudioStackEvent.BROADCAST_STATE_STREAMING;
+        mService.messageFromNative(state_event);
+
+        // Verify if broadcast is active if in streaming
+        Assert.assertTrue(mService.isBroadcastActive());
+
+        LeAudioStackEvent audioConfChangedEvent =
+                new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_AUDIO_CONF_CHANGED);
+        audioConfChangedEvent.device = mDevice;
+        audioConfChangedEvent.valueInt1 = direction;
+        audioConfChangedEvent.valueInt2 = groupId;
+        audioConfChangedEvent.valueInt3 = snkAudioLocation;
+        audioConfChangedEvent.valueInt4 = srcAudioLocation;
+        audioConfChangedEvent.valueInt5 = availableContexts;
+        mService.messageFromNative(audioConfChangedEvent);
+
+        // Verify only update the fallback group and not proceed to change active
+        assertThat(mService.setActiveDevice(mDevice)).isTrue();
+        assertThat(mService.mUnicastGroupIdDeactivatedForBroadcastTransition).isEqualTo(groupId);
+        verify(mLeAudioNativeInterface, times(0)).groupSetActive(anyInt());
+    }
+
+    /** Test update unicast active group when device is in Unicast handover from broadcast */
+    @Test
+    public void testUpdateActiveDeviceWhenGroupInUnicastHandover() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_GETTING_ACTIVE_STATE_SUPPORT);
+
+        int groupId = 1;
+        int broadcastId = 243;
+        byte[] code = {0x00, 0x01, 0x00, 0x02};
+
+        prepareHandoverStreamingBroadcast(groupId, broadcastId, code);
+
+        /* Verify if broadcast is auto-started on start */
+        verify(mLeAudioBroadcasterNativeInterface, times(1)).startBroadcast(eq(broadcastId));
+
+        /* Imitate group change request by Bluetooth Sink HAL resume request */
+        LeAudioStackEvent create_event =
+                new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_UNICAST_MONITOR_MODE_STATUS);
+        create_event.valueInt1 = LeAudioStackEvent.DIRECTION_SINK;
+        create_event.valueInt2 = LeAudioStackEvent.STATUS_LOCAL_STREAM_REQUESTED;
+        mService.messageFromNative(create_event);
+
+        /* Check if broadcast is paused triggered by group change request */
+        verify(mLeAudioBroadcasterNativeInterface, times(1)).pauseBroadcast(eq(broadcastId));
+
+        LeAudioStackEvent state_event =
+                new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_BROADCAST_STATE);
+        state_event.valueInt1 = broadcastId;
+        state_event.valueInt2 = LeAudioStackEvent.BROADCAST_STATE_PAUSED;
+        mService.messageFromNative(state_event);
+
+        create_event = new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_GROUP_STATUS_CHANGED);
+        create_event.valueInt1 = groupId;
+        create_event.valueInt2 = LeAudioStackEvent.GROUP_STATUS_ACTIVE;
+        mService.messageFromNative(create_event);
+
+        verify(mAudioManager, times(1))
+                .handleBluetoothActiveDeviceChanged(
+                        eq(mDevice), eq(null), any(BluetoothProfileConnectionInfo.class));
+        verify(mAudioManager, times(1))
+                .handleBluetoothActiveDeviceChanged(
+                        eq(null), eq(mBroadcastDevice), any(BluetoothProfileConnectionInfo.class));
+
+        // Active group should become the one that was active before broadcasting
+        int activeGroup = mService.getActiveGroupId();
+        Assert.assertEquals(activeGroup, groupId);
+
+        // Verify changing active device will stop broadcast
+        mService.setActiveDevice(null);
+        assertThat(mService.mUnicastGroupIdDeactivatedForBroadcastTransition)
+                .isEqualTo(LE_AUDIO_GROUP_ID_INVALID);
+        verify(mLeAudioBroadcasterNativeInterface, times(1)).stopBroadcast(eq(broadcastId));
+
+        verify(mLeAudioNativeInterface, times(2)).groupSetActive(eq(LE_AUDIO_GROUP_ID_INVALID));
     }
 
     private void verifyConnectionStateIntent(
