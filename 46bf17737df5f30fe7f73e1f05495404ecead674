@@ -70,6 +70,30 @@
       },
       "revId": "46bf17737df5f30fe7f73e1f05495404ecead674",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c83ac980_ce763ebb",
+        "filename": "system/stack/btm/btm_ble_bgconn.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-04-30T22:31:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b767e98_51baf3b5",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 16
+      },
+      "revId": "46bf17737df5f30fe7f73e1f05495404ecead674",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
