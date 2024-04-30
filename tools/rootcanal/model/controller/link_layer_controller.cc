@@ -5818,20 +5818,34 @@ uint16_t LinkLayerController::ReadDefaultLinkPolicySettings() const {
   return default_link_policy_settings_;
 }
 
-void LinkLayerController::ReadLocalOobData() {
-  std::array<uint8_t, 16> c_array(
-      {'c', ' ', 'a', 'r', 'r', 'a', 'y', ' ', '0', '0', '0', '0', '0', '0',
-       static_cast<uint8_t>((oob_id_ % 0x10000) >> 8),
-       static_cast<uint8_t>(oob_id_ % 0x100)});
+ErrorCode LinkLayerController::ReadLocalOobData(std::array<uint8_t, 16>* c,
+                                                std::array<uint8_t, 16>* r) {
+  // [HCI] Vol 2, Part F § 4.2.1 Optional OOB information collection.
+  // When the Controller and Host support Secure Connections, the HCI_Read_-
+  // Local_OOB_Extended_Data command is used instead of HCI_Read_Local_-
+  // OOB_Data.
+  if (properties_.SupportsLMPFeature(
+          bluetooth::hci::LMPFeaturesPage2Bits::
+              SECURE_CONNECTIONS_CONTROLLER_SUPPORT) &&
+      secure_connections_host_support_) {
+    INFO(id_,
+         "Controller and Host support Secure Connections,"
+         " HCI Read Local OOB Extended Data must be used instead");
+    return ErrorCode::INVALID_HCI_COMMAND_PARAMETERS;
+  }
 
-  std::array<uint8_t, 16> r_array(
-      {'r', ' ', 'a', 'r', 'r', 'a', 'y', ' ', '0', '0', '0', '0', '0', '0',
-       static_cast<uint8_t>((oob_id_ % 0x10000) >> 8),
-       static_cast<uint8_t>(oob_id_ % 0x100)});
+  *c = std::array<uint8_t, 16>({'c', ' ', 'a', 'r', 'r', 'a', 'y', ' ', '0',
+                                '0', '0', '0', '0', '0',
+                                static_cast<uint8_t>((oob_id_ % 0x10000) >> 8),
+                                static_cast<uint8_t>(oob_id_ % 0x100)});
 
-  send_event_(bluetooth::hci::ReadLocalOobDataCompleteBuilder::Create(
-      1, ErrorCode::SUCCESS, c_array, r_array));
+  *r = std::array<uint8_t, 16>({'r', ' ', 'a', 'r', 'r', 'a', 'y', ' ', '0',
+                                '0', '0', '0', '0', '0',
+                                static_cast<uint8_t>((oob_id_ % 0x10000) >> 8),
+                                static_cast<uint8_t>(oob_id_ % 0x100)});
+
   oob_id_ += 1;
+  return ErrorCode::SUCCESS;
 }
 
 void LinkLayerController::ReadLocalOobExtendedData() {

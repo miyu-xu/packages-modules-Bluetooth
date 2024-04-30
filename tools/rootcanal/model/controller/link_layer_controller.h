@@ -318,7 +318,8 @@ class LinkLayerController {
   void CheckExpiringConnection(uint16_t handle);
   uint16_t ReadDefaultLinkPolicySettings() const;
 
-  void ReadLocalOobData();
+  ErrorCode ReadLocalOobData(std::array<uint8_t, 16>* c,
+                             std::array<uint8_t, 16>* r);
   void ReadLocalOobExtendedData();
 
   ErrorCode AddScoConnection(uint16_t connection_handle, uint16_t packet_type,
