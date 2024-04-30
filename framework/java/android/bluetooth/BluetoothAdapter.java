@@ -4804,28 +4804,28 @@ public final class BluetoothAdapter {
         }
 
         synchronized (mBluetoothConnectionCallbackExecutorMap) {
-            // If the callback map is empty, we register the service-to-app callback
+            if (mBluetoothConnectionCallbackExecutorMap.containsKey(callback)) {
+                throw new IllegalArgumentException("This callback has already been registered");
+            }
+
             if (mBluetoothConnectionCallbackExecutorMap.isEmpty()) {
+                // If the callback map is empty, we register the service-to-app callback
                 mServiceLock.readLock().lock();
                 try {
-                    if (mService != null) {
-                        if (!mService.registerBluetoothConnectionCallback(
-                                mConnectionCallback, mAttributionSource)) {
-                            return false;
-                        }
+                    if (mService == null) {
+                        return false;
                     }
+                    mService.registerBluetoothConnectionCallback(
+                            mConnectionCallback, mAttributionSource);
                 } catch (RemoteException e) {
                     Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
-                    mBluetoothConnectionCallbackExecutorMap.remove(callback);
+                    return false;
                 } finally {
                     mServiceLock.readLock().unlock();
                 }
             }
 
             // Adds the passed in callback to our map of callbacks to executors
-            if (mBluetoothConnectionCallbackExecutorMap.containsKey(callback)) {
-                throw new IllegalArgumentException("This callback has already been registered");
-            }
             mBluetoothConnectionCallbackExecutorMap.put(callback, executor);
         }
 
@@ -4855,28 +4855,29 @@ public final class BluetoothAdapter {
 
         synchronized (mBluetoothConnectionCallbackExecutorMap) {
             if (mBluetoothConnectionCallbackExecutorMap.remove(callback) != null) {
-                return false;
+                return true;
             }
-        }
 
-        if (!mBluetoothConnectionCallbackExecutorMap.isEmpty()) {
-            return true;
-        }
+            if (!mBluetoothConnectionCallbackExecutorMap.isEmpty()) {
+                return true;
+            }
 
-        // If the callback map is empty, we unregister the service-to-app callback
-        mServiceLock.readLock().lock();
-        try {
-            if (mService != null) {
-                return mService.unregisterBluetoothConnectionCallback(
+            // If the callback map is empty, we unregister the service-to-app callback
+            mServiceLock.readLock().lock();
+            try {
+                if (mService == null) {
+                    return true;
+                }
+                mService.unregisterBluetoothConnectionCallback(
                         mConnectionCallback, mAttributionSource);
+            } catch (RemoteException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            } finally {
+                mServiceLock.readLock().unlock();
             }
-        } catch (RemoteException e) {
-            Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
-        } finally {
-            mServiceLock.readLock().unlock();
         }
 
-        return false;
+        return true;
     }
 
     /**
