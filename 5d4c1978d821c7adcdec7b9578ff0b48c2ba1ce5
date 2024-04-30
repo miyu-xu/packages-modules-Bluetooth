@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6d9804d_74fc1f74",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-04-30T01:16:03Z",
+      "side": 1,
+      "message": "Thanks for the review!",
+      "parentUuid": "3e2c8da4_7caf0f1d",
+      "revId": "5d4c1978d821c7adcdec7b9578ff0b48c2ba1ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "212ff04d_af910db9",
@@ -48,6 +66,30 @@
       "writtenOn": "2024-04-29T22:24:43Z",
       "side": 1,
       "message": "is this is a bugfix you want to specify it in the metadata of the bug",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 20
+      },
+      "revId": "5d4c1978d821c7adcdec7b9578ff0b48c2ba1ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a08882aa_f232108f",
+        "filename": "flags/rnr.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-04-30T01:16:03Z",
+      "side": 1,
+      "message": "Yes, a bugfix. \nI\u0027m not sure where I can add this information to the bug though?",
+      "parentUuid": "212ff04d_af910db9",
       "range": {
         "startLine": 29,
         "startChar": 0,
