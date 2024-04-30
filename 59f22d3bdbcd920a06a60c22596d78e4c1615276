@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0db746f3_a0db294a",
+        "filename": "system/gd/hal/hci_hal_android_test.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-30T21:56:27Z",
+      "side": 1,
+      "message": "No matter what you do, t1-t0 should be greater than 0, right?  Maybe you could use a future to make sure SetUp calls initialize?",
+      "revId": "59f22d3bdbcd920a06a60c22596d78e4c1615276",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
