@@ -36,8 +36,8 @@ import kotlin.time.TimeSource
 
 private const val TAG = "AirplaneModeListener"
 
-/** @return true if Bluetooth state is impacted by airplane mode */
-public var isOn = false
+/** @return true if Bluetooth state is currently impacted by airplane mode */
+public var isOnForBluetooth = false
     private set
 
 /**
@@ -80,11 +80,11 @@ public fun initialize(
             Settings.Global.AIRPLANE_MODE_RADIOS,
             Settings.Global.AIRPLANE_MODE_ON,
             fun(newMode: Boolean) {
-                val previousMode = isOn
+                val previousMode = isOnForBluetooth
                 val isBluetoothOn = state.oneOf(STATE_ON, STATE_TURNING_ON, STATE_TURNING_OFF)
                 val isMediaConnected = isBluetoothOn && mediaCallback()
 
-                isOn =
+                isOnForBluetooth =
                     airplaneModeValueOverride(
                         systemResolver,
                         newMode,
@@ -103,17 +103,17 @@ public fun initialize(
                     timeSource.markNow(),
                 )
 
-                if (previousMode == isOn) {
-                    Log.d(TAG, "Ignore airplane mode change because is already: $isOn")
+                if (previousMode == isOnForBluetooth) {
+                    Log.d(TAG, "Ignore airplane mode change because is already: $isOnForBluetooth")
                     return
                 }
 
-                Log.i(TAG, "Trigger callback with state: $isOn")
-                modeCallback(isOn)
+                Log.i(TAG, "Trigger callback with state: $isOnForBluetooth")
+                modeCallback(isOnForBluetooth)
             }
         )
 
-    isOn =
+    isOnForBluetooth =
         airplaneModeValueOverride(
             systemResolver,
             airplaneModeAtBoot,
@@ -132,7 +132,7 @@ public fun initialize(
         false,
         timeSource.markNow(),
     )
-    Log.i(TAG, "Initialized successfully with state: $isOn")
+    Log.i(TAG, "Initialized successfully with state: $isOnForBluetooth")
 }
 
 @kotlin.time.ExperimentalTime
@@ -263,7 +263,7 @@ private class AirplaneMetricSession(
         }
     }
 
-    private val isBluetoothOnAfterApmToggle = !isOn
+    private val isBluetoothOnAfterApmToggle = !isOnForBluetooth
     private var userToggledBluetoothDuringApm = false
     private var userToggledBluetoothDuringApmWithinMinute = false
 
