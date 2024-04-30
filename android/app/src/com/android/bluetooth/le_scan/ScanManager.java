@@ -800,6 +800,7 @@ public class ScanManager {
                     mScanNative.isForceDowngradedScanClient(client)
                             ? SCAN_MODE_FORCE_DOWNGRADED
                             : scanMode;
+            Log.d(TAG, "Scan mode update during screen on" + client);
             return client.updateScanMode(getMinScanMode(scanMode, maxScanMode));
         }
 
