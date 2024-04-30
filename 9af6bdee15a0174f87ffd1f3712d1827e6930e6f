@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6be94b94_8d737321",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-04-30T03:36:11Z",
+      "side": 1,
+      "message": "This will help debug future scan mode change issues like b/335045524.",
+      "revId": "9af6bdee15a0174f87ffd1f3712d1827e6930e6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
