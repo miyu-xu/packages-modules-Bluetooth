@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58d54144_924961bb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/a2dp/A2dpServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-30T01:32:00Z",
+      "side": 1,
+      "message": "I prefer if we stop autodispatch after the service is stopped",
+      "range": {
+        "startLine": 134,
+        "startChar": 16,
+        "endLine": 134,
+        "endChar": 51
+      },
+      "revId": "9c3cbb6919eb50074dd24ce9caf0774842d70673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
