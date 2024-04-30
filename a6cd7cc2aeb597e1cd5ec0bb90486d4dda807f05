@@ -88,6 +88,24 @@
       "parentUuid": "646bc273_0b928d9a",
       "revId": "a6cd7cc2aeb597e1cd5ec0bb90486d4dda807f05",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd0f43ea_4ed34d60",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-30T07:04:24Z",
+      "side": 1,
+      "message": "The test passe with this CL",
+      "parentUuid": "e6cbc05a_7fbb0298",
+      "revId": "a6cd7cc2aeb597e1cd5ec0bb90486d4dda807f05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
