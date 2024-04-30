@@ -34,6 +34,47 @@
       "parentUuid": "0db746f3_a0db294a",
       "revId": "59f22d3bdbcd920a06a60c22596d78e4c1615276",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b69ad86d_b098afda",
+        "filename": "system/gd/hal/hci_hal_android_test.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-30T22:27:14Z",
+      "side": 1,
+      "message": "```suggestion\n  \n  const auto t1 \u003d std::chrono::steady_clock::now();\n  EXPECT_GE(t1 - t0, TestBackend::initialization_delay);\n  TestBackend::initialization_delay \u003d std::chrono::milliseconds(0);\n```",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 56
+      },
+      "revId": "59f22d3bdbcd920a06a60c22596d78e4c1615276",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7246fe44_803ea10b",
+        "filename": "system/gd/hal/hci_hal_android_test.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-30T22:27:14Z",
+      "side": 1,
+      "message": "It looks like the delay is 0 milliseconds, because initialization_delay was set to zero on line 107.",
+      "parentUuid": "40ff1005_91ac2169",
+      "revId": "59f22d3bdbcd920a06a60c22596d78e4c1615276",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
