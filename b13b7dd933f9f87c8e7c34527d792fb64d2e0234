@@ -106,6 +106,24 @@
       "parentUuid": "bc6ba693_6959d846",
       "revId": "b13b7dd933f9f87c8e7c34527d792fb64d2e0234",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbcdf9e3_4fdaccc6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-04-30T04:52:39Z",
+      "side": 1,
+      "message": "Yes I\u0027m working on removing the \"Bluetooth player\", real players will be displayed at root instead.",
+      "parentUuid": "b2c76040_f6f45eff",
+      "revId": "b13b7dd933f9f87c8e7c34527d792fb64d2e0234",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
