@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb3c6372_21e37fd9",
+        "filename": "system/bta/ras/ras_server.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-04-30T21:50:44Z",
+      "side": 1,
+      "message": "We\u0027re accessing data here outside the lock (called data_mutex_).  Does the lock need to be renamed?",
+      "range": {
+        "startLine": 101,
+        "startChar": 65,
+        "endLine": 101,
+        "endChar": 69
+      },
+      "revId": "399f93aed0934d4ced53d374e2acc9d90c8bae04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
