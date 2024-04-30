@@ -16,6 +16,46 @@
       "message": "aa",
       "revId": "f3dd0e52a2900f68c63dfb0faa14f4f11ce0dba2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9c2cac2_4c404c47",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-30T20:41:13Z",
+      "side": 1,
+      "message": "Pass adapterservice in parameter to force caller to have a non null service. \n\n`AdapterService.getAdapterService();` has some flaky surprise when running test",
+      "revId": "f3dd0e52a2900f68c63dfb0faa14f4f11ce0dba2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46c3ff13_564c9c90",
+        "filename": "android/app/src/com/android/bluetooth/sdp/SdpManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-04-30T20:41:13Z",
+      "side": 1,
+      "message": "pass the mAdapterService here too",
+      "range": {
+        "startLine": 154,
+        "startChar": 71,
+        "endLine": 154,
+        "endChar": 72
+      },
+      "revId": "f3dd0e52a2900f68c63dfb0faa14f4f11ce0dba2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
