@@ -986,7 +986,11 @@ void DualModeController::ReadLocalOobData(CommandView command) {
 
   DEBUG(id_, "<< Read Local Oob Data");
 
-  link_layer_controller_.ReadLocalOobData();
+  std::array<uint8_t, 16> c;
+  std::array<uint8_t, 16> r;
+  auto status = link_layer_controller_.ReadLocalOobData(&c, &r);
+  send_event_(bluetooth::hci::ReadLocalOobDataCompleteBuilder(
+      kNumCommandPackets, status, c, r));
 }
 
 void DualModeController::ReadLocalOobExtendedData(CommandView command) {
