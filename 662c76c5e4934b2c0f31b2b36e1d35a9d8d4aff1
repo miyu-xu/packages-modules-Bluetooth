@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d1804ab_b665e15d",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-04-30T23:06:17Z",
+      "side": 1,
+      "message": "nit: maybe add your `Android Headtracker Metadata` structure here so people can know the structure",
+      "revId": "662c76c5e4934b2c0f31b2b36e1d35a9d8d4aff1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
