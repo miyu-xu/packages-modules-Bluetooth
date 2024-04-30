@@ -52,6 +52,24 @@
       "parentUuid": "05105436_a7c883c2",
       "revId": "a6cd7cc2aeb597e1cd5ec0bb90486d4dda807f05",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "646bc273_0b928d9a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-04-30T00:27:44Z",
+      "side": 1,
+      "message": "Could you run it for the TV target?",
+      "parentUuid": "5463bb33_d4447685",
+      "revId": "a6cd7cc2aeb597e1cd5ec0bb90486d4dda807f05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
