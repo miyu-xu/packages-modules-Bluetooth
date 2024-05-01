@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a92ac60d_6e82756c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-01T22:08:13Z",
+      "side": 1,
+      "message": "This bug has a flaky behavior, did we identified why this is having a flaky behavior ?\n\nI believe the socket is always open on our side",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "d96b2585ea554ae8b72b139dead291515b52ec12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85efa452_434fd928",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-01T22:08:13Z",
+      "side": 1,
+      "message": "If it need to stay it cannot be a flag but should be a system properties.\n\nand in order to have it actionnable, it should be added to the developer options",
+      "range": {
+        "startLine": 15,
+        "startChar": 55,
+        "endLine": 15,
+        "endChar": 67
+      },
+      "revId": "d96b2585ea554ae8b72b139dead291515b52ec12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0567e26_1193f073",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-01T22:08:13Z",
+      "side": 1,
+      "message": "The flag is added back while being activated, this would be no-op\n\nNote that the flag is enabled since Feb 06, 2023",
+      "range": {
+        "startLine": 220,
+        "startChar": 37,
+        "endLine": 220,
+        "endChar": 41
+      },
+      "revId": "d96b2585ea554ae8b72b139dead291515b52ec12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
