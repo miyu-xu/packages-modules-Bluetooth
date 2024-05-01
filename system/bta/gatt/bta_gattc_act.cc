@@ -76,7 +76,7 @@ static void bta_gattc_subrate_chg_cback(tGATT_IF gatt_if, uint16_t conn_id,
                                         uint16_t subrate_factor,
                                         uint16_t latency, uint16_t cont_num,
                                         uint16_t timeout, tGATT_STATUS status);
-static void bta_gattc_addr_consolidate_cback(uint16_t conn_id,
+static void bta_gattc_addr_consolidate_cback(tGATT_IF gatt_if, uint16_t conn_id,
                                              const RawAddress& identity_addr,
                                              const RawAddress& rpa);
 static void bta_gattc_init_bk_conn(const tBTA_GATTC_API_OPEN* p_data,
@@ -1749,7 +1749,7 @@ static void bta_gattc_subrate_chg_cback(tGATT_IF gatt_if, uint16_t conn_id,
   (*p_clreg->p_cback)(BTA_GATTC_SUBRATE_CHG_EVT, &cb_data);
 }
 
-static void bta_gattc_addr_consolidate_cback(uint16_t conn_id,
+static void bta_gattc_addr_consolidate_cback(tGATT_IF gatt_if, uint16_t conn_id,
                                              const RawAddress& identity_addr,
                                              const RawAddress& rpa) {
   log::debug("XXX: conn_id={} identity_addr={} rpa={}", conn_id, identity_addr,
@@ -1769,13 +1769,6 @@ static void bta_gattc_addr_consolidate_cback(uint16_t conn_id,
                identity_addr);
   }
 
-  //  tBTA_GATTC_CLCB* p_clcb = &bta_gattc_cb.clcb[0];
-  //  for (size_t i = 0; i < BTA_GATTC_CLCB_MAX; i++, p_clcb++) {
-  //    if (p_clcb->in_use && p_clcb->transport == BT_TRANSPORT_LE &&
-  //    p_clcb->bda == rpa)
-  //      p_clcb->bda = identity_addr;
-  //  }
-
   tBTA_GATTC_SERV* p_srcb = bta_gattc_find_srcb(rpa);
   if (p_srcb != NULL) {
     p_srcb->server_bda = identity_addr;
@@ -1783,23 +1776,27 @@ static void bta_gattc_addr_consolidate_cback(uint16_t conn_id,
                identity_addr);
   }
 
-  // Change all tBTA_GATTC_RCB, and change the address.
-  // TODO: Change per client_if
-  // tBTA_GATTC_RCB* bta_gattc_cl_get_regcb(uint8_t client_if) {
-  // uint8_t i = 0;
-  tBTA_GATTC_RCB* p_clrcb = &bta_gattc_cb.cl_rcb[0];
+  tBTA_GATTC_RCB* p_clrcb = bta_gattc_cl_get_regcb(gatt_if);
+  if (p_clrcb == NULL) {
+    log::error("client_if={} not found", gatt_if);
+    return;
+  }
 
-  for (uint8_t k = 0; k < BTA_GATTC_CL_MAX; k++, p_clrcb++) {
-    if (p_clrcb->in_use) {
-      for (uint8_t i = 0; i < BTA_GATTC_NOTIF_REG_MAX; i++) {
-        if (p_clrcb->notif_reg[i].in_use &&
-            p_clrcb->notif_reg[i].remote_bda == rpa) {
-          log::verbose("Found the notif_reg!");
-          p_clrcb->notif_reg[i].remote_bda = identity_addr;
-        }
+  if (p_clrcb->in_use) {
+    for (size_t i = 0; i < BTA_GATTC_NOTIF_REG_MAX; i++) {
+      if (p_clrcb->notif_reg[i].in_use &&
+          p_clrcb->notif_reg[i].remote_bda == rpa) {
+        log::verbose("Found the notif_reg!");
+        p_clrcb->notif_reg[i].remote_bda = identity_addr;
       }
     }
   }
 
-  // TODO: Call app callback here so that it can be propagated to Java Layer.
+  if (p_clrcb->p_cback) {
+    tBTA_GATTC cb_data;
+    cb_data.addr_consolidated.conn_id = conn_id;
+    cb_data.addr_consolidated.identity_addr = identity_addr;
+    cb_data.addr_consolidated.rpa = rpa;
+    (*p_clrcb->p_cback)(BTA_GATTC_ADDR_CONSOL_EVT, &cb_data);
+  }
 }

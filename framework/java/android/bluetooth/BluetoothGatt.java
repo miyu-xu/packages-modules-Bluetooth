@@ -1026,6 +1026,30 @@ public final class BluetoothGatt implements BluetoothProfile {
                                 }
                             });
                 }
+
+                /**
+                 * Callback invoked when address consolidation happened.
+                 *
+                 * @hide
+                 */
+                @Override
+                public void onAddressConsolidated(
+                        String identityAddress,
+                        String resolvablePrivateAddress) {
+                    Log.d(
+                            TAG,
+                            "onAddressConsolidated() - "
+                                    + (" identityAddress=" + identityAddress)
+                                    + (" resolvablePrivateAddress=" + resolvablePrivateAddress));
+
+
+                    if (resolvablePrivateAddress.equals(mDevice.getAddress())) {
+                        // TODO: How should BtGatt store the new address?
+                    }
+
+
+                    // TODO: Should the app know about the consolidation?
+                }
             };
 
     /* package */ BluetoothGatt(
