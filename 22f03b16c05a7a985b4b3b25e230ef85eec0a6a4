@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2680d413_af18f861",
+        "filename": "system/stack/avdt/avdt_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-01T00:29:22Z",
+      "side": 1,
+      "message": "bd_addr",
+      "range": {
+        "startLine": 371,
+        "startChar": 12,
+        "endLine": 371,
+        "endChar": 22
+      },
+      "revId": "22f03b16c05a7a985b4b3b25e230ef85eec0a6a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
