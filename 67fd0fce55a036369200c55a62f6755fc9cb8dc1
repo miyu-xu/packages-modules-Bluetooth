@@ -39,6 +39,48 @@
       "message": "nit: bd_addr\n```suggestion\nbool is_le_audio_capable_during_service_discovery(const RawAddress\u0026 bd_addr);\n```",
       "revId": "67fd0fce55a036369200c55a62f6755fc9cb8dc1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a28a0562_548f30af",
+        "filename": "system/btif/include/btif_dm.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-01T16:51:31Z",
+      "side": 1,
+      "message": "Indeed, fixed.",
+      "parentUuid": "ae468c4c_19c80d25",
+      "range": {
+        "startLine": 157,
+        "startChar": 5,
+        "endLine": 157,
+        "endChar": 49
+      },
+      "revId": "67fd0fce55a036369200c55a62f6755fc9cb8dc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13e37e0f_a4d6e4b5",
+        "filename": "system/btif/include/btif_dm.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-01T16:51:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13c741b6_93d536d0",
+      "revId": "67fd0fce55a036369200c55a62f6755fc9cb8dc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
