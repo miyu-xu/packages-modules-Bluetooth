@@ -130,6 +130,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7996c97c_09d31ed9",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/BrowsedPlayerWrapper2.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-01T17:58:32Z",
+      "side": 1,
+      "message": "Closing this as my comment is redundant with below comment",
+      "parentUuid": "e5bd4838_de3f7625",
+      "range": {
+        "startLine": 90,
+        "startChar": 34,
+        "endLine": 90,
+        "endChar": 43
+      },
+      "revId": "5b68dbdaa370ae368750289ff90e719b22331ca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b027d062_94be4195",
@@ -247,6 +271,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c80ce9d2_22164223",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/BrowsedPlayerWrapper2.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-01T17:58:32Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "31d68964_5fdf18eb",
+      "range": {
+        "startLine": 127,
+        "startChar": 16,
+        "endLine": 127,
+        "endChar": 17
+      },
+      "revId": "5b68dbdaa370ae368750289ff90e719b22331ca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "924ca381_6c2e1a55",
@@ -284,6 +332,54 @@
       "side": 1,
       "message": "Same as above comment, we\u0027re modifying the list line 181 so ArrayList fits better I think.",
       "parentUuid": "924ca381_6c2e1a55",
+      "range": {
+        "startLine": 185,
+        "startChar": 43,
+        "endLine": 185,
+        "endChar": 83
+      },
+      "revId": "5b68dbdaa370ae368750289ff90e719b22331ca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3723ae7f_964862f8",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/BrowsedPlayerWrapper2.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-01T17:58:32Z",
+      "side": 1,
+      "message": "Yes in that case you are right... unless you start to write this in kotlin with mutableListOf (actually have you consider that ? ^^)\n\n\nBut even if you modify it, can\u0027t it be stored as a List inside the map ?",
+      "parentUuid": "95a94509_4c0196da",
+      "range": {
+        "startLine": 185,
+        "startChar": 43,
+        "endLine": 185,
+        "endChar": 83
+      },
+      "revId": "5b68dbdaa370ae368750289ff90e719b22331ca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5468100f_209254cd",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/BrowsedPlayerWrapper2.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-01T17:58:32Z",
+      "side": 1,
+      "message": "Yes in that case you are right... unless you start to write this in kotlin (actually have you consider that ? ^^)",
+      "parentUuid": "95a94509_4c0196da",
       "range": {
         "startLine": 185,
         "startChar": 43,
