@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a393407c_111ab452",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-05-01T22:29:33Z",
+      "side": 1,
+      "message": "this is added here, but the error you shared is with linux_glibc_x86_static_asan, so this library is probably also needed as part of \u0027host\u0027",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 60
+      },
+      "revId": "e6129ea05b2b2cefb23974ca6e9ec909b8bda657",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
