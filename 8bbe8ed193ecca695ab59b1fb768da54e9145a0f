@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f4bbedd_09834555",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3764,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-01T07:39:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0bbcfa95_abb46c10",
+      "range": {
+        "startLine": 3764,
+        "startChar": 22,
+        "endLine": 3764,
+        "endChar": 38
+      },
+      "revId": "8bbe8ed193ecca695ab59b1fb768da54e9145a0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb634ff1_abcf2925",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-05-01T07:20:04Z",
       "side": 1,
       "message": "could you merge this into one statement, it is hard to read this current way",
+      "range": {
+        "startLine": 3777,
+        "startChar": 0,
+        "endLine": 3780,
+        "endChar": 39
+      },
+      "revId": "8bbe8ed193ecca695ab59b1fb768da54e9145a0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c2079a7_bfe33b13",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3780,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-01T07:39:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb634ff1_abcf2925",
       "range": {
         "startLine": 3777,
         "startChar": 0,
