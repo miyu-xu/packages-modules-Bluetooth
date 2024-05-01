@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c02417d_d0122b45",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3783,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-01T21:56:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83d6d6fd_5a72c87f",
+      "range": {
+        "startLine": 3783,
+        "startChar": 6,
+        "endLine": 3783,
+        "endChar": 31
+      },
+      "revId": "84c8b9badd9158a62aa41af0dd4b16919bb1d2ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "601b1481_a26ec65f",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-05-01T19:15:20Z",
       "side": 1,
       "message": "Would this mess up LE pairing when Classic transport disconnected?",
+      "range": {
+        "startLine": 3822,
+        "startChar": 0,
+        "endLine": 3823,
+        "endChar": 45
+      },
+      "revId": "84c8b9badd9158a62aa41af0dd4b16919bb1d2ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b526fd5d_316e2372",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3823,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-01T21:56:14Z",
+      "side": 1,
+      "message": "This function does not use device address parameter at all.",
+      "parentUuid": "601b1481_a26ec65f",
       "range": {
         "startLine": 3822,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bdc1b28_a9d42af3",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3831,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-01T21:56:14Z",
+      "side": 1,
+      "message": "Transport was checked before that. Only LE specific flags are updated in this block. The else block does the same for BR/EDR specific flags.",
+      "parentUuid": "4d9c0279_7f715bc8",
+      "range": {
+        "startLine": 3828,
+        "startChar": 0,
+        "endLine": 3831,
+        "endChar": 40
+      },
+      "revId": "84c8b9badd9158a62aa41af0dd4b16919bb1d2ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f0c324d_279fe101",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "203b70e0_cf55c41a",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3870,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-01T21:56:14Z",
+      "side": 1,
+      "message": "The rest of logic is avoided if the disconnected transport does not match the transport of the ongoing security procedure.",
+      "parentUuid": "7f0c324d_279fe101",
+      "range": {
+        "startLine": 3869,
+        "startChar": 0,
+        "endLine": 3870,
+        "endChar": 54
+      },
+      "revId": "84c8b9badd9158a62aa41af0dd4b16919bb1d2ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29529a4a_e695cdd0",
@@ -106,6 +202,30 @@
       "writtenOn": "2024-05-01T19:15:20Z",
       "side": 1,
       "message": "This would be triggered, would it cause upper layers to consider pairing as finished ?",
+      "range": {
+        "startLine": 3877,
+        "startChar": 0,
+        "endLine": 3878,
+        "endChar": 38
+      },
+      "revId": "84c8b9badd9158a62aa41af0dd4b16919bb1d2ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1cbaa92_7fe7d035",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3878,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-01T21:56:14Z",
+      "side": 1,
+      "message": "Security callbacks are registered when a security process is requested for a service. It is mostly for the encryption request to meet the security requirements of the service.\nOn rare occasions the service access may result in pairing if the link was not already paired. In such a case, the disconnection on the other transport would lead to pairing failure.\n\nEg. `l2c_link_sec_comp()`, `rfc_sec_check_complete()`, `l2cble_sec_comp()`.\nLater two appear to be ignoring the transport.",
+      "parentUuid": "29529a4a_e695cdd0",
       "range": {
         "startLine": 3877,
         "startChar": 0,
