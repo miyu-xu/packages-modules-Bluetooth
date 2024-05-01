@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2eff74f0_ea77b060",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1807,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-01T18:17:27Z",
+      "side": 1,
+      "message": "Do you want to log that before the flag override ?",
+      "range": {
+        "startLine": 1807,
+        "startChar": 61,
+        "endLine": 1807,
+        "endChar": 69
+      },
+      "revId": "a2d0ae3dd2b3cc6ee67a6a1c9a2d9f00981608aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cefda36_b780b2f4",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1816,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-01T18:17:27Z",
+      "side": 1,
+      "message": "move into the else of the flag ?",
+      "range": {
+        "startLine": 1813,
+        "startChar": 0,
+        "endLine": 1816,
+        "endChar": 0
+      },
+      "revId": "a2d0ae3dd2b3cc6ee67a6a1c9a2d9f00981608aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
