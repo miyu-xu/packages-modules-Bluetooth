@@ -22,6 +22,30 @@
       },
       "revId": "9c3cbb6919eb50074dd24ce9caf0774842d70673",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2032c21_0f37313f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/a2dp/A2dpServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-05-01T15:51:43Z",
+      "side": 1,
+      "message": "This is to stop the A2dpService from doing anything while it is being stopped.\nThere is a risk of races otherwise.",
+      "parentUuid": "58d54144_924961bb",
+      "range": {
+        "startLine": 134,
+        "startChar": 16,
+        "endLine": 134,
+        "endChar": 51
+      },
+      "revId": "9c3cbb6919eb50074dd24ce9caf0774842d70673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
