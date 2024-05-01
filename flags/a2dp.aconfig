@@ -15,3 +15,13 @@ flag {
     description: "Support for concurrent A2DP source and sink"
     bug : "321806163"
 }
+
+flag {
+    name: "avdtp_error_codes"
+    namespace: "bluetooth"
+    description: "Use compliant error codes in AVDTP responses"
+    bug: "338139069"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
