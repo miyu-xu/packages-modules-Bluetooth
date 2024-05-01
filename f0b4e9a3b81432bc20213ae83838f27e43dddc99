@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d04f6675_92ce35df",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4809,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-01T23:36:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af8e4de9_35d7b457",
+      "range": {
+        "startLine": 4809,
+        "startChar": 14,
+        "endLine": 4809,
+        "endChar": 75
+      },
+      "revId": "f0b4e9a3b81432bc20213ae83838f27e43dddc99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "07c789fd_afb07610",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-05-01T23:18:55Z",
       "side": 1,
       "message": "Previously returned true when the service was null",
+      "range": {
+        "startLine": 4814,
+        "startChar": 31,
+        "endLine": 4814,
+        "endChar": 36
+      },
+      "revId": "f0b4e9a3b81432bc20213ae83838f27e43dddc99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df862f84_ac502e50",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4814,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-01T23:36:09Z",
+      "side": 1,
+      "message": "If the service is null, we cannot register the client.\nI believe this should be false.",
+      "parentUuid": "07c789fd_afb07610",
       "range": {
         "startLine": 4814,
         "startChar": 31,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "50bf0afc_2022ddb6",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4862,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-01T23:36:09Z",
+      "side": 1,
+      "message": "Done, That sound right to me",
+      "parentUuid": "bdf365d4_502b571a",
+      "range": {
+        "startLine": 4860,
+        "startChar": 8,
+        "endLine": 4862,
+        "endChar": 9
+      },
+      "revId": "f0b4e9a3b81432bc20213ae83838f27e43dddc99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "19adf255_8a3bd3c6",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-05-01T23:18:55Z",
       "side": 1,
       "message": "Previously returned false when the service was null",
+      "range": {
+        "startLine": 4868,
+        "startChar": 23,
+        "endLine": 4868,
+        "endChar": 27
+      },
+      "revId": "f0b4e9a3b81432bc20213ae83838f27e43dddc99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fbe57a3_c106f6bb",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4868,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-01T23:36:09Z",
+      "side": 1,
+      "message": "I believe that when the service is null, we can consider the client to be unregistered",
+      "parentUuid": "19adf255_8a3bd3c6",
       "range": {
         "startLine": 4868,
         "startChar": 23,
