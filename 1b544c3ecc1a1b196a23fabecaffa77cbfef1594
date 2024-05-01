@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e6f7d3a_3669a9d6",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 3883,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-01T22:19:06Z",
+      "side": 1,
+      "message": "Why execute any of this method code at all on wrong transport  ? \nShould this be moved to line 3774 ?",
+      "range": {
+        "startLine": 3870,
+        "startChar": 0,
+        "endLine": 3883,
+        "endChar": 3
+      },
+      "revId": "1b544c3ecc1a1b196a23fabecaffa77cbfef1594",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

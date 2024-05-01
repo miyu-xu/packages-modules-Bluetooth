@@ -144,6 +144,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ad86a0cb_3c78b795",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3831,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-01T22:19:06Z",
+      "side": 1,
+      "message": "p_dev_rec-\u003esec_rec.enc_key_size is not LE specific.",
+      "parentUuid": "3bdc1b28_a9d42af3",
+      "range": {
+        "startLine": 3828,
+        "startChar": 0,
+        "endLine": 3831,
+        "endChar": 40
+      },
+      "revId": "84c8b9badd9158a62aa41af0dd4b16919bb1d2ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7f0c324d_279fe101",
         "filename": "system/stack/btm/btm_sec.cc",
         "patchSetId": 4
