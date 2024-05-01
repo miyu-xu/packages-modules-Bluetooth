@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f917865f_eab5f7c9",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1807,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-05-01T18:19:48Z",
+      "side": 1,
+      "message": "It\u0027s more useful to have the original value just in case.",
+      "parentUuid": "2eff74f0_ea77b060",
+      "range": {
+        "startLine": 1807,
+        "startChar": 61,
+        "endLine": 1807,
+        "endChar": 69
+      },
+      "revId": "a2d0ae3dd2b3cc6ee67a6a1c9a2d9f00981608aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3cefda36_b780b2f4",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-05-01T18:17:27Z",
       "side": 1,
       "message": "move into the else of the flag ?",
+      "range": {
+        "startLine": 1813,
+        "startChar": 0,
+        "endLine": 1816,
+        "endChar": 0
+      },
+      "revId": "a2d0ae3dd2b3cc6ee67a6a1c9a2d9f00981608aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e6ca225_00f45eb8",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1816,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-05-01T18:19:48Z",
+      "side": 1,
+      "message": "Keeping it out makes the flag cleanup cleaner.\nNo risk of failure either since err_code is overridden with the flag off",
+      "parentUuid": "3cefda36_b780b2f4",
       "range": {
         "startLine": 1813,
         "startChar": 0,
