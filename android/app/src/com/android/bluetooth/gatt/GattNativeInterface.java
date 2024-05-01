@@ -105,6 +105,13 @@ public class GattNativeInterface {
                 status);
     }
 
+    void onClientAddressConsolidated(
+            int connId, String identityAddress, String resolvablePrivateAddress)
+            throws RemoteException {
+        getGattService()
+                .onClientAddressConsolidated(connId, identityAddress, resolvablePrivateAddress);
+    }
+
     void onServerPhyUpdate(int connId, int txPhy, int rxPhy, int status) throws RemoteException {
         getGattService().onServerPhyUpdate(connId, txPhy, rxPhy, status);
     }

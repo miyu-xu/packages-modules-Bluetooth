@@ -989,7 +989,8 @@ static void gatt_send_consolidate_cback(tGATT_TCB* p_tcb,
 
     if (p_reg->app_cb.p_addr_consolidate_cb) {
       uint16_t conn_id = GATT_CREATE_CONN_ID(p_tcb->tcb_idx, p_reg->gatt_if);
-      (*p_reg->app_cb.p_addr_consolidate_cb)(conn_id, identity_addr, rpa);
+      (*p_reg->app_cb.p_addr_consolidate_cb)(p_reg->gatt_if, conn_id,
+                                             identity_addr, rpa);
     }
   }
 }

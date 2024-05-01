@@ -1987,6 +1987,7 @@ static void bta_dm_gattc_callback(tBTA_GATTC_EVT event, tBTA_GATTC* p_data) {
     case BTA_GATTC_SRVC_CHG_EVT:
     case BTA_GATTC_SRVC_DISC_DONE_EVT:
     case BTA_GATTC_SUBRATE_CHG_EVT:
+    case BTA_GATTC_ADDR_CONSOL_EVT:
       disc_gatt_history_.Push(
           base::StringPrintf("%-32s event:%s", "GATTC_EventCallback",
                              gatt_client_event_text(event).c_str()));

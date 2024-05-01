@@ -75,6 +75,7 @@ typedef enum : uint8_t {
   BTA_GATTC_PHY_UPDATE_EVT = 25,    /* PHY change event */
   BTA_GATTC_CONN_UPDATE_EVT = 26,   /* Connection parameters update event */
   BTA_GATTC_SUBRATE_CHG_EVT = 27,   /* Subrate Change event */
+  BTA_GATTC_ADDR_CONSOL_EVT = 28,   /* Address consolidated event */
 } tBTA_GATTC_EVT;
 
 inline std::string gatt_client_event_text(const tBTA_GATTC_EVT& event) {
@@ -96,6 +97,7 @@ inline std::string gatt_client_event_text(const tBTA_GATTC_EVT& event) {
     CASE_RETURN_TEXT(BTA_GATTC_PHY_UPDATE_EVT);
     CASE_RETURN_TEXT(BTA_GATTC_CONN_UPDATE_EVT);
     CASE_RETURN_TEXT(BTA_GATTC_SUBRATE_CHG_EVT);
+    CASE_RETURN_TEXT(BTA_GATTC_ADDR_CONSOL_EVT);
     default:
       return base::StringPrintf("UNKNOWN[%hhu]", event);
   }
@@ -244,6 +246,13 @@ typedef struct {
   tGATT_STATUS status;
 } tBTA_GATTC_SUBRATE_CHG;
 
+typedef struct {
+  tGATT_IF client_if;
+  uint16_t conn_id;
+  RawAddress identity_addr;
+  RawAddress rpa;
+} tBTA_GATTC_ADDR_CONSOILDATED;
+
 typedef union {
   tGATT_STATUS status;
 
@@ -264,6 +273,7 @@ typedef union {
   tBTA_GATTC_CONN_UPDATE conn_update;
   tBTA_GATTC_SERVICE_CHANGED service_changed;
   tBTA_GATTC_SUBRATE_CHG subrate_chg;
+  tBTA_GATTC_ADDR_CONSOILDATED addr_consolidated;
 } tBTA_GATTC;
 
 /* GATTC enable callback function */

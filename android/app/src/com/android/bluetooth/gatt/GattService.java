@@ -1299,12 +1299,43 @@ public class GattService extends ProfileService {
             return;
         }
 
+
         ClientMap.App app = mClientMap.getByConnId(connId);
         if (app == null) {
             return;
         }
 
         app.callback.onSubrateChange(address, subrateFactor, latency, contNum, timeout, status);
+    }
+
+    void onClientAddressConsolidated(
+            int connId, String identityAddress, String resolvablePrivateAddress)
+            throws RemoteException {
+        Log.d(
+                TAG,
+                "onClientAddressConsolidated() - connId="
+                        + connId
+                        + ", identityAddress="
+                        + identityAddress
+                        + ", resolvablePrivateAddrss="
+                        + resolvablePrivateAddress);
+
+        // TODO: Change the connection's address with identityAddress.
+        String address = mClientMap.addressByConnId(connId);
+        if (address == null) {
+            return;
+        }
+
+        Log.d("XXX", "Address is not null. address=" + address);
+
+        ClientMap.App app = mClientMap.getByConnId(connId);
+        if (app == null) {
+            return;
+        }
+
+        Log.d("XXX", "App is not null!. appPkgName=" + app.name);
+        // TODO: Create onAddressConsolidated() in IBluetoothGattCallback.aidl
+        // app.callback.onAddressConsolidated(identityAddress, resolvablePrivateAddress);
     }
 
     void onServerPhyUpdate(int connId, int txPhy, int rxPhy, int status) throws RemoteException {

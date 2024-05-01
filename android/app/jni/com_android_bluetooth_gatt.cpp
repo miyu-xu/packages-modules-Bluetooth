@@ -125,6 +125,7 @@ static jmethodID method_onClientPhyRead;
 static jmethodID method_onClientConnUpdate;
 static jmethodID method_onServiceChanged;
 static jmethodID method_onClientSubrateChange;
+static jmethodID method_onClientAddrConsolidated;
 
 /**
  * Server callback methods
@@ -599,6 +600,22 @@ void btgattc_subrate_change_cb(int conn_id, uint16_t subrate_factor,
                                timeout, status);
 }
 
+void btgattc_addr_consolidated_cb(int conn_id, const RawAddress& identity_addr,
+                                  const RawAddress& rpa) {
+  std::shared_lock<std::shared_mutex> lock(callbacks_mutex);
+  CallbackEnv sCallbackEnv(__func__);
+  if (!sCallbackEnv.valid() || !mCallbacksObj) return;
+
+  ScopedLocalRef<jstring> identity_address(
+      sCallbackEnv.get(), bdaddr2newjstr(sCallbackEnv.get(), &identity_addr));
+  ScopedLocalRef<jstring> resolvable_private_address(
+      sCallbackEnv.get(), bdaddr2newjstr(sCallbackEnv.get(), &rpa));
+
+  sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onClientAddrConsolidated,
+                               conn_id, identity_address.get(),
+                               resolvable_private_address.get());
+}
+
 static const btgatt_scanner_callbacks_t sGattScannerCallbacks = {
     btgattc_scan_result_cb,
     btgattc_batchscan_reports_cb,
@@ -628,6 +645,7 @@ static const btgatt_client_callbacks_t sGattClientCallbacks = {
     btgattc_conn_updated_cb,
     btgattc_service_changed_cb,
     btgattc_subrate_change_cb,
+    btgattc_addr_consolidated_cb,
 };
 
 /**
@@ -2882,6 +2900,9 @@ static int register_com_android_bluetooth_gatt_(JNIEnv* env) {
       {"onClientConnUpdate", "(IIIII)V", &method_onClientConnUpdate},
       {"onServiceChanged", "(I)V", &method_onServiceChanged},
       {"onClientSubrateChange", "(IIIIII)V", &method_onClientSubrateChange},
+      {"onClientAddressConsolidated",
+       "(ILjava/lang/String;Ljava/lang/String;)V",
+       &method_onClientAddrConsolidated},
 
       // Server callbacks
       {"onServerRegistered", "(IIJJ)V", &method_onServerRegistered},

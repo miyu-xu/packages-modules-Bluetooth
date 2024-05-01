@@ -212,6 +212,13 @@ static void btif_gattc_upstreams_evt(uint16_t event, char* p_param) {
                 p_data->subrate_chg.timeout, p_data->subrate_chg.status);
       break;
 
+    case BTA_GATTC_ADDR_CONSOL_EVT:
+      HAL_CBACK(bt_gatt_callbacks, client->addr_consolidated_cb,
+                p_data->addr_consolidated.conn_id,
+                p_data->addr_consolidated.identity_addr,
+                p_data->addr_consolidated.rpa);
+      break;
+
     default:
       log::error("Unhandled event ({})!", event);
       break;
