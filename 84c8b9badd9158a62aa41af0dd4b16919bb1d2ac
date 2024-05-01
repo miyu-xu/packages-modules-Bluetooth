@@ -168,6 +168,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3356aefa_1cf9e250",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3831,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-01T23:02:35Z",
+      "side": 1,
+      "message": "This is pre-existing logic. I see that the same field is being used for both LE and BR/EDR key sizes.\nKey size would anyway be updated at the end of pairing.",
+      "parentUuid": "ad86a0cb_3c78b795",
+      "range": {
+        "startLine": 3828,
+        "startChar": 0,
+        "endLine": 3831,
+        "endChar": 40
+      },
+      "revId": "84c8b9badd9158a62aa41af0dd4b16919bb1d2ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7f0c324d_279fe101",
         "filename": "system/stack/btm/btm_sec.cc",
         "patchSetId": 4

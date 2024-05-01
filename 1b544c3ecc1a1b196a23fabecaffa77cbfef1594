@@ -22,6 +22,30 @@
       },
       "revId": "1b544c3ecc1a1b196a23fabecaffa77cbfef1594",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98be7332_9d5dade4",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 3883,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-01T23:02:35Z",
+      "side": 1,
+      "message": "We don\u0027t want to disturb the usual disconnection handling of the disconnected transport.",
+      "parentUuid": "1e6f7d3a_3669a9d6",
+      "range": {
+        "startLine": 3870,
+        "startChar": 0,
+        "endLine": 3883,
+        "endChar": 3
+      },
+      "revId": "1b544c3ecc1a1b196a23fabecaffa77cbfef1594",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
