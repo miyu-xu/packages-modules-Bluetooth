@@ -217,6 +217,7 @@ init_flags!(
         device_iot_config_logging,
         dynamic_avrcp_version_enhancement = true,
         gatt_robust_caching_server,
+        gd_hal_snoop_logger_socket = true,
         hci_adapter: i32,
         hfp_dynamic_version = true,
         irk_rotation,

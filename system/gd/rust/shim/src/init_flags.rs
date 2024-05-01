@@ -20,6 +20,7 @@ mod ffi {
         fn device_iot_config_logging_is_enabled() -> bool;
         fn dynamic_avrcp_version_enhancement_is_enabled() -> bool;
         fn gatt_robust_caching_server_is_enabled() -> bool;
+        fn gd_hal_snoop_logger_socket_is_enabled() -> bool;
         fn get_hci_adapter() -> i32;
         fn get_asha_packet_drop_frequency_threshold() -> i32;
         fn get_asha_phy_update_retry_limit() -> i32;
