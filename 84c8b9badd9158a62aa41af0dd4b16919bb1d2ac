@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83d6d6fd_5a72c87f",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3783,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-01T19:15:20Z",
+      "side": 1,
+      "message": "I think this is good start, but there is more code below that needs to not be executed if you want to keep the pairing going.",
+      "range": {
+        "startLine": 3783,
+        "startChar": 6,
+        "endLine": 3783,
+        "endChar": 31
+      },
+      "revId": "84c8b9badd9158a62aa41af0dd4b16919bb1d2ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "601b1481_a26ec65f",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3823,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-01T19:15:20Z",
+      "side": 1,
+      "message": "Would this mess up LE pairing when Classic transport disconnected?",
+      "range": {
+        "startLine": 3822,
+        "startChar": 0,
+        "endLine": 3823,
+        "endChar": 45
+      },
+      "revId": "84c8b9badd9158a62aa41af0dd4b16919bb1d2ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d9c0279_7f715bc8",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3831,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-01T19:15:20Z",
+      "side": 1,
+      "message": "p_dev_rec-\u003esec_rec is common to LE and Classic.\nWould this cleanup mess up Classic pairing ?",
+      "range": {
+        "startLine": 3828,
+        "startChar": 0,
+        "endLine": 3831,
+        "endChar": 40
+      },
+      "revId": "84c8b9badd9158a62aa41af0dd4b16919bb1d2ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f0c324d_279fe101",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3870,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-01T19:15:20Z",
+      "side": 1,
+      "message": "Would that mess up classic/le pairing when the other transport disconnected ?",
+      "range": {
+        "startLine": 3869,
+        "startChar": 0,
+        "endLine": 3870,
+        "endChar": 54
+      },
+      "revId": "84c8b9badd9158a62aa41af0dd4b16919bb1d2ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29529a4a_e695cdd0",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3878,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-01T19:15:20Z",
+      "side": 1,
+      "message": "This would be triggered, would it cause upper layers to consider pairing as finished ?",
+      "range": {
+        "startLine": 3877,
+        "startChar": 0,
+        "endLine": 3878,
+        "endChar": 38
+      },
+      "revId": "84c8b9badd9158a62aa41af0dd4b16919bb1d2ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
