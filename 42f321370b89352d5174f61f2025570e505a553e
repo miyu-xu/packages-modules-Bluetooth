@@ -22,6 +22,30 @@
       },
       "revId": "42f321370b89352d5174f61f2025570e505a553e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8c6dbbd_58bcc3c5",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothShellCommand.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-01T16:35:07Z",
+      "side": 1,
+      "message": "Addressing in follow-up as the whole chain is ready to go in. \nI should have not put it on top but now I prefer to have it merge (and it is just a typo in a debug tool message)",
+      "parentUuid": "fd77a60b_19de47c2",
+      "range": {
+        "startLine": 110,
+        "startChar": 84,
+        "endLine": 110,
+        "endChar": 88
+      },
+      "revId": "42f321370b89352d5174f61f2025570e505a553e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
