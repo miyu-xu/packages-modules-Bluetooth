@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af8e4de9_35d7b457",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4809,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-05-01T23:18:55Z",
+      "side": 1,
+      "message": "nit: Start new condition block\n\n```\nif (..) {\n    throw\n}\n\nif (..) {\n    ..\n    ..\n}\n```",
+      "range": {
+        "startLine": 4809,
+        "startChar": 14,
+        "endLine": 4809,
+        "endChar": 75
+      },
+      "revId": "f0b4e9a3b81432bc20213ae83838f27e43dddc99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07c789fd_afb07610",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4814,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-05-01T23:18:55Z",
+      "side": 1,
+      "message": "Previously returned true when the service was null",
+      "range": {
+        "startLine": 4814,
+        "startChar": 31,
+        "endLine": 4814,
+        "endChar": 36
+      },
+      "revId": "f0b4e9a3b81432bc20213ae83838f27e43dddc99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdf365d4_502b571a",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4862,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-05-01T23:18:55Z",
+      "side": 1,
+      "message": "nit: (outside of the scope I know)\nshouldn\u0027t this check and following statements be inside the synchronized ?",
+      "range": {
+        "startLine": 4860,
+        "startChar": 8,
+        "endLine": 4862,
+        "endChar": 9
+      },
+      "revId": "f0b4e9a3b81432bc20213ae83838f27e43dddc99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19adf255_8a3bd3c6",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4868,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-05-01T23:18:55Z",
+      "side": 1,
+      "message": "Previously returned false when the service was null",
+      "range": {
+        "startLine": 4868,
+        "startChar": 23,
+        "endLine": 4868,
+        "endChar": 27
+      },
+      "revId": "f0b4e9a3b81432bc20213ae83838f27e43dddc99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
