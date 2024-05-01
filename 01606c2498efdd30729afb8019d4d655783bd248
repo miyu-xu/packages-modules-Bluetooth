@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94c3d338_e51d0b74",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3644,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-01T22:45:18Z",
+      "side": 1,
+      "message": "Right now, we don\u0027t want to do this for every device to avoid problem when some device doesn\u0027t like Read by UUID\n\nWe had similar problem with GATT robust caching.",
+      "parentUuid": "a9014527_690656fc",
+      "range": {
+        "startLine": 3644,
+        "startChar": 10,
+        "endLine": 3644,
+        "endChar": 54
+      },
+      "revId": "01606c2498efdd30729afb8019d4d655783bd248",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d369f8bf_4c3084b4",
