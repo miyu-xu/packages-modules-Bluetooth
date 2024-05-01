@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0e09d126_8b03c3fb",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/BrowsedPlayerWrapper2.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-05-01T06:46:43Z",
+      "side": 1,
+      "message": "Yes the name is temporary during WIP!",
+      "parentUuid": "cba974c7_df0ad681",
+      "range": {
+        "startLine": 44,
+        "startChar": 39,
+        "endLine": 44,
+        "endChar": 59
+      },
+      "revId": "5b68dbdaa370ae368750289ff90e719b22331ca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "606904c3_419c652e",
         "filename": "android/app/src/com/android/bluetooth/audio_util/BrowsedPlayerWrapper2.java",
         "patchSetId": 4
@@ -37,6 +61,24 @@
       "writtenOn": "2024-04-30T18:03:54Z",
       "side": 1,
       "message": "Can we use a duration instead ? even if that mean having to do `.toMillis` when putting in the handler\n\n```suggestion\n    private static final Duration BROWSER_DISCONNECT_TIMEOUT \u003d Duration.ofSeconds(5);\n```",
+      "revId": "5b68dbdaa370ae368750289ff90e719b22331ca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4193197_3920a45e",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/BrowsedPlayerWrapper2.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-05-01T06:46:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "606904c3_419c652e",
       "revId": "5b68dbdaa370ae368750289ff90e719b22331ca9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -66,6 +108,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e5bd4838_de3f7625",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/BrowsedPlayerWrapper2.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-05-01T06:46:43Z",
+      "side": 1,
+      "message": "We\u0027re adding elements to the list at some point. I could copy it into an ArrayList, add the element, then convert it to a List again and replace it in the map but I\u0027m not sure that\u0027s better?",
+      "parentUuid": "150e6009_04c42d91",
+      "range": {
+        "startLine": 90,
+        "startChar": 34,
+        "endLine": 90,
+        "endChar": 43
+      },
+      "revId": "5b68dbdaa370ae368750289ff90e719b22331ca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b027d062_94be4195",
         "filename": "android/app/src/com/android/bluetooth/audio_util/BrowsedPlayerWrapper2.java",
         "patchSetId": 4
@@ -77,6 +143,30 @@
       "writtenOn": "2024-04-30T18:03:54Z",
       "side": 1,
       "message": "Does this works ?\n```suggestion\n    private final Runnable mDisconnectRunnable \u003d () -\u003e disconnect();\n```",
+      "range": {
+        "startLine": 92,
+        "startChar": 3,
+        "endLine": 97,
+        "endChar": 6
+      },
+      "revId": "5b68dbdaa370ae368750289ff90e719b22331ca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23f98bf3_b752d083",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/BrowsedPlayerWrapper2.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-05-01T06:46:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b027d062_94be4195",
       "range": {
         "startLine": 92,
         "startChar": 3,
@@ -135,6 +225,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "31d68964_5fdf18eb",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/BrowsedPlayerWrapper2.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-05-01T06:46:43Z",
+      "side": 1,
+      "message": "Don\u0027t mind the logs for now, they are a bit invasive but not definitive, only here during WIP",
+      "parentUuid": "33a41c4b_acf28277",
+      "range": {
+        "startLine": 127,
+        "startChar": 16,
+        "endLine": 127,
+        "endChar": 17
+      },
+      "revId": "5b68dbdaa370ae368750289ff90e719b22331ca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "924ca381_6c2e1a55",
         "filename": "android/app/src/com/android/bluetooth/audio_util/BrowsedPlayerWrapper2.java",
         "patchSetId": 4
@@ -146,6 +260,30 @@
       "writtenOn": "2024-04-30T18:03:54Z",
       "side": 1,
       "message": "Using `List.of(` instead (after modifing the ArrayList type\n\n```suggestion\n                mSubscribedIds.put(mediaId, List.of(callback));\n```",
+      "range": {
+        "startLine": 185,
+        "startChar": 43,
+        "endLine": 185,
+        "endChar": 83
+      },
+      "revId": "5b68dbdaa370ae368750289ff90e719b22331ca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95a94509_4c0196da",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/BrowsedPlayerWrapper2.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-05-01T06:46:43Z",
+      "side": 1,
+      "message": "Same as above comment, we\u0027re modifying the list line 181 so ArrayList fits better I think.",
+      "parentUuid": "924ca381_6c2e1a55",
       "range": {
         "startLine": 185,
         "startChar": 43,
@@ -179,6 +317,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "422f066a_9a2b8bf0",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/BrowsedPlayerWrapper2.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-05-01T06:46:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d7663e8_da15c8c1",
+      "range": {
+        "startLine": 298,
+        "startChar": 65,
+        "endLine": 298,
+        "endChar": 73
+      },
+      "revId": "5b68dbdaa370ae368750289ff90e719b22331ca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6c3c51c_7ea19391",
@@ -192,6 +354,30 @@
       "writtenOn": "2024-04-30T18:03:54Z",
       "side": 1,
       "message": "```suggestion\n                    Log.i(TAG, \"getFolderItems() for \" + mPackageName + \" callback called with \" + browsableContent.size() + \" items\");\n```",
+      "range": {
+        "startLine": 319,
+        "startChar": 126,
+        "endLine": 319,
+        "endChar": 131
+      },
+      "revId": "5b68dbdaa370ae368750289ff90e719b22331ca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb9e9082_cbe7a47d",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/BrowsedPlayerWrapper2.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-05-01T06:46:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6c3c51c_7ea19391",
       "range": {
         "startLine": 319,
         "startChar": 126,
@@ -353,6 +539,30 @@
       "writtenOn": "2024-04-30T18:03:54Z",
       "side": 1,
       "message": "Do we still need the isPtsTestMode with the new change ?",
+      "range": {
+        "startLine": 286,
+        "startChar": 18,
+        "endLine": 286,
+        "endChar": 31
+      },
+      "revId": "5b68dbdaa370ae368750289ff90e719b22331ca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82d00b3e_1cd92fb8",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-05-01T06:46:43Z",
+      "side": 1,
+      "message": "Well, as we have a flag this means the feature can be disabled, meaning we\u0027ll still need it I guess? I\u0027ll add a flag check in the condition.",
+      "parentUuid": "d11c1930_9df21a50",
       "range": {
         "startLine": 286,
         "startChar": 18,
