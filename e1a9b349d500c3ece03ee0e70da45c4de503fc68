@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec5ededa_d73a42cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-01T23:43:07Z",
+      "side": 1,
+      "message": "Instead of delaying createBond could you try `separate_service_and_device_discovery` flag instead?",
+      "revId": "e1a9b349d500c3ece03ee0e70da45c4de503fc68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
