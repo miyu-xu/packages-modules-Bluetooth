@@ -119,11 +119,11 @@ bool SDP_InitDiscoveryDb(tSDP_DISCOVERY_DB* p_db, uint32_t len,
  ******************************************************************************/
 bool SDP_CancelServiceSearch(const tSDP_DISCOVERY_DB* p_db) {
   tCONN_CB* p_ccb = sdpu_find_ccb_by_db(p_db);
-  if (!p_ccb) return (false);
-
-  sdp_disconnect(p_ccb, SDP_CANCEL);
-  p_ccb->disc_state = SDP_DISC_WAIT_CANCEL;
-  return (true);
+  if (p_ccb) {
+    sdp_disconnect(p_ccb, SDP_CANCEL);
+    p_ccb->disc_state = SDP_DISC_WAIT_CANCEL;
+  }
+  return p_ccb != nullptr;
 }
 
 /*******************************************************************************
@@ -138,18 +138,13 @@ bool SDP_CancelServiceSearch(const tSDP_DISCOVERY_DB* p_db) {
 bool SDP_ServiceSearchRequest(const RawAddress& p_bd_addr,
                               tSDP_DISCOVERY_DB* p_db,
                               tSDP_DISC_CMPL_CB* p_cb) {
-  tCONN_CB* p_ccb;
-
-  /* Specific BD address */
-  p_ccb = sdp_conn_originate(p_bd_addr);
-
-  if (!p_ccb) return (false);
-
-  p_ccb->disc_state = SDP_DISC_WAIT_CONN;
-  p_ccb->p_db = p_db;
-  p_ccb->p_cb = p_cb;
-
-  return (true);
+  tCONN_CB* p_ccb = sdp_conn_originate(p_bd_addr);
+  if (p_ccb) {
+    p_ccb->disc_state = SDP_DISC_WAIT_CONN;
+    p_ccb->p_db = p_db;
+    p_ccb->p_cb = p_cb;
+  }
+  return p_ccb != nullptr;
 }
 
 /*******************************************************************************
@@ -166,24 +161,20 @@ bool SDP_ServiceSearchRequest(const RawAddress& p_bd_addr,
  * Returns          true if discovery started, false if failed.
  *
  ******************************************************************************/
-bool SDP_ServiceSearchAttributeRequest(const RawAddress& p_bd_addr,
+bool SDP_ServiceSearchAttributeRequest(const RawAddress& bd_addr,
                                        tSDP_DISCOVERY_DB* p_db,
                                        tSDP_DISC_CMPL_CB* p_cb) {
-  tCONN_CB* p_ccb;
-
   /* Specific BD address */
-  p_ccb = sdp_conn_originate(p_bd_addr);
-
-  if (!p_ccb) return (false);
-
-  p_ccb->disc_state = SDP_DISC_WAIT_CONN;
-  p_ccb->p_db = p_db;
-  p_ccb->p_cb = p_cb;
-
-  p_ccb->is_attr_search = true;
-
-  return (true);
+  tCONN_CB* p_ccb = sdp_conn_originate(bd_addr);
+  if (p_ccb) {
+    p_ccb->disc_state = SDP_DISC_WAIT_CONN;
+    p_ccb->p_db = p_db;
+    p_ccb->p_cb = p_cb;
+    p_ccb->is_attr_search = true;
+  }
+  return p_ccb != nullptr;
 }
+
 /*******************************************************************************
  *
  * Function         SDP_ServiceSearchAttributeRequest2
@@ -198,25 +189,19 @@ bool SDP_ServiceSearchAttributeRequest(const RawAddress& p_bd_addr,
  * Returns          true if discovery started, false if failed.
  *
  ******************************************************************************/
-bool SDP_ServiceSearchAttributeRequest2(const RawAddress& p_bd_addr,
+bool SDP_ServiceSearchAttributeRequest2(const RawAddress& bd_addr,
                                         tSDP_DISCOVERY_DB* p_db,
                                         tSDP_DISC_CMPL_CB2* p_cb2,
                                         const void* user_data) {
-  tCONN_CB* p_ccb;
-
-  /* Specific BD address */
-  p_ccb = sdp_conn_originate(p_bd_addr);
-
-  if (!p_ccb) return (false);
-
-  p_ccb->disc_state = SDP_DISC_WAIT_CONN;
-  p_ccb->p_db = p_db;
-  p_ccb->p_cb2 = p_cb2;
-
-  p_ccb->is_attr_search = true;
-  p_ccb->user_data = user_data;
-
-  return (true);
+  tCONN_CB* p_ccb = sdp_conn_originate(bd_addr);
+  if (p_ccb) {
+    p_ccb->disc_state = SDP_DISC_WAIT_CONN;
+    p_ccb->p_db = p_db;
+    p_ccb->p_cb2 = p_cb2;
+    p_ccb->is_attr_search = true;
+    p_ccb->user_data = user_data;
+  }
+  return p_ccb != nullptr;
 }
 
 /*******************************************************************************
