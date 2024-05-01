@@ -746,7 +746,7 @@ typedef void(tGATT_SUBRATE_CHG_CB)(tGATT_IF gatt_if, uint16_t conn_id,
                                    tGATT_STATUS status);
 
 /* Define a callback function when an address consolidation happened */
-typedef void(tGATT_ADDR_CONSOLIDATE_CB)(uint16_t conn_id,
+typedef void(tGATT_ADDR_CONSOLIDATE_CB)(tGATT_IF gatt_if, uint16_t conn_id,
                                         const RawAddress& identity_addr,
                                         const RawAddress& rpa);
 

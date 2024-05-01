@@ -42,4 +42,5 @@ oneway interface IBluetoothGattCallback {
     void onServiceChanged(in String address);
     void onSubrateChange(in String address, in int subrateFactor, in int latency,
                          in int contNum, in int timeout, in int status);
+    void onAddressConsolidated(in String identityAddress, in String resolvablePrivateAddress);
 }
