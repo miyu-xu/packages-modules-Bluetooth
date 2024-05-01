@@ -22,6 +22,29 @@
       },
       "revId": "01606c2498efdd30729afb8019d4d655783bd248",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d369f8bf_4c3084b4",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 4278,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-01T22:28:45Z",
+      "side": 1,
+      "message": "If you make read in btif_dm_ble_auth_cmpl_evt, before service discovery is scheduled, this one can be removed",
+      "range": {
+        "startLine": 4271,
+        "startChar": 1,
+        "endLine": 4278,
+        "endChar": 7
+      },
+      "revId": "01606c2498efdd30729afb8019d4d655783bd248",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
