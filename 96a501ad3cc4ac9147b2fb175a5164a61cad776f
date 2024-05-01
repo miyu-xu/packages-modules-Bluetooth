@@ -559,6 +559,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c7b0d05b_3bb9d35c",
+        "filename": "framework/java/android/bluetooth/BluetoothManager.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-05-01T14:00:23Z",
+      "side": 1,
+      "message": "Hmm... that means we should get the other service\u0027s binder (in this case, GattService\u0027s) directly, and handle all the connection logics.\n\nIt seems creating too many duplicate logics.\nWhat is the reason that we shouldn\u0027t do the re-entrant calls?",
+      "parentUuid": "ddb13012_1b5a0022",
+      "range": {
+        "startLine": 257,
+        "startChar": 14,
+        "endLine": 257,
+        "endChar": 23
+      },
+      "revId": "96a501ad3cc4ac9147b2fb175a5164a61cad776f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e9d27af9_becc599e",
         "filename": "framework/tests/bumble/AndroidTest.xml",
         "patchSetId": 15
