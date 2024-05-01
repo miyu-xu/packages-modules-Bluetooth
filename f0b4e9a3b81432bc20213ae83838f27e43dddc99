@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "240234d6_710647bc",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4814,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-05-01T23:38:30Z",
+      "side": 1,
+      "message": "Sure, just pointing that it is a behavior change.\nYou may want to update CTS tests since apparently this is not covered 😄",
+      "parentUuid": "df862f84_ac502e50",
+      "range": {
+        "startLine": 4814,
+        "startChar": 31,
+        "endLine": 4814,
+        "endChar": 36
+      },
+      "revId": "f0b4e9a3b81432bc20213ae83838f27e43dddc99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bdf365d4_502b571a",
         "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
         "patchSetId": 1
@@ -179,6 +203,30 @@
       "side": 1,
       "message": "I believe that when the service is null, we can consider the client to be unregistered",
       "parentUuid": "19adf255_8a3bd3c6",
+      "range": {
+        "startLine": 4868,
+        "startChar": 23,
+        "endLine": 4868,
+        "endChar": 27
+      },
+      "revId": "f0b4e9a3b81432bc20213ae83838f27e43dddc99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e785673_6c63f3bd",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4868,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-05-01T23:38:30Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8fbe57a3_c106f6bb",
       "range": {
         "startLine": 4868,
         "startChar": 23,
