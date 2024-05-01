@@ -16,6 +16,24 @@
       "message": "Do you want to early return here too?",
       "revId": "69f4729e8529d2edb65069603de24886c374c1b1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70902925_72494bd5",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-05-01T01:42:06Z",
+      "side": 1,
+      "message": "This function mainly sets the LL privacy or address resolution offloading status, so I change the order to set the LL privacy value first. In this case, even if writing own address privacy fails, it should still reboot to apply the LL privacy change.",
+      "parentUuid": "90c6515e_7aff8237",
+      "revId": "69f4729e8529d2edb65069603de24886c374c1b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
