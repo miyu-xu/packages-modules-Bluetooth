@@ -93,6 +93,29 @@
       },
       "revId": "01606c2498efdd30729afb8019d4d655783bd248",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62cea274_9a121915",
+        "filename": "system/test/mock/mock_btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-01T22:49:05Z",
+      "side": 1,
+      "message": "should be `const RawAddress\u0026`",
+      "range": {
+        "startLine": 57,
+        "startChar": 10,
+        "endLine": 57,
+        "endChar": 21
+      },
+      "revId": "01606c2498efdd30729afb8019d4d655783bd248",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
