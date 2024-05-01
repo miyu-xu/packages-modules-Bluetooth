@@ -34,6 +34,29 @@
       "parentUuid": "599da7f6_0fa0e44a",
       "revId": "b113acd672963191d955c9200eda3629ac7fb65d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7df8305_d34d15ce",
+        "filename": "system/gd/hci/hci_layer.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-01T16:45:51Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by If This Then That: Changes in the preceding block may need to be reflected in these files: /system/gd/hci/fuzz/fuzz_hci_layer.h ( https://cs.corp.google.com/piper///depot/system/gd/hci/hci_layer.h?q\u003d\"LINT.IfChange\"+case:yes ) If this does not apply, add \u0027NO_I...\n\nAnalyzer Description: Reminders to change files when other files change\nOwner: ayeaye-team@google.com\n\nChanges in the preceding block may need to be reflected in these files: /system/gd/hci/fuzz/fuzz_hci_layer.h ( https://cs.corp.google.com/piper///depot/system/gd/hci/hci_layer.h?q\u003d\"LINT.IfChange\"+case:yes ) If this does not apply, add \u0027NO_IFTTT\u003dsome reason...\u0027 to your commit message",
+      "range": {
+        "startLine": 127,
+        "startChar": 0,
+        "endLine": 127,
+        "endChar": 43
+      },
+      "revId": "b113acd672963191d955c9200eda3629ac7fb65d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
