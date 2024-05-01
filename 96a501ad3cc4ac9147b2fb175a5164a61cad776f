@@ -583,6 +583,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a22c22b0_33a806d9",
+        "filename": "framework/java/android/bluetooth/BluetoothManager.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-01T16:22:10Z",
+      "side": 1,
+      "message": "It\u0027s making the stacktrace very bloated.\nIn some case permission check can failed as we not always have the correct running context to call other methods\n\nIt\u0027s basically how the app is architected, framework is for client app, and not for internal call",
+      "parentUuid": "c7b0d05b_3bb9d35c",
+      "range": {
+        "startLine": 257,
+        "startChar": 14,
+        "endLine": 257,
+        "endChar": 23
+      },
+      "revId": "96a501ad3cc4ac9147b2fb175a5164a61cad776f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e9d27af9_becc599e",
         "filename": "framework/tests/bumble/AndroidTest.xml",
         "patchSetId": 15
