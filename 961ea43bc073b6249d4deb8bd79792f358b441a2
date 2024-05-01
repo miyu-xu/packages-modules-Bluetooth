@@ -16,6 +16,24 @@
       "message": "What if we already have a pending create bond? It will be silently dropped",
       "revId": "961ea43bc073b6249d4deb8bd79792f358b441a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c185c248_3e296e42",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2442,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-01T00:15:56Z",
+      "side": 1,
+      "message": "Nice catch!",
+      "parentUuid": "c547fa10_cb3a4ddc",
+      "revId": "961ea43bc073b6249d4deb8bd79792f358b441a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
