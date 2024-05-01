@@ -34,6 +34,12 @@ TEST(InitFlagsTest, test_leaudio_targeted_announcement_reconnection_mode) {
   ASSERT_TRUE(InitFlags::IsTargetedAnnouncementReconnectionMode());
 }
 
+TEST(InitFlagsTest, test_enable_snoop_logger_socket) {
+  const char* input[] = {"INIT_gd_hal_snoop_logger_socket=true", nullptr};
+  InitFlags::Load(input);
+  ASSERT_TRUE(InitFlags::IsSnoopLoggerSocketEnabled());
+}
+
 TEST(InitFlagsTest, test_device_iot_config_logging_is_enabled) {
   const char* input[] = {"INIT_device_iot_config_logging=true", nullptr};
   InitFlags::Load(input);
