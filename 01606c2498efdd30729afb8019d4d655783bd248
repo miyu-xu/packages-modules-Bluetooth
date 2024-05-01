@@ -69,6 +69,30 @@
       },
       "revId": "01606c2498efdd30729afb8019d4d655783bd248",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3544bd0_46f058f3",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 4278,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-01T22:45:52Z",
+      "side": 1,
+      "message": "Per offline discussion, this is needed because of b/334067583, when b/334067583 is fixed. this logic won\u0027t be needed.",
+      "parentUuid": "d369f8bf_4c3084b4",
+      "range": {
+        "startLine": 4271,
+        "startChar": 1,
+        "endLine": 4278,
+        "endChar": 7
+      },
+      "revId": "01606c2498efdd30729afb8019d4d655783bd248",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
