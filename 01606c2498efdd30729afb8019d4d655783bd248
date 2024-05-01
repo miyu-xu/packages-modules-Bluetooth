@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9014527_690656fc",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3644,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-01T17:01:29Z",
+      "side": 1,
+      "message": "Why does this depend on LE Audio capability?  Could we check for DIS instead?",
+      "range": {
+        "startLine": 3644,
+        "startChar": 10,
+        "endLine": 3644,
+        "endChar": 54
+      },
+      "revId": "01606c2498efdd30729afb8019d4d655783bd248",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
