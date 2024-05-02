@@ -49,6 +49,10 @@ aconfig_declarations {
         "vsc.aconfig",
     ],
     // LINT.ThenChange(/flags/BUILD.gn)
+    exportable: true,
+    visibility: [
+        "//frameworks/base",
+    ],
 }
 
 java_aconfig_library {
