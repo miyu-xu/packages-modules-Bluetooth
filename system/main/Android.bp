@@ -228,6 +228,7 @@ cc_test {
         "libPlatformProperties",
         "libcrypto",
         "server_configurable_flags",
+	"libbinder_ndk",
     ],
     sanitize: {
         address: true,

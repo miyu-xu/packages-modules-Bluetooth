@@ -24,6 +24,7 @@
 
 #include "acl_manager/assembler.h"
 #include "common/strings.h"
+#include "hal/ranging_hal.h"
 #include "hci/acl_manager.h"
 #include "hci/distance_measurement_interface.h"
 #include "hci/event_checkers.h"
@@ -135,13 +136,19 @@ struct DistanceMeasurementManager::impl {
   };
 
   ~impl() {}
-  void start(os::Handler* handler, hci::HciLayer* hci_layer, hci::AclManager* acl_manager) {
+  void start(
+      os::Handler* handler,
+      hal::RangingHal* ranging_hal,
+      hci::HciLayer* hci_layer,
+      hci::AclManager* acl_manager) {
     handler_ = handler;
+    ranging_hal_ = ranging_hal;
     hci_layer_ = hci_layer;
     acl_manager_ = acl_manager;
     hci_layer_->RegisterLeEventHandler(
         hci::SubeventCode::TRANSMIT_POWER_REPORTING,
         handler_->BindOn(this, &impl::on_transmit_power_reporting));
+    ranging_hal_->isBound();
     if (!com::android::bluetooth::flags::channel_sounding_in_stack()) {
       log::info("IS_FLAG_ENABLED channel_sounding_in_stack: false");
       return;
@@ -1372,6 +1379,7 @@ struct DistanceMeasurementManager::impl {
   };
 
   os::Handler* handler_;
+  hal::RangingHal* ranging_hal_;
   hci::HciLayer* hci_layer_;
   hci::AclManager* acl_manager_;
   bool is_channel_sounding_supported_ = false;
@@ -1395,12 +1403,17 @@ DistanceMeasurementManager::DistanceMeasurementManager() {
 DistanceMeasurementManager::~DistanceMeasurementManager() = default;
 
 void DistanceMeasurementManager::ListDependencies(ModuleList* list) const {
+  list->add<hal::RangingHal>();
   list->add<hci::HciLayer>();
   list->add<hci::AclManager>();
 }
 
 void DistanceMeasurementManager::Start() {
-  pimpl_->start(GetHandler(), GetDependency<hci::HciLayer>(), GetDependency<AclManager>());
+  pimpl_->start(
+      GetHandler(),
+      GetDependency<hal::RangingHal>(),
+      GetDependency<hci::HciLayer>(),
+      GetDependency<AclManager>());
 }
 
 void DistanceMeasurementManager::Stop() {
