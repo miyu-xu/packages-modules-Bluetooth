@@ -39,6 +39,23 @@
       },
       "revId": "9af6bdee15a0174f87ffd1f3712d1827e6930e6f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2601ef02_1e7e3aaf",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 803,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-05-02T08:34:44Z",
+      "side": 1,
+      "message": "Can we include the modes from/to ?",
+      "revId": "9af6bdee15a0174f87ffd1f3712d1827e6930e6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
