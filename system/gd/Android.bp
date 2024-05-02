@@ -463,6 +463,7 @@ cc_test {
         ":BluetoothPacketTestSources",
         ":BluetoothSecurityUnitTestSources",
         ":BluetoothStorageUnitTestSources",
+        ":BluetoothSyspropsUnitTestSources",
         "module_unittest.cc",
         "stack_manager_unittest.cc",
     ],

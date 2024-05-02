@@ -442,4 +442,26 @@ TEST(ConfigCacheTest, test_empty_persistent_properties) {
   ASSERT_THAT(config.GetPersistentSections(), ElementsAre());
 }
 
+TEST(ConfigCacheTest, test_get_section_property_names) {
+  ConfigCache config(100, Device::kLinkKeyProperties);
+  config.SetProperty("A", "A", "A");
+  config.SetProperty("AA:BB:CC:DD:EE:FF", "B", "B");
+  config.SetProperty("AA:BB:CC:DD:EE:EF", BTIF_STORAGE_KEY_LINK_KEY, "C");
+
+  auto property_names = config.GetPropertyNames("A");
+  ASSERT_TRUE(property_names.has_value());
+  ASSERT_THAT(property_names.value(), ElementsAre("A"));
+
+  property_names = config.GetPropertyNames("AA:BB:CC:DD:EE:FF");
+  ASSERT_TRUE(property_names.has_value());
+  ASSERT_THAT(property_names.value(), ElementsAre("B"));
+
+  property_names = config.GetPropertyNames("AA:BB:CC:DD:EE:EF");
+  ASSERT_TRUE(property_names.has_value());
+  ASSERT_THAT(property_names.value(), ElementsAre(BTIF_STORAGE_KEY_LINK_KEY));
+
+  property_names = config.GetPropertyNames("D");
+  ASSERT_FALSE(property_names.has_value());
+}
+
 }  // namespace testing
