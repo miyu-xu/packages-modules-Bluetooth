@@ -541,6 +541,8 @@ public class DistanceMeasurementManager {
             int altitudeAngle,
             int errorAltitudeAngle,
             long elapsedRealtimeNanos,
+	    int initRSSI,
+	    int reflRSSI,
             int confidenceLevel,
             double delaySpreadMeters,
             int detectedAttackLevel,
