@@ -16,6 +16,24 @@
       "message": "Instead of delaying createBond could you try `separate_service_and_device_discovery` flag instead?",
       "revId": "e1a9b349d500c3ece03ee0e70da45c4de503fc68",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12ae6e8e_786b545c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-02T08:55:01Z",
+      "side": 1,
+      "message": "Hi I tried the flag but that doesn\u0027t help. Please see b/329857537#comment10",
+      "parentUuid": "ec5ededa_d73a42cb",
+      "revId": "e1a9b349d500c3ece03ee0e70da45c4de503fc68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
