@@ -22,6 +22,30 @@
       },
       "revId": "399f93aed0934d4ced53d374e2acc9d90c8bae04",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "970856fc_0b87a7fb",
+        "filename": "system/bta/ras/ras_server.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-05-02T02:43:17Z",
+      "side": 1,
+      "message": "Renamed to on_demand_ranging_mutex_.\nThanks!",
+      "parentUuid": "bb3c6372_21e37fd9",
+      "range": {
+        "startLine": 101,
+        "startChar": 65,
+        "endLine": 101,
+        "endChar": 69
+      },
+      "revId": "399f93aed0934d4ced53d374e2acc9d90c8bae04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
