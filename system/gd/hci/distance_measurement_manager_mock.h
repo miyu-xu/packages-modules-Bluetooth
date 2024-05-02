@@ -43,7 +43,7 @@ class MockDistanceMeasurementCallbacks : public DistanceMeasurementCallbacks {
   MOCK_METHOD(
       void,
       OnDistanceMeasurementResult,
-      (Address, uint32_t, uint32_t, int, int, int, int, DistanceMeasurementMethod));
+      (Address, uint32_t, uint32_t, int, int, int, int, int, int, uint32_t, DistanceMeasurementMethod));
 };
 
 class MockDistanceMeasurementManager : public DistanceMeasurementManager {

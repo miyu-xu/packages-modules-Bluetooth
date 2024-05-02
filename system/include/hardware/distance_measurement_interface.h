@@ -36,7 +36,7 @@ class DistanceMeasurementCallbacks {
   virtual void OnDistanceMeasurementResult(
       RawAddress address, uint32_t centimeter, uint32_t error_centimeter,
       int azimuth_angle, int error_azimuth_angle, int altitude_angle,
-      int error_altitude_angle, uint8_t method) = 0;
+      int error_altitude_angle,  int init_RSSI, int refl_RSSI, uint32_t time_Us, uint8_t method) = 0;
 };
 
 class DistanceMeasurementInterface {

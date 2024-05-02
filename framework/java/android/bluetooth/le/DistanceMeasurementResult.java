@@ -140,6 +140,9 @@ public final class DistanceMeasurementResult implements Parcelable {
     private final double mConfidenceLevel;
     private final int mDetectedAttackLevel;
     private final double mVelocityMetersPerSecond;
+    private final int mInitRSSI;
+    private final int mReflRSSI;
+    private final double mTimeUs;
 
     private DistanceMeasurementResult(
             double meters,
@@ -151,7 +154,10 @@ public final class DistanceMeasurementResult implements Parcelable {
             double delaySpreadMeters,
             double confidenceLevel,
             @Nadm int detectedAttackLevel,
-            double velocityMetersPerSecond) {
+            double velocityMetersPerSecond,
+            int initRSSI,
+            int reflRSSI,
+            double timeUs) {
         mMeters = meters;
         mErrorMeters = errorMeters;
         mAzimuthAngle = azimuthAngle;
@@ -162,6 +168,9 @@ public final class DistanceMeasurementResult implements Parcelable {
         mConfidenceLevel = confidenceLevel;
         mDetectedAttackLevel = detectedAttackLevel;
         mVelocityMetersPerSecond = velocityMetersPerSecond;
+        mInitRSSI = initRSSI;
+        mReflRSSI = reflRSSI;
+        mTimeUs = timeUs;
     }
 
     /**
@@ -313,6 +322,48 @@ public final class DistanceMeasurementResult implements Parcelable {
     }
 
     /**
+     * Get RSSI (Received Signal Strength Indication) of the initiator device , represented in dBm
+     *  Valid range is -127 to +20
+     *
+     * @return rssi , represeted in DBm
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)
+    @SystemApi
+    public double getInitiatorRssi() {
+        return mInitRSSI;
+    }
+
+    /**
+     * Get RSSI (Received Signal Strength Indication) of the reflector device , represented in dBm
+     *  Valid range is -127 to +20
+     *
+     * @return rssi , represeted in DBm
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)
+    @SystemApi
+    public double getReflectorRssi() {
+        return mReflRSSI;
+    }
+
+    /**
+     * Get time of arrival of first channel sounding event , represented in mirco seconds
+     *
+     *
+     * @return Time in micro seconds
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)
+    @SystemApi
+    public double getTimeUs() {
+        return mTimeUs;
+    }
+
+    /**
      * {@inheritDoc}
      *
      * @hide
@@ -339,6 +390,9 @@ public final class DistanceMeasurementResult implements Parcelable {
         out.writeDouble(mConfidenceLevel);
         out.writeInt(mDetectedAttackLevel);
         out.writeDouble(mVelocityMetersPerSecond);
+        out.writeDouble(mInitRSSI);
+        out.writeDouble(mReflRSSI);
+        out.writeDouble(mTimeUs);
     }
 
     /**
@@ -367,6 +421,12 @@ public final class DistanceMeasurementResult implements Parcelable {
                 + mDetectedAttackLevel
                 + ", velocityMetersPerSecond: "
                 + mVelocityMetersPerSecond
+                + ", InitRSSI: "
+                + mInitRSSI
+                + ", ReflRSSI: "
+                + mReflRSSI
+                + ", TimeUs: "
+                + mTimeUs
                 + "]";
     }
 
@@ -384,6 +444,9 @@ public final class DistanceMeasurementResult implements Parcelable {
                             .setConfidenceLevel(in.readDouble())
                             .setDetectedAttackLevel(in.readInt())
                             .setVelocityMetersPerSecond(in.readDouble())
+                            .setInitiatorRssi(in.readInt())
+                            .setReflectorRssi(in.readInt())
+                            .setTimeInMicroSecond(in.readDouble())
                             .build();
                 }
 
@@ -410,6 +473,10 @@ public final class DistanceMeasurementResult implements Parcelable {
         private double mConfidenceLevel = Double.NaN;
         private int mDetectedAttackLevel = NADM_UNKNOWN;
         private double mVelocityMetersPerSecond = Double.NaN;
+        private int mInitRSSI = -1;
+        private int mReflRSSI = -1;
+        private double mTimeUs = Double.NaN;
+
 
         /**
          * Constructor of the Builder.
@@ -588,6 +655,50 @@ public final class DistanceMeasurementResult implements Parcelable {
         }
 
         /**
+         * Set RSSI (Received Signal Strength Indication) of the initiator device , represented in dBm
+         * Valid range is -127 to +20
+         *
+         * @param initRSSI estimated rssi of the initiator device
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)
+        @SystemApi
+        @NonNull
+        public Builder setInitiatorRssi(int initRSSI) {
+            mInitRSSI = initRSSI;
+            return this;
+        }
+
+        /**
+         * Set RSSI (Received Signal Strength Indication) of the reflector device , represented in dBm
+         * Valid range is -127 to +20
+         *
+         * @param reflRSSI estimated rssi of the reflector device
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)
+        @SystemApi
+        @NonNull
+        public Builder setReflectorRssi(int reflRSSI) {
+            mReflRSSI = reflRSSI;
+            return this;
+        }
+
+        /**
+         * set time of arrival of first channel sounding event , represented in mirco seconds
+         *
+         * @param timeUs estimated time
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)
+        @SystemApi
+        @NonNull
+        public Builder setTimeInMicroSecond(double timeUs) {
+            mTimeUs = timeUs;
+            return this;
+        }
+
+        /**
          * Builds the {@link DistanceMeasurementResult} object.
          *
          * @throws IllegalStateException if meters, error, or confidence are not set
@@ -606,7 +717,10 @@ public final class DistanceMeasurementResult implements Parcelable {
                     mDelaySpreadMeters,
                     mConfidenceLevel,
                     mDetectedAttackLevel,
-                    mVelocityMetersPerSecond);
+                    mVelocityMetersPerSecond,
+                    mInitRSSI,
+                    mReflRSSI,
+                    mTimeUs);
         }
     }
 }
