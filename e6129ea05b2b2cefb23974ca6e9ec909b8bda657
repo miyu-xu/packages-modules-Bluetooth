@@ -70,6 +70,30 @@
       },
       "revId": "e6129ea05b2b2cefb23974ca6e9ec909b8bda657",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf487a68_0934bd24",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-05-02T13:26:14Z",
+      "side": 1,
+      "message": "smoreland@, steveliu@,\nmany thanks for your suggestion!\nI created an AIDL shim layer as a starting point",
+      "parentUuid": "ff6acf5c_36af54a7",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 60
+      },
+      "revId": "e6129ea05b2b2cefb23974ca6e9ec909b8bda657",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
