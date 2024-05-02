@@ -87,6 +87,8 @@ std::string ParameterProvider::SyspropsFilePath() {
   return "";
 }
 
+void ParameterProvider::OverrideSyspropsFilePath(const std::string&) {}
+
 bluetooth_keystore::BluetoothKeystoreInterface* ParameterProvider::GetBtKeystoreInterface() {
   std::lock_guard<std::mutex> lock(parameter_mutex);
   return bt_keystore_interface;
