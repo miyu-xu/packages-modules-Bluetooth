@@ -437,6 +437,7 @@ public class DistanceMeasurementManager {
 
     void onDistanceMeasurementResult(String address, int centimeter, int errorCentimeter,
             int azimuthAngle, int errorAzimuthAngle, int altitudeAngle, int errorAltitudeAngle,
+            int initRSSI, int reflRSSI, int timeUs,
             int method) {
         logd("onDistanceMeasurementResult " + BluetoothUtils.toAnonymizedAddress(address)
                 + ", centimeter " + centimeter);

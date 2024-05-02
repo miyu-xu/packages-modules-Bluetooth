@@ -1218,7 +1218,8 @@ class JniDistanceMeasurementCallbacks : DistanceMeasurementCallbacks {
   void OnDistanceMeasurementResult(RawAddress address, uint32_t centimeter,
                                    uint32_t error_centimeter, int azimuth_angle,
                                    int error_azimuth_angle, int altitude_angle,
-                                   int error_altitude_angle, uint8_t method) {
+                                   int error_altitude_angle,  int init_RSSI,
+								   int refl_RSSI, uint32_t time_Us, uint8_t method) {
     std::shared_lock<std::shared_mutex> lock(callbacks_mutex);
     CallbackEnv sCallbackEnv(__func__);
     if (!sCallbackEnv.valid() || !mDistanceMeasurementCallbacksObj) return;
@@ -1227,7 +1228,8 @@ class JniDistanceMeasurementCallbacks : DistanceMeasurementCallbacks {
     sCallbackEnv->CallVoidMethod(
         mDistanceMeasurementCallbacksObj, method_onDistanceMeasurementResult,
         addr.get(), centimeter, error_centimeter, azimuth_angle,
-        error_azimuth_angle, altitude_angle, error_altitude_angle, method);
+        error_azimuth_angle, altitude_angle, error_altitude_angle, init_RSSI,
+		refl_RSSI, time_Us method);
   }
 };
 
@@ -2765,7 +2767,7 @@ static int register_com_android_bluetooth_gatt_distance_measurement(
        &method_onDistanceMeasurementStartFail},
       {"onDistanceMeasurementStopped", "(Ljava/lang/String;II)V",
        &method_onDistanceMeasurementStopped},
-      {"onDistanceMeasurementResult", "(Ljava/lang/String;IIIIIII)V",
+      {"onDistanceMeasurementResult", "(Ljava/lang/String;IIIIIIIIII)V",
        &method_onDistanceMeasurementResult},
   };
   GET_JAVA_METHODS(
