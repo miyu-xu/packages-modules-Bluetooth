@@ -108,7 +108,7 @@ int GetAndroidVendorReleaseVersion() {
 }
 
 bool ClearSystemPropertiesForHost() {
-  return false;
+  return true;
 }
 
 }  // namespace os
