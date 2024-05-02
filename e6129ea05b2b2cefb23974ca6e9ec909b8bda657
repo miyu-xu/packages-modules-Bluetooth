@@ -22,6 +22,30 @@
       },
       "revId": "e6129ea05b2b2cefb23974ca6e9ec909b8bda657",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f75400b_5c9ef813",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-05-02T00:01:31Z",
+      "side": 1,
+      "message": "Thanks Steven Moreland to point this out.\n\nwe can not add the lib to host, as the lib is the android AIDL. which can not be built for host.\n\n@chienyuanhuang@google.com I think this is what happened.\nyou can not call the AIDL API directly from the hci.\nthere are 2 ways to resolve this I think.\n1. exclude the distance_measurement_manager from other target(host/linux, keep android only). but I\u0027m not sure if other modules within BT stack depends on it.\n2. create a AIDL shim layer to make it only works on android; and only provide stub codes for other target.",
+      "parentUuid": "a393407c_111ab452",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 60
+      },
+      "revId": "e6129ea05b2b2cefb23974ca6e9ec909b8bda657",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
