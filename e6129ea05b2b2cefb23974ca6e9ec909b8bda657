@@ -46,6 +46,30 @@
       },
       "revId": "e6129ea05b2b2cefb23974ca6e9ec909b8bda657",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff6acf5c_36af54a7",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-05-02T00:41:55Z",
+      "side": 1,
+      "message": "FYI. refer to \"hal/hci_hal.h\"",
+      "parentUuid": "7f75400b_5c9ef813",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 60
+      },
+      "revId": "e6129ea05b2b2cefb23974ca6e9ec909b8bda657",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
