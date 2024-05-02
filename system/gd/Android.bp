@@ -105,12 +105,14 @@ cc_defaults {
         host: {
             srcs: [
                 ":BluetoothHalSources_hci_host",
+                ":BluetoothHalSources_ranging_host",
                 ":BluetoothOsSources_host",
             ],
         },
         android: {
             srcs: [
                 ":BluetoothHalSources_hci_android_hidl",
+                ":BluetoothHalSources_ranging_android",
                 ":BluetoothOsSources_android",
             ],
             shared_libs: [
@@ -126,6 +128,7 @@ cc_defaults {
             ],
             whole_static_libs: [
                 "android.hardware.bluetooth-V1-ndk",
+                "android.hardware.bluetooth.ranging-V1-ndk",
             ],
         },
     },
