@@ -28,6 +28,8 @@ namespace bluetooth {
 namespace sysprops {
 
 static const size_t kDefaultCapacity = 10000;
+static const char* kAflagSection = "Aflags";
+static const char* kAflagPrefix = "persist.device_config.aconfig_flags.bluetooth.";
 
 const ModuleFactory SyspropsModule::Factory = ModuleFactory([]() { return new SyspropsModule(); });
 
@@ -125,6 +127,14 @@ void SyspropsModule::parse_config(std::string file_path) {
     auto str = config->GetProperty("Sysprops", *s);
     if (str) {
       bluetooth::os::SetSystemProperty(*s, *str);
+    }
+  }
+
+  auto names = config->GetMatchedPropertyNames(kAflagSection, kAflagPrefix);
+  for (const auto& name : names) {
+    auto val = config->GetProperty(kAflagSection, name);
+    if (val) {
+      bluetooth::os::SetSystemProperty(name, *val);
     }
   }
 }

@@ -96,6 +96,9 @@ class ConfigCache {
     }
   };
   virtual std::vector<SectionAndPropertyValue> GetSectionNamesWithProperty(const std::string& property) const;
+  // Returns property names starting with the prefix specified.
+  virtual std::vector<std::string> GetMatchedPropertyNames(
+      const std::string& section, const std::string& prefix) const;
 
   // modifiers
   // Commit all mutation entries in sequence while holding the config mutex
