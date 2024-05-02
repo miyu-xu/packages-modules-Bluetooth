@@ -196,6 +196,7 @@ android_robolectric_test {
         "truth",
     ],
 
+    sdk_version: "test_current",
     upstream: true,
     test_suites: ["general-tests"],
 }
