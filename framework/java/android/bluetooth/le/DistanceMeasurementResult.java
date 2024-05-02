@@ -133,6 +133,8 @@ public final class DistanceMeasurementResult implements Parcelable {
     private final int mDetectedAttackLevel;
     private final double mVelocityMetersPerSecond;
     private final long mMeasurementTimestampNanos;
+    private final int mInitRSSI;
+    private final int mReflRSSI;
 
     private DistanceMeasurementResult(
             double meters,
@@ -145,7 +147,9 @@ public final class DistanceMeasurementResult implements Parcelable {
             double confidenceLevel,
             @Nadm int detectedAttackLevel,
             double velocityMetersPerSecond,
-            long measurementTimestampNanos) {
+            long measurementTimestampNanos,
+            int initRSSI,
+            int reflRSSI) {
         mMeters = meters;
         mErrorMeters = errorMeters;
         mAzimuthAngle = azimuthAngle;
@@ -157,6 +161,8 @@ public final class DistanceMeasurementResult implements Parcelable {
         mDetectedAttackLevel = detectedAttackLevel;
         mVelocityMetersPerSecond = velocityMetersPerSecond;
         mMeasurementTimestampNanos = measurementTimestampNanos;
+        mInitRSSI = initRSSI;
+        mReflRSSI = reflRSSI;
     }
 
     /**
@@ -316,6 +322,34 @@ public final class DistanceMeasurementResult implements Parcelable {
         return mMeasurementTimestampNanos;
     }
 
+     /**
+     * Get RSSI (Received Signal Strength Indication) of the initiator device , represented in dBm
+     *  Valid range is -127 to +20
+     *
+     * @return rssi , represeted in DBm
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)
+    @SystemApi
+    public double getInitiatorRssi() {
+        return mInitRSSI;
+    }
+
+    /**
+     * Get RSSI (Received Signal Strength Indication) of the reflector device , represented in dBm
+     *  Valid range is -127 to +20
+     *
+     * @return rssi , represeted in DBm
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)
+    @SystemApi
+    public double getReflectorRssi() {
+        return mReflRSSI;
+    }
+
     /**
      * {@inheritDoc}
      *
@@ -344,6 +378,8 @@ public final class DistanceMeasurementResult implements Parcelable {
         out.writeInt(mDetectedAttackLevel);
         out.writeDouble(mVelocityMetersPerSecond);
         out.writeLong(mMeasurementTimestampNanos);
+        out.writeDouble(mInitRSSI);
+        out.writeDouble(mReflRSSI);
     }
 
     /**
@@ -374,6 +410,10 @@ public final class DistanceMeasurementResult implements Parcelable {
                 + mVelocityMetersPerSecond
                 + ", elapsedRealtimeNanos"
                 + mMeasurementTimestampNanos
+                + ", InitRSSI: "
+                + mInitRSSI
+                + ", ReflRSSI: "
+                + mReflRSSI
                 + "]";
     }
 
@@ -392,6 +432,8 @@ public final class DistanceMeasurementResult implements Parcelable {
                             .setDetectedAttackLevel(in.readInt())
                             .setVelocityMetersPerSecond(in.readDouble())
                             .setMeasurementTimestampNanos(in.readLong())
+                            .setInitiatorRssi(in.readInt())
+                            .setReflectorRssi(in.readInt())
                             .build();
                 }
 
@@ -419,6 +461,9 @@ public final class DistanceMeasurementResult implements Parcelable {
         private int mDetectedAttackLevel = NADM_UNKNOWN;
         private double mVelocityMetersPerSecond = Double.NaN;
         private long mMeasurementTimestampNanos = -1L;
+        private int mInitRSSI = -1;
+        private int mReflRSSI = -1;
+
 
         /**
          * Constructor of the Builder.
@@ -607,6 +652,36 @@ public final class DistanceMeasurementResult implements Parcelable {
         }
 
         /**
+         * Set RSSI (Received Signal Strength Indication) of the initiator device , represented in dBm
+         * Valid range is -127 to +20
+         *
+         * @param initRSSI estimated rssi of the initiator device
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)
+        @SystemApi
+        @NonNull
+        public Builder setInitiatorRssi(int initRSSI) {
+            mInitRSSI = initRSSI;
+            return this;
+        }
+
+        /**
+         * Set RSSI (Received Signal Strength Indication) of the reflector device , represented in dBm
+         * Valid range is -127 to +20
+         *
+         * @param reflRSSI estimated rssi of the reflector device
+         * @hide
+         */
+        @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)
+        @SystemApi
+        @NonNull
+        public Builder setReflectorRssi(int reflRSSI) {
+            mReflRSSI = reflRSSI;
+            return this;
+        }
+
+        /**
          * Builds the {@link DistanceMeasurementResult} object.
          *
          * @throws IllegalStateException if meters, error, or confidence are not set
@@ -626,7 +701,9 @@ public final class DistanceMeasurementResult implements Parcelable {
                     mConfidenceLevel,
                     mDetectedAttackLevel,
                     mVelocityMetersPerSecond,
-                    mMeasurementTimestampNanos);
+                    mMeasurementTimestampNanos,
+                    mInitRSSI,
+                    mReflRSSI);
         }
     }
 }
