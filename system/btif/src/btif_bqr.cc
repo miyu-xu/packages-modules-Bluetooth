@@ -203,6 +203,9 @@ void BqrVseSubEvt::WriteBtSchedulingTraceLogFile(int fd, uint8_t length,
   BtSchedulingTraceCounter++;
 }
 
+static std::string QualityReportIdToString(uint8_t quality_report_id);
+static std::string PacketTypeToString(uint8_t packet_type);
+
 std::string BqrVseSubEvt::ToString() const {
   std::stringstream ss;
   ss << QualityReportIdToString(bqr_link_quality_event_.quality_report_id)
@@ -250,7 +253,7 @@ std::string BqrVseSubEvt::ToString() const {
   return ss.str();
 }
 
-std::string QualityReportIdToString(uint8_t quality_report_id) {
+static std::string QualityReportIdToString(uint8_t quality_report_id) {
   switch (quality_report_id) {
     case QUALITY_REPORT_ID_MONITOR_MODE:
       return "Monitoring";
@@ -269,7 +272,7 @@ std::string QualityReportIdToString(uint8_t quality_report_id) {
   }
 }
 
-std::string PacketTypeToString(uint8_t packet_type) {
+static std::string PacketTypeToString(uint8_t packet_type) {
   switch (packet_type) {
     case PACKET_TYPE_ID:
       return "ID";
@@ -396,6 +399,8 @@ void EnableBtQualityReport(common::PostableContext* to_bind) {
   ConfigureBqr(bqr_config);
 }
 
+static void BqrVscCompleteCallback(tBTM_VSC_CMPL* p_vsc_cmpl_params);
+
 void ConfigureBqr(const BqrConfiguration& bqr_config) {
   if (vendor_cap_supported_version >= kBqrVersion6_0) {
     if (bqr_config.report_action > REPORT_ACTION_QUERY ||
@@ -443,7 +448,9 @@ void ConfigureBqr(const BqrConfiguration& bqr_config) {
       HCI_CONTROLLER_BQR, p_param - param, param, BqrVscCompleteCallback);
 }
 
-void BqrVscCompleteCallback(tBTM_VSC_CMPL* p_vsc_cmpl_params) {
+static void ConfigureBqrCmpl(uint32_t current_evt_mask);
+
+static void BqrVscCompleteCallback(tBTM_VSC_CMPL* p_vsc_cmpl_params) {
   if (p_vsc_cmpl_params->param_len < 1) {
     log::error("The length of returned parameters is less than 1");
     return;
@@ -543,8 +550,9 @@ void ConfigBqrA2dpScoThreshold() {
 
 static tBTM_STATUS BTM_BT_Quality_Report_VSE_Register(
     bool is_register, tBTM_BT_QUALITY_REPORT_RECEIVER* p_bqr_report_receiver);
+static void CategorizeBqrEvent(uint8_t length, const uint8_t* p_bqr_event);
 
-void ConfigureBqrCmpl(uint32_t current_evt_mask) {
+static void ConfigureBqrCmpl(uint32_t current_evt_mask) {
   log::info("current_evt_mask: 0x{:x}", current_evt_mask);
   // (Un)Register for VSE of Bluetooth Quality Report sub event
   tBTM_STATUS btm_status = BTM_BT_Quality_Report_VSE_Register(
@@ -574,7 +582,9 @@ void ConfigureBqrCmpl(uint32_t current_evt_mask) {
   }
 }
 
-void CategorizeBqrEvent(uint8_t length, const uint8_t* p_bqr_event) {
+static void AddLinkQualityEventToQueue(uint8_t length,
+                                       const uint8_t* p_link_quality_event);
+static void CategorizeBqrEvent(uint8_t length, const uint8_t* p_bqr_event) {
   if (length == 0) {
     log::warn("Lengths of all of the parameters are zero.");
     return;
@@ -616,8 +626,8 @@ void CategorizeBqrEvent(uint8_t length, const uint8_t* p_bqr_event) {
   }
 }
 
-void AddLinkQualityEventToQueue(uint8_t length,
-                                const uint8_t* p_link_quality_event) {
+static void AddLinkQualityEventToQueue(uint8_t length,
+                                       const uint8_t* p_link_quality_event) {
   std::unique_ptr<BqrVseSubEvt> p_bqr_event = std::make_unique<BqrVseSubEvt>();
   RawAddress bd_addr;
 
@@ -687,6 +697,8 @@ void AddLinkQualityEventToQueue(uint8_t length,
   kpBqrEventQueue->Enqueue(p_bqr_event.release());
 }
 
+static int OpenLmpLlTraceLogFile();
+
 void DumpLmpLlMessage(uint8_t length, const uint8_t* p_lmp_ll_message_event) {
   std::unique_ptr<BqrVseSubEvt> p_bqr_event = std::make_unique<BqrVseSubEvt>();
 
@@ -700,7 +712,7 @@ void DumpLmpLlMessage(uint8_t length, const uint8_t* p_lmp_ll_message_event) {
   }
 }
 
-int OpenLmpLlTraceLogFile() {
+static int OpenLmpLlTraceLogFile() {
   if (rename(kpLmpLlMessageTraceLogPath, kpLmpLlMessageTraceLastLogPath) != 0 &&
       errno != ENOENT) {
     log::error("Unable to rename '{}' to '{}' : {}", kpLmpLlMessageTraceLogPath,
@@ -721,6 +733,7 @@ int OpenLmpLlTraceLogFile() {
   return logfile_fd;
 }
 
+static int OpenBtSchedulingTraceLogFile();
 void DumpBtScheduling(uint8_t length, const uint8_t* p_bt_scheduling_event) {
   std::unique_ptr<BqrVseSubEvt> p_bqr_event = std::make_unique<BqrVseSubEvt>();
 
@@ -734,7 +747,7 @@ void DumpBtScheduling(uint8_t length, const uint8_t* p_bt_scheduling_event) {
   }
 }
 
-int OpenBtSchedulingTraceLogFile() {
+static int OpenBtSchedulingTraceLogFile() {
   if (rename(kpBtSchedulingTraceLogPath, kpBtSchedulingTraceLastLogPath) != 0 &&
       errno != ENOENT) {
     log::error("Unable to rename '{}' to '{}' : {}", kpBtSchedulingTraceLogPath,
