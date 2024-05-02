@@ -52,6 +52,8 @@ static constexpr int kInvalidAzimuthAngleDegree = -1;
 static constexpr int kInvalidAltitudeAngleDegree = -91;
 static constexpr double kInvalidDelayedSpreadMeters = -1.0;
 static constexpr int8_t kInvalidConfidenceLevel = -1;
+static constexpr int8_t kInvalidInitRSSI = -1;
+static constexpr int8_t kInvalidReflRSSI = -1;
 static constexpr double kInvalidVelocityMetersPerSecond = -1.0;
 static constexpr uint16_t kIllegalConnectionHandle = 0xffff;
 static constexpr uint8_t kTxPowerNotAvailable = 0xfe;
@@ -215,6 +217,10 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
     uint16_t max_procedure_count = 1;
     bool waiting_for_start_callback = false;
     std::unique_ptr<os::Alarm> procedure_schedule_guard_alarm = nullptr;
+    int rssi_initiator = 0;
+    int rssi_reflector = 0;
+    int rssi_init_size = 0;
+    int rssi_refl_size = 0;
     // RAS data
     RangingHeader ranging_header_;
     PacketViewForRecombination segment_data_;
@@ -298,11 +304,20 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
     if (is_hal_v2()) {
       elapsedRealtimeNanos = ranging_result.elapsed_timestamp_nanos_;
     }
+
+    int initRssi = cs_requester_trackers_[connection_handle].rssi_initiator;
+    int reflRssi = cs_requester_trackers_[connection_handle].rssi_reflector;
+    cs_requester_trackers_[connection_handle].rssi_initiator = 0;
+    cs_requester_trackers_[connection_handle].rssi_reflector = 0;
+    cs_requester_trackers_[connection_handle].rssi_init_size = 0;
+    cs_requester_trackers_[connection_handle].rssi_refl_size = 0;
+
     distance_measurement_callbacks_->OnDistanceMeasurementResult(
             cs_requester_trackers_[connection_handle].address, ranging_result.result_meters_ * 100,
             ranging_result.error_meters_ * 100, kInvalidAzimuthAngleDegree,
             kInvalidAzimuthAngleDegree, kInvalidAltitudeAngleDegree, kInvalidAltitudeAngleDegree,
-            elapsedRealtimeNanos, ranging_result.confidence_level_,
+            elapsedRealtimeNanos, initRssi, reflRssi,
+            ranging_result.confidence_level_,
             ranging_result.delay_spread_meters_,
             static_cast<DistanceMeasurementDetectedAttackLevel>(
                     ranging_result.detected_attack_level_),
@@ -2142,11 +2157,25 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
       procedure_data->procedure_data_v2_.procedure_sequence_ =
               live_tracker->procedure_sequence_after_enable;
     }
+
+    for (size_t i=0;i<procedure_data->rssi_initiator.size(); i++) {
+       live_tracker->rssi_initiator += procedure_data->rssi_initiator[i];
+    }
+    for (size_t i=0;i<procedure_data->rssi_reflector.size(); i++) {
+       live_tracker->rssi_reflector += procedure_data->rssi_reflector[i];
+    }
+    live_tracker->rssi_init_size += procedure_data->rssi_initiator.size();
+    live_tracker->rssi_refl_size += procedure_data->rssi_reflector.size();
+
     try_send_data_to_hal(connection_handle, live_tracker, procedure_data);
 
     // If the procedure is completed or aborted, delete all previous data
     if (procedure_data->local_status != CsProcedureDoneStatus::PARTIAL_RESULTS &&
         procedure_data->remote_status != CsProcedureDoneStatus::PARTIAL_RESULTS) {
+    
+      live_tracker->rssi_initiator /= live_tracker->rssi_init_size;
+      live_tracker->rssi_reflector /= live_tracker->rssi_refl_size;
+  
       delete_consumed_procedure_data(live_tracker, procedure_data->counter);
     }
   }
@@ -2603,7 +2632,8 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
     distance_measurement_callbacks_->OnDistanceMeasurementResult(
             address, distance * 100, distance * 100, kInvalidAzimuthAngleDegree,
             kInvalidAzimuthAngleDegree, kInvalidAltitudeAngleDegree, kInvalidAltitudeAngleDegree,
-            elapsedRealtimeNanos, kInvalidConfidenceLevel, kInvalidDelayedSpreadMeters,
+            elapsedRealtimeNanos, kInvalidInitRSSI, kInvalidReflRSSI,
+            kInvalidConfidenceLevel, kInvalidDelayedSpreadMeters,
             DistanceMeasurementDetectedAttackLevel::NADM_ATTACK_UNKNOWN,
             kInvalidVelocityMetersPerSecond, DistanceMeasurementMethod::METHOD_RSSI);
   }
