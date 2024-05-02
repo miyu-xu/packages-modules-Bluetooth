@@ -105,17 +105,20 @@ cc_defaults {
         host: {
             srcs: [
                 ":BluetoothHalSources_hci_host",
+                ":BluetoothHalSources_ranging_host",
                 ":BluetoothOsSources_host",
             ],
         },
         android: {
             srcs: [
                 ":BluetoothHalSources_hci_android_hidl",
+                ":BluetoothHalSources_ranging_android",
                 ":BluetoothOsSources_android",
             ],
             shared_libs: [
                 "android.hardware.bluetooth@1.0",
                 "android.hardware.bluetooth@1.1",
+		"android.hardware.bluetooth.ranging-V1-ndk",
                 "android.system.suspend-V1-ndk",
                 "android.system.suspend.control-V1-ndk",
                 "libbinder_ndk",
