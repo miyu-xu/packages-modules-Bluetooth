@@ -1326,6 +1326,9 @@ struct DistanceMeasurementManager::impl {
         -1,
         -1,
         -1,
+        -1,
+        -1,
+         0,
         DistanceMeasurementMethod::METHOD_RSSI);
   }
 

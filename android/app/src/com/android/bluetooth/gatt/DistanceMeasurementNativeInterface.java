@@ -106,10 +106,10 @@ public class DistanceMeasurementNativeInterface {
 
     void onDistanceMeasurementResult(String address, int centimeter, int errorCentimeter,
             int azimuthAngle, int errorAzimuthAngle, int altitudeAngle, int errorAltitudeAngle,
-            int method) {
+            int initRSSI, int reflRSSI, int timeUs, int method) {
         mDistanceMeasurementManager.onDistanceMeasurementResult(address, centimeter,
                 errorCentimeter, azimuthAngle, errorAzimuthAngle, altitudeAngle, errorAltitudeAngle,
-                method);
+                initRSSI, reflRSSI, timeUs, method);
     }
 
     private int convertErrorCode(int errorCode) {
