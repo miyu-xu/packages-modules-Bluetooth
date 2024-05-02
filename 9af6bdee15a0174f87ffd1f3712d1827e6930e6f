@@ -16,6 +16,29 @@
       "message": "This will help debug future scan mode change issues like b/335045524.",
       "revId": "9af6bdee15a0174f87ffd1f3712d1827e6930e6f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "138d22f7_b04d51ed",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 803,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-02T01:57:58Z",
+      "side": 1,
+      "message": "It\u0027s weird to have the space in the toString of the client and not when logging ^^",
+      "range": {
+        "startLine": 803,
+        "startChar": 57,
+        "endLine": 803,
+        "endChar": 63
+      },
+      "revId": "9af6bdee15a0174f87ffd1f3712d1827e6930e6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
