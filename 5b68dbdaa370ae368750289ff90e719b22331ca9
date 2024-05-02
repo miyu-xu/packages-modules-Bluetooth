@@ -390,6 +390,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b075140_79005957",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/BrowsedPlayerWrapper2.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-05-02T07:33:30Z",
+      "side": 1,
+      "message": "Huh, I\u0027ve not considered switching to kotlin... This is an interesting idea!",
+      "parentUuid": "5468100f_209254cd",
+      "range": {
+        "startLine": 185,
+        "startChar": 43,
+        "endLine": 185,
+        "endChar": 83
+      },
+      "revId": "5b68dbdaa370ae368750289ff90e719b22331ca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d7663e8_da15c8c1",
