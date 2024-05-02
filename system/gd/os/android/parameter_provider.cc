@@ -30,6 +30,7 @@ std::mutex parameter_mutex;
 std::string config_file_path;
 std::string snoop_log_file_path;
 std::string snooz_log_file_path;
+std::string sysprops_file_path;
 bluetooth_keystore::BluetoothKeystoreInterface* bt_keystore_interface = nullptr;
 bool is_common_criteria_mode = false;
 int common_criteria_config_compare_result = 0b11;
@@ -82,9 +83,21 @@ void ParameterProvider::OverrideSnoozLogFilePath(const std::string& path) {
   snooz_log_file_path = path;
 }
 
-// Android doesn't have a need for the sysprops module
+// Android doesn't have a need for the sysprops module, but still defines it for
+// unit tests.
 std::string ParameterProvider::SyspropsFilePath() {
+  {
+    std::lock_guard<std::mutex> lock(parameter_mutex);
+    if (!sysprops_file_path.empty()) {
+      return sysprops_file_path;
+    }
+  }
   return "";
+}
+
+void ParameterProvider::OverrideSyspropsFilePath(const std::string& path) {
+  std::lock_guard<std::mutex> lock(parameter_mutex);
+  sysprops_file_path = path;
 }
 
 bluetooth_keystore::BluetoothKeystoreInterface* ParameterProvider::GetBtKeystoreInterface() {

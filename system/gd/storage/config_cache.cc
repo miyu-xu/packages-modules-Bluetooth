@@ -418,6 +418,33 @@ std::vector<ConfigCache::SectionAndPropertyValue> ConfigCache::GetSectionNamesWi
   return result;
 }
 
+std::optional<std::vector<std::string>> ConfigCache::GetPropertyNames(
+    const std::string& section) const {
+  std::lock_guard<std::recursive_mutex> lock(mutex_);
+
+  auto ProcessSections = [&](const auto& sections) -> std::optional<std::vector<std::string>> {
+    auto section_iter = sections.find(section);
+    if (section_iter != sections.end()) {
+      std::vector<std::string> names;
+      for (const auto& [property_name, value] : section_iter->second) {
+        names.emplace_back(property_name);
+      }
+      return names;
+    }
+    return std::nullopt;
+  };
+
+  // A section must exist in at most one map.
+  auto property_names = ProcessSections(information_sections_);
+  if (!property_names.has_value()) {
+    property_names = ProcessSections(persistent_devices_);
+  }
+  if (!property_names.has_value()) {
+    property_names = ProcessSections(temporary_devices_);
+  }
+  return property_names;
+}
+
 namespace {
 
 bool FixDeviceTypeInconsistencyInSection(
