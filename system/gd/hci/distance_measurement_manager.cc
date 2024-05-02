@@ -52,6 +52,8 @@ static constexpr int kInvalidAzimuthAngleDegree = -1;
 static constexpr int kInvalidAltitudeAngleDegree = -91;
 static constexpr double kInvalidDelayedSpreadMeters = -1.0;
 static constexpr int8_t kInvalidConfidenceLevel = -1;
+static constexpr int8_t kInvalidInitRSSI = -1;
+static constexpr int8_t kInvalidReflRSSI = -1;
 static constexpr double kInvalidVelocityMetersPerSecond = -1.0;
 static constexpr uint16_t kIllegalConnectionHandle = 0xffff;
 static constexpr uint8_t kTxPowerNotAvailable = 0xfe;
@@ -302,7 +304,7 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
             cs_requester_trackers_[connection_handle].address, ranging_result.result_meters_ * 100,
             ranging_result.error_meters_ * 100, kInvalidAzimuthAngleDegree,
             kInvalidAzimuthAngleDegree, kInvalidAltitudeAngleDegree, kInvalidAltitudeAngleDegree,
-            elapsedRealtimeNanos, ranging_result.confidence_level_,
+            elapsedRealtimeNanos, kInvalidInitRSSI, kInvalidReflRSSI, ranging_result.confidence_level_,
             ranging_result.delay_spread_meters_,
             static_cast<DistanceMeasurementDetectedAttackLevel>(
                     ranging_result.detected_attack_level_),
@@ -2603,7 +2605,8 @@ struct DistanceMeasurementManager::impl : bluetooth::hal::RangingHalCallback {
     distance_measurement_callbacks_->OnDistanceMeasurementResult(
             address, distance * 100, distance * 100, kInvalidAzimuthAngleDegree,
             kInvalidAzimuthAngleDegree, kInvalidAltitudeAngleDegree, kInvalidAltitudeAngleDegree,
-            elapsedRealtimeNanos, kInvalidConfidenceLevel, kInvalidDelayedSpreadMeters,
+            elapsedRealtimeNanos, kInvalidInitRSSI, kInvalidReflRSSI,
+            kInvalidConfidenceLevel, kInvalidDelayedSpreadMeters,
             DistanceMeasurementDetectedAttackLevel::NADM_ATTACK_UNKNOWN,
             kInvalidVelocityMetersPerSecond, DistanceMeasurementMethod::METHOD_RSSI);
   }

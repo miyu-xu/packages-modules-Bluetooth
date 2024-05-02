@@ -119,6 +119,7 @@ public:
                                    uint32_t error_centimeter, int azimuth_angle,
                                    int error_azimuth_angle, int altitude_angle,
                                    int error_altitude_angle, uint64_t elapsed_realtime_nanos,
+                                   int init_RSSI, int refl_RSSI,
                                    int8_t confidence_level, double delay_spread_meters,
                                    DistanceMeasurementDetectedAttackLevel detected_attack_level,
                                    double velocity_meters_per_second,
@@ -127,8 +128,8 @@ public:
             &::DistanceMeasurementCallbacks::OnDistanceMeasurementResult,
             base::Unretained(distance_measurement_callbacks_), bluetooth::ToRawAddress(address),
             centimeter, error_centimeter, azimuth_angle, error_azimuth_angle, altitude_angle,
-            error_altitude_angle, elapsed_realtime_nanos, confidence_level, delay_spread_meters,
-            static_cast<uint8_t>(detected_attack_level), velocity_meters_per_second,
+            error_altitude_angle, elapsed_realtime_nanos, init_RSSI, refl_RSSI, confidence_level,
+            delay_spread_meters, static_cast<uint8_t>(detected_attack_level), velocity_meters_per_second,
             static_cast<uint8_t>(method)));
   }
 
