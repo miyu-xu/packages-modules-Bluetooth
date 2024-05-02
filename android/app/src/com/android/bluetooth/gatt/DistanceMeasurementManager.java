@@ -541,6 +541,7 @@ public class DistanceMeasurementManager {
             int altitudeAngle,
             int errorAltitudeAngle,
             long elapsedRealtimeNanos,
+            int initRSSI,
             int confidenceLevel,
             double delaySpreadMeters,
             int detectedAttackLevel,
@@ -556,7 +557,8 @@ public class DistanceMeasurementManager {
                         + confidenceLevel);
         DistanceMeasurementResult.Builder builder =
                 new DistanceMeasurementResult.Builder(centimeter / 100.0, errorCentimeter / 100.0)
-                        .setMeasurementTimestampNanos(elapsedRealtimeNanos);
+                        .setMeasurementTimestampNanos(elapsedRealtimeNanos)
+                        .setInitRssi(initRSSI);
 
         switch (method) {
             case DISTANCE_MEASUREMENT_METHOD_RSSI:
