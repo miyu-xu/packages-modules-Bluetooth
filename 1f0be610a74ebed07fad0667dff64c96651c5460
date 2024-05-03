@@ -34,6 +34,24 @@
       "parentUuid": "42c19189_6ce7c305",
       "revId": "1f0be610a74ebed07fad0667dff64c96651c5460",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a7b1ddf_b29d7df9",
+        "filename": "flags/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-03T23:27:01Z",
+      "side": 1,
+      "message": "I don\u0027t think we should have multiple `bluetooth_exported_flags_java_lib`, if we start to have multiple client we want a centralize place to have the lib.\n\nI believe the host container is the more appropriate place to have this",
+      "parentUuid": "6d8175e3_46c2623a",
+      "revId": "1f0be610a74ebed07fad0667dff64c96651c5460",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
