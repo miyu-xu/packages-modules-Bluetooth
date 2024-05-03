@@ -190,6 +190,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25e93c59_68e70d2b",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3831,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-03T16:20:48Z",
+      "side": 1,
+      "message": "Raised b/338597910 for this",
+      "parentUuid": "3356aefa_1cf9e250",
+      "range": {
+        "startLine": 3828,
+        "startChar": 0,
+        "endLine": 3831,
+        "endChar": 40
+      },
+      "revId": "84c8b9badd9158a62aa41af0dd4b16919bb1d2ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f0c324d_279fe101",
