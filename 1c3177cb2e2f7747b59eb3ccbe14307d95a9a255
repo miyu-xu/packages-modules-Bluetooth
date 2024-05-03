@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50150eff_61051ad7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-03T18:58:54Z",
+      "side": 1,
+      "message": "Hi Chris,\n\nWhy are you removing this flag? It is recommended to wait for the public release\n\ngo/android-flags-guidelines#flag-cleanup-policy",
+      "revId": "1c3177cb2e2f7747b59eb3ccbe14307d95a9a255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
