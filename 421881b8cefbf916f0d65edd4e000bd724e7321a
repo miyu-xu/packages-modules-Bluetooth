@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3aa80462_46327af8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-05-03T01:09:01Z",
+      "side": 1,
+      "message": "In patchset 7 fixed an issue which caused NullPointerException. I\u0027m running manual tests with statsd_testdrive to verify if there is any other issues.",
+      "revId": "421881b8cefbf916f0d65edd4e000bd724e7321a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f28d9d09_6a114fe1",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/AppScanStats.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-05-03T01:09:01Z",
+      "side": 1,
+      "message": "@kaishi@google.com @jaydenk@google.com For this case there is no app associated with the scan so app scan stats is null. I\u0027m returning `TYPE_UNKNOWN` if it is null, so that it is not mixed with the scans initiated/dictated by apps.",
+      "range": {
+        "startLine": 461,
+        "startChar": 8,
+        "endLine": 463,
+        "endChar": 9
+      },
+      "revId": "421881b8cefbf916f0d65edd4e000bd724e7321a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
