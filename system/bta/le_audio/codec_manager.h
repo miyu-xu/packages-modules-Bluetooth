@@ -85,7 +85,7 @@ public:
    */
   typedef std::function<const set_configurations::AudioSetConfiguration*(
           const UnicastConfigurationRequirements& requirements,
-          const set_configurations::AudioSetConfigurations* confs)>
+          const set_configurations::AudioSetConfigurations* confs, bool use_preferred)>
           UnicastConfigurationVerifier;
 
   struct BroadcastConfigurationRequirements {
@@ -119,7 +119,7 @@ public:
           std::function<void(const offload_config& config, uint8_t direction)> update_receiver);
   virtual std::unique_ptr<::bluetooth::le_audio::set_configurations::AudioSetConfiguration>
   GetCodecConfig(const UnicastConfigurationRequirements& requirements,
-                 UnicastConfigurationVerifier verifier);
+                 UnicastConfigurationVerifier verifier, bool use_preferred = false);
   virtual bool CheckCodecConfigIsBiDirSwb(
           const ::bluetooth::le_audio::set_configurations::AudioSetConfiguration& config) const;
   virtual bool CheckCodecConfigIsDualBiDirSwb(

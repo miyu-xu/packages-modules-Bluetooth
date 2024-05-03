@@ -516,9 +516,10 @@ TEST_F(CodecManagerTestAdsp, test_capabilities_none) {
   codec_manager->Start(offloading_preference);
 
   bool has_null_config = false;
-  auto match_first_config = [&](const CodecManager::UnicastConfigurationRequirements& requirements,
-                                const set_configurations::AudioSetConfigurations* confs)
-          -> const set_configurations::AudioSetConfiguration* {
+  auto match_first_config =
+          [&](const CodecManager::UnicastConfigurationRequirements& requirements,
+              const set_configurations::AudioSetConfigurations* confs,
+              bool use_preferred) -> const set_configurations::AudioSetConfiguration* {
     // Don't expect the matcher being called on nullptr
     if (confs == nullptr) {
       has_null_config = true;
@@ -565,8 +566,8 @@ TEST_F(CodecManagerTestAdsp, test_capabilities) {
     auto match_first_config =
             [&available_configs_size](
                     const CodecManager::UnicastConfigurationRequirements& requirements,
-                    const set_configurations::AudioSetConfigurations* confs)
-            -> const set_configurations::AudioSetConfiguration* {
+                    const set_configurations::AudioSetConfigurations* confs,
+                    bool use_preferred) -> const set_configurations::AudioSetConfiguration* {
       if (confs && confs->size()) {
         available_configs_size = confs->size();
         // For simplicity return the first element, the real matcher should
@@ -996,8 +997,8 @@ TEST_F(CodecManagerTestHost, test_dual_bidir_swb_supported) {
     auto ptr = codec_manager->GetCodecConfig(
             {.audio_context_type = context},
             [&](const CodecManager::UnicastConfigurationRequirements& requirements,
-                const set_configurations::AudioSetConfigurations* confs)
-                    -> const set_configurations::AudioSetConfiguration* {
+                const set_configurations::AudioSetConfigurations* confs,
+                bool use_preferred) -> const set_configurations::AudioSetConfiguration* {
               if (confs == nullptr) {
                 got_null_cfgs_container = true;
               } else {
@@ -1046,8 +1047,8 @@ TEST_F(CodecManagerTestAdsp, test_dual_bidir_swb_supported) {
     auto ptr = codec_manager->GetCodecConfig(
             {.audio_context_type = context},
             [&](const CodecManager::UnicastConfigurationRequirements& requirements,
-                const set_configurations::AudioSetConfigurations* confs)
-                    -> const set_configurations::AudioSetConfiguration* {
+                const set_configurations::AudioSetConfigurations* confs,
+                bool use_preferred) -> const set_configurations::AudioSetConfiguration* {
               if (confs == nullptr) {
                 got_null_cfgs_container = true;
               } else {
@@ -1078,8 +1079,8 @@ TEST_F(CodecManagerTestHostNoSwb, test_dual_bidir_swb_not_supported) {
     auto ptr = codec_manager->GetCodecConfig(
             {.audio_context_type = context},
             [&](const CodecManager::UnicastConfigurationRequirements& requirements,
-                const set_configurations::AudioSetConfigurations* confs)
-                    -> const set_configurations::AudioSetConfiguration* {
+                const set_configurations::AudioSetConfigurations* confs,
+                bool use_preferred) -> const set_configurations::AudioSetConfiguration* {
               if (confs == nullptr) {
                 got_null_cfgs_container = true;
               } else {
@@ -1127,8 +1128,8 @@ TEST_F(CodecManagerTestAdspNoSwb, test_dual_bidir_swb_not_supported) {
     auto ptr = codec_manager->GetCodecConfig(
             {.audio_context_type = context},
             [&](const CodecManager::UnicastConfigurationRequirements& requirements,
-                const set_configurations::AudioSetConfigurations* confs)
-                    -> const set_configurations::AudioSetConfiguration* {
+                const set_configurations::AudioSetConfigurations* confs,
+                bool use_preferred) -> const set_configurations::AudioSetConfiguration* {
               if (confs == nullptr) {
                 got_null_cfgs_container = true;
               } else {

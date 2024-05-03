@@ -683,49 +683,47 @@ protected:
 
     // default Characteristic read handler dispatches requests to service mocks
     ON_CALL(mock_gatt_queue_, ReadCharacteristic(_, _, _, _))
-            .WillByDefault(Invoke(
-                    [&](uint16_t conn_id, uint16_t handle, GATT_READ_OP_CB cb, void* cb_data) {
-                      do_in_main_thread(base::BindOnce(
-                              [](std::map<uint16_t, std::unique_ptr<NiceMock<MockDeviceWrapper>>>*
-                                         peer_devices,
-                                 uint16_t conn_id, uint16_t handle, GATT_READ_OP_CB cb,
-                                 void* cb_data) -> void {
-                                if (peer_devices->count(conn_id)) {
-                                  auto& device = peer_devices->at(conn_id);
-                                  auto svc = std::find_if(device->services.begin(),
-                                                          device->services.end(),
-                                                          [handle](const gatt::Service& svc) {
-                                                            return (handle >= svc.handle) &&
-                                                                   (handle <= svc.end_handle);
-                                                          });
-                                  if (svc == device->services.end()) {
-                                    return;
-                                  }
+            .WillByDefault(Invoke([&](uint16_t conn_id, uint16_t handle, GATT_READ_OP_CB cb,
+                                      void* cb_data) {
+              do_in_main_thread(base::BindOnce(
+                      [](std::map<uint16_t, std::unique_ptr<NiceMock<MockDeviceWrapper>>>*
+                                 peer_devices,
+                         uint16_t conn_id, uint16_t handle, GATT_READ_OP_CB cb,
+                         void* cb_data) -> void {
+                        if (peer_devices->count(conn_id)) {
+                          auto& device = peer_devices->at(conn_id);
+                          auto svc = std::find_if(device->services.begin(), device->services.end(),
+                                                  [handle](const gatt::Service& svc) {
+                                                    return (handle >= svc.handle) &&
+                                                           (handle <= svc.end_handle);
+                                                  });
+                          if (svc == device->services.end()) {
+                            return;
+                          }
 
-                                  GattStatus status;
-                                  std::vector<uint8_t> value;
-                                  // Dispatch to mockable handler functions
-                                  if (svc->handle == device->csis->start) {
-                                    std::tie(status, value) =
-                                            device->csis->OnGetCharacteristicValue(handle);
-                                  } else if (svc->handle == device->cas->start) {
-                                    std::tie(status, value) =
-                                            device->cas->OnGetCharacteristicValue(handle);
-                                  } else if (svc->handle == device->ascs->start) {
-                                    std::tie(status, value) =
-                                            device->ascs->OnGetCharacteristicValue(handle);
-                                  } else if (svc->handle == device->pacs->start) {
-                                    std::tie(status, value) =
-                                            device->pacs->OnGetCharacteristicValue(handle);
-                                  } else {
-                                    return;
-                                  }
+                          GattStatus status;
+                          std::vector<uint8_t> value;
+                          // Dispatch to mockable handler functions
+                          if (svc->handle == device->csis->start) {
+                            std::tie(status, value) =
+                                    device->csis->OnGetCharacteristicValue(handle);
+                          } else if (svc->handle == device->cas->start) {
+                            std::tie(status, value) = device->cas->OnGetCharacteristicValue(handle);
+                          } else if (svc->handle == device->ascs->start) {
+                            std::tie(status, value) =
+                                    device->ascs->OnGetCharacteristicValue(handle);
+                          } else if (svc->handle == device->pacs->start) {
+                            std::tie(status, value) =
+                                    device->pacs->OnGetCharacteristicValue(handle);
+                          } else {
+                            return;
+                          }
 
-                                  cb(conn_id, status, handle, value.size(), value.data(), cb_data);
-                                }
-                              },
-                              &peer_devices, conn_id, handle, cb, cb_data));
-                    }));
+                          cb(conn_id, status, handle, value.size(), value.data(), cb_data);
+                        }
+                      },
+                      &peer_devices, conn_id, handle, cb, cb_data));
+            }));
 
     // default multiple Characteristic read handler dispatches requests to service mocks
     ON_CALL(mock_gatt_queue_, ReadMultiCharacteristic(_, _, _, _))
@@ -1460,7 +1458,8 @@ protected:
     ON_CALL(*mock_codec_manager_, GetCodecConfig)
             .WillByDefault(Invoke([](const CodecManager::UnicastConfigurationRequirements&
                                              requirements,
-                                     CodecManager::UnicastConfigurationVerifier verifier) {
+                                     CodecManager::UnicastConfigurationVerifier verifier,
+                                     bool use_preferred) {
               auto filtered = *le_audio::AudioSetConfigurationProvider::Get()->GetConfigurations(
                       requirements.audio_context_type);
               // Filter out the dual bidir SWB configurations
@@ -1475,7 +1474,7 @@ protected:
                                               }),
                                filtered.end());
               }
-              auto cptr = verifier(requirements, &filtered);
+              auto cptr = verifier(requirements, &filtered, use_preferred);
               return cptr ? std::make_unique<set_configurations::AudioSetConfiguration>(*cptr)
                           : nullptr;
             }));
@@ -9988,7 +9987,8 @@ TEST_F(UnicastTest, CodecFrameBlocks2) {
           .WillByDefault(Invoke(
                   [&](const bluetooth::le_audio::CodecManager::UnicastConfigurationRequirements&
                               requirements,
-                      bluetooth::le_audio::CodecManager::UnicastConfigurationVerifier verifier) {
+                      bluetooth::le_audio::CodecManager::UnicastConfigurationVerifier verifier,
+                      bool use_preferred) {
                     auto filtered = *bluetooth::le_audio::AudioSetConfigurationProvider::Get()
                                              ->GetConfigurations(requirements.audio_context_type);
                     // Filter out the dual bidir SWB configurations
@@ -10005,7 +10005,7 @@ TEST_F(UnicastTest, CodecFrameBlocks2) {
                                              }),
                               filtered.end());
                     }
-                    auto cfg = verifier(requirements, &filtered);
+                    auto cfg = verifier(requirements, &filtered, use_preferred);
                     if (cfg == nullptr) {
                       return std::unique_ptr<set_configurations::AudioSetConfiguration>(nullptr);
                     }
