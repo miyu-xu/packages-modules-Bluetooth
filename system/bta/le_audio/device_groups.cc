@@ -26,6 +26,7 @@
 #include "bta_csis_api.h"
 #include "btif/include/btif_profile_storage.h"
 #include "btm_iso_api.h"
+#include "common/strings.h"
 #include "hci/controller_interface.h"
 #include "internal_include/bt_trace.h"
 #include "le_audio/codec_manager.h"
@@ -912,7 +913,84 @@ bool LeAudioDeviceGroup::UpdateAudioSetConfigurationCache(LeAudioContextType ctx
               std::make_pair(ctx_type, std::make_pair(true, std::move(new_conf))));
     }
   }
+
+  UpdatePreferredAudioSetConfigurationCache(ctx_type);
+
   return update_config;
+}
+
+bool LeAudioDeviceGroup::UpdatePreferredAudioSetConfigurationCache(
+    LeAudioContextType ctx_type) const {
+  // For now, we only update preferred configuration cache only when we are not
+  // using codec extensibility.
+  if (CodecManager::GetInstance()->IsUsingCodecExtensibility()) {
+    return false;
+  }
+
+  auto requirements = GetAudioSetConfigurationRequirements(ctx_type);
+  auto new_conf = CodecManager::GetInstance()->GetCodecConfig(
+      requirements,
+      std::bind(&LeAudioDeviceGroup::FindFirstSupportedPreferredConfiguration,
+                this, std::placeholders::_1, std::placeholders::_2));
+  auto update_config = true;
+
+  if (context_to_preferred_configuration_cache_map.count(ctx_type) != 0) {
+    auto& [is_valid, existing_conf] =
+        context_to_preferred_configuration_cache_map.at(ctx_type);
+    update_config = (new_conf.get() != existing_conf.get());
+    /* Just mark it as still valid */
+    if (!update_config && !is_valid) {
+      context_to_preferred_configuration_cache_map.at(ctx_type).first = true;
+      return false;
+    }
+  }
+
+  if (update_config) {
+    log::info("preferred config: {} -> {}", ToHexString(ctx_type),
+              (new_conf ? new_conf->name.c_str() : "(none)"));
+    context_to_preferred_configuration_cache_map.erase(ctx_type);
+    if (new_conf) {
+      context_to_preferred_configuration_cache_map.insert(
+          std::make_pair(ctx_type, std::make_pair(true, std::move(new_conf))));
+    } else {
+      log::info("Invalid preferred config for context: {}",
+                types::ToHexString(ctx_type));
+    }
+  }
+
+  return update_config;
+}
+
+bool LeAudioDeviceGroup::SetPreferredAudioSetConfiguration(
+    const bluetooth::le_audio::btle_audio_codec_config_t& input_codec_config,
+    const bluetooth::le_audio::btle_audio_codec_config_t& output_codec_config)
+    const {
+  if (input_codec_config.codec_priority == -1 ||
+      output_codec_config.codec_priority == -1) {
+    log::info("Clear codec config");
+    ResetPreferredAudioSetConfiguration();
+    return true;
+  }
+
+  preferred_config.sink =
+      std::make_unique<btle_audio_codec_config_t>(input_codec_config);
+  preferred_config.source =
+      std::make_unique<btle_audio_codec_config_t>(output_codec_config);
+
+  bool is_updated = false;
+
+  for (LeAudioContextType ctx_type : types::kLeAudioContextAllTypesArray) {
+    is_updated |= UpdatePreferredAudioSetConfigurationCache(ctx_type);
+  }
+
+  return is_updated;
+}
+
+void LeAudioDeviceGroup::ResetPreferredAudioSetConfiguration(void) const {
+  log::info("Reset preferred configuration cached for all cotexts.");
+  context_to_preferred_configuration_cache_map.clear();
+  preferred_config.sink = nullptr;
+  preferred_config.source = nullptr;
 }
 
 void LeAudioDeviceGroup::InvalidateCachedConfigurations(void) {
@@ -1892,6 +1970,52 @@ LeAudioDeviceGroup::FindFirstSupportedConfiguration(
   }
 
   return nullptr;
+}
+
+const set_configurations::AudioSetConfiguration*
+LeAudioDeviceGroup::FindFirstSupportedPreferredConfiguration(
+    const CodecManager::UnicastConfigurationRequirements& requirements,
+    const set_configurations::AudioSetConfigurations* confs) const {
+  log::assert_that(confs != nullptr, "confs should not be null");
+
+  log::debug("context type: {},  number of connected devices: {}",
+             bluetooth::common::ToString(requirements.audio_context_type),
+             NumOfConnected());
+
+  for (const auto& conf : *confs) {
+    log::assert_that(conf != nullptr, "confs should not be null");
+    if (!IsMatchedWithPreferredConfiguration(conf)) {
+      continue;
+    }
+
+    if (IsAudioSetConfigurationSupported(requirements, conf)) {
+      log::debug("found: {}", conf->name);
+      return conf;
+    }
+  }
+
+  return nullptr;
+}
+
+bool LeAudioDeviceGroup::IsMatchedWithPreferredConfiguration(
+    const set_configurations::AudioSetConfiguration* audio_set_conf) const {
+  types::BidirectionalPair<bool> preferred_codec_matcher = {false, false};
+
+  for (auto direction :
+       {types::kLeAudioDirectionSink, types::kLeAudioDirectionSource}) {
+    const auto& confs = audio_set_conf->confs.get(direction);
+    if (confs.empty()) {
+      preferred_codec_matcher.get(direction) = true;
+    } else if (confs.size() && preferred_config.get(direction)) {
+      bluetooth::le_audio::btle_audio_codec_config_t btle_audio_codec_config;
+      utils::fillStreamParamsToBtLeAudioCodecConfig(confs,
+                                                    btle_audio_codec_config);
+      preferred_codec_matcher.get(direction) =
+          btle_audio_codec_config == *(preferred_config.get(direction));
+    }
+  }
+
+  return preferred_codec_matcher.sink && preferred_codec_matcher.source;
 }
 
 /* This method should choose aproperiate ASEs to be active and set a cached

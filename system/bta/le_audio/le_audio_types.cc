@@ -619,22 +619,22 @@ std::ostream& operator<<(std::ostream& os, const CisState& state) {
   static const char* char_value_[5] = {"IDLE", "ASSIGNED", "CONNECTING", "CONNECTED",
                                        "DISCONNECTING"};
 
-  os << char_value_[static_cast<uint8_t>(state)] << " (" << "0x" << std::setfill('0')
-     << std::setw(2) << static_cast<int>(state) << ")";
+  os << char_value_[static_cast<uint8_t>(state)] << " (" << "0x"
+     << std::setfill('0') << std::setw(2) << static_cast<int>(state) << ")";
   return os;
 }
 std::ostream& operator<<(std::ostream& os, const DataPathState& state) {
   static const char* char_value_[4] = {"IDLE", "CONFIGURING", "CONFIGURED", "REMOVING"};
 
-  os << char_value_[static_cast<uint8_t>(state)] << " (" << "0x" << std::setfill('0')
-     << std::setw(2) << static_cast<int>(state) << ")";
+  os << char_value_[static_cast<uint8_t>(state)] << " (" << "0x"
+     << std::setfill('0') << std::setw(2) << static_cast<int>(state) << ")";
   return os;
 }
 std::ostream& operator<<(std::ostream& os, const types::CigState& state) {
   static const char* char_value_[5] = {"NONE", "CREATING", "CREATED", "REMOVING", "RECOVERING"};
 
-  os << char_value_[static_cast<uint8_t>(state)] << " (" << "0x" << std::setfill('0')
-     << std::setw(2) << static_cast<int>(state) << ")";
+  os << char_value_[static_cast<uint8_t>(state)] << " (" << "0x"
+     << std::setfill('0') << std::setw(2) << static_cast<int>(state) << ")";
   return os;
 }
 std::ostream& operator<<(std::ostream& os, const types::AseState& state) {
@@ -643,8 +643,8 @@ std::ostream& operator<<(std::ostream& os, const types::AseState& state) {
           "STREAMING", "DISABLING",        "RELEASING",
   };
 
-  os << char_value_[static_cast<uint8_t>(state)] << " (" << "0x" << std::setfill('0')
-     << std::setw(2) << static_cast<int>(state) << ")";
+  os << char_value_[static_cast<uint8_t>(state)] << " (" << "0x"
+     << std::setfill('0') << std::setw(2) << static_cast<int>(state) << ")";
   return os;
 }
 
@@ -858,6 +858,8 @@ template struct BidirectionalPair<bool>;
 template struct BidirectionalPair<int>;
 template struct BidirectionalPair<std::vector<set_configurations::AseConfiguration>>;
 template struct BidirectionalPair<set_configurations::QosConfigSetting>;
+template struct BidirectionalPair<
+    std::unique_ptr<const bluetooth::le_audio::btle_audio_codec_config_t>>;
 
 }  // namespace types
 }  // namespace bluetooth::le_audio
