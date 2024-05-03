@@ -16,6 +16,24 @@
       "message": "Can you submit the flag in a previous CL ? This will allow you to have a DrNo provided for the flag creation and then you can use the bug flag to have an DrNo on the logical change",
       "revId": "8043258c4e408e6058a90d326845aa45f8df728a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3c1e332_8b8c5592",
+        "filename": "flags/btm_ble.aconfig",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-05-03T23:43:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b001938_a73ce0d9",
+      "revId": "8043258c4e408e6058a90d326845aa45f8df728a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
