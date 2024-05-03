@@ -77,9 +77,9 @@ void Stack::StartEverything() {
   ModuleList modules;
 
   modules.add<metrics::CounterMetrics>();
+  modules.add<storage::StorageModule>();
   modules.add<hal::HciHal>();
   modules.add<hci::HciLayer>();
-  modules.add<storage::StorageModule>();
   modules.add<shim::Dumpsys>();
   modules.add<hci::VendorSpecificEventManager>();
   modules.add<sysprops::SyspropsModule>();
