@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43b494b9_da659cda",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-03T03:35:29Z",
+      "side": 1,
+      "message": "LGTM. Note: The MPS behavior is temporarily changed in this patch but would be fixed (rollback) by b/336974317.",
+      "revId": "ea17fc4156e1fbc4c4b2927078968e9e95222542",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
