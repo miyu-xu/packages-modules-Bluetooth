@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9570faa_7500638d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-03T23:19:43Z",
+      "side": 1,
+      "message": "I don\u0027t recall seeing the design doc that shows the benefits of crust jni.\n\nWill it replace the current jni ?",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 33
+      },
+      "revId": "7e643676229752973011434da735cae89abfb085",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c72bb07c_392a2d02",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 2351,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-03T23:19:43Z",
+      "side": 1,
+      "message": "Can we had a flag to not even attempt to load the crust jni  ?",
+      "range": {
+        "startLine": 2346,
+        "startChar": 0,
+        "endLine": 2351,
+        "endChar": 3
+      },
+      "revId": "7e643676229752973011434da735cae89abfb085",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
