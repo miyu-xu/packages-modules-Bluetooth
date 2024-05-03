@@ -16,6 +16,24 @@
       "message": "I believe we should add the exported library here as well\n\n```\njava_aconfig_library {\n    name: \"bluetooth_exported_flags_java_lib\",\n    aconfig_declarations: \"bluetooth_aconfig_flags\",\n    mode: \"exported\",\n}\n```",
       "revId": "1f0be610a74ebed07fad0667dff64c96651c5460",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d8175e3_46c2623a",
+        "filename": "flags/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1570284
+      },
+      "writtenOn": "2024-05-03T07:48:42Z",
+      "side": 1,
+      "message": "Why is that? Looking at the docs I think the point was to just have it in the client container",
+      "parentUuid": "42c19189_6ce7c305",
+      "revId": "1f0be610a74ebed07fad0667dff64c96651c5460",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
