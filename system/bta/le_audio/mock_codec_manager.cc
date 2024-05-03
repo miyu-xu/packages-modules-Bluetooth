@@ -79,11 +79,11 @@ void CodecManager::UpdateActiveAudioConfig(
 
 std::unique_ptr<set_configurations::AudioSetConfiguration> CodecManager::GetCodecConfig(
         const CodecManager::UnicastConfigurationRequirements& requirements,
-        CodecManager::UnicastConfigurationVerifier verifier) {
+        CodecManager::UnicastConfigurationVerifier verifier, bool use_preferred) {
   if (!pimpl_) {
     return nullptr;
   }
-  return pimpl_->GetCodecConfig(requirements, verifier);
+  return pimpl_->GetCodecConfig(requirements, verifier, use_preferred);
 }
 
 std::unique_ptr<::bluetooth::le_audio::broadcaster::BroadcastConfiguration>
