@@ -7,3 +7,10 @@ flag {
     description: "Verify there is no valid handle before adding address to the accept list"
     bug: "338112215"
 }
+
+flag {
+    name: "separate_host_privacy_and_llprivacy"
+    namespace: "bluetooth"
+    description: "Allow enabling host privacy and LL privacy separately"
+    bug: "338134627"
+}
