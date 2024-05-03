@@ -31,6 +31,8 @@
 #include <utility>  // for std::pair
 #include <vector>
 
+#include "hardware/bt_le_audio.h"
+
 #ifdef __ANDROID__
 #include <android/sysprop/BluetoothProperties.sysprop.h>
 #endif
@@ -122,8 +124,9 @@ public:
                  .source = types::AudioContexts(types::LeAudioContextType::UNINITIALIZED)}),
         pending_group_available_contexts_change_(types::LeAudioContextType::UNINITIALIZED),
         group_user_allowed_context_mask_(
-                {.sink = types::AudioContexts(types::kLeAudioContextAllTypes),
-                 .source = types::AudioContexts(types::kLeAudioContextAllTypes)}),
+            {.sink = types::AudioContexts(types::kLeAudioContextAllTypes),
+             .source = types::AudioContexts(types::kLeAudioContextAllTypes)}),
+        preferred_config({.sink = nullptr, .source = nullptr}),
         target_state_(types::AseState::BTA_LE_AUDIO_ASE_STATE_IDLE),
         current_state_(types::AseState::BTA_LE_AUDIO_ASE_STATE_IDLE),
         in_transition_(false) {
@@ -204,9 +207,18 @@ public:
   bool GetPresentationDelay(uint32_t* delay, uint8_t direction) const;
   uint16_t GetRemoteDelay(uint8_t direction) const;
   bool UpdateAudioContextAvailability(void);
-  bool UpdateAudioSetConfigurationCache(types::LeAudioContextType ctx_type) const;
-  CodecManager::UnicastConfigurationRequirements GetAudioSetConfigurationRequirements(
-          types::LeAudioContextType ctx_type) const;
+  bool UpdateAudioSetConfigurationCache(
+      types::LeAudioContextType ctx_type) const;
+  CodecManager::UnicastConfigurationRequirements
+  GetAudioSetConfigurationRequirements(
+      types::LeAudioContextType ctx_type) const;
+  bool UpdatePreferredAudioSetConfigurationCache(
+      types::LeAudioContextType ctx_type) const;
+  bool SetPreferredAudioSetConfiguration(
+      const bluetooth::le_audio::btle_audio_codec_config_t& input_codec_config,
+      const bluetooth::le_audio::btle_audio_codec_config_t& output_codec_config)
+      const;
+  void ResetPreferredAudioSetConfiguration(void) const;
   bool ReloadAudioLocations(void);
   bool ReloadAudioDirections(void);
   std::shared_ptr<const set_configurations::AudioSetConfiguration> GetActiveConfiguration(
@@ -394,7 +406,12 @@ public:
           const CodecManager::UnicastConfigurationRequirements& requirements,
           const set_configurations::AudioSetConfigurations* confs) const;
 
-private:
+  const set_configurations::AudioSetConfiguration*
+  FindFirstSupportedPreferredConfiguration(
+      const CodecManager::UnicastConfigurationRequirements& requirements,
+      const set_configurations::AudioSetConfigurations* confs) const;
+
+ private:
   bool is_enabled_;
 
   uint32_t transport_latency_mtos_us_;
@@ -409,6 +426,9 @@ private:
           const set_configurations::AudioSetConfiguration* audio_set_configuration) const;
   uint32_t GetTransportLatencyUs(uint8_t direction) const;
   bool IsCisPartOfCurrentStream(uint16_t cis_conn_hdl) const;
+
+  bool IsMatchedWithPreferredConfiguration(
+      const set_configurations::AudioSetConfiguration* audio_set_conf) const;
 
   /* Current configuration and metadata context types */
   types::LeAudioContextType configuration_context_type_;
@@ -439,6 +459,20 @@ private:
           types::LeAudioContextType,
           std::pair<bool, const std::shared_ptr<set_configurations::AudioSetConfiguration>>>
           context_to_configuration_cache_map;
+
+  /* Possible preferred configuration cache - refreshed on each group context
+   * availability change. Stored as a pair of (is_valid_cache, configuration*).
+   * `pair.first` being `false` means that the cached value should be refreshed.
+   */
+  mutable std::map<
+      types::LeAudioContextType,
+      std::pair<bool, const std::shared_ptr<
+                          set_configurations::AudioSetConfiguration>>>
+      context_to_preferred_configuration_cache_map;
+
+  mutable types::BidirectionalPair<
+      std::unique_ptr<const bluetooth::le_audio::btle_audio_codec_config_t>>
+      preferred_config;
 
   types::AseState target_state_;
   types::AseState current_state_;
