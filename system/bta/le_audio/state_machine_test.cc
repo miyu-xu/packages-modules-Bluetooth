@@ -572,7 +572,8 @@ protected:
             .WillByDefault(Invoke(
                     [](const bluetooth::le_audio::CodecManager::UnicastConfigurationRequirements&
                                requirements,
-                       bluetooth::le_audio::CodecManager::UnicastConfigurationVerifier verifier) {
+                       bluetooth::le_audio::CodecManager::UnicastConfigurationVerifier verifier,
+                       bool use_preferred) {
                       auto configs = *bluetooth::le_audio::AudioSetConfigurationProvider::Get()
                                               ->GetConfigurations(requirements.audio_context_type);
                       // Note: This dual bidir SWB exclusion logic has to match the
@@ -590,7 +591,7 @@ protected:
                                 configs.end());
                       }
 
-                      auto cfg = verifier(requirements, &configs);
+                      auto cfg = verifier(requirements, &configs, use_preferred);
                       if (cfg == nullptr) {
                         return std::unique_ptr<
                                 bluetooth::le_audio::set_configurations::AudioSetConfiguration>(
@@ -1651,7 +1652,8 @@ TEST_F(StateMachineTest, testConfigureCodecSingleFb2) {
           .WillByDefault(Invoke([&](const bluetooth::le_audio::CodecManager::
                                             UnicastConfigurationRequirements& requirements,
                                     bluetooth::le_audio::CodecManager::UnicastConfigurationVerifier
-                                            verifier) {
+                                            verifier,
+                                    bool use_preferred) {
             auto configs =
                     *bluetooth::le_audio::AudioSetConfigurationProvider::Get()->GetConfigurations(
                             requirements.audio_context_type);
@@ -1669,7 +1671,7 @@ TEST_F(StateMachineTest, testConfigureCodecSingleFb2) {
                             configs.end());
             }
 
-            auto cfg = verifier(requirements, &configs);
+            auto cfg = verifier(requirements, &configs, use_preferred);
             if (cfg == nullptr) {
               return std::unique_ptr<
                       bluetooth::le_audio::set_configurations::AudioSetConfiguration>(nullptr);
@@ -4599,7 +4601,7 @@ TEST_F(StateMachineTest, testConfigureDataPathForHost) {
 
   /* Can be called for every context when fetching the configuration
    */
-  EXPECT_CALL(*mock_codec_manager_, GetCodecConfig(_, _)).Times(AtLeast(1));
+  EXPECT_CALL(*mock_codec_manager_, GetCodecConfig(_, _, _)).Times(AtLeast(1));
 
   // Prepare fake connected device group
   auto* group = PrepareSingleTestDeviceGroup(leaudio_group_id, context_type);
@@ -4631,7 +4633,7 @@ TEST_F(StateMachineTestAdsp, testConfigureDataPathForAdsp) {
 
   /* Can be called for every context when fetching the configuration
    */
-  EXPECT_CALL(*mock_codec_manager_, GetCodecConfig(_, _)).Times(AtLeast(1));
+  EXPECT_CALL(*mock_codec_manager_, GetCodecConfig(_, _, _)).Times(AtLeast(1));
 
   // Prepare fake connected device group
   auto* group = PrepareSingleTestDeviceGroup(leaudio_group_id, context_type);
@@ -4677,7 +4679,7 @@ TEST_F(StateMachineTestAdsp, testStreamConfigurationAdspDownMix) {
 
   /* Can be called for every context when fetching the configuration
    */
-  EXPECT_CALL(*mock_codec_manager_, GetCodecConfig(_, _)).Times(AtLeast(1));
+  EXPECT_CALL(*mock_codec_manager_, GetCodecConfig(_, _, _)).Times(AtLeast(1));
 
   PrepareConfigureCodecHandler(group);
   PrepareConfigureQosHandler(group);

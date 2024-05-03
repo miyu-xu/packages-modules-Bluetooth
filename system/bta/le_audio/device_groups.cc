@@ -26,6 +26,7 @@
 #include "bta_csis_api.h"
 #include "btif/include/btif_profile_storage.h"
 #include "btm_iso_api.h"
+#include "common/strings.h"
 #include "hci/controller_interface.h"
 #include "internal_include/bt_trace.h"
 #include "le_audio/codec_manager.h"
@@ -851,6 +852,19 @@ LeAudioDeviceGroup::GetAudioSetConfigurationRequirements(types::LeAudioContextTy
       CodecManager::UnicastConfigurationRequirements::DeviceDirectionRequirements config_req;
       config_req.params.Add(codec_spec_conf::kLeAudioLtvTypeAudioChannelAllocation,
                             (uint32_t)locations);
+      if (preferred_config.get(direction)) {
+        config_req.params.Add(codec_spec_conf::kLeAudioLtvTypeSamplingFreq,
+                              UINT8_TO_VEC_UINT8(codec_spec_conf::SampleingFreqCapability2Config(
+                                      preferred_config.get(direction)->sample_rate)));
+        config_req.params.Add(codec_spec_conf::kLeAudioLtvTypeFrameDuration,
+                              UINT8_TO_VEC_UINT8(codec_spec_conf::FrameDurationCapability2Config(
+                                      preferred_config.get(direction)->frame_duration)));
+        config_req.params.Add(
+                codec_spec_conf::kLeAudioLtvTypeOctetsPerCodecFrame,
+                UINT16_TO_VEC_UINT8(preferred_config.get(direction)->octets_per_frame));
+        config_req.params.Add(codec_spec_conf::kLeAudioLtvTypeCodecFrameBlocksPerSdu,
+                              UINT8_TO_VEC_UINT8(1));
+      }
       config_req.target_latency = utils::GetTargetLatencyForAudioContext(ctx_type);
       log::warn("Device {} pushes requirement, location: {}, direction: {}", device->address_,
                 (int)locations, (int)direction);
@@ -885,33 +899,67 @@ LeAudioDeviceGroup::GetAudioSetConfigurationRequirements(types::LeAudioContextTy
   return new_req;
 }
 
-bool LeAudioDeviceGroup::UpdateAudioSetConfigurationCache(LeAudioContextType ctx_type) const {
+bool LeAudioDeviceGroup::UpdateAudioSetConfigurationCache(LeAudioContextType ctx_type,
+                                                          bool use_preferred) const {
   auto requirements = GetAudioSetConfigurationRequirements(ctx_type);
   auto new_conf = CodecManager::GetInstance()->GetCodecConfig(
-          requirements, std::bind(&LeAudioDeviceGroup::FindFirstSupportedConfiguration, this,
-                                  std::placeholders::_1, std::placeholders::_2));
+          requirements,
+          std::bind(&LeAudioDeviceGroup::FindFirstSupportedConfiguration, this,
+                    std::placeholders::_1, std::placeholders::_2, std::placeholders::_3),
+          use_preferred);
   auto update_config = true;
 
-  if (context_to_configuration_cache_map.count(ctx_type) != 0) {
-    auto& [is_valid, existing_conf] = context_to_configuration_cache_map.at(ctx_type);
+  auto& map = use_preferred ? context_to_preferred_configuration_cache_map
+                            : context_to_configuration_cache_map;
+
+  if (map.count(ctx_type) != 0) {
+    auto& [is_valid, existing_conf] = map.at(ctx_type);
     update_config = (new_conf.get() != existing_conf.get());
     /* Just mark it as still valid */
     if (!update_config && !is_valid) {
-      context_to_configuration_cache_map.at(ctx_type).first = true;
+      map.at(ctx_type).first = true;
       return false;
     }
   }
 
   if (update_config) {
-    log::info("config: {} -> {}", ToHexString(ctx_type),
-              (new_conf ? new_conf->name.c_str() : "(none)"));
-    context_to_configuration_cache_map.erase(ctx_type);
+    log::info("config: {} -> {}, use_preferred: {}", ToHexString(ctx_type),
+              (new_conf ? new_conf->name.c_str() : "(none)"), use_preferred);
+    map.erase(ctx_type);
     if (new_conf) {
-      context_to_configuration_cache_map.insert(
-              std::make_pair(ctx_type, std::make_pair(true, std::move(new_conf))));
+      map.insert(std::make_pair(ctx_type, std::make_pair(true, std::move(new_conf))));
     }
   }
+
   return update_config;
+}
+
+bool LeAudioDeviceGroup::SetPreferredAudioSetConfiguration(
+        const bluetooth::le_audio::btle_audio_codec_config_t& input_codec_config,
+        const bluetooth::le_audio::btle_audio_codec_config_t& output_codec_config) const {
+  if (input_codec_config.codec_priority == -1 || output_codec_config.codec_priority == -1) {
+    log::info("Clear codec config");
+    ResetPreferredAudioSetConfiguration();
+    return true;
+  }
+
+  preferred_config.sink = std::make_unique<btle_audio_codec_config_t>(input_codec_config);
+  preferred_config.source = std::make_unique<btle_audio_codec_config_t>(output_codec_config);
+
+  bool is_updated = false;
+
+  for (LeAudioContextType ctx_type : types::kLeAudioContextAllTypesArray) {
+    is_updated |= UpdateAudioSetConfigurationCache(ctx_type, true);
+  }
+
+  return is_updated;
+}
+
+void LeAudioDeviceGroup::ResetPreferredAudioSetConfiguration(void) const {
+  log::info("Reset preferred configuration cached for all cotexts.");
+  context_to_preferred_configuration_cache_map.clear();
+  preferred_config.sink = nullptr;
+  preferred_config.source = nullptr;
 }
 
 void LeAudioDeviceGroup::InvalidateCachedConfigurations(void) {
@@ -1380,7 +1428,7 @@ bool CheckIfStrategySupported(types::LeAudioConfigurationStrategy strategy,
  */
 bool LeAudioDeviceGroup::IsAudioSetConfigurationSupported(
         const CodecManager::UnicastConfigurationRequirements& requirements,
-        const set_configurations::AudioSetConfiguration* audio_set_conf) const {
+        const set_configurations::AudioSetConfiguration* audio_set_conf, bool use_preferred) const {
   /* TODO For now: set ase if matching with first pac.
    * 1) We assume as well that devices will match requirements in order
    *    e.g. 1 Device - 1 Requirement, 2 Device - 2 Requirement etc.
@@ -1397,6 +1445,23 @@ bool LeAudioDeviceGroup::IsAudioSetConfigurationSupported(
     if (ase_confs.empty()) {
       log::debug("No configurations for direction {}, skip it.", (int)direction);
       continue;
+    }
+
+    if (use_preferred) {
+      auto& direction_req = (direction == types::kLeAudioDirectionSink)
+                                    ? requirements.sink_requirements
+                                    : requirements.source_requirements;
+      // We assume preferred codec is the first requirement of each direction
+      if (!direction_req.has_value() || !direction_req->size() ||
+          !preferred_config.get(direction)) {
+        return false;
+      }
+      if (!utils::IsAseConfigMatchedWithPreferredRequirements(
+                  ase_confs, direction_req.value(),
+                  codec_spec_conf::ChannelCountCapability2Config(
+                          preferred_config.get(direction)->channel_count))) {
+        return false;
+      }
     }
 
     // In some tests we expect the configuration to be there even when the
@@ -1876,7 +1941,7 @@ bool LeAudioDeviceGroup::IsConfiguredForContext(LeAudioContextType context_type)
 const set_configurations::AudioSetConfiguration*
 LeAudioDeviceGroup::FindFirstSupportedConfiguration(
         const CodecManager::UnicastConfigurationRequirements& requirements,
-        const set_configurations::AudioSetConfigurations* confs) const {
+        const set_configurations::AudioSetConfigurations* confs, bool use_preferred) const {
   log::assert_that(confs != nullptr, "confs should not be null");
 
   log::debug("context type: {},  number of connected devices: {}",
@@ -1885,7 +1950,7 @@ LeAudioDeviceGroup::FindFirstSupportedConfiguration(
   /* Filter out device set for each end every scenario */
   for (const auto& conf : *confs) {
     log::assert_that(conf != nullptr, "confs should not be null");
-    if (IsAudioSetConfigurationSupported(requirements, conf)) {
+    if (IsAudioSetConfigurationSupported(requirements, conf, use_preferred)) {
       log::debug("found: {}", conf->name);
       return conf;
     }
