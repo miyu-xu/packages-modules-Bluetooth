@@ -19,53 +19,83 @@ import android.bluetooth.BluetoothAdapter
 import android.content.Context
 import android.os.HandlerThread
 import android.os.UserManager
+import com.android.bluetooth.flags.Flags;
 import com.android.server.SystemService
 import com.android.server.SystemService.TargetUser
 
 class BluetoothService(context: Context) : SystemService(context) {
-    private val mHandlerThread: HandlerThread
-    private val mBluetoothManagerService: BluetoothManagerService
+    private val mHandlerThread: HandlerThread?
+    private val bluetoothServiceImpl: BluetoothServiceImpl?
+    private val mBluetoothManagerService: BluetoothManagerService?
     private var mInitialized = false
 
     init {
-        mHandlerThread = HandlerThread("BluetoothManagerService")
-        mHandlerThread.start()
-        mBluetoothManagerService = BluetoothManagerService(context, mHandlerThread.getLooper())
+        if (Flags.systemServerMessenger()) {
+            mHandlerThread = null
+            mBluetoothManagerService = null
+            bluetoothServiceImpl = BluetoothServiceImpl(context)
+        } else {
+            mHandlerThread = HandlerThread("BluetoothManagerService")
+            mHandlerThread.start()
+            mBluetoothManagerService = BluetoothManagerService(context, mHandlerThread.getLooper())
+            bluetoothServiceImpl = null
+        }
     }
 
     private fun initialize(user: TargetUser) {
         if (!mInitialized) {
-            mBluetoothManagerService.handleOnBootPhase(user.userHandle)
+            mBluetoothManagerService?.handleOnBootPhase(user.userHandle)
             mInitialized = true
         }
     }
 
-    override fun onStart() {}
+    override fun onStart() {
+        if (Flags.systemServerMessenger()) {
+            bluetoothServiceImpl!!.onStart()
+            return;
+        }
+    }
 
     override fun onBootPhase(phase: Int) {
+        if (Flags.systemServerMessenger()) {
+            bluetoothServiceImpl!!.onBootPhase(phase);
+            return;
+        }
         if (phase == SystemService.PHASE_SYSTEM_SERVICES_READY) {
             publishBinderService(
                 BluetoothAdapter.BLUETOOTH_MANAGER_SERVICE,
-                mBluetoothManagerService.getBinder()
+                mBluetoothManagerService!!.getBinder()
             )
         }
     }
 
     override fun onUserStarting(user: TargetUser) {
+        if (Flags.systemServerMessenger()) {
+            bluetoothServiceImpl!!.onUserStarting(user)
+            return;
+        }
         if (!UserManager.isHeadlessSystemUserMode()) {
             initialize(user)
         }
     }
 
-    override fun onUserSwitching(_from: TargetUser?, to: TargetUser) {
+    override fun onUserSwitching(from: TargetUser?, to: TargetUser) {
+        if (Flags.systemServerMessenger()) {
+            bluetoothServiceImpl!!.onUserSwitching(from, to)
+            return;
+        }
         if (!mInitialized) {
             initialize(to)
         } else {
-            mBluetoothManagerService.onSwitchUser(to.userHandle)
+            mBluetoothManagerService!!.onSwitchUser(to.userHandle)
         }
     }
 
     override fun onUserUnlocking(user: TargetUser) {
-        mBluetoothManagerService.handleOnUnlockUser(user.userHandle)
+        if (Flags.systemServerMessenger()) {
+            bluetoothServiceImpl!!.onUserUnlocking(user)
+            return;
+        }
+        mBluetoothManagerService!!.handleOnUnlockUser(user.userHandle)
     }
 }

@@ -38,14 +38,19 @@ import android.bluetooth.IBluetoothManager;
 import android.bluetooth.IBluetoothManagerCallback;
 import android.content.AttributionSource;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.Looper;
+import android.os.Messenger;
 import android.os.ParcelFileDescriptor;
+import android.os.UserHandle;
 import android.os.UserManager;
 import android.permission.PermissionManager;
 
 import androidx.annotation.RequiresApi;
+
+import com.android.bluetooth.flags.Flags;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
@@ -57,30 +62,58 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
     private final Context mContext;
     private final UserManager mUserManager;
     private final AppOpsManager mAppOpsManager;
+    private final PackageManager mPackageManager;
     private final PermissionManager mPermissionManager;
     private final BtPermissionUtils mPermissionUtils;
-    private final Looper unusedmLooper;
+    private final Looper mLooper;
+    private final Messenger mMessenger;
+    private final PermissionChecker mPermissionChecker;
 
     BluetoothServiceBinder(
             BluetoothManagerService bms, Looper looper, Context ctx, UserManager userManager) {
         mBluetoothManagerService = bms;
-        unusedmLooper = looper;
+        mLooper = looper;
         mContext = ctx;
         mUserManager = userManager;
         mAppOpsManager =
                 requireNonNull(
                         ctx.getSystemService(AppOpsManager.class),
                         "AppOpsManager system service cannot be null");
+        mPackageManager = ctx.createContextAsUser(UserHandle.SYSTEM, 0).getPackageManager();
         mPermissionManager =
                 requireNonNull(
                         ctx.getSystemService(PermissionManager.class),
                         "PermissionManager system service cannot be null");
         mPermissionUtils = new BtPermissionUtils(ctx);
+        mPermissionChecker = null;
+        mMessenger = null;
+    }
+
+    BluetoothServiceBinder(Messenger messenger, PermissionChecker permissionChecker) {
+        mBluetoothManagerService = null;
+        mLooper = null;
+        mContext = null;
+        mUserManager = null;
+        mAppOpsManager = null;
+        mPackageManager = null;
+        mPermissionManager = null;
+        mPermissionUtils = null;
+        mPermissionChecker = permissionChecker;
+        mMessenger = messenger;
+    }
+
+    @Override
+    @NonNull
+    public Messenger getServiceMessenger() {
+        return mMessenger;
     }
 
     @Override
     @Nullable
     public IBinder registerAdapter(@NonNull IBluetoothManagerCallback callback) {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
         requireNonNull(callback, "Callback cannot be null in registerAdapter");
         IBluetooth bluetooth = mBluetoothManagerService.registerAdapter(callback);
         if (bluetooth == null) {
@@ -91,12 +124,18 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
 
     @Override
     public void unregisterAdapter(@NonNull IBluetoothManagerCallback callback) {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
         requireNonNull(callback, "Callback cannot be null in unregisterAdapter");
         mBluetoothManagerService.unregisterAdapter(callback);
     }
 
     @Override
     public boolean enable(@NonNull AttributionSource source) {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
         requireNonNull(source, "AttributionSource cannot be null in enable");
 
         final String errorMsg =
@@ -118,6 +157,9 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
 
     @Override
     public boolean enableNoAutoConnect(AttributionSource source) {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
         requireNonNull(source, "AttributionSource cannot be null in enableNoAutoConnect");
 
         final String errorMsg =
@@ -143,6 +185,9 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
 
     @Override
     public boolean disable(AttributionSource source, boolean persist) {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
         requireNonNull(source, "AttributionSource cannot be null in disable");
 
         if (!persist) {
@@ -168,6 +213,15 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
 
     @Override
     public int getState() {
+        if (Flags.systemServerMessenger()) {
+            try {
+                mPermissionChecker.getStateAllowed(getCallingAppId());
+                return mBluetoothManagerService.getState(); // this does crash now
+            } catch (PermissionChecker.BluetoothPermissionException e) {
+                Log.e(TAG, "getSate: FAILED", e);
+                return BluetoothAdapter.STATE_OFF;
+            }
+        }
         if (!isCallerSystem(getCallingAppId())
                 && !mPermissionUtils.checkIfCallerIsForegroundUser(mUserManager)) {
             Log.w(TAG, "getState(): UNAUTHORIZED. Report OFF for non-active and non system user");
@@ -180,6 +234,9 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
     @Override
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, LOCAL_MAC_ADDRESS})
     public String getAddress(AttributionSource source) {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
         requireNonNull(source, "AttributionSource cannot be null in getAddress");
 
         if (!checkConnectPermissionForDataDelivery(
@@ -205,6 +262,9 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
     @Override
     @RequiresPermission(BLUETOOTH_CONNECT)
     public String getName(AttributionSource source) {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
         requireNonNull(source, "AttributionSource cannot be null in getName");
 
         if (!checkConnectPermissionForDataDelivery(
@@ -224,6 +284,9 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
     @Override
     @RequiresPermission(allOf = {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED})
     public boolean onFactoryReset(AttributionSource source) {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
         requireNonNull(source, "AttributionSource cannot be null in onFactoryReset");
 
         BtPermissionUtils.enforcePrivileged(mContext);
@@ -237,13 +300,19 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
     }
 
     @Override
-    public boolean isBleScanAlwaysAvailable() {
-        return mBluetoothManagerService.isBleScanAlwaysAvailable();
+    public boolean isBleScanAvailable() {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
+        return mBluetoothManagerService.isBleScanAvailable();
     }
 
     @Override
     @RequiresPermission(BLUETOOTH_CONNECT)
     public boolean enableBle(AttributionSource source, IBinder token) {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
         requireNonNull(source, "AttributionSource cannot be null in enableBle");
         requireNonNull(token, "IBinder cannot be null in enableBle");
 
@@ -267,6 +336,9 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
     @Override
     @RequiresPermission(BLUETOOTH_CONNECT)
     public boolean disableBle(AttributionSource source, IBinder token) {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
         requireNonNull(source, "AttributionSource cannot be null in disableBle");
         requireNonNull(token, "IBinder cannot be null in disableBle");
 
@@ -289,12 +361,18 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
 
     @Override
     public boolean isHearingAidProfileSupported() {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
         return mBluetoothManagerService.isHearingAidProfileSupported();
     }
 
     @Override
     @RequiresPermission(BLUETOOTH_PRIVILEGED)
     public int setBtHciSnoopLogMode(int mode) {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
         BtPermissionUtils.enforcePrivileged(mContext);
 
         return mBluetoothManagerService.setBtHciSnoopLogMode(mode);
@@ -303,6 +381,9 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
     @Override
     @RequiresPermission(BLUETOOTH_PRIVILEGED)
     public int getBtHciSnoopLogMode() {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
         BtPermissionUtils.enforcePrivileged(mContext);
 
         return mBluetoothManagerService.getBtHciSnoopLogMode();
@@ -326,6 +407,9 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
     @Override
     @RequiresPermission(BLUETOOTH_PRIVILEGED)
     public boolean isAutoOnSupported() {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
         BtPermissionUtils.enforcePrivileged(mContext);
         return mBluetoothManagerService.isAutoOnSupported();
     }
@@ -333,6 +417,9 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
     @Override
     @RequiresPermission(BLUETOOTH_PRIVILEGED)
     public boolean isAutoOnEnabled() {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
         BtPermissionUtils.enforcePrivileged(mContext);
         return mBluetoothManagerService.isAutoOnEnabled();
     }
@@ -341,6 +428,9 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
     @RequiresPermission(BLUETOOTH_PRIVILEGED)
     @RequiresApi(Build.VERSION_CODES.VANILLA_ICE_CREAM)
     public void setAutoOnEnabled(boolean status) {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
         BtPermissionUtils.enforcePrivileged(mContext);
         mBluetoothManagerService.setAutoOnEnabled(status);
     }
@@ -352,6 +442,10 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
             // TODO(b/280890575): Throws SecurityException instead
             Log.w(TAG, "dump(): Client does not have DUMP permission");
             return;
+        }
+
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
         }
 
         mBluetoothManagerService.dump(fd, writer, args);
