@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b001938_a73ce0d9",
+        "filename": "flags/btm_ble.aconfig",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-03T23:22:23Z",
+      "side": 1,
+      "message": "Can you submit the flag in a previous CL ? This will allow you to have a DrNo provided for the flag creation and then you can use the bug flag to have an DrNo on the logical change",
+      "revId": "8043258c4e408e6058a90d326845aa45f8df728a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
