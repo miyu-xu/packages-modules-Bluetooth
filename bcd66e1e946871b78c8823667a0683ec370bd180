@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85d6574b_1e34607a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceAndStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-05-03T22:11:06Z",
+      "side": 1,
+      "message": "in the original code, it is `times(1)`, so here I guess `times(1)` as well?",
+      "range": {
+        "startLine": 595,
+        "startChar": 69,
+        "endLine": 595,
+        "endChar": 77
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2281b5b8_a4ef4f04",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceAndStateMachineTest.java",
+              "range": {
+                "startLine": 597,
+                "startChar": 0,
+                "endLine": 601,
+                "endChar": 0
+              },
+              "replacement": "                        MockitoHamcrest.argThat(AllOf.allOf(\n                                hasAction(Intent.ACTION_CALL_PRIVILEGED),\n                                hasData(dialOutUri))));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "bcd66e1e946871b78c8823667a0683ec370bd180",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
