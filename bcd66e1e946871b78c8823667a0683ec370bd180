@@ -40,6 +40,30 @@
       ],
       "revId": "bcd66e1e946871b78c8823667a0683ec370bd180",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81cc93ef_ee9ae92b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceAndStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-03T23:11:52Z",
+      "side": 1,
+      "message": "`times(0)` is what we want, since I am doing in order verification, the intent for the call as already been received line 562.\n\nWe don\u0027t want any more intent to be sent after, so I am checking that we have 0 new intents(but 1 in total)",
+      "parentUuid": "85d6574b_1e34607a",
+      "range": {
+        "startLine": 595,
+        "startChar": 69,
+        "endLine": 595,
+        "endChar": 77
+      },
+      "revId": "bcd66e1e946871b78c8823667a0683ec370bd180",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
