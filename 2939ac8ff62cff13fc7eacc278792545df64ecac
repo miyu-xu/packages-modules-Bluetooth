@@ -16,6 +16,24 @@
       "message": "FYI.\nI don\u0027t know why (as the libbluetooth-gdx used other hal ndk too.), but add the following code, it can pass the build check.\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3073884/2/system/main/Android.bp#233",
       "revId": "2939ac8ff62cff13fc7eacc278792545df64ecac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de18af40_3724fcdb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-05-04T14:58:42Z",
+      "side": 1,
+      "message": "Many thanks for the suggestion!",
+      "parentUuid": "d15b5ce0_37e60bb9",
+      "revId": "2939ac8ff62cff13fc7eacc278792545df64ecac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
