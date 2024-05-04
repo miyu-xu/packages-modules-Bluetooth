@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68919799_1ac91691",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-04T05:22:20Z",
+      "side": 1,
+      "message": "Left a few comments, could you also add unit tests for both `config_cache.cc` and `sysprops_module.cc` since you are adding new methods and modifying their logic?",
+      "revId": "02089c401aeb5b003b3a987dffca8fed34927d68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c279cd1a_73d46f6b",
+        "filename": "system/gd/storage/config_cache.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-04T05:22:20Z",
+      "side": 1,
+      "message": "Could this just be \n\n```\nstd::vector\u003cstd::string\u003e ConfigCache::GetPropertyNames(const std::string\u0026 section) {\n}\n```\n\nThen you just simply return all property names for the entire section\n\nYou can filter it in `sysprops_module.cc` and keep this config cache simple\n\nlike \n\n```\nConfigCache::GetPropertyNames(\"Aflags)\n```",
+      "range": {
+        "startLine": 421,
+        "startChar": 0,
+        "endLine": 421,
+        "endChar": 62
+      },
+      "revId": "02089c401aeb5b003b3a987dffca8fed34927d68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40a126a0_de238927",
+        "filename": "system/gd/storage/config_cache.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-04T05:22:20Z",
+      "side": 1,
+      "message": "Please use direct declaration instead of assignment declaration\n\n```\nstd::vector\u003cstd::string names;\n```",
+      "range": {
+        "startLine": 424,
+        "startChar": 2,
+        "endLine": 424,
+        "endChar": 42
+      },
+      "revId": "02089c401aeb5b003b3a987dffca8fed34927d68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1acf0be9_fc44fee6",
+        "filename": "system/gd/storage/config_cache.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-04T05:22:20Z",
+      "side": 1,
+      "message": "Why do you have to go through all three sections? What is the structure of the floss config file? \n\nYou need to be sure which section you look for instead of looping through entire config catche.\n\nSince `[Aflags]` is not a valid Bluetooth MAC address, it will be treated as part of informational section and hence you only need to look for it there.",
+      "range": {
+        "startLine": 436,
+        "startChar": 0,
+        "endLine": 438,
+        "endChar": 37
+      },
+      "revId": "02089c401aeb5b003b3a987dffca8fed34927d68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78256419_38a669e9",
+        "filename": "system/gd/storage/config_cache.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-04T05:22:20Z",
+      "side": 1,
+      "message": "std::move is not needed here per C++ 12.8/32, names is a lvalue and will be moved by default\n\nsee: https://stackoverflow.com/questions/14856344/when-should-stdmove-be-used-on-a-function-return-value",
+      "range": {
+        "startLine": 439,
+        "startChar": 9,
+        "endLine": 439,
+        "endChar": 18
+      },
+      "revId": "02089c401aeb5b003b3a987dffca8fed34927d68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
