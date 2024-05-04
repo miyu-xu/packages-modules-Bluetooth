@@ -89,6 +89,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c48e1b6f_d953a20f",
+        "filename": "system/gd/storage/config_cache.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-04T05:49:34Z",
+      "side": 1,
+      "message": "I will take this back, as a general API, it is ok for `GetPropertyNames` to work with all sections. \n\nHowever, you shall assume that each section name only exist in one of the three types of sections. \n\nTherefore, the algorithm is like\n\n1. Find which one of the three has your section name\n2. Return all property names from that section\n\n```\nstd::optional\u003cstd::vector\u003cstd::string\u003e\u003e ConfigCache::GetPropertyNames(const std::string\u0026 section) {\n  for (const auto* sections : \n      {\u0026information_sections_, \u0026persistent_devices_, \u0026temporary_devices_} {\n    auto section_iter \u003d sections-\u003efind(section);\n    if (section_iter !\u003d information_sections_.end()) {\n      std::vector\u003cstd::string\u003e property_names;\n      for (const auto\u0026 [property_name, value]: section_iter-\u003esecond) {\n        property_names.emplace_back(property_name);\n      }\n      return property_names;\n    }\n  }\n  return std::nullopt;\n}\n```",
+      "parentUuid": "1acf0be9_fc44fee6",
+      "range": {
+        "startLine": 436,
+        "startChar": 0,
+        "endLine": 438,
+        "endChar": 37
+      },
+      "revId": "02089c401aeb5b003b3a987dffca8fed34927d68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "78256419_38a669e9",
         "filename": "system/gd/storage/config_cache.cc",
         "patchSetId": 1
