@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bad36e01_029f85ae",
+        "filename": "android/app/jni/com_android_bluetooth_a2dp.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-06T21:43:48Z",
+      "side": 1,
+      "message": "I don\u0027t think we need ToString to be called, especially since the formatter is implemented:\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/types/raw_address.h;l\u003d120?q\u003df:packages%2Fmodules%2FBluetooth%20Raw",
+      "range": {
+        "startLine": 57,
+        "startChar": 36,
+        "endLine": 57,
+        "endChar": 47
+      },
+      "revId": "cc1dd594790a5c99ca5b7ec32504d975921f830f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9dd2141e_c65704ec",
+        "filename": "system/include/hardware/bt_av.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-06T21:43:48Z",
+      "side": 1,
+      "message": "adding a default will remove the error / warning at build time when a type is not added. Do we need it ?",
+      "range": {
+        "startLine": 200,
+        "startChar": 6,
+        "endLine": 201,
+        "endChar": 25
+      },
+      "revId": "cc1dd594790a5c99ca5b7ec32504d975921f830f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
