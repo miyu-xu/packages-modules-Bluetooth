@@ -92,6 +92,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "481cea05_c155c0f5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-05-06T06:39:53Z",
+      "side": 1,
+      "message": "Based on the result in go/bt-telephony-interoperability, I think most USB headsets will send additional mute events when unmute. I prefer to follow their behaviour.\n\nWDYT?",
+      "parentUuid": "353a553e_0b2d363c",
+      "revId": "cf4abaa3307218988601f7a680190f1746c67650",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d266f78f_da028a81",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 10
