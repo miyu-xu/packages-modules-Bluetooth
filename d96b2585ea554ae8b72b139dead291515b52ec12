@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "64dc1473_d4db5821",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-06T17:43:52Z",
+      "side": 1,
+      "message": "If it was always open, I expect the test to fail 100% of the time.\n\nSocket is open only when snoop log are activated, which mean this was toggled already (either manually by user, or by test automation).\n\nI believe the snooplog should be disabled when running the test",
+      "parentUuid": "e4de59a8_c8e6e3e4",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "d96b2585ea554ae8b72b139dead291515b52ec12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "85efa452_434fd928",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
