@@ -96,6 +96,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c56a587_1ad885f1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-06T23:06:40Z",
+      "side": 1,
+      "message": "Abandoned",
+      "parentUuid": "8e7d2e7b_324bf1ab",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "d96b2585ea554ae8b72b139dead291515b52ec12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "85efa452_434fd928",
