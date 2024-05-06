@@ -16,6 +16,121 @@
       "message": "Hi Myles, the patch fix HFP WBS streaming in Floss. Please help to take a look, thanks!",
       "revId": "88f6384a3d8c403d3d3868c0555c83bb8554741c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "432eb3a4_9bf6954e",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-06T15:56:22Z",
+      "side": 1,
+      "message": "nit: PARTIAL ?  HALF is odd to me.",
+      "range": {
+        "startLine": 223,
+        "startChar": 13,
+        "endLine": 223,
+        "endChar": 21
+      },
+      "revId": "88f6384a3d8c403d3d3868c0555c83bb8554741c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc45de4c_85468009",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-06T15:56:22Z",
+      "side": 1,
+      "message": "nit: Why pass in bsize?  It should always be BTM_SCO_DATA_SIZE_MAX\n```suggestion\n\nvoid incr_btm_pcm_buf_offset(size_t\u0026 offset, bool\u0026 mirror,\n                               size_t amount) {\n  size_t bytes_remaining \u003d BTM_SCO_DATA_SIZE_MAX - offset;\n  if (bytes_remaining \u003e amount) {\n    offset +\u003d amount;\n    return;\n  }\n\n  mirror \u003d !mirror;\n  offset \u003d amount - bytes_remaining;\n}\n```",
+      "range": {
+        "startLine": 225,
+        "startChar": 0,
+        "endLine": 235,
+        "endChar": 1
+      },
+      "revId": "88f6384a3d8c403d3d3868c0555c83bb8554741c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71564625_c4aebfb0",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-06T15:56:22Z",
+      "side": 1,
+      "message": "nit: prefer to define avail here:\n\n\n```suggestion\n       size_t avail \u003d BTM_SCO_DATA_SIZE_MAX - btm_pcm_buf_data_len();\n```",
+      "range": {
+        "startLine": 431,
+        "startChar": 6,
+        "endLine": 431,
+        "endChar": 38
+      },
+      "revId": "88f6384a3d8c403d3d3868c0555c83bb8554741c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d6a39a3_032b6612",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-06T15:56:22Z",
+      "side": 1,
+      "message": "Does this check still make sense?  Is it checking the implementation of audio::sco::read or line 433?",
+      "range": {
+        "startLine": 438,
+        "startChar": 0,
+        "endLine": 442,
+        "endChar": 62
+      },
+      "revId": "88f6384a3d8c403d3d3868c0555c83bb8554741c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f87d595_0f5a46ed",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-06T15:56:22Z",
+      "side": 1,
+      "message": "This looks very similar to the logic in incr_btm_buf_offset.  Maybe it should live in the same place.",
+      "range": {
+        "startLine": 443,
+        "startChar": 0,
+        "endLine": 456,
+        "endChar": 0
+      },
+      "revId": "88f6384a3d8c403d3d3868c0555c83bb8554741c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
