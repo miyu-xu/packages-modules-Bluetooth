@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd15d8c2_bd9c5919",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-06T10:43:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68919799_1ac91691",
+      "revId": "02089c401aeb5b003b3a987dffca8fed34927d68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c279cd1a_73d46f6b",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f22d352e_7d5dc310",
+        "filename": "system/gd/storage/config_cache.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-06T10:43:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c279cd1a_73d46f6b",
+      "range": {
+        "startLine": 421,
+        "startChar": 0,
+        "endLine": 421,
+        "endChar": 62
+      },
+      "revId": "02089c401aeb5b003b3a987dffca8fed34927d68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40a126a0_de238927",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-05-04T05:22:20Z",
       "side": 1,
       "message": "Please use direct declaration instead of assignment declaration\n\n```\nstd::vector\u003cstd::string names;\n```",
+      "range": {
+        "startLine": 424,
+        "startChar": 2,
+        "endLine": 424,
+        "endChar": 42
+      },
+      "revId": "02089c401aeb5b003b3a987dffca8fed34927d68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19f4d590_f9490dfd",
+        "filename": "system/gd/storage/config_cache.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-06T10:43:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40a126a0_de238927",
       "range": {
         "startLine": 424,
         "startChar": 2,
@@ -111,6 +177,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08305802_f6e94418",
+        "filename": "system/gd/storage/config_cache.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-06T10:43:53Z",
+      "side": 1,
+      "message": "Done. `temporary_devices_` doesn\u0027t have the same type so we can\u0027t simply loop over them.",
+      "parentUuid": "c48e1b6f_d953a20f",
+      "range": {
+        "startLine": 436,
+        "startChar": 0,
+        "endLine": 438,
+        "endChar": 37
+      },
+      "revId": "02089c401aeb5b003b3a987dffca8fed34927d68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78256419_38a669e9",
@@ -124,6 +214,30 @@
       "writtenOn": "2024-05-04T05:22:20Z",
       "side": 1,
       "message": "std::move is not needed here per C++ 12.8/32, names is a lvalue and will be moved by default\n\nsee: https://stackoverflow.com/questions/14856344/when-should-stdmove-be-used-on-a-function-return-value",
+      "range": {
+        "startLine": 439,
+        "startChar": 9,
+        "endLine": 439,
+        "endChar": 18
+      },
+      "revId": "02089c401aeb5b003b3a987dffca8fed34927d68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7fdca86_a3c59fc5",
+        "filename": "system/gd/storage/config_cache.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-06T10:43:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78256419_38a669e9",
       "range": {
         "startLine": 439,
         "startChar": 9,
