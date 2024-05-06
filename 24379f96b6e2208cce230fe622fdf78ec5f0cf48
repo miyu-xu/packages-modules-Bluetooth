@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c46930d_6d9bd22d",
+        "filename": "system/device/src/device_iot_config.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-05-06T11:10:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "200d9ddd_2de9d574",
+      "revId": "24379f96b6e2208cce230fe622fdf78ec5f0cf48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "74faa8d7_b80b534f",
@@ -48,6 +66,30 @@
       "writtenOn": "2024-04-26T18:46:05Z",
       "side": 1,
       "message": "Is it still needed ?",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 30
+      },
+      "revId": "24379f96b6e2208cce230fe622fdf78ec5f0cf48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3760bf5_510a41ce",
+        "filename": "system/device/src/device_iot_config_int.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-05-06T11:10:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74faa8d7_b80b534f",
       "range": {
         "startLine": 34,
         "startChar": 0,
