@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52eee33c_d710c19e",
+        "filename": "system/gd/hal/link_clocker.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-05-06T10:22:45Z",
+      "side": 0,
+      "message": "I\u0027m not sure if there is a reason to prefer this over the clock that the audio server/repeating timer is using. Please let me know if there is and we\u0027ll find another way, thanks!",
+      "range": {
+        "startLine": 90,
+        "startChar": 52,
+        "endLine": 90,
+        "endChar": 68
+      },
+      "revId": "6e0c1b4c3d9c7936a015b959df4a255aa4bb0c41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
