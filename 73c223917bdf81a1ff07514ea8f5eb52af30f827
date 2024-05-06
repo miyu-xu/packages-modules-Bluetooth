@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3227644_68830d6b",
+        "filename": "system/stack/sdp/sdp_api.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-06T16:05:35Z",
+      "side": 1,
+      "message": "I like the early-return style.  It looks like you are replacing that with \"happy-path-first\" for these first functions, but starting on line 155, it\u0027s back to early-return.",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 14
+      },
+      "revId": "73c223917bdf81a1ff07514ea8f5eb52af30f827",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc767ecc_e109df50",
+        "filename": "system/stack/sdp/sdp_api.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 738,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-06T16:05:35Z",
+      "side": 1,
+      "message": "Can we add braces?\n```suggestion\n\n  if (SDP_InitDiscoveryDb(p_db, len, num_uuids, \u0026init_uuid, 0, NULL)) {\n    if (SDP_ServiceSearchRequest(bd_addr, p_db, p_cb)) result \u003d SDP_SUCCESS;\n  }\n```",
+      "range": {
+        "startLine": 736,
+        "startChar": 0,
+        "endLine": 738,
+        "endChar": 76
+      },
+      "revId": "73c223917bdf81a1ff07514ea8f5eb52af30f827",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
