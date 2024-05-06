@@ -22,6 +22,29 @@
       },
       "revId": "29339bff87457b2138dcfb1eb4a92e19c8bb8fc2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f660df3_ad04e429",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 892,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-06T23:30:51Z",
+      "side": 1,
+      "message": "methods like this should be renamed in a follow-up CL to something more like bitf_XXXX",
+      "range": {
+        "startLine": 892,
+        "startChar": 12,
+        "endLine": 892,
+        "endChar": 35
+      },
+      "revId": "29339bff87457b2138dcfb1eb4a92e19c8bb8fc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
