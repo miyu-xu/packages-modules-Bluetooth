@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ae3525e_3936d48d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-06T23:20:37Z",
+      "side": 1,
+      "message": "The adding and ordered start up are done in different parts, so adding before should not make a difference.\n\nIt could be that the storage module requires a dependency on the hci module.  \n\n```\nvoid StorageModule::ListDependencies(ModuleList* list) const {\n    list-\u003eadd\u003cmetrics::CounterMetrics\u003e();\n}\n```\nI didn\u0027t think the storage module interacted with hci in any form; if so maybe we should think a better dependency abstraction.",
+      "revId": "08331f5f29e1577913efee0e7148e4649b10e17d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
