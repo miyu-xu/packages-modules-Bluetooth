@@ -1660,7 +1660,7 @@ public class HeadsetStateMachine extends StateMachine {
      * @return device in focus
      */
     @VisibleForTesting
-    public synchronized BluetoothDevice getDevice() {
+    public BluetoothDevice getDevice() {
         return mDevice;
     }
 
