@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd359265_d6352bb3",
+        "filename": "system/gd/sysprops/sysprops_module_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-06T13:39:31Z",
+      "side": 1,
+      "message": "Hi reviewers, I found this method is intentionally no-op and returns false for android target. Could you suggest an alternative for resetting sysprops in unittest? Thanks.",
+      "range": {
+        "startLine": 36,
+        "startChar": 31,
+        "endLine": 36,
+        "endChar": 59
+      },
+      "revId": "dfc9d9b5e903561cb642fa994522b92715cc2216",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
