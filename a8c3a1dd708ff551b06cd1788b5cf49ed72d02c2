@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caeb5f31_8333ec23",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-06T23:34:52Z",
+      "side": 1,
+      "message": "This CL also converted to use PDL to send and receive BQR VSCs. \n\nPlease include that in the commit message.",
+      "revId": "a8c3a1dd708ff551b06cd1788b5cf49ed72d02c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ca4d0b5_afd06a62",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-06T23:34:52Z",
+      "side": 1,
+      "message": "nit: add some documentation in the header indicate what is `to_bind_` and the effect when it is null vs non-null",
+      "range": {
+        "startLine": 348,
+        "startChar": 27,
+        "endLine": 348,
+        "endChar": 59
+      },
+      "revId": "a8c3a1dd708ff551b06cd1788b5cf49ed72d02c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d246f851_7a9e3a13",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1033,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-06T23:34:52Z",
+      "side": 1,
+      "message": "should this be renamed to bitf_bqr_vendor_specific_event?",
+      "range": {
+        "startLine": 1033,
+        "startChar": 5,
+        "endLine": 1033,
+        "endChar": 28
+      },
+      "revId": "a8c3a1dd708ff551b06cd1788b5cf49ed72d02c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
