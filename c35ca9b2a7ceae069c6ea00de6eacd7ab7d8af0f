@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8332f1f8_b1ba959d",
+        "filename": "flags/btm_ble.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-06T22:12:32Z",
+      "side": 1,
+      "message": "Can you add:\n```\n    metadata {\n        purpose: PURPOSE_BUGFIX\n    }\n```\n\nTo indicate this is a bugfix only ?",
+      "revId": "c35ca9b2a7ceae069c6ea00de6eacd7ab7d8af0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
