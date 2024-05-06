@@ -794,11 +794,6 @@ public class AdapterService extends Service {
     @Override
     public void onDestroy() {
         Log.d(TAG, "onDestroy()");
-        if (!isMock()) {
-            // TODO(b/27859763)
-            Log.i(TAG, "Force exit to cleanup internal state in Bluetooth stack");
-            System.exit(0);
-        }
     }
 
     public ActiveDeviceManager getActiveDeviceManager() {
