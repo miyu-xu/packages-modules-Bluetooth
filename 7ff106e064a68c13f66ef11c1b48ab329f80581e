@@ -281,6 +281,24 @@
       "parentUuid": "b6af3392_f13d0233",
       "revId": "7ff106e064a68c13f66ef11c1b48ab329f80581e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3145e7b_4e9a70e3",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2084,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-06T14:44:03Z",
+      "side": 1,
+      "message": "yes, it is not used in my changes at all as it is unnecessary",
+      "parentUuid": "49d7ab6c_55806149",
+      "revId": "7ff106e064a68c13f66ef11c1b48ab329f80581e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

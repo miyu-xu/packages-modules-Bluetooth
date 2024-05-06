@@ -213,6 +213,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8f03fa0e_e9fc49c7",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1523,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-06T14:44:03Z",
+      "side": 1,
+      "message": "It is probably not introduced by this early CL but fixed with this CL. I will close it together with that patch.",
+      "parentUuid": "be172d52_74fb6735",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "52147851_0cb4d477",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 8
@@ -347,6 +365,24 @@
       "side": 1,
       "message": "if I understand this correctly, selectSource is actually process the next sync request now. then we might want to rename this function accoringly?",
       "parentUuid": "0d3a880e_bba8888f",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12cc3bc2_ea9bb3de",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1621,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-06T14:44:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e10ade81_5f7fa900",
       "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
