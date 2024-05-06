@@ -85,6 +85,30 @@
       },
       "revId": "a8c3a1dd708ff551b06cd1788b5cf49ed72d02c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e9c8f6e_82be97f4",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1033,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-06T23:37:10Z",
+      "side": 1,
+      "message": "Saw this is removed in the last CL",
+      "parentUuid": "d246f851_7a9e3a13",
+      "range": {
+        "startLine": 1033,
+        "startChar": 5,
+        "endLine": 1033,
+        "endChar": 28
+      },
+      "revId": "a8c3a1dd708ff551b06cd1788b5cf49ed72d02c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
