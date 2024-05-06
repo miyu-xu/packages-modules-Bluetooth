@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9223e0f2_490a3c4c",
+        "filename": "system/gd/os/android/parameter_provider.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-06T23:45:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9506f631_c57b269d",
+      "range": {
+        "startLine": 86,
+        "startChar": 54,
+        "endLine": 87,
+        "endChar": 14
+      },
+      "revId": "dfc9d9b5e903561cb642fa994522b92715cc2216",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb6fd91e_8b8891b1",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "203c69b6_b97f60a8",
+        "filename": "system/gd/os/host/parameter_provider.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-06T23:45:31Z",
+      "side": 1,
+      "message": "Done. I found the `if` is just redundant",
+      "parentUuid": "eb6fd91e_8b8891b1",
+      "range": {
+        "startLine": 113,
+        "startChar": 2,
+        "endLine": 113,
+        "endChar": 3
+      },
+      "revId": "dfc9d9b5e903561cb642fa994522b92715cc2216",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf547ab8_a135cdda",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-05-06T17:06:54Z",
       "side": 1,
       "message": "note, this handles the case where `SyspropsFilePath()` is empty, an unit test should be added when the path is indeed empty like on Android",
+      "range": {
+        "startLine": 51,
+        "startChar": 2,
+        "endLine": 51,
+        "endChar": 27
+      },
+      "revId": "dfc9d9b5e903561cb642fa994522b92715cc2216",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd6eaec2_4eeee4fb",
+        "filename": "system/gd/sysprops/sysprops_module.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-06T23:45:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf547ab8_a135cdda",
       "range": {
         "startLine": 51,
         "startChar": 2,
@@ -107,6 +179,30 @@
       "side": 1,
       "message": "just return `true` for packages/modules/Bluetooth/system/gd/os/android/system_properties.cc is fine",
       "parentUuid": "fd359265_d6352bb3",
+      "range": {
+        "startLine": 36,
+        "startChar": 31,
+        "endLine": 36,
+        "endChar": 59
+      },
+      "revId": "dfc9d9b5e903561cb642fa994522b92715cc2216",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f14997c1_227f1ec5",
+        "filename": "system/gd/sysprops/sysprops_module_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-06T23:45:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9804eb31_0db2e8b3",
       "range": {
         "startLine": 36,
         "startChar": 31,
