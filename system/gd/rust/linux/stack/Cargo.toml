@@ -3,6 +3,9 @@ name = "btstack"
 version = "0.1.0"
 edition = "2018"
 
+[features]
+chromeos = ["featured"]
+
 [dependencies]
 bt_common = { path = "../../common" }
 bt_topshim = { path = "../../topshim" }
@@ -10,6 +13,9 @@ bt_shim = { path = "../../shim" }
 bt_utils = { path = "../utils" }
 
 btif_macros = { path = "btif_macros" }
+
+cfg-if = "1.0.0"
+featured = { version = "0.1.0", optional = true }
 
 dbus = "0.9.2"
 env_logger = "0.8.3"
