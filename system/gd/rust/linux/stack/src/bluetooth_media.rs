@@ -31,7 +31,7 @@ use bt_topshim::profiles::vc::{
     BtVcConnectionState, VolumeControl, VolumeControlCallbacks, VolumeControlCallbacksDispatcher,
 };
 use bt_topshim::profiles::ProfileConnectionState;
-use bt_topshim::{metrics, sysprop, topstack};
+use bt_topshim::{metrics, topstack};
 use bt_utils::at_command_parser::{calculate_battery_percent, parse_at_command_data};
 use bt_utils::uhid_hfp::{
     OutputEvent, UHidHfp, BLUETOOTH_TELEPHONY_UHID_REPORT_ID, UHID_INPUT_HOOK_SWITCH,
@@ -39,6 +39,8 @@ use bt_utils::uhid_hfp::{
     UHID_OUTPUT_RING,
 };
 use bt_utils::uinput::UInput;
+
+use featured::CheckFeature;
 
 use itertools::Itertools;
 use log::{debug, info, warn};
@@ -444,6 +446,7 @@ pub struct BluetoothMedia {
     vc_states: HashMap<RawAddress, BtVcConnectionState>,
     csis: Option<CsisClient>,
     csis_states: HashMap<RawAddress, BtCsisConnectionState>,
+    is_le_audio_only_enabled: bool, // TODO: remove this once there is dual mode.
 }
 
 impl BluetoothMedia {
@@ -509,6 +512,7 @@ impl BluetoothMedia {
             vc_states: HashMap::new(),
             csis: None,
             csis_states: HashMap::new(),
+            is_le_audio_only_enabled: false,
         }
     }
 
@@ -564,13 +568,13 @@ impl BluetoothMedia {
     pub fn enable_profile(&mut self, profile: &Profile) {
         match profile {
             Profile::A2dpSource | Profile::AvrcpTarget | Profile::Hfp => {
-                if sysprop::get_bool(sysprop::PropertyBool::LeAudioEnableLeAudioOnly) {
+                if self.is_le_audio_only_enabled {
                     info!("LeAudioEnableLeAudioOnly is set, skip enabling {:?}", profile);
                     return;
                 }
             }
             Profile::LeAudio | Profile::VolumeControl | Profile::CoordinatedSet => {
-                if !sysprop::get_bool(sysprop::PropertyBool::LeAudioEnableLeAudioOnly) {
+                if !self.is_le_audio_only_enabled {
                     info!("LeAudioEnableLeAudioOnly is not set, skip enabling {:?}", profile);
                     return;
                 }
@@ -2764,6 +2768,21 @@ impl BluetoothMedia {
     }
 }
 
+fn is_feature_enabled(name: &str) -> Result<bool, Box<dyn std::error::Error>> {
+    cfg_if::cfg_if! {
+        if #[cfg(feature = "chromeos")] {
+            let feature = featured::Feature::new(&name, false)?;
+
+            let resp = featured::PlatformFeatures::get()?
+                .is_feature_enabled_blocking(&feature);
+
+            Ok(resp)
+        } else {
+            Ok(false)
+        }
+    }
+}
+
 fn get_a2dp_dispatcher(tx: Sender<Message>) -> A2dpCallbacksDispatcher {
     A2dpCallbacksDispatcher {
         dispatch: Box::new(move |cb| {
@@ -2841,6 +2860,9 @@ impl IBluetoothMedia for BluetoothMedia {
             return false;
         }
         self.initialized = true;
+
+        self.is_le_audio_only_enabled =
+            is_feature_enabled("CrOSLateBootBluetoothAudioLEAudioOnly").unwrap_or(false);
 
         // A2DP
         let a2dp_dispatcher = get_a2dp_dispatcher(self.tx.clone());
@@ -2954,7 +2976,7 @@ impl IBluetoothMedia for BluetoothMedia {
     }
 
     fn connect_le(&mut self, address: String) {
-        if !sysprop::get_bool(sysprop::PropertyBool::LeAudioEnableLeAudioOnly) {
+        if !self.is_le_audio_only_enabled {
             warn!("connect_le: LeAudioEnableLeAudioOnly is not set");
             return;
         }
@@ -3026,7 +3048,7 @@ impl IBluetoothMedia for BluetoothMedia {
     }
 
     fn connect_vc(&mut self, address: String) {
-        if !sysprop::get_bool(sysprop::PropertyBool::LeAudioEnableLeAudioOnly) {
+        if !self.is_le_audio_only_enabled {
             warn!("connect_vc: LeAudioEnableLeAudioOnly is not set");
             return;
         }
@@ -3093,7 +3115,7 @@ impl IBluetoothMedia for BluetoothMedia {
     }
 
     fn connect_csis(&mut self, address: String) {
-        if !sysprop::get_bool(sysprop::PropertyBool::LeAudioEnableLeAudioOnly) {
+        if !self.is_le_audio_only_enabled {
             warn!("connect_csis: LeAudioEnableLeAudioOnly is not set");
             return;
         }
@@ -3163,7 +3185,7 @@ impl IBluetoothMedia for BluetoothMedia {
     }
 
     fn connect(&mut self, address: String) {
-        if sysprop::get_bool(sysprop::PropertyBool::LeAudioEnableLeAudioOnly) {
+        if self.is_le_audio_only_enabled {
             warn!("connect: LeAudioEnableLeAudioOnly is set");
             return;
         }
@@ -3345,7 +3367,7 @@ impl IBluetoothMedia for BluetoothMedia {
     // is notified of the disconnection callback, `disconnect_device` will be
     // invoked as necessary to ensure the device is removed.
     fn disconnect(&mut self, address: String) {
-        if sysprop::get_bool(sysprop::PropertyBool::LeAudioEnableLeAudioOnly) {
+        if self.is_le_audio_only_enabled {
             warn!("LeAudioEnableLeAudioOnly is set");
             return;
         }
