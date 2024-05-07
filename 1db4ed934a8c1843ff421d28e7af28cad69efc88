@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f51b9aff_c46039d5",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1311,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-07T05:25:34Z",
+      "side": 1,
+      "message": "Prefer this to be inlined with the log call so it\u0027s only calculated if debug logging is on.",
+      "revId": "1db4ed934a8c1843ff421d28e7af28cad69efc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "19887505_82af3c58",
         "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppService.java",
         "patchSetId": 1
