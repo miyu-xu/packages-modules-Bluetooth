@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8756582f_4d2eb893",
+        "filename": "flags/bta_dm.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-07T21:26:10Z",
+      "side": 1,
+      "message": "do you need a system property for this?\n\nflags will be removed eventually, on system property can be set at a per device level",
+      "range": {
+        "startLine": 56,
+        "startChar": 82,
+        "endLine": 56,
+        "endChar": 97
+      },
+      "revId": "03f877e7494ca4e277010fbdf24422e1ccc90507",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
