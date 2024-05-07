@@ -22,6 +22,53 @@
       },
       "revId": "03f877e7494ca4e277010fbdf24422e1ccc90507",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc947c29_cd02fc84",
+        "filename": "flags/bta_dm.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-07T22:26:41Z",
+      "side": 1,
+      "message": "How \"capable\" device is detected ? is it base on remote device capability or is it on android side ?\n\nIn both case this can be gated by a flag but you are correct, in 3~6~9 month the flag is deleted",
+      "parentUuid": "8756582f_4d2eb893",
+      "range": {
+        "startLine": 56,
+        "startChar": 82,
+        "endLine": 56,
+        "endChar": 97
+      },
+      "revId": "03f877e7494ca4e277010fbdf24422e1ccc90507",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af763692_1e7912f4",
+        "filename": "flags/bta_dm.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-07T22:26:41Z",
+      "side": 1,
+      "message": "Not the correct bug number",
+      "range": {
+        "startLine": 57,
+        "startChar": 10,
+        "endLine": 57,
+        "endChar": 19
+      },
+      "revId": "03f877e7494ca4e277010fbdf24422e1ccc90507",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
