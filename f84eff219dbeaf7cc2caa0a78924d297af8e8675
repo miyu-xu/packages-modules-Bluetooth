@@ -16,6 +16,29 @@
       "message": "Hi Ying, I\u0027m wondering if an approach like this is acceptable?\n\nThe alternative (telephony flag) is to expose a dedicated DBus method but that will actually require hundreds of lines of changes in Chrome (crrev.com/c/4731151) and Floss, which seems to be overkill for our simple use case to just query the flag on initialization.\n\nWe can refactor this utility to make it look more general if needed.",
       "revId": "f84eff219dbeaf7cc2caa0a78924d297af8e8675",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6c59fb8_c0fb081a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 2784,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-05-07T04:49:14Z",
+      "side": 1,
+      "message": "How about consolidating ChromeOS feature check logic in a central location (e.g. sytem/gd/rust/liux/utils/src)?",
+      "range": {
+        "startLine": 2771,
+        "startChar": 0,
+        "endLine": 2784,
+        "endChar": 1
+      },
+      "revId": "f84eff219dbeaf7cc2caa0a78924d297af8e8675",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
