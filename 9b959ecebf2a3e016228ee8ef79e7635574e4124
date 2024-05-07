@@ -16,6 +16,24 @@
       "message": "nit: glob not regex",
       "revId": "9b959ecebf2a3e016228ee8ef79e7635574e4124",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8205e26e_03a1624b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-07T22:19:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "424ddf1a_ceeb6f94",
+      "revId": "9b959ecebf2a3e016228ee8ef79e7635574e4124",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
