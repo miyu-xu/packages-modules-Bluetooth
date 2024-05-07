@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a66a5d0a_2205aa3d",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppTransfer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-07T02:54:36Z",
+      "side": 1,
+      "message": "Same as other CL, we should obfuscate the address",
+      "range": {
+        "startLine": 138,
+        "startChar": 38,
+        "endLine": 138,
+        "endChar": 50
+      },
+      "revId": "d3a3ea7511e72f2327361c307f13634a12a69141",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
