@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0caf939_2200caec",
+        "filename": "system/gd/storage/config_cache.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-05-07T11:06:28Z",
+      "side": 1,
+      "message": "nit: Using `std::optional` here is not necessary as the container itself can express the absence. You may declare names outside lambda function as patchset 1 and add conditional branches on 2nd and 3rd ProcessSections.",
+      "range": {
+        "startLine": 421,
+        "startChar": 0,
+        "endLine": 421,
+        "endChar": 39
+      },
+      "revId": "8320715d91721c78b92bd5e20765cdf3275b1c0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
