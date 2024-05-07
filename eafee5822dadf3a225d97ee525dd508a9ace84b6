@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09924686_1f99cc3d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 1274,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-05-07T07:07:44Z",
+      "side": 1,
+      "message": "nit: \"Based on our testing, some applications...\"",
+      "range": {
+        "startLine": 1274,
+        "startChar": 19,
+        "endLine": 1274,
+        "endChar": 36
+      },
+      "revId": "eafee5822dadf3a225d97ee525dd508a9ace84b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
