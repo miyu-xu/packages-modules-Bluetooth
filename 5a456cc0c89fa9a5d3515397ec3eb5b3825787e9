@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d80260d_c3d66a33",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-07T17:43:59Z",
+      "side": 1,
+      "message": "Flag: EXEMPT, testing-only change",
+      "revId": "5a456cc0c89fa9a5d3515397ec3eb5b3825787e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cab13401_0935e43f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-07T17:43:59Z",
+      "side": 1,
+      "message": "Please fix the linter errors.",
+      "revId": "5a456cc0c89fa9a5d3515397ec3eb5b3825787e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
