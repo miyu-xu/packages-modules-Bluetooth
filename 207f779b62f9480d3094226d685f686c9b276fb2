@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6df9b12f_2fdf2a59",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-07T02:58:09Z",
+      "side": 1,
+      "message": "We need to wait for aosp/3073821 that is fixing the floss build to automatically include aconfig flag files",
+      "revId": "207f779b62f9480d3094226d685f686c9b276fb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
