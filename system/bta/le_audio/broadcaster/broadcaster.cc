@@ -39,6 +39,8 @@
 #include "stack/include/btm_api_types.h"
 #include "stack/include/btm_iso_api.h"
 
+#include <com_android_bluetooth_flags.h>
+
 using bluetooth::common::ToString;
 using bluetooth::hci::IsoManager;
 using bluetooth::hci::iso_manager::big_create_cmpl_evt;
@@ -970,6 +972,23 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
                 return;
               }
 
+              // Update Broadcast AudioConfig to Hal
+              if (com::android::bluetooth::flags::leaudio_report_broadcast_ac_to_hal()) {
+                auto const& bigconfig = broadcast->GetBigConfig();
+                if (bigconfig == std::nullopt) {
+                  log::error("Broadcast broadcast->GetBroadcastId()={} broadcast_id={} "
+                            "has no valid BIS configurations in state={}",
+                    broadcast->GetBroadcastId(), broadcast_id,
+                    ToString(broadcast->GetState()));
+                } else {
+                  CodecManager::GetInstance()->UpdateBroadcastConnHandle(
+                      bigconfig->connection_handles,
+                      std::bind(
+                          &LeAudioSourceAudioHalClient::UpdateBroadcastAudioConfigToHal,
+                          instance->le_audio_source_hal_client_.get(),
+                          std::placeholders::_1));
+                }
+              }
               instance->audio_data_path_state_ = AudioDataPathState::ACTIVE;
             }
           }
