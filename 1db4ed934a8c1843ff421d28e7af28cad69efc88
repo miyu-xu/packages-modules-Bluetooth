@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff75ca61_71a3a12b",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1311,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-05-07T09:08:41Z",
+      "side": 1,
+      "message": "Fixed!",
+      "parentUuid": "f51b9aff_c46039d5",
+      "revId": "1db4ed934a8c1843ff421d28e7af28cad69efc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "19887505_82af3c58",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-05-07T02:53:39Z",
       "side": 1,
       "message": "Please, obfuscate the address logged",
+      "range": {
+        "startLine": 1315,
+        "startChar": 79,
+        "endLine": 1315,
+        "endChar": 84
+      },
+      "revId": "1db4ed934a8c1843ff421d28e7af28cad69efc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a533a8d0_47de0844",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1315,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-05-07T09:08:41Z",
+      "side": 1,
+      "message": "Done!",
+      "parentUuid": "19887505_82af3c58",
       "range": {
         "startLine": 1315,
         "startChar": 79,
