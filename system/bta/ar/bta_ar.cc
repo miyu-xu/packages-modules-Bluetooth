@@ -65,9 +65,11 @@ static void bta_ar_avrc_add_cat(uint16_t categories) {
   if (bta_ar_cb.sdp_tg_handle != 0) {
     p = temp;
     UINT16_TO_BE_STREAM(p, categories);
-    get_legacy_stack_sdp_api()->handle.SDP_AddAttribute(
-        bta_ar_cb.sdp_tg_handle, ATTR_ID_SUPPORTED_FEATURES, UINT_DESC_TYPE,
-        sizeof(temp), (uint8_t*)temp);
+    if (!get_legacy_stack_sdp_api()->handle.SDP_AddAttribute(
+            bta_ar_cb.sdp_tg_handle, ATTR_ID_SUPPORTED_FEATURES, UINT_DESC_TYPE,
+            sizeof(temp), (uint8_t*)temp)) {
+      log::warn("Unable to add SDP attribute for supported categories");
+    }
   }
 }
 
@@ -230,9 +232,11 @@ void bta_ar_reg_avrc(uint16_t service_uuid, const char* service_name,
        * Change supported categories on the second one */
       p = temp;
       UINT16_TO_BE_STREAM(p, categories);
-      get_legacy_stack_sdp_api()->handle.SDP_AddAttribute(
-          bta_ar_cb.sdp_ct_handle, ATTR_ID_SUPPORTED_FEATURES, UINT_DESC_TYPE,
-          (uint32_t)2, (uint8_t*)temp);
+      if (!get_legacy_stack_sdp_api()->handle.SDP_AddAttribute(
+              bta_ar_cb.sdp_ct_handle, ATTR_ID_SUPPORTED_FEATURES,
+              UINT_DESC_TYPE, (uint32_t)2, (uint8_t*)temp)) {
+        log::warn("Unable to add supported features");
+      }
     }
   }
 }
@@ -280,9 +284,12 @@ void bta_ar_dereg_avrc(uint16_t service_uuid) {
         /* change supported categories to the remaning one */
         p = temp;
         UINT16_TO_BE_STREAM(p, categories);
-        get_legacy_stack_sdp_api()->handle.SDP_AddAttribute(
-            bta_ar_cb.sdp_ct_handle, ATTR_ID_SUPPORTED_FEATURES, UINT_DESC_TYPE,
-            (uint32_t)2, (uint8_t*)temp);
+        if (!get_legacy_stack_sdp_api()->handle.SDP_AddAttribute(
+                bta_ar_cb.sdp_ct_handle, ATTR_ID_SUPPORTED_FEATURES,
+                UINT_DESC_TYPE, (uint32_t)2, (uint8_t*)temp)) {
+          log::warn("Unable to add SDP supported features handle:{}",
+                    bta_ar_cb.sdp_ct_handle);
+        }
       }
     }
   }
@@ -361,9 +368,12 @@ void bta_ar_reg_avrc_for_src_sink_coexist(
        * Change supported categories on the second one */
       p = temp;
       UINT16_TO_BE_STREAM(p, categories);
-      get_legacy_stack_sdp_api()->handle.SDP_AddAttribute(
-          bta_ar_cb.sdp_ct_handle, ATTR_ID_SUPPORTED_FEATURES, UINT_DESC_TYPE,
-          (uint32_t)2, (uint8_t*)temp);
+      if (!get_legacy_stack_sdp_api()->handle.SDP_AddAttribute(
+              bta_ar_cb.sdp_ct_handle, ATTR_ID_SUPPORTED_FEATURES,
+              UINT_DESC_TYPE, (uint32_t)2, (uint8_t*)temp)) {
+        log::warn("Unable to add SDP attribute supported features handle:{}",
+                  bta_ar_cb.sdp_ct_handle);
+      }
     }
   }
 }
