@@ -61,6 +61,7 @@ import com.android.bluetooth.BluetoothObexTransport;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.content_profiles.ContentProfileErrorReportUtils;
+import com.android.bluetooth.flags.Flags;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.obex.ObexTransport;
 
@@ -127,10 +128,14 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
                             0);
                     return;
                 } else if (mCurrentShare == null) {
+                    String brEdrAddress =
+                            Flags.identityAddressNullIfUnknown()
+                                    ? Utils.getBrEdrAddress(device)
+                                    : device.getIdentityAddress();
                     Log.e(
                             TAG,
                             "device : "
-                                    + device.getIdentityAddress()
+                                    + brEdrAddress
                                     + " mBatch :"
                                     + mBatch
                                     + " mCurrentShare :"
@@ -144,10 +149,14 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
                     return;
                 }
                 try {
+                    String brEdrAddress =
+                            Flags.identityAddressNullIfUnknown()
+                                    ? Utils.getBrEdrAddress(device)
+                                    : device.getIdentityAddress();
                     Log.v(
                             TAG,
                             "Device :"
-                                    + device.getIdentityAddress()
+                                    + brEdrAddress
                                     + "- OPP device: "
                                     + mBatch.mDestination
                                     + " \n mCurrentShare.mConfirm == "
@@ -190,8 +199,14 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
                                 3);
                         return;
                     }
-                    String deviceIdentityAddress = device.getIdentityAddress();
-                    String transferDeviceIdentityAddress = mDevice.getIdentityAddress();
+                    String deviceIdentityAddress =
+                            Flags.identityAddressNullIfUnknown()
+                                    ? Utils.getBrEdrAddress(device)
+                                    : device.getIdentityAddress();
+                    String transferDeviceIdentityAddress =
+                            Flags.identityAddressNullIfUnknown()
+                                    ? Utils.getBrEdrAddress(mDevice)
+                                    : mDevice.getIdentityAddress();
                     if (deviceIdentityAddress == null || transferDeviceIdentityAddress == null
                             || !deviceIdentityAddress.equalsIgnoreCase(
                                     transferDeviceIdentityAddress)) {
