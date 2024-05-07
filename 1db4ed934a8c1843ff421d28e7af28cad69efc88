@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19887505_82af3c58",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1315,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-07T02:53:39Z",
+      "side": 1,
+      "message": "Please, obfuscate the address logged",
+      "range": {
+        "startLine": 1315,
+        "startChar": 79,
+        "endLine": 1315,
+        "endChar": 84
+      },
+      "revId": "1db4ed934a8c1843ff421d28e7af28cad69efc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
