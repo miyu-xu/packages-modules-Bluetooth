@@ -76,10 +76,11 @@ public class BluetoothOppReceiver extends BroadcastReceiver {
                 return;
             }
 
-            Log.d(
-                    TAG,
-                    "Received BT device selected intent, bt device: "
-                            + remoteDevice.getIdentityAddress());
+            String brEdrAddress =
+                    Flags.identityAddressNullIfUnknown()
+                            ? Utils.getBrEdrAddress(remoteDevice)
+                            : remoteDevice.getIdentityAddress();
+            Log.d(TAG, "Received BT device selected intent, bt device: " + brEdrAddress);
 
             // Insert transfer session record to database
             mOppManager.startTransfer(remoteDevice);
