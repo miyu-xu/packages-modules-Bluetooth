@@ -16,6 +16,23 @@
       "message": "add LE connection area owner to take a look",
       "revId": "108f493c2ad6c0f70cf21a365f0793b6e863f37b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e65f98b_4a3be84a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-07T05:28:30Z",
+      "side": 1,
+      "message": "Simple config changed approved by HW experts. \n\nLE audio devices are only expected to advertise using 1M PHY since they are only used close by and coded PHY does not make sense.",
+      "revId": "108f493c2ad6c0f70cf21a365f0793b6e863f37b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
