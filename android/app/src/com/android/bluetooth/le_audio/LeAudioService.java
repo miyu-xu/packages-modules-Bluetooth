@@ -175,6 +175,7 @@ public class LeAudioService extends ProfileService {
             leaudioApiSynchronizedBlockFix() ? mGroupReadWriteLock.readLock() : mGroupLock;
     private final Lock mGroupWriteLock =
             leaudioApiSynchronizedBlockFix() ? mGroupReadWriteLock.writeLock() : mGroupLock;
+    private final Context mContext;
     ServiceFactory mServiceFactory = new ServiceFactory();
 
     LeAudioNativeInterface mLeAudioNativeInterface;
@@ -198,8 +199,8 @@ public class LeAudioService extends ProfileService {
     LeAudioTmapGattServer mTmapGattServer;
     int mTmapRoleMask;
     int mUnicastGroupIdDeactivatedForBroadcastTransition = LE_AUDIO_GROUP_ID_INVALID;
+    int mCurrentAudioMode = AudioManager.MODE_INVALID;
     Optional<Integer> mBroadcastIdDeactivatedForUnicastTransition = Optional.empty();
-    Optional<Boolean> mQueuedInCallValue = Optional.empty();
     boolean mTmapStarted = false;
     private boolean mAwaitingBroadcastCreateResponse = false;
     private final LinkedList<BluetoothLeBroadcastSettings> mCreateBroadcastQueue =
@@ -235,12 +236,14 @@ public class LeAudioService extends ProfileService {
 
     public LeAudioService(Context ctx) {
         super(ctx);
+        mContext = ctx;
     }
 
     @VisibleForTesting
     LeAudioService(Context ctx, LeAudioNativeInterface nativeInterface) {
         super(ctx);
         mLeAudioNativeInterface = nativeInterface;
+        mContext = ctx;
     }
 
     private class LeAudioGroupDescriptor {
@@ -393,6 +396,7 @@ public class LeAudioService extends ProfileService {
     private Handler mHandler = new Handler(Looper.getMainLooper());
     private final AudioManagerAudioDeviceCallback mAudioManagerAudioDeviceCallback =
             new AudioManagerAudioDeviceCallback();
+    private AudioModeChangeListener mAudioModeChangeListener;
 
     @Override
     protected IProfileServiceBinder initBinder() {
@@ -516,6 +520,12 @@ public class LeAudioService extends ProfileService {
             return;
         }
         nativeInterface.init(mLeAudioCodecConfig.getCodecConfigOffloading());
+
+        if (mAudioModeChangeListener == null) {
+            mAudioModeChangeListener = new AudioModeChangeListener();
+            mAudioManager.addOnModeChangedListener(
+                    mContext.getMainExecutor(), mAudioModeChangeListener);
+        }
     }
 
     @Override
@@ -526,7 +536,10 @@ public class LeAudioService extends ProfileService {
             return;
         }
 
-        mQueuedInCallValue = Optional.empty();
+        if (mAudioModeChangeListener != null) {
+            mAudioManager.removeOnModeChangedListener(mAudioModeChangeListener);
+        }
+
         mCreateBroadcastQueue.clear();
         mAwaitingBroadcastCreateResponse = false;
         mIsSourceStreamMonitorModeEnabled = false;
@@ -2774,11 +2787,6 @@ public class LeAudioService extends ProfileService {
             return;
         }
 
-        if (mQueuedInCallValue.isPresent()) {
-            mLeAudioNativeInterface.setInCall(mQueuedInCallValue.get());
-            mQueuedInCallValue = Optional.empty();
-        }
-
         BluetoothDevice unicastDevice =
                 getLeadDeviceForTheGroup(mUnicastGroupIdDeactivatedForBroadcastTransition);
         if (unicastDevice == null) {
@@ -3163,7 +3171,6 @@ public class LeAudioService extends ProfileService {
                     /* Check if broadcast was deactivated due to unicast */
                     if (mBroadcastIdDeactivatedForUnicastTransition.isPresent()) {
                         updateFallbackUnicastGroupIdForBroadcast(groupId);
-                        mQueuedInCallValue = Optional.empty();
                         startBroadcast(mBroadcastIdDeactivatedForUnicastTransition.get());
                         mBroadcastIdDeactivatedForUnicastTransition = Optional.empty();
                     }
@@ -3803,27 +3810,7 @@ public class LeAudioService extends ProfileService {
             return;
         }
 
-        /* For setting inCall mode */
-        if (Flags.leaudioBroadcastAudioHandoverPolicies() && inCall && !areBroadcastsAllStopped()) {
-            mQueuedInCallValue = Optional.of(true);
-
-            /* Request activation of unicast group */
-            handleUnicastStreamStatusChange(
-                    LeAudioStackEvent.DIRECTION_SINK,
-                    LeAudioStackEvent.STATUS_LOCAL_STREAM_REQUESTED);
-            return;
-        }
-
         mLeAudioNativeInterface.setInCall(inCall);
-
-        /* For clearing inCall mode */
-        if (Flags.leaudioBroadcastAudioHandoverPolicies()
-                && !inCall
-                && mBroadcastIdDeactivatedForUnicastTransition.isPresent()) {
-            handleUnicastStreamStatusChange(
-                    LeAudioStackEvent.DIRECTION_SINK,
-                    LeAudioStackEvent.STATUS_LOCAL_STREAM_SUSPENDED);
-        }
     }
 
     /**
@@ -4711,6 +4698,42 @@ public class LeAudioService extends ProfileService {
                 }
 
                 mHandler.post(() -> notifyBroadcastStartFailed(BluetoothStatusCodes.ERROR_TIMEOUT));
+            }
+        }
+    }
+
+    class AudioModeChangeListener implements AudioManager.OnModeChangedListener {
+        @Override
+        public void onModeChanged(int mode) {
+            if (!Flags.leaudioBroadcastAudioHandoverPolicies()) {
+                return;
+            }
+
+            Log.d(TAG, "Audio mode changed: " + mCurrentAudioMode + " -> " + mode);
+
+            mCurrentAudioMode = mode;
+
+            switch (mode) {
+                case AudioManager.MODE_RINGTONE:
+                case AudioManager.MODE_IN_CALL:
+                case AudioManager.MODE_IN_COMMUNICATION:
+                    if (!areBroadcastsAllStopped()) {
+                        /* Request activation of unicast group */
+                        handleUnicastStreamStatusChange(
+                                LeAudioStackEvent.DIRECTION_SINK,
+                                LeAudioStackEvent.STATUS_LOCAL_STREAM_REQUESTED);
+                    }
+                    break;
+                case AudioManager.MODE_NORMAL:
+                    if (mBroadcastIdDeactivatedForUnicastTransition.isPresent()) {
+                        handleUnicastStreamStatusChange(
+                                LeAudioStackEvent.DIRECTION_SINK,
+                                LeAudioStackEvent.STATUS_LOCAL_STREAM_SUSPENDED);
+                    }
+                    break;
+                default:
+                    Log.d(TAG, "Not handled audio mode set: " + mode);
+                    break;
             }
         }
     }
