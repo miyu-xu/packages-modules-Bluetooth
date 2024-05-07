@@ -427,6 +427,17 @@ void LeAudioClientInterface::Sink::UpdateBroadcastAudioConfigToHal(
 
   get_aidl_transport_instance(is_broadcaster_)
       ->LeAudioSetBroadcastConfig(offload_config);
+
+  if (com::android::bluetooth::flags::leaudio_report_broadcast_ac_to_hal()) {
+    AudioConfigurationAIDL audio_config;
+    audio_config.set<AudioConfigurationAIDL::leAudioBroadcastConfig>(
+              get_aidl_transport_instance(is_broadcaster_)
+                  ->LeAudioGetBroadcastConfig());
+    if (!get_aidl_client_interface(is_broadcaster_)
+              ->UpdateAudioConfig(audio_config)) {
+      log::error("cannot update audio config to HAL");
+    }
+  }
 }
 
 void LeAudioClientInterface::Sink::SuspendedForReconfiguration() {
