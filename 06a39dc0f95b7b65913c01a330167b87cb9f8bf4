@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56ee1b56_9b06a6e1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-05-07T05:40:42Z",
+      "side": 1,
+      "message": "I needed these to \"flush\" out the changes by `.bringUpBle()`. It\u0027s only needed when a new Profile service is registered and hence, did not needed in the new unit test function below.",
+      "range": {
+        "startLine": 688,
+        "startChar": 0,
+        "endLine": 689,
+        "endChar": 63
+      },
+      "revId": "06a39dc0f95b7b65913c01a330167b87cb9f8bf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
