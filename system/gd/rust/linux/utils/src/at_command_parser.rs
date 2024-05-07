@@ -130,7 +130,7 @@ pub fn calculate_battery_percent(at_command: AtCommand) -> Result<u32, String> {
         Some(data) => {
             match data.get(&AtCommandDataType::IPhoneAccevBatteryLevel) {
                 Some(battery_level) => match battery_level.parse::<u32>() {
-                    Ok(level) => return Ok(level * 10),
+                    Ok(level) => return Ok((level + 1) * 10),
                     Err(e) => return Err(e.to_string()),
                 },
                 None => (),
@@ -428,7 +428,7 @@ mod tests {
         let at_command = parse_at_command_data("AT+IPHONEACCEV=1,1,2".to_string());
         assert!(!at_command.is_err());
         let battery_level = calculate_battery_percent(at_command.unwrap()).unwrap();
-        assert_eq!(battery_level, 20);
+        assert_eq!(battery_level, 30);
 
         // Plantronics - missing args
         let at_command = parse_at_command_data("AT+XEVENT=BATTERY".to_string());
