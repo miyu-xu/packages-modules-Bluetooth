@@ -1,6 +1,138 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "f20267b2_5774e3af",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-05-07T06:52:02Z",
+      "side": 1,
+      "message": "what is this? if you\u0027re talking about the running VC app, just say \u0027the VC app\u0027\nSeeing \"original\" app makes reader like me wonder what\u0027s the unoriginal app in the context.",
+      "range": {
+        "startLine": 7,
+        "startChar": 48,
+        "endLine": 7,
+        "endChar": 60
+      },
+      "revId": "de90570a87a3752d4a6f631a696d03a549f5248b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "575eeccf_2cfde9b2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-05-07T06:52:02Z",
+      "side": 1,
+      "message": "Use imperative present tense\nhttps://github.com/agis/git-style-guide?tab\u003dreadme-ov-file#messages",
+      "range": {
+        "startLine": 7,
+        "startChar": 7,
+        "endLine": 7,
+        "endChar": 17
+      },
+      "revId": "de90570a87a3752d4a6f631a696d03a549f5248b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1a125ef_41775890",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-05-07T06:52:02Z",
+      "side": 1,
+      "message": "\"attempts to place a call\" is better",
+      "range": {
+        "startLine": 10,
+        "startChar": 4,
+        "endLine": 10,
+        "endChar": 16
+      },
+      "revId": "de90570a87a3752d4a6f631a696d03a549f5248b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3357625a_8ca43bf4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-05-07T06:52:02Z",
+      "side": 1,
+      "message": "This is misleading, your code refactors the logic anyway \"with and without\" an incoming call.\nPlease always keep the commit description aligned with code",
+      "range": {
+        "startLine": 10,
+        "startChar": 17,
+        "endLine": 10,
+        "endChar": 50
+      },
+      "revId": "de90570a87a3752d4a6f631a696d03a549f5248b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f8c8741_a732509c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-05-07T06:52:02Z",
+      "side": 1,
+      "message": "the app",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 3
+      },
+      "revId": "de90570a87a3752d4a6f631a696d03a549f5248b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed69319f_49079525",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-05-07T06:52:02Z",
+      "side": 1,
+      "message": "please add a note that although this commit modifies the call operation sequences, we expect no result behavior change to the app and end users.",
+      "revId": "de90570a87a3752d4a6f631a696d03a549f5248b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "84cfd98f_6905bec5",
@@ -31,6 +163,23 @@
       "writtenOn": "2024-05-07T06:47:16Z",
       "side": 1,
       "message": "Perhaps print a warning if the state is neither Incoming nor Idle?",
+      "revId": "de90570a87a3752d4a6f631a696d03a549f5248b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ea774a4_53134b3a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2238,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-05-07T06:52:02Z",
+      "side": 1,
+      "message": "place_active_call could be a better name. Please also add a comment to explain in what scenario we expect this function to be called.",
       "revId": "de90570a87a3752d4a6f631a696d03a549f5248b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
