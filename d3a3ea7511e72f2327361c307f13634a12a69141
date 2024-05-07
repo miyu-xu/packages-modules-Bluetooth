@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6524038_7b4c577c",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppTransfer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-05-07T09:14:17Z",
+      "side": 1,
+      "message": "Got it. Done!",
+      "parentUuid": "a66a5d0a_2205aa3d",
+      "range": {
+        "startLine": 138,
+        "startChar": 38,
+        "endLine": 138,
+        "endChar": 50
+      },
+      "revId": "d3a3ea7511e72f2327361c307f13634a12a69141",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ff6439f_d9caa7f5",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-05-07T05:08:15Z",
       "side": 1,
       "message": "Inline this if only used for logging at less than info level. Also consider having a private method for getting the address for a device.",
+      "range": {
+        "startLine": 152,
+        "startChar": 27,
+        "endLine": 152,
+        "endChar": 39
+      },
+      "revId": "d3a3ea7511e72f2327361c307f13634a12a69141",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad2e0e7d_89c7cd19",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppTransfer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-05-07T09:14:17Z",
+      "side": 1,
+      "message": "Got it. Made private method and inlined.",
+      "parentUuid": "2ff6439f_d9caa7f5",
       "range": {
         "startLine": 152,
         "startChar": 27,
