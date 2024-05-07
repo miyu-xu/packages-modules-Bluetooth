@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b606d705_e2849405",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-05-07T02:50:05Z",
+      "side": 1,
+      "message": "Hi Ying, I\u0027m wondering if an approach like this is acceptable?\n\nThe alternative (telephony flag) is to expose a dedicated DBus method but that will actually require hundreds of lines of changes in Chrome (crrev.com/c/4731151) and Floss, which seems to be overkill for our simple use case to just query the flag on initialization.\n\nWe can refactor this utility to make it look more general if needed.",
+      "revId": "f84eff219dbeaf7cc2caa0a78924d297af8e8675",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
