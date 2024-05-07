@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ee45120d_9143df09",
+        "filename": "sysprop/sysprop.gni",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-07T05:53:47Z",
+      "side": 1,
+      "message": "Use `action_foreach` and correctly set the source https://gn.googlesource.com/gn/+/main/docs/reference.md#func_action_foreach",
+      "revId": "33b135027b4985c4b8d4d52c80a8a3c7687568c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "be32974b_e114942a",
         "filename": "sysprop/sysprop.gni",
         "patchSetId": 1
