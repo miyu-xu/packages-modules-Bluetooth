@@ -16,6 +16,24 @@
       "message": "Mmh, I do not think this is valid, gn does not support globs https://gn.googlesource.com/gn/+/main/docs/faq.md#how-can-i-reference-all-files-in-a-directory-glob\n\nI think here this works because this is passed directory to the aconfig CLI which makes me say that I got the dependency tracking wrong.\n\nI would prefer for this modification to not be merged as part of this CL and more carefully evaluate it.",
       "revId": "e4c062ebb5bf6394af2ebe3631e70cdfd6c10228",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "639e803d_4c1a7313",
+        "filename": "flags/BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-05-07T06:57:26Z",
+      "side": 1,
+      "message": "OK. Thanks for providing the reference. I would revert the change for this CL.",
+      "parentUuid": "a533b4fc_5cbff3a3",
+      "revId": "e4c062ebb5bf6394af2ebe3631e70cdfd6c10228",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
