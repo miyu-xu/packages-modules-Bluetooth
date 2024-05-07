@@ -361,6 +361,16 @@ flag {
 }
 
 flag {
+    name: "leaudio_report_broadcast_ac_to_hal"
+    namespace: "bluetooth"
+    description: "Flag for reporting lea broadcast audio config to HAL"
+    bug: "321168976"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
+
+flag {
     name: "headtracker_codec_capability"
     namespace: "bluetooth"
     description: "Use Android Headtracker codec capabilities"
