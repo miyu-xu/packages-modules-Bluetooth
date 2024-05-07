@@ -22,6 +22,29 @@
       },
       "revId": "d3a3ea7511e72f2327361c307f13634a12a69141",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ff6439f_d9caa7f5",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppTransfer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-07T05:08:15Z",
+      "side": 1,
+      "message": "Inline this if only used for logging at less than info level. Also consider having a private method for getting the address for a device.",
+      "range": {
+        "startLine": 152,
+        "startChar": 27,
+        "endLine": 152,
+        "endChar": 39
+      },
+      "revId": "d3a3ea7511e72f2327361c307f13634a12a69141",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
