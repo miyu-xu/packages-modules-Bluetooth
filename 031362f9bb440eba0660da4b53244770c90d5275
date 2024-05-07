@@ -16,6 +16,120 @@
       "message": "Looking for early feedback about the direction",
       "revId": "031362f9bb440eba0660da4b53244770c90d5275",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae3466fd_5dbb3d84",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-07T22:13:14Z",
+      "side": 1,
+      "message": "Only reviewed the test, left some comments.\n\nOverall this looks ok, I just don\u0027t see the value of using BumbleBluetoothTests instead of avatar here but maybe this will come with more complex test cases.",
+      "revId": "031362f9bb440eba0660da4b53244770c90d5275",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fa6e218_e3bcc8fc",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-07T22:13:14Z",
+      "side": 1,
+      "message": "Should we adopt some specific permissions instead of all of them?\nRFCOMM should only need BLUETOOTH_CONNECT no?",
+      "revId": "031362f9bb440eba0660da4b53244770c90d5275",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39c29e26_2c2ebe30",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-07T22:13:14Z",
+      "side": 1,
+      "message": "nit: I think this should be removed",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 9
+      },
+      "revId": "031362f9bb440eba0660da4b53244770c90d5275",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a6fc2a2_33401c28",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-07T22:13:14Z",
+      "side": 1,
+      "message": "nit: Could we move that to each test instead?\n\nSame for the `stopServer` in the tearDown.\n\nWith JUnit `setUp` and `tearDown` are hard to get right because the tearDown is always called even when the setUp fails, so the recommendation is to have a setUp that cannot fail, doing RPC calls inside it prevents that.",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 68
+      },
+      "revId": "031362f9bb440eba0660da4b53244770c90d5275",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "233f72e6_ec6d1003",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-07T22:13:14Z",
+      "side": 1,
+      "message": "This assertion seems strange, what does `1` means here?\n\nI think it would be great to rework a bit the RFCOMM interface to make this test more expressive.",
+      "revId": "031362f9bb440eba0660da4b53244770c90d5275",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa4a4193_f6c84f85",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-07T22:13:14Z",
+      "side": 1,
+      "message": "It seems that this content of this method was copied over from the PairingTest.\n\nI don\u0027t think RFCOMM tests should be that tied to the pairing behavior.\n\nI would prefer that the test registers a receiver for the whole duration of the test that handles `ACTION_PAIRING_REQUEST` and transform this function to just calling `createBond` and waiting for a `BOND_BONDED`.",
+      "revId": "031362f9bb440eba0660da4b53244770c90d5275",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
