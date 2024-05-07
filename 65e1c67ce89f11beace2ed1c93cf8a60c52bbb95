@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "796c4d8b_d39f930a",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 805,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-07T05:45:50Z",
+      "side": 1,
+      "message": "Is the list of exclusive managers going to be updated to use component name? Right now it\u0027s just package name, and it needs to exactly match.",
+      "range": {
+        "startLine": 805,
+        "startChar": 76,
+        "endLine": 805,
+        "endChar": 89
+      },
+      "revId": "65e1c67ce89f11beace2ed1c93cf8a60c52bbb95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
