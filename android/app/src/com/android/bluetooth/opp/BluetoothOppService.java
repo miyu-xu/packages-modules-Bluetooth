@@ -62,6 +62,7 @@ import com.android.bluetooth.BluetoothObexTransport;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.IObexConnectionHandler;
 import com.android.bluetooth.ObexServerSockets;
+import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.content_profiles.ContentProfileErrorReportUtils;
@@ -1307,13 +1308,11 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
 
     @Override
     public boolean onConnect(BluetoothDevice device, BluetoothSocket socket) {
-
-        Log.d(
-                TAG,
-                " onConnect BluetoothSocket :"
-                        + socket
-                        + " \n :device :"
-                        + device.getIdentityAddress());
+        String brEdrAddress =
+                Flags.identityAddressNullIfUnknown()
+                        ? Utils.getBrEdrAddress(device, mAdapterService)
+                        : device.getIdentityAddress();
+        Log.d(TAG, " onConnect BluetoothSocket :" + socket + " \n :device :" + brEdrAddress);
         if (!mAcceptNewConnections) {
             Log.d(TAG, " onConnect BluetoothSocket :" + socket + " rejected");
             return false;
