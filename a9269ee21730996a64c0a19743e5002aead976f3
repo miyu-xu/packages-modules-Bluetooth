@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ffe315ea_fc0205e4",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppReceiver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-07T05:26:11Z",
+      "side": 1,
+      "message": "Prefer this to be inlined into the log call so it\u0027s only calculated when debug logging is on.",
+      "range": {
+        "startLine": 79,
+        "startChar": 19,
+        "endLine": 79,
+        "endChar": 31
+      },
+      "revId": "a9269ee21730996a64c0a19743e5002aead976f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c0452299_a25681b0",
         "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppReceiver.java",
         "patchSetId": 1
