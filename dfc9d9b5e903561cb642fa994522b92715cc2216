@@ -211,6 +211,30 @@
       },
       "revId": "dfc9d9b5e903561cb642fa994522b92715cc2216",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a50675c3_cd5d42b9",
+        "filename": "system/gd/sysprops/sysprops_module_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-07T01:03:30Z",
+      "side": 1,
+      "message": "It seems system_properties_common_test [*] is relying on this behavior - It only does some checks if ClearSystemPropertiesForHost returns true. Also, since this is no-op on Android the sysprops would not be cleared and the newly added unittests would fail. Is it possible to exclude these tests from Android and only run on Host?\n\n[*] https://cs.android.com/android/platform/superproject/+/main:packages/modules/Bluetooth/system/gd/os/system_properties_common_test.cc;l\u003d41;drc\u003d3f2a310f23d2edd6734026d2d051b07b9ff8ea3f",
+      "parentUuid": "f14997c1_227f1ec5",
+      "range": {
+        "startLine": 36,
+        "startChar": 31,
+        "endLine": 36,
+        "endChar": 59
+      },
+      "revId": "dfc9d9b5e903561cb642fa994522b92715cc2216",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
