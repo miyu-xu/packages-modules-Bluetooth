@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fa9fb5c_8d6d0972",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppPreference.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-07T04:51:42Z",
+      "side": 1,
+      "message": "Since this is only used for logging I\u0027d prefer that it\u0027s inlined (so it\u0027s not executed if verbose logging is not on). In fact since you make this calculation multiple times it might be best to move it to a private method in this class.",
+      "range": {
+        "startLine": 137,
+        "startChar": 19,
+        "endLine": 137,
+        "endChar": 31
+      },
+      "revId": "6efbf8628fc18dea31fe2befc3ede28071ebf919",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b31f562_7bd381ba",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppPreference.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-07T04:51:42Z",
+      "side": 1,
+      "message": "Just use brEdrAddress variable from above?",
+      "range": {
+        "startLine": 161,
+        "startChar": 12,
+        "endLine": 164,
+        "endChar": 64
+      },
+      "revId": "6efbf8628fc18dea31fe2befc3ede28071ebf919",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1b1870c_34d2985f",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppPreference.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-07T04:51:42Z",
+      "side": 1,
+      "message": "Same comment here as in getChannel(), inline the call within the log statement.",
+      "range": {
+        "startLine": 172,
+        "startChar": 8,
+        "endLine": 175,
+        "endChar": 60
+      },
+      "revId": "6efbf8628fc18dea31fe2befc3ede28071ebf919",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
