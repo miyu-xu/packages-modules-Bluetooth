@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3759347c_7c3e1442",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-07T00:24:18Z",
+      "side": 1,
+      "message": "Since there weren\u0027t any tests for this code, it was broken.  The bug fix is to remove the extra bytes on line 1037",
+      "parentUuid": "591f4229_273922c1",
+      "range": {
+        "startLine": 15,
+        "startChar": 14,
+        "endLine": 15,
+        "endChar": 28
+      },
+      "revId": "a8c3a1dd708ff551b06cd1788b5cf49ed72d02c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "caeb5f31_8333ec23",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 7
@@ -54,6 +78,30 @@
       "writtenOn": "2024-05-06T23:34:52Z",
       "side": 1,
       "message": "nit: add some documentation in the header indicate what is `to_bind_` and the effect when it is null vs non-null",
+      "range": {
+        "startLine": 348,
+        "startChar": 27,
+        "endLine": 348,
+        "endChar": 59
+      },
+      "revId": "a8c3a1dd708ff551b06cd1788b5cf49ed72d02c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c446f3b0_8737f364",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-07T00:24:18Z",
+      "side": 1,
+      "message": "I did, on line 416",
+      "parentUuid": "9ca4d0b5_afd06a62",
       "range": {
         "startLine": 348,
         "startChar": 27,
