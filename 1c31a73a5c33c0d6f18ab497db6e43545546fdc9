@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef1a533b_972ea571",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1312,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-07T18:19:25Z",
+      "side": 1,
+      "message": "William corrected my understanding, inlining the call doesn\u0027t help since we don\u0027t use proguard to excise debug logs in our binary. Most 1p apps do remove logs less than info level from the binary.\n\nSo no harm to make this change, but no benefit.",
+      "range": {
+        "startLine": 1312,
+        "startChar": 8,
+        "endLine": 1312,
+        "endChar": 14
+      },
+      "revId": "1c31a73a5c33c0d6f18ab497db6e43545546fdc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
