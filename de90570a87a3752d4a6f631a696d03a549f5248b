@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84cfd98f_6905bec5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-07T06:47:16Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "de90570a87a3752d4a6f631a696d03a549f5248b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c418046_f3d60811",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1327,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-07T06:47:16Z",
+      "side": 1,
+      "message": "Perhaps print a warning if the state is neither Incoming nor Idle?",
+      "revId": "de90570a87a3752d4a6f631a696d03a549f5248b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
