@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "056e65b9_2995b9f5",
+        "filename": "system/audio_hal_interface/le_audio_software_host_transport.cc",
+        "patchSetId": 26
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-05-07T05:25:41Z",
+      "side": 1,
+      "message": "I was wondering if you can just assign a function pointer instead of moving it at the first place. On the other hand, you might define flush as std::function.",
+      "range": {
+        "startLine": 29,
+        "startChar": 6,
+        "endLine": 29,
+        "endChar": 30
+      },
+      "revId": "c4e9ca2ed3a2eaabf66861d6a5c24099aeb82fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36ceed3c_a404d7cb",
+        "filename": "system/audio_hal_interface/le_audio_software_host_transport.cc",
+        "patchSetId": 26
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-05-07T05:25:41Z",
+      "side": 1,
+      "message": "flush_ could be null fucntion pointer",
+      "range": {
+        "startLine": 65,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 10
+      },
+      "revId": "c4e9ca2ed3a2eaabf66861d6a5c24099aeb82fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4893c883_bcad8dbf",
+        "filename": "system/audio_hal_interface/le_audio_software_host_transport.cc",
+        "patchSetId": 26
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-05-07T05:25:41Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 75,
+        "startChar": 4,
+        "endLine": 75,
+        "endChar": 10
+      },
+      "revId": "c4e9ca2ed3a2eaabf66861d6a5c24099aeb82fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ddd6227_3035d812",
+        "filename": "system/audio_hal_interface/le_audio_software_host_transport.cc",
+        "patchSetId": 26
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-05-07T05:25:41Z",
+      "side": 1,
+      "message": "Please provide expected behavior and track it with bugnizer.",
+      "range": {
+        "startLine": 165,
+        "startChar": 2,
+        "endLine": 165,
+        "endChar": 9
+      },
+      "revId": "c4e9ca2ed3a2eaabf66861d6a5c24099aeb82fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9f3b38e_e2482589",
+        "filename": "system/audio_hal_interface/le_audio_software_host_transport.cc",
+        "patchSetId": 26
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-05-07T05:25:41Z",
+      "side": 1,
+      "message": "Based on LeAudioClientInterface::PcmParameters, sample_rate and channels_count look odds:\n\n```\ndata_interval_us \u003d 16000\nsample_rate \u003d 2\nbits_per_sample \u003d 16\nchannels_count \u003d 0\n```\n\nCan you please clarify these parameter and define the PcmParameters in a clearer way? Ex:\n\n```\nPcmParameter {\n  .data_interval_us \u003d 1600,\n  ...\n}\n```",
+      "range": {
+        "startLine": 170,
+        "startChar": 60,
+        "endLine": 170,
+        "endChar": 78
+      },
+      "revId": "c4e9ca2ed3a2eaabf66861d6a5c24099aeb82fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b89b611_9b7604f8",
+        "filename": "system/audio_hal_interface/le_audio_software_host_transport.cc",
+        "patchSetId": 26
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-05-07T05:25:41Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 234,
+        "startChar": 5,
+        "endLine": 234,
+        "endChar": 9
+      },
+      "revId": "c4e9ca2ed3a2eaabf66861d6a5c24099aeb82fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "387912e5_7d4a9d44",
+        "filename": "system/audio_hal_interface/le_audio_software_host_transport.cc",
+        "patchSetId": 26
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-05-07T05:25:41Z",
+      "side": 1,
+      "message": "ditto. \n\nnit: Factory functions for creating PcmParameters might be more readable:\n\nstatic PcmParameters SourceAudioDefault() {...}\nstatic PcmParameters SinkAudioDefault() {...}",
+      "range": {
+        "startLine": 239,
+        "startChar": 36,
+        "endLine": 239,
+        "endChar": 53
+      },
+      "revId": "c4e9ca2ed3a2eaabf66861d6a5c24099aeb82fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
