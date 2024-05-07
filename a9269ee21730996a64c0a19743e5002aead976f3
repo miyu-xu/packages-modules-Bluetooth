@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ede2591f_b820ae00",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppReceiver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-05-07T08:59:43Z",
+      "side": 1,
+      "message": "Got it. Fixed!",
+      "parentUuid": "ffe315ea_fc0205e4",
+      "range": {
+        "startLine": 79,
+        "startChar": 19,
+        "endLine": 79,
+        "endChar": 31
+      },
+      "revId": "a9269ee21730996a64c0a19743e5002aead976f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c0452299_a25681b0",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-05-07T02:52:44Z",
       "side": 1,
       "message": "I believe the string logged should be obfuscated",
+      "revId": "a9269ee21730996a64c0a19743e5002aead976f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be00bd75_8944c5dc",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppReceiver.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-05-07T08:59:43Z",
+      "side": 1,
+      "message": "Obfuscated with `BluetoothUtils.toAnonymizedAddress`",
+      "parentUuid": "c0452299_a25681b0",
       "revId": "a9269ee21730996a64c0a19743e5002aead976f3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
