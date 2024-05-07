@@ -254,8 +254,9 @@ extern struct bta_av_co_audio_update_mtu bta_av_co_audio_update_mtu;
 // Return: int
 struct bta_av_co_get_encoder_effective_frame_size {
   static int return_value;
-  std::function<int()> body{[]() { return return_value; }};
-  int operator()() { return body(); };
+  std::function<int(const RawAddress& peer_address)> body{
+      [](const RawAddress& /* peer_address */) { return return_value; }};
+  int operator()(const RawAddress& peer_address) { return body(peer_address); };
 };
 extern struct bta_av_co_get_encoder_effective_frame_size
     bta_av_co_get_encoder_effective_frame_size;
@@ -265,9 +266,11 @@ extern struct bta_av_co_get_encoder_effective_frame_size
 // Return: const tA2DP_ENCODER_INTERFACE*
 struct bta_av_co_get_encoder_interface {
   static const tA2DP_ENCODER_INTERFACE* return_value;
-  std::function<const tA2DP_ENCODER_INTERFACE*(void)> body{
-      [](void) { return return_value; }};
-  const tA2DP_ENCODER_INTERFACE* operator()(void) { return body(); };
+  std::function<const tA2DP_ENCODER_INTERFACE*(const RawAddress& peer_address)>
+      body{[](const RawAddress& /* peer_address */) { return return_value; }};
+  const tA2DP_ENCODER_INTERFACE* operator()(const RawAddress& peer_address) {
+    return body(peer_address);
+  };
 };
 extern struct bta_av_co_get_encoder_interface bta_av_co_get_encoder_interface;
 

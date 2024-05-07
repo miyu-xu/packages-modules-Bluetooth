@@ -176,14 +176,16 @@ void bta_av_co_audio_update_mtu(tBTA_AV_HNDL bta_av_handle,
   test::mock::btif_co_bta_av_co::bta_av_co_audio_update_mtu(bta_av_handle,
                                                             peer_address, mtu);
 }
-int bta_av_co_get_encoder_effective_frame_size() {
+int bta_av_co_get_encoder_effective_frame_size(const RawAddress& peer_address) {
   inc_func_call_count(__func__);
   return test::mock::btif_co_bta_av_co::
-      bta_av_co_get_encoder_effective_frame_size();
+      bta_av_co_get_encoder_effective_frame_size(peer_address);
 }
-const tA2DP_ENCODER_INTERFACE* bta_av_co_get_encoder_interface(void) {
+const tA2DP_ENCODER_INTERFACE* bta_av_co_get_encoder_interface(
+    const RawAddress& peer_address) {
   inc_func_call_count(__func__);
-  return test::mock::btif_co_bta_av_co::bta_av_co_get_encoder_interface();
+  return test::mock::btif_co_bta_av_co::bta_av_co_get_encoder_interface(
+      peer_address);
 }
 void bta_av_co_get_peer_params(const RawAddress& peer_address,
                                tA2DP_ENCODER_INIT_PEER_PARAMS* p_peer_params) {

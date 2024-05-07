@@ -3509,7 +3509,8 @@ static void bta_av_sink_media_callback(const RawAddress& peer_address,
       log::verbose("address={}", p_data->avk_config.bd_addr);
 
       // Update the codec info of the A2DP Sink decoder
-      btif_a2dp_sink_update_decoder((uint8_t*)(p_data->avk_config.codec_info));
+      btif_a2dp_sink_update_decoder(p_data->avk_config.bd_addr,
+                                    (uint8_t*)(p_data->avk_config.codec_info));
 
       config_req.sample_rate =
           A2DP_GetTrackSampleRate(p_data->avk_config.codec_info);

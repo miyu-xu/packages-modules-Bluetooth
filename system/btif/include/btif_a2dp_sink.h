@@ -96,7 +96,8 @@ tA2DP_BITS_PER_SAMPLE btif_a2dp_sink_get_bits_per_sample(void);
 
 // Update the decoder for the A2DP Sink module.
 // |p_codec_info| contains the new codec information.
-void btif_a2dp_sink_update_decoder(const uint8_t* p_codec_info);
+void btif_a2dp_sink_update_decoder(const RawAddress& peer_address,
+                                   const uint8_t* p_codec_info);
 
 // Process 'idle' request from the BTIF state machine during initialization.
 void btif_a2dp_sink_on_idle(void);
