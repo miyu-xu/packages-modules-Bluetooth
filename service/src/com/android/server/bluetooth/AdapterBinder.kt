@@ -88,4 +88,14 @@ class AdapterBinder(rawBinder: IBinder) {
         }
         return false
     }
+
+    fun killBluetoothProcess() {
+        try {
+            adapterBinder.killBluetoothProcess()
+        } catch (_: android.os.DeadObjectException) {
+            // Silence expected error since Bluetooth may already be dead prior to this call
+        } catch (ex: RemoteException) {
+            Log.e(TAG, "Unexpected error when calling killBluetoothProcess", ex)
+        }
+    }
 }
