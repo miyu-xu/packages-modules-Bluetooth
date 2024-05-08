@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f57d12b_621d919c",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-08T19:46:06Z",
+      "side": 1,
+      "message": "remove this one?",
+      "range": {
+        "startLine": 744,
+        "startChar": 0,
+        "endLine": 744,
+        "endChar": 36
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9ff89170_ece9413c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_disc.cc",
+              "range": {
+                "startLine": 744,
+                "startChar": 0,
+                "endLine": 745,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "7515d28ede4a99a0d161c7dbe64bfbe70963d91a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
