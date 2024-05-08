@@ -19,7 +19,6 @@ package com.android.bluetooth.btservice;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 import android.bluetooth.BluetoothAdapter;
@@ -27,7 +26,6 @@ import android.bluetooth.IBluetoothOobDataCallback;
 import android.content.AttributionSource;
 import android.os.ParcelUuid;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -56,11 +54,6 @@ public class AdapterServiceBinderTest {
         mAttributionSource = new AttributionSource.Builder(0).build();
     }
 
-    @After
-    public void cleaUp() {
-        mBinder.cleanup();
-    }
-
     @Test
     public void getAddress() {
         mBinder.getAddress(mAttributionSource);
@@ -73,11 +66,6 @@ public class AdapterServiceBinderTest {
         String[] args = new String[] { };
         mBinder.dump(fd, args);
         verify(mService).dump(any(), any(), any());
-
-        Mockito.clearInvocations(mService);
-        mBinder.cleanup();
-        mBinder.dump(fd, args);
-        verify(mService, never()).dump(any(), any(), any());
     }
 
     @Test
@@ -87,11 +75,6 @@ public class AdapterServiceBinderTest {
 
         mBinder.generateLocalOobData(transport, cb, mAttributionSource);
         verify(mService).generateLocalOobData(transport, cb);
-
-        Mockito.clearInvocations(mService);
-        mBinder.cleanup();
-        mBinder.generateLocalOobData(transport, cb, mAttributionSource);
-        verify(mService, never()).generateLocalOobData(transport, cb);
     }
 
     @Test

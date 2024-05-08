@@ -1084,6 +1084,7 @@ public class DatabaseManager {
      * @param database the Bluetooth storage {@link MetadataDatabase}
      */
     public void start(MetadataDatabase database) {
+        Log.e("WILLIAM", "start database manager now");
         if (database == null) {
             Log.e(TAG, "start failed, database is null.");
             return;
@@ -1093,6 +1094,7 @@ public class DatabaseManager {
         synchronized (mDatabaseLock) {
             mDatabase = database;
         }
+        Log.e("WILLIAM", "create database thread now");
 
         mHandlerThread = new HandlerThread("BluetoothDatabaseManager");
         mHandlerThread.start();
@@ -1101,6 +1103,7 @@ public class DatabaseManager {
         IntentFilter filter = new IntentFilter();
         filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
         filter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
+        Log.e("WILLIAM", "Register receiver now");
         mAdapterService.registerReceiver(mReceiver, filter);
 
         loadDatabase();
@@ -1123,6 +1126,7 @@ public class DatabaseManager {
 
     /** Close and de-init the DatabaseManager */
     public void cleanup() {
+        Log.e("WILLIAM", "CALLING THIS FUCKING CLEANUP");
         synchronized (mDatabaseLock) {
             if (mDatabase == null) {
                 Log.w(TAG, "cleanup called on non started database");
