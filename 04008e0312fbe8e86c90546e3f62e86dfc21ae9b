@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f6f0155_4ce3e2d6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-05-08T16:05:03Z",
+      "side": 1,
+      "message": "nit: I always prefer to have the \"why\" in the commit message too, not just what it did. It can be helpful context years later for us or for partners in the ecosystem, i.e. \"This change explicitly disables the feature flag for tests that only test the old pre-flagged behavior. These tests will be removed when the flag is removed.\"\n\nIn this case too, the \"why\" might help William not be sad when we use the disableFlag() functionality directly too 😊",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 33
+      },
+      "revId": "04008e0312fbe8e86c90546e3f62e86dfc21ae9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "67336f0a_f37ac70c",
