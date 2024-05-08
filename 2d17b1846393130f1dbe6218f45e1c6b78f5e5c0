@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "032d2265_a973bdd7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceAndStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-08T09:48:03Z",
+      "side": 1,
+      "message": "the new timeout is 1 second\n\nas mentioned in the comment, the goal was to make sure the Android OS finishes processing the state change within 250ms in previous version of the test. \n\nin this new version, even though it is not 250 ms, the 1 second timeout still exists and will still be part of the test, do we need to call it out in the comment?",
+      "range": {
+        "startLine": 111,
+        "startChar": 34,
+        "endLine": 111,
+        "endChar": 66
+      },
+      "revId": "2d17b1846393130f1dbe6218f45e1c6b78f5e5c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b4c2b22_5f15adc1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceAndStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-08T09:48:03Z",
+      "side": 0,
+      "message": "the original goal of these comments is to justify the timing dependency of this test, the new version changed 250ms to 1 second, but this timing dependency still exists. \n\nhence the underlying assumption that the intent is sent within X second of previous action still holds\n\ndo we want to call it out here or we assume future reader of this code should know that?",
+      "range": {
+        "startLine": 279,
+        "startChar": 8,
+        "endLine": 281,
+        "endChar": 66
+      },
+      "revId": "76ccf8d43cf594eca0829b7218b68acf613714c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
