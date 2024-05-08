@@ -22,6 +22,30 @@
       },
       "revId": "2d17b1846393130f1dbe6218f45e1c6b78f5e5c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e106c8d5_302ecb36",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-08T17:41:05Z",
+      "side": 0,
+      "message": "For all the java profiles, the `start` is a lie.\n\nIt is always (no exception) called right after the constructor and only after the constructor.\n\nWe do not support `start` -\u003e `cleanup` -\u003e `start` and this is never done in the code, we always do `constructor` -\u003e `start` -\u003e `cleanup`.\n\nThere is ongoing plan to simply inline start in the constructor, to allow more variable to be final.\n\n\nBut you are right about `mStateMachinesThread` being assigned to null, this is not great. I moved the variable to final to reflet that it can never be changed once set.",
+      "parentUuid": "12e03d04_3a6db50a",
+      "range": {
+        "startLine": 196,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 37
+      },
+      "revId": "2d17b1846393130f1dbe6218f45e1c6b78f5e5c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
