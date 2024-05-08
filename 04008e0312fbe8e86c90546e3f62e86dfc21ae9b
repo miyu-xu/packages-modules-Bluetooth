@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67336f0a_f37ac70c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1979057
+      },
+      "writtenOn": "2024-05-08T07:20:49Z",
+      "side": 1,
+      "message": "added the disableFlags",
+      "revId": "04008e0312fbe8e86c90546e3f62e86dfc21ae9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
