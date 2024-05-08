@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3914aef2_367533e9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-05-08T12:00:24Z",
+      "side": 1,
+      "message": "Apologies, didn\u0027t get the dependency aosp/3020865 in the right order after rebasing. Please revert this for now.",
+      "revId": "24bcdab61d73bee970a16d49635083908a835a27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
