@@ -64,6 +64,30 @@
       },
       "revId": "7515d28ede4a99a0d161c7dbe64bfbe70963d91a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1584e9af_6040b63c",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-08T20:21:27Z",
+      "side": 1,
+      "message": "Sorry, I noticed you modify just legacy version and assumed new version also needs update.",
+      "parentUuid": "8b56af24_93c99481",
+      "range": {
+        "startLine": 744,
+        "startChar": 0,
+        "endLine": 744,
+        "endChar": 36
+      },
+      "revId": "7515d28ede4a99a0d161c7dbe64bfbe70963d91a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
