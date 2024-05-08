@@ -22,6 +22,30 @@
       },
       "revId": "6e0c1b4c3d9c7936a015b959df4a255aa4bb0c41",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86a0d2dd_06fb1a49",
+        "filename": "system/gd/hal/link_clocker.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-05-08T07:24:24Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "52eee33c_d710c19e",
+      "range": {
+        "startLine": 90,
+        "startChar": 52,
+        "endLine": 90,
+        "endChar": 68
+      },
+      "revId": "6e0c1b4c3d9c7936a015b959df4a255aa4bb0c41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
