@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4cdea45_21c0f40d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-08T23:55:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3759347c_7c3e1442",
+      "range": {
+        "startLine": 15,
+        "startChar": 14,
+        "endLine": 15,
+        "endChar": 28
+      },
+      "revId": "a8c3a1dd708ff551b06cd1788b5cf49ed72d02c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "caeb5f31_8333ec23",
@@ -120,6 +144,30 @@
       "side": 1,
       "message": "I did, on line 416",
       "parentUuid": "9ca4d0b5_afd06a62",
+      "range": {
+        "startLine": 348,
+        "startChar": 27,
+        "endLine": 348,
+        "endChar": 59
+      },
+      "revId": "a8c3a1dd708ff551b06cd1788b5cf49ed72d02c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c52dd829_6bb83209",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-08T23:55:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c446f3b0_8737f364",
       "range": {
         "startLine": 348,
         "startChar": 27,
