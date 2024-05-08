@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9bd580c_4e37ace7",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4708,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-05-08T09:45:22Z",
+      "side": 1,
+      "message": "we can\u0027t use this handover flag :p since it\u0027s released.\nif you want, you can use some other existing flag we\u0027ve introduced recently.",
+      "revId": "e4e6285394cda800058b2cd055c5596de069c76b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
