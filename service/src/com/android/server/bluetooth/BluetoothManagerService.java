@@ -1213,15 +1213,20 @@ class BluetoothManagerService {
         try {
             mHandler.removeMessages(MESSAGE_BLUETOOTH_STATE_CHANGE);
             if (mAdapter != null) {
-                // Unregister callback object
                 try {
                     mAdapter.unregisterCallback(
                             mBluetoothCallback, mContext.getAttributionSource());
                 } catch (RemoteException e) {
                     Log.e(TAG, "Unable to unregister BluetoothCallback", e);
                 }
-                mAdapter = null;
+                // Unbind first to avoid receiving "onServiceDisconnected"
                 mContext.unbindService(mConnection);
+                // Force kill the bluetooth to make sure the process is bring down and not re-use
+                // Note that in a perfect world, we should be able to re-init the same process.
+                // Unfortunately, this require an heavy rework of the shutdown implementation
+                // TODO: b/339501753 - Properly stop Bluetooth without calling kill nor exit
+                mAdapter.killBluetoothProcess();
+                mAdapter = null;
                 mHandler.removeMessages(MESSAGE_TIMEOUT_BIND);
             }
         } finally {

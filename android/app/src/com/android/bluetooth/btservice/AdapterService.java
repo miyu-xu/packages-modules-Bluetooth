@@ -794,11 +794,6 @@ public class AdapterService extends Service {
     @Override
     public void onDestroy() {
         Log.d(TAG, "onDestroy()");
-        if (!isMock()) {
-            // TODO(b/27859763)
-            Log.i(TAG, "Force exit to cleanup internal state in Bluetooth stack");
-            System.exit(0);
-        }
     }
 
     public ActiveDeviceManager getActiveDeviceManager() {
@@ -1412,11 +1407,6 @@ public class AdapterService extends Service {
         if (mBluetoothSocketManagerBinder != null) {
             mBluetoothSocketManagerBinder.cleanUp();
             mBluetoothSocketManagerBinder = null;
-        }
-
-        if (mBinder != null) {
-            mBinder.cleanup();
-            mBinder = null; // Do not remove. Otherwise Binder leak!
         }
 
         mPreferredAudioProfilesCallbacks.kill();
@@ -2188,18 +2178,9 @@ public class AdapterService extends Service {
         mAdapterProperties.updateOnProfileConnectionChanged(device, profile, state, prevState);
     }
 
-    /**
-     * The Binder implementation must be declared to be a static class, with the AdapterService
-     * instance passed in the constructor. Furthermore, when the AdapterService shuts down, the
-     * reference to the AdapterService must be explicitly removed.
-     *
-     * <p>Otherwise, a memory leak can occur from repeated starting/stopping the service...Please
-     * refer to android.os.Binder for further details on why an inner instance class should be
-     * avoided.
-     */
     @VisibleForTesting
     public static class AdapterServiceBinder extends IBluetooth.Stub {
-        private AdapterService mService;
+        private final AdapterService mService;
 
         AdapterServiceBinder(AdapterService svc) {
             mService = svc;
@@ -2207,12 +2188,8 @@ public class AdapterService extends Service {
             BluetoothAdapter.getDefaultAdapter().disableBluetoothGetStateCache();
         }
 
-        public void cleanup() {
-            mService = null;
-        }
-
         public AdapterService getService() {
-            if (mService != null && mService.isAvailable()) {
+            if (mService.isAvailable()) {
                 return mService;
             }
             return null;
@@ -2220,13 +2197,20 @@ public class AdapterService extends Service {
 
         @Override
         public int getState() {
-            // don't check caller, may be called from system UI
             AdapterService service = getService();
             if (service == null) {
                 return BluetoothAdapter.STATE_OFF;
             }
 
             return service.getState();
+        }
+
+        @Override
+        public void killBluetoothProcess() {
+            mService.enforceCallingPermission(
+                    android.Manifest.permission.BLUETOOTH_PRIVILEGED, null);
+            Log.d(TAG, "killBluetoothProcess: Perform expected killProcess");
+            android.os.Process.killProcess(android.os.Process.myPid());
         }
 
         @Override
@@ -6760,15 +6744,5 @@ public class AdapterService extends Service {
         if (mPhonePolicy != null) {
             mPhonePolicy.onUuidsDiscovered(device, uuids);
         }
-    }
-
-    // Returns if this is a mock object. This is currently used in testing so that we may not call
-    // System.exit() while finalizing the object. Otherwise GC of mock objects unfortunately ends up
-    // calling finalize() which in turn calls System.exit() and the process crashes.
-    //
-    // Mock this in your testing framework to return true to avoid the mentioned behavior. In
-    // production this has no effect.
-    public boolean isMock() {
-        return false;
     }
 }
