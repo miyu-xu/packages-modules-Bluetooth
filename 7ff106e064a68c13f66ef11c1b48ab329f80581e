@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3f9666ae_db592d38",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1521,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-08T10:29:05Z",
+      "side": 1,
+      "message": "There is a delay, but very low as scanning right now works more consistently. Still, I think that after exiting from scanning we should unsyc to conserve resources and to be consistent in each entering to scanning independent of time to get into after exiting. Exact the same as is in scanning for pairing.",
+      "parentUuid": "5af2b5b7_0373f53b",
+      "revId": "7ff106e064a68c13f66ef11c1b48ab329f80581e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "db716789_9f2c1a2b",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 6
