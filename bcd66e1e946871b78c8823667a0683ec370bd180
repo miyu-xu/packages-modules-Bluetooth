@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "846609dd_5cc3c4e7",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-08T09:41:39Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by AndroidLint: [VisibleForTests] This class should only be accessed from tests or within private scope\n\nAnalyzer Description: Reports AndroidLint warnings.\nOwner: colefaust@google.com\n\n[VisibleForTests] This class should only be accessed from tests or within private scope\n\n        private final HashMap\u003cBluetoothDevice, HeadsetStateMachine\u003e mStateMachines \u003d new HashMap\u003c\u003e();\n                                               ~~~~~~~~~~~~~~~~~~~\n\nThis check looks for accesses from production code (e.g. not tests) where the access would not have been allowed with the intended production visibility.\n\nDepending on your development environment, you may be able to use an `@VisibleForTesting` annotation to specify the intended visibility if the method had not been more widely visible for the tests.\n\nWhen using `androidx.annotations.VisibleForTesting`, the production visibility is assumed to be private unless specified with the `otherwise\u003d` parameter. `com.google.common.annotations.VisibleForTesting` and `com.android.internal.annotations.VisibleForTesting` work similarly with their own parameters called `productionVisibility` and `visibility`.\n\nIf instead you use `org.jetbrains.annotations.VisibleForTesting`, there is no such parameter, and the production visibility is instead assumed to be \"one step down\" from the testing visibility. For example, if the testing visibility is public, the production visibility is assumed to be package-private.\n\nSuppression and local reproduction steps: go/ayeaye-android-lint\n\nFor common FAQs about the @VisibleForTesting warning, see go/ayeaye-android-lint#visiblefortesting-faqs\n\nThis warning was found on the git_main branch",
+      "range": {
+        "startLine": 136,
+        "startChar": 44,
+        "endLine": 136,
+        "endChar": 97
+      },
+      "revId": "bcd66e1e946871b78c8823667a0683ec370bd180",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee2d0cb5_f85ba0f9",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-08T09:41:39Z",
+      "side": 1,
+      "message": "maybe fix the JavaDoc?",
+      "range": {
+        "startLine": 136,
+        "startChar": 43,
+        "endLine": 136,
+        "endChar": 62
+      },
+      "revId": "bcd66e1e946871b78c8823667a0683ec370bd180",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "85d6574b_1e34607a",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceAndStateMachineTest.java",
         "patchSetId": 1
