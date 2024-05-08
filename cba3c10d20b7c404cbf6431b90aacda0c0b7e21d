@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e225abec_53e5aedd",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1633,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-08T10:09:26Z",
+      "side": 1,
+      "message": "Here and in stop() used member instead of BassObjectsFactory.getInstance().getBluetoothLeScannerWrapper(mBluetoothAdapter);\nbecause in stop() case if adapter is off during scanning\nadapter.getBluetoothLeScanner() return null:\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/bass_client/BassObjectsFactory.java;l\u003d98;drc\u003d44863c959aa4f17f228cc6c7c59c84ff315a2918\n\nwhich cause that we cannot stop scanning (before my fix in BassObjectFactory there was fatal error) even if it is possible as LeScanner is available. There is null because of this line:\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothAdapter.java;l\u003d1293;drc\u003d44863c959aa4f17f228cc6c7c59c84ff315a2918\n\nWith using member we can stop it without any problem.",
+      "revId": "cba3c10d20b7c404cbf6431b90aacda0c0b7e21d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8d3e781_8c747e91",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1739,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-08T10:09:26Z",
+      "side": 1,
+      "message": "Needed to allow new try of syncing to the same broadcast id. To get broadcast id here I had to add invalid sync handle to the mSyncHandleToBroadcastIdMap but it will be overridden on success or on next sync.",
+      "revId": "cba3c10d20b7c404cbf6431b90aacda0c0b7e21d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc6152b7_57f9aaff",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassObjectsFactory.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-08T10:09:26Z",
+      "side": 1,
+      "message": "Fixed even without flag as there was critical bug. getBluetoothLeScannerWrapper was always valid (not null) because it can be even created when adapter.getBluetoothLeScanner() return null. Inside BluetoothLeScannerWrapper we keep this null and without any check it could call methods on it.\n\nAlways valid:\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/bass_client/BassClientService.java;l\u003d1373?q\u003dgetBluetoothLeScannerWrapper\n\nPossible call on null reference:\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/bass_client/BluetoothLeScannerWrapper.java;l\u003d42;drc\u003d44863c959aa4f17f228cc6c7c59c84ff315a2918",
+      "revId": "cba3c10d20b7c404cbf6431b90aacda0c0b7e21d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73591b15_72b04943",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 2007,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-08T10:09:26Z",
+      "side": 1,
+      "message": "Failing...",
+      "revId": "cba3c10d20b7c404cbf6431b90aacda0c0b7e21d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

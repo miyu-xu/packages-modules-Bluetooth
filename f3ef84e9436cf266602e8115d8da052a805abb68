@@ -71,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "98aac7b1_01bdb7a1",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-08T10:09:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e1645c7_d4d3aee9",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3de9031c_74d48c61",
@@ -172,6 +190,24 @@
       "side": 1,
       "message": "I think we might still need the proper cleanup at service stop or search start, what if application didn\u0027t call stop search and service is stopped.",
       "parentUuid": "fdfae268_68a8490c",
+      "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1864f9a4_77e4e4b3",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1456,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-08T10:09:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "985a04c8_fc39325f",
       "revId": "f3ef84e9436cf266602e8115d8da052a805abb68",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
