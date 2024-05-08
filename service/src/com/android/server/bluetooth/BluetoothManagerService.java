@@ -1694,6 +1694,7 @@ class BluetoothManagerService {
                         if (mAdapter == null) {
                             break;
                         }
+                        mContext.unbindService(mConnection);
                         mAdapter = null;
                     } finally {
                         mAdapterLock.writeLock().unlock();
@@ -1738,6 +1739,7 @@ class BluetoothManagerService {
                         addActiveLog(ENABLE_DISABLE_REASON_RESTARTED, true);
                         handleEnable(mQuietEnable);
                     } else {
+                        mContext.unbindService(mConnection);
                         mAdapterLock.writeLock().lock();
                         mAdapter = null;
                         mAdapterLock.writeLock().unlock();
