@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8b3355a_08045e49",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1910,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-08T06:23:05Z",
+      "side": 0,
+      "message": "O_O\nfixed by aosp/3071245",
+      "range": {
+        "startLine": 1908,
+        "startChar": 3,
+        "endLine": 1910,
+        "endChar": 30
+      },
+      "revId": "7bf239adf5cad9a9c74f47ba0a8bc673b73d914a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
