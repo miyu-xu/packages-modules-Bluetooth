@@ -47,6 +47,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fb0e73e_7142c2ee",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-08T17:39:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "846609dd_5cc3c4e7",
+      "range": {
+        "startLine": 136,
+        "startChar": 44,
+        "endLine": 136,
+        "endChar": 97
+      },
+      "revId": "bcd66e1e946871b78c8823667a0683ec370bd180",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4344a54_aa60ef9a",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-08T17:39:46Z",
+      "side": 1,
+      "message": "There is no need at all for this annotation, deleted and fix the visibility to package private.\n\nThe test is in the same package anyway",
+      "parentUuid": "ee2d0cb5_f85ba0f9",
+      "range": {
+        "startLine": 136,
+        "startChar": 43,
+        "endLine": 136,
+        "endChar": 62
+      },
+      "revId": "bcd66e1e946871b78c8823667a0683ec370bd180",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "85d6574b_1e34607a",
