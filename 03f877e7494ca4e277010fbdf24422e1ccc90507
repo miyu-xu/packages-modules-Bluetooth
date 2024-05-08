@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "99191cf4_99f7e9e2",
+        "filename": "flags/bta_dm.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-08T08:11:14Z",
+      "side": 1,
+      "message": "I understand that flag will go away.\n\nDevice can set \"Simultaneous LE and BR/EDR to Same Device Capable\" flag in LE advertisement.\n\nandroid flag would be used to develop change where we schedule \"both le and classic\" rather than scheduling them separately and merging results later in BTIF layer.\n\nwether to perform the discovery simulteanously or one after another will be decided based on local and remote device capabilities",
+      "parentUuid": "dc947c29_cd02fc84",
+      "range": {
+        "startLine": 56,
+        "startChar": 82,
+        "endLine": 56,
+        "endChar": 97
+      },
+      "revId": "03f877e7494ca4e277010fbdf24422e1ccc90507",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af763692_1e7912f4",
@@ -61,6 +85,30 @@
       "writtenOn": "2024-05-07T22:26:41Z",
       "side": 1,
       "message": "Not the correct bug number",
+      "range": {
+        "startLine": 57,
+        "startChar": 10,
+        "endLine": 57,
+        "endChar": 19
+      },
+      "revId": "03f877e7494ca4e277010fbdf24422e1ccc90507",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "553c3aa1_2990ff4c",
+        "filename": "flags/bta_dm.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-08T08:11:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af763692_1e7912f4",
       "range": {
         "startLine": 57,
         "startChar": 10,
