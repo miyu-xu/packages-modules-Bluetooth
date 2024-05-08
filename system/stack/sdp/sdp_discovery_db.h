@@ -57,7 +57,7 @@ typedef struct t_sdp_disc_rec {
   tSDP_DISC_ATTR* p_first_attr;      /* First attribute of record    */
   struct t_sdp_disc_rec* p_next_rec; /* Addr of next linked record   */
   uint32_t time_read;                /* The time the record was read */
-  RawAddress remote_bd_addr;         /* Remote BD address            */
+  RawAddress bd_addr;                /* Remote BD address            */
 } tSDP_DISC_REC;
 
 typedef struct {
