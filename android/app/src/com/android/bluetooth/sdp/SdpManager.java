@@ -446,6 +446,11 @@ public class SdpManager {
             Log.e(TAG, "Native not initialized!");
             return;
         }
+        if (device == null) {
+            Log.e(TAG, "sdpSearch: Bluetooth device is NULL");
+            return;
+        }
+
         synchronized (TRACKER_LOCK) {
             if (mSdpSearchTracker.isSearching(device, uuid)) {
                 /* Search already in progress */
