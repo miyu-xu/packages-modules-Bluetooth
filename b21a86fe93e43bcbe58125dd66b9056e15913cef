@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7465ffe_5c7c2bd7",
+        "filename": "system/stack/test/fuzzers/sdp/sdpFuzzFunctions.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-08T15:17:43Z",
+      "side": 1,
+      "message": "Does (void) work, as well?  I feel like the maybe_unused makes it a bit harder to read.  Not sure if (void) is better, though :) \n```suggestion\n              (void) get_legacy_stack_sdp_api()-\u003eservice.SDP_CancelServiceSearch(\n```",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 74
+      },
+      "revId": "b21a86fe93e43bcbe58125dd66b9056e15913cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
