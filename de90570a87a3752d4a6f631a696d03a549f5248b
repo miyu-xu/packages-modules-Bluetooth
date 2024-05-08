@@ -47,6 +47,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b9f2cd1_f9710ef1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-05-08T09:09:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f20267b2_5774e3af",
+      "range": {
+        "startLine": 7,
+        "startChar": 48,
+        "endLine": 7,
+        "endChar": 60
+      },
+      "revId": "de90570a87a3752d4a6f631a696d03a549f5248b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05a8e210_71945867",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-05-08T09:09:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "575eeccf_2cfde9b2",
+      "range": {
+        "startLine": 7,
+        "startChar": 7,
+        "endLine": 7,
+        "endChar": 17
+      },
+      "revId": "de90570a87a3752d4a6f631a696d03a549f5248b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1a125ef_41775890",
@@ -116,6 +164,78 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61342d7c_dd0a9856",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-05-08T09:09:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f8c8741_a732509c",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 3
+      },
+      "revId": "de90570a87a3752d4a6f631a696d03a549f5248b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa57653c_0e8bb855",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-05-08T09:09:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1a125ef_41775890",
+      "range": {
+        "startLine": 10,
+        "startChar": 4,
+        "endLine": 10,
+        "endChar": 16
+      },
+      "revId": "de90570a87a3752d4a6f631a696d03a549f5248b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b293d532_52836421",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-05-08T09:09:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3357625a_8ca43bf4",
+      "range": {
+        "startLine": 10,
+        "startChar": 17,
+        "endLine": 10,
+        "endChar": 50
+      },
+      "revId": "de90570a87a3752d4a6f631a696d03a549f5248b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ed69319f_49079525",
@@ -129,6 +249,24 @@
       "writtenOn": "2024-05-07T06:52:02Z",
       "side": 1,
       "message": "please add a note that although this commit modifies the call operation sequences, we expect no result behavior change to the app and end users.",
+      "revId": "de90570a87a3752d4a6f631a696d03a549f5248b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db5b9781_0ea17f97",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-05-08T09:09:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed69319f_49079525",
       "revId": "de90570a87a3752d4a6f631a696d03a549f5248b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -167,6 +305,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75eabe0f_e847265b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1327,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-05-08T09:09:15Z",
+      "side": 1,
+      "message": "VC apps commonly send off-hook\u003d1 input reports, indicating an active call, it does not have to make an explicit call status change every time. This is expected behavior.\n\nFor instance, a VC app might include off-hook\u003d1 alongside phone-mute\u003d1 when solely intending to adjust the microphone state.",
+      "parentUuid": "6c418046_f3d60811",
+      "revId": "de90570a87a3752d4a6f631a696d03a549f5248b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ea774a4_53134b3a",
@@ -180,6 +336,24 @@
       "writtenOn": "2024-05-07T06:52:02Z",
       "side": 1,
       "message": "place_active_call could be a better name. Please also add a comment to explain in what scenario we expect this function to be called.",
+      "revId": "de90570a87a3752d4a6f631a696d03a549f5248b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a77aee8b_bb339860",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2238,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-05-08T09:09:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ea774a4_53134b3a",
       "revId": "de90570a87a3752d4a6f631a696d03a549f5248b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
