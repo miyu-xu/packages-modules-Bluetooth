@@ -40,6 +40,30 @@
       ],
       "revId": "7515d28ede4a99a0d161c7dbe64bfbe70963d91a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b56af24_93c99481",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-08T19:47:23Z",
+      "side": 1,
+      "message": "ah..ok...Jakub indicated that it wasn\u0027t logged here.  I will remove.",
+      "parentUuid": "3f57d12b_621d919c",
+      "range": {
+        "startLine": 744,
+        "startChar": 0,
+        "endLine": 744,
+        "endChar": 36
+      },
+      "revId": "7515d28ede4a99a0d161c7dbe64bfbe70963d91a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
