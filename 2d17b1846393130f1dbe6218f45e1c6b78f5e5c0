@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12e03d04_3a6db50a",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-08T09:53:50Z",
+      "side": 0,
+      "message": "the state machines thread used to be created during start() and now it is in the constructor, if this object is ever reused by the stack any time later, repeated call to start() and stop() will break when the public constructor is used as `mStateMachinesThread` is assigned to `null` in `cleanup()`, but no longer being created in `start()`\n\nthis means the thread will stop running after `cleanup()` but next call to `start()` won\u0027t start it",
+      "range": {
+        "startLine": 196,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 37
+      },
+      "revId": "2d17b1846393130f1dbe6218f45e1c6b78f5e5c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

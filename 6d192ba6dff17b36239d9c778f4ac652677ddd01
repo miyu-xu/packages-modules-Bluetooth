@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bbcc5dc_712f7d77",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-08T09:53:50Z",
+      "side": 1,
+      "message": "instead of setting them up here, should the looper and thread be set up in `start()` to match the logic in `cleanup()`?",
+      "range": {
+        "startLine": 183,
+        "startChar": 8,
+        "endLine": 192,
+        "endChar": 9
+      },
+      "revId": "6d192ba6dff17b36239d9c778f4ac652677ddd01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
