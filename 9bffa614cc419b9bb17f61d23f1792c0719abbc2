@@ -16,6 +16,63 @@
       "message": "Hi @wescande@google.com and @siyuanh@google.com, PTAL thanks.",
       "revId": "9bffa614cc419b9bb17f61d23f1792c0719abbc2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b81f0daa_f0acee1b",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 8
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-08T17:54:11Z",
+      "side": 1,
+      "message": "If we had the unit test source to the host target, we do not need to use GSKIP_ and we do not need to add the empty OverrideSyspropsFilePath to the android abstraction",
+      "revId": "9bffa614cc419b9bb17f61d23f1792c0719abbc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5e10a04_2908a2fd",
+        "filename": "system/gd/storage/config_cache.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-08T17:54:11Z",
+      "side": 1,
+      "message": "There is a check Content warning, does it apply and can you fix it ?\n\n```\nIt looks like you\u0027re taking the address of a vector element - this is unsafe (the underlying element can move)\n```",
+      "range": {
+        "startLine": 428,
+        "startChar": 21,
+        "endLine": 428,
+        "endChar": 68
+      },
+      "revId": "9bffa614cc419b9bb17f61d23f1792c0719abbc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9da4104c_321ff8b8",
+        "filename": "system/gd/sysprops/sysprops_module.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-08T17:54:11Z",
+      "side": 1,
+      "message": "I believe that this file should not be build on android, only for host as this is injecting sysprop into the system when we are not able to read them from the android sysprop provider\n\nI have uploaded https://r.android.com/3080003 to do so",
+      "revId": "9bffa614cc419b9bb17f61d23f1792c0719abbc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
