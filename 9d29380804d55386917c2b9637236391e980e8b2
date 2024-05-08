@@ -33,6 +33,24 @@
       "message": "I can only +1 but consider it a +2.\n\n@salsavage@google.com did you see this code before? Any concerns with removing it?",
       "revId": "9d29380804d55386917c2b9637236391e980e8b2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1706c615_d557980a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-05-08T14:57:30Z",
+      "side": 1,
+      "message": "I\u0027m entirely fine removing this.\n\nThis looks like something we upstreamed with the intent to help partners, but never actually used. The refactor should help obviate the need for this too.",
+      "parentUuid": "c745a067_44761357",
+      "revId": "9d29380804d55386917c2b9637236391e980e8b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
