@@ -22,6 +22,30 @@
       },
       "revId": "65e1c67ce89f11beace2ed1c93cf8a60c52bbb95",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad2aa132_832407c7",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 805,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-05-08T00:04:38Z",
+      "side": 1,
+      "message": "I have a pending CL that changes that: ag/27145862",
+      "parentUuid": "796c4d8b_d39f930a",
+      "range": {
+        "startLine": 805,
+        "startChar": 76,
+        "endLine": 805,
+        "endChar": 89
+      },
+      "revId": "65e1c67ce89f11beace2ed1c93cf8a60c52bbb95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
