@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22479b41_420e88ab",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-08T23:58:16Z",
+      "side": 1,
+      "message": "this was uploaded in patch set 7, but removed in patch set 8",
+      "range": {
+        "startLine": 264,
+        "startChar": 0,
+        "endLine": 267,
+        "endChar": 60
+      },
+      "revId": "7865785cbb4b59cd3c72f04e4ebcc8332f7ff8b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
