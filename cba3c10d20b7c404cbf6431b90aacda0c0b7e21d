@@ -67,6 +67,24 @@
       "message": "Failing...",
       "revId": "cba3c10d20b7c404cbf6431b90aacda0c0b7e21d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0293e266_c12fe2b7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 2007,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-08T12:58:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73591b15_72b04943",
+      "revId": "cba3c10d20b7c404cbf6431b90aacda0c0b7e21d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
