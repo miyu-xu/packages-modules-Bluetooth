@@ -22,6 +22,30 @@
       },
       "revId": "2d17b1846393130f1dbe6218f45e1c6b78f5e5c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96a07502_43b162a5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceAndStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-08T17:38:32Z",
+      "side": 1,
+      "message": "The timeout is deleted in aosp/3073618, to remove any timing dependency.",
+      "parentUuid": "032d2265_a973bdd7",
+      "range": {
+        "startLine": 111,
+        "startChar": 34,
+        "endLine": 111,
+        "endChar": 66
+      },
+      "revId": "2d17b1846393130f1dbe6218f45e1c6b78f5e5c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

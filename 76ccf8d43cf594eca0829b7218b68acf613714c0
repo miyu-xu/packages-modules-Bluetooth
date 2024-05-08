@@ -22,6 +22,30 @@
       },
       "revId": "76ccf8d43cf594eca0829b7218b68acf613714c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3330e606_1304d2fd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceAndStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-08T17:38:32Z",
+      "side": 0,
+      "message": "The timing dependency of the test is removed in the CL just after this one (aosp/3073618)\nNot depending on time and external factor remove the flakiness.\n\nAlso, the initial comment is wrong, there is no guarantee that the intent will be send in 250ms, and that was one of the reason of the test being flaky.",
+      "parentUuid": "8b4c2b22_5f15adc1",
+      "range": {
+        "startLine": 279,
+        "startChar": 8,
+        "endLine": 281,
+        "endChar": 66
+      },
+      "revId": "76ccf8d43cf594eca0829b7218b68acf613714c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
