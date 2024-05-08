@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6db607f_f2a5ff53",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1056,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-08T00:16:14Z",
+      "side": 1,
+      "message": "LGTM, but please add a flag\n\n```\nstatic bool allow_low_latency_audio(bool allowed,\n                                    const RawAddress\u0026 /* address */) {\n  log::info(\"{}\", allowed);\n  if (flag) {\n+  do_in_main_thread(\n      FROM_HERE, base::BindOnce(set_audio_low_latency_mode_allowed, allowed));\n  } else {\n   bluetooth::audio::a2dp::set_audio_low_latency_mode_allowed(allowed);\n  }\n  return true;\n}\n```",
+      "range": {
+        "startLine": 1056,
+        "startChar": 2,
+        "endLine": 1056,
+        "endChar": 19
+      },
+      "revId": "34b3a221281e2fb4d9f55fd63ee65d05b84269e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
