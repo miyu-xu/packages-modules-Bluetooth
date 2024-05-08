@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d8b271e_cb1ad68e",
+        "filename": "system/stack/include/sdp_callback.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-08T00:32:11Z",
+      "side": 1,
+      "message": "we should mention that `base::RepeatingCallback` can bind some other parameters in front of these two parameters",
+      "range": {
+        "startLine": 25,
+        "startChar": 7,
+        "endLine": 25,
+        "endChar": 31
+      },
+      "revId": "08809472390255e421bbf00d0e436965ff16ff7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eaa1686d_0a4fa079",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-08T00:32:11Z",
+      "side": 1,
+      "message": "Another question, why do you need `RepeatingCallback` when the callback is only called once and the assignment always come with `std::move`? \n\nWhy can\u0027t this be `OnceCallback`?",
+      "range": {
+        "startLine": 425,
+        "startChar": 18,
+        "endLine": 425,
+        "endChar": 35
+      },
+      "revId": "08809472390255e421bbf00d0e436965ff16ff7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06f7e95e_c3e8b608",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-08T00:32:11Z",
+      "side": 1,
+      "message": "after `std::move`, should we set `complete_callback` to its default value?",
+      "range": {
+        "startLine": 425,
+        "startChar": 4,
+        "endLine": 425,
+        "endChar": 36
+      },
+      "revId": "08809472390255e421bbf00d0e436965ff16ff7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bb73743_13c85688",
+        "filename": "system/stack/sdp/sdpint.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-08T00:32:11Z",
+      "side": 1,
+      "message": "Could we check how `tCONN_CB` is initialized? \n\nDid we try to memset `tCONN_CB` to 0? If so, would that break `complete_callback` which is a complex C++ object?",
+      "range": {
+        "startLine": 198,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 24
+      },
+      "revId": "08809472390255e421bbf00d0e436965ff16ff7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
