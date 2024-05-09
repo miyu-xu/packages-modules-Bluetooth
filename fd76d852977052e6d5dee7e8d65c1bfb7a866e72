@@ -40,6 +40,30 @@
       ],
       "revId": "fd76d852977052e6d5dee7e8d65c1bfb7a866e72",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ff49e0b_0bbf2211",
+        "filename": "system/bta/hh/bta_hh_int.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-09T04:49:24Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "bec52fc4_d6a6aea0",
+      "range": {
+        "startLine": 345,
+        "startChar": 0,
+        "endLine": 346,
+        "endChar": 47
+      },
+      "revId": "fd76d852977052e6d5dee7e8d65c1bfb7a866e72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
