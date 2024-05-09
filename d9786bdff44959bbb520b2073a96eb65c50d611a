@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "58d3811a_7f331984",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-09T18:11:29Z",
+      "side": 1,
+      "message": "Yes, but this is loading a full module that is only bloating android code.\n\nTARGET_FLOSS should be remove everywhere in order to:\n* Not have any logical difference between android and floss\n* abstract library into build time dependency instead of inlining it (like here)\n\nSo a good way to do that would be to have a library for floss only, that when build expose the exact same API as the android system property library.\n\nThe whole gd sysprop_module should than be put into that and provided at build time.\n\nThen from a code point of view, we \"just get a sysprop\" and it is provided whatever the os it is run on.\n\n\nOf course... this is very easy to say, and take a lot more effort to implement.",
+      "parentUuid": "cec965a2_09e48bf3",
+      "revId": "d9786bdff44959bbb520b2073a96eb65c50d611a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8cf19f10_26a8b511",
