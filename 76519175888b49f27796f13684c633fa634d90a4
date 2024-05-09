@@ -34,6 +34,57 @@
       ],
       "revId": "76519175888b49f27796f13684c633fa634d90a4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74c077fc_517e6a54",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckScanTest.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-05-09T20:51:14Z",
+      "side": 1,
+      "message": "Can you also move these TODOs up near the constructor?",
+      "range": {
+        "startLine": 123,
+        "startChar": 8,
+        "endLine": 125,
+        "endChar": 99
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2e26b87e_fd199b73",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/DckScanTest.kt",
+              "range": {
+                "startLine": 45,
+                "startChar": 0,
+                "endLine": 45,
+                "endChar": 0
+              },
+              "replacement": "    // TODO(315852141): Include variations for LE only vs. Dual mode Bumble when supported\n    // TODO(315852141): Include variations for two advertisements at the same time\n    // TODO(303502437): Include variations for other callback types when supported in rootcanal\n\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/DckScanTest.kt",
+              "range": {
+                "startLine": 123,
+                "startChar": 0,
+                "endLine": 126,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "76519175888b49f27796f13684c633fa634d90a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
