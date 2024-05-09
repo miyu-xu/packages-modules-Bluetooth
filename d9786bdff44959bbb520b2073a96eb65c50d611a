@@ -87,6 +87,30 @@
       ],
       "revId": "d9786bdff44959bbb520b2073a96eb65c50d611a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb5c8ebc_49d820b0",
+        "filename": "system/main/shim/stack.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-05-09T14:54:50Z",
+      "side": 1,
+      "message": "Sysprop module is Floss specific way of loading defaults into the daemon. Android does not use it",
+      "parentUuid": "8cf19f10_26a8b511",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 6
+      },
+      "revId": "d9786bdff44959bbb520b2073a96eb65c50d611a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
