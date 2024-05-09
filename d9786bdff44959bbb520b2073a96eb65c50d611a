@@ -16,6 +16,77 @@
       "message": "We\u0027ve been cleaning up the TARGET_FLOSS recently and I\u0027m not sure whether this matches our guideline. Defer to Ying.",
       "revId": "d9786bdff44959bbb520b2073a96eb65c50d611a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cf19f10_26a8b511",
+        "filename": "system/main/shim/stack.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-05-09T04:47:49Z",
+      "side": 1,
+      "message": "I was wondering if sysprop is also being used on Android as licorne@ is working on sysprop_cpp (aosp/3061889)?",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 6
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "78a98ab8_18f943a5",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/main/shim/stack.cc",
+              "range": {
+                "startLine": 54,
+                "startChar": 0,
+                "endLine": 55,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/main/shim/stack.cc",
+              "range": {
+                "startLine": 56,
+                "startChar": 0,
+                "endLine": 57,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/main/shim/stack.cc",
+              "range": {
+                "startLine": 87,
+                "startChar": 0,
+                "endLine": 88,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/main/shim/stack.cc",
+              "range": {
+                "startLine": 89,
+                "startChar": 0,
+                "endLine": 90,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "d9786bdff44959bbb520b2073a96eb65c50d611a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
