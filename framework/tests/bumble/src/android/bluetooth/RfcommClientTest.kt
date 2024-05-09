@@ -27,6 +27,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.android.compatibility.common.util.AdoptShellPermissionsRule
 import io.grpc.stub.StreamObserver
 import com.google.common.truth.Truth
+import com.google.protobuf.ByteString
 import kotlinx.coroutines.*
 import org.hamcrest.core.AllOf
 import org.hamcrest.Matcher;
@@ -127,6 +128,44 @@ class RfcommClientTest {
                                 .build())
         Truth.assertThat(connectionResponse.connection.id).isEqualTo(1)
         Truth.assertThat(secureSocket.isConnected).isTrue()
+
+        cleanUp()
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun sendDataOverInsecureSocket() {
+        mServer = startServer()
+
+        val (insecureSocket, connection) = createAndConnectSocket(isSecure = false)
+        val data: ByteArray = byteArrayOf(65, 66, 67)
+        val socketOs = insecureSocket.outputStream
+
+        socketOs.write(data)
+        val rxResponse: RfcommProto.RxResponse = mBumble.rfcommBlocking().receive(
+                RfcommProto.RxRequest.newBuilder()
+                        .setConnection(connection)
+                        .build())
+        Truth.assertThat(rxResponse.data).isNotEmpty()
+
+        cleanUp()
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun sendDataOveSecureSocket() {
+        mServer = startServer()
+
+        val (secureSocket, connection) = createAndConnectSocket(isSecure = true)
+        val data: ByteArray = byteArrayOf(65, 66, 67)
+        val socketOs = secureSocket.outputStream
+
+        socketOs.write(data)
+        val rxResponse: RfcommProto.RxResponse = mBumble.rfcommBlocking().receive(
+                RfcommProto.RxRequest.newBuilder()
+                        .setConnection(connection)
+                        .build())
+        Truth.assertThat(rxResponse.data).isNotEmpty()
 
         cleanUp()
     }
