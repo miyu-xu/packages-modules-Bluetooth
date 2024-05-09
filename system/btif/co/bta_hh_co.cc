@@ -863,3 +863,65 @@ void bta_hh_le_co_reset_rpt_cache(const tAclLinkSpec& link_spec,
   btif_config_remove(bdstr, BTIF_STORAGE_KEY_HID_REPORT_VERSION);
   log::verbose("Reset cache for bda {}", link_spec);
 }
+
+/*******************************************************************************
+ *
+ * Function         bta_hh_headtracker_co_set_support
+ *
+ * Description      This callout function is to get the Headtracker support.
+ *
+ * Parameters       link_spec  - ACL link specification
+ *
+ * Returns          none
+ *
+ ******************************************************************************/
+bool bta_hh_headtracker_co_get_support(const tAclLinkSpec& link_spec) {
+  int headtracker_supported = 0;
+  std::string addrstr = link_spec.addrt.bda.ToString();
+  const char* bdstr = addrstr.c_str();
+
+  btif_config_get_int(bdstr, BTIF_STORAGE_KEY_HEADTRACKER_SUPPORTED,
+                      &headtracker_supported);
+  log::verbose("Retrieved headtracker support {}: {}", link_spec,
+               headtracker_supported);
+
+  return (headtracker_supported != 0);
+}
+
+/*******************************************************************************
+ *
+ * Function         bta_hh_headtracker_co_set_support
+ *
+ * Description      This callout function is to set the Headtracker support.
+ *
+ * Parameters       link_spec  - ACL link specification
+ *
+ * Returns          none
+ *
+ ******************************************************************************/
+void bta_hh_headtracker_co_set_support(const tAclLinkSpec& link_spec) {
+  std::string addrstr = link_spec.addrt.bda.ToString();
+  const char* bdstr = addrstr.c_str();
+
+  btif_config_set_int(bdstr, BTIF_STORAGE_KEY_HEADTRACKER_SUPPORTED, true);
+  log::verbose("Store headtracker support {}", link_spec);
+}
+
+/*******************************************************************************
+ *
+ * Function         bta_hh_headtracker_co_reset_support
+ *
+ * Description      This callout function is to reset the Headtracker support.
+ *
+ * Parameters       link_spec  - ACL link specification
+ *
+ * Returns          none
+ *
+ ******************************************************************************/
+void bta_hh_headtracker_co_reset_support(const tAclLinkSpec& link_spec) {
+  std::string addrstr = link_spec.addrt.bda.ToString();
+  const char* bdstr = addrstr.c_str();
+
+  btif_config_remove(bdstr, BTIF_STORAGE_KEY_HEADTRACKER_SUPPORTED);
+  log::verbose("Reset headtracker support {}", link_spec);
+}

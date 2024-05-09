@@ -20,6 +20,7 @@
 #include <com_android_bluetooth_flags.h>
 
 #include "bta/hh/bta_hh_int.h"
+#include "bta/include/bta_hh_co.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/bt_uuid16.h"
 #include "types/bluetooth/uuid.h"
@@ -104,7 +105,7 @@ void bta_hh_headtracker_parse_service(tBTA_HH_DEV_CB* p_dev_cb,
   log::info("");
   bta_hh_le_srvc_init(p_dev_cb, service->handle);
   p_dev_cb->mode = BTA_HH_PROTO_RPT_MODE;
-  p_dev_cb->hid_srvc.is_headtracker = true;
+  bta_hh_set_headtracker_supported(p_dev_cb);
 
   bta_hh_le_save_report_map(p_dev_cb,
                             (uint16_t)sizeof(ANDROID_HEADTRACKER_DESCRIPTOR),
@@ -142,8 +143,56 @@ void bta_hh_headtracker_parse_service(tBTA_HH_DEV_CB* p_dev_cb,
  *
  ******************************************************************************/
 bool bta_hh_headtracker_supported(tBTA_HH_DEV_CB* p_dev_cb) {
-  return com::android::bluetooth::flags::android_headtracker_service() &&
-         p_dev_cb->hid_srvc.is_headtracker;
+  if (!com::android::bluetooth::flags::android_headtracker_service()) {
+    return false;
+  }
+
+  // If Headtracker support is unknown, try to load from persistent storage
+  if (p_dev_cb->hid_srvc.headtracker_supported ==
+      BTA_HH_HEADTRACKER_SUPPORT_UNKNOWN) {
+    bool headtracker_supported =
+        bta_hh_headtracker_co_get_support(p_dev_cb->link_spec);
+    p_dev_cb->hid_srvc.headtracker_supported =
+        headtracker_supported == 0 ? BTA_HH_HEADTRACKER_SUPPORTED
+                                   : BTA_HH_HEADTRACKER_NOT_SUPPORTED;
+  }
+
+  return p_dev_cb->hid_srvc.headtracker_supported ==
+         BTA_HH_HEADTRACKER_SUPPORTED;
+}
+
+/*******************************************************************************
+ *
+ * Function         bta_hh_set_headtracker_supported
+ *
+ * Description      Saves the headtracker support info
+ *
+ * Parameters:
+ *
+ ******************************************************************************/
+void bta_hh_set_headtracker_supported(tBTA_HH_DEV_CB* p_dev_cb) {
+  if (!com::android::bluetooth::flags::android_headtracker_service()) {
+    return;
+  }
+  p_dev_cb->hid_srvc.headtracker_supported = BTA_HH_HEADTRACKER_SUPPORTED;
+  bta_hh_headtracker_co_set_support(p_dev_cb->link_spec);
+}
+
+/*******************************************************************************
+ *
+ * Function         bta_hh_reset_headtracker_supported
+ *
+ * Description      Resets the headtracker support info
+ *
+ * Parameters:
+ *
+ ******************************************************************************/
+void bta_hh_reset_headtracker_supported(tBTA_HH_DEV_CB* p_dev_cb) {
+  if (!com::android::bluetooth::flags::android_headtracker_service()) {
+    return;
+  }
+  p_dev_cb->hid_srvc.headtracker_supported = BTA_HH_HEADTRACKER_SUPPORT_UNKNOWN;
+  bta_hh_headtracker_co_reset_support(p_dev_cb->link_spec);
 }
 
 /*******************************************************************************

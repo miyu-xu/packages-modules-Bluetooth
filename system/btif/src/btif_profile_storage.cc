@@ -352,6 +352,9 @@ bt_status_t btif_storage_remove_hid_info(const tAclLinkSpec& link_spec) {
     }
     btif_config_remove(bdstr, BTIF_STORAGE_KEY_HID_DB_VERSION);
   }
+  if (com::android::bluetooth::flags::android_headtracker_service()) {
+    btif_config_remove(bdstr, BTIF_STORAGE_KEY_HEADTRACKER_SUPPORTED);
+  }
   return BT_STATUS_SUCCESS;
 }
 

@@ -146,4 +146,43 @@ tBTA_HH_RPT_CACHE_ENTRY* bta_hh_le_co_cache_load(const tAclLinkSpec& link_spec,
 void bta_hh_le_co_reset_rpt_cache(const tAclLinkSpec& link_spec,
                                   uint8_t app_id);
 
+/*******************************************************************************
+ *
+ * Function         bta_hh_headtracker_co_set_support
+ *
+ * Description      This callout function is to get the Headtracker support.
+ *
+ * Parameters       link_spec  - ACL link specification
+ *
+ * Returns          none
+ *
+ ******************************************************************************/
+bool bta_hh_headtracker_co_get_support(const tAclLinkSpec& link_spec);
+
+/*******************************************************************************
+ *
+ * Function         bta_hh_headtracker_co_set_support
+ *
+ * Description      This callout function is to set the Headtracker support.
+ *
+ * Parameters       link_spec  - ACL link specification
+ *
+ * Returns          none
+ *
+ ******************************************************************************/
+void bta_hh_headtracker_co_set_support(const tAclLinkSpec& link_spec);
+
+/*******************************************************************************
+ *
+ * Function         bta_hh_headtracker_co_reset_support
+ *
+ * Description      This callout function is to reset the Headtracker support.
+ *
+ * Parameters       link_spec  - ACL link specification
+ *
+ * Returns          none
+ *
+ ******************************************************************************/
+void bta_hh_headtracker_co_reset_support(const tAclLinkSpec& link_spec);
+
 #endif /* BTA_HH_CO_H */

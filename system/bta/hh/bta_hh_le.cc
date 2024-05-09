@@ -935,6 +935,7 @@ static void bta_hh_le_dis_cback(const RawAddress& addr,
  ******************************************************************************/
 static void bta_hh_le_pri_service_discovery(tBTA_HH_DEV_CB* p_cb) {
   bta_hh_le_co_reset_rpt_cache(p_cb->link_spec, p_cb->app_id);
+  bta_hh_reset_headtracker_supported(p_cb);
 
   p_cb->disc_active |= (BTA_HH_LE_DISC_HIDS | BTA_HH_LE_DISC_DIS);
 
@@ -2164,6 +2165,7 @@ static void bta_hh_le_service_changed(tAclLinkSpec link_spec) {
 
   /* Forget the cached reports */
   bta_hh_le_co_reset_rpt_cache(p_cb->link_spec, p_cb->app_id);
+  bta_hh_reset_headtracker_supported(p_cb);
   p_cb->dscp_info.descriptor.dsc_list = NULL;
   osi_free_and_reset((void**)&p_cb->hid_srvc.rpt_map);
   p_cb->hid_srvc = {};
