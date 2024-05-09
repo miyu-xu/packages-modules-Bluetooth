@@ -33,6 +33,7 @@
 #include "bta/include/bta_gatt_api.h"
 #include "bta/include/bta_hh_api.h"
 #include "bta/sys/bta_sys.h"
+#include "fmt/enum_formatter.h"
 #include "stack/include/bt_hdr.h"
 #include "types/raw_address.h"
 
@@ -341,9 +342,33 @@ void bta_hh_trace_dev_db(void);
 #endif
 
 namespace fmt {
-template <>
-struct formatter<tBTA_HH_SERVICE_STATE>
-    : enum_formatter<tBTA_HH_SERVICE_STATE> {};
+
+inline std::string to_string(tBTA_HH_SERVICE_STATE state) {
+  switch (state) {
+    case BTA_HH_SERVICE_UNKNOWN:
+      return "BTA_HH_SERVICE_UNKNOWN";
+    case BTA_HH_SERVICE_CHANGED:
+      return "BTA_HH_SERVICE_CHANGED";
+    case BTA_HH_SERVICE_DISCOVERED:
+      return "BTA_HH_SERVICE_DISCOVERED";
+    default:
+      return "Unknown";
+  }
+}
+
+inline std::string to_string(tBTA_HH_AVAILABLE available) {
+  switch (available) {
+    case BTA_HH_UNKNOWN:
+      return "BTA_HH_UNKNOWN";
+    case BTA_HH_AVAILABLE:
+      return "BTA_HH_AVAILABLE";
+    case BTA_HH_UNAVAILABLE:
+      return "BTA_HH_UNAVAILABLE";
+    default:
+      return "Unknown";
+  }
+}
+
 }  // namespace fmt
 
 #endif
