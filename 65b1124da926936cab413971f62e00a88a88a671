@@ -1,0 +1,65 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bdbdc72_199d5fe1",
+        "filename": "system/bta/hh/bta_hh_headtracker.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-09T03:47:45Z",
+      "side": 1,
+      "message": "nit: I would remove the bool for simplicity",
+      "range": {
+        "startLine": 155,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 70
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9a6317ac_dc8fd836",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/hh/bta_hh_headtracker.cc",
+              "range": {
+                "startLine": 155,
+                "startChar": 0,
+                "endLine": 156,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/bta/hh/bta_hh_headtracker.cc",
+              "range": {
+                "startLine": 163,
+                "startChar": 0,
+                "endLine": 164,
+                "endChar": 0
+              },
+              "replacement": "          p_dev_cb-\u003ehid_srvc.headtracker_support \u003d BTA_HH_AVAILABLE;\n"
+            },
+            {
+              "path": "system/bta/hh/bta_hh_headtracker.cc",
+              "range": {
+                "startLine": 169,
+                "startChar": 0,
+                "endLine": 173,
+                "endChar": 0
+              },
+              "replacement": "    log::verbose(\"Headtracker support: {}\",\n                 p_dev_cb-\u003ehid_srvc.headtracker_support);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "65b1124da926936cab413971f62e00a88a88a671",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
