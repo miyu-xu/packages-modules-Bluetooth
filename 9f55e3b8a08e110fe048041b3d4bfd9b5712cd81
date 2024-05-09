@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebce55cd_b9c96c4b",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-09T21:33:06Z",
+      "side": 1,
+      "message": "This is the change.  Making the Queue static avoids a null-pointer exception when dump is called and BQR was not initialized.",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 74
+      },
+      "revId": "9f55e3b8a08e110fe048041b3d4bfd9b5712cd81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
