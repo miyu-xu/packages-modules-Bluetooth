@@ -1,0 +1,28 @@
+RFCOMM Client BumbleBluetooth: Connect
+
+Insecure and Secure RFCOMM connection tests
+
+Bug: 331415222
+Test: atest BumbleBluetoothTests:android.bluetooth.RfcommTest
+Flag: TEST_ONLY
+Change-Id: I0f8d2c0bb933e2c485ec811e08166f41f9c2bbda
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Date:      Thu Mar 7 14:27:04 2024 -0800
+#
+# interactive rebase in progress; onto 81b7bcd1f98
+# Last command done (1 command done):
+#    edit e13c45afacf RFCOMM Client BumbleBluetooth: Connect
+# Next commands to do (2 remaining commands):
+#    edit ab3deb5cfc6 RFCOMM Client BumbleBluetooth: Send
+#    pick 92ce48e9c3a RFCOMM Client BumbleBluetooth: Receive
+# You are currently editing a commit while rebasing branch 'bumble' on '81b7bcd1f98'.
+#
+# Changes to be committed:
+#	modified:   framework/tests/bumble/src/android/bluetooth/PandoraDevice.java
+#	new file:   framework/tests/bumble/src/android/bluetooth/RfcommTest.kt
+#	modified:   framework/tests/bumble/src/bumble_server.py
+#	new file:   pandora/server/bumble_experimental/rfcomm.py
+#

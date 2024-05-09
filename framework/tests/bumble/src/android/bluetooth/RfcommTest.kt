@@ -26,6 +26,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.android.compatibility.common.util.AdoptShellPermissionsRule
 import com.google.common.truth.Truth
+import com.google.protobuf.ByteString
 import io.grpc.stub.StreamObserver
 import java.time.Duration
 import java.util.UUID
@@ -194,6 +195,46 @@ class RfcommTest {
                     RfcommProto.AcceptConnectionRequest.newBuilder().setServer(serverId).build()
                 )
             Truth.assertThat(secureSocket.isConnected).isTrue()
+        }
+    }
+
+    @Test
+    fun clientSendDataOverInsecureSocket() {
+        startServer {
+            val serverId = it
+            runBlocking { withTimeout(BOND_TIMEOUT.toMillis()) { bondDevice(mBumbleDevice) } }
+
+            val (insecureSocket, connection) = createAndConnectSocket(isSecure = false, serverId)
+            val data: ByteArray = "Test data for clientSendDataOverInsecureSocket".toByteArray()
+            val socketOs = insecureSocket.outputStream
+
+            socketOs.write(data)
+            val rxResponse: RfcommProto.RxResponse =
+                mBumble
+                    .rfcommBlocking()
+                    .withDeadlineAfter(GRPC_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
+                    .receive(RfcommProto.RxRequest.newBuilder().setConnection(connection).build())
+            Truth.assertThat(rxResponse.data).isEqualTo(ByteString.copyFrom(data))
+        }
+    }
+
+    @Test
+    fun clientSendDataOverSecureSocket() {
+        startServer {
+            val serverId = it
+            runBlocking { withTimeout(BOND_TIMEOUT.toMillis()) { bondDevice(mBumbleDevice) } }
+
+            val (secureSocket, connection) = createAndConnectSocket(isSecure = true, serverId)
+            val data: ByteArray = "Test data for clientSendDataOverSecureSocket".toByteArray()
+            val socketOs = secureSocket.outputStream
+
+            socketOs.write(data)
+            val rxResponse: RfcommProto.RxResponse =
+                mBumble
+                    .rfcommBlocking()
+                    .withDeadlineAfter(GRPC_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
+                    .receive(RfcommProto.RxRequest.newBuilder().setConnection(connection).build())
+            Truth.assertThat(rxResponse.data).isEqualTo(ByteString.copyFrom(data))
         }
     }
 
