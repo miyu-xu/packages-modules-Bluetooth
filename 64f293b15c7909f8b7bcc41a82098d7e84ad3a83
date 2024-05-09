@@ -1,0 +1,139 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e087e311_71ef19a0",
+        "filename": "system/bta/hh/bta_hh_headtracker.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-09T21:29:25Z",
+      "side": 1,
+      "message": "nit: Can we put the address conversion with the declaration or remove bd_addr?\n\n\n```suggestion\n    auto bd_addr \u003d ToGdAddress(p_dev_cb-\u003elink_spec.addrt.bda);\n    auto uuids \u003d bluetooth::shim::GetStorage()\n                     -\u003eGetDeviceByLegacyKey(bd_addr)\n                     .GetServiceUuids();\n```",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 40
+      },
+      "revId": "64f293b15c7909f8b7bcc41a82098d7e84ad3a83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c48bb584_71d6c00b",
+        "filename": "system/bta/hh/bta_hh_headtracker.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-09T21:29:25Z",
+      "side": 1,
+      "message": "Can we use std::find?  I don\u0027t think we need to convert the UUID with From128BitBE.\n\nAI did the rest :)",
+      "range": {
+        "startLine": 161,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 77
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "fc8ebcfb_22814dba",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/hh/bta_hh_headtracker.cc",
+              "range": {
+                "startLine": 161,
+                "startChar": 0,
+                "endLine": 165,
+                "endChar": 0
+              },
+              "replacement": "    if (uuids \u0026\u0026 std::find(uuids-\u003ebegin(), uuids-\u003eend(),\n                           ANDROID_HEADTRACKER_SERVICE_UUID) !\u003d uuids-\u003eend()) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "64f293b15c7909f8b7bcc41a82098d7e84ad3a83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a861f37e_afed457c",
+        "filename": "system/bta/hh/bta_hh_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-09T21:29:25Z",
+      "side": 1,
+      "message": "prefer to add a to_string method for the type, so we don\u0027t have to remember the numbers.",
+      "range": {
+        "startLine": 348,
+        "startChar": 17,
+        "endLine": 348,
+        "endChar": 34
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c7440c64_e02f2245",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/hh/bta_hh_int.h",
+              "range": {
+                "startLine": 36,
+                "startChar": 0,
+                "endLine": 36,
+                "endChar": 0
+              },
+              "replacement": "#include \"fmt/enum_formatter.h\"\n"
+            },
+            {
+              "path": "system/bta/hh/bta_hh_int.h",
+              "range": {
+                "startLine": 157,
+                "startChar": 0,
+                "endLine": 157,
+                "endChar": 0
+              },
+              "replacement": "inline std::string to_string(tBTA_HH_SERVICE_STATE state) {\n  switch (state) {\n    case BTA_HH_SERVICE_UNKNOWN:\n      return \"BTA_HH_SERVICE_UNKNOWN\";\n    case BTA_HH_SERVICE_CHANGED:\n      return \"BTA_HH_SERVICE_CHANGED\";\n    case BTA_HH_SERVICE_DISCOVERED:\n      return \"BTA_HH_SERVICE_DISCOVERED\";\n    default:\n      return \"Unknown\";\n  }\n}\n\n"
+            },
+            {
+              "path": "system/bta/hh/bta_hh_int.h",
+              "range": {
+                "startLine": 163,
+                "startChar": 0,
+                "endLine": 163,
+                "endChar": 0
+              },
+              "replacement": "inline std::string to_string(tBTA_HH_AVAILABLE available) {\n  switch (available) {\n    case BTA_HH_UNKNOWN:\n      return \"BTA_HH_UNKNOWN\";\n    case BTA_HH_AVAILABLE:\n      return \"BTA_HH_AVAILABLE\";\n    case BTA_HH_UNAVAILABLE:\n      return \"BTA_HH_UNAVAILABLE\";\n    default:\n      return \"Unknown\";\n  }\n}\n\n"
+            },
+            {
+              "path": "system/bta/hh/bta_hh_int.h",
+              "range": {
+                "startLine": 342,
+                "startChar": 0,
+                "endLine": 351,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "64f293b15c7909f8b7bcc41a82098d7e84ad3a83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
