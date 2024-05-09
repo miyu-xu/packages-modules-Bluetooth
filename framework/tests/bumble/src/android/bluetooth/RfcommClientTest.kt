@@ -25,13 +25,15 @@ import androidx.test.espresso.intent.matcher.IntentMatchers.hasAction
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.android.compatibility.common.util.AdoptShellPermissionsRule
-import io.grpc.stub.StreamObserver
 import com.google.common.truth.Truth
 import com.google.protobuf.ByteString
+import io.grpc.stub.StreamObserver
+import java.time.Duration
+import java.util.UUID
+import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.*
+import org.hamcrest.Matcher
 import org.hamcrest.core.AllOf
-import org.hamcrest.Matcher;
-import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -39,22 +41,15 @@ import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers
 import org.mockito.InOrder
 import org.mockito.Mock
-import org.mockito.Mockito.doAnswer
 import org.mockito.Mockito.inOrder
 import org.mockito.Mockito.timeout
 import org.mockito.MockitoAnnotations
 import org.mockito.hamcrest.MockitoHamcrest
-import org.mockito.invocation.InvocationOnMock
-import org.mockito.stubbing.Answer
 import pandora.RfcommProto
 import pandora.RfcommProto.ServerId
 import pandora.RfcommProto.StartServerRequest
 import pandora.SecurityProto.PairingEvent
 import pandora.SecurityProto.PairingEventAnswer
-import java.time.Duration
-import java.util.UUID
-import java.util.concurrent.TimeUnit
-
 
 @RunWith(AndroidJUnit4::class)
 class RfcommClientTest {
@@ -68,14 +63,13 @@ class RfcommClientTest {
     // Set up a Bumble Pandora device for the duration of the test.
     @Rule @JvmField val mBumble = PandoraDevice()
 
-    @Mock
-    private val mReceiver: BroadcastReceiver? = null
+    @Mock private val mReceiver: BroadcastReceiver? = null
 
     private lateinit var mBumbleDevice: BluetoothDevice
     private lateinit var mServer: ServerId
     private lateinit var mInOrder: InOrder
     private val mPairingEventStreamObserver: StreamObserverSpliterator<PairingEvent> =
-            StreamObserverSpliterator()
+        StreamObserverSpliterator()
 
     @Before
     @Throws(Exception::class)
@@ -93,15 +87,16 @@ class RfcommClientTest {
         bondDevice(mBumbleDevice)
 
         // Insecure connection to RFCOMM Server
-        val insecureSocket = mBumbleDevice
-                .createInsecureRfcommSocketToServiceRecord(UUID.fromString(TEST_UUID))
+        val insecureSocket =
+            mBumbleDevice.createInsecureRfcommSocketToServiceRecord(UUID.fromString(TEST_UUID))
         insecureSocket.connect()
 
-        val connectionResponse = mBumble.rfcommBlocking()
+        val connectionResponse =
+            mBumble
+                .rfcommBlocking()
                 .acceptConnection(
-                        RfcommProto.AcceptConnectionRequest.newBuilder()
-                                .setServer(mServer)
-                                .build())
+                    RfcommProto.AcceptConnectionRequest.newBuilder().setServer(mServer).build()
+                )
 
         Truth.assertThat(connectionResponse.connection.id).isEqualTo(1)
         Truth.assertThat(insecureSocket.isConnected).isTrue()
@@ -117,15 +112,16 @@ class RfcommClientTest {
         bondDevice(mBumbleDevice)
 
         // Secure connection to RFCOMM Server
-        val secureSocket = mBumbleDevice
-                .createRfcommSocketToServiceRecord(UUID.fromString(TEST_UUID))
+        val secureSocket =
+            mBumbleDevice.createRfcommSocketToServiceRecord(UUID.fromString(TEST_UUID))
         secureSocket.connect()
 
-        val connectionResponse = mBumble.rfcommBlocking()
+        val connectionResponse =
+            mBumble
+                .rfcommBlocking()
                 .acceptConnection(
-                        RfcommProto.AcceptConnectionRequest.newBuilder()
-                                .setServer(mServer)
-                                .build())
+                    RfcommProto.AcceptConnectionRequest.newBuilder().setServer(mServer).build()
+                )
         Truth.assertThat(connectionResponse.connection.id).isEqualTo(1)
         Truth.assertThat(secureSocket.isConnected).isTrue()
 
@@ -142,10 +138,10 @@ class RfcommClientTest {
         val socketOs = insecureSocket.outputStream
 
         socketOs.write(data)
-        val rxResponse: RfcommProto.RxResponse = mBumble.rfcommBlocking().receive(
-                RfcommProto.RxRequest.newBuilder()
-                        .setConnection(connection)
-                        .build())
+        val rxResponse: RfcommProto.RxResponse =
+            mBumble
+                .rfcommBlocking()
+                .receive(RfcommProto.RxRequest.newBuilder().setConnection(connection).build())
         Truth.assertThat(rxResponse.data).isNotEmpty()
 
         cleanUp()
@@ -161,32 +157,75 @@ class RfcommClientTest {
         val socketOs = secureSocket.outputStream
 
         socketOs.write(data)
-        val rxResponse: RfcommProto.RxResponse = mBumble.rfcommBlocking().receive(
-                RfcommProto.RxRequest.newBuilder()
-                        .setConnection(connection)
-                        .build())
+        val rxResponse: RfcommProto.RxResponse =
+            mBumble
+                .rfcommBlocking()
+                .receive(RfcommProto.RxRequest.newBuilder().setConnection(connection).build())
         Truth.assertThat(rxResponse.data).isNotEmpty()
 
         cleanUp()
     }
 
-    private fun createAndConnectSocket(isSecure: Boolean):
-            Pair<BluetoothSocket, RfcommProto.RfcommConnection> {
+    @Test
+    @Throws(Exception::class)
+    fun receiveDataOverInsecureSocket() {
+        mServer = startServer()
+
+        val (insecureSocket, connection) = createAndConnectSocket(isSecure = false)
+        val buffer = ByteArray(64)
+        val socketIs = insecureSocket.inputStream
+        val data: ByteString = ByteString.copyFrom(byteArrayOf(68, 69, 70))
+
+        val txRequest =
+            RfcommProto.TxRequest.newBuilder().setConnection(connection).setData(data).build()
+        mBumble.rfcommBlocking().send(txRequest)
+        val numBytesFromBumble = socketIs.read(buffer)
+        Truth.assertThat(ByteString.copyFrom(buffer).substring(0, numBytesFromBumble))
+            .isEqualTo(data)
+
+        cleanUp()
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun receiveDataOverSecureSocket() {
+        mServer = startServer()
+
+        val (secureSocket, connection) = createAndConnectSocket(isSecure = true)
+        val buffer = ByteArray(64)
+        val socketIs = secureSocket.inputStream
+        val data: ByteString = ByteString.copyFrom(byteArrayOf(68, 69, 70))
+
+        val txRequest =
+            RfcommProto.TxRequest.newBuilder().setConnection(connection).setData(data).build()
+        mBumble.rfcommBlocking().send(txRequest)
+        val numBytesFromBumble = socketIs.read(buffer)
+        Truth.assertThat(ByteString.copyFrom(buffer).substring(0, numBytesFromBumble))
+            .isEqualTo(data)
+
+        cleanUp()
+    }
+
+    private fun createAndConnectSocket(
+        isSecure: Boolean
+    ): Pair<BluetoothSocket, RfcommProto.RfcommConnection> {
         bondDevice(mBumbleDevice)
 
         // Insecure connection to RFCOMM Server
-        val socket = if (isSecure) {
-            mBumbleDevice.createRfcommSocketToServiceRecord(UUID.fromString(TEST_UUID))
-        } else {
-            mBumbleDevice.createInsecureRfcommSocketToServiceRecord(UUID.fromString(TEST_UUID))
-        }
+        val socket =
+            if (isSecure) {
+                mBumbleDevice.createRfcommSocketToServiceRecord(UUID.fromString(TEST_UUID))
+            } else {
+                mBumbleDevice.createInsecureRfcommSocketToServiceRecord(UUID.fromString(TEST_UUID))
+            }
         socket.connect()
 
-        val connectionResponse = mBumble.rfcommBlocking()
+        val connectionResponse =
+            mBumble
+                .rfcommBlocking()
                 .acceptConnection(
-                        RfcommProto.AcceptConnectionRequest.newBuilder()
-                                .setServer(mServer)
-                                .build())
+                    RfcommProto.AcceptConnectionRequest.newBuilder().setServer(mServer).build()
+                )
         Truth.assertThat(connectionResponse.connection.id).isEqualTo(1)
         Truth.assertThat(socket.isConnected).isTrue()
 
@@ -201,54 +240,56 @@ class RfcommClientTest {
         mContext.registerReceiver(mReceiver, pairingFilter)
 
         val pairingEventAnswerObserver: StreamObserver<PairingEventAnswer>? =
-                mBumble.security()
-                        .withDeadlineAfter(BOND_INTENT_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
-                        .onPairing(mPairingEventStreamObserver)
+            mBumble
+                .security()
+                .withDeadlineAfter(BOND_INTENT_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
+                .onPairing(mPairingEventStreamObserver)
 
         // create bond between DUT and Ref and verify we enter state BONDING
         Truth.assertThat(remoteDevice.createBond()).isTrue()
-        verifyIntentReceived(AllOf.allOf(
+        verifyIntentReceived(
+            AllOf.allOf(
                 hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
                 hasExtra(BluetoothDevice.EXTRA_DEVICE, remoteDevice),
                 hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_BONDING)
-        ))
+            )
+        )
 
         // Pair
-        verifyIntentReceived(AllOf.allOf(
+        verifyIntentReceived(
+            AllOf.allOf(
                 hasAction(BluetoothDevice.ACTION_PAIRING_REQUEST),
                 hasExtra(BluetoothDevice.EXTRA_DEVICE, remoteDevice),
                 hasExtra(
-                        BluetoothDevice.EXTRA_PAIRING_VARIANT,
-                        BluetoothDevice.PAIRING_VARIANT_CONSENT)
-        ))
+                    BluetoothDevice.EXTRA_PAIRING_VARIANT,
+                    BluetoothDevice.PAIRING_VARIANT_CONSENT
+                )
+            )
+        )
         remoteDevice.setPairingConfirmation(true)
 
         val pairingEvent: PairingEvent = mPairingEventStreamObserver.iterator().next()
         Truth.assertThat(pairingEvent.hasJustWorks()).isTrue()
         pairingEventAnswerObserver!!.onNext(
-                PairingEventAnswer.newBuilder()
-                        .setEvent(pairingEvent)
-                        .setConfirm(true)
-                        .build()
+            PairingEventAnswer.newBuilder().setEvent(pairingEvent).setConfirm(true).build()
         )
 
         // Verify we are now bonded
-        verifyIntentReceived(AllOf.allOf(
+        verifyIntentReceived(
+            AllOf.allOf(
                 hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
                 hasExtra(BluetoothDevice.EXTRA_DEVICE, remoteDevice),
                 hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_BONDED)
-        ))
+            )
+        )
 
         mContext.unregisterReceiver(mReceiver)
     }
 
     private fun cleanUp() {
-        mBumble.rfcommBlocking()
-                .stopServer(
-                        RfcommProto.StopServerRequest.newBuilder()
-                                .setServer(mServer)
-                                .build()
-                )
+        mBumble
+            .rfcommBlocking()
+            .stopServer(RfcommProto.StopServerRequest.newBuilder().setServer(mServer).build())
 
         removeBondIfBonded(mBumbleDevice)
     }
@@ -264,31 +305,28 @@ class RfcommClientTest {
         mContext.registerReceiver(mReceiver, filter)
         Truth.assertThat(deviceToRemove.removeBond()).isTrue()
         verifyIntentReceived(
-                AllOf.allOf(
-                        hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
-                        hasExtra(BluetoothDevice.EXTRA_DEVICE, deviceToRemove),
-                        hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_NONE)
-                )
+            AllOf.allOf(
+                hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, deviceToRemove),
+                hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_NONE)
+            )
         )
         mContext.unregisterReceiver(mReceiver)
     }
 
     private fun startServer(): ServerId {
-        val request = StartServerRequest.newBuilder()
-                .setName(TEST_SERVER_NAME)
-                .setUuid(TEST_UUID)
-                .build()
+        val request =
+            StartServerRequest.newBuilder().setName(TEST_SERVER_NAME).setUuid(TEST_UUID).build()
         val response = mBumble.rfcommBlocking().startServer(request)
 
         return response.server
     }
 
     private fun verifyIntentReceived(matcher: Matcher<Intent>) {
-        mInOrder.verify(mReceiver, timeout(BOND_INTENT_TIMEOUT.toMillis()))!!
-                .onReceive(ArgumentMatchers.any(Context::class.java),
-                        MockitoHamcrest.argThat(matcher))
+        mInOrder
+            .verify(mReceiver, timeout(BOND_INTENT_TIMEOUT.toMillis()))!!
+            .onReceive(ArgumentMatchers.any(Context::class.java), MockitoHamcrest.argThat(matcher))
     }
-
 
     companion object {
         private val TAG = RfcommClientTest::class.java.getSimpleName()
