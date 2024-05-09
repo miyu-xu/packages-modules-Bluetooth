@@ -29,10 +29,13 @@
 #include <string>
 #include <vector>
 
+#include "bta/le_audio/le_audio_types.h"
 #include "bta_csis_api.h"
 #include "bta_gatt_api.h"
 #include "bta_gatt_queue.h"
+#include "bta_groups.h"
 #include "bta_has_api.h"
+#include "bta_le_audio_api.h"
 #include "bta_le_audio_uuids.h"
 #include "btm_sec.h"
 #include "gap_api.h"
@@ -208,6 +211,7 @@ public:
               std::find_if(devices_.begin(), devices_.end(), HasDevice::MatchAddress(address));
       if (device == devices_.end()) {
         devices_.push_back(HasDevice(address, features));
+        UpdateGroupMaxActiveDevices(&(*device), GetGroupId(address));
       }
 
       /* Connect in background */
@@ -1178,6 +1182,66 @@ private:
     return device;
   }
 
+  int GetExpectedGroupSize(uint8_t features) {
+    const uint8_t hearing_aid_type = features & bluetooth::has::kFeatureBitHearingAidTypeMask;
+    switch (hearing_aid_type) {
+      case bluetooth::has::kFeatureBitHearingAidTypeBinaural:
+        return 2;
+      case bluetooth::has::kFeatureBitHearingAidTypeMonaural:
+      case bluetooth::has::kFeatureBitHearingAidTypeBanded:
+        return 1;
+      default:
+        log::warn("Invalid Hearing Aid Type {} value", hearing_aid_type);
+        return 0;
+    }
+  }
+
+  int GetGroupId(const RawAddress& addr) {
+    auto csis_api = CsisClient::Get();
+    if (csis_api == nullptr) {
+      log::warn("CsisClient not running");
+      return bluetooth::groups::kGroupUnknown;
+    }
+
+    auto group_id = CsisClient::Get()->GetGroupId(
+            addr, bluetooth::Uuid::From16Bit(UUID_COMMON_AUDIO_SERVICE));
+    if (group_id == bluetooth::groups::kGroupUnknown) {
+      group_id = CsisClient::Get()->GetGroupId(addr);
+    }
+
+    return group_id;
+  }
+
+  void UpdateGroupMaxActiveDevices(HasDevice* device, int group_id) {
+    log::info("{} group_id: {}", device->addr, group_id);
+
+    auto csis_api = CsisClient::Get();
+    if (csis_api == nullptr) {
+      log::warn("CsisClient not running");
+      return;
+    }
+
+    int desired_active_size = GetExpectedGroupSize(device->GetFeatures());
+
+    auto addresses = csis_api->GetDeviceList(group_id);
+    if (!addresses.empty()) {
+      for (auto const& addr : addresses) {
+        if (addr == device->addr) {
+          continue;
+        }
+
+        auto has_device =
+                std::find_if(devices_.begin(), devices_.end(), HasDevice::MatchAddress(addr));
+        if (has_device != devices_.end()) {
+          desired_active_size =
+                  std::max(desired_active_size, GetExpectedGroupSize(has_device->GetFeatures()));
+        }
+      }
+    }
+
+    csis_api->SetDesiredActiveSize(group_id, desired_active_size);
+  }
+
   void OnHasFeaturesValue(std::variant<tCONN_ID, HasDevice*> conn_id_device_variant,
                           tGATT_STATUS status, uint16_t handle, uint16_t len, const uint8_t* value,
                           void* /*user_data*/ = nullptr) {
@@ -1210,6 +1274,8 @@ private:
     uint8_t features;
     STREAM_TO_UINT8(features, value);
     device->UpdateFeatures(features);
+
+    UpdateGroupMaxActiveDevices(device, GetGroupId(device->addr));
 
     if (device->isGattServiceValid()) {
       btif_storage_set_leaudio_has_features(device->addr, features);

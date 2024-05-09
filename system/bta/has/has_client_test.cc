@@ -3286,6 +3286,44 @@ TEST_F(HasTypesTest, test_group_op_coordinator_completion) {
   ASSERT_EQ(1, get_func_call_count("alarm_new"));
 }
 
+TEST_F(HasClientTest, test_binaural_desired_size) {
+  const RawAddress test_address = GetTestAddress(1);
+  /* Minimal possible HA device (only feature flags) */
+  SetSampleDatabaseHasNoPresetChange(test_address,
+                                     bluetooth::has::kFeatureBitHearingAidTypeBinaural);
+
+  ON_CALL(mock_csis_client_module_,
+          GetGroupId(test_address, ::bluetooth::le_audio::uuid::kCapServiceUuid))
+          .WillByDefault(Return(1));
+  EXPECT_CALL(mock_csis_client_module_, SetDesiredActiveSize(1, 2));
+  TestConnect(test_address);
+}
+
+TEST_F(HasClientTest, test_monaural_desired_size) {
+  const RawAddress test_address = GetTestAddress(1);
+  /* Minimal possible HA device (only feature flags) */
+  SetSampleDatabaseHasNoPresetChange(test_address,
+                                     bluetooth::has::kFeatureBitHearingAidTypeMonaural);
+
+  ON_CALL(mock_csis_client_module_,
+          GetGroupId(test_address, ::bluetooth::le_audio::uuid::kCapServiceUuid))
+          .WillByDefault(Return(1));
+  EXPECT_CALL(mock_csis_client_module_, SetDesiredActiveSize(1, 1));
+  TestConnect(test_address);
+}
+
+TEST_F(HasClientTest, test_banded_desired_size) {
+  const RawAddress test_address = GetTestAddress(1);
+  /* Minimal possible HA device (only feature flags) */
+  SetSampleDatabaseHasNoPresetChange(test_address, bluetooth::has::kFeatureBitHearingAidTypeBanded);
+
+  ON_CALL(mock_csis_client_module_,
+          GetGroupId(test_address, ::bluetooth::le_audio::uuid::kCapServiceUuid))
+          .WillByDefault(Return(1));
+  EXPECT_CALL(mock_csis_client_module_, SetDesiredActiveSize(1, 1));
+  TestConnect(test_address);
+}
+
 }  // namespace
 }  // namespace internal
 }  // namespace has

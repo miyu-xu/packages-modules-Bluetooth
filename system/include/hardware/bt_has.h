@@ -63,6 +63,7 @@ struct PresetInfo {
 };
 
 /** Service supported feature bits */
+static constexpr uint8_t kFeatureBitHearingAidTypeMask = 0x03;
 static constexpr uint8_t kFeatureBitHearingAidTypeBinaural = 0x00;
 static constexpr uint8_t kFeatureBitHearingAidTypeMonaural = 0x01;
 static constexpr uint8_t kFeatureBitHearingAidTypeBanded = 0x02;
