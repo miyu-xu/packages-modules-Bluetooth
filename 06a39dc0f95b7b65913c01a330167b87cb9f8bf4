@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05f9d7b1_e6041fbd",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-05-09T04:17:41Z",
+      "side": 1,
+      "message": "Done in `testStartStopScanControllerForBrEdr`. Thank you!",
+      "parentUuid": "f1f73992_7a839a87",
+      "range": {
+        "startLine": 560,
+        "startChar": 49,
+        "endLine": 560,
+        "endChar": 60
+      },
+      "revId": "06a39dc0f95b7b65913c01a330167b87cb9f8bf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a737e8d5_e389cd64",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-05-08T03:27:03Z",
       "side": 1,
       "message": "Please add tests for this behavior as well - bring up and the bring down BLE, check GATT service and scan controller.",
+      "range": {
+        "startLine": 1027,
+        "startChar": 9,
+        "endLine": 1027,
+        "endChar": 21
+      },
+      "revId": "06a39dc0f95b7b65913c01a330167b87cb9f8bf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "432ae0d4_5b917ba9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1027,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-05-09T04:17:41Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "a737e8d5_e389cd64",
       "range": {
         "startLine": 1027,
         "startChar": 9,
