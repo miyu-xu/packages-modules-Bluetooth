@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5580b99b_7af94c33",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1633,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-05-09T03:00:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e225abec_53e5aedd",
+      "revId": "cba3c10d20b7c404cbf6431b90aacda0c0b7e21d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8d3e781_8c747e91",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d669cdfc_4364a7b1",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1739,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-05-09T03:00:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f8d3e781_8c747e91",
+      "revId": "cba3c10d20b7c404cbf6431b90aacda0c0b7e21d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc6152b7_57f9aaff",
@@ -48,6 +84,24 @@
       "writtenOn": "2024-05-08T10:09:26Z",
       "side": 1,
       "message": "Fixed even without flag as there was critical bug. getBluetoothLeScannerWrapper was always valid (not null) because it can be even created when adapter.getBluetoothLeScanner() return null. Inside BluetoothLeScannerWrapper we keep this null and without any check it could call methods on it.\n\nAlways valid:\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/bass_client/BassClientService.java;l\u003d1373?q\u003dgetBluetoothLeScannerWrapper\n\nPossible call on null reference:\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/bass_client/BluetoothLeScannerWrapper.java;l\u003d42;drc\u003d44863c959aa4f17f228cc6c7c59c84ff315a2918",
+      "revId": "cba3c10d20b7c404cbf6431b90aacda0c0b7e21d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5ee084b_d42b364c",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassObjectsFactory.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-05-09T03:00:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "fc6152b7_57f9aaff",
       "revId": "cba3c10d20b7c404cbf6431b90aacda0c0b7e21d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },

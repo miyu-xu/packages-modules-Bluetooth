@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd51cea6_b43f733a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-05-09T03:00:59Z",
+      "side": 1,
+      "message": "if flag is \u0027true\u0027 then initialize this here?\n\nif yes, then do we need to remove this from state machine(even it doesn\u0027t matter since checked)",
+      "revId": "8e3528c3a9ec6796cd5b8b85bc3328c828b3a1cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50c0c5ab_cda2178e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1466,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-05-09T03:00:59Z",
+      "side": 1,
+      "message": "nit: do we need the flag here? the rest of mBluetoothLeScannerWrapper is not behind flag.",
+      "revId": "8e3528c3a9ec6796cd5b8b85bc3328c828b3a1cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3563f62_12c57c7b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1551,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-05-09T03:00:59Z",
+      "side": 1,
+      "message": "maybe we should keep this here even when flag is true.\n```suggestion\n            // when starting scan, clear the previously cached broadcast scan\n            mCachedBroadcasts.clear();\n            if (!leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {\n```",
+      "revId": "8e3528c3a9ec6796cd5b8b85bc3328c828b3a1cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de0ba513_a706f6c5",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1636,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-05-09T03:00:59Z",
+      "side": 1,
+      "message": "duplicated flag check?",
+      "revId": "8e3528c3a9ec6796cd5b8b85bc3328c828b3a1cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d515c59_d1cae6d3",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1655,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-05-09T03:00:59Z",
+      "side": 1,
+      "message": "I think we can skip this here, as long as the remote source is alive/valid, we can keep this and use it for resync, it should not be tied to our local scan behavior. \nit should be good to only clear this cache at scanning start/sync lost. \n\nThis might also resolve the issue disconnect/reconnecct.",
+      "revId": "8e3528c3a9ec6796cd5b8b85bc3328c828b3a1cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a080ab70_913c72d3",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1659,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-05-09T03:00:59Z",
+      "side": 1,
+      "message": "this can also be removed from here since it\u0027s also remote\u0027s data, not related to sync, map will be updated if the same broadcast id has new data.",
+      "revId": "8e3528c3a9ec6796cd5b8b85bc3328c828b3a1cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

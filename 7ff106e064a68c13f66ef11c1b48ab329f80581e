@@ -89,6 +89,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b06150e6_94c0d19f",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1521,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-05-09T03:00:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3f9666ae_db592d38",
+      "revId": "7ff106e064a68c13f66ef11c1b48ab329f80581e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db716789_9f2c1a2b",
@@ -138,6 +156,24 @@
       "side": 1,
       "message": "Thanks, it\u0027s good to have those to show the diffs.\nWhen you have some time, it\u0027s still preferred to have some design doc. I understand the majority of flow remains the same, but we indeed introduced some logic changes, like how you do the cleanup and maintain sync links.\nIt\u0027s not only for code review, also be easier for everyone to get a overall picture of the refactor work.\nFor code review, we can continue with the comments for now.",
       "parentUuid": "0dbac2b1_d4341f71",
+      "revId": "7ff106e064a68c13f66ef11c1b48ab329f80581e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e94b118b_c0821cda",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1548,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-05-09T03:00:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dbb97e7d_cfab7c04",
       "revId": "7ff106e064a68c13f66ef11c1b48ab329f80581e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
