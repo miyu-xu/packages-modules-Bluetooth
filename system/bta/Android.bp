@@ -1300,6 +1300,7 @@ cc_test {
     shared_libs: [
         "libbase",
         "libcrypto",
+        "libcutils",
         "liblog",
         "server_configurable_flags",
     ],
