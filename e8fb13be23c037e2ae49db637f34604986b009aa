@@ -16,6 +16,638 @@
       "message": "ping, any concern? this app won\u0027t be built into any product.",
       "revId": "e8fb13be23c037e2ae49db637f34604986b009aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5ae4d99_f2824831",
+        "filename": "android/ChannelSoundingTestApp/app/src/androidTest/java/com/android/bluetooth/channelsoundingtestapp/ExampleInstrumentedTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-09T20:12:31Z",
+      "side": 1,
+      "message": "Did you run google-java-format on this (or allow it to automatically run when uploading the CL)? Imports are out of order here.",
+      "range": {
+        "startLine": 21,
+        "startChar": 21,
+        "endLine": 21,
+        "endChar": 24
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "02be86a2_fe824d7f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/ChannelSoundingTestApp/app/src/androidTest/java/com/android/bluetooth/channelsoundingtestapp/ExampleInstrumentedTest.java",
+              "range": {
+                "startLine": 20,
+                "startChar": 0,
+                "endLine": 21,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/ChannelSoundingTestApp/app/src/androidTest/java/com/android/bluetooth/channelsoundingtestapp/ExampleInstrumentedTest.java",
+              "range": {
+                "startLine": 22,
+                "startChar": 0,
+                "endLine": 23,
+                "endChar": 0
+              },
+              "replacement": "import androidx.test.platform.app.InstrumentationRegistry;\nimport org.junit.Test;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e8fb13be23c037e2ae49db637f34604986b009aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc3c4b77_fd533366",
+        "filename": "android/ChannelSoundingTestApp/app/src/androidTest/java/com/android/bluetooth/channelsoundingtestapp/ExampleInstrumentedTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-09T20:12:31Z",
+      "side": 1,
+      "message": "If possible please use Truth asserts as it\u0027s much more readable compared to junit asserts.\n\n----------------------\nPlease fix this WARNING reported by Check Contents: Use go/truth instead of junit asserts.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nUse go/truth instead of junit asserts.",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 30
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2fe7c27a_0bc1ea86",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/ChannelSoundingTestApp/app/src/androidTest/java/com/android/bluetooth/channelsoundingtestapp/ExampleInstrumentedTest.java",
+              "range": {
+                "startLine": 20,
+                "startChar": 0,
+                "endLine": 20,
+                "endChar": 0
+              },
+              "replacement": "import androidx.test.ext.junit.runners.AndroidJUnit4;\n"
+            },
+            {
+              "path": "android/ChannelSoundingTestApp/app/src/androidTest/java/com/android/bluetooth/channelsoundingtestapp/ExampleInstrumentedTest.java",
+              "range": {
+                "startLine": 21,
+                "startChar": 0,
+                "endLine": 23,
+                "endChar": 0
+              },
+              "replacement": "import com.google.common.truth.Truth;\n"
+            },
+            {
+              "path": "android/ChannelSoundingTestApp/app/src/androidTest/java/com/android/bluetooth/channelsoundingtestapp/ExampleInstrumentedTest.java",
+              "range": {
+                "startLine": 26,
+                "startChar": 0,
+                "endLine": 28,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/ChannelSoundingTestApp/app/src/androidTest/java/com/android/bluetooth/channelsoundingtestapp/ExampleInstrumentedTest.java",
+              "range": {
+                "startLine": 40,
+                "startChar": 0,
+                "endLine": 41,
+                "endChar": 0
+              },
+              "replacement": "        Truth.assertThat(appContext.getPackageName())\n                .isEqualTo(\"com.android.bluetooth.channelsoundingtestapp\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e8fb13be23c037e2ae49db637f34604986b009aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ded6f38b_38969e68",
+        "filename": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/CanvasView.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-09T20:12:31Z",
+      "side": 1,
+      "message": "All of these members look like they should be private.",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 7
+      },
+      "revId": "e8fb13be23c037e2ae49db637f34604986b009aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c673d0f4_5b0b1b85",
+        "filename": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/CanvasView.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-09T20:12:31Z",
+      "side": 1,
+      "message": "height, width, and mTitle are not set again and can be made final. The first 2 can be static as well.\n\nmTitle is set only in the constructor and should not be initialized here.\n\nAlso, please be consistent on members. Either use the \"m\" prefix everywhere or don\u0027t use it anywhere.",
+      "range": {
+        "startLine": 31,
+        "startChar": 8,
+        "endLine": 33,
+        "endChar": 23
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2db41344_5532ff6e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/CanvasView.java",
+              "range": {
+                "startLine": 31,
+                "startChar": 0,
+                "endLine": 34,
+                "endChar": 0
+              },
+              "replacement": "    final int height \u003d 750;\n    final int width \u003d 1000;\n"
+            },
+            {
+              "path": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/CanvasView.java",
+              "range": {
+                "startLine": 52,
+                "startChar": 0,
+                "endLine": 53,
+                "endChar": 0
+              },
+              "replacement": "    String mTitle;\n\n    CanvasView(Context context) {\n"
+            },
+            {
+              "path": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/CanvasView.java",
+              "range": {
+                "startLine": 56,
+                "startChar": 0,
+                "endLine": 57,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "e8fb13be23c037e2ae49db637f34604986b009aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fdfb276_063d0a03",
+        "filename": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/CanvasView.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-09T20:12:31Z",
+      "side": 1,
+      "message": "These look like they can all be final.",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 28
+      },
+      "revId": "e8fb13be23c037e2ae49db637f34604986b009aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b932b09_774de7ec",
+        "filename": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/CanvasView.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-09T20:12:31Z",
+      "side": 1,
+      "message": "Make these final since they aren\u0027t reassigned after the object is contructed.",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 22
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e4f57e86_5662405e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/CanvasView.java",
+              "range": {
+                "startLine": 47,
+                "startChar": 0,
+                "endLine": 51,
+                "endChar": 0
+              },
+              "replacement": "    final ArrayList\u003cNode\u003e mDataList;\n    final Paint mPaint;\n    final Paint mTextPaint;\n    final Paint mPointPaint;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e8fb13be23c037e2ae49db637f34604986b009aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cdee57f_a3df76c9",
+        "filename": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/CanvasView.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-09T20:12:31Z",
+      "side": 1,
+      "message": "I\u0027d prefer if this was getHeight() here and the local variable removed since it isn\u0027t used again.",
+      "range": {
+        "startLine": 71,
+        "startChar": 37,
+        "endLine": 71,
+        "endChar": 43
+      },
+      "revId": "e8fb13be23c037e2ae49db637f34604986b009aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9448aee_94a1ff42",
+        "filename": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/CanvasView.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-09T20:12:31Z",
+      "side": 1,
+      "message": "There\u0027s no good reason to have a 2nd top-level class defined in the same file. Please move this to a nested class (define inside the CanvasView class and declare as static since it does not access the state of the outer class).\n\nAlso make the members of this nested class final, and make all of it private.",
+      "range": {
+        "startLine": 161,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 1
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4b821cb7_048a1807",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/CanvasView.java",
+              "range": {
+                "startLine": 47,
+                "startChar": 0,
+                "endLine": 48,
+                "endChar": 0
+              },
+              "replacement": "    ArrayList\u003cNodeData\u003e mDataList;\n"
+            },
+            {
+              "path": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/CanvasView.java",
+              "range": {
+                "startLine": 55,
+                "startChar": 0,
+                "endLine": 56,
+                "endChar": 0
+              },
+              "replacement": "        mDataList \u003d new ArrayList\u003cNodeData\u003e();\n"
+            },
+            {
+              "path": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/CanvasView.java",
+              "range": {
+                "startLine": 146,
+                "startChar": 0,
+                "endLine": 147,
+                "endChar": 0
+              },
+              "replacement": "        mDataList.add(new NodeData(distance, nodeCount++, abort));\n"
+            },
+            {
+              "path": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/CanvasView.java",
+              "range": {
+                "startLine": 160,
+                "startChar": 0,
+                "endLine": 172,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "e8fb13be23c037e2ae49db637f34604986b009aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14329dbb_6f35a71c",
+        "filename": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/DistanceMeasurementInitiator.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-09T20:12:31Z",
+      "side": 1,
+      "message": "Ideally this would indicate why this is being suppressed. Also would be better if it the actual offending method(s) was annotated instead of the class.",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 34
+      },
+      "revId": "e8fb13be23c037e2ae49db637f34604986b009aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03e33c82_c674ea92",
+        "filename": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/DistanceMeasurementInitiator.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-09T20:12:31Z",
+      "side": 1,
+      "message": "Please move this to the top with the other class member declarations.",
+      "range": {
+        "startLine": 91,
+        "startChar": 4,
+        "endLine": 91,
+        "endChar": 58
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ec785121_f1521a08",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/DistanceMeasurementInitiator.java",
+              "range": {
+                "startLine": 61,
+                "startChar": 0,
+                "endLine": 61,
+                "endChar": 0
+              },
+              "replacement": "    @Nullable private BluetoothGatt mBluetoothGatt \u003d null;\n"
+            },
+            {
+              "path": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/DistanceMeasurementInitiator.java",
+              "range": {
+                "startLine": 90,
+                "startChar": 0,
+                "endLine": 140,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/DistanceMeasurementInitiator.java",
+              "range": {
+                "startLine": 212,
+                "startChar": 0,
+                "endLine": 212,
+                "endChar": 0
+              },
+              "replacement": "\n    void connectGatt() {\n        if (mTargetBtAddress \u003d\u003d null) {\n            printLog(\"A paired device must be selected first.\");\n            return;\n        }\n        BluetoothDevice device \u003d mBluetoothAdapter.getRemoteDevice(mTargetBtAddress);\n        BluetoothGattCallback gattCallback \u003d\n                new BluetoothGattCallback() {\n                    @Override\n                    public void onConnectionStateChange(\n                            BluetoothGatt gatt, int status, int newState) {\n                        printLog(\n                                \"onConnectionStateChange status:\"\n                                        + status\n                                        + \", newState:\"\n                                        + newState);\n                        if (newState \u003d\u003d BluetoothProfile.STATE_CONNECTED) {\n                            printLog(gatt.getDevice().getName() + \" is connected\");\n                            gatt.requestMtu(GATT_MTU_SIZE);\n                            mBluetoothGatt \u003d gatt;\n                            mBtDistanceMeasurementCallback.onGattConnected();\n                        } else if (newState \u003d\u003d BluetoothProfile.STATE_DISCONNECTED) {\n                            printLog(\"disconnected from \" + gatt.getDevice().getName());\n                            mBtDistanceMeasurementCallback.onGattDisconnected();\n                            mBluetoothGatt \u003d null;\n                        }\n                    }\n\n                    public void onMtuChanged(BluetoothGatt gatt, int mtu, int status) {\n                        if (status \u003d\u003d BluetoothGatt.GATT_SUCCESS) {\n                            printLog(\"MTU changed to: \" + mtu);\n                        } else {\n                            printLog(\"MTU change failed: \" + status);\n                        }\n                    }\n                };\n        printLog(\"Connect gatt to \" + device.getAddress());\n\n        device.connectGatt(mApplicationContext, false, gattCallback, BluetoothDevice.TRANSPORT_LE);\n    }\n\n    void disconnectGatt() {\n        if (mBluetoothGatt !\u003d null) {\n            printLog(\"disconnect from \" + mBluetoothGatt.getDevice().getName());\n            mBluetoothGatt.disconnect();\n        }\n    }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e8fb13be23c037e2ae49db637f34604986b009aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c35e2871_072e28ac",
+        "filename": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/DistanceMeasurementInitiator.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-09T20:12:31Z",
+      "side": 1,
+      "message": "This needs to be closed before discarding to release resources associated with it.",
+      "range": {
+        "startLine": 117,
+        "startChar": 28,
+        "endLine": 117,
+        "endChar": 50
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "40a81c8a_42dc1452",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/DistanceMeasurementInitiator.java",
+              "range": {
+                "startLine": 116,
+                "startChar": 0,
+                "endLine": 116,
+                "endChar": 0
+              },
+              "replacement": "                            gatt.close();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e8fb13be23c037e2ae49db637f34604986b009aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ba958b4_99aa5d07",
+        "filename": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/DistanceMeasurementInitiator.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-09T20:12:31Z",
+      "side": 1,
+      "message": "Move this to the top as well",
+      "range": {
+        "startLine": 213,
+        "startChar": 3,
+        "endLine": 213,
+        "endChar": 65
+      },
+      "revId": "e8fb13be23c037e2ae49db637f34604986b009aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32f6e176_78efa2da",
+        "filename": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/InitiatorFragment.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-09T20:12:31Z",
+      "side": 1,
+      "message": "This looks like it can be declared in the onViewCreated method rather than at the instance level.",
+      "range": {
+        "startLine": 56,
+        "startChar": 3,
+        "endLine": 56,
+        "endChar": 51
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7858dfcc_19a89371",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/InitiatorFragment.java",
+              "range": {
+                "startLine": 56,
+                "startChar": 0,
+                "endLine": 58,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/InitiatorFragment.java",
+              "range": {
+                "startLine": 97,
+                "startChar": 0,
+                "endLine": 98,
+                "endChar": 0
+              },
+              "replacement": "        InitiatorViewModel mInitiatorViewModel \u003d\n                ViewModelProviders.of(getActivity()).get(InitiatorViewModel.class);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e8fb13be23c037e2ae49db637f34604986b009aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c2993bb_8db7d86e",
+        "filename": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/InitiatorViewModel.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-09T20:12:31Z",
+      "side": 1,
+      "message": "Comment provides no value, please remove.",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 22
+      },
+      "revId": "e8fb13be23c037e2ae49db637f34604986b009aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45dc539c_818f1a90",
+        "filename": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/MainActivity.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-09T20:12:31Z",
+      "side": 1,
+      "message": "Nit: low value comment",
+      "range": {
+        "startLine": 33,
+        "startChar": 1,
+        "endLine": 33,
+        "endChar": 32
+      },
+      "revId": "e8fb13be23c037e2ae49db637f34604986b009aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c272eaf_9c9321d1",
+        "filename": "android/ChannelSoundingTestApp/app/src/test/java/com/android/bluetooth/channelsoundingtestapp/ExampleUnitTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-09T20:12:31Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Use go/truth instead of junit asserts.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nUse go/truth instead of junit asserts.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 30
+      },
+      "revId": "e8fb13be23c037e2ae49db637f34604986b009aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
