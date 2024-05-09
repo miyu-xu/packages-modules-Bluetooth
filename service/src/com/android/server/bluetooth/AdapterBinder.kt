@@ -25,7 +25,7 @@ import com.android.server.bluetooth.BluetoothManagerService.timeToLog
 class AdapterBinder(rawBinder: IBinder) {
     private val TAG = "AdapterBinder"
     val adapterBinder: IBluetooth = IBluetooth.Stub.asInterface(rawBinder)
-    val createdAt = System.currentTimeMillis()
+    private val createdAt = System.currentTimeMillis()
 
     override fun toString(): String =
         "[Binder=" + adapterBinder.hashCode() + ", createdAt=" + timeToLog(createdAt) + "]"
@@ -87,5 +87,15 @@ class AdapterBinder(rawBinder: IBinder) {
             Log.e(TAG, "Error when calling isMediaProfileConnected", ex)
         }
         return false
+    }
+
+    fun killBluetoothProcess() {
+        try {
+            adapterBinder.killBluetoothProcess()
+        } catch (_: android.os.DeadObjectException) {
+            // Silence expected error since Bluetooth may already be dead prior to this call
+        } catch (ex: RemoteException) {
+            Log.e(TAG, "Unexpected error when calling killBluetoothProcess", ex)
+        }
     }
 }
