@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bec52fc4_d6a6aea0",
+        "filename": "system/bta/hh/bta_hh_int.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-09T04:45:31Z",
+      "side": 1,
+      "message": "add below\n\nstruct formatter\u003ctBTA_HH_AVAILABLE\u003e\n    : enum_formatter\u003ctBTA_HH_AVAILABLE\u003e {};",
+      "range": {
+        "startLine": 345,
+        "startChar": 0,
+        "endLine": 346,
+        "endChar": 47
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "bfe7c063_ccd65230",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/hh/bta_hh_int.h",
+              "range": {
+                "startLine": 347,
+                "startChar": 0,
+                "endLine": 347,
+                "endChar": 0
+              },
+              "replacement": "\ntemplate \u003c\u003e\nstruct formatter\u003ctBTA_HH_AVAILABLE\u003e\n    : enum_formatter\u003ctBTA_HH_AVAILABLE\u003e {};\n"
+            }
+          ]
+        }
+      ],
+      "revId": "fd76d852977052e6d5dee7e8d65c1bfb7a866e72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
