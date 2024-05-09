@@ -95,6 +95,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Provides Bluetooth Gatt profile, as a service in
@@ -179,7 +180,7 @@ public class GattService extends ProfileService {
      * HashMap used to synchronize writeCharacteristic calls mapping remote device address to
      * available permit (connectId or -1).
      */
-    private final HashMap<String, Integer> mPermits = new HashMap<>();
+    private final ConcurrentHashMap<String, Integer> mPermits = new ConcurrentHashMap<>();
 
     private AdapterService mAdapterService;
     AdvertiseManager mAdvertiseManager;
@@ -1167,11 +1168,8 @@ public class GattService extends ProfileService {
             mClientMap.addConnection(clientIf, connId, address);
 
             // Allow one writeCharacteristic operation at a time for each connected remote device.
-            synchronized (mPermits) {
-                Log.d(TAG, "onConnected() - adding permit for address="
-                    + address);
-                mPermits.putIfAbsent(address, -1);
-            }
+            Log.d(TAG, "onConnected() - adding permit for address=" + address);
+            mPermits.putIfAbsent(address, -1);
             connectionState = BluetoothProtoEnums.CONNECTION_STATE_CONNECTED;
 
         }
@@ -1199,17 +1197,12 @@ public class GattService extends ProfileService {
 
         // Remove AtomicBoolean representing permit if no other connections rely on this remote device.
         if (!mClientMap.getConnectedDevices().contains(address)) {
-            synchronized (mPermits) {
-                Log.d(TAG, "onDisconnected() - removing permit for address="
-                    + address);
-                mPermits.remove(address);
-            }
+            Log.d(TAG, "onDisconnected() - removing permit for address=" + address);
+            mPermits.remove(address);
         } else {
-            synchronized (mPermits) {
-                if (mPermits.get(address) == connId) {
-                    Log.d(TAG, "onDisconnected() - set permit -1 for address=" + address);
-                    mPermits.put(address, -1);
-                }
+            if (mPermits.get(address) == connId) {
+                Log.d(TAG, "onDisconnected() - set permit -1 for address=" + address);
+                mPermits.put(address, -1);
             }
         }
 
@@ -1516,11 +1509,8 @@ public class GattService extends ProfileService {
     void onWriteCharacteristic(int connId, int status, int handle, byte[] data)
             throws RemoteException {
         String address = mClientMap.addressByConnId(connId);
-        synchronized (mPermits) {
-            Log.d(TAG, "onWriteCharacteristic() - increasing permit for address="
-                    + address);
-            mPermits.put(address, -1);
-        }
+        Log.d(TAG, "onWriteCharacteristic() - increasing permit for address=" + address);
+        mPermits.put(address, -1);
 
         Log.v(TAG, "onWriteCharacteristic() - address=" + address + ", status=" + status
                 + ", length=" + data.length);
@@ -2095,19 +2085,20 @@ public class GattService extends ProfileService {
 
         Log.d(TAG, "writeCharacteristic() - trying to acquire permit.");
         // Lock the thread until onCharacteristicWrite callback comes back.
-        synchronized (mPermits) {
-            Integer permit = mPermits.get(address);
-            if (permit == null) {
-                Log.d(TAG, "writeCharacteristic() -  atomicBoolean uninitialized!");
-                return BluetoothStatusCodes.ERROR_DEVICE_NOT_CONNECTED;
-            }
+        Integer permit =
+                mPermits.computeIfPresent(
+                        address,
+                        (k, v) -> {
+                            return v == -1 ? connId : v;
+                        });
+        if (permit == null) {
+            Log.d(TAG, "writeCharacteristic() -  atomicBoolean uninitialized!");
+            return BluetoothStatusCodes.ERROR_DEVICE_NOT_CONNECTED;
+        }
 
-            boolean success = (permit == -1);
-            if (!success) {
-                Log.d(TAG, "writeCharacteristic() - no permit available.");
-                return BluetoothStatusCodes.ERROR_GATT_WRITE_REQUEST_BUSY;
-            }
-            mPermits.put(address, connId);
+        if (permit != connId) {
+            Log.d(TAG, "writeCharacteristic() - no permit available.");
+            return BluetoothStatusCodes.ERROR_GATT_WRITE_REQUEST_BUSY;
         }
 
         mNativeInterface.gattClientWriteCharacteristic(connId, handle, writeType, authReq, value);
