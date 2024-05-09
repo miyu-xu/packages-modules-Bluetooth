@@ -50,6 +50,24 @@
       "message": "is it necessary to add this?\nwhy don\u0027t we just use BassClientPeriodicAdvertisingManager.initializePeriodicAdvertisingManagerOnDefaultAdapter() to keep aligned with BassClientStateMachine?",
       "revId": "d6c9ba6a4bf0b423d2e1a3e6dda61bb0ece76701",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b56f59a_21726d92",
+        "filename": "android/app/src/com/android/bluetooth/BluetoothMethodProxy.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-09T17:16:41Z",
+      "side": 1,
+      "message": "yes, because of unit test.\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/bass_client/BassClientPeriodicAdvertisingManager.java;l\u003d47?q\u003dinitializePeriodicAdvertisingManagerOnDefaultAdapter\nwill return null and startSearchingForSources will fail.\n\nOther option than BluetoothMethodProxy is adding to the BluetoothAdapter setPeriodicAdvertisingManager for test purpose only but as another PerdiodicAdvertisingMangaer things was in proxy, so I choose this way.",
+      "parentUuid": "8924b67d_a43ae993",
+      "revId": "d6c9ba6a4bf0b423d2e1a3e6dda61bb0ece76701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
