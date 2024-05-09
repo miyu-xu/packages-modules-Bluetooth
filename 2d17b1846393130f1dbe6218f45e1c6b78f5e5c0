@@ -70,6 +70,30 @@
       },
       "revId": "2d17b1846393130f1dbe6218f45e1c6b78f5e5c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5263cc78_49161ffd",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-09T01:11:34Z",
+      "side": 0,
+      "message": "If I do that:\n* `mStateMachinesLooper` will not be final,\n* `mStateMachinesThreadHandler` will not be final either.\n\nAlso, I should move the thread construction to the `start` since the doc says\n```\n     * It is never legal to start a thread more than once.\n     * In particular, a thread may not be restarted once it has completed\n     * execution.\n```\n\nThat mean I need a new way to check if all this logic need to be run or not.\n\n----\n\nI don\u0027t think we want to do that.\n\nI prefer to inline the start right now (just for headset service), not other profile yet\n\nLet me know if that would be ok to you.",
+      "parentUuid": "2cb50222_1c8cd857",
+      "range": {
+        "startLine": 196,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 37
+      },
+      "revId": "2d17b1846393130f1dbe6218f45e1c6b78f5e5c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
