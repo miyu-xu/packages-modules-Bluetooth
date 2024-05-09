@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9dc63d51_61a4116c",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-09T18:25:13Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by AndroidLint: [VisibleForTests] This class should only be accessed from tests or within private scope\n\nAnalyzer Description: Reports AndroidLint warnings.\nOwner: colefaust@google.com\n\n[VisibleForTests] This class should only be accessed from tests or within private scope\n\n        private final HeadsetSystemInterface mSystemInterface;\n                      ~~~~~~~~~~~~~~~~~~~~~~\n\nThis check looks for accesses from production code (e.g. not tests) where the access would not have been allowed with the intended production visibility.\n\nDepending on your development environment, you may be able to use an `@VisibleForTesting` annotation to specify the intended visibility if the method had not been more widely visible for the tests.\n\nWhen using `androidx.annotations.VisibleForTesting`, the production visibility is assumed to be private unless specified with the `otherwise\u003d` parameter. `com.google.common.annotations.VisibleForTesting` and `com.android.internal.annotations.VisibleForTesting` work similarly with their own parameters called `productionVisibility` and `visibility`.\n\nIf instead you use `org.jetbrains.annotations.VisibleForTesting`, there is no such parameter, and the production visibility is instead assumed to be \"one step down\" from the testing visibility. For example, if the testing visibility is public, the production visibility is assumed to be package-private.\n\nSuppression and local reproduction steps: go/ayeaye-android-lint\n\nFor common FAQs about the @VisibleForTesting warning, see go/ayeaye-android-lint#visiblefortesting-faqs\n\nThis warning was found on the git_main branch",
+      "range": {
+        "startLine": 142,
+        "startChar": 19,
+        "endLine": 142,
+        "endChar": 58
+      },
+      "revId": "eee3a9e1166d58acc8ab7a2bf178e1adb3e4f368",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebd2dc3f_a0d0e9f0",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-09T18:25:13Z",
+      "side": 1,
+      "message": "please fix the javadoc to avoid this linter error",
+      "range": {
+        "startLine": 142,
+        "startChar": 18,
+        "endLine": 142,
+        "endChar": 40
+      },
+      "revId": "eee3a9e1166d58acc8ab7a2bf178e1adb3e4f368",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
