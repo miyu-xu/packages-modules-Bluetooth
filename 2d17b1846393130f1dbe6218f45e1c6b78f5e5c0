@@ -46,6 +46,30 @@
       },
       "revId": "2d17b1846393130f1dbe6218f45e1c6b78f5e5c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cb50222_1c8cd857",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-09T00:08:49Z",
+      "side": 0,
+      "message": "Agreed that there is a defacto continuation from constructor to `start()` and inlining them is indeed good idea to stay truthful to how it works. \n\nHowever, before the inlining work happens, this code still have `start()` and `cleanup()` and we should stick to it and only modifying it during the inlining effort. \n\nHence, may I suggest keeping logic like\n\n```\nif (mStateMachinesThread !\u003d null) {\n  mStateMachinesThread.start();\n  mStateMachinesLooper \u003d mStateMachinesThread.getLooper();\n}\n```\n\nhere to match the logic in `cleanup()`?\n\nYou can move them to constructor while inlining constructor and `start()` later",
+      "parentUuid": "e106c8d5_302ecb36",
+      "range": {
+        "startLine": 196,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 37
+      },
+      "revId": "2d17b1846393130f1dbe6218f45e1c6b78f5e5c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
