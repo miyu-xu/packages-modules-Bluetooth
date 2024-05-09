@@ -19,8 +19,13 @@
 #include <bluetooth/log.h>
 #include <com_android_bluetooth_flags.h>
 
+#include <algorithm>
+
 #include "bta/hh/bta_hh_int.h"
 #include "btif/include/btif_storage.h"
+#include "gd/storage/storage_module.h"
+#include "main/shim/entry.h"
+#include "main/shim/helpers.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/bt_uuid16.h"
 #include "types/bluetooth/uuid.h"
@@ -148,29 +153,22 @@ bool bta_hh_headtracker_supported(tBTA_HH_DEV_CB* p_dev_cb) {
   }
 
   if (p_dev_cb->hid_srvc.headtracker_support == BTA_HH_UNKNOWN) {
-    bluetooth::Uuid remote_uuids[BT_MAX_NUM_UUIDS] = {};
-    bt_property_t remote_properties = {BT_PROPERTY_UUIDS, sizeof(remote_uuids),
-                                       &remote_uuids};
-    const RawAddress& bd_addr = p_dev_cb->link_spec.addrt.bda;
     p_dev_cb->hid_srvc.headtracker_support = BTA_HH_UNAVAILABLE;
-
-    // Find which services known to be available
-    if (btif_storage_get_remote_device_property(&bd_addr, &remote_properties) ==
-        BT_STATUS_SUCCESS) {
-      int count = remote_properties.len / sizeof(remote_uuids[0]);
-      for (int i = 0; i < count; i++) {
-        if (remote_uuids[i] == ANDROID_HEADTRACKER_SERVICE_UUID) {
-          p_dev_cb->hid_srvc.headtracker_support = BTA_HH_AVAILABLE;
-          break;
-        }
-      }
+    const RawAddress& bd_addr = p_dev_cb->link_spec.addrt.bda;
+    auto uuids = bluetooth::shim::GetStorage()
+                     ->GetDeviceByLegacyKey(ToGdAddress(bd_addr))
+                     .GetServiceUuids();
+    if (uuids &&
+        std::count(uuids->begin(), uuids->end(),
+                   hci::Uuid::From128BitBE(
+                       ANDROID_HEADTRACKER_SERVICE_UUID.To128BitBE())) > 0) {
+      p_dev_cb->hid_srvc.headtracker_support = BTA_HH_AVAILABLE;
     }
-
     log::verbose("Headtracker support: {}",
-                 (p_dev_cb->hid_srvc.headtracker_support == BTA_HH_AVAILABLE));
+                 p_dev_cb->hid_srvc.headtracker_support);
   }
 
-  return (p_dev_cb->hid_srvc.headtracker_support == BTA_HH_AVAILABLE);
+  return p_dev_cb->hid_srvc.headtracker_support == BTA_HH_AVAILABLE;
 }
 
 /*******************************************************************************
