@@ -68,6 +68,24 @@
       "parentUuid": "8924b67d_a43ae993",
       "revId": "d6c9ba6a4bf0b423d2e1a3e6dda61bb0ece76701",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bec046f_d2b54e09",
+        "filename": "android/app/src/com/android/bluetooth/BluetoothMethodProxy.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-05-09T23:41:09Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9b56f59a_21726d92",
+      "revId": "d6c9ba6a4bf0b423d2e1a3e6dda61bb0ece76701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
