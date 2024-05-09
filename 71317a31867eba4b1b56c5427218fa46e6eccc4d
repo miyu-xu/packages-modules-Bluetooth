@@ -16,6 +16,24 @@
       "message": "the doc was added in patchset 7 and then removed in patchset 8",
       "revId": "71317a31867eba4b1b56c5427218fa46e6eccc4d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "748be5f7_e7fd687b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-09T00:08:31Z",
+      "side": 1,
+      "message": "Good catch.  Thanks!",
+      "parentUuid": "f4f8f133_3a12a4c6",
+      "revId": "71317a31867eba4b1b56c5427218fa46e6eccc4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
