@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ceb54608_cd9cb6a7",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1671,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-05-09T11:30:42Z",
+      "side": 1,
+      "message": "instead of using this, I suppose the android team prefers aflag.\nhttps://g3doc.corp.google.com/company/teams/android-bluetooth/contribution-guide/create-a-flag.md?cl\u003dhead\n\nThis is an example CL that introduces the aflag usage: aosp/3062067.\n\nSince you have factored out the change quite cleanly, once the aflag CL landed you can just modify this single line to use the aflag. \nHere\u0027s the corresponding CL for the above example: aosp/3057388.",
+      "revId": "b172775d1797586ba642d05eed2aff1039d7c1a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38563e82_036492cf",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1690,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-05-09T11:30:42Z",
+      "side": 1,
+      "message": "Do you think a similar fix is needed on bta_hh_act.cc?",
+      "revId": "b172775d1797586ba642d05eed2aff1039d7c1a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
