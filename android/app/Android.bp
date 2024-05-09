@@ -157,6 +157,12 @@ cc_library_shared {
         "libstatssocket",
         "libvndksupport",
     ],
+    product_variables: {
+        arc: {
+            exclude_srcs: ["jni/**/*.cpp"],
+            static_libs: ["libarcbluetooth"],
+        },
+    },
     sanitize: {
         scs: true,
     },
