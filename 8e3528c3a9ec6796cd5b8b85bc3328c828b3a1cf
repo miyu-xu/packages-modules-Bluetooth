@@ -54,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0f18469e_b76d309f",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1551,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-05-09T03:50:58Z",
+      "side": 1,
+      "message": "or are you suspecting this is causing b/336264717, if yes, then removing this should also be fine since map will be updated/replaced anyways for the same broadcast id. we just need to avoid clearing this at stop scanning.",
+      "parentUuid": "f3563f62_12c57c7b",
+      "revId": "8e3528c3a9ec6796cd5b8b85bc3328c828b3a1cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "de0ba513_a706f6c5",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 13
@@ -99,6 +117,24 @@
       "writtenOn": "2024-05-09T03:00:59Z",
       "side": 1,
       "message": "this can also be removed from here since it\u0027s also remote\u0027s data, not related to sync, map will be updated if the same broadcast id has new data.",
+      "revId": "8e3528c3a9ec6796cd5b8b85bc3328c828b3a1cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc49fead_8f891090",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1659,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-05-09T03:50:58Z",
+      "side": 1,
+      "message": "hmm... probably we can keep this, realized we store sync handle here as well, it\u0027s a bit different than mCachedBroadcasts",
+      "parentUuid": "a080ab70_913c72d3",
       "revId": "8e3528c3a9ec6796cd5b8b85bc3328c828b3a1cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
