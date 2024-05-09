@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0624732_a5fc8514",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-09T05:02:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c432090c_33c7c312",
+      "revId": "eeffb3008a326edc5712a5b91f5f6f4b5c908c04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99c9b9e5_21581ffb",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72b918bd_6a4b3d50",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2212,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-09T05:02:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99c9b9e5_21581ffb",
+      "range": {
+        "startLine": 2212,
+        "startChar": 16,
+        "endLine": 2212,
+        "endChar": 17
+      },
+      "revId": "eeffb3008a326edc5712a5b91f5f6f4b5c908c04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "85b34bcc_133458cb",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-05-09T00:31:51Z",
       "side": 1,
       "message": "Could we make sure the exit code is 0 after killing it?\n\nAndroid documentation doesn\u0027t suggest that\n\nhttps://developer.android.com/reference/android/os/Process#killProcess(int)",
+      "range": {
+        "startLine": 2213,
+        "startChar": 12,
+        "endLine": 2213,
+        "endChar": 71
+      },
+      "revId": "eeffb3008a326edc5712a5b91f5f6f4b5c908c04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed5b818f_3af1a580",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2213,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-09T05:02:50Z",
+      "side": 1,
+      "message": "I am still convinved we should not fake a clean exit, but I am landing this in a separate change and separate flag later on.",
+      "parentUuid": "85b34bcc_133458cb",
       "range": {
         "startLine": 2213,
         "startChar": 12,
