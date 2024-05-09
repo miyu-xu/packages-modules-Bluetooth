@@ -1604,18 +1604,19 @@ public class HeadsetServiceAndStateMachineTest {
     }
 
     @Test
-    public void testHfpHandoverToLeAudioAfterScoDisconnect() {
+    public void testHfpOnlyHandoverToLeAudioAfterScoDisconnect() {
         BluetoothDevice device = TestUtils.getTestDevice(mAdapter, 0);
         mSetFlagsRule.enableFlags(Flags.FLAG_LEAUDIO_RESUME_ACTIVE_AFTER_HFP_HANDOVER);
+        mSetFlagsRule.enableFlags(Flags.FLAG_KEEP_HFP_ACTIVE_DURING_LEAUDIO_HANDOVER);
 
         Assert.assertNotNull(mHeadsetService.mFactory);
+        mHeadsetService.mFactory = mServiceFactory;
+
         doReturn(mLeAudioService).when(mServiceFactory).getLeAudioService();
         doReturn(List.of(device)).when(mLeAudioService).getConnectedDevices();
         List<BluetoothDevice> activeDeviceList = new ArrayList<>();
         activeDeviceList.add(null);
         doReturn(activeDeviceList).when(mLeAudioService).getActiveDevices();
-        mHeadsetService.mFactory = mServiceFactory;
-        doReturn(true).when(mSystemInterface).isCallIdle();
 
         // Connect HF
         connectTestDevice(device);
@@ -1625,6 +1626,51 @@ public class HeadsetServiceAndStateMachineTest {
         Assert.assertEquals(device, mHeadsetService.getActiveDevice());
         verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS)).sendBsir(eq(device), eq(true));
 
+        // this device is a HFP only device
+        doReturn(BluetoothProfile.CONNECTION_POLICY_ALLOWED)
+                .when(mDatabaseManager)
+                .getProfileConnectionPolicy(device, BluetoothProfile.HEADSET);
+        doReturn(BluetoothProfile.CONNECTION_POLICY_UNKNOWN)
+                .when(mDatabaseManager)
+                .getProfileConnectionPolicy(device, BluetoothProfile.A2DP);
+        doReturn(BluetoothProfile.CONNECTION_POLICY_UNKNOWN)
+                .when(mDatabaseManager)
+                .getProfileConnectionPolicy(device, BluetoothProfile.HEARING_AID);
+        doReturn(BluetoothProfile.CONNECTION_POLICY_UNKNOWN)
+                .when(mDatabaseManager)
+                .getProfileConnectionPolicy(device, BluetoothProfile.LE_AUDIO);
+
+        doReturn(true).when(mSystemInterface).isInCall();
+
+        mHeadsetService.messageFromNative(
+                new HeadsetStackEvent(
+                        HeadsetStackEvent.EVENT_TYPE_AUDIO_STATE_CHANGED,
+                        HeadsetHalConstants.AUDIO_STATE_CONNECTING,
+                        device));
+        TestUtils.waitForLooperToFinishScheduledTask(
+                mHeadsetService.getStateMachinesThreadLooper());
+
+        // simulate controller cannot handle SCO and CIS coexistence,
+        // and SCO is failed to connect initially,
+        mHeadsetService.messageFromNative(
+                new HeadsetStackEvent(
+                        HeadsetStackEvent.EVENT_TYPE_AUDIO_STATE_CHANGED,
+                        HeadsetHalConstants.AUDIO_STATE_DISCONNECTED,
+                        device));
+        TestUtils.waitForLooperToFinishScheduledTask(
+                mHeadsetService.getStateMachinesThreadLooper());
+        // at this moment, should not resume LE Audio active device
+        verify(mLeAudioService, never()).setActiveAfterHfpHandover();
+
+        mHeadsetService.messageFromNative(
+                new HeadsetStackEvent(
+                        HeadsetStackEvent.EVENT_TYPE_AUDIO_STATE_CHANGED,
+                        HeadsetHalConstants.AUDIO_STATE_CONNECTING,
+                        device));
+        TestUtils.waitForLooperToFinishScheduledTask(
+                mHeadsetService.getStateMachinesThreadLooper());
+
+        // then SCO is connected
         mHeadsetService.messageFromNative(
                 new HeadsetStackEvent(
                         HeadsetStackEvent.EVENT_TYPE_AUDIO_STATE_CHANGED,
@@ -1633,6 +1679,8 @@ public class HeadsetServiceAndStateMachineTest {
         TestUtils.waitForLooperToFinishScheduledTask(
                 mHeadsetService.getStateMachinesThreadLooper());
 
+        doReturn(false).when(mSystemInterface).isInCall();
+        doReturn(true).when(mSystemInterface).isCallIdle();
         // Audio disconnected
         mHeadsetService.messageFromNative(
                 new HeadsetStackEvent(
