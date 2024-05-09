@@ -94,6 +94,30 @@
       },
       "revId": "2d17b1846393130f1dbe6218f45e1c6b78f5e5c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92c9bbe3_82316b1f",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-09T03:29:09Z",
+      "side": 0,
+      "message": "As talked offline, I have uploaded the inline of start in constructor in immediate follow-up:\nSee aosp/3079736\n\nClosing this.",
+      "parentUuid": "5263cc78_49161ffd",
+      "range": {
+        "startLine": 196,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 37
+      },
+      "revId": "2d17b1846393130f1dbe6218f45e1c6b78f5e5c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
