@@ -177,6 +177,19 @@ final class AdapterState extends StateMachine {
         }
 
         @Override
+        public void enter() {
+            if (!Flags.explicitKillFromSystemServer()) {
+                super.enter();
+                return;
+            }
+            int prevState = mPrevState;
+            super.enter();
+            if (prevState == BluetoothAdapter.STATE_BLE_TURNING_OFF) {
+                mAdapterService.cleanup();
+            }
+        }
+
+        @Override
         public boolean processMessage(Message msg) {
             switch (msg.what) {
                 case BLE_TURN_ON:
