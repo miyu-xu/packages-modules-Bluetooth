@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f51e668_12e80b07",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 8
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-09T02:04:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b81f0daa_f0acee1b",
+      "revId": "9bffa614cc419b9bb17f61d23f1792c0719abbc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d5e10a04_2908a2fd",
@@ -58,6 +76,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30272f0c_3bef64bf",
+        "filename": "system/gd/storage/config_cache.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-09T02:04:54Z",
+      "side": 1,
+      "message": "It doesn\u0027t apply. From the example below, it attempts to catch the usage of taking a pointer from a container element. The `\u0026` mark in this patch is not even an \"Address-of\" operator and is just a reference declaration.\n\nhttp://google3/wireless/android/busytown/ayeaye/analyzers/checkcontents/check_contents_config_test.go;l\u003d688;rcl\u003d621209655",
+      "parentUuid": "d5e10a04_2908a2fd",
+      "range": {
+        "startLine": 428,
+        "startChar": 21,
+        "endLine": 428,
+        "endChar": 68
+      },
+      "revId": "9bffa614cc419b9bb17f61d23f1792c0719abbc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9da4104c_321ff8b8",
@@ -71,6 +113,24 @@
       "writtenOn": "2024-05-08T17:54:11Z",
       "side": 1,
       "message": "I believe that this file should not be build on android, only for host as this is injecting sysprop into the system when we are not able to read them from the android sysprop provider\n\nI have uploaded https://r.android.com/3080003 to do so",
+      "revId": "9bffa614cc419b9bb17f61d23f1792c0719abbc2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9db46cfe_53e3edc4",
+        "filename": "system/gd/sysprops/sysprops_module.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-09T02:04:54Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9da4104c_321ff8b8",
       "revId": "9bffa614cc419b9bb17f61d23f1792c0719abbc2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
