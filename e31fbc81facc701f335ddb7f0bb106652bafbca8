@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d44c04fa_4f07ca54",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2227,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-05-09T22:28:49Z",
+      "side": 1,
+      "message": "going to remove this, but due to presubmit timing, will do it in another change",
+      "range": {
+        "startLine": 2224,
+        "startChar": 20,
+        "endLine": 2227,
+        "endChar": 62
+      },
+      "revId": "e31fbc81facc701f335ddb7f0bb106652bafbca8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
