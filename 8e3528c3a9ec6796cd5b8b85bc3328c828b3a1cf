@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f7cf3bd_a5b3541a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-09T08:41:03Z",
+      "side": 1,
+      "message": "opposite condition by mistake but after fix I found that this is to early to initialize it:\n05-09 08:29:04.164  7920  7920 D BassClientService: start()\n05-09 08:29:04.165  7920  7920 E BassClientPeriodicAdvertisingManager: Failed to get Default Periodic Advertising Manager\n\nI moved it to the startSearchingForSources, it has to be in BassClientService as in the future we may be scanning without devices so without stateMachines at all. I had to add it to the proxy function to mimic it on tests.\n\nI leave it in stateMachine too in case of add sources without scanning like in local audio sharing.",
+      "parentUuid": "bd51cea6_b43f733a",
+      "revId": "8e3528c3a9ec6796cd5b8b85bc3328c828b3a1cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50c0c5ab_cda2178e",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-05-09T03:00:59Z",
       "side": 1,
       "message": "nit: do we need the flag here? the rest of mBluetoothLeScannerWrapper is not behind flag.",
+      "revId": "8e3528c3a9ec6796cd5b8b85bc3328c828b3a1cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a36c546e_920ac8d4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1466,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-09T08:41:03Z",
+      "side": 1,
+      "message": "It is needed as in old code we never clear the mBluetoothLeScannerWrapper.",
+      "parentUuid": "50c0c5ab_cda2178e",
       "revId": "8e3528c3a9ec6796cd5b8b85bc3328c828b3a1cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -83,6 +119,24 @@
       "writtenOn": "2024-05-09T03:00:59Z",
       "side": 1,
       "message": "duplicated flag check?",
+      "revId": "8e3528c3a9ec6796cd5b8b85bc3328c828b3a1cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc25346b_11b31c5a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1636,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-09T08:41:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de0ba513_a706f6c5",
       "revId": "8e3528c3a9ec6796cd5b8b85bc3328c828b3a1cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
