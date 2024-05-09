@@ -194,6 +194,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75e02b65_311399f1",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1655,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-05-09T14:56:18Z",
+      "side": 1,
+      "message": "maybe we can consider to keep the 3 mins timeout, this could be separate follow-up CL though.",
+      "parentUuid": "5e4cceca_7a973a6a",
+      "revId": "8e3528c3a9ec6796cd5b8b85bc3328c828b3a1cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a080ab70_913c72d3",

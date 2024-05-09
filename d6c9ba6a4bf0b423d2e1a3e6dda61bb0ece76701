@@ -16,6 +16,23 @@
       "message": "@jpawlowski@google.com, @eruffieux@google.com, @mylesgw@google.com\nPlease check at least BluetoothMethodProxy as you are owners of it.",
       "revId": "d6c9ba6a4bf0b423d2e1a3e6dda61bb0ece76701",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8924b67d_a43ae993",
+        "filename": "android/app/src/com/android/bluetooth/BluetoothMethodProxy.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-05-09T14:56:18Z",
+      "side": 1,
+      "message": "is it necessary to add this?\nwhy don\u0027t we just use BassClientPeriodicAdvertisingManager.initializePeriodicAdvertisingManagerOnDefaultAdapter() to keep aligned with BassClientStateMachine?",
+      "revId": "d6c9ba6a4bf0b423d2e1a3e6dda61bb0ece76701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
