@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f2aa9d7_2479be02",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/BrowsedPlayerWrapper2.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-05-09T22:33:55Z",
+      "side": 1,
+      "message": "We originally had logic to wait for playback state PLAYING (or a timeout), which we may still want here.\n\nIn the past, we found that some apps would start up when we bind, queue playback, but shutdown if we unbound too fast, never actually starting playback. We found that most/all players would remain started once their playback state was set as PLAYING, after which we could safely unbind.",
+      "range": {
+        "startLine": 152,
+        "startChar": 12,
+        "endLine": 152,
+        "endChar": 48
+      },
+      "revId": "3d276560945655d3738c594605de6650ae21d15a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95973a74_ffa58288",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-05-09T22:33:55Z",
+      "side": 1,
+      "message": "Perhaps I\u0027m still on an old version of the code, but I think I\u0027ve noticed in my testing that we don\u0027t get responses to SetBrowsedPlayer requests sometimes.\n\nIs there a chance that this callback doesn\u0027t fire?",
+      "range": {
+        "startLine": 357,
+        "startChar": 24,
+        "endLine": 357,
+        "endChar": 72
+      },
+      "revId": "3d276560945655d3738c594605de6650ae21d15a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
