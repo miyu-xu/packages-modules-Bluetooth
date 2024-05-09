@@ -161,6 +161,48 @@ class RfcommTest {
         cleanUp()
     }
 
+    @Test
+    @Throws(Exception::class)
+    fun clientReceiveDataOverInsecureSocket() {
+        mServer = startServer()
+
+        val (insecureSocket, connection) = createAndConnectSocket(isSecure = false)
+        val buffer = ByteArray(64)
+        val socketIs = insecureSocket.inputStream
+        val data: ByteString =
+            ByteString.copyFromUtf8("Test data for clientReceiveDataOverInsecureSocket")
+
+        val txRequest =
+            RfcommProto.TxRequest.newBuilder().setConnection(connection).setData(data).build()
+        mBumble.rfcommBlocking().send(txRequest)
+        val numBytesFromBumble = socketIs.read(buffer)
+        Truth.assertThat(ByteString.copyFrom(buffer).substring(0, numBytesFromBumble))
+            .isEqualTo(data)
+
+        cleanUp()
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun clientReceiveDataOverSecureSocket() {
+        mServer = startServer()
+
+        val (secureSocket, connection) = createAndConnectSocket(isSecure = true)
+        val buffer = ByteArray(64)
+        val socketIs = secureSocket.inputStream
+        val data: ByteString =
+            ByteString.copyFromUtf8("Test data for clientReceiveDataOverSecureSocket")
+
+        val txRequest =
+            RfcommProto.TxRequest.newBuilder().setConnection(connection).setData(data).build()
+        mBumble.rfcommBlocking().send(txRequest)
+        val numBytesFromBumble = socketIs.read(buffer)
+        Truth.assertThat(ByteString.copyFrom(buffer).substring(0, numBytesFromBumble))
+            .isEqualTo(data)
+
+        cleanUp()
+    }
+
     private fun createAndConnectSocket(
         isSecure: Boolean
     ): Pair<BluetoothSocket, RfcommProto.RfcommConnection> {
