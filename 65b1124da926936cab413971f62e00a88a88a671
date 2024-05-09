@@ -60,6 +60,30 @@
       ],
       "revId": "65b1124da926936cab413971f62e00a88a88a671",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bec1d0d_73124a4b",
+        "filename": "system/bta/hh/bta_hh_headtracker.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-09T04:31:18Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "9bdbdc72_199d5fe1",
+      "range": {
+        "startLine": 155,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 70
+      },
+      "revId": "65b1124da926936cab413971f62e00a88a88a671",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
