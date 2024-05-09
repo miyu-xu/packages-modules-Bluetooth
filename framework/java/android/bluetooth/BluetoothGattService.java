@@ -255,7 +255,7 @@ public class BluetoothGattService implements Parcelable {
      *
      * @hide
      */
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.V)
     public void setInstanceId(int instanceId) {
         mInstanceId = instanceId;
     }

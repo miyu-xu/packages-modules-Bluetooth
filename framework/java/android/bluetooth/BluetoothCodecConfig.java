@@ -243,7 +243,7 @@ public final class BluetoothCodecConfig implements Parcelable {
      * @param codecSpecific4 the specific value 4 values to 0.
      * @hide
      */
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.V)
     public BluetoothCodecConfig(
             @SourceCodecType int codecType,
             @CodecPriority int codecPriority,

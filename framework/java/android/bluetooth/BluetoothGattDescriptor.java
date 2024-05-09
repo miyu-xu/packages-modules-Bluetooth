@@ -179,7 +179,7 @@ public class BluetoothGattDescriptor implements Parcelable {
      *
      * @hide
      */
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.V)
     /*package*/ void setCharacteristic(BluetoothGattCharacteristic characteristic) {
         mCharacteristic = characteristic;
     }

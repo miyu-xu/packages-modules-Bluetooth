@@ -366,7 +366,7 @@ public final class BluetoothHeadset implements BluetoothProfile {
      *
      * @hide
      */
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.V)
     public void close() {
         mAdapter.closeProfileProxy(this);
     }
@@ -1330,7 +1330,7 @@ public final class BluetoothHeadset implements BluetoothProfile {
         return false;
     }
 
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.V)
     private boolean isEnabled() {
         return mAdapter.getState() == BluetoothAdapter.STATE_ON;
     }
