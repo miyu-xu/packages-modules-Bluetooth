@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b79f4316_6ab0ab1f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckScanTest.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-05-09T20:50:20Z",
+      "side": 1,
+      "message": "not advertising with UUID",
+      "fixSuggestions": [
+        {
+          "fixId": "28ec00b4_9fb8ec27",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/DckScanTest.kt",
+              "range": {
+                "startLine": 97,
+                "startChar": 0,
+                "endLine": 98,
+                "endChar": 0
+              },
+              "replacement": "        // device is not advertising with UUID\n"
+            }
+          ]
+        }
+      ],
+      "revId": "76519175888b49f27796f13684c633fa634d90a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
