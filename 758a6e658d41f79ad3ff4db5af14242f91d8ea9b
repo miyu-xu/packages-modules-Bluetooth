@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d154d2c5_b90fd93c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1281,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-09T22:53:06Z",
+      "side": 1,
+      "message": "Do we also want a log at the entry of the function, so we know it was called?",
+      "fixSuggestions": [
+        {
+          "fixId": "7aae7e09_07f39cfa",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+              "range": {
+                "startLine": 1281,
+                "startChar": 0,
+                "endLine": 1281,
+                "endChar": 0
+              },
+              "replacement": "        debugLog(\"fetchUuids() device\u003d\" + device);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "758a6e658d41f79ad3ff4db5af14242f91d8ea9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
