@@ -16,6 +16,24 @@
       "message": "DckScanTest is expected to contain all scan related tests, so please add this test there.",
       "revId": "166f70ea3f7b13432acd24cfd4d682dc8113a6a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8901e042_7ea42048",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckScanWithUuidTest.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 3335917
+      },
+      "writtenOn": "2024-05-09T20:39:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f08231ce_17d40377",
+      "revId": "166f70ea3f7b13432acd24cfd4d682dc8113a6a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
