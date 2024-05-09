@@ -344,6 +344,8 @@ namespace fmt {
 template <>
 struct formatter<tBTA_HH_SERVICE_STATE>
     : enum_formatter<tBTA_HH_SERVICE_STATE> {};
+template <>
+struct formatter<tBTA_HH_AVAILABLE> : enum_formatter<tBTA_HH_AVAILABLE> {};
 }  // namespace fmt
 
 #endif
