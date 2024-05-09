@@ -26,6 +26,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.android.compatibility.common.util.AdoptShellPermissionsRule
 import com.google.common.truth.Truth
+import com.google.protobuf.ByteString
 import io.grpc.stub.StreamObserver
 import java.time.Duration
 import java.util.UUID
@@ -171,6 +172,46 @@ class RfcommTest {
                 RfcommProto.AcceptConnectionRequest.newBuilder().setServer(mServer).build()
             )
         Truth.assertThat(secureSocket.isConnected).isTrue()
+
+        cleanUp()
+    }
+
+    @Test
+    fun clientSendDataOverInsecureSocket() {
+        mServer = startServer()
+        runBlocking { bondDevice(mBumbleDevice) }
+
+        val (insecureSocket, connection) = createAndConnectSocket(isSecure = false)
+        val data: ByteArray = "Test data for clientSendDataOverInsecureSocket".toByteArray()
+        val socketOs = insecureSocket.outputStream
+
+        socketOs.write(data)
+        val rxResponse: RfcommProto.RxResponse =
+            mBumble
+                .rfcommBlocking()
+                .withDeadlineAfter(GRPC_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
+                .receive(RfcommProto.RxRequest.newBuilder().setConnection(connection).build())
+        Truth.assertThat(rxResponse.data).isEqualTo(ByteString.copyFrom(data))
+
+        cleanUp()
+    }
+
+    @Test
+    fun clientSendDataOverSecureSocket() {
+        mServer = startServer()
+        runBlocking { bondDevice(mBumbleDevice) }
+
+        val (secureSocket, connection) = createAndConnectSocket(isSecure = true)
+        val data: ByteArray = "Test data for clientSendDataOverSecureSocket".toByteArray()
+        val socketOs = secureSocket.outputStream
+
+        socketOs.write(data)
+        val rxResponse: RfcommProto.RxResponse =
+            mBumble
+                .rfcommBlocking()
+                .withDeadlineAfter(GRPC_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
+                .receive(RfcommProto.RxRequest.newBuilder().setConnection(connection).build())
+        Truth.assertThat(rxResponse.data).isEqualTo(ByteString.copyFrom(data))
 
         cleanUp()
     }
