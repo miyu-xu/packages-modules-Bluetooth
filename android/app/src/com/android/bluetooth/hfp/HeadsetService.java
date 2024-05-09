@@ -22,6 +22,7 @@ import static android.Manifest.permission.MODIFY_PHONE_STATE;
 import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
 import static com.android.modules.utils.build.SdkLevel.isAtLeastU;
 
+import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.annotation.RequiresPermission;
 import android.bluetooth.BluetoothClass;
@@ -2110,6 +2111,26 @@ public class HeadsetService extends ProfileService {
         }
     }
 
+    /**
+     * Check if the device only allows HFP profile as audio profile
+     *
+     * @param device Bluetooth device
+     * @return true if it is a BluetoothDevice with only HFP profile connectable
+     */
+    private boolean isHFPAudioOnly(@NonNull BluetoothDevice device) {
+        int hfpPolicy =
+                mDatabaseManager.getProfileConnectionPolicy(device, BluetoothProfile.HEADSET);
+        int a2dpPolicy = mDatabaseManager.getProfileConnectionPolicy(device, BluetoothProfile.A2DP);
+        int leAudioPolicy =
+                mDatabaseManager.getProfileConnectionPolicy(device, BluetoothProfile.LE_AUDIO);
+        int ashaPolicy =
+                mDatabaseManager.getProfileConnectionPolicy(device, BluetoothProfile.HEARING_AID);
+        return hfpPolicy == BluetoothProfile.CONNECTION_POLICY_ALLOWED
+                && a2dpPolicy != BluetoothProfile.CONNECTION_POLICY_ALLOWED
+                && leAudioPolicy != BluetoothProfile.CONNECTION_POLICY_ALLOWED
+                && ashaPolicy != BluetoothProfile.CONNECTION_POLICY_ALLOWED;
+    }
+
     private boolean shouldCallAudioBeActive() {
         return mSystemInterface.isInCall() || (mSystemInterface.isRinging()
                 && isInbandRingingEnabled());
@@ -2171,10 +2192,24 @@ public class HeadsetService extends ProfileService {
                 // co-existence see {@link LeAudioService#setInactiveForHfpHandover}
                 if (Flags.leaudioResumeActiveAfterHfpHandover()) {
                     LeAudioService leAudioService = mFactory.getLeAudioService();
-                    if (leAudioService != null
+                    if (!Flags.keepHfpActiveDuringLeaudioHandover()
+                            && leAudioService != null
                             && !leAudioService.getConnectedDevices().isEmpty()
                             && leAudioService.getActiveDevices().get(0) == null) {
                         leAudioService.setActiveAfterHfpHandover();
+                    }
+
+                    // usually controller limitation cause CONNECTING -> DISCONNECTED, so only
+                    // resume LE audio active device if it is HFP audio only and SCO disconnected
+                    if (Flags.keepHfpActiveDuringLeaudioHandover()
+                            && fromState != BluetoothHeadset.STATE_AUDIO_CONNECTING
+                            && isHFPAudioOnly(device)) {
+
+                        if (leAudioService != null
+                                && !leAudioService.getConnectedDevices().isEmpty()
+                                && leAudioService.getActiveDevices().get(0) == null) {
+                            leAudioService.setActiveAfterHfpHandover();
+                        }
                     }
                 }
 
