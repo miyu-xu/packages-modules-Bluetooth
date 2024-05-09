@@ -26,6 +26,7 @@ import androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.android.compatibility.common.util.AdoptShellPermissionsRule
 import com.google.common.truth.Truth
+import com.google.protobuf.ByteString
 import io.grpc.stub.StreamObserver
 import java.time.Duration
 import java.util.UUID
@@ -158,6 +159,46 @@ class RfcommClientTest {
                 .rfcommBlocking()
                 .receive(RfcommProto.RxRequest.newBuilder().setConnection(connection).build())
         Truth.assertThat(rxResponse.data).isNotEmpty()
+
+        cleanUp()
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun receiveDataOverInsecureSocket() {
+        mServer = startServer()
+
+        val (insecureSocket, connection) = createAndConnectSocket(isSecure = false)
+        val buffer = ByteArray(64)
+        val socketIs = insecureSocket.inputStream
+        val data: ByteString = ByteString.copyFrom(byteArrayOf(68, 69, 70))
+
+        val txRequest =
+            RfcommProto.TxRequest.newBuilder().setConnection(connection).setData(data).build()
+        mBumble.rfcommBlocking().send(txRequest)
+        val numBytesFromBumble = socketIs.read(buffer)
+        Truth.assertThat(ByteString.copyFrom(buffer).substring(0, numBytesFromBumble))
+            .isEqualTo(data)
+
+        cleanUp()
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun receiveDataOverSecureSocket() {
+        mServer = startServer()
+
+        val (secureSocket, connection) = createAndConnectSocket(isSecure = true)
+        val buffer = ByteArray(64)
+        val socketIs = secureSocket.inputStream
+        val data: ByteString = ByteString.copyFrom(byteArrayOf(68, 69, 70))
+
+        val txRequest =
+            RfcommProto.TxRequest.newBuilder().setConnection(connection).setData(data).build()
+        mBumble.rfcommBlocking().send(txRequest)
+        val numBytesFromBumble = socketIs.read(buffer)
+        Truth.assertThat(ByteString.copyFrom(buffer).substring(0, numBytesFromBumble))
+            .isEqualTo(data)
 
         cleanUp()
     }
