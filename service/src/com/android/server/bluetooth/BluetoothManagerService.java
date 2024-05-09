@@ -112,6 +112,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.Callable;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
@@ -1213,15 +1214,50 @@ class BluetoothManagerService {
         try {
             mHandler.removeMessages(MESSAGE_BLUETOOTH_STATE_CHANGE);
             if (mAdapter != null) {
-                // Unregister callback object
                 try {
                     mAdapter.unregisterCallback(
                             mBluetoothCallback, mContext.getAttributionSource());
                 } catch (RemoteException e) {
                     Log.e(TAG, "Unable to unregister BluetoothCallback", e);
                 }
-                mAdapter = null;
+
+                if (!Flags.explicitKillFromSystemServer()) {
+                    mAdapter = null;
+                    mContext.unbindService(mConnection);
+                    mHandler.removeMessages(MESSAGE_TIMEOUT_BIND);
+                    return;
+                }
+
+                CompletableFuture<Void> binderDead = new CompletableFuture<>();
+                try {
+                    mAdapter.getAdapterBinder()
+                            .asBinder()
+                            .linkToDeath(
+                                    new IBinder.DeathRecipient() {
+                                        public void binderDied() {
+                                            binderDead.complete(null);
+                                        }
+                                    },
+                                    0);
+                } catch (RemoteException e) {
+                    binderDead.completeExceptionally(e);
+                }
+
+                // Unbind first to avoid receiving "onServiceDisconnected"
                 mContext.unbindService(mConnection);
+
+                // Force kill the bluetooth to make sure the process is bring down and not re-use
+                // Note that in a perfect world, we should be able to re-init the same process.
+                // Unfortunately, this require an heavy rework of the shutdown implementation
+                // TODO: b/339501753 - Properly stop Bluetooth without calling kill nor exit
+                mAdapter.killBluetoothProcess();
+                try {
+                    binderDead.get(1, TimeUnit.SECONDS);
+                } catch (TimeoutException | InterruptedException | ExecutionException e) {
+                    Log.e(TAG, "Bluetooth death not cleanly received, moving on anyway", e);
+                }
+
+                mAdapter = null;
                 mHandler.removeMessages(MESSAGE_TIMEOUT_BIND);
             }
         } finally {
