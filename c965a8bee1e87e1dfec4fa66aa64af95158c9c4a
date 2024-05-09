@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f86e40e_54472d0f",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1517,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-09T23:20:07Z",
+      "side": 1,
+      "message": "We should obfuscate this (in follow up)",
+      "range": {
+        "startLine": 1517,
+        "startChar": 80,
+        "endLine": 1517,
+        "endChar": 87
+      },
+      "revId": "c965a8bee1e87e1dfec4fa66aa64af95158c9c4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03501106_80bed713",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-09T23:20:07Z",
+      "side": 1,
+      "message": "promote to final ?",
+      "range": {
+        "startLine": 75,
+        "startChar": 12,
+        "endLine": 75,
+        "endChar": 25
+      },
+      "revId": "c965a8bee1e87e1dfec4fa66aa64af95158c9c4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
