@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6c2807e_9eb3d25d",
+        "filename": "system/bta/hh/bta_hh_headtracker.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-09T23:02:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e087e311_71ef19a0",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 40
+      },
+      "revId": "64f293b15c7909f8b7bcc41a82098d7e84ad3a83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c48bb584_71d6c00b",
@@ -61,6 +85,30 @@
           ]
         }
       ],
+      "revId": "64f293b15c7909f8b7bcc41a82098d7e84ad3a83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bac5ada_6a9162ab",
+        "filename": "system/bta/hh/bta_hh_headtracker.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-09T23:02:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c48bb584_71d6c00b",
+      "range": {
+        "startLine": 161,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 77
+      },
       "revId": "64f293b15c7909f8b7bcc41a82098d7e84ad3a83",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -132,6 +180,30 @@
           ]
         }
       ],
+      "revId": "64f293b15c7909f8b7bcc41a82098d7e84ad3a83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fc62db3_a934f7fa",
+        "filename": "system/bta/hh/bta_hh_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-09T23:02:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a861f37e_afed457c",
+      "range": {
+        "startLine": 348,
+        "startChar": 17,
+        "endLine": 348,
+        "endChar": 34
+      },
       "revId": "64f293b15c7909f8b7bcc41a82098d7e84ad3a83",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
