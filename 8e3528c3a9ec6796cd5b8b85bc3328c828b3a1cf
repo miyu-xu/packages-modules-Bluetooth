@@ -106,6 +106,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82e454d9_8f725b8f",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1551,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-09T09:29:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f18469e_b76d309f",
+      "revId": "8e3528c3a9ec6796cd5b8b85bc3328c828b3a1cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de0ba513_a706f6c5",
@@ -160,6 +178,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5e4cceca_7a973a6a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1655,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-09T09:29:21Z",
+      "side": 1,
+      "message": "yep, it fix it, one disadvantage which I see is in that scenario\n1. \"Find an audio stream\" and click to connect\n2. \"Audio stream detail\" stop scanning and unsync all broadcasters\n3. \"Disconnect\" remove the source\n4. \"Connect will sync broadcaster again and connect to it\n5. When you do not go back but close this window then stopSearchingSources will be not called and this sync will stay forever. Of course if someone go again to scanner it will behave correctly and on leaving it will unsync it.\n\nThis doesn\u0027t seem like a big problem so I\u0027ll leave it as it is.",
+      "parentUuid": "0d515c59_d1cae6d3",
+      "revId": "8e3528c3a9ec6796cd5b8b85bc3328c828b3a1cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a080ab70_913c72d3",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 13
@@ -189,6 +225,24 @@
       "side": 1,
       "message": "hmm... probably we can keep this, realized we store sync handle here as well, it\u0027s a bit different than mCachedBroadcasts",
       "parentUuid": "a080ab70_913c72d3",
+      "revId": "8e3528c3a9ec6796cd5b8b85bc3328c828b3a1cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d32486f4_a66fe26a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1659,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-09T09:29:21Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "cc49fead_8f891090",
       "revId": "8e3528c3a9ec6796cd5b8b85bc3328c828b3a1cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
