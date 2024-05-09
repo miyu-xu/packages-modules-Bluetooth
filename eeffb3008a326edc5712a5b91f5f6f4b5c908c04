@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85b34bcc_133458cb",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2213,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-09T00:31:51Z",
+      "side": 1,
+      "message": "Could we make sure the exit code is 0 after killing it?\n\nAndroid documentation doesn\u0027t suggest that\n\nhttps://developer.android.com/reference/android/os/Process#killProcess(int)",
+      "range": {
+        "startLine": 2213,
+        "startChar": 12,
+        "endLine": 2213,
+        "endChar": 71
+      },
+      "revId": "eeffb3008a326edc5712a5b91f5f6f4b5c908c04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
