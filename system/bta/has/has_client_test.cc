@@ -39,6 +39,7 @@
 #include "hardware/bt_gatt_types.h"
 #include "has_types.h"
 #include "mock_csis_client.h"
+#include "mock_le_audio_client.h"
 #include "osi/include/properties.h"
 #include "stack/gatt/gatt_int.h"
 #include "stack/include/bt_uuid16.h"
@@ -647,6 +648,11 @@ protected:
     ON_CALL(mock_csis_client_module_, Get()).WillByDefault(Return(&mock_csis_client_module_));
     ON_CALL(mock_csis_client_module_, IsCsisClientRunning()).WillByDefault(Return(true));
 
+    MockLeAudioClient::SetMockInstanceForTesting(&mock_le_audio_client_module_);
+    ON_CALL(mock_le_audio_client_module_,Get())
+            .WillByDefault(Return(&mock_le_audio_client_module_));
+    ON_CALL(mock_le_audio_client_module_, IsLeAudioClientRunning()).WillByDefault(Return(true));
+
     /* default action for GetCharacteristic function call */
     ON_CALL(gatt_interface, GetCharacteristic(_, _))
             .WillByDefault(
@@ -1118,6 +1124,7 @@ protected:
   gatt::MockBtaGattInterface gatt_interface;
   gatt::MockBtaGattQueue gatt_queue;
   MockCsisClient mock_csis_client_module_;
+  MockLeAudioClient mock_le_audio_client_module_;
   tBTA_GATTC_CBACK* gatt_callback;
   const uint8_t gatt_if = 0xfe;
   std::map<uint8_t, RawAddress> connected_devices;
@@ -3318,6 +3325,44 @@ TEST_F(HasTypesTest, test_group_op_coordinator_completion) {
 
   ASSERT_EQ(alarm_free_count, get_func_call_count("alarm_free"));
   ASSERT_EQ(1, get_func_call_count("alarm_new"));
+}
+
+TEST_F(HasClientTest, test_binaural_desired_size) {
+  const RawAddress test_address = GetTestAddress(1);
+  /* Minimal possible HA device (only feature flags) */
+  SetSampleDatabaseHasNoPresetChange(test_address,
+                                     bluetooth::has::kFeatureBitHearingAidTypeBinaural);
+
+  ON_CALL(mock_csis_client_module_,
+          GetGroupId(test_address, ::bluetooth::le_audio::uuid::kCapServiceUuid))
+          .WillByDefault(Return(1));
+  EXPECT_CALL(mock_le_audio_client_module_, SetDesiredGroupSize(1, 2));
+  TestConnect(test_address);
+}
+
+TEST_F(HasClientTest, test_monaural_desired_size) {
+  const RawAddress test_address = GetTestAddress(1);
+  /* Minimal possible HA device (only feature flags) */
+  SetSampleDatabaseHasNoPresetChange(test_address,
+                                     bluetooth::has::kFeatureBitHearingAidTypeMonaural);
+
+  ON_CALL(mock_csis_client_module_,
+          GetGroupId(test_address, ::bluetooth::le_audio::uuid::kCapServiceUuid))
+          .WillByDefault(Return(1));
+  EXPECT_CALL(mock_le_audio_client_module_, SetDesiredGroupSize(1, 1));
+  TestConnect(test_address);
+}
+
+TEST_F(HasClientTest, test_banded_desired_size) {
+  const RawAddress test_address = GetTestAddress(1);
+  /* Minimal possible HA device (only feature flags) */
+  SetSampleDatabaseHasNoPresetChange(test_address, bluetooth::has::kFeatureBitHearingAidTypeBanded);
+
+  ON_CALL(mock_csis_client_module_,
+          GetGroupId(test_address, ::bluetooth::le_audio::uuid::kCapServiceUuid))
+          .WillByDefault(Return(1));
+  EXPECT_CALL(mock_le_audio_client_module_, SetDesiredGroupSize(1, 1));
+  TestConnect(test_address);
 }
 
 }  // namespace
