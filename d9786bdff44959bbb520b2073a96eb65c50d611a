@@ -111,6 +111,30 @@
       },
       "revId": "d9786bdff44959bbb520b2073a96eb65c50d611a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "242b72f1_53f45f85",
+        "filename": "system/main/shim/stack.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-09T18:08:18Z",
+      "side": 1,
+      "message": "Yes, it\u0027s not used on Android. On Android the accessor for system properties are provided by the libc.",
+      "parentUuid": "bb5c8ebc_49d820b0",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 6
+      },
+      "revId": "d9786bdff44959bbb520b2073a96eb65c50d611a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
