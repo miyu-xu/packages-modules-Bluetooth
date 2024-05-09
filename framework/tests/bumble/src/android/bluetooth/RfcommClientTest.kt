@@ -127,6 +127,44 @@ class RfcommClientTest {
         cleanUp()
     }
 
+    @Test
+    @Throws(Exception::class)
+    fun sendDataOverInsecureSocket() {
+        mServer = startServer()
+
+        val (insecureSocket, connection) = createAndConnectSocket(isSecure = false)
+        val data: ByteArray = byteArrayOf(65, 66, 67)
+        val socketOs = insecureSocket.outputStream
+
+        socketOs.write(data)
+        val rxResponse: RfcommProto.RxResponse =
+            mBumble
+                .rfcommBlocking()
+                .receive(RfcommProto.RxRequest.newBuilder().setConnection(connection).build())
+        Truth.assertThat(rxResponse.data).isNotEmpty()
+
+        cleanUp()
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun sendDataOveSecureSocket() {
+        mServer = startServer()
+
+        val (secureSocket, connection) = createAndConnectSocket(isSecure = true)
+        val data: ByteArray = byteArrayOf(65, 66, 67)
+        val socketOs = secureSocket.outputStream
+
+        socketOs.write(data)
+        val rxResponse: RfcommProto.RxResponse =
+            mBumble
+                .rfcommBlocking()
+                .receive(RfcommProto.RxRequest.newBuilder().setConnection(connection).build())
+        Truth.assertThat(rxResponse.data).isNotEmpty()
+
+        cleanUp()
+    }
+
     private fun createAndConnectSocket(
         isSecure: Boolean
     ): Pair<BluetoothSocket, RfcommProto.RfcommConnection> {
