@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c64a383a_9731240c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-05-09T06:52:12Z",
+      "side": 1,
+      "message": "The commit message is super clear now. THanks for the work!",
+      "revId": "93b2e1656a5488115d564c2bfc7b2ce87c7a7178",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
