@@ -46,6 +46,30 @@
       },
       "revId": "76ccf8d43cf594eca0829b7218b68acf613714c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1801ee3_11f7d595",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfp/HeadsetServiceAndStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-09T00:11:32Z",
+      "side": 0,
+      "message": "\u003e  there is no guarantee that the intent will be send in 250ms\n\nYup, that\u0027s why we have this comment here. The `TestLooper` is nice, thanks for fixing it. \n\nBut that being said, if there is a catastrophic failure in Android framework to delay the intent by a long time, it is still a problem for us, but it should not be the scope of this unit-level test.",
+      "parentUuid": "3330e606_1304d2fd",
+      "range": {
+        "startLine": 279,
+        "startChar": 8,
+        "endLine": 281,
+        "endChar": 66
+      },
+      "revId": "76ccf8d43cf594eca0829b7218b68acf613714c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
