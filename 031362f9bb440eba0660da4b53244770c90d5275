@@ -93,6 +93,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8c7b756_8584a62f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-09T23:38:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cadccf73_2701557c",
+      "range": {
+        "startLine": 71,
+        "startChar": 3,
+        "endLine": 73,
+        "endChar": 41
+      },
+      "revId": "031362f9bb440eba0660da4b53244770c90d5275",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "39c29e26_2c2ebe30",
@@ -106,6 +130,30 @@
       "writtenOn": "2024-05-07T22:13:14Z",
       "side": 1,
       "message": "nit: I think this should be removed",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 9
+      },
+      "revId": "031362f9bb440eba0660da4b53244770c90d5275",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66401737_d6a50d6a",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-09T23:38:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39c29e26_2c2ebe30",
       "range": {
         "startLine": 82,
         "startChar": 0,
@@ -139,6 +187,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4598470_7813f120",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-09T23:38:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a6fc2a2_33401c28",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 68
+      },
+      "revId": "031362f9bb440eba0660da4b53244770c90d5275",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "233f72e6_ec6d1003",
@@ -152,6 +224,24 @@
       "writtenOn": "2024-05-07T22:13:14Z",
       "side": 1,
       "message": "This assertion seems strange, what does `1` means here?\n\nI think it would be great to rework a bit the RFCOMM interface to make this test more expressive.",
+      "revId": "031362f9bb440eba0660da4b53244770c90d5275",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7ef4db4_acd6a3e2",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-09T23:38:50Z",
+      "side": 1,
+      "message": "The connection ids start at 1 and resets when you start the server.  Since this is the first and only connection of the test, we expect 1.  You\u0027re right that just reading this doesn\u0027t tell you much.",
+      "parentUuid": "233f72e6_ec6d1003",
       "revId": "031362f9bb440eba0660da4b53244770c90d5275",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -196,6 +286,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a29a1070_51167098",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-09T23:38:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ad1bfd4_2daa4e96",
+      "range": {
+        "startLine": 160,
+        "startChar": 55,
+        "endLine": 160,
+        "endChar": 58
+      },
+      "revId": "031362f9bb440eba0660da4b53244770c90d5275",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc80d6c9_dbfa9545",
@@ -209,6 +323,30 @@
       "writtenOn": "2024-05-07T22:24:27Z",
       "side": 1,
       "message": "remove nullable",
+      "range": {
+        "startLine": 213,
+        "startChar": 66,
+        "endLine": 213,
+        "endChar": 69
+      },
+      "revId": "031362f9bb440eba0660da4b53244770c90d5275",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f154715_ab2d7a1c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-09T23:38:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc80d6c9_dbfa9545",
       "range": {
         "startLine": 213,
         "startChar": 66,
