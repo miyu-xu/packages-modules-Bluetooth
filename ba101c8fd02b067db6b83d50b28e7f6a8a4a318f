@@ -1,0 +1,85 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5df1108e_caf0461d",
+        "filename": "system/bta/include/bta_hh_api.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-05-09T11:30:36Z",
+      "side": 1,
+      "message": "`BTA_HH_LE_RPT_DATA_EVT` if only for LE case. But maybe we should have a similar fix in place for the classic case?",
+      "range": {
+        "startLine": 68,
+        "startChar": 8,
+        "endLine": 68,
+        "endChar": 27
+      },
+      "revId": "ba101c8fd02b067db6b83d50b28e7f6a8a4a318f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e15ba6a_a7569dc6",
+        "filename": "system/bta/include/bta_hh_co.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-05-09T11:30:36Z",
+      "side": 1,
+      "message": "I personally think this function introduces some confusion since it\u0027s very similar with `bta_hh_co_data`. I prefer to remove this and either\n(a) do the destructuring logic directly on L1021, or\n(b) change the input parameter of `bta_hh_co_data` to accept tBTA_HH_RPT_DATA instead, and do the destructuring logic there.\n\nBut it\u0027s just me, if others want to keep it this way I have no objections.",
+      "revId": "ba101c8fd02b067db6b83d50b28e7f6a8a4a318f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8418d156_9084282c",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-05-09T11:30:36Z",
+      "side": 1,
+      "message": "no need the casting here",
+      "range": {
+        "startLine": 599,
+        "startChar": 17,
+        "endLine": 599,
+        "endChar": 26
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "74448a40_448abbfc",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/co/bta_hh_co.cc",
+              "range": {
+                "startLine": 599,
+                "startChar": 0,
+                "endLine": 600,
+                "endChar": 0
+              },
+              "replacement": "  bta_hh_co_data(rpt_data.hid_handle, rpt_data.p_buf, rpt_data.len,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ba101c8fd02b067db6b83d50b28e7f6a8a4a318f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
