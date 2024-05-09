@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9829b5a_42d04c92",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-05-09T00:13:58Z",
+      "side": 1,
+      "message": "I ran statsd_testdrive test with previous patchset and found some duplications in logging for radio scan. In patchset 8 I made some changes to the logging to reduce the duplications. Also fixed a minor issue from previous patchset.\n\nI will add more unit test cases based on the comments on this patchset. Thanks.",
+      "revId": "1a87fe6d7a378c4af24f62e5e909b16edc29a949",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a442c11c_858817d9",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-05-09T00:13:58Z",
+      "side": 1,
+      "message": "Fixed a issue in patchset 8, where in previous patchset it didn\u0027t log adv stop.",
+      "range": {
+        "startLine": 401,
+        "startChar": 8,
+        "endLine": 401,
+        "endChar": 47
+      },
+      "revId": "1a87fe6d7a378c4af24f62e5e909b16edc29a949",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d160a4fc_4e723f32",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/AppScanStats.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 580,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-05-09T00:13:58Z",
+      "side": 1,
+      "message": "Moving this into `recordScanRadioDurationMetrics` since when screen state changes `recordScanRadioDurationMetrics` is also called by `ScanManager.handleScreenOff`and will cause duplicated logs. In `ScanManager.configureRegularScanParams` it again logs radio scan stop (with duration 0 ms) and start.\n\nAfter the change `ScanManager.configureRegularScanParams` will only log radio scan start.",
+      "range": {
+        "startLine": 577,
+        "startChar": 12,
+        "endLine": 580,
+        "endChar": 13
+      },
+      "revId": "1a87fe6d7a378c4af24f62e5e909b16edc29a949",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c86b807_91520443",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1128,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-05-09T00:13:58Z",
+      "side": 1,
+      "message": "Skip logging radio scan start here since `configureRegularScanParams` is immediately called as next step and logs radio scan stop (with duration 0 ms) and start. After the change it will only log radio scan start once and not log radio stop.",
+      "range": {
+        "startLine": 1128,
+        "startChar": 16,
+        "endLine": 1128,
+        "endChar": 56
+      },
+      "revId": "1a87fe6d7a378c4af24f62e5e909b16edc29a949",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
