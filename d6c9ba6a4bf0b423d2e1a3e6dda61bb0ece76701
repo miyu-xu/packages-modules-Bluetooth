@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cec8c1e_41d8a524",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-09T12:04:16Z",
+      "side": 1,
+      "message": "@jpawlowski@google.com, @eruffieux@google.com, @mylesgw@google.com\nPlease check at least BluetoothMethodProxy as you are owners of it.",
+      "revId": "d6c9ba6a4bf0b423d2e1a3e6dda61bb0ece76701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
