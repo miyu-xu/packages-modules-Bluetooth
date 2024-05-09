@@ -35,6 +35,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "db0519b5_45be435d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-05-09T23:43:48Z",
+      "side": 1,
+      "message": "In case you need someone from LEA area for BluetoothMethodProxy review, maybe @yuyangh@google.com can help, since Jakub is OOO.",
+      "revId": "d6c9ba6a4bf0b423d2e1a3e6dda61bb0ece76701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8924b67d_a43ae993",
