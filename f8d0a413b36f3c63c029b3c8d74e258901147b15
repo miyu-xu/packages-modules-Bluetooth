@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a355ed83_8e3a5688",
+        "filename": "service/src/com/android/server/bluetooth/AdapterBinder.kt",
+        "patchSetId": 10
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-10T17:28:34Z",
+      "side": 1,
+      "message": "I don\u0027t think this should be silenced. I think it would be great to handle those errors in the caller.",
+      "revId": "f8d0a413b36f3c63c029b3c8d74e258901147b15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b36f1f8b_01b86c1c",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1257,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-10T17:28:34Z",
+      "side": 1,
+      "message": "`linkToDeath` can throw a DeadObjectException https://cs.android.com/android/platform/superproject/main/+/main:frameworks/base/core/jni/android_util_Binder.cpp;l\u003d1446;drc\u003d9e91fcc50d5ad23b133850af4506b112db36b5ee\n\nI think it would be great to multiple different error messages between Timeout | Interrupted and the ExecutionException",
+      "revId": "f8d0a413b36f3c63c029b3c8d74e258901147b15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
