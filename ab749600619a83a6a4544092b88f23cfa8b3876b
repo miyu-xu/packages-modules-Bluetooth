@@ -46,6 +46,30 @@
       },
       "revId": "ab749600619a83a6a4544092b88f23cfa8b3876b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f08167d5_ae1fada0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-10T01:13:18Z",
+      "side": 1,
+      "message": "The Android Flags team changed/defined the format for the flag stanza go/android-flags-guidelines#exceptions-anchor. \n\nIt should be `Flag: TEST_ONLY`",
+      "parentUuid": "c8056e55_1c11e21a",
+      "range": {
+        "startLine": 13,
+        "startChar": 6,
+        "endLine": 13,
+        "endChar": 12
+      },
+      "revId": "ab749600619a83a6a4544092b88f23cfa8b3876b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
