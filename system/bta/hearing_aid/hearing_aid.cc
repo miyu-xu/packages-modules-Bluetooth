@@ -1486,7 +1486,11 @@ class HearingAidImpl : public HearingAid {
           log::info("{} skipping {} packets", left->address, packets_in_chans);
           left->audio_stats.packet_flush_count += packets_in_chans;
           left->audio_stats.frame_flush_count++;
-          L2CA_FlushChannel(cid, 0xffff);
+          const uint16_t num_left =
+              L2CA_FlushChannel(cid, L2CAP_FLUSH_CHANS_ALL);
+          if (num_left) {
+            log::warn("Unable to flush all buffers  num_left:{}", num_left);
+          }
         }
         hearingDevices.StartRssiLog();
       }
@@ -1517,7 +1521,11 @@ class HearingAidImpl : public HearingAid {
           log::info("{} skipping {} packets", right->address, packets_in_chans);
           right->audio_stats.packet_flush_count += packets_in_chans;
           right->audio_stats.frame_flush_count++;
-          L2CA_FlushChannel(cid, 0xffff);
+          const uint16_t num_left =
+              L2CA_FlushChannel(cid, L2CAP_FLUSH_CHANS_ALL);
+          if (num_left) {
+            log::warn("Unable to flush all buffers  num_left:{}", num_left);
+          }
         }
         hearingDevices.StartRssiLog();
       }
