@@ -232,6 +232,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "00aebdc9_4727beab",
+        "filename": "system/gd/sysprops/sysprops_module.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-10T04:17:49Z",
+      "side": 1,
+      "message": "What about changing this to be\n\n```\n#ifdef __ANDROID__\n#error \"sysprops_module is not supposed to be used on Android\"\n#endif\n```\n\nthen at least the host test will work?",
+      "parentUuid": "f86d54ea_494b840a",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 0
+      },
+      "revId": "d9786bdff44959bbb520b2073a96eb65c50d611a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8cf19f10_26a8b511",
         "filename": "system/main/shim/stack.cc",
         "patchSetId": 1
