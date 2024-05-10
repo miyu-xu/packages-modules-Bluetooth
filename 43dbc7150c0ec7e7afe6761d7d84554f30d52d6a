@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51688487_5dee344e",
+        "filename": "system/bta/ag/bta_ag_sdp.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-10T07:27:48Z",
+      "side": 1,
+      "message": "nit: Hex or not?  It looks like some are printed in hex and some aren\u0027t.",
+      "range": {
+        "startLine": 305,
+        "startChar": 56,
+        "endLine": 305,
+        "endChar": 58
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e9c827ce_55747013",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ag/bta_ag_sdp.cc",
+              "range": {
+                "startLine": 305,
+                "startChar": 0,
+                "endLine": 306,
+                "endChar": 0
+              },
+              "replacement": "          log::warn(\"Unable to delete record sdp_handle:0x{:x}\",\n"
+            }
+          ]
+        }
+      ],
+      "revId": "43dbc7150c0ec7e7afe6761d7d84554f30d52d6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
