@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "23458149_6565523a",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/BrowsedPlayerWrapper2.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-05-10T10:11:17Z",
+      "side": 1,
+      "message": "The binding will stay up for 5 seconds now, so I\u0027m not sure if we need to wait for the state change anymore?",
+      "parentUuid": "2f2aa9d7_2479be02",
+      "range": {
+        "startLine": 152,
+        "startChar": 12,
+        "endLine": 152,
+        "endChar": 48
+      },
+      "revId": "3d276560945655d3738c594605de6650ae21d15a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "95973a74_ffa58288",
         "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
         "patchSetId": 7
@@ -37,6 +61,30 @@
       "writtenOn": "2024-05-09T22:33:55Z",
       "side": 1,
       "message": "Perhaps I\u0027m still on an old version of the code, but I think I\u0027ve noticed in my testing that we don\u0027t get responses to SetBrowsedPlayer requests sometimes.\n\nIs there a chance that this callback doesn\u0027t fire?",
+      "range": {
+        "startLine": 357,
+        "startChar": 24,
+        "endLine": 357,
+        "endChar": 72
+      },
+      "revId": "3d276560945655d3738c594605de6650ae21d15a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa9a4b43_0c396c41",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-05-10T10:11:17Z",
+      "side": 1,
+      "message": "There was, yes. I forgot to add a TODO on this, but the error handling in getFolderItems was not yet done. Should be good now, let me know if you see it happen again!",
+      "parentUuid": "95973a74_ffa58288",
       "range": {
         "startLine": 357,
         "startChar": 24,
