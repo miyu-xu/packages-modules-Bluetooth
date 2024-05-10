@@ -25,6 +25,7 @@
 
 #include <bluetooth/log.h>
 
+#include "bt_transport.h"
 #include "bta/hf_client/bta_hf_client_int.h"
 #include "bta/include/bta_dm_api.h"
 #include "os/log.h"
