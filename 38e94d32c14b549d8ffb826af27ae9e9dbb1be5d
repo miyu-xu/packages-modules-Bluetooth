@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65be3e76_4919c0cf",
+        "filename": "system/stack/eatt/eatt_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-10T18:30:39Z",
+      "side": 1,
+      "message": "My understanding is that the connection was just completed, and we\u0027re sending the response.",
+      "fixSuggestions": [
+        {
+          "fixId": "cbc2e722_28b34a47",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/eatt/eatt_impl.h",
+              "range": {
+                "startLine": 162,
+                "startChar": 0,
+                "endLine": 163,
+                "endChar": 0
+              },
+              "replacement": "      log::warn(\"Unable to send L2CAP le_coc credit response peer:{}\", bda);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "38e94d32c14b549d8ffb826af27ae9e9dbb1be5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
