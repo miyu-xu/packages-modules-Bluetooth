@@ -868,7 +868,9 @@ public final class BluetoothAdapter {
     // in the current release for a major refactoring, so we leave them both
     // intact until this can be cleaned up in a future release
 
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@code BluetoothAdapter} available API instead")
     @GuardedBy("mServiceLock")
     private IBluetooth mService;
 
@@ -1512,6 +1514,7 @@ public final class BluetoothAdapter {
     @RequiresLegacyBluetoothPermission
     @RequiresNoPermission
     @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
             publicAlternatives =
                     "Use {@link #getState()} instead to determine "
                             + "whether you can use BLE & BT classic.")
@@ -1758,7 +1761,9 @@ public final class BluetoothAdapter {
      * @return the UUIDs supported by the local Bluetooth Adapter.
      * @hide
      */
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@code #getUuidsList}")
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
@@ -3061,7 +3066,6 @@ public final class BluetoothAdapter {
      *     permissions, or channel in use.
      * @hide
      */
-    @UnsupportedAppUsage
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
@@ -4041,7 +4045,9 @@ public final class BluetoothAdapter {
     }
 
     /** @hide */
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@code BluetoothAdapter} available API instead")
     @RequiresNoPermission
     public IBluetoothManager getBluetoothManager() {
         return mManagerService;
@@ -4068,8 +4074,6 @@ public final class BluetoothAdapter {
      *
      * <p>TODO: rename this API to registerBlueoothManagerCallback or something? the current name
      * does not match what it does very well.
-     *
-     * <p>/ @UnsupportedAppUsage /*package
      */
     IBluetooth getBluetoothService(IBluetoothManagerCallback cb) {
         requireNonNull(cb);

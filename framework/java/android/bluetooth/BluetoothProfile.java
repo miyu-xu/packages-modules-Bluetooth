@@ -283,7 +283,10 @@ public interface BluetoothProfile {
      *
      * @hide
      */
-    @UnsupportedAppUsage int PRIORITY_UNDEFINED = -1;
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@code CONNECTION_POLICY_UNKNOWN}.")
+    int PRIORITY_UNDEFINED = -1;
 
     /** @hide */
     @IntDef(

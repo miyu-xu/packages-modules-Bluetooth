@@ -1449,7 +1449,9 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      * @throws IllegalArgumentException address is invalid
      * @hide
      */
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@code BluetoothAdapter#getRemoteDevice}")
     /*package*/ BluetoothDevice(String address) {
         this(address, ADDRESS_TYPE_PUBLIC);
     }
@@ -1462,7 +1464,9 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      * @throws IllegalArgumentException address is invalid
      * @hide
      */
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@code BluetoothAdapter#getRemoteDevice}")
     /*package*/ BluetoothDevice(Parcel in) {
         this(in.readString(), in.readInt());
     }
@@ -2800,7 +2804,9 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      *     permissions
      * @hide
      */
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@link #createRfcommSocketToServiceRecord}")
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
@@ -2968,8 +2974,8 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      * @hide
      */
     @UnsupportedAppUsage(
-            publicAlternatives =
-                    "Use " + "{@link #createInsecureRfcommSocketToServiceRecord} instead.")
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@link #createInsecureRfcommSocketToServiceRecord} instead.")
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
@@ -2991,7 +2997,9 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      *     permissions.
      * @hide
      */
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@link #createRfcommSocketToServiceRecord}")
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
@@ -3013,7 +3021,9 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      * @return the pin code as a UTF-8 byte array, or null if it is an invalid Bluetooth pin.
      * @hide
      */
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@code #setPin}")
     public static byte[] convertPinToBytes(String pin) {
         if (pin == null) {
             return null;

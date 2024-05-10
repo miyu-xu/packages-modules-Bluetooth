@@ -59,12 +59,29 @@ public final class BluetoothGatt implements BluetoothProfile {
     private static final boolean DBG = true;
     private static final boolean VDBG = false;
 
-    @UnsupportedAppUsage private IBluetoothGatt mService;
-    @UnsupportedAppUsage private volatile BluetoothGattCallback mCallback;
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@link BluetoothGatt} public API instead.")
+    private IBluetoothGatt mService;
+
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@link BluetoothGatt} public API instead.")
+    private volatile BluetoothGattCallback mCallback;
+
     private Handler mHandler;
-    @UnsupportedAppUsage private int mClientIf;
+
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@link BluetoothGatt} public API instead.")
+    private int mClientIf;
+
     private BluetoothDevice mDevice;
-    @UnsupportedAppUsage private boolean mAutoConnect;
+
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@link BluetoothGatt} public API instead.")
+    private boolean mAutoConnect;
 
     @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.P, trackingBug = 115609023)
     private int mAuthRetryState;
@@ -1125,7 +1142,9 @@ public final class BluetoothGatt implements BluetoothProfile {
     }
 
     /** Unregister the current application and callbacks. */
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@link #disconnect}")
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
     private void unregisterApp() {
