@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "457b81ec_a11048f6",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-10T22:34:02Z",
+      "side": 1,
+      "message": "val data: ByteArray \u003d \"Test data for sendDataOverSecureSocket\".toByteArray()",
+      "range": {
+        "startLine": 133,
+        "startChar": 8,
+        "endLine": 133,
+        "endChar": 53
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "29291cbf_174894b6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+              "range": {
+                "startLine": 133,
+                "startChar": 0,
+                "endLine": 134,
+                "endChar": 0
+              },
+              "replacement": "        val data: ByteArray \u003d \"Test data for sendDataOverInsecureSocket\".toByteArray()\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+              "range": {
+                "startLine": 152,
+                "startChar": 0,
+                "endLine": 153,
+                "endChar": 0
+              },
+              "replacement": "        val data: ByteArray \u003d \"Test data for sendDataOverSecureSocket\".toByteArray()\n"
+            }
+          ]
+        }
+      ],
+      "revId": "dda8d53300f85057bfc346bf56171a4a112cc1b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e96eb442_aed31789",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-10T22:34:02Z",
+      "side": 1,
+      "message": "Truth.assertThat(rxResponse.data).isEqualTo(ByteString.copyFrom(data))",
+      "range": {
+        "startLine": 141,
+        "startChar": 8,
+        "endLine": 141,
+        "endChar": 54
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f9095e6d_2a6b0179",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+              "range": {
+                "startLine": 29,
+                "startChar": 0,
+                "endLine": 29,
+                "endChar": 0
+              },
+              "replacement": "import com.google.protobuf.ByteString\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+              "range": {
+                "startLine": 141,
+                "startChar": 0,
+                "endLine": 142,
+                "endChar": 0
+              },
+              "replacement": "        Truth.assertThat(rxResponse.data).isEqualTo(ByteString.copyFrom(data))\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+              "range": {
+                "startLine": 160,
+                "startChar": 0,
+                "endLine": 161,
+                "endChar": 0
+              },
+              "replacement": "        Truth.assertThat(rxResponse.data).isEqualTo(ByteString.copyFrom(data))\n"
+            }
+          ]
+        }
+      ],
+      "revId": "dda8d53300f85057bfc346bf56171a4a112cc1b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e681b9c_e1bcd8c6",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-10T22:34:02Z",
+      "side": 1,
+      "message": "nit:Over",
+      "range": {
+        "startLine": 148,
+        "startChar": 16,
+        "endLine": 148,
+        "endChar": 19
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b0dcfbf1_c9ea5759",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+              "range": {
+                "startLine": 148,
+                "startChar": 0,
+                "endLine": 149,
+                "endChar": 0
+              },
+              "replacement": "    fun sendDataOverSecureSocket() {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "dda8d53300f85057bfc346bf56171a4a112cc1b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
