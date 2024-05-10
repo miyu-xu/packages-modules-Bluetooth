@@ -20,6 +20,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9fc2e8ef_51f1c44b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 13
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-10T23:02:38Z",
+      "side": 1,
+      "message": "do we need to bond in the Insecure case?",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 33
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2e2cf049_7e9260e2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+              "range": {
+                "startLine": 86,
+                "startChar": 0,
+                "endLine": 87,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "836e29199924c3d700a1e803645028b46785a973",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "988b26a3_a70af5c0",
         "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
         "patchSetId": 13
@@ -61,6 +102,47 @@
                 "endChar": 0
               },
               "replacement": "        mBumble\n            .rfcommBlocking()\n            .acceptConnection(\n                RfcommProto.AcceptConnectionRequest.newBuilder().setServer(mServer).build()\n            )\n"
+            }
+          ]
+        }
+      ],
+      "revId": "836e29199924c3d700a1e803645028b46785a973",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3829b5df_8cf36f7b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 13
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-10T23:02:38Z",
+      "side": 1,
+      "message": "Should we only bond if isSecure is true?",
+      "range": {
+        "startLine": 130,
+        "startChar": 8,
+        "endLine": 130,
+        "endChar": 18
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "dcd82520_5d19b6ac",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+              "range": {
+                "startLine": 130,
+                "startChar": 0,
+                "endLine": 131,
+                "endChar": 0
+              },
+              "replacement": "        if (isSecure) {\n            bondDevice(mBumbleDevice)\n        }\n"
             }
           ]
         }
