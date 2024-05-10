@@ -56,6 +56,24 @@
       "message": "Do you think a similar fix is needed on bta_hh_act.cc?",
       "revId": "b172775d1797586ba642d05eed2aff1039d7c1a3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4af09a47_e8ae4b17",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1690,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-05-10T06:41:38Z",
+      "side": 1,
+      "message": "I just noticed we have `bta_hh_le_iso_data_callback` which also calls `bta_hh_co_data`. Probably we need to put this there as well.",
+      "parentUuid": "38563e82_036492cf",
+      "revId": "b172775d1797586ba642d05eed2aff1039d7c1a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
