@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31ed20a0_2ae964db",
+        "filename": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/OWNERS",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-10T19:05:48Z",
+      "side": 1,
+      "message": "this file should be moved to \n\nandroid/ChannelSoundingTestApp/OWNERS \n\nif you truly want you and Ning to own the whole app, otherwise you can only modify the Java source code, but not the manifest and resources",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 18
+      },
+      "revId": "86e05ee1509b2e3f2c83090eb18d3b76cbe5ec90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
