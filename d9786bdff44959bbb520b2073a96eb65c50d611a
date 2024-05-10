@@ -61,6 +61,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "87b51e11_de2f902d",
+        "filename": "system/gd/sysprops/sysprops_module.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-10T02:52:23Z",
+      "side": 1,
+      "message": "I\u0027m reverting this CL because in https://r.android.com/3071603 we include this header in the host target and this causes the build breakage.",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 0
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "34a69f79_adcdece9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/sysprops/sysprops_module.h",
+              "range": {
+                "startLine": 18,
+                "startChar": 0,
+                "endLine": 22,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/gd/sysprops/sysprops_module.h",
+              "range": {
+                "startLine": 29,
+                "startChar": 0,
+                "endLine": 30,
+                "endChar": 0
+              },
+              "replacement": "  SyspropsModule();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d9786bdff44959bbb520b2073a96eb65c50d611a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8cf19f10_26a8b511",
         "filename": "system/main/shim/stack.cc",
         "patchSetId": 1
