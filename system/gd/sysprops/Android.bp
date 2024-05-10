@@ -13,10 +13,3 @@ filegroup {
         "sysprops_module.cc",
     ],
 }
-
-filegroup {
-    name: "BluetoothSyspropsUnitTestSources",
-    srcs: [
-        "sysprops_module_test.cc",
-    ],
-}
