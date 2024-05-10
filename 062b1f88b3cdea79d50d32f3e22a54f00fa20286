@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fdef4aa_6f896168",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-10T18:33:53Z",
+      "side": 1,
+      "message": "send?",
+      "range": {
+        "startLine": 480,
+        "startChar": 25,
+        "endLine": 480,
+        "endChar": 30
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9eaeeb40_1414aca5",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/avct/avct_bcb_act.cc",
+              "range": {
+                "startLine": 480,
+                "startChar": 0,
+                "endLine": 481,
+                "endChar": 0
+              },
+              "replacement": "    log::warn(\"Unable to send L2CAP peer:{} cid:{}\", p_bcb-\u003epeer_addr,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "062b1f88b3cdea79d50d32f3e22a54f00fa20286",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
