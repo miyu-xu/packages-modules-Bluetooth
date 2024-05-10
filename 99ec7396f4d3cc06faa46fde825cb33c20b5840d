@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "552ef414_09b2922f",
+        "filename": "system/gd/storage/config_cache.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-10T02:25:45Z",
+      "side": 1,
+      "message": "This linter is wrong, probably needs to be fixed. \n\nCurrent regex is `\"\u0026.*-\u003esecond\\\\b\"`",
+      "range": {
+        "startLine": 428,
+        "startChar": 24,
+        "endLine": 428,
+        "endChar": 37
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "295f0087_d729dd34",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/storage/config_cache.cc",
+              "range": {
+                "startLine": 428,
+                "startChar": 0,
+                "endLine": 429,
+                "endChar": 0
+              },
+              "replacement": "      for (const auto\u0026 [property_name, _] : section_iter-\u003esecond) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "99ec7396f4d3cc06faa46fde825cb33c20b5840d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
