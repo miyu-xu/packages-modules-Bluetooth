@@ -64,6 +64,29 @@
       },
       "revId": "43dbc7150c0ec7e7afe6761d7d84554f30d52d6a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e2f218f_37465809",
+        "filename": "system/btif/src/btif_sdp_server.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 522,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-10T21:12:54Z",
+      "side": 1,
+      "message": "This is the one I saw that made me wonder if the handles should be hex or not.",
+      "range": {
+        "startLine": 522,
+        "startChar": 3,
+        "endLine": 522,
+        "endChar": 65
+      },
+      "revId": "43dbc7150c0ec7e7afe6761d7d84554f30d52d6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
