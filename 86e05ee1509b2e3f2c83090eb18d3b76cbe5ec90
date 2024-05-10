@@ -22,6 +22,30 @@
       },
       "revId": "86e05ee1509b2e3f2c83090eb18d3b76cbe5ec90",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f746b47f_d1816e48",
+        "filename": "android/ChannelSoundingTestApp/app/src/main/java/com/android/bluetooth/channelsoundingtestapp/OWNERS",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-05-10T19:39:42Z",
+      "side": 1,
+      "message": "good catch. this is a mistake.",
+      "parentUuid": "31ed20a0_2ae964db",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 18
+      },
+      "revId": "86e05ee1509b2e3f2c83090eb18d3b76cbe5ec90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
