@@ -28,7 +28,7 @@ java_library {
     ],
     srcs: [
         "src/**/*.java",
-        "src/BluetoothAdapterUtils.kt",
+        "src/BlockingBluetoothAdapter.kt",
     ],
     sdk_version: "test_current",
     // Keep it public for now to avoid merge conflicts

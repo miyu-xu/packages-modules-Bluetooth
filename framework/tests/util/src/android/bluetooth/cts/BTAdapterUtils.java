@@ -16,6 +16,6 @@
 
 package android.bluetooth.cts;
 
-import android.bluetooth.test_utils.BluetoothAdapterUtils;
+import android.bluetooth.test_utils.BlockingBluetoothAdapter;
 
-public class BTAdapterUtils extends BluetoothAdapterUtils {}
+public class BTAdapterUtils extends BlockingBluetoothAdapter {}
