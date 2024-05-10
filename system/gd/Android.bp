@@ -429,7 +429,6 @@ cc_test {
             srcs: [
                 ":BluetoothHalTestSources_hci_host",
                 ":BluetoothOsTestSources_host",
-                ":BluetoothSyspropsUnitTestSources",
             ],
         },
         android: {
