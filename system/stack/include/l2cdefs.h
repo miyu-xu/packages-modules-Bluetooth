@@ -264,7 +264,7 @@ inline std::string l2cap_le_result_code_text(
 
 /* L2CAP Predefined CIDs
 */
-enum : uint16_t {
+typedef enum : uint16_t {
   L2CAP_SIGNALLING_CID = 1,
   L2CAP_CONNECTIONLESS_CID = 2,
   L2CAP_AMP_CID = 3,
@@ -273,7 +273,12 @@ enum : uint16_t {
   L2CAP_SMP_CID = 6,
   L2CAP_SMP_BR_CID = 7,
   L2CAP_BASE_APPL_CID = 0x0040,
-};
+} tL2CAP_CID_FIXED;
+
+namespace fmt {
+template <>
+struct formatter<tL2CAP_CID_FIXED> : enum_formatter<tL2CAP_CID_FIXED> {};
+}  // namespace fmt
 
 /* Fixed Channels mask bits */
 
