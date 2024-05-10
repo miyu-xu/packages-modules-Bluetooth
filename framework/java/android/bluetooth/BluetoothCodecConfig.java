@@ -22,6 +22,7 @@ import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.annotation.SuppressLint;
 import android.compat.annotation.UnsupportedAppUsage;
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -243,7 +244,7 @@ public final class BluetoothCodecConfig implements Parcelable {
      * @param codecSpecific4 the specific value 4 values to 0.
      * @hide
      */
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM)
     public BluetoothCodecConfig(
             @SourceCodecType int codecType,
             @CodecPriority int codecPriority,

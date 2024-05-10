@@ -1446,7 +1446,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      * @throws IllegalArgumentException address is invalid
      * @hide
      */
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM)
     /*package*/ BluetoothDevice(String address) {
         this(address, ADDRESS_TYPE_PUBLIC);
     }
@@ -1459,7 +1459,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      * @throws IllegalArgumentException address is invalid
      * @hide
      */
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM)
     /*package*/ BluetoothDevice(Parcel in) {
         this(in.readString(), in.readInt());
     }
@@ -2857,7 +2857,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      *     permissions
      * @hide
      */
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM)
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
@@ -3048,7 +3048,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      *     permissions.
      * @hide
      */
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM)
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
@@ -3070,7 +3070,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      * @return the pin code as a UTF-8 byte array, or null if it is an invalid Bluetooth pin.
      * @hide
      */
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM)
     public static byte[] convertPinToBytes(String pin) {
         if (pin == null) {
             return null;
