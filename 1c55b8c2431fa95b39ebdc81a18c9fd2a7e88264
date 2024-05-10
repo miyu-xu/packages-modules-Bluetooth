@@ -1,0 +1,147 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58edfb6c_1d046575",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-05-10T10:40:02Z",
+      "side": 1,
+      "message": "Likewise with aosp/3005713, please convert this into aflag.\n\nI don\u0027t know Android\u0027s policy about the osi_property so I can\u0027t say anything about that.",
+      "range": {
+        "startLine": 68,
+        "startChar": 12,
+        "endLine": 68,
+        "endChar": 39
+      },
+      "revId": "1c55b8c2431fa95b39ebdc81a18c9fd2a7e88264",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bc6cc64_6edd0e78",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-05-10T10:40:02Z",
+      "side": 1,
+      "message": "doesn\u0027t seem like a good idea to sleep since it blocks this thread. \nMaybe `alarm_set` is more appropriate?\n\nhttps://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/osi/include/alarm.h;l\u003d73;drc\u003d9e91fcc50d5ad23b133850af4506b112db36b5ee",
+      "range": {
+        "startLine": 204,
+        "startChar": 8,
+        "endLine": 204,
+        "endChar": 14
+      },
+      "revId": "1c55b8c2431fa95b39ebdc81a18c9fd2a7e88264",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59f94210_e4a128bb",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-05-10T10:40:02Z",
+      "side": 1,
+      "message": "I\u0027m thinking of a mechanism to post the `ready_for_data` updates on the btif thread. If we can have that, probably we can ditch the mutex since all updates now can be moved to btif.\nHowever so far I don\u0027t think there\u0027s a straightforward way to do that so I\u0027m not sure the benefit outweighs the cost...",
+      "revId": "1c55b8c2431fa95b39ebdc81a18c9fd2a7e88264",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acef4079_77cdafea",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-05-10T10:40:02Z",
+      "side": 1,
+      "message": "Any reason we don\u0027t just use -ENOMEM?",
+      "range": {
+        "startLine": 473,
+        "startChar": 17,
+        "endLine": 473,
+        "endChar": 19
+      },
+      "revId": "1c55b8c2431fa95b39ebdc81a18c9fd2a7e88264",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f403bec_7e9fa897",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-05-10T10:40:02Z",
+      "side": 1,
+      "message": "I think this is good, and the above one as well. I\u0027m not familiar with this linter, you may want to ask @cmanton (cl/378666423) what we should do.",
+      "range": {
+        "startLine": 483,
+        "startChar": 6,
+        "endLine": 483,
+        "endChar": 12
+      },
+      "revId": "1c55b8c2431fa95b39ebdc81a18c9fd2a7e88264",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7e54a6c_985ae6b1",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 651,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-05-10T10:40:02Z",
+      "side": 1,
+      "message": "Hey, just an idea. How if we do this?\n\nAlways enqueue the write report, and do it here. If we check `p_dev-\u003eready_for_data` is true (in L670), then we iterate the queue and call `bta_hh_co_write`, otherwise we don\u0027t call `bta_hh_co_write`.\nThis moves out the change in `bta_hh_co_write` to here, so we don\u0027t need to change the signature of `bta_hh_co_write`.",
+      "revId": "1c55b8c2431fa95b39ebdc81a18c9fd2a7e88264",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "009d5565_86a4e75b",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-05-10T10:40:02Z",
+      "side": 1,
+      "message": "I don\u0027t mind this, but why changing the format of the logging?",
+      "revId": "1c55b8c2431fa95b39ebdc81a18c9fd2a7e88264",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
