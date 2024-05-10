@@ -16,6 +16,24 @@
       "message": "nit:\n\n```suggestion\n                        Log.i(TAG, \"killBluetoothProcess: Calling System.exit\");\n```\n\nI find \"Perform expected exit\" a bit strange",
       "revId": "03608b2e93b3bbbb6c74fd5b594bd2a5c897da56",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "deae0edb_8d620cde",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2252,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-10T18:59:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9489497_ab94c837",
+      "revId": "03608b2e93b3bbbb6c74fd5b594bd2a5c897da56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
