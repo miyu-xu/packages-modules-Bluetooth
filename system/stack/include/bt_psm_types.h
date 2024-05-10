@@ -16,7 +16,11 @@
 
 #pragma once
 
-enum {
+#include <bluetooth/log.h>
+
+#include <cstdint>
+
+typedef enum : uint16_t {
   BT_PSM_SDP = 0x0001,
   BT_PSM_RFCOMM = 0x0003,
   BT_PSM_TCS = 0x0005,
@@ -37,4 +41,10 @@ enum {
    */
   BRCM_RESERVED_PSM_START = 0x5AE1,
   BRCM_RESERVED_PSM_END = 0x5AFF,
-};
+} tBT_PSM;
+
+namespace fmt {
+template <>
+struct formatter<tBT_PSM> : enum_formatter<tBT_PSM> {};
+}  // namespace fmt
+   //
