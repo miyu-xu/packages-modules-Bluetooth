@@ -548,18 +548,16 @@ class LeAudioClientImpl : public LeAudioClient {
   }
 
   void UpdateLocationsAndContextsAvailability(LeAudioDeviceGroup* group) {
-    bool group_conf_changed = group->ReloadAudioLocations();
-    group_conf_changed |= group->ReloadAudioDirections();
-    group_conf_changed |= group->UpdateAudioContextAvailability();
-    if (group_conf_changed) {
-      /* All the configurations should be recalculated for the new conditions */
-      group->InvalidateCachedConfigurations();
-      group->InvalidateGroupStrategy();
-      callbacks_->OnAudioConf(group->audio_directions_, group->group_id_,
-                              group->snk_audio_locations_.to_ulong(),
-                              group->src_audio_locations_.to_ulong(),
-                              group->GetAvailableContexts().value());
-    }
+    group->ReloadAudioLocations();
+    group->ReloadAudioDirections();
+    group->UpdateAudioContextAvailability();
+    /* All the configurations should be recalculated for the new conditions */
+    group->InvalidateCachedConfigurations();
+    group->InvalidateGroupStrategy();
+    callbacks_->OnAudioConf(group->audio_directions_, group->group_id_,
+                            group->snk_audio_locations_.to_ulong(),
+                            group->src_audio_locations_.to_ulong(),
+                            group->GetAvailableContexts().value());
   }
 
   void SuspendedForReconfiguration() {
@@ -1908,25 +1906,11 @@ class LeAudioClientImpl : public LeAudioClient {
         return;
       }
 
-      if (group->IsInTransition()) {
-        /* Group is in transition.
-         * if group is going to stream, schedule attaching the device to the
-         * group.
-         */
-
-        if (group->GetTargetState() ==
-            AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
-          AttachToStreamingGroupIfNeeded(leAudioDevice);
-        }
-        return;
-      }
-
       if (!group->IsStreaming()) {
         /* Group is not streaming. Device does not have to be attach to the
          * stream, and we can update context availability for the group
          */
         UpdateLocationsAndContextsAvailability(group);
-        return;
       }
 
       if (leAudioDevice->HaveActiveAse()) {
@@ -3160,6 +3144,8 @@ class LeAudioClientImpl : public LeAudioClient {
       return;
     }
 
+    bool should_reconfigure = (group->GetActiveConfiguration() != stream_conf->conf);
+
     for (auto direction :
          {bluetooth::le_audio::types::kLeAudioDirectionSink,
           bluetooth::le_audio::types::kLeAudioDirectionSource}) {
@@ -3174,16 +3160,23 @@ class LeAudioClientImpl : public LeAudioClient {
                 pacs, ent.codec)) {
           log::info("Configuration is not supported by device {}",
                     leAudioDevice->address_);
-
-          /* Reconfigure if newly connected member device cannot support
-           * current codec configuration */
-          group->SetPendingConfiguration();
-          groupStateMachine_->StopStream(group);
-          stream_setup_start_timestamp_ =
-              bluetooth::common::time_get_os_boottime_us();
-          return;
+          should_reconfigure = true;
+          break;
         }
       }
+      if (should_reconfigure) {
+        break;
+      }
+    }
+
+    if (should_reconfigure) {
+      /* Reconfigure if newly connected member device cannot support
+       * current codec configuration */
+      group->SetPendingConfiguration();
+      groupStateMachine_->StopStream(group);
+      stream_setup_start_timestamp_ =
+          bluetooth::common::time_get_os_boottime_us();
+      return;
     }
 
     /* Do not put the TBS CCID when not using Telecom for the VoIP calls. */

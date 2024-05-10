@@ -107,7 +107,8 @@ int LeAudioDeviceGroup::NumOfConnected() const {
       });
 }
 
-int LeAudioDeviceGroup::NumOfAvailableForDirection(int direction) const {
+int LeAudioDeviceGroup::NumOfAvailableForDirection(
+    int direction, types::LeAudioContextType context_type) const {
   bool check_ase_count = direction < types::kLeAudioDirectionBoth;
 
   /* return number of connected devices from the set with supported context */
@@ -115,6 +116,9 @@ int LeAudioDeviceGroup::NumOfAvailableForDirection(int direction) const {
       leAudioDevices_.begin(), leAudioDevices_.end(), [&](auto& iter) {
         auto dev = iter.lock();
         if (dev) {
+          if (!dev->GetAvailableContexts(direction).test(context_type)) {
+            return false;
+          }
           if (check_ase_count && (dev->GetAseCount(direction) == 0)) {
             return false;
           }
@@ -1405,7 +1409,7 @@ bool LeAudioDeviceGroup::IsAudioSetConfigurationSupported(
     // In some tests we expect the configuration to be there even when the
     // contexts are not supported. Then we might want to configure the device
     // but use UNSPECIFIED which is always supported (but can be unavailable)
-    auto device_cnt = NumOfAvailableForDirection(direction);
+    auto device_cnt = NumOfAvailableForDirection(direction, requirements.audio_context_type);
     if (device_cnt == 0) {
       device_cnt = DesiredSize();
       if (device_cnt == 0) {
@@ -1566,7 +1570,7 @@ bool LeAudioDeviceGroup::ConfigureAses(
       continue;
     }
 
-    auto const max_required_device_cnt = NumOfAvailableForDirection(direction);
+    auto const max_required_device_cnt = NumOfAvailableForDirection(direction, context_type);
     auto required_device_cnt = max_required_device_cnt;
     uint8_t active_ase_cnt = 0;
 

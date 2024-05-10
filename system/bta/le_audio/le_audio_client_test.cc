@@ -6369,6 +6369,8 @@ TEST_F(UnicastTest, TwoEarbudsStreaming) {
 
   Mock::VerifyAndClearExpectations(&mock_le_audio_source_hal_client_);
 
+  ASSERT_NE(group->GetCachedConfiguration(types::LeAudioContextType::CONVERSATIONAL).get(), nullptr);
+
   // Setting group inactive, shall not change cached configuration
   ASSERT_TRUE(
       group->GetCachedConfiguration(types::LeAudioContextType::CONVERSATIONAL)
