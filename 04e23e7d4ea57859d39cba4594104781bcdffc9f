@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "311abf68_79a70b4e",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-10T06:37:43Z",
+      "side": 1,
+      "message": "I\u0027d rather add early returns to all or none of the SDP_InitDiscoveryDb calls.  Right now it\u0027s split 60/40",
+      "range": {
+        "startLine": 441,
+        "startChar": 0,
+        "endLine": 441,
+        "endChar": 22
+      },
+      "revId": "04e23e7d4ea57859d39cba4594104781bcdffc9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
