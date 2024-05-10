@@ -22,6 +22,30 @@
       },
       "revId": "04e23e7d4ea57859d39cba4594104781bcdffc9f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88f341c4_9f78c5de",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-10T16:51:23Z",
+      "side": 1,
+      "message": "I will return to simple logging only.",
+      "parentUuid": "311abf68_79a70b4e",
+      "range": {
+        "startLine": 441,
+        "startChar": 0,
+        "endLine": 441,
+        "endChar": 22
+      },
+      "revId": "04e23e7d4ea57859d39cba4594104781bcdffc9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
