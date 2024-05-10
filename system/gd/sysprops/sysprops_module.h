@@ -22,11 +22,11 @@ namespace sysprops {
 
 class SyspropsModule : public bluetooth::Module {
  public:
-  SyspropsModule();
+  SyspropsModule() = default;
   SyspropsModule(const SyspropsModule&) = delete;
   SyspropsModule& operator=(const SyspropsModule&) = delete;
 
-  ~SyspropsModule();
+  ~SyspropsModule() = default;
 
   static const ModuleFactory Factory;
 
