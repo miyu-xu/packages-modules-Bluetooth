@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60ed3a9d_12675ad1",
+        "filename": "system/bta/hf_client/bta_hf_client_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-10T18:19:49Z",
+      "side": 1,
+      "message": "nit: types/bt_transport.h\n```suggestion\n#include \"bta/hf_client/bta_hf_client_int.h\"\n#include \"bta/include/bta_dm_api.h\"\n#include \"os/log.h\"\n#include \"stack/include/l2c_api.h\"\n#include \"stack/include/port_api.h\"\n#include \"stack/include/sdp_status.h\"\n#include \"types/bt_transport.h\"\n#include \"types/raw_address.h\"\n\n```",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 0
+      },
+      "revId": "3ab93930d9cdb4e844d07d13a5e75fd479fa2d80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
