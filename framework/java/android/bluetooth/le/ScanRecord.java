@@ -520,7 +520,7 @@ public final class ScanRecord {
      * @param scanRecord The scan record of Bluetooth LE advertisement and/or scan response.
      * @hide
      */
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM)
     public static ScanRecord parseFromBytes(byte[] scanRecord) {
         if (scanRecord == null) {
             return null;

@@ -337,7 +337,7 @@ public class BluetoothGattCharacteristic implements Parcelable {
      *
      * @hide
      */
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM)
     /*package*/ void setService(BluetoothGattService service) {
         mService = service;
     }
@@ -421,7 +421,7 @@ public class BluetoothGattCharacteristic implements Parcelable {
      *
      * @hide
      */
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM)
     public void setKeySize(int keySize) {
         mKeySize = keySize;
     }
