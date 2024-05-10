@@ -40,6 +40,30 @@
       ],
       "revId": "062b1f88b3cdea79d50d32f3e22a54f00fa20286",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84af1dd7_c46d6072",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-10T19:44:20Z",
+      "side": 1,
+      "message": "I would prefer to keep the logging message in line with the API name.\n\nOtherwise one may look for `L2CAP_DataSend` and the real API name is `L2CAP_DataWrite`.\n\nI think future CLs should properly re-name these APIs.",
+      "parentUuid": "9fdef4aa_6f896168",
+      "range": {
+        "startLine": 480,
+        "startChar": 25,
+        "endLine": 480,
+        "endChar": 30
+      },
+      "revId": "062b1f88b3cdea79d50d32f3e22a54f00fa20286",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
