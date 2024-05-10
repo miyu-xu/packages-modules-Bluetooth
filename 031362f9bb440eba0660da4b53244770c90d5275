@@ -72,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9cbd5b0f_6db103c9",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-10T00:24:15Z",
+      "side": 1,
+      "message": "I can\u0027t find an example of that.  What would that look like?",
+      "parentUuid": "9fa6e218_e3bcc8fc",
+      "revId": "031362f9bb440eba0660da4b53244770c90d5275",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cadccf73_2701557c",
         "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
         "patchSetId": 9
@@ -242,6 +260,24 @@
       "side": 1,
       "message": "The connection ids start at 1 and resets when you start the server.  Since this is the first and only connection of the test, we expect 1.  You\u0027re right that just reading this doesn\u0027t tell you much.",
       "parentUuid": "233f72e6_ec6d1003",
+      "revId": "031362f9bb440eba0660da4b53244770c90d5275",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30cf779c_b630a1a1",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-10T00:24:15Z",
+      "side": 1,
+      "message": "Done (removed the assert)",
+      "parentUuid": "f7ef4db4_acd6a3e2",
       "revId": "031362f9bb440eba0660da4b53244770c90d5275",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
