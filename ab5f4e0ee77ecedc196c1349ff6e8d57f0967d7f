@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97645d73_3243464f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-10T22:36:02Z",
+      "side": 1,
+      "message": "val data: ByteString \u003d ByteString.copyFromUtf8(\"Test data for receiveDataOverInsecureSocket\")",
+      "range": {
+        "startLine": 174,
+        "startChar": 8,
+        "endLine": 174,
+        "endChar": 75
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e095686c_2ec46bf3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+              "range": {
+                "startLine": 174,
+                "startChar": 0,
+                "endLine": 175,
+                "endChar": 0
+              },
+              "replacement": "        val data: ByteString \u003d ByteString.copyFromUtf8(\"Test data for receiveDataOverInsecureSocket\")\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+              "range": {
+                "startLine": 194,
+                "startChar": 0,
+                "endLine": 195,
+                "endChar": 0
+              },
+              "replacement": "        val data: ByteString \u003d ByteString.copyFromUtf8(\"Test data for receiveDataOverSecureSocket\")\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ab5f4e0ee77ecedc196c1349ff6e8d57f0967d7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
