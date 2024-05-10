@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5b65b100_303eb782",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-05-10T10:44:40Z",
+      "side": 1,
+      "message": "However I think in the ideal system, we don\u0027t ever need the delay because receiving UHID_OPEN means we can just send data immediately. I wonder if something needs to be fixed in the input stack...",
+      "parentUuid": "2bc6cc64_6edd0e78",
+      "range": {
+        "startLine": 204,
+        "startChar": 8,
+        "endLine": 204,
+        "endChar": 14
+      },
+      "revId": "1c55b8c2431fa95b39ebdc81a18c9fd2a7e88264",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "59f94210_e4a128bb",
         "filename": "system/btif/co/bta_hh_co.cc",
         "patchSetId": 3
