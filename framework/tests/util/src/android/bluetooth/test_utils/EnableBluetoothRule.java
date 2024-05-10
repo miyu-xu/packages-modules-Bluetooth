@@ -22,12 +22,6 @@ import static com.google.common.truth.Truth.assertThat;
 
 import static org.junit.Assume.assumeTrue;
 
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothManager;
-import android.content.Context;
-
-import androidx.test.platform.app.InstrumentationRegistry;
-
 import com.android.compatibility.common.util.BeforeAfterRule;
 
 import org.junit.runner.Description;
@@ -40,9 +34,6 @@ import org.junit.runners.model.Statement;
  * Bluetooth scan results while the test runs .
  */
 public class EnableBluetoothRule extends BeforeAfterRule {
-    private final Context mContext = InstrumentationRegistry.getInstrumentation().getContext();
-    private final BluetoothAdapter mBluetoothAdapter =
-            mContext.getSystemService(BluetoothManager.class).getAdapter();
     private final boolean mEnableTestMode;
     private final boolean mToggleBluetooth;
 
@@ -76,14 +67,6 @@ public class EnableBluetoothRule extends BeforeAfterRule {
         mToggleBluetooth = false;
     }
 
-    private void enableBluetoothAdapter() {
-        assertThat(BluetoothAdapterUtils.enableAdapter(mBluetoothAdapter, mContext)).isTrue();
-    }
-
-    private void disableBluetoothAdapter() {
-        assertThat(BluetoothAdapterUtils.disableAdapter(mBluetoothAdapter, mContext)).isTrue();
-    }
-
     private void enableBluetoothTestMode() {
         runShellCommandOrThrow(
                 "dumpsys activity service"
@@ -99,12 +82,12 @@ public class EnableBluetoothRule extends BeforeAfterRule {
     @Override
     protected void onBefore(Statement base, Description description) {
         assumeTrue(TestUtils.hasBluetooth());
-        mWasBluetoothAdapterEnabled = mBluetoothAdapter.isEnabled();
+        mWasBluetoothAdapterEnabled = BlockingBluetoothAdapter.getAdapter().isEnabled();
         if (!mWasBluetoothAdapterEnabled) {
-            enableBluetoothAdapter();
+            assertThat(BlockingBluetoothAdapter.enable()).isTrue();
         } else if (mToggleBluetooth) {
-            disableBluetoothAdapter();
-            enableBluetoothAdapter();
+            assertThat(BlockingBluetoothAdapter.disable(true)).isTrue();
+            assertThat(BlockingBluetoothAdapter.enable()).isTrue();
         }
         if (mEnableTestMode) {
             enableBluetoothTestMode();
@@ -116,7 +99,7 @@ public class EnableBluetoothRule extends BeforeAfterRule {
         assumeTrue(TestUtils.hasBluetooth());
         disableBluetoothTestMode();
         if (!mWasBluetoothAdapterEnabled) {
-            disableBluetoothAdapter();
+            assertThat(BlockingBluetoothAdapter.disable(true)).isTrue();
         }
     }
 }
