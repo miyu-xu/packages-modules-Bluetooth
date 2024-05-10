@@ -277,7 +277,9 @@ public final class BluetoothA2dp implements BluetoothProfile {
     }
 
     /** @hide */
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@link BluetoothAdapter#closeProfileProxy}")
     public void close() {
         mAdapter.closeProfileProxy(this);
     }
@@ -326,7 +328,9 @@ public final class BluetoothA2dp implements BluetoothProfile {
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@code #setConnectionPolicy}")
     public boolean connect(BluetoothDevice device) {
         if (DBG) log("connect(" + device + ")");
         final IBluetoothA2dp service = getService();
@@ -364,7 +368,9 @@ public final class BluetoothA2dp implements BluetoothProfile {
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@code #setConnectionPolicy}")
     public boolean disconnect(BluetoothDevice device) {
         if (DBG) log("disconnect(" + device + ")");
         final IBluetoothA2dp service = getService();
@@ -463,7 +469,9 @@ public final class BluetoothA2dp implements BluetoothProfile {
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-    @UnsupportedAppUsage(trackingBug = 171933273)
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@code BluetoothAdapter#setActiveDevice}")
     public boolean setActiveDevice(@Nullable BluetoothDevice device) {
         if (DBG) log("setActiveDevice(" + device + ")");
         final IBluetoothA2dp service = getService();
@@ -486,7 +494,9 @@ public final class BluetoothA2dp implements BluetoothProfile {
      * @return the connected device that is active or null if no device is active
      * @hide
      */
-    @UnsupportedAppUsage(trackingBug = 171933273)
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@code BluetoothAdapter#getActiveDevices}")
     @Nullable
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission

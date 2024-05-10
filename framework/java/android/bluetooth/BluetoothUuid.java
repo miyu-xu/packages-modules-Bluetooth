@@ -20,7 +20,6 @@ import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.annotation.SuppressLint;
 import android.annotation.SystemApi;
-import android.compat.annotation.UnsupportedAppUsage;
 import android.os.ParcelUuid;
 
 import java.nio.ByteBuffer;
@@ -516,7 +515,6 @@ public final class BluetoothUuid {
      * @return true if the parcelUuid can be converted to 16 bit uuid, false otherwise.
      * @hide
      */
-    @UnsupportedAppUsage
     public static boolean is16BitUuid(ParcelUuid parcelUuid) {
         UUID uuid = parcelUuid.getUuid();
         if (uuid.getLeastSignificantBits() != BASE_UUID.getUuid().getLeastSignificantBits()) {
@@ -531,7 +529,6 @@ public final class BluetoothUuid {
      * @return true if the parcelUuid can be converted to 32 bit uuid, false otherwise.
      * @hide
      */
-    @UnsupportedAppUsage
     public static boolean is32BitUuid(ParcelUuid parcelUuid) {
         UUID uuid = parcelUuid.getUuid();
         if (uuid.getLeastSignificantBits() != BASE_UUID.getUuid().getLeastSignificantBits()) {
