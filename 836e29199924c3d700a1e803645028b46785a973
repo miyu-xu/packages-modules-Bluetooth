@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "37d8b25d_c40330fe",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 13
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-10T22:53:28Z",
+      "side": 1,
+      "message": "I\u0027m wondering if this should just be RfcommTest.kt  I think I\u0027d like to have some tests where we connect both ways at the same time.",
+      "revId": "836e29199924c3d700a1e803645028b46785a973",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "988b26a3_a70af5c0",
         "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
         "patchSetId": 13
