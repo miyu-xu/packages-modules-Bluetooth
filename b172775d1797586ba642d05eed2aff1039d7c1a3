@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "aede99b8_de0e7694",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1668,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-05-10T06:28:57Z",
+      "side": 1,
+      "message": "This seems dangerous in respect to this CL.\n`p_buf` is assigned a valid address now, but when it\u0027s used later it might have been reallocated.\nHow about changing it to always `malloc` and always `free`? We can also remove the member `need_free_buf` this way.",
+      "range": {
+        "startLine": 1668,
+        "startChar": 4,
+        "endLine": 1668,
+        "endChar": 26
+      },
+      "revId": "b172775d1797586ba642d05eed2aff1039d7c1a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ceb54608_cd9cb6a7",
         "filename": "system/bta/hh/bta_hh_le.cc",
         "patchSetId": 3
