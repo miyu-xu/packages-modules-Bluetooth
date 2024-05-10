@@ -90,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9a292ecb_4f715101",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-10T01:14:29Z",
+      "side": 1,
+      "message": "The AdoptShellPermissionsRule has multiple constructors, one of them let you give a list of permissions to adopt https://cs.android.com/android/platform/superproject/main/+/main:cts/common/device-side/util-axt/src/com/android/compatibility/common/util/AdoptShellPermissionsRule.java;l\u003d50-54;drc\u003dc8d77ed23c22707ea194fcfd004bacef06437f0a",
+      "parentUuid": "9cbd5b0f_6db103c9",
+      "revId": "031362f9bb440eba0660da4b53244770c90d5275",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cadccf73_2701557c",
         "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
         "patchSetId": 9
