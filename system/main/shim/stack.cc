@@ -51,9 +51,7 @@
 #include "os/log.h"
 #include "shim/dumpsys.h"
 #include "storage/storage_module.h"
-#if TARGET_FLOSS
 #include "sysprops/sysprops_module.h"
-#endif
 
 namespace bluetooth {
 namespace shim {
@@ -84,9 +82,7 @@ void Stack::StartEverything() {
   modules.add<storage::StorageModule>();
   modules.add<shim::Dumpsys>();
   modules.add<hci::VendorSpecificEventManager>();
-#if TARGET_FLOSS
   modules.add<sysprops::SyspropsModule>();
-#endif
 
   modules.add<hci::Controller>();
   modules.add<hci::acl_manager::AclScheduler>();

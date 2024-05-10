@@ -142,6 +142,7 @@ cc_defaults {
         ":BluetoothPacketSources",
         ":BluetoothSecuritySources",
         ":BluetoothStorageSources",
+        ":BluetoothSyspropsSources",
         "module.cc",
         "module_dumper.cc",
         "stack_manager.cc",
