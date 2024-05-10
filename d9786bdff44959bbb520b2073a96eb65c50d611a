@@ -184,6 +184,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e1daa61b_77458eee",
+        "filename": "system/gd/sysprops/sysprops_module.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-10T03:11:29Z",
+      "side": 1,
+      "message": "Very good question.\nThe answer is simple and you will not like it... you don\u0027t.\nThere is currently no test being run at presubmit that are testing floss target.\n\nTesting host is possible, but host is not floss.\n\nFloss is using their own build system with BUILD.gn files completely in parallel of the android build system.\n\nSo, looking back to https://r.android.com/3071603 with this knowledge, I would assume that the test should not be run on host neither.",
+      "parentUuid": "2c3d5c5f_80f47eff",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 0
+      },
+      "revId": "d9786bdff44959bbb520b2073a96eb65c50d611a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8cf19f10_26a8b511",
         "filename": "system/main/shim/stack.cc",
         "patchSetId": 1
