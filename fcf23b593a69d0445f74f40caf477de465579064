@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3113b1bf_8dca188f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-10T03:21:01Z",
+      "side": 1,
+      "message": "Hi there, we\u0027re having a discussion here: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3080003/comment/87b51e11_de2f902d/",
+      "revId": "fcf23b593a69d0445f74f40caf477de465579064",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
