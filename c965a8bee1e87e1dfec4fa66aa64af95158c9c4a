@@ -26,6 +26,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "445a0552_ed739281",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-10T00:11:19Z",
+      "side": 1,
+      "message": "Either delete to acknowledge we changed the type and this is no longer valid, or keep and rename+duplicate the variable",
+      "range": {
+        "startLine": 74,
+        "startChar": 5,
+        "endLine": 74,
+        "endChar": 24
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b57355db_f9f0dd99",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothGatt.java",
+              "range": {
+                "startLine": 74,
+                "startChar": 0,
+                "endLine": 75,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "c965a8bee1e87e1dfec4fa66aa64af95158c9c4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "03501106_80bed713",
         "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
         "patchSetId": 2
