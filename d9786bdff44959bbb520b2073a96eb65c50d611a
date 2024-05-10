@@ -160,6 +160,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2c3d5c5f_80f47eff",
+        "filename": "system/gd/sysprops/sysprops_module.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-10T03:05:04Z",
+      "side": 1,
+      "message": "TBH I don\u0027t have much knowledge regarding the unittest and build target in Android.\nOne question: How can I run the atests in sysprops_module_test.cc if it\u0027s TARGET_FLOSS? There\u0027s no \"floss\" target in the Android.bp file.",
+      "parentUuid": "0807e93d_d1618733",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 0
+      },
+      "revId": "d9786bdff44959bbb520b2073a96eb65c50d611a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8cf19f10_26a8b511",
         "filename": "system/main/shim/stack.cc",
         "patchSetId": 1
