@@ -115,6 +115,9 @@ public class BassClientService extends ProfileService {
     /* 1 minute timeout for primary device reconnection in Private Broadcast case */
     private static final int DIALING_OUT_TIMEOUT_MS = 60000;
 
+    // 30 secs timeout for keeping PSYNC active when searching is stopped
+    @VisibleForTesting static int sSyncActiveTimeoutMs = 30000;
+
     private static BassClientService sService;
 
     private final Map<BluetoothDevice, BassClientStateMachine> mStateMachines = new HashMap<>();
@@ -148,6 +151,7 @@ public class BassClientService extends ProfileService {
     private BluetoothAdapter mBluetoothAdapter = null;
     private BluetoothLeScannerWrapper mBluetoothLeScannerWrapper = null;
     private DialingOutTimeoutEvent mDialingOutTimeoutEvent = null;
+    private SyncActiveTimeoutEvent mSyncActiveTimeoutEvent = null;
 
     /* Caching the PeriodicAdvertisementResult from Broadcast source */
     /* This is stored at service so that each device state machine can access
@@ -498,6 +502,8 @@ public class BassClientService extends ProfileService {
             mDialingOutTimeoutEvent = null;
         }
 
+        clearSyncActiveTimeoutCallback();
+
         if (mIsAssistantActive) {
             LeAudioService leAudioService = mServiceFactory.getLeAudioService();
             if (leAudioService != null) {
@@ -571,12 +577,12 @@ public class BassClientService extends ProfileService {
             }
         } else {
             synchronized (mSearchScanCallbackLock) {
-                if (mBluetoothLeScannerWrapper != null) {
+                if (mBluetoothLeScannerWrapper != null && mSearchScanCallback != null) {
                     mBluetoothLeScannerWrapper.stopScan(mSearchScanCallback);
-                    mBluetoothLeScannerWrapper = null;
                 }
+                mBluetoothLeScannerWrapper = null;
                 mSearchScanCallback = null;
-                cleanAllSyncData();
+                clearAllSyncData();
             }
 
             mLocalBroadcastReceivers.clear();
@@ -1039,6 +1045,30 @@ public class BassClientService extends ProfileService {
 
         public boolean isScheduledForBroadcast(Integer broadcastId) {
             return mBroadcastId.equals(broadcastId);
+        }
+    }
+
+    class SyncActiveTimeoutEvent implements Runnable {
+        @Override
+        public void run() {
+            log("SyncActiveTimeoutEvent: clear all sync data");
+            mSyncActiveTimeoutEvent = null;
+            clearAllSyncData();
+        }
+    }
+
+    void clearSyncActiveTimeoutCallback() {
+        if (leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
+            log("clearSyncActiveTimeoutCallback clear timeout for canceling syncs");
+            if (mHandler == null) {
+                Log.e(TAG, "No callback handler");
+                return;
+            }
+            /* Timeout callback already cleared */
+            if (mSyncActiveTimeoutEvent != null) {
+                mHandler.removeCallbacks(mSyncActiveTimeoutEvent);
+                mSyncActiveTimeoutEvent = null;
+            }
         }
     }
 
@@ -1551,6 +1581,7 @@ public class BassClientService extends ProfileService {
                             informConnectedDeviceAboutScanOffloadStop();
                         }
                     };
+            clearSyncActiveTimeoutCallback();
             // when starting scan, clear the previously cached broadcast scan results
             mCachedBroadcasts.clear();
             if (!leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
@@ -1626,11 +1657,7 @@ public class BassClientService extends ProfileService {
             }
         } else {
             synchronized (mSearchScanCallbackLock) {
-                if (mBluetoothLeScannerWrapper == null) {
-                    Log.e(TAG, "startLeScan: cannot get BluetoothLeScanner");
-                    return;
-                }
-                if (mSearchScanCallback == null) {
+                if (mBluetoothLeScannerWrapper == null || mSearchScanCallback == null) {
                     Log.e(TAG, "Scan not started yet");
                     mCallbacks.notifySearchStopFailed(BluetoothStatusCodes.ERROR_UNKNOWN);
                     return;
@@ -1638,7 +1665,7 @@ public class BassClientService extends ProfileService {
                 mBluetoothLeScannerWrapper.stopScan(mSearchScanCallback);
                 mBluetoothLeScannerWrapper = null;
                 mSearchScanCallback = null;
-                cleanAllSyncData();
+                clearAllSyncData();
                 informConnectedDeviceAboutScanOffloadStop();
                 sEventLogger.logd(TAG, "stopSearchingForSources");
                 mCallbacks.notifySearchStopped(BluetoothStatusCodes.REASON_LOCAL_APP_REQUEST);
@@ -1646,7 +1673,7 @@ public class BassClientService extends ProfileService {
         }
     }
 
-    private void cleanAllSyncData() {
+    private void clearAllSyncData() {
         mSourceSyncRequestsQueue.clear();
         mPendingSourcesToAdd.clear();
 
@@ -1708,6 +1735,16 @@ public class BassClientService extends ProfileService {
                         null);
                 addActiveSyncedSource(syncHandle);
 
+                synchronized (mSearchScanCallbackLock) {
+                    // when searching is stopped then start timer to stop active syncs
+                    if (mSearchScanCallback == null) {
+                        clearSyncActiveTimeoutCallback();
+                        log("onSyncEstablished started timeout for canceling syncs");
+                        mSyncActiveTimeoutEvent = new SyncActiveTimeoutEvent();
+                        mHandler.postDelayed(mSyncActiveTimeoutEvent, sSyncActiveTimeoutMs);
+                    }
+                }
+
                 // update valid sync handle in mPeriodicAdvCallbacksMap
                 synchronized (mPeriodicAdvCallbacksMap) {
                     if (mPeriodicAdvCallbacksMap.containsKey(BassConstants.INVALID_SYNC_HANDLE)) {
@@ -1766,8 +1803,8 @@ public class BassClientService extends ProfileService {
                 }
             }
             int broadcastId = getBroadcastIdForSyncHandle(syncHandle);
-            cleanAllDataForSyncHandle(syncHandle);
-            // Clean from cache to make possible sync again
+            clearAllDataForSyncHandle(syncHandle);
+            // Clear from cache to make possible sync again
             mCachedBroadcasts.remove(broadcastId);
         }
 
@@ -1811,7 +1848,7 @@ public class BassClientService extends ProfileService {
         }
     }
 
-    private void cleanAllDataForSyncHandle(Integer syncHandle) {
+    private void clearAllDataForSyncHandle(Integer syncHandle) {
         removeActiveSyncedSource(syncHandle);
         mPeriodicAdvCallbacksMap.remove(syncHandle);
         mSyncHandleToBaseDataMap.remove(syncHandle);
@@ -1965,7 +2002,7 @@ public class BassClientService extends ProfileService {
         } else {
             log("calling unregisterSync, not found syncHandle: " + syncHandle);
         }
-        cleanAllDataForSyncHandle(syncHandle);
+        clearAllDataForSyncHandle(syncHandle);
         return true;
     }
 
