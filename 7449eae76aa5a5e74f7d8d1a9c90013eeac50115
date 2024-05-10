@@ -46,6 +46,30 @@
       },
       "revId": "7449eae76aa5a5e74f7d8d1a9c90013eeac50115",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b96a371f_fcefb869",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-10T03:11:34Z",
+      "side": 1,
+      "message": "There is usually one, or a link to the breakage that allow you to create a bug there.\n\nBut since you received it and not me, that mean that this CL didn\u0027t break it directly. It would be because of the libflagshim.",
+      "parentUuid": "63d75e12_84484960",
+      "range": {
+        "startLine": 11,
+        "startChar": 19,
+        "endLine": 11,
+        "endChar": 47
+      },
+      "revId": "7449eae76aa5a5e74f7d8d1a9c90013eeac50115",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
