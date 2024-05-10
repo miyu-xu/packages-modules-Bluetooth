@@ -87,6 +87,30 @@
       },
       "revId": "43dbc7150c0ec7e7afe6761d7d84554f30d52d6a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84235e2c_12da587f",
+        "filename": "system/btif/src/btif_sdp_server.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 522,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-10T21:56:35Z",
+      "side": 1,
+      "message": "ok so this is btif::sdp, I cited bta::*\n\nI can remove this `log::verbose` hex and it is unified in decimal\n\nI can skip logging the handle until this matter is resolved.\n\nI can `(void)` these to get around the `nodiscard` for now\n\nI can circulate a document one pager to the larger team on RFI for how everybody would like to have the various handles printed and we can work from there.",
+      "parentUuid": "3e2f218f_37465809",
+      "range": {
+        "startLine": 522,
+        "startChar": 3,
+        "endLine": 522,
+        "endChar": 65
+      },
+      "revId": "43dbc7150c0ec7e7afe6761d7d84554f30d52d6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
