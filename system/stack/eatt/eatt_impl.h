@@ -158,8 +158,10 @@ struct eatt_impl {
     };
 
     if (!L2CA_ConnectCreditBasedRsp(bda, identifier, lcids, L2CAP_CONN_OK,
-                                    &local_coc_cfg))
+                                    &local_coc_cfg)) {
+      log::warn("Unable to connect L2CAP le_coc credit response peer:{}", bda);
       return false;
+    }
 
     if (!eatt_dev->eatt_tcb_) {
       eatt_dev->eatt_tcb_ =
@@ -264,9 +266,12 @@ struct eatt_impl {
         std::vector<uint16_t> empty;
         log::error("Insufficient key size ({}<{}) for device {}", key_size,
                    min_key_size, bda);
-        L2CA_ConnectCreditBasedRsp(bda, identifier, empty,
-                                   L2CAP_LE_RESULT_INSUFFICIENT_ENCRYP_KEY_SIZE,
-                                   nullptr);
+        if (!L2CA_ConnectCreditBasedRsp(
+                bda, identifier, empty,
+                L2CAP_LE_RESULT_INSUFFICIENT_ENCRYP_KEY_SIZE, nullptr)) {
+          log::warn("Unable to connect L2CAP le_coc credit response peer:{}",
+                    bda);
+        }
         return;
       }
     }
@@ -313,7 +318,11 @@ struct eatt_impl {
         result = L2CAP_LE_RESULT_INSUFFICIENT_ENCRYP;
       }
       log::error("ACL to device {} is unencrypted.", bda);
-      L2CA_ConnectCreditBasedRsp(bda, identifier, empty, result, nullptr);
+      if (!L2CA_ConnectCreditBasedRsp(bda, identifier, empty, result,
+                                      nullptr)) {
+        log::warn("Unable to connect L2CAP le_coc credit response peer:{}",
+                  bda);
+      }
       return;
     }
 
