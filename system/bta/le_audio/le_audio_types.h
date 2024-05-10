@@ -959,14 +959,15 @@ struct IsoDataPathConfiguration {
   types::LeAudioCodecId codecId;
   bool isTransparent;
   uint32_t controllerDelayUs;
-  std::vector<uint8_t> configuration;
+  std::vector<uint8_t> configuration = {};
 
   bool operator==(const IsoDataPathConfiguration& other) const {
     if (codecId != other.codecId) return false;
     if (isTransparent != other.isTransparent) return false;
     if (controllerDelayUs != other.controllerDelayUs) return false;
     if (configuration.size() != other.configuration.size()) return false;
-    if (memcmp(configuration.data(), other.configuration.data(),
+    if ((!other.configuration.empty()) &&
+        memcmp(configuration.data(), other.configuration.data(),
                other.configuration.size())) {
       return false;
     }
@@ -990,7 +991,8 @@ struct DataPathConfiguration {
     if (dataPathId != other.dataPathId) return false;
     if (isoDataPathConfig != other.isoDataPathConfig) return false;
     if (dataPathConfig.size() != other.dataPathConfig.size()) return false;
-    if (memcmp(dataPathConfig.data(), other.dataPathConfig.data(),
+    if ((!other.dataPathConfig.empty()) &&
+        memcmp(dataPathConfig.data(), other.dataPathConfig.data(),
                other.dataPathConfig.size())) {
       return false;
     }
@@ -1049,8 +1051,10 @@ struct ase {
         cis_state(CisState::IDLE),
         data_path_state(DataPathState::IDLE),
         configured_for_context_type(LeAudioContextType::UNINITIALIZED),
-        is_codec_in_controller(false),
-        data_path_id(bluetooth::hci::iso_manager::kIsoDataPathDisabled),
+        // TODO: Initialize the rest of the parameters?
+        data_path_configuration(
+            {.dataPathId = bluetooth::hci::iso_manager::kIsoDataPathDisabled,
+             .isoDataPathConfig = {.isTransparent = true}}),
         autonomous_operation_timer_(nullptr),
         autonomous_target_state_(AseState::BTA_LE_AUDIO_ASE_STATE_IDLE),
         state(AseState::BTA_LE_AUDIO_ASE_STATE_IDLE) {}
@@ -1074,12 +1078,8 @@ struct ase {
   std::vector<uint8_t> vendor_codec_config;
   uint8_t channel_count;
 
-  /* Set to true, if the codec is implemented in BT controller, false if it's
-   * implemented in host, or in separate DSP
-   */
-  bool is_codec_in_controller;
-  /* Datapath ID used to configure an ISO channel for these ASEs */
-  uint8_t data_path_id;
+  /* Data path configuration */
+  DataPathConfiguration data_path_configuration;
 
   /* Qos configuration */
   AseQosConfiguration qos_config;
@@ -1184,20 +1184,15 @@ struct AseConfiguration {
                                            .retransmission_number = 0,
                                            .max_transport_latency = 0})
       : codec(codec), qos(qos) {}
-  /* Whether the codec location is transparent to the controller */
-  bool is_codec_in_controller = false;
-  /* Datapath ID used to configure an ISO channel for these ASEs */
-  uint8_t data_path_id = bluetooth::hci::iso_manager::kIsoDataPathHci;
-
+  types::DataPathConfiguration data_path_configuration;
   CodecConfigSetting codec;
   QosConfigSetting qos;
 
   bool operator!=(const AseConfiguration& other) { return !(*this == other); }
 
   bool operator==(const AseConfiguration& other) const {
-    return ((is_codec_in_controller == other.is_codec_in_controller) &&
-            (data_path_id == other.data_path_id) && (codec == other.codec) &&
-            (qos == other.qos));
+    return ((data_path_configuration == other.data_path_configuration) &&
+            (codec == other.codec) && (qos == other.qos));
   }
 };
 

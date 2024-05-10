@@ -1721,14 +1721,19 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
             ase->direction == bluetooth::le_audio::types::kLeAudioDirectionSink
                 ? bluetooth::hci::iso_manager::kIsoDataPathDirectionIn
                 : bluetooth::hci::iso_manager::kIsoDataPathDirectionOut,
-        .data_path_id = ase->data_path_id,
-        .codec_id_format = ase->is_codec_in_controller
-                               ? ase->codec_id.coding_format
-                               : bluetooth::hci::kIsoCodingFormatTransparent,
+        .data_path_id = ase->data_path_configuration.dataPathId,
+        .codec_id_format =
+            ase->data_path_configuration.isoDataPathConfig.isTransparent
+                ? bluetooth::hci::kIsoCodingFormatTransparent
+                // FIXME: Should we use the
+                // ase->data_path_configuration.isoDataPathConfig.codecId
+                : ase->codec_id.coding_format,
         .codec_id_company = ase->codec_id.vendor_company_id,
         .codec_id_vendor = ase->codec_id.vendor_codec_id,
-        .controller_delay = 0x00000000,
-        .codec_conf = std::vector<uint8_t>(),
+        .controller_delay =
+            ase->data_path_configuration.isoDataPathConfig.controllerDelayUs,
+        .codec_conf =
+            ase->data_path_configuration.isoDataPathConfig.configuration,
     };
 
     LeAudioLogHistory::Get()->AddLogHistory(
