@@ -117,7 +117,9 @@ static void hidd_l2cif_connect_ind(const RawAddress& bd_addr, uint16_t cid,
 
   if (!hd_cb.allow_incoming) {
     log::warn("incoming connections not allowed, rejecting");
-    L2CA_DisconnectReq(cid);
+    if (!L2CA_DisconnectReq(cid)) {
+      log::warn("Unable to disconnect L2CAP peer:{} cid:{}", p_dev->addr, cid);
+    }
 
     return;
   }
@@ -155,7 +157,9 @@ static void hidd_l2cif_connect_ind(const RawAddress& bd_addr, uint16_t cid,
   }
 
   if (!accept) {
-    L2CA_DisconnectReq(cid);
+    if (!L2CA_DisconnectReq(cid)) {
+      log::warn("Unable to disconnect L2CAP cid:{}", cid);
+    }
     return;
   }
 
@@ -351,7 +355,9 @@ static void hidd_l2cif_disconnect_ind(uint16_t cid, bool ack_needed) {
 }
 
 static void hidd_l2cif_disconnect(uint16_t cid) {
-  L2CA_DisconnectReq(cid);
+  if (!L2CA_DisconnectReq(cid)) {
+    log::warn("Unable to disconnect L2CAP cid:{}", cid);
+  }
 
   log::verbose("cid={:04x}", cid);
 
@@ -369,7 +375,9 @@ static void hidd_l2cif_disconnect(uint16_t cid) {
     p_hcon->intr_cid = 0;
 
     // now disconnect CTRL
-    L2CA_DisconnectReq(p_hcon->ctrl_cid);
+    if (!L2CA_DisconnectReq(p_hcon->ctrl_cid)) {
+      log::warn("Unable to disconnect L2CAP cid:{}", p_hcon->ctrl_cid);
+    }
     p_hcon->ctrl_cid = 0;
   }
 
