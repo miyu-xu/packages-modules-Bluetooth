@@ -40,6 +40,30 @@
       ],
       "revId": "99ec7396f4d3cc06faa46fde825cb33c20b5840d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "530e54be_2478a0cf",
+        "filename": "system/gd/storage/config_cache.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-10T02:28:02Z",
+      "side": 1,
+      "message": "Agree. But parsing C++ with regex is way too hard...",
+      "parentUuid": "552ef414_09b2922f",
+      "range": {
+        "startLine": 428,
+        "startChar": 24,
+        "endLine": 428,
+        "endChar": 37
+      },
+      "revId": "99ec7396f4d3cc06faa46fde825cb33c20b5840d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
