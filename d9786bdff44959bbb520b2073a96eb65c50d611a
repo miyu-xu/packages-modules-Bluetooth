@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "361c7493_b3b4257d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-10T03:01:06Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "feddba70_246eacb0",
+      "range": {
+        "startLine": 10,
+        "startChar": 35,
+        "endLine": 11,
+        "endChar": 25
+      },
+      "revId": "d9786bdff44959bbb520b2073a96eb65c50d611a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "cec965a2_09e48bf3",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -106,6 +130,30 @@
           ]
         }
       ],
+      "revId": "d9786bdff44959bbb520b2073a96eb65c50d611a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0807e93d_d1618733",
+        "filename": "system/gd/sysprops/sysprops_module.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-10T03:01:06Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we revert the last merged CL that generate the breakage ? \n\nI believe that this is a floss only modules that we don\u0027t use on host. This CL still looks valid to me",
+      "parentUuid": "87b51e11_de2f902d",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 0
+      },
       "revId": "d9786bdff44959bbb520b2073a96eb65c50d611a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
