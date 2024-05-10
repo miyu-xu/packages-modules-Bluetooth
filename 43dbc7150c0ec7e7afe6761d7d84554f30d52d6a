@@ -40,6 +40,30 @@
       ],
       "revId": "43dbc7150c0ec7e7afe6761d7d84554f30d52d6a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19a94f05_f0058244",
+        "filename": "system/bta/ag/bta_ag_sdp.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-10T20:12:22Z",
+      "side": 1,
+      "message": "There are multiple handles for bta::a* modules; none of which seem to be logged in hex for bta::ag at least.\n\n\n```\nbta/ag/bta_ag_int.h:  uint16_t port_handle;\nbta/ag/bta_ag_int.h:  uint32_t sdp_handle;\nbta/ag/bta_ag_int.h:  uint16_t serv_handle[BTA_AG_NUM_IDX]; /* RFCOMM server handles */\nbta/ag/bta_ag_int.h:  uint16_t conn_handle;                 /* RFCOMM handle of connected service */\n```\n\nI will put these all in hex or not but I don\u0027t see any precedent of hex handles w.r.t. sdp handle.",
+      "parentUuid": "51688487_5dee344e",
+      "range": {
+        "startLine": 305,
+        "startChar": 56,
+        "endLine": 305,
+        "endChar": 58
+      },
+      "revId": "43dbc7150c0ec7e7afe6761d7d84554f30d52d6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
