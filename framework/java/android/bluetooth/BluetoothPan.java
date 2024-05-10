@@ -227,7 +227,10 @@ public final class BluetoothPan implements BluetoothProfile {
      *
      * @hide
      */
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives =
+                    "Use {@link BluetoothAdapter#getProfileProxy} with BluetoothProfile.PAN")
     /* package */ BluetoothPan(Context context, BluetoothAdapter adapter) {
         mAdapter = adapter;
         mAttributionSource = adapter.getAttributionSource();
@@ -240,7 +243,9 @@ public final class BluetoothPan implements BluetoothProfile {
      *
      * @hide
      */
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@link BluetoothAdapter#closeProfileProxy}")
     public void close() {
         if (VDBG) log("close()");
         mAdapter.closeProfileProxy(this);
@@ -327,7 +332,9 @@ public final class BluetoothPan implements BluetoothProfile {
      * @return false on immediate error, true otherwise
      * @hide
      */
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@code #setConnectionPolicy}")
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public boolean disconnect(BluetoothDevice device) {
@@ -593,17 +600,23 @@ public final class BluetoothPan implements BluetoothProfile {
         return false;
     }
 
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@link BluetoothAdapter#isEnabled}")
     private boolean isEnabled() {
         return mAdapter.getState() == BluetoothAdapter.STATE_ON;
     }
 
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@link BluetoothAdapter#checkBluetoothAddress}")
     private static boolean isValidDevice(BluetoothDevice device) {
         return device != null && BluetoothAdapter.checkBluetoothAddress(device.getAddress());
     }
 
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@code android.util.Log}")
     private static void log(String msg) {
         Log.d(TAG, msg);
     }

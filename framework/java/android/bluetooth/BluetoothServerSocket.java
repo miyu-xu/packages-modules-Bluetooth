@@ -18,6 +18,7 @@ package android.bluetooth;
 
 import android.annotation.SuppressLint;
 import android.compat.annotation.UnsupportedAppUsage;
+import android.os.Build;
 import android.os.Handler;
 import android.os.ParcelUuid;
 import android.util.Log;
@@ -76,7 +77,8 @@ public final class BluetoothServerSocket implements Closeable {
     private static final boolean DBG = Log.isLoggable(TAG, Log.DEBUG);
 
     @UnsupportedAppUsage(
-            publicAlternatives = "Use public {@link BluetoothServerSocket} API " + "instead.")
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use public {@link BluetoothServerSocket} API instead.")
     /*package*/ final BluetoothSocket mSocket;
 
     private Handler mHandler;

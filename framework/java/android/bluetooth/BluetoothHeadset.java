@@ -365,7 +365,9 @@ public final class BluetoothHeadset implements BluetoothProfile {
      *
      * @hide
      */
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@link BluetoothAdapter#closeProfileProxy}")
     public void close() {
         mAdapter.closeProfileProxy(this);
     }
@@ -1251,7 +1253,10 @@ public final class BluetoothHeadset implements BluetoothProfile {
                 android.Manifest.permission.BLUETOOTH_CONNECT,
                 android.Manifest.permission.MODIFY_PHONE_STATE,
             })
-    @UnsupportedAppUsage(trackingBug = 171933273)
+    @UnsupportedAppUsage(
+            trackingBug = 171933273,
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@code BluetoothAdapter#setActiveDevice}")
     public boolean setActiveDevice(@Nullable BluetoothDevice device) {
         if (DBG) {
             Log.d(TAG, "setActiveDevice: " + device);
@@ -1276,7 +1281,10 @@ public final class BluetoothHeadset implements BluetoothProfile {
      * @return the connected device that is active or null if no device is active.
      * @hide
      */
-    @UnsupportedAppUsage(trackingBug = 171933273)
+    @UnsupportedAppUsage(
+            trackingBug = 171933273,
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@code BluetoothAdapter#getActiveDevices}")
     @Nullable
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
@@ -1329,7 +1337,9 @@ public final class BluetoothHeadset implements BluetoothProfile {
         return false;
     }
 
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@link BluetoothAdapter#isEnabled}")
     private boolean isEnabled() {
         return mAdapter.getState() == BluetoothAdapter.STATE_ON;
     }

@@ -46,7 +46,10 @@ public class BluetoothGattService implements Parcelable {
      *
      * @hide
      */
-    @UnsupportedAppUsage protected BluetoothDevice mDevice;
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@link BluetoothGattService} public API instead.")
+    protected BluetoothDevice mDevice;
 
     /**
      * The UUID of this service.
@@ -255,7 +258,9 @@ public class BluetoothGattService implements Parcelable {
      *
      * @hide
      */
-    @UnsupportedAppUsage
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@link BluetoothGattServer} API")
     public void setInstanceId(int instanceId) {
         mInstanceId = instanceId;
     }

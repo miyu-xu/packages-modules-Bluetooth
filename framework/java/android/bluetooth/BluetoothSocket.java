@@ -147,13 +147,24 @@ public final class BluetoothSocket implements Closeable {
     /** Minimum 16 digit pin for sec mode 2 connections */
     private boolean mMin16DigitPin = false;
 
-    @UnsupportedAppUsage(publicAlternatives = "Use {@link BluetoothSocket} public API instead.")
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@link BluetoothSocket} public API instead.")
     private ParcelFileDescriptor mPfd;
 
-    @UnsupportedAppUsage private LocalSocket mSocket;
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@link BluetoothSocket} public API instead.")
+    private LocalSocket mSocket;
+
     private InputStream mSocketIS;
     private OutputStream mSocketOS;
-    @UnsupportedAppUsage private int mPort; /* RFCOMM channel or L2CAP psm */
+
+    @UnsupportedAppUsage(
+            maxTargetSdk = Build.VERSION_CODES.VANILLA_ICE_CREAM,
+            publicAlternatives = "Use {@link BluetoothSocket} public API instead.")
+    private int mPort; /* RFCOMM channel or L2CAP psm */
+
     private String mServiceName;
 
     private static final int SOCK_SIGNAL_SIZE = 36;
