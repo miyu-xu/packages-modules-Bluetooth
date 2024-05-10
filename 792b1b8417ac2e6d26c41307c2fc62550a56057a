@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b429059_134b651b",
+        "filename": "system/stack/include/l2cdefs.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-10T17:52:55Z",
+      "side": 1,
+      "message": "I prefer the to_string logging that shows the values",
+      "range": {
+        "startLine": 278,
+        "startChar": 0,
+        "endLine": 281,
+        "endChar": 19
+      },
+      "revId": "792b1b8417ac2e6d26c41307c2fc62550a56057a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
