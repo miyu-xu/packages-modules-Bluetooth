@@ -46,6 +46,30 @@
       },
       "revId": "3ab93930d9cdb4e844d07d13a5e75fd479fa2d80",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9a80935_7de9ff6b",
+        "filename": "system/bta/hf_client/bta_hf_client_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-10T20:03:39Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "8027612f_22036f37",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 0
+      },
+      "revId": "3ab93930d9cdb4e844d07d13a5e75fd479fa2d80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
