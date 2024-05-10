@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57ffeb09_307cc756",
+        "filename": "system/bta/ar/bta_ar.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-10T07:23:06Z",
+      "side": 1,
+      "message": "nit: log the handle or not?",
+      "fixSuggestions": [
+        {
+          "fixId": "08db937d_61655b67",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ar/bta_ar.cc",
+              "range": {
+                "startLine": 238,
+                "startChar": 0,
+                "endLine": 239,
+                "endChar": 0
+              },
+              "replacement": "        log::warn(\"Unable to add supported features handle:{}\",\n                  bta_ar_cb.sdp_ct_handle);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "68777d2b1cf73d266e1d94c66bcb28e365d6ea58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
