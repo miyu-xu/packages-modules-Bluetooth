@@ -31,6 +31,7 @@
 #include "stack/include/l2c_api.h"
 #include "stack/include/port_api.h"
 #include "stack/include/sdp_status.h"
+#include "types/bt_transport.h"
 #include "types/raw_address.h"
 
 using namespace bluetooth;
