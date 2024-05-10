@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93d311c1_a3e05c1c",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-05-10T09:07:10Z",
+      "side": 1,
+      "message": "private final",
+      "fixSuggestions": [
+        {
+          "fixId": "d1abbd9d_71e52c71",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 401,
+                "startChar": 0,
+                "endLine": 402,
+                "endChar": 0
+              },
+              "replacement": "    private final AudioModeChangeListener mAudioModeChangeListener \u003d new AudioModeChangeListener();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f6100eef8350e83fa6e29dd36bb3bed954bce560",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
