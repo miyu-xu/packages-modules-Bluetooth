@@ -90,6 +90,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "517c1176_abfd8518",
+        "filename": "system/bta/ag/bta_ag_sdp.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-11T00:22:07Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "94b71910_e9b49fd4",
+      "range": {
+        "startLine": 305,
+        "startChar": 56,
+        "endLine": 305,
+        "endChar": 58
+      },
+      "revId": "43dbc7150c0ec7e7afe6761d7d84554f30d52d6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e2f218f_37465809",
@@ -151,6 +175,30 @@
       "side": 1,
       "message": "I suggest a formal design review and a committee.",
       "parentUuid": "84235e2c_12da587f",
+      "range": {
+        "startLine": 522,
+        "startChar": 3,
+        "endLine": 522,
+        "endChar": 65
+      },
+      "revId": "43dbc7150c0ec7e7afe6761d7d84554f30d52d6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e878e6c4_c34eaf89",
+        "filename": "system/btif/src/btif_sdp_server.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 522,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-11T00:22:07Z",
+      "side": 1,
+      "message": "facetious ?!?",
+      "parentUuid": "32aa72d6_826f20b7",
       "range": {
         "startLine": 522,
         "startChar": 3,
