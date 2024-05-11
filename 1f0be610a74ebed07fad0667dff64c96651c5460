@@ -52,6 +52,24 @@
       "parentUuid": "6d8175e3_46c2623a",
       "revId": "1f0be610a74ebed07fad0667dff64c96651c5460",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48165a0b_06ae5ca0",
+        "filename": "flags/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1570284
+      },
+      "writtenOn": "2024-05-11T01:31:10Z",
+      "side": 1,
+      "message": "Added the exported library to the BT Android.bp",
+      "parentUuid": "1a7b1ddf_b29d7df9",
+      "revId": "1f0be610a74ebed07fad0667dff64c96651c5460",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
