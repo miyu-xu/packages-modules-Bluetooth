@@ -664,7 +664,11 @@ impl Bluetooth {
                 self.hh.as_mut().unwrap().activate_hogp(false);
             }
 
-            Profile::A2dpSource | Profile::Hfp | Profile::AvrcpTarget | Profile::LeAudio => {
+            Profile::A2dpSource
+            | Profile::Hfp
+            | Profile::AvrcpTarget
+            | Profile::LeAudio
+            | Profile::VolumeControl => {
                 self.bluetooth_media.lock().unwrap().disable_profile(profile);
             }
             // Ignore profiles that we don't connect.
@@ -686,7 +690,11 @@ impl Bluetooth {
                 self.hh.as_mut().unwrap().activate_hogp(true);
             }
 
-            Profile::A2dpSource | Profile::Hfp | Profile::AvrcpTarget | Profile::LeAudio => {
+            Profile::A2dpSource
+            | Profile::Hfp
+            | Profile::AvrcpTarget
+            | Profile::LeAudio
+            | Profile::VolumeControl => {
                 self.bluetooth_media.lock().unwrap().enable_profile(profile);
             }
             // Ignore profiles that we don't connect.
@@ -704,7 +712,11 @@ impl Bluetooth {
 
             Profile::Hogp => Some(self.hh.as_ref().unwrap().is_hogp_activated),
 
-            Profile::A2dpSource | Profile::Hfp | Profile::AvrcpTarget | Profile::LeAudio => {
+            Profile::A2dpSource
+            | Profile::Hfp
+            | Profile::AvrcpTarget
+            | Profile::LeAudio
+            | Profile::VolumeControl => {
                 self.bluetooth_media.lock().unwrap().is_profile_enabled(profile)
             }
             // Ignore profiles that we don't connect.
@@ -2859,7 +2871,7 @@ impl IBluetooth for Bluetooth {
                             }
 
                             // TODO(b/317682584): implement policy to connect to LEA, VC, and CSIS
-                            Profile::LeAudio if !has_le_media_profile => {
+                            Profile::LeAudio | Profile::VolumeControl if !has_le_media_profile => {
                                 has_le_media_profile = true;
                                 let txl = self.tx.clone();
                                 let address = device.address.clone();
@@ -2987,7 +2999,7 @@ impl IBluetooth for Bluetooth {
                             }
 
                             // TODO(b/317682584): implement policy to disconnect from LEA, VC, and CSIS
-                            Profile::LeAudio if !has_le_media_profile => {
+                            Profile::LeAudio | Profile::VolumeControl if !has_le_media_profile => {
                                 has_le_media_profile = true;
                                 let txl = self.tx.clone();
                                 let address = device.address.clone();
