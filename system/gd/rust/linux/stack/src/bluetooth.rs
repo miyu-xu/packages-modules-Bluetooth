@@ -155,6 +155,9 @@ pub trait IBluetooth {
     /// Checks when discovery ends in milliseconds from now.
     fn get_discovery_end_millis(&self) -> u64;
 
+    /// Checks whether pairing is not ready.
+    fn is_pairing_busy(&self) -> bool;
+
     /// Initiates pairing to a remote device. Triggers connection if not already started.
     fn create_bond(&mut self, device: BluetoothDevice, transport: BtTransport) -> BtStatus;
 
@@ -701,7 +704,12 @@ impl Bluetooth {
 
             Profile::Hogp => Some(self.hh.as_ref().unwrap().is_hogp_activated),
 
-            Profile::A2dpSource | Profile::Hfp | Profile::AvrcpTarget => {
+            Profile::A2dpSource
+            | Profile::Hfp
+            | Profile::AvrcpTarget
+            | Profile::LeAudio
+            | Profile::VolumeControl
+            | Profile::CoordinatedSet => {
                 self.bluetooth_media.lock().unwrap().is_profile_enabled(profile)
             }
             // Ignore profiles that we don't connect.
@@ -2367,6 +2375,10 @@ impl IBluetooth for Bluetooth {
         }
     }
 
+    fn is_pairing_busy(&self) -> bool {
+        self.intf.lock().unwrap().pairing_is_busy()
+    }
+
     fn create_bond(&mut self, device: BluetoothDevice, transport: BtTransport) -> BtStatus {
         let addr = RawAddress::from_string(device.address.clone());
 
@@ -2919,7 +2931,7 @@ impl IBluetooth for Bluetooth {
 
         let addr = RawAddress::from_string(device.address.clone());
         if addr.is_none() {
-            warn!("Can't connect profiles on invalid address [{}]", &device.address);
+            warn!("Can't disconnect profiles on invalid address [{}]", &device.address);
             return false;
         }
 
