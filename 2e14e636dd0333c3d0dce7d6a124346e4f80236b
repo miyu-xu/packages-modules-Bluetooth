@@ -1,0 +1,244 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "388a7f29_65789832",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-13T17:38:23Z",
+      "side": 1,
+      "message": "how do you guarantee this is not freed when bta_dm_sdp_result is called?",
+      "range": {
+        "startLine": 385,
+        "startChar": 35,
+        "endLine": 385,
+        "endChar": 70
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f1b5ad27_d6180e38",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_disc.cc",
+              "range": {
+                "startLine": 383,
+                "startChar": 0,
+                "endLine": 386,
+                "endChar": 0
+              },
+              "replacement": "  do_in_main_thread(\n      FROM_HERE, base::BindOnce(\u0026bta_dm_sdp_result, sdp_status,\n                                bta_dm_discovery_cb.sdp_state.get_deleter()));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2e14e636dd0333c3d0dce7d6a124346e4f80236b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "306e3f65_79091dd2",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-13T17:38:23Z",
+      "side": 1,
+      "message": "declare another stack var above",
+      "range": {
+        "startLine": 415,
+        "startChar": 23,
+        "endLine": 415,
+        "endChar": 31
+      },
+      "revId": "2e14e636dd0333c3d0dce7d6a124346e4f80236b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4dabe2b_b1edb68f",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-13T17:38:23Z",
+      "side": 1,
+      "message": "why this cannot just be a stack variable?\n\ntSDP_DISCOVERY_DB* p_sdp_db \u003d (tSDP_DISCOVERY_DB*)sdp_state-\u003esdp_db_buffer;",
+      "range": {
+        "startLine": 690,
+        "startChar": 2,
+        "endLine": 690,
+        "endChar": 21
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a50ae550_a3b8693f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_disc.cc",
+              "range": {
+                "startLine": 690,
+                "startChar": 0,
+                "endLine": 691,
+                "endChar": 0
+              },
+              "replacement": "  tSDP_DISCOVERY_DB* p_sdp_db \u003d\n      reinterpret_cast\u003ctSDP_DISCOVERY_DB*\u003e(sdp_state-\u003esdp_db_buffer);\n"
+            },
+            {
+              "path": "system/bta/dm/bta_dm_disc.cc",
+              "range": {
+                "startLine": 694,
+                "startChar": 0,
+                "endLine": 695,
+                "endChar": 0
+              },
+              "replacement": "      p_sdp_db, BTA_DM_SDP_DB_SIZE, 1, \u0026uuid, 0, NULL);\n"
+            },
+            {
+              "path": "system/bta/dm/bta_dm_disc.cc",
+              "range": {
+                "startLine": 696,
+                "startChar": 0,
+                "endLine": 700,
+                "endChar": 0
+              },
+              "replacement": "  p_sdp_db-\u003eraw_data \u003d sdp_state-\u003eg_disc_raw_data_buf.data();\n  p_sdp_db-\u003eraw_size \u003d MAX_DISC_RAW_DATA_BUF;\n"
+            },
+            {
+              "path": "system/bta/dm/bta_dm_disc.cc",
+              "range": {
+                "startLine": 702,
+                "startChar": 0,
+                "endLine": 703,
+                "endChar": 0
+              },
+              "replacement": "          bd_addr, p_sdp_db, \u0026bta_dm_sdp_callback)) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2e14e636dd0333c3d0dce7d6a124346e4f80236b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20bb7d14_78145b8c",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 803,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-13T17:38:23Z",
+      "side": 1,
+      "message": "no need to be unique_ptr, `\u003d {\n.services_to_search \u003d BTA_ALL_SERVICE_MASK,\n          .services_found \u003d 0,\n          .service_index \u003d 0,\n          }` is fine?",
+      "range": {
+        "startLine": 803,
+        "startChar": 6,
+        "endLine": 803,
+        "endChar": 22
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "90322ebe_6a2b9c47",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_disc.cc",
+              "range": {
+                "startLine": 802,
+                "startChar": 0,
+                "endLine": 809,
+                "endChar": 0
+              },
+              "replacement": "  bta_dm_discovery_cb.sdp_state \u003d tBTA_DM_SDP_STATE{\n      .services_to_search \u003d BTA_ALL_SERVICE_MASK,\n      .services_found \u003d 0,\n      .service_index \u003d 0,\n  };\n  bta_dm_find_services(bd_addr, \u0026bta_dm_discovery_cb.sdp_state);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2e14e636dd0333c3d0dce7d6a124346e4f80236b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c75739fd_b68a66a3",
+        "filename": "system/bta/dm/bta_dm_disc_int.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-13T17:38:23Z",
+      "side": 1,
+      "message": "why this cannot just be a stack variable?",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 30
+      },
+      "revId": "2e14e636dd0333c3d0dce7d6a124346e4f80236b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6fbf800_b04e4283",
+        "filename": "system/bta/dm/bta_dm_disc_int.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-13T17:38:23Z",
+      "side": 1,
+      "message": "why need a unique_ptr?\n\ncouldn\u0027t is just be a normal variable and init using `\u003d {}` so that it is never null or a shared_ptr so that you can guranteee its lifecycle when passed to other methods?",
+      "range": {
+        "startLine": 111,
+        "startChar": 1,
+        "endLine": 111,
+        "endChar": 17
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "389de9d0_aa08ebb1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_disc_int.h",
+              "range": {
+                "startLine": 111,
+                "startChar": 0,
+                "endLine": 112,
+                "endChar": 0
+              },
+              "replacement": "  tBTA_DM_SDP_STATE sdp_state;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2e14e636dd0333c3d0dce7d6a124346e4f80236b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
