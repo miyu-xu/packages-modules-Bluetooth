@@ -52,6 +52,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88ba8eda_b11e7cab",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-13T23:46:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "457b81ec_a11048f6",
+      "range": {
+        "startLine": 133,
+        "startChar": 8,
+        "endLine": 133,
+        "endChar": 53
+      },
+      "revId": "dda8d53300f85057bfc346bf56171a4a112cc1b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e96eb442_aed31789",
@@ -113,6 +137,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bd574e0_17ea5d11",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-13T23:46:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e96eb442_aed31789",
+      "range": {
+        "startLine": 141,
+        "startChar": 8,
+        "endLine": 141,
+        "endChar": 54
+      },
+      "revId": "dda8d53300f85057bfc346bf56171a4a112cc1b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e681b9c_e1bcd8c6",
@@ -150,6 +198,30 @@
           ]
         }
       ],
+      "revId": "dda8d53300f85057bfc346bf56171a4a112cc1b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50262de1_51ebb066",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-13T23:46:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e681b9c_e1bcd8c6",
+      "range": {
+        "startLine": 148,
+        "startChar": 16,
+        "endLine": 148,
+        "endChar": 19
+      },
       "revId": "dda8d53300f85057bfc346bf56171a4a112cc1b6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
