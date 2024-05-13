@@ -1,0 +1,220 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f9ead63_0fc85fc4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-13T04:20:38Z",
+      "side": 1,
+      "message": "I like the direction this is going to.\nI put some nit comments and the only thing I am really unsure is disabling the gatt inside the unit tests. I think we do want to test it. That may involves changing the number of event received and of state transition since there is not 2 but 3 profiles.\n\nI need to look at it a second time to make sure I am not forgetting something but good job !",
+      "revId": "9b90d1bc896fee01e4c1034fa9dfa66b5b8f3c25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9d3c2fa_bea33ea7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-13T04:20:38Z",
+      "side": 1,
+      "message": "I know that other test here have comments, but I often don\u0027t see the value of it.\nHere we are repeating the name of the test, and no need to repeat test on the test name neither :/\n\nA few months ago I found out about go/unit-testing-practices#naming and I really like the idea of it, for this test that could be: (dropping an idea, feel free to adapt_\n\n`startBleOnly_whenScanManagerRefactorFlagIsOn_onlyStartScanController()`\n\nWhen you only have one test it looks weird, but when you start to have a couple it\u0027s add values.\nOne of recent example of this kind of test writing can be found in the [satellite listener](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/service/src/satellite/ModeListenerTest.kt)\n\nDon\u0027t make any change if you don\u0027t want to, as this is very personal preference and there is no wide adoption in the team (yet ;) )",
+      "range": {
+        "startLine": 678,
+        "startChar": 0,
+        "endLine": 678,
+        "endChar": 61
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "915fc811_6f46915e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+              "range": {
+                "startLine": 678,
+                "startChar": 0,
+                "endLine": 679,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+              "range": {
+                "startLine": 692,
+                "startChar": 0,
+                "endLine": 693,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+              "range": {
+                "startLine": 703,
+                "startChar": 0,
+                "endLine": 704,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+              "range": {
+                "startLine": 747,
+                "startChar": 0,
+                "endLine": 748,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "9b90d1bc896fee01e4c1034fa9dfa66b5b8f3c25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df12036a_7a887797",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-13T04:20:38Z",
+      "side": 1,
+      "message": "Do we need thoses ?\n\nFor other tests, they are used to trigger the timeout where the profile end up never being connected.\n\nI believe that above method will left event in the queue, but I don\u0027t think we care for that.\nHaving that in the test add a bit of complexity",
+      "range": {
+        "startLine": 686,
+        "startChar": 64,
+        "endLine": 689,
+        "endChar": 63
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7ad0703b_fde5c8f2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+              "range": {
+                "startLine": 686,
+                "startChar": 0,
+                "endLine": 690,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "9b90d1bc896fee01e4c1034fa9dfa66b5b8f3c25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d6c5f20_9c62abcc",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-13T04:20:38Z",
+      "side": 1,
+      "message": "There is a method called offToBleOn, can we use it / adapte it with the new flags in ?",
+      "range": {
+        "startLine": 716,
+        "startChar": 5,
+        "endLine": 726,
+        "endChar": 72
+      },
+      "revId": "9b90d1bc896fee01e4c1034fa9dfa66b5b8f3c25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f2d0ceb_07ab7631",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-13T04:20:38Z",
+      "side": 1,
+      "message": "I am unsure about that.\n\nOn a full start to bredr, we will expect gatt to be here to. Is there another reason to disable it when trying the start with scan controller ?",
+      "range": {
+        "startLine": 752,
+        "startChar": 0,
+        "endLine": 752,
+        "endChar": 63
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d4f0fe2b_abc2774d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+              "range": {
+                "startLine": 752,
+                "startChar": 0,
+                "endLine": 754,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "9b90d1bc896fee01e4c1034fa9dfa66b5b8f3c25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56f1b8bc_51add050",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-13T04:20:38Z",
+      "side": 1,
+      "message": "What is New ?",
+      "range": {
+        "startLine": 802,
+        "startChar": 0,
+        "endLine": 802,
+        "endChar": 14
+      },
+      "revId": "9b90d1bc896fee01e4c1034fa9dfa66b5b8f3c25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
