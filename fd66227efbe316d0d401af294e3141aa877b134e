@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ab1bbb1_f89ef2b8",
+        "filename": "flags/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1570284
+      },
+      "writtenOn": "2024-05-13T22:49:41Z",
+      "side": 1,
+      "message": "Good catch. Removed",
+      "parentUuid": "9565e510_d1b6cada",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 12
+      },
+      "revId": "fd66227efbe316d0d401af294e3141aa877b134e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "221e8073_22d1ad00",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-05-13T22:40:55Z",
       "side": 1,
       "message": "What is this needed for ?\n\nThis is adding the fake_device_config, but there is a module that is providing a real implementation with framework-configinfrastructure. \n\nOr is this specific to including the library inside base ?",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 61
+      },
+      "revId": "fd66227efbe316d0d401af294e3141aa877b134e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03d518e6_08021cd4",
+        "filename": "flags/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1570284
+      },
+      "writtenOn": "2024-05-13T22:49:41Z",
+      "side": 1,
+      "message": "Using the framework-configinfrastructure will cause a dependency cycle when including the library in the framework base code.",
+      "parentUuid": "221e8073_22d1ad00",
       "range": {
         "startLine": 78,
         "startChar": 0,
