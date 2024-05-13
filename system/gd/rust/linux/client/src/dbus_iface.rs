@@ -12,6 +12,11 @@ use bt_topshim::profiles::avrcp::PlayerMetadata;
 use bt_topshim::profiles::gatt::{AdvertisingStatus, GattStatus, LePhy};
 use bt_topshim::profiles::hfp::{EscoCodingFormat, HfpCodecBitId, HfpCodecFormat};
 use bt_topshim::profiles::hid_host::BthhReportType;
+use bt_topshim::profiles::le_audio::{
+    BtLeAudioContentType, BtLeAudioDirection, BtLeAudioGroupNodeStatus, BtLeAudioGroupStatus,
+    BtLeAudioGroupStreamStatus, BtLeAudioSource, BtLeAudioUnicastMonitorModeStatus, BtLeAudioUsage,
+    BtLePcmConfig,
+};
 use bt_topshim::profiles::sdp::{
     BtSdpDipRecord, BtSdpHeaderOverlay, BtSdpMasRecord, BtSdpMnsRecord, BtSdpMpsRecord,
     BtSdpOpsRecord, BtSdpPceRecord, BtSdpPseRecord, BtSdpRecord, BtSdpSapRecord, BtSdpType,
@@ -85,6 +90,14 @@ impl_dbus_arg_enum!(BtPropertyType);
 impl_dbus_arg_enum!(BtSspVariant);
 impl_dbus_arg_enum!(BtStatus);
 impl_dbus_arg_enum!(BtTransport);
+impl_dbus_arg_from_into!(BtLeAudioUsage, i32);
+impl_dbus_arg_from_into!(BtLeAudioContentType, i32);
+impl_dbus_arg_from_into!(BtLeAudioSource, i32);
+impl_dbus_arg_from_into!(BtLeAudioGroupStatus, i32);
+impl_dbus_arg_from_into!(BtLeAudioGroupNodeStatus, i32);
+impl_dbus_arg_from_into!(BtLeAudioUnicastMonitorModeStatus, i32);
+impl_dbus_arg_from_into!(BtLeAudioDirection, i32);
+impl_dbus_arg_from_into!(BtLeAudioGroupStreamStatus, i32);
 impl_dbus_arg_enum!(GattStatus);
 impl_dbus_arg_enum!(GattWriteRequestStatus);
 impl_dbus_arg_enum!(GattWriteType);
@@ -572,6 +585,14 @@ struct PlayerMetadataDBus {
     artist: String,
     album: String,
     length_us: i64,
+}
+
+#[dbus_propmap(BtLePcmConfig)]
+pub struct BtLePcmConfigDBus {
+    data_interval_us: u32,
+    sample_rate: u32,
+    bits_per_sample: u8,
+    channels_count: u8,
 }
 
 struct IBluetoothCallbackDBus {}
@@ -2612,6 +2633,26 @@ impl IBluetoothMedia for BluetoothMediaDBus {
         dbus_generated!()
     }
 
+    #[dbus_method("ConnectLeGroupByMemberAddress")]
+    fn connect_le_group_by_member_address(&mut self, address: String) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("DisconnectLeGroupByMemberAddress")]
+    fn disconnect_le_group_by_member_address(&mut self, address: String) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("ConnectLe")]
+    fn connect_le(&mut self, address: String) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("DisconnectLe")]
+    fn disconnect_le(&mut self, address: String) {
+        dbus_generated!()
+    }
+
     #[dbus_method("SetActiveDevice")]
     fn set_active_device(&mut self, address: String) {
         dbus_generated!()
@@ -2711,6 +2752,79 @@ impl IBluetoothMedia for BluetoothMediaDBus {
     fn trigger_debug_dump(&mut self) {
         dbus_generated!()
     }
+
+    #[dbus_method("GroupSetActive")]
+    fn group_set_active(&mut self, group_id: i32) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("HostStartAudioRequest")]
+    fn host_start_audio_request(&mut self) -> bool {
+        dbus_generated!()
+    }
+
+    #[dbus_method("HostStopAudioRequest")]
+    fn host_stop_audio_request(&mut self) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("PeerStartAudioRequest")]
+    fn peer_start_audio_request(&mut self) -> bool {
+        dbus_generated!()
+    }
+
+    #[dbus_method("PeerStopAudioRequest")]
+    fn peer_stop_audio_request(&mut self) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("GetHostPcmConfig")]
+    fn get_host_pcm_config(&mut self) -> BtLePcmConfig {
+        dbus_generated!()
+    }
+
+    #[dbus_method("GetPeerPcmConfig")]
+    fn get_peer_pcm_config(&mut self) -> BtLePcmConfig {
+        dbus_generated!()
+    }
+
+    #[dbus_method("GetHostStreamStarted")]
+    fn get_host_stream_started(&mut self) -> bool {
+        dbus_generated!()
+    }
+
+    #[dbus_method("GetPeerStreamStarted")]
+    fn get_peer_stream_started(&mut self) -> bool {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SourceMetadataChanged")]
+    fn source_metadata_changed(
+        &mut self,
+        usage: BtLeAudioUsage,
+        content_type: BtLeAudioContentType,
+        gain: f64,
+    ) -> bool {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SinkMetadataChanged")]
+    fn sink_metadata_changed(&mut self, source: BtLeAudioSource, gain: f64) -> bool {
+        dbus_generated!()
+    }
+
+    #[dbus_method("GetUnicastMonitorModeStatus")]
+    fn get_unicast_monitor_mode_status(
+        &mut self,
+        direction: BtLeAudioDirection,
+    ) -> BtLeAudioUnicastMonitorModeStatus {
+        dbus_generated!()
+    }
+
+    #[dbus_method("GetGroupStreamStatus")]
+    fn get_group_stream_status(&mut self, group_id: i32) -> BtLeAudioGroupStreamStatus {
+        dbus_generated!()
+    }
 }
 
 struct IBluetoothMediaCallbackDBus {}
@@ -2753,6 +2867,46 @@ impl IBluetoothMediaCallback for IBluetoothMediaCallbackDBus {
         pkt_status_in_binary: String,
     ) {
     }
+
+    #[dbus_method("OnBleGroupConnected")]
+    fn on_ble_group_connected(&mut self, group_id: i32, name: String) {}
+
+    #[dbus_method("OnBleGroupDisconnected")]
+    fn on_ble_group_disconnected(&mut self, group_id: i32) {}
+
+    #[dbus_method("OnBleGroupStatus")]
+    fn on_ble_group_status(&mut self, group_id: i32, status: BtLeAudioGroupStatus) {}
+
+    #[dbus_method("OnBleGroupNodeStatus")]
+    fn on_ble_group_node_status(
+        &mut self,
+        addr: String,
+        group_id: i32,
+        status: BtLeAudioGroupNodeStatus,
+    ) {
+    }
+
+    #[dbus_method("OnBleAudioConf")]
+    fn on_ble_audio_conf(
+        &mut self,
+        direction: u8,
+        group_id: i32,
+        snk_audio_location: u32,
+        src_audio_location: u32,
+        avail_cont: u16,
+    ) {
+    }
+
+    #[dbus_method("OnBleUnicastMonitorModeStatus")]
+    fn on_ble_unicast_monitor_mode_status(
+        &mut self,
+        direction: BtLeAudioDirection,
+        status: BtLeAudioUnicastMonitorModeStatus,
+    ) {
+    }
+
+    #[dbus_method("OnBleGroupStreamStatus")]
+    fn on_ble_group_stream_status(&mut self, group_id: i32, status: BtLeAudioGroupStreamStatus) {}
 }
 
 pub(crate) struct BatteryManagerDBusRPC {
