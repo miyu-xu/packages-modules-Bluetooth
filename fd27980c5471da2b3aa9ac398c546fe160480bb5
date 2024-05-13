@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8250295f_68517226",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-13T17:17:59Z",
+      "side": 1,
+      "message": "I would prefer if all the reports and responses are written through the uhid polling thread.\nMost of the members in `btif_hh_device_t` belong to the `bta_hh_co`. Ideally they should be in a separate control block for `bta_hh_co`.\nMembers like `set_rpt_id_queue` and `get_rpt_id_queue` are appended to and destroyed in uhid polling thread. But they are pruned in the main thread.\n\nThere is no point in routing the reports and responses through btif_hh.\n`bta_hh_co` should create a write queue. `bta_hh_co_data()` and other write functions should just post a message in the uhid write queue. uhid polling thread should pick the messages from this write queue and send them to the uhid driver.\nSimilar mechanisms should be implemented for\n1. Stop event\n2. HID info event\n3. Set report response\n4. Get report response",
+      "revId": "fd27980c5471da2b3aa9ac398c546fe160480bb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
