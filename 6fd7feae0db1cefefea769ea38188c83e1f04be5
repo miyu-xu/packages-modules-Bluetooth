@@ -46,6 +46,30 @@
       },
       "revId": "6fd7feae0db1cefefea769ea38188c83e1f04be5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "388aec6a_05731d81",
+        "filename": "system/include/macros.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-13T22:30:43Z",
+      "side": 0,
+      "message": "The problem is that then the include files where the macros are used depend on the implementation in the macro file.  That feels wrong to me.",
+      "parentUuid": "fad32c94_1a1df172",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 17
+      },
+      "revId": "6fd7feae0db1cefefea769ea38188c83e1f04be5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
