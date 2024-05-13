@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b973739_577bc8b2",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-13T18:09:18Z",
+      "side": 1,
+      "message": "Can you use a Duration typed data instead ?",
+      "range": {
+        "startLine": 119,
+        "startChar": 34,
+        "endLine": 119,
+        "endChar": 54
+      },
+      "revId": "1a83352f53140fb1ddd6548cfec800a2f5dd0c4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9313bff_495d7327",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1066,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-13T18:09:18Z",
+      "side": 1,
+      "message": "mHandler should be moved to final in constructor in order to be guarantee to never be null",
+      "range": {
+        "startLine": 1063,
+        "startChar": 12,
+        "endLine": 1066,
+        "endChar": 13
+      },
+      "revId": "1a83352f53140fb1ddd6548cfec800a2f5dd0c4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00ddc03b_3f681417",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1743,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-13T18:09:18Z",
+      "side": 1,
+      "message": "We don\u0027t really need to construct an object, then uninitialized it then do it again.\nWhy not just posting an int ?\n```\nmHandler.postDelayed(SYNC_TIMEOUT, sSyncActiveTimeoutMs);\n…\nmHandler.removeMessages(SYNC_TIMEOUT); (without checking for null)\n…\nprocessMessage(Message msg) {\n  switch (msg.obj) {\n    case SYNC_TIMEOUT -\u003e {\n      clearAllSyncData();\n    }\n  }\n}\n```",
+      "range": {
+        "startLine": 1743,
+        "startChar": 24,
+        "endLine": 1743,
+        "endChar": 47
+      },
+      "revId": "1a83352f53140fb1ddd6548cfec800a2f5dd0c4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
