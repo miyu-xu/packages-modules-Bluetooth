@@ -1032,6 +1032,12 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
       hh_open_handler(p_data->conn);
       break;
 
+    case BTA_HH_INPUT_REPORT_EVT:
+      bta_hh_co_data(p_data->input_report.handle, p_data->input_report.p_buf,
+                     p_data->input_report.len);
+      osi_free(p_data->input_report.p_buf);
+      break;
+
     case BTA_HH_CLOSE_EVT:
       log::verbose("BTA_HH_CLOSE_EVT: status = {}, handle = {}",
                    p_data->dev_status.status, p_data->dev_status.handle);
@@ -1413,6 +1419,8 @@ static void bte_hh_evt(tBTA_HH_EVT event, tBTA_HH* p_data) {
     param_len = sizeof(tBTA_HH_DEV_INFO);
   else if (BTA_HH_API_ERR_EVT == event)
     param_len = 0;
+  else if (BTA_HH_INPUT_REPORT_EVT == event)
+    param_len = sizeof(tBTA_HH_INPUT_REPORT);
   /* switch context to btif task context (copy full union size for convenience)
    */
   status = btif_transfer_context(btif_hh_upstreams_evt, (uint16_t)event,

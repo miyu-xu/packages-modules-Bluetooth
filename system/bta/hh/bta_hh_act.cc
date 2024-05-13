@@ -654,6 +654,21 @@ void bta_hh_data_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
   BT_HDR* pdata = p_data->hid_cback.p_data;
   uint8_t* p_rpt = (uint8_t*)(pdata + 1) + pdata->offset;
 
+  if (true /*some aflags*/) {
+    uint8_t* p_buf = (uint8_t*)osi_malloc(pdata->len);
+    memcpy(p_buf, p_rpt, pdata->len);
+
+    tBTA_HH_INPUT_REPORT report = {
+        .p_buf = p_buf,
+        .len = pdata->len,
+        .handle = (uint8_t)p_data->hid_cback.hdr.layer_specific,
+    };
+    (*bta_hh_cb.p_cback)(BTA_HH_INPUT_REPORT_EVT, (tBTA_HH*)&report);
+
+    osi_free_and_reset((void**)&pdata);
+    return;
+  }
+
   bta_hh_co_data((uint8_t)p_data->hid_cback.hdr.layer_specific, p_rpt,
                  pdata->len);
 
