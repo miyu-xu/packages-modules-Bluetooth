@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4911af8_dcddc1f4",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-13T22:20:31Z",
+      "side": 1,
+      "message": "because it stays in this file at end of this refactor.",
+      "parentUuid": "92b6b9c8_b210a7bd",
+      "range": {
+        "startLine": 631,
+        "startChar": 51,
+        "endLine": 631,
+        "endChar": 53
+      },
+      "revId": "d026aa0129891d207732ec8dce56abd414b6dc81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9999ebff_3ccbe5d8",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6865cf2_a0259c0c",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-13T22:20:31Z",
+      "side": 1,
+      "message": "no need to do anything here. we will end up in bta_dm_execute_queued_discovery_request.",
+      "parentUuid": "9999ebff_3ccbe5d8",
+      "range": {
+        "startLine": 669,
+        "startChar": 4,
+        "endLine": 674,
+        "endChar": 56
+      },
+      "revId": "d026aa0129891d207732ec8dce56abd414b6dc81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15c2a1c0_0e296ec7",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-05-13T22:17:56Z",
       "side": 1,
       "message": "here as well, do we need to free sdp_state?",
+      "range": {
+        "startLine": 706,
+        "startChar": 4,
+        "endLine": 707,
+        "endChar": 23
+      },
+      "revId": "d026aa0129891d207732ec8dce56abd414b6dc81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e879396b_da06b8d6",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 707,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-13T22:20:31Z",
+      "side": 1,
+      "message": "no, we will end up in bta_dm_execute_queued_discovery_request",
+      "parentUuid": "15c2a1c0_0e296ec7",
       "range": {
         "startLine": 706,
         "startChar": 4,
