@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9565e510_d1b6cada",
+        "filename": "flags/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-13T22:40:55Z",
+      "side": 1,
+      "message": "We don\u0027t need the comment as we are inside the bluetooth folder",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 12
+      },
+      "revId": "fd66227efbe316d0d401af294e3141aa877b134e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "221e8073_22d1ad00",
+        "filename": "flags/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-13T22:40:55Z",
+      "side": 1,
+      "message": "What is this needed for ?\n\nThis is adding the fake_device_config, but there is a module that is providing a real implementation with framework-configinfrastructure. \n\nOr is this specific to including the library inside base ?",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 61
+      },
+      "revId": "fd66227efbe316d0d401af294e3141aa877b134e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
