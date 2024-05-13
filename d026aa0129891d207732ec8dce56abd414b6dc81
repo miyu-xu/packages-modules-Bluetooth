@@ -22,6 +22,52 @@
       },
       "revId": "d026aa0129891d207732ec8dce56abd414b6dc81",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9999ebff_3ccbe5d8",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-13T22:17:56Z",
+      "side": 1,
+      "message": "what about here, do we need to free sdp_state?",
+      "range": {
+        "startLine": 669,
+        "startChar": 4,
+        "endLine": 674,
+        "endChar": 56
+      },
+      "revId": "d026aa0129891d207732ec8dce56abd414b6dc81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15c2a1c0_0e296ec7",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 707,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-13T22:17:56Z",
+      "side": 1,
+      "message": "here as well, do we need to free sdp_state?",
+      "range": {
+        "startLine": 706,
+        "startChar": 4,
+        "endLine": 707,
+        "endChar": 23
+      },
+      "revId": "d026aa0129891d207732ec8dce56abd414b6dc81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
