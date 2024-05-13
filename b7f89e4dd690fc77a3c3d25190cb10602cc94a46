@@ -22,6 +22,30 @@
       },
       "revId": "b7f89e4dd690fc77a3c3d25190cb10602cc94a46",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c22ebec_f62d4995",
+        "filename": "system/include/macros.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-13T22:19:00Z",
+      "side": 1,
+      "message": "GQ.\n\nIt still returns STRING as the primary value, so IMHO that should still be there.\n\nThe question is how to format the secondary raw value.\n\n```\n#define CASE_RETURN_STRING_HEX02\n#define CASE_RETURN_STRING_HEX04\n#define CASE_RETURN_STRING_HEX08\n```\n\nThere may be cases where we want 0x02 or 0x08 for hex.",
+      "parentUuid": "00626087_ae8436b7",
+      "range": {
+        "startLine": 28,
+        "startChar": 20,
+        "endLine": 28,
+        "endChar": 29
+      },
+      "revId": "b7f89e4dd690fc77a3c3d25190cb10602cc94a46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
