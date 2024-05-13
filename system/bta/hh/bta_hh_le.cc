@@ -1651,6 +1651,27 @@ static void bta_hh_le_input_rpt_notify(tBTA_GATTC_NOTIFY* p_data) {
 
   log::verbose("report ID: {}", p_rpt->rpt_id);
 
+  if (true /*some aflags*/) {
+    /* append report ID to the head of data, if needed */
+    if (p_rpt->rpt_id != 0) {
+      p_buf = (uint8_t*)osi_malloc(p_data->len + 1);
+      p_buf[0] = p_rpt->rpt_id;
+      memcpy(&p_buf[1], p_data->value, p_data->len);
+      ++p_data->len;
+    } else {
+      p_buf = (uint8_t*)osi_malloc(p_data->len);
+      memcpy(p_buf, p_data->value, p_data->len);
+    }
+
+    tBTA_HH_INPUT_REPORT report = {
+        .p_buf = p_buf,
+        .len = p_data->len,
+        .handle = p_dev_cb->hid_handle,
+    };
+    (*bta_hh_cb.p_cback)(BTA_HH_INPUT_REPORT_EVT, (tBTA_HH*)&report);
+    return;
+  }
+
   /* need to append report ID to the head of data */
   if (p_rpt->rpt_id != 0) {
     p_buf = (uint8_t*)osi_malloc(p_data->len + 1);
@@ -2332,6 +2353,19 @@ static bool bta_hh_le_iso_data_callback(const RawAddress& addr,
   if (p_dev_cb == nullptr) {
     log::warn("Device not connected: {}", link_spec);
     return false;
+  }
+
+  if (true /*some aflags*/) {
+    uint8_t* p_buf = (uint8_t*)osi_malloc(size);
+    memcpy(p_buf, data, size);
+
+    tBTA_HH_INPUT_REPORT report = {
+        .p_buf = p_buf,
+        .len = size,
+        .handle = p_dev_cb->hid_handle,
+    };
+    (*bta_hh_cb.p_cback)(BTA_HH_INPUT_REPORT_EVT, (tBTA_HH*)&report);
+    return true;
   }
 
   bta_hh_co_data(p_dev_cb->hid_handle, data, size);

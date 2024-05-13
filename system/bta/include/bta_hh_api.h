@@ -63,9 +63,10 @@
 #define BTA_HH_ADD_DEV_EVT 12   /* Add Device callback */
 #define BTA_HH_RMV_DEV_EVT 13   /* remove device finished */
 #define BTA_HH_VC_UNPLUG_EVT 14 /* virtually unplugged */
-#define BTA_HH_DATA_EVT 15
-#define BTA_HH_API_ERR_EVT 16     /* API error is caught */
-#define BTA_HH_UPDATE_SCPP_EVT 17 /* update scan paramter complete */
+#define BTA_HH_DATA_EVT 15      /* BTA_HhSendData callback */
+#define BTA_HH_API_ERR_EVT 16   /* API error is caught */
+#define BTA_HH_UPDATE_SCPP_EVT 17  /* update scan parameter complete */
+#define BTA_HH_INPUT_REPORT_EVT 18 /* received input report from device */
 
 typedef uint16_t tBTA_HH_EVT;
 
@@ -316,12 +317,19 @@ typedef struct {
   tBTA_HH_STATUS status; /* handshake status */
   uint8_t handle;        /* device handle    */
   union {
-    tBTA_HH_PROTO_MODE proto_mode; /* GET_PROTO_EVT :protocol mode */
+    tBTA_HH_PROTO_MODE proto_mode; /* GET_PROTO_EVT : protocol mode */
     BT_HDR* p_rpt_data;            /* GET_RPT_EVT   : report data  */
     uint8_t idle_rate;             /* GET_IDLE_EVT  : idle rate    */
   } rsp_data;
 
 } tBTA_HH_HSDATA;
+
+/* input report data */
+typedef struct {
+  uint8_t* p_buf; /* raw input data */
+  uint16_t len;   /* length of the data */
+  uint8_t handle; /* device handle */
+} tBTA_HH_INPUT_REPORT;
 
 /* union of data associated with HD callback */
 typedef union {
@@ -339,6 +347,7 @@ typedef union {
                                       BTA_HH_GET_RPT_EVT
                                       BTA_HH_GET_PROTO_EVT
                                       BTA_HH_GET_IDLE_EVT */
+  tBTA_HH_INPUT_REPORT input_report; /* BTA_HH_INPUT_REPORT_EVT */
 } tBTA_HH;
 
 /**
@@ -540,7 +549,7 @@ void BTA_HhGetDscpInfo(uint8_t dev_handle);
  *
  * Description      Add a virtually cabled device into HID-Host device list
  *                  to manage and assign a device handle for future API call,
- *                  host applciation call this API at start-up to initialize its
+ *                  host application call this API at start-up to initialize its
  *                  virtually cabled devices.
  *
  * Returns          void
