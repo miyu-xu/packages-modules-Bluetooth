@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bef0f69_8304bbf6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-13T15:39:38Z",
+      "side": 1,
+      "message": "Flag: EXEMPT removing dead code",
+      "revId": "150ed5b753acd22b9f799453d0a1df281d036368",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
