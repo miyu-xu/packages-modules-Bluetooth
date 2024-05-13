@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "77b87987_0e706e40",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 780,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-05-13T10:00:27Z",
+      "side": 1,
+      "message": "handle_remote_data is called from different thread, I prefer to pass by value here. \nFixed by \nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3063970",
+      "parentUuid": "eb18e062_302671c1",
+      "revId": "9a6244ada4fad4d22fb82e613a5be74603a26d2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7eba9d06_2f79235e",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-04-16T16:57:51Z",
       "side": 1,
       "message": "We\u0027re taking `address` by const reference.  But we\u0027re taking `raw_data` by copy.  Did we intend to add an `\u0026` to take this vector by const reference instead?",
+      "revId": "9a6244ada4fad4d22fb82e613a5be74603a26d2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82cec616_2ec137c7",
+        "filename": "system/gd/hci/distance_measurement_manager.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-05-13T10:00:27Z",
+      "side": 1,
+      "message": "Thanks for point this out.\nFixed by \nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3063970",
+      "parentUuid": "7eba9d06_2f79235e",
       "revId": "9a6244ada4fad4d22fb82e613a5be74603a26d2a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
