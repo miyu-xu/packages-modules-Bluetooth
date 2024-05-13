@@ -321,6 +321,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "85042d80_5dbcea0a",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 803,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-13T22:09:30Z",
+      "side": 1,
+      "message": "Added freeing the memory if service discovery is finished, and no more is queued.",
+      "parentUuid": "f79fd3ee_34e78a5b",
+      "range": {
+        "startLine": 803,
+        "startChar": 6,
+        "endLine": 803,
+        "endChar": 22
+      },
+      "revId": "2e14e636dd0333c3d0dce7d6a124346e4f80236b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c75739fd_b68a66a3",
@@ -447,6 +471,30 @@
       "side": 1,
       "message": "See my above comment",
       "parentUuid": "7ace8427_59258e83",
+      "range": {
+        "startLine": 111,
+        "startChar": 1,
+        "endLine": 111,
+        "endChar": 17
+      },
+      "revId": "2e14e636dd0333c3d0dce7d6a124346e4f80236b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39a3d570_cbe1fb96",
+        "filename": "system/bta/dm/bta_dm_disc_int.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-13T22:09:30Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "db32a1ce_f6c0bdf0",
       "range": {
         "startLine": 111,
         "startChar": 1,
