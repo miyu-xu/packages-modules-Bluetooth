@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "deb95da8_fe30ccee",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/BrowsedPlayerWrapper2.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-05-13T08:42:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e09d126_8b03c3fb",
+      "range": {
+        "startLine": 44,
+        "startChar": 39,
+        "endLine": 44,
+        "endChar": 59
+      },
+      "revId": "5b68dbdaa370ae368750289ff90e719b22331ca9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "606904c3_419c652e",
