@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00626087_ae8436b7",
+        "filename": "system/include/macros.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-13T21:04:57Z",
+      "side": 1,
+      "message": "nit: CASE_RETURN_HEX04 or HEX ?\n```suggestion\n#define CASE_RETURN_HEX(enumerator)        \\\n```",
+      "range": {
+        "startLine": 28,
+        "startChar": 20,
+        "endLine": 28,
+        "endChar": 29
+      },
+      "revId": "b7f89e4dd690fc77a3c3d25190cb10602cc94a46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
