@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3845280_8734aea2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-05-13T23:56:47Z",
+      "side": 1,
+      "message": "This is reland of aosp/3020866, thanks!",
+      "revId": "5e93cf3f76da1cd7c8841ea279a8e6eacbe9082f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
