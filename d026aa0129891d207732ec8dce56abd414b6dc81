@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "31916487_6f06ffd4",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-13T22:34:53Z",
+      "side": 1,
+      "message": "No, there is a check above in line 379 to make sure we are still performing discovery",
+      "parentUuid": "5976484a_44bfa2d5",
+      "range": {
+        "startLine": 385,
+        "startChar": 55,
+        "endLine": 385,
+        "endChar": 64
+      },
+      "revId": "d026aa0129891d207732ec8dce56abd414b6dc81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92b6b9c8_b210a7bd",
