@@ -757,7 +757,8 @@ public class BassClientService extends ProfileService {
             return;
         }
 
-        boolean isAssistantActive = isAnyReceiverReceivingBroadcast(getConnectedDevices());
+        boolean isAssistantActive =
+                areReceiversReceivingOnlyExternalBroadcast(getConnectedDevices());
 
         if (isAssistantActive) {
             /* Assistant become active */
@@ -2948,7 +2949,7 @@ public class BassClientService extends ProfileService {
         mUnicastSourceStreamStatus = Optional.of(status);
 
         if (status == STATUS_LOCAL_STREAM_REQUESTED) {
-            if (isAnyReceiverReceivingBroadcast(getConnectedDevices())) {
+            if (areReceiversReceivingOnlyExternalBroadcast(getConnectedDevices())) {
                 if (leaudioBroadcastAssistantPeripheralEntrustment()) {
                     cacheSuspendingSources(BassConstants.INVALID_BROADCAST_ID);
                 } else {
@@ -2985,7 +2986,7 @@ public class BassClientService extends ProfileService {
             for (BluetoothLeBroadcastReceiveState receiveState : getAllSources(device)) {
                 for (int i = 0; i < receiveState.getNumSubgroups(); i++) {
                     Long syncState = receiveState.getBisSyncState().get(i);
-                    /* Not synced to BIS of failed to sync to BIG */
+                    /* Not synced to BIS or failed to sync to BIG */
                     if (syncState == BassConstants.BIS_SYNC_NOT_SYNC_TO_BIS
                             || syncState == BassConstants.BIS_SYNC_FAILED_SYNC_TO_BIG) {
                         continue;
@@ -2997,6 +2998,32 @@ public class BassClientService extends ProfileService {
         }
 
         return false;
+    }
+
+    /** Check if any sink receivers are receiving broadcast stream */
+    public boolean areReceiversReceivingOnlyExternalBroadcast(List<BluetoothDevice> devices) {
+        boolean isReceivingExternalBroadcast = false;
+
+        for (BluetoothDevice device : devices) {
+            for (BluetoothLeBroadcastReceiveState receiveState : getAllSources(device)) {
+                for (int i = 0; i < receiveState.getNumSubgroups(); i++) {
+                    Long syncState = receiveState.getBisSyncState().get(i);
+                    /* Not synced to BIS or failed to sync to BIG */
+                    if (syncState == BassConstants.BIS_SYNC_NOT_SYNC_TO_BIS
+                            || syncState == BassConstants.BIS_SYNC_FAILED_SYNC_TO_BIG) {
+                        continue;
+                    }
+
+                    if (isLocalBroadcast(receiveState)) {
+                        return false;
+                    }
+
+                    isReceivingExternalBroadcast = true;
+                }
+            }
+        }
+
+        return isReceivingExternalBroadcast;
     }
 
     /** Get the active broadcast sink devices receiving broadcast stream */
