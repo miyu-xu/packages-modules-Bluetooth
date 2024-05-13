@@ -44,6 +44,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e3fa7785_8c9568ea",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-13T20:03:19Z",
+      "side": 1,
+      "message": "Same guarantee already exist, as we have malloc-ed memory for sdp_db that is freed either at end of discovery or if error happens.\n\nWe process only one service discovery request at a time, and when it\u0027s finished we pick up next one. Until then, the the pointer to sdp_state is kept.",
+      "parentUuid": "388a7f29_65789832",
+      "range": {
+        "startLine": 385,
+        "startChar": 35,
+        "endLine": 385,
+        "endChar": 70
+      },
+      "revId": "2e14e636dd0333c3d0dce7d6a124346e4f80236b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "306e3f65_79091dd2",
         "filename": "system/bta/dm/bta_dm_disc.cc",
         "patchSetId": 8
@@ -55,6 +79,30 @@
       "writtenOn": "2024-05-13T17:38:23Z",
       "side": 1,
       "message": "declare another stack var above",
+      "range": {
+        "startLine": 415,
+        "startChar": 23,
+        "endLine": 415,
+        "endChar": 31
+      },
+      "revId": "2e14e636dd0333c3d0dce7d6a124346e4f80236b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a98c3d8d_03aed5ce",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-13T20:03:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "306e3f65_79091dd2",
       "range": {
         "startLine": 415,
         "startChar": 23,
@@ -136,6 +184,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2337c6ee_f8af6e4a",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-13T20:03:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4dabe2b_b1edb68f",
+      "range": {
+        "startLine": 690,
+        "startChar": 2,
+        "endLine": 690,
+        "endChar": 21
+      },
+      "revId": "2e14e636dd0333c3d0dce7d6a124346e4f80236b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20bb7d14_78145b8c",
@@ -179,6 +251,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8301bc09_651d7853",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 803,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-13T20:03:19Z",
+      "side": 1,
+      "message": "tBTA_DM_SDP_STATE contains ~20k and ~4k buffer. It should be allocated only for time of SDP, no need to keep it always.",
+      "parentUuid": "20bb7d14_78145b8c",
+      "range": {
+        "startLine": 803,
+        "startChar": 6,
+        "endLine": 803,
+        "endChar": 22
+      },
+      "revId": "2e14e636dd0333c3d0dce7d6a124346e4f80236b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c75739fd_b68a66a3",
         "filename": "system/bta/dm/bta_dm_disc_int.h",
         "patchSetId": 8
@@ -190,6 +286,30 @@
       "writtenOn": "2024-05-13T17:38:23Z",
       "side": 1,
       "message": "why this cannot just be a stack variable?",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 30
+      },
+      "revId": "2e14e636dd0333c3d0dce7d6a124346e4f80236b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "309051ec_42aecd12",
+        "filename": "system/bta/dm/bta_dm_disc_int.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-13T20:03:19Z",
+      "side": 1,
+      "message": "See my previous response.",
+      "parentUuid": "c75739fd_b68a66a3",
       "range": {
         "startLine": 96,
         "startChar": 0,
@@ -237,6 +357,30 @@
           ]
         }
       ],
+      "revId": "2e14e636dd0333c3d0dce7d6a124346e4f80236b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ace8427_59258e83",
+        "filename": "system/bta/dm/bta_dm_disc_int.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-13T20:03:19Z",
+      "side": 1,
+      "message": "tBTA_DM_SDP_STATE contains ~20k and ~4k buffer. It should be allocated only for time of SDP, no need to keep it always.",
+      "parentUuid": "f6fbf800_b04e4283",
+      "range": {
+        "startLine": 111,
+        "startChar": 1,
+        "endLine": 111,
+        "endChar": 17
+      },
       "revId": "2e14e636dd0333c3d0dce7d6a124346e4f80236b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
