@@ -26,7 +26,6 @@
 
 #include "gatt_api.h"
 #include "internal_include/bte_appl.h"
-#include "os/log.h"
 #include "stack/include/btm_ble_sec_api.h"
 #include "types/ble_address_with_type.h"
 #include "types/bluetooth/uuid.h"
@@ -83,7 +82,9 @@ static void btif_test_command_complete_cback(uint16_t conn_id, tGATTC_OPTYPE op,
       break;
 
     case GATTC_OPTYPE_INDICATION:
-      GATTC_SendHandleValueConfirm(conn_id, p_data->cid);
+      bluetooth::log::assert_that(
+          GATT_SUCCESS == GATTC_SendHandleValueConfirm(conn_id, p_data->cid),
+          "Unable to send handle value confirmation");
       break;
 
     default:
@@ -206,7 +207,9 @@ bt_status_t btif_gattc_test_command_impl(int command,
     case 0x03: /* Disconnect */
     {
       log::info("DISCONNECT - conn_id={}", test_cb.conn_id);
-      GATT_Disconnect(test_cb.conn_id);
+      bluetooth::log::assert_that(
+          GATT_SUCCESS == GATT_Disconnect(test_cb.conn_id),
+          "Unable to disconnect");
       break;
     }
 
@@ -220,8 +223,12 @@ bt_status_t btif_gattc_test_command_impl(int command,
       log::info("DISCOVER ({}), conn_id={}, uuid={}, handles=0x{:04x}-0x{:04x}",
                 disc_name[params->u1], test_cb.conn_id,
                 params->uuid1->ToString(), params->u2, params->u3);
-      GATTC_Discover(test_cb.conn_id, static_cast<tGATT_DISC_TYPE>(params->u1),
-                     params->u2, params->u3, *params->uuid1);
+      bluetooth::log::assert_that(
+          GATT_SUCCESS ==
+              GATTC_Discover(test_cb.conn_id,
+                             static_cast<tGATT_DISC_TYPE>(params->u1),
+                             params->u2, params->u3, *params->uuid1),
+          "Unable to discover");
       break;
     }
 
