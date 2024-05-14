@@ -106,3 +106,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "headsetclient_am_hf_volume_symetric"
+    namespace: "bluetooth"
+    description: "Fix AM/HF volume conversion to be symetric"
+    bug: "340482648"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
