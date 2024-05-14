@@ -435,15 +435,25 @@ public class DistanceMeasurementManager {
         set.removeIf(tracker -> tracker.mStarted);
     }
 
-    void onDistanceMeasurementResult(String address, int centimeter, int errorCentimeter,
-            int azimuthAngle, int errorAzimuthAngle, int altitudeAngle, int errorAltitudeAngle,
+    void onDistanceMeasurementResult(
+            String address,
+            int centimeter,
+            int errorCentimeter,
+            int azimuthAngle,
+            int errorAzimuthAngle,
+            int altitudeAngle,
+            int errorAltitudeAngle,
+            long elapsedRealtimeNanos,
             int method) {
         logd("onDistanceMeasurementResult " + BluetoothUtils.toAnonymizedAddress(address)
                 + ", centimeter " + centimeter);
         switch (method) {
             case DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_RSSI:
-                DistanceMeasurementResult result = new DistanceMeasurementResult.Builder(
-                        centimeter / 100.0, errorCentimeter / 100.0).build();
+                DistanceMeasurementResult result =
+                        new DistanceMeasurementResult.Builder(
+                                        centimeter / 100.0, errorCentimeter / 100.0)
+                                .setElapsedRealtimeNanos(elapsedRealtimeNanos)
+                                .build();
                 handleRssiResult(address, result);
                 break;
             default:
