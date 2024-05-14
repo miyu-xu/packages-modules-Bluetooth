@@ -111,6 +111,30 @@
       },
       "revId": "33b135027b4985c4b8d4d52c80a8a3c7687568c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88b334c8_f80d96ca",
+        "filename": "sysprop/sysprop.gni",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-05-14T16:57:28Z",
+      "side": 1,
+      "message": "ChromeOS SDK integration is done! Mark resolved",
+      "parentUuid": "f2761377_0a7ceb8e",
+      "range": {
+        "startLine": 38,
+        "startChar": 9,
+        "endLine": 38,
+        "endChar": 20
+      },
+      "revId": "33b135027b4985c4b8d4d52c80a8a3c7687568c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
