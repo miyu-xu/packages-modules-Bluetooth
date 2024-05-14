@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52e144e4_e963f6bf",
+        "filename": "system/stack/avct/avct_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-14T20:29:09Z",
+      "side": 1,
+      "message": "This is constant.  Do we want to print it?",
+      "range": {
+        "startLine": 78,
+        "startChar": 15,
+        "endLine": 78,
+        "endChar": 26
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "20c023f6_ae74c7a2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/avct/avct_api.cc",
+              "range": {
+                "startLine": 77,
+                "startChar": 0,
+                "endLine": 79,
+                "endChar": 0
+              },
+              "replacement": "    log::error(\"Unable to register with L2CAP AVCT_BR profile psm\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "665efae594455a3cd4c96f36fc3b1b8f918acf25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
