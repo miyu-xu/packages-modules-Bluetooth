@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aaf22298_584d65f8",
+        "filename": "android/pandora/server/src/Host.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-05-14T15:42:07Z",
+      "side": 1,
+      "message": "Why are we only checking the BLE state here and not the classic one anymore ?",
+      "revId": "8c4156593610fa4f9004e6ac16154e835d2674ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
