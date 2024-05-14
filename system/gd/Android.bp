@@ -155,6 +155,7 @@ cc_defaults {
         "libcrypto",
         "libflatbuffers-cpp",
         "liblog",
+        "libutils",
     ],
     export_shared_lib_headers: [
         "libflatbuffers-cpp",
