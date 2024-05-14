@@ -382,6 +382,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8760383_c66a627d",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-14T23:06:44Z",
+      "side": 1,
+      "message": "That mean that we should review both CL together, can you remove the code from here and add it in the next CL.\n\nI still think that we are re-writing a logic that is already provided by the fact that we are using mockito, and that we don\u0027t want a listener callback. See my comment on aosp/2987136",
+      "parentUuid": "15d86f25_60f1f920",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 28
+      },
+      "revId": "8d3949b3fd260feddfa3daf953a690f15da52d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f3b1539_de8c69d7",
