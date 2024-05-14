@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0e95f81_48608857",
+        "filename": "framework/tests/util/src/BlockingBluetoothAdapter.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-14T16:23:03Z",
+      "side": 1,
+      "message": "Should we use a callbackFlow here?",
+      "range": {
+        "startLine": 158,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 5
+      },
+      "revId": "a2b521cdbfe26628c0e0868ecf706f7ceb9964df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2edd1f33_a853e52a",
+        "filename": "framework/tests/util/src/BlockingBluetoothAdapter.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-14T16:23:03Z",
+      "side": 1,
+      "message": "getBluetoothState seems to be used only once, should we inline it?",
+      "revId": "a2b521cdbfe26628c0e0868ecf706f7ceb9964df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
