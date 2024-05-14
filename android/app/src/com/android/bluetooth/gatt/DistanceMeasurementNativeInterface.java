@@ -104,11 +104,25 @@ public class DistanceMeasurementNativeInterface {
                 convertErrorCode(reason), method);
     }
 
-    void onDistanceMeasurementResult(String address, int centimeter, int errorCentimeter,
-            int azimuthAngle, int errorAzimuthAngle, int altitudeAngle, int errorAltitudeAngle,
+    void onDistanceMeasurementResult(
+            String address,
+            int centimeter,
+            int errorCentimeter,
+            int azimuthAngle,
+            int errorAzimuthAngle,
+            int altitudeAngle,
+            int errorAltitudeAngle,
+            long elapsedRealtimeNanos,
             int method) {
-        mDistanceMeasurementManager.onDistanceMeasurementResult(address, centimeter,
-                errorCentimeter, azimuthAngle, errorAzimuthAngle, altitudeAngle, errorAltitudeAngle,
+        mDistanceMeasurementManager.onDistanceMeasurementResult(
+                address,
+                centimeter,
+                errorCentimeter,
+                azimuthAngle,
+                errorAzimuthAngle,
+                altitudeAngle,
+                errorAltitudeAngle,
+                elapsedRealtimeNanos,
                 method);
     }
 
