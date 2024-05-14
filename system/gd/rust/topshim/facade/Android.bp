@@ -83,6 +83,7 @@ rust_defaults {
         "libgrpc++",
         "libgrpc_wrap",
         "liblog",
+        "libutils",
         "server_configurable_flags",
     ],
     proc_macros: [

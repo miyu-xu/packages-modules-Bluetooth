@@ -227,6 +227,7 @@ cc_test {
     shared_libs: [
         "libPlatformProperties",
         "libcrypto",
+        "libutils",
         "server_configurable_flags",
     ],
     sanitize: {
@@ -309,6 +310,7 @@ cc_test {
     shared_libs: [
         "libPlatformProperties",
         "libcrypto",
+        "libutils",
         "server_configurable_flags",
     ],
     target: {
@@ -330,7 +332,6 @@ cc_test {
                 "libcutils",
                 "libhidlbase",
                 "libstatssocket",
-                "libutils",
             ],
         },
     },
