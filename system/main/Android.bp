@@ -227,6 +227,7 @@ cc_test {
     shared_libs: [
         "libPlatformProperties",
         "libcrypto",
+        "libutils",
         "server_configurable_flags",
     ],
     sanitize: {
