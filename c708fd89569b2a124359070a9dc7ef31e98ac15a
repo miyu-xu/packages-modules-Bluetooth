@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6cd2668_f713a0fe",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2809,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-14T20:26:36Z",
+      "side": 1,
+      "message": "Guard with if (buffers_left) ?",
+      "range": {
+        "startLine": 2808,
+        "startChar": 0,
+        "endLine": 2809,
+        "endChar": 69
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a30a251b_34ae07e0",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/av/bta_av_aact.cc",
+              "range": {
+                "startLine": 2808,
+                "startChar": 0,
+                "endLine": 2810,
+                "endChar": 0
+              },
+              "replacement": "      if (buffers_left) {\n        log::error(\"suspend rejected, closing peer:{} cid:{} buffers_left:{}\",\n                   p_scb-\u003ePeerAddress(), p_scb-\u003el2c_cid, buffers_left);\n      }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c708fd89569b2a124359070a9dc7ef31e98ac15a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01cc1ab0_b29b84df",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2864,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-14T20:26:36Z",
+      "side": 1,
+      "message": "Guard with if (buffers_left) ?",
+      "range": {
+        "startLine": 2864,
+        "startChar": 0,
+        "endLine": 2864,
+        "endChar": 15
+      },
+      "revId": "c708fd89569b2a124359070a9dc7ef31e98ac15a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
