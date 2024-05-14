@@ -15,277 +15,189 @@
  */
 package android.bluetooth.test_utils
 
-import android.Manifest.permission
+import android.Manifest.permission.BLUETOOTH_CONNECT
+import android.Manifest.permission.BLUETOOTH_PRIVILEGED
 import android.app.UiAutomation
 import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothAdapter.ACTION_BLE_STATE_CHANGED
+import android.bluetooth.BluetoothAdapter.STATE_BLE_ON
+import android.bluetooth.BluetoothAdapter.STATE_OFF
+import android.bluetooth.BluetoothAdapter.STATE_ON
+import android.bluetooth.BluetoothManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.util.Log
-import java.time.Duration
-import java.util.concurrent.TimeUnit
-import java.util.concurrent.locks.Condition
-import java.util.concurrent.locks.ReentrantLock
+import androidx.test.platform.app.InstrumentationRegistry
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withTimeoutOrNull
 
-/** Utility for controlling the Bluetooth adapter from CTS test. */
+private const val TAG: String = "BlockingBluetoothAdapter"
+
 object BlockingBluetoothAdapter {
-    private val TAG: String = BluetoothAdapterUtils::class.java.getSimpleName()
+    private val context = InstrumentationRegistry.getInstrumentation().getContext()
+    @JvmStatic val adapter = context.getSystemService(BluetoothManager::class.java).getAdapter()
 
-    /**
-     * ADAPTER_ENABLE_TIMEOUT_MS = AdapterState.BLE_START_TIMEOUT_DELAY +
-     * AdapterState.BREDR_START_TIMEOUT_DELAY + (10 seconds of additional delay)
-     */
-    private val ADAPTER_ENABLE_TIMEOUT = Duration.ofSeconds(18)
+    private val state = AdapterStateListener(context, adapter)
+    private val uiAutomation = InstrumentationRegistry.getInstrumentation().getUiAutomation()
 
-    /**
-     * ADAPTER_DISABLE_TIMEOUT_MS = AdapterState.BLE_STOP_TIMEOUT_DELAY +
-     * AdapterState.BREDR_STOP_TIMEOUT_DELAY
-     */
-    private val ADAPTER_DISABLE_TIMEOUT = Duration.ofSeconds(5)
-
-    /** Redefined from [BluetoothAdapter] because of hidden APIs */
-    const val STATE_BLE_TURNING_ON = 14
-    const val STATE_BLE_TURNING_OFF = 16
-    private val sStateTimeouts = HashMap<Int, Duration>()
+    // BLE_START_TIMEOUT_DELAY + BREDR_START_TIMEOUT_DELAY + (10 seconds of additional delay)
+    private val stateChangeTimeout = 18.seconds
 
     init {
-        sStateTimeouts.put(BluetoothAdapter.STATE_OFF, ADAPTER_DISABLE_TIMEOUT)
-        sStateTimeouts.put(BluetoothAdapter.STATE_TURNING_ON, ADAPTER_ENABLE_TIMEOUT)
-        sStateTimeouts.put(BluetoothAdapter.STATE_ON, ADAPTER_ENABLE_TIMEOUT)
-        sStateTimeouts.put(BluetoothAdapter.STATE_TURNING_OFF, ADAPTER_DISABLE_TIMEOUT)
-        sStateTimeouts.put(STATE_BLE_TURNING_ON, ADAPTER_ENABLE_TIMEOUT)
-        sStateTimeouts.put(BluetoothAdapter.STATE_BLE_ON, ADAPTER_ENABLE_TIMEOUT)
-        sStateTimeouts.put(STATE_BLE_TURNING_OFF, ADAPTER_DISABLE_TIMEOUT)
+        Log.d(TAG, "Started with initial state to $state")
     }
 
-    private var sAdapterVarsInitialized = false
-    private var sBluetoothAdapterLock: ReentrantLock? = null
-    private var sConditionAdapterStateReached: Condition? = null
-    private var sDesiredState = 0
-    private var sAdapterState = 0
-
-    /** Initialize all static state variables */
-    private fun initAdapterStateVariables(context: Context) {
-        Log.d(TAG, "Initializing adapter state variables")
-        val sAdapterReceiver = BluetoothAdapterReceiver()
-        sBluetoothAdapterLock = ReentrantLock()
-        sConditionAdapterStateReached = sBluetoothAdapterLock!!.newCondition()
-        sDesiredState = -1
-        sAdapterState = -1
-        val filter: IntentFilter = IntentFilter(BluetoothAdapter.ACTION_BLE_STATE_CHANGED)
-        context.registerReceiver(sAdapterReceiver, filter)
-        sAdapterVarsInitialized = true
-    }
-
-    /**
-     * Helper method to wait for the bluetooth adapter to be in a given state
-     *
-     * Assumes all state variables are initialized. Assumes it's being run with
-     * sBluetoothAdapterLock in the locked state.
-     */
-    @kotlin.Throws(InterruptedException::class)
-    private fun waitForAdapterStateLocked(desiredState: Int, adapter: BluetoothAdapter): Boolean {
-        val timeout = sStateTimeouts.getOrDefault(desiredState, ADAPTER_ENABLE_TIMEOUT)
-        Log.d(TAG, "Waiting for adapter state $desiredState")
-        sDesiredState = desiredState
-
-        // Wait until we have reached the desired state
-        // Handle spurious wakeup
-        while (desiredState != sAdapterState) {
-            if (sConditionAdapterStateReached!!.await(timeout.toMillis(), TimeUnit.MILLISECONDS)) {
-                // Handle spurious wakeup
-                continue
-            }
-            // Handle timeout cases
-            // Case 1: situation where state change occurs, but we don't receive the broadcast
-            if (
-                desiredState >= BluetoothAdapter.STATE_OFF &&
-                    desiredState <= BluetoothAdapter.STATE_TURNING_OFF
-            ) {
-                val currentState = adapter.state
-                Log.d(TAG, "desiredState: $desiredState, currentState: $currentState")
-                return desiredState == currentState
-            } else if (desiredState == BluetoothAdapter.STATE_BLE_ON) {
-                Log.d(TAG, "adapter isLeEnabled: " + adapter.isLeEnabled())
-                return adapter.isLeEnabled()
-            }
-            // Case 2: Actual timeout
-            Log.e(
-                TAG,
-                "Timeout while waiting for Bluetooth adapter state " +
-                    desiredState +
-                    " while current state is " +
-                    sAdapterState,
-            )
-            break
-        }
-        Log.d(TAG, "Final state while waiting: " + sAdapterState)
-        return sAdapterState == desiredState
-    }
-
-    /** Utility method to wait on any specific adapter state */
-    fun waitForAdapterState(desiredState: Int, adapter: BluetoothAdapter): Boolean {
-        sBluetoothAdapterLock!!.lock()
-        try {
-            return waitForAdapterStateLocked(desiredState, adapter)
-        } catch (e: InterruptedException) {
-            Log.w(TAG, "waitForAdapterState(): interrupted", e)
-        } finally {
-            sBluetoothAdapterLock!!.unlock()
-        }
-        return false
-    }
-
-    /** Enables Bluetooth to a Low Energy only mode */
+    /** Set Bluetooth in BLE mode. Only works if it was OFF before */
     @JvmStatic
-    fun enableBLE(bluetoothAdapter: BluetoothAdapter, context: Context): Boolean {
-        if (!sAdapterVarsInitialized) {
-            initAdapterStateVariables(context)
+    fun enableBLE(): Boolean {
+        if (!state.oneOf(STATE_OFF)) {
+            throw IllegalStateException("Invalid call to enableBLE while current state is: $state")
         }
-        if (bluetoothAdapter.isLeEnabled()) {
+        Log.d(TAG, "Call to enableBLE")
+        if (!withPermission(BLUETOOTH_CONNECT).use { adapter.enableBLE() }) {
+            Log.e(TAG, "enableBLE: Failed")
+            return false
+        }
+        return state.waitForStateWithTimeout(stateChangeTimeout, STATE_BLE_ON)
+    }
+
+    /** Restore Bluetooth to OFF. Only works if it was in BLE_ON due to enableBLE call */
+    @JvmStatic
+    fun disableBLE(): Boolean {
+        if (!state.oneOf(STATE_BLE_ON)) {
+            throw IllegalStateException("Invalid call to disableBLE while current state is: $state")
+        }
+        Log.d(TAG, "Call to disableBLE")
+        if (!withPermission(BLUETOOTH_CONNECT).use { adapter.disableBLE() }) {
+            Log.e(TAG, "disableBLE: Failed")
+            return false
+        }
+        return state.waitForStateWithTimeout(stateChangeTimeout, STATE_OFF)
+    }
+
+    /** Turn Bluetooth ON and wait for state change */
+    @JvmStatic
+    fun enable(): Boolean {
+        if (state.oneOf(STATE_ON)) {
+            Log.i(TAG, "enable: state is already $state")
             return true
         }
-        sBluetoothAdapterLock!!.lock()
-        try {
-            Log.d(TAG, "Enabling Bluetooth low energy only mode")
-            if (!bluetoothAdapter.enableBLE()) {
-                Log.e(TAG, "Unable to enable Bluetooth low energy only mode")
-                return false
+        Log.d(TAG, "Call to enable")
+        if (
+            !withPermission(BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED).use {
+                @Suppress("DEPRECATION") adapter.enable()
             }
-            return waitForAdapterStateLocked(BluetoothAdapter.STATE_BLE_ON, bluetoothAdapter)
-        } catch (e: InterruptedException) {
-            Log.w(TAG, "enableBLE(): interrupted", e)
-        } finally {
-            sBluetoothAdapterLock!!.unlock()
+        ) {
+            Log.e(TAG, "enable: Failed")
+            return false
         }
-        return false
+        return state.waitForStateWithTimeout(stateChangeTimeout, STATE_ON)
     }
 
-    /** Disable Bluetooth Low Energy mode */
+    /** Turn Bluetooth OFF and wait for state change */
     @JvmStatic
-    fun disableBLE(bluetoothAdapter: BluetoothAdapter, context: Context): Boolean {
-        if (!sAdapterVarsInitialized) {
-            initAdapterStateVariables(context)
-        }
-        if (bluetoothAdapter.state == BluetoothAdapter.STATE_OFF) {
+    fun disable(persist: Boolean = true): Boolean {
+        if (state.oneOf(STATE_OFF)) {
+            Log.i(TAG, "disable: state is already $state")
             return true
         }
-        sBluetoothAdapterLock!!.lock()
-        try {
-            Log.d(TAG, "Disabling Bluetooth low energy")
-            bluetoothAdapter.disableBLE()
-            return waitForAdapterStateLocked(BluetoothAdapter.STATE_OFF, bluetoothAdapter)
-        } catch (e: InterruptedException) {
-            Log.w(TAG, "disableBLE(): interrupted", e)
-        } finally {
-            sBluetoothAdapterLock!!.unlock()
-        }
-        return false
-    }
-
-    /** Enables the Bluetooth Adapter. Return true if it is already enabled or is enabled. */
-    @JvmStatic
-    fun enableAdapter(bluetoothAdapter: BluetoothAdapter, context: Context): Boolean {
-        if (!sAdapterVarsInitialized) {
-            initAdapterStateVariables(context)
-        }
-        if (bluetoothAdapter.isEnabled) {
-            return true
-        }
-        val permissionsAdopted: Set<String> = TestUtils.getAdoptedShellPermissions()
-        sBluetoothAdapterLock!!.lock()
-        try {
-            Log.d(TAG, "Enabling Bluetooth adapter")
-            TestUtils.dropPermissionAsShellUid()
-            TestUtils.adoptPermissionAsShellUid(
-                permission.BLUETOOTH_CONNECT,
-                permission.BLUETOOTH_PRIVILEGED,
-            )
-            bluetoothAdapter.enable()
-            return waitForAdapterStateLocked(BluetoothAdapter.STATE_ON, bluetoothAdapter)
-        } catch (e: InterruptedException) {
-            Log.w(TAG, "enableAdapter(): interrupted", e)
-        } finally {
-            TestUtils.dropPermissionAsShellUid()
-            if (UiAutomation.ALL_PERMISSIONS.equals(permissionsAdopted)) {
-                TestUtils.adoptPermissionAsShellUid()
-            } else {
-                TestUtils.adoptPermissionAsShellUid(*permissionsAdopted.map { it }.toTypedArray())
+        Log.d(TAG, "Call to disable($persist)")
+        if (
+            !withPermission(BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED).use {
+                adapter.disable(persist)
             }
-            sBluetoothAdapterLock!!.unlock()
+        ) {
+            Log.e(TAG, "disable: Failed")
+            return false
         }
-        return false
+        // When the test started it couldn't differentiate between OFF or ble turning ON/OFF.
+        // If it was OFF and we asked to disable Bluetooth, there will be no state transition.
+        // Setting it to OFF now is safe as we already initiated the transition
+        if (state.get() == state.STATE_UNKNOWN) {
+            state.set(STATE_OFF)
+        }
+        return state.waitForStateWithTimeout(stateChangeTimeout, STATE_OFF)
     }
 
-    /** Disable the Bluetooth Adapter. Return true if it is already disabled or is disabled. */
-    @JvmStatic
-    fun disableAdapter(bluetoothAdapter: BluetoothAdapter, context: Context): Boolean {
-        return disableAdapter(bluetoothAdapter, true, context)
+    private fun getAdoptedPermissions(): Array<String> {
+        val permissions: Set<String> = uiAutomation.getAdoptedShellPermissions()
+        return if (UiAutomation.ALL_PERMISSIONS.equals(permissions)) {
+            arrayOf()
+        } else {
+            permissions.map { it }.toTypedArray()
+        }
     }
 
-    /**
-     * Disable the Bluetooth Adapter with then option to persist the off state or not.
-     *
-     * Returns true if the adapter is already disabled or was disabled.
-     */
-    @JvmStatic
-    fun disableAdapter(
-        bluetoothAdapter: BluetoothAdapter,
-        persist: Boolean,
-        context: Context,
-    ): Boolean {
-        if (!sAdapterVarsInitialized) {
-            initAdapterStateVariables(context)
+    private fun replacePermissionsWith(vararg newPermissions: String): Array<String> {
+        val currentPermissions = getAdoptedPermissions()
+        if (newPermissions.size == 0) {
+            // Throw even if the code support it as we are not expecting this by design
+            throw IllegalArgumentException("Invalid permissions replacement with no permissions.")
         }
-        if (bluetoothAdapter.state == BluetoothAdapter.STATE_OFF) {
-            return true
-        }
-        val permissionsAdopted: Set<String> = TestUtils.getAdoptedShellPermissions()
-        sBluetoothAdapterLock!!.lock()
-        try {
-            Log.d(TAG, "Disabling Bluetooth adapter, persist=$persist")
-            TestUtils.dropPermissionAsShellUid()
-            TestUtils.adoptPermissionAsShellUid(
-                permission.BLUETOOTH_CONNECT,
-                permission.BLUETOOTH_PRIVILEGED,
-            )
-            bluetoothAdapter.disable(persist)
-            return waitForAdapterStateLocked(BluetoothAdapter.STATE_OFF, bluetoothAdapter)
-        } catch (e: InterruptedException) {
-            Log.w(TAG, "disableAdapter(persist=$persist): interrupted", e)
-        } finally {
-            TestUtils.dropPermissionAsShellUid()
-            if (UiAutomation.ALL_PERMISSIONS.equals(permissionsAdopted)) {
-                TestUtils.adoptPermissionAsShellUid()
-            } else {
-                TestUtils.adoptPermissionAsShellUid(*permissionsAdopted.map { it }.toTypedArray())
-            }
-            sBluetoothAdapterLock!!.unlock()
-        }
-        return false
+        InstrumentationRegistry.getInstrumentation()
+            .getUiAutomation()
+            .adoptShellPermissionIdentity(*newPermissions)
+        return currentPermissions
     }
 
-    /** Handles BluetoothAdapter state changes and signals when we have reached a desired state */
-    private class BluetoothAdapterReceiver : BroadcastReceiver() {
+    // Set permissions to be used as long as the resource is open.
+    // Restore initial permissions after closing resource.
+    private fun withPermission(
+        vararg newPermissions: String,
+    ): AutoCloseable {
+        val savedPermissions = replacePermissionsWith(*newPermissions)
+        return AutoCloseable { uiAutomation.adoptShellPermissionIdentity(*savedPermissions) }
+    }
+}
+
+private class AdapterStateListener(context: Context, adapter: BluetoothAdapter) {
+    // MutableStateFlow cannot be used because it is conflated (See official doc)
+    private val _state = MutableSharedFlow<Int>(1 /* replay only most recent value*/)
+    val STATE_UNKNOWN = -42
+
+    init {
+        set(getBluetoothState(adapter))
+        context.registerReceiver(BluetoothAdapterReceiver(), IntentFilter(ACTION_BLE_STATE_CHANGED))
+    }
+
+    fun set(s: Int) = runBlocking { _state.emit(s) }
+
+    fun get(): Int = _state.replayCache.get(0)
+
+    fun oneOf(vararg states: Int): Boolean = states.contains(get())
+
+    override fun toString() = BluetoothAdapter.nameForState(get())
+
+    suspend fun waitForState(vararg states: Int) = _state.filter { states.contains(it) }.first()
+
+    fun waitForStateWithTimeout(timeout: Duration, vararg states: Int): Boolean = runBlocking {
+        withTimeoutOrNull(timeout) { waitForState(*states) } != null
+    }
+
+    private inner class BluetoothAdapterReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            val action = intent.action
-            if (BluetoothAdapter.ACTION_BLE_STATE_CHANGED.equals(action)) {
-                val newState = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, -1)
-                Log.d(TAG, "Bluetooth adapter state changed: $newState")
+            val newState = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, -1)
+            set(newState)
+            Log.d(TAG, "State changed to ${this@AdapterStateListener}")
+        }
+    }
 
-                // Signal if the state is set to the one we are waiting on
-                sBluetoothAdapterLock!!.lock()
-                try {
-                    sAdapterState = newState
-                    if (sDesiredState == newState) {
-                        Log.d(TAG, "Adapter has reached desired state: " + sDesiredState)
-                        sConditionAdapterStateReached!!.signal()
-                    }
-                } finally {
-                    sBluetoothAdapterLock!!.unlock()
-                }
-            }
+    private fun getBluetoothState(adapter: BluetoothAdapter): Int {
+        val state: Int = adapter.getState()
+        return if (state != STATE_OFF) {
+            state
+        } else if (adapter.isLeEnabled()) {
+            STATE_BLE_ON
+        } else {
+            // Bluetooth may be turning on/off BLE. Prefer initializing with an impossible value
+            STATE_UNKNOWN
         }
     }
 }
