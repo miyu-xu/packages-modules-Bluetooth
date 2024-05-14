@@ -88,6 +88,30 @@
       },
       "revId": "e7c32dc49fd3034a5519e18222dce207888fcc99",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3ac866e_10b9ccde",
+        "filename": "system/bta/le_audio/hal_verifier_linux.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-05-14T10:44:07Z",
+      "side": 1,
+      "message": "As suggested by the assert message, the check should run in the policy level (if this evaluates to `false` it crashes anyway). In this patch series, the policy disables LE (i.e., does not initialize `LeAudioClient`) unless the chrome flag `CrOSLateBootBluetoothAudioLEAudioOnly` is enabled.\n\nNote that it is `enable_profile -\u003e enable -\u003e self.internal.pin_mut().init()` that initializes `LeAudioClient`, where `self.le_audio.as_mut().unwrap().initialize(le_audio_dispatcher);` doesn\u0027t do much (see https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3081368/1/system/gd/rust/topshim/src/profiles/le_audio.rs#555).\n\nTo be extra sure, I\u0027ve also verified on a Cherry that with this patch series and leaving the LeAudio flag as default, classic audio functions are working. Thanks for the heads up!",
+      "parentUuid": "db2d2b86_918446a1",
+      "range": {
+        "startLine": 21,
+        "startChar": 52,
+        "endLine": 21,
+        "endChar": 56
+      },
+      "revId": "e7c32dc49fd3034a5519e18222dce207888fcc99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
