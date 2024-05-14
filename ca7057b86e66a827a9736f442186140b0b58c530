@@ -70,6 +70,30 @@
       ],
       "revId": "ca7057b86e66a827a9736f442186140b0b58c530",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63cdd5ec_27592f54",
+        "filename": "system/stack/eatt/eatt_impl.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-14T19:41:43Z",
+      "side": 1,
+      "message": "let me check the result code this should be...likely the L2CAP one",
+      "parentUuid": "596f09c7_effabc7a",
+      "range": {
+        "startLine": 155,
+        "startChar": 18,
+        "endLine": 155,
+        "endChar": 19
+      },
+      "revId": "ca7057b86e66a827a9736f442186140b0b58c530",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
