@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb64a6a8_ab6de358",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/AddressMapping.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-14T23:04:55Z",
+      "side": 1,
+      "message": "We should use an argumentCaptor here\n\n```java\nIntent actionFoundIntent \u003d intentReceiver.getNextIntentInOrder();\nassertThat(hasAction(BluetoothAdapter.ACTION_FOUND).matches(actionFoundIntent)).isTrue();\nBluetoothDevice device \u003d actionFoundIntent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE, BluetoothDevice.class);\n```\nAnd the associated utiliy method\n```java\npublic Intent getNextIntentInOrder() {\n    ArgumentCaptor\u003cIntent\u003e captor \u003d ArgumentCaptor.forClass(Intent.class);\n    mInOrder.verify(mReceiver, timeout(INTENT_TIMEOUT.toMillis()))\n                .onReceive(any(Context.class), captor.capture());\n    assertThat(captor.getAllValues().size()).isEqualTo(1);\n    return captor.get(0);\n}\n```\n\nanother option is to pass the matcher in parameter and drop any intermediary intent\n```java\npublic Intent getNextIntentInOrder(Matcher\u003cIntent\u003e... matchers) {\n    while (true) {\n        ArgumentCaptor\u003cIntent\u003e captor \u003d ArgumentCaptor.forClass(Intent.class);\n        mInOrder.verify(mReceiver, timeout(INTENT_TIMEOUT.toMillis()))\n                    .onReceive(any(Context.class), captor.capture());\n        Intent intent \u003d captor.get(0);\n        if (matchers.matches(intent)) {\n            return intent;\n        }\n        Log.d(TAG, \"Intent dropped: \" + intent);\n    }\n}\n```\n\nAs per your line 305, it looks like multiples devices can be sent (which surprise me in a controlled bumble test, are you adding 3 devices), so we should iterate on intent to get the one we want, or directly modify the utility to capture all 3 intent",
+      "range": {
+        "startLine": 302,
+        "startChar": 8,
+        "endLine": 302,
+        "endChar": 99
+      },
+      "revId": "90f4fd99a6220faeeddace8e5ef3a84b5474a1f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
