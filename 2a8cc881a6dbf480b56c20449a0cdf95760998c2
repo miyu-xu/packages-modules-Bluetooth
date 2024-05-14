@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "758d4f6d_53c121ea",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientConnectionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-05-14T16:35:16Z",
+      "side": 1,
+      "message": "Yup, the default would be false to start with. I was thinking about the case where\nStep 1: a) MSG_DOWNLOAD results in `mAccountCreated` to be true.\n2: MSG_DISCONNECT results in `mAccountCreated` to be false.\n3: Another connection happens but for some reason MSG_DISCONNECT event occurs (or the edge case gets triggered) could removing the non-existent account still be an issue?\n\n\nAlso, any other code (haven\u0027t checked if any other code is using it)  using the flag `mAccountCreated` will assume the account is already created. Maybe for correct state representation, should this be reflected to indicate account doesn\u0027t exist anymore?\n\nFor my understanding, is the client connection handler per device or at the service level? i.e. DISCONNECT event is per device or at the service level?",
+      "parentUuid": "838e32f2_77468b07",
+      "revId": "2a8cc881a6dbf480b56c20449a0cdf95760998c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "472d784b_ec14d129",
