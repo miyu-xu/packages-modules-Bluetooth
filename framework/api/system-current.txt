@@ -1293,6 +1293,7 @@ package android.bluetooth.le {
   public final class DistanceMeasurementMethod implements android.os.Parcelable {
     method public int describeContents();
     method public double getId();
+    method @FlaggedApi("com.android.bluetooth.flags.channel_sounding_25q1_apis") public int getMethodId();
     method public boolean isAltitudeAngleSupported();
     method public boolean isAzimuthAngleSupported();
     method public void writeToParcel(android.os.Parcel, int);
@@ -1341,6 +1342,7 @@ package android.bluetooth.le {
     method @FlaggedApi("com.android.bluetooth.flags.channel_sounding") @FloatRange(from=0.0, to=1.0) public double getConfidenceLevel();
     method @FlaggedApi("com.android.bluetooth.flags.channel_sounding") public double getDelaySpreadMeters();
     method @FlaggedApi("com.android.bluetooth.flags.channel_sounding") public int getDetectedAttackLevel();
+    method @FlaggedApi("com.android.bluetooth.flags.channel_sounding_25q1_apis") public long getElapsedRealtimeNanos();
     method public double getErrorAltitudeAngle();
     method public double getErrorAzimuthAngle();
     method @FloatRange(from=0.0) public double getErrorMeters();
