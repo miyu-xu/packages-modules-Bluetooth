@@ -64,6 +64,30 @@
       },
       "revId": "e7c32dc49fd3034a5519e18222dce207888fcc99",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db2d2b86_918446a1",
+        "filename": "system/bta/le_audio/hal_verifier_linux.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-05-14T07:55:17Z",
+      "side": 1,
+      "message": "It looks like we initialize LeAudioClient anyway. Is it possible for you to check its impact on host that doesn\u0027t support LE audio or at least guard this with a flag.",
+      "parentUuid": "5f275983_8e86f8c4",
+      "range": {
+        "startLine": 21,
+        "startChar": 52,
+        "endLine": 21,
+        "endChar": 56
+      },
+      "revId": "e7c32dc49fd3034a5519e18222dce207888fcc99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
