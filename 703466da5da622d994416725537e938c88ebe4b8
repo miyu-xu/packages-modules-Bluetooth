@@ -58,6 +58,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "19d3355c_5914cce0",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1041,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-14T06:43:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1580f319_2da63b76",
+      "range": {
+        "startLine": 1041,
+        "startChar": 7,
+        "endLine": 1041,
+        "endChar": 31
+      },
+      "revId": "703466da5da622d994416725537e938c88ebe4b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "91d35368_096b8fce",
@@ -71,6 +95,30 @@
       "writtenOn": "2024-05-14T05:25:23Z",
       "side": 1,
       "message": "not: This part of the logic update is not well captured in the commit message.\n\ne.g., ...This means a device may exist in both maps and\n    an OnDeviceCleared may still be sent even though it\u0027s bonded through freshness check...",
+      "range": {
+        "startLine": 1050,
+        "startChar": 7,
+        "endLine": 1050,
+        "endChar": 57
+      },
+      "revId": "703466da5da622d994416725537e938c88ebe4b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8197016_a384cba3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1050,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-14T06:43:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91d35368_096b8fce",
       "range": {
         "startLine": 1050,
         "startChar": 7,
