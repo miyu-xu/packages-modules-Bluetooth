@@ -1,0 +1,82 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03188932_bfc633b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-14T16:58:17Z",
+      "side": 1,
+      "message": "It feels like quite a bit of repeated code.  I\u0027d also love to see tests.",
+      "revId": "f29dddf2e57c12261a77f71d8fbb77b5033407ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f109167_3bb1be8a",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-14T16:58:17Z",
+      "side": 1,
+      "message": "I would prefer to pull this out of tBTM_MSBC_INFO and reuse it for LC3",
+      "range": {
+        "startLine": 399,
+        "startChar": 0,
+        "endLine": 405,
+        "endChar": 4
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "44b7c46d_eb5f6883",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 394,
+                "startChar": 0,
+                "endLine": 394,
+                "endChar": 0
+              },
+              "replacement": "enum decode_buf_state {\n  DECODE_BUF_EMPTY,\n  DECODE_BUF_FULL,\n\n  // Neither empty nor full.\n  DECODE_BUF_HALFFULL,\n};\n\n"
+            },
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 399,
+                "startChar": 0,
+                "endLine": 407,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 858,
+                "startChar": 0,
+                "endLine": 866,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "f29dddf2e57c12261a77f71d8fbb77b5033407ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
