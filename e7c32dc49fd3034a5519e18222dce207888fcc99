@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f36ca0c_4cbe058e",
+        "filename": "system/bta/le_audio/hal_verifier_linux.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-05-14T06:41:48Z",
+      "side": 1,
+      "message": "BT controller is able to tell if CIS is supported [1]. \nWould it be problematic if the Bluetooth controller doesn\u0027t support LE Audio in CIS central/peripheral but we always return TRUE here? If not, I\u0027m okayish with this change for now. \n\nLoop in laikatherine@ for dual mode design.\n\n[1] Core 5.3, Vol 4, 7.8.3 LE Read Local Supported Feature command",
+      "range": {
+        "startLine": 21,
+        "startChar": 52,
+        "endLine": 21,
+        "endChar": 56
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "857fcf1d_1760834b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/hal_verifier_linux.cc",
+              "range": {
+                "startLine": 19,
+                "startChar": 0,
+                "endLine": 22,
+                "endChar": 0
+              },
+              "replacement": "// The HAL always supports LE audio. Disable LE audio in the policy level if\n// needed.\nbool LeAudioHalVerifier::SupportsLeAudio() {\n  // TODO(b/230051111): Check if the controller supports LE audio.\n  return true;\n}\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e7c32dc49fd3034a5519e18222dce207888fcc99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
