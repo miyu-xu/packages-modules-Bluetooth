@@ -63,6 +63,7 @@ class DistanceMeasurementCallbacks {
       int error_azimuth_angle,
       int altitude_angle,
       int error_altitude_angle,
+      long elapsedRealtimeNanos,
       DistanceMeasurementMethod method) = 0;
   virtual void OnRasFragmentReady(
       Address address, uint16_t procedure_counter, bool is_last, std::vector<uint8_t> raw_data) = 0;
