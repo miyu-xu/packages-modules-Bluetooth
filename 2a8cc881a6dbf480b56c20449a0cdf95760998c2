@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "838e32f2_77468b07",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientConnectionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-05-14T16:24:38Z",
+      "side": 1,
+      "message": "The default value for a boolean in Java is False, so its false to begin with (making this explicit wouldn\u0027t be a bad thing though). This boolean is only set to True when account creation succeeds when handling MSG_DOWNLOAD.\n\nMost of the time, this boolean should be True. The edge cases we\u0027re trying to solve for here are when (1) we\u0027re \"connecting\" and get a disconnect (account creation hasn\u0027t happened yet, our service may not be up yet), (2) we\u0027re \"connected\" but haven\u0027t began downloads yet and get a disconnect (again, no account creation, our service may not be up), and (3) we\u0027re downloading or done downloading, but account creation failed because our service wasn\u0027t up yet (or failed to come up after the 6 retries) and we get a disconnect. Any of these will result in an exception and subsequent crash.\n\nBetter than this would be a full refactor to iron out the order of operations and the assumptions under which the various objects execute. I\u0027m seeing a lot of things I _hate_ in this code-- poor encapsulation, poor interfaces between objects, lack of testing, and lots of little band-aids to prevent issues like this that could just be solved with different lifecycle assumptions. Maybe this summer though 😊",
+      "parentUuid": "664e1a3e_cd3b920e",
+      "revId": "2a8cc881a6dbf480b56c20449a0cdf95760998c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "472d784b_ec14d129",
