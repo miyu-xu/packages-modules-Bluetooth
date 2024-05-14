@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "12734051_59890282",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientConnectionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-05-14T17:42:15Z",
+      "side": 1,
+      "message": "Duplicate account deletions are safe, so long as our auth service is still up (which it should be if we\u0027ve gotten this far and we were successfully able to create the account. The last thing we do is stop our auth service in the profile level stop() function, which happens after cleaning up device connections).\n\nThe client connection handler is per device, and owned by the state machine, which is per-device too. It\u0027s meant to be a single use object. When the OBEX connection goes down, the state machine enters the disconnected state and cleans itself up, including the data that was transferred during the life of the object. Subsequent connections require a new state machine, and thus a new connection handler.\n\nI\u0027m happy to explicitly set mAccountCreated to false after deleting it. I\u0027m also happy to be explicit with the value in the constructor too. I do think how it is is safe enough now. Systemic issues, particularly around our lifecycle assumptions, should be addressed in a refactor I think",
+      "parentUuid": "758d4f6d_53c121ea",
+      "revId": "2a8cc881a6dbf480b56c20449a0cdf95760998c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "472d784b_ec14d129",
