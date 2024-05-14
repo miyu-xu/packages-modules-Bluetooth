@@ -107,6 +107,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "44709a51_4c589653",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-14T03:59:12Z",
+      "side": 1,
+      "message": "I don\u0027t think external contributor knows nor can apply the flagging process of bluetooth.\nPlease help shepherd the change",
+      "parentUuid": "6d0e0087_6c8e38d1",
+      "revId": "597a0fb372771869e2a83f7012d4f710f1d2779a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1bad5ce1_d6574079",
         "filename": "system/main/shim/acl.cc",
         "patchSetId": 3
