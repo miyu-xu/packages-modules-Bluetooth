@@ -16,6 +16,24 @@
       "message": "Why are we only checking the BLE state here and not the classic one anymore ?",
       "revId": "8c4156593610fa4f9004e6ac16154e835d2674ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc47d6ea_4d416d7f",
+        "filename": "android/pandora/server/src/Host.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-14T18:51:27Z",
+      "side": 1,
+      "message": "Good question. It is because BLE state are all the following:\n`OFF, BLE_TURNING_ON, BLE_TURNING_OFF, BLE_ON, TURNING_ON, TURNING_OFF, ON`\nWhile \"classic\" state are only:\n`OFF, TURNING_ON, TURNING_OFF, ON`\n\nMeaning that by listening to classic state you never get notified about the BLE transition and all of them are consider to be state OFF.\nIf you expect Bluetooth to be OFF entirely (which we do in test), and not just the br/Edr part, you want to make sure you reach the real OFF state and not yet in flight to this off state.\n\nThis change is very short, but I believe this will remove a lot of the flakiness around lifecycle for pandora test.\n\nI even plan to remove any additional delay that got introduced, but I want to land them with a few days / week interval to make sure there is no invisible side effect that pop",
+      "parentUuid": "aaf22298_584d65f8",
+      "revId": "8c4156593610fa4f9004e6ac16154e835d2674ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
