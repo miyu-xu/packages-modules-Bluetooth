@@ -16,6 +16,9 @@
 
 package android.bluetooth.le;
 
+import static android.bluetooth.Flags.FLAG_CHANNEL_SOUNDING_25Q2_APIS;
+
+import android.annotation.ElapsedRealtimeLong;
 import android.annotation.FlaggedApi;
 import android.annotation.FloatRange;
 import android.annotation.IntDef;
@@ -140,6 +143,7 @@ public final class DistanceMeasurementResult implements Parcelable {
     private final double mConfidenceLevel;
     private final int mDetectedAttackLevel;
     private final double mVelocityMetersPerSecond;
+    private final @ElapsedRealtimeLong long mMeasurementTimestampNanos;
 
     private DistanceMeasurementResult(
             double meters,
@@ -151,7 +155,8 @@ public final class DistanceMeasurementResult implements Parcelable {
             double delaySpreadMeters,
             double confidenceLevel,
             @Nadm int detectedAttackLevel,
-            double velocityMetersPerSecond) {
+            double velocityMetersPerSecond,
+            @ElapsedRealtimeLong long measurementTimestampNanos) {
         mMeters = meters;
         mErrorMeters = errorMeters;
         mAzimuthAngle = azimuthAngle;
@@ -162,6 +167,7 @@ public final class DistanceMeasurementResult implements Parcelable {
         mConfidenceLevel = confidenceLevel;
         mDetectedAttackLevel = detectedAttackLevel;
         mVelocityMetersPerSecond = velocityMetersPerSecond;
+        mMeasurementTimestampNanos = measurementTimestampNanos;
     }
 
     /**
@@ -313,6 +319,19 @@ public final class DistanceMeasurementResult implements Parcelable {
     }
 
     /**
+     * Timestamp of this distance measurement in time since boot nanos in the same namespace as
+     * {@link SystemClock#elapsedRealtimeNanos()}
+     *
+     * @return timestamp of ranging measurement in nanoseconds
+     * @hide
+     */
+    @FlaggedApi(FLAG_CHANNEL_SOUNDING_25Q2_APIS)
+    @SystemApi
+    public @ElapsedRealtimeLong long getMeasurementTimestampNanos() {
+        return mMeasurementTimestampNanos;
+    }
+
+    /**
      * {@inheritDoc}
      *
      * @hide
@@ -339,6 +358,7 @@ public final class DistanceMeasurementResult implements Parcelable {
         out.writeDouble(mConfidenceLevel);
         out.writeInt(mDetectedAttackLevel);
         out.writeDouble(mVelocityMetersPerSecond);
+        out.writeLong(mMeasurementTimestampNanos);
     }
 
     /**
@@ -367,6 +387,8 @@ public final class DistanceMeasurementResult implements Parcelable {
                 + mDetectedAttackLevel
                 + ", velocityMetersPerSecond: "
                 + mVelocityMetersPerSecond
+                + ", elapsedRealtimeNanos"
+                + mMeasurementTimestampNanos
                 + "]";
     }
 
@@ -375,16 +397,20 @@ public final class DistanceMeasurementResult implements Parcelable {
             new Parcelable.Creator<DistanceMeasurementResult>() {
                 @Override
                 public @NonNull DistanceMeasurementResult createFromParcel(@NonNull Parcel in) {
-                    return new Builder(in.readDouble(), in.readDouble())
-                            .setAzimuthAngle(in.readDouble())
-                            .setErrorAzimuthAngle(in.readDouble())
-                            .setAltitudeAngle(in.readDouble())
-                            .setErrorAltitudeAngle(in.readDouble())
-                            .setDelaySpreadMeters(in.readDouble())
-                            .setConfidenceLevel(in.readDouble())
-                            .setDetectedAttackLevel(in.readInt())
-                            .setVelocityMetersPerSecond(in.readDouble())
-                            .build();
+                    Builder builder =
+                            new Builder(in.readDouble(), in.readDouble())
+                                    .setAzimuthAngle(in.readDouble())
+                                    .setErrorAzimuthAngle(in.readDouble())
+                                    .setAltitudeAngle(in.readDouble())
+                                    .setErrorAltitudeAngle(in.readDouble())
+                                    .setDelaySpreadMeters(in.readDouble())
+                                    .setConfidenceLevel(in.readDouble())
+                                    .setDetectedAttackLevel(in.readInt())
+                                    .setVelocityMetersPerSecond(in.readDouble());
+                    if (in.dataAvail() >= Long.BYTES) {
+                        builder.setMeasurementTimestampNanos(in.readLong());
+                    }
+                    return builder.build();
                 }
 
                 @Override
@@ -410,6 +436,7 @@ public final class DistanceMeasurementResult implements Parcelable {
         private double mConfidenceLevel = Double.NaN;
         private int mDetectedAttackLevel = NADM_UNKNOWN;
         private double mVelocityMetersPerSecond = Double.NaN;
+        private @ElapsedRealtimeLong long mMeasurementTimestampNanos = -1L;
 
         /**
          * Constructor of the Builder.
@@ -588,6 +615,21 @@ public final class DistanceMeasurementResult implements Parcelable {
         }
 
         /**
+         * Set the elapsed realtime in nanoseconds when the distance measurement occurred
+         *
+         * @param measurementTimestampNanos time the distance measurement occurred
+         * @hide
+         */
+        @FlaggedApi(FLAG_CHANNEL_SOUNDING_25Q2_APIS)
+        @SystemApi
+        @NonNull
+        public Builder setMeasurementTimestampNanos(
+                @ElapsedRealtimeLong long measurementTimestampNanos) {
+            mMeasurementTimestampNanos = measurementTimestampNanos;
+            return this;
+        }
+
+        /**
          * Builds the {@link DistanceMeasurementResult} object.
          *
          * @throws IllegalStateException if meters, error, or confidence are not set
@@ -606,7 +648,8 @@ public final class DistanceMeasurementResult implements Parcelable {
                     mDelaySpreadMeters,
                     mConfidenceLevel,
                     mDetectedAttackLevel,
-                    mVelocityMetersPerSecond);
+                    mVelocityMetersPerSecond,
+                    mMeasurementTimestampNanos);
         }
     }
 }

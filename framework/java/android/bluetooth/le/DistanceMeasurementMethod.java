@@ -16,6 +16,8 @@
 
 package android.bluetooth.le;
 
+import static android.bluetooth.Flags.FLAG_CHANNEL_SOUNDING_25Q2_APIS;
+
 import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
 import android.annotation.NonNull;
@@ -88,10 +90,24 @@ public final class DistanceMeasurementMethod implements Parcelable {
      * Id of the method used for {@link DistanceMeasurementParams.Builder#setMethod(int)}
      *
      * @return id of the method
+     * @deprecated use {@link #getMethodId} instead.
      * @hide
      */
+    @Deprecated
     @SystemApi
     public @DistanceMeasurementMethodId double getId() {
+        return mId;
+    }
+
+    /**
+     * Id of the method used for {@link DistanceMeasurementParams.Builder#setMethodId(int)}
+     *
+     * @return ID of the measurement method
+     * @hide
+     */
+    @FlaggedApi(FLAG_CHANNEL_SOUNDING_25Q2_APIS)
+    @SystemApi
+    public @DistanceMeasurementMethodId int getMethodId() {
         return mId;
     }
 
@@ -162,7 +178,7 @@ public final class DistanceMeasurementMethod implements Parcelable {
 
         final DistanceMeasurementMethod u = (DistanceMeasurementMethod) o;
 
-        if (mId != u.getId()) {
+        if (mId != u.getMethodId()) {
             return false;
         }
 
