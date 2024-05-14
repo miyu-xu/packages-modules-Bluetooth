@@ -22,6 +22,8 @@ import static android.content.pm.PackageManager.FEATURE_WATCH;
 import static com.android.bluetooth.hfpclient.HeadsetClientStateMachine.AT_OK;
 import static com.android.bluetooth.hfpclient.HeadsetClientStateMachine.ENTER_PRIVATE_MODE;
 import static com.android.bluetooth.hfpclient.HeadsetClientStateMachine.EXPLICIT_CALL_TRANSFER;
+import static com.android.bluetooth.hfpclient.HeadsetClientStateMachine.MAX_HFP_SCO_VOICE_CALL_VOLUME;
+import static com.android.bluetooth.hfpclient.HeadsetClientStateMachine.MIN_HFP_SCO_VOICE_CALL_VOLUME;
 import static com.android.bluetooth.hfpclient.HeadsetClientStateMachine.VOICE_RECOGNITION_START;
 import static com.android.bluetooth.hfpclient.HeadsetClientStateMachine.VOICE_RECOGNITION_STOP;
 
@@ -47,6 +49,9 @@ import android.os.Bundle;
 import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
+import android.platform.test.annotations.RequiresFlagsEnabled;
+import android.platform.test.flag.junit.CheckFlagsRule;
+import android.platform.test.flag.junit.DeviceFlagsValueProvider;
 import android.util.Pair;
 
 import androidx.test.InstrumentationRegistry;
@@ -61,6 +66,7 @@ import com.android.bluetooth.R;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.RemoteDevices;
+import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.hfp.HeadsetService;
 
 import org.hamcrest.core.AllOf;
@@ -78,7 +84,9 @@ import org.mockito.hamcrest.MockitoHamcrest;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -94,6 +102,9 @@ public class HeadsetClientStateMachineTest {
     private Context mTargetContext;
 
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
+
+    @Rule
+    public final CheckFlagsRule mCheckFlagsRule = DeviceFlagsValueProvider.createCheckFlagsRule();
 
     @Mock private AdapterService mAdapterService;
     @Mock private Resources mMockHfpResources;
@@ -155,6 +166,63 @@ public class HeadsetClientStateMachineTest {
         mHandlerThread.quit();
         TestUtils.clearAdapterService(mAdapterService);
         verifyNoMoreInteractions(mHeadsetService);
+    }
+
+    /**
+     * Test AM to HF and HF to AM volume symmetric. The test takes the lower range set, e.g. if AM
+     * 1-10 and HF 1-15 it will take AM as lower range. Then all the AM values are mapped with
+     * corresponding HF values. After all collected, the test converts back HF values and checks if
+     * they match AM. This proves that the conversion is symmetric.
+     */
+    @Test
+    @RequiresFlagsEnabled(Flags.FLAG_HEADSET_CLIENT_AM_HF_VOLUME_SYMMETRIC)
+    public void testAmHfVolumeSymmetric() {
+        int lowerRangeMin = 0;
+        int lowerRangeMax = 0;
+        int higherRangeMin = 0;
+        int higherRangeMax = 0;
+        boolean amRangeLower = false;
+        Map<Integer, Integer> lowerToHigherMap = new HashMap<>();
+
+        if (HeadsetClientStateMachine.sMaxAmVcVol >= MAX_HFP_SCO_VOICE_CALL_VOLUME) {
+            // HF range is lower
+            lowerRangeMin = MIN_HFP_SCO_VOICE_CALL_VOLUME;
+            lowerRangeMax = MAX_HFP_SCO_VOICE_CALL_VOLUME;
+            higherRangeMin = HeadsetClientStateMachine.sMinAmVcVol;
+            higherRangeMax = HeadsetClientStateMachine.sMaxAmVcVol;
+        } else {
+            // AM range is lower
+            amRangeLower = true;
+            lowerRangeMin = HeadsetClientStateMachine.sMinAmVcVol;
+            ;
+            lowerRangeMax = HeadsetClientStateMachine.sMaxAmVcVol;
+            higherRangeMin = MIN_HFP_SCO_VOICE_CALL_VOLUME;
+            higherRangeMax = MAX_HFP_SCO_VOICE_CALL_VOLUME;
+        }
+
+        for (int i = lowerRangeMin; i <= lowerRangeMax; i++) {
+            if (amRangeLower) {
+                // Collect AM to HF conversion
+                lowerToHigherMap.put(i, HeadsetClientStateMachine.amToHfVol(i));
+            } else {
+                // Collect HF to AM conversion
+                lowerToHigherMap.put(i, HeadsetClientStateMachine.hfToAmVol(i));
+            }
+        }
+
+        for (Map.Entry entry : lowerToHigherMap.entrySet()) {
+            if (amRangeLower) {
+                // Convert back from collected HF to AM and check if equal the saved AM value
+                Assert.assertEquals(
+                        HeadsetClientStateMachine.hfToAmVol((int) entry.getValue()),
+                        entry.getKey());
+            } else {
+                // Convert back from collected AM to HF and check if equal the saved HF value
+                Assert.assertEquals(
+                        HeadsetClientStateMachine.amToHfVol((int) entry.getValue()),
+                        entry.getKey());
+            }
+        }
     }
 
     /**
