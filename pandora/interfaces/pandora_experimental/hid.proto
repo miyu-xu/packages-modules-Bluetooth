@@ -2,9 +2,16 @@ syntax = "proto3";
 
 package pandora;
 
+
 option java_outer_classname = "HidProto";
 
 service HID {
+  // Send a Connect command to HID device
+  rpc HostConnect(HostConnectRequest) returns (HostConnectResponse);
+  // Send a Disconnect command to HID device
+  rpc HostDisconnect(HostDisconnectRequest) returns (HostDisconnectResponse);
+  // Get Connection state
+  rpc HostGetConnectionState(HostConnectionStateRequest) returns (HostConnectionStateResponse);
   // Send a SET_REPORT command, acting as a HID host, to a connected HID device
   rpc SendHostReport(SendHostReportRequest) returns (SendHostReportResponse);
 }
@@ -15,6 +22,41 @@ enum HidReportType {
   HID_REPORT_TYPE_INPUT = 1;
   HID_REPORT_TYPE_OUTPUT = 2;
   HID_REPORT_TYPE_FEATURE = 3;
+}
+
+// Connection State.
+enum ConnectionState {
+  HID_HOST_DISCONNECTED = 0;
+  HID_HOST_CONNECTING = 1;
+  HID_HOST_CONNECTED = 2;
+  HID_HOST_DISCONNECTING = 3;
+}
+
+message HostConnectRequest {
+  bytes address = 1;
+}
+
+message HostConnectResponse {
+  //connection state
+  ConnectionState state = 1;
+}
+
+message HostDisconnectRequest {
+  bytes address = 1;
+}
+
+message HostDisconnectResponse {
+  //connection state
+  ConnectionState state = 1;
+}
+
+message HostConnectionStateRequest {
+  bytes address = 1;
+}
+
+message HostConnectionStateResponse {
+  //connection state
+  ConnectionState state = 1;
 }
 
 message SendHostReportRequest {
