@@ -251,6 +251,30 @@
       ],
       "revId": "d026aa0129891d207732ec8dce56abd414b6dc81",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68d6e0e5_5e4868e5",
+        "filename": "system/bta/dm/bta_dm_disc_int.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-14T06:22:51Z",
+      "side": 1,
+      "message": "nit: can sdp_db_buffer be a std::array? why it is not defined to be `tSDP_DISCOVERY_DB` instead? \n\nMaybe a follow-up CL",
+      "parentUuid": "d21c7e5e_8554a66b",
+      "range": {
+        "startLine": 96,
+        "startChar": 10,
+        "endLine": 96,
+        "endChar": 23
+      },
+      "revId": "d026aa0129891d207732ec8dce56abd414b6dc81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
