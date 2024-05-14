@@ -22,8 +22,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.util.Log
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.espresso.intent.matcher.IntentMatchers.hasAction
-import androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.android.compatibility.common.util.AdoptShellPermissionsRule
@@ -33,24 +31,64 @@ import java.time.Duration
 import java.util.UUID
 import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.*
-import org.hamcrest.Matcher
-import org.hamcrest.core.AllOf
+import kotlinx.coroutines.channels.*
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.first
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.ArgumentMatchers
-import org.mockito.InOrder
-import org.mockito.Mock
-import org.mockito.Mockito.inOrder
-import org.mockito.Mockito.timeout
 import org.mockito.MockitoAnnotations
-import org.mockito.hamcrest.MockitoHamcrest
 import pandora.RfcommProto
 import pandora.RfcommProto.ServerId
 import pandora.RfcommProto.StartServerRequest
 import pandora.SecurityProto.PairingEvent
 import pandora.SecurityProto.PairingEventAnswer
+
+@kotlinx.coroutines.ExperimentalCoroutinesApi
+fun bondingFlow(context: Context, peer: BluetoothDevice, state: Int) = callbackFlow {
+    val receiver: BroadcastReceiver =
+        object : BroadcastReceiver() {
+            override fun onReceive(context: Context, intent: Intent) {
+                if (
+                    peer ==
+                        intent.getParcelableExtra(
+                            BluetoothDevice.EXTRA_DEVICE,
+                            BluetoothDevice::class.java
+                        )
+                ) {
+                    if (intent.getIntExtra(BluetoothDevice.EXTRA_BOND_STATE, -1) == state) {
+                        trySendBlocking(intent)
+                    }
+                }
+            }
+        }
+    context.registerReceiver(receiver, IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED))
+    awaitClose { context.unregisterReceiver(receiver) }
+}
+
+class PairingResponder(private val mPeer: BluetoothDevice) : BroadcastReceiver() {
+    override fun onReceive(context: Context, intent: Intent) {
+        when (intent.action) {
+            BluetoothDevice.ACTION_PAIRING_REQUEST -> {
+                if (
+                    mPeer ==
+                        intent.getParcelableExtra(
+                            BluetoothDevice.EXTRA_DEVICE,
+                            BluetoothDevice::class.java
+                        )
+                ) {
+                    if (
+                        BluetoothDevice.PAIRING_VARIANT_CONSENT ==
+                            intent.getIntExtra(BluetoothDevice.EXTRA_PAIRING_VARIANT, -1)
+                    ) {
+                        mPeer.setPairingConfirmation(true)
+                    }
+                }
+            }
+        }
+    }
+}
 
 @RunWith(AndroidJUnit4::class)
 class RfcommTest {
@@ -71,11 +109,10 @@ class RfcommTest {
     // Set up a Bumble Pandora device for the duration of the test.
     @Rule @JvmField val mBumble = PandoraDevice()
 
-    @Mock private val mReceiver: BroadcastReceiver? = null
-
     private lateinit var mBumbleDevice: BluetoothDevice
     private lateinit var mServer: ServerId
-    private lateinit var mInOrder: InOrder
+    private lateinit var mPairingResponder: PairingResponder
+    private lateinit var mPairingEventAnswerObserver: StreamObserver<PairingEventAnswer>
     private val mPairingEventStreamObserver: StreamObserverSpliterator<PairingEvent> =
         StreamObserverSpliterator()
 
@@ -83,16 +120,25 @@ class RfcommTest {
     @Throws(Exception::class)
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        mInOrder = inOrder(mReceiver)
         mBumbleDevice = mBumble.remoteDevice
-        removeBondIfBonded(mBumbleDevice)
+        mPairingEventAnswerObserver =
+            mBumble
+                .security()
+                .withDeadlineAfter(BOND_INTENT_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
+                .onPairing(mPairingEventStreamObserver)
+
+        val pairingFilter = IntentFilter(BluetoothDevice.ACTION_PAIRING_REQUEST)
+        mPairingResponder = PairingResponder(mBumbleDevice)
+        mContext.registerReceiver(mPairingResponder, pairingFilter)
+
+        runBlocking { removeBondIfBonded(mBumbleDevice) }
     }
 
     @Test
     @Throws(Exception::class)
     fun clientConnectToOpenServerSocketBondedInsecure() {
         mServer = startServer()
-        bondDevice(mBumbleDevice)
+        runBlocking { bondDevice(mBumbleDevice) }
 
         // Insecure connection to RFCOMM Server
         val insecureSocket =
@@ -114,8 +160,7 @@ class RfcommTest {
     fun clientConnectToOpenServerSocketBondedSecure() {
         mServer = startServer()
 
-        bondDevice(mBumbleDevice)
-
+        runBlocking { bondDevice(mBumbleDevice) }
         // Secure connection to RFCOMM Server
         val secureSocket =
             mBumbleDevice.createRfcommSocketToServiceRecord(UUID.fromString(TEST_UUID))
@@ -134,8 +179,6 @@ class RfcommTest {
     private fun createAndConnectSocket(
         isSecure: Boolean
     ): Pair<BluetoothSocket, RfcommProto.RfcommConnection> {
-        bondDevice(mBumbleDevice)
-
         val socket =
             if (isSecure) {
                 mBumbleDevice.createRfcommSocketToServiceRecord(UUID.fromString(TEST_UUID))
@@ -156,57 +199,24 @@ class RfcommTest {
         return Pair(socket, connection)
     }
 
-    private fun bondDevice(remoteDevice: BluetoothDevice) {
-        val bondingFilter = IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED)
-        mContext.registerReceiver(mReceiver, bondingFilter)
-        val pairingFilter = IntentFilter(BluetoothDevice.ACTION_PAIRING_REQUEST)
-        mContext.registerReceiver(mReceiver, pairingFilter)
+    @OptIn(ExperimentalCoroutinesApi::class)
+    private suspend fun bondDevice(remoteDevice: BluetoothDevice) {
+        if (mAdapter.bondedDevices.contains(remoteDevice)) {
+            Log.d(TAG, "bondDevice(): The device is already bonded")
+            return
+        }
 
-        val pairingEventAnswerObserver: StreamObserver<PairingEventAnswer>? =
-            mBumble
-                .security()
-                .withDeadlineAfter(BOND_INTENT_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS)
-                .onPairing(mPairingEventStreamObserver)
+        val flow = bondingFlow(mContext, remoteDevice, BluetoothDevice.BOND_BONDED)
 
-        // create bond between DUT and Ref and verify we enter state BONDING
         Truth.assertThat(remoteDevice.createBond()).isTrue()
-        verifyIntentReceived(
-            AllOf.allOf(
-                hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
-                hasExtra(BluetoothDevice.EXTRA_DEVICE, remoteDevice),
-                hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_BONDING)
-            )
-        )
-
-        // Pair
-        verifyIntentReceived(
-            AllOf.allOf(
-                hasAction(BluetoothDevice.ACTION_PAIRING_REQUEST),
-                hasExtra(BluetoothDevice.EXTRA_DEVICE, remoteDevice),
-                hasExtra(
-                    BluetoothDevice.EXTRA_PAIRING_VARIANT,
-                    BluetoothDevice.PAIRING_VARIANT_CONSENT
-                )
-            )
-        )
-        remoteDevice.setPairingConfirmation(true)
 
         val pairingEvent: PairingEvent = mPairingEventStreamObserver.iterator().next()
         Truth.assertThat(pairingEvent.hasJustWorks()).isTrue()
-        pairingEventAnswerObserver!!.onNext(
+        mPairingEventAnswerObserver.onNext(
             PairingEventAnswer.newBuilder().setEvent(pairingEvent).setConfirm(true).build()
         )
 
-        // Verify we are now bonded
-        verifyIntentReceived(
-            AllOf.allOf(
-                hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
-                hasExtra(BluetoothDevice.EXTRA_DEVICE, remoteDevice),
-                hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_BONDED)
-            )
-        )
-
-        mContext.unregisterReceiver(mReceiver)
+        flow.first()
     }
 
     private fun cleanUp() {
@@ -214,27 +224,20 @@ class RfcommTest {
             .rfcommBlocking()
             .stopServer(RfcommProto.StopServerRequest.newBuilder().setServer(mServer).build())
 
-        removeBondIfBonded(mBumbleDevice)
+        runBlocking { removeBondIfBonded(mBumbleDevice) }
     }
 
-    private fun removeBondIfBonded(deviceToRemove: BluetoothDevice) {
-        val bondedDevices = mAdapter.getBondedDevices()
-        if (!bondedDevices.contains(deviceToRemove)) {
+    @OptIn(ExperimentalCoroutinesApi::class)
+    private suspend fun removeBondIfBonded(deviceToRemove: BluetoothDevice) {
+        if (!mAdapter.bondedDevices.contains(deviceToRemove)) {
             Log.d(TAG, "removeBondIfBonded(): Tried to remove a device that isn't bonded")
             return
         }
+        val flow = bondingFlow(mContext, deviceToRemove, BluetoothDevice.BOND_NONE)
 
-        val filter = IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED)
-        mContext.registerReceiver(mReceiver, filter)
         Truth.assertThat(deviceToRemove.removeBond()).isTrue()
-        verifyIntentReceived(
-            AllOf.allOf(
-                hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
-                hasExtra(BluetoothDevice.EXTRA_DEVICE, deviceToRemove),
-                hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_NONE)
-            )
-        )
-        mContext.unregisterReceiver(mReceiver)
+
+        flow.first()
     }
 
     private fun startServer(): ServerId {
@@ -243,12 +246,6 @@ class RfcommTest {
         val response = mBumble.rfcommBlocking().startServer(request)
 
         return response.server
-    }
-
-    private fun verifyIntentReceived(matcher: Matcher<Intent>) {
-        mInOrder
-            .verify(mReceiver, timeout(BOND_INTENT_TIMEOUT.toMillis()))!!
-            .onReceive(ArgumentMatchers.any(Context::class.java), MockitoHamcrest.argThat(matcher))
     }
 
     companion object {
