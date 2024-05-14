@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0eaf9487_f340054d",
+        "filename": "framework/tests/util/src/BlockingBluetoothAdapter.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-14T18:45:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0e95f81_48608857",
+      "range": {
+        "startLine": 158,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 5
+      },
+      "revId": "a2b521cdbfe26628c0e0868ecf706f7ceb9964df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2edd1f33_a853e52a",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-05-14T16:23:03Z",
       "side": 1,
       "message": "getBluetoothState seems to be used only once, should we inline it?",
+      "revId": "a2b521cdbfe26628c0e0868ecf706f7ceb9964df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e1677e8_008bc27a",
+        "filename": "framework/tests/util/src/BlockingBluetoothAdapter.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-14T18:45:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2edd1f33_a853e52a",
       "revId": "a2b521cdbfe26628c0e0868ecf706f7ceb9964df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
