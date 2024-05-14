@@ -43,6 +43,10 @@ namespace hci {
 
 const ModuleFactory DistanceMeasurementManager::Factory =
     ModuleFactory([]() { return new DistanceMeasurementManager(); });
+// valid azimuth angle degree value is from 0 to 360.
+const int DistanceMeasurementManager::kInvalidAzimuthAngleDegree = -1;
+// valid altitude angle degree value is from -90 to 90
+const int DistanceMeasurementManager::kInvalidAltitudeAngleDegree = -91;
 static constexpr uint16_t kIllegalConnectionHandle = 0xffff;
 static constexpr uint8_t kTxPowerNotAvailable = 0xfe;
 static constexpr int8_t kRSSIDropOffAt1M = 41;
@@ -1322,10 +1326,10 @@ struct DistanceMeasurementManager::impl {
         address,
         distance * 100,
         distance * 100,
-        -1,
-        -1,
-        -1,
-        -1,
+        kInvalidAzimuthAngleDegree,
+        kInvalidAzimuthAngleDegree,
+        kInvalidAltitudeAngleDegree,
+        kInvalidAltitudeAngleDegree,
         DistanceMeasurementMethod::METHOD_RSSI);
   }
 

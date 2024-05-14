@@ -49,6 +49,10 @@ public class DistanceMeasurementManager {
     private static final int CS_MEDIUM_FREQUENCY_INTERVAL_MS = 3000;
     private static final int CS_HIGH_FREQUENCY_INTERVAL_MS = 1000;
 
+    // sync with system/gd/hic/DistanceMeasurementManager
+    private static final int INVALID_AZIMUTH_ANGLE_DEGREE = -1;
+    private static final int INVALID_ALTITUDE_ANGLE_DEGREE = -91;
+
     private final AdapterService mAdapterService;
     private HandlerThread mHandlerThread;
     DistanceMeasurementNativeInterface mDistanceMeasurementNativeInterface;
@@ -442,9 +446,23 @@ public class DistanceMeasurementManager {
                 + ", centimeter " + centimeter);
         switch (method) {
             case DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_RSSI:
-                DistanceMeasurementResult result = new DistanceMeasurementResult.Builder(
-                        centimeter / 100.0, errorCentimeter / 100.0).build();
-                handleRssiResult(address, result);
+                DistanceMeasurementResult.Builder resultBuilder =
+                        new DistanceMeasurementResult.Builder(
+                                centimeter / 100.0, errorCentimeter / 100.0);
+                if (azimuthAngle != INVALID_AZIMUTH_ANGLE_DEGREE) {
+                    resultBuilder.setAzimuthAngle(azimuthAngle);
+                }
+                if (errorAzimuthAngle != INVALID_AZIMUTH_ANGLE_DEGREE) {
+                    resultBuilder.setErrorAzimuthAngle(errorAzimuthAngle);
+                }
+                if (altitudeAngle != INVALID_ALTITUDE_ANGLE_DEGREE) {
+                    resultBuilder.setAltitudeAngle(altitudeAngle);
+                }
+                if (errorAltitudeAngle != INVALID_ALTITUDE_ANGLE_DEGREE) {
+                    resultBuilder.setErrorAltitudeAngle(errorAltitudeAngle);
+                }
+
+                handleRssiResult(address, resultBuilder.build());
                 break;
             default:
                 Log.w(TAG, "onDistanceMeasurementResult: invalid method " + method);
