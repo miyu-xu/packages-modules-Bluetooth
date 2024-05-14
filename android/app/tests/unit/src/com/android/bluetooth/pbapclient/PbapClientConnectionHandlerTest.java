@@ -81,6 +81,11 @@ public class PbapClientConnectionHandlerTest {
     public void setUp() throws Exception {
         mTargetContext = spy(new ContextWrapper(
                 InstrumentationRegistry.getInstrumentation().getTargetContext()));
+
+        if (Looper.myLooper() == null) {
+            Looper.prepare();
+        }
+
         TestUtils.setAdapterService(mAdapterService);
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
         mService = new PbapClientService(mTargetContext);
@@ -182,5 +187,10 @@ public class PbapClientConnectionHandlerTest {
         final int mask = 0x11;
 
         assertThat(mHandler.isRepositorySupported(mask)).isTrue();
+    }
+
+    @Test
+    public void createAndDisconnectWithoutAddingAccount_doesNotCrash() {
+        mHandler.obtainMessage(PbapClientConnectionHandler.MSG_DISCONNECT).sendToTarget();
     }
 }
