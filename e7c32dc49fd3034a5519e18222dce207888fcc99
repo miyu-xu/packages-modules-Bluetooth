@@ -112,6 +112,30 @@
       },
       "revId": "e7c32dc49fd3034a5519e18222dce207888fcc99",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88b2b49a_6a396f55",
+        "filename": "system/bta/le_audio/hal_verifier_linux.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-05-14T23:56:55Z",
+      "side": 1,
+      "message": "Thanks for the clarification.",
+      "parentUuid": "d3ac866e_10b9ccde",
+      "range": {
+        "startLine": 21,
+        "startChar": 52,
+        "endLine": 21,
+        "endChar": 56
+      },
+      "revId": "e7c32dc49fd3034a5519e18222dce207888fcc99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
