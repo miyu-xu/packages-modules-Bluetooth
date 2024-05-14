@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80ccbaba_1cf2013c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-14T22:16:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6557be73_920844d8",
+      "range": {
+        "startLine": 168,
+        "startChar": 8,
+        "endLine": 169,
+        "endChar": 31
+      },
+      "revId": "8d3949b3fd260feddfa3daf953a690f15da52d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c5e6599_25a2fd8a",
@@ -75,6 +99,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a45c3f4c_9f9feb12",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-14T22:16:55Z",
+      "side": 1,
+      "message": "The order of these events is not fixed. In my recent tests this is the order I see.\nb/340322814",
+      "parentUuid": "4c5e6599_25a2fd8a",
+      "range": {
+        "startLine": 315,
+        "startChar": 0,
+        "endLine": 321,
+        "endChar": 78
+      },
+      "revId": "8d3949b3fd260feddfa3daf953a690f15da52d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65fe4b6b_458e7f66",
@@ -109,6 +157,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9ec518e_fd63bab3",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-14T22:16:55Z",
+      "side": 1,
+      "message": "I want to distinguish it from the test cases. A better place for this utility is outside of the pairing folder. We can move this utility there later.",
+      "parentUuid": "65fe4b6b_458e7f66",
+      "revId": "8d3949b3fd260feddfa3daf953a690f15da52d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c83335e2_e955efa5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-14T22:16:55Z",
+      "side": 1,
+      "message": "You are free to add more features in this utility if you want after initial submission.",
+      "parentUuid": "3c5fc0cf_ad5563b4",
+      "revId": "8d3949b3fd260feddfa3daf953a690f15da52d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea34eaac_4d606836",
@@ -122,6 +206,30 @@
       "writtenOn": "2024-05-14T00:28:50Z",
       "side": 1,
       "message": "unused interface",
+      "range": {
+        "startLine": 51,
+        "startChar": 21,
+        "endLine": 51,
+        "endChar": 35
+      },
+      "revId": "8d3949b3fd260feddfa3daf953a690f15da52d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c78d8302_8c09d984",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-14T22:16:55Z",
+      "side": 1,
+      "message": "As I responded to an earlier comment, this is used in aosp/2987136.",
+      "parentUuid": "ea34eaac_4d606836",
       "range": {
         "startLine": 51,
         "startChar": 21,
@@ -203,6 +311,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5e530bf_92796cb5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-14T22:16:55Z",
+      "side": 1,
+      "message": "inOrder() expects a mock.\n\nI would rather not make changes here unless we know for sure that it is problematic.",
+      "parentUuid": "dc023a0f_74fc8922",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 46
+      },
+      "revId": "8d3949b3fd260feddfa3daf953a690f15da52d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "546af5b4_7a3311e3",
@@ -216,6 +348,30 @@
       "writtenOn": "2024-05-14T00:28:50Z",
       "side": 1,
       "message": "unused parameter as this is always null",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 28
+      },
+      "revId": "8d3949b3fd260feddfa3daf953a690f15da52d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15d86f25_60f1f920",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-14T22:16:55Z",
+      "side": 1,
+      "message": "Used in aosp/2987136",
+      "parentUuid": "546af5b4_7a3311e3",
       "range": {
         "startLine": 74,
         "startChar": 0,
@@ -249,6 +405,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47376c76_c63cb2b2",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-14T22:16:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f3b1539_de8c69d7",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 67
+      },
+      "revId": "8d3949b3fd260feddfa3daf953a690f15da52d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "07ee0bf9_b34321e4",
@@ -262,6 +442,30 @@
       "writtenOn": "2024-05-14T00:28:50Z",
       "side": 1,
       "message": "This should be done only once in constructor",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 149,
+        "endChar": 24
+      },
+      "revId": "8d3949b3fd260feddfa3daf953a690f15da52d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1685c4b9_399ede18",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-14T22:16:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07ee0bf9_b34321e4",
       "range": {
         "startLine": 149,
         "startChar": 0,
