@@ -74,6 +74,30 @@
       },
       "revId": "2aa83c676e2406fd0e6809858e9ffae647ed6732",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e404f60_8d85cc3b",
+        "filename": "system/btif/src/btif_gatt_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-14T23:14:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9db19cc9_c0019561",
+      "range": {
+        "startLine": 209,
+        "startChar": 6,
+        "endLine": 209,
+        "endChar": 12
+      },
+      "revId": "2aa83c676e2406fd0e6809858e9ffae647ed6732",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
