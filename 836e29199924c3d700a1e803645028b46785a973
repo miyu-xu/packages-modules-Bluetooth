@@ -103,6 +103,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9c321a15_a43584f4",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 13
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-14T20:42:16Z",
+      "side": 1,
+      "message": "reopening because it looks like we should be able to connect without bonding",
+      "parentUuid": "bc84453f_4018b533",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 33
+      },
+      "revId": "836e29199924c3d700a1e803645028b46785a973",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "988b26a3_a70af5c0",
         "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
         "patchSetId": 13
