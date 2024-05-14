@@ -1,0 +1,75 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "596f09c7_effabc7a",
+        "filename": "system/stack/eatt/eatt_impl.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-14T17:03:59Z",
+      "side": 1,
+      "message": "L2CAP_LE_RESULT_CONN_OK ?",
+      "range": {
+        "startLine": 155,
+        "startChar": 18,
+        "endLine": 155,
+        "endChar": 19
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4a0cf1a9_f5ffbdd8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/eatt/eatt_impl.h",
+              "range": {
+                "startLine": 155,
+                "startChar": 0,
+                "endLine": 156,
+                "endChar": 0
+              },
+              "replacement": "        .result \u003d L2CAP_LE_RESULT_CONN_OK,\n"
+            },
+            {
+              "path": "system/stack/eatt/eatt_impl.h",
+              "range": {
+                "startLine": 577,
+                "startChar": 0,
+                "endLine": 578,
+                "endChar": 0
+              },
+              "replacement": "        .result \u003d L2CAP_LE_RESULT_CONN_OK,\n"
+            },
+            {
+              "path": "system/stack/eatt/eatt_impl.h",
+              "range": {
+                "startLine": 816,
+                "startChar": 0,
+                "endLine": 817,
+                "endChar": 0
+              },
+              "replacement": "        .result \u003d L2CAP_LE_RESULT_CONN_OK,\n        .mtu \u003d new_mtu,\n        .mps \u003d eatt_dev-\u003erx_mps_};\n"
+            },
+            {
+              "path": "system/stack/eatt/eatt_impl.h",
+              "range": {
+                "startLine": 856,
+                "startChar": 0,
+                "endLine": 857,
+                "endChar": 0
+              },
+              "replacement": "        .result \u003d L2CAP_LE_RESULT_CONN_OK,\n        .mtu \u003d new_mtu,\n        .mps \u003d eatt_dev-\u003erx_mps_};\n"
+            }
+          ]
+        }
+      ],
+      "revId": "ca7057b86e66a827a9736f442186140b0b58c530",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
