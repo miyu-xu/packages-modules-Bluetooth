@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "664e1a3e_cd3b920e",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientConnectionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-05-14T16:15:25Z",
+      "side": 1,
+      "message": "when would this be set to false? Subsequent MSG_DISCONNECT will still result in removing the account.",
+      "revId": "2a8cc881a6dbf480b56c20449a0cdf95760998c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "472d784b_ec14d129",
