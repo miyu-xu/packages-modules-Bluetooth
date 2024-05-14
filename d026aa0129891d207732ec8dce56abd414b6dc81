@@ -144,6 +144,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "28019097_f33d9f84",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-14T06:20:23Z",
+      "side": 1,
+      "message": "shouldn\u0027t this buffer be zero\u0027ed with \"\u003d {}\" every time you start a new SDP search?",
+      "range": {
+        "startLine": 689,
+        "startChar": 63,
+        "endLine": 689,
+        "endChar": 76
+      },
+      "revId": "d026aa0129891d207732ec8dce56abd414b6dc81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "15c2a1c0_0e296ec7",
         "filename": "system/bta/dm/bta_dm_disc.cc",
         "patchSetId": 10
@@ -185,6 +208,47 @@
         "endLine": 707,
         "endChar": 23
       },
+      "revId": "d026aa0129891d207732ec8dce56abd414b6dc81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d21c7e5e_8554a66b",
+        "filename": "system/bta/dm/bta_dm_disc_int.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-14T06:20:23Z",
+      "side": 1,
+      "message": "sdp_db_buffer",
+      "range": {
+        "startLine": 96,
+        "startChar": 10,
+        "endLine": 96,
+        "endChar": 23
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d3901a11_130dcf99",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_disc_int.h",
+              "range": {
+                "startLine": 96,
+                "startChar": 0,
+                "endLine": 97,
+                "endChar": 0
+              },
+              "replacement": "  uint8_t sdp_db_buffer[BTA_DM_SDP_DB_SIZE];  // NOLINT(runtime/arrays)\n"
+            }
+          ]
+        }
+      ],
       "revId": "d026aa0129891d207732ec8dce56abd414b6dc81",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
