@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f97e42f3_e148b4ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-05-14T16:14:26Z",
+      "side": 1,
+      "message": "This was occurring because of erroneous builds where Telephony is off.\n\nThis makes the crash go away and adds predictable log messages for when things go wrong.\n\nLong term, we should figure out the story for this profile when Telephony is \"off.\" We should probably turn the profile off with an error message. This will make CTS fail, which will then make us (and partners) deal with enabling telephony properly in order to enable the profile.",
+      "revId": "56ae3e46eb9452fcdf59a0c23dad34d4faf78e9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
