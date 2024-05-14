@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35e52485_644d1710",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-14T16:46:49Z",
+      "side": 1,
+      "message": "Omair, can you take a look at the Java?",
+      "revId": "1a5a02d4636ae3cf6248421de658ad92fa7c823a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
