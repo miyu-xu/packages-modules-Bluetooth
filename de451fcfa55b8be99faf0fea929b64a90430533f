@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac8800b4_61f7d08c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-05-14T06:03:50Z",
+      "side": 1,
+      "message": "Line over 72 char.",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 76
+      },
+      "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bf41ba1_ceba95e5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-05-14T06:03:50Z",
+      "side": 1,
+      "message": "Defer to Hsin-chen with logic.",
+      "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca41b3f4_84ca4770",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-05-14T06:03:50Z",
+      "side": 1,
+      "message": "Comment. This logic is actually pretty hard to understand\n\nConditionally create a uhid device to exclusively handle telephony inputs. Device creation is skipped if the connected device is incompatible with telephony operations.",
+      "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "503c91d8_56a6a394",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 2267,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-05-14T06:03:50Z",
+      "side": 1,
+      "message": "self.uhid.get(\u0026address).map_or(true, |uhid| !uhid.is_open)",
+      "range": {
+        "startLine": 2258,
+        "startChar": 8,
+        "endLine": 2267,
+        "endChar": 10
+      },
+      "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
