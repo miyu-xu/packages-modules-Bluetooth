@@ -79,6 +79,30 @@
       },
       "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b223fff_7a58e3b7",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 2267,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-05-14T06:06:42Z",
+      "side": 1,
+      "message": "I missed the last line:\n```\nself.uhid.get(\u0026address).map_or(true, |uhid| !uhid.is_open) \n        || interop_insert_call_when_sco_start(address)\n```",
+      "parentUuid": "503c91d8_56a6a394",
+      "range": {
+        "startLine": 2258,
+        "startChar": 8,
+        "endLine": 2267,
+        "endChar": 10
+      },
+      "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
