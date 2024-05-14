@@ -208,6 +208,7 @@ public class LeAudioService extends ProfileService {
     private final LinkedList<BluetoothLeBroadcastSettings> mCreateBroadcastQueue =
             new LinkedList<>();
     boolean mIsSourceStreamMonitorModeEnabled = false;
+    boolean mIsAudioModeChangeListenerRegistered = false;
 
     @VisibleForTesting
     TbsService mTbsService;
@@ -523,9 +524,10 @@ public class LeAudioService extends ProfileService {
         }
         nativeInterface.init(mLeAudioCodecConfig.getCodecConfigOffloading());
 
-        if (leaudioUseAudioModeListener()) {
+        if (leaudioUseAudioModeListener() && !mIsAudioModeChangeListenerRegistered) {
             mAudioManager.addOnModeChangedListener(
                     mContext.getMainExecutor(), mAudioModeChangeListener);
+            mIsAudioModeChangeListenerRegistered = true;
         }
     }
 
@@ -538,8 +540,10 @@ public class LeAudioService extends ProfileService {
         }
 
         mQueuedInCallValue = Optional.empty();
-        if (leaudioUseAudioModeListener()) {
+        /* Don't remove listener if it wasn't add on start */
+        if (leaudioUseAudioModeListener() && mIsAudioModeChangeListenerRegistered) {
             mAudioManager.removeOnModeChangedListener(mAudioModeChangeListener);
+            mIsAudioModeChangeListenerRegistered = false;
         }
 
         mCreateBroadcastQueue.clear();
