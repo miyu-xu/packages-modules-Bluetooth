@@ -40,6 +40,30 @@
       ],
       "revId": "e7c32dc49fd3034a5519e18222dce207888fcc99",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f275983_8e86f8c4",
+        "filename": "system/bta/le_audio/hal_verifier_linux.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-05-14T06:49:36Z",
+      "side": 1,
+      "message": "FYI, if this returns `false` it will trigger an assert:\n\n```\n  log::assert_that(\n      std::move(hal_2_1_verifier).Run(),\n      \"LE Audio Client requires Bluetooth Audio HAL V2.1 at least. Either \"\n      \"disable LE Audio Profile, or update your HAL\");\n```",
+      "parentUuid": "3f36ca0c_4cbe058e",
+      "range": {
+        "startLine": 21,
+        "startChar": 52,
+        "endLine": 21,
+        "endChar": 56
+      },
+      "revId": "e7c32dc49fd3034a5519e18222dce207888fcc99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
