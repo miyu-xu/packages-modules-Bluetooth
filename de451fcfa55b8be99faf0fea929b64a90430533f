@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5e5e99fd_b49f0a20",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-05-14T06:31:38Z",
+      "side": 1,
+      "message": "placing",
+      "range": {
+        "startLine": 9,
+        "startChar": 32,
+        "endLine": 9,
+        "endChar": 40
+      },
+      "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ac8800b4_61f7d08c",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
@@ -19,6 +42,92 @@
         "startChar": 0,
         "endLine": 10,
         "endChar": 76
+      },
+      "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39913dbf_0077ac87",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-05-14T06:31:38Z",
+      "side": 1,
+      "message": "conflicts",
+      "range": {
+        "startLine": 10,
+        "startChar": 59,
+        "endLine": 10,
+        "endChar": 67
+      },
+      "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f37dc54a_e39ee2bb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-05-14T06:31:38Z",
+      "side": 1,
+      "message": "Originally",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 4
+      },
+      "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1edbc25e_38c0de95",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-05-14T06:31:38Z",
+      "side": 1,
+      "message": "requiring",
+      "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf6c41a6_93f9e7e8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-05-14T06:31:38Z",
+      "side": 1,
+      "message": "we restrict the +CIEV workaround removal to...",
+      "range": {
+        "startLine": 18,
+        "startChar": 11,
+        "endLine": 18,
+        "endChar": 47
       },
       "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
@@ -54,6 +163,69 @@
       "writtenOn": "2024-05-14T06:03:50Z",
       "side": 1,
       "message": "Comment. This logic is actually pretty hard to understand\n\nConditionally create a uhid device to exclusively handle telephony inputs. Device creation is skipped if the connected device is incompatible with telephony operations.",
+      "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1cce94d_454077c6",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 728,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-05-14T06:31:38Z",
+      "side": 1,
+      "message": "This looks like not in the scope of this CL. Please do it separately go/small-cls\n\nAlso this is the first time I notice the logic - if addr is in the interop list, UHID will never be created.  I think it\u0027s a reasonable decision, please add comment to explain it in that CL as well.",
+      "range": {
+        "startLine": 727,
+        "startChar": 43,
+        "endLine": 728,
+        "endChar": 44
+      },
+      "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b0e3e5a_d5efe767",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1368,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-05-14T06:31:38Z",
+      "side": 1,
+      "message": "Is this happening on all headsets? How do we test this scenario? run audio recorder and Meet call concurrently?",
+      "range": {
+        "startLine": 1367,
+        "startChar": 76,
+        "endLine": 1368,
+        "endChar": 42
+      },
+      "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0ecb59f_cccba873",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 2250,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-05-14T06:31:38Z",
+      "side": 1,
+      "message": "Use this chance to add thorough explanation to the logic in this function.",
       "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
