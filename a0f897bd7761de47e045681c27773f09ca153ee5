@@ -16,6 +16,52 @@
       "message": "This test is blocking rollout of flag `identity_address_null_if_unknown`, which needs to be rolled out ASAP due to request from DCK. The original test was intended to verify a situation when device address is null, which will not be the case with `identity_address_null_if_unknown` flag enabled and aosp/3075507 already merged.\n\nThe test itself is poorly written and I wanted to find a way to make the test run with bluetooth enabled and correctly seeing if OPP functions work correctly, but after some effort, realized this would take too much time and the flag rollout is urgent. I\u0027ll try to revisit the test after flag is rolled out to see if I can improve on it.",
       "revId": "a0f897bd7761de47e045681c27773f09ca153ee5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "240971be_d068e04b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-14T00:51:52Z",
+      "side": 1,
+      "message": "This will disable the test when the flag is not enabeld.\nPrefer setting the flag to true / false when needed for test with a setFlagRule",
+      "range": {
+        "startLine": 332,
+        "startChar": 0,
+        "endLine": 332,
+        "endChar": 70
+      },
+      "revId": "a0f897bd7761de47e045681c27773f09ca153ee5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "026416a4_30ee22aa",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-14T00:51:52Z",
+      "side": 1,
+      "message": "```\nWanted but not invoked:\nmCallProxy.handlerSendEmptyMessage(\n    \u003cany\u003e,\n    10\n);\n-\u003e at com.android.bluetooth.opp.BluetoothOppTransferTest.oppConnectionReceiver_onReceiveWithActionSdpRecord_withoutSdpRecord(BluetoothOppTransferTest.java:351)\nActually, there were zero interactions with this mock.\n\n\tat com.android.bluetooth.opp.BluetoothOppTransferTest.oppConnectionReceiver_onReceiveWithActionSdpRecord_withoutSdpRecord(BluetoothOppTransferTest.java:351)\n```",
+      "range": {
+        "startLine": 350,
+        "startChar": 7,
+        "endLine": 351,
+        "endChar": 79
+      },
+      "revId": "a0f897bd7761de47e045681c27773f09ca153ee5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
