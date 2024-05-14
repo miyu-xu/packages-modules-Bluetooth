@@ -1,0 +1,275 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6557be73_920844d8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-14T00:28:50Z",
+      "side": 1,
+      "message": "Stopping the intentReceive should perform the verifyNoMoreInteractions too\n\nThis way we don\u0027t forget it elsewhere",
+      "range": {
+        "startLine": 168,
+        "startChar": 8,
+        "endLine": 169,
+        "endChar": 31
+      },
+      "revId": "8d3949b3fd260feddfa3daf953a690f15da52d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c5e6599_25a2fd8a",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-14T00:28:50Z",
+      "side": 1,
+      "message": "You are changing the check order.\n\nI believe the intent are received in the reverse order of what is being check now.\n\nAlso it was checked in ordered fashion before, now it is check not ordered",
+      "range": {
+        "startLine": 315,
+        "startChar": 0,
+        "endLine": 321,
+        "endChar": 78
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9d2eed13_b655c773",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 315,
+                "startChar": 0,
+                "endLine": 324,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+              "range": {
+                "startLine": 368,
+                "startChar": 0,
+                "endLine": 368,
+                "endChar": 0
+              },
+              "replacement": "        // Wait for connection on Android\n        intentReceiver.verifyReceived(\n                hasAction(BluetoothDevice.ACTION_ACL_CONNECTED),\n                hasExtra(BluetoothDevice.EXTRA_TRANSPORT, BluetoothDevice.TRANSPORT_LE));\n\n        // Todo: Unexpected empty ACTION_UUID intent is generated\n        intentReceiver.verifyReceived(hasAction(BluetoothDevice.ACTION_UUID));\n        intentReceiver.verifyNoMoreInteractions();\n\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8d3949b3fd260feddfa3daf953a690f15da52d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65fe4b6b_458e7f66",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-14T00:28:50Z",
+      "side": 1,
+      "message": "Why is this in a \"utils\" folder\n\nBy moving it up to `android.bluetooth.pairing` package, a lot of method can be restricted to package private instead of public.",
+      "revId": "8d3949b3fd260feddfa3daf953a690f15da52d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c5fc0cf_ad5563b4",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-14T00:28:50Z",
+      "side": 1,
+      "message": "I believe aosp/3001338 is still relevant.",
+      "revId": "8d3949b3fd260feddfa3daf953a690f15da52d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea34eaac_4d606836",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-14T00:28:50Z",
+      "side": 1,
+      "message": "unused interface",
+      "range": {
+        "startLine": 51,
+        "startChar": 21,
+        "endLine": 51,
+        "endChar": 35
+      },
+      "revId": "8d3949b3fd260feddfa3daf953a690f15da52d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc023a0f_74fc8922",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-14T00:28:50Z",
+      "side": 1,
+      "message": "I am not sure of the side effect of `MockitoAnnotations.initMocks(this);` in subclass. \nSince we only have one mock here, would it be better to directly mock the class",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 46
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d881c466_23d10b31",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+              "range": {
+                "startLine": 37,
+                "startChar": 0,
+                "endLine": 38,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+              "range": {
+                "startLine": 60,
+                "startChar": 0,
+                "endLine": 61,
+                "endChar": 0
+              },
+              "replacement": "    private BroadcastReceiver mReceiver;\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+              "range": {
+                "startLine": 85,
+                "startChar": 0,
+                "endLine": 86,
+                "endChar": 0
+              },
+              "replacement": "        mReceiver \u003d new BroadcastReceiver() {\n            @Override\n            public void onReceive(Context context, Intent intent) {\n                if (mIntentListener \u003d\u003d null) {\n                    return;\n                }\n\n                mIntentListener.onReceive(intent);\n            }\n        };\n"
+            },
+            {
+              "path": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+              "range": {
+                "startLine": 172,
+                "startChar": 0,
+                "endLine": 191,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "8d3949b3fd260feddfa3daf953a690f15da52d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "546af5b4_7a3311e3",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-14T00:28:50Z",
+      "side": 1,
+      "message": "unused parameter as this is always null",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 28
+      },
+      "revId": "8d3949b3fd260feddfa3daf953a690f15da52d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f3b1539_de8c69d7",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-14T00:28:50Z",
+      "side": 1,
+      "message": "Throw instead ?",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 67
+      },
+      "revId": "8d3949b3fd260feddfa3daf953a690f15da52d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07ee0bf9_b34321e4",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/utils/IntentReceiver.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-14T00:28:50Z",
+      "side": 1,
+      "message": "This should be done only once in constructor",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 149,
+        "endChar": 24
+      },
+      "revId": "8d3949b3fd260feddfa3daf953a690f15da52d47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
