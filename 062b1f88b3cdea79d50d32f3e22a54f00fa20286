@@ -64,6 +64,30 @@
       },
       "revId": "062b1f88b3cdea79d50d32f3e22a54f00fa20286",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f71ee68_57efc931",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-14T01:01:47Z",
+      "side": 1,
+      "message": "I think the discussion is the philosophical discussion are we sending or writing ?",
+      "parentUuid": "84af1dd7_c46d6072",
+      "range": {
+        "startLine": 480,
+        "startChar": 25,
+        "endLine": 480,
+        "endChar": 30
+      },
+      "revId": "062b1f88b3cdea79d50d32f3e22a54f00fa20286",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
