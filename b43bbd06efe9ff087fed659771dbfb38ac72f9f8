@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2a65432_04f7d0d7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-14T04:01:19Z",
+      "side": 1,
+      "message": "pandora + bumble + avatar passed in presubmit",
+      "revId": "b43bbd06efe9ff087fed659771dbfb38ac72f9f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
