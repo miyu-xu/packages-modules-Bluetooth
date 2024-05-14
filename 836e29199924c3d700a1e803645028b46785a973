@@ -77,6 +77,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc84453f_4018b533",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 13
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-14T20:28:37Z",
+      "side": 1,
+      "message": "I believe we do.  The tests fail if we don\u0027t bond",
+      "parentUuid": "9fc2e8ef_51f1c44b",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 33
+      },
+      "revId": "836e29199924c3d700a1e803645028b46785a973",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "988b26a3_a70af5c0",
@@ -189,6 +213,30 @@
           ]
         }
       ],
+      "revId": "836e29199924c3d700a1e803645028b46785a973",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25afc825_9fa157a1",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 13
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-14T20:28:37Z",
+      "side": 1,
+      "message": "no, we should bond in both cases",
+      "parentUuid": "3829b5df_8cf36f7b",
+      "range": {
+        "startLine": 130,
+        "startChar": 8,
+        "endLine": 130,
+        "endChar": 18
+      },
       "revId": "836e29199924c3d700a1e803645028b46785a973",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },

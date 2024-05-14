@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d01dd61_6dd7bbd7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-14T20:28:37Z",
+      "side": 1,
+      "message": "talked to you offline about this, thank you for helping me understand.  Since we\u0027re keeping the bumblebluetooth tests so we can test specific API behavior, I\u0027m resolving this comment",
+      "parentUuid": "ae3466fd_5dbb3d84",
+      "revId": "031362f9bb440eba0660da4b53244770c90d5275",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9fa6e218_e3bcc8fc",
