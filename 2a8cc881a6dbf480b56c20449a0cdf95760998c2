@@ -74,6 +74,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "addd2f85_01a0b696",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientConnectionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-05-14T17:43:28Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "12734051_59890282",
+      "revId": "2a8cc881a6dbf480b56c20449a0cdf95760998c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "472d784b_ec14d129",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientConnectionHandlerTest.java",
         "patchSetId": 1
