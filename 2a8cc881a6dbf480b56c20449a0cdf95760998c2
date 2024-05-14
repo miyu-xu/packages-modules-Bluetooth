@@ -111,6 +111,30 @@
       },
       "revId": "2a8cc881a6dbf480b56c20449a0cdf95760998c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbbc4fcd_8e81ae5b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientConnectionHandlerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-14T20:15:44Z",
+      "side": 1,
+      "message": "Your test will fail mostly during tearDown() as the message is async. \n\nInstead, you may want to use a android.os.test.TestLooper; when initializing PbapClientConnectionHandler and step through these messages manually.",
+      "parentUuid": "472d784b_ec14d129",
+      "range": {
+        "startLine": 193,
+        "startChar": 16,
+        "endLine": 193,
+        "endChar": 69
+      },
+      "revId": "2a8cc881a6dbf480b56c20449a0cdf95760998c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
