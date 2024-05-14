@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48705172_f23812f1",
+        "filename": "system/audio_hal_interface/aidl/audio_ctrl_ack.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-14T21:51:31Z",
+      "side": 1,
+      "message": "nit: is this only for BluetoothAudioStatus?",
+      "range": {
+        "startLine": 21,
+        "startChar": 10,
+        "endLine": 21,
+        "endChar": 31
+      },
+      "revId": "2b1add64d4323d1e8b8afe6e86af607f11e415a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec9a562d_e0c07705",
+        "filename": "system/audio_hal_interface/le_audio_software_unittest.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 500,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-14T21:51:31Z",
+      "side": 1,
+      "message": "for non-FAIL() log, could you use \"log::info\" and \"log::warn\" and \"log::error\"?",
+      "range": {
+        "startLine": 500,
+        "startChar": 4,
+        "endLine": 500,
+        "endChar": 16
+      },
+      "revId": "2b1add64d4323d1e8b8afe6e86af607f11e415a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
