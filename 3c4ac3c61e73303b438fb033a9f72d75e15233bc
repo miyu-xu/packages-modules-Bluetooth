@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6feb3e95_58e45961",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-05-14T06:20:16Z",
+      "side": 1,
+      "message": "Howard, could you please help to review this change? I was wondering if this is required from UI perspective.",
+      "revId": "3c4ac3c61e73303b438fb033a9f72d75e15233bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
