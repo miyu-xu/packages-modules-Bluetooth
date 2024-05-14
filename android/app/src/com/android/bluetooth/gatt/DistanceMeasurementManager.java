@@ -442,8 +442,14 @@ public class DistanceMeasurementManager {
                 + ", centimeter " + centimeter);
         switch (method) {
             case DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_RSSI:
-                DistanceMeasurementResult result = new DistanceMeasurementResult.Builder(
-                        centimeter / 100.0, errorCentimeter / 100.0).build();
+                DistanceMeasurementResult result =
+                    new DistanceMeasurementResult.Builder(
+                            centimeter / 100.0, errorCentimeter / 100.0)
+                        .setAzimuthAngle(azimuthAngle)
+                        .setErrorAzimuthAngle(errorAzimuthAngle)
+                        .setAltitudeAngle(altitudeAngle)
+                        .setErrorAltitudeAngle(errorAltitudeAngle)
+                        .build();
                 handleRssiResult(address, result);
                 break;
             default:
