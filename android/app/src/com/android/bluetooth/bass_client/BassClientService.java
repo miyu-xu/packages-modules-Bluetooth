@@ -1565,13 +1565,9 @@ public class BassClientService extends ProfileService {
             mHandler.removeMessages(MESSAGE_SYNC_TIMEOUT);
             // when starting scan, clear the previously cached broadcast scan results
             mCachedBroadcasts.clear();
-            if (!leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
-                // clear previous sources notify flag before scanning new result
-                // this is to make sure the active sources are notified even if already synced
-                if (mPeriodicAdvertisementResultMap != null) {
-                    clearNotifiedFlags();
-                }
-            }
+            // clear previous sources notify flag before scanning new result
+            // this is to make sure the active sources are notified even if already synced
+            clearNotifiedFlags();
             ScanSettings settings = new ScanSettings.Builder().setCallbackType(
                     ScanSettings.CALLBACK_TYPE_ALL_MATCHES)
                     .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
