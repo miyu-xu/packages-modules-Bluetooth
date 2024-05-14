@@ -19,6 +19,7 @@
 #include <com_android_bluetooth_flags.h>
 #include <math.h>
 
+#include <chrono>
 #include <complex>
 #include <unordered_map>
 
@@ -1318,6 +1319,10 @@ struct DistanceMeasurementManager::impl {
     int8_t rssi = complete_view.GetRssi();
     double pow_value = (remote_tx_power - rssi - kRSSIDropOffAt1M) / 20.0;
     double distance = pow(10.0, pow_value);
+
+    using namespace std::chrono;
+    long elapsedRealtimeNanos =
+        duration_cast<nanoseconds>(steady_clock::now().time_since_epoch()).count();
     distance_measurement_callbacks_->OnDistanceMeasurementResult(
         address,
         distance * 100,
@@ -1326,6 +1331,7 @@ struct DistanceMeasurementManager::impl {
         -1,
         -1,
         -1,
+        elapsedRealtimeNanos,
         DistanceMeasurementMethod::METHOD_RSSI);
   }
 

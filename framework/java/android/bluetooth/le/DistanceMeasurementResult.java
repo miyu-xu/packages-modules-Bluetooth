@@ -20,6 +20,7 @@ import android.annotation.FlaggedApi;
 import android.annotation.FloatRange;
 import android.annotation.IntDef;
 import android.annotation.NonNull;
+import android.annotation.SuppressLint;
 import android.annotation.SystemApi;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -140,6 +141,7 @@ public final class DistanceMeasurementResult implements Parcelable {
     private final double mConfidenceLevel;
     private final int mDetectedAttackLevel;
     private final double mVelocityMetersPerSecond;
+    private final long mElapsedRealtimeNanos;
 
     private DistanceMeasurementResult(
             double meters,
@@ -151,7 +153,8 @@ public final class DistanceMeasurementResult implements Parcelable {
             double delaySpreadMeters,
             double confidenceLevel,
             @Nadm int detectedAttackLevel,
-            double velocityMetersPerSecond) {
+            double velocityMetersPerSecond,
+            long elapsedRealtimeNanos) {
         mMeters = meters;
         mErrorMeters = errorMeters;
         mAzimuthAngle = azimuthAngle;
@@ -162,6 +165,7 @@ public final class DistanceMeasurementResult implements Parcelable {
         mConfidenceLevel = confidenceLevel;
         mDetectedAttackLevel = detectedAttackLevel;
         mVelocityMetersPerSecond = velocityMetersPerSecond;
+        mElapsedRealtimeNanos = elapsedRealtimeNanos;
     }
 
     /**
@@ -313,6 +317,18 @@ public final class DistanceMeasurementResult implements Parcelable {
     }
 
     /**
+     * Timestamp of this distance measurement in time since boot nanos in the same namespace as
+     * {@link SystemClock#elapsedRealtimeNanos()}
+     *
+     * @return timestamp of ranging measurement in nanoseconds
+     * @hide
+     */
+    @SuppressLint("MethodNameUnits")
+    public long getElapsedRealtimeNanos() {
+        return mElapsedRealtimeNanos;
+    }
+
+    /**
      * {@inheritDoc}
      *
      * @hide
@@ -339,6 +355,7 @@ public final class DistanceMeasurementResult implements Parcelable {
         out.writeDouble(mConfidenceLevel);
         out.writeInt(mDetectedAttackLevel);
         out.writeDouble(mVelocityMetersPerSecond);
+        out.writeLong(mElapsedRealtimeNanos);
     }
 
     /**
@@ -367,6 +384,8 @@ public final class DistanceMeasurementResult implements Parcelable {
                 + mDetectedAttackLevel
                 + ", velocityMetersPerSecond: "
                 + mVelocityMetersPerSecond
+                + ", elapsedRealtimeNanos"
+                + mElapsedRealtimeNanos
                 + "]";
     }
 
@@ -375,16 +394,20 @@ public final class DistanceMeasurementResult implements Parcelable {
             new Parcelable.Creator<DistanceMeasurementResult>() {
                 @Override
                 public @NonNull DistanceMeasurementResult createFromParcel(@NonNull Parcel in) {
-                    return new Builder(in.readDouble(), in.readDouble())
-                            .setAzimuthAngle(in.readDouble())
-                            .setErrorAzimuthAngle(in.readDouble())
-                            .setAltitudeAngle(in.readDouble())
-                            .setErrorAltitudeAngle(in.readDouble())
-                            .setDelaySpreadMeters(in.readDouble())
-                            .setConfidenceLevel(in.readDouble())
-                            .setDetectedAttackLevel(in.readInt())
-                            .setVelocityMetersPerSecond(in.readDouble())
-                            .build();
+                    Builder builder =
+                            new Builder(in.readDouble(), in.readDouble())
+                                    .setAzimuthAngle(in.readDouble())
+                                    .setErrorAzimuthAngle(in.readDouble())
+                                    .setAltitudeAngle(in.readDouble())
+                                    .setErrorAltitudeAngle(in.readDouble())
+                                    .setDelaySpreadMeters(in.readDouble())
+                                    .setConfidenceLevel(in.readDouble())
+                                    .setDetectedAttackLevel(in.readInt())
+                                    .setVelocityMetersPerSecond(in.readDouble());
+                    if (in.dataAvail() >= Long.BYTES) {
+                        builder.setElapsedRealtimeNanos(in.readLong());
+                    }
+                    return builder.build();
                 }
 
                 @Override
@@ -410,6 +433,7 @@ public final class DistanceMeasurementResult implements Parcelable {
         private double mConfidenceLevel = Double.NaN;
         private int mDetectedAttackLevel = NADM_UNKNOWN;
         private double mVelocityMetersPerSecond = Double.NaN;
+        private long mElapsedRealtimeNanos = -1L;
 
         /**
          * Constructor of the Builder.
@@ -588,6 +612,17 @@ public final class DistanceMeasurementResult implements Parcelable {
         }
 
         /**
+         * Set the elapsed realtime in nanoseconds when the distance measurement occurred
+         *
+         * @param elapsedRealtimeNanos time the distance measurement occurred
+         * @hide
+         */
+        public Builder setElapsedRealtimeNanos(long elapsedRealtimeNanos) {
+            mElapsedRealtimeNanos = elapsedRealtimeNanos;
+            return this;
+        }
+
+        /**
          * Builds the {@link DistanceMeasurementResult} object.
          *
          * @throws IllegalStateException if meters, error, or confidence are not set
@@ -606,7 +641,8 @@ public final class DistanceMeasurementResult implements Parcelable {
                     mDelaySpreadMeters,
                     mConfidenceLevel,
                     mDetectedAttackLevel,
-                    mVelocityMetersPerSecond);
+                    mVelocityMetersPerSecond,
+                    mElapsedRealtimeNanos);
         }
     }
 }
