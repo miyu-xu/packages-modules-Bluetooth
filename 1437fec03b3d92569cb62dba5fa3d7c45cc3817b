@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41b4a07f_7b7ee95c",
+        "filename": "system/stack/rfcomm/rfc_l2cap_if.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-14T20:28:05Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Build Warnings: call to consteval function \u0027fmt::basic_format_string\u003cchar, (unnamed enum at packages/modules/Bluetooth/system/stack/include/bt_psm_types.h:19:1)\u003e::basic_format_string\u003cchar[52], 0\u003e\u0027 is not a constant expression\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    call to consteval function \u0027fmt::basic_format_string\u003cchar, (unnamed enum at packages/modules/Bluetooth/system/stack/include/bt_psm_types.h:19:1)\u003e::basic_format_string\u003cchar[52], 0\u003e\u0027 is not a constant expression\n       79 |     log::error(\"Unable to register with L2CAP profile RFCOMM psm:{}\",\n          |                ^\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P74593248/targets/cf_x86_64_phone-trunk_staging-userdebug, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the git_main branch.",
+      "range": {
+        "startLine": 79,
+        "startChar": 15,
+        "endLine": 79,
+        "endChar": 69
+      },
+      "revId": "1437fec03b3d92569cb62dba5fa3d7c45cc3817b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
