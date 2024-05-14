@@ -96,6 +96,18 @@ public final class DistanceMeasurementMethod implements Parcelable {
     }
 
     /**
+     * Id of the method used for {@link DistanceMeasurementParams.Builder#setMethodId(int)}
+     *
+     * @return id of the method
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING_25Q1_APIS)
+    @SystemApi
+    public @DistanceMeasurementMethodId int getMethodId() {
+        return mId;
+    }
+
+    /**
      * Checks whether the azimuth angle is supported for this method.
      *
      * @return true if azimuth angle is supported, false otherwise
