@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05dd6024_e644691d",
+        "filename": "system/btif/src/btif_gatt_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-14T17:09:19Z",
+      "side": 1,
+      "message": "In a test, should these all be EXPECT or ASSERT calls to make sure the test fails early if it fails?",
+      "range": {
+        "startLine": 209,
+        "startChar": 6,
+        "endLine": 209,
+        "endChar": 12
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "bde5a7c0_85eb5ba6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_gatt_test.cc",
+              "range": {
+                "startLine": 209,
+                "startChar": 0,
+                "endLine": 210,
+                "endChar": 0
+              },
+              "replacement": "      EXPECT_EQ(GATT_Disconnect(test_cb.conn_id), BT_STATUS_SUCCESS);\n"
+            },
+            {
+              "path": "system/btif/src/btif_gatt_test.cc",
+              "range": {
+                "startLine": 223,
+                "startChar": 0,
+                "endLine": 226,
+                "endChar": 0
+              },
+              "replacement": "      EXPECT_EQ(GATTC_Discover(test_cb.conn_id,\n                               static_cast\u003ctGATT_DISC_TYPE\u003e(params-\u003eu1),\n                               params-\u003eu2, params-\u003eu3, *params-\u003euuid1),\n                BT_STATUS_SUCCESS);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2aa83c676e2406fd0e6809858e9ffae647ed6732",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
