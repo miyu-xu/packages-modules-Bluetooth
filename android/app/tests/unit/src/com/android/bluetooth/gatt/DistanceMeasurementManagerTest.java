@@ -175,18 +175,24 @@ public class DistanceMeasurementManagerTest {
                 DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_RSSI);
         verify(mCallback).onStarted(mDevice);
 
-        mDistanceMeasurementManager.onDistanceMeasurementResult(IDENTITY_ADDRESS,
-                100, 100, -1, -1, -1, -1,
+        mDistanceMeasurementManager.onDistanceMeasurementResult(
+                IDENTITY_ADDRESS,
+                100,
+                100,
+                180,
+                10,
+                60,
+                0,
                 DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_RSSI);
         ArgumentCaptor<DistanceMeasurementResult> result =
                 ArgumentCaptor.forClass(DistanceMeasurementResult.class);
         verify(mCallback, times(1)).onResult(eq(mDevice), result.capture());
         assertThat(result.getValue().getResultMeters()).isEqualTo(1.00);
         assertThat(result.getValue().getErrorMeters()).isEqualTo(1.00);
-        assertThat(result.getValue().getAzimuthAngle()).isEqualTo(Double.NaN);
-        assertThat(result.getValue().getErrorAzimuthAngle()).isEqualTo(Double.NaN);
-        assertThat(result.getValue().getAltitudeAngle()).isEqualTo(Double.NaN);
-        assertThat(result.getValue().getErrorAltitudeAngle()).isEqualTo(Double.NaN);
+        assertThat(result.getValue().getAzimuthAngle()).isEqualTo(180);
+        assertThat(result.getValue().getErrorAzimuthAngle()).isEqualTo(10);
+        assertThat(result.getValue().getAltitudeAngle()).isEqualTo(60);
+        assertThat(result.getValue().getErrorAltitudeAngle()).isEqualTo(0);
     }
 
     @Test
@@ -201,8 +207,14 @@ public class DistanceMeasurementManagerTest {
                 DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_RSSI, false);
         verify(mDistanceMeasurementNativeInterface).stopDistanceMeasurement(
             IDENTITY_ADDRESS, DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_RSSI);
-        mDistanceMeasurementManager.onDistanceMeasurementResult(IDENTITY_ADDRESS,
-                100, 100, -1, -1, -1, -1,
+        mDistanceMeasurementManager.onDistanceMeasurementResult(
+                IDENTITY_ADDRESS,
+                100,
+                100,
+                180,
+                10,
+                0,
+                0,
                 DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_RSSI);
         DistanceMeasurementResult result = new DistanceMeasurementResult.Builder(
                 1.00, 1.00).build();

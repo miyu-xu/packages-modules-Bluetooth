@@ -82,6 +82,8 @@ class DistanceMeasurementManager : public bluetooth::Module {
   void HandleRemoteData(const Address& address, const std::vector<uint8_t>& raw_data);
 
   static const ModuleFactory Factory;
+  static const int kInvalidAzimuthAngleDegree;
+  static const int kInvalidAltitudeAngleDegree;
 
  protected:
   void ListDependencies(ModuleList* list) const override;
