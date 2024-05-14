@@ -135,6 +135,30 @@
       },
       "revId": "2a8cc881a6dbf480b56c20449a0cdf95760998c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82aff507_28624847",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientConnectionHandlerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-05-14T20:17:13Z",
+      "side": 1,
+      "message": "Let me give that I try and make sure. In my local testing, I didn\u0027t get any errors, but I think it definitely can happen.\n\nGood catch!",
+      "parentUuid": "bbbc4fcd_8e81ae5b",
+      "range": {
+        "startLine": 193,
+        "startChar": 16,
+        "endLine": 193,
+        "endChar": 69
+      },
+      "revId": "2a8cc881a6dbf480b56c20449a0cdf95760998c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
