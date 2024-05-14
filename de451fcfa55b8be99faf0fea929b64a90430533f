@@ -169,6 +169,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d481e2e3_63984ad4",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-05-14T07:19:29Z",
+      "side": 1,
+      "message": "Just discussed with Whale offline. We could simplify it to just:\n\n```\nif self.phone_ops_enabled {\n  self.uhid_create(addr);\n}\n```\n\nThe incompatible devices can still use the feature, although we don\u0027t guarantee full experience.",
+      "parentUuid": "ca41b3f4_84ca4770",
+      "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a1cce94d_454077c6",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 3
