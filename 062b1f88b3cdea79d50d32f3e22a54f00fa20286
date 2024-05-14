@@ -88,6 +88,30 @@
       },
       "revId": "062b1f88b3cdea79d50d32f3e22a54f00fa20286",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37616bcc_5ff3d5b5",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-14T20:18:39Z",
+      "side": 1,
+      "message": "When I saw \"write peer CID\" I thought we were trying to set the CID to a new value.",
+      "parentUuid": "2f71ee68_57efc931",
+      "range": {
+        "startLine": 480,
+        "startChar": 25,
+        "endLine": 480,
+        "endChar": 30
+      },
+      "revId": "062b1f88b3cdea79d50d32f3e22a54f00fa20286",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
