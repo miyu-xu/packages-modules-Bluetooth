@@ -1,0 +1,49 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1592c0b9_a6d7ada5",
+        "filename": "system/stack/smp/smp_l2c.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-14T20:30:46Z",
+      "side": 1,
+      "message": "L2CAP_SMP_CID is constant, should we print it?",
+      "fixSuggestions": [
+        {
+          "fixId": "59745cf1_b896adb4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/smp/smp_l2c.cc",
+              "range": {
+                "startLine": 78,
+                "startChar": 0,
+                "endLine": 80,
+                "endChar": 0
+              },
+              "replacement": "    log::error(\"Unable to register with L2CAP fixed channel profile SMP\");\n"
+            },
+            {
+              "path": "system/stack/smp/smp_l2c.cc",
+              "range": {
+                "startLine": 86,
+                "startChar": 0,
+                "endLine": 89,
+                "endChar": 0
+              },
+              "replacement": "    log::error(\"Unable to register with L2CAP fixed channel profile SMP_BR\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "fc03ed5d68c81cdb1c27b74ac0b7d69775ceadb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
