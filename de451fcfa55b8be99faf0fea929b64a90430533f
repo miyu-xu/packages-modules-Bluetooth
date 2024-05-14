@@ -103,6 +103,30 @@
       },
       "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2042b70f_0e907ed2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 2267,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-05-14T06:29:55Z",
+      "side": 1,
+      "message": "I feel like this style actually decreases the readability.",
+      "parentUuid": "4b223fff_7a58e3b7",
+      "range": {
+        "startLine": 2258,
+        "startChar": 8,
+        "endLine": 2267,
+        "endChar": 10
+      },
+      "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
