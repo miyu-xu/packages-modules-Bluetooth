@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c3a60ad_bbdb13e5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-14T17:59:27Z",
+      "side": 1,
+      "message": "In the meantime, I needed to mock VendorSpecificManager to be able to test the BQR events.  Could you update this CL to remove those?",
+      "revId": "839d16017763010c6a729215ef53d6707435924c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
