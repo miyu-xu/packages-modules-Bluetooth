@@ -625,6 +625,35 @@ TEST_F(CodecManagerTestHost, test_init) {
   ASSERT_EQ(codec_manager, CodecManager::GetInstance());
 }
 
+TEST_F(CodecManagerTestHost, test_audio_session_update) {
+  ASSERT_EQ(codec_manager, CodecManager::GetInstance());
+  LeAudioSourceAudioHalClient unicast_source;
+  LeAudioSinkAudioHalClient unicast_sink;
+  LeAudioSourceAudioHalClient broadcast_source;
+
+  ASSERT_TRUE(codec_manager->UpdateActiveUnicastAudioHalClient(
+      &unicast_source, &unicast_sink, true));
+  ASSERT_FALSE(codec_manager->UpdateActiveUnicastAudioHalClient(
+      &unicast_source, &unicast_sink, true));
+  ASSERT_TRUE(codec_manager->UpdateActiveUnicastAudioHalClient(
+      &unicast_source, &unicast_sink, false));
+  ASSERT_TRUE(codec_manager->UpdateActiveUnicastAudioHalClient(&unicast_source,
+                                                               nullptr, true));
+  ASSERT_TRUE(codec_manager->UpdateActiveUnicastAudioHalClient(
+      nullptr, &unicast_sink, true));
+  ASSERT_FALSE(codec_manager->UpdateActiveUnicastAudioHalClient(&unicast_source,
+                                                                nullptr, true));
+  ASSERT_FALSE(codec_manager->UpdateActiveUnicastAudioHalClient(
+      nullptr, &unicast_sink, true));
+
+  ASSERT_TRUE(codec_manager(UpdateActiveBroadcastAudioHalClient(&broadcast_source, true));
+  ASSERT_TRUE(codec_manager(UpdateActiveBroadcastAudioHalClient(&broadcast_source, false));
+  ASSERT_TRUE(codec_manager(UpdateActiveBroadcastAudioHalClient(&broadcast_source, true));
+  ASSERT_FALSE(codec_manager(UpdateActiveBroadcastAudioHalClient(&broadcast_source, true));
+  ASSERT_FALSE(codec_manager(UpdateActiveBroadcastAudioHalClient(&unicast_source, true));
+  ASSERT_FALSE(codec_manager(UpdateActiveBroadcastAudioHalClient(&unicast_source, false));
+}
+
 TEST_F(CodecManagerTestHost, test_start) {
   EXPECT_CALL(legacy_hci_mock_,
               ConfigureDataPath(hci_data_direction_t::HOST_TO_CONTROLLER,

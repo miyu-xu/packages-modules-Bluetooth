@@ -204,6 +204,88 @@ struct codec_manager_impl {
     }
   }
 
+  bool UpdateActiveUnicastAudioHalClient(
+      LeAudioSourceAudioHalClient* source_unicast_client,
+      LeAudioSinkAudioHalClient* sink_unicast_client, bool is_active) {
+    log::debug("local_source: {}, local_sink: {}, is_active: {}",
+               fmt::ptr(source_unicast_client), fmt::ptr(sink_unicast_client),
+               is_active);
+
+    if (is_active) {
+      if (unicast_local_source_hal_client != nullptr) {
+        log::error("Trying to overriding previous source hal client {}",
+                   fmt::ptr(unicast_local_source_hal_client));
+        return false;
+      }
+
+      if (unicast_local_sink_hal_client != nullptr) {
+        log::error("Overriding previous sink hal client {}",
+                   fmt::ptr(unicast_local_sink_hal_client));
+        return false;
+      }
+
+      unicast_local_source_hal_client = source_unicast_client;
+      unicast_local_sink_hal_client = sink_unicast_client;
+
+      // TODO determine if use_aidl_extensions should be set here
+
+      return true;
+    }
+
+    if (source_unicast_client != unicast_local_source_hal_client) {
+      log::error("local source session does not match {} != {}",
+                 fmt::ptr(source_unicast_client),
+                 fmt::ptr(unicast_local_source_hal_client));
+      return false;
+    }
+
+    if (sink_unicast_client != unicast_local_sink_hal_client) {
+      log::error("local source session does not match {} != {}",
+                 fmt::ptr(sink_unicast_client),
+                 fmt::ptr(unicast_local_sink_hal_client));
+      return false;
+    }
+
+    unicast_local_sink_hal_client = nullptr;
+    unicast_local_source_hal_client = nullptr;
+
+    if (broadcast_local_source_hal_client == nullptr) {
+      use_aidl_extensions = false;
+    }
+
+    return true;
+  }
+
+  bool UpdateActiveBroadcastAudioHalClient(
+      LeAudioSourceAudioHalClient* source_broadcast_client, bool is_active) {
+    log::debug("local_source: {},is_active: {}",
+               fmt::ptr(source_broadcast_client), is_active);
+    if (is_active) {
+      if (broadcast_local_source_hal_client != nullptr) {
+        log::error(" Trying to override previous source hal client {}",
+                   fmt::ptr(broadcast_local_source_hal_client));
+        return false;
+      }
+      broadcast_local_source_hal_client = source_broadcast_client;
+      return;
+    }
+
+    if (source_broadcast_client != broadcast_local_source_hal_client) {
+      log::error("local source session does not match {} != {}",
+                 fmt::ptr(source_broadcast_client),
+                 fmt::ptr(broadcast_local_source_hal_client));
+      return false;
+    }
+
+    broadcast_local_source_hal_client = false;
+
+    if (unicast_local_sink_hal_client == nullptr &&
+        unicast_local_source_hal_client == nullptr) {
+      use_aidl_extensions = false;
+    }
+    return true;
+  }
+
   AudioSetConfigurations GetSupportedCodecConfigurations(
       const CodecManager::UnicastConfigurationRequirements& requirements)
       const {
@@ -945,6 +1027,15 @@ struct codec_manager_impl {
   std::vector<btle_audio_codec_config_t> codec_input_capa = {};
   std::vector<btle_audio_codec_config_t> codec_output_capa = {};
   int broadcast_target_config = -1;
+
+  LeAudioSourceAudioHalClient* unicast_local_source_hal_client = nullptr;
+  LeAudioSinkAudioHalClient* unicast_local_sink_hal_client = nullptr;
+  LeAudioSourceAudioHalClient* broadcast_local_source_hal_client = nullptr;
+
+  /* Inidicator to use aidl_extensions feature. It will be used by the codec
+   * manager when codec implementation is different then CodecLocation::HOST
+   */
+  bool use_aidl_extensions = false;
 };
 
 std::ostream& operator<<(
@@ -1031,6 +1122,25 @@ void CodecManager::UpdateActiveAudioConfig(
   if (pimpl_->IsRunning())
     pimpl_->codec_manager_impl_->UpdateActiveAudioConfig(
         stream_params, delays_ms, update_receiver);
+}
+
+bool CodecManager::UpdateActiveUnicastAudioHalClient(
+    LeAudioSourceAudioHalClient* source_unicast_client,
+    LeAudioSinkAudioHalClient* sink_unicast_client, bool is_active) {
+  if (pimpl_->IsRunning()) {
+    return pimpl_->codec_manager_impl_->UpdateActiveUnicastAudioHalClient(
+        source_unicast_client, sink_unicast_client, is_active);
+  }
+  return false;
+}
+
+bool CodecManager::UpdateActiveBroadcastAudioHalClient(
+    LeAudioSourceAudioHalClient* source_broadcast_client, bool is_active) {
+  if (pimpl_->IsRunning()) {
+    return pimpl_->codec_manager_impl_->UpdateActiveBroadcastAudioHalClient(
+        source_broadcast_client, is_active);
+  }
+  return false;
 }
 
 std::unique_ptr<AudioSetConfiguration> CodecManager::GetCodecConfig(
