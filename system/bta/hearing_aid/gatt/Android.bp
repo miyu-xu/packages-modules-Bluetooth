@@ -1,0 +1,25 @@
+rust_ffi_static {
+    name: "libbluetooth_gatt_rs",
+    crate_name: "bluetooth_gatt",
+    srcs: [
+        "src/lib.rs",
+
+        ":libbluetooth_gatt_att_packets",
+    ],
+    rustlibs: [
+        "libasync_stream",
+        "libbytes",
+        "libfutures",
+        "liblog_rust",
+        "libpdl_runtime",
+        "libthiserror",
+    ],
+}
+
+genrule {
+    name: "libbluetooth_gatt_att_packets",
+    cmd: "$(location :pdlc) --output-format rust --custom-field super::AttributeHandle $(in) > $(out)",
+    tools: [":pdlc"],
+    srcs: ["att.pdl"],
+    out: ["att_packets.rs"],
+}
