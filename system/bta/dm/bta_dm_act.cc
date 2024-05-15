@@ -312,8 +312,12 @@ void bta_dm_disable() {
   /* disable all active subsystems */
   bta_sys_disable();
 
-  BTM_SetDiscoverability(BTM_NON_DISCOVERABLE);
-  BTM_SetConnectability(BTM_NON_CONNECTABLE);
+  if (BTM_SetDiscoverability(BTM_NON_DISCOVERABLE) != BTM_SUCCESS) {
+    log::warn("Unable to disable classic BR/EDR discoverability");
+  }
+  if (BTM_SetConnectability(BTM_NON_CONNECTABLE) != BTM_SUCCESS) {
+    log::warn("Unable to disable classic BR/EDR connectability");
+  }
 
   bta_dm_disable_pm();
   if (com::android::bluetooth::flags::separate_service_and_device_discovery()) {
@@ -436,8 +440,14 @@ bool BTA_DmSetVisibility(bt_scan_mode_t mode) {
       return false;
   }
 
-  BTM_SetDiscoverability(disc_mode_param);
-  BTM_SetConnectability(conn_mode_param);
+  if (BTM_SetDiscoverability(disc_mode_param) != BTM_SUCCESS) {
+    log::warn("Unable to set classic BR/EDR discoverability 0x{:04x}",
+              disc_mode_param);
+  }
+  if (BTM_SetConnectability(conn_mode_param) != BTM_SUCCESS) {
+    log::warn("Unable to set classic BR/EDR connectability 0x{:04x}",
+              conn_mode_param);
+  }
   return true;
 }
 void bta_dm_process_remove_device_no_callback(const RawAddress& bd_addr) {
@@ -1592,7 +1602,9 @@ void bta_dm_allow_wake_by_hid(
   // If there are any entries in the classic hid list, we should also make
   // the adapter connectable for classic.
   if (classic_hid_devices.size() > 0) {
-    BTM_SetConnectability(BTA_DM_CONN);
+    if (BTM_SetConnectability(BTA_DM_CONN) != BTM_SUCCESS) {
+      log::warn("Unable to enable classic BR/EDR connectability");
+    }
   }
 
   bluetooth::shim::BTM_AllowWakeByHid(std::move(classic_hid_devices),
