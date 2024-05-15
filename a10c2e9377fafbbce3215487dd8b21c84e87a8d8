@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7b799a9_2cc1f938",
+        "filename": "system/audio_hal_interface/aidl/le_audio_utils.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-05-15T14:58:33Z",
+      "side": 1,
+      "message": "lets not checking commented out code.",
+      "revId": "a10c2e9377fafbbce3215487dd8b21c84e87a8d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
