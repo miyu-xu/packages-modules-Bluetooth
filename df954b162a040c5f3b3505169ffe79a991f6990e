@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75038cc2_15be2349",
+        "filename": "system/bta/dm/bta_dm_disc_int.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-15T20:17:47Z",
+      "side": 1,
+      "message": "nit: I know I mentioned `bta_dm_find_services_via_sdp` but looking at the the rest of the methods, maybe `bta_dm_sdp_find_services` ?\n\nok to do in a follow-up",
+      "range": {
+        "startLine": 121,
+        "startChar": 5,
+        "endLine": 121,
+        "endChar": 33
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6c62a4e7_fb1b2b4d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_disc_int.h",
+              "range": {
+                "startLine": 121,
+                "startChar": 0,
+                "endLine": 122,
+                "endChar": 0
+              },
+              "replacement": "void bta_dm_sdp_find_services(tBTA_DM_SDP_STATE* sdp_state);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "df954b162a040c5f3b3505169ffe79a991f6990e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
