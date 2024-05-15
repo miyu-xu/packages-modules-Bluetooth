@@ -380,11 +380,15 @@ class MapClientContent {
 
             debug("Map InsertedThread" + results);
 
+            // Some Messenger Applications don't listen to address table changes and only listen
+            // for message content changes. Adding the address parts first makes it so they're
+            // already in the tables when a given app syncs due to content updates. Otherwise, we
+            // risk a race where the address content may not be ready.
+            storeAddressPart(message, results);
+
             for (MimePart part : mmsBmessage.getMimeParts()) {
                 storeMmsPart(part, results);
             }
-
-            storeAddressPart(message, results);
 
             values.put(Mms.Part.CONTENT_TYPE, "plain/text");
             values.put(Mms.SUBSCRIPTION_ID, mSubscriptionId);
