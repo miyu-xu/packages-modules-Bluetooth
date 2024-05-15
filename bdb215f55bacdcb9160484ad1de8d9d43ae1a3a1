@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "02df05aa_dbd34def",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1568,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-15T08:41:56Z",
+      "side": 0,
+      "message": "Hard to say so i fixed that below.",
+      "parentUuid": "9c3475bf_76cb27a1",
+      "range": {
+        "startLine": 1568,
+        "startChar": 17,
+        "endLine": 1568,
+        "endChar": 71
+      },
+      "revId": "bdb215f55bacdcb9160484ad1de8d9d43ae1a3a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1abb8199_e972dc15",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-05-14T23:04:56Z",
       "side": 0,
       "message": "Why are we removing the null check?  Is it no longer possible?",
+      "range": {
+        "startLine": 1571,
+        "startChar": 0,
+        "endLine": 1571,
+        "endChar": 51
+      },
+      "revId": "bdb215f55bacdcb9160484ad1de8d9d43ae1a3a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf431957_46e290d9",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1571,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-15T08:41:56Z",
+      "side": 0,
+      "message": "You have right, thanks. It is still possible without leaudioBroadcastExtractPeriodicScannerFromStateMachine flag as in stop I left null assign. I want to leave as much as possible in old logic without flag. All null checks against few variables will be removed together with the flag. I left a comment about that in line 491.",
+      "parentUuid": "1abb8199_e972dc15",
       "range": {
         "startLine": 1571,
         "startChar": 0,

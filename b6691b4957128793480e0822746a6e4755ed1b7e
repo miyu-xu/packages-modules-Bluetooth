@@ -16,6 +16,24 @@
       "message": "If we remove null check for the variable we should remove this too",
       "revId": "b6691b4957128793480e0822746a6e4755ed1b7e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76ccaab9_ebe25cf0",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-15T08:41:56Z",
+      "side": 1,
+      "message": "Right, I fixed that on line 1571. All null checks against few variables will be removed together with the flag. I left comment on line 491.",
+      "parentUuid": "c60b7a0f_c78266ba",
+      "revId": "b6691b4957128793480e0822746a6e4755ed1b7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
