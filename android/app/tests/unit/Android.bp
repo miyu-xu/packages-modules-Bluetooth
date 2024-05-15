@@ -32,9 +32,15 @@ java_defaults {
         "framework-bluetooth-pre-jarjar",
         "frameworks-base-testutils",
         "gson",
-        "mockito-target",
+        "mockito-target-extended",
         "platform-test-annotations",
         "truth",
+    ],
+
+    // these are needed for Extended Mockito
+    jni_libs: [
+        "libdexmakerjvmtiagent",
+        "libstaticjvmtiagent",
     ],
 
     asset_dirs: ["src/com/android/bluetooth/btservice/storage/schemas"],
