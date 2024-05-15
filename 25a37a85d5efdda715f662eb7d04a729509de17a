@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95833d9e_eaeb4c48",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1528,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-15T16:24:03Z",
+      "side": 1,
+      "message": "!\u003d GATT_SUCCESS would be more consistent\n\nSame with the next 3",
+      "range": {
+        "startLine": 1528,
+        "startChar": 61,
+        "endLine": 1528,
+        "endChar": 62
+      },
+      "revId": "25a37a85d5efdda715f662eb7d04a729509de17a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5ca81d2_54b634e1",
+        "filename": "system/stack/gatt/gatt_sr.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1229,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-15T16:24:03Z",
+      "side": 1,
+      "message": "\"!\u003d GATT_SUCCESS\" would be more consistent",
+      "range": {
+        "startLine": 1229,
+        "startChar": 49,
+        "endLine": 1229,
+        "endChar": 50
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "dce0ab83_023d65d8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/gatt/gatt_sr.cc",
+              "range": {
+                "startLine": 1229,
+                "startChar": 0,
+                "endLine": 1230,
+                "endChar": 0
+              },
+              "replacement": "                                    p_buf-\u003evalue) !\u003d GATT_SUCCESS) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "25a37a85d5efdda715f662eb7d04a729509de17a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
