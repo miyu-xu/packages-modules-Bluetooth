@@ -102,16 +102,6 @@ typedef uint32_t tBTA_SERVICE_MASK;
                               */
 #define BTA_DM_LIMITED_DISC BTM_LIMITED_DISCOVERABLE
 
-typedef uint16_t
-    tBTA_DM_DISC; /* this discoverability mode is a bit mask among BR mode and
-                     LE mode */
-
-/* Connectable Modes */
-#define BTA_DM_NON_CONN BTM_NON_CONNECTABLE /* Device is not connectable. */
-#define BTA_DM_CONN BTM_CONNECTABLE         /* Device is connectable. */
-
-typedef uint16_t tBTA_DM_CONN;
-
 /* Central/peripheral preferred roles */
 typedef enum : uint8_t {
   BTA_ANY_ROLE = 0x00,
