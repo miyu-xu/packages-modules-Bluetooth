@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e72f34c3_b0feb782",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 768,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-15T20:02:58Z",
+      "side": 1,
+      "message": "Nit: Do we need `peer_bdaddr` anymore?",
+      "revId": "1be9db312302ecdaa579417a81cf112ffe40b196",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
