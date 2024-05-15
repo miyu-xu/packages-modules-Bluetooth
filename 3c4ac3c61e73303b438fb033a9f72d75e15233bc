@@ -39,6 +39,30 @@
       },
       "revId": "3c4ac3c61e73303b438fb033a9f72d75e15233bc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "407f4534_b74658ba",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 849,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-05-15T07:11:45Z",
+      "side": 1,
+      "message": "I think the idea will be the same, but I think this is more straightforward (also symmetric to Android) than to store that value and expose it.",
+      "parentUuid": "9fbe969f_55171f84",
+      "range": {
+        "startLine": 849,
+        "startChar": 7,
+        "endLine": 849,
+        "endChar": 22
+      },
+      "revId": "3c4ac3c61e73303b438fb033a9f72d75e15233bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
