@@ -16,6 +16,24 @@
       "message": "Presubmit finally pass, but two times failed on ScanManagerTest. I checked that locally and indeed, a lot of time (50/50) it fails, mostly on testDowngradeDuringScanForConcurrency but on testUpDowngradeStartScanForConcurrency and testDowngradeDuringScanForConcurrencyBackground too.\n\nI can\u0027t find any connection between my CL and that \u0027ScanManagerTest\u0027 but something is there, because without that CL it passes all the time.",
       "revId": "cb9e67c93fae8fb9a3b88559e73abbcd97ad670d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "726f2392_986fefed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-15T13:12:49Z",
+      "side": 1,
+      "message": "It looks like some big coincidence. After next try without this CL:\n```\natest ScanManagerTest --rerun-until-failure\n```\nIt fails after almost 50 runs and after that even after reboot it fails much quicker.\nSo probably this CL is not related to that.",
+      "parentUuid": "a0e694e9_3bdb1b9d",
+      "revId": "cb9e67c93fae8fb9a3b88559e73abbcd97ad670d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
