@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f90142f9_d28993c6",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 10306,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-05-15T13:47:49Z",
+      "side": 1,
+      "message": "Can you please also fix this value here ? - should be false.\n```suggestion\n                     false /* disable */));\n```",
+      "revId": "caca8b7f6a60eaa3d09848f3c0ba4602a70df683",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
