@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d42c320_1efd5aea",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1728,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-05-15T14:26:32Z",
+      "side": 1,
+      "message": "imho, now when proper codec_id is set in the data_path_configuration - we should just use it here",
+      "fixSuggestions": [
+        {
+          "fixId": "3238106e_50d222ad",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/state_machine.cc",
+              "range": {
+                "startLine": 1728,
+                "startChar": 0,
+                "endLine": 1731,
+                "endChar": 0
+              },
+              "replacement": "                : ase-\u003edata_path_configuration.isoDataPathConfig.codecId,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "248c29289cff16c4021cd8ee07fa5a0a1304ed6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
