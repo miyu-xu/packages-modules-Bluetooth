@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8456ebf_8ca6674d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2989,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-15T12:36:02Z",
+      "side": 1,
+      "message": "negation of that because now we searching synced ones.\n```\n/* Synced to BIS */\n```",
+      "range": {
+        "startLine": 2989,
+        "startChar": 20,
+        "endLine": 2989,
+        "endChar": 68
+      },
+      "revId": "3093e0ffc39b589412ca870f057e9c6862bac31f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51ebcb6e_79693ac1",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3009,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-15T12:36:02Z",
+      "side": 1,
+      "message": "negation of that because now we searching synced ones.\n```\n/* Synced to BIS */\n```",
+      "range": {
+        "startLine": 3009,
+        "startChar": 20,
+        "endLine": 3009,
+        "endChar": 68
+      },
+      "revId": "3093e0ffc39b589412ca870f057e9c6862bac31f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
