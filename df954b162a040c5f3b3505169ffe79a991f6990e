@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4b6cd237_8bedf0a4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-15T20:39:03Z",
+      "side": 1,
+      "message": "there is a build failure\n\n...ates/packages/modules/Bluetooth/system/bta/libbt-bta-core/android_arm64_armv8-a_cortex-a53_static_scs_apex33/e560d7b19ebf7276b3e850d3d346dec8/obj/packages/modules/Bluetooth/system/bta/dm/bta_dm_disc.o\n...e/android_arm64_armv8-a_cortex-a53_static_scs_apex33/e560d7b19ebf7276b3e850d3d346dec8/obj/packages/modules/Bluetooth/system/bta/dm/bta_dm_disc.o packages/modules/Bluetooth/system/bta/dm/bta_dm_disc.cc\npackages/modules/Bluetooth/system/bta/dm/bta_dm_disc.cc:270:39: error: use of undeclared identifier \u0027uuids\u0027; did you mean \u0027uuid\u0027?\n  270 |                              .uuids \u003d uuids,\n      |                                       ^~~~~\n      |                                       uuid\npackages/modules/Bluetooth/system/bta/dm/bta_dm_disc.cc:264:55: note: \u0027uuid\u0027 declared here\n  264 |                          std::vector\u003cbluetooth::Uuid\u003e uuid,\n      |                                                       ^\n1 error generated.",
+      "revId": "df954b162a040c5f3b3505169ffe79a991f6990e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a67aab08_00b73acb",
         "filename": "system/bta/dm/bta_dm_disc.cc",
         "patchSetId": 5
