@@ -1,0 +1,85 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bcffe3f_63573bdc",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/AppScanStats.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-05-15T05:32:09Z",
+      "side": 1,
+      "message": "Are we expecting `sRadioScanWorkSourceUtil.getUids()` returns the uid for the most aggressive LE scan? Can we confirm if the assumption is correct for all the cases? Otherwise, we can just save the the uid for the most aggressive LE scan in configureRegularScanParams when we call recordScanRadioStart so that the saved uid can be used when recordScanRadioDurationMetrics() is called.",
+      "range": {
+        "startLine": 599,
+        "startChar": 20,
+        "endLine": 599,
+        "endChar": 55
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "edb6e389_f535681b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/AppScanStats.java",
+              "range": {
+                "startLine": 82,
+                "startChar": 0,
+                "endLine": 82,
+                "endChar": 0
+              },
+              "replacement": "    static WorkSourceUtil sRadioScanWorkSourceUtilForMostAggressiveScan;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/AppScanStats.java",
+              "range": {
+                "startLine": 562,
+                "startChar": 0,
+                "endLine": 562,
+                "endChar": 0
+              },
+              "replacement": "            sRadioScanWorkSourceUtilForMostAggressiveScan \u003d stats.mWorkSourceUtil;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/AppScanStats.java",
+              "range": {
+                "startLine": 599,
+                "startChar": 0,
+                "endLine": 601,
+                "endChar": 0
+              },
+              "replacement": "                    sRadioScanWorkSourceUtilForMostAggressiveScan.getUids(),\n                    sRadioScanWorkSourceUtilForMostAggressiveScan.getTags(),\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/AppScanStats.java",
+              "range": {
+                "startLine": 660,
+                "startChar": 0,
+                "endLine": 662,
+                "endChar": 0
+              },
+              "replacement": "                        sRadioScanWorkSourceUtilForMostAggressiveScan.getUids(),\n                        sRadioScanWorkSourceUtilForMostAggressiveScan.getTags(),\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/AppScanStats.java",
+              "range": {
+                "startLine": 684,
+                "startChar": 0,
+                "endLine": 686,
+                "endChar": 0
+              },
+              "replacement": "                    sRadioScanWorkSourceUtilForMostAggressiveScan.getUids(),\n                    sRadioScanWorkSourceUtilForMostAggressiveScan.getTags(),\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e07a425ab129edd9e0ef9252ddefcf59ab37241e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
