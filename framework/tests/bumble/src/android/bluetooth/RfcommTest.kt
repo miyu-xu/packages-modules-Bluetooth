@@ -26,6 +26,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.android.compatibility.common.util.AdoptShellPermissionsRule
 import com.google.common.truth.Truth
+import com.google.protobuf.ByteString
 import io.grpc.stub.StreamObserver
 import java.time.Duration
 import java.util.UUID
@@ -172,6 +173,44 @@ class RfcommTest {
                 RfcommProto.AcceptConnectionRequest.newBuilder().setServer(mServer).build()
             )
         Truth.assertThat(secureSocket.isConnected).isTrue()
+
+        cleanUp()
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun clientSendDataOverInsecureSocket() {
+        mServer = startServer()
+
+        val (insecureSocket, connection) = createAndConnectSocket(isSecure = false)
+        val data: ByteArray = "Test data for clientSendDataOverInsecureSocket".toByteArray()
+        val socketOs = insecureSocket.outputStream
+
+        socketOs.write(data)
+        val rxResponse: RfcommProto.RxResponse =
+            mBumble
+                .rfcommBlocking()
+                .receive(RfcommProto.RxRequest.newBuilder().setConnection(connection).build())
+        Truth.assertThat(rxResponse.data).isEqualTo(ByteString.copyFrom(data))
+
+        cleanUp()
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun clientSendDataOverSecureSocket() {
+        mServer = startServer()
+
+        val (secureSocket, connection) = createAndConnectSocket(isSecure = true)
+        val data: ByteArray = "Test data for clientSendDataOverSecureSocket".toByteArray()
+        val socketOs = secureSocket.outputStream
+
+        socketOs.write(data)
+        val rxResponse: RfcommProto.RxResponse =
+            mBumble
+                .rfcommBlocking()
+                .receive(RfcommProto.RxRequest.newBuilder().setConnection(connection).build())
+        Truth.assertThat(rxResponse.data).isEqualTo(ByteString.copyFrom(data))
 
         cleanUp()
     }
