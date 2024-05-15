@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a67aab08_00b73acb",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-15T20:19:58Z",
+      "side": 1,
+      "message": "This should be exposed through bta_dm_disc_int.h",
+      "revId": "df954b162a040c5f3b3505169ffe79a991f6990e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "75038cc2_15be2349",
         "filename": "system/bta/dm/bta_dm_disc_int.h",
         "patchSetId": 5
@@ -34,6 +51,41 @@
                 "endChar": 0
               },
               "replacement": "void bta_dm_sdp_find_services(tBTA_DM_SDP_STATE* sdp_state);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "df954b162a040c5f3b3505169ffe79a991f6990e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7f7fa5e_7b159264",
+        "filename": "system/bta/dm/bta_dm_disc_sdp.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-15T20:19:58Z",
+      "side": 1,
+      "message": "2024",
+      "fixSuggestions": [
+        {
+          "fixId": "2a5e82eb_95c37e9e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_disc_sdp.cc",
+              "range": {
+                "startLine": 2,
+                "startChar": 0,
+                "endLine": 3,
+                "endChar": 0
+              },
+              "replacement": " * Copyright 2024 The Android Open Source Project\n"
             }
           ]
         }
