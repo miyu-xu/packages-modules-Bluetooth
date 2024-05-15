@@ -1156,7 +1156,9 @@ public:
                                    uint32_t error_centimeter, int azimuth_angle,
                                    int error_azimuth_angle, int altitude_angle,
                                    int error_altitude_angle, uint64_t elapsedRealtimeNanos,
-                                   int8_t confidence_level, uint8_t method) {
+                                   int8_t confidence_level, double delaySpreadMeters,
+                                   uint8_t detectedAttackLevel, double velocityMetersPerSecond,
+                                   uint8_t method) {
     std::shared_lock<std::shared_mutex> lock(callbacks_mutex);
     CallbackEnv sCallbackEnv(__func__);
     if (!sCallbackEnv.valid() || !mDistanceMeasurementCallbacksObj) {
@@ -1166,7 +1168,8 @@ public:
     sCallbackEnv->CallVoidMethod(
             mDistanceMeasurementCallbacksObj, method_onDistanceMeasurementResult, addr.get(),
             centimeter, error_centimeter, azimuth_angle, error_azimuth_angle, altitude_angle,
-            error_altitude_angle, elapsedRealtimeNanos, confidence_level, method);
+            error_altitude_angle, elapsedRealtimeNanos, confidence_level, delaySpreadMeters,
+            detectedAttackLevel, velocityMetersPerSecond, method);
   }
 };
 
@@ -2914,7 +2917,7 @@ static int register_com_android_bluetooth_gatt_distance_measurement(JNIEnv* env)
            &method_onDistanceMeasurementStarted},
           {"onDistanceMeasurementStopped", "(Ljava/lang/String;II)V",
            &method_onDistanceMeasurementStopped},
-          {"onDistanceMeasurementResult", "(Ljava/lang/String;IIIIIIJII)V",
+          {"onDistanceMeasurementResult", "(Ljava/lang/String;IIIIIIIIDIDI)V",
            &method_onDistanceMeasurementResult},
   };
   GET_JAVA_METHODS(env, "com/android/bluetooth/gatt/DistanceMeasurementNativeInterface",

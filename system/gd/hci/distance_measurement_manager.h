@@ -42,11 +42,15 @@ enum DistanceMeasurementErrorCode {
   REASON_INTERNAL_ERROR,
 };
 
-struct DistanceMeasurementResult {
-  Address address;
-  uint32_t centimeter;
-  uint32_t error_centimeter;
-  DistanceMeasurementMethod method;
+enum DistanceMeasurementDetectedAttackLevel {
+  NADM_ATTACK_IS_EXTREMELY_UNLIKELY,
+  NADM_ATTACK_IS_VERY_UNLIKELY,
+  NADM_ATTACK_IS_UNLIKELY,
+  NADM_ATTACK_IS_POSSIBLE,
+  NADM_ATTACK_IS_LIKELY,
+  NADM_ATTACK_IS_VERY_LIKELY,
+  NADM_ATTACK_IS_EXTREMELY_LIKELY,
+  NADM_ATTACK_UNKNOWN,
 };
 
 class DistanceMeasurementCallbacks {
@@ -55,12 +59,12 @@ public:
   virtual void OnDistanceMeasurementStarted(Address address, DistanceMeasurementMethod method) = 0;
   virtual void OnDistanceMeasurementStopped(Address address, DistanceMeasurementErrorCode reason,
                                             DistanceMeasurementMethod method) = 0;
-  virtual void OnDistanceMeasurementResult(Address address, uint32_t centimeter,
-                                           uint32_t error_centimeter, int azimuth_angle,
-                                           int error_azimuth_angle, int altitude_angle,
-                                           int error_altitude_angle, uint64_t elapsedRealtimeNanos,
-                                           int8_t confidence_level,
-                                           DistanceMeasurementMethod method) = 0;
+  virtual void OnDistanceMeasurementResult(
+          Address address, uint32_t centimeter, uint32_t error_centimeter, int azimuth_angle,
+          int error_azimuth_angle, int altitude_angle, int error_altitude_angle,
+          uint64_t elapsedRealtimeNanos, int8_t confidence_level, double delayedSpreadMeters,
+          DistanceMeasurementDetectedAttackLevel detectedAttackLevel,
+          double velocityMetersPerSecond, DistanceMeasurementMethod method) = 0;
   virtual void OnRasFragmentReady(Address address, uint16_t procedure_counter, bool is_last,
                                   std::vector<uint8_t> raw_data) = 0;
   virtual void OnVendorSpecificCharacteristics(
