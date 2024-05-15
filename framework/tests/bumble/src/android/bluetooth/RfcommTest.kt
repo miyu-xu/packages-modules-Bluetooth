@@ -181,6 +181,7 @@ class RfcommTest {
     @Throws(Exception::class)
     fun clientSendDataOverInsecureSocket() {
         mServer = startServer()
+        runBlocking { bondDevice(mBumbleDevice) }
 
         val (insecureSocket, connection) = createAndConnectSocket(isSecure = false)
         val data: ByteArray = "Test data for clientSendDataOverInsecureSocket".toByteArray()
@@ -201,6 +202,7 @@ class RfcommTest {
     fun clientSendDataOverSecureSocket() {
         mServer = startServer()
 
+        runBlocking { bondDevice(mBumbleDevice) }
         val (secureSocket, connection) = createAndConnectSocket(isSecure = true)
         val data: ByteArray = "Test data for clientSendDataOverSecureSocket".toByteArray()
         val socketOs = secureSocket.outputStream
@@ -219,6 +221,7 @@ class RfcommTest {
     @Throws(Exception::class)
     fun clientReceiveDataOverInsecureSocket() {
         mServer = startServer()
+        runBlocking { bondDevice(mBumbleDevice) }
 
         val (insecureSocket, connection) = createAndConnectSocket(isSecure = false)
         val buffer = ByteArray(64)
@@ -241,6 +244,7 @@ class RfcommTest {
     fun clientReceiveDataOverSecureSocket() {
         mServer = startServer()
 
+        runBlocking { bondDevice(mBumbleDevice) }
         val (secureSocket, connection) = createAndConnectSocket(isSecure = true)
         val buffer = ByteArray(64)
         val socketIs = secureSocket.inputStream
