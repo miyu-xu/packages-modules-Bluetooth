@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68b0b6ec_f1664a53",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-05-15T12:58:41Z",
+      "side": 1,
+      "message": "What if we want to have the sink and source sessions life time decoupled from each other? With this we are not able to update just the one without the other.",
+      "range": {
+        "startLine": 235,
+        "startChar": 4,
+        "endLine": 248,
+        "endChar": 0
+      },
+      "revId": "69b7416e9a9e205c9bd08d1ac9c97940e318f25f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c623645_e99a46d5",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-05-15T12:58:41Z",
+      "side": 1,
+      "message": "I\u0027m not sure what is the purpose of this. Could you elaborate on how this is suppose to be used? Or maybe we could add it later, when there\u0027s happen to be a need for checking this boolean?",
+      "range": {
+        "startLine": 253,
+        "startChar": 6,
+        "endLine": 253,
+        "endChar": 25
+      },
+      "revId": "69b7416e9a9e205c9bd08d1ac9c97940e318f25f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
