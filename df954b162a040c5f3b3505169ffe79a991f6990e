@@ -85,6 +85,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7ca38f8d_d23b8d24",
+        "filename": "system/bta/dm/bta_dm_disc_int.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-15T20:38:40Z",
+      "side": 1,
+      "message": "fine with me, but something begins with bta_dm_sdp_XXXX",
+      "parentUuid": "39472f30_25b3e20f",
+      "range": {
+        "startLine": 121,
+        "startChar": 5,
+        "endLine": 121,
+        "endChar": 33
+      },
+      "revId": "df954b162a040c5f3b3505169ffe79a991f6990e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b7f7fa5e_7b159264",
         "filename": "system/bta/dm/bta_dm_disc_sdp.cc",
         "patchSetId": 5
