@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f398c8f4_5d76d051",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-15T13:03:09Z",
+      "side": 1,
+      "message": "At the first shot I used int as in most places but after @wescande@google.com comment, I changed it to duration. Duration clearly shows by type what is that without sticking to the unit and gives the ability to assign values directly in desired units.",
+      "parentUuid": "693e09f8_a20e06c8",
+      "range": {
+        "startLine": 122,
+        "startChar": 30,
+        "endLine": 122,
+        "endChar": 38
+      },
+      "revId": "bdb215f55bacdcb9160484ad1de8d9d43ae1a3a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5fb562d6_072ac1db",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 2
