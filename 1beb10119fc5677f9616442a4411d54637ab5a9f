@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3abec90_3a03aba1",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2995,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-05-15T12:31:57Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "dfc09875_9383ed27",
+      "range": {
+        "startLine": 2989,
+        "startChar": 0,
+        "endLine": 2995,
+        "endChar": 32
+      },
+      "revId": "1beb10119fc5677f9616442a4411d54637ab5a9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e157349c_dbd4477b",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-05-15T11:06:22Z",
       "side": 1,
       "message": "As above:\n```\n/* Synced to BIS */\nif (syncState !\u003d BassConstants.BIS_SYNC_NOT_SYNC_TO_BIS\n    \u0026\u0026 syncState !\u003d BassConstants.BIS_SYNC_FAILED_SYNC_TO_BIG) {\n    if (isLocalBroadcast(receiveState)) {\n        return false;\n    } else {\n        isReceivingExternalBroadcast \u003d true;\n    }\n}\n```",
+      "range": {
+        "startLine": 3011,
+        "startChar": 0,
+        "endLine": 3021,
+        "endChar": 56
+      },
+      "revId": "1beb10119fc5677f9616442a4411d54637ab5a9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f507bf2e_5671d209",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3021,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-05-15T12:31:57Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e157349c_dbd4477b",
       "range": {
         "startLine": 3011,
         "startChar": 0,
