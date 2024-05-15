@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfc09875_9383ed27",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2995,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-15T11:06:22Z",
+      "side": 1,
+      "message": "What do you think about simplify that in this way:\n```\n/* Synced to BIS */\nif (syncState !\u003d BassConstants.BIS_SYNC_NOT_SYNC_TO_BIS\n    \u0026\u0026 syncState !\u003d BassConstants.BIS_SYNC_FAILED_SYNC_TO_BIG) {\n    return true;\n}\n```\nWe are checking if ANY receiver receiving broadcast than we end up.\ncontinue here is a little confusing at first glance.",
+      "range": {
+        "startLine": 2989,
+        "startChar": 0,
+        "endLine": 2995,
+        "endChar": 32
+      },
+      "revId": "1beb10119fc5677f9616442a4411d54637ab5a9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e157349c_dbd4477b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3021,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-15T11:06:22Z",
+      "side": 1,
+      "message": "As above:\n```\n/* Synced to BIS */\nif (syncState !\u003d BassConstants.BIS_SYNC_NOT_SYNC_TO_BIS\n    \u0026\u0026 syncState !\u003d BassConstants.BIS_SYNC_FAILED_SYNC_TO_BIG) {\n    if (isLocalBroadcast(receiveState)) {\n        return false;\n    } else {\n        isReceivingExternalBroadcast \u003d true;\n    }\n}\n```",
+      "range": {
+        "startLine": 3011,
+        "startChar": 0,
+        "endLine": 3021,
+        "endChar": 56
+      },
+      "revId": "1beb10119fc5677f9616442a4411d54637ab5a9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
