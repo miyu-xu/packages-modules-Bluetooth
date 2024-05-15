@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ef4eccc5_c7a7e883",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth_media.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-05-15T00:09:05Z",
+      "side": 1,
+      "message": "Yes. We would expect a version change for introducing new API. Please bump up the API version on m127 for landing unicast changes. \n\nSee go/floss-api-versioning for the flow and how it affect clients like LACROS.",
+      "parentUuid": "8fcfe4ca_e9627553",
+      "revId": "2fc965be709c2780130daaddfff94db2d48844ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1383fcd4_c7bf82e3",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 11
