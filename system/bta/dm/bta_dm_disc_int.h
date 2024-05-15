@@ -118,6 +118,8 @@ typedef struct {
 extern const uint32_t bta_service_id_to_btm_srv_id_lkup_tbl[];
 extern const uint16_t bta_service_id_to_uuid_lkup_tbl[];
 
+void bta_dm_find_services(tBTA_DM_SDP_STATE* sdp_state);
+
 namespace fmt {
 template <>
 struct formatter<tBTA_DM_DISC_EVT> : enum_formatter<tBTA_DM_DISC_EVT> {};
