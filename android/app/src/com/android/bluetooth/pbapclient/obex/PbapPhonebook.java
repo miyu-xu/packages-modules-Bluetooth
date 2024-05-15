@@ -35,12 +35,28 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-class BluetoothPbapVcardList {
-    private static final String TAG = BluetoothPbapVcardList.class.getSimpleName();
-    // {@link BufferedInputStream#DEFAULT_BUFFER_SIZE} is not public
+public class PbapPhonebook {
+    private static final String TAG = PbapPhonebook.class.getSimpleName();
     private static final int BIS_DEFAULT_BUFFER_SIZE = 8192;
 
-    private final List<VCardEntry> mCards = new ArrayList<VCardEntry>();
+    // Phonebooks, including call history. See PBAP 1.2.3, Section 3.1.2
+    public static final String LOCAL_PHONEBOOK_PATH = "telecom/pb.vcf"; // Device phonebook
+    public static final String FAVORITES_PATH = "telecom/fav.vcf"; // Contacts marked as favorite
+    public static final String MCH_PATH = "telecom/mch.vcf"; // Missed Calls
+    public static final String ICH_PATH = "telecom/ich.vcf"; // Incoming Calls
+    public static final String OCH_PATH = "telecom/och.vcf"; // Outgoing Calls
+    public static final String SIM_PHONEBOOK_PATH = "SIM1/telecom/pb.vcf"; // SIM stored phonebook
+    public static final String SIM_MCH_PATH = "SIM1/telecom/mch.vcf"; // SIM stored Missed Calls
+    public static final String SIM_ICH_PATH = "SIM1/telecom/ich.vcf"; // SIM stored Incoming Calls
+    public static final String SIM_OCH_PATH = "SIM1/telecom/och.vcf"; // SIM stored Outgoing Calls
+
+    // VCard Formats, both are required to be supported by the Server, PBAP 1.2.3, Section 5.1.4.2
+    public static byte FORMAT_VCARD_21 = 0;
+    public static byte FORMAT_VCARD_30 = 1;
+
+    private final String mPhonebook;
+    private final int mListStartOffset;
+    private final ArrayList<VCardEntry> mCards = new ArrayList<VCardEntry>();
     private final Account mAccount;
 
     class CardEntryHandler implements VCardEntryHandler {
@@ -56,19 +72,27 @@ class BluetoothPbapVcardList {
         public void onEnd() {}
     }
 
-    BluetoothPbapVcardList(Account account, InputStream in, byte format) throws IOException {
-        if (format != PbapClientConnectionHandler.VCARD_TYPE_21
-                && format != PbapClientConnectionHandler.VCARD_TYPE_30) {
-            throw new IllegalArgumentException("Unsupported vCard version.");
-        }
-        mAccount = account;
-        parse(in, format);
+    PbapPhonebook(String phonebook) {
+        mPhonebook = phonebook;
+        mAccount = null;
+        mListStartOffset = 0;
     }
 
-    private void parse(InputStream in, byte format) throws IOException {
-        VCardParser parser;
+    PbapPhonebook(String phonebook, byte format, int listStartOffset, Account account, InputStream inputStream) throws IOException, ParseException {
+        if (format != FORMAT_VCARD_21
+                && format != FORMAT_VCARD_30) {
+            throw new IllegalArgumentException("Unsupported vCard version.");
+        }
 
-        if (format == PbapClientConnectionHandler.VCARD_TYPE_30) {
+        mPhonebook = phonebook;
+        mAccount = account;
+        mListStartOffset = listStartOffset;
+        parse(format, inputStream);
+    }
+
+    private void parse(byte format, InputStream inputStream) throws IOException, ParseException {
+        VCardParser parser;
+        if (format == FORMAT_VCARD_30) {
             parser = new VCardParser_V30();
         } else {
             parser = new VCardParser_V21();
@@ -84,7 +108,7 @@ class BluetoothPbapVcardList {
 
         // {@link BufferedInputStream} supports the {@link InputStream#mark} and
         // {@link InputStream#reset} methods.
-        BufferedInputStream bufferedInput = new BufferedInputStream(in);
+        BufferedInputStream bufferedInput = new BufferedInputStream(inputStream);
         bufferedInput.mark(BIS_DEFAULT_BUFFER_SIZE /* readlimit */);
 
         // If there is a {@link VCardVersionException}, try parsing again with a different
@@ -92,7 +116,7 @@ class BluetoothPbapVcardList {
         // fails with a different {@link VCardException}.
         if (parsedWithVcardVersionException(parser, bufferedInput)) {
             // PBAP v1.2.3 only supports vCard versions 2.1 and 3.0; it's one or the other
-            if (format == PbapClientConnectionHandler.VCARD_TYPE_21) {
+            if (format == FORMAT_VCARD_21) {
                 parser = new VCardParser_V30();
                 Log.w(TAG, "vCard version and Parser mismatch; expected v2.1, switching to v3.0");
             } else {
@@ -105,7 +129,8 @@ class BluetoothPbapVcardList {
             constructor.clear();
             parser.addInterpreter(constructor);
             if (parsedWithVcardVersionException(parser, bufferedInput)) {
-                Log.e(TAG, "unsupported vCard version, neither v2.1 nor v3.0");
+                Log.e(TAG, "unsupported vCard version=" + format + ", neither v2.1 nor v3.0");
+                throw new ParseException("Unsupported vCard version=" + format + ", neither v2.1 nor v3.0");
             }
         }
     }
@@ -113,16 +138,16 @@ class BluetoothPbapVcardList {
     /**
      * Attempts to parse, with an eye on whether the correct version of Parser is used.
      *
-     * @param parser -- the {@link VCardParser} to use.
-     * @param in -- the {@link InputStream} to parse.
+     * @param parser The {@link VCardParser} to use.
+     * @param inputStream The {@link InputStream} to parse.
      * @return {@code true} if there was a {@link VCardVersionException}; {@code false} if there is
      *     any other {@link VCardException} or succeeds (i.e., no {@link VCardException}).
      * @throws IOException if there's an issue reading the {@link InputStream}.
      */
-    private boolean parsedWithVcardVersionException(VCardParser parser, InputStream in)
+    private boolean parsedWithVcardVersionException(VCardParser parser, InputStream inputStream)
             throws IOException {
         try {
-            parser.parse(in);
+            parser.parse(inputStream);
         } catch (VCardVersionException e1) {
             Log.w(TAG, "vCard version and Parser mismatch", e1);
             return true;
@@ -130,6 +155,14 @@ class BluetoothPbapVcardList {
             Log.e(TAG, "vCard exception", e2);
         }
         return false;
+    }
+
+    public String getPhonebook() {
+        return mPhonebook;
+    }
+
+    public int getOffset() {
+        return mListStartOffset;
     }
 
     public int getCount() {
@@ -140,7 +173,8 @@ class BluetoothPbapVcardList {
         return mCards;
     }
 
-    public VCardEntry getFirst() {
-        return mCards.get(0);
+    @Override
+    public String toString() {
+        return "<" + TAG + "phonebook=" + mPhonebook + " entries=" + getCount() + ">";
     }
 }
