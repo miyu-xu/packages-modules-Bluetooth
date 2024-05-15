@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "675bd19b_6f442236",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-15T22:16:48Z",
+      "side": 1,
+      "message": "Cleaning up API usage to check the return values and log abnormalities.",
+      "revId": "7f81f26dbb21ecf4089cb546958b0d4bed886da7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
