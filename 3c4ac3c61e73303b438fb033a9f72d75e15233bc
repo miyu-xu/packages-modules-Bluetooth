@@ -16,6 +16,29 @@
       "message": "Howard, could you please help to review this change? I was wondering if this is required from UI perspective.",
       "revId": "3c4ac3c61e73303b438fb033a9f72d75e15233bc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fbe969f_55171f84",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 849,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-05-15T04:19:29Z",
+      "side": 1,
+      "message": "QQ: what\u0027s the difference between checking the BtBondState::Bonding from OnBondStateChanged and this?",
+      "range": {
+        "startLine": 849,
+        "startChar": 7,
+        "endLine": 849,
+        "endChar": 22
+      },
+      "revId": "3c4ac3c61e73303b438fb033a9f72d75e15233bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
