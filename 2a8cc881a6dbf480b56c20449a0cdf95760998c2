@@ -159,6 +159,30 @@
       },
       "revId": "2a8cc881a6dbf480b56c20449a0cdf95760998c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40631ac4_a615f6f7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbapclient/PbapClientConnectionHandlerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-05-15T23:30:34Z",
+      "side": 1,
+      "message": "Okay, I added a waitFor() call (easier than setting up and driving a test looper for all the tests) and an additional verify to make sure the concerning branch is definitely executed/passed. I ran it 100 times locally and it all seems fine.\n\nI\u0027ve also started a refactor for much of this profile to make it testable 😊",
+      "parentUuid": "82aff507_28624847",
+      "range": {
+        "startLine": 193,
+        "startChar": 16,
+        "endLine": 193,
+        "endChar": 69
+      },
+      "revId": "2a8cc881a6dbf480b56c20449a0cdf95760998c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
