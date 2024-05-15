@@ -15,22 +15,25 @@
  */
 package com.android.bluetooth.pbapclient;
 
-import com.android.vcard.VCardEntry;
+import android.app.Service;
+import android.content.Intent;
+import android.os.IBinder;
 
-import java.util.List;
-
-public abstract class PullRequest {
-    public String path;
-    protected List<VCardEntry> mEntries;
-
-    public abstract void onPullComplete();
+/**
+ * A service to host out AccountManagerService compliant Authenticator
+ *
+ * See PbapClientAccountAuthenticator for details.
+ */
+public class PbapClientAccountAuthenticatorService extends Service {
+    private PbapClientAccountAuthenticator mAuthenticator;
 
     @Override
-    public String toString() {
-        return "PullRequest: { path=" + path + " }";
+    public void onCreate() {
+        mAuthenticator = new PbapClientAccountAuthenticator(this);
     }
 
-    public void setResults(List<VCardEntry> results) {
-        mEntries = results;
+    @Override
+    public IBinder onBind(Intent intent) {
+        return mAuthenticator.getIBinder();
     }
 }

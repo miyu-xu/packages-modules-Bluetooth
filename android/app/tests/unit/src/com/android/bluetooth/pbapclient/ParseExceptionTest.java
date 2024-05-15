@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 The Android Open Source Project
+ * Copyright 2024 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,20 +15,20 @@
  */
 package com.android.bluetooth.pbapclient;
 
-import android.app.Service;
-import android.content.Intent;
-import android.os.IBinder;
+import static com.google.common.truth.Truth.assertThat;
 
-public class AuthenticationService extends Service {
-    private Authenticator mAuthenticator;
+import androidx.test.runner.AndroidJUnit4;
 
-    @Override
-    public void onCreate() {
-        mAuthenticator = new Authenticator(this);
-    }
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
-    @Override
-    public IBinder onBind(Intent intent) {
-        return mAuthenticator.getIBinder();
+@RunWith(AndroidJUnit4.class)
+public class ParseExceptionTest {
+    private static final String TEST_MESSAGE = "This is a test message";
+
+    @Test
+    public void testCreateParseException_createdWithMessage() {
+        ParseException exception = new ParseException(TEST_MESSAGE);
+        assertThat(exception.getMessage()).isEqualTo(TEST_MESSAGE);
     }
 }
