@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "693e09f8_a20e06c8",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-05-15T12:45:51Z",
+      "side": 1,
+      "message": "What is the advantage of not keeping here target (millisecond) type ?",
+      "range": {
+        "startLine": 122,
+        "startChar": 30,
+        "endLine": 122,
+        "endChar": 38
+      },
+      "revId": "bdb215f55bacdcb9160484ad1de8d9d43ae1a3a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5fb562d6_072ac1db",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 2
