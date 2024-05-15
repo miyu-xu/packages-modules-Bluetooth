@@ -1,0 +1,244 @@
+little_endian_packets
+
+custom_field AttributeHandle ""
+
+struct AttributeValue {
+    _payload_,
+}
+
+struct Uuid {
+    value: 8[]
+}
+
+struct Uuid16 {
+    value: 8[2]
+}
+
+struct Uuid128 {
+    value: 8[16]
+}
+
+// Vol 3, Part F - 3.4.8 Attribute Opcode summary
+enum Opcode: 8 {
+    ATT_ERROR_RSP = 0x01,
+    ATT_EXCHANGE_MTU_REQ = 0x02,
+    ATT_EXCHANGE_MTU_RSP = 0x03,
+    ATT_FIND_INFORMATION_REQ = 0x04,
+    ATT_FIND_INFORMATION_RSP = 0x05,
+    ATT_FIND_BY_TYPE_VALUE_REQ = 0x06,
+    ATT_FIND_BY_TYPE_VALUE_RSP = 0x07,
+    ATT_READ_BY_TYPE_REQ = 0x08,
+    ATT_READ_BY_TYPE_RSP = 0x09,
+    ATT_READ_REQ = 0x0A,
+    ATT_READ_RSP = 0x0B,
+    ATT_READ_BLOB_REQ = 0x0C,
+    ATT_READ_BLOB_RSP = 0x0D,
+    ATT_READ_MULTIPLE_REQ = 0x0E,
+    ATT_READ_MULTIPLE_RSP = 0x0F,
+    ATT_READ_BY_GROUP_TYPE_REQ = 0x10,
+    ATT_READ_BY_GROUP_TYPE_RSP = 0x11,
+    ATT_WRITE_REQ = 0x12,
+    ATT_WRITE_RSP = 0x13,
+    ATT_WRITE_CMD = 0x52,
+    ATT_PREPARE_WRITE_REQ = 0x16,
+    ATT_PREPARE_WRITE_RSP = 0x17,
+    ATT_EXECUTE_WRITE_REQ = 0x18,
+    ATT_EXECUTE_WRITE_RSP = 0x19,
+    ATT_READ_MULTIPLE_VARIABLE_REQ = 0x20,
+    ATT_READ_MULTIPLE_VARIABLE_RSP = 0x21,
+    ATT_MULTIPLE_HANDLE_VALUE_NTF = 0x23,
+    ATT_HANDLE_VALUE_NTF = 0x1B,
+    ATT_HANDLE_VALUE_IND = 0x1D,
+    ATT_HANDLE_VALUE_CFM = 0x1E,
+    ATT_SIGNED_WRITE_CMD = 0xD2,
+}
+
+// Vol 3, Part F - 3.3.1 Attribute PDU format
+packet Pdu {
+    opcode: Opcode,
+    _payload_,
+}
+
+// Vol 3, Part F - Table 3.4: Error codes
+enum ErrorCode: 8 {
+    INVALID_HANDLE = 0x01,
+    READ_NOT_PERMITTED = 0x02,
+    WRITE_NOT_PERMITTED = 0x03,
+    INVALID_PDU = 0x04,
+    INSUFFICIENT_AUTHENTICATION = 0x05,
+    REQUEST_NOT_SUPPORTED = 0x06,
+    INVALID_OFFSET = 0x07,
+    INSUFFICIENT_AUTHORIZATION = 0x08,
+    PREPARE_QUEUE_FULL = 0x09,
+    ATTRIBUTE_NOT_FOUND = 0x0A,
+    ATTRIBUTE_NOT_LONG = 0x0B,
+    ENCRYPTION_KEY_SIZE_TOO_SHORT = 0x0C,
+    INVALID_ATTRIBUTE_VALUE_LENGTH = 0x0D,
+    UNLIKELY_ERROR = 0x0E,
+    INSUFFICIENT_ENCRYPTION = 0x0F,
+    UNSUPPORTED_GROUP_TYPE = 0x10,
+    INSUFFICIENT_RESOURCES = 0x11,
+    DATABASE_OUT_OF_SYNC = 0x12,
+    VALUE_NOT_ALLOWED = 0x13,
+    APPLICATION_ERROR = 0x80..0x9F,
+    COMMON_PROFILE_AND_SERVICE_ERROR_CODES = 0xE0..0xFF,
+}
+
+// Vol 3, Part F - 3.4.1.1 ATT_ERROR_RSP
+packet ErrorRsp: Pdu(opcode = ATT_ERROR_RSP) {
+    request_opcode_in_error: Opcode,
+    attribute_handle_in_error: AttributeHandle,
+    error_code: ErrorCode,
+}
+
+// Vol 3, Part F - 3.4.2.1 ATT_EXCHANGE_MTU_REQ
+packet ExchangeMtuReq : Pdu(opcode = ATT_EXCHANGE_MTU_REQ) {
+    client_rx_mtu: 16
+}
+
+// Vol 3, Part F - 3.4.2.2 ATT_EXCHANGE_MTU_RSP
+packet ExchangeMtuRsp : Pdu(opcode = ATT_EXCHANGE_MTU_RSP) {
+    server_rx_mtu: 16
+}
+
+// Vol 3, Part F - 3.4.3.1 ATT_FIND_INFORMATION_REQ
+packet FindInformationReq: Pdu(opcode = ATT_FIND_INFORMATION_REQ) {
+    starting_handle: AttributeHandle,
+    ending_handle: AttributeHandle,
+}
+
+// Vol 3, Part F - 3.4.3.2 ATT_FIND_INFORMATION_RSP
+packet FindInformationRsp: Pdu(opcode = ATT_FIND_INFORMATION_RSP) {
+    format: 8,
+    _payload_
+}
+
+packet FindInformationRsp16: FindInformationRsp(format = 0x01) {
+    information_data: InformationData16[]
+}
+
+packet FindInformationRsp128: FindInformationRsp(format = 0x02) {
+    information_data: InformationData128[]
+}
+
+struct InformationData16 {
+    attribute_handle: AttributeHandle,
+    uuid: Uuid16,
+}
+
+struct InformationData128 {
+    attribute_handle: AttributeHandle,
+    uuid: Uuid128,
+}
+
+// Vol 3, Part F - 3.4.3.3 ATT_FIND_BY_TYPE_VALUE_REQ
+packet FindByTypeValueReq: Pdu(opcode = ATT_FIND_BY_TYPE_VALUE_REQ) {
+    starting_handle: AttributeHandle,
+    ending_handle: AttributeHandle,
+    attribute_type: Uuid16,
+    attribute_value: AttributeValue,
+}
+
+// Vol 3, Part F - 3.4.3.3 ATT_FIND_BY_TYPE_VALUE_RSP
+packet FindByTypeValueRsp: Pdu(opcode = ATT_FIND_BY_TYPE_VALUE_RSP) {
+    handles_information_list: HandlesInformation[],
+}
+
+struct HandlesInformation {
+    found_attribute_handle: AttributeHandle,
+    group_end_handle: AttributeHandle,
+}
+
+// Vol 3, Part F - 3.4.4.1 ATT_READ_BY_TYPE_REQ
+packet ReadByTypeReq: Pdu(opcode = ATT_READ_BY_TYPE_REQ) {
+    starting_handle: AttributeHandle,
+    ending_handle: AttributeHandle,
+    attribute_type: Uuid,
+}
+
+// Vol 3, Part F - 3.4.4.2 ATT_READ_BY_TYPE_RSP
+packet ReadByTypeRsp: Pdu(opcode = ATT_READ_BY_TYPE_RSP) {
+    _elementsize_(attribute_data_list): 8,
+    attribute_data_list: AttributeData[],
+}
+
+// Vol 3, Part F - 3.4.4.3 ATT_READ_REQ
+packet ReadReq: Pdu(opcode = ATT_READ_REQ) {
+    attribute_handle: AttributeHandle,
+}
+
+// Vol 3, Part F - 3.4.4.4 ATT_READ_RSP
+packet ReadRsp: Pdu(opcode = ATT_READ_RSP) {
+    attribute_value: AttributeValue,
+}
+
+struct AttributeData {
+    attribute_handle: AttributeHandle,
+    attribute_value: AttributeValue,
+}
+
+// Vol 3, Part F - 3.4.4.9 ATT_READ_BY_GROUP_TYPE_REQ
+packet ReadByGroupTypeReq: Pdu(opcode = ATT_READ_BY_GROUP_TYPE_REQ) {
+    starting_handle: AttributeHandle,
+    ending_handle: AttributeHandle,
+    attribute_group_type: Uuid,
+}
+
+// Vol 3, Part F - 3.4.4.9 ATT_READ_BY_GROUP_TYPE_REQ
+packet ReadByGroupTypeRsp: Pdu(opcode = ATT_READ_BY_GROUP_TYPE_RSP) {
+    _elementsize_(attribute_data_list): 8,
+    attribute_data_list: GroupAttributeData[],
+}
+
+struct GroupAttributeData {
+    attribute_handle: AttributeHandle,
+    end_group_handle: AttributeHandle,
+    attribute_value: AttributeValue,
+}
+
+struct ServiceAttributeValue : AttributeValue {
+    uuid: Uuid,
+}
+
+struct ServiceAttributeValue16 : AttributeValue {
+    uuid: Uuid16,
+}
+
+struct ServiceAttributeValue128 : AttributeValue {
+    uuid: Uuid128,
+}
+
+struct IncludeAttributeValue : AttributeValue {
+    attribute_handle: AttributeHandle,
+    end_group_handle: AttributeHandle,
+    uuid: Uuid,
+}
+
+struct IncludeAttributeValue16 : AttributeValue {
+    attribute_handle: AttributeHandle,
+    end_group_handle: AttributeHandle,
+    uuid: Uuid16,
+}
+
+struct IncludeAttributeValue128 : AttributeValue {
+    attribute_handle: AttributeHandle,
+    end_group_handle: AttributeHandle,
+}
+
+struct CharacteristicAttributeValue : AttributeValue {
+    properties: 8,
+    value_attribute_handle: AttributeHandle,
+    uuid: Uuid,
+}
+
+struct CharacteristicAttributeValue16 : AttributeValue {
+    properties: 8,
+    value_attribute_handle: AttributeHandle,
+    uuid: Uuid16,
+}
+
+struct CharacteristicAttributeValue128 : AttributeValue {
+    properties: 8,
+    value_attribute_handle: AttributeHandle,
+    uuid: Uuid128,
+}
