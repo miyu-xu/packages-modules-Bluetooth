@@ -32,7 +32,7 @@ namespace legacy {
 namespace testing {
 
 tBTA_DM_SERVICE_DISCOVERY_CB& bta_dm_discovery_cb();
-void bta_dm_sdp_result(tSDP_STATUS sdp_status, tBTA_DM_SDP_STATE* state);
+void bta_dm_sdp_find_services(tSDP_STATUS sdp_status, tBTA_DM_SDP_STATE* state);
 
 }  // namespace testing
 }  // namespace legacy
@@ -54,9 +54,9 @@ class BtaSdpRegisteredTest : public BtaSdpTest {
 
 TEST_F(BtaSdpTest, nop) {}
 
-TEST_F(BtaSdpRegisteredTest, bta_dm_sdp_result_SDP_SUCCESS) {
+TEST_F(BtaSdpRegisteredTest, bta_dm_sdp_find_services_SDP_SUCCESS) {
   std::unique_ptr<tBTA_DM_SDP_STATE> state =
       std::make_unique<tBTA_DM_SDP_STATE>(
           tBTA_DM_SDP_STATE{.service_index = BTA_MAX_SERVICE_ID});
-  bluetooth::legacy::testing::bta_dm_sdp_result(SDP_SUCCESS, state.get());
+  bluetooth::legacy::testing::bta_dm_sdp_find_services(SDP_SUCCESS, state.get());
 }
