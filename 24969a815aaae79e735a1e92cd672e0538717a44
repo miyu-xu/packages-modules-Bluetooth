@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b47fdb87_9e042a83",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-15T20:06:18Z",
+      "side": 1,
+      "message": "Should this be a static function?",
+      "fixSuggestions": [
+        {
+          "fixId": "1ee7cedb_39a78e99",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/dm/bta_dm_disc.cc",
+              "range": {
+                "startLine": 559,
+                "startChar": 0,
+                "endLine": 560,
+                "endChar": 0
+              },
+              "replacement": "static void bta_dm_sdp_received_di(const RawAddress\u0026 bd_addr,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "24969a815aaae79e735a1e92cd672e0538717a44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
