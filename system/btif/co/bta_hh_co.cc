@@ -25,6 +25,7 @@
 #include <pthread.h>
 #include <stdint.h>
 #include <string.h>
+#include <sys/socket.h>
 #include <unistd.h>
 
 #include <cerrno>
@@ -47,7 +48,10 @@ static tBTA_HH_RPT_CACHE_ENTRY sReportCache[BTA_HH_NV_LOAD_MAX];
 #define BTA_HH_CACHE_REPORT_VERSION 1
 #define THREAD_NORMAL_PRIORITY 0
 #define BT_HH_THREAD_PREFIX "bt_hh_"
+/* poll timeout without some aflags */
 #define BTA_HH_UHID_POLL_PERIOD_MS 50
+/* poll timeout with some aflags */
+#define BTA_HH_UHID_POLL_PERIOD2_MS 10000
 /* Max number of polling interrupt allowed */
 #define BTA_HH_UHID_INTERRUPT_COUNT_MAX 100
 
@@ -141,8 +145,8 @@ static int uhid_write(int fd, const struct uhid_event* ev) {
   return 0;
 }
 
-/* Internal function to parse the events received from UHID driver*/
-static int uhid_read_event(btif_hh_device_t* p_dev) {
+/* Parse the events received from UHID driver*/
+static int uhid_read_outbound_event(btif_hh_device_t* p_dev) {
   log::assert_that(p_dev != nullptr, "assert failed: p_dev != nullptr");
 
   struct uhid_event ev;
@@ -239,6 +243,66 @@ static int uhid_read_event(btif_hh_device_t* p_dev) {
   return 0;
 }
 
+// Parse the internal events received from BTIF and translate to UHID
+// returns -errno when error, 0 when successful, 1 when receiving close event.
+static int uhid_read_inbound_event(btif_hh_device_t* p_dev) {
+  log::assert_that(p_dev != nullptr, "assert failed: p_dev != nullptr");
+
+  tBTA_HH_TO_UHID_EVT ev;
+  memset(&ev, 0, sizeof(ev));
+
+  ssize_t ret;
+  OSI_NO_INTR(ret = read(p_dev->fd, &ev, sizeof(ev)));
+
+  if (ret == 0) {
+    log::error("Read HUP on internal uhid-cdev {}", strerror(errno));
+    return -EFAULT;
+  } else if (ret < 0) {
+    log::error("Cannot read internal uhid-cdev: {}", strerror(errno));
+    return -errno;
+  }
+
+  int res = 0;
+  uint32_t* context;
+  switch (ev.type) {
+    case BTA_HH_UHID_INBOUND_INPUT_EVT:
+      res = uhid_write(p_dev->fd, &ev.uhid);
+      break;
+    case BTA_HH_UHID_INBOUND_CLOSE_EVT:
+      return 1;
+    case BTA_HH_UHID_INBOUND_DSCP_EVT:
+      res = uhid_write(p_dev->fd, &ev.uhid);
+      osi_free(ev.uhid.u.create.rd_data);
+      break;
+    case BTA_HH_UHID_INBOUND_GET_REPORT_EVT:
+      context = (uint32_t*)fixed_queue_try_dequeue(p_dev->get_rpt_id_queue);
+      if (context == nullptr) {
+        log::warn("No pending UHID_GET_REPORT");
+        break;
+      }
+      ev.uhid.u.feature_answer.id = *context;
+      res = uhid_write(p_dev->fd, &ev.uhid);
+      osi_free(context);
+      break;
+#if ENABLE_UHID_SET_REPORT
+    case BTA_HH_UHID_INBOUND_SET_REPORT_EVT:
+      context = (uint32_t*)fixed_queue_try_dequeue(p_dev->set_rpt_id_queue);
+      if (context == nullptr) {
+        log::warn("No pending UHID_SET_REPORT");
+        break;
+      }
+      ev.uhid.u.set_report_reply.id = *context;
+      res = uhid_write(p_dev->fd, &ev.uhid);
+      osi_free(context);
+      break;
+#endif  // ENABLE_UHID_SET_REPORT
+    default:
+      log::error("Invalid event from internal uhid-dev: {}", ev.type);
+  }
+
+  return res;
+}
+
 /*******************************************************************************
  *
  * Function create_thread
@@ -273,6 +337,21 @@ static void uhid_fd_close(btif_hh_device_t* p_dev) {
     log::debug("Closing fd={}, addr:{}", p_dev->fd, p_dev->link_spec);
     close(p_dev->fd);
     p_dev->fd = -1;
+
+    if (true /* some aflags */) {
+      close(p_dev->internal_recv_fd);
+      p_dev->internal_recv_fd = -1;
+
+      /* Clear the queues */
+      fixed_queue_flush(p_dev->get_rpt_id_queue, osi_free);
+      fixed_queue_free(p_dev->get_rpt_id_queue, NULL);
+      p_dev->get_rpt_id_queue = NULL;
+#if ENABLE_UHID_SET_REPORT
+      fixed_queue_flush(p_dev->set_rpt_id_queue, osi_free);
+      fixed_queue_free(p_dev->set_rpt_id_queue, nullptr);
+      p_dev->set_rpt_id_queue = nullptr;
+#endif  // ENABLE_UHID_SET_REPORT
+    }
   }
 }
 
@@ -286,6 +365,19 @@ static bool uhid_fd_open(btif_hh_device_t* p_dev) {
     }
   }
 
+  if (true /* some aflags */) {
+    int sockets[2];
+    if (socketpair(AF_LOCAL, SOCK_SEQPACKET | SOCK_NONBLOCK, 0, sockets) < 0) {
+      close(p_dev->fd);
+      p_dev->fd = -1;
+      return false;
+    }
+    p_dev->internal_recv_fd = sockets[0];
+    p_dev->internal_send_fd = sockets[1];
+    p_dev->hh_poll_thread_id = create_thread(btif_hh_poll_event_thread, p_dev);
+    return true;
+  }
+
   if (p_dev->hh_keep_polling == 0) {
     p_dev->hh_keep_polling = 1;
     p_dev->hh_poll_thread_id = create_thread(btif_hh_poll_event_thread, p_dev);
@@ -293,14 +385,14 @@ static bool uhid_fd_open(btif_hh_device_t* p_dev) {
   return true;
 }
 
-static int uhid_fd_poll(btif_hh_device_t* p_dev,
-                        std::array<struct pollfd, 1>& pfds) {
+static int uhid_fd_poll(btif_hh_device_t* p_dev, struct pollfd* pfds,
+                        int nfds) {
   int ret = 0;
   int counter = 0;
 
   do {
     if (com::android::bluetooth::flags::break_uhid_polling_early() &&
-        !p_dev->hh_keep_polling) {
+        !true /* some aflags */ && !p_dev->hh_keep_polling) {
       log::debug("Polling stopped");
       return -1;
     }
@@ -311,7 +403,9 @@ static int uhid_fd_poll(btif_hh_device_t* p_dev,
       return -1;
     }
 
-    ret = poll(pfds.data(), pfds.size(), BTA_HH_UHID_POLL_PERIOD_MS);
+    int uhid_poll_timeout = true /* some aflags */ ? BTA_HH_UHID_POLL_PERIOD2_MS
+                                                   : BTA_HH_UHID_POLL_PERIOD_MS;
+    ret = poll(pfds, nfds, uhid_poll_timeout);
   } while (ret == -1 && errno == EINTR);
 
   if (!com::android::bluetooth::flags::break_uhid_polling_early()) {
@@ -330,7 +424,7 @@ static void uhid_start_polling(btif_hh_device_t* p_dev) {
   pfds[0].events = POLLIN;
 
   while (p_dev->hh_keep_polling) {
-    int ret = uhid_fd_poll(p_dev, pfds);
+    int ret = uhid_fd_poll(p_dev, pfds.data(), 1);
 
     if (ret < 0) {
       log::error("Cannot poll for fds: {}\n", strerror(errno));
@@ -343,11 +437,51 @@ static void uhid_start_polling(btif_hh_device_t* p_dev) {
     /* At least one of the fd is ready */
     if (pfds[0].revents & POLLIN) {
       log::verbose("POLLIN");
-      int result = uhid_read_event(p_dev);
+      int result = uhid_read_outbound_event(p_dev);
       if (result != 0) {
         log::error("Unhandled UHID event, error: {}", result);
         break;
       }
+    }
+  }
+}
+
+static void uhid_start_polling2(btif_hh_device_t* p_dev) {
+  std::array<struct pollfd, 2> pfds = {};
+  pfds[0].fd = p_dev->fd;
+  pfds[0].events = POLLIN;
+  pfds[1].fd = p_dev->internal_recv_fd;
+  pfds[1].events = POLLIN;
+
+  while (true) {
+    int ret = uhid_fd_poll(p_dev, pfds.data(), 2);
+    if (ret < 0) {
+      log::error("Cannot poll for fds: {}\n", strerror(errno));
+      break;
+    }
+
+    if (pfds[0].revents & POLLIN) {
+      log::verbose("POLLIN");
+      int result = uhid_read_outbound_event(p_dev);
+      if (result != 0) {
+        log::error("Unhandled UHID outbound event, error: {}", result);
+        break;
+      }
+    }
+
+    if (pfds[1].revents & POLLIN) {
+      int result = uhid_read_inbound_event(p_dev);
+      if (result != 0) {
+        if (result < 0) {
+          log::error("Unhandled UHID inbound event, error: {}", result);
+        }
+        break;
+      }
+    }
+
+    if (pfds[1].revents & POLLHUP) {
+      log::error("HID fd hangup, disconnect UHID");
+      break;
     }
   }
 }
@@ -391,7 +525,11 @@ static void* btif_hh_poll_event_thread(void* arg) {
   btif_hh_device_t* p_dev = (btif_hh_device_t*)arg;
 
   if (uhid_configure_thread(p_dev)) {
-    uhid_start_polling(p_dev);
+    if (true /* some aflags */) {
+      uhid_start_polling2(p_dev);
+    } else {
+      uhid_start_polling(p_dev);
+    }
   }
 
   /* Todo: Disconnect if loop exited due to a failure */
@@ -402,10 +540,32 @@ static void* btif_hh_poll_event_thread(void* arg) {
   return 0;
 }
 
+/* Pass messages to be handled by uhid_read_inbound_event in the UHID thread */
+static bool to_uhid_thread(int fd, const tBTA_HH_TO_UHID_EVT* ev) {
+  if (fd < 0) {
+    log::error("Cannot write to uhid thread: invalid fd");
+    return false;
+  }
+
+  ssize_t ret;
+  OSI_NO_INTR(ret = write(fd, ev, sizeof(*ev)));
+
+  if (ret < 0) {
+    log::error("Cannot write to uhid thread: {}", strerror(errno));
+    return false;
+  } else if (ret != (ssize_t)sizeof(*ev)) {
+    log::error("Wrong size written to uhid thread: {} != {}", ret, sizeof(*ev));
+    return false;
+  }
+
+  return true;
+}
+
 int bta_hh_co_write(int fd, uint8_t* rpt, uint16_t len) {
   log::verbose("UHID write {}", len);
 
-  struct uhid_event ev;
+  tBTA_HH_TO_UHID_EVT to_uhid;
+  struct uhid_event& ev = to_uhid.uhid;
   memset(&ev, 0, sizeof(ev));
   ev.type = UHID_INPUT;
   ev.u.input.size = len;
@@ -414,6 +574,11 @@ int bta_hh_co_write(int fd, uint8_t* rpt, uint16_t len) {
     return -1;
   }
   memcpy(ev.u.input.data, rpt, len);
+
+  if (true /* some aflags */) {
+    to_uhid.type = BTA_HH_UHID_INBOUND_INPUT_EVT;
+    return to_uhid_thread(fd, &to_uhid) ? 0 : -1;
+  }
 
   return uhid_write(fd, &ev);
 }
@@ -461,6 +626,7 @@ bool bta_hh_co_open(uint8_t dev_handle, uint8_t sub_class,
     p_dev->sub_class = sub_class;
     p_dev->app_id = app_id;
     p_dev->local_vup = false;
+    p_dev->hh_poll_thread_id = -1;
   }
 
   if (!uhid_fd_open(p_dev)) {
@@ -501,6 +667,20 @@ void bta_hh_co_close(btif_hh_device_t* p_dev) {
   log::info("Closing device handle={}, status={}, address={}",
             p_dev->dev_handle, p_dev->dev_status, p_dev->link_spec);
 
+  if (true /* some aflags */) {
+    if (p_dev->hh_poll_thread_id != -1) {
+      tBTA_HH_TO_UHID_EVT to_uhid;
+      to_uhid.type = BTA_HH_UHID_INBOUND_CLOSE_EVT;
+      to_uhid_thread(p_dev->internal_send_fd, &to_uhid);
+      pthread_join(p_dev->hh_poll_thread_id, NULL);
+      p_dev->hh_poll_thread_id = -1;
+
+      close(p_dev->internal_send_fd);
+      p_dev->internal_send_fd = -1;
+    }
+    return;
+  }
+
   /* Clear the queues */
   fixed_queue_flush(p_dev->get_rpt_id_queue, osi_free);
   fixed_queue_free(p_dev->get_rpt_id_queue, NULL);
@@ -512,7 +692,7 @@ void bta_hh_co_close(btif_hh_device_t* p_dev) {
 #endif  // ENABLE_UHID_SET_REPORT
 
   /* Stop the polling thread */
-  if (p_dev->hh_keep_polling) {
+  if (p_dev->hh_keep_polling && !true /* some aflags */) {
     p_dev->hh_keep_polling = 0;
     pthread_join(p_dev->hh_poll_thread_id, NULL);
     p_dev->hh_poll_thread_id = -1;
@@ -541,6 +721,11 @@ void bta_hh_co_data(uint8_t dev_handle, uint8_t* p_rpt, uint16_t len) {
   p_dev = btif_hh_find_connected_dev_by_handle(dev_handle);
   if (p_dev == NULL) {
     log::warn("Error: unknown HID device handle {}", dev_handle);
+    return;
+  }
+
+  if (true /* some aflags */) {
+    bta_hh_co_write(p_dev->internal_send_fd, p_rpt, len);
     return;
   }
 
@@ -581,16 +766,19 @@ void bta_hh_co_send_hid_info(btif_hh_device_t* p_dev, const char* dev_name,
                              uint16_t version, uint8_t ctry_code, int dscp_len,
                              uint8_t* p_dscp) {
   int result;
-  struct uhid_event ev;
+  tBTA_HH_TO_UHID_EVT to_uhid;
+  struct uhid_event& ev = to_uhid.uhid;
 
-  if (p_dev->fd < 0) {
-    log::warn("Error: fd = {}, dscp_len = {}", p_dev->fd, dscp_len);
-    return;
+  if (!true /* some aflags */) {
+    if (p_dev->fd < 0) {
+      log::warn("Error: fd = {}, dscp_len = {}", p_dev->fd, dscp_len);
+      return;
+    }
+
+    log::warn("fd = {}, name = [{}], dscp_len = {}", p_dev->fd, dev_name,
+              dscp_len);
   }
-
-  log::warn("fd = {}, name = [{}], dscp_len = {}", p_dev->fd, dev_name,
-            dscp_len);
-  log::warn(
+  log::debug(
       "vendor_id = 0x{:04x}, product_id = 0x{:04x}, version= "
       "0x{:04x},ctry_code=0x{:02x}",
       vendor_id, product_id, version, ctry_code);
@@ -617,6 +805,21 @@ void bta_hh_co_send_hid_info(btif_hh_device_t* p_dev, const char* dev_name,
   ev.u.create.product = product_id;
   ev.u.create.version = version;
   ev.u.create.country = ctry_code;
+
+  if (true /* some aflags */) {
+    to_uhid.type = BTA_HH_UHID_INBOUND_DSCP_EVT;
+    ev.u.create.rd_data = (uint8_t*)osi_malloc(ev.u.create.rd_size);
+    memcpy(ev.u.create.rd_data, p_dscp, ev.u.create.rd_size);
+
+    if (!to_uhid_thread(p_dev->internal_send_fd, &to_uhid)) {
+      log::warn("Error: failed to send DSCP");
+      close(p_dev->internal_send_fd);
+      p_dev->internal_send_fd = -1;
+    }
+
+    return;
+  }
+
   result = uhid_write(p_dev->fd, &ev);
 
   log::warn("wrote descriptor to fd = {}, dscp_len = {}, result = {}",
@@ -648,6 +851,16 @@ void bta_hh_co_set_rpt_rsp(uint8_t dev_handle, uint8_t status) {
   btif_hh_device_t* p_dev = btif_hh_find_connected_dev_by_handle(dev_handle);
   if (p_dev == nullptr) {
     log::warn("Unknown HID device handle {}", dev_handle);
+    return;
+  }
+
+  if (true /* some aflags */) {
+    tBTA_HH_TO_UHID_EVT to_uhid;
+    to_uhid.type = BTA_HH_UHID_INBOUND_SET_REPORT_EVT;
+    to_uhid.uhid.type = UHID_SET_REPORT_REPLY;
+    to_uhid.uhid.u.set_report_reply.err = status;
+
+    to_uhid_thread(p_dev->internal_send_fd, &to_uhid);
     return;
   }
 
@@ -708,6 +921,23 @@ void bta_hh_co_get_rpt_rsp(uint8_t dev_handle, uint8_t status,
     return;
   }
 
+  if (len == 0 || len > UHID_DATA_MAX) {
+    log::warn("Invalid report size = {}", len);
+    return;
+  }
+
+  if (true /* some aflags */) {
+    tBTA_HH_TO_UHID_EVT to_uhid;
+    to_uhid.type = BTA_HH_UHID_INBOUND_GET_REPORT_EVT;
+    to_uhid.uhid.type = UHID_FEATURE_ANSWER;
+    to_uhid.uhid.u.feature_answer.err = status;
+    to_uhid.uhid.u.feature_answer.size = len;
+    memcpy(to_uhid.uhid.u.feature_answer.data, p_rpt, len);
+
+    to_uhid_thread(p_dev->internal_send_fd, &to_uhid);
+    return;
+  }
+
   if (!p_dev->get_rpt_id_queue) {
     log::warn("Missing UHID_GET_REPORT id queue");
     return;
@@ -723,11 +953,6 @@ void bta_hh_co_get_rpt_rsp(uint8_t dev_handle, uint8_t status,
 
   if (context == nullptr) {
     log::warn("No pending UHID_GET_REPORT");
-    return;
-  }
-
-  if (len == 0 || len > UHID_DATA_MAX) {
-    log::warn("Invalid report size = {}", len);
     return;
   }
 

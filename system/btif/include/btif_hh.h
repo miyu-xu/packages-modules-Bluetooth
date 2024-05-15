@@ -92,7 +92,9 @@ typedef struct {
   tBTA_HH_ATTR_MASK attr_mask;
   uint8_t sub_class;
   uint8_t app_id;
-  int fd;
+  int fd;                // for interfacing with uhid
+  int internal_recv_fd;  // for receiving internal events in uhid thread
+  int internal_send_fd;  // for sending internal events from btif
   bool ready_for_data;
   pthread_t hh_poll_thread_id;
   uint8_t hh_keep_polling;
