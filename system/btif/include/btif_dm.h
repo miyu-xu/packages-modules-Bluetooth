@@ -154,6 +154,7 @@ void btif_update_remote_properties(const RawAddress& bd_addr, BD_NAME bd_name, D
 bool check_cod_hid(const RawAddress& bd_addr);
 bool check_cod_hid_major(const RawAddress& bd_addr, uint32_t cod);
 bool is_device_le_audio_capable(const RawAddress bd_addr);
+bool is_le_audio_preferred(const RawAddress bd_addr);
 bool is_le_audio_capable_during_service_discovery(const RawAddress& bd_addr);
 
 namespace bluetooth::legacy::testing {
