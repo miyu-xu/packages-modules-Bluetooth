@@ -299,7 +299,8 @@ static void sync_lockstate_on_connect(btif_hh_device_t* p_dev) {
         "Sending hid report to kernel indicating lock key state 0x{:x}",
         keylockstates);
     usleep(200000);
-    toggle_os_keylockstates(p_dev->fd, keylockstates);
+    int fd = (true /* some flags */ ? p_dev->internal_send_fd : p_dev->fd);
+    toggle_os_keylockstates(fd, keylockstates);
   } else {
     log::verbose(
         "NOT sending hid report to kernel indicating lock key state 0x{:x}",
@@ -1043,8 +1044,9 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
                    p_data->dev_status.status, p_data->dev_status.handle);
       p_dev = btif_hh_find_connected_dev_by_handle(p_data->dev_status.handle);
       if (p_dev != NULL) {
+        int fd = (true /* some flags */ ? p_dev->internal_send_fd : p_dev->fd);
         BTHH_STATE_UPDATE(p_dev->link_spec, BTHH_CONN_STATE_DISCONNECTING);
-        log::verbose("uhid fd={} local_vup={}", p_dev->fd, p_dev->local_vup);
+        log::verbose("uhid fd={} local_vup={}", fd, p_dev->local_vup);
         btif_hh_stop_vup_timer(p_dev->link_spec);
         /* If this is a locally initiated VUP, remove the bond as ACL got
          *  disconnected while VUP being processed.
@@ -1191,7 +1193,7 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
         return;
       }
 
-      if (p_dev->fd < 0) {
+      if ((true /* some flags */ ? p_dev->internal_send_fd : p_dev->fd) < 0) {
         log::error("BTA_HH_GET_DSCP_EVT: failed to find the uhid driver...");
         return;
       }
@@ -2142,8 +2144,9 @@ static void cleanup(void) {
   }
   for (i = 0; i < BTIF_HH_MAX_HID; i++) {
     p_dev = &btif_hh_cb.devices[i];
-    if (p_dev->dev_status != BTHH_CONN_STATE_UNKNOWN && p_dev->fd >= 0) {
-      log::verbose("Closing uhid fd = {}", p_dev->fd);
+    int fd = (true /* some flags */ ? p_dev->internal_send_fd : p_dev->fd);
+    if (p_dev->dev_status != BTHH_CONN_STATE_UNKNOWN && fd >= 0) {
+      log::verbose("Closing uhid fd = {}", fd);
       bta_hh_co_close(p_dev);
     }
   }
@@ -2228,9 +2231,10 @@ void DumpsysHid(int fd) {
   for (unsigned i = 0; i < BTIF_HH_MAX_HID; i++) {
     const btif_hh_device_t* p_dev = &btif_hh_cb.devices[i];
     if (p_dev->link_spec.addrt.bda != RawAddress::kEmpty) {
+      int fd = (true /* some flags */ ? p_dev->internal_send_fd : p_dev->fd);
       LOG_DUMPSYS(
           fd, "  %u: addr:%s fd:%d state:%s ready:%s thread_id:%d handle:%d", i,
-          p_dev->link_spec.ToRedactedStringForLogging().c_str(), p_dev->fd,
+          p_dev->link_spec.ToRedactedStringForLogging().c_str(), fd,
           bthh_connection_state_text(p_dev->dev_status).c_str(),
           (p_dev->ready_for_data) ? ("T") : ("F"),
           static_cast<int>(p_dev->hh_poll_thread_id), p_dev->dev_handle);
