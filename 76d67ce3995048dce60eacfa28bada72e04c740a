@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ee0c04f_0e3443cd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3846,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-16T05:22:23Z",
+      "side": 1,
+      "message": "The code is removing a check on this flag, and the test is setting the flag to true here.\n\nIs this intended ?",
+      "range": {
+        "startLine": 3846,
+        "startChar": 22,
+        "endLine": 3846,
+        "endChar": 88
+      },
+      "revId": "76d67ce3995048dce60eacfa28bada72e04c740a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aed4c243_ca55faf2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3924,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-16T05:22:23Z",
+      "side": 1,
+      "message": "Looking at onBigInfoAdvertisingReport, it does not post message on the looper, can we remove entirely this ?",
+      "range": {
+        "startLine": 3924,
+        "startChar": 0,
+        "endLine": 3924,
+        "endChar": 100
+      },
+      "revId": "76d67ce3995048dce60eacfa28bada72e04c740a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87f6a6dd_fb338e3c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3926,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-16T05:22:23Z",
+      "side": 1,
+      "message": "times(1) is by default, you can remove it",
+      "range": {
+        "startLine": 3926,
+        "startChar": 50,
+        "endLine": 3926,
+        "endChar": 58
+      },
+      "revId": "76d67ce3995048dce60eacfa28bada72e04c740a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aab45b0b_76fc3815",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3926,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-16T05:22:23Z",
+      "side": 1,
+      "message": "Naive question: Why do we need a timeout here, if we already wait for the looper to finished ?",
+      "range": {
+        "startLine": 3926,
+        "startChar": 30,
+        "endLine": 3926,
+        "endChar": 49
+      },
+      "revId": "76d67ce3995048dce60eacfa28bada72e04c740a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d1fe1c3_8122b450",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3929,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-16T05:22:23Z",
+      "side": 1,
+      "message": "Is the try catch really needed ? we are only calling mockito here",
+      "range": {
+        "startLine": 3925,
+        "startChar": 6,
+        "endLine": 3929,
+        "endChar": 9
+      },
+      "revId": "76d67ce3995048dce60eacfa28bada72e04c740a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "098f8705_2fae3f36",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3944,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-16T05:22:23Z",
+      "side": 1,
+      "message": "Instead of clearing invocation on the callback, the test should either:\n* check the callback is call 1, then 2, then 3 times\n* Check the callback using \"in order\" (search for inOrder). That allow to check event one by one\n\nNote that `clearInvocations` is used a lot here and the documentation said:\n```\n Try to avoid this method at all costs. Only clear invocations if you are unable to efficiently test your program.\n```",
+      "range": {
+        "startLine": 3944,
+        "startChar": 0,
+        "endLine": 3944,
+        "endChar": 34
+      },
+      "revId": "76d67ce3995048dce60eacfa28bada72e04c740a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bf7cf74_1870b2a0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3956,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-16T05:22:23Z",
+      "side": 1,
+      "message": "mBluetoothLeScannerWrapper doesn\u0027t appear to be used, I don\u0027t see why clearing invocation here",
+      "range": {
+        "startLine": 3956,
+        "startChar": 0,
+        "endLine": 3956,
+        "endChar": 51
+      },
+      "revId": "76d67ce3995048dce60eacfa28bada72e04c740a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5ed976b_dd22780f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3957,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-16T05:22:23Z",
+      "side": 1,
+      "message": "mMethodProxy doesn\u0027t appear to be used, I don\u0027t see why clearing invocation here",
+      "range": {
+        "startLine": 3957,
+        "startChar": 0,
+        "endLine": 3957,
+        "endChar": 37
+      },
+      "revId": "76d67ce3995048dce60eacfa28bada72e04c740a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57c99ef0_9d1c8c01",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3970,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-16T05:22:23Z",
+      "side": 1,
+      "message": "From an external point of view (without bass knowledge) I feel like you are calling 3 times the method, expecting each time the same thing.\n\nIf possible I would recommend splitting the test in 3 different tests. If there is a reason why we need to chain the 3 calls, I would suggest clearly indicate the 3 steps and what is expected.\n\nMaybe we are missing an argumentCaptor in the onSourceFound in order to check some of the metadata being sent in the callback ?",
+      "range": {
+        "startLine": 3962,
+        "startChar": 3,
+        "endLine": 3970,
+        "endChar": 9
+      },
+      "revId": "76d67ce3995048dce60eacfa28bada72e04c740a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
