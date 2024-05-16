@@ -371,20 +371,6 @@ static void bta_dm_store_audio_profiles_version(tSDP_DISCOVERY_DB* p_sdp_db) {
   }
 }
 
-void sdp_finished(RawAddress bda, tBTA_STATUS result,
-                  tBTA_SERVICE_MASK services,
-                  std::vector<bluetooth::Uuid> uuids = {},
-                  std::vector<bluetooth::Uuid> gatt_uuids = {}) {
-  bta_dm_disc_sm_execute(BTA_DM_DISCOVERY_RESULT_EVT,
-                         std::make_unique<tBTA_DM_MSG>(tBTA_DM_SVC_RES{
-                             .bd_addr = bda,
-                             .services = services,
-                             .uuids = uuids,
-                             .gatt_uuids = gatt_uuids,
-                             .result = result,
-                         }));
-}
-
 static void bta_dm_sdp_result(tSDP_STATUS sdp_result,
                               tBTA_DM_SDP_STATE* sdp_state);
 
@@ -519,6 +505,12 @@ static void bta_dm_sdp_result(tSDP_STATUS sdp_result,
                            sdp_state->services_found,
                            sdp_state->service_index));
 
+    auto msg = std::make_unique<tBTA_DM_MSG>(tBTA_DM_SVC_RES{});
+    auto& disc_result = std::get<tBTA_DM_SVC_RES>(*msg);
+
+    disc_result.result = BTA_SUCCESS;
+    disc_result.uuids = std::move(uuid_list);
+    disc_result.gatt_uuids = std::move(gatt_uuids);
     // Copy the raw_data to the discovery result structure
     if (p_sdp_db != NULL && p_sdp_db->raw_used != 0 &&
         p_sdp_db->raw_data != NULL) {
@@ -532,20 +524,19 @@ static void bta_dm_sdp_result(tSDP_STATUS sdp_result,
     } else {
       log::verbose("raw data size is 0 or raw_data is null!!");
     }
+    disc_result.services = sdp_state->services_found;
 
-    tBTA_STATUS result = BTA_SUCCESS;
-    auto services = sdp_state->services_found;
     // Piggy back the SCN over result field
     if (scn_found) {
-      result = static_cast<tBTA_STATUS>((3 + sdp_state->peer_scn));
-      services |= BTA_USER_SERVICE_MASK;
+      disc_result.result = static_cast<tBTA_STATUS>((3 + sdp_state->peer_scn));
+      disc_result.services |= BTA_USER_SERVICE_MASK;
 
       log::verbose("Piggy back the SCN over result field  SCN={}",
                    sdp_state->peer_scn);
     }
+    disc_result.bd_addr = bta_dm_discovery_cb.peer_bdaddr;
 
-    sdp_finished(bta_dm_discovery_cb.peer_bdaddr, result, services, uuid_list,
-                 gatt_uuids);
+    bta_dm_disc_sm_execute(BTA_DM_DISCOVERY_RESULT_EVT, std::move(msg));
   } else {
     BTM_LogHistory(
         kBtmLogTag, bta_dm_discovery_cb.peer_bdaddr, "Discovery failed",
@@ -553,8 +544,14 @@ static void bta_dm_sdp_result(tSDP_STATUS sdp_result,
     log::error("SDP connection failed {}", sdp_status_text(sdp_result));
 
     /* not able to connect go to next device */
-    sdp_finished(bta_dm_discovery_cb.peer_bdaddr, BTA_FAILURE,
-                 sdp_state->services_found);
+    auto msg = std::make_unique<tBTA_DM_MSG>(tBTA_DM_SVC_RES{});
+    auto& disc_result = std::get<tBTA_DM_SVC_RES>(*msg);
+
+    disc_result.result = BTA_FAILURE;
+    disc_result.services = sdp_state->services_found;
+    disc_result.bd_addr = bta_dm_discovery_cb.peer_bdaddr;
+
+    bta_dm_disc_sm_execute(BTA_DM_DISCOVERY_RESULT_EVT, std::move(msg));
   }
 }
 
@@ -673,7 +670,11 @@ static void bta_dm_find_services(const RawAddress& bd_addr,
   /* no more services to be discovered */
   if (sdp_state->service_index >= BTA_MAX_SERVICE_ID) {
     log::info("SDP - no more services to discover");
-    sdp_finished(bd_addr, BTA_SUCCESS, sdp_state->services_found);
+    bta_dm_disc_sm_execute(BTA_DM_DISCOVERY_RESULT_EVT,
+                           std::make_unique<tBTA_DM_MSG>(tBTA_DM_SVC_RES{
+                               .bd_addr = bta_dm_discovery_cb.peer_bdaddr,
+                               .services = sdp_state->services_found,
+                               .result = BTA_SUCCESS}));
     return;
   }
 
@@ -711,7 +712,11 @@ static void bta_dm_find_services(const RawAddress& bd_addr,
               bd_addr);
 
     sdp_state->service_index = BTA_MAX_SERVICE_ID;
-    sdp_finished(bd_addr, BTA_SUCCESS, sdp_state->services_found);
+    bta_dm_disc_sm_execute(BTA_DM_DISCOVERY_RESULT_EVT,
+                           std::make_unique<tBTA_DM_MSG>(tBTA_DM_SVC_RES{
+                               .bd_addr = bta_dm_discovery_cb.peer_bdaddr,
+                               .services = sdp_state->services_found,
+                               .result = BTA_SUCCESS}));
     return;
   }
 
