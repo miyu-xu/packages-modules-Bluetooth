@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1951e5a0_2d328a1e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-16T01:27:40Z",
+      "side": 1,
+      "message": "Instead of requiring the flag to be enable, please force the flag to true.\n\nThis will run the test unconditionnally and will pretend the flag exist.\n\nthis is done with setFlagRule.\n\nThere are also annotation that can directly enable it but I have never use them yet\n\ngo/class-method-override#SetFlagsRule",
+      "range": {
+        "startLine": 178,
+        "startChar": 0,
+        "endLine": 178,
+        "endChar": 25
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "bd34b5c6_d3429d4d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+              "range": {
+                "startLine": 52,
+                "startChar": 0,
+                "endLine": 53,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+              "range": {
+                "startLine": 69,
+                "startChar": 0,
+                "endLine": 70,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+              "range": {
+                "startLine": 178,
+                "startChar": 0,
+                "endLine": 179,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "3c9fdcd0112abe63c96c6142d374e76fe2b9630d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "638eac9c_dceb4116",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-16T01:27:40Z",
+      "side": 1,
+      "message": "Should it be 2 tests ? one that assume that `HeadsetClientStateMachine.sMaxAmVcVol \u003e\u003d MAX_HFP_SCO_VOICE_CALL_VOLUME` and the other that `HeadsetClientStateMachine.sMaxAmVcVol \u003c MAX_HFP_SCO_VOICE_CALL_VOLUME`",
+      "range": {
+        "startLine": 180,
+        "startChar": 0,
+        "endLine": 218,
+        "endChar": 9
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ecb40bfd_45b54cde",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+              "range": {
+                "startLine": 179,
+                "startChar": 0,
+                "endLine": 180,
+                "endChar": 0
+              },
+              "replacement": "    public void testAmHfVolumeSymmetric_amRangeLower() {\n        int lowerRangeMin \u003d 0;\n        int lowerRangeMax \u003d 0;\n        boolean amRangeLower \u003d false;\n        Map\u003cInteger, Integer\u003e lowerToHigherMap \u003d new HashMap\u003c\u003e();\n\n        if (HeadsetClientStateMachine.sMaxAmVcVol \u003e\u003d MAX_HFP_SCO_VOICE_CALL_VOLUME) {\n            // HF range is lower\n            lowerRangeMin \u003d MIN_HFP_SCO_VOICE_CALL_VOLUME;\n            lowerRangeMax \u003d MAX_HFP_SCO_VOICE_CALL_VOLUME;\n        } else {\n            // AM range is lower\n            amRangeLower \u003d true;\n            lowerRangeMin \u003d HeadsetClientStateMachine.sMinAmVcVol;\n            lowerRangeMax \u003d HeadsetClientStateMachine.sMaxAmVcVol;\n        }\n\n        for (int i \u003d lowerRangeMin; i \u003c\u003d lowerRangeMax; i++) {\n            // Collect AM to HF conversion\n            lowerToHigherMap.put(i, HeadsetClientStateMachine.amToHfVol(i));\n        }\n\n        for (Map.Entry entry : lowerToHigherMap.entrySet()) {\n            // Convert back from collected HF to AM and check if equal the saved AM value\n            Assert.assertEquals(\n                    HeadsetClientStateMachine.hfToAmVol((int) entry.getValue()),\n                    entry.getKey());\n        }\n    }\n\n    @Test\n    @RequiresFlagsEnabled(Flags.FLAG_HEADSET_CLIENT_AM_HF_VOLUME_SYMMETRIC)\n    public void testAmHfVolumeSymmetric_hfRangeLower() {\n        int lowerRangeMin \u003d 0;\n        int lowerRangeMax \u003d 0;\n        boolean amRangeLower \u003d false;\n        Map\u003cInteger, Integer\u003e lowerToHigherMap \u003d new HashMap\u003c\u003e();\n\n        if (HeadsetClientStateMachine.sMaxAmVcVol \u003e\u003d MAX_HFP_SCO_VOICE_CALL_VOLUME) {\n            // HF range is lower\n            lowerRangeMin \u003d MIN_HFP_SCO_VOICE_CALL_VOLUME;\n            lowerRangeMax \u003d MAX_HFP_SCO_VOICE_CALL_VOLUME;\n        } else {\n            // AM range is lower\n            amRangeLower \u003d true;\n            lowerRangeMin \u003d HeadsetClientStateMachine.sMinAmVcVol;\n            lowerRangeMax \u003d HeadsetClientStateMachine.sMaxAmVcVol;\n        }\n\n        for (int i \u003d lowerRangeMin; i \u003c\u003d lowerRangeMax; i++) {\n            // Collect HF to AM conversion\n            lowerToHigherMap.put(i, HeadsetClientStateMachine.hfToAmVol(i));\n        }\n\n        for (Map.Entry entry : lowerToHigherMap.entrySet()) {\n            // Convert back from collected AM to HF and check if equal the saved HF value\n            Assert.assertEquals(\n                    HeadsetClientStateMachine.amToHfVol((int) entry.getValue()),\n                    entry.getKey());\n        }\n    }\n\n    @Test\n    @RequiresFlagsEnabled(Flags.FLAG_HEADSET_CLIENT_AM_HF_VOLUME_SYMMETRIC)\n    public void testAmHfVolumeSymmetric_amRangeLower() {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3c9fdcd0112abe63c96c6142d374e76fe2b9630d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
