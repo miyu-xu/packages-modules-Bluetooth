@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a5bb83f_ddb74cff",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-05-16T03:51:41Z",
+      "side": 1,
+      "message": "This will be called from `bluetooth_media.rs` and `Message` is the way to ask `bluetooth.rs` to do things. It does seem a bit awkward to retry in this message queue but it seems the most natural place that has all the information and permission.",
+      "parentUuid": "d7697baf_3f967dee",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 66
+      },
+      "revId": "3c4ac3c61e73303b438fb033a9f72d75e15233bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "6feb3e95_58e45961",
@@ -135,6 +159,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7be32471_2677ca05",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-05-16T03:51:41Z",
+      "side": 1,
+      "message": "It was meant to be negated, but I decided to change it to `busy`, thanks.",
+      "parentUuid": "a658d7ea_69c8e4ad",
+      "range": {
+        "startLine": 158,
+        "startChar": 34,
+        "endLine": 158,
+        "endChar": 37
+      },
+      "revId": "3c4ac3c61e73303b438fb033a9f72d75e15233bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d43a3ea_1dcbe254",
@@ -171,6 +219,54 @@
       "writtenOn": "2024-05-16T02:58:30Z",
       "side": 1,
       "message": "nit: CreateBondWithRetry or CreateBondWhenNotBusy",
+      "range": {
+        "startLine": 90,
+        "startChar": 14,
+        "endLine": 90,
+        "endChar": 15
+      },
+      "revId": "3c4ac3c61e73303b438fb033a9f72d75e15233bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b37c4401_52dc495d",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-05-16T03:51:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d43a3ea_1dcbe254",
+      "range": {
+        "startLine": 90,
+        "startChar": 50,
+        "endLine": 90,
+        "endChar": 53
+      },
+      "revId": "3c4ac3c61e73303b438fb033a9f72d75e15233bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8470d819_d10e6e5a",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-05-16T03:51:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f54e7101_aaf294bd",
       "range": {
         "startLine": 90,
         "startChar": 14,
