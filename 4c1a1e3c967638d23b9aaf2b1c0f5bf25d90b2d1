@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f82792b_6bd45e12",
+        "filename": "system/btif/include/btif_hh.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-05-16T11:29:25Z",
+      "side": 1,
+      "message": "In my test, I tried mashing the keyboard keys the moment it\u0027s connected.\nI always immediately get the UHID_OPEN, so this queue is never tested.\nHowever, a few of the keystrokes are missing. I\u0027m not sure what could be the cause, maybe the delay is not big enough.",
+      "range": {
+        "startLine": 106,
+        "startChar": 17,
+        "endLine": 106,
+        "endChar": 28
+      },
+      "revId": "4c1a1e3c967638d23b9aaf2b1c0f5bf25d90b2d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
