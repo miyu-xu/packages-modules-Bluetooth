@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed36d82f_cb97c4c5",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MapClientContent.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1404402
+      },
+      "writtenOn": "2024-05-16T00:06:04Z",
+      "side": 1,
+      "message": "remove this part",
+      "fixSuggestions": [
+        {
+          "fixId": "c0ff927e_9a230718",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/mapclient/MapClientContent.java",
+              "range": {
+                "startLine": 402,
+                "startChar": 0,
+                "endLine": 404,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "492c27291396930a10a7b41ebd4dcb8cafb2b509",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
