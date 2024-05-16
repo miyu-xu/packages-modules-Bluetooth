@@ -1341,13 +1341,14 @@ impl BluetoothMedia {
         };
 
         debug!("[{}]: UHID: Telephony use: {}", DisplayAddress(&addr), state);
-        if state == false {
-            // As there's a HID call for each WebHID call, even if it has been answered in the app
-            // or pre-exists, and that an app which disconnects from WebHID may not have trigger
-            // the UHID_OUTPUT_NONE, we need to remove all pending HID calls on telephony use
-            // release to keep lower HF layer in sync and not prevent A2DP streaming
-            self.hangup_call_impl();
-        }
+        // Prior to open/close a UHID device, the phone's state may be
+        // wrong. To ensure proper functionality, the phone state will be reset
+        // to its initial states when UHID open/close.
+
+        // Currently, there are only two possible initial states:
+        //   - No active calls.
+        //   - CRAS is utilizing an active call.
+        self.initialize_phone_state();
         self.telephony_callbacks.lock().unwrap().for_all_callbacks(|callback| {
             callback.on_telephony_use(address.to_string(), state);
         });
@@ -2253,6 +2254,32 @@ impl BluetoothMedia {
         self.phone_state.num_active = 1;
         self.phone_state_change("".into());
     }
+
+    /// Initializes the phone state to the initial state.
+    ///
+    /// This function resets call lists, counters, and state variables to their
+    /// default values.
+    ///
+    /// If the +CIEV workaround is needed and there is an active HFP audio connection,
+    /// the function places an active call and updates the phone state.
+    fn initialize_phone_state(&mut self) {
+        self.call_list = vec![];
+        self.phone_state.num_active = 0;
+        self.phone_state.num_held = 0;
+        self.phone_state.state = CallState::Idle;
+        self.memory_dialing_number = None;
+        self.last_dialing_number = None;
+        self.a2dp_has_interrupted_stream = false;
+
+        if self.should_insert_call_when_sco_start()
+            && self.hfp_audio_state.values().any(|x| x == &BthfAudioState::Connected)
+        {
+            self.place_active_call();
+            return;
+        }
+
+        self.phone_state_change("".into());
+    }
 }
 
 fn get_a2dp_dispatcher(tx: Sender<Message>) -> A2dpCallbacksDispatcher {
@@ -3002,23 +3029,8 @@ impl IBluetoothTelephony for BluetoothMedia {
             return;
         }
 
-        self.call_list = vec![];
-        self.phone_state.num_active = 0;
-        self.phone_state.num_held = 0;
-        self.phone_state.state = CallState::Idle;
-        self.memory_dialing_number = None;
-        self.last_dialing_number = None;
-        self.a2dp_has_interrupted_stream = false;
-
         self.phone_ops_enabled = enable;
-        if self.should_insert_call_when_sco_start()
-            && self.hfp_audio_state.values().any(|x| x == &BthfAudioState::Connected)
-        {
-            self.place_active_call();
-            return;
-        }
-
-        self.phone_state_change("".into());
+        self.initialize_phone_state();
     }
 
     fn set_mps_qualification_enabled(&mut self, enable: bool) {
