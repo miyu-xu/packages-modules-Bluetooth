@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b843da73_6c6cc193",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3846,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-16T08:52:36Z",
+      "side": 1,
+      "message": "yes, this is because in my major change b/3035977 first assumption was to remove all stuff in stopSearch. Then we found that there is need to left cacheBroadcast because there is one view where you can addSource (which force syncing) when scanner is disabled.\n\nThis bug is part of that change as when you connect and disconnect on such view you will be synced so there is need to remove flags to inform one again of this broadcaster when scanner is started.",
+      "parentUuid": "0ee0c04f_0e3443cd",
+      "range": {
+        "startLine": 3846,
+        "startChar": 22,
+        "endLine": 3846,
+        "endChar": 88
+      },
+      "revId": "76d67ce3995048dce60eacfa28bada72e04c740a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aed4c243_ca55faf2",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2024-05-16T05:22:23Z",
       "side": 1,
       "message": "Looking at onBigInfoAdvertisingReport, it does not post message on the looper, can we remove entirely this ?",
+      "range": {
+        "startLine": 3924,
+        "startChar": 0,
+        "endLine": 3924,
+        "endChar": 100
+      },
+      "revId": "76d67ce3995048dce60eacfa28bada72e04c740a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46e85b3a_75f0971f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3924,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-16T08:52:36Z",
+      "side": 1,
+      "message": "it call mCallbacks.notifySourceFound(metaData);",
+      "parentUuid": "aed4c243_ca55faf2",
       "range": {
         "startLine": 3924,
         "startChar": 0,
@@ -95,6 +143,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "32a21813_97adbf9c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3926,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-16T08:52:36Z",
+      "side": 1,
+      "message": "right, one thing is enough, timeout or waitForLooper. I left waitFor and remove timeouts.",
+      "parentUuid": "aab45b0b_76fc3815",
+      "range": {
+        "startLine": 3926,
+        "startChar": 30,
+        "endLine": 3926,
+        "endChar": 49
+      },
+      "revId": "76d67ce3995048dce60eacfa28bada72e04c740a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8028e88e_1d1b19ff",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3926,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-16T08:52:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87f6a6dd_fb338e3c",
+      "range": {
+        "startLine": 3926,
+        "startChar": 50,
+        "endLine": 3926,
+        "endChar": 58
+      },
+      "revId": "76d67ce3995048dce60eacfa28bada72e04c740a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1d1fe1c3_8122b450",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
         "patchSetId": 2
@@ -118,6 +214,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4586ebc9_9cd7c50a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3929,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-16T08:52:36Z",
+      "side": 1,
+      "message": "I think so:\nerror: unreported exception RemoteException; must be caught or declared to be thrown\n            verify(mCallback, timeout(TIMEOUT_MS)).onSourceFound(any());",
+      "parentUuid": "1d1fe1c3_8122b450",
+      "range": {
+        "startLine": 3925,
+        "startChar": 6,
+        "endLine": 3929,
+        "endChar": 9
+      },
+      "revId": "76d67ce3995048dce60eacfa28bada72e04c740a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "098f8705_2fae3f36",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
         "patchSetId": 2
@@ -129,6 +249,30 @@
       "writtenOn": "2024-05-16T05:22:23Z",
       "side": 1,
       "message": "Instead of clearing invocation on the callback, the test should either:\n* check the callback is call 1, then 2, then 3 times\n* Check the callback using \"in order\" (search for inOrder). That allow to check event one by one\n\nNote that `clearInvocations` is used a lot here and the documentation said:\n```\n Try to avoid this method at all costs. Only clear invocations if you are unable to efficiently test your program.\n```",
+      "range": {
+        "startLine": 3944,
+        "startChar": 0,
+        "endLine": 3944,
+        "endChar": 34
+      },
+      "revId": "76d67ce3995048dce60eacfa28bada72e04c740a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98877091_ffa25439",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3944,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-16T08:52:36Z",
+      "side": 1,
+      "message": "Thank you very much for this comment, fixed!",
+      "parentUuid": "098f8705_2fae3f36",
       "range": {
         "startLine": 3944,
         "startChar": 0,
@@ -164,6 +308,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4193257d_d8afcfc7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3956,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-16T08:52:36Z",
+      "side": 1,
+      "message": "needed as it is checked in startSearchingForSources();",
+      "parentUuid": "7bf7cf74_1870b2a0",
+      "range": {
+        "startLine": 3956,
+        "startChar": 0,
+        "endLine": 3956,
+        "endChar": 51
+      },
+      "revId": "76d67ce3995048dce60eacfa28bada72e04c740a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e5ed976b_dd22780f",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
         "patchSetId": 2
@@ -175,6 +343,30 @@
       "writtenOn": "2024-05-16T05:22:23Z",
       "side": 1,
       "message": "mMethodProxy doesn\u0027t appear to be used, I don\u0027t see why clearing invocation here",
+      "range": {
+        "startLine": 3957,
+        "startChar": 0,
+        "endLine": 3957,
+        "endChar": 37
+      },
+      "revId": "76d67ce3995048dce60eacfa28bada72e04c740a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62795e1b_bf66ff0a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3957,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-16T08:52:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5ed976b_dd22780f",
       "range": {
         "startLine": 3957,
         "startChar": 0,
@@ -198,6 +390,30 @@
       "writtenOn": "2024-05-16T05:22:23Z",
       "side": 1,
       "message": "From an external point of view (without bass knowledge) I feel like you are calling 3 times the method, expecting each time the same thing.\n\nIf possible I would recommend splitting the test in 3 different tests. If there is a reason why we need to chain the 3 calls, I would suggest clearly indicate the 3 steps and what is expected.\n\nMaybe we are missing an argumentCaptor in the onSourceFound in order to check some of the metadata being sent in the callback ?",
+      "range": {
+        "startLine": 3962,
+        "startChar": 3,
+        "endLine": 3970,
+        "endChar": 9
+      },
+      "revId": "76d67ce3995048dce60eacfa28bada72e04c740a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da9f975d_b44ab279",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3970,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-16T08:52:36Z",
+      "side": 1,
+      "message": "It cannot be split because we want to go into this specific scenario and all preparation steps are tested in other tests (so I do not check it here)\nPreparation steps:\n1. Scan and Synced (there are tests for that)\n2. onBigInfoAdvertisingReport causes notification (there is test for that)\n3. Stop searching, unsyc all broadcasters (there is test for that)\n4. Add source to unsynced broadcast, causes synchronization first (there is test for that)\n5. onBigInfoAdvertisingReport causes notification (same as point 2)\n\nLast step moves as to the right one scenario: \n6. Start searching again clears timeout, mCachedBroadcasts and notifiedFlags but keep syncs\n7. onBigInfoAdvertisingReport should notified again (point of interest)",
+      "parentUuid": "57c99ef0_9d1c8c01",
       "range": {
         "startLine": 3962,
         "startChar": 3,
