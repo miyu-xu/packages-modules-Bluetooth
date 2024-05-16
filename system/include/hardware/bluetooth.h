@@ -373,6 +373,7 @@ typedef enum {
    * Data Type - bt_vendor_product_info_t.
    */
   BT_PROPERTY_VENDOR_PRODUCT_INFO,
+  BT_PROPERTY_WL_MEDIA_PLAYERS_LIST,
 
   /**
    * Description - ASHA capability.

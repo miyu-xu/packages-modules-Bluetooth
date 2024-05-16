@@ -142,6 +142,8 @@ constexpr bt_vendor_product_info_t kVendorProductInfo{
     .version = 0x9abd,
 };
 
+// BT_PROPERTY_WL_MEDIA_PLAYERS_LIST
+
 // BT_PROPERTY_REMOTE_ASHA_CAPABILITY
 constexpr int16_t kRemoteAshaCapability{0x89};
 
@@ -251,6 +253,9 @@ void fill_property(
     case BT_PROPERTY_VENDOR_PRODUCT_INFO:
       properties.push_back(VendorProductInfo::Create(kVendorProductInfo));
       ASSERT_EQ(sizeof(kVendorProductInfo), properties.back()->Size());
+      break;
+
+    case BT_PROPERTY_WL_MEDIA_PLAYERS_LIST:
       break;
 
     case BT_PROPERTY_REMOTE_ASHA_CAPABILITY:
@@ -463,6 +468,9 @@ void verify_property(const bt_property_type_t& type, const bt_property_t& proper
       ASSERT_EQ(
           kVendorProductInfo.product_id, ((bt_vendor_product_info_t*)property.val)->product_id);
       ASSERT_EQ(kVendorProductInfo.version, ((bt_vendor_product_info_t*)property.val)->version);
+      break;
+
+    case BT_PROPERTY_WL_MEDIA_PLAYERS_LIST:
       break;
 
     case BT_PROPERTY_REMOTE_ASHA_CAPABILITY:

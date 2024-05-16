@@ -104,6 +104,8 @@ class AdapterProperties {
 
     private static final int SCAN_MODE_CHANGES_MAX_SIZE = 10;
     private EvictingQueue<String> mScanModeChanges;
+    private CopyOnWriteArrayList<String> mAllowlistedPlayers =
+            new CopyOnWriteArrayList<String>();
 
     private int mProfilesConnecting, mProfilesConnected, mProfilesDisconnecting;
     private final HashMap<Integer, Pair<Integer, Integer>> mProfileConnectionState =
@@ -288,6 +290,7 @@ class AdapterProperties {
         mBondedDevices.clear();
         mScanModeChanges.clear();
         invalidateBluetoothCaches();
+        mAllowlistedPlayers.clear();
     }
 
     private static void invalidateGetProfileConnectionStateCache() {
@@ -747,6 +750,24 @@ class AdapterProperties {
         }
     }
 
+     /**
+     * @return the mAllowlistedPlayers
+     */
+    String[] getAllowlistedMediaPlayers() {
+        String[] AllowlistedPlayersList = new String[0];
+        try {
+            AllowlistedPlayersList = mAllowlistedPlayers.toArray(AllowlistedPlayersList);
+        } catch (ArrayStoreException ee) {
+            errorLog("Error retrieving Allowlisted Players array");
+        }
+        Log.d(TAG, "getAllowlistedMediaPlayers: numAllowlistedPlayers = "
+                                        + AllowlistedPlayersList.length);
+        for (int i = 0; i < AllowlistedPlayersList.length; i++) {
+            Log.d(TAG, "players :" + AllowlistedPlayersList[i]);
+        }
+        return AllowlistedPlayersList;
+    }
+
     long discoveryEndMillis() {
         return mDiscoveryEndMs;
     }
@@ -982,6 +1003,15 @@ class AdapterProperties {
         }
     }
 
+    void updateAllowlistedMediaPlayers(String playername) {
+        Log.d(TAG, "updateAllowlistedMediaPlayers ");
+
+        if (!mAllowlistedPlayers.contains(playername)) {
+            Log.d(TAG, "Adding to Allowlisted Players list:" + playername);
+            mAllowlistedPlayers.add(playername);
+        }
+    }
+
     @RequiresPermission(android.Manifest.permission.INTERACT_ACROSS_USERS)
     void adapterPropertyChangedCallback(int[] types, byte[][] values) {
         Intent intent;
@@ -1069,6 +1099,23 @@ class AdapterProperties {
                     case AbstractionLayer.BT_PROPERTY_LOCAL_IO_CAPS:
                         mLocalIOCapability = Utils.byteArrayToInt(val);
                         debugLog("mLocalIOCapability set to " + mLocalIOCapability);
+                        break;
+
+                    case AbstractionLayer.BT_PROPERTY_WL_MEDIA_PLAYERS_LIST:
+                        int pos = 0;
+                        for (int j = 0; j < val.length; j++) {
+                            if (val[j] != 0) {
+                                continue;
+                            }
+                            int name_len = j - pos;
+
+                            byte[] buf = new byte[name_len];
+                            System.arraycopy(val, pos, buf, 0, name_len);
+                            String player_name = new String(buf, 0, name_len);
+                            Log.d(TAG, "player_name: "  +  player_name);
+                            updateAllowlistedMediaPlayers(player_name);
+                            pos += (name_len + 1);
+                        }
                         break;
 
                     default:
