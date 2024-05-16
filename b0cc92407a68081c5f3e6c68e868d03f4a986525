@@ -16,6 +16,24 @@
       "message": "(not in the scope of this CL) I guess if this fails, then it will be never retried?  When we refactor, we should definitely think about retry mechanisms for all CUD operations outside the bluetooth stack.",
       "revId": "b0cc92407a68081c5f3e6c68e868d03f4a986525",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb947eac_35585166",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MapClientContent.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-05-16T20:59:02Z",
+      "side": 1,
+      "message": "+1 totally agree\n\nThis one is interesting too in that if it fails, its very likely that the database just _isn\u0027t there_ due to feature support flags/config. So we may not even want to start MapClientService is FEATURE_TELEPHONY_MESSAGING isn\u0027t up. Then, if you claim MAP_CLIENT support, but not FEATURE_TELEPHONY_MESSAGING, then you\u0027ll fail CTS and we can govern compatibility a bit better.",
+      "parentUuid": "d884f669_af4a4697",
+      "revId": "b0cc92407a68081c5f3e6c68e868d03f4a986525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
