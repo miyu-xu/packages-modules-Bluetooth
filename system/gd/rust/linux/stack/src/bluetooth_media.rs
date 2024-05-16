@@ -1982,14 +1982,12 @@ impl BluetoothMedia {
     }
 
     fn incoming_call_impl(&mut self, number: String) -> bool {
-        if self.phone_state.state != CallState::Idle {
-            return false;
-        }
-
-        if self.phone_state.num_active > 0 {
-            return false;
-        }
-
+        // Currently, there are only two possible states when incoming call:
+        //   - No active calls
+        //       No ops when execute hangup_call_impl.
+        //   - CRAS is utilizing an active call.
+        //       Hang up CRAS active call and trigger an incoming call.
+        self.hangup_call_impl();
         self.call_list.push(CallInfo {
             index: self.new_call_index(),
             dir_incoming: true,
