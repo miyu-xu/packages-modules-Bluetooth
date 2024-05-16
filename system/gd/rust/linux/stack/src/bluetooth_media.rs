@@ -12,7 +12,6 @@ use bt_topshim::profiles::a2dp::{
 use bt_topshim::profiles::avrcp::{
     Avrcp, AvrcpCallbacks, AvrcpCallbacksDispatcher, PlayerMetadata,
 };
-use bt_topshim::profiles::hfp::interop_insert_call_when_sco_start;
 use bt_topshim::profiles::hfp::{
     BthfAudioState, BthfConnectionState, CallHoldCommand, CallInfo, CallState, EscoCodingFormat,
     Hfp, HfpCallbacks, HfpCallbacksDispatcher, HfpCodecBitId, HfpCodecFormat, HfpCodecId,
@@ -723,7 +722,7 @@ impl BluetoothMedia {
                             self.start_sco_call_impl(addr.to_string(), false, HfpCodecBitId::NONE);
                         }
 
-                        if self.should_insert_call_when_sco_start(addr) {
+                        if self.should_insert_call_when_sco_start() {
                             info!(
                                 "[{}]: UHID creation skipped due to interop workaround",
                                 DisplayAddress(&addr)
@@ -764,7 +763,7 @@ impl BluetoothMedia {
 
                         self.hfp_audio_state.insert(addr, state);
 
-                        if self.should_insert_call_when_sco_start(addr) {
+                        if self.should_insert_call_when_sco_start() {
                             // This triggers a +CIEV command to set the call status for HFP devices.
                             // It is required for some devices to provide sound.
                             self.place_active_call();
@@ -782,7 +781,7 @@ impl BluetoothMedia {
                             });
                         }
 
-                        if self.should_insert_call_when_sco_start(addr) {
+                        if self.should_insert_call_when_sco_start() {
                             // Remove the only call related to the one added for devices requesting to force +CIEV command
                             self.call_list = vec![];
                             self.phone_state.num_active = 0;
@@ -2227,14 +2226,8 @@ impl BluetoothMedia {
         self.avrcp.as_mut().unwrap().add_player(&name, browsing_supported);
     }
 
-    fn should_insert_call_when_sco_start(&self, address: RawAddress) -> bool {
-        if self.mps_qualification_enabled {
-            return false;
-        }
-        if !self.phone_ops_enabled {
-            return true;
-        }
-        return interop_insert_call_when_sco_start(address);
+    fn should_insert_call_when_sco_start(&mut self) -> bool {
+        return !self.mps_qualification_enabled;
     }
     // Places an active call into the call list and triggers a headset update (+CIEV).
     // Preconditions:
@@ -3018,7 +3011,7 @@ impl IBluetoothTelephony for BluetoothMedia {
         self.a2dp_has_interrupted_stream = false;
 
         self.phone_ops_enabled = enable;
-        if self.hfp_audio_state.keys().any(|addr| self.should_insert_call_when_sco_start(*addr))
+        if self.should_insert_call_when_sco_start()
             && self.hfp_audio_state.values().any(|x| x == &BthfAudioState::Connected)
         {
             self.place_active_call();
@@ -3043,7 +3036,7 @@ impl IBluetoothTelephony for BluetoothMedia {
         self.a2dp_has_interrupted_stream = false;
         self.mps_qualification_enabled = enable;
 
-        if self.hfp_audio_state.keys().any(|addr| self.should_insert_call_when_sco_start(*addr))
+        if self.should_insert_call_when_sco_start()
             && self.hfp_audio_state.values().any(|x| x == &BthfAudioState::Connected)
         {
             self.place_active_call();
