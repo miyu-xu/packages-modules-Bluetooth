@@ -721,13 +721,7 @@ impl BluetoothMedia {
                             debug!("[{}]: Connect SCO due to active call.", DisplayAddress(&addr));
                             self.start_sco_call_impl(addr.to_string(), false, HfpCodecBitId::NONE);
                         }
-
-                        if self.should_insert_call_when_sco_start() {
-                            info!(
-                                "[{}]: UHID creation skipped due to interop workaround",
-                                DisplayAddress(&addr)
-                            );
-                        } else {
+                        if self.phone_ops_enabled {
                             self.uhid_create(addr);
                         }
                     }
