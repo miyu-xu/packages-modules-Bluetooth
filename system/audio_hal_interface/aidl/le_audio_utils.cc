@@ -490,6 +490,11 @@ GetCodecConfigSettingFromAidl(
     if (!ase_config->codecConfiguration.empty()) {
       stack_config.params =
           GetStackLeAudioLtvMapFromAidlFormat(ase_config->codecConfiguration);
+      auto cfg = stack_config.params.GetAsCoreCodecConfig();
+      if (cfg.audio_channel_allocation.has_value()) {
+        stack_config.channel_count_per_iso_stream =
+            std::bitset<32>(cfg.audio_channel_allocation.value()).count();
+      }
     }
   }
 
@@ -511,6 +516,14 @@ GetStackDataPathFromAidlFormat(
               (uint32_t)dp.isoDataPathConfiguration.controllerDelayUs,
           .configuration = {},
       }};
+
+  // Due to AIDL not having the Transparent codec type, it uses the boolean and
+  // we should manually align the codecId.
+  if (config.isoDataPathConfig.isTransparent) {
+    config.isoDataPathConfig.codecId.coding_format = 0x03; // Transparent
+    config.isoDataPathConfig.codecId.vendor_codec_id = 0x00;
+    config.isoDataPathConfig.codecId.vendor_company_id = 0x00;
+  }
 
   if (dp.dataPathConfiguration.configuration) {
     config.dataPathConfig = *dp.dataPathConfiguration.configuration;
@@ -554,7 +567,7 @@ GetStackConfigSettingFromAidl(
   }
 
   ::bluetooth::le_audio::set_configurations::AudioSetConfiguration cig_config{
-      .name = "",
+      .name = "AIDL codec provider configuration",
       .packing = (uint8_t)aidl_ase_config.packing,
       .confs = {.sink = {}, .source = {}},
   };

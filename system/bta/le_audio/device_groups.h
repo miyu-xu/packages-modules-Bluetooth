@@ -78,6 +78,9 @@ class LeAudioDeviceGroup {
 
   bool IsGroupConfiguredTo(
       const set_configurations::AudioSetConfiguration& cfg) {
+    log::debug("Current stream config: {}",
+               stream_conf.conf ? stream_conf.conf->name : "None");
+    log::debug("New config: {}", cfg.name);
     if (!stream_conf.conf) return false;
     return cfg == *stream_conf.conf;
   }

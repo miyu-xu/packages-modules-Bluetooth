@@ -17,9 +17,11 @@
 #include "codec_manager.h"
 
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 
 #include <bitset>
 #include <sstream>
+#include <vector>
 
 #include "audio_hal_client/audio_hal_client.h"
 #include "broadcaster/broadcast_configuration_provider.h"
@@ -337,9 +339,30 @@ struct codec_manager_impl {
     }
   }
 
+  static bool IsUsingCodecExtensibilityAidl() {
+    auto codec_ext_status =
+        osi_property_get_bool(
+            "bluetooth.core.le_audio.codec_extension_aidl.enabled", false) &&
+        com::android::bluetooth::flags::leaudio_multicodec_aidl_support();
+
+    log::debug("Using codec extensibility AIDL: {}", codec_ext_status);
+    return codec_ext_status;
+  }
+
   std::unique_ptr<AudioSetConfiguration> GetCodecConfig(
       const CodecManager::UnicastConfigurationRequirements& requirements,
       CodecManager::UnicastConfigurationVerifier verifier) {
+    if (IsUsingCodecExtensibilityAidl()) {
+      auto hal_config =
+          unicast_local_source_hal_client->GetUnicastConfig(requirements);
+      if (hal_config) {
+        return std::make_unique<AudioSetConfiguration>(*hal_config);
+      }
+      log::debug(
+          "No configuration received from AIDL, fall back to static "
+          "configuration.");
+    }
+
     auto configs = GetSupportedCodecConfigurations(requirements);
     if (configs.empty()) {
       log::error("No valid configuration matching the requirements: {}",
@@ -528,6 +551,24 @@ struct codec_manager_impl {
       if (quality == bluetooth::le_audio::QUALITY_STANDARD) {
         BIG_audio_quality = bluetooth::le_audio::QUALITY_STANDARD;
       }
+    }
+
+    if (IsUsingCodecExtensibilityAidl()) {
+      log::assert_that(broadcast_local_source_hal_client != nullptr,
+                       "audio source hal client is NULL");
+      auto hal_config = broadcast_local_source_hal_client->GetBroadcastConfig(
+          requirements.subgroup_quality, requirements.sink_pacs);
+      if (hal_config.has_value()) {
+        return std::make_unique<broadcaster::BroadcastConfiguration>(
+            hal_config.value());
+      }
+
+      log::debug(
+          "No configuration received from AIDL, fall back to static "
+          "configuration.");
+      // return std::make_unique<broadcaster::BroadcastConfiguration>(
+      //     ::bluetooth::le_audio::broadcaster::GetBroadcastConfig(
+      //         requirements.subgroup_quality));
     }
 
     auto offload_config = GetBroadcastOffloadConfig(BIG_audio_quality);
@@ -1047,7 +1088,64 @@ struct codec_manager_impl {
 std::ostream& operator<<(
     std::ostream& os,
     const CodecManager::UnicastConfigurationRequirements& req) {
-  os << "{audio context type: " << req.audio_context_type << "}";
+  os << "{audio context type: " << req.audio_context_type;
+  if (req.sink_pacs.has_value()) {
+    os << ", sink_pacs: [";
+    for (auto const& pac : req.sink_pacs.value()) {
+      os << "sink_pac: {";
+      os << ", codec_id: " << pac.codec_id;
+      os << ", caps size: " << pac.codec_spec_caps.Size();
+      os << ", caps_raw size: " << pac.codec_spec_caps_raw.size();
+      os << ", caps_raw size: " << pac.metadata.size();
+      os << "}, ";
+    }
+    os << "\b\b]";
+  } else {
+    os << ", sink_pacs: "
+       << "None";
+  }
+
+  if (req.source_pacs.has_value()) {
+    os << ", source_pacs: [";
+    for (auto const& pac : req.source_pacs.value()) {
+      os << "source_pac: {";
+      os << ", codec_id: " << pac.codec_id;
+      os << ", caps size: " << pac.codec_spec_caps.Size();
+      os << ", caps_raw size: " << pac.codec_spec_caps_raw.size();
+      os << ", caps_raw size: " << pac.metadata.size();
+      os << "}, ";
+    }
+    os << "\b\b]";
+  } else {
+    os << ", source_pacs: "
+       << "None";
+  }
+
+  if (req.sink_requirements.has_value()) {
+    for (auto const& sink_req : req.sink_requirements.value()) {
+      os << "sink_req: {";
+      os << ", target_latency: " << +sink_req.target_latency;
+      os << ", target_Phy: " << +sink_req.target_Phy;
+      // os << sink_req.params.GetAsCoreCodecCapabilities();
+      os << "}";
+    }
+  } else {
+    os << "sink_req: None";
+  }
+
+  if (req.source_requirements.has_value()) {
+    for (auto const& source_req : req.source_requirements.value()) {
+      os << "source_req: {";
+      os << ", target_latency: " << +source_req.target_latency;
+      os << ", target_Phy: " << +source_req.target_Phy;
+      // os << source_req.params.GetAsCoreCodecCapabilities();
+      os << "}";
+    }
+  } else {
+    os << "source_req: None";
+  }
+
+  os << "}";
   return os;
 }
 
