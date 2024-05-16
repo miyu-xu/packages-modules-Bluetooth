@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7697baf_3f967dee",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-05-16T02:58:30Z",
+      "side": 1,
+      "message": "Could you explain a little bit more? I\u0027d like to know who will call the new API. If the caller calls it through D-BUS, then why don\u0027t we implement the retry mechanism in the caller side?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 66
+      },
+      "revId": "3c4ac3c61e73303b438fb033a9f72d75e15233bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "6feb3e95_58e45961",
@@ -60,6 +83,99 @@
         "startChar": 7,
         "endLine": 849,
         "endChar": 22
+      },
+      "revId": "3c4ac3c61e73303b438fb033a9f72d75e15233bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a8c128c_ea71f715",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 849,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-05-16T02:58:30Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "407f4534_b74658ba",
+      "range": {
+        "startLine": 849,
+        "startChar": 7,
+        "endLine": 849,
+        "endChar": 22
+      },
+      "revId": "3c4ac3c61e73303b438fb033a9f72d75e15233bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a658d7ea_69c8e4ad",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-05-16T02:58:30Z",
+      "side": 1,
+      "message": "nit: remove this",
+      "range": {
+        "startLine": 158,
+        "startChar": 34,
+        "endLine": 158,
+        "endChar": 37
+      },
+      "revId": "3c4ac3c61e73303b438fb033a9f72d75e15233bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d43a3ea_1dcbe254",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-05-16T02:58:30Z",
+      "side": 1,
+      "message": "this can be Duration, so it will be more flexible for the caller.",
+      "range": {
+        "startLine": 90,
+        "startChar": 50,
+        "endLine": 90,
+        "endChar": 53
+      },
+      "revId": "3c4ac3c61e73303b438fb033a9f72d75e15233bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f54e7101_aaf294bd",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-05-16T02:58:30Z",
+      "side": 1,
+      "message": "nit: CreateBondWithRetry or CreateBondWhenNotBusy",
+      "range": {
+        "startLine": 90,
+        "startChar": 14,
+        "endLine": 90,
+        "endChar": 15
       },
       "revId": "3c4ac3c61e73303b438fb033a9f72d75e15233bc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
