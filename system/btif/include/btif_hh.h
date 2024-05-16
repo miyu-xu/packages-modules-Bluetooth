@@ -103,6 +103,7 @@ typedef struct {
 #if ENABLE_UHID_SET_REPORT
   fixed_queue_t* set_rpt_id_queue;
 #endif // ENABLE_UHID_SET_REPORT
+  fixed_queue_t* input_queue;
   bool local_vup;  // Indicated locally initiated VUP
 } btif_hh_device_t;
 

@@ -145,6 +145,33 @@ static int uhid_write(int fd, const struct uhid_event* ev) {
   return 0;
 }
 
+static void uhid_write_input_queue(btif_hh_device_t* p_dev) {
+  if (!p_dev->ready_for_data) {
+    return;
+  }
+
+  struct uhid_event* p_ev = nullptr;
+  while ((
+      p_ev = (struct uhid_event*)fixed_queue_try_dequeue(p_dev->input_queue))) {
+    uhid_write(p_dev->fd, p_ev);
+    osi_free(p_ev);
+  }
+}
+
+static void uhid_queue_input(btif_hh_device_t* p_dev, struct uhid_event* ev) {
+  struct uhid_event* p_ev = (struct uhid_event*)osi_malloc(sizeof(*ev));
+  if (!p_ev) {
+    log::error("allocate uhid_event failed");
+    return;
+  }
+  memcpy(p_ev, ev, sizeof(*p_ev));
+
+  if (!fixed_queue_try_enqueue(p_dev->input_queue, (void*)p_ev)) {
+    osi_free(p_ev);
+    log::error("uhid_event_queue is full, dropping event");
+  }
+}
+
 /* Parse the events received from UHID driver*/
 static int uhid_read_outbound_event(btif_hh_device_t* p_dev) {
   log::assert_that(p_dev != nullptr, "assert failed: p_dev != nullptr");
@@ -166,7 +193,9 @@ static int uhid_read_outbound_event(btif_hh_device_t* p_dev) {
   switch (ev.type) {
     case UHID_START:
       log::verbose("UHID_START from uhid-dev\n");
-      p_dev->ready_for_data = true;
+      if (!true /* some aflags */) {
+        p_dev->ready_for_data = true;
+      }
       break;
     case UHID_STOP:
       log::verbose("UHID_STOP from uhid-dev\n");
@@ -175,6 +204,11 @@ static int uhid_read_outbound_event(btif_hh_device_t* p_dev) {
     case UHID_OPEN:
       log::verbose("UHID_OPEN from uhid-dev\n");
       p_dev->ready_for_data = true;
+      if (true /* some aflags */) {
+        // TODO: figure out a better way than blocking the uhid thread?
+        usleep(30000);
+        uhid_write_input_queue(p_dev);
+      }
       break;
     case UHID_CLOSE:
       log::verbose("UHID_CLOSE from uhid-dev\n");
@@ -266,7 +300,11 @@ static int uhid_read_inbound_event(btif_hh_device_t* p_dev) {
   uint32_t* context;
   switch (ev.type) {
     case BTA_HH_UHID_INBOUND_INPUT_EVT:
-      res = uhid_write(p_dev->fd, &ev.uhid);
+      if (p_dev->ready_for_data) {
+        res = uhid_write(p_dev->fd, &ev.uhid);
+      } else {
+        uhid_queue_input(p_dev, &ev.uhid);
+      }
       break;
     case BTA_HH_UHID_INBOUND_CLOSE_EVT:
       return 1;
@@ -351,6 +389,9 @@ static void uhid_fd_close(btif_hh_device_t* p_dev) {
       fixed_queue_free(p_dev->set_rpt_id_queue, nullptr);
       p_dev->set_rpt_id_queue = nullptr;
 #endif  // ENABLE_UHID_SET_REPORT
+      fixed_queue_flush(p_dev->input_queue, osi_free);
+      fixed_queue_free(p_dev->input_queue, NULL);
+      p_dev->input_queue = NULL;
     }
   }
 }
@@ -532,6 +573,8 @@ static void* btif_hh_poll_event_thread(void* arg) {
   log::assert_that(p_dev->set_rpt_id_queue,
                    "assert failed: p_dev->set_rpt_id_queue");
 #endif  // ENABLE_UHID_SET_REPORT
+  p_dev->input_queue = fixed_queue_new(SIZE_MAX);
+  log::assert_that(p_dev->input_queue, "assert failed: p_dev->input_queue");
 
   if (uhid_configure_thread(p_dev)) {
     if (true /* some aflags */) {
@@ -691,6 +734,9 @@ void bta_hh_co_close(btif_hh_device_t* p_dev) {
   fixed_queue_free(p_dev->set_rpt_id_queue, nullptr);
   p_dev->set_rpt_id_queue = nullptr;
 #endif  // ENABLE_UHID_SET_REPORT
+  fixed_queue_flush(p_dev->input_queue, osi_free);
+  fixed_queue_free(p_dev->input_queue, NULL);
+  p_dev->input_queue = NULL;
 
   /* Stop the polling thread */
   if (p_dev->hh_keep_polling) {
