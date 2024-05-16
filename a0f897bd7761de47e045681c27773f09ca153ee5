@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eea77f59_d62d9631",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-05-16T11:55:59Z",
+      "side": 1,
+      "message": "Got it. Changed.",
+      "parentUuid": "240971be_d068e04b",
+      "range": {
+        "startLine": 332,
+        "startChar": 0,
+        "endLine": 332,
+        "endChar": 70
+      },
+      "revId": "a0f897bd7761de47e045681c27773f09ca153ee5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "026416a4_30ee22aa",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-05-14T00:51:52Z",
       "side": 1,
       "message": "```\nWanted but not invoked:\nmCallProxy.handlerSendEmptyMessage(\n    \u003cany\u003e,\n    10\n);\n-\u003e at com.android.bluetooth.opp.BluetoothOppTransferTest.oppConnectionReceiver_onReceiveWithActionSdpRecord_withoutSdpRecord(BluetoothOppTransferTest.java:351)\nActually, there were zero interactions with this mock.\n\n\tat com.android.bluetooth.opp.BluetoothOppTransferTest.oppConnectionReceiver_onReceiveWithActionSdpRecord_withoutSdpRecord(BluetoothOppTransferTest.java:351)\n```",
+      "range": {
+        "startLine": 350,
+        "startChar": 7,
+        "endLine": 351,
+        "endChar": 79
+      },
+      "revId": "a0f897bd7761de47e045681c27773f09ca153ee5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e0aca8e_81d5a43f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-05-16T11:55:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "026416a4_30ee22aa",
       "range": {
         "startLine": 350,
         "startChar": 7,
