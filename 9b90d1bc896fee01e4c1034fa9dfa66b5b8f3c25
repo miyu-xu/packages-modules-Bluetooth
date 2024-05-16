@@ -227,6 +227,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "28fe68e6_89967f1f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-05-16T09:04:33Z",
+      "side": 1,
+      "message": "I\u0027ll leave this open for now as the way I\u0027ve modified `offToBleOn` is very direct but may not be self explanatory. PTAL.",
+      "parentUuid": "b7503725_f215e143",
+      "range": {
+        "startLine": 716,
+        "startChar": 5,
+        "endLine": 726,
+        "endChar": 72
+      },
+      "revId": "9b90d1bc896fee01e4c1034fa9dfa66b5b8f3c25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f2d0ceb_07ab7631",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
         "patchSetId": 10
