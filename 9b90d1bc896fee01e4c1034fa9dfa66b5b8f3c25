@@ -89,6 +89,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "786c4dc6_2cbf5c39",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-05-16T09:02:59Z",
+      "side": 1,
+      "message": "I think this is a great call. Totally agree with the lack of value of repeating the test name as a comment.\nI\u0027ve taken a pass at renaming the 4 tests introduces in this CL; following the guidance of \"test names should summarize the behavior being tested and its expected outcome.\" PTAL.",
+      "parentUuid": "b9d3c2fa_bea33ea7",
+      "range": {
+        "startLine": 678,
+        "startChar": 0,
+        "endLine": 678,
+        "endChar": 61
+      },
+      "revId": "9b90d1bc896fee01e4c1034fa9dfa66b5b8f3c25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df12036a_7a887797",
@@ -130,6 +154,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8165d903_40dd9918",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-05-16T09:02:59Z",
+      "side": 1,
+      "message": "\u003e I believe that above method will left event in the queue\n\nThat\u0027s correct. We don\u0027t _need_ it for the functionality of this test but the `tearDown` method is expecting the queue to be empty hence why I added them.",
+      "parentUuid": "df12036a_7a887797",
+      "range": {
+        "startLine": 686,
+        "startChar": 64,
+        "endLine": 689,
+        "endChar": 63
+      },
+      "revId": "9b90d1bc896fee01e4c1034fa9dfa66b5b8f3c25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d6c5f20_9c62abcc",
@@ -143,6 +191,30 @@
       "writtenOn": "2024-05-13T04:20:38Z",
       "side": 1,
       "message": "There is a method called offToBleOn, can we use it / adapte it with the new flags in ?",
+      "range": {
+        "startLine": 716,
+        "startChar": 5,
+        "endLine": 726,
+        "endChar": 72
+      },
+      "revId": "9b90d1bc896fee01e4c1034fa9dfa66b5b8f3c25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7503725_f215e143",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-05-16T09:02:59Z",
+      "side": 1,
+      "message": "Good idea. I\u0027ve adapted `offToBleOn` and fixed the 2 locations where I had duplicated these lines with the call to `offToBleOn`.",
+      "parentUuid": "3d6c5f20_9c62abcc",
       "range": {
         "startLine": 716,
         "startChar": 5,
@@ -196,6 +268,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "08d6b317_b49704ed",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-05-16T09:02:59Z",
+      "side": 1,
+      "message": "I believe this is _only_ needed for the test class. If my understanding is correct, the function in this test file called `configureEnabledProfiles` is enabling 3 the profiles (`PAN`, `PBAP`, and `GATT`) and so it\u0027s hardcoding the `mSetProfileServiceStateCounter` to be 3 at minimum and requiring the GATT to be added via `mAdapterService.addProfile()`. As a follow up, the `TestUtils.syncHandler(mLooper, MESSAGE_PROFILE_SERVICE_REGISTERED)` assertion is expecting 3 calls as well. But since GattProfile will not be launched with the flag on, the assertions in this test fail.\n\nIn non-test code, this will not be relevant / related.\n\nI\u0027m not 100% certain about this but please let me know if I\u0027m missing something.",
+      "parentUuid": "5f2d0ceb_07ab7631",
+      "range": {
+        "startLine": 752,
+        "startChar": 0,
+        "endLine": 752,
+        "endChar": 63
+      },
+      "revId": "9b90d1bc896fee01e4c1034fa9dfa66b5b8f3c25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "56f1b8bc_51add050",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
         "patchSetId": 10
@@ -207,6 +303,30 @@
       "writtenOn": "2024-05-13T04:20:38Z",
       "side": 1,
       "message": "What is New ?",
+      "range": {
+        "startLine": 802,
+        "startChar": 0,
+        "endLine": 802,
+        "endChar": 14
+      },
+      "revId": "9b90d1bc896fee01e4c1034fa9dfa66b5b8f3c25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aace40d2_73c0bc89",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-05-16T09:02:59Z",
+      "side": 1,
+      "message": "Oops. My bad. Cleaned, thank you.",
+      "parentUuid": "56f1b8bc_51add050",
       "range": {
         "startLine": 802,
         "startChar": 0,
