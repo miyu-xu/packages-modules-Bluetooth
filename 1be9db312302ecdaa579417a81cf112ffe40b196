@@ -16,6 +16,24 @@
       "message": "Nit: Do we need `peer_bdaddr` anymore?",
       "revId": "1be9db312302ecdaa579417a81cf112ffe40b196",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "421f7af2_a9d1ee6c",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 768,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-16T06:35:49Z",
+      "side": 1,
+      "message": "yes, it\u0027s used in LE GATT code that\u0027s still in this file.",
+      "parentUuid": "e72f34c3_b0feb782",
+      "revId": "1be9db312302ecdaa579417a81cf112ffe40b196",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
