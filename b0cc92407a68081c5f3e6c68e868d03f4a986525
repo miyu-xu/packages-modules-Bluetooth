@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d884f669_af4a4697",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MapClientContent.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-05-16T20:27:44Z",
+      "side": 1,
+      "message": "(not in the scope of this CL) I guess if this fails, then it will be never retried?  When we refactor, we should definitely think about retry mechanisms for all CUD operations outside the bluetooth stack.",
+      "revId": "b0cc92407a68081c5f3e6c68e868d03f4a986525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
