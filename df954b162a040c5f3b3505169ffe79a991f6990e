@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb25ca02_b8fc3028",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-16T06:10:11Z",
+      "side": 1,
+      "message": "Yes, I didn\u0027t commit one file localy before pushing to server, fixing it now.",
+      "parentUuid": "4b6cd237_8bedf0a4",
+      "revId": "df954b162a040c5f3b3505169ffe79a991f6990e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a67aab08_00b73acb",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-05-15T20:19:58Z",
       "side": 1,
       "message": "This should be exposed through bta_dm_disc_int.h",
+      "revId": "df954b162a040c5f3b3505169ffe79a991f6990e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c24563c2_50b2423c",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-16T06:10:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a67aab08_00b73acb",
       "revId": "df954b162a040c5f3b3505169ffe79a991f6990e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -124,6 +160,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6e0b3f1_fac458c4",
+        "filename": "system/bta/dm/bta_dm_disc_int.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-16T06:10:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ca38f8d_d23b8d24",
+      "range": {
+        "startLine": 121,
+        "startChar": 5,
+        "endLine": 121,
+        "endChar": 33
+      },
+      "revId": "df954b162a040c5f3b3505169ffe79a991f6990e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b7f7fa5e_7b159264",
@@ -155,6 +215,24 @@
           ]
         }
       ],
+      "revId": "df954b162a040c5f3b3505169ffe79a991f6990e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8442033c_1dc0f704",
+        "filename": "system/bta/dm/bta_dm_disc_sdp.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-16T06:10:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7f7fa5e_7b159264",
       "revId": "df954b162a040c5f3b3505169ffe79a991f6990e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
