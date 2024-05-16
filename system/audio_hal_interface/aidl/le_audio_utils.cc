@@ -490,6 +490,11 @@ GetCodecConfigSettingFromAidl(
     if (!ase_config->codecConfiguration.empty()) {
       stack_config.params =
           GetStackLeAudioLtvMapFromAidlFormat(ase_config->codecConfiguration);
+      auto cfg = stack_config.params.GetAsCoreCodecConfig();
+      if (cfg.audio_channel_allocation.has_value()) {
+        stack_config.channel_count_per_iso_stream =
+            std::bitset<32>(cfg.audio_channel_allocation.value()).count();
+      }
     }
   }
 
@@ -554,7 +559,7 @@ GetStackConfigSettingFromAidl(
   }
 
   ::bluetooth::le_audio::set_configurations::AudioSetConfiguration cig_config{
-      .name = "",
+      .name = "AIDL codec provider configuration",
       .packing = (uint8_t)aidl_ase_config.packing,
       .confs = {.sink = {}, .source = {}},
   };

@@ -26,6 +26,7 @@
 #include <vector>
 
 #include "bta/ag/bta_ag_int.h"
+#include "le_audio_utils.h"
 
 namespace bluetooth {
 namespace audio {
@@ -680,6 +681,10 @@ BluetoothAudioClientInterface::GetLeAudioAseConfiguration(
     std::vector<IBluetoothAudioProvider::LeAudioConfigurationRequirement>&
         requirements) {
   log::assert_that(provider_ != nullptr, "assert failed: provider_ != nullptr");
+
+  for (auto const& req : requirements) {
+    log::debug("requirement: {}", req.toString());
+  }
 
   std::vector<IBluetoothAudioProvider::LeAudioAseConfigurationSetting>
       configurations;
