@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "101ae4f5_52abba4b",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 9936,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-05-16T09:26:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d819998f_1fc3f5fd",
+      "range": {
+        "startLine": 9935,
+        "startChar": 0,
+        "endLine": 9936,
+        "endChar": 19
+      },
+      "revId": "9637f5349c26db6f0e70aa2894af63a33f9a20de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b26f9404_2bbd4e7b",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-05-16T09:22:46Z",
       "side": 1,
       "message": "I think this should be left as \u0027true\u0027. The test fails for me if this is `false`, but passes with `true`.",
+      "range": {
+        "startLine": 10333,
+        "startChar": 21,
+        "endLine": 10333,
+        "endChar": 27
+      },
+      "revId": "9637f5349c26db6f0e70aa2894af63a33f9a20de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2a02730_5cd6cbe8",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 10333,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-05-16T09:26:45Z",
+      "side": 1,
+      "message": "yeah, this should be change in other test case - the one mentioned in commit message",
+      "parentUuid": "b26f9404_2bbd4e7b",
       "range": {
         "startLine": 10333,
         "startChar": 21,
