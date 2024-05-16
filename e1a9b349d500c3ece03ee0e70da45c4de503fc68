@@ -52,6 +52,24 @@
       "parentUuid": "12ae6e8e_786b545c",
       "revId": "e1a9b349d500c3ece03ee0e70da45c4de503fc68",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f56e48d_69bbadfb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-05-16T08:07:02Z",
+      "side": 1,
+      "message": "Jack, gentle ping. Thanks",
+      "parentUuid": "2f02db8a_4cb96641",
+      "revId": "e1a9b349d500c3ece03ee0e70da45c4de503fc68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
