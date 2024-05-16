@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d819998f_1fc3f5fd",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 9936,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-05-16T09:22:46Z",
+      "side": 1,
+      "message": "I think the order of these should be reversed.",
+      "range": {
+        "startLine": 9935,
+        "startChar": 0,
+        "endLine": 9936,
+        "endChar": 19
+      },
+      "revId": "9637f5349c26db6f0e70aa2894af63a33f9a20de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b26f9404_2bbd4e7b",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 10333,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-05-16T09:22:46Z",
+      "side": 1,
+      "message": "I think this should be left as \u0027true\u0027. The test fails for me if this is `false`, but passes with `true`.",
+      "range": {
+        "startLine": 10333,
+        "startChar": 21,
+        "endLine": 10333,
+        "endChar": 27
+      },
+      "revId": "9637f5349c26db6f0e70aa2894af63a33f9a20de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
