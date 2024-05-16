@@ -38,6 +38,40 @@ types::AudioContexts GetAudioContextsFromSourceMetadata(
     const source_metadata_v7& source_metadata);
 types::AudioContexts GetAudioContextsFromSinkMetadata(
     const sink_metadata_v7& sink_metadata);
+inline uint8_t GetTargetLatencyFromAudioContext(types::LeAudioContextType ctx) {
+  switch (ctx) {
+    case types::LeAudioContextType::CONVERSATIONAL:
+      FALLTHROUGH_INTENDED;
+    case types::LeAudioContextType::GAME:
+      FALLTHROUGH_INTENDED;
+    case types::LeAudioContextType::INSTRUCTIONAL:
+      FALLTHROUGH_INTENDED;
+    case types::LeAudioContextType::VOICEASSISTANTS:
+      FALLTHROUGH_INTENDED;
+    case types::LeAudioContextType::LIVE:
+      FALLTHROUGH_INTENDED;
+    case types::LeAudioContextType::RINGTONE:
+      return types::kTargetLatencyLower;
+    case types::LeAudioContextType::NOTIFICATIONS:
+      FALLTHROUGH_INTENDED;
+    case types::LeAudioContextType::SOUNDEFFECTS:
+      FALLTHROUGH_INTENDED;
+    case types::LeAudioContextType::UNINITIALIZED:
+      FALLTHROUGH_INTENDED;
+    case types::LeAudioContextType::UNSPECIFIED:
+      FALLTHROUGH_INTENDED;
+    case types::LeAudioContextType::MEDIA:
+      return types::kTargetLatencyBalancedLatencyReliability;
+    case types::LeAudioContextType::ALERTS:
+      FALLTHROUGH_INTENDED;
+    case types::LeAudioContextType::EMERGENCYALARM:
+      return types::kTargetLatencyHigherReliability;
+    default:
+      return types::kTargetLatencyBalancedLatencyReliability;
+  }
+
+  return types::kTargetLatencyBalancedLatencyReliability;
+}
 
 /* Helpers to get btle_audio_codec_config_t for Java */
 bluetooth::le_audio::btle_audio_codec_index_t
