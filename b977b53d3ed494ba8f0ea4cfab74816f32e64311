@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ec3a6aa_d7ab909a",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-16T17:33:54Z",
+      "side": 1,
+      "message": "\"Could not\" ?\nI see this as repeating lack of \"not\" in multiple asserts below. Please fix others too.",
+      "range": {
+        "startLine": 147,
+        "startChar": 32,
+        "endLine": 147,
+        "endChar": 37
+      },
+      "revId": "b977b53d3ed494ba8f0ea4cfab74816f32e64311",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3684ac89_18796c97",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-16T17:33:54Z",
+      "side": 1,
+      "message": "override",
+      "range": {
+        "startLine": 216,
+        "startChar": 30,
+        "endLine": 216,
+        "endChar": 40
+      },
+      "revId": "b977b53d3ed494ba8f0ea4cfab74816f32e64311",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdfd03ef_13ac26ab",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-16T17:33:54Z",
+      "side": 1,
+      "message": "override",
+      "range": {
+        "startLine": 222,
+        "startChar": 30,
+        "endLine": 222,
+        "endChar": 40
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "dc4f43ab_39d165bc",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/codec_manager.cc",
+              "range": {
+                "startLine": 216,
+                "startChar": 0,
+                "endLine": 217,
+                "endChar": 0
+              },
+              "replacement": "        log::error(\"Trying to override previous source hal client {}\",\n"
+            },
+            {
+              "path": "system/bta/le_audio/codec_manager.cc",
+              "range": {
+                "startLine": 222,
+                "startChar": 0,
+                "endLine": 223,
+                "endChar": 0
+              },
+              "replacement": "        log::error(\"Trying to override previous sink hal client {}\",\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b977b53d3ed494ba8f0ea4cfab74816f32e64311",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfda0142_a6dee8d7",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-16T17:33:54Z",
+      "side": 1,
+      "message": "no empty characters at start of line",
+      "range": {
+        "startLine": 271,
+        "startChar": 20,
+        "endLine": 271,
+        "endChar": 21
+      },
+      "revId": "b977b53d3ed494ba8f0ea4cfab74816f32e64311",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
