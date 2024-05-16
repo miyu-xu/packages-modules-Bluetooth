@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4465e78b_ae28da17",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-05-16T13:48:05Z",
+      "side": 1,
+      "message": "This is second possible approach to fix the problem and work with telephony.",
+      "revId": "c7f79459576d4d2e450738e86f48269b27e0f268",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
