@@ -249,6 +249,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bec80ab8_f7834e27",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-16T23:24:35Z",
+      "side": 1,
+      "message": "Acknowledged\n\nThat looks ok to me. There is none of the two event in case of the flag being on.",
+      "parentUuid": "28fe68e6_89967f1f",
+      "range": {
+        "startLine": 716,
+        "startChar": 5,
+        "endLine": 726,
+        "endChar": 72
+      },
+      "revId": "9b90d1bc896fee01e4c1034fa9dfa66b5b8f3c25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f2d0ceb_07ab7631",
@@ -304,6 +328,30 @@
       "side": 1,
       "message": "I believe this is _only_ needed for the test class. If my understanding is correct, the function in this test file called `configureEnabledProfiles` is enabling 3 the profiles (`PAN`, `PBAP`, and `GATT`) and so it\u0027s hardcoding the `mSetProfileServiceStateCounter` to be 3 at minimum and requiring the GATT to be added via `mAdapterService.addProfile()`. As a follow up, the `TestUtils.syncHandler(mLooper, MESSAGE_PROFILE_SERVICE_REGISTERED)` assertion is expecting 3 calls as well. But since GattProfile will not be launched with the flag on, the assertions in this test fail.\n\nIn non-test code, this will not be relevant / related.\n\nI\u0027m not 100% certain about this but please let me know if I\u0027m missing something.",
       "parentUuid": "5f2d0ceb_07ab7631",
+      "range": {
+        "startLine": 752,
+        "startChar": 0,
+        "endLine": 752,
+        "endChar": 63
+      },
+      "revId": "9b90d1bc896fee01e4c1034fa9dfa66b5b8f3c25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27838191_88bbe8bb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-16T23:24:35Z",
+      "side": 1,
+      "message": "Since the whole objective of the flag is to move the start of the Gatt to later.\nI think we want to enable GATT in the config.\n\nand yes, you are right, that mean we need to increase the number of profiles that get transitioned to the on state",
+      "parentUuid": "08d6b317_b49704ed",
       "range": {
         "startLine": 752,
         "startChar": 0,
