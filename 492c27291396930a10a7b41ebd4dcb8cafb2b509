@@ -34,6 +34,24 @@
       ],
       "revId": "492c27291396930a10a7b41ebd4dcb8cafb2b509",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c4a4ba3_fa06c3be",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MapClientContent.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-05-16T01:27:12Z",
+      "side": 1,
+      "message": "Oh jeez, bad merge conflict resolution on my end",
+      "parentUuid": "ed36d82f_cb97c4c5",
+      "revId": "492c27291396930a10a7b41ebd4dcb8cafb2b509",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
