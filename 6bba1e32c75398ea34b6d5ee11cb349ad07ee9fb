@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8f9c23a_1066b9ce",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-17T23:58:33Z",
+      "side": 1,
+      "message": "nit: `PandoraServer: Make factoryReset timeout explicit` ?\n\nBecause the magic number is still there 😊",
+      "revId": "6bba1e32c75398ea34b6d5ee11cb349ad07ee9fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
