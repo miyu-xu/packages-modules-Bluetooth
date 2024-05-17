@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6922fa5d_c7fbed7f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-17T00:01:06Z",
+      "side": 1,
+      "message": "We uploaded aosp/3092463 to fix that.",
+      "revId": "09e002080df8f77fbe5abe8ea79e11b631dcbae9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
