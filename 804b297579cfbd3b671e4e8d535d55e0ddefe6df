@@ -46,6 +46,30 @@
       },
       "revId": "804b297579cfbd3b671e4e8d535d55e0ddefe6df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "748563e4_537924a3",
+        "filename": "system/stack/a2dp/a2dp_aac_decoder_linux.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-17T22:30:43Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2908a3f7_793c12b8",
+      "range": {
+        "startLine": 15,
+        "startChar": 3,
+        "endLine": 17,
+        "endChar": 29
+      },
+      "revId": "804b297579cfbd3b671e4e8d535d55e0ddefe6df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
