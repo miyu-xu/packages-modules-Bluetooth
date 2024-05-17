@@ -16,6 +16,7 @@ use std::fmt::{Display, Formatter, Result};
 use std::sync::{Arc, Mutex};
 
 use topshim_macros::cb_variant;
+use topshim_macros::log_args;
 
 pub type BtGattNotifyParams = bindings::btgatt_notify_params_t;
 pub type BtGattReadParams = bindings::btgatt_read_params_t;
@@ -1193,14 +1194,17 @@ pub struct GattClient {
 }
 
 impl GattClient {
+    #[log_args]
     pub fn register_client(&self, uuid: &Uuid, eatt_support: bool) -> BtStatus {
         BtStatus::from(ccall!(self, register_client, uuid, eatt_support))
     }
 
+    #[log_args]
     pub fn unregister_client(&self, client_if: i32) -> BtStatus {
         BtStatus::from(ccall!(self, unregister_client, client_if))
     }
 
+    #[log_args]
     pub fn connect(
         &self,
         client_if: i32,
@@ -1224,27 +1228,33 @@ impl GattClient {
         ))
     }
 
+    #[log_args]
     pub fn disconnect(&self, client_if: i32, addr: &RawAddress, conn_id: i32) -> BtStatus {
         BtStatus::from(ccall!(self, disconnect, client_if, addr, conn_id))
     }
 
+    #[log_args]
     pub fn refresh(&self, client_if: i32, addr: &RawAddress) -> BtStatus {
         BtStatus::from(ccall!(self, refresh, client_if, addr))
     }
 
+    #[log_args]
     pub fn search_service(&self, conn_id: i32, filter_uuid: Option<Uuid>) -> BtStatus {
         let filter_uuid_ptr = LTCheckedPtr::from(&filter_uuid);
         BtStatus::from(ccall!(self, search_service, conn_id, filter_uuid_ptr.into()))
     }
 
+    #[log_args]
     pub fn btif_gattc_discover_service_by_uuid(&self, conn_id: i32, uuid: &Uuid) {
         ccall!(self, btif_gattc_discover_service_by_uuid, conn_id, uuid)
     }
 
+    #[log_args]
     pub fn read_characteristic(&self, conn_id: i32, handle: u16, auth_req: i32) -> BtStatus {
         BtStatus::from(ccall!(self, read_characteristic, conn_id, handle, auth_req))
     }
 
+    #[log_args]
     pub fn read_using_characteristic_uuid(
         &self,
         conn_id: i32,
@@ -1264,6 +1274,7 @@ impl GattClient {
         ))
     }
 
+    #[log_args]
     pub fn write_characteristic(
         &self,
         conn_id: i32,
@@ -1285,10 +1296,12 @@ impl GattClient {
         ))
     }
 
+    #[log_args]
     pub fn read_descriptor(&self, conn_id: i32, handle: u16, auth_req: i32) -> BtStatus {
         BtStatus::from(ccall!(self, read_descriptor, conn_id, handle, auth_req))
     }
 
+    #[log_args]
     pub fn write_descriptor(
         &self,
         conn_id: i32,
@@ -1308,10 +1321,12 @@ impl GattClient {
         ))
     }
 
+    #[log_args]
     pub fn execute_write(&self, conn_id: i32, execute: i32) -> BtStatus {
         BtStatus::from(ccall!(self, execute_write, conn_id, execute))
     }
 
+    #[log_args]
     pub fn register_for_notification(
         &self,
         client_if: i32,
@@ -1321,6 +1336,7 @@ impl GattClient {
         BtStatus::from(ccall!(self, register_for_notification, client_if, addr, handle))
     }
 
+    #[log_args]
     pub fn deregister_for_notification(
         &self,
         client_if: i32,
@@ -1330,18 +1346,22 @@ impl GattClient {
         BtStatus::from(ccall!(self, deregister_for_notification, client_if, addr, handle))
     }
 
+    #[log_args]
     pub fn read_remote_rssi(&self, client_if: i32, addr: &RawAddress) -> BtStatus {
         BtStatus::from(ccall!(self, read_remote_rssi, client_if, addr))
     }
 
+    #[log_args]
     pub fn get_device_type(&self, addr: &RawAddress) -> i32 {
         ccall!(self, get_device_type, addr)
     }
 
+    #[log_args]
     pub fn configure_mtu(&self, conn_id: i32, mtu: i32) -> BtStatus {
         BtStatus::from(ccall!(self, configure_mtu, conn_id, mtu))
     }
 
+    #[log_args]
     pub fn conn_parameter_update(
         &self,
         addr: &RawAddress,
@@ -1365,6 +1385,7 @@ impl GattClient {
         ))
     }
 
+    #[log_args]
     pub fn set_preferred_phy(
         &self,
         addr: &RawAddress,
@@ -1375,14 +1396,17 @@ impl GattClient {
         BtStatus::from(ccall!(self, set_preferred_phy, addr, tx_phy, rx_phy, phy_options))
     }
 
+    #[log_args]
     pub fn read_phy(&mut self, client_if: i32, addr: &RawAddress) -> BtStatus {
         BtStatus::from_i32(mutcxxcall!(self, read_phy, client_if, *addr)).unwrap()
     }
 
+    #[log_args]
     pub fn test_command(&self, command: i32, params: &BtGattTestParams) -> BtStatus {
         BtStatus::from(ccall!(self, test_command, command, params))
     }
 
+    #[log_args]
     pub fn get_gatt_db(&self, conn_id: i32) -> BtStatus {
         BtStatus::from(ccall!(self, get_gatt_db, conn_id))
     }
@@ -1394,14 +1418,17 @@ pub struct GattServer {
 }
 
 impl GattServer {
+    #[log_args]
     pub fn register_server(&self, uuid: &Uuid, eatt_support: bool) -> BtStatus {
         BtStatus::from(ccall!(self, register_server, uuid, eatt_support))
     }
 
+    #[log_args]
     pub fn unregister_server(&self, server_if: i32) -> BtStatus {
         BtStatus::from(ccall!(self, unregister_server, server_if))
     }
 
+    #[log_args]
     pub fn connect(
         &self,
         server_if: i32,
@@ -1413,23 +1440,28 @@ impl GattServer {
         BtStatus::from(ccall!(self, connect, server_if, addr, addr_type, is_direct, transport))
     }
 
+    #[log_args]
     pub fn disconnect(&self, server_if: i32, addr: &RawAddress, conn_id: i32) -> BtStatus {
         BtStatus::from(ccall!(self, disconnect, server_if, addr, conn_id))
     }
 
+    #[log_args]
     pub fn add_service(&self, server_if: i32, service: &[BtGattDbElement]) -> BtStatus {
         let service_ptr = LTCheckedPtr::from(service);
         BtStatus::from(ccall!(self, add_service, server_if, service_ptr.into(), service.len()))
     }
 
+    #[log_args]
     pub fn stop_service(&self, server_if: i32, service_handle: i32) -> BtStatus {
         BtStatus::from(ccall!(self, stop_service, server_if, service_handle))
     }
 
+    #[log_args]
     pub fn delete_service(&self, server_if: i32, service_handle: i32) -> BtStatus {
         BtStatus::from(ccall!(self, delete_service, server_if, service_handle))
     }
 
+    #[log_args]
     pub fn send_indication(
         &self,
         server_if: i32,
@@ -1451,6 +1483,7 @@ impl GattServer {
         ))
     }
 
+    #[log_args]
     pub fn send_response(
         &self,
         conn_id: i32,
@@ -1461,6 +1494,7 @@ impl GattServer {
         BtStatus::from(ccall!(self, send_response, conn_id, trans_id, status, response))
     }
 
+    #[log_args]
     pub fn set_preferred_phy(
         &self,
         addr: &RawAddress,
@@ -1471,6 +1505,7 @@ impl GattServer {
         BtStatus::from(ccall!(self, set_preferred_phy, addr, tx_phy, rx_phy, phy_options))
     }
 
+    #[log_args]
     pub fn read_phy(&mut self, server_if: i32, addr: &RawAddress) -> BtStatus {
         BtStatus::from_i32(mutcxxcall!(self, server_read_phy, server_if, *addr)).unwrap()
     }
