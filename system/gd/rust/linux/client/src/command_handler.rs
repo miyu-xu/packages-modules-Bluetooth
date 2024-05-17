@@ -1518,14 +1518,16 @@ impl CommandHandler {
                     None => return Err("No pending request to send response to".into()),
                     Some(r) => r,
                 };
-                self.lock_context().gatt_dbus.as_mut().unwrap().send_response(
-                    server_id,
-                    request.address,
-                    request.id,
-                    status,
-                    request.offset,
-                    request.value.clone(),
-                );
+                unsafe {
+                    self.lock_context().gatt_dbus.as_mut().unwrap().send_response(
+                        server_id,
+                        request.address,
+                        request.id,
+                        status,
+                        request.offset,
+                        request.value.clone(),
+                    );
+                }
 
                 self.lock_context().pending_gatt_request = None;
             }
