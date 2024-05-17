@@ -16,7 +16,6 @@
 
 package android.bluetooth;
 
-import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
 import android.annotation.NonNull;
 import android.annotation.RequiresNoPermission;
@@ -131,7 +130,6 @@ public final class BluetoothGatt implements BluetoothProfile {
      * GATT connection timed out, likely due to the remote device being out of range or not
      * advertising as connectable.
      */
-    @FlaggedApi(Flags.FLAG_ENUMERATE_GATT_ERRORS)
     public static final int GATT_CONNECTION_TIMEOUT = 0x93;
 
     /** A GATT operation failed, errors other than the above */

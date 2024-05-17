@@ -280,7 +280,6 @@ public class GattClientTest {
     }
 
     @Test
-    @RequiresFlagsEnabled(Flags.FLAG_ENUMERATE_GATT_ERRORS)
     public void connectTimeout() {
         BluetoothDevice device =
                 mAdapter.getRemoteLeDevice(
