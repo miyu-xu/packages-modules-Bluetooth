@@ -12,17 +12,35 @@ use crate::{ccall, mutcxxcall};
 use num_derive::{FromPrimitive, ToPrimitive};
 use num_traits::cast::{FromPrimitive, ToPrimitive};
 
-use std::fmt::{Display, Formatter, Result};
+use std::fmt::{Debug, Display, Formatter, Result};
 use std::sync::{Arc, Mutex};
 
-use topshim_macros::{cb_variant, gen_cxx_extern_trivial};
+use topshim_macros::{cb_variant, gen_cxx_extern_trivial, log_args};
 
 pub type BtGattNotifyParams = bindings::btgatt_notify_params_t;
 pub type BtGattReadParams = bindings::btgatt_read_params_t;
 pub type BtGattDbElement = bindings::btgatt_db_element_t;
-pub type BtGattResponse = bindings::btgatt_response_t;
+type BtGattResponseT = bindings::btgatt_response_t;
 pub type BtGattValue = bindings::btgatt_value_t;
 pub type BtGattTestParams = bindings::btgatt_test_params_t;
+
+// Mimic the structure of btgatt_response_t
+pub struct BtGattResponse {
+    pub attr_value: BtGattValue,
+}
+
+impl Debug for BtGattResponse {
+    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+        write!(f,
+            "BtGattResponse {{ data: {:?}, handle: {:?}, offset: {:?}, len: {:?}, auth_req: {:?} }}",
+            self.attr_value.value,
+            self.attr_value.handle,
+            self.attr_value.offset,
+            self.attr_value.len,
+            self.attr_value.auth_req
+        )
+    }
+}
 
 #[cxx::bridge(namespace = bluetooth::topshim::rust)]
 pub mod ffi {
@@ -615,8 +633,20 @@ pub struct GattClientCallbacksDispatcher {
     pub dispatch: Box<dyn Fn(GattClientCallbacks) + Send>,
 }
 
+impl Debug for GattClientCallbacksDispatcher {
+    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+        write!(f, "GattClientCallbacksDispatcher {{}}")
+    }
+}
+
 pub struct GattServerCallbacksDispatcher {
     pub dispatch: Box<dyn Fn(GattServerCallbacks) + Send>,
+}
+
+impl Debug for GattServerCallbacksDispatcher {
+    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+        write!(f, "GattServerCallbacksDispatcher {{}}")
+    }
 }
 
 type GattClientCb = Arc<Mutex<GattClientCallbacksDispatcher>>;
@@ -893,6 +923,12 @@ pub struct GattScannerCallbacksDispatcher {
     pub dispatch: Box<dyn Fn(GattScannerCallbacks) + Send>,
 }
 
+impl Debug for GattScannerCallbacksDispatcher {
+    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+        write!(f, "GattScannerCallbacksDispatcher {{}}")
+    }
+}
+
 type GDScannerCb = Arc<Mutex<GattScannerCallbacksDispatcher>>;
 
 cb_variant!(
@@ -987,6 +1023,12 @@ pub struct GattScannerInbandCallbacksDispatcher {
     pub dispatch: Box<dyn Fn(GattScannerInbandCallbacks) + Send>,
 }
 
+impl Debug for GattScannerInbandCallbacksDispatcher {
+    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+        write!(f, "GattScannerInbandCallbacksDispatcher {{}}")
+    }
+}
+
 type GDScannerInbandCb = Arc<Mutex<GattScannerInbandCallbacksDispatcher>>;
 
 cb_variant!(GDScannerInbandCb, gdscan_register_callback -> GattScannerInbandCallbacks::RegisterCallback,
@@ -1063,6 +1105,12 @@ pub struct GattAdvCallbacksDispatcher {
     pub dispatch: Box<dyn Fn(GattAdvCallbacks) + Send>,
 }
 
+impl Debug for GattAdvCallbacksDispatcher {
+    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+        write!(f, "GattAdvCallbacksDispatcher {{}}")
+    }
+}
+
 type GDAdvCb = Arc<Mutex<GattAdvCallbacksDispatcher>>;
 
 cb_variant!(GDAdvCb,
@@ -1115,6 +1163,12 @@ pub struct GattAdvInbandCallbacksDispatcher {
     pub dispatch: Box<dyn Fn(GattAdvInbandCallbacks) + Send>,
 }
 
+impl Debug for GattAdvInbandCallbacksDispatcher {
+    fn fmt(&self, f: &mut Formatter<'_>) -> Result {
+        write!(f, "GattAdvInbandCallbacksDispatcher {{}}")
+    }
+}
+
 type GDAdvInbandCb = Arc<Mutex<GattAdvInbandCallbacksDispatcher>>;
 
 cb_variant!(GDAdvInbandCb, gdadv_idstatus_callback -> GattAdvInbandCallbacks::IdStatusCallback, u8, u8);
@@ -1164,14 +1218,17 @@ pub struct GattClient {
 }
 
 impl GattClient {
+    #[log_args]
     pub fn register_client(&self, uuid: &Uuid, eatt_support: bool) -> BtStatus {
         BtStatus::from(ccall!(self, register_client, uuid, eatt_support))
     }
 
+    #[log_args]
     pub fn unregister_client(&self, client_if: i32) -> BtStatus {
         BtStatus::from(ccall!(self, unregister_client, client_if))
     }
 
+    #[log_args]
     pub fn connect(
         &self,
         client_if: i32,
@@ -1197,27 +1254,33 @@ impl GattClient {
         ))
     }
 
+    #[log_args]
     pub fn disconnect(&self, client_if: i32, addr: &RawAddress, conn_id: i32) -> BtStatus {
         BtStatus::from(ccall!(self, disconnect, client_if, addr, conn_id))
     }
 
+    #[log_args]
     pub fn refresh(&self, client_if: i32, addr: &RawAddress) -> BtStatus {
         BtStatus::from(ccall!(self, refresh, client_if, addr))
     }
 
+    #[log_args]
     pub fn search_service(&self, conn_id: i32, filter_uuid: Option<Uuid>) -> BtStatus {
         let filter_uuid_ptr = LTCheckedPtr::from(&filter_uuid);
         BtStatus::from(ccall!(self, search_service, conn_id, filter_uuid_ptr.into()))
     }
 
+    #[log_args]
     pub fn btif_gattc_discover_service_by_uuid(&self, conn_id: i32, uuid: &Uuid) {
         ccall!(self, btif_gattc_discover_service_by_uuid, conn_id, uuid)
     }
 
+    #[log_args]
     pub fn read_characteristic(&self, conn_id: i32, handle: u16, auth_req: i32) -> BtStatus {
         BtStatus::from(ccall!(self, read_characteristic, conn_id, handle, auth_req))
     }
 
+    #[log_args]
     pub fn read_using_characteristic_uuid(
         &self,
         conn_id: i32,
@@ -1237,6 +1300,7 @@ impl GattClient {
         ))
     }
 
+    #[log_args]
     pub fn write_characteristic(
         &self,
         conn_id: i32,
@@ -1258,10 +1322,12 @@ impl GattClient {
         ))
     }
 
+    #[log_args]
     pub fn read_descriptor(&self, conn_id: i32, handle: u16, auth_req: i32) -> BtStatus {
         BtStatus::from(ccall!(self, read_descriptor, conn_id, handle, auth_req))
     }
 
+    #[log_args]
     pub fn write_descriptor(
         &self,
         conn_id: i32,
@@ -1281,10 +1347,12 @@ impl GattClient {
         ))
     }
 
+    #[log_args]
     pub fn execute_write(&self, conn_id: i32, execute: i32) -> BtStatus {
         BtStatus::from(ccall!(self, execute_write, conn_id, execute))
     }
 
+    #[log_args]
     pub fn register_for_notification(
         &self,
         client_if: i32,
@@ -1294,6 +1362,7 @@ impl GattClient {
         BtStatus::from(ccall!(self, register_for_notification, client_if, addr, handle))
     }
 
+    #[log_args]
     pub fn deregister_for_notification(
         &self,
         client_if: i32,
@@ -1303,18 +1372,22 @@ impl GattClient {
         BtStatus::from(ccall!(self, deregister_for_notification, client_if, addr, handle))
     }
 
+    #[log_args]
     pub fn read_remote_rssi(&self, client_if: i32, addr: &RawAddress) -> BtStatus {
         BtStatus::from(ccall!(self, read_remote_rssi, client_if, addr))
     }
 
+    #[log_args]
     pub fn get_device_type(&self, addr: &RawAddress) -> i32 {
         ccall!(self, get_device_type, addr)
     }
 
+    #[log_args]
     pub fn configure_mtu(&self, conn_id: i32, mtu: i32) -> BtStatus {
         BtStatus::from(ccall!(self, configure_mtu, conn_id, mtu))
     }
 
+    #[log_args]
     pub fn conn_parameter_update(
         &self,
         addr: &RawAddress,
@@ -1338,6 +1411,7 @@ impl GattClient {
         ))
     }
 
+    #[log_args]
     pub fn set_preferred_phy(
         &self,
         addr: &RawAddress,
@@ -1348,14 +1422,17 @@ impl GattClient {
         BtStatus::from(ccall!(self, set_preferred_phy, addr, tx_phy, rx_phy, phy_options))
     }
 
+    #[log_args]
     pub fn read_phy(&mut self, client_if: i32, addr: &RawAddress) -> BtStatus {
         BtStatus::from_i32(mutcxxcall!(self, read_phy, client_if, *addr)).unwrap()
     }
 
+    #[log_args]
     pub fn test_command(&self, command: i32, params: &BtGattTestParams) -> BtStatus {
         BtStatus::from(ccall!(self, test_command, command, params))
     }
 
+    #[log_args]
     pub fn get_gatt_db(&self, conn_id: i32) -> BtStatus {
         BtStatus::from(ccall!(self, get_gatt_db, conn_id))
     }
@@ -1367,14 +1444,17 @@ pub struct GattServer {
 }
 
 impl GattServer {
+    #[log_args]
     pub fn register_server(&self, uuid: &Uuid, eatt_support: bool) -> BtStatus {
         BtStatus::from(ccall!(self, register_server, uuid, eatt_support))
     }
 
+    #[log_args]
     pub fn unregister_server(&self, server_if: i32) -> BtStatus {
         BtStatus::from(ccall!(self, unregister_server, server_if))
     }
 
+    #[log_args]
     pub fn connect(
         &self,
         server_if: i32,
@@ -1386,23 +1466,28 @@ impl GattServer {
         BtStatus::from(ccall!(self, connect, server_if, addr, addr_type, is_direct, transport))
     }
 
+    #[log_args]
     pub fn disconnect(&self, server_if: i32, addr: &RawAddress, conn_id: i32) -> BtStatus {
         BtStatus::from(ccall!(self, disconnect, server_if, addr, conn_id))
     }
 
+    #[log_args]
     pub fn add_service(&self, server_if: i32, service: &[BtGattDbElement]) -> BtStatus {
         let service_ptr = LTCheckedPtr::from(service);
         BtStatus::from(ccall!(self, add_service, server_if, service_ptr.into(), service.len()))
     }
 
+    #[log_args]
     pub fn stop_service(&self, server_if: i32, service_handle: i32) -> BtStatus {
         BtStatus::from(ccall!(self, stop_service, server_if, service_handle))
     }
 
+    #[log_args]
     pub fn delete_service(&self, server_if: i32, service_handle: i32) -> BtStatus {
         BtStatus::from(ccall!(self, delete_service, server_if, service_handle))
     }
 
+    #[log_args]
     pub fn send_indication(
         &self,
         server_if: i32,
@@ -1424,16 +1509,19 @@ impl GattServer {
         ))
     }
 
+    #[log_args]
     pub fn send_response(
         &self,
         conn_id: i32,
         trans_id: i32,
         status: i32,
-        response: &BtGattResponse,
+        response: BtGattResponse,
     ) -> BtStatus {
-        BtStatus::from(ccall!(self, send_response, conn_id, trans_id, status, response))
+        let res = &BtGattResponseT { attr_value: response.attr_value };
+        BtStatus::from(ccall!(self, send_response, conn_id, trans_id, status, res))
     }
 
+    #[log_args]
     pub fn set_preferred_phy(
         &self,
         addr: &RawAddress,
@@ -1444,6 +1532,7 @@ impl GattServer {
         BtStatus::from(ccall!(self, set_preferred_phy, addr, tx_phy, rx_phy, phy_options))
     }
 
+    #[log_args]
     pub fn read_phy(&mut self, server_if: i32, addr: &RawAddress) -> BtStatus {
         BtStatus::from_i32(mutcxxcall!(self, server_read_phy, server_if, *addr)).unwrap()
     }
@@ -1455,6 +1544,7 @@ pub struct BleScanner {
 }
 
 impl BleScanner {
+    // TODO(b/383549885)
     pub(crate) fn new(
         raw_gatt: *const btgatt_interface_t,
         internal_cxx: cxx::UniquePtr<ffi::BleScannerIntf>,
@@ -1467,23 +1557,28 @@ impl BleScanner {
         }
     }
 
+    #[log_args]
     pub fn register_scanner(&mut self, app_uuid: Uuid) {
         mutcxxcall!(self, RegisterScanner, app_uuid);
     }
 
+    #[log_args]
     pub fn unregister(&mut self, scanner_id: u8) {
         mutcxxcall!(self, Unregister, scanner_id);
     }
 
     // TODO(b/233124021): topshim should expose scan(enable) instead of start_scan and stop_scan.
+    #[log_args]
     pub fn start_scan(&mut self) {
         mutcxxcall!(self, Scan, true);
     }
 
+    #[log_args]
     pub fn stop_scan(&mut self) {
         mutcxxcall!(self, Scan, false);
     }
 
+    #[log_args]
     pub fn scan_filter_setup(
         &mut self,
         scanner_id: u8,
@@ -1494,38 +1589,47 @@ impl BleScanner {
         mutcxxcall!(self, ScanFilterParamSetup, scanner_id, action, filter_index, param);
     }
 
+    #[log_args]
     pub fn scan_filter_add(&mut self, filter_index: u8, filters: Vec<ApcfCommand>) {
         mutcxxcall!(self, ScanFilterAdd, filter_index, filters);
     }
 
+    #[log_args]
     pub fn scan_filter_clear(&mut self, filter_index: u8) {
         mutcxxcall!(self, ScanFilterClear, filter_index);
     }
 
+    #[log_args]
     pub fn scan_filter_enable(&mut self) {
         mutcxxcall!(self, ScanFilterEnable, true);
     }
 
+    #[log_args]
     pub fn scan_filter_disable(&mut self) {
         mutcxxcall!(self, ScanFilterEnable, false);
     }
 
+    #[log_args]
     pub fn is_msft_supported(&mut self) -> bool {
         mutcxxcall!(self, IsMsftSupported)
     }
 
+    #[log_args]
     pub fn msft_adv_monitor_add(&mut self, monitor: &MsftAdvMonitor) {
         mutcxxcall!(self, MsftAdvMonitorAdd, monitor);
     }
 
+    #[log_args]
     pub fn msft_adv_monitor_remove(&mut self, monitor_handle: u8) {
         mutcxxcall!(self, MsftAdvMonitorRemove, monitor_handle);
     }
 
+    #[log_args]
     pub fn msft_adv_monitor_enable(&mut self, enable: bool) {
         mutcxxcall!(self, MsftAdvMonitorEnable, enable);
     }
 
+    #[log_args]
     pub fn set_scan_parameters(
         &mut self,
         scanner_id: u8,
@@ -1545,6 +1649,7 @@ impl BleScanner {
         );
     }
 
+    #[log_args]
     pub fn batchscan_config_storage(
         &mut self,
         scanner_id: u8,
@@ -1562,6 +1667,7 @@ impl BleScanner {
         );
     }
 
+    #[log_args]
     pub fn batchscan_enable(
         &mut self,
         scan_mode: i32,
@@ -1581,34 +1687,42 @@ impl BleScanner {
         );
     }
 
+    #[log_args]
     pub fn batchscan_disable(&mut self) {
         mutcxxcall!(self, BatchscanDisable);
     }
 
+    #[log_args]
     pub fn batchscan_read_reports(&mut self, scanner_id: u8, scan_mode: i32) {
         mutcxxcall!(self, BatchscanReadReports, scanner_id, scan_mode);
     }
 
+    #[log_args]
     pub fn start_sync(&mut self, sid: u8, addr: RawAddress, skip: u16, timeout: u16) {
         mutcxxcall!(self, StartSync, sid, addr, skip, timeout);
     }
 
+    #[log_args]
     pub fn stop_sync(&mut self, handle: u16) {
         mutcxxcall!(self, StopSync, handle);
     }
 
+    #[log_args]
     pub fn cancel_create_sync(&mut self, sid: u8, addr: RawAddress) {
         mutcxxcall!(self, CancelCreateSync, sid, addr);
     }
 
+    #[log_args]
     pub fn transfer_sync(&mut self, addr: RawAddress, service_data: u16, sync_handle: u16) {
         mutcxxcall!(self, TransferSync, addr, service_data, sync_handle);
     }
 
+    #[log_args]
     pub fn transfer_set_info(&mut self, addr: RawAddress, service_data: u16, adv_handle: u8) {
         mutcxxcall!(self, TransferSetInfo, addr, service_data, adv_handle);
     }
 
+    #[log_args]
     pub fn sync_tx_parameters(&mut self, addr: RawAddress, mode: u8, skip: u16, timeout: u16) {
         mutcxxcall!(self, SyncTxParameters, addr, mode, skip, timeout);
     }
@@ -1620,6 +1734,7 @@ pub struct BleAdvertiser {
 }
 
 impl BleAdvertiser {
+    // TODO(b/383549885)
     pub(crate) fn new(
         raw_gatt: *const btgatt_interface_t,
         internal_cxx: cxx::UniquePtr<ffi::BleAdvertiserIntf>,
@@ -1632,27 +1747,34 @@ impl BleAdvertiser {
         }
     }
 
+    #[log_args]
     pub fn register_advertiser(&mut self) {
         mutcxxcall!(self, RegisterAdvertiser);
     }
 
+    #[log_args]
     pub fn unregister(&mut self, adv_id: u8) {
         mutcxxcall!(self, Unregister, adv_id);
     }
 
+    #[log_args]
     pub fn get_own_address(&mut self, adv_id: u8) {
         mutcxxcall!(self, GetOwnAddress, adv_id);
     }
 
+    #[log_args]
     pub fn set_parameters(&mut self, adv_id: u8, params: AdvertiseParameters) {
         mutcxxcall!(self, SetParameters, adv_id, params);
     }
+    #[log_args]
     pub fn set_data(&mut self, adv_id: u8, set_scan_rsp: bool, data: Vec<u8>) {
         mutcxxcall!(self, SetData, adv_id, set_scan_rsp, data);
     }
+    #[log_args]
     pub fn enable(&mut self, adv_id: u8, enable: bool, duration: u16, max_ext_adv_events: u8) {
         mutcxxcall!(self, Enable, adv_id, enable, duration, max_ext_adv_events);
     }
+    #[log_args]
     pub fn start_advertising(
         &mut self,
         adv_id: u8,
@@ -1671,6 +1793,7 @@ impl BleAdvertiser {
             timeout_in_sec
         );
     }
+    #[log_args]
     pub fn start_advertising_set(
         &mut self,
         reg_id: i32,
@@ -1695,6 +1818,7 @@ impl BleAdvertiser {
             max_ext_adv_events
         );
     }
+    #[log_args]
     pub fn set_periodic_advertising_parameters(
         &mut self,
         adv_id: u8,
@@ -1702,9 +1826,11 @@ impl BleAdvertiser {
     ) {
         mutcxxcall!(self, SetPeriodicAdvertisingParameters, adv_id, params);
     }
+    #[log_args]
     pub fn set_periodic_advertising_data(&mut self, adv_id: u8, data: Vec<u8>) {
         mutcxxcall!(self, SetPeriodicAdvertisingData, adv_id, data);
     }
+    #[log_args]
     pub fn set_periodic_advertising_enable(&mut self, adv_id: u8, enable: bool, include_adi: bool) {
         mutcxxcall!(self, SetPeriodicAdvertisingEnable, adv_id, enable, include_adi);
     }
@@ -1727,6 +1853,7 @@ pub struct Gatt {
 }
 
 impl Gatt {
+    // TODO(b/383549885)
     pub fn new(intf: &BluetoothInterface) -> Gatt {
         let r = intf.get_profile_interface(SupportedProfiles::Gatt);
 
@@ -1763,10 +1890,12 @@ impl Gatt {
         }
     }
 
+    #[log_args]
     pub fn is_initialized(&self) -> bool {
         self.is_init
     }
 
+    #[log_args]
     pub fn initialize(
         &mut self,
         gatt_client_callbacks_dispatcher: GattClientCallbacksDispatcher,

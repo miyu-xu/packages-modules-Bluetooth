@@ -2663,7 +2663,7 @@ impl IBluetoothGatt for BluetoothGatt {
                 conn_id,
                 request_id,
                 status as i32,
-                &BtGattResponse {
+                BtGattResponse {
                     attr_value: BtGattValue {
                         value: data,
                         handle: handle as u16,
