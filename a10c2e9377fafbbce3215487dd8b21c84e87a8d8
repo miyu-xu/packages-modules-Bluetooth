@@ -16,6 +16,24 @@
       "message": "lets not checking commented out code.",
       "revId": "a10c2e9377fafbbce3215487dd8b21c84e87a8d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edd6cd9c_4ab07bfa",
+        "filename": "system/audio_hal_interface/aidl/le_audio_utils.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-05-17T15:30:59Z",
+      "side": 1,
+      "message": "Yes. Done.",
+      "parentUuid": "a7b799a9_2cc1f938",
+      "revId": "a10c2e9377fafbbce3215487dd8b21c84e87a8d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
