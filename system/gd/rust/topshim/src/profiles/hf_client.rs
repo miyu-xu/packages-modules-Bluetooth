@@ -8,7 +8,7 @@ use crate::utils::{LTCheckedPtr, LTCheckedPtrMut};
 use num_derive::{FromPrimitive, ToPrimitive};
 use num_traits::cast::FromPrimitive;
 use std::sync::{Arc, Mutex};
-use topshim_macros::{cb_variant, profile_enabled_or};
+use topshim_macros::{cb_variant, log_args, profile_enabled_or};
 
 use log::warn;
 
@@ -96,10 +96,12 @@ pub struct HfClient {
 }
 
 impl ToggleableProfile for HfClient {
+    #[log_args]
     fn is_enabled(&self) -> bool {
         self.is_enabled
     }
 
+    #[log_args]
     fn enable(&mut self) -> bool {
         let cb_ptr = LTCheckedPtrMut::from(self.callbacks.as_mut().unwrap());
 
@@ -109,6 +111,7 @@ impl ToggleableProfile for HfClient {
         true
     }
 
+    #[log_args]
     #[profile_enabled_or(false)]
     fn disable(&mut self) -> bool {
         ccall!(self, cleanup);
@@ -169,30 +172,35 @@ impl HfClient {
         true
     }
 
+    #[log_args]
     #[profile_enabled_or(BtStatus::NotReady)]
     pub fn connect(&self, addr: RawAddress) -> BtStatus {
         let addr_ptr = LTCheckedPtr::from_ref(&addr);
         BtStatus::from(ccall!(self, connect, addr_ptr.into()))
     }
 
+    #[log_args]
     #[profile_enabled_or(BtStatus::NotReady)]
     pub fn disconnect(&self, addr: RawAddress) -> BtStatus {
         let addr_ptr = LTCheckedPtr::from_ref(&addr);
         BtStatus::from(ccall!(self, disconnect, addr_ptr.into()))
     }
 
+    #[log_args]
     #[profile_enabled_or(BtStatus::NotReady)]
     pub fn connect_audio(&mut self, addr: RawAddress) -> BtStatus {
         let addr_ptr = LTCheckedPtr::from_ref(&addr);
         BtStatus::from(ccall!(self, connect_audio, addr_ptr.into()))
     }
 
+    #[log_args]
     #[profile_enabled_or(BtStatus::NotReady)]
     pub fn disconnect_audio(&mut self, addr: RawAddress) -> BtStatus {
         let addr_ptr = LTCheckedPtr::from_ref(&addr);
         BtStatus::from(ccall!(self, disconnect_audio, addr_ptr.into()))
     }
 
+    #[log_args]
     #[profile_enabled_or]
     pub fn cleanup(&mut self) {
         ccall!(self, cleanup)
