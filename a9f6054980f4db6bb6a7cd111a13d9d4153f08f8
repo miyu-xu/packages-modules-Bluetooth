@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fb68fd6_9ca14d23",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-17T15:54:23Z",
+      "side": 1,
+      "message": "Couldn\u0027t this be the larger of the two ?\n\ne.g.\n\n```\nif (!packet_buf) packet_buf \u003d (uint8_t*)osi_calloc((buf_size \u003e BTM_MSBC_PKT_LEN)?buf_size? BTM_MSBC_PKT_LEN);\n```",
+      "fixSuggestions": [
+        {
+          "fixId": "cdf76cca_fb329e73",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 488,
+                "startChar": 0,
+                "endLine": 489,
+                "endChar": 0
+              },
+              "replacement": "    if (!packet_buf)\n      packet_buf \u003d (uint8_t*)osi_calloc(\n          (buf_size \u003e BTM_MSBC_PKT_LEN) ? buf_size : BTM_MSBC_PKT_LEN);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a9f6054980f4db6bb6a7cd111a13d9d4153f08f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24b5710a_cb2d04c3",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-17T15:54:23Z",
+      "side": 1,
+      "message": "How about these ? Why are these still set to the injected buffer size ?\n\nI only ask because the symmetry is very nice in the older code.",
+      "fixSuggestions": [
+        {
+          "fixId": "fa84c073_3108b93c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 494,
+                "startChar": 0,
+                "endLine": 495,
+                "endChar": 0
+              },
+              "replacement": "    msbc_encode_buf \u003d (uint8_t*)osi_calloc(BTM_MSBC_PKT_LEN);\n"
+            },
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 916,
+                "startChar": 0,
+                "endLine": 917,
+                "endChar": 0
+              },
+              "replacement": "    lc3_encode_buf \u003d (uint8_t*)osi_calloc(BTM_LC3_PKT_LEN);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a9f6054980f4db6bb6a7cd111a13d9d4153f08f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
