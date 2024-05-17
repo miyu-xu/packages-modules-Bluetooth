@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88378c1d_31dd08f7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-17T00:39:12Z",
+      "side": 1,
+      "message": "FAILED: out/soong/.intermediates/packages/modules/Bluetooth/system/gd/libbluetooth-gdx/linux_glibc_x86_64_static/obj/packages/modules/Bluetooth/system/gd/discovery/device/bt_property.o\n...etooth/system/gd/libbluetooth-gdx/linux_glibc_x86_64_static/obj/packages/modules/Bluetooth/system/gd/discovery/device/bt_property.o packages/modules/Bluetooth/system/gd/discovery/device/bt_property.cc\npackages/modules/Bluetooth/system/gd/discovery/device/bt_property.cc:29:11: error: enumeration value \u0027BT_PROPERTY_RESERVED_0x14\u0027 not handled in switch [-Werror,-Wswitch]\n   29 |   switch (type) {\n      |           ^~~~\npackages/modules/Bluetooth/system/gd/discovery/device/bt_property.cc:61:11: error: enumeration value \u0027BT_PROPERTY_RESERVED_0x14\u0027 not handled in switch [-Werror,-Wswitch]\n   61 |   switch (property.type) {\n      |           ^~~~~~~~~~~~~\n2 errors generated.",
+      "revId": "c033d2e861dfa9c9ece27a17031f89301ccf40cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
