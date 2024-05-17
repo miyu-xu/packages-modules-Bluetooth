@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24600591_607f0670",
+        "filename": "pandora/interfaces/pandora_experimental/hid.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2024-05-17T10:13:06Z",
+      "side": 1,
+      "message": "Suggestion referring to a2dp.proto(google3/third_party/pandora/bt_test_interfaces/pandora/a2dp.proto)\n\nNaming convention \u003cAction\u003e\u003cRole\u003e ConnectHostRequest.",
+      "fixSuggestions": [
+        {
+          "fixId": "79ee6ede_66574ae2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "pandora/interfaces/pandora_experimental/hid.proto",
+              "range": {
+                "startLine": 10,
+                "startChar": 0,
+                "endLine": 11,
+                "endChar": 0
+              },
+              "replacement": "  rpc ConnectHost(ConnectHostRequest) returns (ConnectHostResponse);\n"
+            },
+            {
+              "path": "pandora/interfaces/pandora_experimental/hid.proto",
+              "range": {
+                "startLine": 12,
+                "startChar": 0,
+                "endLine": 13,
+                "endChar": 0
+              },
+              "replacement": "  rpc DisconnectHost(DisconnectHostRequest) returns (DisconnectHostResponse);\n"
+            },
+            {
+              "path": "pandora/interfaces/pandora_experimental/hid.proto",
+              "range": {
+                "startLine": 14,
+                "startChar": 0,
+                "endLine": 15,
+                "endChar": 0
+              },
+              "replacement": "  rpc GetHostConnectionState(GetHostConnectionStateRequest) returns (GetHostConnectionStateResponse);\n"
+            },
+            {
+              "path": "pandora/interfaces/pandora_experimental/hid.proto",
+              "range": {
+                "startLine": 35,
+                "startChar": 0,
+                "endLine": 36,
+                "endChar": 0
+              },
+              "replacement": "message ConnectHostRequest {\n"
+            },
+            {
+              "path": "pandora/interfaces/pandora_experimental/hid.proto",
+              "range": {
+                "startLine": 39,
+                "startChar": 0,
+                "endLine": 40,
+                "endChar": 0
+              },
+              "replacement": "message ConnectHostResponse {\n"
+            },
+            {
+              "path": "pandora/interfaces/pandora_experimental/hid.proto",
+              "range": {
+                "startLine": 44,
+                "startChar": 0,
+                "endLine": 45,
+                "endChar": 0
+              },
+              "replacement": "message DisconnectHostRequest {\n"
+            },
+            {
+              "path": "pandora/interfaces/pandora_experimental/hid.proto",
+              "range": {
+                "startLine": 48,
+                "startChar": 0,
+                "endLine": 49,
+                "endChar": 0
+              },
+              "replacement": "message DisconnectHostResponse {\n"
+            },
+            {
+              "path": "pandora/interfaces/pandora_experimental/hid.proto",
+              "range": {
+                "startLine": 53,
+                "startChar": 0,
+                "endLine": 54,
+                "endChar": 0
+              },
+              "replacement": "message GetHostConnectionStateRequest {\n"
+            },
+            {
+              "path": "pandora/interfaces/pandora_experimental/hid.proto",
+              "range": {
+                "startLine": 57,
+                "startChar": 0,
+                "endLine": 58,
+                "endChar": 0
+              },
+              "replacement": "message GetHostConnectionStateResponse {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b5924bcf698792581aff6d00a69299c113435f1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e182e93e_2c571482",
+        "filename": "pandora/interfaces/pandora_experimental/hid.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2024-05-17T10:13:06Z",
+      "side": 1,
+      "message": "Few comments on enum values (reference is a2dp.proto)",
+      "fixSuggestions": [
+        {
+          "fixId": "9bee1a13_92412307",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "pandora/interfaces/pandora_experimental/hid.proto",
+              "range": {
+                "startLine": 22,
+                "startChar": 0,
+                "endLine": 22,
+                "endChar": 0
+              },
+              "replacement": "  // Input report\n"
+            },
+            {
+              "path": "pandora/interfaces/pandora_experimental/hid.proto",
+              "range": {
+                "startLine": 23,
+                "startChar": 0,
+                "endLine": 23,
+                "endChar": 0
+              },
+              "replacement": "  // Output report\n"
+            },
+            {
+              "path": "pandora/interfaces/pandora_experimental/hid.proto",
+              "range": {
+                "startLine": 24,
+                "startChar": 0,
+                "endLine": 24,
+                "endChar": 0
+              },
+              "replacement": "  // Feature report\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b5924bcf698792581aff6d00a69299c113435f1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
