@@ -94,6 +94,30 @@
       },
       "revId": "ca7057b86e66a827a9736f442186140b0b58c530",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2aff191f_d2daa2fe",
+        "filename": "system/stack/eatt/eatt_impl.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-17T15:12:02Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "63cdd5ec_27592f54",
+      "range": {
+        "startLine": 155,
+        "startChar": 18,
+        "endLine": 155,
+        "endChar": 19
+      },
+      "revId": "ca7057b86e66a827a9736f442186140b0b58c530",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
