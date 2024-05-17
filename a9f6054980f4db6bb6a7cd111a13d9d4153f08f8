@@ -1,0 +1,209 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "adc86cbc_5c3bae05",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-17T15:59:10Z",
+      "side": 0,
+      "message": "Just curious; why have this state ?  This is the same as \n```\n(X !\u003d DECODE_BUF_EMPTY \u0026\u0026 X !\u003d DECODE_BUF_FULL)   \n```\nAnd in the switch simply use the default rather than explicitly this value.",
+      "fixSuggestions": [
+        {
+          "fixId": "a2dc9a7c_528659a9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 404,
+                "startChar": 0,
+                "endLine": 405,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 485,
+                "startChar": 0,
+                "endLine": 487,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 507,
+                "startChar": 0,
+                "endLine": 508,
+                "endChar": 0
+              },
+              "replacement": "    return pkt_size;\n"
+            },
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 649,
+                "startChar": 0,
+                "endLine": 650,
+                "endChar": 0
+              },
+              "replacement": "    if (encode_buf_wo - encode_buf_ro \u003c BTM_MSBC_PKT_LEN) return 0;\n"
+            },
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 651,
+                "startChar": 0,
+                "endLine": 652,
+                "endChar": 0
+              },
+              "replacement": "    encode_buf_ro +\u003d BTM_MSBC_PKT_LEN;\n"
+            },
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 657,
+                "startChar": 0,
+                "endLine": 658,
+                "endChar": 0
+              },
+              "replacement": "    return BTM_MSBC_PKT_LEN;\n"
+            },
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 661,
+                "startChar": 0,
+                "endLine": 662,
+                "endChar": 0
+              },
+              "replacement": "    if (encode_buf_wo - encode_buf_ro \u003c BTM_MSBC_PKT_LEN) {\n"
+            },
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 714,
+                "startChar": 0,
+                "endLine": 715,
+                "endChar": 0
+              },
+              "replacement": "  if (data.size() !\u003d BTM_MSBC_PKT_LEN) {\n"
+            },
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 718,
+                "startChar": 0,
+                "endLine": 719,
+                "endChar": 0
+              },
+              "replacement": "        (unsigned long)data.size(), (unsigned long)BTM_MSBC_PKT_LEN);\n"
+            },
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 854,
+                "startChar": 0,
+                "endLine": 855,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 935,
+                "startChar": 0,
+                "endLine": 937,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 950,
+                "startChar": 0,
+                "endLine": 951,
+                "endChar": 0
+              },
+              "replacement": "    return pkt_size;\n"
+            },
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 1082,
+                "startChar": 0,
+                "endLine": 1083,
+                "endChar": 0
+              },
+              "replacement": "    if (encode_buf_wo - encode_buf_ro \u003c BTM_LC3_PKT_LEN) return 0;\n"
+            },
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 1084,
+                "startChar": 0,
+                "endLine": 1085,
+                "endChar": 0
+              },
+              "replacement": "    encode_buf_ro +\u003d BTM_LC3_PKT_LEN;\n"
+            },
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 1090,
+                "startChar": 0,
+                "endLine": 1091,
+                "endChar": 0
+              },
+              "replacement": "    return BTM_LC3_PKT_LEN;\n"
+            },
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 1094,
+                "startChar": 0,
+                "endLine": 1095,
+                "endChar": 0
+              },
+              "replacement": "    if (encode_buf_wo - encode_buf_ro \u003c BTM_LC3_PKT_LEN) {\n"
+            },
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 1153,
+                "startChar": 0,
+                "endLine": 1154,
+                "endChar": 0
+              },
+              "replacement": "  if (data.size() !\u003d BTM_LC3_PKT_LEN) {\n"
+            },
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 1157,
+                "startChar": 0,
+                "endLine": 1158,
+                "endChar": 0
+              },
+              "replacement": "        (unsigned long)data.size(), (unsigned long)BTM_LC3_PKT_LEN);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a9f6054980f4db6bb6a7cd111a13d9d4153f08f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

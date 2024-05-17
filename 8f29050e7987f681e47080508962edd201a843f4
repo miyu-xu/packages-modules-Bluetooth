@@ -16,6 +16,106 @@
       "message": "Please verify it locally.",
       "revId": "8f29050e7987f681e47080508962edd201a843f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fb022a0_fd476b19",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 932,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-17T15:59:10Z",
+      "side": 1,
+      "message": "These 6 statements above are very similar and possibly could benefit from more abstractions in the future.",
+      "fixSuggestions": [
+        {
+          "fixId": "4f0a3053_45c47e81",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 476,
+                "startChar": 0,
+                "endLine": 483,
+                "endChar": 0
+              },
+              "replacement": "    reset_buf_offset();\n"
+            },
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 509,
+                "startChar": 0,
+                "endLine": 509,
+                "endChar": 0
+              },
+              "replacement": "\n  void reset_buf_offset() {\n    decode_buf_wo \u003d 0;\n    decode_buf_ro \u003d 0;\n    decode_buf_wo_mirror \u003d false;\n    decode_buf_ro_mirror \u003d false;\n\n    encode_buf_wo \u003d 0;\n    encode_buf_ro \u003d 0;\n  }\n"
+            },
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 926,
+                "startChar": 0,
+                "endLine": 933,
+                "endChar": 0
+              },
+              "replacement": "    reset_buf_offset();\n"
+            },
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 952,
+                "startChar": 0,
+                "endLine": 952,
+                "endChar": 0
+              },
+              "replacement": "\n  void reset_buf_offset() {\n    decode_buf_wo \u003d 0;\n    decode_buf_ro \u003d 0;\n    decode_buf_wo_mirror \u003d false;\n    decode_buf_ro_mirror \u003d false;\n\n    encode_buf_wo \u003d 0;\n    encode_buf_ro \u003d 0;\n  }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8f29050e7987f681e47080508962edd201a843f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31be220f_04dc187d",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 938,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-17T15:59:10Z",
+      "side": 1,
+      "message": "This appears to change the default value from the previous CL",
+      "fixSuggestions": [
+        {
+          "fixId": "a28abdb6_671fcb42",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 938,
+                "startChar": 0,
+                "endLine": 939,
+                "endChar": 0
+              },
+              "replacement": "    if (!packet_buf) packet_buf \u003d (uint8_t*)osi_calloc(packet_size);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8f29050e7987f681e47080508962edd201a843f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
