@@ -119,6 +119,52 @@
       },
       "revId": "b977b53d3ed494ba8f0ea4cfab74816f32e64311",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad1db7b0_42eef08e",
+        "filename": "system/bta/le_audio/codec_manager_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 789,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-05-17T07:18:42Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this return `false` if none of the clients in the CodecManager is reset?",
+      "range": {
+        "startLine": 788,
+        "startChar": 0,
+        "endLine": 789,
+        "endChar": 71
+      },
+      "revId": "b977b53d3ed494ba8f0ea4cfab74816f32e64311",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "385b2a7e_730996f6",
+        "filename": "system/bta/le_audio/codec_manager_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 806,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-05-17T07:18:42Z",
+      "side": 1,
+      "message": "Could we also check if we are immune to these:\n\n```\ncodec_manager-\u003eUpdateActiveBroadcastAudioHalClient(nullptr, true);\ncodec_manager-\u003eUpdateActiveBroadcastAudioHalClient(nullptr, false);\n```\n\nand\n\n```\ncodec_manager-\u003eUpdateActiveUnicastAudioHalClient(nullptr, nullptr, true);\n```\n?",
+      "range": {
+        "startLine": 805,
+        "startChar": 2,
+        "endLine": 806,
+        "endChar": 36
+      },
+      "revId": "b977b53d3ed494ba8f0ea4cfab74816f32e64311",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
