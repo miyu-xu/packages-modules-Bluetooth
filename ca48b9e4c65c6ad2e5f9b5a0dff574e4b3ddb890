@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61a8956e_3df25665",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanController.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-17T01:04:37Z",
+      "side": 1,
+      "message": "To avoid race between binder call and cleanup:\n\n```suggestion\n            ScanController controller \u003d mScanController\n            if (controller !\u003d null \u0026\u0026 controller.mIsAvailable) {\n                return controller;\n            }\n```",
+      "range": {
+        "startLine": 239,
+        "startChar": 0,
+        "endLine": 241,
+        "endChar": 13
+      },
+      "revId": "ca48b9e4c65c6ad2e5f9b5a0dff574e4b3ddb890",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
