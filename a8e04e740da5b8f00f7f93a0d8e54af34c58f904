@@ -16,6 +16,24 @@
       "message": "nit: I do not like a lot the fact that we set a persist prop without ever removing it :/\n\nI\u0027ll let @wescande@google.com decide on that.",
       "revId": "a8e04e740da5b8f00f7f93a0d8e54af34c58f904",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57e7e99f_a0744d76",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-05-17T23:43:10Z",
+      "side": 1,
+      "message": "Is that really a bad thing just for the logs ? It is not impacting any kind of logics",
+      "parentUuid": "bb6e2da6_cca38d31",
+      "revId": "a8e04e740da5b8f00f7f93a0d8e54af34c58f904",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
