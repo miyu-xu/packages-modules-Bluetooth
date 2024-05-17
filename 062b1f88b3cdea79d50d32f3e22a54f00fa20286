@@ -136,6 +136,30 @@
       },
       "revId": "062b1f88b3cdea79d50d32f3e22a54f00fa20286",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4e340ac_f3cae16f",
+        "filename": "system/stack/avct/avct_bcb_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-17T15:12:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3aaf2f4_c1ca6d05",
+      "range": {
+        "startLine": 480,
+        "startChar": 25,
+        "endLine": 480,
+        "endChar": 30
+      },
+      "revId": "062b1f88b3cdea79d50d32f3e22a54f00fa20286",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
