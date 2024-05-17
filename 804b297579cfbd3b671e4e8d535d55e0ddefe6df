@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "053985a7_c0a36a69",
+        "filename": "system/stack/a2dp/a2dp_aac_decoder_linux.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-17T02:16:05Z",
+      "side": 1,
+      "message": "No log_tag anymore for aac decoder ?",
+      "range": {
+        "startLine": 15,
+        "startChar": 3,
+        "endLine": 17,
+        "endChar": 29
+      },
+      "revId": "804b297579cfbd3b671e4e8d535d55e0ddefe6df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
