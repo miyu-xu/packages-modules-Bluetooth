@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01a11647_f398e0c3",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2435,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-17T02:14:36Z",
+      "side": 0,
+      "message": "You are removing this in a unflagged fashion.\n\nWas this intended ?",
+      "range": {
+        "startLine": 2435,
+        "startChar": 16,
+        "endLine": 2435,
+        "endChar": 51
+      },
+      "revId": "ddf68a8b49eaffeabb9e0b7a56dd2f374e71f5b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
