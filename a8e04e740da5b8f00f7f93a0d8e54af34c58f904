@@ -34,6 +34,24 @@
       "parentUuid": "bb6e2da6_cca38d31",
       "revId": "a8e04e740da5b8f00f7f93a0d8e54af34c58f904",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03e92a7f_7e0106ec",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-17T23:47:37Z",
+      "side": 1,
+      "message": "Maybe, it\u0027s why it\u0027s a nit, it\u0027s just that in general this is not great and can lead to very surprising things sometimes.",
+      "parentUuid": "57e7e99f_a0744d76",
+      "revId": "a8e04e740da5b8f00f7f93a0d8e54af34c58f904",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
