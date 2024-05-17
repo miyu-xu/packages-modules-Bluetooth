@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "097ce06a_57fc8d7c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-17T22:49:10Z",
+      "side": 1,
+      "message": "go/android-flags-guidelines#exceptions-anchor\n\nTL:DR;\n`Flag: \u003cpackage\u003e.\u003cflag_name\u003e` here package is com.android.bluetooth.flags and flag is ??? (leaudio_use_audio_mode_listener according to the bug number but I don\u0027t see it in the flag)",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 15
+      },
+      "revId": "6ddc02204ae6ce6f4179a0a7445c36fa92f47111",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
