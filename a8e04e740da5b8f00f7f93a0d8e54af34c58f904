@@ -52,6 +52,24 @@
       "parentUuid": "57e7e99f_a0744d76",
       "revId": "a8e04e740da5b8f00f7f93a0d8e54af34c58f904",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d3071c5_1794ccb8",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-17T23:51:05Z",
+      "side": 1,
+      "message": "I wonder if we can use https://cs.android.com/android/platform/superproject/main/+/main:tools/tradefederation/core/src/com/android/tradefed/targetprep/DeviceSetup.java;l\u003d375-378;drc\u003d126ac7db1e840aa6a51fb8559a8977050321bd23 and enable `restore-properties`",
+      "parentUuid": "03e92a7f_7e0106ec",
+      "revId": "a8e04e740da5b8f00f7f93a0d8e54af34c58f904",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
