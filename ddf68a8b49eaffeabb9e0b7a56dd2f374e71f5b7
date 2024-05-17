@@ -46,6 +46,30 @@
       },
       "revId": "ddf68a8b49eaffeabb9e0b7a56dd2f374e71f5b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e749b3b3_3ddb609f",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2435,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-17T22:37:36Z",
+      "side": 0,
+      "message": "Can a peer be both sink and source ? isn\u0027t it some flags that allows that ?",
+      "parentUuid": "091ab149_4564178a",
+      "range": {
+        "startLine": 2435,
+        "startChar": 16,
+        "endLine": 2435,
+        "endChar": 51
+      },
+      "revId": "ddf68a8b49eaffeabb9e0b7a56dd2f374e71f5b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
