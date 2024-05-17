@@ -3,9 +3,10 @@
 extern crate proc_macro;
 
 use proc_macro::TokenStream;
+use proc_macro2::Span;
 use quote::{format_ident, quote};
 use syn::parse::{Parse, ParseStream, Result};
-use syn::{parse_macro_input, Block, Ident, Path, Stmt, Token, Type};
+use syn::{parse_macro_input, token, Block, FnArg, Ident, Pat, Path, Stmt, Token, Type};
 
 /// Parsed structure for callback variant
 struct CbVariant {
@@ -218,5 +219,44 @@ fn generate_profile_enabled_or_tokenstream(item: TokenStream, attr_string: Strin
         #input
     };
 
+    output.into()
+}
+
+#[proc_macro_attribute]
+pub fn log_args(attr: TokenStream, item: TokenStream) -> TokenStream {
+    let mut input = parse_macro_input!(item as syn::ItemFn);
+
+    let fn_name = input.sig.ident.to_string();
+    let mut args = quote! {};
+    let mut args_format_vec: Vec<String> = vec![];
+    for arg_values in &input.sig.inputs {
+        if let FnArg::Typed(ref typed) = arg_values {
+            let arg_type = &typed.ty;
+            if let Pat::Ident(pat_ident) = &*typed.pat {
+                let ident = pat_ident.ident.clone();
+
+                // Append arg value
+                args = quote! {
+                    #args format!("{:?}", &#ident),
+                };
+
+                // Expand format string for this arg
+                args_format_vec.push("{:?}".to_string());
+            }
+        }
+    }
+    let args_format = args_format_vec.join(", ");
+
+    let log_stmt = quote::quote! {
+        {
+            let log_string = format!(#args_format, #args);
+            log::debug!("topshim out: {}: {}", #fn_name, log_string.as_str());
+        }
+    };
+    input.block.stmts.insert(0, syn::parse(log_stmt.into()).unwrap());
+
+    let output = quote::quote! {
+        #input
+    };
     output.into()
 }
