@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0aa9a38c_c178ebb1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-17T22:30:18Z",
+      "side": 0,
+      "message": "Can we keep the verifyNoMoreIntercation at the end of the test?",
+      "range": {
+        "startLine": 348,
+        "startChar": 8,
+        "endLine": 348,
+        "endChar": 32
+      },
+      "revId": "3505ccf10c4e3276e0e6ca63c38858a552fc3eca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
