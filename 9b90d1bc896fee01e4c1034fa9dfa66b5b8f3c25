@@ -362,6 +362,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "370a7f43_94e98099",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AdapterServiceTest.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-05-17T00:52:37Z",
+      "side": 1,
+      "message": "\u003e Since the whole objective of the flag is to move the start of the Gatt to later.\nI think we want to enable GATT in the config.\n\nGood point.\n\nAfter your explanation, the fix was pretty simple to implement. Done! Thank you for the call out.",
+      "parentUuid": "27838191_88bbe8bb",
+      "range": {
+        "startLine": 752,
+        "startChar": 0,
+        "endLine": 752,
+        "endChar": 63
+      },
+      "revId": "9b90d1bc896fee01e4c1034fa9dfa66b5b8f3c25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56f1b8bc_51add050",
