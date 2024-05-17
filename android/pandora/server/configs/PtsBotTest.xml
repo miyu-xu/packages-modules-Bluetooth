@@ -41,6 +41,11 @@
         <!-- <option name="dep-module" value="scipy" /> -->
     </target_preparer>
 
+    <target_preparer class="com.android.tradefed.targetprep.DeviceSetup">
+     <option name="set-property" key="persist.log.tag.bluetooth" value="VERBOSE"/>
+     <option name="restore-properties" value="true"/>
+    </target_preparer>
+
     <test class="com.android.tradefed.testtype.pandora.PtsBotTest" >
         <!-- Creates a randomized temp dir for pts-bot binaries and avoid
              conflicts when running multiple pts-bot on the same machine -->
