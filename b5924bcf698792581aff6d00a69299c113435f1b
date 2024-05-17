@@ -116,6 +116,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57b1fe66_d84069d2",
+        "filename": "pandora/interfaces/pandora_experimental/hid.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-05-17T14:39:27Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "24600591_607f0670",
+      "revId": "b5924bcf698792581aff6d00a69299c113435f1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e182e93e_2c571482",
@@ -167,6 +185,24 @@
           ]
         }
       ],
+      "revId": "b5924bcf698792581aff6d00a69299c113435f1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bb7e858_e84d4869",
+        "filename": "pandora/interfaces/pandora_experimental/hid.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-05-17T14:39:27Z",
+      "side": 1,
+      "message": "These changes are not done as part of this CL",
+      "parentUuid": "e182e93e_2c571482",
       "revId": "b5924bcf698792581aff6d00a69299c113435f1b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
