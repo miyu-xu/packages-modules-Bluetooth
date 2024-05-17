@@ -134,6 +134,7 @@ class BtStatus(enum.IntEnum):
     JNI_THREAD_ATTACH_ERROR = 13
     WAKE_LOCK_ERROR = 14
     BT_STATUS_TIMEOUT = 15
+    BT_STATUS_UNEXPECTED_STATE = 17
 
 
 class SocketType(enum.IntEnum):
