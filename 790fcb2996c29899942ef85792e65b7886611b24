@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67ddd8e0_73dcc7e1",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-17T23:59:42Z",
+      "side": 1,
+      "message": "should we delete this typedef as well?",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 30
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "19df6a97_12658099",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/include/bta_api.h",
+              "range": {
+                "startLine": 109,
+                "startChar": 0,
+                "endLine": 112,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "790fcb2996c29899942ef85792e65b7886611b24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
