@@ -65,3 +65,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "avrcp_sdp_records"
+    namespace: "bluetooth"
+    description: "Deprecate bta av codec state"
+    bug: "339264791"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
