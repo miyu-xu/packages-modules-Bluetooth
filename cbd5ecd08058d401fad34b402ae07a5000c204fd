@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f443225c_e6117642",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-05-17T01:22:44Z",
+      "side": 1,
+      "message": "nit: This fix aligns with the existing usage of packet_buf. However, the packet_buf reallocation seems redundant for some cases. How about this?\n\n```\nif (!packet_buf) packet_buf \u003d (uint8_t*)osi_calloc(BTM_MSBC_PKT_LEN);\n```",
+      "range": {
+        "startLine": 489,
+        "startChar": 38,
+        "endLine": 489,
+        "endChar": 54
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a106cfeb_eb811368",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/btm_sco_hci.cc",
+              "range": {
+                "startLine": 489,
+                "startChar": 0,
+                "endLine": 490,
+                "endChar": 0
+              },
+              "replacement": "    packet_buf \u003d (uint8_t*)osi_calloc(packet_size);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "cbd5ecd08058d401fad34b402ae07a5000c204fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
