@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61d0e230_d791cd20",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-17T22:25:58Z",
+      "side": 1,
+      "message": "Cl doesn\u0027t build in presubmit:\n\n```\npackages/modules/Bluetooth/system/btif/src/btif_hh.cc:1059:15: error: use of undeclared identifier \u0027bta_dm_check_if_only_hh_connected\u0027\n 1059 |               bta_dm_check_if_only_hh_connected(p_dev-\u003elink_spec.addrt.bda)) {\n      |               ^\npackages/modules/Bluetooth/system/btif/src/btif_hh.cc:1060:13: error: use of undeclared identifier \u0027BTA_DmCloseACL\u0027\n 1060 |             BTA_DmCloseACL(p_dev-\u003elink_spec.addrt.bda, false,\n      |             ^\n```",
+      "revId": "5846523b8c7a933b1c9b2feac731873dd383a3f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
