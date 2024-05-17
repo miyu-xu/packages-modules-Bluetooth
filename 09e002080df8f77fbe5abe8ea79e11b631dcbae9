@@ -16,6 +16,41 @@
       "message": "We uploaded aosp/3092463 to fix that.",
       "revId": "09e002080df8f77fbe5abe8ea79e11b631dcbae9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfe30fd6_383c64d3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AbstractionLayer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-05-17T06:01:18Z",
+      "side": 1,
+      "message": "looks like some are defined in system/hardware/bluetooth.h as well.\nso either we should add this information here or just resolve this TODO.",
+      "fixSuggestions": [
+        {
+          "fixId": "4870932e_9573b8ce",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AbstractionLayer.java",
+              "range": {
+                "startLine": 22,
+                "startChar": 0,
+                "endLine": 24,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "09e002080df8f77fbe5abe8ea79e11b631dcbae9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
