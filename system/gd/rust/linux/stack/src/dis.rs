@@ -121,14 +121,16 @@ impl DeviceInformation {
                         value.extend_from_slice(&product_id.to_le_bytes()[0..2]);
                         value.extend_from_slice(&product_version.to_le_bytes()[0..2]);
 
-                        self.bluetooth_gatt.lock().unwrap().send_response(
-                            server_id,
-                            *addr,
-                            *trans_id,
-                            GattStatus::Success,
-                            *offset,
-                            value,
-                        );
+                        unsafe {
+                            self.bluetooth_gatt.lock().unwrap().send_response(
+                                server_id,
+                                *addr,
+                                *trans_id,
+                                GattStatus::Success,
+                                *offset,
+                                value,
+                            );
+                        }
                     }
                 }
 
