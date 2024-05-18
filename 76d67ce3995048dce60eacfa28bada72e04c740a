@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73ea5ebc_c31098a8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3846,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-18T05:17:44Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b843da73_6c6cc193",
+      "range": {
+        "startLine": 3846,
+        "startChar": 22,
+        "endLine": 3846,
+        "endChar": 88
+      },
+      "revId": "76d67ce3995048dce60eacfa28bada72e04c740a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aed4c243_ca55faf2",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "it call mCallbacks.notifySourceFound(metaData);",
       "parentUuid": "aed4c243_ca55faf2",
+      "range": {
+        "startLine": 3924,
+        "startChar": 0,
+        "endLine": 3924,
+        "endChar": 100
+      },
+      "revId": "76d67ce3995048dce60eacfa28bada72e04c740a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e50dbb63_9d1c8d98",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3924,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-18T05:17:44Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "46e85b3a_75f0971f",
       "range": {
         "startLine": 3924,
         "startChar": 0,
@@ -189,6 +237,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8d3f2f5_16937c9c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3926,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-18T05:17:44Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "32a21813_97adbf9c",
+      "range": {
+        "startLine": 3926,
+        "startChar": 30,
+        "endLine": 3926,
+        "endChar": 49
+      },
+      "revId": "76d67ce3995048dce60eacfa28bada72e04c740a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d1fe1c3_8122b450",
@@ -226,6 +298,30 @@
       "side": 1,
       "message": "I think so:\nerror: unreported exception RemoteException; must be caught or declared to be thrown\n            verify(mCallback, timeout(TIMEOUT_MS)).onSourceFound(any());",
       "parentUuid": "1d1fe1c3_8122b450",
+      "range": {
+        "startLine": 3925,
+        "startChar": 6,
+        "endLine": 3929,
+        "endChar": 9
+      },
+      "revId": "76d67ce3995048dce60eacfa28bada72e04c740a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1447f1b4_d5edeed2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3929,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-18T05:17:44Z",
+      "side": 1,
+      "message": "This is weird. but Ok",
+      "parentUuid": "4586ebc9_9cd7c50a",
       "range": {
         "startLine": 3925,
         "startChar": 6,
@@ -330,6 +426,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d009e4c8_a5ffbd0e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3956,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-18T05:17:44Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4193257d_d8afcfc7",
+      "range": {
+        "startLine": 3956,
+        "startChar": 0,
+        "endLine": 3956,
+        "endChar": 51
+      },
+      "revId": "76d67ce3995048dce60eacfa28bada72e04c740a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5ed976b_dd22780f",
@@ -414,6 +534,30 @@
       "side": 1,
       "message": "It cannot be split because we want to go into this specific scenario and all preparation steps are tested in other tests (so I do not check it here)\nPreparation steps:\n1. Scan and Synced (there are tests for that)\n2. onBigInfoAdvertisingReport causes notification (there is test for that)\n3. Stop searching, unsyc all broadcasters (there is test for that)\n4. Add source to unsynced broadcast, causes synchronization first (there is test for that)\n5. onBigInfoAdvertisingReport causes notification (same as point 2)\n\nLast step moves as to the right one scenario: \n6. Start searching again clears timeout, mCachedBroadcasts and notifiedFlags but keep syncs\n7. onBigInfoAdvertisingReport should notified again (point of interest)",
       "parentUuid": "57c99ef0_9d1c8c01",
+      "range": {
+        "startLine": 3962,
+        "startChar": 3,
+        "endLine": 3970,
+        "endChar": 9
+      },
+      "revId": "76d67ce3995048dce60eacfa28bada72e04c740a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62e61e1e_36a64597",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3970,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-18T05:17:44Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "da9f975d_b44ab279",
       "range": {
         "startLine": 3962,
         "startChar": 3,
