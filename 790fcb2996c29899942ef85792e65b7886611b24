@@ -40,6 +40,30 @@
       ],
       "revId": "790fcb2996c29899942ef85792e65b7886611b24",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7186640f_a7a607c4",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-18T00:11:41Z",
+      "side": 1,
+      "message": "Yes, that will come in another patch that consolidates the storage for these modes and would be owned by btm but potentially used in bta.",
+      "parentUuid": "67ddd8e0_73dcc7e1",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 30
+      },
+      "revId": "790fcb2996c29899942ef85792e65b7886611b24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
