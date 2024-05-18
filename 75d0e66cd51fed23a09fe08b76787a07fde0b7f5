@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9397a9a2_77bd716d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-18T02:59:05Z",
+      "side": 1,
+      "message": "I don\u0027t think we can yet remove the flag for flagged api",
+      "revId": "75d0e66cd51fed23a09fe08b76787a07fde0b7f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
