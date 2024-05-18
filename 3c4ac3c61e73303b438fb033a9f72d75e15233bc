@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d6f707a_d0510739",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-05-18T03:41:11Z",
+      "side": 1,
+      "message": "So it isn\u0027t necessary to be exported to D-Bus. Maybe consider not to create a new DBus method unless we have a use case.",
+      "parentUuid": "9a5bb83f_ddb74cff",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 66
+      },
+      "revId": "3c4ac3c61e73303b438fb033a9f72d75e15233bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "6feb3e95_58e45961",
