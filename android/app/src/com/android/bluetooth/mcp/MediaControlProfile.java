@@ -63,17 +63,20 @@ import java.util.stream.Stream;
  * Implemented according to Media Control Service v1.0 specification.
  */
 public class MediaControlProfile implements MediaControlServiceCallbacks {
-    private static final String TAG = "MediaControlProfile";
-    private final Context mContext;
+    private static final String TAG = MediaControlProfile.class.getSimpleName();
 
     private static final int LOG_NB_EVENTS = 100;
-    private final BluetoothEventLogger mEventLogger;
+
+    private final BluetoothEventLogger mEventLogger =
+            new BluetoothEventLogger(LOG_NB_EVENTS, TAG + " event log");
+    private final Context mContext;
+    private final McpService mMcpService;
+    private final Map<String, MediaControlGattServiceInterface> mServiceMap = new HashMap<>();
 
     // Media players data
-    private MediaPlayerList mMediaPlayerList;
+    private final MediaPlayerList mMediaPlayerList;
     private MediaData mCurrentData;
 
-    private McpService mMcpService;
     // MCP service instance
     private MediaControlGattServiceInterface mGMcsService;
 
@@ -280,7 +283,6 @@ public class MediaControlProfile implements MediaControlServiceCallbacks {
 
         mContext = mcpService;
         mMcpService = mcpService;
-        mServiceMap = new HashMap<>();
 
         if (sMediaPlayerListForTesting != null) {
             mMediaPlayerList = sMediaPlayerListForTesting;
@@ -288,7 +290,6 @@ public class MediaControlProfile implements MediaControlServiceCallbacks {
             mMediaPlayerList = new MediaPlayerList(Looper.myLooper(), mContext);
         }
 
-        mEventLogger = new BluetoothEventLogger(LOG_NB_EVENTS, TAG + " event log");
     }
 
     @Override
@@ -806,10 +807,7 @@ public class MediaControlProfile implements MediaControlServiceCallbacks {
     }
 
     public void cleanup() {
-        if (mMediaPlayerList != null) {
-            mMediaPlayerList.cleanup();
-        }
-        mMediaPlayerList = null;
+        mMediaPlayerList.cleanup();
 
         unregisterServiceInstance(mContext.getPackageName());
 
@@ -868,8 +866,6 @@ public class MediaControlProfile implements MediaControlServiceCallbacks {
                     | ServiceFeature.MEDIA_CONTROL_POINT_OPCODES_SUPPORTED
                     | ServiceFeature.MEDIA_CONTROL_POINT_OPCODES_SUPPORTED_NOTIFY
                     | ServiceFeature.CONTENT_CONTROL_ID;
-
-    private final Map<String, MediaControlGattServiceInterface> mServiceMap;
 
     public void unregisterServiceInstance(String appToken) {
         mEventLogger.logd(TAG, "unregisterServiceInstance");
