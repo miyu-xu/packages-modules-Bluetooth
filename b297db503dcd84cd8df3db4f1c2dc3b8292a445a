@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6c9fd25_0d21556f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-18T00:35:30Z",
+      "side": 1,
+      "message": "I am working on a change to stop posting the init of LeAudio as this seems very wrong",
+      "revId": "b297db503dcd84cd8df3db4f1c2dc3b8292a445a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c4cdb58_942de54e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-18T00:35:30Z",
+      "side": 1,
+      "message": "What is the scenario for that ?\nProfiles can only be started once. In order to call start a second time, it require constructing a new object, and therefor mIsAudioModeChangeListenerRegistered will be reset to false.\nThis check look impossible to me",
+      "range": {
+        "startLine": 527,
+        "startChar": 46,
+        "endLine": 527,
+        "endChar": 82
+      },
+      "revId": "b297db503dcd84cd8df3db4f1c2dc3b8292a445a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3f30b68_0a39fc55",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-18T00:35:30Z",
+      "side": 1,
+      "message": "`stop` cannot be called before `start`, by design on the AdapterService and the wait the different profiles are created.\nBut in this case, the call to `addOnModeChangedListener` is not made during start but during init.\n\nI believe we should simply remove the post of the init",
+      "range": {
+        "startLine": 543,
+        "startChar": 0,
+        "endLine": 543,
+        "endChar": 61
+      },
+      "revId": "b297db503dcd84cd8df3db4f1c2dc3b8292a445a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
