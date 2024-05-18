@@ -70,6 +70,24 @@
       "parentUuid": "03e92a7f_7e0106ec",
       "revId": "a8e04e740da5b8f00f7f93a0d8e54af34c58f904",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fc3fb31_bed32ac1",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-18T02:56:25Z",
+      "side": 1,
+      "message": "Does this works ? (untested)\n```\n    \u003ctarget_preparer class\u003d\"com.android.tradefed.targetprep.DeviceSetup\"\u003e\n     \u003coption name\u003d\"set-property\" key\u003d\"persist.log.tag.bluetooth\" value\u003d\"VERBOSE\"/\u003e\n     \u003coption name\u003d\"restore-properties\" value\u003d\"true\"/\u003e\n    \u003c/target_preparer\u003e```",
+      "parentUuid": "9d3071c5_1794ccb8",
+      "revId": "a8e04e740da5b8f00f7f93a0d8e54af34c58f904",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
