@@ -571,11 +571,12 @@ struct iso_impl {
           ", dropping ISO packet, len: {}, iso credits: {}, iso handle: 0x{:x}",
           static_cast<int>(data_len), static_cast<int>(iso_credits_),
           iso_handle);
-      return;
     }
 
-    iso_credits_--;
-    iso->used_credits++;
+    if (iso_credits_) {
+      iso_credits_--;
+      iso->used_credits++;
+    }
 
     BT_HDR* packet = prepare_hci_packet(iso_handle, seq_nb, data_len);
     memcpy(packet->data + kIsoHeaderWithoutTsLen, data, data_len);
