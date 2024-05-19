@@ -76,3 +76,43 @@ class HIDService(hid_grpc_aio.HIDServicer):
             self.bluetooth.qa_client.unregister_callback_observer(name, observer)
 
         return empty_pb2.Empty()
+
+    async def GetHostReport(self, request: hid_pb2.GetHostReportRequest,
+                             context: grpc.ServicerContext) -> hid_pb2.GetHostReportResponse:
+
+        class HIDReportObserver(qa_client.BluetoothQACallbacks):
+            """Observer to observe the get HID report state."""
+
+            def __init__(self, task):
+                self.task = task
+
+            @utils.glib_callback()
+            def on_get_hid_report_completed(self, status):
+                if floss_enums.BtStatus(status) != floss_enums.BtStatus.SUCCESS:
+                    logging.error('Failed to get HID report. Status: %s', status)
+                future = self.task['get_hid_report']
+                future.get_loop().call_soon_threadsafe(future.set_result, None)
+
+        if not request.address:
+            await context.abort(grpc.StatusCode.INVALID_ARGUMENT, 'Request address field must be set.')
+
+        address = utils.address_from(request.address)
+
+        try:
+            get_hid_report = asyncio.get_running_loop().create_future()
+            observer = HIDReportObserver({'get_hid_report': get_hid_report})
+            name = utils.create_observer_name(observer)
+            self.bluetooth.qa_client.register_callback_observer(name, observer)
+
+            if request.report_type not in iter(floss_enums.BthhReportType):
+                await context.abort(grpc.StatusCode.INVALID_ARGUMENT, 'Invalid report type.')
+
+            if not self.bluetooth.get_hid_report(address, request.report_type, request.report_id):
+                await context.abort(grpc.StatusCode.UNKNOWN, 'Failed to call get_hid_report.')
+
+            await asyncio.wait_for(get_hid_report, timeout=5)
+
+        finally:
+            self.bluetooth.qa_client.unregister_callback_observer(name, observer)
+
+        return empty_pb2.Empty()

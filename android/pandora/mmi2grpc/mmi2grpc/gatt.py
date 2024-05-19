@@ -21,12 +21,12 @@ from mmi2grpc._helpers import assert_description, match_description
 from mmi2grpc._proxy import ProfileProxy
 from mmi2grpc._rootcanal import Dongle
 
-from pandora_experimental.gatt_grpc import GATT
+from gatt_grpc import GATT
 from pandora.host_grpc import Host
 from pandora.host_pb2 import PUBLIC, RANDOM
 from pandora.security_grpc import Security, SecurityStorage
 from pandora.security_pb2 import PairingEventAnswer
-from pandora_experimental.gatt_pb2 import (
+from gatt_pb2 import (
     INVALID_HANDLE,
     READ_NOT_PERMITTED,
     UNKNOWN_ERROR,
@@ -47,11 +47,11 @@ from pandora_experimental.gatt_pb2 import (
     ENABLE_NOTIFICATION_VALUE,
     ENABLE_INDICATION_VALUE,
 )
-from pandora_experimental.gatt_pb2 import GattServiceParams
-from pandora_experimental.gatt_pb2 import GattCharacteristicParams
-from pandora_experimental.gatt_pb2 import GattDescriptorParams
-from pandora_experimental.gatt_pb2 import ReadCharacteristicResponse
-from pandora_experimental.gatt_pb2 import ReadCharacteristicsFromUuidResponse
+from gatt_pb2 import GattServiceParams
+from gatt_pb2 import GattCharacteristicParams
+from gatt_pb2 import GattDescriptorParams
+from gatt_pb2 import ReadCharacteristicResponse
+from gatt_pb2 import ReadCharacteristicsFromUuidResponse
 
 # Tests that need GATT cache cleared before discovering services.
 NEEDS_CACHE_CLEARED = {

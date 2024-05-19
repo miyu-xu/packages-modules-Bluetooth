@@ -16,7 +16,7 @@
 from mmi2grpc._helpers import assert_description
 from mmi2grpc._proxy import ProfileProxy
 
-from pandora_experimental.rfcomm_grpc import RFCOMM
+from pandora.rfcomm_grpc import RFCOMM
 from pandora.host_grpc import Host
 
 import sys

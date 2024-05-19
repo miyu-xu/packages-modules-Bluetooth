@@ -22,7 +22,7 @@ from pandora.security_grpc import Security
 from pandora.security_pb2 import LE_LEVEL3, PairingEventAnswer
 from pandora.host_grpc import Host
 from pandora.host_pb2 import PUBLIC, RANDOM
-from pandora_experimental.le_audio_grpc import LeAudio
+from pandora.le_audio_grpc import LeAudio
 
 
 class VCPProxy(ProfileProxy):

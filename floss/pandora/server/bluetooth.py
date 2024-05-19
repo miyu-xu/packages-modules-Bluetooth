@@ -326,6 +326,9 @@ class Bluetooth(object):
     def set_hid_report(self, addr, report_type, report):
         return self.qa_client.set_hid_report(addr, report_type, report)
 
+    def get_hid_report(self, addr, report_type, report_id):
+        return self.qa_client.get_hid_report(addr, report_type, report_id)
+
     def read_characteristic(self, address, handle, auth_re):
         return self.gatt_client.read_characteristic(address, handle, auth_re)
 

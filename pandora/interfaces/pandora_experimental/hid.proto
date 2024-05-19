@@ -7,6 +7,8 @@ option java_outer_classname = "HidProto";
 service HID {
   // Send a SET_REPORT command, acting as a HID host, to a connected HID device
   rpc SendHostReport(SendHostReportRequest) returns (SendHostReportResponse);
+  // Send a GET_REPORT command, acting as a HID host, to a connected HID device
+  rpc GetHostReport(GetHostReportRequest) returns (GetHostReportResponse);
 }
 
 // Enum values match those in BluetoothHidHost.java
@@ -24,5 +26,15 @@ message SendHostReportRequest {
 }
 
 message SendHostReportResponse {
+
+}
+
+message GetHostReportRequest {
+  bytes address = 1;
+  HidReportType report_type = 2;
+  uint32 report_id = 3;
+}
+
+message GetHostReportResponse {
 
 }

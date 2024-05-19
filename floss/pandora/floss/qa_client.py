@@ -435,6 +435,21 @@ class FlossQAClient(BluetoothQACallbacks):
         return True
 
     @utils.glib_call(False)
+    def get_hid_report(self, addr, report_type, report_id):
+        """Gets HID report from the remote device.
+
+        Args:
+            addr: The Bluetooth address of the remote device.
+            report_type: The type of HID report.
+            report_id: The HID report id to get.
+
+        Returns:
+            True on success, False otherwise.
+        """
+        self.proxy().FetchHIDReport(addr, report_type, report_id)
+        return True
+
+    @utils.glib_call(False)
     def send_hid_data(self, addr, data):
         """Sends HID report data to the remote device.
 

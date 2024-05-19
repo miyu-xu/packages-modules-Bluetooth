@@ -24,7 +24,7 @@ from pandora.host_grpc import Host
 from pandora.host_pb2 import PUBLIC, RANDOM, Connection
 from pandora.security_pb2 import PairingEventAnswer
 from pandora.security_grpc import Security
-from pandora_experimental.l2cap_grpc import L2CAP
+from pandora.l2cap_grpc import L2CAP
 
 from typing import Optional
 

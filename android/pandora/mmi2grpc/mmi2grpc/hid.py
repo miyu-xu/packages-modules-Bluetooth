@@ -17,9 +17,9 @@ from time import sleep
 from mmi2grpc._helpers import assert_description, match_description
 from mmi2grpc._proxy import ProfileProxy
 
-from pandora_experimental.hid_grpc import HID
+from hid_grpc import HID
 from pandora.host_grpc import Host
-from pandora_experimental.hid_pb2 import HID_REPORT_TYPE_OUTPUT
+from hid_pb2 import HID_REPORT_TYPE_OUTPUT, HID_REPORT_TYPE_INPUT
 
 
 class HIDProxy(ProfileProxy):
@@ -38,9 +38,35 @@ class HIDProxy(ProfileProxy):
         PTS.
         """
 
-        self.rootcanal.move_in_range()
+        # self.rootcanal.move_in_range()
         self.connection = self.host.Connect(address=pts_addr).connection
 
+        return "OK"
+
+    @assert_description
+    def TSC_MMI_host_send_get_report(self, pts_addr: bytes, **kwargs):
+        """
+        Force the Implementataion Under Test (IUT) to send a GET_REPORT command
+        to the PTS.
+        """
+        self.hid.GetHostReport(
+            address=pts_addr,
+            report_type=HID_REPORT_TYPE_OUTPUT,
+            report_id=1
+        )
+        return "OK"
+
+    @assert_description
+    def TSC_MMI_host_send_set_report(self, pts_addr: bytes, **kwargs):
+        """
+        Force the Implementation Under Test (IUT) to send a SET_REPORT command
+        to the PTS.
+        """
+        self.hid.SendHostReport(
+            address=pts_addr,
+            report_type=HID_REPORT_TYPE_INPUT,
+            report="8",  # keyboard enable num-lock
+        )
         return "OK"
 
     @assert_description
