@@ -22,6 +22,23 @@
       },
       "revId": "7cc50878ce60b65bcbea0801b0407b6423832f14",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf03fc31_56ea13e0",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2024-05-20T08:21:31Z",
+      "side": 1,
+      "message": "This should be in another CL with explanations:\n\nPlease make sure to mention:\n - what\u0027s the behavior of this\n - why does it cause problems to us without this\n \nalso I suspect this could break some qualification tests, but we could revisit that until another future qualification needs.",
+      "revId": "7cc50878ce60b65bcbea0801b0407b6423832f14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
