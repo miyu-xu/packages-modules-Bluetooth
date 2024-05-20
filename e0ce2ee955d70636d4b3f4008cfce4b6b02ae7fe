@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f3d2c26_6545f952",
+        "filename": "pandora/server/bumble_experimental/rfcomm.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-20T17:10:58Z",
+      "side": 1,
+      "message": "nit: The timeout can be handled over grpc as well, I would prefer to remove it from there and put a deadline on the client.",
+      "range": {
+        "startLine": 112,
+        "startChar": 68,
+        "endLine": 112,
+        "endChar": 79
+      },
+      "revId": "e0ce2ee955d70636d4b3f4008cfce4b6b02ae7fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
