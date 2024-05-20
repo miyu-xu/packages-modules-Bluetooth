@@ -39,6 +39,48 @@
       "message": "This should be in another CL with explanations:\n\nPlease make sure to mention:\n - what\u0027s the behavior of this\n - why does it cause problems to us without this\n \nalso I suspect this could break some qualification tests, but we could revisit that until another future qualification needs.",
       "revId": "7cc50878ce60b65bcbea0801b0407b6423832f14",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "731164d8_48f76145",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-05-20T10:06:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf03fc31_56ea13e0",
+      "revId": "7cc50878ce60b65bcbea0801b0407b6423832f14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7000734_10d2bc99",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-05-20T10:06:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc26b543_4d304915",
+      "range": {
+        "startLine": 156,
+        "startChar": 46,
+        "endLine": 156,
+        "endChar": 63
+      },
+      "revId": "7cc50878ce60b65bcbea0801b0407b6423832f14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
