@@ -15,6 +15,8 @@
  */
 
 #include <base/strings/stringprintf.h>
+#include <base/test/bind_test_util.h>
+#include <com_android_bluetooth_flags.h>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 #include <sys/socket.h>
@@ -54,7 +56,6 @@ void bta_dm_opportunistic_observe_results_cb(tBTM_INQ_RESULTS* p_inq,
                                              uint16_t eir_len);
 void bta_dm_queue_search(tBTA_DM_API_SEARCH& search);
 void bta_dm_start_scan(uint8_t duration_sec, bool low_latency_scan = false);
-
 }  // namespace testing
 }  // namespace legacy
 }  // namespace bluetooth
@@ -190,13 +191,33 @@ TEST_F(BtaInitializedTest,
       kRawAddress, BT_TRANSPORT_AUTO);
 }
 
+// must be global, as capturing lambda can't be treated as function
+int service_cb_call_cnt = 0;
+
 TEST_F(BtaInitializedTest,
        bta_dm_disc_start_service_discovery__BT_TRANSPORT_BR_EDR) {
+  com::android::bluetooth::flags::separate_service_and_device_discovery(true);
+
+  int sdp_call_cnt = 0;
+  base::RepeatingCallback<void(tBTA_DM_SDP_STATE*)> sdp_performer =
+      base::BindLambdaForTesting([&](tBTA_DM_SDP_STATE*) { sdp_call_cnt++; });
+
+  bta_dm_disc_override_sdp_performer_for_testing(sdp_performer);
+  service_cb_call_cnt = 0;
+
   bta_dm_disc_start_service_discovery(
       {nullptr, nullptr, nullptr,
        [](RawAddress, tBTA_SERVICE_MASK, const std::vector<bluetooth::Uuid>&,
-          tBTA_STATUS, tHCI_STATUS) {}},
+          tBTA_STATUS, tHCI_STATUS) { service_cb_call_cnt++; }},
       kRawAddress, BT_TRANSPORT_BR_EDR);
+
+  EXPECT_EQ(sdp_call_cnt, 1);
+
+  bta_dm_sdp_finished(kRawAddress, BTA_SUCCESS, BTA_ALL_SERVICE_MASK, {}, {});
+
+  EXPECT_EQ(service_cb_call_cnt, 1);
+
+  com::android::bluetooth::flags::reset_flags();
 }
 
 TEST_F(BtaInitializedTest,
