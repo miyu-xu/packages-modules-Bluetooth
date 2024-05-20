@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc26b543_4d304915",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-05-20T08:20:45Z",
+      "side": 1,
+      "message": "I think I should separate this change to another patch.",
+      "range": {
+        "startLine": 156,
+        "startChar": 46,
+        "endLine": 156,
+        "endChar": 63
+      },
+      "revId": "7cc50878ce60b65bcbea0801b0407b6423832f14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
