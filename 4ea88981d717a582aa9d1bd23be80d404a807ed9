@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2229f11b_1a4973af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-20T06:46:05Z",
+      "side": 1,
+      "message": "Dr. No as flag is added in 2 CLs below",
+      "revId": "4ea88981d717a582aa9d1bd23be80d404a807ed9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
