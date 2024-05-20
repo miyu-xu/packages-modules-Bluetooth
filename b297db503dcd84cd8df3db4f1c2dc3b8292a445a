@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba3b54db_14b7830f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-05-20T12:07:28Z",
+      "side": 1,
+      "message": "Unfortunately I didn\u0027t dig into if it\u0027s possible to start service twice etc. I realized that one of tests LeAudioServiceTest#testStopStartStopService do stop service twice \n\nThis CL fixes behavior for already implemented test case:\n\n```\n[78/172] com.android.bluetooth.le_audio.LeAudioServiceTest#testStopStartStopService: FAILED (80ms)\n\nSTACKTRACE:\njava.lang.IllegalArgumentException: attempt to call removeOnModeChangedListener on an unregistered listener\n\tat android.media.CallbackUtil.removeListener(CallbackUtil.java:185)\n\tat android.media.CallbackUtil$LazyListenerManager.removeListener(CallbackUtil.java:293)\n\tat android.media.AudioManager.removeOnModeChangedListener(AudioManager.java:3440)\n\tat com.android.bluetooth.le_audio.LeAudioService.stop(LeAudioService.java:542)\n\tat com.android.bluetooth.le_audio.LeAudioServiceTest.lambda$testStopStartStopService$2(LeAudioServiceTest.java:387)\n\tat com.android.bluetooth.le_audio.LeAudioServiceTest.$r8$lambda$BblkCk8Fjz5diPOrQsXdwfQiXmE(Unknown Source:0)\n\tat com.android.bluetooth.le_audio.LeAudioServiceTest$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)\n\tat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:487)\n\tat java.util.concurrent.FutureTask.run(FutureTask.java:264)\n\tat android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2612)\n\tat android.os.Handler.handleCallback(Handler.java:959)\n\tat android.os.Handler.dispatchMessage(Handler.java:100)\n\tat android.os.Looper.loopOnce(Looper.java:232)\n\tat android.os.Looper.loop(Looper.java:317)\n\tat android.app.ActivityThread.main(ActivityThread.java:8686)\n\tat java.lang.reflect.Method.invoke(Native Method)\n\tat com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)\n\tat com.android.internal.os.ZygoteInit.main(ZygoteInit.java:886)\n```\n\nIf you think it would be fixed in another - proper way - let\u0027s do this. I understand this test would be invalid ?\n```\n05-20 14:03:32.242  5906  5906 I LeAudioService: start()\n05-20 14:03:32.242  5906  5906 W LeAudioService: Le Audio Broadcasts not supported.\n05-20 14:03:32.242  5906  5906 D LeAudioService: setLeAudioService(): set to: com.android.bluetooth.le_audio.LeAudioService@a9d2555\n05-20 14:03:32.242  5906  5906 I LeAudioCodecConfig: LeAudioCodecConfig init\n05-20 14:03:32.243  5906  5906 I LeAudioCodecConfig: mCodecConfigOffloading size for le -\u003e 1\n05-20 14:03:32.243  5906  5906 I LeAudioCodecConfig: mCodecConfigOffloading[0] -\u003e {codecName:LC3,mCodecType:0,mCodecPriority:0,mSampleRate:None,mBitsPerSample:0,mChannelCountBitMask:0,mFrameDuration:None,mOctetsPerFrame:0,mMinOctetsPerFrame:0,mMaxOctetsPerFrame:0}\n05-20 14:03:32.243  5906  5906 I LeAudioService: stop()\n05-20 14:03:32.244  5906  5925 I LeAudioService: stop()\n05-20 14:03:32.246  5906  5925 D LeAudioService: removeActiveDevice, hasFallbackDevice false\n05-20 14:03:32.246  5906  5925 D LeAudioService: setActiveGroupWithDevice \u003d -1, currentlyActiveGroupId \u003d -1, device: null, hasFallbackDevice: false, mExposedActiveDevice: null\n05-20 14:03:32.246  5906  5925 E LeAudioService: Le Audio not initialized properly.\n05-20 14:03:32.246  5906  5925 D LeAudioService: stopAudioServersBackgroundScan\n05-20 14:03:32.246  5906  5925 D LeAudioService: stopAudioServersBackgroundScan: already stopped\n05-20 14:03:32.246  5906  5925 D LeAudioService: setLeAudioService(): set to: null\n05-20 14:03:32.246  5906  5925 W LeAudioService: getLeAudioService(): service is NULL\n05-20 14:03:32.246  5906  5925 D BluetoothAdapterService: clearAdapterService() - This adapter was cleared mAdapterService\n05-20 14:03:32.249  5906  5925 E TestRunner: failed: testStopStartStopService(com.android.bluetooth.le_audio.LeAudioServiceTest)\n05-20 14:03:32.249  5906  5925 E TestRunner: ----- begin exception -----\n05-20 14:03:32.249  5906  5925 E TestRunner: java.lang.IllegalArgumentException: attempt to call removeOnModeChangedListener on an unregistered listener\n05-20 14:03:32.249  5906  5925 E TestRunner: \tat android.media.CallbackUtil.removeListener(CallbackUtil.java:185)\n05-20 14:03:32.249  5906  5925 E TestRunner: \tat android.media.CallbackUtil$LazyListenerManager.removeListener(CallbackUtil.java:293)\n05-20 14:03:32.249  5906  5925 E TestRunner: \tat android.media.AudioManager.removeOnModeChangedListener(AudioManager.java:3440)\n05-20 14:03:32.249  5906  5925 E TestRunner: \tat com.android.bluetooth.le_audio.LeAudioService.stop(LeAudioService.java:542)\n05-20 14:03:32.249  5906  5925 E TestRunner: \tat com.android.bluetooth.le_audio.LeAudioServiceTest.lambda$testStopStartStopService$2(LeAudioServiceTest.java:387)\n05-20 14:03:32.249  5906  5925 E TestRunner: \tat com.android.bluetooth.le_audio.LeAudioServiceTest.$r8$lambda$BblkCk8Fjz5diPOrQsXdwfQiXmE(Unknown Source:0)\n05-20 14:03:32.249  5906  5925 E TestRunner: \tat com.android.bluetooth.le_audio.LeAudioServiceTest$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)\n05-20 14:03:32.249  5906  5925 E TestRunner: \tat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:487)\n05-20 14:03:32.249  5906  5925 E TestRunner: \tat java.util.concurrent.FutureTask.run(FutureTask.java:264)\n05-20 14:03:32.249  5906  5925 E TestRunner: \tat android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2612)\n05-20 14:03:32.249  5906  5925 E TestRunner: \tat android.os.Handler.handleCallback(Handler.java:959)\n05-20 14:03:32.249  5906  5925 E TestRunner: \tat android.os.Handler.dispatchMessage(Handler.java:100)\n05-20 14:03:32.249  5906  5925 E TestRunner: \tat android.os.Looper.loopOnce(Looper.java:232)\n05-20 14:03:32.249  5906  5925 E TestRunner: \tat android.os.Looper.loop(Looper.java:317)\n05-20 14:03:32.249  5906  5925 E TestRunner: \tat android.app.ActivityThread.main(ActivityThread.java:8686)\n05-20 14:03:32.249  5906  5925 E TestRunner: \tat java.lang.reflect.Method.invoke(Native Method)\n05-20 14:03:32.249  5906  5925 E TestRunner: \tat com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:580)\n05-20 14:03:32.249  5906  5925 E TestRunner: \tat com.android.internal.os.ZygoteInit.main(ZygoteInit.java:886)\n05-20 14:03:32.249  5906  5925 E TestRunner: ----- end exception -----\n```",
+      "parentUuid": "e6c9fd25_0d21556f",
+      "revId": "b297db503dcd84cd8df3db4f1c2dc3b8292a445a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c4cdb58_942de54e",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "742f2ac4_eb7f9ddb",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-05-20T12:07:28Z",
+      "side": 1,
+      "message": "I\u0027ve tried to catch everything in previous comment PTAL.",
+      "parentUuid": "3c4cdb58_942de54e",
+      "range": {
+        "startLine": 527,
+        "startChar": 46,
+        "endLine": 527,
+        "endChar": 82
+      },
+      "revId": "b297db503dcd84cd8df3db4f1c2dc3b8292a445a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3f30b68_0a39fc55",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-05-18T00:35:30Z",
       "side": 1,
       "message": "`stop` cannot be called before `start`, by design on the AdapterService and the wait the different profiles are created.\nBut in this case, the call to `addOnModeChangedListener` is not made during start but during init.\n\nI believe we should simply remove the post of the init",
+      "range": {
+        "startLine": 543,
+        "startChar": 0,
+        "endLine": 543,
+        "endChar": 61
+      },
+      "revId": "b297db503dcd84cd8df3db4f1c2dc3b8292a445a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ac04715_758fb4dc",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-05-20T12:07:28Z",
+      "side": 1,
+      "message": "I\u0027ve tried to catch everything in first comment PTAL.",
+      "parentUuid": "f3f30b68_0a39fc55",
       "range": {
         "startLine": 543,
         "startChar": 0,
