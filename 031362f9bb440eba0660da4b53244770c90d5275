@@ -338,6 +338,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "789ed5b7_c84780cb",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-20T17:09:22Z",
+      "side": 1,
+      "message": "I think the assertion was valuable, asserting something coming from Bumble\u0027s side let you test that the peer device state matches Android\u0027s one.\n\nI think you should still have an assertion, my comment was more about its content.",
+      "parentUuid": "30cf779c_b630a1a1",
+      "revId": "031362f9bb440eba0660da4b53244770c90d5275",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fa4a4193_f6c84f85",
         "filename": "framework/tests/bumble/src/android/bluetooth/RfcommClientTest.kt",
         "patchSetId": 9
