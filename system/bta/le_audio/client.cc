@@ -2083,7 +2083,7 @@ class LeAudioClientImpl : public LeAudioClient {
 
     if (bluetooth::shim::GetController()->SupportsBle2mPhy()) {
       log::info("{} set preferred PHY to 2M", address);
-      BTM_BleSetPhy(address, PHY_LE_2M, PHY_LE_2M, 0);
+      // BTM_BleSetPhy(address, PHY_LE_2M, PHY_LE_2M, 0);
     }
 
     BTM_RequestPeerSCA(leAudioDevice->address_, transport);
