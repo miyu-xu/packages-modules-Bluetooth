@@ -18,6 +18,7 @@ package com.android.bluetooth.bass_client;
 
 import static android.bluetooth.BluetoothGatt.GATT_FAILURE;
 import static android.bluetooth.BluetoothGatt.GATT_SUCCESS;
+import static android.Manifest.permission.BLUETOOTH_CONNECT;
 
 import static com.android.bluetooth.bass_client.BassClientStateMachine.ADD_BCAST_SOURCE;
 import static com.android.bluetooth.bass_client.BassClientStateMachine.CONNECT;
@@ -68,6 +69,7 @@ import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothLeAudioCodecConfigMetadata;
 import android.bluetooth.BluetoothLeAudioContentMetadata;
+import android.bluetooth.BluetoothLeBroadcastAssistant;
 import android.bluetooth.BluetoothLeBroadcastChannel;
 import android.bluetooth.BluetoothLeBroadcastMetadata;
 import android.bluetooth.BluetoothLeBroadcastReceiveState;
@@ -2245,13 +2247,39 @@ public class BassClientStateMachineTest {
         Mockito.clearInvocations(mBassClientService);
     }
 
+    private boolean isConnectionIntentExpected(Class currentType, Class nextType) {
+        if ((currentType != nextType)
+                && (nextType == BassClientStateMachine.Connecting.class
+                        || nextType == BassClientStateMachine.Connected.class
+                        || nextType == BassClientStateMachine.Disconnected.class)
+                && (currentType == BassClientStateMachine.Connecting.class
+                        || currentType == BassClientStateMachine.Connected.class
+                        || currentType == BassClientStateMachine.Disconnected.class)) {
+            return true;
+        }
+        return false;
+    }
+
     private <T> void sendMessageAndVerifyTransition(Message msg, Class<T> type) {
         Mockito.clearInvocations(mBassClientService);
+
         mBassClientStateMachine.sendMessage(msg);
-        // Verify that one connection state broadcast is executed
-        verify(mBassClientService, timeout(TIMEOUT_MS)
-                .times(1))
-                .sendBroadcast(any(Intent.class), anyString(), any());
+        if (isConnectionIntentExpected(
+                mBassClientStateMachine.getCurrentState().getClass(), type)) {
+            ArgumentCaptor<Intent> intentArgument = ArgumentCaptor.forClass(Intent.class);
+            // Verify that one connection state broadcast is executed
+            verify(mBassClientService, timeout(TIMEOUT_MS).times(1))
+                    .sendBroadcast(intentArgument.capture(), eq(BLUETOOTH_CONNECT), any());
+
+            Assert.assertEquals(
+                    BluetoothLeBroadcastAssistant.ACTION_CONNECTION_STATE_CHANGED,
+                    intentArgument.getValue().getAction());
+            Assert.assertEquals(
+                    Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
+                            | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND,
+                    intentArgument.getValue().getFlags());
+        }
+        TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
         Assert.assertThat(mBassClientStateMachine.getCurrentState(), IsInstanceOf.instanceOf(type));
     }
 
