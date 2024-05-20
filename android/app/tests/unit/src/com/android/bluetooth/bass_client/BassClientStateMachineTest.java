@@ -13,11 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.android.bluetooth.bass_client;
 
 import static android.bluetooth.BluetoothGatt.GATT_FAILURE;
 import static android.bluetooth.BluetoothGatt.GATT_SUCCESS;
+import static android.Manifest.permission.BLUETOOTH_CONNECT;
+
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasFlag;
 
 import static com.android.bluetooth.bass_client.BassClientStateMachine.ADD_BCAST_SOURCE;
 import static com.android.bluetooth.bass_client.BassClientStateMachine.CONNECT;
@@ -56,6 +59,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.timeout;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -68,6 +72,7 @@ import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothLeAudioCodecConfigMetadata;
 import android.bluetooth.BluetoothLeAudioContentMetadata;
+import android.bluetooth.BluetoothLeBroadcastAssistant;
 import android.bluetooth.BluetoothLeBroadcastChannel;
 import android.bluetooth.BluetoothLeBroadcastMetadata;
 import android.bluetooth.BluetoothLeBroadcastReceiveState;
@@ -97,6 +102,7 @@ import com.android.bluetooth.flags.Flags;
 
 import com.google.common.primitives.Bytes;
 
+import org.hamcrest.core.AllOf;
 import org.hamcrest.core.IsInstanceOf;
 import org.junit.After;
 import org.junit.Assert;
@@ -106,6 +112,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.mockito.ArgumentCaptor;
+import org.mockito.hamcrest.MockitoHamcrest;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnit;
@@ -316,6 +323,9 @@ public class BassClientStateMachineTest {
         allowConnection(true);
         allowConnectGatt(true);
 
+        BassClientStateMachine.BluetoothGattTestableWrapper btGatt =
+                Mockito.mock(BassClientStateMachine.BluetoothGattTestableWrapper.class);
+        mBassClientStateMachine.mBluetoothGatt = btGatt;
         // need this to ensure expected mock behavior for getActiveSyncedSource
         when(mBassClientService.getActiveSyncedSources(any())).thenReturn(null);
 
@@ -327,19 +337,25 @@ public class BassClientStateMachineTest {
                 mBassClientStateMachine.obtainMessage(CONNECT),
                 BassClientStateMachine.Connecting.class);
         sendMessageAndVerifyTransition(
-                mBassClientStateMachine.obtainMessage(BassClientStateMachine.CONNECT_TIMEOUT),
+                mBassClientStateMachine.obtainMessage(
+                        BassClientStateMachine.CONNECT_TIMEOUT, mTestDevice),
                 BassClientStateMachine.Disconnected.class);
 
-        // disconnected -> connecting ---DISCONNECT---> disconnected
+        // disconnected -> connecting ---DISCONNECT---> CONNECTION_STATE_CHANGED(connected)
+        // --> connected -> disconnected
+        mBassClientStateMachine.mBluetoothGatt = btGatt;
         sendMessageAndVerifyTransition(
                 mBassClientStateMachine.obtainMessage(CONNECT),
                 BassClientStateMachine.Connecting.class);
         sendMessageAndVerifyTransition(
                 mBassClientStateMachine.obtainMessage(BassClientStateMachine.DISCONNECT),
-                BassClientStateMachine.Disconnected.class);
+                BassClientStateMachine.Connecting.class);
+        mBassClientStateMachine.sendMessage(
+                CONNECTION_STATE_CHANGED, Integer.valueOf(BluetoothProfile.STATE_CONNECTED));
 
         // disconnected -> connecting ---CONNECTION_STATE_CHANGED(connected)---> connected -->
         // disconnected
+        mBassClientStateMachine.mBluetoothGatt = btGatt;
         sendMessageAndVerifyTransition(
                 mBassClientStateMachine.obtainMessage(CONNECT),
                 BassClientStateMachine.Connecting.class);
@@ -2245,13 +2261,43 @@ public class BassClientStateMachineTest {
         Mockito.clearInvocations(mBassClientService);
     }
 
+    private boolean isConnectionIntentExpected(Class currentType, Class nextType) {
+        if (currentType == nextType) {
+            return false; // Same state, no intent expected
+        }
+
+        if ((currentType == BassClientStateMachine.ConnectedProcessing.class)
+                || (nextType == BassClientStateMachine.ConnectedProcessing.class)) {
+            return false; // ConnectedProcessing is an internal state that doesn't generate a
+            // broadcast
+        } else {
+            return true; // All other state are generating broadcast
+        }
+    }
+
     private <T> void sendMessageAndVerifyTransition(Message msg, Class<T> type) {
         Mockito.clearInvocations(mBassClientService);
+
         mBassClientStateMachine.sendMessage(msg);
-        // Verify that one connection state broadcast is executed
-        verify(mBassClientService, timeout(TIMEOUT_MS)
-                .times(1))
-                .sendBroadcast(any(Intent.class), anyString(), any());
+        TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
+        if (isConnectionIntentExpected(
+                mBassClientStateMachine.getCurrentState().getClass(), type)) {
+            ArgumentCaptor<Intent> intentArgument = ArgumentCaptor.forClass(Intent.class);
+
+            verify(mBassClientService, times(1))
+                    .sendBroadcast(
+                            MockitoHamcrest.argThat(
+                                    AllOf.allOf(
+                                            hasAction(
+                                                    BluetoothLeBroadcastAssistant
+                                                            .ACTION_CONNECTION_STATE_CHANGED),
+                                            hasFlag(
+                                                    Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
+                                                            | Intent
+                                                                    .FLAG_RECEIVER_INCLUDE_BACKGROUND))),
+                            eq(BLUETOOTH_CONNECT),
+                            any());
+        }
         Assert.assertThat(mBassClientStateMachine.getCurrentState(), IsInstanceOf.instanceOf(type));
     }
 
