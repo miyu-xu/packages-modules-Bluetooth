@@ -96,6 +96,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "27fb8742_bbbc6a2a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-05-20T07:46:24Z",
+      "side": 1,
+      "message": "Yes, it is referring to the `IsPairingBusy` method. To avoid exporting unnecessary DBUS method, we can put the function inside the `impl Bluetooth` block.",
+      "parentUuid": "bbffa526_14fa0d10",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 66
+      },
+      "revId": "3c4ac3c61e73303b438fb033a9f72d75e15233bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "6feb3e95_58e45961",
