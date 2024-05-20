@@ -33,10 +33,12 @@
 #include "eatt/eatt.h"
 #include "gatt_api.h"
 #include "gatt_int.h"
+#include "device/include/interop.h"
 #include "internal_include/bt_target.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/bt_uuid16.h"
 #include "stack/include/btm_sec_api.h"
+#include "stack/include/btm_ble_addr.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
 
@@ -81,7 +83,8 @@ static bool gatt_sr_is_robust_caching_enabled();
 
 static bool read_sr_supported_feat_req(tCONN_ID conn_id,
                                        base::OnceCallback<void(const RawAddress&, uint8_t)> cb);
-static bool read_sr_sirk_req(tCONN_ID conn_id,
+static bool read_sr_sirk_req(const RawAddress&,
+                             tCONN_ID conn_id,
                              base::OnceCallback<void(tGATT_STATUS status, const RawAddress&,
                                                      uint8_t sirk_type, Octet16& sirk)>
                                      cb);
@@ -842,11 +845,13 @@ static bool read_sr_supported_feat_req(tCONN_ID conn_id,
   return true;
 }
 
-static bool read_sr_sirk_req(tCONN_ID conn_id,
+static bool read_sr_sirk_req(const RawAddress& peer_bda,
+                             tCONN_ID conn_id,
                              base::OnceCallback<void(tGATT_STATUS status, const RawAddress&,
                                                      uint8_t sirk_type, Octet16& sirk)>
                                      cb) {
   tGATT_READ_PARAM param = {};
+  tBLE_ADDR_TYPE address_type = BLE_ADDR_PUBLIC;
 
   param.service.s_handle = 1;
   param.service.e_handle = 0xFFFF;
@@ -854,10 +859,22 @@ static bool read_sr_sirk_req(tCONN_ID conn_id,
 
   param.service.uuid = bluetooth::Uuid::From16Bit(GATT_UUID_CSIS_SIRK);
 
-  if (GATTC_Read(conn_id, GATT_READ_BY_TYPE, &param) != GATT_SUCCESS) {
-    log::error("Read GATT Support features GATT_Read Failed, conn_id: {}",
-               static_cast<int>(conn_id));
-    return false;
+  RawAddress identity_address = peer_bda;
+  btm_random_pseudo_to_identity_addr(&identity_address, &address_type);
+
+  if (address_type == BLE_ADDR_PUBLIC && interop_match_addr(INTEROP_DISABLE_SIRK_READ_BY_TYPE, &identity_address)){
+    if (GATTC_Read(conn_id, GATT_READ_CHAR_VALUE, &param) != GATT_SUCCESS) {
+      log::error("Read GATT Support features GATT_Read Failed, conn_id: {}",
+                 static_cast<int>(conn_id));
+      return false;
+    }
+  }
+  else{
+    if (GATTC_Read(conn_id, GATT_READ_BY_TYPE, &param) != GATT_SUCCESS) {
+      log::error("Read GATT Support features GATT_Read Failed, conn_id: {}",
+                 static_cast<int>(conn_id));
+      return false;
+    }
   }
 
   gatt_op_cb_data cb_data;
@@ -966,7 +983,7 @@ bool gatt_cl_read_sirk_req(const RawAddress& peer_bda,
     OngoingOps[conn_id] = std::deque<gatt_op_cb_data>();
   }
 
-  return read_sr_sirk_req(conn_id, std::move(cb));
+  return read_sr_sirk_req(peer_bda, conn_id, std::move(cb));
 }
 
 /*******************************************************************************
