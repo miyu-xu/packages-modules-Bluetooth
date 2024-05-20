@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68118a0e_ba907da2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2249,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-20T18:48:46Z",
+      "side": 1,
+      "message": "```suggestion\n        if ((currentType !\u003d nextType)\n```",
+      "range": {
+        "startLine": 2249,
+        "startChar": 13,
+        "endLine": 2249,
+        "endChar": 65
+      },
+      "revId": "cbca3920daa0012c30b543a2293686795837f5c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ea435cd_b502e04f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2259,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-20T18:48:46Z",
+      "side": 1,
+      "message": "This method looks unclear.\nIt took me a while to figure out there is a `ConnectedProcessing` state that is not a real state to be broadcast.",
+      "range": {
+        "startLine": 2248,
+        "startChar": 3,
+        "endLine": 2259,
+        "endChar": 5
+      },
+      "revId": "cbca3920daa0012c30b543a2293686795837f5c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f05f2c9b_ed92f5fa",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2261,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-20T18:48:46Z",
+      "side": 1,
+      "message": "The name is send \u0026 verify transition.\n\nIt is counter-intuitive to send \u0026 \"Maybe\" verify. Can we have two method, one that verify always, the other that never verify (and enforce that there is no intent being sent)",
+      "range": {
+        "startLine": 2261,
+        "startChar": 21,
+        "endLine": 2261,
+        "endChar": 51
+      },
+      "revId": "cbca3920daa0012c30b543a2293686795837f5c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "839798bd_89f2c6c3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2268,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-20T18:48:46Z",
+      "side": 1,
+      "message": "You should check for the appropriate intent instead of any intent.",
+      "range": {
+        "startLine": 2268,
+        "startChar": 35,
+        "endLine": 2268,
+        "endChar": 52
+      },
+      "revId": "cbca3920daa0012c30b543a2293686795837f5c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
