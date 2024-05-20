@@ -292,7 +292,7 @@ void BTA_dm_on_hw_on() {
   bta_sys_rm_register(bta_dm_rm_cback);
 
   /* if sniff is offload, no need to handle it in the stack */
-  if (com::android::bluetooth::flags::enable_sniff_offload() &&
+  if (com_android_bluetooth_flags_enable_sniff_offload() &&
       osi_property_get_bool(kPropertySniffOffloadEnabled, false)) {
   } else {
     /* initialize bluetooth low power manager */
