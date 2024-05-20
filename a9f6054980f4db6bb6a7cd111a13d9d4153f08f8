@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "130687fb_d7da9034",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-05-20T00:29:50Z",
+      "side": 1,
+      "message": "This is only used in `find_msbc_pkt_head` as in\n\n```\n      std::copy(msbc_decode_buf + decode_buf_ro, msbc_decode_buf + buf_size,\n                packet_buf);\n      std::copy(msbc_decode_buf,\n                msbc_decode_buf + BTM_MSBC_PKT_LEN - (buf_size - decode_buf_ro),\n                packet_buf + (buf_size - decode_buf_ro));\n```\n\nwhich indicates `BTM_MSBC_PKT_LEN` is the exact number bytes needed.",
+      "parentUuid": "9fb68fd6_9ca14d23",
+      "revId": "a9f6054980f4db6bb6a7cd111a13d9d4153f08f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24b5710a_cb2d04c3",
@@ -77,6 +95,24 @@
           ]
         }
       ],
+      "revId": "a9f6054980f4db6bb6a7cd111a13d9d4153f08f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6ece1ce_6abd5086",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-05-20T00:29:50Z",
+      "side": 1,
+      "message": "This buffer stores the packets from the adapter, which can be of irregular sizes (e.g., 24, 72), thus needs to be stored in this buffer that is designed to be the LCM of the two numbers.",
+      "parentUuid": "24b5710a_cb2d04c3",
       "revId": "a9f6054980f4db6bb6a7cd111a13d9d4153f08f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
