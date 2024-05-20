@@ -15,6 +15,9 @@
  */
 
 #include <base/strings/stringprintf.h>
+#include <base/test/bind_test_util.h>
+#include <com_android_bluetooth_flags.h>
+#include <flag_macros.h>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 #include <sys/socket.h>
@@ -28,6 +31,8 @@
 #include "stack/include/gatt_api.h"
 #include "test/common/main_handler.h"
 #include "types/bt_transport.h"
+
+#define TEST_BT com::android::bluetooth::flags
 
 namespace {
 const RawAddress kRawAddress({0x11, 0x22, 0x33, 0x44, 0x55, 0x66});
@@ -54,7 +59,6 @@ void bta_dm_opportunistic_observe_results_cb(tBTM_INQ_RESULTS* p_inq,
                                              uint16_t eir_len);
 void bta_dm_queue_search(tBTA_DM_API_SEARCH& search);
 void bta_dm_start_scan(uint8_t duration_sec, bool low_latency_scan = false);
-
 }  // namespace testing
 }  // namespace legacy
 }  // namespace bluetooth
@@ -189,12 +193,32 @@ TEST_F(BtaInitializedTest,
       kRawAddress, BT_TRANSPORT_AUTO);
 }
 
-TEST_F(BtaInitializedTest,
-       bta_dm_disc_start_service_discovery__BT_TRANSPORT_BR_EDR) {
+// must be global, as capturing lambda can't be treated as function
+int service_cb_call_cnt = 0;
+
+TEST_F_WITH_FLAGS(BtaInitializedTest,
+                  bta_dm_disc_start_service_discovery__BT_TRANSPORT_BR_EDR,
+                  REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(
+                      TEST_BT, separate_service_and_device_discovery))) {
+  int sdp_call_cnt = 0;
+  base::RepeatingCallback<void(tBTA_DM_SDP_STATE*)> sdp_performer =
+      base::BindLambdaForTesting([&](tBTA_DM_SDP_STATE* sdp_state) {
+        sdp_call_cnt++;
+        bta_dm_sdp_finished(sdp_state->bd_addr, BTA_SUCCESS, {}, {});
+      });
+
+  bta_dm_disc_override_sdp_performer_for_testing(sdp_performer);
+  service_cb_call_cnt = 0;
+
   bta_dm_disc_start_service_discovery(
       {nullptr, nullptr, nullptr,
-       [](RawAddress, const std::vector<bluetooth::Uuid>&, tBTA_STATUS) {}},
+       [](RawAddress addr, const std::vector<bluetooth::Uuid>&, tBTA_STATUS) {
+         service_cb_call_cnt++;
+       }},
       kRawAddress, BT_TRANSPORT_BR_EDR);
+
+  EXPECT_EQ(sdp_call_cnt, 1);
+  EXPECT_EQ(service_cb_call_cnt, 1);
 }
 
 TEST_F(BtaInitializedTest,
