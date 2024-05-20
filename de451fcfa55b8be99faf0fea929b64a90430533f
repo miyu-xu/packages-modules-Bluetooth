@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "29c8e5ef_7e9eecf4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-05-20T08:10:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e5e99fd_b49f0a20",
+      "range": {
+        "startLine": 9,
+        "startChar": 32,
+        "endLine": 9,
+        "endChar": 40
+      },
+      "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ac8800b4_61f7d08c",
@@ -70,6 +94,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71779524_6d753bf7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-05-20T08:10:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac8800b4_61f7d08c",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 76
+      },
+      "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fd86bac_05a34f70",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-05-20T08:10:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39913dbf_0077ac87",
+      "range": {
+        "startLine": 10,
+        "startChar": 59,
+        "endLine": 10,
+        "endChar": 67
+      },
+      "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f37dc54a_e39ee2bb",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-05-14T06:31:38Z",
       "side": 1,
       "message": "Originally",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 4
+      },
+      "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3aa3d01c_416fbd36",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-05-20T08:10:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f37dc54a_e39ee2bb",
       "range": {
         "startLine": 13,
         "startChar": 0,
@@ -110,6 +206,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7115ff21_ed8c485c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-05-20T08:10:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1edbc25e_38c0de95",
+      "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf6c41a6_93f9e7e8",
@@ -123,6 +237,30 @@
       "writtenOn": "2024-05-14T06:31:38Z",
       "side": 1,
       "message": "we restrict the +CIEV workaround removal to...",
+      "range": {
+        "startLine": 18,
+        "startChar": 11,
+        "endLine": 18,
+        "endChar": 47
+      },
+      "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6598ac3_ee7750fb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-05-20T08:10:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf6c41a6_93f9e7e8",
       "range": {
         "startLine": 18,
         "startChar": 11,
@@ -185,6 +323,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b6e480e_8512afc1",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-05-20T08:10:19Z",
+      "side": 1,
+      "message": "Created a separate patch.",
+      "parentUuid": "d481e2e3_63984ad4",
+      "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1cce94d_454077c6",
@@ -198,6 +354,30 @@
       "writtenOn": "2024-05-14T06:31:38Z",
       "side": 1,
       "message": "This looks like not in the scope of this CL. Please do it separately go/small-cls\n\nAlso this is the first time I notice the logic - if addr is in the interop list, UHID will never be created.  I think it\u0027s a reasonable decision, please add comment to explain it in that CL as well.",
+      "range": {
+        "startLine": 727,
+        "startChar": 43,
+        "endLine": 728,
+        "endChar": 44
+      },
+      "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5726cf93_0fbfd4ac",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 728,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-05-20T08:10:19Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a1cce94d_454077c6",
       "range": {
         "startLine": 727,
         "startChar": 43,
@@ -231,6 +411,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "692cecc8_68337586",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1368,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-05-20T08:10:19Z",
+      "side": 1,
+      "message": "No longer disconnect after enabling `BTA_AG_FEAT_NOSCO`. It seem like the original disconnect problem is trigger by a lower level hf.",
+      "parentUuid": "2b0e3e5a_d5efe767",
+      "range": {
+        "startLine": 1367,
+        "startChar": 76,
+        "endLine": 1368,
+        "endChar": 42
+      },
+      "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a0ecb59f_cccba873",
@@ -244,6 +448,24 @@
       "writtenOn": "2024-05-14T06:31:38Z",
       "side": 1,
       "message": "Use this chance to add thorough explanation to the logic in this function.",
+      "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a986eb9b_29cf83d0",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 2250,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-05-20T08:10:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0ecb59f_cccba873",
       "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -309,6 +531,30 @@
       "side": 1,
       "message": "I feel like this style actually decreases the readability.",
       "parentUuid": "4b223fff_7a58e3b7",
+      "range": {
+        "startLine": 2258,
+        "startChar": 8,
+        "endLine": 2267,
+        "endChar": 10
+      },
+      "revId": "de451fcfa55b8be99faf0fea929b64a90430533f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d47db7a_af6b089b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 2267,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2024-05-20T08:10:19Z",
+      "side": 1,
+      "message": "Please feel free to reopen If you still disagree about this.",
+      "parentUuid": "2042b70f_0e907ed2",
       "range": {
         "startLine": 2258,
         "startChar": 8,
