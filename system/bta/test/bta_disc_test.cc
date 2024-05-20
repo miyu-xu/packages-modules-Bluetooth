@@ -221,6 +221,39 @@ TEST_F_WITH_FLAGS(BtaInitializedTest,
   EXPECT_EQ(service_cb_call_cnt, 1);
 }
 
+// must be global, as capturing lambda can't be treated as function
+int service_cb_call_cnt_retry = 0;
+
+TEST_F_WITH_FLAGS(
+    BtaInitializedTest,
+    bta_dm_disc_start_service_discovery__BT_TRANSPORT_BR_EDR_retry,
+    REQUIRES_FLAGS_ENABLED(
+        ACONFIG_FLAG(TEST_BT, separate_service_and_device_discovery))) {
+  int sdp_call_cnt = 0;
+  base::RepeatingCallback<void(tBTA_DM_SDP_STATE*)> sdp_performer =
+      base::BindLambdaForTesting([&](tBTA_DM_SDP_STATE*) { sdp_call_cnt++; });
+
+  bta_dm_disc_override_sdp_performer_for_testing(sdp_performer);
+  service_cb_call_cnt_retry = 0;
+
+  bta_dm_disc_start_service_discovery(
+      {nullptr, nullptr, nullptr,
+       [](RawAddress, tBTA_SERVICE_MASK, const std::vector<bluetooth::Uuid>&,
+          tBTA_STATUS, tHCI_STATUS) { service_cb_call_cnt_retry++; }},
+      kRawAddress, BT_TRANSPORT_BR_EDR);
+
+  EXPECT_EQ(sdp_call_cnt, 1);
+
+  bta_dm_sdp_finished(kRawAddress, BTA_FAILURE, BTA_ALL_SERVICE_MASK, {}, {});
+
+  EXPECT_EQ(sdp_call_cnt, 2);
+  EXPECT_EQ(service_cb_call_cnt_retry, 0);
+
+  bta_dm_sdp_finished(kRawAddress, BTA_FAILURE, BTA_ALL_SERVICE_MASK, {}, {});
+
+  EXPECT_EQ(sdp_call_cnt, 2);
+  EXPECT_EQ(service_cb_call_cnt_retry, 1);
+}
 TEST_F(BtaInitializedTest,
        bta_dm_disc_start_service_discovery__BT_TRANSPORT_LE) {
   bta_dm_disc_start_service_discovery(

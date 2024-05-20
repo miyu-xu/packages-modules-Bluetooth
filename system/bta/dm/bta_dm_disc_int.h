@@ -82,6 +82,7 @@ inline std::string bta_dm_state_text(
 }
 
 #define MAX_DISC_RAW_DATA_BUF (4096)
+#define BTA_DM_MAX_SDP_ATTEMPTS 2
 
 typedef struct {
   RawAddress bd_addr;
@@ -103,6 +104,8 @@ typedef struct {
   std::queue<tBTA_DM_API_DISCOVER> pending_discovery_queue;
 
   RawAddress peer_bdaddr;
+
+  int sdp_attempts;
   /* This covers service discovery state - callers of BTA_DmDiscover. That is
    * initial service discovery after bonding and
    * BluetoothDevice.fetchUuidsWithSdp(). Responsible for LE GATT Service

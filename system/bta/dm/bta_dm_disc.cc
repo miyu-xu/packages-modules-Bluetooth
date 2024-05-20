@@ -282,6 +282,8 @@ static void bta_dm_read_dis_cmpl(const RawAddress& addr,
 }
 #endif
 
+static void bta_dm_discover_services(tBTA_DM_API_DISCOVER& discover);
+
 /*******************************************************************************
  *
  * Function         bta_dm_disc_result
@@ -298,6 +300,28 @@ static void bta_dm_disc_result(tBTA_DM_SVC_RES& disc_result) {
   /* if any BR/EDR service discovery has been done, report the event */
   if (!disc_result.is_gatt_over_ble) {
     auto& r = disc_result;
+
+    if (r.result != BTA_SUCCESS &&
+        bta_dm_discovery_cb.sdp_attempts < BTA_DM_MAX_SDP_ATTEMPTS) {
+      bta_dm_discovery_cb.sdp_attempts++;
+      log::warn("SDP failed, re-attempt no {} for {} ",
+                bta_dm_discovery_cb.sdp_attempts, r.bd_addr);
+      if (com::android::bluetooth::flags::force_bredr_for_sdp_retry()) {
+        tBTA_DM_API_DISCOVER params{
+            .bd_addr = r.bd_addr,
+            .cbacks = bta_dm_discovery_cb.service_search_cbacks,
+            .transport = BT_TRANSPORT_BR_EDR};
+        bta_dm_discover_services(params);
+      } else {
+        tBTA_DM_API_DISCOVER params{
+            .bd_addr = r.bd_addr,
+            .cbacks = bta_dm_discovery_cb.service_search_cbacks,
+            .transport = BT_TRANSPORT_AUTO};
+        bta_dm_discover_services(params);
+      }
+      return;
+    }
+
     if (!r.gatt_uuids.empty()) {
       log::info("Sending GATT services discovered using SDP");
       // send GATT result back to app, if any
@@ -438,6 +462,10 @@ static void bta_dm_discover_services(tBTA_DM_API_DISCOVER& discover) {
           .services_found = 0,
           .service_index = 0,
       });
+
+  if (bta_dm_discovery_cb.sdp_attempts == 0) {
+    bta_dm_discovery_cb.sdp_attempts++;
+  }
 
   if (!sdp_performer.is_null()) {
     sdp_performer.Run(bta_dm_discovery_cb.sdp_state.get());
