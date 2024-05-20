@@ -33,6 +33,7 @@ import java.util.concurrent.TimeUnit;
 
 import pandora.DckGrpc;
 import pandora.GATTGrpc;
+import pandora.HIDDGrpc;
 import pandora.HostGrpc;
 import pandora.HostProto;
 import pandora.SecurityGrpc;
@@ -115,6 +116,16 @@ public final class PandoraDevice extends ExternalResource {
     /** Get Pandora Host service */
     public HostGrpc.HostBlockingStub hostBlocking() {
         return HostGrpc.newBlockingStub(mChannel);
+    }
+
+    /** Get Pandora Host service */
+    public HIDDGrpc.HIDDStub hidd() {
+        return HIDDGrpc.newStub(mChannel);
+    }
+
+    /** Get Pandora HID service */
+    public HIDDGrpc.HIDDBlockingStub hiddBlocking() {
+        return HIDDGrpc.newBlockingStub(mChannel);
     }
 
     /** Get Pandora Dck service */
