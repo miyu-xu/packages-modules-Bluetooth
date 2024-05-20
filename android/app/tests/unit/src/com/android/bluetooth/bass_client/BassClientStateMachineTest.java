@@ -2245,13 +2245,29 @@ public class BassClientStateMachineTest {
         Mockito.clearInvocations(mBassClientService);
     }
 
+    private boolean isChangingConnectionState(Class currentType, Class nextType) {
+        if ((mBassClientStateMachine.getCurrentState().getClass() != nextType)
+                && (nextType == BassClientStateMachine.Connecting.class
+                        || nextType == BassClientStateMachine.Connected.class
+                        || nextType == BassClientStateMachine.Disconnected.class)
+                && (currentType == BassClientStateMachine.Connecting.class
+                        || currentType == BassClientStateMachine.Connected.class
+                        || currentType == BassClientStateMachine.Disconnected.class)) {
+            return true;
+        }
+        return false;
+    }
+
     private <T> void sendMessageAndVerifyTransition(Message msg, Class<T> type) {
         Mockito.clearInvocations(mBassClientService);
+
         mBassClientStateMachine.sendMessage(msg);
-        // Verify that one connection state broadcast is executed
-        verify(mBassClientService, timeout(TIMEOUT_MS)
-                .times(1))
-                .sendBroadcast(any(Intent.class), anyString(), any());
+        if (isChangingConnectionState(mBassClientStateMachine.getCurrentState().getClass(), type)) {
+            // Verify that one connection state broadcast is executed
+            verify(mBassClientService, timeout(TIMEOUT_MS).times(1))
+                    .sendBroadcast(any(Intent.class), anyString(), any());
+        }
+        TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
         Assert.assertThat(mBassClientStateMachine.getCurrentState(), IsInstanceOf.instanceOf(type));
     }
 
