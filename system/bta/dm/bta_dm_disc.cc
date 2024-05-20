@@ -62,6 +62,7 @@ namespace {
 constexpr char kBtmLogTag[] = "SDP";
 
 tBTA_DM_SERVICE_DISCOVERY_CB bta_dm_discovery_cb;
+base::RepeatingCallback<void(tBTA_DM_SDP_STATE*)> sdp_performer;
 }  // namespace
 
 static void bta_dm_disc_sm_execute(tBTA_DM_DISC_EVT event,
@@ -434,7 +435,17 @@ static void bta_dm_discover_services(tBTA_DM_API_DISCOVER& discover) {
           .services_found = 0,
           .service_index = 0,
       });
-  bta_dm_sdp_find_services(bta_dm_discovery_cb.sdp_state.get());
+
+  if (!sdp_performer.is_null()) {
+    sdp_performer.Run(bta_dm_discovery_cb.sdp_state.get());
+  } else {
+    bta_dm_sdp_find_services(bta_dm_discovery_cb.sdp_state.get());
+  }
+}
+
+void bta_dm_disc_override_sdp_performer_for_testing(
+    base::RepeatingCallback<void(tBTA_DM_SDP_STATE*)> test_sdp_performer) {
+  sdp_performer = test_sdp_performer;
 }
 
 #ifndef BTA_DM_GATT_CLOSE_DELAY_TOUT

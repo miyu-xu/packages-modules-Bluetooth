@@ -117,6 +117,8 @@ typedef struct {
 extern const uint32_t bta_service_id_to_btm_srv_id_lkup_tbl[];
 extern const uint16_t bta_service_id_to_uuid_lkup_tbl[];
 
+void bta_dm_disc_override_sdp_performer_for_testing(
+    base::RepeatingCallback<void(tBTA_DM_SDP_STATE*)> sdp_performer);
 void bta_dm_sdp_find_services(tBTA_DM_SDP_STATE* sdp_state);
 void bta_dm_sdp_result(tSDP_STATUS sdp_result, tBTA_DM_SDP_STATE* sdp_state);
 void bta_dm_sdp_finished(RawAddress bda, tBTA_STATUS result,
