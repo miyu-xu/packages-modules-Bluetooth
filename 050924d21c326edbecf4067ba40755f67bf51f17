@@ -90,6 +90,57 @@
       },
       "revId": "050924d21c326edbecf4067ba40755f67bf51f17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a11caecb_a46c240f",
+        "filename": "pandora/server/bumble_experimental/rfcomm.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-20T17:17:09Z",
+      "side": 1,
+      "message": "nit: With this implementation only one server can be waiting for connection at a time.\n\nThis can be fine but just want to call it out (maybe a TODO would be great, or validating that this is None and setting it None in AcceptConnection)",
+      "revId": "050924d21c326edbecf4067ba40755f67bf51f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3e14444_bc6a01b2",
+        "filename": "pandora/server/bumble_experimental/rfcomm.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-20T17:17:09Z",
+      "side": 1,
+      "message": "nit: With this implementation only one client can connect to a server, as above this can be fine.",
+      "revId": "050924d21c326edbecf4067ba40755f67bf51f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1eeee356_115c5da6",
+        "filename": "pandora/server/bumble_experimental/rfcomm.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-20T17:17:09Z",
+      "side": 1,
+      "message": "nit: The timeout can be handled over grpc as well, I would prefer to remove it from there and put a deadline on the client.",
+      "revId": "050924d21c326edbecf4067ba40755f67bf51f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
