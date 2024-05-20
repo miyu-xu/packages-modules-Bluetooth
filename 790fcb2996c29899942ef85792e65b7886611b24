@@ -88,6 +88,30 @@
       },
       "revId": "790fcb2996c29899942ef85792e65b7886611b24",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87f72645_615a0f6a",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-20T16:39:13Z",
+      "side": 1,
+      "message": "This cannot be done in this CL and will be addressed in a future CL.",
+      "parentUuid": "d2851795_6990226d",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 30
+      },
+      "revId": "790fcb2996c29899942ef85792e65b7886611b24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
