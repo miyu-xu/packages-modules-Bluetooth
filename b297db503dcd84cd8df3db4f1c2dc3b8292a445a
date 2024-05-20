@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a55d0ba4_30fa657a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-20T17:11:59Z",
+      "side": 1,
+      "message": "This test can be deleted, it doesn\u0027t correspond to a normal lifecycle of a bluetooth profile.\n\nthe lifecycle is: \n```\nprofile \u003d new Profile\nprofile.start\nprofile.stop\nprofile \u003d new Profile\nprofile.start\nprofile.stop\n```",
+      "parentUuid": "ba3b54db_14b7830f",
+      "revId": "b297db503dcd84cd8df3db4f1c2dc3b8292a445a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c4cdb58_942de54e",
