@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5467eefa_6484546f",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-20T06:45:24Z",
+      "side": 1,
+      "message": "Let\u0027s do a follow-up later to fix this",
+      "range": {
+        "startLine": 295,
+        "startChar": 44,
+        "endLine": 295,
+        "endChar": 78
+      },
+      "revId": "ee7750ecd768c4969487ee5bcd4529e81c11aae6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
