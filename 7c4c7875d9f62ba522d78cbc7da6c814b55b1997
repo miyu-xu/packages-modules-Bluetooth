@@ -1,0 +1,100 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb85c04f_e65cc38a",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
+        "patchSetId": 21
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-05-20T17:54:35Z",
+      "side": 1,
+      "message": "nit: \"Check if there are any LE Floss devices in storage.\"",
+      "revId": "7c4c7875d9f62ba522d78cbc7da6c814b55b1997",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8c92ce7_8f814385",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
+        "patchSetId": 21
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-05-20T17:54:35Z",
+      "side": 1,
+      "message": "nit: can you just use devices_status here\n```\n        if current_address_status !\u003d enabled \u0026\u0026 !floss_have_le_devices() {\n```",
+      "revId": "7c4c7875d9f62ba522d78cbc7da6c814b55b1997",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c0bd887_a55e659b",
+        "filename": "system/main/shim/acl_api.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-05-20T17:54:35Z",
+      "side": 1,
+      "message": "With this change (https://r.android.com/3061889) we\u0027ll be able to use the Android API method of getting sysprops in Floss. May be worth it to wait for this change so we can do that here.",
+      "fixSuggestions": [
+        {
+          "fixId": "23db1611_c494d194",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/main/shim/acl_api.cc",
+              "range": {
+                "startLine": 34,
+                "startChar": 0,
+                "endLine": 35,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/main/shim/acl_api.cc",
+              "range": {
+                "startLine": 113,
+                "startChar": 0,
+                "endLine": 114,
+                "endChar": 0
+              },
+              "replacement": "    if (com::android::bluetooth::flags::ble_privacy_own_address_enabled())\n"
+            }
+          ]
+        }
+      ],
+      "revId": "7c4c7875d9f62ba522d78cbc7da6c814b55b1997",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17068cf3_01ff3e90",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 972,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-05-20T17:54:35Z",
+      "side": 1,
+      "message": "Same with these",
+      "revId": "7c4c7875d9f62ba522d78cbc7da6c814b55b1997",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
