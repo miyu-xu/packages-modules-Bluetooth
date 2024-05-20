@@ -135,8 +135,6 @@ const Uuid UUID_BASS = Uuid::FromString("184F");
 const Uuid UUID_BATTERY = Uuid::FromString("180F");
 const Uuid UUID_A2DP_SINK = Uuid::FromString("110B");
 
-#define BTIF_DM_MAX_SDP_ATTEMPTS_AFTER_PAIRING 2
-
 #ifndef PROPERTY_CLASS_OF_DEVICE
 #define PROPERTY_CLASS_OF_DEVICE "bluetooth.device.class_of_device"
 #endif
@@ -172,7 +170,6 @@ struct btif_dm_pairing_cb_t {
   uint8_t autopair_attempts;
   uint8_t timeout_retries;
   uint8_t is_local_initiated;
-  uint8_t sdp_attempts;
   bool is_le_only;
   bool is_le_nc; /* LE Numeric comparison */
   btif_dm_ble_cb_t ble;
@@ -320,7 +317,9 @@ static bool is_empty_128bit(uint8_t* data) {
 
 static bool is_bonding_or_sdp() {
   return pairing_cb.state == BT_BOND_STATE_BONDING ||
-         (pairing_cb.state == BT_BOND_STATE_BONDED && pairing_cb.sdp_attempts);
+         (pairing_cb.state == BT_BOND_STATE_BONDED &&
+          pairing_cb.sdp_over_classic ==
+              btif_dm_pairing_cb_t::ServiceDiscoveryState::SCHEDULED);
 }
 
 void btif_dm_init(uid_set_t* set) { uid_set = set; }
@@ -597,8 +596,8 @@ static void bond_state_changed(bt_status_t status, const RawAddress& bd_addr,
 
   log::info(
       "Bond state changed to state={}[0:none, 1:bonding, "
-      "2:bonded],prev_state={}, sdp_attempts={}",
-      state, pairing_cb.state, pairing_cb.sdp_attempts);
+      "2:bonded],prev_state={}",
+      state, pairing_cb.state);
 
   if (state == BT_BOND_STATE_NONE) {
     forget_device_from_metric_id_allocator(bd_addr);
@@ -635,7 +634,8 @@ static void bond_state_changed(bt_status_t status, const RawAddress& bd_addr,
 
   if (state == BT_BOND_STATE_BONDING ||
       (state == BT_BOND_STATE_BONDED &&
-       (pairing_cb.sdp_attempts > 0 ||
+       (pairing_cb.sdp_over_classic ==
+            btif_dm_pairing_cb_t::ServiceDiscoveryState::SCHEDULED ||
         pairing_cb.gatt_over_le ==
             btif_dm_pairing_cb_t::ServiceDiscoveryState::SCHEDULED))) {
     // Save state for the device is bonding or SDP or GATT over LE discovery
@@ -1127,7 +1127,6 @@ static void btif_dm_ssp_cfm_req_evt(tBTA_DM_SP_CFM_REQ* p_ssp_cfm_req) {
     }
   }
 
-  pairing_cb.sdp_attempts = 0;
   BTM_LogHistory(kBtmLogTagCallback, bd_addr, "Ssp request",
                  base::StringPrintf("just_works:%c pin:%u",
                                     (p_ssp_cfm_req->just_works) ? 'T' : 'F',
@@ -1288,9 +1287,6 @@ static void btif_dm_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
           !(stack_config_get_interface()->get_pts_crosskey_sdp_disable())) {
         // Ensure inquiry is stopped before attempting service discovery
         btif_dm_cancel_discovery();
-
-        /* Trigger SDP on the device */
-        pairing_cb.sdp_attempts = 1;
 
         if (is_crosskey) {
           // If bonding occurred due to cross-key pairing, send address
@@ -1705,20 +1701,8 @@ static void btif_on_service_discovery_results(
   bool a2dp_sink_capable = false;
 
   log::verbose("result=0x{:x}, services 0x{:x}", result, services);
-  if (result != BTA_SUCCESS && pairing_cb.state == BT_BOND_STATE_BONDED &&
-      pairing_cb.sdp_attempts < BTIF_DM_MAX_SDP_ATTEMPTS_AFTER_PAIRING) {
-    if (pairing_cb.sdp_attempts) {
-      log::warn("SDP failed after bonding re-attempting for {}", bd_addr);
-      pairing_cb.sdp_attempts++;
-      if (com::android::bluetooth::flags::force_bredr_for_sdp_retry()) {
-        btif_dm_get_remote_services(bd_addr, BT_TRANSPORT_BR_EDR);
-      } else {
-        btif_dm_get_remote_services(bd_addr, BT_TRANSPORT_AUTO);
-      }
-    } else {
-      log::warn("SDP triggered by someone failed when bonding");
-    }
-    return;
+  if (result != BTA_SUCCESS) {
+    log::warn("SDP failed for {}", bd_addr);
   }
 
   if ((bd_addr == pairing_cb.bd_addr || bd_addr == pairing_cb.static_bdaddr)) {
@@ -1781,10 +1765,9 @@ static void btif_on_service_discovery_results(
   */
   size_t num_eir_uuids = 0U;
   Uuid uuid = {};
-  if (pairing_cb.state == BT_BOND_STATE_BONDED && pairing_cb.sdp_attempts &&
+  if (pairing_cb.state == BT_BOND_STATE_BONDED &&
       (bd_addr == pairing_cb.bd_addr || bd_addr == pairing_cb.static_bdaddr)) {
     log::info("SDP search done for {}", bd_addr);
-    pairing_cb.sdp_attempts = 0;
 
     // Send UUIDs discovered through EIR to Java to unblock pairing intent
     // when SDP failed
