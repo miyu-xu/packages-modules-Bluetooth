@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba3e1e73_3c19e73f",
+        "filename": "system/bta/test/bta_disc_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-20T16:35:40Z",
+      "side": 1,
+      "message": "nit: I do not understand the behavior tested by this test, this looks like a change detector test to me https://testing.googleblog.com/2015/01/testing-on-toilet-change-detector-tests.html\n\n`bta_dm_disc_start_service_discovery` directly calls `bta_dm_disc_sm_execute` which if idle calls `bta_dm_discover_services`, I do not see the logic that is executed by this path.",
+      "revId": "340954c698785aeb78bd14b8b0674817e909f597",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
