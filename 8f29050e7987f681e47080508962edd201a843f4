@@ -116,6 +116,24 @@
       ],
       "revId": "8f29050e7987f681e47080508962edd201a843f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80b512a4_84e7d33d",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 938,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-05-20T00:35:27Z",
+      "side": 1,
+      "message": "Is the AI-suggested fix intended?\n\nWe want to have this exact number of bytes for this `packet_buf`, the difference might be that this only allocates the buffer once (whether they are 0\u0027s don\u0027t matter as they are overwritten every time).",
+      "parentUuid": "31be220f_04dc187d",
+      "revId": "8f29050e7987f681e47080508962edd201a843f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
