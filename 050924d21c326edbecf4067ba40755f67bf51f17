@@ -71,6 +71,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "90f76041_9861b14b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 21
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-21T22:15:09Z",
+      "side": 1,
+      "message": "when I look up try-with-resources, I am directed to .use() in kotlin.  But use is for \"closable\" types.  Is that what you meant?",
+      "parentUuid": "a9b96e5f_6980df0e",
+      "revId": "050924d21c326edbecf4067ba40755f67bf51f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "968a61e6_1c18e6f9",
         "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
         "patchSetId": 21
