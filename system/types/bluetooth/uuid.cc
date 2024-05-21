@@ -149,7 +149,11 @@ const UUID128Bit& Uuid::To128BitBE() const { return uu; }
 
 Uuid Uuid::GetRandom() {
   Uuid uuid;
+#if BASE_VER < 1298850
   base::RandBytes(uuid.uu.data(), uuid.uu.size());
+#else
+  base::RandBytes(uuid.uu);
+#endif
   return uuid;
 }
 
