@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bda49e1_a4894ec1",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
+        "patchSetId": 21
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-05-21T17:44:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb85c04f_e65cc38a",
+      "revId": "7c4c7875d9f62ba522d78cbc7da6c814b55b1997",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8c92ce7_8f814385",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-05-20T17:54:35Z",
       "side": 1,
       "message": "nit: can you just use devices_status here\n```\n        if current_address_status !\u003d enabled \u0026\u0026 !floss_have_le_devices() {\n```",
+      "revId": "7c4c7875d9f62ba522d78cbc7da6c814b55b1997",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6787388_e9bea046",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
+        "patchSetId": 21
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-05-21T17:44:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8c92ce7_8f814385",
       "revId": "7c4c7875d9f62ba522d78cbc7da6c814b55b1997",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -82,6 +118,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "712d4d86_8f0a257c",
+        "filename": "system/main/shim/acl_api.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-05-21T17:44:22Z",
+      "side": 1,
+      "message": "Is there an example of how to add a sysprop after aosp/3061889? For example, do I need to add the entry to the ble.sysprop file and how to enable it in cros side?",
+      "parentUuid": "6c0bd887_a55e659b",
+      "revId": "7c4c7875d9f62ba522d78cbc7da6c814b55b1997",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "17068cf3_01ff3e90",
         "filename": "system/stack/btm/btm_ble_gap.cc",
         "patchSetId": 21
@@ -93,6 +147,24 @@
       "writtenOn": "2024-05-20T17:54:35Z",
       "side": 1,
       "message": "Same with these",
+      "revId": "7c4c7875d9f62ba522d78cbc7da6c814b55b1997",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21a5d38c_c9fac941",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 972,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-05-21T17:44:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "17068cf3_01ff3e90",
       "revId": "7c4c7875d9f62ba522d78cbc7da6c814b55b1997",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
