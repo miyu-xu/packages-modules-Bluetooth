@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e822245e_615e486f",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 1054,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-05-21T20:51:32Z",
+      "side": 1,
+      "message": "nit: it is better to initialize variable or set default value to make it more readable :), then you can remove this TODO item",
+      "range": {
+        "startLine": 1054,
+        "startChar": 11,
+        "endLine": 1054,
+        "endChar": 55
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c1688d1d_72534a2a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/le_audio_types.h",
+              "range": {
+                "startLine": 1054,
+                "startChar": 0,
+                "endLine": 1055,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "ad5d67b175d5788d349645a5d5278ea3d5e0ae73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
