@@ -16,6 +16,24 @@
       "message": "do we log anywhere codec_id set here? Maybe could be added to log history?",
       "revId": "ca1e931070a8ed98f2cce44648ba4065ac8c668c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3ab4afe_36e9724e",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1728,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-05-21T15:51:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4b633fa_7d96a527",
+      "revId": "ca1e931070a8ed98f2cce44648ba4065ac8c668c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
