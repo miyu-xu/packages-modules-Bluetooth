@@ -25,7 +25,6 @@ import android.provider.Settings
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.truth.content.IntentSubject.assertThat
 import com.android.server.bluetooth.BluetoothAdapterState
-import com.android.server.bluetooth.Log
 import com.android.server.bluetooth.Timer
 import com.android.server.bluetooth.USER_SETTINGS_KEY
 import com.android.server.bluetooth.airplane.isOnOverrode as isAirplaneModeOn
@@ -45,13 +44,14 @@ import java.time.LocalDateTime
 import java.time.LocalTime
 import kotlin.test.assertFailsWith
 import org.junit.After
+import org.junit.Assert.assertThrows
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.rules.TestName
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows.shadowOf
+import org.robolectric.shadows.ShadowSettings
 
 @RunWith(RobolectricTestRunner::class)
 @kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -65,13 +65,10 @@ class AutoOnFeatureTest {
 
     private var callback_count = 0
 
-    @JvmField @Rule val testName = TestName()
     @JvmField @Rule val expect = Expect.create()
 
     @Before
     fun setUp() {
-        Log.i("AutoOnFeatureTest", "\t--> setUp(${testName.getMethodName()})")
-
         enableUserSettings()
     }
 
@@ -210,6 +207,16 @@ class AutoOnFeatureTest {
     }
 
     @Test
+    fun notifyBluetoothOn_whenItWasNeverUsedAndDatabaseFail_settingsIsNotEnabled() {
+        restoreSettings()
+        ShadowSettings.setSimulateDatabaseFailure(true)
+
+        notifyBluetoothOn(context)
+
+        assertThat(isUserSupported(resolver)).isFalse()
+    }
+
+    @Test
     fun notifyBluetoothOn_whenStorage_resetStorage() {
         Settings.Secure.putString(resolver, Timer.STORAGE_KEY, timerTarget.toString())
         shadowOf(looper).idle()
@@ -299,6 +306,12 @@ class AutoOnFeatureTest {
                 .integer(BluetoothAdapter.EXTRA_AUTO_ON_STATE)
                 .isEqualTo(BluetoothAdapter.AUTO_ON_STATE_DISABLED)
         }
+    }
+
+    @Test
+    fun apiSetUserEnableToFalse_whenDatabaseFail_throw() {
+        ShadowSettings.setSimulateDatabaseFailure(true)
+        assertThrows(IllegalStateException::class.java) { setUserEnabled(false) }
     }
 
     @Test
