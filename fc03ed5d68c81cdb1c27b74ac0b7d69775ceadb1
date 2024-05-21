@@ -62,6 +62,24 @@
       "parentUuid": "1592c0b9_a6d7ada5",
       "revId": "fc03ed5d68c81cdb1c27b74ac0b7d69775ceadb1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4fac544_80b9d9f3",
+        "filename": "system/stack/smp/smp_l2c.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-21T16:26:40Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ed09136c_1b43fe5c",
+      "revId": "fc03ed5d68c81cdb1c27b74ac0b7d69775ceadb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
