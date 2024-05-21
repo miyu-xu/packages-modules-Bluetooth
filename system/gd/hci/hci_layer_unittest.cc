@@ -17,6 +17,8 @@
 #include "hci/hci_layer.h"
 
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
+#include <flag_macros.h>
 #include <gtest/gtest.h>
 
 #include <chrono>
@@ -33,8 +35,11 @@
 #include "module.h"
 #include "os/fake_timer/fake_timerfd.h"
 #include "os/handler.h"
+#include "os/system_properties.h"
 #include "os/thread.h"
 #include "packet/raw_builder.h"
+
+#define TEST_BT com::android::bluetooth::flags
 
 using namespace std::chrono_literals;
 
@@ -54,6 +59,9 @@ constexpr char kOurLeScanningEventHandlerWasInvoked[] = "Our LE scanning event h
 constexpr char kOurReadRemoteVersionHandlerWasInvoked[] = "Our Read Remote Version complete handler was invoked.";
 constexpr char kOurLeSecurityEventHandlerWasInvoked[] = "Our LE security event handler was invoked.";
 constexpr char kOurSecurityEventHandlerWasInvoked[] = "Our security event handler was invoked.";
+static const std::string kPropertyVendorSpecificKillErrorCode =
+    "bluetooth.device.hci.vendor_specific_kill_error_code";
+
 }  // namespace
 
 namespace bluetooth {
@@ -181,8 +189,9 @@ TEST_F(HciLayerDeathTest, discard_event_after_hci_timeout) {
       "");
 }
 
-TEST_F(HciLayerDeathTest, abort_on_root_inflammation_event) {
+TEST_F(HciLayerDeathTest, abort_on_root_inflammation_event_by_default) {
   FailIfResetNotSent();
+  os::SetSystemProperty(kPropertyVendorSpecificKillErrorCode, "4,5,6");
 
   ASSERT_DEATH(
       {
@@ -192,6 +201,25 @@ TEST_F(HciLayerDeathTest, abort_on_root_inflammation_event) {
         FakeTimerAdvance(HciLayer::kHciTimeoutRestartMs.count());
         sync_handler();
       },
+      "");
+}
+
+TEST_F_WITH_FLAGS(
+    HciLayerDeathTest,
+    kill_on_listed_root_inflammation_event,
+    REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT, kill_process_on_root_inflammation))) {
+  FailIfResetNotSent();
+  os::SetSystemProperty(kPropertyVendorSpecificKillErrorCode, "4,5,6");
+
+  ASSERT_EXIT(
+      {
+        sync_handler();
+        hal_->InjectEvent(BqrRootInflammationEventBuilder::Create(
+            0x01, 0x04, std::make_unique<packet::RawBuilder>()));
+        FakeTimerAdvance(HciLayer::kHciTimeoutRestartMs.count());
+        sync_handler();
+      },
+      ::testing::KilledBySignal(SIGINT),
       "");
 }
 

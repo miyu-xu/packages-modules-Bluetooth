@@ -75,6 +75,7 @@ void SyspropsModule::parse_config(std::string file_path) {
       // General
       "bluetooth.btm.sec.delay_auth_ms.value",
       "bluetooth.device.default_name",
+      "bluetooth.device.hci.vendor_specific_kill_error_code",
       "bluetooth.core.gap.le.privacy.enabled",
       "bluetooth.core.gap.le.conn.only_init_1m_phy.enabled",
       "bluetooth.device.class_of_device",
