@@ -297,6 +297,7 @@ cc_library_static {
     ],
     static_libs: [
         "libbluetooth_core_rs",
+        "libbluetooth_core_rs_bridge",
         "libbluetooth_crypto_toolbox",
         "libbluetooth_gd",
         "libbluetooth_hci_pdl",
@@ -737,6 +738,7 @@ cc_test {
         "libbluetooth-gdx",
         "libbluetooth-types",
         "libbluetooth_core_rs",
+        "libbluetooth_core_rs_bridge",
         "libbluetooth_crypto_toolbox",
         "libbluetooth_log",
         "libbt-audio-hal-interface",
