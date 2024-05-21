@@ -44,6 +44,7 @@ rust_defaults {
         "libbluetooth-gdx",
         "libbluetooth-types",
         "libbluetooth_core_rs",
+        "libbluetooth_core_rs_bridge",
         "libbluetooth_crypto_toolbox",
         "libbluetooth_gd", // Gabeldorsche
         "libbluetooth_log",

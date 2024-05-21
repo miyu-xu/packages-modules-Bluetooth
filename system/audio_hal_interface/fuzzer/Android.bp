@@ -64,6 +64,7 @@ cc_defaults {
         "libbluetooth-protos",
         "libbluetooth-types",
         "libbluetooth_core_rs",
+        "libbluetooth_core_rs_bridge",
         "libbluetooth_crypto_toolbox",
         "libbluetooth_gd",
         "libbluetooth_log",
