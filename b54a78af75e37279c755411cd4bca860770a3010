@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ad64b7f_745f5212",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-05-21T18:14:39Z",
+      "side": 1,
+      "message": "LGTM from Floss side",
+      "revId": "b54a78af75e37279c755411cd4bca860770a3010",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
