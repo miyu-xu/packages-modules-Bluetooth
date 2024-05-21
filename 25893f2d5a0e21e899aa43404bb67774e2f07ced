@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f72bef4_5f568ac1",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1482,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-21T00:34:03Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "428ef2d6_23c99eea",
+      "revId": "25893f2d5a0e21e899aa43404bb67774e2f07ced",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da52d3dd_31e1f4bd",
@@ -55,6 +73,30 @@
       "side": 1,
       "message": "This declares the variable `bta_jv` *and* initializes it to what we want (`evt_data`) at the same time and has the added benefit of compiler checks for missing initialized fields.\n\nThe previous incantation declares `bta_jv` and then defines it `bta_jv.rfc_cl_init` in two stages.  The declaration may or may not set default values within a more complex data type (versus primitives such as ints) and the compiler will not warn about a mix of default and subsequent initialized values completely validate the structure.\n\nA later CL should move this up to the top and eliminate this additional data.\n\ne.g.\n(look up top)",
       "parentUuid": "da52d3dd_31e1f4bd",
+      "range": {
+        "startLine": 1540,
+        "startChar": 2,
+        "endLine": 1542,
+        "endChar": 4
+      },
+      "revId": "25893f2d5a0e21e899aa43404bb67774e2f07ced",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a605f55_7a324f36",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1542,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-21T00:34:03Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3c70f5fa_7d7694ab",
       "range": {
         "startLine": 1540,
         "startChar": 2,
