@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e7b662e_e607bf63",
+        "filename": "system/audio_hal_interface/aidl/le_audio_utils.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-05-21T22:15:19Z",
+      "side": 1,
+      "message": "I know in our AIDL, it is defined as `int8_t` [link](https://source.corp.google.com/h/android/platform/superproject/main/+/main:out/soong/.intermediates/hardware/interfaces/bluetooth/audio/aidl/android.hardware.bluetooth.audio-V4-ndk-source/gen/include/aidl/android/hardware/bluetooth/audio/Phy.h;l\u003d23), just wondering, do we need to consider if in the future, there is a 0xFF, and use `uint_8` to cast here for bitwise operation?",
+      "range": {
+        "startLine": 448,
+        "startChar": 27,
+        "endLine": 448,
+        "endChar": 33
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e61ce5c4_6dcce320",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/audio_hal_interface/aidl/le_audio_utils.cc",
+              "range": {
+                "startLine": 448,
+                "startChar": 0,
+                "endLine": 449,
+                "endChar": 0
+              },
+              "replacement": "    cfg.phy |\u003d static_cast\u003cuint8_t\u003e(phy);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "27e1b620feb7b673060a1e234db9785fcf075e5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
