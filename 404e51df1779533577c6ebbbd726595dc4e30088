@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e5fc0cb_52343fdd",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 2346,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-05-21T19:11:44Z",
+      "side": 1,
+      "message": "Flag disabled is changing the code flow.",
+      "range": {
+        "startLine": 2343,
+        "startChar": 10,
+        "endLine": 2346,
+        "endChar": 11
+      },
+      "revId": "404e51df1779533577c6ebbbd726595dc4e30088",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
