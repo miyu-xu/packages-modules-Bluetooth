@@ -1,0 +1,76 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "503a2467_a6375e5d",
+        "filename": "system/audio_hal_interface/aidl/le_audio_utils.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-05-21T16:10:19Z",
+      "side": 1,
+      "message": "is it leftover?",
+      "revId": "52f8a177a4331b12059ce795799efc94242d5ef0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d8e9110_df5155f3",
+        "filename": "system/audio_hal_interface/aidl/le_audio_utils.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-05-21T16:10:19Z",
+      "side": 1,
+      "message": "maybe add buganizer for this?",
+      "fixSuggestions": [
+        {
+          "fixId": "ef52fbdd_44c5df15",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/audio_hal_interface/aidl/le_audio_utils.cc",
+              "range": {
+                "startLine": 663,
+                "startChar": 0,
+                "endLine": 664,
+                "endChar": 0
+              },
+              "replacement": "      // TODO(b/285831111): Add the codec enforcement mechanism in the stack\n"
+            },
+            {
+              "path": "system/audio_hal_interface/aidl/le_audio_utils.cc",
+              "range": {
+                "startLine": 691,
+                "startChar": 0,
+                "endLine": 692,
+                "endChar": 0
+              },
+              "replacement": "      // TODO(b/285831111): Add the codec enforcement mechanism in the stack\n"
+            },
+            {
+              "path": "system/audio_hal_interface/aidl/le_audio_utils.cc",
+              "range": {
+                "startLine": 704,
+                "startChar": 0,
+                "endLine": 705,
+                "endChar": 0
+              },
+              "replacement": "  // TODO(b/285831111): Add the feature flags mechanism in the stack\n"
+            }
+          ]
+        }
+      ],
+      "revId": "52f8a177a4331b12059ce795799efc94242d5ef0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
