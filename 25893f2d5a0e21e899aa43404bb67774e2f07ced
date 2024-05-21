@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da52d3dd_31e1f4bd",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1542,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-21T00:09:55Z",
+      "side": 1,
+      "message": "Can you help me understand why this change is necessary/what the difference is?",
+      "range": {
+        "startLine": 1540,
+        "startChar": 2,
+        "endLine": 1542,
+        "endChar": 4
+      },
+      "revId": "25893f2d5a0e21e899aa43404bb67774e2f07ced",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
