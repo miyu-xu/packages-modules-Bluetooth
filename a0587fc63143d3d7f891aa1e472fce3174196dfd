@@ -16,6 +16,23 @@
       "message": "Presubmit validated pts-bot tests",
       "revId": "a0587fc63143d3d7f891aa1e472fce3174196dfd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d734864_45373ddd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-05-21T22:45:22Z",
+      "side": 1,
+      "message": "Did we test the flakiness on that ? It might be worth to run abtd tests against this CL",
+      "revId": "a0587fc63143d3d7f891aa1e472fce3174196dfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
