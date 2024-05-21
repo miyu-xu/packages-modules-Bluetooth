@@ -1,0 +1,49 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e19bc32_9be23f8e",
+        "filename": "system/audio_hal_interface/aidl/le_audio_utils.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-05-21T12:48:35Z",
+      "side": 1,
+      "message": "log::error",
+      "fixSuggestions": [
+        {
+          "fixId": "06d27501_f40067dc",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/audio_hal_interface/aidl/le_audio_utils.cc",
+              "range": {
+                "startLine": 42,
+                "startChar": 0,
+                "endLine": 44,
+                "endChar": 0
+              },
+              "replacement": "    log::error(\"%s: Invalid coding format: %x\", __func__,\n               codec_id.coding_format);\n"
+            },
+            {
+              "path": "system/audio_hal_interface/aidl/le_audio_utils.cc",
+              "range": {
+                "startLine": 75,
+                "startChar": 0,
+                "endLine": 76,
+                "endChar": 0
+              },
+              "replacement": "      log::error(\"%s: A2DP codecs not supported here\", __func__);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6932b7a7959f577bcd422d5c3d29f801a0c2edb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
