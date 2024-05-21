@@ -10,3 +10,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "kill_process_on_root_inflammation"
+    namespace: "bluetooth"
+    description: "Allow killing the process on specific BqrRootInflammationEvent"
+    bug: "341854136"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}

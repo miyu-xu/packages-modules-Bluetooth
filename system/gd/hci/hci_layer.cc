@@ -16,23 +16,24 @@
 
 #include "hci/hci_layer.h"
 
-#ifdef TARGET_FLOSS
-#include <signal.h>
-#endif
 #include <bluetooth/log.h>
+#include <signal.h>
 
 #include <map>
+#include <string>
 #include <utility>
 
 #include "common/bind.h"
 #include "common/init_flags.h"
 #include "common/stop_watch.h"
+#include "common/strings.h"
 #include "hal/hci_hal.h"
 #include "hci/class_of_device.h"
 #include "hci/hci_metrics_logging.h"
 #include "os/alarm.h"
 #include "os/metrics.h"
 #include "os/queue.h"
+#include "os/system_properties.h"
 #include "osi/include/stack_power_telemetry.h"
 #include "packet/raw_builder.h"
 #include "storage/storage_module.h"
@@ -56,6 +57,9 @@ using hci::ResetCompleteView;
 using os::Alarm;
 using os::Handler;
 using std::unique_ptr;
+
+static const std::string kPropertyVendorSpecificKillErrorCode =
+    "bluetooth.device.hci.vendor_specific_kill_error_code";
 
 static void fail_if_reset_complete_not_success(CommandCompleteView complete) {
   auto reset_complete = ResetCompleteView::Create(complete);
@@ -369,7 +373,18 @@ struct HciLayer::impl {
     vs_event_handlers_.erase(vs_event_handlers_.find(event));
   }
 
-  static void abort_after_root_inflammation(uint8_t vse_error) {
+  static void on_root_inflammation_timeout(uint8_t vse_error) {
+    if (com::android::bluetooth::flags::kill_process_on_root_inflammation()) {
+      auto kill_error_code_property =
+          os::GetSystemProperty(kPropertyVendorSpecificKillErrorCode).value_or("");
+      auto kill_error_codes = common::StringSplit(kill_error_code_property, ",");
+      if (std::find(kill_error_codes.begin(), kill_error_codes.end(), std::to_string(vse_error)) !=
+          kill_error_codes.end()) {
+        log::warn("Root inflammation with reason 0x{:02x}, killing", vse_error);
+        kill(getpid(), SIGINT);
+      }
+    }
+    // If kill_process_on_root_inflammation is enabled, but vse_error is not matched, aborted still.
     log::fatal("Root inflammation with reason 0x{:02x}", vse_error);
   }
 
@@ -386,7 +401,8 @@ struct HciLayer::impl {
     }
     if (hci_abort_alarm_ == nullptr) {
       hci_abort_alarm_ = new Alarm(module_.GetHandler());
-      hci_abort_alarm_->Schedule(BindOnce(&abort_after_root_inflammation, vse_error_reason), kHciTimeoutRestartMs);
+      hci_abort_alarm_->Schedule(
+          BindOnce(&on_root_inflammation_timeout, vse_error_reason), kHciTimeoutRestartMs);
     } else {
       log::warn("Abort timer already scheduled");
     }
