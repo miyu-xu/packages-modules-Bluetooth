@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17dce806_48772596",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-21T15:52:54Z",
+      "side": 1,
+      "message": "This call was left out of the btm API for some reason but added here.\n\nThe idea is to force the use of these APIs to eliminate the globals that make it hard to test. \n\nFurther, when all the APIs are together they are more accessible for the reader and future CLs can move them around as appropriate into their own submodules if necessary.",
+      "revId": "6e77b571f4fccfeb6c2ee4c6252be33c0f43f1c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
