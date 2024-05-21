@@ -33,6 +33,7 @@
 #include "module.h"
 #include "os/fake_timer/fake_timerfd.h"
 #include "os/handler.h"
+#include "os/system_properties.h"
 #include "os/thread.h"
 #include "packet/raw_builder.h"
 
@@ -54,6 +55,9 @@ constexpr char kOurLeScanningEventHandlerWasInvoked[] = "Our LE scanning event h
 constexpr char kOurReadRemoteVersionHandlerWasInvoked[] = "Our Read Remote Version complete handler was invoked.";
 constexpr char kOurLeSecurityEventHandlerWasInvoked[] = "Our LE security event handler was invoked.";
 constexpr char kOurSecurityEventHandlerWasInvoked[] = "Our security event handler was invoked.";
+static const std::string kPropertyVendorSpecificKillErrorCode =
+    "bluetooth.device.hci.vendor_specific_kill_error_code";
+
 }  // namespace
 
 namespace bluetooth {
@@ -181,8 +185,9 @@ TEST_F(HciLayerDeathTest, discard_event_after_hci_timeout) {
       "");
 }
 
-TEST_F(HciLayerDeathTest, abort_on_root_inflammation_event) {
+TEST_F(HciLayerDeathTest, abort_on_root_inflammation_event_by_default) {
   FailIfResetNotSent();
+  os::SetSystemProperty(kPropertyVendorSpecificKillErrorCode, "4,5,6");
 
   ASSERT_DEATH(
       {
@@ -192,6 +197,22 @@ TEST_F(HciLayerDeathTest, abort_on_root_inflammation_event) {
         FakeTimerAdvance(HciLayer::kHciTimeoutRestartMs.count());
         sync_handler();
       },
+      "");
+}
+
+TEST_F(HciLayerDeathTest, kill_on_listed_root_inflammation_event) {
+  FailIfResetNotSent();
+  os::SetSystemProperty(kPropertyVendorSpecificKillErrorCode, "4,5,6");
+
+  ASSERT_EXIT(
+      {
+        sync_handler();
+        hal_->InjectEvent(BqrRootInflammationEventBuilder::Create(
+            0x01, 0x04, std::make_unique<packet::RawBuilder>()));
+        FakeTimerAdvance(HciLayer::kHciTimeoutRestartMs.count());
+        sync_handler();
+      },
+      ::testing::KilledBySignal(SIGINT),
       "");
 }
 
