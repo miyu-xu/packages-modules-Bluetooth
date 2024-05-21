@@ -16,6 +16,24 @@
       "message": "nit: I do not understand the behavior tested by this test, this looks like a change detector test to me https://testing.googleblog.com/2015/01/testing-on-toilet-change-detector-tests.html\n\n`bta_dm_disc_start_service_discovery` directly calls `bta_dm_disc_sm_execute` which if idle calls `bta_dm_discover_services`, I do not see the logic that is executed by this path.",
       "revId": "340954c698785aeb78bd14b8b0674817e909f597",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae9a3948_b0cd0905",
+        "filename": "system/bta/test/bta_disc_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-21T09:49:29Z",
+      "side": 1,
+      "message": "Please look through all this test file. It doesn\u0027t test or verify anything.\nIt\u0027s just making calls to generate code coverage, and I\u0027m trying to fix it.\n\nCan you please recommend when such test would not be a change detector ? What would I have to fix in it ? It just seems like every unit test would fall into this category.\n\nArticle you mentioned doesn\u0027t provide any positive example, of non-detector test, and have some good points in comments - tests also serve as documentation and act as a safety net for refactoring. I plan to modify this code further, and I\u0027m trying to guard the basic functionalities.",
+      "parentUuid": "ba3e1e73_3c19e73f",
+      "revId": "340954c698785aeb78bd14b8b0674817e909f597",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
