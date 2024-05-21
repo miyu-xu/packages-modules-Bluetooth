@@ -1,0 +1,49 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0210537f_ab252d5e",
+        "filename": "system/gd/hal/ranging_hal_android.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-05-21T14:37:18Z",
+      "side": 1,
+      "message": "I suppose you will add more later, like managing the \u0027linkToDeath\u0027, right?",
+      "fixSuggestions": [
+        {
+          "fixId": "d51f63fe_3c9a67a7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/ranging_hal_android.cc",
+              "range": {
+                "startLine": 55,
+                "startChar": 0,
+                "endLine": 56,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/gd/hal/ranging_hal_android.cc",
+              "range": {
+                "startLine": 59,
+                "startChar": 0,
+                "endLine": 60,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "b0b3f33fda9eeaf5c5eafe199cad08ecfe8e1986",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
