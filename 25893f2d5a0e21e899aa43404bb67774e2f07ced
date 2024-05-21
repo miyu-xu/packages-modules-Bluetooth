@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "428ef2d6_23c99eea",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1482,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-21T00:26:38Z",
+      "side": 1,
+      "message": "This should be set here and the function should work with this variable only.\n```\n  tBTA_JV bta_jv \u003d {\n      .rfc_cl_init \u003d {\n          .status \u003d tBTA_JV_STATUS::SUCCESS,\n          .handle \u003d 0,\n          .sec_id \u003d 0,\n          .use_co \u003d false,     \n      },\n  };\n```",
+      "revId": "25893f2d5a0e21e899aa43404bb67774e2f07ced",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "da52d3dd_31e1f4bd",
         "filename": "system/bta/jv/bta_jv_act.cc",
         "patchSetId": 1
@@ -14,6 +31,30 @@
       "writtenOn": "2024-05-21T00:09:55Z",
       "side": 1,
       "message": "Can you help me understand why this change is necessary/what the difference is?",
+      "range": {
+        "startLine": 1540,
+        "startChar": 2,
+        "endLine": 1542,
+        "endChar": 4
+      },
+      "revId": "25893f2d5a0e21e899aa43404bb67774e2f07ced",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c70f5fa_7d7694ab",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1542,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-21T00:26:38Z",
+      "side": 1,
+      "message": "This declares the variable `bta_jv` *and* initializes it to what we want (`evt_data`) at the same time and has the added benefit of compiler checks for missing initialized fields.\n\nThe previous incantation declares `bta_jv` and then defines it `bta_jv.rfc_cl_init` in two stages.  The declaration may or may not set default values within a more complex data type (versus primitives such as ints) and the compiler will not warn about a mix of default and subsequent initialized values completely validate the structure.\n\nA later CL should move this up to the top and eliminate this additional data.\n\ne.g.\n(look up top)",
+      "parentUuid": "da52d3dd_31e1f4bd",
       "range": {
         "startLine": 1540,
         "startChar": 2,
