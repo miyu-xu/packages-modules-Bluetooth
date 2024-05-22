@@ -40,6 +40,30 @@
       ],
       "revId": "ad5d67b175d5788d349645a5d5278ea3d5e0ae73",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2465b2c_925d0cad",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 1054,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-05-22T09:18:08Z",
+      "side": 1,
+      "message": "Yes, the structs already have the default values, I just forgot to remove the field initialization from here. Thanks for catching this.",
+      "parentUuid": "e822245e_615e486f",
+      "range": {
+        "startLine": 1054,
+        "startChar": 11,
+        "endLine": 1054,
+        "endChar": 55
+      },
+      "revId": "ad5d67b175d5788d349645a5d5278ea3d5e0ae73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
