@@ -70,6 +70,24 @@
       "parentUuid": "926099c2_ae8b5964",
       "revId": "340954c698785aeb78bd14b8b0674817e909f597",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b0761ac_10df7e73",
+        "filename": "system/bta/test/bta_disc_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-22T22:06:23Z",
+      "side": 1,
+      "message": "\u003e If I enlarge the scope of the test, it\u0027s no longer unit test, it\u0027s integration test. Going this way (exagerrated), we would have just tests of whole system.\n\nWell it depends what you consider to be your unit, for me an \"integration test\" for a Bluetooth stack would be testing that a succesfull SDP discovery propagate to a Profile that needs it like DID.\n\nGoogle have a different way to classify tests that I kinda like \nhttps://testing.googleblog.com/2010/12/test-sizes.html go/testsizes\nWith this definition the scenario that I described (checking if a SDP packet is sent) can still be considered a small test as long as there is not threading involved.\n\n\u003e This test documents that when Classic service discovery is requested from bta_dm_disc.cc, we would call SDP API, and then, once SDP API calls back to proper callback would be triggered once this API calls back into bta_dm_disc.cc\n\nOk, I see the intent, but right now for me this test doesn\u0027t document this.\n\nWhen I read the test I just see that we override something inside `bta_dm` with `bta_dm_disc_override_sdp_performer_for_testing` and we call something else from `bta_dm`, `bta_dm_disc_start_service_discovery`, so an API in `bta_dm` calls something from `bta_dm`.\n\nThe only thing that I learn with this test is that calling `bta_dm_sdp_finished` will call the function given in `bta_dm_disc_start_service_discovery`, but it doesn\u0027t tell that `bta_dm_sdp_finished` will be called by SDP. Even worse, if I think that a test interacts with APIs and Test APIs, I will think that `bta_dm_sdp_finished` is part of the API (which I guess is not).\n\nAlso the fact that the test increments and assert counters makes it a bit less intuitive (I need to map that assertions of counters mean that a function was called).\n\n\u003e I think this is matter of personal preference, and we could have an never ending argument here.\n\n+1000\n\n\u003e Folowing the articles you mentioned, no unit test would pass a bar of good test.\n\nI don\u0027t think that\u0027s true, but indeed writing \"perfect\" (if such things exist) tests is very hard, but at least we can try to make it better.",
+      "parentUuid": "33c473a3_84ad4d62",
+      "revId": "340954c698785aeb78bd14b8b0674817e909f597",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
