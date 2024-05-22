@@ -142,6 +142,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf63af5a_b68f0ceb",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-22T21:13:58Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "06f7e95e_c3e8b608",
+      "range": {
+        "startLine": 425,
+        "startChar": 4,
+        "endLine": 425,
+        "endChar": 36
+      },
+      "revId": "08809472390255e421bbf00d0e436965ff16ff7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e60396a5_389a92d9",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-22T21:13:58Z",
+      "side": 1,
+      "message": "Acknowledged\n\nHas to use repeating callback because the tCONN_CB struct has a default constructor.",
+      "parentUuid": "eaa1686d_0a4fa079",
+      "range": {
+        "startLine": 425,
+        "startChar": 18,
+        "endLine": 425,
+        "endChar": 35
+      },
+      "revId": "08809472390255e421bbf00d0e436965ff16ff7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0bb73743_13c85688",
@@ -178,6 +226,30 @@
       "writtenOn": "2024-05-22T21:02:26Z",
       "side": 1,
       "message": "Done",
+      "parentUuid": "0bb73743_13c85688",
+      "range": {
+        "startLine": 198,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 24
+      },
+      "revId": "08809472390255e421bbf00d0e436965ff16ff7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23084353_d9c7044b",
+        "filename": "system/stack/sdp/sdpint.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-22T21:13:58Z",
+      "side": 1,
+      "message": "Acknowledged\n\nAllocated in sdpu_allocate_ccb via\n\n```\ntCONN_CB* sdpu_allocate_ccb(void) {\n  uint16_t xx;\n  tCONN_CB* p_ccb;\n\n  /* Look through each connection control block for a free one */\n  for (xx \u003d 0, p_ccb \u003d sdp_cb.ccb; xx \u003c SDP_MAX_CONNECTIONS; xx++, p_ccb++) {\n    if (p_ccb-\u003econ_state \u003d\u003d SDP_STATE_IDLE) {\n      alarm_t* alarm \u003d p_ccb-\u003esdp_conn_timer;\n      *p_ccb \u003d {};\n      p_ccb-\u003esdp_conn_timer \u003d alarm;\n      return (p_ccb);\n    }\n  }\n\n  /* If here, no free CCB found */\n  return (NULL);\n}\n\n```",
       "parentUuid": "0bb73743_13c85688",
       "range": {
         "startLine": 198,
