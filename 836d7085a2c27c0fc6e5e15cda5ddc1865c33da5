@@ -16,6 +16,24 @@
       "message": "You didn\u0027t want to do `log::debug` ?",
       "revId": "836d7085a2c27c0fc6e5e15cda5ddc1865c33da5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c8640bf_d886d82b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-22T23:32:06Z",
+      "side": 1,
+      "message": "Discussed offline - considering the issue is hard to reproduce I\u0027d rather have it at info so every bugreport has these logs.",
+      "parentUuid": "de6cedd1_daaebf57",
+      "revId": "836d7085a2c27c0fc6e5e15cda5ddc1865c33da5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
