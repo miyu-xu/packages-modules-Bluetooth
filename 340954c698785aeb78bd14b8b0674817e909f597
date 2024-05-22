@@ -34,6 +34,24 @@
       "parentUuid": "ba3e1e73_3c19e73f",
       "revId": "340954c698785aeb78bd14b8b0674817e909f597",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "926099c2_ae8b5964",
+        "filename": "system/bta/test/bta_disc_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-22T21:06:59Z",
+      "side": 1,
+      "message": "\u003e Please look through all this test file. It doesn\u0027t test or verify anything.\n\nYes I agree with this, this is why this is a nitpick.\n\n\u003e It\u0027s just making calls to generate code coverage, and I\u0027m trying to fix it.\n\nI don\u0027t think this is the right way to generate code coverage, code coverage is not a very good metric mostly due to being able to generate some with test like that which doesn\u0027t carry a lot of meaning.\n\nThe only value that I could see to such test is to please management that will see this metric increase (and even that might not happen because this function might be already covered, did you check and measured ?).\n\n\u003e Can you please recommend when such test would not be a change detector ?\n\nI think a significant part of our tests are change detectors, to write a good test you usually need to have a good testable api ... which we don\u0027t really have in my opinion.\n\nhttps://testing.googleblog.com/2013/08/testing-on-toilet-test-behavior-not.html\nhttps://testing.googleblog.com/2015/01/testing-on-toilet-prefer-testing-public.html\n\n\u003e What would I have to fix in it ? It just seems like every unit test would fall into this category.\n\nI would say that you should enlarge the scope of the test (test the behavior of bta_dm_sdp_find_services and down the call chain)  to exercice some kind of logic, like for example checking that calling this function sends a packet over SDP\n\n\u003e tests also serve as documentation and act as a safety net for refactoring\n\nTrue but what does this test documents ? And what would it catch in case of refactoring?\n\nFor me the answer is nothing for both questions.\n\n\u003e Article you mentioned doesn\u0027t provide any positive example,\n\nI don\u0027t know any rule on how to write a good test, it mostly depends on the context and what we want to test, here I don\u0027t really understand what do we want to test (what behavior).",
+      "parentUuid": "ae9a3948_b0cd0905",
+      "revId": "340954c698785aeb78bd14b8b0674817e909f597",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
