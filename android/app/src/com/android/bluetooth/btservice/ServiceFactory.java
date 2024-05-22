@@ -17,6 +17,7 @@
 package com.android.bluetooth.btservice;
 
 import com.android.bluetooth.a2dp.A2dpService;
+import com.android.bluetooth.a2dpsink.A2dpSinkService;
 import com.android.bluetooth.avrcp.AvrcpTargetService;
 import com.android.bluetooth.bas.BatteryService;
 import com.android.bluetooth.bass_client.BassClientService;
@@ -36,6 +37,10 @@ import com.android.bluetooth.vc.VolumeControlService;
 public class ServiceFactory {
     public A2dpService getA2dpService() {
         return A2dpService.getA2dpService();
+    }
+
+    public A2dpSinkService getA2dpSinkService() {
+        return A2dpSinkService.getA2dpSinkService();
     }
 
     public CsipSetCoordinatorService getCsipSetCoordinatorService() {
