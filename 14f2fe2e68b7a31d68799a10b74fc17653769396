@@ -94,6 +94,30 @@
       },
       "revId": "14f2fe2e68b7a31d68799a10b74fc17653769396",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8809f7f_fe94e265",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-05-22T22:32:14Z",
+      "side": 1,
+      "message": "thanks for the reminder, I guess I missed the change in policy during my recent vocation lol",
+      "parentUuid": "b63280cf_1c7ba236",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 71
+      },
+      "revId": "14f2fe2e68b7a31d68799a10b74fc17653769396",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
