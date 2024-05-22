@@ -59,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df43d447_4258d892",
+        "filename": "system/bta/include/bta_ras_api.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-05-22T13:14:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "009dbcde_7434ca69",
+      "range": {
+        "startLine": 38,
+        "startChar": 6,
+        "endLine": 38,
+        "endChar": 9
+      },
+      "revId": "4c228a6a6639b8fcd5bff90d1cc8e7e66f81bae8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2589e5a1_b8066792",
@@ -72,6 +96,30 @@
       "writtenOn": "2024-05-22T12:37:40Z",
       "side": 1,
       "message": "This seems like it could get verbose.  Would debug be sufficient?",
+      "range": {
+        "startLine": 326,
+        "startChar": 11,
+        "endLine": 326,
+        "endChar": 15
+      },
+      "revId": "4c228a6a6639b8fcd5bff90d1cc8e7e66f81bae8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6f04006_759fd751",
+        "filename": "system/bta/ras/ras_server.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-05-22T13:14:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2589e5a1_b8066792",
       "range": {
         "startLine": 326,
         "startChar": 11,
@@ -119,6 +167,30 @@
           ]
         }
       ],
+      "revId": "4c228a6a6639b8fcd5bff90d1cc8e7e66f81bae8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c2b14f9_46ea7667",
+        "filename": "system/gd/hal/ranging_hal_android.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-05-22T13:14:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1980cea7_4148fae1",
+      "range": {
+        "startLine": 64,
+        "startChar": 11,
+        "endLine": 64,
+        "endChar": 15
+      },
       "revId": "4c228a6a6639b8fcd5bff90d1cc8e7e66f81bae8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
