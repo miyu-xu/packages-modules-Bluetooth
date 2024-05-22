@@ -88,6 +88,24 @@
       "parentUuid": "f0b81100_31b94d5a",
       "revId": "62bc819dfc840662b0cc168d857a41abbfbc1eb7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22555775_d1b03eed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-05-22T00:49:05Z",
+      "side": 1,
+      "message": "1. Consulting Gerrit team (b/342029301) before considering local overrides of OWNERS files.\n2. While the Android team has the authority to manage these 3 OWNERS in this way, I recommend managing owners in groups/teams (see go/cros-shared-owners:design) to minimize merge conflicts.",
+      "parentUuid": "b4b14c31_1f447da2",
+      "revId": "62bc819dfc840662b0cc168d857a41abbfbc1eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
