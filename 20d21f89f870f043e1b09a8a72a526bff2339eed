@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37b3117d_8653b849",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-22T22:37:25Z",
+      "side": 1,
+      "message": "Adding @eruffieux as AVRCP Owner",
+      "revId": "20d21f89f870f043e1b09a8a72a526bff2339eed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2603663_ecb59e18",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 735,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-22T22:37:25Z",
+      "side": 1,
+      "message": "Support is 1.3 here",
+      "range": {
+        "startLine": 735,
+        "startChar": 28,
+        "endLine": 735,
+        "endChar": 40
+      },
+      "revId": "20d21f89f870f043e1b09a8a72a526bff2339eed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
