@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2589e5a1_b8066792",
+        "filename": "system/bta/ras/ras_server.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-22T12:37:40Z",
+      "side": 1,
+      "message": "This seems like it could get verbose.  Would debug be sufficient?",
+      "range": {
+        "startLine": 326,
+        "startChar": 11,
+        "endLine": 326,
+        "endChar": 15
+      },
+      "revId": "4c228a6a6639b8fcd5bff90d1cc8e7e66f81bae8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1980cea7_4148fae1",
+        "filename": "system/gd/hal/ranging_hal_android.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-22T12:37:40Z",
+      "side": 1,
+      "message": "should this be a warning?",
+      "range": {
+        "startLine": 64,
+        "startChar": 11,
+        "endLine": 64,
+        "endChar": 15
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "164d829a_ec10dcee",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/ranging_hal_android.cc",
+              "range": {
+                "startLine": 64,
+                "startChar": 0,
+                "endLine": 65,
+                "endChar": 0
+              },
+              "replacement": "      log::info(\"size {}\", vendor_specific_characteristics.size());\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4c228a6a6639b8fcd5bff90d1cc8e7e66f81bae8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
