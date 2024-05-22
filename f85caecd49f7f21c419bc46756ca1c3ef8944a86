@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a28b2b71_3ab79f65",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1153,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-22T20:17:13Z",
+      "side": 1,
+      "message": "FYI: when device is disconnected, the address mapping will be removed here.",
+      "range": {
+        "startLine": 1151,
+        "startChar": 0,
+        "endLine": 1153,
+        "endChar": 13
+      },
+      "revId": "f85caecd49f7f21c419bc46756ca1c3ef8944a86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
