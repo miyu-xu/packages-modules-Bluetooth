@@ -89,6 +89,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b12fe20e_7c1cf3af",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 21
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-22T00:31:26Z",
+      "side": 1,
+      "message": "Yes, `use` is how you use `try-with-resource` in kotlin",
+      "parentUuid": "90f76041_9861b14b",
+      "revId": "050924d21c326edbecf4067ba40755f67bf51f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "968a61e6_1c18e6f9",
         "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
         "patchSetId": 21
