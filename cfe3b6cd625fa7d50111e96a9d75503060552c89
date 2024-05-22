@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dea66542_1cd1151e",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1154,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-22T01:05:40Z",
+      "side": 1,
+      "message": "```suggestion\n            boolean scanIsAllowed \u003d\n                    !Flags.respectBleScanSetting() || BleScanSettingListener.isScanAllowed();\n```",
+      "range": {
+        "startLine": 1153,
+        "startChar": 0,
+        "endLine": 1154,
+        "endChar": 93
+      },
+      "revId": "cfe3b6cd625fa7d50111e96a9d75503060552c89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
