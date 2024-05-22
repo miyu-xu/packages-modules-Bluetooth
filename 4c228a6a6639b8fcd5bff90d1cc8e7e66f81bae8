@@ -1,6 +1,64 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f62989a6_8d70b6c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-22T12:39:41Z",
+      "side": 1,
+      "message": "I",
+      "revId": "4c228a6a6639b8fcd5bff90d1cc8e7e66f81bae8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "009dbcde_7434ca69",
+        "filename": "system/bta/include/bta_ras_api.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-22T12:39:41Z",
+      "side": 1,
+      "message": "Should this be a const reference or a copy?",
+      "range": {
+        "startLine": 38,
+        "startChar": 6,
+        "endLine": 38,
+        "endChar": 9
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a9d40f8f_a017c077",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/include/bta_ras_api.h",
+              "range": {
+                "startLine": 38,
+                "startChar": 0,
+                "endLine": 39,
+                "endChar": 0
+              },
+              "replacement": "      const std::vector\u003cVendorSpecificCharacteristic\u003e\u0026\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4c228a6a6639b8fcd5bff90d1cc8e7e66f81bae8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2589e5a1_b8066792",
