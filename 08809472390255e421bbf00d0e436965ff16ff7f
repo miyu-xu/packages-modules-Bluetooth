@@ -94,6 +94,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfaae191_a68c94e9",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-22T21:02:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06f7e95e_c3e8b608",
+      "range": {
+        "startLine": 425,
+        "startChar": 4,
+        "endLine": 425,
+        "endChar": 36
+      },
+      "revId": "08809472390255e421bbf00d0e436965ff16ff7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d77a90d4_7e8ec576",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-22T21:02:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eaa1686d_0a4fa079",
+      "range": {
+        "startLine": 425,
+        "startChar": 18,
+        "endLine": 425,
+        "endChar": 35
+      },
+      "revId": "08809472390255e421bbf00d0e436965ff16ff7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0bb73743_13c85688",
@@ -107,6 +155,30 @@
       "writtenOn": "2024-05-08T00:32:11Z",
       "side": 1,
       "message": "Could we check how `tCONN_CB` is initialized? \n\nDid we try to memset `tCONN_CB` to 0? If so, would that break `complete_callback` which is a complex C++ object?",
+      "range": {
+        "startLine": 198,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 24
+      },
+      "revId": "08809472390255e421bbf00d0e436965ff16ff7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56d724bc_f8555c1c",
+        "filename": "system/stack/sdp/sdpint.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-22T21:02:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0bb73743_13c85688",
       "range": {
         "startLine": 198,
         "startChar": 0,
