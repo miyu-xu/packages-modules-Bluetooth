@@ -16,6 +16,24 @@
       "message": "These are ready for the next set of reviews",
       "revId": "c98567c8edd61c4cf24290547462271ad4247aca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b007580_908f4791",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-22T23:42:07Z",
+      "side": 1,
+      "message": "Thanks!",
+      "parentUuid": "8a7ef9b1_28b214fb",
+      "revId": "c98567c8edd61c4cf24290547462271ad4247aca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

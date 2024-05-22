@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9ae07d4_42de020d",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 21
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-22T23:42:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c06e4bc_82a6ca47",
+      "revId": "050924d21c326edbecf4067ba40755f67bf51f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e8ea0fea_19caabba",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a14ac770_7b94f863",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 21
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-22T23:42:07Z",
+      "side": 1,
+      "message": "Yeah, it\u0027s used in BondDevice",
+      "parentUuid": "e8ea0fea_19caabba",
+      "revId": "050924d21c326edbecf4067ba40755f67bf51f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a9d6d6fd_f0bd2c7d",
@@ -48,6 +84,24 @@
       "writtenOn": "2024-05-20T17:09:22Z",
       "side": 1,
       "message": "nit: Is this needed?",
+      "revId": "050924d21c326edbecf4067ba40755f67bf51f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7485d3d8_1e82f649",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 21
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-22T23:42:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9d6d6fd_f0bd2c7d",
       "revId": "050924d21c326edbecf4067ba40755f67bf51f17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -130,6 +184,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8ed522aa_60593ba8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 21
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-22T23:42:07Z",
+      "side": 1,
+      "message": "This uses member variables linked to the RfcommTest class, so to keep the logic the same I need to keep this here or make a new StreamObserver, and I\u0027d rather not make a new one.",
+      "parentUuid": "968a61e6_1c18e6f9",
+      "range": {
+        "startLine": 216,
+        "startChar": 0,
+        "endLine": 221,
+        "endChar": 0
+      },
+      "revId": "050924d21c326edbecf4067ba40755f67bf51f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a11caecb_a46c240f",
         "filename": "pandora/server/bumble_experimental/rfcomm.py",
         "patchSetId": 21
@@ -141,6 +219,24 @@
       "writtenOn": "2024-05-20T17:17:09Z",
       "side": 1,
       "message": "nit: With this implementation only one server can be waiting for connection at a time.\n\nThis can be fine but just want to call it out (maybe a TODO would be great, or validating that this is None and setting it None in AcceptConnection)",
+      "revId": "050924d21c326edbecf4067ba40755f67bf51f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5659cf9_64ab4318",
+        "filename": "pandora/server/bumble_experimental/rfcomm.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-22T23:42:07Z",
+      "side": 1,
+      "message": "Added a TODO at the start of the class",
+      "parentUuid": "a11caecb_a46c240f",
       "revId": "050924d21c326edbecf4067ba40755f67bf51f17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -162,6 +258,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3eacfcf_8c76f2b6",
+        "filename": "pandora/server/bumble_experimental/rfcomm.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-22T23:42:07Z",
+      "side": 1,
+      "message": "Added a TODO for multiple clients as well",
+      "parentUuid": "f3e14444_bc6a01b2",
+      "revId": "050924d21c326edbecf4067ba40755f67bf51f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1eeee356_115c5da6",
@@ -175,6 +289,24 @@
       "writtenOn": "2024-05-20T17:17:09Z",
       "side": 1,
       "message": "nit: The timeout can be handled over grpc as well, I would prefer to remove it from there and put a deadline on the client.",
+      "revId": "050924d21c326edbecf4067ba40755f67bf51f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "178254a8_9482fcb0",
+        "filename": "pandora/server/bumble_experimental/rfcomm.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-22T23:42:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1eeee356_115c5da6",
       "revId": "050924d21c326edbecf4067ba40755f67bf51f17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
