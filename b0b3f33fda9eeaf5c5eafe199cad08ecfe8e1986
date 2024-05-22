@@ -44,6 +44,24 @@
       ],
       "revId": "b0b3f33fda9eeaf5c5eafe199cad08ecfe8e1986",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30a347ae_f684f1a9",
+        "filename": "system/gd/hal/ranging_hal_android.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-05-22T02:27:20Z",
+      "side": 1,
+      "message": "Sure, will do",
+      "parentUuid": "0210537f_ab252d5e",
+      "revId": "b0b3f33fda9eeaf5c5eafe199cad08ecfe8e1986",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
