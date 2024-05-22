@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4315d3d7_8b62c01e",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1140,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-22T16:22:11Z",
+      "side": 1,
+      "message": "nit: return on error early\n\n```\nif (!pimpl_-\u003eIsRunning()) {\n  return false;\n}\nreturn pimpl_-\u003ecodec_manager_impl_-\u003eUpdateActiveUnicastAudioHalClient(\n        source_unicast_client, sink_unicast_client, is_active);\n```",
+      "range": {
+        "startLine": 1136,
+        "startChar": 0,
+        "endLine": 1140,
+        "endChar": 15
+      },
+      "revId": "1587048c4233430925e2886fd756ea2e179a9d85",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89ca1611_869ffc01",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1149,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-22T16:22:11Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 1145,
+        "startChar": 0,
+        "endLine": 1149,
+        "endChar": 15
+      },
+      "revId": "1587048c4233430925e2886fd756ea2e179a9d85",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
