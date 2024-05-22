@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c2e7cf0f_b00ceb8e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2259,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-22T17:22:33Z",
+      "side": 1,
+      "message": "Mmmm Can we change the condition to explicitly state the not obvious state ?\n\nsomething like : \n\n```\nif (currentType \u003d\u003d nextType) {\n  return false; // Same state, no intent expected\n}\nelse if (currentType \u003d\u003d BassClientStateMachine.Connected.class \u0026\u0026 nextType \u003d\u003d BassClientStateMachine.ConnectedProcessing.class)\n  return false; // ConnectedProcessing is an internal state that doesn\u0027t generate a broadcast\n} else {\n  return true; // All other state are generating broadcast\n}\n```\n\nOr is there other states that does not generate an intent ?",
+      "parentUuid": "609d3c0d_fe69ddaa",
+      "range": {
+        "startLine": 2248,
+        "startChar": 3,
+        "endLine": 2259,
+        "endChar": 5
+      },
+      "revId": "cbca3920daa0012c30b543a2293686795837f5c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f05f2c9b_ed92f5fa",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
         "patchSetId": 1
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "Verification is always happening (with #2272 Assert) but not always a connectionStateChange intent is expected.",
       "parentUuid": "f05f2c9b_ed92f5fa",
+      "range": {
+        "startLine": 2261,
+        "startChar": 21,
+        "endLine": 2261,
+        "endChar": 51
+      },
+      "revId": "cbca3920daa0012c30b543a2293686795837f5c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fed0abca_7ef9ca13",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2261,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-22T17:22:33Z",
+      "side": 1,
+      "message": "I see. I understood transition as intent is sent. My bad",
+      "parentUuid": "0f55558b_9208f7a1",
       "range": {
         "startLine": 2261,
         "startChar": 21,
@@ -179,6 +227,30 @@
       "side": 1,
       "message": "I didn\u0027t modified this part - but agree it\u0027s better to verify something here...",
       "parentUuid": "839798bd_89f2c6c3",
+      "range": {
+        "startLine": 2268,
+        "startChar": 35,
+        "endLine": 2268,
+        "endChar": 52
+      },
+      "revId": "cbca3920daa0012c30b543a2293686795837f5c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a16e825_564320f4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2268,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-22T17:22:33Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d4430b13_aeb7ca4f",
       "range": {
         "startLine": 2268,
         "startChar": 35,
