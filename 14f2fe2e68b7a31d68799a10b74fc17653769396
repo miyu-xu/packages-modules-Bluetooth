@@ -46,6 +46,30 @@
       },
       "revId": "14f2fe2e68b7a31d68799a10b74fc17653769396",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1309fc5_23a82309",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-22T17:04:51Z",
+      "side": 1,
+      "message": "@yuyangh@google.com The Flag stanza is needed as per trunk stable policy\ngo/android-flags-guidelines#exceptions-anchor",
+      "parentUuid": "546c4ded_2b3f0ff7",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 71
+      },
+      "revId": "14f2fe2e68b7a31d68799a10b74fc17653769396",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
