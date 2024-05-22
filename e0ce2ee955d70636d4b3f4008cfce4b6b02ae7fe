@@ -22,6 +22,30 @@
       },
       "revId": "e0ce2ee955d70636d4b3f4008cfce4b6b02ae7fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be711196_a232366f",
+        "filename": "pandora/server/bumble_experimental/rfcomm.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-22T23:42:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f3d2c26_6545f952",
+      "range": {
+        "startLine": 112,
+        "startChar": 68,
+        "endLine": 112,
+        "endChar": 79
+      },
+      "revId": "e0ce2ee955d70636d4b3f4008cfce4b6b02ae7fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
