@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a653457e_c1443a9c",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-05-22T20:27:27Z",
+      "side": 1,
+      "message": "Flag-exempt: As this change is only applicable when both A2DP source \u0026 sink profiles are enabled.",
+      "revId": "039769567bb9e13df02d9b291cd57f7ed4372107",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59781ac6_e41f7091",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-05-22T20:27:27Z",
+      "side": 1,
+      "message": "Prior to concurrent source \u0026 sink feature, it used to support AVRC 1.6 version.",
+      "revId": "039769567bb9e13df02d9b291cd57f7ed4372107",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
