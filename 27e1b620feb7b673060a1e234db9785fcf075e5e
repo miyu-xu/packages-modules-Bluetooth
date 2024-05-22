@@ -40,6 +40,30 @@
       ],
       "revId": "27e1b620feb7b673060a1e234db9785fcf075e5e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "287a50ca_aa88967a",
+        "filename": "system/audio_hal_interface/aidl/le_audio_utils.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-05-22T09:18:43Z",
+      "side": 1,
+      "message": "IMO it is unlikely that this ever reaches `0xFF` (or even 127 - AIDLs int8_t max).\nI\u0027m casting here to the underlying type of the AIDL enum type just to get the primitive integer type and satisfy the compiler. I believe that the static_cast does not change the bit representation so we should be good even if it reaches `0xFF`.",
+      "parentUuid": "2e7b662e_e607bf63",
+      "range": {
+        "startLine": 448,
+        "startChar": 27,
+        "endLine": 448,
+        "endChar": 33
+      },
+      "revId": "27e1b620feb7b673060a1e234db9785fcf075e5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
