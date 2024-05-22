@@ -137,6 +137,10 @@ class MceStateMachine extends StateMachine {
     static final String FOLDER_SENT = "sent";
     private static final String INBOX_PATH = "telecom/msg/inbox";
 
+    // Attributes for syncing messages
+    private static final int DAYS_TO_SYNC = 14;
+    private static final int MAX_MESSAGES_TO_SYNC = 100;
+
     // URI Scheme for messages with email contact
     private static final String SCHEME_MAILTO = "mailto";
 
@@ -690,9 +694,9 @@ class MceStateMachine extends StateMachine {
                     break;
 
                 case MSG_GET_MESSAGE_LISTING:
-                    // Get the 50 most recent messages from the last week
+                    // Get the MAX_MESSAGES_TO_SYNC most recent messages from the last DAYS_TO_SYNC days
                     Calendar calendar = Calendar.getInstance();
-                    calendar.add(Calendar.DATE, -7);
+                    calendar.add(Calendar.DATE, -DAYS_TO_SYNC);
                     byte messageType;
                     if (Utils.isPtsTestMode()) {
                         messageType =
@@ -713,7 +717,7 @@ class MceStateMachine extends StateMachine {
                                             .setMessageType(messageType)
                                             .build(),
                                     0,
-                                    50,
+                                    MAX_MESSAGES_TO_SYNC,
                                     0));
                     break;
 
