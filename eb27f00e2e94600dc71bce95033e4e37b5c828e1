@@ -16,6 +16,24 @@
       "message": "nit: `SystemServer:`",
       "revId": "eb27f00e2e94600dc71bce95033e4e37b5c828e1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0420c6fe_6b93314d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-22T21:51:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "067c07a8_24346dca",
+      "revId": "eb27f00e2e94600dc71bce95033e4e37b5c828e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
