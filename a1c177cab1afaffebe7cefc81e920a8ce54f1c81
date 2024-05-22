@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fffbc16_18420bd7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-22T22:44:48Z",
+      "side": 1,
+      "message": "Commit message is missing\n```\nFlag: com.android.bluetooth.flags.a2dp_ignore_started_when_responder\n```",
+      "revId": "a1c177cab1afaffebe7cefc81e920a8ce54f1c81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
