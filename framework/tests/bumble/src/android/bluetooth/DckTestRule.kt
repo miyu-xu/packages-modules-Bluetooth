@@ -16,8 +16,6 @@
 
 package android.bluetooth
 
-import android.app.PendingIntent
-import android.bluetooth.le.BluetoothLeScanner
 import android.bluetooth.le.ScanCallback
 import android.bluetooth.le.ScanFilter
 import android.bluetooth.le.ScanResult
@@ -116,8 +114,8 @@ class DckTestRule(
             .shareIn(coroutine, SharingStarted.Lazily)
 
     /**
-     * Starts an LE scan with the given [scanFilter] and [scanSettings], using [PendingIntent]
-     * within the given [coroutine].
+     * Starts an LE scan with the given [scanFilter] and [scanSettings], using [ScanCallback] within
+     * the given [coroutine].
      *
      * The caller can stop the scan at any time by cancelling the coroutine they used to start the
      * scan. If no coroutine was provided, a default coroutine is used and the scan will be stopped
@@ -125,50 +123,22 @@ class DckTestRule(
      *
      * @return SharedFlow of [LeScanResult] with a buffer of size 1
      */
-    fun scanWithPendingIntent(
+    fun scanWithScanCallback(
         scanFilter: ScanFilter,
         scanSettings: ScanSettings,
         coroutine: CoroutineScope = scope
     ) =
         callbackFlow {
-                val intentFilter = IntentFilter(ACTION_DYNAMIC_RECEIVER_SCAN_RESULT)
-                val broadcastReceiver =
-                    object : BroadcastReceiver() {
-                        override fun onReceive(context: Context, intent: Intent) {
-                            if (ACTION_DYNAMIC_RECEIVER_SCAN_RESULT == intent.action) {
-                                val results =
-                                    intent.getParcelableArrayListExtra<ScanResult>(
-                                        BluetoothLeScanner.EXTRA_LIST_SCAN_RESULT
-                                    )
-                                        ?: return
-
-                                val callbackType =
-                                    intent.getIntExtra(BluetoothLeScanner.EXTRA_CALLBACK_TYPE, -1)
-
-                                for (result in results) {
-                                    trySend(LeScanResult.Success(result, callbackType))
-                                }
-                            }
+                val scanCallback =
+                    object : ScanCallback() {
+                        override fun onScanResult(callbackType: Int, result: ScanResult) {
+                            trySend(LeScanResult.Success(result, callbackType))
                         }
                     }
 
-                context.registerReceiver(broadcastReceiver, intentFilter)
+                leScanner.startScan(listOf(scanFilter), scanSettings, scanCallback)
 
-                val scanIntent = Intent(ACTION_DYNAMIC_RECEIVER_SCAN_RESULT)
-                val pendingIntent =
-                    PendingIntent.getBroadcast(
-                        context,
-                        0,
-                        scanIntent,
-                        PendingIntent.FLAG_MUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
-                    )
-
-                leScanner.startScan(listOf(scanFilter), scanSettings, pendingIntent)
-
-                awaitClose {
-                    context.unregisterReceiver(broadcastReceiver)
-                    leScanner.stopScan(pendingIntent)
-                }
+                awaitClose { leScanner.stopScan(scanCallback) }
             }
             .conflate()
             .shareIn(coroutine, SharingStarted.Lazily)

@@ -74,7 +74,7 @@ class DckScanTest() {
                 .build()
 
         val result: LeScanResult = runBlocking {
-            withTimeout(TIMEOUT_MS) { dck.scanWithPendingIntent(scanFilter, scanSettings).first() }
+            withTimeout(TIMEOUT_MS) { dck.scanWithScanCallback(scanFilter, scanSettings).first() }
         }
 
         assertThat(result).isInstanceOf(LeScanResult.Success::class.java)
