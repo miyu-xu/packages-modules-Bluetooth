@@ -610,6 +610,9 @@ struct DistanceMeasurementManager::impl {
         distance_measurement_callbacks_->OnDistanceMeasurementStarted(
             cs_trackers_[connection_handle].address, METHOD_CS);
       }
+      if (event_view.GetProcedureCount() == 0) {
+        cs_trackers_[connection_handle].repeating_alarm->Cancel();
+      }
     }
     cs_delete_obsolete_data(event_view.GetConnectionHandle());
   }
