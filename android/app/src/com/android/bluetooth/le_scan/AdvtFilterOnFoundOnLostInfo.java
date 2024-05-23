@@ -17,6 +17,7 @@
 package com.android.bluetooth.le_scan;
 
 import android.annotation.Nullable;
+import android.bluetooth.BluetoothDevice;
 
 public class AdvtFilterOnFoundOnLostInfo {
     private int mClientIf;
@@ -89,6 +90,7 @@ public class AdvtFilterOnFoundOnLostInfo {
         return mAddress;
     }
 
+    @BluetoothDevice.AddressType
     public int getAddressType() {
         return mAddrType;
     }
