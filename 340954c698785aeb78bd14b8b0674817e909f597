@@ -124,6 +124,24 @@
       "parentUuid": "315b403f_a02db312",
       "revId": "340954c698785aeb78bd14b8b0674817e909f597",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "445f743c_d5d21abe",
+        "filename": "system/bta/test/bta_disc_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1966998
+      },
+      "writtenOn": "2024-05-23T02:02:57Z",
+      "side": 1,
+      "message": "Thanks! I wanted to ensure there is no missing AI (not captured here) and also the CL can land.",
+      "parentUuid": "675971ec_7ac39c6d",
+      "revId": "340954c698785aeb78bd14b8b0674817e909f597",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
