@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f7a0e8b_458fdec9",
+        "filename": "system/types/bluetooth/uuid.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-23T18:26:07Z",
+      "side": 1,
+      "message": "Where is this define ?\n\nCan\u0027t we just update it unconditionally ?\n\nI notice checking BASE_VER is present in a couple other spot and wonder if they are really required",
+      "range": {
+        "startLine": 152,
+        "startChar": 4,
+        "endLine": 152,
+        "endChar": 12
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "bc6a4083_76f3852e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/types/bluetooth/uuid.cc",
+              "range": {
+                "startLine": 152,
+                "startChar": 0,
+                "endLine": 155,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/types/bluetooth/uuid.cc",
+              "range": {
+                "startLine": 156,
+                "startChar": 0,
+                "endLine": 157,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "cecdec541b90d1dad23193e99dbb3579514fde47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
