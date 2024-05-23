@@ -89,6 +89,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc155926_b08ca238",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1694,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-05-23T16:37:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ebc19f4f_2d9fd8ca",
+      "range": {
+        "startLine": 1694,
+        "startChar": 19,
+        "endLine": 1694,
+        "endChar": 22
+      },
+      "revId": "3ad537b4581fc7642ccf733b5d11d2810643c3ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "598c242e_83f47182",
@@ -102,6 +126,54 @@
       "writtenOn": "2024-05-23T16:31:28Z",
       "side": 1,
       "message": "nit:\n```suggestion\n  log::verbose(\"Peer\u003d{}\", peer_.PeerAddress());\n```",
+      "range": {
+        "startLine": 1731,
+        "startChar": 16,
+        "endLine": 1731,
+        "endChar": 22
+      },
+      "revId": "3ad537b4581fc7642ccf733b5d11d2810643c3ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c108361f_791587b2",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1731,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-05-23T16:37:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "598c242e_83f47182",
+      "range": {
+        "startLine": 1731,
+        "startChar": 16,
+        "endLine": 1731,
+        "endChar": 22
+      },
+      "revId": "3ad537b4581fc7642ccf733b5d11d2810643c3ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be953c24_0145dc57",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1731,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-05-23T16:37:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "598c242e_83f47182",
       "range": {
         "startLine": 1731,
         "startChar": 16,
