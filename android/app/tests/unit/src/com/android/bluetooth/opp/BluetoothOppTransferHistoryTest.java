@@ -44,7 +44,6 @@ import androidx.test.runner.AndroidJUnit4;
 import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.R;
 import com.android.bluetooth.TestUtils;
-import com.android.bluetooth.flags.Flags;
 
 import com.google.common.base.Objects;
 
@@ -147,11 +146,7 @@ public class BluetoothOppTransferHistoryTest {
                 mTargetContext.getPackageManager().hasSystemFeature(PackageManager.FEATURE_WATCH));
 
         BluetoothOppTestUtils.setUpMockCursor(mCursor, mCursorMockDataList);
-        if (Flags.oppStartActivityDirectlyFromNotification()) {
-            mIntent.setAction(Constants.ACTION_OPEN_INBOUND_TRANSFER);
-        } else {
-            mIntent.putExtra(Constants.EXTRA_DIRECTION, BluetoothShare.DIRECTION_INBOUND);
-        }
+        mIntent.setAction(Constants.ACTION_OPEN_INBOUND_TRANSFER);
 
         ActivityScenario<BluetoothOppTransferHistory> scenario = ActivityScenario.launch(mIntent);
         InstrumentationRegistry.getInstrumentation().waitForIdleSync();
@@ -169,11 +164,7 @@ public class BluetoothOppTransferHistoryTest {
         mCursorMockDataList.set(1,
                 new BluetoothOppTestUtils.CursorMockData(BluetoothShare.DIRECTION, 2,
                         BluetoothShare.DIRECTION_OUTBOUND));
-        if (Flags.oppStartActivityDirectlyFromNotification()) {
-            mIntent.setAction(Constants.ACTION_OPEN_OUTBOUND_TRANSFER);
-        } else {
-            mIntent.putExtra(Constants.EXTRA_DIRECTION, BluetoothShare.DIRECTION_OUTBOUND);
-        }
+        mIntent.setAction(Constants.ACTION_OPEN_OUTBOUND_TRANSFER);
 
         ActivityScenario<BluetoothOppTransferHistory> scenario = ActivityScenario.launch(mIntent);
         InstrumentationRegistry.getInstrumentation().waitForIdleSync();

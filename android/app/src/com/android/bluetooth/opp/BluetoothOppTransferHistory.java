@@ -58,7 +58,6 @@ import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.R;
 import com.android.bluetooth.content_profiles.ContentProfileErrorReportUtils;
-import com.android.bluetooth.flags.Flags;
 
 /**
  * View showing the user's finished bluetooth opp transfers that the user does not confirm.
@@ -92,18 +91,10 @@ public class BluetoothOppTransferHistory extends Activity
         mListView = (ListView) findViewById(R.id.list);
         mListView.setEmptyView(findViewById(R.id.empty));
 
+        boolean isOutbound =
+                Constants.ACTION_OPEN_OUTBOUND_TRANSFER.equals(getIntent().getAction());
+
         String direction;
-
-        boolean isOutbound = false;
-
-        if (Flags.oppStartActivityDirectlyFromNotification()) {
-            String action = getIntent().getAction();
-            isOutbound = Constants.ACTION_OPEN_OUTBOUND_TRANSFER.equals(action);
-        } else {
-            int dir = getIntent().getIntExtra(Constants.EXTRA_DIRECTION, 0);
-            isOutbound = (dir == BluetoothShare.DIRECTION_OUTBOUND);
-        }
-
         if (isOutbound) {
             setTitle(getText(R.string.outbound_history_title));
             direction = "(" + BluetoothShare.DIRECTION + " == " + BluetoothShare.DIRECTION_OUTBOUND
