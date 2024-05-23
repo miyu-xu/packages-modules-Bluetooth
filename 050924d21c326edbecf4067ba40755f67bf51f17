@@ -208,6 +208,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "218f97aa_573813c9",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 21
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-23T00:52:00Z",
+      "side": 1,
+      "message": "You should be able to pass the StreamObserver through the constructor of `PairingResponder`",
+      "parentUuid": "8ed522aa_60593ba8",
+      "range": {
+        "startLine": 216,
+        "startChar": 0,
+        "endLine": 221,
+        "endChar": 0
+      },
+      "revId": "050924d21c326edbecf4067ba40755f67bf51f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a11caecb_a46c240f",
         "filename": "pandora/server/bumble_experimental/rfcomm.py",
         "patchSetId": 21
