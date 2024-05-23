@@ -65,7 +65,8 @@ public class PanService extends ProfileService {
 
     private static final int BLUETOOTH_MAX_PAN_CONNECTIONS = 5;
 
-    @VisibleForTesting HashMap<BluetoothDevice, BluetoothPanDevice> mPanDevices;
+    @VisibleForTesting ConcurrentHashMap<BluetoothDevice, BluetoothPanDevice> mPanDevices;
+
     private int mMaxPanDevices;
     private String mPanIfName;
     @VisibleForTesting boolean mIsTethering = false;
@@ -151,7 +152,7 @@ public class PanService extends ProfileService {
                         "PanNativeInterface cannot be null when PanService starts");
 
         mBluetoothTetheringCallbacks = new HashMap<>();
-        mPanDevices = new HashMap<BluetoothDevice, BluetoothPanDevice>();
+        mPanDevices = new ConcurrentHashMap<BluetoothDevice, BluetoothPanDevice>();
         try {
             mMaxPanDevices =
                     getResources()
@@ -662,6 +663,7 @@ public class PanService extends ProfileService {
                     mPanDevices.remove(device);
                     mNativeInterface.disconnect(Utils.getByteAddress(device));
                     return;
+
                 }
                 Log.d(TAG, "handlePanDeviceStateChange LOCAL_NAP_ROLE:REMOTE_PANU_ROLE");
                 if (!mIsTethering) {
@@ -713,7 +715,6 @@ public class PanService extends ProfileService {
                 mPanDevices.remove(device);
             }
         }
-
         if (state == BluetoothProfile.STATE_CONNECTED) {
             MetricsLogger.logProfileConnectionEvent(BluetoothMetricsProto.ProfileId.PAN);
         }
