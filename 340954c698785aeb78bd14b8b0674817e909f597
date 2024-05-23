@@ -88,6 +88,24 @@
       "parentUuid": "33c473a3_84ad4d62",
       "revId": "340954c698785aeb78bd14b8b0674817e909f597",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "315b403f_a02db312",
+        "filename": "system/bta/test/bta_disc_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1966998
+      },
+      "writtenOn": "2024-05-23T00:34:39Z",
+      "side": 1,
+      "message": "Fellas, I enjoyed reading the discussion in this thread - indeed various valid points on both sides. Some of the items are indeed personal preference while we all appreciate writing \"perfect\" test is an art. In order to wrap-up this CL, can we quickly clarify what exactly is holding-up here?",
+      "parentUuid": "9b0761ac_10df7e73",
+      "revId": "340954c698785aeb78bd14b8b0674817e909f597",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
