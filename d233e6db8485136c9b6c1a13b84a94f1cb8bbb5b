@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "56be38e6_ca2345ef",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-23T00:02:16Z",
+      "side": 1,
+      "message": "In the case of normal strings, substring(0, 0) will return an empty string.  I was having trouble finding the documentation for ByteString but I was under the impression that the same would apply here.",
+      "parentUuid": "1b6a24a0_f430c2ee",
+      "range": {
+        "startLine": 239,
+        "startChar": 52,
+        "endLine": 239,
+        "endChar": 85
+      },
+      "revId": "d233e6db8485136c9b6c1a13b84a94f1cb8bbb5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "87c04454_35d650f1",
         "filename": "pandora/server/bumble_experimental/rfcomm.py",
         "patchSetId": 12
@@ -37,6 +61,24 @@
       "writtenOn": "2024-05-20T17:13:48Z",
       "side": 1,
       "message": "This should not fail silently, this should be removed or an error should be raised here if dlc is None.\n\nAlso if I remember correctly in python accessing a dict element that doesn\u0027t exist raise an error.",
+      "revId": "d233e6db8485136c9b6c1a13b84a94f1cb8bbb5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8e25c25_4651d65f",
+        "filename": "pandora/server/bumble_experimental/rfcomm.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-23T00:02:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87c04454_35d650f1",
       "revId": "d233e6db8485136c9b6c1a13b84a94f1cb8bbb5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
