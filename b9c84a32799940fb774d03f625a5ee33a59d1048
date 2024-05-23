@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8aa5f5e1_dafa1cb3",
+        "filename": "]",
+        "patchSetId": 14
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-23T00:49:10Z",
+      "side": 1,
+      "message": "I think you want to remove this file 😊",
+      "revId": "b9c84a32799940fb774d03f625a5ee33a59d1048",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
