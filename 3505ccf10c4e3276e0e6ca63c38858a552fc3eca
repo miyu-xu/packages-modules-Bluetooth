@@ -22,6 +22,30 @@
       },
       "revId": "3505ccf10c4e3276e0e6ca63c38858a552fc3eca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae398198_c143c855",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppTransferTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-05-23T10:19:53Z",
+      "side": 0,
+      "message": "Question dealt with in the other comment.",
+      "parentUuid": "0aa9a38c_c178ebb1",
+      "range": {
+        "startLine": 348,
+        "startChar": 8,
+        "endLine": 348,
+        "endChar": 32
+      },
+      "revId": "3505ccf10c4e3276e0e6ca63c38858a552fc3eca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
