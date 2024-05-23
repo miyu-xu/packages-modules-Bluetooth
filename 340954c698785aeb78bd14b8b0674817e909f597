@@ -106,6 +106,24 @@
       "parentUuid": "9b0761ac_10df7e73",
       "revId": "340954c698785aeb78bd14b8b0674817e909f597",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "675971ec_7ac39c6d",
+        "filename": "system/bta/test/bta_disc_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-23T00:56:38Z",
+      "side": 1,
+      "message": "Nothing is holding-up here, this is why this is a nitpick.",
+      "parentUuid": "315b403f_a02db312",
+      "revId": "340954c698785aeb78bd14b8b0674817e909f597",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
