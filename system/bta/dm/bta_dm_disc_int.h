@@ -83,19 +83,24 @@ inline std::string bta_dm_state_text(
 
 #define MAX_DISC_RAW_DATA_BUF (4096)
 
-typedef struct {
-  RawAddress bd_addr;
-  tBTA_SERVICE_MASK services_to_search;
-  tBTA_SERVICE_MASK services_found;
+class BtaDmSdpPerformer {
+ public:
+  BtaDmSdpPerformer(RawAddress bd_addr) : bd_addr_(bd_addr) {}
+  // For bta_sdp_test.cc
+  BtaDmSdpPerformer(RawAddress bd_addr, uint8_t service_index)
+      : bd_addr_(bd_addr), service_index_(service_index) {}
+  void FindServices();
+  void OnResult(tSDP_STATUS sdp_status);
 
-  uint8_t service_index;
-  uint8_t peer_scn;
-
-  std::array<uint8_t, MAX_DISC_RAW_DATA_BUF> g_disc_raw_data_buf;
-
-  /* sdp_db must be together with sdp_db_buffer*/
-  alignas(tSDP_DISCOVERY_DB) uint8_t sdp_db_buffer[BTA_DM_SDP_DB_SIZE];
-} tBTA_DM_SDP_STATE;
+ private:
+  RawAddress bd_addr_ = {};
+  tBTA_SERVICE_MASK services_to_search_ = BTA_ALL_SERVICE_MASK;
+  tBTA_SERVICE_MASK services_found_ = 0;
+  uint8_t service_index_ = 0;
+  uint8_t peer_scn_ = 0;
+  std::array<uint8_t, MAX_DISC_RAW_DATA_BUF> g_disc_raw_data_buf_;
+  alignas(tSDP_DISCOVERY_DB) uint8_t sdp_db_buffer_[BTA_DM_SDP_DB_SIZE];
+};
 
 typedef struct {
   service_discovery_callbacks service_search_cbacks;
@@ -108,7 +113,7 @@ typedef struct {
    * BluetoothDevice.fetchUuidsWithSdp(). Responsible for LE GATT Service
    * Discovery and SDP */
   tBTA_DM_SERVICE_DISCOVERY_STATE service_discovery_state;
-  std::unique_ptr<tBTA_DM_SDP_STATE> sdp_state;
+  std::unique_ptr<BtaDmSdpPerformer> sdp_performer;
 
   uint16_t conn_id;
   alarm_t* gatt_close_timer;    /* GATT channel close delay timer */
@@ -118,8 +123,8 @@ typedef struct {
 extern const uint32_t bta_service_id_to_btm_srv_id_lkup_tbl[];
 extern const uint16_t bta_service_id_to_uuid_lkup_tbl[];
 
-void bta_dm_sdp_find_services(tBTA_DM_SDP_STATE* sdp_state);
-void bta_dm_sdp_result(tSDP_STATUS sdp_result, tBTA_DM_SDP_STATE* sdp_state);
+void bta_dm_disc_override_sdp_performer_for_testing(
+    std::unique_ptr<BtaDmSdpPerformer> (*factory_method)(RawAddress));
 void bta_dm_sdp_finished(RawAddress bda, tBTA_STATUS result,
                          tBTA_SERVICE_MASK services,
                          std::vector<bluetooth::Uuid> uuids = {},
