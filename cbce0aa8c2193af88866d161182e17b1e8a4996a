@@ -49,6 +49,54 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "7362e66b_1121a7ae",
+        "filename": "system/bta/dm/bta_dm_disc_sdp.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-23T18:37:03Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "48201ec8_62669bc7",
+      "range": {
+        "startLine": 288,
+        "startChar": 0,
+        "endLine": 288,
+        "endChar": 46
+      },
+      "revId": "cbce0aa8c2193af88866d161182e17b1e8a4996a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06753aad_f2c949e4",
+        "filename": "system/bta/dm/bta_dm_disc_sdp.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-23T18:37:03Z",
+      "side": 0,
+      "message": "services_found is not used for anything but in verbose logs.\n\nI\u0027m not expert on SDP, and I\u0027m not sure how much debugging value it adds. There is some mapping from service id to UUID.\n\nI can prepare separate patch to remove it.",
+      "parentUuid": "6495ed50_73eaebc0",
+      "range": {
+        "startLine": 288,
+        "startChar": 31,
+        "endLine": 288,
+        "endChar": 45
+      },
+      "revId": "cbce0aa8c2193af88866d161182e17b1e8a4996a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "cd60b06d_3e1913ff",
         "filename": "system/bta/dm/bta_dm_disc_sdp.cc",
         "patchSetId": 1
