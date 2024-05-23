@@ -93,6 +93,30 @@
       },
       "revId": "e82b69f2b2a78c9ca66a2159ba96055984e83f6b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cccd15dd_6b54bd9e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2282,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-05-23T12:20:33Z",
+      "side": 1,
+      "message": "Ok, Michał suggested me a solution how to remove this timeout but it seems to be breaking a INTENTS where CONNECTION_TIMEOUT is tested, so I\u0027ve decided to leave this timeout for verification.",
+      "parentUuid": "7c905d27_1db9ffa7",
+      "range": {
+        "startLine": 2282,
+        "startChar": 18,
+        "endLine": 2282,
+        "endChar": 52
+      },
+      "revId": "e82b69f2b2a78c9ca66a2159ba96055984e83f6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
