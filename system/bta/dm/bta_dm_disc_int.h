@@ -83,19 +83,34 @@ inline std::string bta_dm_state_text(
 
 #define MAX_DISC_RAW_DATA_BUF (4096)
 
-typedef struct {
-  RawAddress bd_addr;
-  tBTA_SERVICE_MASK services_to_search;
-  tBTA_SERVICE_MASK services_found;
+class BtaDmSdpPerformer {
+ public:
+  BtaDmSdpPerformer(RawAddress bd_addr) : bd_addr_(bd_addr) {}
+  void FindServices();
+  void OnResult(tSDP_STATUS sdp_status);
 
-  uint8_t service_index;
-  uint8_t peer_scn;
+  // For bta_sdp_test
+  uint8_t service_index_ = 0;
 
-  std::array<uint8_t, MAX_DISC_RAW_DATA_BUF> g_disc_raw_data_buf;
+ private:
+  RawAddress bd_addr_ = {};
+  tBTA_SERVICE_MASK services_to_search_ = BTA_ALL_SERVICE_MASK;
+  tBTA_SERVICE_MASK services_found_ = 0;
+
+  uint8_t peer_scn_ = 0;
+
+  std::array<uint8_t, MAX_DISC_RAW_DATA_BUF> g_disc_raw_data_buf_;
 
   /* sdp_db must be together with sdp_db_buffer*/
-  alignas(tSDP_DISCOVERY_DB) uint8_t sdp_db_buffer[BTA_DM_SDP_DB_SIZE];
-} tBTA_DM_SDP_STATE;
+  alignas(tSDP_DISCOVERY_DB) uint8_t sdp_db_buffer_[BTA_DM_SDP_DB_SIZE];
+};
+
+void bta_dm_sdp_callback(const RawAddress& bd_addr, tSDP_STATUS sdp_status);
+
+void bta_dm_sdp_finished(RawAddress bda, tBTA_STATUS result,
+                         tBTA_SERVICE_MASK services,
+                         std::vector<bluetooth::Uuid> uuids = {},
+                         std::vector<bluetooth::Uuid> gatt_uuids = {});
 
 typedef struct {
   service_discovery_callbacks service_search_cbacks;
@@ -108,7 +123,7 @@ typedef struct {
    * BluetoothDevice.fetchUuidsWithSdp(). Responsible for LE GATT Service
    * Discovery and SDP */
   tBTA_DM_SERVICE_DISCOVERY_STATE service_discovery_state;
-  std::unique_ptr<tBTA_DM_SDP_STATE> sdp_state;
+  std::unique_ptr<BtaDmSdpPerformer> sdp_performer;
 
   uint16_t conn_id;
   alarm_t* gatt_close_timer;    /* GATT channel close delay timer */
@@ -117,14 +132,6 @@ typedef struct {
 
 extern const uint32_t bta_service_id_to_btm_srv_id_lkup_tbl[];
 extern const uint16_t bta_service_id_to_uuid_lkup_tbl[];
-
-void bta_dm_sdp_find_services(tBTA_DM_SDP_STATE* sdp_state);
-void bta_dm_sdp_result(tSDP_STATUS sdp_result, tBTA_DM_SDP_STATE* sdp_state);
-void bta_dm_sdp_finished(RawAddress bda, tBTA_STATUS result,
-                         tBTA_SERVICE_MASK services,
-                         std::vector<bluetooth::Uuid> uuids = {},
-                         std::vector<bluetooth::Uuid> gatt_uuids = {});
-void bta_dm_sdp_callback(const RawAddress& bd_addr, tSDP_STATUS sdp_status);
 
 #ifdef TARGET_FLOSS
 void bta_dm_sdp_received_di(const RawAddress& bd_addr,
