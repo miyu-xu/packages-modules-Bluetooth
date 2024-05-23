@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7b88720_8d2b3149",
+        "filename": "flags/gap.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-23T18:32:51Z",
+      "side": 1,
+      "message": "Please update bug comment#1 to follow instruction:\n`Please delete the above instructions and leave what is below`",
+      "range": {
+        "startLine": 214,
+        "startChar": 10,
+        "endLine": 214,
+        "endChar": 19
+      },
+      "revId": "806d39b363c3a3070ec38cdd7163e1fd2e813c7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74126f16_747191aa",
+        "filename": "flags/gap.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-23T18:32:51Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Please remove the trailing whitespace.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nPlease remove the trailing whitespace.",
+      "range": {
+        "startLine": 219,
+        "startChar": 0,
+        "endLine": 219,
+        "endChar": 1
+      },
+      "revId": "806d39b363c3a3070ec38cdd7163e1fd2e813c7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
