@@ -34,6 +34,24 @@
       ],
       "revId": "436dd17a25d61cbe0e2dcd1192c4d0de6311ff32",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "561781d1_c791af70",
+        "filename": "system/audio_hal_interface/le_audio_software_host.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-05-23T13:29:49Z",
+      "side": 1,
+      "message": "Sure, thanks for the suggestion. We will definitely put that in the tasks we will do about LE audio metrics.",
+      "parentUuid": "5d45f920_b913bca9",
+      "revId": "436dd17a25d61cbe0e2dcd1192c4d0de6311ff32",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
