@@ -40,6 +40,30 @@
       ],
       "revId": "1f1cd7e39f916f785c19116a1feaad939d8b6992",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f689940_ccc1f87b",
+        "filename": "system/btif/src/btif_gatt_client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-23T18:05:58Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "9c8f40a6_538af2b6",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 18
+      },
+      "revId": "1f1cd7e39f916f785c19116a1feaad939d8b6992",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
