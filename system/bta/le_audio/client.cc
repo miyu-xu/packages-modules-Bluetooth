@@ -3941,6 +3941,17 @@ class LeAudioClientImpl : public LeAudioClient {
       if (configuration_context_type_ != context_type) {
         configuration_context_type_ = context_type;
         group->SetConfigurationContextType(context_type);
+        if (com::android::bluetooth::flags::
+                leaudio_update_codec_config_on_context_change()) {
+          current_decoder_config_ =
+              group->GetAudioSessionCodecConfigForDirection(
+                  context_type,
+                  bluetooth::le_audio::types::kLeAudioDirectionSource);
+          current_encoder_config_ =
+              group->GetAudioSessionCodecConfigForDirection(
+                  context_type,
+                  bluetooth::le_audio::types::kLeAudioDirectionSink);
+        }
       }
       return AudioReconfigurationResult::RECONFIGURATION_NOT_NEEDED;
     }
