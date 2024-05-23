@@ -117,6 +117,30 @@
       },
       "revId": "e82b69f2b2a78c9ca66a2159ba96055984e83f6b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a6e35cb_ff36eccd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2282,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-05-23T14:01:23Z",
+      "side": 1,
+      "message": "Sorry to too much confusion in this CL but I discovered that some of state checking test were broken before... and this needs to be cleaned up. I think this is the same for more than BASS module... let\u0027s make this a WIP for now. I\u0027ll attach to this CL a fix for this module but for other modules another CL would be introduced.",
+      "parentUuid": "cccd15dd_6b54bd9e",
+      "range": {
+        "startLine": 2282,
+        "startChar": 18,
+        "endLine": 2282,
+        "endChar": 52
+      },
+      "revId": "e82b69f2b2a78c9ca66a2159ba96055984e83f6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
