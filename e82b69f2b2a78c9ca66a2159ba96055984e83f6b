@@ -165,6 +165,30 @@
       },
       "revId": "e82b69f2b2a78c9ca66a2159ba96055984e83f6b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdaae92b_6c63bc16",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2282,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-23T17:00:31Z",
+      "side": 1,
+      "message": "times(1) is the default, so you can just remove it alltogether.\nIf you need to use it direclty, you just need to import it the same way you imported timeout.",
+      "parentUuid": "715e3acf_d92ade8a",
+      "range": {
+        "startLine": 2282,
+        "startChar": 18,
+        "endLine": 2282,
+        "endChar": 52
+      },
+      "revId": "e82b69f2b2a78c9ca66a2159ba96055984e83f6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
