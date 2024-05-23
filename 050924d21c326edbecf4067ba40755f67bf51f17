@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dd9d7494_efca9257",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 21
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-23T00:55:02Z",
+      "side": 1,
+      "message": "Mmh, did you test if the deadline is working on a streaming call?\n\nBecause to me this doesn\u0027t look right.\n\nAlso I think it would be better to put a timeout on the whole bondDevice call to be able to timeout as well if the intent isn\u0027t received.",
+      "parentUuid": "a14ac770_7b94f863",
+      "revId": "050924d21c326edbecf4067ba40755f67bf51f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a9d6d6fd_f0bd2c7d",
         "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
         "patchSetId": 21
