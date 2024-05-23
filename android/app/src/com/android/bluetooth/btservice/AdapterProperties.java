@@ -72,6 +72,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 class AdapterProperties {
@@ -107,6 +108,9 @@ class AdapterProperties {
     private int mProfilesConnecting, mProfilesConnected, mProfilesDisconnecting;
     private final HashMap<Integer, Pair<Integer, Integer>> mProfileConnectionState =
             new HashMap<>();
+
+    private final CompletableFuture<List<BufferConstraint>> mBufferConstraintList =
+            new CompletableFuture<>();
 
     private volatile int mConnectionState = BluetoothAdapter.STATE_DISCONNECTED;
     private volatile int mState = BluetoothAdapter.STATE_OFF;
@@ -144,8 +148,6 @@ class AdapterProperties {
     private boolean mIsLePeriodicAdvertisingSyncTransferRecipientSupported;
     private boolean mIsLeConnectedIsochronousStreamCentralSupported;
     private boolean mIsLeIsochronousBroadcasterSupported;
-
-    private List<BufferConstraint> mBufferConstraintList;
 
     private boolean mReceiverRegistered;
     private Handler mHandler;
@@ -577,7 +579,7 @@ class AdapterProperties {
      * @return Dynamic Audio Buffer Capability
      */
     BufferConstraints getBufferConstraints() {
-        return new BufferConstraints(mBufferConstraintList);
+        return new BufferConstraints(mBufferConstraintList.get());
     }
 
     /**
@@ -1116,7 +1118,7 @@ class AdapterProperties {
         // The maximum number of raw is BUFFER_CODEC_MAX_NUM(32).
         // The maximum number of column is BUFFER_TYPE_MAX(3).
         // The array element indicates the buffer time, the size is two octet.
-        mBufferConstraintList = new ArrayList<BufferConstraint>();
+        List<BufferConstraint> bufferConstraintList = new ArrayList<BufferConstraint>();
 
         for (int i = 0; i < BufferConstraints.BUFFER_CODEC_MAX_NUM; i++) {
             int defaultBufferTime = ((0xFF & ((int) val[i * 6 + 1])) << 8)
@@ -1125,10 +1127,11 @@ class AdapterProperties {
                     + (0xFF & ((int) val[i * 6 + 2]));
             int minimumBufferTime = ((0xFF & ((int) val[i * 6 + 5])) << 8)
                     + (0xFF & ((int) val[i * 6 + 4]));
-            BufferConstraint bufferConstraint = new BufferConstraint(defaultBufferTime,
-                    maximumBufferTime, minimumBufferTime);
-            mBufferConstraintList.add(bufferConstraint);
+            bufferConstraintList.add(
+                    new BufferConstraint(defaultBufferTime, maximumBufferTime, minimumBufferTime));
         }
+
+        mBufferConstraintList.complete(bufferConstraintList);
     }
 
     void onBluetoothReady() {
