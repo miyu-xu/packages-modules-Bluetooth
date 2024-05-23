@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebc19f4f_2d9fd8ca",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1694,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-23T16:31:28Z",
+      "side": 1,
+      "message": "nit : \n```suggestion\n  log::verbose(\"Peer\u003d{}\", peer_.PeerAddress());\n```",
+      "range": {
+        "startLine": 1694,
+        "startChar": 19,
+        "endLine": 1694,
+        "endChar": 22
+      },
+      "revId": "3ad537b4581fc7642ccf733b5d11d2810643c3ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "598c242e_83f47182",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1731,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-23T16:31:28Z",
+      "side": 1,
+      "message": "nit:\n```suggestion\n  log::verbose(\"Peer\u003d{}\", peer_.PeerAddress());\n```",
+      "range": {
+        "startLine": 1731,
+        "startChar": 16,
+        "endLine": 1731,
+        "endChar": 22
+      },
+      "revId": "3ad537b4581fc7642ccf733b5d11d2810643c3ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
