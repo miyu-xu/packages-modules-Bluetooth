@@ -107,7 +107,7 @@ public class PanServiceTest {
     @Test
     public void connect_inConnectedState_returnsFalse() {
         when(mMockUserManager.isGuestUser()).thenReturn(false);
-        mService.mPanDevices.put(
+        putPanDevice(
                 mRemoteDevice,
                 new BluetoothPanDevice(
                         BluetoothProfile.STATE_CONNECTED, PAN_ROLE_NONE, PAN_ROLE_NONE));
@@ -118,7 +118,7 @@ public class PanServiceTest {
     @Test
     public void connect() {
         when(mMockUserManager.isGuestUser()).thenReturn(false);
-        mService.mPanDevices.put(
+        putPanDevice(
                 mRemoteDevice,
                 new BluetoothPanDevice(
                         BluetoothProfile.STATE_DISCONNECTED, PAN_ROLE_NONE, PAN_ROLE_NONE));
@@ -147,7 +147,7 @@ public class PanServiceTest {
 
     @Test
     public void dump() {
-        mService.mPanDevices.put(
+        putPanDevice(
                 mRemoteDevice,
                 new BluetoothPanDevice(
                         BluetoothProfile.STATE_DISCONNECTED, PAN_ROLE_NONE, PAN_ROLE_NONE));
@@ -215,7 +215,7 @@ public class PanServiceTest {
     @Test
     public void tetheringCallback_onError_clearsPanDevices() {
         mService.mIsTethering = true;
-        mService.mPanDevices.put(
+        putPanDevice(
                 mRemoteDevice,
                 new BluetoothPanDevice(
                         BluetoothProfile.STATE_DISCONNECTED, PAN_ROLE_NONE, PAN_ROLE_NONE));
@@ -225,5 +225,11 @@ public class PanServiceTest {
 
         assertThat(mService.mPanDevices).isEmpty();
         assertThat(mService.mIsTethering).isFalse();
+    }
+
+    private void putPanDevice(BluetoothDevice device, BluetoothPanDevice panDevice) {
+        synchronized (mService.mDevicesLock) {
+            mService.mPanDevices.put(device, panDevice);
+        }
     }
 }
