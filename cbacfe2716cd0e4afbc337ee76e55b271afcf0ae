@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0665cab9_0c7d50cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-23T16:18:48Z",
+      "side": 1,
+      "message": "Cl still valid, this is dead code that need to be deleted.\n\nStarting pre-submit and requesting DrNo in following.",
+      "revId": "cbacfe2716cd0e4afbc337ee76e55b271afcf0ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
