@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d45f920_b913bca9",
+        "filename": "system/audio_hal_interface/le_audio_software_host.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-05-23T08:37:23Z",
+      "side": 1,
+      "message": "nit: Okayish, but this log is not much helpful as it floods the output. A counter of its occurrences and relevant statistics might be more informative. I suggest implementing a periodical timer to check health of SW data path and dump these the statistics in another patch.",
+      "fixSuggestions": [
+        {
+          "fixId": "87e970a9_048ec9b2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/audio_hal_interface/le_audio_software_host.cc",
+              "range": {
+                "startLine": 281,
+                "startChar": 0,
+                "endLine": 282,
+                "endChar": 0
+              },
+              "replacement": "  log::verbose(\"Read {} bytes\", bytes_read);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "436dd17a25d61cbe0e2dcd1192c4d0de6311ff32",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
