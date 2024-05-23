@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7251c5b4_eae3e9c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-23T07:49:40Z",
+      "side": 1,
+      "message": "Please turn BTA dm SDP into a class so that you can use gMock to verify it.",
+      "revId": "a42479dffb878b5112c13f1f828fcc6f7259adbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
