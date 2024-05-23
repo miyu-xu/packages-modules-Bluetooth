@@ -137,6 +137,8 @@ public class BluetoothInCallService extends InCallService {
     private final HashMap<Integer, BluetoothCall> mBluetoothConferenceCallInference =
             new HashMap<>();
 
+    private final HashMap<String, Integer> mClccIndexMap = new HashMap<>();
+
     // A queue record the removal order of bluetooth calls
     private final Queue<Integer> mBluetoothCallQueue = new ArrayDeque<>();
 
@@ -680,6 +682,13 @@ public class BluetoothInCallService extends InCallService {
                 Log.d(TAG, "add inference call with reason: " + cause.getReason());
                 mBluetoothCallQueue.add(call.getId());
                 mBluetoothConferenceCallInference.put(call.getId(), call);
+                // If the disconnect is due to call merge, store the index for future use.
+                if (cause.getReason().compareTo("IMS_MERGED_SUCCESSFULLY") == 0) {
+                    if (!mClccIndexMap.containsKey(getClccMapKey(call))) {
+                        mClccIndexMap.put(getClccMapKey(call), call.mClccIndex);
+                    }
+                }
+
                 // queue size limited to 2 because merge operation only happens on 2 calls
                 // we are only interested in last 2 calls merged
                 if (mBluetoothCallQueue.size() > 2) {
@@ -697,6 +706,13 @@ public class BluetoothInCallService extends InCallService {
         }
 
         updateHeadsetWithCallState(false /* force */);
+
+        int anyActiveCalls = mCallInfo.isNullCall(mCallInfo.getActiveCall()) ? 0 : 1;
+        int numHeldCalls = mCallInfo.getNumHeldCalls();
+        // If no call is active or held clear the hashmap.
+        if (anyActiveCalls == 0 && numHeldCalls == 0) {
+            mClccIndexMap.clear();
+        }
 
         if (mBluetoothLeCallControl != null) {
             mBluetoothLeCallControl.onCallRemoved(call.getTbsCallId(), getTbsTerminationReason(call));
@@ -1037,6 +1053,21 @@ public class BluetoothInCallService extends InCallService {
         return availableIndex.first();
     }
 
+    /* Function to extract and return call handle. */
+    private String getClccMapKey(BluetoothCall call) {
+        if (mCallInfo.isNullCall(call) || call.getHandle() == null) {
+            return "";
+        }
+        Uri handle = call.getHandle();
+        String key;
+        if (call.hasProperty(Call.Details.PROPERTY_SELF_MANAGED)) {
+            key = handle.toString() + " self managed " + call.getId();
+        } else {
+            key = handle.toString();
+        }
+        return key;
+    }
+
     /**
      * Returns the caches index for the specified call. If no such index exists, then an index is
      * given (the smallest number starting from 1 that isn't already taken).
@@ -1046,6 +1077,11 @@ public class BluetoothInCallService extends InCallService {
             Log.w(TAG, "empty or null call");
             return -1;
         }
+        // Check if the call handle is already stored. Return the previously stored index.
+        if (mClccIndexMap.containsKey(getClccMapKey(call))) {
+            call.mClccIndex = mClccIndexMap.get(getClccMapKey(call));
+        }
+
         if (call.mClccIndex >= 1) {
             return call.mClccIndex;
         }
