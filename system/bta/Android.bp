@@ -410,6 +410,8 @@ cc_test {
         ":TestCommonMockFunctions",
         ":TestMockBtif",
         ":TestMockDevice",
+        ":TestMockMainShim",
+        ":TestMockMainShimEntry",
         ":TestMockStack",
         "test/bta_hf_client_security_test.cc",
     ],

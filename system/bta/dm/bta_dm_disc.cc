@@ -253,9 +253,11 @@ void bta_dm_sdp_callback(const RawAddress& /* bd_addr */,
     return;
   }
 
-  do_in_main_thread(FROM_HERE,
-                    base::BindOnce(&bta_dm_sdp_result, sdp_status,
-                                   bta_dm_discovery_cb.sdp_state.get()));
+  do_in_main_thread(
+      FROM_HERE,
+      base::BindOnce(&BtaDmSdpPerformer::OnResult,
+                     base::Unretained(bta_dm_discovery_cb.sdp_performer.get()),
+                     sdp_status));
 }
 
 /** Callback of peer's DIS reply. This is only called for floss */
@@ -343,7 +345,7 @@ static void bta_dm_queue_disc(tBTA_DM_API_DISCOVER& discovery) {
 
 static void bta_dm_execute_queued_discovery_request() {
   if (bta_dm_discovery_cb.pending_discovery_queue.empty()) {
-    bta_dm_discovery_cb.sdp_state.reset();
+    bta_dm_discovery_cb.sdp_performer.reset();
     log::info("No more service discovery queued");
     return;
   }
@@ -385,6 +387,20 @@ static tBT_TRANSPORT bta_dm_determine_discovery_transport(
     }
   }
   return BT_TRANSPORT_BR_EDR;
+}
+
+namespace {
+
+// Factory method that can be overridden for testing
+SdpPerformerFactory sdp_performer_factory = [](RawAddress bd_addr) {
+  return std::make_unique<BtaDmSdpPerformer>(bd_addr);
+};
+
+}  // namespace
+
+void bta_dm_disc_override_sdp_performer_for_testing(
+    SdpPerformerFactory factory_method) {
+  sdp_performer_factory = std::move(factory_method);
 }
 
 /* Discovers services on a remote device */
@@ -430,14 +446,8 @@ static void bta_dm_discover_services(tBTA_DM_API_DISCOVER& discover) {
   // transport == BT_TRANSPORT_BR_EDR
 
   log::info("starting SDP discovery on {}", bd_addr);
-  bta_dm_discovery_cb.sdp_state =
-      std::make_unique<tBTA_DM_SDP_STATE>(tBTA_DM_SDP_STATE{
-          .bd_addr = bd_addr,
-          .services_to_search = BTA_ALL_SERVICE_MASK,
-          .services_found = 0,
-          .service_index = 0,
-      });
-  bta_dm_sdp_find_services(bta_dm_discovery_cb.sdp_state.get());
+  bta_dm_discovery_cb.sdp_performer = sdp_performer_factory(bd_addr);
+  bta_dm_discovery_cb.sdp_performer->FindServices();
 }
 
 #ifndef BTA_DM_GATT_CLOSE_DELAY_TOUT
@@ -699,10 +709,6 @@ namespace testing {
 
 tBT_TRANSPORT bta_dm_determine_discovery_transport(const RawAddress& bd_addr) {
   return ::bta_dm_determine_discovery_transport(bd_addr);
-}
-
-void bta_dm_sdp_result(tSDP_STATUS sdp_status, tBTA_DM_SDP_STATE* state) {
-  ::bta_dm_sdp_result(sdp_status, state);
 }
 
 }  // namespace testing

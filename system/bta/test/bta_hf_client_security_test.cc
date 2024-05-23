@@ -32,6 +32,7 @@ bluetooth::common::MessageLoopThread* get_main_thread() { return nullptr; }
 void do_in_main_thread(base::Location const&, base::OnceCallback<void()>) {
   return;
 }
+void post_on_bt_main(std::function<void()> closure) {}
 
 namespace {
 const RawAddress bdaddr1({0x11, 0x22, 0x33, 0x44, 0x55, 0x66});
