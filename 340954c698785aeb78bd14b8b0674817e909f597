@@ -142,6 +142,24 @@
       "parentUuid": "675971ec_7ac39c6d",
       "revId": "340954c698785aeb78bd14b8b0674817e909f597",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a78515fa_31573ab5",
+        "filename": "system/bta/test/bta_disc_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-23T06:58:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "445f743c_d5d21abe",
+      "revId": "340954c698785aeb78bd14b8b0674817e909f597",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
