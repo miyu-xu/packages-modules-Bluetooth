@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9048aa93_406438e2",
+        "filename": "flags/pairing.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-05-23T02:00:53Z",
+      "side": 1,
+      "message": "Seems not to be the right bug number",
+      "range": {
+        "startLine": 52,
+        "startChar": 10,
+        "endLine": 52,
+        "endChar": 19
+      },
+      "revId": "3b4d05070f4b5078c331d8d3bb5108ec9438720a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
