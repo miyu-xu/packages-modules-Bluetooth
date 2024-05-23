@@ -36,6 +36,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2703afb0_91fe09c9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-05-23T04:08:55Z",
+      "side": 1,
+      "message": "We\u0027re selecting the Phy setting from the most aggressive scan client. If the most aggressive scan client sets a 1M Phy only and other scan client sets a all Phy then the coded phy is not set in native stack.",
+      "revId": "e85a40e5b8e42dd9c2ba0f0c17162f1a7e88a389",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "22ca3c0b_c7e46f38",
