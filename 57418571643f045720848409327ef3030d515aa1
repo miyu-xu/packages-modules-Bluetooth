@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b2e3268_95e9d8c6",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 987,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-23T21:59:30Z",
+      "side": 1,
+      "message": "nit: remove?",
+      "range": {
+        "startLine": 987,
+        "startChar": 0,
+        "endLine": 987,
+        "endChar": 7
+      },
+      "revId": "57418571643f045720848409327ef3030d515aa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
