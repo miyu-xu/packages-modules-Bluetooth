@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1aa0a973_b68dca27",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-05-23T00:48:36Z",
+      "side": 1,
+      "message": "Yes, it\u0027s likely that `substring(0, 0)` will be well defined, my worry was that this assert would assert nothing with an empty string, but it seems that I misread the assertion and that it\u0027s actually fine, sorry about that !",
+      "parentUuid": "56be38e6_ca2345ef",
+      "range": {
+        "startLine": 239,
+        "startChar": 52,
+        "endLine": 239,
+        "endChar": 85
+      },
+      "revId": "d233e6db8485136c9b6c1a13b84a94f1cb8bbb5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87c04454_35d650f1",
