@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0de5606_2c464ccc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-23T22:27:54Z",
+      "side": 1,
+      "message": "They are helpful when something goes wrong.  In the logs you can tell what thread each log is printed from:\n\nMain loop:\n05-23 14:27:46.922 1365757 1365773 I bluetooth: system/common/message_loop_thread.cc:189 Run: message loop starting for thread \n\nTest thread:\n05-23 14:27:46.926 1365757 1365757 I bluetooth: system/gd/module_gdx_unittest.cc:604 TestBody: Waiting\n\nMain:\n05-23 14:27:46.928 1365757 1365773 I bluetooth: system/gd/module_gdx_unittest.cc:441 operator(): set_value This was called on the jni\n05-23 14:27:46.928 1365757 1365773 I bluetooth: system/gd/module_gdx_unittest.cc:614 operator(): Finally",
+      "parentUuid": "1d6ec9cb_2ab58b4c",
+      "revId": "e89faf48122e587d1f6b90af05767ff24a9c2c6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a242c09_f9c5b54a",
