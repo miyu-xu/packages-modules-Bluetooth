@@ -3,6 +3,71 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "73464319_8627ef6e",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1682,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-23T16:32:34Z",
+      "side": 1,
+      "message": "Don\u0027t you want to add a default toString for peer instead ? to always give address, statemachine, handle ?",
+      "fixSuggestions": [
+        {
+          "fixId": "260f747e_0b282c04",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_av.cc",
+              "range": {
+                "startLine": 1426,
+                "startChar": 0,
+                "endLine": 1427,
+                "endChar": 0
+              },
+              "replacement": "              peer-\u003eStateMachine().StateId());\n"
+            },
+            {
+              "path": "system/btif/src/btif_av.cc",
+              "range": {
+                "startLine": 1432,
+                "startChar": 0,
+                "endLine": 1433,
+                "endChar": 0
+              },
+              "replacement": "              peer-\u003eStateMachine().StateId());\n"
+            },
+            {
+              "path": "system/btif/src/btif_av.cc",
+              "range": {
+                "startLine": 1683,
+                "startChar": 0,
+                "endLine": 1684,
+                "endChar": 0
+              },
+              "replacement": "              peer-\u003eStateMachine().StateId());\n"
+            },
+            {
+              "path": "system/btif/src/btif_av.cc",
+              "range": {
+                "startLine": 1689,
+                "startChar": 0,
+                "endLine": 1690,
+                "endChar": 0
+              },
+              "replacement": "              peer-\u003eStateMachine().StateId());\n"
+            }
+          ]
+        }
+      ],
+      "revId": "3ad537b4581fc7642ccf733b5d11d2810643c3ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ebc19f4f_2d9fd8ca",
         "filename": "system/btif/src/btif_av.cc",
         "patchSetId": 2
