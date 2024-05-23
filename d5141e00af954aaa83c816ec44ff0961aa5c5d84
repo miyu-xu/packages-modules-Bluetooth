@@ -38,6 +38,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "40891986_36161780",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/TransitionalScanHelperTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-23T18:22:22Z",
+      "side": 1,
+      "message": "Prefer using the @EnableFlags annotation as enableFlags is deprecated\n\n```java\n   import android.platform.test.annotations.EnableFlags;\n   […]\n   @EnableFlags(Flags.FLAG_LE_SCAN_USE_ADDRESS_TYPE)\n    public void onTrackAdvFoundLost() throws Exception {\n```",
+      "range": {
+        "startLine": 404,
+        "startChar": 0,
+        "endLine": 405,
+        "endChar": 71
+      },
+      "revId": "d5141e00af954aaa83c816ec44ff0961aa5c5d84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1dc5faf_5e216e36",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/TransitionalScanHelperTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-23T18:22:22Z",
+      "side": 1,
+      "message": "this is already done in constructor",
+      "range": {
+        "startLine": 423,
+        "startChar": 0,
+        "endLine": 423,
+        "endChar": 41
+      },
+      "revId": "d5141e00af954aaa83c816ec44ff0961aa5c5d84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f9209162_af2bebc8",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/TransitionalScanHelperTest.java",
         "patchSetId": 1
