@@ -3885,23 +3885,10 @@ public final class BluetoothAdapter {
                                 }
                             }
                         }
-                        synchronized (mBluetoothConnectionCallbackExecutorMap) {
-                            if (!mBluetoothConnectionCallbackExecutorMap.isEmpty()) {
-                                try {
-                                    mService.registerBluetoothConnectionCallback(
-                                            mConnectionCallback, mAttributionSource);
-                                } catch (RemoteException e) {
-                                    Log.e(
-                                            TAG,
-                                            "onBluetoothServiceUp: Failed to register "
-                                                    + "bluetooth connection callback",
-                                            e);
-                                }
-                            }
-                        }
                     } finally {
                         mServiceLock.readLock().unlock();
                     }
+                    registerBluetoothConnectionCallbackIfNeeded();
                 }
 
                 public void onBluetoothServiceDown() {
@@ -4753,7 +4740,7 @@ public final class BluetoothAdapter {
     }
 
     @SuppressLint("AndroidFrameworkBluetoothPermission")
-    private final IBluetoothConnectionCallback mConnectionCallback =
+    private final IBluetoothConnectionCallback mBluetoothConnectionCallback =
             new IBluetoothConnectionCallback.Stub() {
                 @Override
                 public void onDeviceConnected(BluetoothDevice device) {
@@ -4809,27 +4796,32 @@ public final class BluetoothAdapter {
             }
 
             if (mBluetoothConnectionCallbackExecutorMap.isEmpty()) {
-                // If the callback map is empty, we register the service-to-app callback
-                mServiceLock.readLock().lock();
-                try {
-                    if (mService == null) {
-                        return false;
-                    }
-                    mService.registerBluetoothConnectionCallback(
-                            mConnectionCallback, mAttributionSource);
-                } catch (RemoteException e) {
-                    Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
-                    return false;
-                } finally {
-                    mServiceLock.readLock().unlock();
-                }
+                mBluetoothConnectionCallbackExecutorMap.put(callback, executor);
+                registerBluetoothConnectionCallbackIfNeeded();
             }
+        }
+        return true;
+    }
 
-            // Adds the passed in callback to our map of callbacks to executors
-            mBluetoothConnectionCallbackExecutorMap.put(callback, executor);
+    private void registerBluetoothConnectionCallbackIfNeeded() {
+        synchronized (mBluetoothConnectionCallbackExecutorMap) {
+            if (mBluetoothConnectionCallbackExecutorMap.isEmpty()) {
+                return;
+            }
         }
 
-        return true;
+        mServiceLock.readLock().lock();
+        try {
+            if (mService == null) {
+                return;
+            }
+            mService.registerBluetoothConnectionCallback(
+                    mBluetoothConnectionCallback, mAttributionSource);
+        } catch (RemoteException e) {
+            Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+        } finally {
+            mServiceLock.readLock().unlock();
+        }
     }
 
     /**
@@ -4868,7 +4860,7 @@ public final class BluetoothAdapter {
                         return true;
                     }
                     mService.unregisterBluetoothConnectionCallback(
-                            mConnectionCallback, mAttributionSource);
+                            mBluetoothConnectionCallback, mAttributionSource);
                 } catch (RemoteException e) {
                     Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
                 } finally {
