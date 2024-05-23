@@ -137,6 +137,8 @@ public class BluetoothInCallService extends InCallService {
     private final HashMap<Integer, BluetoothCall> mBluetoothConferenceCallInference =
             new HashMap<>();
 
+    private final HashMap<String, Integer> mClccIndexMap = new HashMap<>();
+
     // A queue record the removal order of bluetooth calls
     private final Queue<Integer> mBluetoothCallQueue = new ArrayDeque<>();
 
@@ -680,6 +682,11 @@ public class BluetoothInCallService extends InCallService {
                 Log.d(TAG, "add inference call with reason: " + cause.getReason());
                 mBluetoothCallQueue.add(call.getId());
                 mBluetoothConferenceCallInference.put(call.getId(), call);
+                if (cause.getReason().compareTo("IMS_MERGED_SUCCESSFULLY") == 0) {
+                    // Note the index value
+                    mClccIndexMap.put(getClccMapKey(call), call.mClccIndex);
+                }
+
                 // queue size limited to 2 because merge operation only happens on 2 calls
                 // we are only interested in last 2 calls merged
                 if (mBluetoothCallQueue.size() > 2) {
@@ -770,6 +777,7 @@ public class BluetoothInCallService extends InCallService {
         mCallbacks.clear();
         mBluetoothCallHashMap.clear();
         mBluetoothConferenceCallInference.clear();
+        mClccIndexMap.clear();
         mBluetoothCallQueue.clear();
         mMaxNumberOfCalls = 0;
     }
@@ -1037,6 +1045,20 @@ public class BluetoothInCallService extends InCallService {
         return availableIndex.first();
     }
 
+    private String getClccMapKey(BluetoothCall call) {
+        if (mCallInfo.isNullCall(call) || call.getHandle() == null) {
+            return "";
+        }
+        Uri handle = call.getHandle();
+        String key;
+        if (call.hasProperty(Call.Details.PROPERTY_SELF_MANAGED)) {
+            key = handle.toString() + " self managed " + call.getId();
+        } else {
+            key = handle.toString();
+        }
+        return key;
+    }
+
     /**
      * Returns the caches index for the specified call. If no such index exists, then an index is
      * given (the smallest number starting from 1 that isn't already taken).
@@ -1046,7 +1068,14 @@ public class BluetoothInCallService extends InCallService {
             Log.w(TAG, "empty or null call");
             return -1;
         }
-        if (call.mClccIndex >= 1) {
+
+        if (mClccIndexMap.containsKey(getClccMapKey(call))) {
+            call.mClccIndex = mClccIndexMap.get(getClccMapKey(call));
+            if (call.mClccIndex >= 1) {
+                mClccIndexMap.remove(getClccMapKey(call));
+                return call.mClccIndex;
+            }
+        } else if (call.mClccIndex >= 1) {
             return call.mClccIndex;
         }
 
