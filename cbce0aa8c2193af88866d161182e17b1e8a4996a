@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48201ec8_62669bc7",
+        "filename": "system/bta/dm/bta_dm_disc_sdp.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-23T18:26:09Z",
+      "side": 0,
+      "message": "shouldn\u0027t this be removed, too?",
+      "range": {
+        "startLine": 288,
+        "startChar": 0,
+        "endLine": 288,
+        "endChar": 46
+      },
+      "revId": "cbce0aa8c2193af88866d161182e17b1e8a4996a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6495ed50_73eaebc0",
+        "filename": "system/bta/dm/bta_dm_disc_sdp.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-23T18:26:09Z",
+      "side": 0,
+      "message": "then the question is whether services_found in sdp_state is still useful?",
+      "range": {
+        "startLine": 288,
+        "startChar": 31,
+        "endLine": 288,
+        "endChar": 45
+      },
+      "revId": "cbce0aa8c2193af88866d161182e17b1e8a4996a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd60b06d_3e1913ff",
+        "filename": "system/bta/dm/bta_dm_disc_sdp.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-23T18:26:09Z",
+      "side": 0,
+      "message": "nit: this is magic number, should probably clarify later",
+      "range": {
+        "startLine": 291,
+        "startChar": 41,
+        "endLine": 291,
+        "endChar": 42
+      },
+      "revId": "cbce0aa8c2193af88866d161182e17b1e8a4996a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
