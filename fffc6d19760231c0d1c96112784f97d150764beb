@@ -1,0 +1,74 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "983b1e3c_4680c3cd",
+        "filename": "system/stack/include/port_api.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-23T23:22:42Z",
+      "side": 1,
+      "message": "Same as here",
+      "fixSuggestions": [
+        {
+          "fixId": "5b4da27c_e9398243",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/port_api.h",
+              "range": {
+                "startLine": 89,
+                "startChar": 0,
+                "endLine": 90,
+                "endChar": 0
+              },
+              "replacement": "typedef void(tPORT_CALLBACK)(uint32_t code, uint16_t port_handle,\n                             void* p_param);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "fffc6d19760231c0d1c96112784f97d150764beb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be078e13_75f5864b",
+        "filename": "system/stack/include/port_api.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-23T23:22:42Z",
+      "side": 1,
+      "message": "This is the same callback signature but renamed temporarily as the one above",
+      "fixSuggestions": [
+        {
+          "fixId": "f868e8d1_e7995378",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/port_api.h",
+              "range": {
+                "startLine": 190,
+                "startChar": 0,
+                "endLine": 190,
+                "endChar": 0
+              },
+              "replacement": "// This is the same callback but renamed temporarily as the one above\n"
+            }
+          ]
+        }
+      ],
+      "revId": "fffc6d19760231c0d1c96112784f97d150764beb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
