@@ -97,6 +97,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "f0b06a92_38001636",
+        "filename": "system/bta/dm/bta_dm_disc_sdp.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-23T18:45:52Z",
+      "side": 0,
+      "message": "Acknowledged",
+      "parentUuid": "06753aad_f2c949e4",
+      "range": {
+        "startLine": 288,
+        "startChar": 31,
+        "endLine": 288,
+        "endChar": 45
+      },
+      "revId": "cbce0aa8c2193af88866d161182e17b1e8a4996a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "cd60b06d_3e1913ff",
         "filename": "system/bta/dm/bta_dm_disc_sdp.cc",
         "patchSetId": 1
