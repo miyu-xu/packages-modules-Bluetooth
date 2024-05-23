@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2dfcdfa2_57299ec3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-23T13:26:30Z",
+      "side": 1,
+      "message": "Patchset 4: Rebased and fixed an edge case: Patchset 3 on discovery state changed the pending_create_bond would be emptied before sending out a delayed action. This actually allows other create_bond requests to cut in the line and fail the pending one. Moving it to the dispatcher shall fix the issue.",
+      "revId": "5858d04672e5b22287ecc1f1599c44ec369f3f2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
