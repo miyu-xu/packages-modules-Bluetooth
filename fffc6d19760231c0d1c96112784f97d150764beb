@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "3ff7c3fe_e59d36e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-24T14:45:49Z",
+      "side": 1,
+      "message": "The management callback is for lifecycle events and should be separate from the client callback.",
+      "revId": "fffc6d19760231c0d1c96112784f97d150764beb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "983b1e3c_4680c3cd",
         "filename": "system/stack/include/port_api.h",
         "patchSetId": 4
