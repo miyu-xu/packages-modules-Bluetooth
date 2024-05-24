@@ -16,6 +16,40 @@
       "message": "PTAL, thanks!",
       "revId": "7b7e31065a09917443bdc66ba7c2ed5a840db113",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12c852c2_489926e4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-05-24T21:11:59Z",
+      "side": 1,
+      "message": "For FP audio devices, I thought the flow is also to initially create a gatt connection, pair/connection via classic, then disconnect the gatt connection once the flow is completed. Why do we not hit this with FP?",
+      "revId": "7b7e31065a09917443bdc66ba7c2ed5a840db113",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c92c8c6_46d4aa8c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-05-24T21:11:59Z",
+      "side": 1,
+      "message": "This part feels strange to me that we are guessing the state. What if we guess incorrectly?",
+      "revId": "7b7e31065a09917443bdc66ba7c2ed5a840db113",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
