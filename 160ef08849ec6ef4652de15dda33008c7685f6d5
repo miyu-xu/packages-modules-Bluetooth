@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99dcf8f5_b1e59c5b",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1546,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-24T17:59:12Z",
+      "side": 1,
+      "message": "Shouldn\u0027t it be btif_addr.ToRedactedStringForLogging()",
+      "fixSuggestions": [
+        {
+          "fixId": "4ea0703f_6b83a98b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/av/bta_av_act.cc",
+              "range": {
+                "startLine": 1546,
+                "startChar": 0,
+                "endLine": 1547,
+                "endChar": 0
+              },
+              "replacement": "        log::debug(\"btif_addr \u003d {}, index\u003d{}!\", btif_addr.ToString(), index);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "160ef08849ec6ef4652de15dda33008c7685f6d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
