@@ -379,3 +379,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "leaudio_update_codec_config_on_context_change"
+    namespace: "bluetooth"
+    description: "Update codec config when audio context changed"
+    bug: "342552956"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
