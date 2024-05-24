@@ -16,6 +16,40 @@
       "message": "LGTM from Floss side",
       "revId": "b54a78af75e37279c755411cd4bca860770a3010",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b76e477d_dde35b18",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-24T20:35:06Z",
+      "side": 1,
+      "message": "These changes don\u0027t make it obvious that they are only applicable for Floss. It is going to distract readers in the future.\nCan we prepend the flag with \"floss\" or add comments to indicate that these are for floss only?",
+      "revId": "b54a78af75e37279c755411cd4bca860770a3010",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c661807f_2019f1c7",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-24T20:35:06Z",
+      "side": 1,
+      "message": "Nit: We have 3 sources of truth for this property name.",
+      "revId": "b54a78af75e37279c755411cd4bca860770a3010",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
