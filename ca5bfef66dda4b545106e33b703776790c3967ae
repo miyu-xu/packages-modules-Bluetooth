@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "032ecc64_7a55c1b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-24T17:28:53Z",
+      "side": 1,
+      "message": "This will allow any device to force us to remove the bond with other devices. This should be handled at a higher layer. Profiles have no right to remove the bond.",
+      "revId": "ca5bfef66dda4b545106e33b703776790c3967ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
