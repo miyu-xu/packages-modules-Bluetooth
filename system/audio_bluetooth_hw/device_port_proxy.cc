@@ -457,7 +457,7 @@ bool BluetoothAudioPortAidl::CondwaitState(BluetoothStreamState state) {
   return retval;  // false if any failure like timeout
 }
 
-bool BluetoothAudioPortAidl::Start() {
+bool BluetoothAudioPortAidl::Start(bool low_latency) {
   if (!in_use()) {
     LOG(ERROR) << __func__ << ": BluetoothAudioPortAidl is not in use";
     return false;
@@ -469,7 +469,7 @@ bool BluetoothAudioPortAidl::Start() {
   bool retval = false;
   if (state_ == BluetoothStreamState::STANDBY) {
     state_ = BluetoothStreamState::STARTING;
-    if (BluetoothAudioSessionControl::StartStream(session_type_)) {
+    if (BluetoothAudioSessionControl::StartStream(session_type_, low_latency)) {
       retval = CondwaitState(BluetoothStreamState::STARTING);
     } else {
       LOG(ERROR) << __func__ << ": session_type=" << toString(session_type_)
