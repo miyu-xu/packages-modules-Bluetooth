@@ -34,6 +34,24 @@
       "parentUuid": "f431c27e_4d3ac766",
       "revId": "fa655371b24d923285422123483fa53a499ed705",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc556a96_94d9f84c",
+        "filename": "flags/api_flag/ranging.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-05-24T20:46:17Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "22818818_bdcedf70",
+      "revId": "fa655371b24d923285422123483fa53a499ed705",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
