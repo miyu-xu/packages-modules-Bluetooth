@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07f13480_a4e217f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-05-24T19:30:50Z",
+      "side": 1,
+      "message": "Have we had a discussion with the right folks to align on the privacy story here? Do we know that doubling these values will indeed yield increased success rates for your use cases for Android and iOS devices, such that its worth it to take more data from the user?",
+      "revId": "e853d92d7cb6b66cc38efa00a99926655bc9e641",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
