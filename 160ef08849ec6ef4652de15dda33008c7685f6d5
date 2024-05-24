@@ -70,6 +70,24 @@
       "parentUuid": "98911e93_ced1bda4",
       "revId": "160ef08849ec6ef4652de15dda33008c7685f6d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bbac97e_dd64d719",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1546,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-24T18:24:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aaa1ae3c_97eb6505",
+      "revId": "160ef08849ec6ef4652de15dda33008c7685f6d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
