@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a839e0b3_2fcae0aa",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 973,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-05-24T18:22:52Z",
+      "side": 1,
+      "message": "How many latency increased as you update the configuration to audio HAL? Would the broadcast configuration would be changed during the session live cycle currently?",
+      "range": {
+        "startLine": 973,
+        "startChar": 14,
+        "endLine": 973,
+        "endChar": 52
+      },
+      "revId": "a5956cf70f72d58fbf89bfea4e19a39453172a95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
