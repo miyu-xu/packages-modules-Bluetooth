@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f431c27e_4d3ac766",
+        "filename": "flags/api_flag/ranging.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-05-24T16:36:42Z",
+      "side": 1,
+      "message": "Is this correct?, it was \"com.android.bluetooth.flags\"",
+      "revId": "fa655371b24d923285422123483fa53a499ed705",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
