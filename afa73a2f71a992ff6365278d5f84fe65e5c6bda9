@@ -3,6 +3,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7d7f4a1f_db68b454",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-24T17:08:00Z",
+      "side": 1,
+      "message": "uint8_t?  Or should the WriteCallbackData hold uint16_t?\n\nCould this be an enum type instead?",
+      "range": {
+        "startLine": 36,
+        "startChar": 17,
+        "endLine": 36,
+        "endChar": 25
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "74d91371_45b41ee9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 36,
+                "startChar": 0,
+                "endLine": 37,
+                "endChar": 0
+              },
+              "replacement": "static constexpr uint8_t kTypeVendorSpecificReply \u003d 0x01;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "afa73a2f71a992ff6365278d5f84fe65e5c6bda9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "493b7973_90365d01",
         "filename": "system/bta/ras/ras_client.cc",
         "patchSetId": 1
@@ -14,6 +55,115 @@
       "writtenOn": "2024-05-23T19:10:30Z",
       "side": 1,
       "message": "Is that a provacy concern to show full address?",
+      "revId": "afa73a2f71a992ff6365278d5f84fe65e5c6bda9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afaa6541_14864748",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-24T17:08:00Z",
+      "side": 1,
+      "message": "The new logging style should handle that for us.  Thanks for watching for it, though!",
+      "parentUuid": "493b7973_90365d01",
+      "revId": "afa73a2f71a992ff6365278d5f84fe65e5c6bda9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89e1e740_931c9701",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-24T17:08:00Z",
+      "side": 1,
+      "message": "This is only ever written.  Should it be a constant in the class?",
+      "range": {
+        "startLine": 138,
+        "startChar": 6,
+        "endLine": 138,
+        "endChar": 31
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7cac0542_5ad33777",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 36,
+                "startChar": 0,
+                "endLine": 37,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 40,
+                "startChar": 0,
+                "endLine": 44,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 138,
+                "startChar": 0,
+                "endLine": 139,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 142,
+                "startChar": 0,
+                "endLine": 143,
+                "endChar": 0
+              },
+              "replacement": "          GattWriteCallback, \u0026kTypeVendorSpecificReply);\n"
+            },
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 384,
+                "startChar": 0,
+                "endLine": 387,
+                "endChar": 0
+              },
+              "replacement": "      uint8_t* type \u003d static_cast\u003cuint8_t*\u003e(data);\n      if (*type \u003d\u003d kTypeVendorSpecificReply) {\n"
+            },
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 648,
+                "startChar": 0,
+                "endLine": 649,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
       "revId": "afa73a2f71a992ff6365278d5f84fe65e5c6bda9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -49,6 +199,200 @@
           ]
         }
       ],
+      "revId": "afa73a2f71a992ff6365278d5f84fe65e5c6bda9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fadf702_82230b78",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-24T17:08:00Z",
+      "side": 1,
+      "message": "What does const do for a void* ?",
+      "parentUuid": "785d2d4e_eac0e86e",
+      "revId": "afa73a2f71a992ff6365278d5f84fe65e5c6bda9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68e9cae6_ce606a22",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-24T17:08:00Z",
+      "side": 1,
+      "message": "Can we split this into two?\n```suggestion\n  void GattWriteVsCallback(uint16_t conn_id, tGATT_STATUS status, uint16_t handle,\n                         const uint8_t* value) {\n    log::info(\"Write vendor specific reply complete\");\n    auto tracker \u003d FindTrackerByHandle(conn_id);\n    tracker-\u003ewriteReplyCounter_++;\n    if (status \u003d\u003d GATT_SUCCESS) {\n      tracker-\u003ewriteReplySuccessCounter_++;\n    } else {\n      log::error(\n          \"Fail to write vendor specific reply conn_id {}, status {}, \"\n          \"handle {}\",\n          conn_id, gatt_status_text(status), handle);\n    }\n    // All reply complete\n    if (tracker-\u003ewriteReplyCounter_ \u003d\u003d\n        tracker-\u003evendor_specific_characteristics_.size()) {\n      log::info(\n          \"All vendor specific reply write complete, size {} \"\n          \"successCounter {}\",\n          tracker-\u003evendor_specific_characteristics_.size(),\n          tracker-\u003ewriteReplySuccessCounter_);\n      bool success \u003d tracker-\u003ewriteReplySuccessCounter_ \u003d\u003d\n                     tracker-\u003evendor_specific_characteristics_.size();\n      tracker-\u003ewriteReplyCounter_ \u003d 0;\n      tracker-\u003ewriteReplySuccessCounter_ \u003d 0;\n      callbacks_-\u003eOnWriteVendorSpecificReplyComplete(\n          tracker-\u003eaddress_for_cs_, success);\n    }\n  }\n\n  void GattWriteCallback(uint16_t conn_id, tGATT_STATUS status, uint16_t handle,\n                         const uint8_t* value) {\n    if (status !\u003d GATT_SUCCESS) {\n      log::error(\"Fail to write conn_id {}, status {}, handle {}\", conn_id,\n                 gatt_status_text(status), handle);\n      auto tracker \u003d FindTrackerByHandle(conn_id);\n      if (tracker \u003d\u003d nullptr) {\n        log::warn(\"Can\u0027t find tracker for conn_id:{}\", conn_id);\n        return;\n      }\n      auto characteristic \u003d tracker-\u003eFindCharacteristicByHandle(handle);\n      if (characteristic \u003d\u003d nullptr) {\n        log::warn(\"Can\u0027t find characteristic for handle:{}\", handle);\n        return;\n      }\n\n      if (characteristic-\u003euuid \u003d\u003d kRasControlPointCharacteristic) {\n        log::error(\"Write RAS-CP command fail\");\n        tracker-\u003ehandling_on_demand_data_ \u003d false;\n      }\n      return;\n    }\n  }\n```",
+      "range": {
+        "startLine": 381,
+        "startChar": 0,
+        "endLine": 437,
+        "endChar": 3
+      },
+      "revId": "afa73a2f71a992ff6365278d5f84fe65e5c6bda9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9027366_8caa95d6",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-24T17:08:00Z",
+      "side": 1,
+      "message": "Can we check data here as well, and call the correct function if it\u0027s a vendor-specific data?  I would prefer not to pass void* any farther than needed.\n```suggestion\n    if (instance !\u003d nullptr) {\n      uint8_t reply_type \u003d 0;\n      if (data !\u003d nullptr) {\n        GattWriteCallbackData* structPtr \u003d\n            static_cast\u003cGattWriteCallbackData*\u003e(data);\n        reply_type \u003d structPtr-\u003etype_;\n      }\n      if (reply_type \u003d\u003d kTypeVendorSpecificReply) {\n        instance-\u003eGattVsWriteCallback(conn_id, status, handle, value);\n      } else {\n        instance-\u003eGattWriteCallback(conn_id, status, handle, value);\n      }\n    }\n```",
+      "range": {
+        "startLine": 442,
+        "startChar": 0,
+        "endLine": 444,
+        "endChar": 5
+      },
+      "revId": "afa73a2f71a992ff6365278d5f84fe65e5c6bda9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87f76593_1969f4f0",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 648,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-24T17:08:00Z",
+      "side": 1,
+      "message": "Should this be constant and initialized to kTypeVendorSpecificReply here?",
+      "range": {
+        "startLine": 648,
+        "startChar": 24,
+        "endLine": 648,
+        "endChar": 49
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "94adf808_c112baa2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 41,
+                "startChar": 0,
+                "endLine": 42,
+                "endChar": 0
+              },
+              "replacement": "    uint8_t type_ \u003d kTypeVendorSpecificReply;\n"
+            },
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 138,
+                "startChar": 0,
+                "endLine": 139,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 648,
+                "startChar": 0,
+                "endLine": 649,
+                "endChar": 0
+              },
+              "replacement": "  const GattWriteCallbackData gatt_write_callback_data_;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "afa73a2f71a992ff6365278d5f84fe65e5c6bda9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9597ba97_86630dcc",
+        "filename": "system/bta/ras/ras_server.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-24T17:08:00Z",
+      "side": 1,
+      "message": "This looks like it should be a separate function, as well.",
+      "range": {
+        "startLine": 431,
+        "startChar": 0,
+        "endLine": 467,
+        "endChar": 5
+      },
+      "revId": "afa73a2f71a992ff6365278d5f84fe65e5c6bda9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f72e772_45f9e6d5",
+        "filename": "system/gd/hal/ranging_hal_android.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-24T17:08:00Z",
+      "side": 1,
+      "message": "We\u0027re creating a session for a single reply?  Why else do we want sessions?  It feels odd to pass in a bool for that.",
+      "range": {
+        "startLine": 51,
+        "startChar": 11,
+        "endLine": 51,
+        "endChar": 36
+      },
+      "revId": "afa73a2f71a992ff6365278d5f84fe65e5c6bda9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b145a2ee_e0cd0ba1",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-24T17:08:00Z",
+      "side": 1,
+      "message": "This happens a lot.  Should we have a map from address-\u003etracker?  I think it would be worth looking at which one happens more often.  Addresses are more unique than handles, as well.",
+      "range": {
+        "startLine": 377,
+        "startChar": 47,
+        "endLine": 377,
+        "endChar": 63
+      },
       "revId": "afa73a2f71a992ff6365278d5f84fe65e5c6bda9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
