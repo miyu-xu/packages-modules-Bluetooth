@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eafe00e2_c6d4c29c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-24T14:46:40Z",
+      "side": 1,
+      "message": "Removing failed attempt at capturing errors",
+      "revId": "0b6b03e1ca907158723f33056013d36c58208e41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
