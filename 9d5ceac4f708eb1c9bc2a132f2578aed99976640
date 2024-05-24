@@ -1,0 +1,86 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ed24fdb_f32648cc",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-24T02:50:06Z",
+      "side": 1,
+      "message": "Can we put the exception only around mBufferConstraintList.get() ?\n\nActually, isnt\u0027 it better to call `join` vs `get` ? \n\nAnd do we want to return null or to rethrow the exception since we are not expecting any error here\n\n\nOn a side note catching for Exception seems a bit too wide to my taste",
+      "range": {
+        "startLine": 582,
+        "startChar": 5,
+        "endLine": 586,
+        "endChar": 9
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b73d91f6_8b4eff9d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+              "range": {
+                "startLine": 582,
+                "startChar": 0,
+                "endLine": 587,
+                "endChar": 0
+              },
+              "replacement": "        return new BufferConstraints(mBufferConstraintList.join());\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9d5ceac4f708eb1c9bc2a132f2578aed99976640",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81312997_1367ea55",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1138,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-24T02:50:06Z",
+      "side": 1,
+      "message": "I just thought of one more thing:\n\nIf Bluetooth do:\n\n`ON -\u003e BLE_ON -\u003e ON`\n\nyou will call twice this.\n\nI don\u0027t expect the value to fail then, and apparently complete will just return false and not change anything.\nSince the value returned is local and doesn\u0027t change, it looks like we don\u0027t really care but I put this comment just to be sure we are aware of this. (maybe add a comment in the code that says so ? ) (I like the ai suggested fix too 😊, but ths isDone could be put at the start of the method)",
+      "range": {
+        "startLine": 1138,
+        "startChar": 0,
+        "endLine": 1138,
+        "endChar": 61
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "32a66740_ab3dc7a9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+              "range": {
+                "startLine": 1138,
+                "startChar": 0,
+                "endLine": 1139,
+                "endChar": 0
+              },
+              "replacement": "        if (!mBufferConstraintList.isDone()) {\n            mBufferConstraintList.complete(bufferConstraintList);\n        }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9d5ceac4f708eb1c9bc2a132f2578aed99976640",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
