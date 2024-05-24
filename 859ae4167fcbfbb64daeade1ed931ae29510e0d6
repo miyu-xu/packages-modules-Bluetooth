@@ -1,0 +1,379 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b8915b1_1519c0a4",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementMethod.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1056478
+      },
+      "writtenOn": "2024-05-24T16:41:56Z",
+      "side": 1,
+      "message": "Was this added in error in the past?  It\u0027s using the same intdef as `getMethodId` below, except its using a double?   Should this one be deprecated?",
+      "range": {
+        "startLine": 94,
+        "startChar": 4,
+        "endLine": 96,
+        "endChar": 5
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0a1c953e_486c949a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/le/DistanceMeasurementMethod.java",
+              "range": {
+                "startLine": 94,
+                "startChar": 0,
+                "endLine": 95,
+                "endChar": 0
+              },
+              "replacement": "    public @DistanceMeasurementMethodId int getId() {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "583a8760_2ff2b8d8",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementMethod.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1056478
+      },
+      "writtenOn": "2024-05-24T16:41:56Z",
+      "side": 1,
+      "message": "Recommend name `getMeasurementMethod`; this isn\u0027t really an ID.  Also,there should  be a \"set\" method for this no the builder below.",
+      "range": {
+        "startLine": 106,
+        "startChar": 44,
+        "endLine": 106,
+        "endChar": 55
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7f1e2f7d_e8958f99",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/le/DistanceMeasurementMethod.java",
+              "range": {
+                "startLine": 99,
+                "startChar": 0,
+                "endLine": 100,
+                "endChar": 0
+              },
+              "replacement": "     * Id of the method used for {@link DistanceMeasurementParams.Builder#setMeasurementMethod(int)}\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/DistanceMeasurementMethod.java",
+              "range": {
+                "startLine": 106,
+                "startChar": 0,
+                "endLine": 107,
+                "endChar": 0
+              },
+              "replacement": "    public @DistanceMeasurementMethodId int getMeasurementMethod() {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f30818ed_13e25d04",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1056478
+      },
+      "writtenOn": "2024-05-24T16:41:56Z",
+      "side": 1,
+      "message": "Why are you suppressing the lint?",
+      "range": {
+        "startLine": 328,
+        "startChar": 19,
+        "endLine": 328,
+        "endChar": 34
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6709859b_27d1d37f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+              "range": {
+                "startLine": 328,
+                "startChar": 0,
+                "endLine": 329,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f4910bb_831cc379",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1056478
+      },
+      "writtenOn": "2024-05-24T16:41:56Z",
+      "side": 1,
+      "message": "Add @ElapsedRealtimeLong",
+      "range": {
+        "startLine": 329,
+        "startChar": 16,
+        "endLine": 329,
+        "endChar": 39
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f80faaff_0efd081e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+              "range": {
+                "startLine": 25,
+                "startChar": 0,
+                "endLine": 25,
+                "endChar": 0
+              },
+              "replacement": "import android.annotation.TargetApi;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+              "range": {
+                "startLine": 329,
+                "startChar": 0,
+                "endLine": 329,
+                "endChar": 0
+              },
+              "replacement": "    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82b56c2d_571bdbb7",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1056478
+      },
+      "writtenOn": "2024-05-24T16:41:56Z",
+      "side": 1,
+      "message": "Recommend a name such as `getMeasurementTimestampNanos`; the annotation of `@ElapsedRealtimeLong` will take care of indicating the timebase to developers, so the method name doesn\u0027t need to reflect it directly.",
+      "range": {
+        "startLine": 329,
+        "startChar": 16,
+        "endLine": 329,
+        "endChar": 39
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0d58ce13_d12c3494",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+              "range": {
+                "startLine": 23,
+                "startChar": 0,
+                "endLine": 24,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+              "range": {
+                "startLine": 144,
+                "startChar": 0,
+                "endLine": 145,
+                "endChar": 0
+              },
+              "replacement": "    private final long mMeasurementTimestampNanos;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+              "range": {
+                "startLine": 157,
+                "startChar": 0,
+                "endLine": 158,
+                "endChar": 0
+              },
+              "replacement": "            long measurementTimestampNanos) {\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+              "range": {
+                "startLine": 168,
+                "startChar": 0,
+                "endLine": 169,
+                "endChar": 0
+              },
+              "replacement": "        mMeasurementTimestampNanos \u003d measurementTimestampNanos;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+              "range": {
+                "startLine": 320,
+                "startChar": 0,
+                "endLine": 322,
+                "endChar": 0
+              },
+              "replacement": "     * Timestamp of this distance measurement in nanoseconds.\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+              "range": {
+                "startLine": 323,
+                "startChar": 0,
+                "endLine": 324,
+                "endChar": 0
+              },
+              "replacement": "     * @return timestamp of distance measurement in nanoseconds\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+              "range": {
+                "startLine": 326,
+                "startChar": 0,
+                "endLine": 327,
+                "endChar": 0
+              },
+              "replacement": "    @FlaggedApi(Flags.FLAG_CHANNEL_SOUNDING)\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+              "range": {
+                "startLine": 328,
+                "startChar": 0,
+                "endLine": 331,
+                "endChar": 0
+              },
+              "replacement": "    public long getMeasurementTimestampNanos() {\n        return mMeasurementTimestampNanos;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+              "range": {
+                "startLine": 360,
+                "startChar": 0,
+                "endLine": 361,
+                "endChar": 0
+              },
+              "replacement": "        out.writeLong(mMeasurementTimestampNanos);\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+              "range": {
+                "startLine": 389,
+                "startChar": 0,
+                "endLine": 391,
+                "endChar": 0
+              },
+              "replacement": "                + \", measurementTimestampNanos\"\n                + mMeasurementTimestampNanos\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+              "range": {
+                "startLine": 410,
+                "startChar": 0,
+                "endLine": 411,
+                "endChar": 0
+              },
+              "replacement": "                        builder.setMeasurementTimestampNanos(in.readLong());\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+              "range": {
+                "startLine": 438,
+                "startChar": 0,
+                "endLine": 439,
+                "endChar": 0
+              },
+              "replacement": "        private long mMeasurementTimestampNanos \u003d -1L;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+              "range": {
+                "startLine": 617,
+                "startChar": 0,
+                "endLine": 618,
+                "endChar": 0
+              },
+              "replacement": "         * Set the timestamp in nanoseconds when the distance measurement occurred\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+              "range": {
+                "startLine": 619,
+                "startChar": 0,
+                "endLine": 620,
+                "endChar": 0
+              },
+              "replacement": "         * @param measurementTimestampNanos time the distance measurement occurred\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+              "range": {
+                "startLine": 622,
+                "startChar": 0,
+                "endLine": 624,
+                "endChar": 0
+              },
+              "replacement": "        public Builder setMeasurementTimestampNanos(long measurementTimestampNanos) {\n            mMeasurementTimestampNanos \u003d measurementTimestampNanos;\n"
+            },
+            {
+              "path": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+              "range": {
+                "startLine": 647,
+                "startChar": 0,
+                "endLine": 648,
+                "endChar": 0
+              },
+              "replacement": "                    mMeasurementTimestampNanos);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
