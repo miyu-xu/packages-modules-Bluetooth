@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "408709e7_9235b791",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-24T17:44:36Z",
+      "side": 1,
+      "message": "Woaw, this is evil.\n\nThere are API that take int in parameter directly. But after looking at the bassClientStateMachine, it looks like it has entirely been implemented like this...",
+      "range": {
+        "startLine": 371,
+        "startChar": 42,
+        "endLine": 371,
+        "endChar": 57
+      },
+      "revId": "ad5dc33ae1661c4400c5547ee25f4314b171cbdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3694ebb0_72ea0a7d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2312,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-24T17:44:36Z",
+      "side": 1,
+      "message": "`\u003e_\u003c`",
+      "range": {
+        "startLine": 2312,
+        "startChar": 20,
+        "endLine": 2312,
+        "endChar": 33
+      },
+      "revId": "ad5dc33ae1661c4400c5547ee25f4314b171cbdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
