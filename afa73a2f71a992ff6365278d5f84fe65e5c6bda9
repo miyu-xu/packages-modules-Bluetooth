@@ -77,6 +77,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a783f10_a9458509",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-05-24T20:37:28Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "afaa6541_14864748",
+      "revId": "afa73a2f71a992ff6365278d5f84fe65e5c6bda9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89e1e740_931c9701",
@@ -217,6 +235,24 @@
       "side": 1,
       "message": "What does const do for a void* ?",
       "parentUuid": "785d2d4e_eac0e86e",
+      "revId": "afa73a2f71a992ff6365278d5f84fe65e5c6bda9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2e7e7dd_a39edf53",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-05-24T20:37:28Z",
+      "side": 1,
+      "message": "does it mean it shouldn\u0027t/can\u0027t be changed?",
+      "parentUuid": "5fadf702_82230b78",
       "revId": "afa73a2f71a992ff6365278d5f84fe65e5c6bda9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
