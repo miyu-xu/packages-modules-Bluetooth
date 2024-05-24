@@ -259,6 +259,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ec59f191_05122880",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-24T20:44:16Z",
+      "side": 1,
+      "message": "Usually, but if you\u0027re going to cast it to something else, anyway, I\u0027m not sure how much it helps.",
+      "parentUuid": "e2e7e7dd_a39edf53",
+      "revId": "afa73a2f71a992ff6365278d5f84fe65e5c6bda9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "68e9cae6_ce606a22",
         "filename": "system/bta/ras/ras_client.cc",
         "patchSetId": 1
