@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "808743c6_5d4f89ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-05-24T21:15:19Z",
+      "side": 1,
+      "message": "LGTM but curious why we need this change?",
+      "revId": "cc6109be3c467953c9bdf7e56e3505b2169dda23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
