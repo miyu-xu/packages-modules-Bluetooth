@@ -748,6 +748,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ce89ff00_a3b2ad57",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-24T19:10:03Z",
+      "side": 1,
+      "message": "A Duration represent an interval of Time, \"Elapsed*time\" sound like an interval of time.\n\nIf we only want to mark a time in the timeline, we can move to Instant instead.\n\nI still think that we should revisit the type being used here.",
+      "parentUuid": "ffd1d8c5_02e39e16",
+      "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "83707bef_a8bd6db6",
         "filename": "system/gd/hci/distance_measurement_manager.cc",
         "patchSetId": 10
