@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b23d6091_eb384eb9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-05-24T00:01:06Z",
+      "side": 1,
+      "message": "Let Jakub T and Lukasz to take a look as well, as they are doing codec extension",
+      "revId": "132c7c6529b96cc125c4bda59fe7b96e6b209cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
