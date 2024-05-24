@@ -190,6 +190,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f8de52f8_35508c1b",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-24T21:02:31Z",
+      "side": 1,
+      "message": "Please rebase and replace with \n\n```suggestion\n    @FlaggedApi(android.bluetooth.Flags.FLAG_CHANNEL_SOUNDING_25Q1_APIS)\n```",
+      "range": {
+        "startLine": 326,
+        "startChar": 0,
+        "endLine": 326,
+        "endChar": 54
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f63283cc_fad067f8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+              "range": {
+                "startLine": 326,
+                "startChar": 0,
+                "endLine": 327,
+                "endChar": 0
+              },
+              "replacement": "    @FlaggedApi(android.bluetooth.Flags.FLAG_CHANNEL_SOUNDING_25Q1_APIS)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f30818ed_13e25d04",
         "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
         "patchSetId": 10
