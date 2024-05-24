@@ -165,6 +165,7 @@ java_library {
 android_robolectric_test {
     name: "ServiceBluetoothRoboTests",
     instrumentation_for: "ServiceBluetoothFakeTestApp",
+    defaults: ["modules-utils-extended-mockito-rule-defaults"],
 
     srcs: [
         ":statslog-bluetooth-java-gen",
@@ -195,6 +196,7 @@ android_robolectric_test {
         "kotlinx_coroutines",
         "kotlinx_coroutines_test",
         "mockito-robolectric-prebuilt",
+        "mockito-target-extended-minus-junit4",
         "modules-utils-expresslog",
         "platform-test-annotations",
         "testng",
