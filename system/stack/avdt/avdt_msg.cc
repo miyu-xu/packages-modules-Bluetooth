@@ -31,6 +31,8 @@
 #include <bluetooth/log.h>
 #include <string.h>
 
+#include <functional>
+
 #include "avdt_api.h"
 #include "avdt_int.h"
 #include "avdtc_api.h"
@@ -1519,7 +1521,6 @@ void avdt_msg_send_grej(AvdtpCcb* p_ccb, uint8_t sig_id, tAVDT_MSG* p_params) {
 void avdt_msg_ind(AvdtpCcb* p_ccb, BT_HDR* p_buf) {
   AvdtpScb* p_scb;
   uint8_t* p;
-  bool ok = true;
   bool handle_rsp = false;
   bool gen_rej = false;
   uint8_t label;
@@ -1548,10 +1549,26 @@ void avdt_msg_ind(AvdtpCcb* p_ccb, BT_HDR* p_buf) {
   msg.hdr.label = label;
   msg.hdr.ccb_idx = avdt_ccb_to_idx(p_ccb);
 
+  struct DeferredFunc {
+    DeferredFunc(std::function<void()> f) : func(f) {}
+    ~DeferredFunc() { func(); }
+    std::function<void()> func;
+  } deferred_func([&p_buf, &handle_rsp, &p_ccb]() {
+    /* free message buffer */
+    osi_free(p_buf);
+
+    /* if it is a rsp or rej, send event to ccb to free associated
+    ** cmd msg buffer and handle cmd queue
+    */
+    if (handle_rsp) {
+      avdt_ccb_event(p_ccb, AVDT_CCB_RCVRSP_EVT, NULL);
+    }
+  });
+
   /* verify msg type */
   if (msg_type == AVDT_MSG_TYPE_GRJ) {
     log::warn("Dropping msg msg_type={}", msg_type);
-    ok = false;
+    return;
   }
   /* check for general reject */
   else if ((msg_type == AVDT_MSG_TYPE_REJ) &&
@@ -1570,18 +1587,18 @@ void avdt_msg_ind(AvdtpCcb* p_ccb, BT_HDR* p_buf) {
     msg.hdr.sig_id = sig;
     if ((sig == 0) || (sig > AVDT_SIG_MAX)) {
       log::warn("Dropping msg sig={} msg_type:{}", sig, msg_type);
-      ok = false;
 
       /* send a general reject */
       if (msg_type == AVDT_MSG_TYPE_CMD) {
         avdt_msg_send_grej(p_ccb, sig, &msg);
       }
+      return;
     }
   }
 
   log::verbose("msg_type={}, sig={}", msg_type, sig);
 
-  if (ok && !gen_rej) {
+  if (!gen_rej) {
     /* skip over header (msg length already verified during reassembly) */
     p_buf->len -= AVDT_LEN_TYPE_SINGLE;
 
@@ -1627,10 +1644,10 @@ void avdt_msg_ind(AvdtpCcb* p_ccb, BT_HDR* p_buf) {
       /* if its a rsp or rej, drop it; if its a cmd, send a rej;
       ** note special case for abort; never send abort reject
       */
-      ok = false;
       if ((msg_type == AVDT_MSG_TYPE_CMD) && (sig != AVDT_SIG_ABORT)) {
         avdt_msg_send_rej(p_ccb, sig, &msg);
       }
+      return;
     }
   }
 
@@ -1638,66 +1655,52 @@ void avdt_msg_ind(AvdtpCcb* p_ccb, BT_HDR* p_buf) {
   ** the rsp or rej.  If we didn't send a cmd for it, drop it.  If
   ** it does match a cmd, stop timer for the cmd.
   */
-  if (ok) {
-    if ((msg_type == AVDT_MSG_TYPE_RSP) || (msg_type == AVDT_MSG_TYPE_REJ)) {
-      if ((p_ccb->p_curr_cmd != NULL) && (p_ccb->p_curr_cmd->event == sig) &&
-          (AVDT_LAYERSPEC_LABEL(p_ccb->p_curr_cmd->layer_specific) == label)) {
-        /* stop timer */
-        alarm_cancel(p_ccb->idle_ccb_timer);
-        alarm_cancel(p_ccb->ret_ccb_timer);
-        alarm_cancel(p_ccb->rsp_ccb_timer);
+  if ((msg_type == AVDT_MSG_TYPE_RSP) || (msg_type == AVDT_MSG_TYPE_REJ)) {
+    if ((p_ccb->p_curr_cmd != NULL) && (p_ccb->p_curr_cmd->event == sig) &&
+        (AVDT_LAYERSPEC_LABEL(p_ccb->p_curr_cmd->layer_specific) == label)) {
+      /* stop timer */
+      alarm_cancel(p_ccb->idle_ccb_timer);
+      alarm_cancel(p_ccb->ret_ccb_timer);
+      alarm_cancel(p_ccb->rsp_ccb_timer);
 
-        /* clear retransmission count */
-        p_ccb->ret_count = 0;
+      /* clear retransmission count */
+      p_ccb->ret_count = 0;
 
-        /* later in this function handle ccb event */
-        handle_rsp = true;
-      } else {
-        ok = false;
-        log::warn("Cmd not found for rsp sig={} label={}", sig, label);
-      }
+      /* later in this function handle ccb event */
+      handle_rsp = true;
+    } else {
+      log::warn("Cmd not found for rsp sig={} label={}", sig, label);
+      return;
     }
   }
 
-  if (ok) {
-    /* if it's a ccb event send to ccb */
-    if (evt & AVDT_CCB_MKR) {
-      tAVDT_CCB_EVT avdt_ccb_evt;
-      avdt_ccb_evt.msg = msg;
-      avdt_ccb_event(p_ccb, (uint8_t)(evt & ~AVDT_CCB_MKR), &avdt_ccb_evt);
-    }
-    /* if it's a scb event */
-    else {
-      /* Scb events always have a single seid.  For cmd, get seid from
-      ** message.  For rej and rsp, get seid from p_curr_cmd.
-      */
-      if (msg_type == AVDT_MSG_TYPE_CMD) {
-        scb_hdl = msg.single.seid;
-      } else {
-        scb_hdl = *((uint8_t*)(p_ccb->p_curr_cmd + 1));
-      }
-
-      /* Map seid to the scb and send it the event.  For cmd, seid has
-      ** already been verified by parsing function.
-      */
-      if (evt) {
-        p_scb = avdt_scb_by_hdl(scb_hdl);
-        if (p_scb != NULL) {
-          tAVDT_SCB_EVT avdt_scb_evt;
-          avdt_scb_evt.msg = msg;
-          avdt_scb_event(p_scb, evt, &avdt_scb_evt);
-        }
-      }
-    }
+  /* if it's a ccb event send to ccb */
+  if (evt & AVDT_CCB_MKR) {
+    tAVDT_CCB_EVT avdt_ccb_evt;
+    avdt_ccb_evt.msg = msg;
+    avdt_ccb_event(p_ccb, (uint8_t)(evt & ~AVDT_CCB_MKR), &avdt_ccb_evt);
   }
+  /* if it's a scb event */
+  else {
+    /* Scb events always have a single seid.  For cmd, get seid from
+    ** message.  For rej and rsp, get seid from p_curr_cmd.
+    */
+    if (msg_type == AVDT_MSG_TYPE_CMD) {
+      scb_hdl = msg.single.seid;
+    } else {
+      scb_hdl = *((uint8_t*)(p_ccb->p_curr_cmd + 1));
+    }
 
-  /* free message buffer */
-  osi_free(p_buf);
-
-  /* if its a rsp or rej, send event to ccb to free associated
-  ** cmd msg buffer and handle cmd queue
-  */
-  if (handle_rsp) {
-    avdt_ccb_event(p_ccb, AVDT_CCB_RCVRSP_EVT, NULL);
+    /* Map seid to the scb and send it the event.  For cmd, seid has
+    ** already been verified by parsing function.
+    */
+    if (evt) {
+      p_scb = avdt_scb_by_hdl(scb_hdl);
+      if (p_scb != NULL) {
+        tAVDT_SCB_EVT avdt_scb_evt;
+        avdt_scb_evt.msg = msg;
+        avdt_scb_event(p_scb, evt, &avdt_scb_evt);
+      }
+    }
   }
 }
