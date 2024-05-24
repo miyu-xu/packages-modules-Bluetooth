@@ -3,7 +3,9 @@
 use btif_macros::{btif_callback, btif_callbacks_dispatcher};
 
 use bt_topshim::bindings::root::bluetooth::Uuid;
-use bt_topshim::btif::{BluetoothInterface, BtStatus, BtTransport, RawAddress, Uuid128Bit};
+use bt_topshim::btif::{
+    BluetoothInterface, BtStatus, BtTransport, DisplayAddress, RawAddress, Uuid128Bit,
+};
 use bt_topshim::profiles::gatt::{
     ffi::RustAdvertisingTrackInfo, AdvertisingStatus, BtGattDbElement, BtGattNotifyParams,
     BtGattReadParams, BtGattResponse, BtGattValue, Gatt, GattAdvCallbacksDispatcher,
@@ -1807,12 +1809,12 @@ impl BluetoothGatt {
                     log::debug!(
                         "Added addr monitor {} and updated bd_addr={} to addr filter map",
                         monitor_handle,
-                        addr_info.bd_addr.to_string()
+                        DisplayAddress(&addr_info.bd_addr)
                     );
                     return;
                 } else {
                     log::debug!("add_child_monitor: bd_addr {} has been removed, removing the addr monitor {}.",
-                        addr_info.bd_addr.to_string(),
+                        DisplayAddress(&addr_info.bd_addr),
                         monitor_handle);
                 }
             } else {
@@ -4193,17 +4195,14 @@ impl BtifGattScannerInbandCallbacks for BluetoothGatt {
         interval: u16,
     ) {
         log::debug!(
-            "Callback received: {:#?}",
-            GattScannerInbandCallbacks::StartSyncCallback(
-                status,
-                sync_handle,
-                advertising_sid,
-                address_type,
-                address,
-                phy,
-                interval,
-            )
-        );
+            "Callback received: GattScannerInbandCallbacks::StartSyncCallback({}, {}, {}, {}, {}, {}, {})",
+            status,
+            sync_handle,
+            advertising_sid,
+            address_type,
+            DisplayAddress(&address),
+            phy,
+            interval);
     }
 
     fn inband_sync_report_callback(
@@ -4235,8 +4234,9 @@ impl BtifGattScannerInbandCallbacks for BluetoothGatt {
 
     fn inband_sync_transfer_callback(&mut self, status: u8, address: RawAddress) {
         log::debug!(
-            "Callback received: {:#?}",
-            GattScannerInbandCallbacks::SyncTransferCallback(status, address)
+            "Callback received: GattScannerInbandCallbacks::SyncTransferCallback({}, {})",
+            status,
+            DisplayAddress(&address)
         );
     }
 }
@@ -4309,6 +4309,7 @@ impl BtifGattScannerCallbacks for BluetoothGatt {
 
     fn on_track_adv_found_lost(&mut self, track_adv_info: RustAdvertisingTrackInfo) {
         let addr = track_adv_info.advertiser_address.to_string();
+        let display_addr = DisplayAddress(&track_adv_info.advertiser_address);
         let mut binding = self.scanners.lock().unwrap();
         let mut corresponding_scanner: Option<&mut ScannerInfo> =
             binding.values_mut().find_map(|scanner| {
@@ -4352,13 +4353,13 @@ impl BtifGattScannerCallbacks for BluetoothGatt {
                 if corresponding_scanner.addr_handle_map.contains_key(&addr) {
                     log::debug!(
                         "on_track_adv_found_lost: this addr {} is already handled, just return",
-                        track_adv_info.advertiser_address.to_string()
+                        display_addr
                     );
                     return;
                 }
                 log::debug!(
                     "on_track_adv_found_lost: state == 0x01, adding addr {} to map",
-                    addr.clone()
+                    display_addr
                 );
                 corresponding_scanner.addr_handle_map.insert(addr.clone(), None);
 
@@ -4392,7 +4393,7 @@ impl BtifGattScannerCallbacks for BluetoothGatt {
                 if corresponding_scanner.addr_handle_map.remove(&addr).is_some() {
                     log::debug!(
                         "on_track_adv_found_lost: removing addr = {} from map",
-                        addr.clone()
+                        display_addr
                     );
                     self.remove_child_monitor(scanner_id, track_adv_info.monitor_handle);
                 }
