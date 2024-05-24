@@ -10,7 +10,9 @@ use crate::dbus_iface::{
 };
 use crate::{console_red, console_yellow, print_error, print_info};
 use crate::{ClientContext, GattRequest};
-use bt_topshim::btif::{BtBondState, BtPropertyType, BtSspVariant, BtStatus, Uuid128Bit};
+use bt_topshim::btif::{
+    BtBondState, BtPropertyType, BtSspVariant, BtStatus, RawAddress, Uuid128Bit,
+};
 use bt_topshim::profiles::gatt::{AdvertisingStatus, GattStatus, LePhy};
 use bt_topshim::profiles::hfp::HfpCodecId;
 use bt_topshim::profiles::sdp::BtSdpRecord;
@@ -139,8 +141,8 @@ impl IBluetoothCallback for BtCallback {
         print_info!("Bluetooth properties {:?} changed for {:?}", props, remote_device);
     }
 
-    fn on_address_changed(&mut self, addr: String) {
-        print_info!("Address changed to {}", &addr);
+    fn on_address_changed(&mut self, addr: RawAddress) {
+        print_info!("Address changed to {:?}", addr);
         self.context.lock().unwrap().adapter_address = Some(addr);
     }
 
@@ -243,8 +245,8 @@ impl IBluetoothCallback for BtCallback {
         );
     }
 
-    fn on_bond_state_changed(&mut self, status: u32, address: String, state: u32) {
-        print_info!("Bonding state changed: [{}] state: {}, Status = {}", address, state, status);
+    fn on_bond_state_changed(&mut self, status: u32, address: RawAddress, state: u32) {
+        print_info!("Bonding state changed: [{:?}] state: {}, Status = {}", address, state, status);
 
         // Clear bonding attempt if bonding fails or succeeds
         match BtBondState::from(state) {
@@ -253,7 +255,7 @@ impl IBluetoothCallback for BtCallback {
                     self.context.lock().unwrap().bonding_attempt.as_ref().cloned();
                 match bonding_attempt {
                     Some(bd) => {
-                        if &address == &bd.address {
+                        if address.to_string() == bd.address {
                             self.context.lock().unwrap().bonding_attempt = None;
                         }
                     }
@@ -264,16 +266,16 @@ impl IBluetoothCallback for BtCallback {
         }
 
         let device =
-            BluetoothDevice { address: address.clone(), name: String::from("Classic device") };
+            BluetoothDevice { address: address.to_string(), name: String::from("Classic device") };
 
         // If bonded, we should also automatically connect all enabled profiles
         if BtBondState::Bonded == state.into() {
-            self.context.lock().unwrap().bonded_devices.insert(address.clone(), device.clone());
+            self.context.lock().unwrap().bonded_devices.insert(address.to_string(), device.clone());
             self.context.lock().unwrap().connect_all_enabled_profiles(device.clone());
         }
 
         if BtBondState::NotBonded == state.into() {
-            self.context.lock().unwrap().bonded_devices.remove(&address);
+            self.context.lock().unwrap().bonded_devices.remove(&address.to_string());
         }
     }
 
