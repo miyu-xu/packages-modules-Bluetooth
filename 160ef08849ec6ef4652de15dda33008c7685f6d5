@@ -34,6 +34,24 @@
       ],
       "revId": "160ef08849ec6ef4652de15dda33008c7685f6d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98911e93_ced1bda4",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1546,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-24T18:08:39Z",
+      "side": 1,
+      "message": "I think the default formatter redacts it for us? Need @henrichataing@google.com \u0027s input",
+      "parentUuid": "99dcf8f5_b1e59c5b",
+      "revId": "160ef08849ec6ef4652de15dda33008c7685f6d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
