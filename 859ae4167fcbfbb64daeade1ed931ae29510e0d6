@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e9010a70_6aa659a6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-24T17:57:05Z",
+      "side": 1,
+      "message": "It is easier to iterate on cts test \u0026 api at the same time.\nCan we upload test in the same topic ?",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 27
+      },
+      "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0b8915b1_1519c0a4",
         "filename": "framework/java/android/bluetooth/le/DistanceMeasurementMethod.java",
         "patchSetId": 10
