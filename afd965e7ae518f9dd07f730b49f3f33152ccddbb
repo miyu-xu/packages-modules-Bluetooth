@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fac2277b_ab8420b8",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3276,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-24T17:32:53Z",
+      "side": 1,
+      "message": "Nit: We should log this irrespective of the flag state",
+      "revId": "afd965e7ae518f9dd07f730b49f3f33152ccddbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
