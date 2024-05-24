@@ -559,6 +559,29 @@
       ],
       "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83707bef_a8bd6db6",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1334,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-24T17:55:47Z",
+      "side": 1,
+      "message": "Keep the duration type up to the top ?",
+      "range": {
+        "startLine": 1334,
+        "startChar": 4,
+        "endLine": 1334,
+        "endChar": 8
+      },
+      "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
