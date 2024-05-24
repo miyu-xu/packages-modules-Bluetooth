@@ -69,6 +69,24 @@
       "parentUuid": "59781ac6_e41f7091",
       "revId": "039769567bb9e13df02d9b291cd57f7ed4372107",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "347073e1_b5924ad3",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-05-24T21:15:30Z",
+      "side": 1,
+      "message": "True, buuuut\n\n\"Source\" builds have a fully featured AVRCP Target and a partially featured AVRCP Controller (for absolute volume). We used 1.5 for the Target record (Can we upgrade that to 1.6? We\u0027ve supported cover art on Target since Android S...), and 1.3 for the Controller (minimum for supporting registering for absolute volume events and calling setAbsoluteVolume()).\n\n\"Sink\" builds have the opposite-- full featured Controller, minimal Target for absolute volume. Controller was 1.6, Target 1.3 (to support sending absolute volume changed events, which we don\u0027t even send besides an interim status, but Targets need to know we support it to work with us).\n\nWhat we wanted to do with concurrent roles was host a single Target and single Controller record, with the union of both categories and feature sets. Then, we\u0027d leverage routing to send the incoming requests to the correct services. This would effectively mean a single 1.5 Target (Again, 1.6, please) and a single 1.6 Controller.\n\nIn that way, the previous versions don\u0027t _totally_ matter. What matters is lining up where we\u0027re going.\n\nI think, at this point in time, we have 3 SDP records on source/sink builds though. Most devices don\u0027t seem to mind, but we still need to clean it up.",
+      "parentUuid": "b6eb0196_60dabfc1",
+      "revId": "039769567bb9e13df02d9b291cd57f7ed4372107",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
