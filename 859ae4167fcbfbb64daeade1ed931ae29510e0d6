@@ -766,6 +766,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9da47b2b_aac9862a",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-05-24T20:50:45Z",
+      "side": 1,
+      "message": "I would like to ask for an exception here.\nthe \u0027Instant\u0027 is epoch time, it is different from this.\nwe use this timestamp to align with UWB too.https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Uwb/framework/java/android/uwb/RangingMeasurement.java;l\u003d133 and other location related API.\n\nAlso, we will use a Genaric ranging API to wrap UWB and channel sounding; using the consistent timestamp is easy to extend and maintain.",
+      "parentUuid": "ce89ff00_a3b2ad57",
+      "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "83707bef_a8bd6db6",
         "filename": "system/gd/hci/distance_measurement_manager.cc",
         "patchSetId": 10
