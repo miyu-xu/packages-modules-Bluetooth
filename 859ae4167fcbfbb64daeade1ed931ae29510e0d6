@@ -229,6 +229,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "603ade8a_239d6d9f",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-05-24T21:08:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8de52f8_35508c1b",
+      "range": {
+        "startLine": 326,
+        "startChar": 0,
+        "endLine": 326,
+        "endChar": 54
+      },
+      "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f30818ed_13e25d04",
@@ -284,6 +308,30 @@
       "side": 1,
       "message": "there was the warning. remove it, as we changed the name, let\u0027s see if \u0027nanos\u0027 is ok.",
       "parentUuid": "f30818ed_13e25d04",
+      "range": {
+        "startLine": 328,
+        "startChar": 19,
+        "endLine": 328,
+        "endChar": 34
+      },
+      "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f9e3687_b0af3baf",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-05-24T21:08:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24f31531_ffb20eb9",
       "range": {
         "startLine": 328,
         "startChar": 19,
