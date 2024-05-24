@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "23e028a0_72e16600",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2285,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-05-24T09:04:28Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "63c9e8b9_56038bda",
+      "range": {
+        "startLine": 2285,
+        "startChar": 0,
+        "endLine": 2285,
+        "endChar": 49
+      },
+      "revId": "20bc7a3194418a4bd27ef74e5cbb36096ceb44c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6f6eb33_92edf79c",
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57639642_19124d3f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2293,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-05-24T09:04:28Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e6f6eb33_92edf79c",
+      "range": {
+        "startLine": 2293,
+        "startChar": 61,
+        "endLine": 2293,
+        "endChar": 92
+      },
+      "revId": "20bc7a3194418a4bd27ef74e5cbb36096ceb44c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98c571e5_dcff8f64",
@@ -77,6 +125,30 @@
       "writtenOn": "2024-05-23T17:00:31Z",
       "side": 1,
       "message": "Nit readibility:\n\nI believe we could have an external method that does most of the job like this:\n(up to you to pass eq(CONNECT) in parameter or enforce it for everyone)\n\n```\n    @SafeVarargs\n    private void verifyIntentSent(Matcher\u003cIntent\u003e... matchers) {\n        mInOrder.verify(mBassClientService)\n                .sendBroadcast(\n                        MockitoHamcrest.argThat(AllOf.allOf(matchers)), eq(BLUETOOTH_CONNECT) any());\n    }\n```\n\nThat make the code to check for a specific action way smaller (and then this can be re-used anytime an intent is checked)\n\n```suggestion\n            verifyIntentSent(\n                    hasAction(BluetoothLeBroadcastAssistant.ACTION_CONNECTION_STATE_CHANGED),\n                    hasFlag(\n                            Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT\n                                    | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND));\n```",
+      "range": {
+        "startLine": 2286,
+        "startChar": 0,
+        "endLine": 2299,
+        "endChar": 35
+      },
+      "revId": "20bc7a3194418a4bd27ef74e5cbb36096ceb44c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "efe4fdc7_24f46e5b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2299,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-05-24T09:04:28Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "98c571e5_dcff8f64",
       "range": {
         "startLine": 2286,
         "startChar": 0,
