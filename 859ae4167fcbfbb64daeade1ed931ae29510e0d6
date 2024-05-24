@@ -873,6 +873,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f82c7a85_2d0513d2",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1056478
+      },
+      "writtenOn": "2024-05-24T23:10:48Z",
+      "side": 1,
+      "message": "`java.time.Instant` doesn\u0027t interop well with `SystemClock.elapsedRealTimeNanos`.\n\nTo translate from the elapsedRealTimeNanos:\n```\nlong nanosSinceBoot \u003d SystemClock.elapsedRealTimeNanos();\nInstant myInstant \u003d Instant.MIN.plusNanos(nanosSinceBoot);\n```\n\nSo it\u0027s entirely possible to convert it seems (I\u0027d advise trying to be sure it does work as expected).  I\u0027ll defer to @wescande@google.com since I\u0027m just an interloper from another team providing API feedback.",
+      "parentUuid": "9da47b2b_aac9862a",
+      "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "83707bef_a8bd6db6",
         "filename": "system/gd/hci/distance_measurement_manager.cc",
         "patchSetId": 10
