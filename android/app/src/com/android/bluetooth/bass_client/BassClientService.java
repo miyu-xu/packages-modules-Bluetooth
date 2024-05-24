@@ -1628,7 +1628,7 @@ public class BassClientService extends ProfileService {
                 filters = new ArrayList<ScanFilter>();
             }
             if (!BassUtils.containUuid(filters, BassConstants.BAAS_UUID)) {
-                byte[] serviceData = {0x00, 0x00 ,0x00}; // Broadcast_ID
+                byte[] serviceData = {0x00, 0x00, 0x00}; // Broadcast_ID
                 byte[] serviceDataMask = {0x00, 0x00, 0x00};
 
                 filters.add(new ScanFilter.Builder()
@@ -1822,15 +1822,14 @@ public class BassClientService extends ProfileService {
 
         @Override
         public void onSyncLost(int syncHandle) {
-            log("OnSyncLost " + syncHandle);
+            int broadcastId = getBroadcastIdForSyncHandle(syncHandle);
+            log("OnSyncLost: syncHandle=" + syncHandle + ", broadcastID=" + broadcastId);
             if (leaudioBroadcastMonitorSourceSyncStatus()) {
-                int broadcastId = getBroadcastIdForSyncHandle(syncHandle);
                 if (broadcastId != BassConstants.INVALID_BROADCAST_ID) {
                     log("Notify broadcast source lost, broadcast id: " + broadcastId);
                     mCallbacks.notifySourceLost(broadcastId);
                 }
             }
-            int broadcastId = getBroadcastIdForSyncHandle(syncHandle);
             clearAllDataForSyncHandle(syncHandle);
             // Clear from cache to make possible sync again
             mCachedBroadcasts.remove(broadcastId);
@@ -1841,7 +1840,7 @@ public class BassClientService extends ProfileService {
             log(
                     "onBIGInfoAdvertisingReport: syncHandle="
                             + syncHandle
-                            + " ,encrypted ="
+                            + ", encrypted ="
                             + encrypted);
             BluetoothDevice srcDevice = getDeviceForSyncHandle(syncHandle);
             if (srcDevice == null) {
@@ -1872,7 +1871,7 @@ public class BassClientService extends ProfileService {
 
         @Override
         public void onSyncTransferred(BluetoothDevice device, int status) {
-            log("onSyncTransferred: device=" + device + " ,status =" + status);
+            log("onSyncTransferred: device=" + device + ", status =" + status);
         }
     }
 
@@ -2043,11 +2042,19 @@ public class BassClientService extends ProfileService {
         } else {
             Log.e(TAG, "Seems BASE is not in parsable format");
             cancelActiveSync(syncHandle);
+            mCachedBroadcasts.remove(getBroadcastIdForSyncHandle(syncHandle));
         }
     }
 
     void parseScanRecord(int syncHandle, ScanRecord record) {
-        log("parseScanRecord: " + record);
+        int broadcastId = getBroadcastIdForSyncHandle(syncHandle);
+        log(
+                "parseScanRecord: syncHandle="
+                        + syncHandle
+                        + ", broadcastID="
+                        + broadcastId
+                        + ", record="
+                        + record);
         Map<ParcelUuid, byte[]> bmsAdvDataMap = record.getServiceData();
         if (bmsAdvDataMap != null) {
             for (Map.Entry<ParcelUuid, byte[]> entry : bmsAdvDataMap.entrySet()) {
@@ -2064,6 +2071,7 @@ public class BassClientService extends ProfileService {
         } else {
             Log.e(TAG, "No service data in Scan record");
             cancelActiveSync(syncHandle);
+            mCachedBroadcasts.remove(broadcastId);
         }
     }
 
