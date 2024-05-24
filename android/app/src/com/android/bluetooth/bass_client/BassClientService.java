@@ -101,6 +101,7 @@ public class BassClientService extends ProfileService {
     private static final String TAG = BassClientService.class.getSimpleName();
     private static final int MAX_BASS_CLIENT_STATE_MACHINES = 10;
     private static final int MAX_ACTIVE_SYNCED_SOURCES_NUM = 4;
+    private static final int MAX_BIS_DISCOVERY_TRIES_NUM = 5;
 
     private static final int STATUS_LOCAL_STREAM_REQUESTED = 0;
     private static final int STATUS_LOCAL_STREAM_STREAMING = 1;
@@ -134,7 +135,7 @@ public class BassClientService extends ProfileService {
             new HashMap<>();
     private final PriorityQueue<SourceSyncRequest> mSourceSyncRequestsQueue =
             new PriorityQueue<>(sSourceSyncRequestComparator);
-    private final Map<Integer, Boolean> mFirstTimeBisDiscoveryMap = new HashMap<Integer, Boolean>();
+    private final Map<Integer, Integer> mBisDiscoveryCounterMap = new HashMap<Integer, Integer>();
     private final List<AddSourceData> mPendingSourcesToAdd = new ArrayList<AddSourceData>();
 
     private final Map<BluetoothDevice, List<Pair<Integer, Object>>> mPendingGroupOp =
@@ -400,7 +401,7 @@ public class BassClientService extends ProfileService {
             return null;
         }
         BaseData base = mSyncHandleToBaseDataMap.get(syncHandlemap);
-        log("getBase returns" + base);
+        log("getBase returns " + base);
         return base;
     }
 
@@ -1628,7 +1629,7 @@ public class BassClientService extends ProfileService {
                 filters = new ArrayList<ScanFilter>();
             }
             if (!BassUtils.containUuid(filters, BassConstants.BAAS_UUID)) {
-                byte[] serviceData = {0x00, 0x00 ,0x00}; // Broadcast_ID
+                byte[] serviceData = {0x00, 0x00, 0x00}; // Broadcast_ID
                 byte[] serviceDataMask = {0x00, 0x00, 0x00};
 
                 filters.add(new ScanFilter.Builder()
@@ -1708,7 +1709,7 @@ public class BassClientService extends ProfileService {
         cancelActiveSync(null);
         mActiveSyncedSources.clear();
         mPeriodicAdvCallbacksMap.clear();
-        mFirstTimeBisDiscoveryMap.clear();
+        mBisDiscoveryCounterMap.clear();
 
         mSyncHandleToDeviceMap.clear();
         mSyncHandleToBaseDataMap.clear();
@@ -1782,7 +1783,7 @@ public class BassClientService extends ProfileService {
                         mPeriodicAdvCallbacksMap.remove(BassConstants.INVALID_SYNC_HANDLE);
                     }
                 }
-                mFirstTimeBisDiscoveryMap.put(syncHandle, true);
+                mBisDiscoveryCounterMap.put(syncHandle, MAX_BIS_DISCOVERY_TRIES_NUM);
 
                 synchronized (mPendingSourcesToAdd) {
                     Iterator<AddSourceData> iterator = mPendingSourcesToAdd.iterator();
@@ -1811,26 +1812,34 @@ public class BassClientService extends ProfileService {
 
         @Override
         public void onPeriodicAdvertisingReport(PeriodicAdvertisingReport report) {
-            log("onPeriodicAdvertisingReport");
-            Boolean first = mFirstTimeBisDiscoveryMap.get(report.getSyncHandle());
+            int syncHandle = report.getSyncHandle();
+            log("onPeriodicAdvertisingReport " + syncHandle);
+            Integer bisCounter = mBisDiscoveryCounterMap.get(syncHandle);
+
             // Parse the BIS indices from report's service data
-            if (first != null && first.booleanValue()) {
-                parseScanRecord(report.getSyncHandle(), report.getData());
-                mFirstTimeBisDiscoveryMap.put(report.getSyncHandle(), false);
+            if (bisCounter != null && bisCounter != 0) {
+                if (parseScanRecord(syncHandle, report.getData())) {
+                    mBisDiscoveryCounterMap.put(syncHandle, 0);
+                } else {
+                    bisCounter--;
+                    mBisDiscoveryCounterMap.put(syncHandle, bisCounter);
+                    if (bisCounter == 0) {
+                        cancelActiveSync(syncHandle);
+                    }
+                }
             }
         }
 
         @Override
         public void onSyncLost(int syncHandle) {
-            log("OnSyncLost " + syncHandle);
+            int broadcastId = getBroadcastIdForSyncHandle(syncHandle);
+            log("OnSyncLost: syncHandle=" + syncHandle + ", broadcastID=" + broadcastId);
             if (leaudioBroadcastMonitorSourceSyncStatus()) {
-                int broadcastId = getBroadcastIdForSyncHandle(syncHandle);
                 if (broadcastId != BassConstants.INVALID_BROADCAST_ID) {
                     log("Notify broadcast source lost, broadcast id: " + broadcastId);
                     mCallbacks.notifySourceLost(broadcastId);
                 }
             }
-            int broadcastId = getBroadcastIdForSyncHandle(syncHandle);
             clearAllDataForSyncHandle(syncHandle);
             // Clear from cache to make possible sync again
             mCachedBroadcasts.remove(broadcastId);
@@ -1841,7 +1850,7 @@ public class BassClientService extends ProfileService {
             log(
                     "onBIGInfoAdvertisingReport: syncHandle="
                             + syncHandle
-                            + " ,encrypted ="
+                            + ", encrypted ="
                             + encrypted);
             BluetoothDevice srcDevice = getDeviceForSyncHandle(syncHandle);
             if (srcDevice == null) {
@@ -1872,7 +1881,7 @@ public class BassClientService extends ProfileService {
 
         @Override
         public void onSyncTransferred(BluetoothDevice device, int status) {
-            log("onSyncTransferred: device=" + device + " ,status =" + status);
+            log("onSyncTransferred: device=" + device + ", status =" + status);
         }
     }
 
@@ -1880,7 +1889,7 @@ public class BassClientService extends ProfileService {
         removeActiveSyncedSource(syncHandle);
         mPeriodicAdvCallbacksMap.remove(syncHandle);
         mSyncHandleToBaseDataMap.remove(syncHandle);
-        mFirstTimeBisDiscoveryMap.remove(syncHandle);
+        mBisDiscoveryCounterMap.remove(syncHandle);
         BluetoothDevice srcDevice = getDeviceForSyncHandle(syncHandle);
         mSyncHandleToDeviceMap.remove(syncHandle);
         int broadcastId = getBroadcastIdForSyncHandle(syncHandle);
@@ -2034,20 +2043,28 @@ public class BassClientService extends ProfileService {
         return true;
     }
 
-    void parseBaseData(int syncHandle, byte[] serviceData) {
+    boolean parseBaseData(int syncHandle, byte[] serviceData) {
         log("parseBaseData" + Arrays.toString(serviceData));
         BaseData base = BaseData.parseBaseData(serviceData);
         if (base != null) {
             updateBase(syncHandle, base);
             base.print();
+            return true;
         } else {
             Log.e(TAG, "Seems BASE is not in parsable format");
-            cancelActiveSync(syncHandle);
         }
+        return false;
     }
 
-    void parseScanRecord(int syncHandle, ScanRecord record) {
-        log("parseScanRecord: " + record);
+    boolean parseScanRecord(int syncHandle, ScanRecord record) {
+        int broadcastId = getBroadcastIdForSyncHandle(syncHandle);
+        log(
+                "parseScanRecord: syncHandle="
+                        + syncHandle
+                        + ", broadcastID="
+                        + broadcastId
+                        + ", record="
+                        + record);
         Map<ParcelUuid, byte[]> bmsAdvDataMap = record.getServiceData();
         if (bmsAdvDataMap != null) {
             for (Map.Entry<ParcelUuid, byte[]> entry : bmsAdvDataMap.entrySet()) {
@@ -2060,11 +2077,11 @@ public class BassClientService extends ProfileService {
         }
         byte[] advData = record.getServiceData(BassConstants.BASIC_AUDIO_UUID);
         if (advData != null) {
-            parseBaseData(syncHandle, advData);
+            return parseBaseData(syncHandle, advData);
         } else {
             Log.e(TAG, "No service data in Scan record");
-            cancelActiveSync(syncHandle);
         }
+        return false;
     }
 
     private String checkAndParseBroadcastName(ScanRecord record) {

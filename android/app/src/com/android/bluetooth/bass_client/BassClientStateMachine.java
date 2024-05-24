@@ -1268,7 +1268,7 @@ public class BassClientStateMachine extends StateMachine {
             log(
                     "onBIGInfoAdvertisingReport: syncHandle="
                             + syncHandle
-                            + " ,encrypted ="
+                            + ", encrypted ="
                             + encrypted);
             BluetoothDevice srcDevice = mService.getDeviceForSyncHandle(syncHandle);
             if (srcDevice == null) {
@@ -1299,8 +1299,7 @@ public class BassClientStateMachine extends StateMachine {
 
         @Override
         public void onSyncTransferred(BluetoothDevice device, int status) {
-            log("onSyncTransferred: device=" + device +
-                    " ,status =" + status);
+            log("onSyncTransferred: device=" + device + ", status =" + status);
         }
     }
 
