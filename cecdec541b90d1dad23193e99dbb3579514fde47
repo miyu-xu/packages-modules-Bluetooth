@@ -50,6 +50,30 @@
       ],
       "revId": "cecdec541b90d1dad23193e99dbb3579514fde47",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4e995c4_1e5bf347",
+        "filename": "system/types/bluetooth/uuid.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1997210
+      },
+      "writtenOn": "2024-05-24T07:57:14Z",
+      "side": 1,
+      "message": "\u003e Can\u0027t we just update it unconditionally?\n\nNo, unless we do the uprev or cherry-picks for libchrome in Android. The new function signature `RandBytes(span\u003cuint8_t\u003e)` is available only in the newer libchrome (added in https://crrev.com/c/5177323). However, Android is using an older libchrome.\n\nAdd @hscham@google.com to keep me honest.",
+      "parentUuid": "4f7a0e8b_458fdec9",
+      "range": {
+        "startLine": 152,
+        "startChar": 4,
+        "endLine": 152,
+        "endChar": 12
+      },
+      "revId": "cecdec541b90d1dad23193e99dbb3579514fde47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
