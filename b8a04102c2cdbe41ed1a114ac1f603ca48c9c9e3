@@ -1,0 +1,195 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c8324e5_b9fb8c0f",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-24T16:12:26Z",
+      "side": 1,
+      "message": "debug?",
+      "range": {
+        "startLine": 130,
+        "startChar": 11,
+        "endLine": 130,
+        "endChar": 15
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2a1cc7c8_b5ef4cf6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 130,
+                "startChar": 0,
+                "endLine": 133,
+                "endChar": 0
+              },
+              "replacement": "      log::debug(\"write to remote, uuid {}, len {}\",\n                 vendor_specific_characteristic.characteristicUuid_,\n                 vendor_specific_characteristic.value_.size());\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b8a04102c2cdbe41ed1a114ac1f603ca48c9c9e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2b60d6a_bda6ae3d",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-24T16:12:26Z",
+      "side": 1,
+      "message": "debug?",
+      "range": {
+        "startLine": 216,
+        "startChar": 13,
+        "endLine": 216,
+        "endChar": 17
+      },
+      "revId": "b8a04102c2cdbe41ed1a114ac1f603ca48c9c9e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f4394a1_d4e987c8",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-24T16:12:26Z",
+      "side": 1,
+      "message": "nit: add a space?",
+      "revId": "b8a04102c2cdbe41ed1a114ac1f603ca48c9c9e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d1b1141_b2d328b7",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-24T16:12:26Z",
+      "side": 1,
+      "message": "debug?",
+      "range": {
+        "startLine": 471,
+        "startChar": 13,
+        "endLine": 471,
+        "endChar": 17
+      },
+      "revId": "b8a04102c2cdbe41ed1a114ac1f603ca48c9c9e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd3b548d_592f76b0",
+        "filename": "system/bta/ras/ras_utils.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-24T16:12:26Z",
+      "side": 1,
+      "message": "I think it would be a good idea to check if it\u0027s a 16-bit UUID, as well.",
+      "range": {
+        "startLine": 137,
+        "startChar": 10,
+        "endLine": 137,
+        "endChar": 24
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c3567796_ade6ce61",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ras/ras_utils.cc",
+              "range": {
+                "startLine": 137,
+                "startChar": 0,
+                "endLine": 137,
+                "endChar": 0
+              },
+              "replacement": "  if (uuid.GetShortestSize() !\u003d 2) {\n    return false;\n  }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b8a04102c2cdbe41ed1a114ac1f603ca48c9c9e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc704a6d_e2353cd6",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-24T16:12:26Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 274,
+        "startChar": 6,
+        "endLine": 274,
+        "endChar": 35
+      },
+      "revId": "b8a04102c2cdbe41ed1a114ac1f603ca48c9c9e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3877ea58_a5413a04",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-24T16:12:26Z",
+      "side": 1,
+      "message": "Is it normal if it\u0027s already connected?  If not, this could be a warning.  If it is, maybe debug?",
+      "range": {
+        "startLine": 350,
+        "startChar": 11,
+        "endLine": 350,
+        "endChar": 15
+      },
+      "revId": "b8a04102c2cdbe41ed1a114ac1f603ca48c9c9e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
