@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "247091fc_c4206f03",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementMethod.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-05-24T18:37:41Z",
+      "side": 1,
+      "message": "yes, it was a mistake. 25Q1 doens\u0027t allow \u0027deprecated\u0027API. will deprecate it by next release.",
+      "parentUuid": "0b8915b1_1519c0a4",
+      "range": {
+        "startLine": 94,
+        "startChar": 4,
+        "endLine": 96,
+        "endChar": 5
+      },
+      "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "583a8760_2ff2b8d8",
         "filename": "framework/java/android/bluetooth/le/DistanceMeasurementMethod.java",
         "patchSetId": 10
@@ -118,6 +142,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "42f27913_ecc9aca8",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementMethod.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-05-24T18:37:41Z",
+      "side": 1,
+      "message": "name looks good. but the \u0027setMethodId\u0027 was used by DistanceMeasurementParams.Builder#setMethodId, if we change it now. may it cause confusion?\ndo you think we should change it?\n\nand the \u0027methodId\u0027 was set with the Builder() ctor, instead of a \u0027set\u0027. as it is the mandatory",
+      "parentUuid": "583a8760_2ff2b8d8",
+      "range": {
+        "startLine": 106,
+        "startChar": 44,
+        "endLine": 106,
+        "endChar": 55
+      },
+      "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f30818ed_13e25d04",
         "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
         "patchSetId": 10
@@ -153,6 +201,30 @@
           ]
         }
       ],
+      "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24f31531_ffb20eb9",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-05-24T18:37:41Z",
+      "side": 1,
+      "message": "there was the warning. remove it, as we changed the name, let\u0027s see if \u0027nanos\u0027 is ok.",
+      "parentUuid": "f30818ed_13e25d04",
+      "range": {
+        "startLine": 328,
+        "startChar": 19,
+        "endLine": 328,
+        "endChar": 34
+      },
       "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -580,6 +652,72 @@
           ]
         }
       ],
+      "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffd1d8c5_02e39e16",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-05-24T18:37:41Z",
+      "side": 1,
+      "message": "this is not a duration, we need the monotonic timestamp when the measurement happened.",
+      "parentUuid": "c94e675c_4be3daa0",
+      "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "320f9d00_9dbfa0b0",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-05-24T18:37:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82b56c2d_571bdbb7",
+      "range": {
+        "startLine": 329,
+        "startChar": 16,
+        "endLine": 329,
+        "endChar": 39
+      },
+      "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "580e988b_30f8967d",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1583276
+      },
+      "writtenOn": "2024-05-24T18:37:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f4910bb_831cc379",
+      "range": {
+        "startLine": 329,
+        "startChar": 16,
+        "endLine": 329,
+        "endChar": 39
+      },
       "revId": "859ae4167fcbfbb64daeade1ed931ae29510e0d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
