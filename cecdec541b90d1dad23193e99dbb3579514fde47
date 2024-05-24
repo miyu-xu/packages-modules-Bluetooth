@@ -74,6 +74,30 @@
       },
       "revId": "cecdec541b90d1dad23193e99dbb3579514fde47",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3fd4d73_3c6d92e5",
+        "filename": "system/types/bluetooth/uuid.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1588128
+      },
+      "writtenOn": "2024-05-24T08:34:26Z",
+      "side": 1,
+      "message": "\u003e Where is this define ?\n\nOn ChromeOS, it is defined in [libchrome/BASE_VER](https://source.corp.google.com/h/chrome-internal/chromeos/superproject/+/main:src/platform/libchrome/BASE_VER?q\u003df:libchrome%2FBASE_VER%20repo:chrome-internal%2Fchromeos%2Fsuperproject%20branch:main) and installed to /usr/share/libchrome/BASE_VER.\n\nOn android, IIUC it is difficult to share that with clients so they define it by themselves, e.g. [update_engine]((https://cs.android.com/android/platform/superproject/main/+/main:system/update_engine/Android.bp;l\u003d48?q\u003df:update_engine%20f:Android.bp%20base_ver\u0026ss\u003dandroid%2Fplatform%2Fsuperproject%2Fmain). @fqj@google.com for more context.\nI can\u0027t find where this is defined for bluetooth though, the logic in [build.py](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/build.py;l\u003d319?q\u003df:bluetooth%20BASE_VER\u0026ss\u003dandroid%2Fplatform%2Fsuperproject%2Fmain) seems to be only applicable to CrOS.\n\n\u003e Can\u0027t we just update it unconditionally ?\n\nAs Wei-Luan mentioned, Android libchrome is very old (r576279) but this version of base::RandBytes is added in r1244838, used by CrOS libchrome.\n\n\u003e I notice checking BASE_VER is present in a couple other spot and wonder if they are really required\n\nThe situation is similar for other libchrome functions, the BASE_VER guards are necessary so that the code is compatible with both versions of libchrome on Android and CrOS.",
+      "parentUuid": "e4e995c4_1e5bf347",
+      "range": {
+        "startLine": 152,
+        "startChar": 4,
+        "endLine": 152,
+        "endChar": 12
+      },
+      "revId": "cecdec541b90d1dad23193e99dbb3579514fde47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
