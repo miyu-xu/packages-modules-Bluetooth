@@ -19,6 +19,16 @@ flag {
 }
 
 flag {
+<<<<<<< PATCH SET (25f8d1 Remove flag opp_service_fix_index_out_of_bounds_exception_in)
+    name: "opp_remove_incomplete_download"
+    namespace: "bluetooth"
+    description: "Remove incomplete file download (e.g. BT turned off while downloading)"
+    bug: "331298337"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
+=======
     name: "opp_service_fix_index_out_of_bounds_exception_in_update_thread"
     namespace: "bluetooth"
     description: "Fix IndexOutOfBoundsException which happens in OPP service's UpdateThread"
@@ -28,3 +38,4 @@ flag {
     }
 }
 
+>>>>>>> BASE      (acf7c8 Merge changes Ic4334059,I6b2ecf00,I7a741747 into main)
