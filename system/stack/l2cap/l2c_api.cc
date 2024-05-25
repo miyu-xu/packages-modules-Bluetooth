@@ -317,7 +317,7 @@ uint16_t L2CA_ConnectReq(uint16_t psm, const RawAddress& p_bd_addr) {
   log::verbose("BDA {} PSM: 0x{:04x}", p_bd_addr, psm);
 
   /* Fail if we have not established communications with the controller */
-  if (!BTM_IsDeviceUp()) {
+  if (!get_btm_client_interface().local.BTM_IsDeviceUp()) {
     log::warn("BTU not ready");
     return 0;
   }
@@ -515,7 +515,7 @@ uint16_t L2CA_ConnectLECocReq(uint16_t psm, const RawAddress& p_bd_addr,
   log::verbose("BDA: {} PSM: 0x{:04x}", p_bd_addr, psm);
 
   /* Fail if we have not established communications with the controller */
-  if (!BTM_IsDeviceUp()) {
+  if (!get_btm_client_interface().local.BTM_IsDeviceUp()) {
     log::warn("BTU not ready");
     return 0;
   }
@@ -740,7 +740,7 @@ std::vector<uint16_t> L2CA_ConnectCreditBasedReq(uint16_t psm,
   std::vector<uint16_t> allocated_cids;
 
   /* Fail if we have not established communications with the controller */
-  if (!BTM_IsDeviceUp()) {
+  if (!get_btm_client_interface().local.BTM_IsDeviceUp()) {
     log::warn("BTU not ready");
     return allocated_cids;
   }
@@ -1174,7 +1174,7 @@ bool L2CA_ConnectFixedChnl(uint16_t fixed_cid, const RawAddress& rem_bda) {
   }
 
   // Fail if BT is not yet up
-  if (!BTM_IsDeviceUp()) {
+  if (!get_btm_client_interface().local.BTM_IsDeviceUp()) {
     log::warn("Bt controller is not ready fixed_cid:0x{:04x}", fixed_cid);
     return (false);
   }
@@ -1287,7 +1287,7 @@ uint16_t L2CA_SendFixedChnlData(uint16_t fixed_cid, const RawAddress& rem_bda,
     return (L2CAP_DW_FAILED);
   }
 
-  if (!BTM_IsDeviceUp()) {
+  if (!get_btm_client_interface().local.BTM_IsDeviceUp()) {
     log::warn("Controller is not ready CID: 0x{:04x}", fixed_cid);
     osi_free(p_buf);
     return (L2CAP_DW_FAILED);
