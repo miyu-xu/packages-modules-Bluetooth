@@ -37,6 +37,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "3846a7a8_e7b7b127",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-05-25T00:47:34Z",
+      "side": 1,
+      "message": "The flag name and comments are updated.",
+      "parentUuid": "b76e477d_dde35b18",
+      "revId": "b54a78af75e37279c755411cd4bca860770a3010",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "c661807f_2019f1c7",
         "filename": "system/stack/btm/btm_ble_gap.cc",
         "patchSetId": 22
