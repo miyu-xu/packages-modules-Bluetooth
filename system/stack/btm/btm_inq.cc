@@ -42,7 +42,7 @@
 #include "common/time_util.h"
 #include "hci/controller_interface.h"
 #include "hci/event_checkers.h"
-#include "hci/hci_layer.h"
+#include "hci/hci_interface.h"
 #include "internal_include/bt_target.h"
 #include "main/shim/acl_api.h"
 #include "main/shim/entry.h"
@@ -62,8 +62,8 @@
 #include "stack/include/bt_lap.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/bt_uuid16.h"
-#include "stack/include/btm_api.h"
 #include "stack/include/btm_ble_api.h"
+#include "stack/include/btm_client_interface.h"
 #include "stack/include/btm_log_history.h"
 #include "stack/include/hci_error_code.h"
 #include "stack/include/hcidefs.h"
@@ -431,7 +431,8 @@ tBTM_STATUS BTM_SetInquiryMode(uint8_t mode) {
   } else
     return (BTM_ILLEGAL_VALUE);
 
-  if (!BTM_IsDeviceUp()) return (BTM_WRONG_MODE);
+  if (!get_btm_client_interface().local.BTM_IsDeviceUp())
+    return (BTM_WRONG_MODE);
 
   btsnd_hcic_write_inquiry_mode(mode);
 
@@ -526,7 +527,8 @@ uint16_t BTM_IsInquiryActive(void) {
  ******************************************************************************/
 static void BTM_CancelLeScan() {
   if (!bluetooth::shim::is_classic_discovery_only_enabled()) {
-    log::assert_that(BTM_IsDeviceUp(), "assert failed: BTM_IsDeviceUp()");
+    log::assert_that(get_btm_client_interface().local.BTM_IsDeviceUp(),
+                     "assert failed: BTM_IsDeviceUp()");
     if ((btm_cb.btm_inq_vars.inqparms.mode & BTM_BLE_INQUIRY_MASK) != 0)
       btm_ble_stop_inquiry();
   } else {
@@ -546,7 +548,8 @@ static void BTM_CancelLeScan() {
 void BTM_CancelInquiry(void) {
   log::verbose("");
 
-  log::assert_that(BTM_IsDeviceUp(), "assert failed: BTM_IsDeviceUp()");
+  log::assert_that(get_btm_client_interface().local.BTM_IsDeviceUp(),
+                   "assert failed: BTM_IsDeviceUp()");
 
   btm_cb.neighbor.inquiry_history_->Push({
       .status = tBTM_INQUIRY_CMPL::CANCELED,
@@ -718,7 +721,7 @@ tBTM_STATUS BTM_StartInquiry(tBTM_INQ_RESULTS_CB* p_results_cb,
   }
 
   /*** Make sure the device is ready ***/
-  if (!BTM_IsDeviceUp()) {
+  if (!get_btm_client_interface().local.BTM_IsDeviceUp()) {
     log::error("adapter is not up");
     btm_cb.neighbor.inquiry_history_->Push({
         .status = tBTM_INQUIRY_CMPL::NOT_STARTED,
@@ -1875,7 +1878,8 @@ tBTM_STATUS btm_initiate_rem_name(const RawAddress& remote_bda,
                                   uint64_t timeout_ms,
                                   tBTM_NAME_CMPL_CB* p_cb) {
   /*** Make sure the device is ready ***/
-  if (!BTM_IsDeviceUp()) return (BTM_WRONG_MODE);
+  if (!get_btm_client_interface().local.BTM_IsDeviceUp())
+    return (BTM_WRONG_MODE);
   if (btm_cb.btm_inq_vars.remname_active) {
     return (BTM_BUSY);
   } else {
