@@ -60,6 +60,7 @@
 #include "stack/include/btm_api_types.h"
 #include "stack/include/btm_ble_addr.h"
 #include "stack/include/btm_ble_privacy.h"
+#include "stack/include/btm_client_interface.h"
 #include "stack/include/btm_log_history.h"
 #include "stack/include/gap_api.h"
 #include "stack/include/gattdefs.h"
@@ -67,7 +68,6 @@
 #include "stack/include/inq_hci_link_interface.h"
 #include "types/ble_address_with_type.h"
 #include "types/raw_address.h"
-
 using namespace bluetooth;
 
 extern tBTM_CB btm_cb;
@@ -770,8 +770,9 @@ static void btm_ble_vendor_capability_vsc_cmpl_cback(
         uint8_t* p_param = param;
 
         UINT8_TO_STREAM(p_param, HCI_CONTROLLER_DAB_GET_BUFFER_TIME);
-        BTM_VendorSpecificCommand(HCI_CONTROLLER_DAB, p_param - param, param,
-                                  btm_get_dynamic_audio_buffer_vsc_cmpl_cback);
+        get_btm_client_interface().lifecycle.BTM_VendorSpecificCommand(
+            HCI_CONTROLLER_DAB, p_param - param, param,
+            btm_get_dynamic_audio_buffer_vsc_cmpl_cback);
       }
     }
   }
@@ -942,8 +943,8 @@ void BTM_BleReadControllerFeatures(tBTM_BLE_CTRL_FEATURES_CBACK* p_vsc_cback) {
     }
   } else {
     p_ctrl_le_feature_rd_cmpl_cback = p_vsc_cback;
-    BTM_VendorSpecificCommand(HCI_BLE_VENDOR_CAP, 0, NULL,
-                              btm_ble_vendor_capability_vsc_cmpl_cback);
+    get_btm_client_interface().lifecycle.BTM_VendorSpecificCommand(
+        HCI_BLE_VENDOR_CAP, 0, NULL, btm_ble_vendor_capability_vsc_cmpl_cback);
   }
 }
 
