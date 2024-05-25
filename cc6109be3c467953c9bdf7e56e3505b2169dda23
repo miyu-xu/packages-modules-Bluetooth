@@ -16,6 +16,24 @@
       "message": "LGTM but curious why we need this change?",
       "revId": "cc6109be3c467953c9bdf7e56e3505b2169dda23",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb17136d_40b6e27f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-25T04:18:05Z",
+      "side": 1,
+      "message": "Just want to make them consistent. I guess this would be helpful when reading and searching the addresses in the log.",
+      "parentUuid": "808743c6_5d4f89ef",
+      "revId": "cc6109be3c467953c9bdf7e56e3505b2169dda23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
