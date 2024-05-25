@@ -34,9 +34,7 @@
 #include "stack/include/l2c_api.h"
 #include "stack/include/port_api.h"
 #include "stack/include/rfcdefs.h"
-#include "stack/rfcomm/rfc_state.h"
 #include "types/raw_address.h"
-
 /*
  * Flow control configuration values for the mux
 */
@@ -90,7 +88,7 @@ typedef struct {
       RawAddress::kEmpty;                /* BD ADDR of the peer if initiator */
   uint16_t lcid;                         /* Local cid used for this channel */
   uint16_t peer_l2cap_mtu; /* Max frame that can be sent to peer L2CAP */
-  tRFC_MX_STATE state;     /* Current multiplexer channel state */
+  uint8_t state;           /* Current multiplexer channel state */
   uint8_t is_initiator;    /* true if this side sends SABME (dlci=0) */
   bool restart_required;  /* true if has to restart channel after disc */
   bool peer_ready;        /* True if other side can accept frames */
