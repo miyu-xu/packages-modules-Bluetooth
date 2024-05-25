@@ -16,6 +16,24 @@
       "message": "Please add \"Flag:\" to get automatic Dr. No\n\n```\nFlag: com.android.bluetooth.flags.sec_dont_clear_keys_on_encryption_err\n````",
       "revId": "7b54650d0dd1becf9aabe8ff114256f784075c22",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "678a8eb6_af3a896b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-05-25T22:04:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10ad6b43_2b2ace6a",
+      "revId": "7b54650d0dd1becf9aabe8ff114256f784075c22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
