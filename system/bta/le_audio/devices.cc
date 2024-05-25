@@ -884,7 +884,8 @@ uint8_t LeAudioDevice::GetSupportedAudioChannelCounts(uint8_t direction) const {
 uint8_t LeAudioDevice::GetPhyBitmask(void) const {
   uint8_t phy_bitfield = kIsoCigPhy1M;
 
-  if (BTM_IsPhy2mSupported(address_, BT_TRANSPORT_LE))
+  if (get_btm_client_interface().peer.BTM_IsPhy2mSupported(address_,
+                                                           BT_TRANSPORT_LE))
     phy_bitfield |= kIsoCigPhy2M;
 
   return phy_bitfield;
