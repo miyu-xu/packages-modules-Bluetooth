@@ -16,6 +16,24 @@
       "message": "LGTM. However, note that API change like this visual examination is not sufficient. Make sure you thoroughly tested.",
       "revId": "b091053a718b1117f62f770a9c21c5adf10f69df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cef375e_cd5fc909",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-25T06:45:45Z",
+      "side": 1,
+      "message": "Gotcha I\u0027ll do more tests. I just found an issue in dbus macro so this patch needs to be rebased",
+      "parentUuid": "a3334e23_7900f0e4",
+      "revId": "b091053a718b1117f62f770a9c21c5adf10f69df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
