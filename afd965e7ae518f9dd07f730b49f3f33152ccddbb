@@ -51,6 +51,24 @@
       "message": "Nit: We should log this irrespective of the flag state",
       "revId": "afd965e7ae518f9dd07f730b49f3f33152ccddbb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9422bcd3_c4851375",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3276,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-05-25T08:43:28Z",
+      "side": 1,
+      "message": "Lets treat this log a a logcat indicator that flag is enabled.\n\nSince idea about flags is that it will be eventually always enabled, then we should be good.",
+      "parentUuid": "fac2277b_ab8420b8",
+      "revId": "afd965e7ae518f9dd07f730b49f3f33152ccddbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
