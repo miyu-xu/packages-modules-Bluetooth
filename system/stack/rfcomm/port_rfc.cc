@@ -214,8 +214,15 @@ void PORT_StartCnf(tRFC_MCB* p_mcb, uint16_t result) {
         log::verbose("dlci {}", p_port->dlci);
         RFCOMM_ParameterNegotiationRequest(p_mcb, p_port->dlci, p_port->mtu);
       } else {
-        log::warn("Unable start configuration dlci:{} result:{}", p_port->dlci,
-                  result);
+        log::warn("failed result:{}", result);
+
+        /* Warning: result is also set to 4 when l2cap connection
+           fails due to l2cap connect cnf (no_resources) */
+        if (result == HCI_ERR_PAGE_TIMEOUT) {
+          p_port->error = PORT_PAGE_TIMEOUT;
+        } else {
+          p_port->error = PORT_START_FAILED;
+        }
 
         rfc_release_multiplexer_channel(p_mcb);
 
@@ -475,8 +482,7 @@ void PORT_DlcEstablishCnf(tRFC_MCB* p_mcb, uint8_t dlci, uint16_t mtu,
   if (!p_port) return;
 
   if (result != RFCOMM_SUCCESS) {
-    log::warn("Unable to establish configuration dlci:{} result:{}", dlci,
-              result);
+    p_port->error = PORT_START_FAILED;
     port_rfc_closed(p_port, PORT_START_FAILED);
     log_counter_metrics(
         android::bluetooth::CodePathCounterKeyEnum::RFCOMM_PORT_START_FAILED,
@@ -563,7 +569,8 @@ void PORT_PortNegCnf(tRFC_MCB* p_mcb, uint8_t dlci, tPORT_STATE* /* p_pars */,
   }
   /* Port negotiation failed. Drop the connection */
   if (result != RFCOMM_SUCCESS) {
-    log::warn("Unable to negotiate port state dlci:{} result:{}", dlci, result);
+    p_port->error = PORT_PORT_NEG_FAILED;
+
     RFCOMM_DlcReleaseReq(p_mcb, p_port->dlci);
 
     port_rfc_closed(p_port, PORT_PORT_NEG_FAILED);

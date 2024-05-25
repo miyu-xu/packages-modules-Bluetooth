@@ -33,7 +33,6 @@
 #include "stack/include/bt_hdr.h"
 #include "stack/rfcomm/port_int.h"
 #include "stack/rfcomm/rfc_int.h"
-#include "stack/rfcomm/rfc_state.h"
 
 using namespace bluetooth;
 
@@ -140,8 +139,7 @@ void RFCOMM_ParameterNegotiationRequest(tRFC_MCB* p_mcb, uint8_t dlci,
   }
 
   if (p_mcb->state != RFC_MX_STATE_CONNECTED) {
-    log::warn("Multiplexer is in unexpected dlci:{} state:{}", dlci,
-              rfcomm_mx_state_text(p_mcb->state).c_str());
+    p_port->error = PORT_PAR_NEG_FAILED;
     return;
   }
 
