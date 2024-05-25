@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48457f46_45e91816",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-25T00:07:59Z",
+      "side": 1,
+      "message": "@zhidou@google.com \nCan you have a look ? I didn\u0027t see any module nor apps that are splitting their flag in 2 different declaration and 2 different library.\n\nI am wondering if this is going into the good direction or not.",
+      "revId": "8612573ee3a79f61e251c96b3e5b553731514395",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
