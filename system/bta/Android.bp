@@ -534,6 +534,7 @@ cc_test {
         ":TestCommonMockFunctions",
         ":TestMockBtif",
         ":TestMockMainShimLeScanning",
+        ":TestMockStackBtmInterface",
         "csis/csis_client.cc",
         "csis/csis_client_test.cc",
         "gatt/database.cc",
