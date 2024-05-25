@@ -1272,8 +1272,8 @@ static void btm_ble_notify_enc_cmpl(const RawAddress& bd_addr,
                                     bool encr_enable) {
   if (encr_enable) {
     uint8_t remote_lmp_version = 0;
-    if (!BTM_ReadRemoteVersion(bd_addr, &remote_lmp_version, nullptr,
-                               nullptr) ||
+    if (!get_btm_client_interface().peer.BTM_ReadRemoteVersion(
+            bd_addr, &remote_lmp_version, nullptr, nullptr) ||
         remote_lmp_version == 0) {
       log::warn("BLE Unable to determine remote version");
     }
