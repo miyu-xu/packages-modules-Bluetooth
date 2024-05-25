@@ -2624,7 +2624,8 @@ void l2cu_adjust_out_mps(tL2C_CCB* p_ccb) {
   uint16_t packet_size;
 
   /* on the tx side MTU is selected based on packet size of the controller */
-  packet_size = BTM_GetMaxPacketSize(p_ccb->p_lcb->remote_bd_addr);
+  packet_size = get_btm_client_interface().peer.BTM_GetMaxPacketSize(
+      p_ccb->p_lcb->remote_bd_addr);
 
   if (packet_size <= (L2CAP_PKT_OVERHEAD + L2CAP_FCR_OVERHEAD +
                       L2CAP_SDU_LEN_OVERHEAD + L2CAP_FCS_LEN)) {
