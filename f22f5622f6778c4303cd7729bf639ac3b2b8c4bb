@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95bf7d36_8771515f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1088076
+      },
+      "writtenOn": "2024-05-25T07:47:02Z",
+      "side": 1,
+      "message": "guess this one needs o be reverted too? context: b/342724267",
+      "revId": "f22f5622f6778c4303cd7729bf639ac3b2b8c4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
