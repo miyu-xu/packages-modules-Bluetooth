@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf9784dd_6dab6b5a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-25T04:31:43Z",
+      "side": 1,
+      "message": "This CL doesn\u0027t change API",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 12
+      },
+      "revId": "5d6149d5b4e7e5093197fa350de7ae3b0886434e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a1afda5_57abd899",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-25T04:31:43Z",
+      "side": 1,
+      "message": "https://r.android.com/c/3095002/ is missed here\n```\n* CL:3095002\n```",
+      "revId": "5d6149d5b4e7e5093197fa350de7ae3b0886434e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
