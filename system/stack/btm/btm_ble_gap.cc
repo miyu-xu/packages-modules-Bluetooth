@@ -60,6 +60,7 @@
 #include "stack/include/btm_api_types.h"
 #include "stack/include/btm_ble_addr.h"
 #include "stack/include/btm_ble_privacy.h"
+#include "stack/include/btm_client_interface.h"
 #include "stack/include/btm_log_history.h"
 #include "stack/include/gap_api.h"
 #include "stack/include/gattdefs.h"
@@ -67,7 +68,6 @@
 #include "stack/include/inq_hci_link_interface.h"
 #include "types/ble_address_with_type.h"
 #include "types/raw_address.h"
-
 using namespace bluetooth;
 
 extern tBTM_CB btm_cb;
@@ -748,6 +748,7 @@ void BTM_BleReadControllerFeatures(tBTM_BLE_CTRL_FEATURES_CBACK* p_vsc_cback) {
     // QTI controller, TDS data filter are supported by default.
     btm_cb.cmn_ble_vsc_cb.adv_filter_extended_features_mask = 0x01;
   } else {
+<<<<<<< HEAD
     btm_cb.cmn_ble_vsc_cb.adv_filter_extended_features_mask = 0x00;
   }
 
@@ -769,6 +770,11 @@ void BTM_BleReadControllerFeatures(tBTM_BLE_CTRL_FEATURES_CBACK* p_vsc_cback) {
 
   if (p_vsc_cback != NULL) {
     p_vsc_cback(tHCI_STATUS::HCI_SUCCESS);
+=======
+    p_ctrl_le_feature_rd_cmpl_cback = p_vsc_cback;
+    get_btm_client_interface().lifecycle.BTM_VendorSpecificCommand(
+        HCI_BLE_VENDOR_CAP, 0, NULL, btm_ble_vendor_capability_vsc_cmpl_cback);
+>>>>>>> d3515487e99 ([5/19] get_btm_client_interface().lifecycle.BTM_VendorSpecificCommand)
   }
 }
 
