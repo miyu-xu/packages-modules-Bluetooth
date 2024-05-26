@@ -736,7 +736,7 @@ impl BluetoothMedia {
                     DisplayAddress(&addr),
                     group_id
                 );
-                let device = BluetoothDevice::new(addr.to_string(), "".to_string());
+                let device = BluetoothDevice::new(addr, "".to_string());
                 let txl = self.tx.clone();
                 topstack::get_runtime().spawn(async move {
                     let _ = txl
@@ -1159,7 +1159,7 @@ impl BluetoothMedia {
     }
 
     fn disconnect_device(txl: Sender<Message>, addr: RawAddress) {
-        let device = BluetoothDevice::new(addr.to_string(), "".to_string());
+        let device = BluetoothDevice::new(addr, "".to_string());
         topstack::get_runtime().spawn(async move {
             let _ = txl.send(Message::DisconnectDevice(device)).await;
         });
@@ -2131,8 +2131,7 @@ impl BluetoothMedia {
     fn is_bonded(&self, addr: &RawAddress) -> bool {
         match &self.adapter {
             Some(adapter) => {
-                BtBondState::Bonded
-                    == adapter.lock().unwrap().get_bond_state_by_addr(&addr.to_string())
+                BtBondState::Bonded == adapter.lock().unwrap().get_bond_state_by_addr(&addr)
             }
             _ => false,
         }
@@ -2341,7 +2340,7 @@ impl BluetoothMedia {
 
     fn adapter_get_remote_name(&self, addr: RawAddress) -> String {
         let device = BluetoothDevice::new(
-            addr.to_string(),
+            addr,
             // get_remote_name needs a BluetoothDevice just for its address, the
             // name field is unused so construct one with a fake name.
             "Classic Device".to_string(),
@@ -2357,7 +2356,7 @@ impl BluetoothMedia {
     }
 
     fn adapter_get_le_audio_profiles(&self, addr: RawAddress) -> HashSet<uuid::Profile> {
-        let device = BluetoothDevice::new(addr.to_string(), "".to_string());
+        let device = BluetoothDevice::new(addr, "".to_string());
         if let Some(adapter) = &self.adapter {
             adapter
                 .lock()
@@ -2373,7 +2372,7 @@ impl BluetoothMedia {
     }
 
     fn adapter_get_classic_audio_profiles(&self, addr: RawAddress) -> HashSet<uuid::Profile> {
-        let device = BluetoothDevice::new(addr.to_string(), "".to_string());
+        let device = BluetoothDevice::new(addr, "".to_string());
         if let Some(adapter) = &self.adapter {
             adapter
                 .lock()
@@ -2462,13 +2461,8 @@ impl BluetoothMedia {
         devices
             .iter()
             .filter(|d| {
-                let addr = match RawAddress::from_string(&d.address) {
-                    None => return false,
-                    Some(a) => a,
-                };
-
-                self.is_any_profile_connected(&addr, &MEDIA_CLASSIC_AUDIO_PROFILES)
-                    || self.is_any_profile_connected(&addr, &MEDIA_LE_AUDIO_PROFILES)
+                self.is_any_profile_connected(&d.address, &MEDIA_CLASSIC_AUDIO_PROFILES)
+                    || self.is_any_profile_connected(&d.address, &MEDIA_LE_AUDIO_PROFILES)
             })
             .cloned()
             .collect()
