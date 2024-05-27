@@ -1279,11 +1279,7 @@ public class RemoteDevices {
 
     void fetchUuids(BluetoothDevice device, int transport) {
         if (mSdpTracker.contains(device)) {
-            debugLog(
-                    "Skip fetch UUIDs are they are already cached peer:"
-                            + device
-                            + " transport:"
-                            + transport);
+            // SDP Skip fetch UUIDs if cached
             MetricsLogger.getInstance().cacheCount(
                     BluetoothProtoEnums.SDP_FETCH_UUID_SKIP_ALREADY_CACHED, 1);
             return;
@@ -1293,7 +1289,7 @@ public class RemoteDevices {
         DeviceProperties deviceProperties = getDeviceProperties(device);
         if (deviceProperties != null && deviceProperties.isBonding()
                 && getDeviceProperties(device).getUuids() == null) {
-            debugLog("Skip fetch UUIDs due to bonding peer:" + device + " transport:" + transport);
+            // SDP Skip fetch UUIDs due to bonding
             MetricsLogger.getInstance().cacheCount(
                     BluetoothProtoEnums.SDP_FETCH_UUID_SKIP_ALREADY_BONDED, 1);
             return;
@@ -1307,11 +1303,7 @@ public class RemoteDevices {
 
         // Uses cached UUIDs if we are bonding. If not, we fetch the UUIDs with SDP.
         if (deviceProperties == null || !deviceProperties.isBonding()) {
-            debugLog(
-                    "Invoking core stack to spin up SDP cycle peer:"
-                            + device
-                            + " transport:"
-                            + transport);
+            // SDP Invoked native code to spin up SDP cycle
             mAdapterService
                     .getNative()
                     .getRemoteServices(Utils.getBytesFromAddress(device.getAddress()), transport);
