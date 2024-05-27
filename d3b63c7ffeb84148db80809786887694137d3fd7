@@ -34,6 +34,24 @@
       "parentUuid": "df491f8e_ac945574",
       "revId": "d3b63c7ffeb84148db80809786887694137d3fd7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0b24075_b13e5ae2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 1308,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-27T01:43:08Z",
+      "side": 1,
+      "message": "Probably both. In bluetooth.rs we adjust these flags before calling btif create_bond. So even if btif pairing_is_busy returns false, as long as these flags are set your call to Rust create_bond would fail.\n```\n    pub fn is_pairing_busy(\u0026self) -\u003e bool {\n        self.active_pairing_address.is_some() || self.pending_create_bond.is_some()\n    }\n```",
+      "parentUuid": "8f97bde7_999fb092",
+      "revId": "d3b63c7ffeb84148db80809786887694137d3fd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
