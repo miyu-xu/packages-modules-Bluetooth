@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6384aba1_b30c14b7",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-05-27T07:35:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c8324e5_b9fb8c0f",
+      "range": {
+        "startLine": 130,
+        "startChar": 11,
+        "endLine": 130,
+        "endChar": 15
+      },
+      "revId": "b8a04102c2cdbe41ed1a114ac1f603ca48c9c9e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d2b60d6a_bda6ae3d",
@@ -55,6 +79,30 @@
       "writtenOn": "2024-05-24T16:12:26Z",
       "side": 1,
       "message": "debug?",
+      "range": {
+        "startLine": 216,
+        "startChar": 13,
+        "endLine": 216,
+        "endChar": 17
+      },
+      "revId": "b8a04102c2cdbe41ed1a114ac1f603ca48c9c9e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1618007_e9270369",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-05-27T07:35:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2b60d6a_bda6ae3d",
       "range": {
         "startLine": 216,
         "startChar": 13,
@@ -82,6 +130,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2790cfcd_a6a99fe0",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-05-27T07:35:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f4394a1_d4e987c8",
+      "revId": "b8a04102c2cdbe41ed1a114ac1f603ca48c9c9e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d1b1141_b2d328b7",
@@ -95,6 +161,30 @@
       "writtenOn": "2024-05-24T16:12:26Z",
       "side": 1,
       "message": "debug?",
+      "range": {
+        "startLine": 471,
+        "startChar": 13,
+        "endLine": 471,
+        "endChar": 17
+      },
+      "revId": "b8a04102c2cdbe41ed1a114ac1f603ca48c9c9e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8070b9db_a6de8110",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-05-27T07:35:16Z",
+      "side": 1,
+      "message": "This only do once when GattServiceSearchComplete;\nCCCD is only and mandatory descriptor for most RAS characteristics.\nI would like to keep this as info for debug.\nThanks!",
+      "parentUuid": "4d1b1141_b2d328b7",
       "range": {
         "startLine": 471,
         "startChar": 13,
@@ -146,6 +236,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25cd5fe3_71dea933",
+        "filename": "system/bta/ras/ras_utils.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-05-27T07:35:16Z",
+      "side": 1,
+      "message": "Sure, let me do it in the following patch.\nThanks!",
+      "parentUuid": "bd3b548d_592f76b0",
+      "range": {
+        "startLine": 137,
+        "startChar": 10,
+        "endLine": 137,
+        "endChar": 24
+      },
+      "revId": "b8a04102c2cdbe41ed1a114ac1f603ca48c9c9e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc704a6d_e2353cd6",
@@ -169,6 +283,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae2f0b32_fcdbc094",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-05-27T07:35:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc704a6d_e2353cd6",
+      "range": {
+        "startLine": 274,
+        "startChar": 6,
+        "endLine": 274,
+        "endChar": 35
+      },
+      "revId": "b8a04102c2cdbe41ed1a114ac1f603ca48c9c9e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3877ea58_a5413a04",
@@ -182,6 +320,30 @@
       "writtenOn": "2024-05-24T16:12:26Z",
       "side": 1,
       "message": "Is it normal if it\u0027s already connected?  If not, this could be a warning.  If it is, maybe debug?",
+      "range": {
+        "startLine": 350,
+        "startChar": 11,
+        "endLine": 350,
+        "endChar": 15
+      },
+      "revId": "b8a04102c2cdbe41ed1a114ac1f603ca48c9c9e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99202f4b_716dd6b1",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-05-27T07:35:16Z",
+      "side": 1,
+      "message": "It is normal, host may stop CS without disconnect the gatt.\nChange to debug.\nThanks!",
+      "parentUuid": "3877ea58_a5413a04",
       "range": {
         "startLine": 350,
         "startChar": 11,
