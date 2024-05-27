@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55844bfd_139e881c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-27T08:10:41Z",
+      "side": 1,
+      "message": "I\u0027ll rebase this after https://r.android.com/3102718 get merged. Please take an initial review, thanks.",
+      "revId": "4a6740b177ed9fc4bf89a78f6c6316f89b428b06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
