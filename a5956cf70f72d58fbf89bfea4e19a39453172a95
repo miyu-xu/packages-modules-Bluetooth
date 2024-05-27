@@ -22,6 +22,30 @@
       },
       "revId": "a5956cf70f72d58fbf89bfea4e19a39453172a95",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fab03359_52a3e3a3",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 973,
+      "author": {
+        "id": 2051151
+      },
+      "writtenOn": "2024-05-27T02:50:49Z",
+      "side": 1,
+      "message": "For now, the broadcast configuration is not changed during the session live cycle",
+      "parentUuid": "a839e0b3_2fcae0aa",
+      "range": {
+        "startLine": 973,
+        "startChar": 14,
+        "endLine": 973,
+        "endChar": 52
+      },
+      "revId": "a5956cf70f72d58fbf89bfea4e19a39453172a95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
