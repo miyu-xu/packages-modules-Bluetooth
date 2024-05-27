@@ -16,6 +16,24 @@
       "message": "Note: We have the [`active_pairing_address`](https://cs.android.com/android/platform/superproject/+/main:packages/modules/Bluetooth/system/gd/rust/linux/stack/src/bluetooth.rs;l\u003d550;drc\u003da2e77ea8e1b8d42c3185225b5c99f7e4746cf259) and https://r.android.com/3066868 is introducing `pending_create_bond`, they shall be more reliable than the btif `pairing_is_busy`.",
       "revId": "d3b63c7ffeb84148db80809786887694137d3fd7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f97bde7_999fb092",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 1308,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-05-27T01:12:21Z",
+      "side": 1,
+      "message": "Noted. Will look into which serves better as I got this from Android\u0027s implementation, thanks!",
+      "parentUuid": "df491f8e_ac945574",
+      "revId": "d3b63c7ffeb84148db80809786887694137d3fd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
