@@ -150,6 +150,8 @@ const Uuid UUID_A2DP_SINK = Uuid::FromString("110B");
 #define PROPERTY_BLE_PRIVACY_ENABLED "bluetooth.core.gap.le.privacy.enabled"
 #endif
 
+#define BTIF_DM_SDP_DELAY_TIMER_MS 500
+
 #define ENCRYPTED_BREDR 2
 #define ENCRYPTED_LE 4
 
@@ -229,6 +231,11 @@ typedef struct {
   struct timespec timestamp;
 } btif_bond_event_t;
 
+typedef struct {
+  RawAddress bd_addr;
+  alarm_t *sdp_delay_timer;
+} btif_dm_bl_device_t;
+
 #define BTA_SERVICE_ID_TO_SERVICE_MASK(id) (1 << (id))
 
 #define MAX_BTIF_BOND_EVENT_ENTRIES 15
@@ -253,6 +260,8 @@ static uid_set_t* uid_set = NULL;
 static btif_bond_event_t btif_dm_bond_events[MAX_BTIF_BOND_EVENT_ENTRIES + 1];
 
 static std::mutex bond_event_lock;
+
+static btif_dm_bl_device_t bl_device;
 
 /* |btif_num_bond_events| keeps track of the total number of events and can be
    greater than |MAX_BTIF_BOND_EVENT_ENTRIES| */
@@ -306,13 +315,41 @@ static bool is_bonding_or_sdp() {
          (pairing_cb.state == BT_BOND_STATE_BONDED && pairing_cb.sdp_attempts);
 }
 
-void btif_dm_init(uid_set_t* set) { uid_set = set; }
+void btif_dm_init(uid_set_t* set) {
+  uid_set = set;
+  bl_device.sdp_delay_timer = alarm_new("btif_dm.sdp_delay_timer");
+}
 
 void btif_dm_cleanup(void) {
+  if (bl_device.sdp_delay_timer) {
+    alarm_free(bl_device.sdp_delay_timer);
+    bl_device.sdp_delay_timer = NULL;
+  }
+
   if (uid_set) {
     uid_set_destroy(uid_set);
     uid_set = NULL;
   }
+}
+
+static void btif_dm_sdp_delay_timer_cback(void *data) {
+  log::info("%s: initiating SDP after delay ", __func__);
+  //Ensure inquiry is stopped before attempting service discovery
+  btif_dm_cancel_discovery();
+
+  btif_dm_get_remote_services(*((RawAddress*)data), BT_TRANSPORT_BR_EDR);
+}
+
+void btif_dm_sdp_delay_timer(const RawAddress *bl_bdaddr) {
+  bl_device.bd_addr = *bl_bdaddr;
+
+  if(!bl_device.sdp_delay_timer) {
+    log::info("%s: unable to allocate sdp_delay_timer", __func__);
+    return;
+  }
+  alarm_set(bl_device.sdp_delay_timer, BTIF_DM_SDP_DELAY_TIMER_MS,
+            btif_dm_sdp_delay_timer_cback, &bl_device.bd_addr);
+  log::info("%s: sdp delay timer started", __func__);
 }
 
 static bt_status_t btif_in_execute_service_request(tBTA_SERVICE_ID service_id, bool b_enable) {
@@ -1176,23 +1213,13 @@ static void btif_dm_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
     state = BT_BOND_STATE_BONDED;
     bd_addr = p_auth_cmpl->bd_addr;
 
-    if (check_sdp_bl(&bd_addr) && check_cod_hid(bd_addr)) {
-      log::warn("skip SDP");
-      skip_sdp = true;
-    }
-    if (!pairing_cb.is_local_initiated && skip_sdp) {
+    if (!pairing_cb.is_local_initiated && check_cod_hid(&bd_addr)) {
+
+      log::info("%s:incoming hid pairing btif_dm_sdp_delay_timer_started", __func__);
+      pairing_cb.sdp_attempts = 1;
       bond_state_changed(status, bd_addr, state);
+      btif_dm_sdp_delay_timer(&bd_addr);
 
-      log::warn("Incoming HID Connection");
-      bt_property_t prop;
-      Uuid uuid = Uuid::From16Bit(UUID_SERVCLASS_HUMAN_INTERFACE);
-
-      prop.type = BT_PROPERTY_UUIDS;
-      prop.val = &uuid;
-      prop.len = Uuid::kNumBytes128;
-
-      GetInterfaceToProfiles()->events->invoke_remote_device_properties_cb(BT_STATUS_SUCCESS,
-                                                                           bd_addr, 1, &prop);
     } else {
       /* If bonded due to cross-key, save the static address too*/
       if (is_crosskey) {
