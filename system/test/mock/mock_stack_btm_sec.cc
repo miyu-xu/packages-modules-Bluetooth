@@ -79,6 +79,7 @@ struct btm_sec_check_pending_reqs btm_sec_check_pending_reqs;
 struct btm_sec_clear_ble_keys btm_sec_clear_ble_keys;
 struct btm_sec_conn_req btm_sec_conn_req;
 struct btm_sec_connected btm_sec_connected;
+struct btm_sec_execute_procedure btm_sec_execute_procedure;
 struct btm_sec_cr_loc_oob_data_cback_event btm_sec_cr_loc_oob_data_cback_event;
 struct btm_sec_dev_rec_cback_event btm_sec_dev_rec_cback_event;
 struct btm_sec_dev_reset btm_sec_dev_reset;
@@ -132,6 +133,7 @@ bool btm_sec_is_a_bonded_dev::return_value = false;
 tBTM_STATUS btm_sec_l2cap_access_req::return_value = tBTM_STATUS::BTM_SUCCESS;
 tBTM_STATUS btm_sec_l2cap_access_req_by_requirement::return_value = tBTM_STATUS::BTM_SUCCESS;
 tBTM_STATUS btm_sec_mx_access_request::return_value = tBTM_STATUS::BTM_SUCCESS;
+tBTM_STATUS btm_sec_execute_procedure::return_value = tBTM_STATUS::BTM_SUCCESS;
 
 }  // namespace stack_btm_sec
 }  // namespace mock
@@ -296,6 +298,10 @@ void btm_sec_connected(const RawAddress& bda, uint16_t handle, tHCI_STATUS statu
                        tHCI_ROLE assigned_role) {
   inc_func_call_count(__func__);
   test::mock::stack_btm_sec::btm_sec_connected(bda, handle, status, enc_mode, assigned_role);
+}
+tBTM_STATUS btm_sec_execute_procedure(tBTM_SEC_DEV_REC *p_dev_rec) {
+  inc_func_call_count(__func__);
+  return test::mock::stack_btm_sec::btm_sec_execute_procedure(p_dev_rec);
 }
 void btm_sec_cr_loc_oob_data_cback_event(const RawAddress& address,
                                          tSMP_LOC_OOB_DATA loc_oob_data) {
