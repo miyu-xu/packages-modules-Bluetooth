@@ -491,6 +491,7 @@ struct tTCB_STATE_HISTORY {
 };
 
 extern bluetooth::common::TimestampedCircularBuffer<tTCB_STATE_HISTORY> tcb_state_history_;
+uint8_t gatt_num_app_hold_links(const RawAddress& bda, tBT_TRANSPORT transport);
 
 /* from gatt_main.cc */
 bool gatt_disconnect(tGATT_TCB* p_tcb);

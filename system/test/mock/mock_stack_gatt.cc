@@ -34,3 +34,9 @@ tGATT_STATUS GATTC_Discover(uint16_t /* conn_id */, tGATT_DISC_TYPE /* disc_type
   inc_func_call_count(__func__);
   return GATT_SUCCESS;
 }
+
+uint8_t gatt_num_app_hold_links(const RawAddress& /*bda */,
+                                tBT_TRANSPORT /* transport */) {
+  inc_func_call_count(__func__);
+  return 0;
+}
