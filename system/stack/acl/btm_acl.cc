@@ -819,9 +819,25 @@ void btm_read_remote_version_complete(tHCI_STATUS status, uint16_t handle, uint8
  *
  ******************************************************************************/
 void btm_process_remote_ext_features(tACL_CONN* p_acl_cb, uint8_t max_page_number) {
-  log::assert_that(p_acl_cb != nullptr, "assert failed: p_acl_cb != nullptr");
+  tBTM_STATUS             status;
+  tBTM_SEC_DEV_REC* p_dev_rec;
+  CHECK(p_acl_cb != nullptr);
   if (!p_acl_cb->peer_lmp_feature_valid[max_page_number]) {
     log::warn("Checking remote features but remote feature read is incomplete");
+  }
+
+  p_dev_rec = btm_find_dev(p_acl_cb->remote_addr);
+
+  if (p_dev_rec == nullptr) {
+    log::warn("Unable to find p_dev_rec");
+    return;
+  }
+
+  if (!(p_dev_rec->sec_rec.sec_flags & BTM_SEC_NAME_KNOWN) || p_dev_rec->is_originator)
+  {
+    log::debug("Calling Next Security Procedure");
+    if ((status = btm_sec_execute_procedure (p_dev_rec)) != tBTM_STATUS::BTM_CMD_STARTED)
+      btm_sec_dev_rec_cback_event (p_dev_rec, status , FALSE);
   }
 
   bool ssp_supported = HCI_SSP_HOST_SUPPORTED(p_acl_cb->peer_lmp_feature_pages[1]);
@@ -2453,6 +2469,8 @@ void acl_packets_completed(uint16_t handle, uint16_t credits) {
 
 void acl_process_supported_features(uint16_t handle, uint64_t features) {
   tACL_CONN* p_acl = internal_.acl_get_connection_from_handle(handle);
+  tBTM_SEC_DEV_REC* p_dev_rec;
+  tBTM_STATUS status;
   if (p_acl == nullptr) {
     log::warn("Unable to find active acl");
     return;
@@ -2475,6 +2493,18 @@ void acl_process_supported_features(uint16_t handle, uint64_t features) {
   } else {
     log::debug("No more remote features outstanding so notify upper layer");
     NotifyAclFeaturesReadComplete(*p_acl, current_page_number);
+
+    p_dev_rec = btm_find_dev(p_acl->remote_addr);
+
+    if (p_dev_rec == nullptr) {
+      log::warn("Unable to find p_dev_rec");
+      return;
+    }
+    if (!(p_dev_rec->sec_rec.sec_flags & BTM_SEC_NAME_KNOWN) || p_dev_rec->is_originator) {
+      log::debug("Calling Next Security Procedure");
+      if ((status = btm_sec_execute_procedure (p_dev_rec)) != tBTM_STATUS::BTM_CMD_STARTED)
+        btm_sec_dev_rec_cback_event (p_dev_rec, status , FALSE);
+    }
   }
 }
 
