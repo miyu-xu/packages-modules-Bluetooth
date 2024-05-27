@@ -9,16 +9,6 @@ flag {
 }
 
 flag {
-    name: "opp_fix_multiple_notifications_issues"
-    namespace: "bluetooth"
-    description: "Fix UI issues related to multiple OPP notifications"
-    bug: "323096132"
-    metadata {
-        purpose: PURPOSE_BUGFIX
-    }
-}
-
-flag {
     name: "opp_service_fix_index_out_of_bounds_exception_in_update_thread"
     namespace: "bluetooth"
     description: "Fix IndexOutOfBoundsException which happens in OPP service's UpdateThread"

@@ -397,9 +397,7 @@ class BluetoothOppNotification {
             intent.setDataAndNormalize(Uri.parse(BluetoothShare.CONTENT_URI + "/" + item.id));
             b.setContentIntent(PendingIntent.getBroadcast(mContext, 0, intent,
                         PendingIntent.FLAG_IMMUTABLE));
-            if (Flags.oppFixMultipleNotificationsIssues()) {
-                b.setGroup(NOTIFICATION_GROUP_KEY_PROGRESS);
-            }
+            b.setGroup(NOTIFICATION_GROUP_KEY_PROGRESS);
             mNotificationMgr.notify(NOTIFICATION_ID_PROGRESS, b.build());
         }
     }
@@ -461,11 +459,7 @@ class BluetoothOppNotification {
             }
 
             Intent deleteIntent = new Intent(mContext, BluetoothOppReceiver.class);
-            if (Flags.oppFixMultipleNotificationsIssues()) {
-                deleteIntent.setAction(Constants.ACTION_HIDE_COMPLETED_OUTBOUND_TRANSFER);
-            } else {
-                deleteIntent.setAction(Constants.ACTION_COMPLETE_HIDE);
-            }
+            deleteIntent.setAction(Constants.ACTION_HIDE_COMPLETED_OUTBOUND_TRANSFER);
 
             Notification.Builder b =
                     new Notification.Builder(mContext, OPP_NOTIFICATION_CHANNEL).setOnlyAlertOnce(
@@ -483,10 +477,8 @@ class BluetoothOppNotification {
                                     PendingIntent.getBroadcast(mContext, 0, deleteIntent,
                                         PendingIntent.FLAG_IMMUTABLE))
                             .setWhen(timeStamp)
-                            .setLocalOnly(true);
-            if (Flags.oppFixMultipleNotificationsIssues()) {
-                b.setGroup(NOTIFICATION_GROUP_KEY_TRANSFER_COMPLETE);
-            }
+                            .setLocalOnly(true)
+                            .setGroup(NOTIFICATION_GROUP_KEY_TRANSFER_COMPLETE);
             mNotificationMgr.notify(NOTIFICATION_ID_OUTBOUND_COMPLETE, b.build());
         } else {
             if (mNotificationMgr != null) {
@@ -539,11 +531,7 @@ class BluetoothOppNotification {
             }
 
             Intent deleteIntent = new Intent(mContext, BluetoothOppReceiver.class);
-            if (Flags.oppFixMultipleNotificationsIssues()) {
-                deleteIntent.setAction(Constants.ACTION_HIDE_COMPLETED_INBOUND_TRANSFER);
-            } else {
-                deleteIntent.setAction(Constants.ACTION_COMPLETE_HIDE);
-            }
+            deleteIntent.setAction(Constants.ACTION_HIDE_COMPLETED_INBOUND_TRANSFER);
 
             Notification.Builder b =
                     new Notification.Builder(mContext, OPP_NOTIFICATION_CHANNEL).setOnlyAlertOnce(
@@ -562,10 +550,8 @@ class BluetoothOppNotification {
                                     PendingIntent.getBroadcast(mContext, 0, deleteIntent,
                                         PendingIntent.FLAG_IMMUTABLE))
                             .setWhen(timeStamp)
-                            .setLocalOnly(true);
-            if (Flags.oppFixMultipleNotificationsIssues()) {
-                b.setGroup(NOTIFICATION_GROUP_KEY_TRANSFER_COMPLETE);
-            }
+                            .setLocalOnly(true)
+                            .setGroup(NOTIFICATION_GROUP_KEY_TRANSFER_COMPLETE);
             mNotificationMgr.notify(NOTIFICATION_ID_INBOUND_COMPLETE, b.build());
         } else {
             if (mNotificationMgr != null) {
@@ -574,7 +560,7 @@ class BluetoothOppNotification {
             }
         }
 
-        if (Flags.oppFixMultipleNotificationsIssues() && inboundNum > 0 && outboundNum > 0) {
+        if (inboundNum > 0 && outboundNum > 0) {
             Notification.Builder b =
                     new Notification.Builder(mContext, OPP_NOTIFICATION_CHANNEL)
                             .setGroup(NOTIFICATION_GROUP_KEY_TRANSFER_COMPLETE)
@@ -665,10 +651,8 @@ class BluetoothOppNotification {
                                     info.mDeviceName, fileNameSafe)))
                             .setSubText(Formatter.formatFileSize(mContext, info.mTotalBytes))
                             .setSmallIcon(R.drawable.ic_bluetooth_file_transfer_notification)
-                            .setLocalOnly(true);
-            if (Flags.oppFixMultipleNotificationsIssues()) {
-                publicNotificationBuilder.setGroup(NOTIFICATION_GROUP_KEY_INCOMING_FILE_CONFIRM);
-            }
+                            .setLocalOnly(true)
+                            .setGroup(NOTIFICATION_GROUP_KEY_INCOMING_FILE_CONFIRM);
 
             Notification.Builder builder =
                     new Notification.Builder(mContext, OPP_NOTIFICATION_CHANNEL).setOnlyAlertOnce(
@@ -696,10 +680,8 @@ class BluetoothOppNotification {
                             .setVisibility(Notification.VISIBILITY_PRIVATE)
                             .addAction(actionDecline)
                             .addAction(actionAccept)
-                            .setPublicVersion(publicNotificationBuilder.build());
-            if (Flags.oppFixMultipleNotificationsIssues()) {
-                builder.setGroup(NOTIFICATION_GROUP_KEY_INCOMING_FILE_CONFIRM);
-            }
+                            .setPublicVersion(publicNotificationBuilder.build())
+                            .setGroup(NOTIFICATION_GROUP_KEY_INCOMING_FILE_CONFIRM);
             mNotificationMgr.notify(NOTIFICATION_ID_PROGRESS, builder.build());
         }
         cursor.close();
