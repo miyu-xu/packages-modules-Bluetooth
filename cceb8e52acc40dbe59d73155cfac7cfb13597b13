@@ -1,5 +1,46 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e3dff6c_a6ea7ad5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968840
+      },
+      "writtenOn": "2024-05-27T14:07:26Z",
+      "side": 1,
+      "message": "@mylesgw@google.com @bhuthaiah@google.com",
+      "revId": "cceb8e52acc40dbe59d73155cfac7cfb13597b13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c5cac3e_25100cb6",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1216,
+      "author": {
+        "id": 1968840
+      },
+      "writtenOn": "2024-05-27T14:07:26Z",
+      "side": 1,
+      "message": "Hello. We return above without set status to disconnected.\nThen upper layer may treat it as connected.\nSo can you please check this?",
+      "range": {
+        "startLine": 1216,
+        "startChar": 5,
+        "endLine": 1216,
+        "endChar": 67
+      },
+      "revId": "cceb8e52acc40dbe59d73155cfac7cfb13597b13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
