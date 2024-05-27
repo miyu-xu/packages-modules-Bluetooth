@@ -26,14 +26,10 @@ import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 
 import android.content.Context;
-import android.platform.test.annotations.RequiresFlagsEnabled;
-import android.platform.test.flag.junit.CheckFlagsRule;
-import android.platform.test.flag.junit.DeviceFlagsValueProvider;
 
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.flags.Flags;
 import com.android.compatibility.common.util.AdoptShellPermissionsRule;
 
 import org.junit.Ignore;
@@ -54,16 +50,12 @@ public class GattServerConnectWithoutScanTest {
 
     @Rule public final PandoraDevice mBumble = new PandoraDevice();
 
-    @Rule
-    public final CheckFlagsRule mCheckFlagsRule = DeviceFlagsValueProvider.createCheckFlagsRule();
-
     private final Context mContext = ApplicationProvider.getApplicationContext();
     private final BluetoothManager mBluetoothManager =
             mContext.getSystemService(BluetoothManager.class);
     private final BluetoothAdapter mBluetoothAdapter = mBluetoothManager.getAdapter();
 
     @Test
-    @RequiresFlagsEnabled(Flags.FLAG_BLE_GATT_SERVER_USE_ADDRESS_TYPE_IN_CONNECTION)
     public void serverConnectToRandomAddress_withTransportAuto() throws Exception {
         advertiseWithBumble(OwnAddressType.RANDOM);
 
@@ -89,7 +81,6 @@ public class GattServerConnectWithoutScanTest {
     }
 
     @Test
-    @RequiresFlagsEnabled(Flags.FLAG_BLE_GATT_SERVER_USE_ADDRESS_TYPE_IN_CONNECTION)
     public void serverConnectToRandomAddress_withTransportLE() throws Exception {
         advertiseWithBumble(OwnAddressType.RANDOM);
 
