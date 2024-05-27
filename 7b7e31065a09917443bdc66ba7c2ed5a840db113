@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9ea4404d_d951121e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-05-27T06:55:49Z",
+      "side": 1,
+      "message": "I\u0027m not sure about others, but I tested with pixel buds pro, the address used in GATT connection and the one used in classic were different, so the GATT disconnection won\u0027t trigger UI disconnected prompt.",
+      "parentUuid": "12c852c2_489926e4",
+      "revId": "7b7e31065a09917443bdc66ba7c2ed5a840db113",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2c92c8c6_46d4aa8c",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 2
@@ -48,6 +66,24 @@
       "writtenOn": "2024-05-24T21:11:59Z",
       "side": 1,
       "message": "This part feels strange to me that we are guessing the state. What if we guess incorrectly?",
+      "revId": "7b7e31065a09917443bdc66ba7c2ed5a840db113",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af221ac5_978ab63f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-05-27T06:55:49Z",
+      "side": 1,
+      "message": "This only happens when the device is not uni-transport and the link reported from libbluetooth is auto transport. There is no way for upper layer to know which transport it is referring to, which means something needs to be fixed. So how about printing something here to notify that there is a potential issue and just return false?",
+      "parentUuid": "2c92c8c6_46d4aa8c",
       "revId": "7b7e31065a09917443bdc66ba7c2ed5a840db113",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
