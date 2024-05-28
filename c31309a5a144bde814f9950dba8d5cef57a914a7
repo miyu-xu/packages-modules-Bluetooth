@@ -16,6 +16,24 @@
       "message": "@rwt pointed out that this patch could be dropped in favor of aosp/3088226.\nI wasn\u0027t sure because `p_dev-\u003einternal_send_fd` would then be written by both the btif and main thread.\nHowever, https://linux.die.net/man/2/write mentions that write is atomic, so probably nothing bad would happen. So I\u0027ll drop this in the next iteration.",
       "revId": "c31309a5a144bde814f9950dba8d5cef57a914a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06b138b1_331aaea2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-05-28T10:48:25Z",
+      "side": 1,
+      "message": "Hang on, even though write is atomic, it\u0027s still possible for the btif thread which owns `internal_send_fd` to close it, then the main thread would not know it and could still accesses the fd and crash. Maybe we still need this after all?",
+      "parentUuid": "79fe61f8_8df228d9",
+      "revId": "c31309a5a144bde814f9950dba8d5cef57a914a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
