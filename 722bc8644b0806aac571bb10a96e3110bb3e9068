@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d39e8c94_6fc7a2d3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-05-28T23:07:22Z",
+      "side": 1,
+      "message": "Eli, can you review the changes to pending intent flags? This differs from the current usage of flags in DCKF and Charlie says that the FLAG_MUTABLE is deprected or discouraged from being used anymore.",
+      "revId": "722bc8644b0806aac571bb10a96e3110bb3e9068",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
