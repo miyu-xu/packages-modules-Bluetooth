@@ -168,7 +168,7 @@ public class LeScanningTest {
     public void startBleScan_withPendingIntentAndDynamicReceiverAndCallbackTypeAllMatches() {
         BroadcastReceiver mockReceiver = mock(BroadcastReceiver.class);
         IntentFilter intentFilter = new IntentFilter(ACTION_DYNAMIC_RECEIVER_SCAN_RESULT);
-        mContext.registerReceiver(mockReceiver, intentFilter);
+        mContext.registerReceiver(mockReceiver, intentFilter, Context.RECEIVER_EXPORTED);
 
         advertiseWithBumble(TEST_UUID_STRING, OwnAddressType.PUBLIC);
 
@@ -187,7 +187,11 @@ public class LeScanningTest {
         Intent scanIntent = new Intent(ACTION_DYNAMIC_RECEIVER_SCAN_RESULT);
         PendingIntent pendingIntent =
                 PendingIntent.getBroadcast(
-                        mContext, 0, scanIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+                        mContext,
+                        0,
+                        scanIntent,
+                        PendingIntent.FLAG_MUTABLE | PendingIntent.FLAG_ALLOW_UNSAFE_IMPLICIT_INTENT
+                        );
 
         mLeScanner.startScan(List.of(scanFilter), scanSettings, pendingIntent);
 
