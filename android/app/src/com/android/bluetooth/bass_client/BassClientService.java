@@ -288,10 +288,6 @@ public class BassClientService extends ProfileService {
         log("updatePeriodicAdvertisementResultMap: broadcastName: " + broadcastName);
         log("mSyncHandleToDeviceMap" + mSyncHandleToDeviceMap);
         log("mPeriodicAdvertisementResultMap" + mPeriodicAdvertisementResultMap);
-        // Cache the SyncHandle and source device
-        if (mSyncHandleToDeviceMap != null && syncHandle != BassConstants.INVALID_SYNC_HANDLE) {
-            mSyncHandleToDeviceMap.put(syncHandle, device);
-        }
         if (mPeriodicAdvertisementResultMap != null) {
             HashMap<Integer, PeriodicAdvertisementResult> paResMap =
                     mPeriodicAdvertisementResultMap.get(device);
@@ -309,17 +305,45 @@ public class BassClientService extends ProfileService {
                 log("PAResmap: update >>>");
                 if (bId == BassConstants.INVALID_BROADCAST_ID) {
                     // Update when onSyncEstablished, try to retrieve valid broadcast id
-                    for (Map.Entry<Integer, PeriodicAdvertisementResult> entry :
-                            paResMap.entrySet()) {
-                        PeriodicAdvertisementResult value = entry.getValue();
-                        if (value.getBroadcastId() != BassConstants.INVALID_BROADCAST_ID) {
-                            bId = value.getBroadcastId();
-                            break;
+                    if (leaudioBroadcastExtractPeriodicScannerFromStateMachine()) {
+                        bId = getBroadcastIdForSyncHandle(BassConstants.INVALID_BROADCAST_ID);
+
+                        if (bId == BassConstants.INVALID_BROADCAST_ID
+                                || !paResMap.containsKey(bId)) {
+                            Log.e(TAG, "PAResmap: error! no valid broadcast id found>>>");
+                            return;
                         }
-                    }
-                    if (bId == BassConstants.INVALID_BROADCAST_ID) {
-                        log("PAResmap: error! no valid broadcast id found>>>");
-                        return;
+
+                        int oldBroadcastId = getBroadcastIdForSyncHandle(syncHandle);
+                        if (oldBroadcastId != BassConstants.INVALID_BROADCAST_ID
+                                && oldBroadcastId != bId) {
+                            log(
+                                    "updatePeriodicAdvertisementResultMap: SyncEstablished on the"
+                                            + " same syncHandle="
+                                            + syncHandle
+                                            + ", before syncLost");
+                            if (leaudioBroadcastMonitorSourceSyncStatus()) {
+                                log(
+                                        "Notify broadcast source lost, broadcast id: "
+                                                + oldBroadcastId);
+                                mCallbacks.notifySourceLost(oldBroadcastId);
+                            }
+                            clearAllDataForSyncHandle(syncHandle);
+                            mCachedBroadcasts.remove(oldBroadcastId);
+                        }
+                    } else {
+                        for (Map.Entry<Integer, PeriodicAdvertisementResult> entry :
+                                paResMap.entrySet()) {
+                            PeriodicAdvertisementResult value = entry.getValue();
+                            if (value.getBroadcastId() != BassConstants.INVALID_BROADCAST_ID) {
+                                bId = value.getBroadcastId();
+                                break;
+                            }
+                        }
+                        if (bId == BassConstants.INVALID_BROADCAST_ID) {
+                            log("PAResmap: error! no valid broadcast id found>>>");
+                            return;
+                        }
                     }
                 }
                 PeriodicAdvertisementResult paRes = paResMap.get(bId);
@@ -327,6 +351,9 @@ public class BassClientService extends ProfileService {
                     paRes.updateAdvSid(advSid);
                 }
                 if (syncHandle != BassConstants.INVALID_SYNC_HANDLE) {
+                    if (mSyncHandleToDeviceMap != null) {
+                        mSyncHandleToDeviceMap.put(syncHandle, device);
+                    }
                     paRes.updateSyncHandle(syncHandle);
                     if (paRes.getBroadcastId() != BassConstants.INVALID_BROADCAST_ID) {
                         // broadcast successfully synced
@@ -1620,11 +1647,12 @@ public class BassClientService extends ProfileService {
             if (mPeriodicAdvertisementResultMap != null) {
                 clearNotifiedFlags();
             }
-            ScanSettings settings = new ScanSettings.Builder().setCallbackType(
-                    ScanSettings.CALLBACK_TYPE_ALL_MATCHES)
-                    .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
-                    .setLegacy(false)
-                    .build();
+            ScanSettings settings =
+                    new ScanSettings.Builder()
+                            .setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES)
+                            .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
+                            .setLegacy(false)
+                            .build();
             if (filters == null) {
                 filters = new ArrayList<ScanFilter>();
             }
