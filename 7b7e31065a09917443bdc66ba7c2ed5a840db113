@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "14e6d63d_d93b3cbc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-05-28T18:08:51Z",
+      "side": 1,
+      "message": "Makes sense. Thanks for checking",
+      "parentUuid": "9ea4404d_d951121e",
+      "revId": "7b7e31065a09917443bdc66ba7c2ed5a840db113",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c92c8c6_46d4aa8c",
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "This only happens when the device is not uni-transport and the link reported from libbluetooth is auto transport. There is no way for upper layer to know which transport it is referring to, which means something needs to be fixed. So how about printing something here to notify that there is a potential issue and just return false?",
       "parentUuid": "2c92c8c6_46d4aa8c",
+      "revId": "7b7e31065a09917443bdc66ba7c2ed5a840db113",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25013940_63f3aa5e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-05-28T18:08:51Z",
+      "side": 1,
+      "message": "Hm I think it\u0027s safer to leave the warning, but set both states to the passed state and notify the upper layers. Since we don\u0027t want the UI to say a device is connected when it actually has disconnected here. WDYT?\n\nIs there anyway we can collect some sort of metrics for how often this happens? Maybe through FRA?",
+      "parentUuid": "af221ac5_978ab63f",
       "revId": "7b7e31065a09917443bdc66ba7c2ed5a840db113",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
