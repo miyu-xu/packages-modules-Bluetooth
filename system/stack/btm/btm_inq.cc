@@ -1452,8 +1452,9 @@ static void btm_process_inq_results_rssi(bluetooth::hci::EventView event) {
 
     p_i = btm_inq_db_find(bda);
 
-    /* Check if this address has already been processed for this inquiry */
-    if (btm_inq_find_bdaddr(bda)) {
+    /* Checking if the device is present in inquiry database before checking if
+     * this address has already been processed for this inquiry */
+    if (p_i && btm_inq_find_bdaddr(bda)) {
       /* By default suppose no update needed */
       i_rssi = (int8_t)rssi;
 
@@ -1594,8 +1595,9 @@ static void btm_process_inq_results_extended(bluetooth::hci::EventView event) {
 
     p_i = btm_inq_db_find(bda);
 
-    /* Check if this address has already been processed for this inquiry */
-    if (btm_inq_find_bdaddr(bda)) {
+    /* Checking if the device is present in inquiry database before checking if
+     * this address has already been processed for this inquiry */
+    if (p_i && btm_inq_find_bdaddr(bda)) {
       /* By default suppose no update needed */
       i_rssi = (int8_t)rssi;
 
