@@ -98,6 +98,30 @@
       },
       "revId": "cecdec541b90d1dad23193e99dbb3579514fde47",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25ca6162_343cdebb",
+        "filename": "system/types/bluetooth/uuid.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-28T16:55:05Z",
+      "side": 1,
+      "message": "Can we just use a different function for random bytes (not use libchrome)?",
+      "parentUuid": "a3fd4d73_3c6d92e5",
+      "range": {
+        "startLine": 152,
+        "startChar": 4,
+        "endLine": 152,
+        "endChar": 12
+      },
+      "revId": "cecdec541b90d1dad23193e99dbb3579514fde47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
