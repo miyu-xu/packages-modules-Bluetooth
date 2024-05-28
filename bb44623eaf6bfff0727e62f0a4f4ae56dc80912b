@@ -16,6 +16,24 @@
       "message": "I don\u0027t understand why we are adding a flag is this is a floss only feature.\n\nThis should be wrapped by ifdef if there is no intention to ship the associated code on android devices.\n\nAdding Thomas in review since he may have another opinion",
       "revId": "bb44623eaf6bfff0727e62f0a4f4ae56dc80912b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44db024c_be775bb7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-05-28T19:05:01Z",
+      "side": 1,
+      "message": "+1. Flags are not supposed to be target specific, they are only here for enabling to rollout a feature progressively.",
+      "parentUuid": "a07628cd_171ad0fe",
+      "revId": "bb44623eaf6bfff0727e62f0a4f4ae56dc80912b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
