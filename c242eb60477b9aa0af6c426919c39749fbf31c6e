@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac367520_df7f53bc",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-05-28T13:43:25Z",
+      "side": 1,
+      "message": "RawAddress is \u0027ay\u0027 (array of bytes) and String is \u0027s\u0027 over D-Bus. So, I was wondering how the conversion works while RawAddress doesn\u0027t implement DBusArg trait in this patch? \n\nAssuming the implicit conversion works, mixing String and RawAddress types may confuse D-Bus API users. If there\u0027s no simpler way to mask address in log, please clarifying the conversion process and using consistent types would improve API clarity.",
+      "revId": "c242eb60477b9aa0af6c426919c39749fbf31c6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
