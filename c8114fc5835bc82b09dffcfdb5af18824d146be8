@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "834c052c_63e11305",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 692,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-05-28T05:21:07Z",
+      "side": 1,
+      "message": "I have a hard time understanding this part, can you explain it? And consider adding comments?",
+      "range": {
+        "startLine": 676,
+        "startChar": 0,
+        "endLine": 692,
+        "endChar": 0
+      },
+      "revId": "c8114fc5835bc82b09dffcfdb5af18824d146be8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
