@@ -43,6 +43,8 @@
 
     <target_preparer class="com.android.tradefed.targetprep.DeviceSetup">
      <option name="set-property" key="persist.log.tag.bluetooth" value="VERBOSE"/>
+     <option name="set-property" key="persist.bluetooth.has.always_use_preset_cache" value="true"/>
+     <option name="set-property" key="persist.bluetooth.leaudio.bypass_allow_list" value="true"/>
      <option name="restore-properties" value="true"/>
     </target_preparer>
 
@@ -65,6 +67,7 @@
         <option name="profile" value="BNEP" />
         <option name="profile" value="GAP" />
         <option name="profile" value="GATT" />
+        <option name="profile" value="HAP" />
         <option name="profile" value="HFP/AG" />
         <option name="profile" value="HFP/HF" />
         <option name="profile" value="HID/HOS" />
