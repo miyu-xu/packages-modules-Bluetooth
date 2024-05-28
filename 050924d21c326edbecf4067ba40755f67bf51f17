@@ -89,6 +89,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdcb9c7c_c69e9ee8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 21
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-28T17:35:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd9d7494_efca9257",
+      "revId": "050924d21c326edbecf4067ba40755f67bf51f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a9d6d6fd_f0bd2c7d",
@@ -177,6 +195,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78a68331_60ae7940",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 21
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-28T17:35:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b12fe20e_7c1cf3af",
+      "revId": "050924d21c326edbecf4067ba40755f67bf51f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "968a61e6_1c18e6f9",
@@ -238,6 +274,30 @@
       "side": 1,
       "message": "You should be able to pass the StreamObserver through the constructor of `PairingResponder`",
       "parentUuid": "8ed522aa_60593ba8",
+      "range": {
+        "startLine": 216,
+        "startChar": 0,
+        "endLine": 221,
+        "endChar": 0
+      },
+      "revId": "050924d21c326edbecf4067ba40755f67bf51f17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ac3a92c_ea5b5a88",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 21
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-05-28T17:35:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "218f97aa_573813c9",
       "range": {
         "startLine": 216,
         "startChar": 0,
