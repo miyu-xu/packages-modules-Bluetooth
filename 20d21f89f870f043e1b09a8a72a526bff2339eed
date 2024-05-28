@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "885e5a67_4a5f0415",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 722,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-05-28T21:18:56Z",
+      "side": 1,
+      "message": "This registration should have been skipped if new avrcp controller service is already initialized. I am introducing a separate change which will skip the creation if the \"new\" avrcp service is already initialized. This keeps the profile version in parity with the version used by the new avrcp service.",
+      "parentUuid": "1e7fe07e_cee15957",
+      "range": {
+        "startLine": 722,
+        "startChar": 16,
+        "endLine": 722,
+        "endChar": 47
+      },
+      "revId": "20d21f89f870f043e1b09a8a72a526bff2339eed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f2603663_ecb59e18",
         "filename": "system/bta/av/bta_av_main.cc",
         "patchSetId": 2
