@@ -1418,42 +1418,42 @@ static void btm_process_inq_results_rssi(bluetooth::hci::EventView event) {
 
     p_i = btm_inq_db_find(bda);
 
-    /* Check if this address has already been processed for this inquiry */
-    if (btm_inq_find_bdaddr(bda)) {
-      /* By default suppose no update needed */
-      i_rssi = (int8_t)rssi;
+    if (p_i != NULL) {
+      /* Checking if the device is present in inquiry database before checking
+       * if this address has already been processed for this inquiry */
+      if (btm_inq_find_bdaddr(bda)) {
+        /* By default suppose no update needed */
+        i_rssi = (int8_t)rssi;
 
-      /* If this new RSSI is higher than the last one */
-      if ((rssi != 0) && p_i &&
-          (i_rssi > p_i->inq_info.results.rssi ||
-           p_i->inq_info.results.rssi == 0
-           /* BR/EDR inquiry information update */
-           || (p_i->inq_info.results.device_type & BT_DEVICE_TYPE_BREDR) != 0)) {
-        p_cur = &p_i->inq_info.results;
-        log::verbose("update RSSI new:{}, old:{}", i_rssi, p_cur->rssi);
-        p_cur->rssi = i_rssi;
-        update = true;
+        /* If this new RSSI is higher than the last one */
+        if ((rssi != 0) && p_i &&
+            (i_rssi > p_i->inq_info.results.rssi ||
+             p_i->inq_info.results.rssi == 0
+             /* BR/EDR inquiry information update */
+             || (p_i->inq_info.results.device_type & BT_DEVICE_TYPE_BREDR) != 0)) {
+          p_cur = &p_i->inq_info.results;
+          log::verbose("update RSSI new:{}, old:{}", i_rssi, p_cur->rssi);
+          p_cur->rssi = i_rssi;
+          update = true;
+        }
+        /* If no update needed continue with next response (if any) */
+        else {
+          continue;
+        }
       }
-      /* If no update needed continue with next response (if any) */
-      else {
-        continue;
+      /* If an entry for the device already exists, overwrite it ONLY if it is
+             from a previous inquiry. (Ignore it if it is a duplicate response
+         from the same inquiry.
+          */
+      if (p_i->inq_count == btm_cb.btm_inq_vars.inq_counter &&
+          (p_i->inq_info.results.device_type == BT_DEVICE_TYPE_BREDR)) {
+        is_new = false;
       }
-    }
-
-    /* If existing entry, use that, else get a new one (possibly reusing the
-     * oldest) */
-    if (p_i == NULL) {
+    } else {
+      /* If existing entry, use that, else get a new one (possibly reusing the
+       * oldest) */
       p_i = btm_inq_db_new(bda, false);
       is_new = true;
-    }
-
-    /* If an entry for the device already exists, overwrite it ONLY if it is
-       from a previous inquiry. (Ignore it if it is a duplicate response from
-       the same inquiry.
-    */
-    else if (p_i->inq_count == btm_cb.btm_inq_vars.inq_counter &&
-             (p_i->inq_info.results.device_type == BT_DEVICE_TYPE_BREDR)) {
-      is_new = false;
     }
 
     /* keep updating RSSI to have latest value */
@@ -1558,51 +1558,51 @@ static void btm_process_inq_results_extended(bluetooth::hci::EventView event) {
 
     p_i = btm_inq_db_find(bda);
 
-    /* Check if this address has already been processed for this inquiry */
-    if (btm_inq_find_bdaddr(bda)) {
-      /* By default suppose no update needed */
-      i_rssi = (int8_t)rssi;
+    if (p_i != NULL) {
+      /* Checking if the device is present in inquiry database before checking
+       * if this address has already been processed for this inquiry */
+      if (btm_inq_find_bdaddr(bda)) {
+        /* By default suppose no update needed */
+        i_rssi = (int8_t)rssi;
 
-      /* If this new RSSI is higher than the last one */
-      if ((rssi != 0) && p_i &&
-          (i_rssi > p_i->inq_info.results.rssi ||
-           p_i->inq_info.results.rssi == 0
-           /* BR/EDR inquiry information update */
-           || (p_i->inq_info.results.device_type & BT_DEVICE_TYPE_BREDR) != 0)) {
-        p_cur = &p_i->inq_info.results;
-        log::verbose("update RSSI new:{}, old:{}", i_rssi, p_cur->rssi);
-        p_cur->rssi = i_rssi;
-        update = true;
+        /* If this new RSSI is higher than the last one */
+        if ((rssi != 0) && p_i &&
+            (i_rssi > p_i->inq_info.results.rssi ||
+             p_i->inq_info.results.rssi == 0
+             /* BR/EDR inquiry information update */
+             || (p_i->inq_info.results.device_type & BT_DEVICE_TYPE_BREDR) != 0)) {
+          p_cur = &p_i->inq_info.results;
+          log::verbose("update RSSI new:{}, old:{}", i_rssi, p_cur->rssi);
+          p_cur->rssi = i_rssi;
+          update = true;
+        }
+        /* If we received a second Extended Inq Event for an already */
+        /* discovered device, this is because for the first one EIR was not
+          received */
+        else if (p_i) {
+          p_cur = &p_i->inq_info.results;
+          update = true;
+        }
+        /* If no update needed continue with next response (if any) */
+        else {
+          return;
+        }
       }
-      /* If we received a second Extended Inq Event for an already */
-      /* discovered device, this is because for the first one EIR was not
-         received */
-      else if (p_i) {
-        p_cur = &p_i->inq_info.results;
-        update = true;
-      }
-      /* If no update needed continue with next response (if any) */
-      else {
-        return;
-      }
-    }
-
-    /* If existing entry, use that, else get a new one (possibly reusing the
-     * oldest) */
-    if (p_i == NULL) {
-      p_i = btm_inq_db_new(bda, false);
-      is_new = true;
-    }
-
-    /* If an entry for the device already exists, overwrite it ONLY if it is
+      /* If an entry for the device already exists, overwrite it ONLY if it is
        from
        a previous inquiry. (Ignore it if it is a duplicate response from the
        same
        inquiry.
-    */
-    else if (p_i->inq_count == btm_cb.btm_inq_vars.inq_counter &&
-             (p_i->inq_info.results.device_type == BT_DEVICE_TYPE_BREDR)) {
-      is_new = false;
+      */
+      if (p_i->inq_count == btm_cb.btm_inq_vars.inq_counter &&
+          (p_i->inq_info.results.device_type == BT_DEVICE_TYPE_BREDR)) {
+        is_new = false;
+      }
+    } else {
+      /* If existing entry, use that, else get a new one (possibly reusing the
+       * oldest) */
+      p_i = btm_inq_db_new(bda, false);
+      is_new = true;
     }
 
     /* keep updating RSSI to have latest value */
