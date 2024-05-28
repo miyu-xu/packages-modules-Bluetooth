@@ -16,6 +16,24 @@
       "message": "Does this happens in real scenario ? I\u0027m thinking that this could lead to performance decrease due to bad devices (sync loop). Maybe this should be somehow dwindle ? e.g. to clear bad broadcast after some time or action ?",
       "revId": "ec5b9495147c08de5a38dc344332c97e6dd4232e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "831adad0_c8353bb3",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2074,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-28T11:07:23Z",
+      "side": 1,
+      "message": "Yes, bugreport is attached in buganizer. Before that change it was by action which is a stop and start searching but that is not acceptable from user pov. Maybe some delayed claring is a good idea to not flood us when there is a consistent bad ScanRecord.",
+      "parentUuid": "3246b5d7_1b3a1e98",
+      "revId": "ec5b9495147c08de5a38dc344332c97e6dd4232e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
