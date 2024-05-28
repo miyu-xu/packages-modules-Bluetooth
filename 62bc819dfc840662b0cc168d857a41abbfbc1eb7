@@ -106,6 +106,24 @@
       "parentUuid": "b4b14c31_1f447da2",
       "revId": "62bc819dfc840662b0cc168d857a41abbfbc1eb7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86668b8c_16170572",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-05-28T07:18:52Z",
+      "side": 1,
+      "message": "Done. We\u0027ll modify downstream project\u0027s commit strategy in code-owners.config:\n\nhttps://chromium-review.googlesource.com/c/aosp/platform/packages/modules/Bluetooth/+/5568838",
+      "parentUuid": "22555775_d1b03eed",
+      "revId": "62bc819dfc840662b0cc168d857a41abbfbc1eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
