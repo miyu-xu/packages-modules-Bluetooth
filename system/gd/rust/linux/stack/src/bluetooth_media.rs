@@ -3082,7 +3082,8 @@ impl IBluetoothMedia for BluetoothMedia {
         self.initialized = true;
 
         self.is_le_audio_only_enabled =
-            features::is_feature_enabled("CrOSLateBootBluetoothAudioLEAudioOnly").unwrap_or(false);
+            features::is_feature_enabled("CrOSLateBootBluetoothAudioLEAudioOnly").unwrap_or(false)
+                || sysprop::get_bool(sysprop::PropertyBool::LeAudioEnableLeAudioOnly);
 
         // A2DP
         let a2dp_dispatcher = get_a2dp_dispatcher(self.tx.clone());
