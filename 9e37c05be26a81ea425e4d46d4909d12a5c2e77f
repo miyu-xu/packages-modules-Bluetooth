@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9a6e301_824749b0",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1041,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-28T23:42:19Z",
+      "side": 1,
+      "message": "Nit: let\u0027s make this more concise\n```suggestion\n      log::error(\"sCallbackEnv not valid or no mScanCallbacksObj\");\n```",
+      "range": {
+        "startLine": 1041,
+        "startChar": 18,
+        "endLine": 1041,
+        "endChar": 76
+      },
+      "revId": "9e37c05be26a81ea425e4d46d4909d12a5c2e77f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
