@@ -34,6 +34,24 @@
       "parentUuid": "a07628cd_171ad0fe",
       "revId": "bb44623eaf6bfff0727e62f0a4f4ae56dc80912b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8972986_6985b044",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-05-28T21:00:58Z",
+      "side": 1,
+      "message": "Hi William and Thomas, this is a feature we need to rollout LL privacy in ChromeOS, which is already fully enabled in android. So I think this sysprop is not useful to android in practice. But it is a feature that android currently doesn\u0027t support. I am open to use ifdef.",
+      "parentUuid": "44db024c_be775bb7",
+      "revId": "bb44623eaf6bfff0727e62f0a4f4ae56dc80912b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
