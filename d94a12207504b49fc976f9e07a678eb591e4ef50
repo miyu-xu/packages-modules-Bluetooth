@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f42e1ac_f2be1ae2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-05-28T14:27:20Z",
+      "side": 1,
+      "message": "FYI, we should typically wait for the release including the flag (here 24Q3) to roll out before removing the flag. If you think the risk is low, you can remove the flag before. Please ack before I +1 😊",
+      "revId": "d94a12207504b49fc976f9e07a678eb591e4ef50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
