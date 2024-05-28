@@ -346,6 +346,7 @@
     "GATT": {},
     "GAVDP": {},
     "HCI": {},
+    "HAP": {},
     "HFP": {
       "TSPX_phone_number": "42",
       "TSPX_second_phone_number": "43"
