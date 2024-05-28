@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc2ce571_0e689fc7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanControllerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-28T18:58:52Z",
+      "side": 1,
+      "message": "What does this test is testing ?",
+      "range": {
+        "startLine": 79,
+        "startChar": 1,
+        "endLine": 83,
+        "endChar": 5
+      },
+      "revId": "b17c04a7228f57333e78e1f7ac5cd546872f08a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
