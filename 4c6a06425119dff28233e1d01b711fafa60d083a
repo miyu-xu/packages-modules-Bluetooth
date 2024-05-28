@@ -16,6 +16,24 @@
       "message": "DCK uses pending intent majority of the time, so testing the use of PendingIntent is critical for DCK.",
       "revId": "4c6a06425119dff28233e1d01b711fafa60d083a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "daf7ced4_b4977bf4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-05-28T23:08:32Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "eabbb3cb_85bbe426",
+      "revId": "4c6a06425119dff28233e1d01b711fafa60d083a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
