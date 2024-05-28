@@ -106,6 +106,24 @@
       "parentUuid": "95a82394_befe18da",
       "revId": "bb44623eaf6bfff0727e62f0a4f4ae56dc80912b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1545d4e_f23aa454",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-05-28T22:41:24Z",
+      "side": 1,
+      "message": "For Chrome OS, the user will transit from non-privacy mode + public address to privacy mode + public address. Then if the user wants to get full privacy, the user will disconnect LE devices, then reboot to enable privacy mode + random address. Then manually re-pair the LE devices. This is not needed for android.",
+      "parentUuid": "884b4e31_4682257b",
+      "revId": "bb44623eaf6bfff0727e62f0a4f4ae56dc80912b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
