@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48651bc4_861daf21",
+        "filename": "service/src/BleScanSettingListener.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-05-28T21:57:09Z",
+      "side": 1,
+      "message": "considered",
+      "range": {
+        "startLine": 56,
+        "startChar": 62,
+        "endLine": 56,
+        "endChar": 70
+      },
+      "revId": "169d38adc7c58abced018a833001b0c77fa1e99e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
