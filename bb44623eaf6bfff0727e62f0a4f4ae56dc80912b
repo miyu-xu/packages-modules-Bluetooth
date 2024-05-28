@@ -88,6 +88,24 @@
       "parentUuid": "9964b64b_4a225fad",
       "revId": "bb44623eaf6bfff0727e62f0a4f4ae56dc80912b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "884b4e31_4682257b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-05-28T22:35:06Z",
+      "side": 1,
+      "message": "It is mainly because at least for the Android phone, the privacy mode is by default enabled. As a result, the host address is always resolvable random. I don\u0027t see a use case when the android needs to run with a public address + privacy mode, or non-privacy mode + a random address. But for Chrome OS, we currently have non-privacy mode + public address, so we need a transition state to fully migrate to the same as android.",
+      "parentUuid": "95a82394_befe18da",
+      "revId": "bb44623eaf6bfff0727e62f0a4f4ae56dc80912b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
