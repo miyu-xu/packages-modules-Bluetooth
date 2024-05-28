@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4199f4d_0c1faa7d",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-05-28T06:36:16Z",
+      "side": 1,
+      "message": "no, clt_cfg is client configuration.\nthere is no other instance of ctl in this file, it must be the typo instead.",
+      "parentUuid": "4df9ecb2_3f7406b8",
+      "range": {
+        "startLine": 661,
+        "startChar": 22,
+        "endLine": 661,
+        "endChar": 25
+      },
+      "revId": "0791f462db8db7fdc0715a2701cabbc5e5526f69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "127ada90_d1b06948",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-05-28T05:42:11Z",
       "side": 1,
       "message": "nit: prefer explicit comparison to nullptr instead of implicit bool conversion\n\nlike\n\n```\nif (characteristic !\u003d nullptr)\n```",
+      "range": {
+        "startLine": 669,
+        "startChar": 2,
+        "endLine": 669,
+        "endChar": 24
+      },
+      "revId": "0791f462db8db7fdc0715a2701cabbc5e5526f69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bef4b41_696ea253",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-05-28T06:36:16Z",
+      "side": 1,
+      "message": "ok, will do",
+      "parentUuid": "127ada90_d1b06948",
       "range": {
         "startLine": 669,
         "startChar": 2,
