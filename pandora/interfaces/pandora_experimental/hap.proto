@@ -1,0 +1,123 @@
+syntax = "proto3";
+
+package pandora;
+
+import "pandora/host.proto";
+option java_outer_classname = "HapProto";
+import "google/protobuf/empty.proto";
+
+service HAP {
+  // Select preset by index
+  rpc SelectPreset(SelectPresetRequest) returns (google.protobuf.Empty);
+  // Select next preset
+  rpc SelectNextPreset(SelectNextPresetRequest) returns (google.protobuf.Empty);
+  // Select next preset
+  rpc SelectPreviousPreset(SelectPreviousPresetRequest) returns (google.protobuf.Empty);
+  // Playback audio
+  rpc HaPlaybackAudio(stream HaPlaybackAudioRequest) returns (HaPlaybackAudioResponse);
+  // Set preset name
+  rpc SetPresetName(SetPresetNameRequest) returns (google.protobuf.Empty);
+  // Get presets info
+  rpc GetPresetInfo(GetPresetInfoRequest) returns (GetPresetInfoResponse);
+  // Get all presets info
+  rpc GetAllPresetsInfo(GetAllPresetsInfoRequest) returns (GetAllPresetsInfoResponse);
+  // Wait for Preset Changed event
+  rpc WaitPresetChanged(google.protobuf.Empty) returns (WaitPresetChangedResponse);
+}
+
+// Request of the `PlaybackAudio` method.
+message HaPlaybackAudioRequest {
+    // Low Energy connection.
+    Connection connection = 1;
+    // Audio data to playback.
+    // `data` should be interleaved stereo frames with 16-bit signed little-endian
+    // linear PCM samples at 44100Hz sample rate
+    bytes data = 2;
+}
+
+// Response of the `PlaybackAudio` method.
+message HaPlaybackAudioResponse {}
+
+// Request of the `LeAudioSetActive` method.
+message LeAudioSetActiveRequest {
+    // Connection crafted by grpc server
+    Connection connection = 1;
+}
+
+// Request of the `SelectPreset` method.
+message SelectPresetRequest {
+    // Connection crafted by grpc server
+    Connection connection = 1;
+    // Preset index
+    uint32 index = 2;
+}
+
+// Request of the `SelectNextPreset` method.
+message SelectNextPresetRequest {
+    // Connection crafted by grpc server
+    Connection connection = 1;
+}
+
+// Request of the `SelectPreviousPreset` method.
+message SelectPreviousPresetRequest {
+    // Connection crafted by grpc server
+    Connection connection = 1;
+}
+
+// Request of the `GetPresetInfo` method.
+message GetPresetInfoRequest {
+    // Connection crafted by grpc server
+    Connection connection = 1;
+    // Preset index
+    uint32 index = 2;
+}
+
+// Preset Information format
+message PresetInfo {
+  // Preset index
+  uint32 presetIndex = 1;
+  // Preset name
+  string presetName = 2;
+  // Flag marking preset as writable
+  bool isWritable = 3;
+  // Flag marking preset as available
+  bool isAvailable = 4;
+}
+
+// Response of the `GetPresetInfo` method.
+message GetPresetInfoResponse {
+  // Received Preset Information
+    PresetInfo preset_info = 1;
+}
+
+// Request of the `GetAllPresetsInfo` method.
+message GetAllPresetsInfoRequest {
+    // Connection crafted by grpc server
+    Connection connection = 1;
+}
+
+// Response of the `GetAllPresetsInfo` method.
+message GetAllPresetsInfoResponse {
+    // List of received Preset Information
+    repeated PresetInfo preset_info_list = 1;
+}
+
+// Request of the `SetPresetName` method.
+message SetPresetNameRequest {
+  // Connection crafted by grpc server
+  Connection connection = 1;
+  // Preset index
+  uint32 index = 2;
+  // Preset name to be set
+  string name = 3;
+}
+
+// Response of the `WaitPresetChangedResponse` method.
+message WaitPresetChangedResponse {
+  // Connection crafted by grpc server
+  Connection connection = 1;
+  // List of current Preset Information
+  repeated PresetInfo preset_info_list = 2;
+  // Reason why the presets were changed
+  uint32 reason = 3;
+}
