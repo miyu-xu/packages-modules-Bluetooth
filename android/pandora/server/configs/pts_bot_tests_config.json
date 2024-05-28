@@ -2141,6 +2141,7 @@
     "TSPC_HAP_1_2": true,
     "TSPC_HAP_1_3": true,
     "TSPC_HAP_2_2": true,
+    "TSPC_HAP_17_1": false,
     "TSPC_HAP_40_1": true,
     "TSPC_HAP_43_1": true,
     "TSPC_HAP_43_2": true,
@@ -3095,6 +3096,7 @@
     "GATT": {},
     "GAVDP": {},
     "HCI": {},
+    "HAP": {},
     "HFP": {
       "TSPX_phone_number": "42",
       "TSPX_second_phone_number": "43"
