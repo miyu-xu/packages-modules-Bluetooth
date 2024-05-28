@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "401856ef_28442d3c",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4801,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-05-28T22:16:47Z",
+      "side": 1,
+      "message": "```\n    mBluetoothConnectionCallbackExecutorMap.put(callback, executor);\n    registerBluetoothConnectionCallbackIfNeeded();\n```\n\nThe check is wrong, your change never registers the callback to the map if it contains any other mapping.",
+      "range": {
+        "startLine": 4798,
+        "startChar": 12,
+        "endLine": 4801,
+        "endChar": 13
+      },
+      "revId": "344f7bbdffb08f0bfc7d06f38cabef402a13d57c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
