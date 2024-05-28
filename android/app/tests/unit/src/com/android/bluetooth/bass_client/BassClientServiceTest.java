@@ -2820,6 +2820,8 @@ public class BassClientServiceTest {
                         TEST_MAC_ADDRESS, BluetoothDevice.ADDRESS_TYPE_RANDOM);
 
         // mock the update in selectSource
+        mBassClientService.updateSyncHandleForBroadcastId(
+                BassConstants.INVALID_SYNC_HANDLE, testBroadcastId);
         mBassClientService.updatePeriodicAdvertisementResultMap(
                 testDevice,
                 testDevice.getAddressType(),
@@ -2859,40 +2861,104 @@ public class BassClientServiceTest {
     }
 
     @Test
-    public void testSyncHandleToBroadcastIdMap_getSyncHandleAndGetBroadcastId() {
-        final String testBroadcastName = "Test";
+    public void testPeriodicAdvertisementResultMap_syncEstablishedOnTheSameSyncHandle() {
+        final String testBroadcastName1 = "Test1";
+        final String testBroadcastName2 = "Test2";
         final int testSyncHandle = 1;
-        final int testSyncHandleInvalid = 2;
-        final int testBroadcastId = 42;
-        final int testBroadcastIdInvalid = 43;
-        final int testAdvertiserSid = 1234;
-        final int testAdvInterval = 100;
+        final int testBroadcastId1 = 42;
+        final int testBroadcastId2 = 43;
+        final int testAdvertiserSid1 = 1234;
+        final int testAdvertiserSid2 = 2345;
+        final int testAdvInterval1 = 100;
+        final int testAdvInterval2 = 200;
 
         BluetoothDevice testDevice =
                 mBluetoothAdapter.getRemoteLeDevice(
                         TEST_MAC_ADDRESS, BluetoothDevice.ADDRESS_TYPE_RANDOM);
 
         // mock the update in selectSource
+        mBassClientService.updateSyncHandleForBroadcastId(
+                BassConstants.INVALID_SYNC_HANDLE, testBroadcastId1);
         mBassClientService.updatePeriodicAdvertisementResultMap(
                 testDevice,
                 testDevice.getAddressType(),
                 BassConstants.INVALID_SYNC_HANDLE,
                 BassConstants.INVALID_ADV_SID,
-                testAdvInterval,
-                testBroadcastId,
+                testAdvInterval1,
+                testBroadcastId1,
                 null,
-                testBroadcastName);
+                testBroadcastName1);
 
         // mock the update in onSyncEstablished
         mBassClientService.updatePeriodicAdvertisementResultMap(
                 testDevice,
                 BassConstants.INVALID_ADV_ADDRESS_TYPE,
                 testSyncHandle,
-                testAdvertiserSid,
+                testAdvertiserSid1,
                 BassConstants.INVALID_ADV_INTERVAL,
                 BassConstants.INVALID_BROADCAST_ID,
                 null,
                 null);
+
+        assertThat(mBassClientService.getPeriodicAdvertisementResult(testDevice, testBroadcastId2))
+                .isEqualTo(null);
+        PeriodicAdvertisementResult paResult =
+                mBassClientService.getPeriodicAdvertisementResult(testDevice, testBroadcastId1);
+        assertThat(paResult.getAddressType()).isEqualTo(BluetoothDevice.ADDRESS_TYPE_RANDOM);
+        assertThat(paResult.getSyncHandle()).isEqualTo(testSyncHandle);
+        assertThat(paResult.getAdvSid()).isEqualTo(testAdvertiserSid1);
+        assertThat(paResult.getAdvInterval()).isEqualTo(testAdvInterval1);
+        assertThat(paResult.getBroadcastName()).isEqualTo(testBroadcastName1);
+
+        // mock the update in selectSource
+        mBassClientService.updateSyncHandleForBroadcastId(
+                BassConstants.INVALID_SYNC_HANDLE, testBroadcastId2);
+        mBassClientService.updatePeriodicAdvertisementResultMap(
+                testDevice,
+                testDevice.getAddressType(),
+                BassConstants.INVALID_SYNC_HANDLE,
+                BassConstants.INVALID_ADV_SID,
+                testAdvInterval2,
+                testBroadcastId2,
+                null,
+                testBroadcastName2);
+
+        // mock the update in onSyncEstablished
+        mBassClientService.updatePeriodicAdvertisementResultMap(
+                testDevice,
+                BassConstants.INVALID_ADV_ADDRESS_TYPE,
+                testSyncHandle,
+                testAdvertiserSid2,
+                BassConstants.INVALID_ADV_INTERVAL,
+                BassConstants.INVALID_BROADCAST_ID,
+                null,
+                null);
+
+        assertThat(mBassClientService.getPeriodicAdvertisementResult(testDevice, testBroadcastId1))
+                .isEqualTo(null);
+        paResult = mBassClientService.getPeriodicAdvertisementResult(testDevice, testBroadcastId2);
+        assertThat(paResult.getAddressType()).isEqualTo(BluetoothDevice.ADDRESS_TYPE_RANDOM);
+        assertThat(paResult.getSyncHandle()).isEqualTo(testSyncHandle);
+        assertThat(paResult.getAdvSid()).isEqualTo(testAdvertiserSid2);
+        assertThat(paResult.getAdvInterval()).isEqualTo(testAdvInterval2);
+        assertThat(paResult.getBroadcastName()).isEqualTo(testBroadcastName2);
+    }
+
+    @Test
+    public void testSyncHandleToBroadcastIdMap_getSyncHandleAndGetBroadcastId() {
+        final int testSyncHandle = 1;
+        final int testSyncHandleInvalid = 2;
+        final int testBroadcastId = 42;
+        final int testBroadcastIdInvalid = 43;
+
+        BluetoothDevice testDevice =
+                mBluetoothAdapter.getRemoteLeDevice(
+                        TEST_MAC_ADDRESS, BluetoothDevice.ADDRESS_TYPE_RANDOM);
+
+        prepareConnectedDeviceGroup();
+        startSearchingForSources();
+        onScanResult(testDevice, testBroadcastId);
+        onSyncEstablished(testDevice, testSyncHandle);
 
         assertThat(mBassClientService.getSyncHandleForBroadcastId(testBroadcastIdInvalid))
                 .isEqualTo(BassConstants.INVALID_SYNC_HANDLE);
