@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package pandora;
+
+option java_outer_classname = "HapProto";
+
+import "google/protobuf/empty.proto";
+
+service HAP {}
