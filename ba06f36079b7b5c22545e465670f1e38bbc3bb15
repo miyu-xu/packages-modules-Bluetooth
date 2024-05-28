@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a280b2fb_475c34bd",
+        "filename": "service/src/airplane/ModeListener.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-05-28T22:26:42Z",
+      "side": 1,
+      "message": "stays ?",
+      "range": {
+        "startLine": 191,
+        "startChar": 55,
+        "endLine": 191,
+        "endChar": 59
+      },
+      "revId": "ba06f36079b7b5c22545e465670f1e38bbc3bb15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
