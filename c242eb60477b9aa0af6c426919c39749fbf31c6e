@@ -34,6 +34,24 @@
       "parentUuid": "ac367520_df7f53bc",
       "revId": "c242eb60477b9aa0af6c426919c39749fbf31c6e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3f5cd3f_4a65e9b6",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-05-29T05:16:20Z",
+      "side": 1,
+      "message": "Acknowledged. With the patch, address arguments are still interpreted as string (\u0027s\u0027) over D-Bus, no change to D-Bus users like Chrome.",
+      "parentUuid": "d68c0e88_41cbb162",
+      "revId": "c242eb60477b9aa0af6c426919c39749fbf31c6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
