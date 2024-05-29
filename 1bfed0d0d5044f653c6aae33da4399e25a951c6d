@@ -52,6 +52,24 @@
       "parentUuid": "ad994874_5a0d1799",
       "revId": "1bfed0d0d5044f653c6aae33da4399e25a951c6d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68c5f1ca_ab8619b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-05-29T21:04:53Z",
+      "side": 1,
+      "message": "I am fine with either case. I just saw it from another file. We can use it when calling the function.",
+      "parentUuid": "b8c992e5_530c2125",
+      "revId": "1bfed0d0d5044f653c6aae33da4399e25a951c6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
