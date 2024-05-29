@@ -16,6 +16,24 @@
       "message": "FYI, we should typically wait for the release including the flag (here 24Q3) to roll out before removing the flag. You can remove the flag earlier if there is no risk of regression. Please ack before I +1 😊",
       "revId": "bbe822725b48ed899ea7937ae41a4eca75b4599a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "600a911d_517ee640",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-05-29T01:24:16Z",
+      "side": 1,
+      "message": "Thanks for letting me know. I\u0027ll wait until the release.",
+      "parentUuid": "59ab03d2_a47a4dc9",
+      "revId": "bbe822725b48ed899ea7937ae41a4eca75b4599a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
