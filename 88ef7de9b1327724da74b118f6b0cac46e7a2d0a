@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffc5cd79_5412a728",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-29T16:41:54Z",
+      "side": 1,
+      "message": "Failure is related to merge in progress of aosp/3103505.\n\nShould be good in a few hours / days",
+      "revId": "88ef7de9b1327724da74b118f6b0cac46e7a2d0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
