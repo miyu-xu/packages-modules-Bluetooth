@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4481d529_879c7468",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-05-29T00:14:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c58e4534_67aa99d8",
+      "revId": "6b12761f2586b2dd6d0ee4995a9624eb9a19444b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "82ed17a6_b47234b6",
@@ -48,6 +66,24 @@
       "writtenOn": "2023-10-25T17:50:23Z",
       "side": 1,
       "message": "Double check that the characteristic handle matches the `battery_level.instance_id`?",
+      "revId": "6b12761f2586b2dd6d0ee4995a9624eb9a19444b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "122999c7_2ac10e0c",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-05-29T00:14:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82ed17a6_b47234b6",
       "revId": "6b12761f2586b2dd6d0ee4995a9624eb9a19444b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
