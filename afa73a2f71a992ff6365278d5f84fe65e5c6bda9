@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e027639_489d6c9d",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-05-29T16:59:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d7f4a1f_db68b454",
+      "range": {
+        "startLine": 36,
+        "startChar": 17,
+        "endLine": 36,
+        "endChar": 25
+      },
+      "revId": "afa73a2f71a992ff6365278d5f84fe65e5c6bda9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "493b7973_90365d01",
@@ -186,6 +210,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "155bc013_861f1eeb",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-05-29T16:59:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89e1e740_931c9701",
+      "range": {
+        "startLine": 138,
+        "startChar": 6,
+        "endLine": 138,
+        "endChar": 31
+      },
+      "revId": "afa73a2f71a992ff6365278d5f84fe65e5c6bda9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "785d2d4e_eac0e86e",
@@ -275,6 +323,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08c5976a_88732d54",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-05-29T16:59:49Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "ec59f191_05122880",
+      "revId": "afa73a2f71a992ff6365278d5f84fe65e5c6bda9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68e9cae6_ce606a22",
@@ -298,6 +364,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aed0c119_bfc09171",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-05-29T16:59:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68e9cae6_ce606a22",
+      "range": {
+        "startLine": 381,
+        "startChar": 0,
+        "endLine": 437,
+        "endChar": 3
+      },
+      "revId": "afa73a2f71a992ff6365278d5f84fe65e5c6bda9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b9027366_8caa95d6",
@@ -311,6 +401,30 @@
       "writtenOn": "2024-05-24T17:08:00Z",
       "side": 1,
       "message": "Can we check data here as well, and call the correct function if it\u0027s a vendor-specific data?  I would prefer not to pass void* any farther than needed.\n```suggestion\n    if (instance !\u003d nullptr) {\n      uint8_t reply_type \u003d 0;\n      if (data !\u003d nullptr) {\n        GattWriteCallbackData* structPtr \u003d\n            static_cast\u003cGattWriteCallbackData*\u003e(data);\n        reply_type \u003d structPtr-\u003etype_;\n      }\n      if (reply_type \u003d\u003d kTypeVendorSpecificReply) {\n        instance-\u003eGattVsWriteCallback(conn_id, status, handle, value);\n      } else {\n        instance-\u003eGattWriteCallback(conn_id, status, handle, value);\n      }\n    }\n```",
+      "range": {
+        "startLine": 442,
+        "startChar": 0,
+        "endLine": 444,
+        "endChar": 5
+      },
+      "revId": "afa73a2f71a992ff6365278d5f84fe65e5c6bda9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "046d1bbf_e8083d4e",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-05-29T16:59:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9027366_8caa95d6",
       "range": {
         "startLine": 442,
         "startChar": 0,
@@ -382,6 +496,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eec5fd0d_b6f43adc",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 648,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-05-29T16:59:49Z",
+      "side": 1,
+      "message": "We can initialized here but can\u0027t be const.\nCan not covert \u0027const GattWriteCallbackData *\u0027 to \u0027void *\u0027 for BTA_GATTC_WriteCharValue",
+      "parentUuid": "87f76593_1969f4f0",
+      "range": {
+        "startLine": 648,
+        "startChar": 24,
+        "endLine": 648,
+        "endChar": 49
+      },
+      "revId": "afa73a2f71a992ff6365278d5f84fe65e5c6bda9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9597ba97_86630dcc",
@@ -395,6 +533,30 @@
       "writtenOn": "2024-05-24T17:08:00Z",
       "side": 1,
       "message": "This looks like it should be a separate function, as well.",
+      "range": {
+        "startLine": 431,
+        "startChar": 0,
+        "endLine": 467,
+        "endChar": 5
+      },
+      "revId": "afa73a2f71a992ff6365278d5f84fe65e5c6bda9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f1b5b8d_8ffd1289",
+        "filename": "system/bta/ras/ras_server.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-05-29T16:59:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9597ba97_86630dcc",
       "range": {
         "startLine": 431,
         "startChar": 0,
@@ -428,6 +590,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1eaae35_c3b21fa7",
+        "filename": "system/gd/hal/ranging_hal_android.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-05-29T16:59:49Z",
+      "side": 1,
+      "message": "The bluetooth_channel_sounding-\u003eopenSession method is the only way to push vendor-specific data to the HAL. Additionally, we need a boolean flag to mark this tracker for vendor-specific replies. This will enable us to call the correct callback function for onOpened/onOpenFailed when the operation completes.",
+      "parentUuid": "5f72e772_45f9e6d5",
+      "range": {
+        "startLine": 51,
+        "startChar": 11,
+        "endLine": 51,
+        "endChar": 36
+      },
+      "revId": "afa73a2f71a992ff6365278d5f84fe65e5c6bda9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b145a2ee_e0cd0ba1",
@@ -441,6 +627,30 @@
       "writtenOn": "2024-05-24T17:08:00Z",
       "side": 1,
       "message": "This happens a lot.  Should we have a map from address-\u003etracker?  I think it would be worth looking at which one happens more often.  Addresses are more unique than handles, as well.",
+      "range": {
+        "startLine": 377,
+        "startChar": 47,
+        "endLine": 377,
+        "endChar": 63
+      },
+      "revId": "afa73a2f71a992ff6365278d5f84fe65e5c6bda9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aaa861c5_8ba893f1",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-05-29T16:59:49Z",
+      "side": 1,
+      "message": "I used connection_handle as key due to most CS command/event contains this information. We need to get correct tracker when received CS event, so a map from connection_handle -\u003e key is necessary.",
+      "parentUuid": "b145a2ee_e0cd0ba1",
       "range": {
         "startLine": 377,
         "startChar": 47,
