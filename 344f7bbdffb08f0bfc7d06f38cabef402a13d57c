@@ -22,6 +22,30 @@
       },
       "revId": "344f7bbdffb08f0bfc7d06f38cabef402a13d57c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abe2557f_357c8838",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 4801,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-29T00:32:35Z",
+      "side": 1,
+      "message": "Where is my mind O_o\nDone",
+      "parentUuid": "401856ef_28442d3c",
+      "range": {
+        "startLine": 4798,
+        "startChar": 12,
+        "endLine": 4801,
+        "endChar": 13
+      },
+      "revId": "344f7bbdffb08f0bfc7d06f38cabef402a13d57c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
