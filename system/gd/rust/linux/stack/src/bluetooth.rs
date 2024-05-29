@@ -1296,13 +1296,20 @@ impl Bluetooth {
         if !self.uhid_wakeup_source.is_empty() {
             return;
         }
-        let adapter_addr = self.get_address().to_string().to_lowercase();
+        let name = "VIRTUAL_SUSPEND_UHID".to_string();
+        let addr = self.get_address();
+        debug!(
+            "Create a UHID {} with phys: {}, uniq: {}",
+            name,
+            DisplayAddress(&addr),
+            BD_ADDR_DEFAULT
+        );
         match self.uhid_wakeup_source.create(
-            "VIRTUAL_SUSPEND_UHID".to_string(),
-            adapter_addr,
+            name,
+            addr.to_string().to_lowercase(),
             String::from(BD_ADDR_DEFAULT),
         ) {
-            Err(e) => log::error!("Fail to create uhid {}", e),
+            Err(e) => error!("Fail to create uhid {}", e),
             Ok(_) => (),
         }
     }

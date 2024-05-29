@@ -51,7 +51,6 @@ impl UHid {
 
     /// Initialize a uhid device with kernel.
     pub fn create(&mut self, name: String, phys: String, uniq: String) -> Result<(), String> {
-        debug!("Create a UHID {} with phys: {}, uniq: {}", name, phys, uniq);
         let rd_data = RDESC.to_vec();
         let create_params = CreateParams {
             name: name,
