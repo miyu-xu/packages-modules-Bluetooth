@@ -34,6 +34,24 @@
       "parentUuid": "1a45fe2e_84965f67",
       "revId": "1bfed0d0d5044f653c6aae33da4399e25a951c6d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8c992e5_530c2125",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-05-29T16:11:05Z",
+      "side": 1,
+      "message": "\u003e Does RawAddress::default() mean an all-zero RawAddress?\n\nI believe so but that comes from the generated `#[derive(Default)]` of `[u8; 6]`, so maybe `RawAddress::empty()` is better. Do you mean to replace `BD_ADDR_DEFAULT` with it?",
+      "parentUuid": "ad994874_5a0d1799",
+      "revId": "1bfed0d0d5044f653c6aae33da4399e25a951c6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
