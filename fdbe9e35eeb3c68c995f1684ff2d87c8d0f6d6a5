@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5186413a_e9f63748",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-05-29T05:10:38Z",
+      "side": 1,
+      "message": "Hi, PTAL, thanks!",
+      "revId": "fdbe9e35eeb3c68c995f1684ff2d87c8d0f6d6a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
