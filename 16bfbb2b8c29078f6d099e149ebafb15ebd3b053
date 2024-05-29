@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a779723b_c4c1a2da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-05-29T17:53:48Z",
+      "side": 1,
+      "message": "self review comments",
+      "revId": "16bfbb2b8c29078f6d099e149ebafb15ebd3b053",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f691637f_16d302c5",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1196,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-05-29T17:53:48Z",
+      "side": 1,
+      "message": "from the",
+      "range": {
+        "startLine": 1196,
+        "startChar": 28,
+        "endLine": 1196,
+        "endChar": 31
+      },
+      "revId": "16bfbb2b8c29078f6d099e149ebafb15ebd3b053",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8ec9b1f_84307904",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2342,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-05-29T17:53:48Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 2342,
+        "startChar": 26,
+        "endLine": 2342,
+        "endChar": 37
+      },
+      "revId": "16bfbb2b8c29078f6d099e149ebafb15ebd3b053",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72299e99_06ab6e64",
+        "filename": "system/bta/le_audio/state_machine_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-05-29T17:53:48Z",
+      "side": 1,
+      "message": "it is valid behavior",
+      "range": {
+        "startLine": 756,
+        "startChar": 50,
+        "endLine": 756,
+        "endChar": 75
+      },
+      "revId": "16bfbb2b8c29078f6d099e149ebafb15ebd3b053",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71ffa624_4d5e288b",
+        "filename": "system/bta/le_audio/state_machine_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 7575,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-05-29T17:53:48Z",
+      "side": 1,
+      "message": "remove space",
+      "range": {
+        "startLine": 7575,
+        "startChar": 13,
+        "endLine": 7575,
+        "endChar": 14
+      },
+      "revId": "16bfbb2b8c29078f6d099e149ebafb15ebd3b053",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
