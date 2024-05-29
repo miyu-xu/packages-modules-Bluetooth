@@ -191,8 +191,8 @@ pub trait IBluetoothMedia {
     fn peer_stop_audio_request(&mut self);
     fn get_host_pcm_config(&mut self) -> BtLePcmConfig;
     fn get_peer_pcm_config(&mut self) -> BtLePcmConfig;
-    fn get_host_stream_started(&mut self) -> bool;
-    fn get_peer_stream_started(&mut self) -> bool;
+    fn get_host_stream_started(&mut self) -> i32;
+    fn get_peer_stream_started(&mut self) -> i32;
     fn source_metadata_changed(
         &mut self,
         usage: BtLeAudioUsage,
@@ -4076,7 +4076,7 @@ impl IBluetoothMedia for BluetoothMedia {
         }
     }
 
-    fn get_host_stream_started(&mut self) -> bool {
+    fn get_host_stream_started(&mut self) -> i32 {
         match self.le_audio.as_mut() {
             Some(le_audio) => le_audio.get_host_stream_started(),
             None => {
@@ -4086,7 +4086,7 @@ impl IBluetoothMedia for BluetoothMedia {
         }
     }
 
-    fn get_peer_stream_started(&mut self) -> bool {
+    fn get_peer_stream_started(&mut self) -> i32 {
         match self.le_audio.as_mut() {
             Some(le_audio) => le_audio.get_peer_stream_started(),
             None => {

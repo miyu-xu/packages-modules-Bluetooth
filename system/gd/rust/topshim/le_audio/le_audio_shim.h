@@ -67,8 +67,8 @@ const std::vector<le_audio::btle_audio_codec_config_t>& offloading_preference
   void peer_stop_audio_request();
   BtLePcmConfig get_host_pcm_config();
   BtLePcmConfig get_peer_pcm_config();
-  bool get_host_stream_started();
-  bool get_peer_stream_started();
+  int get_host_stream_started();
+  int get_peer_stream_started();
   void source_metadata_changed(::rust::Vec<SourceMetadata> metadata);
   void sink_metadata_changed(::rust::Vec<SinkMetadata> metadata);
 

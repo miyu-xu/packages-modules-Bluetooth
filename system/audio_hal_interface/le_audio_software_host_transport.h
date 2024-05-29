@@ -119,7 +119,7 @@ class LeAudioSinkTransport {
   void SetStartRequestState(StartRequestState state);
 
   static inline LeAudioSinkTransport* instance = nullptr;
-  static inline bool stream_started = false;
+  static inline int stream_started = 0;
 
  private:
   LeAudioTransport* transport_;
@@ -162,7 +162,7 @@ class LeAudioSourceTransport {
   void SetStartRequestState(StartRequestState state);
 
   static inline LeAudioSourceTransport* instance = nullptr;
-  static inline bool stream_started = false;
+  static inline int stream_started = 0;
 
  private:
   LeAudioTransport* transport_;

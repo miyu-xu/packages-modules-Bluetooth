@@ -485,11 +485,11 @@ BtLePcmConfig LeAudioClientIntf::get_peer_pcm_config() {
   return to_rust_btle_pcm_params(::bluetooth::audio::le_audio::GetPeerPcmConfig());
 }
 
-bool LeAudioClientIntf::get_host_stream_started() {
+int LeAudioClientIntf::get_host_stream_started() {
   return ::bluetooth::audio::le_audio::GetHostStreamStarted();
 }
 
-bool LeAudioClientIntf::get_peer_stream_started() {
+int LeAudioClientIntf::get_peer_stream_started() {
   return ::bluetooth::audio::le_audio::GetPeerStreamStarted();
 }
 

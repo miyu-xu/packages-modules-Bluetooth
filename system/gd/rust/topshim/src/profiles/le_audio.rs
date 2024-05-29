@@ -162,8 +162,8 @@ pub mod ffi {
         fn peer_stop_audio_request(self: Pin<&mut LeAudioClientIntf>);
         fn get_host_pcm_config(self: Pin<&mut LeAudioClientIntf>) -> BtLePcmConfig;
         fn get_peer_pcm_config(self: Pin<&mut LeAudioClientIntf>) -> BtLePcmConfig;
-        fn get_host_stream_started(self: Pin<&mut LeAudioClientIntf>) -> bool;
-        fn get_peer_stream_started(self: Pin<&mut LeAudioClientIntf>) -> bool;
+        fn get_host_stream_started(self: Pin<&mut LeAudioClientIntf>) -> i32;
+        fn get_peer_stream_started(self: Pin<&mut LeAudioClientIntf>) -> i32;
         fn source_metadata_changed(
             self: Pin<&mut LeAudioClientIntf>,
             metadata: Vec<SourceMetadata>,
@@ -681,13 +681,13 @@ impl LeAudioClient {
         self.internal.pin_mut().get_peer_pcm_config()
     }
 
-    #[profile_enabled_or(false)]
-    pub fn get_host_stream_started(&mut self) -> bool {
+    #[profile_enabled_or(0)]
+    pub fn get_host_stream_started(&mut self) -> i32 {
         self.internal.pin_mut().get_host_stream_started()
     }
 
-    #[profile_enabled_or(false)]
-    pub fn get_peer_stream_started(&mut self) -> bool {
+    #[profile_enabled_or(0)]
+    pub fn get_peer_stream_started(&mut self) -> i32 {
         self.internal.pin_mut().get_peer_stream_started()
     }
 

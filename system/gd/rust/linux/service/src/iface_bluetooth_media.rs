@@ -446,12 +446,12 @@ impl IBluetoothMedia for IBluetoothMediaDBus {
     }
 
     #[dbus_method("GetHostStreamStarted")]
-    fn get_host_stream_started(&mut self) -> bool {
+    fn get_host_stream_started(&mut self) -> i32 {
         dbus_generated!()
     }
 
     #[dbus_method("GetPeerStreamStarted")]
-    fn get_peer_stream_started(&mut self) -> bool {
+    fn get_peer_stream_started(&mut self) -> i32 {
         dbus_generated!()
     }
 
