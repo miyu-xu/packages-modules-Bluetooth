@@ -141,8 +141,8 @@ class StackRfcommTest : public Test {
                   uuid, scn, true, mtu, RawAddress::kAny, server_handle,
                   management_callback, 0),
               PORT_SUCCESS);
-    ASSERT_EQ(PORT_SetEventMask(*server_handle, PORT_EV_RXCHAR), PORT_SUCCESS);
-    ASSERT_EQ(PORT_SetEventCallback(*server_handle, event_callback),
+    ASSERT_EQ(PORT_SetEventMaskAndCallback(*server_handle, PORT_EV_RXCHAR,
+                                           event_callback),
               PORT_SUCCESS);
   }
 
