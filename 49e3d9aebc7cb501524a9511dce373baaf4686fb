@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7731b1d2_ee4f983e",
+        "filename": "system/stack/rfcomm/port_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-29T21:27:39Z",
+      "side": 1,
+      "message": "missed one?",
+      "range": {
+        "startLine": 422,
+        "startChar": 0,
+        "endLine": 422,
+        "endChar": 37
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "1bfcb880_15824723",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/port_api.cc",
+              "range": {
+                "startLine": 422,
+                "startChar": 0,
+                "endLine": 423,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "49e3d9aebc7cb501524a9511dce373baaf4686fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
