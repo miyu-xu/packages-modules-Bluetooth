@@ -146,6 +146,30 @@
       },
       "revId": "cecdec541b90d1dad23193e99dbb3579514fde47",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89e52a09_730cf8e9",
+        "filename": "system/types/bluetooth/uuid.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-29T16:55:45Z",
+      "side": 1,
+      "message": "Understood.\n\nI believe not using libchrome at all should be the way to go in the future ^^\nBut this task is a bit bigger than just the randBytes",
+      "parentUuid": "9327f89d_3bd4c32b",
+      "range": {
+        "startLine": 152,
+        "startChar": 4,
+        "endLine": 152,
+        "endChar": 12
+      },
+      "revId": "cecdec541b90d1dad23193e99dbb3579514fde47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
