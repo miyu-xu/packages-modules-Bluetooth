@@ -43,7 +43,6 @@ cc_library_static {
         "bluetooth/uuid.cc",
         "raw_address.cc",
     ],
-    static_libs: ["libchrome"],
     header_libs: ["libbluetooth-types-header"],
     export_header_lib_headers: ["libbluetooth-types-header"],
     apex_available: [

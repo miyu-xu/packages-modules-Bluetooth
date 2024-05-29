@@ -18,10 +18,14 @@
 
 #include "uuid.h"
 
-#include <base/rand_util.h>
-#include <base/strings/stringprintf.h>
 #include <string.h>
+
 #include <algorithm>
+#include <cstring>
+#include <iomanip>
+#include <ios>
+#include <random>
+#include <sstream>
 
 namespace bluetooth {
 
@@ -149,7 +153,11 @@ const UUID128Bit& Uuid::To128BitBE() const { return uu; }
 
 Uuid Uuid::GetRandom() {
   Uuid uuid;
-  base::RandBytes(uuid.uu.data(), uuid.uu.size());
+  std::random_device r;
+  std::default_random_engine e(r());
+  for (auto& byte : uuid.uu) {
+    byte = r();
+  }
   return uuid;
 }
 
@@ -171,9 +179,14 @@ bool Uuid::operator==(const Uuid& rhs) const { return uu == rhs.uu; }
 bool Uuid::operator!=(const Uuid& rhs) const { return uu != rhs.uu; }
 
 std::string Uuid::ToString() const {
-  return base::StringPrintf(
-      "%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x",
-      uu[0], uu[1], uu[2], uu[3], uu[4], uu[5], uu[6], uu[7], uu[8], uu[9],
-      uu[10], uu[11], uu[12], uu[13], uu[14], uu[15]);
+  std::stringstream uuid;
+  for (size_t i = 0; i < 16; i++) {
+    uuid << std::hex << std::setfill('0') << std::setw(2);
+    uuid << +uu[i];
+    if (i == 3 || i == 5 || i == 7 || i == 9) {
+      uuid << "-";
+    }
+  }
+  return uuid.str();
 }
 }  // namespace bluetooth
