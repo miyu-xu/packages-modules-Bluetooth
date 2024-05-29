@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a79b226_9d1c1033",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-05-29T01:27:13Z",
+      "side": 1,
+      "message": "Waiting until Q3 release",
+      "revId": "92f7ac3bfbb35c9469a0d3e3afa730eff2f90724",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
