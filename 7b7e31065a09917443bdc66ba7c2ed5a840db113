@@ -140,6 +140,24 @@
       "parentUuid": "25013940_63f3aa5e",
       "revId": "7b7e31065a09917443bdc66ba7c2ed5a840db113",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a1167ef_bb8a0785",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-05-29T15:01:02Z",
+      "side": 1,
+      "message": "Thanks for checking!",
+      "parentUuid": "67b3d584_81784ffd",
+      "revId": "7b7e31065a09917443bdc66ba7c2ed5a840db113",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
