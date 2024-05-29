@@ -34,6 +34,24 @@
       "parentUuid": "3246b5d7_1b3a1e98",
       "revId": "ec5b9495147c08de5a38dc344332c97e6dd4232e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03c89a22_1fdff050",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2074,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-05-29T12:05:15Z",
+      "side": 1,
+      "message": "I change solution to not clear the cache but to add retries on parsing next periodic advertising. This works even better.",
+      "parentUuid": "831adad0_c8353bb3",
+      "revId": "ec5b9495147c08de5a38dc344332c97e6dd4232e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
