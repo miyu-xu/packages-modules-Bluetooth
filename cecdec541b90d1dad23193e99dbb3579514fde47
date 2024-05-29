@@ -122,6 +122,30 @@
       },
       "revId": "cecdec541b90d1dad23193e99dbb3579514fde47",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9327f89d_3bd4c32b",
+        "filename": "system/types/bluetooth/uuid.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1659429
+      },
+      "writtenOn": "2024-05-29T08:59:31Z",
+      "side": 1,
+      "message": "\u003e Can we just use a different function for random bytes (not use libchrome)?\n\nI prefer to leave this to related developers to make the decision. We created this fix to unblock the libchrome uprev process in CrOS.",
+      "parentUuid": "25ca6162_343cdebb",
+      "range": {
+        "startLine": 152,
+        "startChar": 4,
+        "endLine": 152,
+        "endChar": 12
+      },
+      "revId": "cecdec541b90d1dad23193e99dbb3579514fde47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
