@@ -16,6 +16,24 @@
       "message": "Hi Zhengping, the motivation of this CL is to remove the full address (PII) in the log, but I\u0027m not so familiar with UHID. Perhaps a better practice is to change the arg type of `UHid::create` to `phys: RawAddress, uniq: RawAddress` so we don\u0027t need to move the log line out. WDYT?",
       "revId": "1bfed0d0d5044f653c6aae33da4399e25a951c6d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad994874_5a0d1799",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-05-29T16:00:14Z",
+      "side": 1,
+      "message": "I agree. That looks cleaner. Does RawAddress::default() means an all-zero RawAddress?",
+      "parentUuid": "1a45fe2e_84965f67",
+      "revId": "1bfed0d0d5044f653c6aae33da4399e25a951c6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
