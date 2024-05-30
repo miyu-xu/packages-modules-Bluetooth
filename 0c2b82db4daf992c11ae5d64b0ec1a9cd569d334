@@ -22,6 +22,30 @@
       },
       "revId": "0c2b82db4daf992c11ae5d64b0ec1a9cd569d334",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb1d6dfd_948ab2f8",
+        "filename": "system/bta/ras/ras_server.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-05-30T01:49:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fcbd54a6_4a7a5eb9",
+      "range": {
+        "startLine": 493,
+        "startChar": 52,
+        "endLine": 493,
+        "endChar": 57
+      },
+      "revId": "0c2b82db4daf992c11ae5d64b0ec1a9cd569d334",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
