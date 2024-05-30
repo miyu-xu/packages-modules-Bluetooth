@@ -38,12 +38,16 @@ typedef struct {
   tAVDT_CTRL_CBACK* p_av_conn_cback;  /* av connection callback function */
   uint8_t avdt_registered;
   uint8_t avct_registered;
+  // DEPRECATED
   uint32_t sdp_tg_handle;
   uint32_t sdp_ct_handle;
   uint16_t ct_categories[2];
   uint8_t tg_registered;
+
   tBTA_AV_HNDL hndl; /* Handle associated with the stream that rejected the
                         connection. */
+
+  // DEPRECATED
   uint16_t ct_ver;
   uint16_t tg_categories[2];
 } tBTA_AR_CB;

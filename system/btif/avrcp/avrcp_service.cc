@@ -20,6 +20,7 @@
 #include <base/task/cancelable_task_tracker.h>
 #include <base/threading/thread.h>
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 
 #include <mutex>
 #include <sstream>
@@ -38,6 +39,7 @@
 #include "types/raw_address.h"
 
 using namespace bluetooth::legacy::stack::sdp;
+using namespace bluetooth::avrc;
 
 namespace bluetooth {
 namespace avrcp {
@@ -402,21 +404,44 @@ void AvrcpService::Init(MediaInterface* media_interface,
   profile_version = avrcp_interface_.GetAvrcpVersion();
 
   uint16_t supported_features = GetSupportedFeatures(profile_version);
-  sdp_record_handle = get_legacy_stack_sdp_api()->handle.SDP_CreateRecord();
+  if (com::android::bluetooth::flags::avrcp_sdp_records()) {
+    const std::shared_ptr<AvrcSdpService>& avrcp_sdp_service =
+        AvrcSdpService::Get();
+    AddSdpRecordRequest target_add_record_request = {
+        UUID_SERVCLASS_AV_REM_CTRL_TARGET,
+        "AV Remote Control Target",
+        "",
+        supported_features,
+        true,
+        profile_version,
+        0};
+    avrcp_sdp_service->AddRecord(target_add_record_request);
+    AddSdpRecordRequest control_add_record_request = {
+        UUID_SERVCLASS_AV_REMOTE_CONTROL,
+        "AV Remote Control",
+        "",
+        AVRCP_SUPF_TG_CT,
+        false,
+        avrcp_interface_.GetAvrcpControlVersion(),
+        0};
+    avrcp_sdp_service->AddRecord(control_add_record_request);
+  } else {
+    sdp_record_handle = get_legacy_stack_sdp_api()->handle.SDP_CreateRecord();
 
-  avrcp_interface_.AddRecord(UUID_SERVCLASS_AV_REM_CTRL_TARGET,
-                             "AV Remote Control Target", NULL,
-                             supported_features, sdp_record_handle, true,
-                             profile_version, 0);
-  bta_sys_add_uuid(UUID_SERVCLASS_AV_REM_CTRL_TARGET);
+    avrcp_interface_.AddRecord(
+        UUID_SERVCLASS_AV_REM_CTRL_TARGET, "AV Remote Control Target", NULL,
+        supported_features, sdp_record_handle, true, profile_version, 0);
+    bta_sys_add_uuid(UUID_SERVCLASS_AV_REM_CTRL_TARGET);
 
-  ct_sdp_record_handle = get_legacy_stack_sdp_api()->handle.SDP_CreateRecord();
+    ct_sdp_record_handle =
+        get_legacy_stack_sdp_api()->handle.SDP_CreateRecord();
 
-  avrcp_interface_.AddRecord(UUID_SERVCLASS_AV_REMOTE_CONTROL,
-                             "AV Remote Control", NULL, AVRCP_SUPF_TG_CT,
-                             ct_sdp_record_handle, false,
-                             avrcp_interface_.GetAvrcpControlVersion(), 0);
-  bta_sys_add_uuid(UUID_SERVCLASS_AV_REMOTE_CONTROL);
+    avrcp_interface_.AddRecord(UUID_SERVCLASS_AV_REMOTE_CONTROL,
+                               "AV Remote Control", NULL, AVRCP_SUPF_TG_CT,
+                               ct_sdp_record_handle, false,
+                               avrcp_interface_.GetAvrcpControlVersion(), 0);
+    bta_sys_add_uuid(UUID_SERVCLASS_AV_REMOTE_CONTROL);
+  }
 
   media_interface_ = new MediaInterfaceWrapper(media_interface);
   media_interface->RegisterUpdateCallback(instance_);
@@ -459,14 +484,19 @@ uint16_t AvrcpService::GetSupportedFeatures(uint16_t profile_version) {
 
 void AvrcpService::Cleanup() {
   log::info("AVRCP Target Service stopped");
-
-  avrcp_interface_.RemoveRecord(sdp_record_handle);
-  bta_sys_remove_uuid(UUID_SERVCLASS_AV_REM_CTRL_TARGET);
-  sdp_record_handle = -1;
-  avrcp_interface_.RemoveRecord(ct_sdp_record_handle);
-  bta_sys_remove_uuid(UUID_SERVCLASS_AV_REMOTE_CONTROL);
-  ct_sdp_record_handle = -1;
-
+  if (com::android::bluetooth::flags::avrcp_sdp_records()) {
+    const std::shared_ptr<AvrcSdpService>& avrcp_sdp_service =
+        AvrcSdpService::Get();
+    avrcp_sdp_service->RemoveRecord(UUID_SERVCLASS_AV_REM_CTRL_TARGET);
+    avrcp_sdp_service->RemoveRecord(UUID_SERVCLASS_AV_REMOTE_CONTROL);
+  } else {
+    avrcp_interface_.RemoveRecord(sdp_record_handle);
+    bta_sys_remove_uuid(UUID_SERVCLASS_AV_REM_CTRL_TARGET);
+    sdp_record_handle = -1;
+    avrcp_interface_.RemoveRecord(ct_sdp_record_handle);
+    bta_sys_remove_uuid(UUID_SERVCLASS_AV_REMOTE_CONTROL);
+    ct_sdp_record_handle = -1;
+  }
   connection_handler_->CleanUp();
   connection_handler_ = nullptr;
   if (player_settings_interface_ != nullptr) {
@@ -481,25 +511,35 @@ void AvrcpService::Cleanup() {
 void AvrcpService::RegisterBipServer(int psm) {
   log::info("AVRCP Target Service has registered a BIP OBEX server, psm={}",
             psm);
-  avrcp_interface_.RemoveRecord(sdp_record_handle);
-  uint16_t supported_features
-      = GetSupportedFeatures(profile_version) | AVRC_SUPF_TG_PLAYER_COVER_ART;
-  sdp_record_handle = get_legacy_stack_sdp_api()->handle.SDP_CreateRecord();
-  avrcp_interface_.AddRecord(UUID_SERVCLASS_AV_REM_CTRL_TARGET,
-                             "AV Remote Control Target", NULL,
-                             supported_features, sdp_record_handle, true,
-                             profile_version, psm);
+  if (com::android::bluetooth::flags::avrcp_sdp_records()) {
+    const std::shared_ptr<AvrcSdpService>& avrcp_sdp_service =
+        AvrcSdpService::Get();
+    avrcp_sdp_service->EnableCovertArt(UUID_SERVCLASS_AV_REM_CTRL_TARGET, psm);
+  } else {
+    avrcp_interface_.RemoveRecord(sdp_record_handle);
+    uint16_t supported_features =
+        GetSupportedFeatures(profile_version) | AVRC_SUPF_TG_PLAYER_COVER_ART;
+    sdp_record_handle = get_legacy_stack_sdp_api()->handle.SDP_CreateRecord();
+    avrcp_interface_.AddRecord(
+        UUID_SERVCLASS_AV_REM_CTRL_TARGET, "AV Remote Control Target", NULL,
+        supported_features, sdp_record_handle, true, profile_version, psm);
+  }
 }
 
 void AvrcpService::UnregisterBipServer() {
   log::info("AVRCP Target Service has unregistered a BIP OBEX server");
-  avrcp_interface_.RemoveRecord(sdp_record_handle);
-  uint16_t supported_features = GetSupportedFeatures(profile_version);
-  sdp_record_handle = get_legacy_stack_sdp_api()->handle.SDP_CreateRecord();
-  avrcp_interface_.AddRecord(UUID_SERVCLASS_AV_REM_CTRL_TARGET,
-                             "AV Remote Control Target", NULL,
-                             supported_features, sdp_record_handle, true,
-                             profile_version, 0);
+  if (com::android::bluetooth::flags::avrcp_sdp_records()) {
+    const std::shared_ptr<AvrcSdpService>& avrcp_sdp_service =
+        AvrcSdpService::Get();
+    avrcp_sdp_service->DisableCovertArt(UUID_SERVCLASS_AV_REM_CTRL_TARGET);
+  } else {
+    avrcp_interface_.RemoveRecord(sdp_record_handle);
+    uint16_t supported_features = GetSupportedFeatures(profile_version);
+    sdp_record_handle = get_legacy_stack_sdp_api()->handle.SDP_CreateRecord();
+    avrcp_interface_.AddRecord(
+        UUID_SERVCLASS_AV_REM_CTRL_TARGET, "AV Remote Control Target", NULL,
+        supported_features, sdp_record_handle, true, profile_version, 0);
+  }
 }
 
 AvrcpService* AvrcpService::Get() {

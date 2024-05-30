@@ -118,6 +118,7 @@ void bta_ar_dereg_avct();
  * Returns          void
  *
  *****************************************************************************/
+// DEPRECATED
 void bta_ar_reg_avrc(uint16_t service_uuid, const char* p_service_name,
                      const char* p_provider_name, uint16_t categories,
                      bool browse_supported, uint16_t profile_version);
@@ -132,6 +133,7 @@ void bta_ar_reg_avrc(uint16_t service_uuid, const char* p_service_name,
  * Returns          void
  *
  *****************************************************************************/
+// DEPRECATED
 void bta_ar_dereg_avrc(uint16_t service_uuid);
 
 /******************************************************************************
@@ -145,6 +147,7 @@ void bta_ar_dereg_avrc(uint16_t service_uuid);
  * Returns          void
  *
  *****************************************************************************/
+// DEPRECATED
 extern void bta_ar_reg_avrc_for_src_sink_coexist(
     uint16_t service_uuid, const char* service_name, const char* provider_name,
     uint16_t categories, tBTA_SYS_ID sys_id, bool browse_supported,

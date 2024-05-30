@@ -26,6 +26,7 @@
 #define LOG_TAG "bluetooth-a2dp"
 
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 
 #include <cstdint>
 
@@ -39,6 +40,7 @@
 #include "osi/include/allocator.h"
 #include "osi/include/osi.h"  // UINT_TO_PTR PTR_TO_UINT
 #include "osi/include/properties.h"
+#include "profile/avrcp/avrc_sdp_service.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_types.h"
@@ -48,6 +50,7 @@
 #include "types/raw_address.h"
 
 using namespace bluetooth::legacy::stack::sdp;
+using namespace bluetooth::avrc;
 using namespace bluetooth;
 
 /*****************************************************************************
@@ -2723,7 +2726,13 @@ void bta_av_dereg_comp(tBTA_AV_DATA* p_data) {
             "the SDP record");
       } else {
         log::verbose("newavrcp is not enabled. Remove SDP record");
-        bta_ar_dereg_avrc(UUID_SERVCLASS_AV_REMOTE_CONTROL);
+        if (com::android::bluetooth::flags::avrcp_sdp_records()) {
+          const std::shared_ptr<AvrcSdpService>& avrcp_sdp_service =
+              AvrcSdpService::Get();
+          avrcp_sdp_service->RemoveRecord(UUID_SERVCLASS_AV_REMOTE_CONTROL);
+        } else {
+          bta_ar_dereg_avrc(UUID_SERVCLASS_AV_REMOTE_CONTROL);
+        }
       }
 
       if (p_cb->sdp_a2dp_handle) {
@@ -2749,7 +2758,13 @@ void bta_av_dereg_comp(tBTA_AV_DATA* p_data) {
     bta_ar_dereg_avdt();
 
     /* deregister from AVCT */
-    bta_ar_dereg_avrc(UUID_SERVCLASS_AV_REM_CTRL_TARGET);
+    if (com::android::bluetooth::flags::avrcp_sdp_records()) {
+      const std::shared_ptr<AvrcSdpService>& avrcp_sdp_service =
+          AvrcSdpService::Get();
+      avrcp_sdp_service->RemoveRecord(UUID_SERVCLASS_AV_REM_CTRL_TARGET);
+    } else {
+      bta_ar_dereg_avrc(UUID_SERVCLASS_AV_REM_CTRL_TARGET);
+    }
     bta_ar_dereg_avct();
 
     if (p_cb->disabling) {
