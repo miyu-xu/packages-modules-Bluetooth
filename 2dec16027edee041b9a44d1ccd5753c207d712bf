@@ -78,6 +78,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5021b16e_0022220e",
+        "filename": "system/types/bluetooth/uuid.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-30T19:08:19Z",
+      "side": 1,
+      "message": "I prefer only using one type of method and it appear we already have one in gd::os.\n\nI am making use of it with aosp/3108464. Let me know what you think",
+      "parentUuid": "84c67671_d3492e81",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 3
+      },
+      "revId": "2dec16027edee041b9a44d1ccd5753c207d712bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c733552b_b0e5a149",
         "filename": "system/types/bluetooth/uuid.cc",
         "patchSetId": 2
