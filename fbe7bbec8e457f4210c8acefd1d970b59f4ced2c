@@ -34,6 +34,24 @@
       "parentUuid": "758e5679_5dbdc10d",
       "revId": "fbe7bbec8e457f4210c8acefd1d970b59f4ced2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e79e6ce6_fe21abd6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-05-30T20:34:37Z",
+      "side": 1,
+      "message": "talked with Himanshu, this is an address object, so it will do automatic redaction",
+      "parentUuid": "758e5679_5dbdc10d",
+      "revId": "fbe7bbec8e457f4210c8acefd1d970b59f4ced2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
