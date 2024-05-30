@@ -22,6 +22,7 @@
 
 #include "hardware/avrcp/avrcp.h"
 #include "osi/include/properties.h"
+#include "profile/avrcp/avrcp_sdp_service.h"
 #include "profile/avrcp/connection_handler.h"
 #include "raw_address.h"
 

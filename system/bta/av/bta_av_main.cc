@@ -25,6 +25,7 @@
 #define LOG_TAG "bluetooth-a2dp"
 
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 
 #include <cstdint>
 
@@ -41,6 +42,7 @@
 #include "os/log.h"
 #include "osi/include/allocator.h"
 #include "osi/include/properties.h"
+#include "profile/avrcp/avrcp_sdp_service.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_uuid16.h"
@@ -51,6 +53,7 @@
 #include "types/raw_address.h"
 
 using namespace bluetooth::legacy::stack::sdp;
+using namespace bluetooth::avrcp;
 using namespace bluetooth;
 
 /*****************************************************************************
@@ -182,10 +185,17 @@ static void bta_av_api_enable(tBTA_AV_DATA* p_data) {
     }
     // deregister from AVDT
     bta_ar_dereg_avdt();
-
+    // deregister from AVRC
+    if (com::android::bluetooth::flags::avrcp_sdp_records()) {
+      const std::shared_ptr<AvrcpSdpService>& avrcp_sdp_service =
+          AvrcpSdpService::Get();
+      avrcp_sdp_service->RemoveRecord(UUID_SERVCLASS_AV_REM_CTRL_TARGET);
+      avrcp_sdp_service->RemoveRecord(UUID_SERVCLASS_AV_REMOTE_CONTROL);
+    } else {
+      bta_ar_dereg_avrc(UUID_SERVCLASS_AV_REMOTE_CONTROL);
+      bta_ar_dereg_avrc(UUID_SERVCLASS_AV_REM_CTRL_TARGET);
+    }
     // deregister from AVCT
-    bta_ar_dereg_avrc(UUID_SERVCLASS_AV_REMOTE_CONTROL);
-    bta_ar_dereg_avrc(UUID_SERVCLASS_AV_REM_CTRL_TARGET);
     bta_ar_dereg_avct();
   }
 
@@ -479,11 +489,14 @@ static void bta_av_api_register(tBTA_AV_DATA* p_data) {
   reg_data.status = BTA_AV_FAIL_RESOURCES;
   reg_data.app_id = p_data->api_reg.app_id;
   reg_data.chnl = (tBTA_AV_CHNL)p_data->hdr.layer_specific;
+  uint16_t target_profile_version = AVRC_GetProfileVersion();
 
   char avrcp_version[PROPERTY_VALUE_MAX] = {0};
-  osi_property_get(AVRCP_VERSION_PROPERTY, avrcp_version,
-                   AVRCP_DEFAULT_VERSION);
-  log::info("AVRCP version used for sdp: \"{}\"", avrcp_version);
+  if (!com::android::bluetooth::flags::avrcp_sdp_records()) {
+    osi_property_get(AVRCP_VERSION_PROPERTY, avrcp_version,
+                     AVRCP_DEFAULT_VERSION);
+    log::info("AVRCP version used for sdp: \"{}\"", avrcp_version);
+  }
 
   uint16_t profile_initialized = p_data->api_reg.service_uuid;
   if (profile_initialized == UUID_SERVCLASS_AUDIO_SINK) {
@@ -491,7 +504,10 @@ static void bta_av_api_register(tBTA_AV_DATA* p_data) {
   } else if (profile_initialized == UUID_SERVCLASS_AUDIO_SOURCE) {
     p_bta_av_cfg = &bta_av_cfg;
 
-    if (!strncmp(AVRCP_1_3_STRING, avrcp_version, sizeof(AVRCP_1_3_STRING))) {
+    if ((target_profile_version == AVRC_REV_1_3 &&
+         com::android::bluetooth::flags::avrcp_sdp_records()) ||
+        (!com::android::bluetooth::flags::avrcp_sdp_records() &&
+         !strncmp(AVRCP_1_3_STRING, avrcp_version, sizeof(AVRCP_1_3_STRING)))) {
       log::info("AVRCP 1.3 capabilites used");
       p_bta_av_cfg = &bta_av_cfg_compatibility;
     }
@@ -540,40 +556,58 @@ static void bta_av_api_register(tBTA_AV_DATA* p_data) {
          */
         bta_ar_reg_avct();
 
-        /* For the Audio Sink role we support additional TG to support
-         * absolute volume.
-         */
-        if (is_new_avrcp_enabled()) {
-          log::verbose(
-              "newavrcp is the owner of the AVRCP Target SDP record. Don't "
-              "create the SDP record");
-        } else {
-          log::verbose("newavrcp is not enabled. Create SDP record");
-
-          uint16_t profile_version = AVRC_REV_1_0;
-          if (!strncmp(AVRCP_1_6_STRING, avrcp_version,
-                      sizeof(AVRCP_1_6_STRING))) {
-            profile_version = AVRC_REV_1_6;
-          } else if (!strncmp(AVRCP_1_5_STRING, avrcp_version,
-                              sizeof(AVRCP_1_5_STRING))) {
-            profile_version = AVRC_REV_1_5;
-          } else if (!strncmp(AVRCP_1_3_STRING, avrcp_version,
-                              sizeof(AVRCP_1_3_STRING))) {
-            profile_version = AVRC_REV_1_3;
-          } else {
-            profile_version = AVRC_REV_1_4;
+        if (com::android::bluetooth::flags::avrcp_sdp_records()) {
+          // Add target record for sink profile.
+          // Also adds target record for source profile when new avrcp service
+          // is not enabled.
+          if (profile_initialized == UUID_SERVCLASS_AUDIO_SINK ||
+              (profile_initialized == UUID_SERVCLASS_AUDIO_SOURCE &&
+               !is_new_avrcp_enabled())) {
+            const std::shared_ptr<AvrcpSdpService>& avrcp_sdp_service =
+                AvrcpSdpService::Get();
+            AddSdpRecordRequest target_add_record_request = {
+                UUID_SERVCLASS_AV_REM_CTRL_TARGET,
+                "AV Remote Control Target",
+                "",
+                p_bta_av_cfg->avrc_tg_cat,
+                (bta_av_cb.features & BTA_AV_FEAT_BROWSE) == BTA_AV_FEAT_BROWSE,
+                target_profile_version,
+                0};
+            avrcp_sdp_service->AddRecord(target_add_record_request);
           }
-          if (btif_av_src_sink_coexist_enabled()) {
-            bta_ar_reg_avrc_for_src_sink_coexist(
-                UUID_SERVCLASS_AV_REM_CTRL_TARGET, "AV Remote Control Target",
-                NULL, p_bta_av_cfg->avrc_tg_cat,
-                static_cast<tBTA_SYS_ID>(BTA_ID_AV + local_role),
-                (bta_av_cb.features & BTA_AV_FEAT_BROWSE), profile_version);
+        } else {
+          if (is_new_avrcp_enabled()) {
+            log::verbose(
+                "newavrcp is the owner of the AVRCP Target SDP record. Don't "
+                "create the SDP record");
           } else {
-            bta_ar_reg_avrc(
-                UUID_SERVCLASS_AV_REM_CTRL_TARGET, "AV Remote Control Target",
-                NULL, p_bta_av_cfg->avrc_tg_cat,
-                (bta_av_cb.features & BTA_AV_FEAT_BROWSE), profile_version);
+            log::verbose("newavrcp is not enabled. Create SDP record");
+
+            uint16_t profile_version = AVRC_REV_1_0;
+            if (!strncmp(AVRCP_1_6_STRING, avrcp_version,
+                         sizeof(AVRCP_1_6_STRING))) {
+              profile_version = AVRC_REV_1_6;
+            } else if (!strncmp(AVRCP_1_5_STRING, avrcp_version,
+                                sizeof(AVRCP_1_5_STRING))) {
+              profile_version = AVRC_REV_1_5;
+            } else if (!strncmp(AVRCP_1_3_STRING, avrcp_version,
+                                sizeof(AVRCP_1_3_STRING))) {
+              profile_version = AVRC_REV_1_3;
+            } else {
+              profile_version = AVRC_REV_1_4;
+            }
+            if (btif_av_src_sink_coexist_enabled()) {
+              bta_ar_reg_avrc_for_src_sink_coexist(
+                  UUID_SERVCLASS_AV_REM_CTRL_TARGET, "AV Remote Control Target",
+                  NULL, p_bta_av_cfg->avrc_tg_cat,
+                  static_cast<tBTA_SYS_ID>(BTA_ID_AV + local_role),
+                  (bta_av_cb.features & BTA_AV_FEAT_BROWSE), profile_version);
+            } else {
+              bta_ar_reg_avrc(
+                  UUID_SERVCLASS_AV_REM_CTRL_TARGET, "AV Remote Control Target",
+                  NULL, p_bta_av_cfg->avrc_tg_cat,
+                  (bta_av_cb.features & BTA_AV_FEAT_BROWSE), profile_version);
+            }
           }
         }
       }
@@ -713,30 +747,60 @@ static void bta_av_api_register(tBTA_AV_DATA* p_data) {
          *
          * We create 1.4 for SINK since we support browsing.
          */
-        if (btif_av_src_sink_coexist_enabled()) {
-          if (profile_initialized == UUID_SERVCLASS_AUDIO_SOURCE) {
-            bta_ar_reg_avrc_for_src_sink_coexist(
-                UUID_SERVCLASS_AV_REMOTE_CONTROL, NULL, NULL,
-                p_bta_av_cfg->avrc_ct_cat, BTA_ID_AV,
-                (bta_av_cb.features & BTA_AV_FEAT_BROWSE), AVRC_REV_1_5);
-          } else if (profile_initialized == UUID_SERVCLASS_AUDIO_SINK)
-            bta_ar_reg_avrc_for_src_sink_coexist(
-                UUID_SERVCLASS_AV_REMOTE_CONTROL, NULL, NULL,
-                p_bta_av_cfg->avrc_ct_cat, BTA_ID_AVK,
-                (bta_av_cb.features & BTA_AV_FEAT_BROWSE),
-                AVRC_GetControlProfileVersion());
+        if (com::android::bluetooth::flags::avrcp_sdp_records()) {
+          const std::shared_ptr<AvrcpSdpService>& avrcp_sdp_service =
+              AvrcpSdpService::Get();
+          // Add control record for sink profile.
+          // Also adds control record for source profile when new avrcp service
+          // is not enabled.
+          if (profile_initialized == UUID_SERVCLASS_AUDIO_SINK ||
+              (profile_initialized == UUID_SERVCLASS_AUDIO_SOURCE &&
+               !is_new_avrcp_enabled())) {
+            uint16_t control_version = AVRC_GetControlProfileVersion();
+            if (profile_initialized == UUID_SERVCLASS_AUDIO_SOURCE &&
+                !is_new_avrcp_enabled()) {
+              control_version = AVRC_REV_1_3;
+            }
+            if (!btif_av_src_sink_coexist_enabled() &&
+                profile_initialized == UUID_SERVCLASS_AUDIO_SINK) {
+              control_version = AVRC_REV_1_6;
+            }
+            AddSdpRecordRequest control_add_record_request = {
+                UUID_SERVCLASS_AV_REMOTE_CONTROL,
+                "AV Remote Control",
+                "",
+                p_bta_av_cfg->avrc_ct_cat,
+                (bta_av_cb.features & BTA_AV_FEAT_BROWSE) == BTA_AV_FEAT_BROWSE,
+                control_version,
+                0};
+            avrcp_sdp_service->AddRecord(control_add_record_request);
+          }
         } else {
-          if (profile_initialized == UUID_SERVCLASS_AUDIO_SOURCE &&
-              !is_new_avrcp_enabled()) {
-            bta_ar_reg_avrc(UUID_SERVCLASS_AV_REMOTE_CONTROL, NULL, NULL,
-                            p_bta_av_cfg->avrc_ct_cat,
-                            (bta_av_cb.features & BTA_AV_FEAT_BROWSE),
-                            AVRC_REV_1_3);
-          } else if (profile_initialized == UUID_SERVCLASS_AUDIO_SINK)
-            bta_ar_reg_avrc(UUID_SERVCLASS_AV_REMOTE_CONTROL, NULL, NULL,
-                            p_bta_av_cfg->avrc_ct_cat,
-                            (bta_av_cb.features & BTA_AV_FEAT_BROWSE),
-                            AVRC_REV_1_6);
+          if (btif_av_src_sink_coexist_enabled()) {
+            if (profile_initialized == UUID_SERVCLASS_AUDIO_SOURCE) {
+              bta_ar_reg_avrc_for_src_sink_coexist(
+                  UUID_SERVCLASS_AV_REMOTE_CONTROL, NULL, NULL,
+                  p_bta_av_cfg->avrc_ct_cat, BTA_ID_AV,
+                  (bta_av_cb.features & BTA_AV_FEAT_BROWSE), AVRC_REV_1_5);
+            } else if (profile_initialized == UUID_SERVCLASS_AUDIO_SINK)
+              bta_ar_reg_avrc_for_src_sink_coexist(
+                  UUID_SERVCLASS_AV_REMOTE_CONTROL, NULL, NULL,
+                  p_bta_av_cfg->avrc_ct_cat, BTA_ID_AVK,
+                  (bta_av_cb.features & BTA_AV_FEAT_BROWSE),
+                  AVRC_GetControlProfileVersion());
+          } else {
+            if (profile_initialized == UUID_SERVCLASS_AUDIO_SOURCE &&
+                !is_new_avrcp_enabled()) {
+              bta_ar_reg_avrc(UUID_SERVCLASS_AV_REMOTE_CONTROL, NULL, NULL,
+                              p_bta_av_cfg->avrc_ct_cat,
+                              (bta_av_cb.features & BTA_AV_FEAT_BROWSE),
+                              AVRC_REV_1_3);
+            } else if (profile_initialized == UUID_SERVCLASS_AUDIO_SINK)
+              bta_ar_reg_avrc(UUID_SERVCLASS_AV_REMOTE_CONTROL, NULL, NULL,
+                              p_bta_av_cfg->avrc_ct_cat,
+                              (bta_av_cb.features & BTA_AV_FEAT_BROWSE),
+                              AVRC_REV_1_6);
+          }
         }
       }
     }
@@ -755,8 +819,11 @@ static void bta_av_api_register(tBTA_AV_DATA* p_data) {
         (bta_av_cb.reg_role & (1 << AVDT_TSEP_SRC))) {
       p_bta_av_cfg = &bta_av_cfg;
 
-      if (!strncmp(AVRCP_1_3_STRING, avrcp_version,
-                   sizeof(AVRCP_1_3_STRING))) {  // ver if need
+      if ((target_profile_version == AVRC_REV_1_3 &&
+           com::android::bluetooth::flags::avrcp_sdp_records()) ||
+          (!com::android::bluetooth::flags::avrcp_sdp_records() &&
+           !strncmp(AVRCP_1_3_STRING, avrcp_version,
+                    sizeof(AVRCP_1_3_STRING)))) {
         log::verbose("AVRCP 1.3 capabilites used");
         p_bta_av_cfg = &bta_av_cfg_compatibility;
       }

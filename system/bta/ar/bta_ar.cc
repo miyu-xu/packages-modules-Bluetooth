@@ -50,6 +50,7 @@ tBTA_AR_CB bta_ar_cb;
  * Returns          void
  *
  ******************************************************************************/
+// TODO: b/341353017 - Remove it as part of flag cleanup
 static uint8_t bta_ar_id(tBTA_SYS_ID sys_id) {
   uint8_t mask = 0;
   if (sys_id == BTA_ID_AV) {
@@ -59,6 +60,7 @@ static uint8_t bta_ar_id(tBTA_SYS_ID sys_id) {
   }
   return mask;
 }
+// TODO: b/341353017 - Remove it as part of flag cleanup
 static void bta_ar_avrc_add_cat(uint16_t categories) {
   uint8_t temp[sizeof(uint16_t)], *p;
   /* Change supported categories on the second one */
@@ -198,6 +200,7 @@ void bta_ar_dereg_avct() {
  * Returns          void
  *
  *****************************************************************************/
+// TODO: b/341353017 - Remove it as part of flag cleanup
 void bta_ar_reg_avrc(uint16_t service_uuid, const char* service_name,
                      const char* provider_name, uint16_t categories,
                      bool browse_supported, uint16_t profile_version) {
@@ -254,6 +257,7 @@ void bta_ar_reg_avrc(uint16_t service_uuid, const char* service_name,
  * Returns          void
  *
  *****************************************************************************/
+// TODO: b/341353017 - Remove it as part of flag cleanup
 void bta_ar_dereg_avrc(uint16_t service_uuid) {
   uint8_t mask = BTA_AR_AV_MASK;
   uint16_t categories = 0;
@@ -309,6 +313,7 @@ void bta_ar_dereg_avrc(uint16_t service_uuid) {
  * Returns          void
  *
  *****************************************************************************/
+// TODO: b/341353017 - Remove it as part of flag cleanup
 void bta_ar_reg_avrc_for_src_sink_coexist(
     uint16_t service_uuid, const char* service_name, const char* provider_name,
     uint16_t categories, tBTA_SYS_ID sys_id, bool browse_supported,
