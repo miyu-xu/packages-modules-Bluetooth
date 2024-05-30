@@ -33,6 +33,24 @@
       "message": "Please resolve presubmit issues.",
       "revId": "75d0e66cd51fed23a09fe08b76787a07fde0b7f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e851dc4_93e31907",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-05-30T09:07:27Z",
+      "side": 1,
+      "message": "Will abandon the CL for now since it\u0027s too early to remove the flag due to flaggedAPI.",
+      "parentUuid": "f860beb0_fbaafc9f",
+      "revId": "75d0e66cd51fed23a09fe08b76787a07fde0b7f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
