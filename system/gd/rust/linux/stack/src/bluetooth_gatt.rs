@@ -7,8 +7,8 @@ use bt_topshim::btif::{
     BluetoothInterface, BtStatus, BtTransport, DisplayAddress, RawAddress, Uuid128Bit,
 };
 use bt_topshim::profiles::gatt::{
-    ffi::RustAdvertisingTrackInfo, AdvertisingStatus, BtGattDbElement, BtGattNotifyParams,
-    BtGattReadParams, BtGattResponse, BtGattValue, Gatt, GattAdvCallbacksDispatcher,
+    AdvertisingStatus, AdvertisingTrackInfo, BtGattDbElement, BtGattNotifyParams, BtGattReadParams,
+    BtGattResponse, BtGattValue, Gatt, GattAdvCallbacksDispatcher,
     GattAdvInbandCallbacksDispatcher, GattClientCallbacks, GattClientCallbacksDispatcher,
     GattScannerCallbacks, GattScannerCallbacksDispatcher, GattScannerInbandCallbacks,
     GattScannerInbandCallbacksDispatcher, GattServerCallbacks, GattServerCallbacksDispatcher,
@@ -3764,7 +3764,7 @@ pub(crate) trait BtifGattScannerCallbacks {
     );
 
     #[btif_callback(OnTrackAdvFoundLost)]
-    fn on_track_adv_found_lost(&mut self, adv_track_info: RustAdvertisingTrackInfo);
+    fn on_track_adv_found_lost(&mut self, adv_track_info: AdvertisingTrackInfo);
 }
 
 #[btif_callbacks_dispatcher(dispatch_le_scanner_inband_callbacks, GattScannerInbandCallbacks)]
@@ -4041,7 +4041,7 @@ impl BtifGattScannerCallbacks for BluetoothGatt {
         });
     }
 
-    fn on_track_adv_found_lost(&mut self, track_adv_info: RustAdvertisingTrackInfo) {
+    fn on_track_adv_found_lost(&mut self, track_adv_info: AdvertisingTrackInfo) {
         let addr = track_adv_info.advertiser_address;
         let display_addr = DisplayAddress(&addr);
         let mut binding = self.scanners.lock().unwrap();
