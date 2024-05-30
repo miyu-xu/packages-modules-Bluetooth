@@ -3,6 +3,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9e1ea5b6_313a8fe5",
+        "filename": "system/types/bluetooth/uuid.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-30T00:22:28Z",
+      "side": 1,
+      "message": "`RAND_bytes(uuid.uu.data(), uuid.uu.size());` as the one used in gd ?",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 3
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4a3c4dae_28a29d2a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/types/bluetooth/uuid.cc",
+              "range": {
+                "startLine": 29,
+                "startChar": 0,
+                "endLine": 29,
+                "endChar": 0
+              },
+              "replacement": "#include \u003copenssl/rand.h\u003e\n"
+            },
+            {
+              "path": "system/types/bluetooth/uuid.cc",
+              "range": {
+                "startLine": 156,
+                "startChar": 0,
+                "endLine": 161,
+                "endChar": 0
+              },
+              "replacement": "  RAND_bytes(uuid.uu.data(), uuid.uu.size());\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2dec16027edee041b9a44d1ccd5753c207d712bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c733552b_b0e5a149",
         "filename": "system/types/bluetooth/uuid.cc",
         "patchSetId": 2
