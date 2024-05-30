@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7d2690b0_cd46d21e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-30T00:05:27Z",
+      "side": 1,
+      "message": "I\u0027d prefer removing the dependency on libchrome for this one.",
+      "parentUuid": "f539bd2e_7ca56d93",
+      "revId": "cecdec541b90d1dad23193e99dbb3579514fde47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4f7a0e8b_458fdec9",
         "filename": "system/types/bluetooth/uuid.cc",
         "patchSetId": 4
