@@ -1,0 +1,49 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c3a52f5_8c337b99",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 1008,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-05-30T14:50:23Z",
+      "side": 1,
+      "message": "This update is happening in \"OnBigCreated\" callback.\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/le_audio/broadcaster/broadcaster.cc;l\u003d1027?q\u003dbroadcaster.cc\n\nwhy do we need to call it again?",
+      "fixSuggestions": [
+        {
+          "fixId": "c82ca618_5effec7c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/broadcaster/broadcaster.cc",
+              "range": {
+                "startLine": 1008,
+                "startChar": 0,
+                "endLine": 1023,
+                "endChar": 0
+              },
+              "replacement": "              auto const\u0026 bigconfig \u003d broadcast-\u003eGetBigConfig();\n              if (bigconfig \u003d\u003d std::nullopt) {\n                log::error(\"Broadcast broadcast-\u003eGetBroadcastId()\u003d{} broadcast_id\u003d{} \"\n                           \"has no valid BIS configurations in state\u003d{}\",\n                  broadcast-\u003eGetBroadcastId(), broadcast_id,\n                  ToString(broadcast-\u003eGetState()));\n              } else {\n                CodecManager::GetInstance()-\u003eUpdateBroadcastConnHandle(\n                    bigconfig-\u003econnection_handles,\n                    std::bind(\n                        \u0026LeAudioSourceAudioHalClient::UpdateBroadcastAudioConfigToHal,\n                        instance-\u003ele_audio_source_hal_client_.get(),\n                        std::placeholders::_1));\n"
+            },
+            {
+              "path": "system/bta/le_audio/broadcaster/broadcaster.cc",
+              "range": {
+                "startLine": 1024,
+                "startChar": 0,
+                "endLine": 1024,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            }
+          ]
+        }
+      ],
+      "revId": "fa39341e6f39e81ba5f44737b1444b3339524130",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
