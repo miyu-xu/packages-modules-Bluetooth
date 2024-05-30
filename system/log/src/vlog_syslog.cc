@@ -98,6 +98,8 @@ void vlog(Level level, char const* tag, source_location location,
   }
 }
 
+Level soft_assert_log_level() { return Level::kError; }
+
 }  // namespace bluetooth::log_internal
 
 // These apis will be exposed in topshim to allow control of syslog log levels.

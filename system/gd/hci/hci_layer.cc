@@ -191,7 +191,7 @@ struct HciLayer::impl {
     }
     bool is_status = logging_id == "status";
 
-    log::assert_that(
+    log::assert_that_softly(
         !command_queue_.empty(),
         "Unexpected {} event with OpCode {}",
         logging_id,
@@ -201,7 +201,7 @@ struct HciLayer::impl {
       common::StopWatch::DumpStopWatchLog();
       return;
     }
-    log::assert_that(
+    log::assert_that_softly(
         waiting_command_ == op_code,
         "Waiting for {}, got {}",
         OpCodeText(waiting_command_),
@@ -230,7 +230,7 @@ struct HciLayer::impl {
           command_complete_view.IsValid(), "assert failed: command_complete_view.IsValid()");
       (*command_queue_.front().GetCallback<CommandCompleteView>())(command_complete_view);
     } else {
-      log::assert_that(
+      log::assert_that_softly(
           command_queue_.front().waiting_for_status_ == is_status,
           "{} was not expecting {} event",
           OpCodeText(op_code),
@@ -402,7 +402,7 @@ struct HciLayer::impl {
         auto view = CommandCompleteView::Create(event);
         log::assert_that(view.IsValid(), "assert failed: view.IsValid()");
         auto op_code = view.GetCommandOpCode();
-        log::assert_that(
+        log::assert_that_softly(
             op_code == OpCode::NONE,
             "Received {} event with OpCode {} without a waiting command(is the HAL "
             "sending commands, but not handling the events?)",
@@ -413,7 +413,7 @@ struct HciLayer::impl {
         auto view = CommandStatusView::Create(event);
         log::assert_that(view.IsValid(), "assert failed: view.IsValid()");
         auto op_code = view.GetCommandOpCode();
-        log::assert_that(
+        log::assert_that_softly(
             op_code == OpCode::NONE,
             "Received {} event with OpCode {} without a waiting command(is the HAL "
             "sending commands, but not handling the events?)",

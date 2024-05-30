@@ -73,4 +73,6 @@ void vlog(Level level, char const* tag, source_location location,
   }
 }
 
+Level soft_assert_log_level() { return Level::kFatal; }
+
 }  // namespace bluetooth::log_internal

@@ -57,6 +57,10 @@ struct source_location {
 void vlog(Level level, char const* tag, source_location location,
           fmt::string_view fmt, fmt::format_args vargs);
 
+/// Returns log level for soft assert
+/// The implementation of this function is dependent on the backend.
+Level soft_assert_log_level();
+
 /// Capture invalid parameter values that would cause runtime
 /// formatting errors.
 template <class T>
@@ -206,12 +210,12 @@ template <typename T0, typename T1, typename T2, typename T3>
 
 template <typename... T>
 struct assert_that {
-  assert_that(bool cond, fmt::format_string<T...> fmt, T&&... args,
-              log_internal::source_location location =
-                  log_internal::source_location()) {
+  assert_that(
+      bool cond, fmt::format_string<T...> fmt, T&&... args,
+      log_internal::source_location location = log_internal::source_location(),
+      log_internal::Level log_level = log_internal::kFatal) {
     if (!cond) {
-      vlog(log_internal::kFatal, LOG_TAG, location,
-           static_cast<fmt::string_view>(fmt),
+      vlog(log_level, LOG_TAG, location, static_cast<fmt::string_view>(fmt),
            fmt::make_format_args(log_internal::format_replace(args)...));
     }
   }
@@ -219,6 +223,19 @@ struct assert_that {
 
 template <typename... T>
 assert_that(bool, fmt::format_string<T...>, T&&...) -> assert_that<T...>;
+
+template <typename... T>
+struct assert_that_softly : public assert_that<T...> {
+  assert_that_softly(
+      bool cond, fmt::format_string<T...> fmt, T&&... args,
+      log_internal::source_location location = log_internal::source_location())
+      : assert_that<T...>(cond, fmt, std::forward<T>(args)..., location,
+                          log_internal::soft_assert_log_level()) {}
+};
+
+template <typename... T>
+assert_that_softly(bool, fmt::format_string<T...>, T&&...)
+    -> assert_that_softly<T...>;
 
 }  // namespace bluetooth::log
 

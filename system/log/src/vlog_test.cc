@@ -177,3 +177,14 @@ TEST(BluetoothLogTest, null_string_parameter) {
   EXPECT_STREQ(androidLogMessage->message,
                "system/log/src/vlog_test.cc:176 TestBody: input: hello world");
 }
+
+TEST(BluetoothLogDeathTest, assert_that_softly) {
+  androidLogMessage.reset();
+
+  log::assert_that_softly(true, "assert_that_softly test true");
+  log::assert_that_softly(true, "assert_that_softly test {}", "true");
+
+  ASSERT_DEATH(
+      { log::assert_that_softly(false, "assert_that_softly test false"); },
+      "assert_that_softly test false");
+}
