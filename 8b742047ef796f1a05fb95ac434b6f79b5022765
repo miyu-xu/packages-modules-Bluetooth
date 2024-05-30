@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d4ebd79_49070ce0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-30T01:14:46Z",
+      "side": 1,
+      "message": "This CL is not responsible of the breakage. Only aosp/3107685 and aosp/3107683 should suffice.",
+      "revId": "8b742047ef796f1a05fb95ac434b6f79b5022765",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
