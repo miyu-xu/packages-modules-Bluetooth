@@ -569,8 +569,28 @@ void bta_ag_create_sco(tBTA_AG_SCB* p_scb, bool is_orig) {
     /* tell sys to stop av if any */
     bta_sys_sco_use(BTA_ID_AG, p_scb->app_id, p_scb->peer_addr);
 
-    /* Send pending commands to create SCO connection to peer */
-    bta_ag_create_pending_sco(p_scb, bta_ag_cb.sco.is_local);
+    bta_ag_cb.sco.cur_idx = p_scb->sco_idx;
+
+    /* Bypass voice settings if enhanced SCO setup command is supported */
+    if (!(bluetooth::shim::GetController()->IsSupported(
+            bluetooth::hci::OpCode::ENHANCED_SETUP_SYNCHRONOUS_CONNECTION))) {
+      if (esco_codec == UUID_CODEC_MSBC || esco_codec == UUID_CODEC_LC3) {
+        BTM_WriteVoiceSettings(BTM_VOICE_SETTING_TRANS);
+      } else {
+        BTM_WriteVoiceSettings(BTM_VOICE_SETTING_CVSD);
+      }
+    }
+
+    if (BTM_CreateSco(&p_scb->peer_addr, true, params.packet_types,
+                      &p_scb->sco_idx, bta_ag_sco_conn_cback,
+                      bta_ag_sco_disc_cback) == BTM_CMD_STARTED) {
+      /* Initiating the connection, set the current sco handle */
+      bta_ag_cb.sco.cur_idx = p_scb->sco_idx;
+      /* Configure input/output data. */
+      hfp_hal_interface::set_codec_datapath(esco_codec);
+      log::verbose("initiated SCO connection");
+    }
+
     log::debug("Initiating AG SCO inx 0x{:04x}, pkt types 0x{:04x}",
                p_scb->sco_idx, params.packet_types);
   } else {
@@ -1631,7 +1651,36 @@ void bta_ag_sco_conn_rsp(tBTA_AG_SCB* p_scb,
   /* If SCO open was initiated from HS, it must be CVSD */
   p_scb->inuse_codec = BTM_SCO_CODEC_NONE;
   /* Send pending commands to create SCO connection to peer */
-  bta_ag_create_pending_sco(p_scb, bta_ag_cb.sco.is_local);
+  enh_esco_params_t params = {};
+  bool offload = hfp_hal_interface::get_offload_enabled();
+  bta_ag_cb.sco.p_curr_scb = p_scb;
+  bta_ag_cb.sco.cur_idx = p_scb->sco_idx;
+
+  // Local device accepted SCO connection from peer(HF)
+  // Because HF devices usually do not send AT+BAC and +BCS command,
+  // and there is no plan to implement corresponding command handlers,
+  // so we only accept CVSD connection from HF no matter what's
+  // requested.
+  if ((p_scb->features & BTA_AG_FEAT_ESCO_S4) &&
+      (p_scb->peer_features & BTA_AG_PEER_FEAT_ESCO_S4)) {
+    // HFP >=1.7 eSCO
+    params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S4, offload);
+  } else {
+    // HFP <=1.6 eSCO
+    params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S3, offload);
+  }
+
+  // HFP v1.8 5.7.3 CVSD coding
+  tSCO_CONN* p_sco = NULL;
+  if (p_scb->sco_idx < BTM_MAX_SCO_LINKS)
+    p_sco = &btm_cb.sco_cb.sco_db[p_scb->sco_idx];
+  if (p_sco && (p_sco->esco.data.link_type == BTM_LINK_TYPE_SCO ||
+                !btm_peer_supports_esco_ev3(p_sco->esco.data.bd_addr))) {
+    params = esco_parameters_for_codec(SCO_CODEC_CVSD_D1, offload);
+  }
+
+  BTM_EScoConnRsp(p_scb->sco_idx, HCI_SUCCESS, &params);
+  log::verbose("listening for SCO connection");
 }
 
 bool bta_ag_get_sco_offload_enabled() {
