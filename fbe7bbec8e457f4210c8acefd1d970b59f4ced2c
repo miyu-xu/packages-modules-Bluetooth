@@ -16,6 +16,24 @@
       "message": "I remember there is some security requirement on printing device addresses, invite @rwt@google.com to confirm. If this is good, I will +2",
       "revId": "fbe7bbec8e457f4210c8acefd1d970b59f4ced2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5145cc5_b0e1b4ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-30T20:34:07Z",
+      "side": 1,
+      "message": "New logging utility already does that",
+      "parentUuid": "758e5679_5dbdc10d",
+      "revId": "fbe7bbec8e457f4210c8acefd1d970b59f4ced2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
