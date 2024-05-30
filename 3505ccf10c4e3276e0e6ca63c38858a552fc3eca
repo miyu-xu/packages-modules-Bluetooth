@@ -22,6 +22,30 @@
       },
       "revId": "3505ccf10c4e3276e0e6ca63c38858a552fc3eca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16e8e61c_4627d5ce",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-05-30T23:54:15Z",
+      "side": 0,
+      "message": "In this `init` function, if it\u0027s not null, it will use the previously allocated buffer for efficiency because the size is always the same.\n\nThe buffer should be freed in `deinit` when intended, similar to the other buffers allocated in this function.",
+      "parentUuid": "f228abe7_7dde8bc7",
+      "range": {
+        "startLine": 488,
+        "startChar": 20,
+        "endLine": 488,
+        "endChar": 41
+      },
+      "revId": "3505ccf10c4e3276e0e6ca63c38858a552fc3eca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
