@@ -54,6 +54,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "84c67671_d3492e81",
+        "filename": "system/types/bluetooth/uuid.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-30T17:22:16Z",
+      "side": 1,
+      "message": "That\u0027s the random number generator from openssl, and I was hoping not to use that for this, since this isn\u0027t for security.  Thoughts?",
+      "parentUuid": "9e1ea5b6_313a8fe5",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 3
+      },
+      "revId": "2dec16027edee041b9a44d1ccd5753c207d712bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c733552b_b0e5a149",
         "filename": "system/types/bluetooth/uuid.cc",
         "patchSetId": 2
