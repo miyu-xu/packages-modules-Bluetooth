@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f228abe7_7dde8bc7",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-05-30T16:55:01Z",
+      "side": 0,
+      "message": "What if `packet_buf` is not null? is it guaranteed to be freed?",
+      "range": {
+        "startLine": 488,
+        "startChar": 20,
+        "endLine": 488,
+        "endChar": 41
+      },
+      "revId": "3505ccf10c4e3276e0e6ca63c38858a552fc3eca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
