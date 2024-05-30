@@ -209,6 +209,12 @@ void LeAudioClientInterface::Sink::StartSession() {
       return;
     }
     get_aidl_client_interface(is_broadcaster_)->StartSession();
+
+    if (!get_aidl_client_interface(is_broadcaster_)
+             ->UpdateAudioConfig(audio_config)) {
+      log::error("cannot update audio config to HAL");
+      return;
+    }
   }
 }
 
