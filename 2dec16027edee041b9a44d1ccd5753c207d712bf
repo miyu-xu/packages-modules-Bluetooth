@@ -22,6 +22,30 @@
       },
       "revId": "2dec16027edee041b9a44d1ccd5753c207d712bf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "512c301e_8da76fe8",
+        "filename": "system/types/bluetooth/uuid.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-30T00:17:57Z",
+      "side": 1,
+      "message": "I would love to.  Unfortunately, there\u0027s no vendor version of the library, and there are no plans to make libbluetooth_log vendor-available.",
+      "parentUuid": "c733552b_b0e5a149",
+      "range": {
+        "startLine": 182,
+        "startChar": 1,
+        "endLine": 190,
+        "endChar": 20
+      },
+      "revId": "2dec16027edee041b9a44d1ccd5753c207d712bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
