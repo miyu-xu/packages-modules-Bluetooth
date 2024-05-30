@@ -160,6 +160,24 @@
       "parentUuid": "3a98fcec_43844dc5",
       "revId": "bb44623eaf6bfff0727e62f0a4f4ae56dc80912b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd946c11_45cc72fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-05-30T00:03:05Z",
+      "side": 1,
+      "message": "Updating my view on this: Android Bluetooth stack \u003d Android + ChromeOS right now. So any feature that is needed for ChromeOS should be added to the stack and rolled out using a flag (without any ifdef). If the feature is only used by ChromeOS, it should indeed be documented in the code and our QA team will verify that the feature doesn\u0027t add any regression. So I\u0027m fine here as well.",
+      "parentUuid": "99ee6d4d_d390081a",
+      "revId": "bb44623eaf6bfff0727e62f0a4f4ae56dc80912b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
