@@ -79,6 +79,24 @@
       ],
       "revId": "fa39341e6f39e81ba5f44737b1444b3339524130",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85388211_e6f41ce8",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 1008,
+      "author": {
+        "id": 2051151
+      },
+      "writtenOn": "2024-05-30T15:13:13Z",
+      "side": 1,
+      "message": "when OnBigCreated, the broadcast audio session is not started and the session is started when the broadcast is in streaming after setting the ISO data path, therefore the audio config will not be updated to hal in OnBigCreated.",
+      "parentUuid": "8c3a52f5_8c337b99",
+      "revId": "fa39341e6f39e81ba5f44737b1444b3339524130",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
