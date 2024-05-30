@@ -1177,7 +1177,6 @@ static void btif_dm_ssp_key_notif_evt(tBTA_DM_SP_KEY_NOTIF* p_ssp_key_notif) {
  ******************************************************************************/
 static void btif_dm_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
   /* Save link key, if not temporary */
-  bt_status_t status = BT_STATUS_FAIL;
   bt_bond_state_t state = BT_BOND_STATE_NONE;
   bool skip_sdp = false;
 
@@ -1204,7 +1203,7 @@ static void btif_dm_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
                                              pairing_cb.pin_code_len);
       } else {
         log::warn("bd_addr is empty");
-        ret = BT_STATUS_FAIL;
+        ret = BT_STATUS_PARM_INVALID;
       }
       ASSERTC(ret == BT_STATUS_SUCCESS, "storing link key failed", ret);
     } else {
@@ -1376,7 +1375,7 @@ static void btif_dm_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
         break;
 
       default:
-        status = BT_STATUS_FAIL;
+        status = BT_STATUS_UNHANDLED;
     }
     /* Special Handling for HID Devices */
     if (check_cod_hid_major(bd_addr, COD_HID_POINTING)) {
@@ -3648,7 +3647,7 @@ static void btif_dm_ble_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
         break;
       default:
         btif_dm_remove_ble_bonding_keys();
-        status = BT_STATUS_FAIL;
+        status = BT_STATUS_UNHANDLED;
         break;
     }
   }
