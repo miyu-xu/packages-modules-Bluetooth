@@ -42,7 +42,7 @@ struct btm_client_interface_t default_btm_client_interface = {
                                    tBT_TRANSPORT /* transport */) -> uint16_t {
           return 0;
         },
-        .BTM_VendorSpecificCommand = BTM_VendorSpecificCommand,
+        .BTM_VendorSpecificCommand = ::BTM_VendorSpecificCommand,
         .ACL_RegisterClient =
             [](struct acl_client_callback_s* /* callbacks */) {},
         .ACL_UnregisterClient =
@@ -224,25 +224,34 @@ struct btm_client_interface_t default_btm_client_interface = {
           return false;
         },
     },
-    .sco =
-        {
-            .BTM_CreateSco = BTM_CreateSco,
-            .BTM_RegForEScoEvts = BTM_RegForEScoEvts,
-            .BTM_RemoveSco = BTM_RemoveSco,
-            .BTM_WriteVoiceSettings = BTM_WriteVoiceSettings,
-            .BTM_EScoConnRsp = BTM_EScoConnRsp,
-            .BTM_GetNumScoLinks = BTM_GetNumScoLinks,
-            .BTM_SetEScoMode = BTM_SetEScoMode,
+    .sco = {
+        .BTM_CreateSco = [](const RawAddress* /* remote_bda */,
+                            bool /* is_orig */, uint16_t /* pkt_types */,
+                            uint16_t* /* p_sco_inx */,
+                            tBTM_SCO_CB* /* p_conn_cb */,
+                            tBTM_SCO_CB* /* p_disc_cb */) -> tBTM_STATUS {
+          return BTM_SUCCESS;
         },
+        .BTM_RegForEScoEvts = [](uint16_t /* sco_inx */,
+                                 tBTM_ESCO_CBACK* /* p_esco_cback */)
+            -> tBTM_STATUS { return BTM_SUCCESS; },
+        .BTM_RemoveSco = [](uint16_t /* sco_inx */) -> tBTM_STATUS {
+          return BTM_SUCCESS;
+        },
+        .BTM_WriteVoiceSettings = [](uint16_t /* settings */) {},
+        .BTM_EScoConnRsp = ::BTM_EScoConnRsp,
+        .BTM_GetNumScoLinks = ::BTM_GetNumScoLinks,
+        .BTM_SetEScoMode = ::BTM_SetEScoMode,
+    },
     .local =
         {
-            .BTM_ReadLocalDeviceName = BTM_ReadLocalDeviceName,
+            .BTM_ReadLocalDeviceName = ::BTM_ReadLocalDeviceName,
             .BTM_ReadLocalDeviceNameFromController =
-                BTM_ReadLocalDeviceNameFromController,
-            .BTM_SetLocalDeviceName = BTM_SetLocalDeviceName,
-            .BTM_SetDeviceClass = BTM_SetDeviceClass,
-            .BTM_IsDeviceUp = BTM_IsDeviceUp,
-            .BTM_ReadDeviceClass = BTM_ReadDeviceClass,
+                ::BTM_ReadLocalDeviceNameFromController,
+            .BTM_SetLocalDeviceName = ::BTM_SetLocalDeviceName,
+            .BTM_SetDeviceClass = ::BTM_SetDeviceClass,
+            .BTM_IsDeviceUp = ::BTM_IsDeviceUp,
+            .BTM_ReadDeviceClass = ::BTM_ReadDeviceClass,
         },
     .eir = {
         .BTM_WriteEIR = [](BT_HDR* /* p_buff */) -> tBTM_STATUS {
@@ -264,10 +273,10 @@ struct btm_client_interface_t default_btm_client_interface = {
     },
     .db =
         {
-            .BTM_InqDbRead = BTM_InqDbRead,
-            .BTM_InqDbFirst = BTM_InqDbFirst,
-            .BTM_InqDbNext = BTM_InqDbNext,
-            .BTM_ClearInqDb = BTM_ClearInqDb,
+            .BTM_InqDbRead = ::BTM_InqDbRead,
+            .BTM_InqDbFirst = ::BTM_InqDbFirst,
+            .BTM_InqDbNext = ::BTM_InqDbNext,
+            .BTM_ClearInqDb = ::BTM_ClearInqDb,
         },
 };
 
