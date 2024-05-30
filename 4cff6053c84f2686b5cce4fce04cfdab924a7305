@@ -1,0 +1,125 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65c68f29_cb315f2d",
+        "filename": "android/app/src/com/android/bluetooth/pan/PanService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-30T04:41:48Z",
+      "side": 1,
+      "message": "Locking at the object level is often not the best option for concurrency in Java. Have you considered if ConcurrentHashMap could fit this use case instead?",
+      "range": {
+        "startLine": 75,
+        "startChar": 4,
+        "endLine": 75,
+        "endChar": 30
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5722b3c2_d8346ee3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/pan/PanService.java",
+              "range": {
+                "startLine": 72,
+                "startChar": 0,
+                "endLine": 74,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/pan/PanService.java",
+              "range": {
+                "startLine": 75,
+                "startChar": 0,
+                "endLine": 76,
+                "endChar": 0
+              },
+              "replacement": "    @GuardedBy(\"mPanDevices\")\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/pan/PanService.java",
+              "range": {
+                "startLine": 108,
+                "startChar": 0,
+                "endLine": 109,
+                "endChar": 0
+              },
+              "replacement": "                        synchronized (mPanDevices) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/pan/PanService.java",
+              "range": {
+                "startLine": 163,
+                "startChar": 0,
+                "endLine": 164,
+                "endChar": 0
+              },
+              "replacement": "        synchronized (mPanDevices) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/pan/PanService.java",
+              "range": {
+                "startLine": 204,
+                "startChar": 0,
+                "endLine": 205,
+                "endChar": 0
+              },
+              "replacement": "        synchronized (mPanDevices) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/pan/PanService.java",
+              "range": {
+                "startLine": 449,
+                "startChar": 0,
+                "endLine": 450,
+                "endChar": 0
+              },
+              "replacement": "        synchronized (mPanDevices) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/pan/PanService.java",
+              "range": {
+                "startLine": 574,
+                "startChar": 0,
+                "endLine": 575,
+                "endChar": 0
+              },
+              "replacement": "        synchronized (mPanDevices) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/pan/PanService.java",
+              "range": {
+                "startLine": 630,
+                "startChar": 0,
+                "endLine": 631,
+                "endChar": 0
+              },
+              "replacement": "        synchronized (mPanDevices) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/pan/PanService.java",
+              "range": {
+                "startLine": 749,
+                "startChar": 0,
+                "endLine": 750,
+                "endChar": 0
+              },
+              "replacement": "        synchronized (mPanDevices) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4cff6053c84f2686b5cce4fce04cfdab924a7305",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
