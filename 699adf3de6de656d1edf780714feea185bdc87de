@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f6303a1_93bfc9e0",
+        "filename": "system/stack/include/port_api.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-30T22:43:39Z",
+      "side": 1,
+      "message": "Comment is incorrect but this will be replaced by follow-on CL\n\n```\nPORT_SetEventMaskAndCallback()\n```\n\nWhich will be correct.",
+      "revId": "699adf3de6de656d1edf780714feea185bdc87de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
