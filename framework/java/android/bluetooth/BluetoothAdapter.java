@@ -5193,7 +5193,7 @@ public final class BluetoothAdapter {
             }
         }
 
-        if (!mAudioProfilesChangedCallbackExecutorMap.isEmpty()) {
+        if (!mBluetoothConnectionCallbackExecutorMap.isEmpty()) {
             return BluetoothStatusCodes.SUCCESS;
         }
 
@@ -5385,7 +5385,7 @@ public final class BluetoothAdapter {
             }
         }
 
-        if (!mBluetoothQualityReportReadyCallbackExecutorMap.isEmpty()) {
+        if (!mBluetoothConnectionCallbackExecutorMap.isEmpty()) {
             return BluetoothStatusCodes.SUCCESS;
         }
 
