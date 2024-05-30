@@ -40,6 +40,30 @@
       ],
       "revId": "49e3d9aebc7cb501524a9511dce373baaf4686fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b904f24c_2166011b",
+        "filename": "system/stack/rfcomm/port_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-05-30T18:35:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7731b1d2_ee4f983e",
+      "range": {
+        "startLine": 422,
+        "startChar": 0,
+        "endLine": 422,
+        "endChar": 37
+      },
+      "revId": "49e3d9aebc7cb501524a9511dce373baaf4686fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
