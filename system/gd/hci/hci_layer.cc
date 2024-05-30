@@ -20,6 +20,7 @@
 #include <signal.h>
 #endif
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 
 #include <map>
 #include <utility>
@@ -215,8 +216,17 @@ struct HciLayer::impl {
 
     bool is_vendor_specific = static_cast<int>(op_code) & (0x3f << 10);
     CommandStatusView status_view = CommandStatusView::Create(event);
+
+    bool is_valid_command_status = false;
+    if (status_view.IsValid()) {
+      is_valid_command_status = status_view.GetStatus() == ErrorCode::UNKNOWN_HCI_COMMAND;
+      if (com::android::bluetooth::flags::handle_unexpected_vendor_specific_command_status() &&
+          status_view.GetStatus() == ErrorCode::COMMAND_DISALLOWED) {
+        is_valid_command_status = true;
+      }
+    }
     if (is_vendor_specific && (is_status && !command_queue_.front().waiting_for_status_) &&
-        (status_view.IsValid() && status_view.GetStatus() == ErrorCode::UNKNOWN_HCI_COMMAND)) {
+        is_valid_command_status) {
       // If this is a command status of a vendor specific command, and command complete is expected,
       // we can't treat this as hard failure since we have no way of probing this lack of support at
       // earlier time. Instead we let the command complete handler handle a empty Command Complete
