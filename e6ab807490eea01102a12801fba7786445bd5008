@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cce9d042_ca47a848",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1815,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-30T18:42:52Z",
+      "side": 1,
+      "message": "Integer syncHandle \u003d report.getSyncHandle;  ?  It\u0027s repeated a lot.",
+      "range": {
+        "startLine": 1815,
+        "startChar": 49,
+        "endLine": 1815,
+        "endChar": 71
+      },
+      "revId": "e6ab807490eea01102a12801fba7786445bd5008",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
