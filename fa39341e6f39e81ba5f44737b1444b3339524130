@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7ce220ee_40bc4422",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-05-30T14:51:50Z",
+      "side": 1,
+      "message": "will keep it open.",
+      "parentUuid": "cf3c8deb_e795d13f",
+      "revId": "fa39341e6f39e81ba5f44737b1444b3339524130",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8c3a52f5_8c337b99",
         "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
         "patchSetId": 16
