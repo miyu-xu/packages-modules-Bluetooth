@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c733552b_b0e5a149",
+        "filename": "system/types/bluetooth/uuid.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-30T00:16:52Z",
+      "side": 1,
+      "message": "Since the log unification, Bluetooth is linked to fmt lib.\nI believe it would be better to implement the toString using it\n\nSee https://fmt.dev/latest/index.html#format-api\n\nEven better we can directly implement a formatter by following the go/bluetooth-logging (see Implementing custom formatters) and implement the ToString with the formatter",
+      "range": {
+        "startLine": 182,
+        "startChar": 1,
+        "endLine": 190,
+        "endChar": 20
+      },
+      "revId": "2dec16027edee041b9a44d1ccd5753c207d712bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
