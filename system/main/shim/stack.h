@@ -69,7 +69,7 @@ class Stack {
   bool CallOnModule(std::function<void(T* mod)> run) {
     std::lock_guard<std::recursive_mutex> lock(Stack::GetInstance()->mutex_);
     if (Stack::GetInstance()->is_running_) {
-      run(Stack::GetInstance()->GetStackManager()->GetInstance<T>());
+      run(stack_manager_.GetInstance<T>());
       return true;
     }
     return false;
