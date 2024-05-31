@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "09f1170b_64a8b650",
+        "filename": "system/bta/ar/bta_ar.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-05-31T19:18:49Z",
+      "side": 1,
+      "message": "+1 I had the same commend elsewhere in the review. It appears we both had the same thought. I\u0027ll find and close my version because this is way better 😊",
+      "parentUuid": "85821a73_00d6061e",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 13
+      },
+      "revId": "ae69604334f3c1c09c2c48eb0dbe1b68e736885c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fec640cc_07797601",
         "filename": "system/bta/av/bta_av_act.cc",
         "patchSetId": 2
@@ -106,6 +130,30 @@
       "writtenOn": "2024-05-31T19:02:06Z",
       "side": 1,
       "message": "nit: can we add some context, or a bug/flag bug number. It might help ourselves once we go to justify removing it post flag",
+      "range": {
+        "startLine": 121,
+        "startChar": 3,
+        "endLine": 121,
+        "endChar": 13
+      },
+      "revId": "ae69604334f3c1c09c2c48eb0dbe1b68e736885c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "164b70ab_42b5376d",
+        "filename": "system/bta/include/bta_ar_api.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-05-31T19:18:49Z",
+      "side": 1,
+      "message": "Address/chat view William\u0027s comment. I like his better.",
+      "parentUuid": "aec89155_a014ffd0",
       "range": {
         "startLine": 121,
         "startChar": 3,
