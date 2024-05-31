@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85821a73_00d6061e",
+        "filename": "system/bta/ar/bta_ar.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-05-31T18:45:40Z",
+      "side": 1,
+      "message": "Deprecated as in code that need to be deleted once the flag rollout ?\n\nif this is the case can you do instead:\n\n```suggestion\n// TODO: b/xxxx - Delete once flag is removed\n```\n\nThis way, the future task and context are immediately provided to the reader of the code",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 13
+      },
+      "revId": "ae69604334f3c1c09c2c48eb0dbe1b68e736885c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
