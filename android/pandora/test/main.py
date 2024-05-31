@@ -23,6 +23,10 @@ import gatt_test
 import hfpclient_test
 import sdp_test
 import pairing.smp_test as smp_test
+import hid_test
+
+from bumble_experimental.hid import HIDService
+from pandora_experimental.hid_grpc_aio import add_HIDServicer_to_server
 
 _TEST_CLASSES_LIST = [
     avatar.cases.host_test.HostTest,
@@ -34,6 +38,7 @@ _TEST_CLASSES_LIST = [
     gatt_test.GattTest,
     asha_test.AshaTest,
     hfpclient_test.HfpClientTest,
+    hid_test.HidTest,
 ]
 
 
