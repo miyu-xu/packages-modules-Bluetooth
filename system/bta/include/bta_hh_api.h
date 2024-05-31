@@ -92,6 +92,8 @@ typedef uint16_t tBTA_HH_EVT;
 #define BTA_HH_LE_MAX_KNOWN GATT_MAX_PHY_CHANNEL
 #endif
 
+#define BTA_HH_MAX_LE_HID_SRV 3 /* maximum LE HID services */
+
 #define BTA_HH_MAX_DEVICE (HID_HOST_MAX_DEVICES + BTA_HH_LE_MAX_KNOWN)
 /* invalid device handle */
 #define BTA_HH_INVALID_HANDLE 0xff

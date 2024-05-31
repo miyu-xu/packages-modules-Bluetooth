@@ -214,7 +214,9 @@ typedef struct {
   uint8_t disc_active;
   tBTA_HH_STATUS status;
   tBTM_STATUS btm_status;
-  tBTA_HH_LE_HID_SRVC hid_srvc;
+  // tBTA_HH_LE_HID_SRVC hid_srvc;
+  uint8_t hid_srv_num; /* number of hid services */
+  tBTA_HH_LE_HID_SRVC hid_srvcs[BTA_HH_MAX_LE_HID_SRV];
   uint16_t conn_id;
   bool in_bg_conn;
   uint8_t clt_cfg_idx;

@@ -910,6 +910,7 @@ void bta_hh_close_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
 void bta_hh_get_dscp_act(tBTA_HH_DEV_CB* p_cb,
                          const tBTA_HH_DATA* /* p_data */) {
   if (p_cb->link_spec.transport == BT_TRANSPORT_LE) {
+    // [Zhengping] need to check all hid_srvc if multiple?
     if (p_cb->hid_srvc.state >= BTA_HH_SERVICE_DISCOVERED) {
       p_cb->dscp_info.hid_handle = p_cb->hid_handle;
     }
