@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "348e8796_90c5a268",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-31T22:36:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "159c31e2_b34fd9bc",
+      "revId": "e8bf8c4d9c92a8ad5e4c1d127038465b5c610eda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cd53f099_b007fe3b",
