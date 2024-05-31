@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85bdd7eb_44db394d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-05-31T19:29:43Z",
+      "side": 1,
+      "message": "I think this is the minimal change that corresponds to what we want.\n\nWe either do this and set the system property, or we simply hardcode this (for now) back to AVRC_REV_1_6 to match line 739.\n\nEither are fine with me, so I\u0027ll leave it to Etienne/William to have a final veto one way or the other.",
+      "revId": "e3b68ac1be2147ba7a174dc28eb9a87cbf457d01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
