@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "159c31e2_b34fd9bc",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-31T21:08:41Z",
+      "side": 1,
+      "message": "No, because there is #ifdef that returns for FLOSS, and I have to maintain that logic order.\n\nThat is actually good catch, I have to add same \"if\" check in the bta_dm_read_dis_cmpl.",
+      "parentUuid": "9d447e9c_4e26fa68",
+      "revId": "e8bf8c4d9c92a8ad5e4c1d127038465b5c610eda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cd53f099_b007fe3b",
         "filename": "system/bta/dm/bta_dm_disc.cc",
         "patchSetId": 5
@@ -48,6 +66,24 @@
       "writtenOn": "2024-05-31T17:57:48Z",
       "side": 1,
       "message": "Since we don\u0027t return from here, we may end up starting BR/EDR service discovery even though LE service discovery was requested",
+      "revId": "e8bf8c4d9c92a8ad5e4c1d127038465b5c610eda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa9b8951_92784a83",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-31T21:08:41Z",
+      "side": 1,
+      "message": "Good catch! added return in discovery was already started. Should fix that.",
+      "parentUuid": "cd53f099_b007fe3b",
       "revId": "e8bf8c4d9c92a8ad5e4c1d127038465b5c610eda",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -75,6 +111,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab99adb4_9d5d9817",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-31T21:08:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f06e92ba_1027cd92",
+      "range": {
+        "startLine": 564,
+        "startChar": 0,
+        "endLine": 564,
+        "endChar": 121
+      },
+      "revId": "e8bf8c4d9c92a8ad5e4c1d127038465b5c610eda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66ab76af_d0387568",
@@ -88,6 +148,30 @@
       "writtenOn": "2024-05-31T17:57:48Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.",
+      "range": {
+        "startLine": 567,
+        "startChar": 0,
+        "endLine": 567,
+        "endChar": 193
+      },
+      "revId": "e8bf8c4d9c92a8ad5e4c1d127038465b5c610eda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7242237c_60022377",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-31T21:08:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66ab76af_d0387568",
       "range": {
         "startLine": 567,
         "startChar": 0,

@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d37099e_19b5b3e0",
+        "filename": "system/bta/dm/bta_dm_disc_int.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-31T21:08:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e48cf37c_379e2a30",
+      "revId": "6d5cf8ce5dc379cb156f88828bf0f82367185294",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62bb43c0_6d39d41a",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-05-31T17:57:48Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.",
+      "range": {
+        "startLine": 1743,
+        "startChar": 0,
+        "endLine": 1743,
+        "endChar": 102
+      },
+      "revId": "6d5cf8ce5dc379cb156f88828bf0f82367185294",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4948e0a_3202608b",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1743,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-31T21:08:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62bb43c0_6d39d41a",
       "range": {
         "startLine": 1743,
         "startChar": 0,
@@ -66,6 +108,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "72843d9d_6054c7ae",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1744,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-31T21:08:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b197a7b_514b5ef2",
+      "range": {
+        "startLine": 1744,
+        "startChar": 0,
+        "endLine": 1744,
+        "endChar": 2
+      },
+      "revId": "6d5cf8ce5dc379cb156f88828bf0f82367185294",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "ed76ab5f_61e88c03",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 6
@@ -77,6 +143,24 @@
       "writtenOn": "2024-05-31T17:57:48Z",
       "side": 1,
       "message": "Nit: It may be better to check for success than failure since failures can be of many kinds (not in this case though).",
+      "revId": "6d5cf8ce5dc379cb156f88828bf0f82367185294",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a7852de_bd89df3a",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1745,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-05-31T21:08:41Z",
+      "side": 1,
+      "message": "This is copy-paste from code handling LE GATT, so would prefer to keep it as is. Would get rid of it once both callbacks are joined into one.",
+      "parentUuid": "ed76ab5f_61e88c03",
       "revId": "6d5cf8ce5dc379cb156f88828bf0f82367185294",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
