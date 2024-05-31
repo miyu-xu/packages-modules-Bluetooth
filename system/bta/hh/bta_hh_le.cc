@@ -104,28 +104,34 @@ static const char* bta_hh_le_rpt_name[4] = {"UNKNOWN", "INPUT", "OUTPUT",
 static void bta_hh_le_hid_report_dbg(tBTA_HH_DEV_CB* p_cb) {
   log::verbose("HID Report DB");
 
-  if (p_cb->hid_srvc.state < BTA_HH_SERVICE_DISCOVERED) return;
+  if (p_cb->srvc_state < BTA_HH_SERVICE_DISCOVERED) return;
 
-  tBTA_HH_LE_RPT* p_rpt = &p_cb->hid_srvc.report[0];
+  for (uint8_t i = 0; i < p_cb->hid_srv_num; i++) {
+    tBTA_HH_LE_HID_SRVC &hid_srvc = p_cb->hid_srvcs[i];
 
-  for (int j = 0; j < BTA_HH_LE_RPT_MAX; j++, p_rpt++) {
-    const char* rpt_name = "Unknown";
+    tBTA_HH_LE_RPT* p_rpt = &hid_srvc.report[0];
 
-    if (!p_rpt->in_use) break;
+    for (int j = 0; j < BTA_HH_LE_RPT_MAX; j++, p_rpt++) {
+      const char* rpt_name = "Unknown";
 
-    if (p_rpt->uuid == GATT_UUID_HID_REPORT) rpt_name = "Report";
-    if (p_rpt->uuid == GATT_UUID_HID_BT_KB_INPUT) rpt_name = "Boot KB Input";
-    if (p_rpt->uuid == GATT_UUID_HID_BT_KB_OUTPUT) rpt_name = "Boot KB Output";
-    if (p_rpt->uuid == GATT_UUID_HID_BT_MOUSE_INPUT) rpt_name = "Boot MI Input";
+      if (!p_rpt->in_use) break;
 
-    log::verbose(
-        "\t\t[{}-0x{:04x}] [Type:{}], [ReportID:{}] [srvc_inst_id:{}] "
-        "[char_inst_id:{}] [Clt_cfg:{}]",
-        rpt_name, p_rpt->uuid,
-        ((p_rpt->rpt_type < 4) ? bta_hh_le_rpt_name[p_rpt->rpt_type]
-                               : "UNKNOWN"),
-        p_rpt->rpt_id, p_rpt->srvc_inst_id, p_rpt->char_inst_id,
-        p_rpt->client_cfg_value);
+      if (p_rpt->uuid == GATT_UUID_HID_REPORT) rpt_name = "Report";
+      if (p_rpt->uuid == GATT_UUID_HID_BT_KB_INPUT) rpt_name = "Boot KB Input";
+      if (p_rpt->uuid == GATT_UUID_HID_BT_KB_OUTPUT)
+        rpt_name = "Boot KB Output";
+      if (p_rpt->uuid == GATT_UUID_HID_BT_MOUSE_INPUT)
+        rpt_name = "Boot MI Input";
+
+      log::verbose(
+          "\t\t[{}-0x{:04x}] [Type:{}], [ReportID:{}] [srvc_inst_id:{}] "
+          "[char_inst_id:{}] [Clt_cfg:{}]",
+          rpt_name, p_rpt->uuid,
+          ((p_rpt->rpt_type < 4) ? bta_hh_le_rpt_name[p_rpt->rpt_type]
+                                 : "UNKNOWN"),
+          p_rpt->rpt_id, p_rpt->srvc_inst_id, p_rpt->char_inst_id,
+          p_rpt->client_cfg_value);
+    }
   }
 }
 
@@ -320,12 +326,30 @@ static tBTA_HH_DEV_CB* bta_hh_le_find_dev_cb_by_bda(
  ******************************************************************************/
 static uint8_t bta_hh_le_find_service_inst_by_battery_inst_id(
     tBTA_HH_DEV_CB* p_cb, uint8_t ba_inst_id) {
-  if (p_cb->hid_srvc.state >= BTA_HH_SERVICE_DISCOVERED &&
-      p_cb->hid_srvc.incl_srvc_inst == ba_inst_id) {
-    return p_cb->hid_srvc.srvc_inst_id;
+  if (p_cb->srvc_state >= BTA_HH_SERVICE_DISCOVERED) {
+    for (uint8_t i = 0; i < p_cb->hid_srv_num; i++) {
+      tBTA_HH_LE_HID_SRVC &hid_srvc = p_cb->hid_srvcs[i];
+      if (hid_srvc.incl_srvc_inst == ba_inst_id) {
+        return hid_srvc.srvc_inst_id;
+      }
+    }
   }
+
   return BTA_HH_IDX_INVALID;
 }
+
+
+static tBTA_HH_LE_HID_SRVC* bta_hh_le_find_hid_service_by_inst_id(
+    tBTA_HH_DEV_CB* p_cb, uint8_t inst_id) {
+  for (uint8_t i = 0; i < p_cb->hid_srv_num; i++) {
+    tBTA_HH_LE_HID_SRVC &hid_srvc = p_cb->hid_srvcs[i];
+    if (hid_srvc.srvc_inst_id == inst_id) {
+      return &hid_srvc;
+    }
+  }
+  return nullptr;
+}
+
 
 /*******************************************************************************
  *
@@ -349,12 +373,15 @@ static tBTA_HH_LE_RPT* bta_hh_le_find_report_entry(
     if (hid_inst_id == BTA_HH_IDX_INVALID) return NULL;
   }
 
-  p_rpt = &p_cb->hid_srvc.report[0];
+  for (uint8_t i = 0; i < p_cb->hid_srv_num; i++) {
+    tBTA_HH_LE_HID_SRVC &hid_srvc = p_cb->hid_srvcs[i];
+    p_rpt = &hid_srvc.report[0];
 
-  for (i = 0; i < BTA_HH_LE_RPT_MAX; i++, p_rpt++) {
-    if (p_rpt->uuid == rpt_uuid && p_rpt->srvc_inst_id == srvc_inst_id &&
-        p_rpt->char_inst_id == char_inst_id) {
-      return p_rpt;
+    for (i = 0; i < BTA_HH_LE_RPT_MAX; i++, p_rpt++) {
+      if (p_rpt->uuid == rpt_uuid && p_rpt->srvc_inst_id == srvc_inst_id &&
+          p_rpt->char_inst_id == char_inst_id) {
+        return p_rpt;
+      }
     }
   }
   return NULL;
@@ -416,36 +443,40 @@ tBTA_HH_LE_RPT* bta_hh_le_find_alloc_report_entry(tBTA_HH_DEV_CB* p_cb,
 
     if (hid_inst_id == BTA_HH_IDX_INVALID) return NULL;
   }
-  p_rpt = &p_cb->hid_srvc.report[0];
 
-  for (i = 0; i < BTA_HH_LE_RPT_MAX; i++, p_rpt++) {
-    if (!p_rpt->in_use ||
-        (p_rpt->uuid == rpt_uuid && p_rpt->srvc_inst_id == srvc_inst_id &&
-         p_rpt->char_inst_id == inst_id)) {
-      if (!p_rpt->in_use) {
-        p_rpt->in_use = true;
-        p_rpt->index = i;
-        p_rpt->srvc_inst_id = srvc_inst_id;
-        p_rpt->char_inst_id = inst_id;
-        p_rpt->uuid = rpt_uuid;
+  for (uint8_t i = 0; i < p_cb->hid_srv_num; i++) {
+    tBTA_HH_LE_HID_SRVC &hid_srvc = p_cb->hid_srvcs[i];
+    p_rpt = &hid_srvc.report[0];
 
-        /* assign report type */
-        for (i = 0; i < BTA_LE_HID_RTP_UUID_MAX; i++) {
-          if (bta_hh_uuid_to_rtp_type[i][0] == rpt_uuid) {
-            p_rpt->rpt_type = (tBTA_HH_RPT_TYPE)bta_hh_uuid_to_rtp_type[i][1];
+    for (i = 0; i < BTA_HH_LE_RPT_MAX; i++, p_rpt++) {
+      if (!p_rpt->in_use ||
+          (p_rpt->uuid == rpt_uuid && p_rpt->srvc_inst_id == srvc_inst_id &&
+           p_rpt->char_inst_id == inst_id)) {
+        if (!p_rpt->in_use) {
+          p_rpt->in_use = true;
+          p_rpt->index = i;
+          p_rpt->srvc_inst_id = srvc_inst_id;
+          p_rpt->char_inst_id = inst_id;
+          p_rpt->uuid = rpt_uuid;
 
-            if (rpt_uuid == GATT_UUID_HID_BT_KB_INPUT ||
-                rpt_uuid == GATT_UUID_HID_BT_KB_OUTPUT)
-              p_rpt->rpt_id = BTA_HH_KEYBD_RPT_ID;
+          /* assign report type */
+          for (i = 0; i < BTA_LE_HID_RTP_UUID_MAX; i++) {
+            if (bta_hh_uuid_to_rtp_type[i][0] == rpt_uuid) {
+              p_rpt->rpt_type = (tBTA_HH_RPT_TYPE)bta_hh_uuid_to_rtp_type[i][1];
 
-            if (rpt_uuid == GATT_UUID_HID_BT_MOUSE_INPUT)
-              p_rpt->rpt_id = BTA_HH_MOUSE_RPT_ID;
+              if (rpt_uuid == GATT_UUID_HID_BT_KB_INPUT ||
+                  rpt_uuid == GATT_UUID_HID_BT_KB_OUTPUT)
+                p_rpt->rpt_id = BTA_HH_KEYBD_RPT_ID;
 
-            break;
+              if (rpt_uuid == GATT_UUID_HID_BT_MOUSE_INPUT)
+                p_rpt->rpt_id = BTA_HH_MOUSE_RPT_ID;
+
+              break;
+            }
           }
         }
+        return p_rpt;
       }
-      return p_rpt;
     }
   }
   return NULL;
@@ -528,8 +559,9 @@ void bta_hh_le_save_report_ref(tBTA_HH_DEV_CB* p_dev_cb, tBTA_HH_LE_RPT* p_rpt,
  ******************************************************************************/
 static void bta_hh_le_register_input_notif(tBTA_HH_DEV_CB* p_dev_cb,
                                            uint8_t proto_mode,
-                                           bool register_ba) {
-  tBTA_HH_LE_RPT* p_rpt = &p_dev_cb->hid_srvc.report[0];
+                                           bool register_ba,
+                                           tBTA_HH_LE_HID_SRVC* hid_srvc) {
+  tBTA_HH_LE_RPT* p_rpt = &hid_srvc->report[0];
 
   log::verbose("mode:{}", proto_mode);
 
@@ -537,8 +569,8 @@ static void bta_hh_le_register_input_notif(tBTA_HH_DEV_CB* p_dev_cb,
     if (p_rpt->rpt_type == BTA_HH_RPTT_INPUT) {
       if (register_ba && p_rpt->uuid == GATT_UUID_BATTERY_LEVEL) {
         BTA_GATTC_RegisterForNotifications(bta_hh_cb.gatt_if,
-                                           p_dev_cb->link_spec.addrt.bda,
-                                           p_rpt->char_inst_id);
+                                            p_dev_cb->link_spec.addrt.bda,
+                                            p_rpt->char_inst_id);
       }
       /* boot mode, deregister report input notification */
       else if (proto_mode == BTA_HH_PROTO_BOOT_MODE) {
@@ -546,31 +578,31 @@ static void bta_hh_le_register_input_notif(tBTA_HH_DEV_CB* p_dev_cb,
             p_rpt->client_cfg_value == GATT_CLT_CONFIG_NOTIFICATION) {
           log::verbose("---> Deregister Report ID:{}", p_rpt->rpt_id);
           BTA_GATTC_DeregisterForNotifications(bta_hh_cb.gatt_if,
-                                               p_dev_cb->link_spec.addrt.bda,
-                                               p_rpt->char_inst_id);
+                                                p_dev_cb->link_spec.addrt.bda,
+                                                p_rpt->char_inst_id);
         }
         /* register boot reports notification */
         else if (p_rpt->uuid == GATT_UUID_HID_BT_KB_INPUT ||
-                 p_rpt->uuid == GATT_UUID_HID_BT_MOUSE_INPUT) {
+                  p_rpt->uuid == GATT_UUID_HID_BT_MOUSE_INPUT) {
           log::verbose("<--- Register Boot Report ID:{}", p_rpt->rpt_id);
           BTA_GATTC_RegisterForNotifications(bta_hh_cb.gatt_if,
-                                             p_dev_cb->link_spec.addrt.bda,
-                                             p_rpt->char_inst_id);
+                                              p_dev_cb->link_spec.addrt.bda,
+                                              p_rpt->char_inst_id);
         }
       } else if (proto_mode == BTA_HH_PROTO_RPT_MODE) {
         if ((p_rpt->uuid == GATT_UUID_HID_BT_KB_INPUT ||
-             p_rpt->uuid == GATT_UUID_HID_BT_MOUSE_INPUT) &&
+              p_rpt->uuid == GATT_UUID_HID_BT_MOUSE_INPUT) &&
             p_rpt->client_cfg_value == GATT_CLT_CONFIG_NOTIFICATION) {
           log::verbose("--> Deregister Boot Report ID:{}", p_rpt->rpt_id);
           BTA_GATTC_DeregisterForNotifications(bta_hh_cb.gatt_if,
-                                               p_dev_cb->link_spec.addrt.bda,
-                                               p_rpt->char_inst_id);
+                                                p_dev_cb->link_spec.addrt.bda,
+                                                p_rpt->char_inst_id);
         } else if (p_rpt->uuid == GATT_UUID_HID_REPORT &&
-                   p_rpt->client_cfg_value == GATT_CLT_CONFIG_NOTIFICATION) {
+                    p_rpt->client_cfg_value == GATT_CLT_CONFIG_NOTIFICATION) {
           log::verbose("<--- Register Report ID:{}", p_rpt->rpt_id);
           BTA_GATTC_RegisterForNotifications(bta_hh_cb.gatt_if,
-                                             p_dev_cb->link_spec.addrt.bda,
-                                             p_rpt->char_inst_id);
+                                              p_dev_cb->link_spec.addrt.bda,
+                                              p_rpt->char_inst_id);
         }
       }
       /*
@@ -587,23 +619,26 @@ static void bta_hh_le_register_input_notif(tBTA_HH_DEV_CB* p_dev_cb,
  *
  ******************************************************************************/
 static void bta_hh_le_deregister_input_notif(tBTA_HH_DEV_CB* p_dev_cb) {
-  tBTA_HH_LE_RPT* p_rpt = &p_dev_cb->hid_srvc.report[0];
+  for (uint8_t i = 0; i < p_dev_cb->hid_srv_num; i++) {
+    tBTA_HH_LE_HID_SRVC &hid_srvc = p_dev_cb->hid_srvcs[i];
+    tBTA_HH_LE_RPT* p_rpt = &hid_srvc.report[0];
 
-  for (uint8_t i = 0; i < BTA_HH_LE_RPT_MAX; i++, p_rpt++) {
-    if (p_rpt->rpt_type == BTA_HH_RPTT_INPUT) {
-      if (p_rpt->uuid == GATT_UUID_HID_REPORT &&
-          p_rpt->client_cfg_value == GATT_CLT_CONFIG_NOTIFICATION) {
-        log::verbose("---> Deregister Report ID:{}", p_rpt->rpt_id);
-        BTA_GATTC_DeregisterForNotifications(bta_hh_cb.gatt_if,
-                                             p_dev_cb->link_spec.addrt.bda,
-                                             p_rpt->char_inst_id);
-      } else if ((p_rpt->uuid == GATT_UUID_HID_BT_KB_INPUT ||
-                  p_rpt->uuid == GATT_UUID_HID_BT_MOUSE_INPUT) &&
-                 p_rpt->client_cfg_value == GATT_CLT_CONFIG_NOTIFICATION) {
-        log::verbose("---> Deregister Boot Report ID:{}", p_rpt->rpt_id);
-        BTA_GATTC_DeregisterForNotifications(bta_hh_cb.gatt_if,
-                                             p_dev_cb->link_spec.addrt.bda,
-                                             p_rpt->char_inst_id);
+    for (uint8_t i = 0; i < BTA_HH_LE_RPT_MAX; i++, p_rpt++) {
+      if (p_rpt->rpt_type == BTA_HH_RPTT_INPUT) {
+        if (p_rpt->uuid == GATT_UUID_HID_REPORT &&
+            p_rpt->client_cfg_value == GATT_CLT_CONFIG_NOTIFICATION) {
+          log::verbose("---> Deregister Report ID:{}", p_rpt->rpt_id);
+          BTA_GATTC_DeregisterForNotifications(bta_hh_cb.gatt_if,
+                                               p_dev_cb->link_spec.addrt.bda,
+                                               p_rpt->char_inst_id);
+        } else if ((p_rpt->uuid == GATT_UUID_HID_BT_KB_INPUT ||
+                    p_rpt->uuid == GATT_UUID_HID_BT_MOUSE_INPUT) &&
+                   p_rpt->client_cfg_value == GATT_CLT_CONFIG_NOTIFICATION) {
+          log::verbose("---> Deregister Boot Report ID:{}", p_rpt->rpt_id);
+          BTA_GATTC_DeregisterForNotifications(bta_hh_cb.gatt_if,
+                                               p_dev_cb->link_spec.addrt.bda,
+                                               p_rpt->char_inst_id);
+        }
       }
     }
   }
@@ -619,7 +654,11 @@ static void bta_hh_le_deregister_input_notif(tBTA_HH_DEV_CB* p_dev_cb) {
 static void bta_hh_le_open_cmpl(tBTA_HH_DEV_CB* p_cb) {
   if (p_cb->disc_active == BTA_HH_LE_DISC_NONE) {
     bta_hh_le_hid_report_dbg(p_cb);
-    bta_hh_le_register_input_notif(p_cb, p_cb->mode, true);
+    for (uint8_t i = 0; i < p_cb->hid_srv_num; i++) {
+      tBTA_HH_LE_HID_SRVC &hid_srvc = p_cb->hid_srvcs[i];
+      bta_hh_le_register_input_notif(p_cb, p_cb->mode, true, &hid_srvc);
+    }
+
     bta_hh_sm_execute(p_cb, BTA_HH_OPEN_CMPL_EVT, NULL);
 
     if (!com::android::bluetooth::flags::
@@ -676,9 +715,11 @@ static void write_rpt_ctl_cfg_cb(uint16_t conn_id, tGATT_STATUS status,
     case GATT_UUID_HID_BT_KB_INPUT:
     case GATT_UUID_HID_BT_MOUSE_INPUT:
     case GATT_UUID_HID_REPORT:
-      if (status == GATT_SUCCESS)
-        p_dev_cb->hid_srvc.report[p_dev_cb->clt_cfg_idx].client_cfg_value =
+      if (status == GATT_SUCCESS) {
+        tBTA_HH_LE_HID_SRVC *hid_srvc = &p_dev_cb->hid_srvcs[p_dev_cb->srvc_idx];
+        hid_srvc->report[p_dev_cb->clt_cfg_idx].client_cfg_value =
             GATT_CLT_CONFIG_NOTIFICATION;
+      }
       p_dev_cb->clt_cfg_idx++;
       bta_hh_le_write_rpt_clt_cfg(p_dev_cb);
       break;
@@ -698,21 +739,29 @@ static void write_rpt_ctl_cfg_cb(uint16_t conn_id, tGATT_STATUS status,
  ******************************************************************************/
 static bool bta_hh_le_write_rpt_clt_cfg(tBTA_HH_DEV_CB* p_cb) {
   uint8_t i;
-  tBTA_HH_LE_RPT* p_rpt = &p_cb->hid_srvc.report[p_cb->clt_cfg_idx];
 
-  for (i = p_cb->clt_cfg_idx; i < BTA_HH_LE_RPT_MAX && p_rpt->in_use;
-       i++, p_rpt++) {
-    /* enable notification for all input report, regardless mode */
-    if (p_rpt->rpt_type == BTA_HH_RPTT_INPUT) {
-      if (bta_hh_le_write_ccc(p_cb, p_rpt->char_inst_id,
-                              GATT_CLT_CONFIG_NOTIFICATION,
-                              write_rpt_ctl_cfg_cb, p_cb)) {
-        p_cb->clt_cfg_idx = i;
-        return true;
+  // [Zhengping] What is clt_cfg_idx?
+  // [Archie] It's probably just to mark which index we're processing now so
+  // we can pick up from that point after receiving the cback.
+  for (uint8_t ii = p_cb->srvc_idx; ii < p_cb->hid_srv_num; ii++) {
+    tBTA_HH_LE_RPT* p_rpt = &p_cb->hid_srvcs[ii].report[p_cb->clt_cfg_idx];
+
+    for (i = p_cb->clt_cfg_idx; i < BTA_HH_LE_RPT_MAX && p_rpt->in_use;
+        i++, p_rpt++) {
+      /* enable notification for all input report, regardless mode */
+      if (p_rpt->rpt_type == BTA_HH_RPTT_INPUT) {
+        if (bta_hh_le_write_ccc(p_cb, p_rpt->char_inst_id,
+                                GATT_CLT_CONFIG_NOTIFICATION,
+                                write_rpt_ctl_cfg_cb, p_cb)) {
+          p_cb->clt_cfg_idx = i;
+          p_cb->srvc_idx = ii;
+          return true;
+        }
       }
     }
+    p_cb->clt_cfg_idx = 0;
   }
-  p_cb->clt_cfg_idx = 0;
+  p_cb->srvc_idx = 0;
 
   /* client configuration is completed, send open callback */
   if (p_cb->state == BTA_HH_W4_CONN_ST) {
@@ -742,8 +791,12 @@ void bta_hh_le_service_parsed(tBTA_HH_DEV_CB* p_dev_cb, tGATT_STATUS status) {
     cback_data.handle = p_dev_cb->hid_handle;
     cback_data.status = (status == GATT_SUCCESS) ? BTA_HH_OK : BTA_HH_ERR;
 
-    if (status == GATT_SUCCESS)
-      bta_hh_le_register_input_notif(p_dev_cb, p_dev_cb->mode, false);
+    if (status == GATT_SUCCESS) {
+      for (uint8_t i = 0; i < p_dev_cb->hid_srv_num; i++) {
+        tBTA_HH_LE_HID_SRVC &hid_srvc = p_dev_cb->hid_srvcs[i];
+        bta_hh_le_register_input_notif(p_dev_cb, p_dev_cb->mode, false, &hid_srvc);
+      }
+    }
 
     p_dev_cb->w4_evt = BTA_HH_EMPTY_EVT;
     (*bta_hh_cb.p_cback)(cb_evt, (tBTA_HH*)&cback_data);
@@ -777,37 +830,53 @@ static bool bta_hh_le_set_protocol_mode(tBTA_HH_DEV_CB* p_cb,
                (mode == BTA_HH_PROTO_RPT_MODE) ? "Report" : "Boot");
 
   cback_data.handle = p_cb->hid_handle;
+
+  // [Zhengping] What is proto mode?
+  // [Archie] Refer to boot mode and report mode in the HID spec
+  //   I guess we want to loop all services here, but not sure the correct way.
+
+  bool has_proto_mode_handle = false;
+
   /* boot mode is not supported in the remote device */
-  if (p_cb->hid_srvc.proto_mode_handle == 0 ||
-      bta_hh_headtracker_supported(p_cb)) {
+  for (uint8_t i = 0; i < p_cb->hid_srv_num; i++) {
+    tBTA_HH_LE_HID_SRVC &hid_srvc = p_cb->hid_srvcs[i];
+    if (hid_srvc.proto_mode_handle == 0 ||
+        bta_hh_headtracker_supported(p_cb)) {
+      /* if set to report mode, need to de-register all input report
+      * notification */
+      if (mode == BTA_HH_PROTO_RPT_MODE) {
+        bta_hh_le_register_input_notif(p_cb, p_cb->mode, false, &hid_srvc);
+      }
+    } else if (p_cb->mode != mode) {
+      p_cb->mode = mode;
+      mode = (mode == BTA_HH_PROTO_BOOT_MODE) ? BTA_HH_LE_PROTO_BOOT_MODE
+                                              : BTA_HH_LE_PROTO_REPORT_MODE;
+
+      BtaGattQueue::WriteCharacteristic(
+          p_cb->conn_id, hid_srvc.proto_mode_handle, {mode},
+          GATT_WRITE_NO_RSP, write_proto_mode_cb, p_cb);
+      has_proto_mode_handle = true;
+    }
+  }
+
+  if (!has_proto_mode_handle) {
     p_cb->mode = BTA_HH_PROTO_RPT_MODE;
 
     if (mode == BTA_HH_PROTO_BOOT_MODE) {
       log::error("Set Boot Mode failed!! No PROTO_MODE Char!");
       cback_data.status = BTA_HH_ERR;
     } else {
-      /* if set to report mode, need to de-register all input report
-       * notification */
-      bta_hh_le_register_input_notif(p_cb, p_cb->mode, false);
       cback_data.status = BTA_HH_OK;
     }
+
     if (p_cb->state == BTA_HH_W4_CONN_ST) {
       p_cb->status =
           (cback_data.status == BTA_HH_OK) ? BTA_HH_OK : BTA_HH_ERR_PROTO;
     } else
       (*bta_hh_cb.p_cback)(BTA_HH_SET_PROTO_EVT, (tBTA_HH*)&cback_data);
-  } else if (p_cb->mode != mode) {
-    p_cb->mode = mode;
-    mode = (mode == BTA_HH_PROTO_BOOT_MODE) ? BTA_HH_LE_PROTO_BOOT_MODE
-                                            : BTA_HH_LE_PROTO_REPORT_MODE;
-
-    BtaGattQueue::WriteCharacteristic(
-        p_cb->conn_id, p_cb->hid_srvc.proto_mode_handle, {mode},
-        GATT_WRITE_NO_RSP, write_proto_mode_cb, p_cb);
-    return true;
   }
 
-  return false;
+  return has_proto_mode_handle;
 }
 
 /*******************************************************************************
@@ -860,13 +929,19 @@ static void bta_hh_le_get_protocol_mode(tBTA_HH_DEV_CB* p_cb) {
   tBTA_HH_HSDATA hs_data;
   p_cb->w4_evt = BTA_HH_GET_PROTO_EVT;
 
-  if (p_cb->hid_srvc.state >= BTA_HH_SERVICE_DISCOVERED &&
-      p_cb->hid_srvc.proto_mode_handle != 0 &&
-      !bta_hh_headtracker_supported(p_cb)) {
-    BtaGattQueue::ReadCharacteristic(p_cb->conn_id,
-                                     p_cb->hid_srvc.proto_mode_handle,
-                                     get_protocol_mode_cb, p_cb);
-    return;
+  if (p_cb->srvc_state >= BTA_HH_SERVICE_DISCOVERED) {
+    for (uint8_t i = 0; i < p_cb->hid_srv_num; i++) {
+      tBTA_HH_LE_HID_SRVC &hid_srvc = p_cb->hid_srvcs[i];
+      if (hid_srvc.proto_mode_handle != 0 &&
+          !bta_hh_headtracker_supported(p_cb)) {
+        BtaGattQueue::ReadCharacteristic(p_cb->conn_id,
+                                        hid_srvc.proto_mode_handle,
+                                        get_protocol_mode_cb, p_cb);
+        return;  // [Zhengping] Return or continue?
+        // [Archie] Return is probably enough, the mode will be the same for
+        //    every service. 
+      }
+    }
   }
 
   /* no service support protocol_mode, by default report mode */
@@ -998,7 +1073,10 @@ void bta_hh_security_cmpl(tBTA_HH_DEV_CB* p_cb,
                           const tBTA_HH_DATA* /* p_buf */) {
   log::verbose("addr:{}, status:{}", p_cb->link_spec, p_cb->status);
   if (p_cb->status == BTA_HH_OK) {
-    if (p_cb->hid_srvc.state < BTA_HH_SERVICE_DISCOVERED) {
+    // [Zhengping] Do we need to loop all srvcs?
+    // [Archie] Maybe we can take sthe state out of hid_srvc? Seems the state is
+    //    the same across all services.
+    if (p_cb->srvc_state < BTA_HH_SERVICE_DISCOVERED) {
       log::debug("No reports loaded, try to load");
 
       /* start loading the cache if not in stack */
@@ -1013,7 +1091,7 @@ void bta_hh_security_cmpl(tBTA_HH_DEV_CB* p_cb,
 
     /*  discovery has been done for HID service */
     if (p_cb->app_id != 0 &&
-        p_cb->hid_srvc.state >= BTA_HH_SERVICE_DISCOVERED) {
+        p_cb->srvc_state >= BTA_HH_SERVICE_DISCOVERED) {
       log::verbose("discovery has been done for HID service");
       /* configure protocol mode */
       if (!bta_hh_le_set_protocol_mode(p_cb, p_cb->mode)) {
@@ -1025,6 +1103,7 @@ void bta_hh_security_cmpl(tBTA_HH_DEV_CB* p_cb,
       log::verbose("Starting service discovery");
       bta_hh_le_pri_service_discovery(p_cb);
     }
+
   }
   else if(p_cb->btm_status == BTM_ERR_KEY_MISSING) {
     log::error("Received encryption failed status:{} btm_status:{}",
@@ -1073,13 +1152,14 @@ void bta_hh_le_notify_enc_cmpl(tBTA_HH_DEV_CB* p_cb,
  *
  ******************************************************************************/
 static void bta_hh_clear_service_cache(tBTA_HH_DEV_CB* p_cb) {
-  tBTA_HH_LE_HID_SRVC* p_hid_srvc = &p_cb->hid_srvc;
-
   p_cb->app_id = 0;
   p_cb->dscp_info.descriptor.dsc_list = NULL;
 
-  osi_free_and_reset((void**)&p_hid_srvc->rpt_map);
-  memset(p_hid_srvc, 0, sizeof(tBTA_HH_LE_HID_SRVC));
+  for (uint8_t i = 0; i < p_cb->hid_srv_num; i++) {
+    tBTA_HH_LE_HID_SRVC* p_hid_srvc = &p_cb->hid_srvcs[i];
+    osi_free_and_reset((void**)&p_hid_srvc->rpt_map);
+    memset(p_hid_srvc, 0, sizeof(tBTA_HH_LE_HID_SRVC));
+  }
 }
 
 /*******************************************************************************
@@ -1189,7 +1269,7 @@ static void bta_hh_le_close(const tBTA_GATTC_CLOSE& gattc_data) {
     return;
   }
 
-  if (p_cb->hid_srvc.state == BTA_HH_SERVICE_CHANGED) {
+  if (p_cb->srvc_state == BTA_HH_SERVICE_CHANGED) {
     /* Service change would have already prompted a local disconnection */
     log::warn("Disconnected after service changed indication:{}",
               gattc_data.remote_bda);
@@ -1238,6 +1318,7 @@ static void bta_hh_le_gatt_disc_cmpl(tBTA_HH_DEV_CB* p_cb,
 
     /* set report notification configuration */
     p_cb->clt_cfg_idx = 0;
+    p_cb->srvc_idx = 0;
     bta_hh_le_write_rpt_clt_cfg(p_cb);
   } else /* error, close the GATT connection */
   {
@@ -1267,10 +1348,8 @@ static void read_hid_info_cb(uint16_t conn_id, tGATT_STATUS status,
   STREAM_TO_UINT8(p_dev_cb->dscp_info.flag, pp);
 }
 
-void bta_hh_le_save_report_map(tBTA_HH_DEV_CB* p_dev_cb, uint16_t len,
+void bta_hh_le_save_report_map(tBTA_HH_LE_HID_SRVC* p_srvc, uint16_t len,
                                uint8_t* desc) {
-  tBTA_HH_LE_HID_SRVC* p_srvc = &p_dev_cb->hid_srvc;
-
   osi_free_and_reset((void**)&p_srvc->rpt_map);
 
   if (len > 0) {
@@ -1279,7 +1358,7 @@ void bta_hh_le_save_report_map(tBTA_HH_DEV_CB* p_dev_cb, uint16_t len,
     uint8_t* pp = desc;
     STREAM_TO_ARRAY(p_srvc->rpt_map, pp, len);
     p_srvc->descriptor.dl_len = len;
-    p_srvc->descriptor.dsc_list = p_dev_cb->hid_srvc.rpt_map;
+    p_srvc->descriptor.dsc_list = p_srvc->rpt_map;
   }
 }
 
@@ -1292,7 +1371,16 @@ static void read_hid_report_map_cb(uint16_t conn_id, tGATT_STATUS status,
   }
 
   tBTA_HH_DEV_CB* p_dev_cb = (tBTA_HH_DEV_CB*)data;
-  bta_hh_le_save_report_map(p_dev_cb, len, value);
+
+  const gatt::Characteristic* characteristic =
+      BTA_GATTC_GetOwningCharacteristic(conn_id, handle);
+  const gatt::Service* service =
+      BTA_GATTC_GetOwningService(conn_id, characteristic->value_handle);
+  
+  tBTA_HH_LE_HID_SRVC *srvc = bta_hh_le_find_hid_service_by_inst_id(p_dev_cb, service->handle);
+  if (srvc != nullptr) {
+    bta_hh_le_save_report_map(srvc, len, value);
+  }
 }
 
 static void read_ext_rpt_ref_desc_cb(uint16_t conn_id, tGATT_STATUS status,
@@ -1313,10 +1401,18 @@ static void read_ext_rpt_ref_desc_cb(uint16_t conn_id, tGATT_STATUS status,
   tBTA_HH_DEV_CB* p_dev_cb = (tBTA_HH_DEV_CB*)data;
   uint8_t* pp = value;
 
-  STREAM_TO_UINT16(p_dev_cb->hid_srvc.ext_rpt_ref, pp);
+  const gatt::Characteristic* characteristic =
+      BTA_GATTC_GetOwningCharacteristic(conn_id, handle);
+  const gatt::Service* service =
+      BTA_GATTC_GetOwningService(conn_id, characteristic->value_handle);
+  
+  tBTA_HH_LE_HID_SRVC *srvc = bta_hh_le_find_hid_service_by_inst_id(p_dev_cb, service->handle);
+  if (srvc != nullptr) {
+    STREAM_TO_UINT16(srvc->ext_rpt_ref, pp);
 
-  log::verbose("External Report Reference UUID 0x{:04x}",
-               p_dev_cb->hid_srvc.ext_rpt_ref);
+    log::verbose("External Report Reference UUID 0x{:04x}",
+                 srvc->ext_rpt_ref);
+  }
 }
 
 static void read_report_ref_desc_cb(uint16_t conn_id, tGATT_STATUS status,
@@ -1429,84 +1525,103 @@ static void read_pref_conn_params_cb(uint16_t conn_id, tGATT_STATUS status,
  * Parameters:
  *
  ******************************************************************************/
-static void bta_hh_le_parse_hogp_service(tBTA_HH_DEV_CB* p_dev_cb,
-                                         const gatt::Service* service) {
-  tBTA_HH_LE_RPT* p_rpt;
+static void bta_hh_le_parse_hogp_service(
+    tBTA_HH_DEV_CB* p_dev_cb, std::vector<const gatt::Service*> &services) {
+  bool proto_mode_exists = false;
 
-  bta_hh_le_srvc_init(p_dev_cb, service->handle);
+  for (uint8_t srv_id = 0;
+       srv_id < services.size() && srv_id < BTA_HH_MAX_LE_HID_SRV; srv_id++) {
+    const gatt::Service* service = services[srv_id];
 
-  for (const gatt::Characteristic& charac : service->characteristics) {
-    if (!charac.uuid.Is16Bit()) continue;
+    tBTA_HH_LE_RPT* p_rpt;
 
-    uint16_t uuid16 = charac.uuid.As16Bit();
-    log::info("{} {}", bta_hh_uuid_to_str(uuid16), charac.uuid.ToString());
+    bta_hh_le_srvc_init(p_dev_cb, service->handle, srv_id);
+    log::verbose("have HOGP service inst_id={}",
+                 p_dev_cb->hid_srvcs[srv_id].srvc_inst_id);
 
-    switch (uuid16) {
-      case GATT_UUID_HID_CONTROL_POINT:
-        p_dev_cb->hid_srvc.control_point_handle = charac.value_handle;
-        break;
-      case GATT_UUID_HID_INFORMATION:
-        /* only one instance per HID service */
-        BtaGattQueue::ReadCharacteristic(p_dev_cb->conn_id, charac.value_handle,
-                                         read_hid_info_cb, p_dev_cb);
-        break;
-      case GATT_UUID_HID_REPORT_MAP:
-        /* only one instance per HID service */
-        BtaGattQueue::ReadCharacteristic(p_dev_cb->conn_id, charac.value_handle,
-                                         read_hid_report_map_cb, p_dev_cb);
-        /* descriptor is optional */
-        bta_hh_le_read_char_descriptor(p_dev_cb, charac.value_handle,
-                                       GATT_UUID_EXT_RPT_REF_DESCR,
-                                       read_ext_rpt_ref_desc_cb, p_dev_cb);
-        break;
+    for (const gatt::Characteristic& charac : service->characteristics) {
+      if (!charac.uuid.Is16Bit()) continue;
 
-      case GATT_UUID_HID_REPORT:
-        p_rpt = bta_hh_le_find_alloc_report_entry(
-            p_dev_cb, p_dev_cb->hid_srvc.srvc_inst_id, GATT_UUID_HID_REPORT,
-            charac.value_handle);
-        if (p_rpt == NULL) {
-          log::error("Add report entry failed !!!");
+      uint16_t uuid16 = charac.uuid.As16Bit();
+      log::info("{} {}", bta_hh_uuid_to_str(uuid16), charac.uuid.ToString());
+
+      switch (uuid16) {
+        case GATT_UUID_HID_CONTROL_POINT:
+          p_dev_cb->hid_srvcs[srv_id].control_point_handle =
+              charac.value_handle;
           break;
-        }
+        case GATT_UUID_HID_INFORMATION:
+          /* only one instance per HID service */
+          BtaGattQueue::ReadCharacteristic(p_dev_cb->conn_id,
+                                           charac.value_handle,
+                                           read_hid_info_cb, p_dev_cb);
+          break;
+        case GATT_UUID_HID_REPORT_MAP:
+          /* only one instance per HID service */
+          BtaGattQueue::ReadCharacteristic(p_dev_cb->conn_id,
+                                           charac.value_handle,
+                                           read_hid_report_map_cb, p_dev_cb);
+          /* descriptor is optional */
+          bta_hh_le_read_char_descriptor(p_dev_cb, charac.value_handle,
+                                         GATT_UUID_EXT_RPT_REF_DESCR,
+                                         read_ext_rpt_ref_desc_cb, p_dev_cb);
+          break;
 
-        if (p_rpt->rpt_type != BTA_HH_RPTT_INPUT) break;
+        case GATT_UUID_HID_REPORT:
+          p_rpt = bta_hh_le_find_alloc_report_entry(
+              p_dev_cb, p_dev_cb->hid_srvcs[srv_id].srvc_inst_id,
+              GATT_UUID_HID_REPORT, charac.value_handle);
+          if (p_rpt == NULL) {
+            log::error("Add report entry failed !!!");
+            break;
+          }
 
-        bta_hh_le_read_char_descriptor(p_dev_cb, charac.value_handle,
-                                       GATT_UUID_RPT_REF_DESCR,
-                                       read_report_ref_desc_cb, p_dev_cb);
+          if (p_rpt->rpt_type != BTA_HH_RPTT_INPUT) break;
+
+          bta_hh_le_read_char_descriptor(p_dev_cb, charac.value_handle,
+                                         GATT_UUID_RPT_REF_DESCR,
+                                         read_report_ref_desc_cb, p_dev_cb);
+          break;
+
+        /* found boot mode report types */
+        case GATT_UUID_HID_BT_KB_OUTPUT:
+        case GATT_UUID_HID_BT_MOUSE_INPUT:
+        case GATT_UUID_HID_BT_KB_INPUT:
+          if (bta_hh_le_find_alloc_report_entry(p_dev_cb, service->handle,
+                                                uuid16,
+                                                charac.value_handle) == NULL)
+            log::error("Add report entry failed !!!");
+
+          break;
+
+        default:
+          log::verbose("not processing {} 0x{:04d}", bta_hh_uuid_to_str(uuid16),
+                       uuid16);
+      }
+    }
+
+    /* Make sure PROTO_MODE is processed as last */
+    // [Archie] we factor the set proto mode function out, so this doesn't need to be last.
+    for (const gatt::Characteristic& charac : service->characteristics) {
+      if (charac.uuid == Uuid::From16Bit(GATT_UUID_HID_PROTO_MODE)) {
+        proto_mode_exists = true;
+        p_dev_cb->hid_srvcs[srv_id].proto_mode_handle = charac.value_handle;
         break;
-
-      /* found boot mode report types */
-      case GATT_UUID_HID_BT_KB_OUTPUT:
-      case GATT_UUID_HID_BT_MOUSE_INPUT:
-      case GATT_UUID_HID_BT_KB_INPUT:
-        if (bta_hh_le_find_alloc_report_entry(p_dev_cb, service->handle, uuid16,
-                                              charac.value_handle) == NULL)
-          log::error("Add report entry failed !!!");
-
-        break;
-
-      default:
-        log::verbose("not processing {} 0x{:04d}", bta_hh_uuid_to_str(uuid16),
-                     uuid16);
+      }
     }
   }
 
-  /* Make sure PROTO_MODE is processed as last */
-  for (const gatt::Characteristic& charac : service->characteristics) {
-    if (charac.uuid == Uuid::From16Bit(GATT_UUID_HID_PROTO_MODE)) {
-      p_dev_cb->hid_srvc.proto_mode_handle = charac.value_handle;
-      bta_hh_le_set_protocol_mode(p_dev_cb, p_dev_cb->mode);
-      break;
-    }
+  if (proto_mode_exists) {
+    bta_hh_le_set_protocol_mode(p_dev_cb, p_dev_cb->mode);
   }
 }
 
-void bta_hh_le_srvc_init(tBTA_HH_DEV_CB* p_dev_cb, uint16_t handle) {
-  p_dev_cb->hid_srvc.state = BTA_HH_SERVICE_DISCOVERED;
-  p_dev_cb->hid_srvc.srvc_inst_id = handle;
-  p_dev_cb->hid_srvc.proto_mode_handle = 0;
-  p_dev_cb->hid_srvc.control_point_handle = 0;
+void bta_hh_le_srvc_init(tBTA_HH_DEV_CB* p_dev_cb, uint16_t handle,
+                         uint8_t srv_id) {
+  p_dev_cb->srvc_state = BTA_HH_SERVICE_DISCOVERED;
+  p_dev_cb->hid_srvcs[srv_id].srvc_inst_id = handle;
+  p_dev_cb->hid_srvcs[srv_id].proto_mode_handle = 0;
+  p_dev_cb->hid_srvcs[srv_id].control_point_handle = 0;
 }
 
 /*******************************************************************************
@@ -1532,31 +1647,20 @@ static void bta_hh_le_srvc_search_cmpl(tBTA_GATTC_SEARCH_CMPL* p_data) {
   }
 
   const std::list<gatt::Service>* services = BTA_GATTC_GetServices(p_data->conn_id);
-  const gatt::Service* hogp_service = nullptr;
+  std::vector<const gatt::Service*> hogp_services;
   const gatt::Service* gap_service = nullptr;
   const gatt::Service* scp_service = nullptr;
+
+  // [Zhengping] headtracker is also a hid?
   const gatt::Service* headtracker_service = nullptr;
 
-  int num_hid_service = 0;
+  p_dev_cb->hid_srv_num = 0;
   for (const gatt::Service& service : *services) {
     if (service.uuid == Uuid::From16Bit(UUID_SERVCLASS_LE_HID) &&
-        service.is_primary && hogp_service == nullptr) {
-      // TODO(b/286413526): The current implementation connects to the first HID
-      // service, in the case of multiple HID services being present. As a
-      // temporary mitigation, connect to the third HID service for some
-      // particular devices. The long-term fix should refactor HID stack to
-      // connect to multiple HID services simultaneously.
-      if (interop_match_vendor_product_ids(
-              INTEROP_MULTIPLE_HOGP_SERVICE_CHOOSE_THIRD,
-              p_dev_cb->dscp_info.vendor_id, p_dev_cb->dscp_info.product_id)) {
-        num_hid_service++;
-        if (num_hid_service < HID_PREFERRED_SERVICE_INDEX_3) {
-          continue;
-        }
-      }
-
+        service.is_primary) {
       /* found HID primamry service */
-      hogp_service = &service;
+      hogp_services.push_back(&service);
+      p_dev_cb->hid_srv_num++;
     } else if (service.uuid == Uuid::From16Bit(UUID_SERVCLASS_SCAN_PARAM)) {
       scp_service = &service;
     } else if (service.uuid == Uuid::From16Bit(UUID_SERVCLASS_GAP_SERVER)) {
@@ -1567,14 +1671,16 @@ static void bta_hh_le_srvc_search_cmpl(tBTA_GATTC_SEARCH_CMPL* p_data) {
     }
   }
 
-  if (hogp_service != nullptr) {
-    log::verbose("have HOGP service inst_id={}",
-                 p_dev_cb->hid_srvc.srvc_inst_id);
-    bta_hh_le_parse_hogp_service(p_dev_cb, hogp_service);
+  // Can we have both hid and headtracker?
+  if (p_dev_cb->hid_srv_num > 0) {
+    log::verbose("have HOGP service srv_cnt={}", p_dev_cb->hid_srv_num);
+    bta_hh_le_parse_hogp_service(p_dev_cb, hogp_services);
   } else if (headtracker_service != nullptr) {
-    log::verbose("have Android Headtracker service inst_id={}",
-                 p_dev_cb->hid_srvc.srvc_inst_id);
+    // Assume headtracker has one HID service only
+    p_dev_cb->hid_srv_num = 1;
     bta_hh_headtracker_parse_service(p_dev_cb, headtracker_service);
+    log::verbose("have Android Headtracker service inst_id={}",
+                 p_dev_cb->hid_srvcs[0].srvc_inst_id);
   } else {
     log::error("HID service not found");
     p_dev_cb->status = BTA_HH_ERR_SDP;
@@ -1894,17 +2000,22 @@ static void read_report_cb(uint16_t conn_id, tGATT_STATUS status,
  ******************************************************************************/
 static void bta_hh_le_get_rpt(tBTA_HH_DEV_CB* p_cb, tBTA_HH_RPT_TYPE r_type,
                               uint8_t rpt_id) {
-  tBTA_HH_LE_RPT* p_rpt = bta_hh_le_find_rpt_by_idtype(
-      p_cb->hid_srvc.report, p_cb->mode, r_type, rpt_id);
+  tBTA_HH_LE_RPT* p_rpt = nullptr;
 
-  if (p_rpt == NULL) {
-    log::error("no matching report");
-    return;
+  for (uint8_t i = 0; i < p_cb->hid_srv_num; i++) {
+    tBTA_HH_LE_HID_SRVC &hid_srvc = p_cb->hid_srvcs[i];
+    tBTA_HH_LE_RPT* p_rpt = bta_hh_le_find_rpt_by_idtype(
+        hid_srvc.report, p_cb->mode, r_type, rpt_id);
+
+    if (p_rpt == NULL) {
+      continue;
+    }
+
+    p_cb->w4_evt = BTA_HH_GET_RPT_EVT;
+    BtaGattQueue::ReadCharacteristic(p_cb->conn_id, p_rpt->char_inst_id,
+                                     read_report_cb, p_cb);
   }
-
-  p_cb->w4_evt = BTA_HH_GET_RPT_EVT;
-  BtaGattQueue::ReadCharacteristic(p_cb->conn_id, p_rpt->char_inst_id,
-                                   read_report_cb, p_cb);
+  if (p_rpt == NULL) log::error("no matching report");
 }
 
 static void write_report_cb(uint16_t conn_id, tGATT_STATUS status,
@@ -1959,8 +2070,13 @@ static void bta_hh_le_write_rpt(tBTA_HH_DEV_CB* p_cb, tBTA_HH_RPT_TYPE r_type,
   STREAM_TO_UINT8(rpt_id, vec_start);
   vector<uint8_t> value(vec_start, vec_start + p_buf->len - 1);
 
-  p_rpt = bta_hh_le_find_rpt_by_idtype(p_cb->hid_srvc.report, p_cb->mode,
-                                       r_type, rpt_id);
+  for (uint8_t i = 0; i < p_cb->hid_srv_num; i++) {
+    tBTA_HH_LE_HID_SRVC &hid_srvc = p_cb->hid_srvcs[i];
+    p_rpt = bta_hh_le_find_rpt_by_idtype(hid_srvc.report, p_cb->mode, r_type,
+                                         rpt_id);
+    if (!p_rpt) break;
+  }
+
   if (p_rpt == NULL) {
     log::error("no matching report");
     osi_free(p_buf);
@@ -1999,10 +2115,13 @@ static void bta_hh_le_suspend(tBTA_HH_DEV_CB* p_cb,
 
   ctrl_type -= BTA_HH_CTRL_SUSPEND;
 
-  // We don't care about response
-  BtaGattQueue::WriteCharacteristic(
-      p_cb->conn_id, p_cb->hid_srvc.control_point_handle, {(uint8_t)ctrl_type},
-      GATT_WRITE_NO_RSP, NULL, NULL);
+  for (uint8_t i = 0; i < p_cb->hid_srv_num; i++) {
+    tBTA_HH_LE_HID_SRVC &hid_srvc = p_cb->hid_srvcs[i];
+    // We don't care about response
+    BtaGattQueue::WriteCharacteristic(
+        p_cb->conn_id, hid_srvc.control_point_handle, {(uint8_t)ctrl_type},
+        GATT_WRITE_NO_RSP, NULL, NULL);
+  }
 }
 
 /*******************************************************************************
@@ -2067,10 +2186,13 @@ void bta_hh_le_write_dev_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
  *
  ******************************************************************************/
 void bta_hh_le_get_dscp_act(tBTA_HH_DEV_CB* p_cb) {
-  if (p_cb->hid_srvc.state >= BTA_HH_SERVICE_DISCOVERED) {
-    if (p_cb->hid_srvc.descriptor.dl_len != 0) {
-      p_cb->dscp_info.descriptor.dl_len = p_cb->hid_srvc.descriptor.dl_len;
-      p_cb->dscp_info.descriptor.dsc_list = p_cb->hid_srvc.descriptor.dsc_list;
+  // [Archie] TODO: We need to make the dscp_info.descriptor an array
+
+  if (p_cb->srvc_state >= BTA_HH_SERVICE_DISCOVERED) {
+    p_cb->dscp_info.hid_handle = p_cb->hid_handle;
+    if (p_cb->hid_srvcs[0].descriptor.dl_len != 0) {
+      p_cb->dscp_info.descriptor.dl_len = p_cb->hid_srvcs[0].descriptor.dl_len;
+      p_cb->dscp_info.descriptor.dsc_list = p_cb->hid_srvcs[0].descriptor.dsc_list;
     } else {
       log::warn("hid_srvc.descriptor.dl_len is 0");
     }
@@ -2165,9 +2287,11 @@ static void bta_hh_le_service_changed(tAclLinkSpec link_spec) {
   /* Forget the cached reports */
   bta_hh_le_co_reset_rpt_cache(p_cb->link_spec, p_cb->app_id);
   p_cb->dscp_info.descriptor.dsc_list = NULL;
-  osi_free_and_reset((void**)&p_cb->hid_srvc.rpt_map);
-  p_cb->hid_srvc = {};
-  p_cb->hid_srvc.state = BTA_HH_SERVICE_CHANGED;
+  for (uint8_t i = 0; i < p_cb->hid_srv_num; i++) {
+    osi_free_and_reset((void**)&p_cb->hid_srvcs[i].rpt_map);
+    p_cb->hid_srvcs[i] = {};
+  }
+  p_cb->srvc_state = BTA_HH_SERVICE_CHANGED;
   p_cb->status = BTA_HH_HS_SERVICE_CHANGED;
 
   /* Pretend that the HOGP device disconnected so that higher layers don't
@@ -2194,10 +2318,10 @@ static void bta_hh_le_service_discovery_done(tAclLinkSpec link_spec) {
     return;
   }
 
-  if (p_cb->hid_srvc.state == BTA_HH_SERVICE_CHANGED) {
+  if (p_cb->srvc_state == BTA_HH_SERVICE_CHANGED) {
     /* Service rediscovery completed after service change.
        Pretend to have connected with a new HOGP device. */
-    p_cb->hid_srvc.state = BTA_HH_SERVICE_UNKNOWN;
+    p_cb->srvc_state = BTA_HH_SERVICE_UNKNOWN;
     const tBTA_GATTC_OPEN open = {
         .status = GATT_SUCCESS,
         .conn_id = p_cb->conn_id,
@@ -2208,7 +2332,7 @@ static void bta_hh_le_service_discovery_done(tAclLinkSpec link_spec) {
     };
     bta_hh_sm_execute(p_cb, BTA_HH_GATT_OPEN_EVT, (tBTA_HH_DATA*)&open);
   } else {
-    log::info("Discovery done, service state:{}", p_cb->hid_srvc.state);
+    log::info("Discovery done, service state:{}", p_cb->srvc_state);
   }
 }
 
@@ -2299,11 +2423,12 @@ static void bta_hh_process_cache_rpt(tBTA_HH_DEV_CB* p_cb,
 
   if (num_rpt != 0) /* no cache is found */
   {
-    p_cb->hid_srvc.state = BTA_HH_SERVICE_DISCOVERED;
+    p_cb->srvc_state = BTA_HH_SERVICE_DISCOVERED;
 
     /* set the descriptor info */
-    p_cb->hid_srvc.descriptor.dl_len = p_cb->dscp_info.descriptor.dl_len;
-    p_cb->hid_srvc.descriptor.dsc_list = p_cb->dscp_info.descriptor.dsc_list;
+    // [Archie] TODO: We need to make the dscp_info.descriptor an array
+    p_cb->hid_srvcs[0].descriptor.dl_len = p_cb->dscp_info.descriptor.dl_len;
+    p_cb->hid_srvcs[0].descriptor.dsc_list = p_cb->dscp_info.descriptor.dsc_list;
 
     for (; i < num_rpt; i++, p_rpt_cache++) {
       if ((p_rpt = bta_hh_le_find_alloc_report_entry(

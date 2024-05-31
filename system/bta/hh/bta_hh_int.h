@@ -161,7 +161,6 @@ enum tBTA_HH_AVAILABLE {
 };
 
 typedef struct {
-  tBTA_HH_SERVICE_STATE state;
   uint8_t srvc_inst_id;
   tBTA_HH_LE_RPT report[BTA_HH_LE_RPT_MAX];
 
@@ -214,10 +213,14 @@ typedef struct {
   uint8_t disc_active;
   tBTA_HH_STATUS status;
   tBTM_STATUS btm_status;
-  tBTA_HH_LE_HID_SRVC hid_srvc;
+  // tBTA_HH_LE_HID_SRVC hid_srvc;
+  uint8_t hid_srv_num; /* number of hid services */
+  tBTA_HH_LE_HID_SRVC hid_srvcs[BTA_HH_MAX_LE_HID_SRV];
   uint16_t conn_id;
   bool in_bg_conn;
-  uint8_t clt_cfg_idx;
+  uint8_t srvc_idx; /* temp service idx for enabling report notification */
+  uint8_t clt_cfg_idx; /* temp report idx for enabling report notification */
+  tBTA_HH_SERVICE_STATE srvc_state;
   bool scps_supported;
 
 #define BTA_HH_LE_SCPS_NOTIFY_NONE 0
@@ -326,8 +329,8 @@ tBTA_HH_LE_RPT* bta_hh_le_find_alloc_report_entry(tBTA_HH_DEV_CB* p_cb,
                                                   uint16_t inst_id);
 void bta_hh_le_save_report_ref(tBTA_HH_DEV_CB* p_dev_cb, tBTA_HH_LE_RPT* p_rpt,
                                uint8_t rpt_type, uint8_t rpt_id);
-void bta_hh_le_srvc_init(tBTA_HH_DEV_CB* p_dev_cb, uint16_t handle);
-void bta_hh_le_save_report_map(tBTA_HH_DEV_CB* p_dev_cb, uint16_t len,
+void bta_hh_le_srvc_init(tBTA_HH_DEV_CB* p_dev_cb, uint16_t handle, uint8_t srv_id);
+void bta_hh_le_save_report_map(tBTA_HH_LE_HID_SRVC* p_srvc, uint16_t len,
                                uint8_t* desc);
 void bta_hh_le_service_parsed(tBTA_HH_DEV_CB* p_dev_cb, tGATT_STATUS status);
 
