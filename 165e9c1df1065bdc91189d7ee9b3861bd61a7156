@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34212bcd_2c28fb57",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-31T04:31:40Z",
+      "side": 1,
+      "message": "```suggestion\n * Add a service handle range to the list in descending order of the start\n```",
+      "range": {
+        "startLine": 59,
+        "startChar": 7,
+        "endLine": 59,
+        "endChar": 9
+      },
+      "revId": "165e9c1df1065bdc91189d7ee9b3861bd61a7156",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a8b235b_6f52834f",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1521,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-31T04:31:40Z",
+      "side": 1,
+      "message": "```suggestion\n * Description      This function terminates the connection initiation to a\n```",
+      "range": {
+        "startLine": 1521,
+        "startChar": 34,
+        "endLine": 1521,
+        "endChar": 43
+      },
+      "revId": "165e9c1df1065bdc91189d7ee9b3861bd61a7156",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc3cbbfd_d6e756cf",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1644,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-05-31T04:31:40Z",
+      "side": 1,
+      "message": "```suggestion\n * Description      This function finds the conn_id if the logical link for BD\n```",
+      "range": {
+        "startLine": 1644,
+        "startChar": 34,
+        "endLine": 1644,
+        "endChar": 38
+      },
+      "revId": "165e9c1df1065bdc91189d7ee9b3861bd61a7156",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
