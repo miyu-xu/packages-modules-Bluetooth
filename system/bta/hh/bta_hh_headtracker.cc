@@ -31,7 +31,7 @@ using namespace bluetooth;
 static bool bta_hh_headtracker_parse_version_charac(
     tBTA_HH_DEV_CB* p_dev_cb, const gatt::Characteristic& charac) {
   tBTA_HH_LE_RPT* p_rpt = bta_hh_le_find_alloc_report_entry(
-      p_dev_cb, p_dev_cb->hid_srvc.srvc_inst_id, GATT_UUID_HID_REPORT,
+      p_dev_cb, p_dev_cb->hid_srvcs[0].srvc_inst_id, GATT_UUID_HID_REPORT,
       charac.value_handle);
   if (p_rpt == nullptr) {
     log::error("Add report entry failed !!!");
@@ -45,7 +45,7 @@ static bool bta_hh_headtracker_parse_version_charac(
 static bool bta_hh_headtracker_prase_control_charac(
     tBTA_HH_DEV_CB* p_dev_cb, const gatt::Characteristic& charac) {
   tBTA_HH_LE_RPT* p_rpt = bta_hh_le_find_alloc_report_entry(
-      p_dev_cb, p_dev_cb->hid_srvc.srvc_inst_id, GATT_UUID_HID_REPORT,
+      p_dev_cb, p_dev_cb->hid_srvcs[0].srvc_inst_id, GATT_UUID_HID_REPORT,
       charac.value_handle);
   if (p_rpt == nullptr) {
     log::error("Add report entry failed !!!");
@@ -59,7 +59,7 @@ static bool bta_hh_headtracker_prase_control_charac(
 static bool bta_hh_headtracker_parse_report_charac(
     tBTA_HH_DEV_CB* p_dev_cb, const gatt::Characteristic& charac) {
   tBTA_HH_LE_RPT* p_rpt = bta_hh_le_find_alloc_report_entry(
-      p_dev_cb, p_dev_cb->hid_srvc.srvc_inst_id, GATT_UUID_HID_REPORT,
+      p_dev_cb, p_dev_cb->hid_srvcs[0].srvc_inst_id, GATT_UUID_HID_REPORT,
       charac.value_handle);
   if (p_rpt == nullptr) {
     log::error("Add report entry failed !!!");
@@ -103,11 +103,11 @@ static const uint8_t ANDROID_HEADTRACKER_DESCRIPTOR[] = {
 void bta_hh_headtracker_parse_service(tBTA_HH_DEV_CB* p_dev_cb,
                                       const gatt::Service* service) {
   log::info("");
-  bta_hh_le_srvc_init(p_dev_cb, service->handle);
+  bta_hh_le_srvc_init(p_dev_cb, service->handle, 0);
   p_dev_cb->mode = BTA_HH_PROTO_RPT_MODE;
-  p_dev_cb->hid_srvc.headtracker_support = BTA_HH_AVAILABLE;
+  p_dev_cb->hid_srvcs[0].headtracker_support = BTA_HH_AVAILABLE;
 
-  bta_hh_le_save_report_map(p_dev_cb,
+  bta_hh_le_save_report_map(&p_dev_cb->hid_srvcs[0],
                             (uint16_t)sizeof(ANDROID_HEADTRACKER_DESCRIPTOR),
                             (uint8_t*)&ANDROID_HEADTRACKER_DESCRIPTOR);
 
@@ -147,12 +147,12 @@ bool bta_hh_headtracker_supported(tBTA_HH_DEV_CB* p_dev_cb) {
     return false;
   }
 
-  if (p_dev_cb->hid_srvc.headtracker_support == BTA_HH_UNKNOWN) {
+  if (p_dev_cb->hid_srvcs[0].headtracker_support == BTA_HH_UNKNOWN) {
     bluetooth::Uuid remote_uuids[BT_MAX_NUM_UUIDS] = {};
     bt_property_t remote_properties = {BT_PROPERTY_UUIDS, sizeof(remote_uuids),
                                        &remote_uuids};
     const RawAddress& bd_addr = p_dev_cb->link_spec.addrt.bda;
-    p_dev_cb->hid_srvc.headtracker_support = BTA_HH_UNAVAILABLE;
+    p_dev_cb->hid_srvcs[0].headtracker_support = BTA_HH_UNAVAILABLE;
 
     // Find which services known to be available
     if (btif_storage_get_remote_device_property(&bd_addr, &remote_properties) ==
@@ -160,17 +160,17 @@ bool bta_hh_headtracker_supported(tBTA_HH_DEV_CB* p_dev_cb) {
       int count = remote_properties.len / sizeof(remote_uuids[0]);
       for (int i = 0; i < count; i++) {
         if (remote_uuids[i] == ANDROID_HEADTRACKER_SERVICE_UUID) {
-          p_dev_cb->hid_srvc.headtracker_support = BTA_HH_AVAILABLE;
+          p_dev_cb->hid_srvcs[0].headtracker_support = BTA_HH_AVAILABLE;
           break;
         }
       }
     }
 
     log::verbose("Headtracker support: {}",
-                 (p_dev_cb->hid_srvc.headtracker_support == BTA_HH_AVAILABLE));
+                 (p_dev_cb->hid_srvcs[0].headtracker_support == BTA_HH_AVAILABLE));
   }
 
-  return (p_dev_cb->hid_srvc.headtracker_support == BTA_HH_AVAILABLE);
+  return (p_dev_cb->hid_srvcs[0].headtracker_support == BTA_HH_AVAILABLE);
 }
 
 /*******************************************************************************
