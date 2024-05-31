@@ -34,6 +34,24 @@
       "parentUuid": "79fe61f8_8df228d9",
       "revId": "c31309a5a144bde814f9950dba8d5cef57a914a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1e51309_246698e9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-05-31T20:39:55Z",
+      "side": 1,
+      "message": "We can protect access to the bta_hh_co internal message queue with a mutex. It can be a global mutex for all connection instances. It is unlikely for the multiple HID devices to be connected at the same time, so it should not impact the performance.",
+      "parentUuid": "06b138b1_331aaea2",
+      "revId": "c31309a5a144bde814f9950dba8d5cef57a914a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
