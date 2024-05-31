@@ -16,6 +16,24 @@
       "message": "I don\u0027t agree with the introduction of this new log helper, though we can discuss about the need for a non fatal checker.\n\nOne of the main goals for adding the log library was to unify log behaviors, and make logs more deterministic. In particular I decided to remove everything that made use of NDEBUG to force similar behaviors between production and release builds.\n\nAdding assert_that_softly goes against this as the behavior is conditional on the platform.\n\nNow it might be useful to have a soft version of assert_that, e.g. check_that,\ndepending on how you plan on using it.",
       "revId": "3f4f7faa5ad084e7aa7f65ffdfa86a313bc42d6f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22853a1f_cd105e36",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-05-31T16:39:56Z",
+      "side": 1,
+      "message": "Thanks for the additional context. Simply having assert_that_softly could meet our need, I still hit unexpected core dump (not abort) with unexpected HCI events.\n\ncheck_that sounds interesting, we can revisit it when there\u0027s valid use case.",
+      "parentUuid": "a7d441dd_88396951",
+      "revId": "3f4f7faa5ad084e7aa7f65ffdfa86a313bc42d6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
