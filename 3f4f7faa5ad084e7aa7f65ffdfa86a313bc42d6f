@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "775d63ed_447bd946",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-05-31T17:25:06Z",
+      "side": 1,
+      "message": "Do you have an issue number that more specifically relates to this change?",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 14
+      },
+      "revId": "3f4f7faa5ad084e7aa7f65ffdfa86a313bc42d6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a7d441dd_88396951",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -32,6 +55,24 @@
       "side": 1,
       "message": "Thanks for the additional context. Simply having assert_that_softly could meet our need, I still hit unexpected core dump (not abort) with unexpected HCI events.\n\ncheck_that sounds interesting, we can revisit it when there\u0027s valid use case.",
       "parentUuid": "a7d441dd_88396951",
+      "revId": "3f4f7faa5ad084e7aa7f65ffdfa86a313bc42d6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b446d9a_d75c7279",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-05-31T17:25:06Z",
+      "side": 1,
+      "message": "In that case I think it is more appropriate to remove the specific asserts that have been triggered by Floss, and replace them with manual (not check_that) checks + error logs.\n\nIf an assert is used to check a controller behavior, then we must make sure that the behavior is standard.",
+      "parentUuid": "22853a1f_cd105e36",
       "revId": "3f4f7faa5ad084e7aa7f65ffdfa86a313bc42d6f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
