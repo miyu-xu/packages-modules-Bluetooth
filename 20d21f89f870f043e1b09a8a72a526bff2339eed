@@ -65,6 +65,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "abb5351c_601e7480",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 722,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-05-31T17:45:30Z",
+      "side": 1,
+      "message": "Marking it as resolved. Tracking CL: aosp/3109057",
+      "parentUuid": "885e5a67_4a5f0415",
+      "range": {
+        "startLine": 722,
+        "startChar": 16,
+        "endLine": 722,
+        "endChar": 47
+      },
+      "revId": "20d21f89f870f043e1b09a8a72a526bff2339eed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2603663_ecb59e18",
@@ -102,6 +126,30 @@
       "side": 1,
       "message": "FWIW, the logic `profile_initialized \u003d\u003d UUID_SERVCLASS_AUDIO_SOURCE \u0026\u0026 !is_new_avrcp_enabled()` is always false, because `is_new_avrcp_enabled()` is equivalent to \"is AVRCP Target enabled.\" On builds where UUID_SERVCLASS_AUDIO_SOURCE is true, AVRCP Target is always enabled, so !(TRUE) -\u003e FALSE and \u0026\u0026 FALSE is always false. Hope that makes sense 😊\n\nAs I understand it, avrcp_service.cc actually manages the SDP record.\n\nI really want to remove all this dead code relating to \"old AVRCP,\" but alas there\u0027s other priorities.",
       "parentUuid": "f2603663_ecb59e18",
+      "range": {
+        "startLine": 735,
+        "startChar": 28,
+        "endLine": 735,
+        "endChar": 40
+      },
+      "revId": "20d21f89f870f043e1b09a8a72a526bff2339eed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61a53a32_32b8323d",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 735,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-05-31T17:45:30Z",
+      "side": 1,
+      "message": "There are too many configurations that\u0027s being used to register. Simplified it here aosp/3109057. Marking it as resolved.",
+      "parentUuid": "43fd726b_592753c8",
       "range": {
         "startLine": 735,
         "startChar": 28,

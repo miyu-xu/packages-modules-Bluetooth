@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ccdb1a7_010b59ba",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-05-31T17:45:30Z",
+      "side": 1,
+      "message": "This will require Dr. No approval for exemption. the change is limited only when both profiles are enabled (only car form factor enables it for now)",
+      "parentUuid": "b286ad13_8d652345",
+      "revId": "039769567bb9e13df02d9b291cd57f7ed4372107",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "59781ac6_e41f7091",
@@ -103,6 +121,24 @@
       "side": 1,
       "message": "In addition to what Sal said, the new avrcp service already sets the profile version using `AVRC_GetControlProfileVersion`. So, effectively there are two \"Control\" records (one record created by bta_av_main \u0026 one record created by the avrcp service.",
       "parentUuid": "347073e1_b5924ad3",
+      "revId": "039769567bb9e13df02d9b291cd57f7ed4372107",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b8b4bec_bbfff1b1",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-05-31T17:45:30Z",
+      "side": 1,
+      "message": "Reverted the previous control version for AUDIO_SOURCE.",
+      "parentUuid": "8749a1aa_d48d5fa3",
       "revId": "039769567bb9e13df02d9b291cd57f7ed4372107",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

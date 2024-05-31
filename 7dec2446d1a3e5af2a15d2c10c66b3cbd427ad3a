@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb2ea999_5b13c2c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-05-31T17:45:30Z",
+      "side": 1,
+      "message": "Reverted the AUDIO_SOURCE control version to v1.5.",
+      "revId": "7dec2446d1a3e5af2a15d2c10c66b3cbd427ad3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
