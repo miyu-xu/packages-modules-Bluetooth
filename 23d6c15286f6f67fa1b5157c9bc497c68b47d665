@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71107971_e3c89a0e",
+        "filename": "system/gd/rust/topshim/src/profiles/le_audio.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-05-31T02:39:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e476c59f_1e205a38",
+      "range": {
+        "startLine": 362,
+        "startChar": 0,
+        "endLine": 367,
+        "endChar": 9
+      },
+      "revId": "23d6c15286f6f67fa1b5157c9bc497c68b47d665",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5533273_82b17546",
