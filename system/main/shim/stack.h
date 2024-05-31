@@ -68,11 +68,10 @@ class Stack {
   template <typename T>
   bool CallOnModule(std::function<void(T* mod)> run) {
     std::lock_guard<std::recursive_mutex> lock(Stack::GetInstance()->mutex_);
-    if (Stack::GetInstance()->is_running_) {
-      run(Stack::GetInstance()->GetStackManager()->GetInstance<T>());
-      return true;
+    if (is_running_) {
+      run(stack_manager_.GetInstance<T>());
     }
-    return false;
+    return is_running_;
   }
 
   size_t NumModules() const { return num_modules_; }
