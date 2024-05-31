@@ -209,6 +209,9 @@ static void bta_hh_sdp_cback(uint16_t result, uint16_t attr_mask,
     log::verbose("p_cb:{} result:0x{:02x}, attr_mask:0x{:02x}, handle:0x{:x}",
                  fmt::ptr(p_cb), result, attr_mask, p_cb->hid_handle);
 
+    /* Fix the number of services here for BREDR */
+    p_cb->hid_srv_num = 1;
+
     /* check to see type of device is supported , and should not been added
      * before */
     if (bta_hh_tod_spt(p_cb, sdp_rec->sub_class)) {
@@ -571,6 +574,7 @@ void bta_hh_open_cmpl_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
   conn.sub_class = p_cb->sub_class;
   conn.attr_mask = p_cb->attr_mask;
   conn.app_id = p_cb->app_id;
+  conn.num_services = p_cb->hid_srv_num;
 
   BTM_LogHistory(
       kBtmLogTag, p_cb->link_spec.addrt.bda, "Opened",
@@ -910,9 +914,8 @@ void bta_hh_close_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
 void bta_hh_get_dscp_act(tBTA_HH_DEV_CB* p_cb,
                          const tBTA_HH_DATA* /* p_data */) {
   if (p_cb->link_spec.transport == BT_TRANSPORT_LE) {
-    if (p_cb->hid_srvc.state >= BTA_HH_SERVICE_DISCOVERED) {
-      p_cb->dscp_info.hid_handle = p_cb->hid_handle;
-    }
+    // [Zhengping] need to check all hid_srvc if multiple?
+    // [Archie] I suppose so? let's move the check inside bta_hh_le though...
     bta_hh_le_get_dscp_act(p_cb);
   } else {
     p_cb->dscp_info.hid_handle = p_cb->hid_handle;
