@@ -316,6 +316,7 @@ static void btif_hf_upstreams_evt(uint16_t event, char* p_param) {
   }
   tBTA_AG* p_data = (tBTA_AG*)p_param;
   int idx = p_data->hdr.handle - 1;
+  bool notify_flag = true;
 
   log::debug("HF Upstream event:{}", dump_hf_event(event));
 
@@ -394,6 +395,21 @@ static void btif_hf_upstreams_evt(uint16_t event, char* p_param) {
                                        HFP_COLLISON_AT_CONNECTING,
                                    1);
           reset_control_block(&btif_hf_cb[idx]);
+
+          for (int i = 0; i < BTA_AG_MAX_NUM_CLIENTS; i++) {
+            if ((i != idx) &&
+                (BTHF_CONNECTION_STATE_CONNECTED == btif_hf_cb[i].state) &&
+                (connected_bda == btif_hf_cb[i].connected_bda)) {
+              /* Mark as not notify*/
+              notify_flag = false;
+              break;
+            }
+          }
+
+          if (false != notify_flag) {
+            bt_hf_callbacks->ConnectionStateCallback(btif_hf_cb[idx].state,
+                                                     &connected_bda);
+          }
           btif_queue_advance();
         }
       }
