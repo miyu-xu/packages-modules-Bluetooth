@@ -16,6 +16,24 @@
       "message": "Please add the following bug number to the commit message: b/343745004",
       "revId": "363fe32076a8820e1eda910c4ee906868a7de2b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83592197_9c9e4110",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 25
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-05-31T00:22:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc12002a_3969ecb4",
+      "revId": "363fe32076a8820e1eda910c4ee906868a7de2b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
