@@ -9,6 +9,7 @@ import sys
 
 from argparse import Namespace
 from mobly import suite_runner
+from avatar import bumble_server
 from typing import List, Tuple
 
 _BUMBLE_BTSNOOP_FMT = 'bumble_btsnoop_{pid}_{instance}.log'
@@ -23,6 +24,10 @@ import gatt_test
 import hfpclient_test
 import sdp_test
 import pairing.smp_test as smp_test
+import hid_test
+
+from bumble_experimental.hid import HIDService
+from pandora_experimental.hid_grpc_aio import add_HIDServicer_to_server
 
 _TEST_CLASSES_LIST = [
     avatar.cases.host_test.HostTest,
@@ -34,6 +39,7 @@ _TEST_CLASSES_LIST = [
     gatt_test.GattTest,
     asha_test.AshaTest,
     hfpclient_test.HfpClientTest,
+    hid_test.HidTest,
 ]
 
 
@@ -42,6 +48,8 @@ def _parse_cli_args() -> Tuple[Namespace, List[str]]:
     parser.add_argument('-o', '--log_path', type=str, metavar='<PATH>', help='Path to the test configuration file.')
     return parser.parse_known_args()
 
+def _bumble_servicer_hook(server: bumble_server.Server) -> None:
+  add_HIDServicer_to_server(HIDService(server.bumble.device), server.server)
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
