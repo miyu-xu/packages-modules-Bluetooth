@@ -22,6 +22,230 @@
       },
       "revId": "ae69604334f3c1c09c2c48eb0dbe1b68e736885c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fec640cc_07797601",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2727,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-05-31T19:02:06Z",
+      "side": 1,
+      "message": "Am I reading this right?\n\nIt appears that our AVRCP target implementation and `avrcp_service.cc` are responsible for tearing down all SDP records when its active?\n\nIf I have that right, then I worry its error prone.\n\nPerhaps, at a minimum, the better semantically correct logic is something like:\n```\nif (isAvrcpTargetProfileEnabled()) {\n   log::verbose(/* ... */);\n} else {\n   log::verbose(\"remove the AVRCP Controller SDP record\");\n   // carry on...\n}\n```",
+      "range": {
+        "startLine": 2727,
+        "startChar": 6,
+        "endLine": 2727,
+        "endChar": 14
+      },
+      "revId": "ae69604334f3c1c09c2c48eb0dbe1b68e736885c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "714f4a6b_a271e637",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-05-31T19:02:06Z",
+      "side": 1,
+      "message": "nit: you lost a comment and a new line, which makes this now look like AVCTP dereg (i.e. destroy the SDP records) is part of AVDTP de-reg",
+      "range": {
+        "startLine": 187,
+        "startChar": 3,
+        "endLine": 187,
+        "endChar": 24
+      },
+      "revId": "ae69604334f3c1c09c2c48eb0dbe1b68e736885c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9eaa014e_16f40509",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-05-31T19:02:06Z",
+      "side": 1,
+      "message": "We seem to do this in `system/bta/av/bta_av_act.cc` as well. Do we need this twice?\n\nPerhaps the `system/bta/av/bta_av_act.cc` code can just \"skip\" if the flag is active?",
+      "range": {
+        "startLine": 191,
+        "startChar": 6,
+        "endLine": 192,
+        "endChar": 72
+      },
+      "revId": "ae69604334f3c1c09c2c48eb0dbe1b68e736885c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aec89155_a014ffd0",
+        "filename": "system/bta/include/bta_ar_api.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-05-31T19:02:06Z",
+      "side": 1,
+      "message": "nit: can we add some context, or a bug/flag bug number. It might help ourselves once we go to justify removing it post flag",
+      "range": {
+        "startLine": 121,
+        "startChar": 3,
+        "endLine": 121,
+        "endChar": 13
+      },
+      "revId": "ae69604334f3c1c09c2c48eb0dbe1b68e736885c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75c335b5_f5bb2722",
+        "filename": "system/profile/avrcp/avrc_sdp_records.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-05-31T19:02:06Z",
+      "side": 1,
+      "message": "nit: make a constant to represent the meaning of this, i.e. `constexpr uint16_t RECORD_NOT_ASSIGNED \u003d -1u;` (etc.). It\u0027ll read better.",
+      "range": {
+        "startLine": 33,
+        "startChar": 28,
+        "endLine": 33,
+        "endChar": 31
+      },
+      "revId": "ae69604334f3c1c09c2c48eb0dbe1b68e736885c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01d4500d_4105bcb0",
+        "filename": "system/profile/avrcp/avrc_sdp_records.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-05-31T19:02:06Z",
+      "side": 1,
+      "message": "In practice, this probably doesn\u0027t matter, but a thought occurred.\n\nIf two services are working together to build a record, then who should own that records lifecycle? Right now, if the target implementation says remove() the target record, then the controller implementation will lose that record and everything it contributed to it (i.e. Cat2).\n\nThe tedious, but best way to deal with this is probably to keep a set of requests and always update() when one is added or removed. A full record removal corresponds to no more requests for that type of record. You could also have a nuclear option for teardown time I suppose (basically this).\n\nAgain, probably not needed in practice, but I figured I\u0027d bring it up",
+      "range": {
+        "startLine": 73,
+        "startChar": 30,
+        "endLine": 73,
+        "endChar": 42
+      },
+      "revId": "ae69604334f3c1c09c2c48eb0dbe1b68e736885c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1c339c3_4b2ebca4",
+        "filename": "system/profile/avrcp/avrc_sdp_records.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-05-31T19:02:06Z",
+      "side": 1,
+      "message": "Perhaps in another iteration, but I feel like the proper abstraction here is just \"supported_features\" and not \"categories\" (which is secretly supported features, because categories are defined in the supported features section of the record and the constants used for \"categories\" in the stack include all the features, not just the four category bits) + \"is browsing supported.\"\n\nWe could use all the supported features bits to see if browsing is supported in AVRC_AddRecord, and use that to see if we should add the browse channel PSM. That\u0027s really just a very small logic refactor too, and probably doesn\u0027t even need a flag.",
+      "range": {
+        "startLine": 44,
+        "startChar": 2,
+        "endLine": 53,
+        "endChar": 24
+      },
+      "revId": "ae69604334f3c1c09c2c48eb0dbe1b68e736885c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc0a6244_9aff9936",
+        "filename": "system/profile/avrcp/avrc_sdp_service.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-05-31T19:02:06Z",
+      "side": 1,
+      "message": "The other avrcp \"stuff\" uses namespace bluetooth.avrcp. We probably want to align with that if can. It feels like the better wording.\n\nThinking out loud, we could split into bluetooth.avrcp.target and bluetooth.avrcp.common too.",
+      "range": {
+        "startLine": 26,
+        "startChar": 10,
+        "endLine": 26,
+        "endChar": 14
+      },
+      "revId": "ae69604334f3c1c09c2c48eb0dbe1b68e736885c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "384eaab2_3ff7c4f3",
+        "filename": "system/profile/avrcp/avrc_sdp_service.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-05-31T19:02:06Z",
+      "side": 1,
+      "message": "previous 😊",
+      "revId": "ae69604334f3c1c09c2c48eb0dbe1b68e736885c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d822e10_7c08643b",
+        "filename": "system/profile/avrcp/avrc_sdp_service.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-05-31T19:02:06Z",
+      "side": 1,
+      "message": "The context here is that the cover art entry in the Target record requires the PSM that the cover art OBEX service is assigned, but we don\u0027t have that until that service is started, way up in the Java stack. As such, there\u0027s a callback with the relevant info when it starts. We use the PSM to update the SDP record, and set the supported feature bit at the same time.\n\nThe Controller record doesn\u0027t need anything to be done dynamically, since all it has is some static feature bits.\n\nGiven that background, you may consider updating this function to be Target record specific in naming _and_ functionality. Same with the disable function below, as it looks like that also doesn\u0027t work/doesn\u0027t need to work for the controller record either",
+      "range": {
+        "startLine": 53,
+        "startChar": 5,
+        "endLine": 57,
+        "endChar": 13
+      },
+      "revId": "ae69604334f3c1c09c2c48eb0dbe1b68e736885c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
