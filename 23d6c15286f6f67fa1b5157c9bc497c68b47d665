@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e476c59f_1e205a38",
+        "filename": "system/gd/rust/topshim/src/profiles/le_audio.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-05-31T02:20:30Z",
+      "side": 1,
+      "message": "Though the `repr` is `i32`, it\u0027s an enum type so it can\u0027t be cast to integer like this, will get error like:\n\n```\nerror[E0605]: non-primitive cast: `le_audio::ffi::BtLeStreamStartedStatus` as `i32`\n```\n\nif I replace this with `value as i32`.",
+      "parentUuid": "918a753e_a0fa93c2",
+      "range": {
+        "startLine": 362,
+        "startChar": 0,
+        "endLine": 367,
+        "endChar": 9
+      },
+      "revId": "23d6c15286f6f67fa1b5157c9bc497c68b47d665",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b5533273_82b17546",
         "filename": "system/gd/rust/topshim/src/profiles/le_audio.rs",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2024-05-31T02:09:52Z",
       "side": 1,
       "message": "nit: We might avoid the panic with TryFrom for this and other enums. But we can do this in another patchset latter.",
+      "range": {
+        "startLine": 371,
+        "startChar": 4,
+        "endLine": 371,
+        "endChar": 14
+      },
+      "revId": "23d6c15286f6f67fa1b5157c9bc497c68b47d665",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d503881b_69c2e1cf",
+        "filename": "system/gd/rust/topshim/src/profiles/le_audio.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-05-31T02:20:30Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b5533273_82b17546",
       "range": {
         "startLine": 371,
         "startChar": 4,
