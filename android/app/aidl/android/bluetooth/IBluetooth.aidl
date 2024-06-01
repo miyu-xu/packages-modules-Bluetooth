@@ -318,5 +318,5 @@ interface IBluetooth
     int getActiveAudioDevicePolicy(in BluetoothDevice device, in AttributionSource source);
 
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)")
-    oneway void killBluetoothProcess();
+    oneway void killBluetoothProcess(boolean postOnHandler);
 }

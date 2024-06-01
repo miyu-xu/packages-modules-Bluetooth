@@ -2310,12 +2310,11 @@ public class AdapterService extends Service {
         }
 
         @Override
-        public void killBluetoothProcess() {
+        public void killBluetoothProcess(boolean postOnHandler) {
             mService.enforceCallingPermission(
                     android.Manifest.permission.BLUETOOTH_PRIVILEGED, null);
 
-            // Post on the main handler to be sure the cleanup has completed before calling exit
-            mService.mHandler.post(
+            Runnable killAction =
                     () -> {
                         if (Flags.killInsteadOfExit()) {
                             Log.i(TAG, "killBluetoothProcess: Calling killProcess(myPid())");
@@ -2324,7 +2323,14 @@ public class AdapterService extends Service {
                             Log.i(TAG, "killBluetoothProcess: Calling System.exit");
                             System.exit(0);
                         }
-                    });
+                    };
+            if (postOnHandler) {
+                // Post on the main handler to let the cleanup complete before calling exit
+                mService.mHandler.post(killAction);
+            } else {
+                // Kill is performed from binder thread (main looper is stuck). This is bad :(
+                killAction.run();
+            }
         }
 
         @Override
