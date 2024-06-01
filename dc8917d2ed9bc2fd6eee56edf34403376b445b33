@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c1015b9_8ddf6fd2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-01T00:24:04Z",
+      "side": 1,
+      "message": "I am fine with that but I want the area owner to be aware of it.\n@rwt@google.com FYI since it involve `auth_cmpl_evt`",
+      "revId": "dc8917d2ed9bc2fd6eee56edf34403376b445b33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
