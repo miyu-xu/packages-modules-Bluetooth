@@ -18,9 +18,10 @@
 
 #include "hci/uuid.h"
 
+#include <fmt/format.h>
 #include <openssl/rand.h>
-
 #include <string.h>
+
 #include <algorithm>
 
 namespace bluetooth {
@@ -192,33 +193,34 @@ bool Uuid::operator!=(const Uuid& rhs) const {
   return uu != rhs.uu;
 }
 
+std::string Uuid::ToString(UUID128Bit u) {
+  return fmt::format(
+      "{:02x}{:02x}{:02x}{:02x}-{:02x}{:02x}-{:02x}{:02x}-{:02x}{:02x}-{:02x}{:02x}{:02x}{:02x}{:"
+      "02x}{:02x}",
+      u[0],
+      u[1],
+      u[2],
+      u[3],
+      u[4],
+      u[5],
+      u[6],
+      u[7],
+      u[8],
+      u[9],
+      u[10],
+      u[11],
+      u[12],
+      u[13],
+      u[14],
+      u[15]);
+}
+
 std::string Uuid::ToString() const {
-  char buf[kString128BitLen + 1] = {};
-  std::snprintf(
-      buf,
-      sizeof(buf),
-      "%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x",
-      uu[0],
-      uu[1],
-      uu[2],
-      uu[3],
-      uu[4],
-      uu[5],
-      uu[6],
-      uu[7],
-      uu[8],
-      uu[9],
-      uu[10],
-      uu[11],
-      uu[12],
-      uu[13],
-      uu[14],
-      uu[15]);
-  return std::string(buf);
+  return ToString(uu);
 }
 
 std::string Uuid::ToLegacyConfigString() const {
-  return ToString();
+  return ToString(uu);
 }
 
 }  // namespace hci

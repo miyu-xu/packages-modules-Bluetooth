@@ -27,6 +27,7 @@
 #include "bta/include/utl.h"
 #include "bta/pb/bta_pbs_int.h"
 #include "bta/sys/bta_sys.h"
+#include "gd/hci/uuid.h"
 #include "internal_include/bt_target.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/bt_uuid16.h"
@@ -154,7 +155,8 @@ error:
 // class sequence.
 static int add_sdp_by_uuid(const char* name, const Uuid& uuid,
                            const uint16_t channel) {
-  log::verbose("uuid: {}, scn: {}, service_name: {}", uuid.ToString(), channel,
+  log::verbose("uuid: {}, scn: {}, service_name: {}",
+               bluetooth::hci::Uuid::ToString(uuid.To128BitBE()), channel,
                name);
 
   uint32_t handle = get_legacy_stack_sdp_api()->handle.SDP_CreateRecord();
@@ -399,7 +401,8 @@ error:
 // number if the |uuid| matches one of the preregistered bluez SDP records.
 static int add_rfc_sdp_by_uuid(const char* name, const Uuid& uuid,
                                const int channel) {
-  log::verbose("uuid: {}, service_name: {}, channel: {}", uuid.ToString(), name,
+  log::verbose("uuid: {}, service_name: {}, channel: {}",
+               bluetooth::hci::Uuid::ToString(uuid.To128BitBE()), name,
                channel);
 
   /*

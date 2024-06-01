@@ -196,10 +196,10 @@ void bnep_send_conn_req(tBNEP_CONN* p_bcb);
 void bnep_send_conn_response(tBNEP_CONN* p_bcb, uint16_t resp_code);
 void bnep_process_setup_conn_req(tBNEP_CONN* p_bcb, uint8_t* p_setup,
                                  uint8_t len);
-void bnep_process_setup_conn_responce(tBNEP_CONN* p_bcb, uint8_t* p_setup);
+void bnep_process_setup_conn_response(tBNEP_CONN* p_bcb, uint8_t* p_setup);
 uint8_t* bnep_process_control_packet(tBNEP_CONN* p_bcb, uint8_t* p,
                                      uint16_t* len, bool is_ext);
-void bnep_sec_check_complete(const RawAddress* bd_addr, tBT_TRANSPORT trasnport,
+void bnep_sec_check_complete(const RawAddress* bd_addr, tBT_TRANSPORT transport,
                              void* p_ref_data);
 tBNEP_RESULT bnep_is_packet_allowed(tBNEP_CONN* p_bcb,
                                     const RawAddress& dest_addr,

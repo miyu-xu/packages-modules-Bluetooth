@@ -32,6 +32,7 @@
 #include "btif/include/btif_profile_storage.h"
 #include "btif/include/btif_sock_sdp.h"
 #include "common/init_flags.h"
+#include "gd/hci/uuid.h"
 #include "main/shim/metrics_api.h"
 #include "os/log.h"
 #include "osi/include/allocator.h"
@@ -689,7 +690,8 @@ void bta_sdp_search(const RawAddress bd_addr, const bluetooth::Uuid uuid) {
   bta_sdp_cb.remote_addr = bd_addr;
 
   /* initialize the search for the uuid */
-  log::verbose("init discovery with UUID: {}", uuid.ToString());
+  log::verbose("init discovery with UUID: {}",
+               bluetooth::hci::Uuid::ToString(uuid.To128BitBE()));
   if (!get_legacy_stack_sdp_api()->service.SDP_InitDiscoveryDb(
           p_bta_sdp_cfg->p_sdp_db, p_bta_sdp_cfg->sdp_db_size, 1, &uuid, 0,
           NULL)) {

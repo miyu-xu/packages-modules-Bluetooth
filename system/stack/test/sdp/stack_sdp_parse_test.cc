@@ -22,6 +22,7 @@
 
 #include <cstdint>
 
+#include "gd/hci/uuid.h"
 #include "gd/os/rand.h"
 #include "os/log.h"
 #include "osi/include/allocator.h"
@@ -198,8 +199,9 @@ TEST_F_WITH_FLAGS(StackSdpAsClientParseTest, sdp_disc_server_rsp_packets00,
             get_legacy_stack_sdp_api()->record.SDP_FindServiceUUIDInRec_128bit(
                 p_sdp_rec, &uuid_list[0]));
   ASSERT_EQ(1U, uuid_list.size());
-  ASSERT_STREQ("4de17a00-52cb-11e6-bdf4-0800200c9a66",
-               uuid_list.front().ToString().c_str());
+  ASSERT_STREQ(
+      "4de17a00-52cb-11e6-bdf4-0800200c9a66",
+      bluetooth::hci::Uuid::ToString(uuid_list.front().To128BitBE()).c_str());
 
   // Service Record State
   ASSERT_EQ(0x008f5162U,

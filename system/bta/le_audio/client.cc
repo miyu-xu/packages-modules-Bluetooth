@@ -43,6 +43,7 @@
 #include "common/time_util.h"
 #include "content_control_id_keeper.h"
 #include "devices.h"
+#include "gd/hci/uuid.h"
 #include "hci/controller_interface.h"
 #include "internal_include/bt_trace.h"
 #include "internal_include/stack_config.h"
@@ -391,8 +392,8 @@ class LeAudioClientImpl : public LeAudioClient {
 
   void OnGroupAddedCb(const RawAddress& address, const bluetooth::Uuid& uuid,
                       int group_id) {
-    log::info("address: {} group uuid {} group_id: {}", address, uuid,
-              group_id);
+    log::info("address: {} group uuid {} group_id: {}", address,
+              bluetooth::hci::Uuid::ToString(uuid.To128BitBE()), group_id);
 
     /* We are interested in the groups which are in the context of CAP */
     if (uuid != bluetooth::le_audio::uuid::kCapServiceUuid) return;
@@ -2956,7 +2957,8 @@ class LeAudioClientImpl : public LeAudioClient {
     leAudioDevice->ases_.clear();
 
     for (const gatt::Characteristic& charac : ase_svc->characteristics) {
-      log::info("Found characteristic, uuid: {}", charac.uuid.ToString());
+      log::info("Found characteristic, uuid: {}",
+                bluetooth::hci::Uuid::ToString(charac.uuid.To128BitBE()));
       if (charac.uuid ==
               bluetooth::le_audio::uuid::kSinkAudioStreamEndpointUuid ||
           charac.uuid ==

@@ -31,6 +31,7 @@
 #include "bta/include/bta_hh_co.h"
 #include "bta/include/bta_le_audio_api.h"
 #include "device/include/interop.h"
+#include "gd/hci/uuid.h"
 #include "osi/include/allocator.h"
 #include "osi/include/osi.h"    // ARRAY_SIZE
 #include "stack/btm/btm_sec.h"  // BTM_
@@ -671,8 +672,9 @@ static void write_rpt_clt_cfg_cb(uint16_t conn_id, tGATT_STATUS status,
     return;
   }
   if (!characteristic->uuid.Is16Bit()) {
-    log::error("Unexpected len characteristic ID clt cfg: {}",
-               characteristic->uuid.ToString());
+    log::error(
+        "Unexpected len characteristic ID clt cfg: {}",
+        bluetooth::hci::Uuid::ToString(characteristic->uuid.To128BitBE()));
     return;
   }
 
@@ -1452,7 +1454,8 @@ static void bta_hh_le_parse_hogp_service(tBTA_HH_DEV_CB* p_dev_cb,
     if (!charac.uuid.Is16Bit()) continue;
 
     uint16_t uuid16 = charac.uuid.As16Bit();
-    log::info("{} {}", bta_hh_uuid_to_str(uuid16), charac.uuid.ToString());
+    log::info("{} {}", bta_hh_uuid_to_str(uuid16),
+              bluetooth::hci::Uuid::ToString(charac.uuid.To128BitBE()));
 
     switch (uuid16) {
       case GATT_UUID_HID_CONTROL_POINT:
@@ -1657,7 +1660,8 @@ static void bta_hh_le_input_rpt_notify(tBTA_GATTC_NOTIFY* p_data) {
       BTA_GATTC_GetOwningService(p_dev_cb->conn_id, p_char->value_handle);
 
   if (!p_char->uuid.Is16Bit()) {
-    log::error("Unexpected characteristic len: {}", p_char->uuid.ToString());
+    log::error("Unexpected characteristic len: {}",
+               bluetooth::hci::Uuid::ToString(p_char->uuid.To128BitBE()));
     return;
   }
 
@@ -1666,7 +1670,8 @@ static void bta_hh_le_input_rpt_notify(tBTA_GATTC_NOTIFY* p_data) {
                                       p_char->value_handle);
   if (p_rpt == NULL) {
     log::error("Unknown Report, uuid:{}, handle:0x{:04x}",
-               p_char->uuid.ToString(), p_char->value_handle);
+               bluetooth::hci::Uuid::ToString(p_char->uuid.To128BitBE()),
+               p_char->value_handle);
     return;
   }
 
@@ -1854,7 +1859,8 @@ static void read_report_cb(uint16_t conn_id, tGATT_STATUS status,
     return;
   }
   if (!p_char->uuid.Is16Bit()) {
-    log::error("Unexpected characteristic len: {}", p_char->uuid.ToString());
+    log::error("Unexpected characteristic len: {}",
+               bluetooth::hci::Uuid::ToString(p_char->uuid.To128BitBE()));
     return;
   }
 
@@ -1944,7 +1950,8 @@ static void write_report_cb(uint16_t conn_id, tGATT_STATUS status,
 
   if (p_char == nullptr) return;
   if (!p_char->uuid.Is16Bit()) {
-    log::error("Unexpected characteristic len: {}", p_char->uuid.ToString());
+    log::error("Unexpected characteristic len: {}",
+               bluetooth::hci::Uuid::ToString(p_char->uuid.To128BitBE()));
     return;
   }
 

@@ -18,6 +18,7 @@
 
 #include "test/headless/sdp/sdp_db.h"
 
+#include "gd/hci/uuid.h"
 #include "stack/include/sdp_api.h"
 #include "types/bluetooth/uuid.h"
 
@@ -40,7 +41,9 @@ void SdpDb::Print(FILE* filep) const {
   fprintf(filep, "memory size:0x%x free:0x%x\n", db_->mem_size, db_->mem_free);
   fprintf(filep, "number of filters:%hd\n", db_->num_uuid_filters);
   for (int i = 0; i < db_->num_uuid_filters; i++) {
-    fprintf(filep, "  uuid:%s\n", db_->uuid_filters[i].ToString().c_str());
+    fprintf(filep, "  uuid:%s\n",
+            bluetooth::hci::Uuid::ToString(db_->uuid_filters[i].To128BitBE())
+                .c_str());
   }
   fprintf(filep, "raw data size:0x%x used:0x%x\n", db_->raw_size,
           db_->raw_used);

@@ -469,6 +469,7 @@ cc_fuzz {
         "bluetooth_flags_c_lib",
         "libbluetooth-types",
         "libbluetooth_crypto_toolbox",
+        "libbluetooth_gd",
         "libbluetooth_hci_pdl",
         "libbluetooth_l2cap_pdl",
         "libbluetooth_log",
@@ -564,6 +565,7 @@ cc_fuzz {
     ],
     static_libs: [
         "libbluetooth-types",
+        "libbluetooth_gd",
         "libbluetooth_hci_pdl",
         "libbluetooth_l2cap_pdl",
         "libbluetooth_log",

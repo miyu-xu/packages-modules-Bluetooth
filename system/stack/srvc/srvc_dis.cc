@@ -21,6 +21,7 @@
 #include <bluetooth/log.h>
 
 #include "gatt_api.h"
+#include "gd/hci/uuid.h"
 #include "hardware/bt_gatt_types.h"
 #include "os/log.h"
 #include "osi/include/allocator.h"
@@ -238,7 +239,9 @@ bool dis_gatt_c_read_dis_req(uint16_t conn_id) {
       if (GATTC_Read(conn_id, GATT_READ_BY_TYPE, &param) == GATT_SUCCESS)
         return true;
 
-      log::error("Read DISInfo: {} GATT_Read Failed", param.service.uuid);
+      log::error(
+          "Read DISInfo: {} GATT_Read Failed",
+          bluetooth::hci::Uuid::ToString(param.service.uuid.To128BitBE()));
     }
 
     dis_cb.dis_read_uuid_idx++;

@@ -26,6 +26,7 @@
 #include <string.h>
 
 #include "gatt_int.h"
+#include "gd/hci/uuid.h"
 #include "l2c_api.h"
 #include "osi/include/osi.h"
 #include "stack/include/bt_hdr.h"
@@ -57,7 +58,7 @@ void gatts_init_service_db(tGATT_SVC_DB& db, const Uuid& service_uuid,
   db.next_handle = s_hdl;
   db.end_handle = s_hdl + num_handle;
 
-  /* add service declration record */
+  /* add service declaration record */
   Uuid uuid =
       Uuid::From16Bit(is_pri ? GATT_UUID_PRI_SERVICE : GATT_UUID_SEC_SERVICE);
   tGATT_ATTR& attr = allocate_attr_in_db(db, uuid, GATT_PERM_READ);
@@ -173,7 +174,8 @@ static tGATT_STATUS read_attr_value(tGATT_ATTR& attr16, uint16_t offset,
                                     tGATT_SEC_FLAG sec_flag, uint8_t key_size) {
   uint8_t* p = *p_data;
 
-  log::verbose("uuid={} perm=0x{:02x} offset={} read_long={}", attr16.uuid,
+  log::verbose("uuid={} perm=0x{:02x} offset={} read_long={}",
+               bluetooth::hci::Uuid::ToString(attr16.uuid.To128BitBE()),
                attr16.permission, offset, read_long);
 
   tGATT_STATUS status = gatts_check_attr_readability(attr16, offset, read_long,
@@ -337,7 +339,7 @@ uint16_t gatts_add_included_service(tGATT_SVC_DB& db, uint16_t s_handle,
   Uuid uuid = Uuid::From16Bit(GATT_UUID_INCLUDE_SERVICE);
 
   log::verbose("s_hdl=0x{:04x} e_hdl=0x{:04x} service uuid = {}", s_handle,
-               e_handle, service);
+               e_handle, bluetooth::hci::Uuid::ToString(service.To128BitBE()));
 
   if (service.IsEmpty() || s_handle == 0 || e_handle == 0) {
     log::error("Illegal Params.");
@@ -359,7 +361,7 @@ uint16_t gatts_add_included_service(tGATT_SVC_DB& db, uint16_t s_handle,
  * Function         gatts_add_characteristic
  *
  * Description      This function add a characteristics and its descriptor into
- *                  a servce identified by the service database pointer.
+ *                  a service identified by the service database pointer.
  *
  * Parameter        db: database.
  *                  perm: permission (authentication and key size requirements)
@@ -404,7 +406,8 @@ uint16_t gatts_add_char_ext_prop_descr(
     tGATT_SVC_DB& db, uint16_t extended_properties) {
   Uuid descr_uuid = Uuid::From16Bit(GATT_UUID_CHAR_EXT_PROP);
 
-  log::verbose("gatts_add_char_ext_prop_descr uuid={}", descr_uuid.ToString());
+  log::verbose("gatts_add_char_ext_prop_descr uuid={}",
+               bluetooth::hci::Uuid::ToString(descr_uuid.To128BitBE()));
 
   tGATT_ATTR& char_dscptr = allocate_attr_in_db(db, descr_uuid, GATT_PERM_READ);
   char_dscptr.gatt_type = BTGATT_DB_DESCRIPTOR;
@@ -422,7 +425,7 @@ uint16_t gatts_add_char_ext_prop_descr(
  *
  * Parameter        p_db: database pointer.
  *                  perm: characteristic descriptor permission type.
- *                  char_dscp_tpye: the characteristic descriptor masks.
+ *                  char_dscp_type: the characteristic descriptor masks.
  *                  p_dscp_params: characteristic descriptors values.
  *
  * Returns          Status of the operation.
@@ -430,7 +433,8 @@ uint16_t gatts_add_char_ext_prop_descr(
  ******************************************************************************/
 uint16_t gatts_add_char_descr(tGATT_SVC_DB& db, tGATT_PERM perm,
                               const Uuid& descr_uuid) {
-  log::verbose("gatts_add_char_descr uuid={}", descr_uuid.ToString());
+  log::verbose("gatts_add_char_descr uuid={}",
+               bluetooth::hci::Uuid::ToString(descr_uuid.To128BitBE()));
 
   /* Add characteristic descriptors */
   tGATT_ATTR& char_dscptr = allocate_attr_in_db(db, descr_uuid, perm);
@@ -583,7 +587,7 @@ tGATT_STATUS gatts_write_attr_perm_check(tGATT_SVC_DB* p_db, uint8_t op_code,
   }
   if ((op_code == GATT_SIGN_CMD_WRITE) && sec_flag.is_encrypted) {
     status = GATT_INVALID_PDU;
-    log::error("Error!! sign cmd write sent on a encypted link");
+    log::error("Error!! sign cmd write sent on a encrypted link");
   } else if (!(perm & GATT_WRITE_ALLOWED)) {
     status = GATT_WRITE_NOT_PERMIT;
     log::error("GATT_WRITE_NOT_PERMIT");
@@ -609,7 +613,7 @@ tGATT_STATUS gatts_write_attr_perm_check(tGATT_SVC_DB* p_db, uint8_t op_code,
            !sec_flag.is_encrypted && (perm & GATT_WRITE_ALLOWED) == 0) {
     status = GATT_INSUF_AUTHENTICATION;
     log::error("GATT_INSUF_AUTHENTICATION: LE security mode 2 required");
-  } else /* writable: must be char value declaration or char descritpors */
+  } else /* writable: must be char value declaration or char descriptors */
   {
     uint16_t max_size = 0;
 

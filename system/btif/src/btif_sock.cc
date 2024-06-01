@@ -36,6 +36,7 @@
 #include "btif_sock_sco.h"
 #include "btif_sock_thread.h"
 #include "btif_uid.h"
+#include "gd/hci/uuid.h"
 #include "os/log.h"
 #include "osi/include/osi.h"  // INVALID_FD
 #include "osi/include/thread.h"
@@ -216,10 +217,10 @@ static bt_status_t btsock_connect(const RawAddress* bd_addr, btsock_type_t type,
   *sock_fd = INVALID_FD;
   bt_status_t status = BT_STATUS_FAIL;
 
-  btif_sock_connection_logger(*bd_addr, 0, type,
-                              SOCKET_CONNECTION_STATE_CONNECTING,
-                              SOCKET_ROLE_CONNECTION, app_uid, channel, 0, 0,
-                              uuid ? uuid->ToString().c_str() : "");
+  btif_sock_connection_logger(
+      *bd_addr, 0, type, SOCKET_CONNECTION_STATE_CONNECTING,
+      SOCKET_ROLE_CONNECTION, app_uid, channel, 0, 0,
+      uuid ? bluetooth::hci::Uuid::ToString(uuid->To128BitBE()).c_str() : "");
   switch (type) {
     case BTSOCK_RFCOMM:
       status =
@@ -247,10 +248,10 @@ static bt_status_t btsock_connect(const RawAddress* bd_addr, btsock_type_t type,
         "Socket connection failed for device: {}, type: {}, channel: {}, "
         "app_uid: {}",
         *bd_addr, type, channel, app_uid);
-    btif_sock_connection_logger(*bd_addr, 0, type,
-                                SOCKET_CONNECTION_STATE_DISCONNECTED,
-                                SOCKET_ROLE_CONNECTION, app_uid, channel, 0, 0,
-                                uuid ? uuid->ToString().c_str() : "");
+    btif_sock_connection_logger(
+        *bd_addr, 0, type, SOCKET_CONNECTION_STATE_DISCONNECTED,
+        SOCKET_ROLE_CONNECTION, app_uid, channel, 0, 0,
+        uuid ? bluetooth::hci::Uuid::ToString(uuid->To128BitBE()).c_str() : "");
   }
   return status;
 }

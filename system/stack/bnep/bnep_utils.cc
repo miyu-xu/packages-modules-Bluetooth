@@ -26,6 +26,7 @@
 #include <string.h>
 
 #include "bnep_int.h"
+#include "gd/hci/uuid.h"
 #include "hci/controller_interface.h"
 #include "internal_include/bt_target.h"
 #include "main/shim/entry.h"
@@ -172,7 +173,7 @@ void bnep_send_conn_req(tBNEP_CONN* p_bcb) {
   uint8_t *p, *p_start;
 
   log::verbose("sending setup req with dst uuid {}",
-               p_bcb->dst_uuid.ToString());
+               bluetooth::hci::Uuid::ToString(p_bcb->dst_uuid.To128BitBE()));
 
   p_buf->offset = L2CAP_MIN_OFFSET;
   p = p_start = (uint8_t*)(p_buf + 1) + L2CAP_MIN_OFFSET;
@@ -200,7 +201,8 @@ void bnep_send_conn_req(tBNEP_CONN* p_bcb) {
     memcpy(p, p_bcb->src_uuid.To128BitBE().data(), Uuid::kNumBytes128);
     p += Uuid::kNumBytes128;
   } else {
-    log::error("uuid: {}, invalid length: {}", p_bcb->dst_uuid.ToString(),
+    log::error("uuid: {}, invalid length: {}",
+               bluetooth::hci::Uuid::ToString(p_bcb->dst_uuid.To128BitBE()),
                p_bcb->dst_uuid.GetShortestRepresentationSize());
   }
 
@@ -614,13 +616,13 @@ void bnep_process_setup_conn_req(tBNEP_CONN* p_bcb, uint8_t* p_setup,
   p_bcb->con_flags |= BNEP_FLAGS_SETUP_RCVD;
 
   log::debug("BNEP initiating security check for incoming call for uuid {}",
-             p_bcb->src_uuid.ToString());
+             bluetooth::hci::Uuid::ToString(p_bcb->src_uuid.To128BitBE()));
   bnep_sec_check_complete(&p_bcb->rem_bda, BT_TRANSPORT_BR_EDR, p_bcb);
 }
 
 /*******************************************************************************
  *
- * Function         bnep_process_setup_conn_responce
+ * Function         bnep_process_setup_conn_response
  *
  * Description      This function processes a peer's setup connection response
  *                  message. The response code is verified and
@@ -629,11 +631,11 @@ void bnep_process_setup_conn_req(tBNEP_CONN* p_bcb, uint8_t* p_setup,
  * Returns          void
  *
  ******************************************************************************/
-void bnep_process_setup_conn_responce(tBNEP_CONN* p_bcb, uint8_t* p_setup) {
+void bnep_process_setup_conn_response(tBNEP_CONN* p_bcb, uint8_t* p_setup) {
   tBNEP_RESULT resp;
   uint16_t resp_code;
 
-  log::verbose("BNEP received setup responce");
+  log::verbose("BNEP received setup response");
   /* The state should be either SETUP or CONNECTED */
   if (p_bcb->con_state != BNEP_STATE_CONN_SETUP) {
     /* Should we disconnect ? */
@@ -783,7 +785,7 @@ uint8_t* bnep_process_control_packet(tBNEP_CONN* p_bcb, uint8_t* p,
             "Received BNEP_SETUP_CONNECTION_RESPONSE_MSG with bad length");
         goto bad_packet_length;
       }
-      if (!is_ext) bnep_process_setup_conn_responce(p_bcb, p);
+      if (!is_ext) bnep_process_setup_conn_response(p_bcb, p);
       p += 2;
       *rem_len = *rem_len - 2;
       break;

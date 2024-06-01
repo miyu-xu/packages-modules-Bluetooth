@@ -24,6 +24,7 @@
 #include "bta_gatt_queue.h"
 #include "devices.h"
 #include "gatt_api.h"
+#include "gd/hci/uuid.h"
 #include "internal_include/bt_trace.h"
 #include "os/log.h"
 #include "os/logging/log_adapter.h"
@@ -98,7 +99,8 @@ bool VolumeControlDevice::set_volume_control_service_handles(
       flags_handle = chrc.value_handle;
       flags_ccc_handle = find_ccc_handle(chrc.value_handle);
     } else {
-      log::warn("unknown characteristic={}", chrc.uuid);
+      log::warn("unknown characteristic={}",
+                bluetooth::hci::Uuid::ToString(chrc.uuid.To128BitBE()));
     }
   }
 
@@ -144,7 +146,8 @@ void VolumeControlDevice::set_volume_offset_control_service_handles(
           chrc.properties & GATT_CHAR_PROP_BIT_WRITE_NR;
 
     } else {
-      log::warn("unknown characteristic={}", chrc.uuid);
+      log::warn("unknown characteristic={}",
+                bluetooth::hci::Uuid::ToString(chrc.uuid.To128BitBE()));
     }
   }
 
@@ -191,7 +194,8 @@ bool VolumeControlDevice::UpdateHandles(void) {
           set_volume_offset_control_service_handles(*service);
 
         } else {
-          log::warn("unknown service={}", service->uuid);
+          log::warn("unknown service={}",
+                    bluetooth::hci::Uuid::ToString(service->uuid.To128BitBE()));
         }
       }
     }

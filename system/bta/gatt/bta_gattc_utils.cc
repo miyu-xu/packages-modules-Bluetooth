@@ -30,6 +30,7 @@
 
 #include "bta/gatt/bta_gattc_int.h"
 #include "common/init_flags.h"
+#include "gd/hci/uuid.h"
 #include "hci/controller_interface.h"
 #include "internal_include/bt_target.h"
 #include "internal_include/bt_trace.h"
@@ -838,8 +839,8 @@ void bta_gatt_client_dump(int fd) {
       continue;
     }
     entry_count++;
-    stream << "  client_if: " << +p_cl_rcb->client_if
-           << "  app uuids: " << p_cl_rcb->app_uuid
+    stream << "  client_if: " << +p_cl_rcb->client_if << "  app uuids: "
+           << bluetooth::hci::Uuid::ToString(p_cl_rcb->app_uuid.To128BitBE())
            << "  clcb_num: " << +p_cl_rcb->num_clcb;
     stream << "\n";
   }

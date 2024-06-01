@@ -21,6 +21,7 @@
 
 #include "bta/hh/bta_hh_int.h"
 #include "btif/include/btif_storage.h"
+#include "gd/hci/uuid.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/bt_uuid16.h"
 #include "types/bluetooth/uuid.h"
@@ -123,7 +124,8 @@ void bta_hh_headtracker_parse_service(tBTA_HH_DEV_CB* p_dev_cb,
     } else if (charac.uuid == ANDROID_HEADTRACKER_REPORT_CHARAC_UUID) {
       data_found = bta_hh_headtracker_parse_report_charac(p_dev_cb, charac);
     } else {
-      log::warn("Unexpected characteristic {}", charac.uuid.ToString());
+      log::warn("Unexpected characteristic {}",
+                bluetooth::hci::Uuid::ToString(charac.uuid.To128BitBE()));
     }
   }
 

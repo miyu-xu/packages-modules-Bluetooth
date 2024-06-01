@@ -67,6 +67,7 @@ class Uuid final : public storage::Serializable<Uuid> {
   // xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx format, lowercase.
   std::string ToString() const override;
   std::string ToLegacyConfigString() const override;
+  static std::string ToString(UUID128Bit uuid);
 
   // Returns the shortest possible representation of this UUID in bytes. Either
   // kNumBytes16, kNumBytes32, or kNumBytes128

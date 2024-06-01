@@ -69,6 +69,7 @@
 #include "common/lru_cache.h"
 #include "common/metrics.h"
 #include "device/include/interop.h"
+#include "gd/hci/uuid.h"
 #include "hci/controller_interface.h"
 #include "hci/le_rand_callback.h"
 #include "internal_include/bt_target.h"
@@ -1574,7 +1575,7 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event,
           log::info("EIR UUIDs for {}:", bdaddr);
           for (int i = 0; i < num_uuids; ++i) {
             Uuid uuid = Uuid::From16Bit(p_uuid16[i]);
-            log::info("{}", uuid.ToString());
+            log::info("{}", bluetooth::hci::Uuid::ToString(uuid.To128BitBE()));
             uuid_iter->second.insert(uuid);
           }
 
@@ -1735,7 +1736,7 @@ static void btif_on_service_discovery_results(
       if (btif_should_ignore_uuid(uuid)) {
         continue;
       }
-      log::info("uuid:{}", uuid.ToString());
+      log::info("uuid:{}", bluetooth::hci::Uuid::ToString(uuid.To128BitBE()));
       uuids.insert(uuid);
     }
 
@@ -1748,7 +1749,8 @@ static void btif_on_service_discovery_results(
         continue;
       }
       if (btif_is_interesting_le_service(uuid)) {
-        log::info("interesting le service {} insert", uuid.ToString());
+        log::info("interesting le service {} insert",
+                  bluetooth::hci::Uuid::ToString(uuid.To128BitBE()));
         uuids.insert(uuid);
       }
     }
@@ -1902,7 +1904,7 @@ void btif_on_gatt_results(RawAddress bd_addr, BD_NAME bd_name,
         continue;
       }
       log::info("index:{} uuid:{}", static_cast<int>(uuids.size()),
-                uuid.ToString());
+                bluetooth::hci::Uuid::ToString(uuid.To128BitBE()));
       uuids.insert(uuid);
     }
   }

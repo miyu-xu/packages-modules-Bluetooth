@@ -31,6 +31,7 @@
 #include "com_android_bluetooth_flags.h"
 #include "common/init_flags.h"
 #include "common/strings.h"
+#include "gd/hci/uuid.h"
 #include "internal_include/bt_target.h"
 #include "stack/include/bt_uuid16.h"
 #include "stack/include/btm_log_history.h"
@@ -344,7 +345,8 @@ void bta_dm_sdp_find_services(tBTA_DM_SDP_STATE* sdp_state) {
 
   tSDP_DISCOVERY_DB* p_sdp_db = (tSDP_DISCOVERY_DB*)sdp_state->sdp_db_buffer;
 
-  log::info("search UUID = {}", uuid.ToString());
+  log::info("search UUID = {}",
+            bluetooth::hci::Uuid::ToString(uuid.To128BitBE()));
   if (!get_legacy_stack_sdp_api()->service.SDP_InitDiscoveryDb(
           p_sdp_db, BTA_DM_SDP_DB_SIZE, 1, &uuid, 0, NULL)) {
     log::warn("Unable to initialize SDP service discovery db peer:{}",

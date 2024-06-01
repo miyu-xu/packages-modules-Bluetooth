@@ -38,6 +38,7 @@
 #include "common/init_flags.h"
 #include "common/strings.h"
 #include "device/include/interop.h"
+#include "gd/hci/uuid.h"
 #include "internal_include/bt_target.h"
 #include "main/shim/dumpsys.h"
 #include "os/logging/log_adapter.h"
@@ -1102,7 +1103,8 @@ static void bta_dm_find_services(const RawAddress& bd_addr) {
         bta_dm_search_cb.services_to_search = 0;
       }
 
-      log::info("search UUID = {}", uuid.ToString());
+      log::info("search UUID = {}",
+                bluetooth::hci::Uuid::ToString(uuid.To128BitBE()));
       if (!get_legacy_stack_sdp_api()->service.SDP_InitDiscoveryDb(
               bta_dm_search_cb.p_sdp_db, BTA_DM_SDP_DB_SIZE, 1, &uuid, 0,
               NULL)) {

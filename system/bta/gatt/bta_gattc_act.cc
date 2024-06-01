@@ -33,6 +33,7 @@
 #include "bta/gatt/bta_gattc_int.h"
 #include "bta/include/bta_api.h"
 #include "btif/include/btif_debug_conn.h"
+#include "gd/hci/uuid.h"
 #include "hardware/bt_gatt_types.h"
 #include "hci/controller_interface.h"
 #include "internal_include/bt_trace.h"
@@ -174,7 +175,8 @@ void bta_gattc_register(const Uuid& app_uuid, tBTA_GATTC_CBACK* p_cback,
                         BtaAppRegisterCallback cb, bool eatt_support) {
   tGATT_STATUS status = GATT_NO_RESOURCES;
   uint8_t client_if = 0;
-  log::debug("state: {}, uuid={}", bta_gattc_cb.state, app_uuid.ToString());
+  log::debug("state: {}, uuid={}", bta_gattc_cb.state,
+             bluetooth::hci::Uuid::ToString(app_uuid.To128BitBE()));
 
   /* check if  GATTC module is already enabled . Else enable */
   if (bta_gattc_cb.state == BTA_GATTC_STATE_DISABLED) {
@@ -202,7 +204,7 @@ void bta_gattc_register(const Uuid& app_uuid, tBTA_GATTC_CBACK* p_cback,
         log::debug(
             "Registered GATT client interface {} with uuid={}, starting it on "
             "main thread",
-            client_if, app_uuid.ToString());
+            client_if, bluetooth::hci::Uuid::ToString(app_uuid.To128BitBE()));
 
         do_in_main_thread(FROM_HERE,
                           base::BindOnce(&bta_gattc_start_if, client_if));

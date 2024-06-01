@@ -25,6 +25,7 @@
 #include <sstream>
 
 #include "crypto_toolbox/crypto_toolbox.h"
+#include "gd/hci/uuid.h"
 #include "internal_include/bt_trace.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/gattdefs.h"
@@ -67,25 +68,28 @@ std::string Database::ToString() const {
 
   for (const Service& service : services) {
     tmp << "Service: handle=" << loghex(service.handle)
-        << ", end_handle=" << loghex(service.end_handle)
-        << ", uuid=" << service.uuid << "\n";
+        << ", end_handle=" << loghex(service.end_handle) << ", uuid="
+        << bluetooth::hci::Uuid::ToString(service.uuid.To128BitBE()) << "\n";
 
     for (const auto& is : service.included_services) {
       tmp << "\t Included service: handle=" << loghex(is.handle)
           << ", start_handle=" << loghex(is.start_handle)
-          << ", end_handle=" << loghex(is.end_handle) << ", uuid=" << is.uuid
+          << ", end_handle=" << loghex(is.end_handle)
+          << ", uuid=" << bluetooth::hci::Uuid::ToString(is.uuid.To128BitBE())
           << "\n";
     }
 
     for (const Characteristic& c : service.characteristics) {
       tmp << "\t Characteristic: declaration_handle="
           << loghex(c.declaration_handle)
-          << ", value_handle=" << loghex(c.value_handle) << ", uuid=" << c.uuid
+          << ", value_handle=" << loghex(c.value_handle)
+          << ", uuid=" << bluetooth::hci::Uuid::ToString(c.uuid.To128BitBE())
           << ", prop=" << loghex(c.properties) << "\n";
 
       for (const Descriptor& d : c.descriptors) {
         tmp << "\t\t Descriptor: handle=" << loghex(d.handle)
-            << ", uuid=" << d.uuid << "\n";
+            << ", uuid=" << bluetooth::hci::Uuid::ToString(d.uuid.To128BitBE())
+            << "\n";
       }
     }
   }

@@ -32,6 +32,7 @@
 #include "common/strings.h"
 #include "crypto_toolbox/crypto_toolbox.h"
 #include "gap_api.h"
+#include "gd/hci/uuid.h"
 
 // Uncomment to debug SIRK calculations
 // #define CSIS_DEBUG
@@ -268,7 +269,8 @@ class CsisDevice : public GattServiceDevice {
                        std::shared_ptr<CsisInstance> csis_instance) {
     if (csis_instances_.count(handle)) {
       log::debug("instance is already here: {}",
-                 csis_instance->GetUuid().ToString());
+                 bluetooth::hci::Uuid::ToString(
+                     csis_instance->GetUuid().To128BitBE()));
       return;
     }
 

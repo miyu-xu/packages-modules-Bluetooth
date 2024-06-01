@@ -32,6 +32,7 @@
 #include "btif/include/btif_sock_thread.h"
 #include "btif/include/btif_sock_util.h"
 #include "btif/include/btif_uid.h"
+#include "gd/hci/uuid.h"
 #include "gd/os/rand.h"
 #include "include/hardware/bluetooth.h"
 #include "internal_include/bt_target.h"
@@ -1042,7 +1043,7 @@ bt_status_t btsock_l2cap_get_l2cap_local_cid(Uuid& conn_uuid, uint16_t* cid) {
   sock = btsock_l2cap_find_by_conn_uuid_l(conn_uuid);
   if (!sock) {
     log::error("Unable to find l2cap socket with conn_uuid:{}",
-               conn_uuid.ToString());
+               bluetooth::hci::Uuid::ToString(conn_uuid.To128BitBE()));
     return BT_STATUS_FAIL;
   }
   *cid = sock->local_cid;
@@ -1056,7 +1057,7 @@ bt_status_t btsock_l2cap_get_l2cap_remote_cid(Uuid& conn_uuid, uint16_t* cid) {
   sock = btsock_l2cap_find_by_conn_uuid_l(conn_uuid);
   if (!sock) {
     log::error("Unable to find l2cap socket with conn_uuid:{}",
-               conn_uuid.ToString());
+               bluetooth::hci::Uuid::ToString(conn_uuid.To128BitBE()));
     return BT_STATUS_FAIL;
   }
   *cid = sock->remote_cid;

@@ -48,6 +48,7 @@
 #include "btif_util.h"
 #include "common/init_flags.h"
 #include "core_callbacks.h"
+#include "gd/hci/uuid.h"
 #include "hci/controller_interface.h"
 #include "internal_include/bt_target.h"
 #include "main/shim/entry.h"
@@ -173,7 +174,8 @@ static bool prop2cfg(const RawAddress* remote_bd_addr, bt_property_t* prop) {
       std::string val;
       size_t cnt = (prop->len) / sizeof(Uuid);
       for (size_t i = 0; i < cnt; i++) {
-        val += (reinterpret_cast<Uuid*>(prop->val) + i)->ToString() + " ";
+        Uuid* uuid = reinterpret_cast<Uuid*>(prop->val) + i;
+        val += bluetooth::hci::Uuid::ToString(uuid->To128BitBE()) + " ";
       }
       btif_config_set_str(bdstr, BTIF_STORAGE_KEY_REMOTE_SERVICE, val);
       break;

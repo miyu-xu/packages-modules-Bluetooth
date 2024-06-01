@@ -28,6 +28,7 @@
 #include <algorithm>
 
 #include "gatt_int.h"
+#include "gd/hci/uuid.h"
 #include "hardware/bt_gatt_types.h"
 #include "internal_include/bt_target.h"
 #include "l2c_api.h"
@@ -725,13 +726,15 @@ void gatts_process_primary_service_req(tGATT_TCB& tcb, uint16_t cid,
     if (op_code == GATT_REQ_READ_BY_GRP_TYPE) {
       gatt_send_error_rsp(tcb, cid, GATT_UNSUPPORT_GRP_TYPE, op_code, s_hdl,
                           false);
-      log::verbose("unexpected ReadByGrpType Group: {}", uuid.ToString());
+      log::verbose("unexpected ReadByGrpType Group: {}",
+                   bluetooth::hci::Uuid::ToString(uuid.To128BitBE()));
       return;
     }
 
     // we do not support ReadByTypeValue with any non-primamry_service type
     gatt_send_error_rsp(tcb, cid, GATT_NOT_FOUND, op_code, s_hdl, false);
-    log::verbose("unexpected ReadByTypeValue type: {}", uuid.ToString());
+    log::verbose("unexpected ReadByTypeValue type: {}",
+                 bluetooth::hci::Uuid::ToString(uuid.To128BitBE()));
     return;
   }
 

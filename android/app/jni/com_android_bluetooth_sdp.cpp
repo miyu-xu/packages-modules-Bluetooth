@@ -19,6 +19,7 @@
 #include <string.h>
 
 #include "com_android_bluetooth.h"
+#include "gd/hci/uuid.h"
 #include "hardware/bt_sdp.h"
 
 using bluetooth::Uuid;
@@ -93,7 +94,7 @@ static jboolean sdpSearchNative(JNIEnv* env, jobject /* obj */,
     return JNI_FALSE;
   }
   Uuid uuid = Uuid::From128BitBE((uint8_t*)raw_uuid);
-  log::debug("UUID {}", uuid);
+  log::debug("UUID {}", bluetooth::hci::Uuid::ToString(uuid.To128BitBE()));
 
   int ret = sBluetoothSdpInterface->sdp_search((RawAddress*)addr, uuid);
   if (ret != BT_STATUS_SUCCESS) {

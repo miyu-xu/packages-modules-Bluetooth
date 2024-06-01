@@ -22,6 +22,7 @@
 
 #include "bta/dm/bta_dm_int.h"
 #include "bta/include/bta_api.h"
+#include "gd/hci/uuid.h"
 #include "stack/include/sdp_api.h"
 #include "test/headless/get_options.h"
 #include "test/headless/headless.h"
@@ -67,7 +68,8 @@ int sdp_query_uuid([[maybe_unused]] unsigned int num_loops,
     fprintf(stdout, "%s Failed to start search attribute request\n", __func__);
     return -2;
   }
-  LOG_CONSOLE("Started service search for uuid:%s", uuid.ToString().c_str());
+  LOG_CONSOLE("Started service search for uuid:%s",
+              bluetooth::hci::Uuid::ToString(uuid.To128BitBE()).c_str());
 
   const tSDP_STATUS result = future.get();
   if (result != SDP_SUCCESS) {
@@ -77,7 +79,7 @@ int sdp_query_uuid([[maybe_unused]] unsigned int num_loops,
   }
 
   LOG_CONSOLE("Found records peer:%s uuid:%s", raw_address.ToString().c_str(),
-              uuid.ToString().c_str());
+              bluetooth::hci::Uuid::ToString(uuid.To128BitBE()).c_str());
   for (unsigned i = 0; i < BTA_MAX_SERVICE_ID; i++) {
     uint16_t uuid_as16Bit = bta_service_id_to_uuid_lkup_tbl[i];
     tSDP_DISC_REC* rec = SDP_FindServiceInDb(sdp_discovery_db.RawPointer(),

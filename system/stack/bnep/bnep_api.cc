@@ -29,6 +29,7 @@
 
 #include "bnep_int.h"
 #include "bta/include/bta_sec_api.h"
+#include "gd/hci/uuid.h"
 #include "internal_include/bt_target.h"
 #include "os/log.h"
 #include "osi/include/allocator.h"
@@ -164,7 +165,7 @@ tBNEP_RESULT BNEP_Connect(const RawAddress& p_rem_bda, const Uuid& src_uuid,
     p_bcb->con_state = BNEP_STATE_SEC_CHECKING;
 
     log::verbose("BNEP initiating security procedures for src uuid {}",
-                 p_bcb->src_uuid.ToString());
+                 bluetooth::hci::Uuid::ToString(p_bcb->src_uuid.To128BitBE()));
 
     bnep_sec_check_complete(&p_bcb->rem_bda, BT_TRANSPORT_BR_EDR, p_bcb);
   } else {

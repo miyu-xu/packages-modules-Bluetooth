@@ -65,7 +65,7 @@ class Uuid final {
   // Converts string representing 128, 32, or 16 bit UUID in
   // xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx, xxxxxxxx, or xxxx format to UUID. If
   // set, optional is_valid parameter will be set to true if conversion is
-  // successfull, false otherwise.
+  // successful, false otherwise.
   static Uuid FromString(const std::string& uuid, bool* is_valid = nullptr);
 
   // Converts 16bit Little Endian representation of UUID to UUID
@@ -97,10 +97,6 @@ class Uuid final {
   // Returns 128 bit Big Endian representation of this UUID
   const UUID128Bit& To128BitBE() const;
 
-  // Returns string representing this UUID in
-  // xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx format, lowercase.
-  std::string ToString() const;
-
   // Returns true if this UUID is equal to kEmpty
   bool IsEmpty() const;
 
@@ -120,11 +116,6 @@ class Uuid final {
   // Network-byte-ordered ID (Big Endian).
   UUID128Bit uu;
 };
-
-inline std::ostream& operator<<(std::ostream& os, const bluetooth::Uuid& a) {
-  os << a.ToString();
-  return os;
-}
 
 }  // namespace bluetooth
 

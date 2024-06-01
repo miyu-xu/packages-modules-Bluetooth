@@ -34,6 +34,7 @@
 #include "bta/include/bta_rfcomm_scn.h"
 #include "bta/jv/bta_jv_int.h"
 #include "bta/sys/bta_sys.h"
+#include "gd/hci/uuid.h"
 #include "internal_include/bt_target.h"
 #include "internal_include/bt_trace.h"
 #include "os/logging/log_adapter.h"
@@ -824,8 +825,10 @@ static void bta_jv_start_discovery_cback(uint32_t rfcomm_slot_id,
       tSDP_DISC_REC* p_sdp_rec = NULL;
       p_sdp_rec = get_legacy_stack_sdp_api()->db.SDP_FindServiceUUIDInDb(
           p_bta_jv_cfg->p_sdp_db, bta_jv_cb.sdp_cb.uuid, p_sdp_rec);
-      log::verbose("bta_jv_cb.uuid={} p_sdp_rec={}", bta_jv_cb.sdp_cb.uuid,
-                   fmt::ptr(p_sdp_rec));
+      log::verbose(
+          "bta_jv_cb.uuid={} p_sdp_rec={}",
+          bluetooth::hci::Uuid::ToString(bta_jv_cb.sdp_cb.uuid.To128BitBE()),
+          fmt::ptr(p_sdp_rec));
       if (p_sdp_rec &&
           get_legacy_stack_sdp_api()->record.SDP_FindProtocolListElemInRec(
               p_sdp_rec, UUID_PROTOCOL_RFCOMM, &pe)) {

@@ -45,6 +45,7 @@
 #include "btif_gatt.h"
 #include "btif_gatt_util.h"
 #include "gatt_api.h"
+#include "gd/hci/uuid.h"
 #include "hci/controller_interface.h"
 #include "internal_include/bte_appl.h"
 #include "main/shim/entry.h"
@@ -745,7 +746,8 @@ static void btif_test_discovery_result_cback(uint16_t /* conn_id */,
   log::info("Attribute handle: 0x{:04x} ({})", p_data->handle, p_data->handle);
 
   if (disc_type != GATT_DISC_CHAR_DSCPT) {
-    log::info("Attribute type: {}", p_data->type.ToString());
+    log::info("Attribute type: {}",
+              bluetooth::hci::Uuid::ToString(p_data->type.To128BitBE()));
   }
 
   switch (disc_type) {
@@ -754,7 +756,8 @@ static void btif_test_discovery_result_cback(uint16_t /* conn_id */,
                 p_data->value.group_value.e_handle, p_data->handle,
                 p_data->value.group_value.e_handle);
       log::info("Service UUID: {}",
-                p_data->value.group_value.service_type.ToString());
+                bluetooth::hci::Uuid::ToString(
+                    p_data->value.group_value.service_type.To128BitBE()));
       break;
 
     case GATT_DISC_SRVC_BY_UUID:
@@ -769,17 +772,20 @@ static void btif_test_discovery_result_cback(uint16_t /* conn_id */,
                 p_data->value.incl_service.s_handle,
                 p_data->value.incl_service.e_handle);
       log::info("Service UUID: {}",
-                p_data->value.incl_service.service_type.ToString());
+                bluetooth::hci::Uuid::ToString(
+                    p_data->value.incl_service.service_type.To128BitBE()));
       break;
 
     case GATT_DISC_CHAR:
       log::info("Properties: 0x{:02x}", p_data->value.dclr_value.char_prop);
       log::info("Characteristic UUID: {}",
-                p_data->value.dclr_value.char_uuid.ToString());
+                bluetooth::hci::Uuid::ToString(
+                    p_data->value.dclr_value.char_uuid.To128BitBE()));
       break;
 
     case GATT_DISC_CHAR_DSCPT:
-      log::info("Descriptor UUID: {}", p_data->type.ToString());
+      log::info("Descriptor UUID: {}",
+                bluetooth::hci::Uuid::ToString(p_data->type.To128BitBE()));
       break;
     case GATT_DISC_MAX:
       log::error("Unknown discovery item");
@@ -863,7 +869,8 @@ static bt_status_t btif_gattc_test_command_impl(
 
       log::info("DISCOVER ({}), conn_id={}, uuid={}, handles=0x{:04x}-0x{:04x}",
                 disc_name[params->u1], test_cb.conn_id,
-                params->uuid1->ToString(), params->u2, params->u3);
+                bluetooth::hci::Uuid::ToString(params->uuid1->To128BitBE()),
+                params->u2, params->u3);
       if (GATTC_Discover(test_cb.conn_id,
                          static_cast<tGATT_DISC_TYPE>(params->u1), params->u2,
                          params->u3, *params->uuid1) != GATT_SUCCESS)

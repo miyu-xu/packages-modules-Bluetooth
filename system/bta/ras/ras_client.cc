@@ -18,6 +18,7 @@
 #include "bta/include/bta_gatt_api.h"
 #include "bta/include/bta_ras_api.h"
 #include "bta/ras/ras_types.h"
+#include "gd/hci/uuid.h"
 #include "os/logging/log_adapter.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/btm_ble_addr.h"
@@ -130,12 +131,16 @@ class RasClientImpl : public bluetooth::ras::RasClient {
           vendor_specific_characteristic.characteristicUuid_);
       if (characteristic == nullptr) {
         log::warn("Can't find characteristic uuid {}",
-                  vendor_specific_characteristic.characteristicUuid_);
+                  bluetooth::hci::Uuid::ToString(
+                      vendor_specific_characteristic.characteristicUuid_
+                          .To128BitBE()));
         return;
       }
-      log::debug("write to remote, uuid {}, len {}",
-                 vendor_specific_characteristic.characteristicUuid_,
-                 vendor_specific_characteristic.value_.size());
+      log::debug(
+          "write to remote, uuid {}, len {}",
+          bluetooth::hci::Uuid::ToString(
+              vendor_specific_characteristic.characteristicUuid_.To128BitBE()),
+          vendor_specific_characteristic.value_.size());
       BTA_GATTC_WriteCharValue(
           tracker->conn_id_, characteristic->value_handle, GATT_WRITE,
           vendor_specific_characteristic.value_, GATT_AUTH_REQ_MITM,
@@ -220,7 +225,9 @@ class RasClientImpl : public bluetooth::ras::RasClient {
       for (auto& vendor_specific_characteristic :
            tracker->vendor_specific_characteristics_) {
         log::debug("Read vendor specific characteristic uuid {}",
-                   vendor_specific_characteristic.characteristicUuid_);
+                   bluetooth::hci::Uuid::ToString(
+                       vendor_specific_characteristic.characteristicUuid_
+                           .To128BitBE()));
         auto characteristic = tracker->FindCharacteristicByUuid(
             vendor_specific_characteristic.characteristicUuid_);
 
@@ -559,7 +566,9 @@ class RasClientImpl : public bluetooth::ras::RasClient {
         tracker->GetVendorSpecificCharacteristic(characteristic->uuid);
     if (vendor_specific_characteristic != nullptr) {
       log::info("Update vendor specific data, uuid: {}",
-                vendor_specific_characteristic->characteristicUuid_);
+                bluetooth::hci::Uuid::ToString(
+                    vendor_specific_characteristic->characteristicUuid_
+                        .To128BitBE()));
       vendor_specific_characteristic->value_.clear();
       vendor_specific_characteristic->value_.reserve(len);
       vendor_specific_characteristic->value_.assign(value, value + len);

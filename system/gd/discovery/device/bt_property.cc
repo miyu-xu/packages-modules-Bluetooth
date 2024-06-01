@@ -20,6 +20,7 @@
 
 #include <string>
 
+#include "gd/hci/uuid.h"
 #include "include/hardware/bluetooth.h"
 #include "os/log.h"
 #include "stack/include/bt_name.h"
@@ -72,7 +73,10 @@ std::string bt_property_text(const bt_property_t& property) {
       std::ostringstream oss;
       const bluetooth::Uuid* it = (const bluetooth::Uuid*)property.val;
       for (size_t i = 0; i < (size_t)property.len; i += sizeof(bluetooth::Uuid), it++) {
-        (i == 0) ? oss << *it : oss << " " << *it;
+        if (i != 0) {
+          oss << " ";
+        }
+        oss << bluetooth::hci::Uuid::ToString(it->To128BitBE());
       }
       return base::StringPrintf(
           "type:%s uuids:%s", bt_property_type_text(property.type).c_str(), oss.str().c_str());
@@ -93,7 +97,8 @@ std::string bt_property_text(const bt_property_t& property) {
       return base::StringPrintf(
           "type:%s uuid:%s channel:%u name:\"%s\"",
           bt_property_type_text(property.type).c_str(),
-          (((bt_service_record_t*)property.val)->uuid).ToString().c_str(),
+          bluetooth::hci::Uuid::ToString((((bt_service_record_t*)property.val)->uuid).To128BitBE())
+              .c_str(),
           (((bt_service_record_t*)property.val)->channel),
           (((bt_service_record_t*)property.val)->name));
 

@@ -76,7 +76,8 @@ class RasServerImpl : public bluetooth::ras::RasServer {
     Uuid uuid =
         Uuid::From128BitBE(bluetooth::os::GenerateRandom<Uuid::kNumBytes128>());
     app_uuid_ = uuid;
-    log::info("Register server with uuid:{}", app_uuid_.ToString());
+    log::info("Register server with uuid:{}",
+              bluetooth::hci::Uuid::ToString(app_uuid_.To128BitBE()));
 
     BTA_GATTS_AppRegister(
         app_uuid_,
@@ -326,8 +327,9 @@ class RasServerImpl : public bluetooth::ras::RasServer {
       characteristics.permissions =
           GATT_PERM_READ_ENCRYPTED | GATT_PERM_WRITE_ENCRYPTED | key_mask;
       service.push_back(characteristics);
-      log::info("Push vendor_specific_characteristics uuid {}",
-                characteristics.uuid);
+      log::info(
+          "Push vendor_specific_characteristics uuid {}",
+          bluetooth::hci::Uuid::ToString(characteristics.uuid.To128BitBE()));
     }
 
     BTA_GATTS_AddService(
@@ -354,7 +356,8 @@ class RasServerImpl : public bluetooth::ras::RasServer {
     auto uuid = characteristics_[read_req_handle].uuid_;
     auto vendor_specific_characteristic = GetVendorSpecificCharacteristic(uuid);
     if (vendor_specific_characteristic != nullptr) {
-      log::debug("Read vendor_specific_characteristic uuid {}", uuid);
+      log::debug("Read vendor_specific_characteristic uuid {}",
+                 bluetooth::hci::Uuid::ToString(uuid.To128BitBE()));
       p_msg.attr_value.len = vendor_specific_characteristic->value_.size();
       std::copy(vendor_specific_characteristic->value_.begin(),
                 vendor_specific_characteristic->value_.end(),
@@ -372,7 +375,8 @@ class RasServerImpl : public bluetooth::ras::RasServer {
         memcpy(p_msg.attr_value.value, &kSupportedFeatures, sizeof(uint32_t));
       } break;
       default:
-        log::warn("Unhandled uuid {}", uuid.ToString());
+        log::warn("Unhandled uuid {}",
+                  bluetooth::hci::Uuid::ToString(uuid.To128BitBE()));
         BTA_GATTS_SendRsp(p_data->req_data.conn_id, p_data->req_data.trans_id,
                           GATT_ILLEGAL_PARAMETER, &p_msg);
         return;
@@ -463,7 +467,8 @@ class RasServerImpl : public bluetooth::ras::RasServer {
         HandleControlPoint(tracker, &p_data->req_data.p_data->write_req);
       } break;
       default:
-        log::warn("Unhandled uuid {}", uuid.ToString());
+        log::warn("Unhandled uuid {}",
+                  bluetooth::hci::Uuid::ToString(uuid.To128BitBE()));
         BTA_GATTS_SendRsp(p_data->req_data.conn_id, p_data->req_data.trans_id,
                           GATT_ILLEGAL_PARAMETER, &p_msg);
         return;
@@ -473,7 +478,10 @@ class RasServerImpl : public bluetooth::ras::RasServer {
   void WriteVendorSpecificCharacteristic(
       VendorSpecificCharacteristic* vendor_specific_characteristic,
       tBTA_GATTS* p_data, tGATTS_RSP& p_msg) {
-    log::debug("uuid {}", vendor_specific_characteristic->characteristicUuid_);
+    log::debug(
+        "uuid {}",
+        bluetooth::hci::Uuid::ToString(
+            vendor_specific_characteristic->characteristicUuid_.To128BitBE()));
     uint16_t len = p_data->req_data.p_data->write_req.len;
     RawAddress remote_bda = p_data->req_data.remote_bda;
 

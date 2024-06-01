@@ -41,6 +41,7 @@
 #include "csis_types.h"
 #include "gap_api.h"
 #include "gatt_api.h"
+#include "gd/hci/uuid.h"
 #include "internal_include/bt_target.h"
 #include "internal_include/bt_trace.h"
 #include "main/shim/le_scanning_manager.h"
@@ -188,8 +189,8 @@ class CsisClientImpl : public CsisClient {
 
   void OnGroupAddedCb(const RawAddress& address, const bluetooth::Uuid& uuid,
                       int group_id) {
-    log::debug("address: {}, uuid: {}, group_id: {}", address, uuid.ToString(),
-               group_id);
+    log::debug("address: {}, uuid: {}, group_id: {}", address,
+               bluetooth::hci::Uuid::ToString(uuid.To128BitBE()), group_id);
 
     AssignCsisGroup(address, group_id, true, uuid);
   }
@@ -726,7 +727,9 @@ class CsisClientImpl : public CsisClient {
            << "  Groups:\n";
     for (const auto& g : csis_groups_) {
       stream << "    == id: " << g->GetGroupId() << " ==\n"
-             << "    uuid: " << g->GetUuid() << "\n"
+             << "    uuid: "
+             << bluetooth::hci::Uuid::ToString(g->GetUuid().To128BitBE())
+             << "\n"
              << "    desired size: " << g->GetDesiredSize() << "\n"
              << "    discoverable state: "
              << static_cast<int>(g->GetDiscoveryState()) << "\n"
@@ -1719,7 +1722,8 @@ class CsisClientImpl : public CsisClient {
                           const bluetooth::Uuid& context_uuid,
                           bool is_last_instance) {
     log::debug("service handle: 0x{:04x}, end handle: 0x{:04x}, uuid: {}",
-               service->handle, service->end_handle, context_uuid.ToString());
+               service->handle, service->end_handle,
+               bluetooth::hci::Uuid::ToString(context_uuid.To128BitBE()));
 
     auto csis_inst = std::make_shared<CsisInstance>(
         (uint16_t)service->handle, (uint16_t)service->end_handle, context_uuid);

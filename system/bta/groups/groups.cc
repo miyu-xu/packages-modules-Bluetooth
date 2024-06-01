@@ -25,6 +25,7 @@
 
 #include "bta_groups.h"
 #include "btif/include/btif_profile_storage.h"
+#include "gd/hci/uuid.h"
 #include "os/logging/log_adapter.h"
 #include "stack/include/bt_types.h"
 #include "types/bluetooth/uuid.h"
@@ -289,7 +290,9 @@ class DeviceGroupsImpl : public DeviceGroups {
       if (group->GetUuid() != uuid) {
         log::error(
             "group {} exists but for different uuid: {}, user request uuid: {}",
-            group_id, group->GetUuid(), uuid);
+            group_id,
+            bluetooth::hci::Uuid::ToString(group->GetUuid().To128BitBE()),
+            bluetooth::hci::Uuid::ToString(uuid.To128BitBE()));
         return nullptr;
       }
 
@@ -373,7 +376,9 @@ void DeviceGroups::CleanUp(DeviceGroupsCallbacks* callbacks) {
 std::ostream& operator<<(std::ostream& out,
                          bluetooth::groups::DeviceGroup const& group) {
   out << "    == Group id: " << group.group_id_ << " == \n"
-      << "      Uuid: " << group.group_uuid_ << std::endl;
+      << "      Uuid: "
+      << bluetooth::hci::Uuid::ToString(group.group_uuid_.To128BitBE())
+      << std::endl;
   out << "      Devices:\n";
   for (auto const& addr : group.devices_) {
     out << "        " << ADDRESS_TO_LOGGABLE_STR(addr) << std::endl;

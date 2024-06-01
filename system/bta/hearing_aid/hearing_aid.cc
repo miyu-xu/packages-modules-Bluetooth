@@ -38,6 +38,7 @@
 #include "bta/include/bta_hearing_aid_api.h"
 #include "btm_iso_api.h"
 #include "embdrv/g722/g722_enc_dec.h"
+#include "gd/hci/uuid.h"
 #include "hal/link_clocker.h"
 #include "hardware/bt_gatt_types.h"
 #include "hci/controller_interface.h"
@@ -867,7 +868,8 @@ class HearingAidImpl : public HearingAid {
       } else if (charac.uuid == LE_PSM_UUID) {
         hearingDevice->read_psm_handle = charac.value_handle;
       } else {
-        log::warn("Unknown characteristic found:{}", charac.uuid.ToString());
+        log::warn("Unknown characteristic found:{}",
+                  bluetooth::hci::Uuid::ToString(charac.uuid.To128BitBE()));
       }
     }
 

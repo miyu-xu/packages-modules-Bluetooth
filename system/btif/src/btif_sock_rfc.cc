@@ -35,6 +35,7 @@
 #include "btif/include/btif_sock_sdp.h"
 #include "btif/include/btif_sock_thread.h"
 #include "btif/include/btif_sock_util.h"
+#include "gd/hci/uuid.h"
 #include "include/hardware/bt_sock.h"
 #include "os/log.h"
 #include "osi/include/allocator.h"
@@ -400,7 +401,8 @@ bt_status_t btsock_rfc_connect(const RawAddress* bd_addr,
     }
   } else {
     log::info("service_uuid:{}, bd_addr:{}, slot_id:{}",
-              service_uuid->ToString(), *bd_addr, slot->id);
+              bluetooth::hci::Uuid::ToString(service_uuid->To128BitBE()),
+              *bd_addr, slot->id);
     if (!is_requesting_sdp()) {
       BTA_JvStartDiscovery(*bd_addr, 1, service_uuid, slot->id);
       slot->f.pending_sdp_request = false;
@@ -454,8 +456,10 @@ static void cleanup_rfc_slot(rfc_slot_t* slot) {
         SOCKET_CONNECTION_STATE_DISCONNECTED,
         slot->f.server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION,
         slot->app_uid, slot->scn, slot->tx_bytes, slot->rx_bytes,
-        slot->role ? slot->service_name
-                   : slot->service_uuid.ToString().c_str());
+        slot->role
+            ? slot->service_name
+            : bluetooth::hci::Uuid::ToString(slot->service_uuid.To128BitBE())
+                  .c_str());
 
     slot->fd = INVALID_FD;
   }
@@ -618,7 +622,8 @@ static void on_cli_rfc_connect(tBTA_JV_RFCOMM_OPEN* p_open, uint32_t id) {
   btif_sock_connection_logger(
       slot->addr, slot->id, BTSOCK_RFCOMM, SOCKET_CONNECTION_STATE_CONNECTED,
       slot->f.server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION,
-      slot->app_uid, slot->scn, 0, 0, slot->service_uuid.ToString().c_str());
+      slot->app_uid, slot->scn, 0, 0,
+      bluetooth::hci::Uuid::ToString(slot->service_uuid.To128BitBE()).c_str());
 
   if (send_app_connect_signal(slot->fd, &slot->addr, slot->scn, 0, -1)) {
     slot->f.connected = true;

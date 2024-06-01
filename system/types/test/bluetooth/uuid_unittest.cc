@@ -106,21 +106,6 @@ TEST(UuidTest, From32Bit) {
   EXPECT_TRUE(memcmp(&uuid, u4, sizeof(u4)) == 0);
 }
 
-TEST(UuidTest, ToString) {
-  const std::string UUID_BASE_STR = "00000000-0000-1000-8000-00805f9b34fb";
-  const std::string UUID_EMP_STR = "00000000-0000-0000-0000-000000000000";
-  const std::string UUID_ONES_STR = "11111111-1111-1111-1111-111111111111";
-  const std::string UUID_SEQ_STR = "01234567-89ab-cdef-abcd-ef0123456789";
-
-  EXPECT_EQ(UUID_BASE_STR, kBase.ToString());
-  EXPECT_EQ(UUID_EMP_STR, Uuid::kEmpty.ToString());
-  EXPECT_EQ(UUID_ONES_STR, ONES.ToString());
-  EXPECT_EQ(UUID_SEQ_STR, SEQUENTIAL.ToString());
-
-  Uuid uuid = Uuid::From32Bit(0x12345678);
-  EXPECT_EQ("12345678-0000-1000-8000-00805f9b34fb", uuid.ToString());
-}
-
 TEST(BtifStorageTest, test_string_to_uuid) {
   const uint8_t u1[] = {0xe3, 0x9c, 0x62, 0x85, 0x86, 0x7f, 0x4b, 0x1d,
                         0x9d, 0xb0, 0x35, 0xfb, 0xd9, 0xae, 0xbf, 0x22};

@@ -31,6 +31,7 @@
 
 #include <string>
 
+#include "gd/hci/uuid.h"
 #include "internal_include/bt_target.h"
 #include "internal_include/stack_config.h"
 #include "l2c_api.h"
@@ -228,7 +229,8 @@ tGATT_STATUS GATTS_AddService(tGATT_IF gatt_if, btgatt_db_element_t* service,
   log::verbose(
       "handles needed={}, s_hdl=0x{:x}, e_hdl=0x{:x}, uuid={}, is_primary={}",
       num_handles, list.asgn_range.s_handle, list.asgn_range.e_handle,
-      list.asgn_range.svc_uuid, list.asgn_range.is_primary);
+      bluetooth::hci::Uuid::ToString(list.asgn_range.svc_uuid.To128BitBE()),
+      list.asgn_range.is_primary);
 
   service->attribute_handle = s_hdl;
 
@@ -251,7 +253,7 @@ tGATT_STATUS GATTS_AddService(tGATT_IF gatt_if, btgatt_db_element_t* service,
         log::error(
             "attempt to add characteristic with UUID equal to GATT Attribute "
             "Type {}",
-            uuid);
+            bluetooth::hci::Uuid::ToString(uuid.To128BitBE()));
         return GATT_INTERNAL_ERROR;
       }
 
@@ -268,7 +270,7 @@ tGATT_STATUS GATTS_AddService(tGATT_IF gatt_if, btgatt_db_element_t* service,
         log::error(
             "attempt to add descriptor with UUID equal to GATT Attribute Type "
             "{}",
-            uuid);
+            bluetooth::hci::Uuid::ToString(uuid.To128BitBE()));
         return GATT_INTERNAL_ERROR;
       }
 
@@ -342,7 +344,8 @@ bool is_active_service(const Uuid& app_uuid128, Uuid* p_svc_uuid,
 
     if (p_this_uuid && app_uuid128 == info.app_uuid &&
         *p_svc_uuid == *p_this_uuid && (start_handle == info.s_hdl)) {
-      log::error("Active Service Found: {}", *p_svc_uuid);
+      log::error("Active Service Found: {}",
+                 bluetooth::hci::Uuid::ToString(p_svc_uuid->To128BitBE()));
       return true;
     }
   }
@@ -1227,7 +1230,7 @@ tGATT_IF GATT_Register(const Uuid& app_uuid128, const std::string& name,
        i_gatt_if++, p_reg++) {
     if (p_reg->in_use && p_reg->app_uuid128 == app_uuid128) {
       log::error("Application already registered, uuid={}",
-                 app_uuid128.ToString());
+                 bluetooth::hci::Uuid::ToString(app_uuid128.To128BitBE()));
       return 0;
     }
   }
@@ -1249,7 +1252,8 @@ tGATT_IF GATT_Register(const Uuid& app_uuid128, const std::string& name,
       p_reg->eatt_support = eatt_support;
       p_reg->name = name;
       log::info("Allocated name:{} uuid:{} gatt_if:{} eatt_support:{}", name,
-                app_uuid128.ToString(), gatt_if, eatt_support);
+                bluetooth::hci::Uuid::ToString(app_uuid128.To128BitBE()),
+                gatt_if, eatt_support);
       return gatt_if;
     }
   }
