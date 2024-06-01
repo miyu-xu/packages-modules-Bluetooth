@@ -1276,7 +1276,7 @@ class BluetoothManagerService {
                     // Note that in a perfect world, we should be able to re-init the same process.
                     // Unfortunately, this require an heavy rework of the shutdown implementation
                     // TODO: b/339501753 - Properly stop Bluetooth without killing it
-                    mAdapter.killBluetoothProcess();
+                    mAdapter.killBluetoothProcess(true);
 
                     // if the kill throw, skip waiting as there is no bluetooth to wait for
                     binderDead.get(1, TimeUnit.SECONDS);
@@ -1284,9 +1284,14 @@ class BluetoothManagerService {
                     // Reduce error -> info since Bluetooth may already be dead prior to this call
                     Log.i(TAG, "Bluetooth already dead 💀");
                 } catch (RemoteException e) {
-                    Log.e(TAG, "Unexpected error when calling killBluetoothProcess", e);
+                    Log.e(TAG, "Unexpected error when calling killBluetoothProcess(true)", e);
                 } catch (TimeoutException | InterruptedException | ExecutionException e) {
                     Log.e(TAG, "Bluetooth death not received in time", e);
+                    try {
+                        mAdapter.killBluetoothProcess(false);
+                    } catch (RemoteException e) {
+                        Log.e(TAG, "Unexpected error when calling killBluetoothProcess(false)", e);
+                    }
                 }
 
                 mAdapter = null;
