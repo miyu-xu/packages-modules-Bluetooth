@@ -90,7 +90,7 @@ class AdapterBinder(rawBinder: IBinder) {
     }
 
     @Throws(RemoteException::class)
-    fun killBluetoothProcess() {
-        adapterBinder.killBluetoothProcess()
+    fun killBluetoothProcess(postOnHandler: Boolean) {
+        adapterBinder.killBluetoothProcess(postOnHandler)
     }
 }
