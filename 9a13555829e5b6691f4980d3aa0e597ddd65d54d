@@ -16,6 +16,24 @@
       "message": "I mean even the data type should not be `tBT_TRANSPORT`\n```suggestion\n  uint8_t transports;\n```",
       "revId": "9a13555829e5b6691f4980d3aa0e597ddd65d54d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a19d0bc9_8a8c7d18",
+        "filename": "system/bta/dm/bta_dm_disc_int.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-06-01T11:50:09Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "f8f81d8d_bba270a4",
+      "revId": "9a13555829e5b6691f4980d3aa0e597ddd65d54d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
