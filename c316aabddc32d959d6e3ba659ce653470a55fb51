@@ -22,6 +22,30 @@
       },
       "revId": "c316aabddc32d959d6e3ba659ce653470a55fb51",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90c13708_a81ea1aa",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-01T02:06:16Z",
+      "side": 1,
+      "message": "I believe we cannot.\n\nThe legacy Uuid is part of the libbluetooth-types and using a formatter require linking fmtlib.\nlibbluetooth-types is linked into the vendor and I have been told we don\u0027t want to leak the fmtlib to vendor, to keep it updatable.\nTherefor I don\u0027t think we can use a formatter.",
+      "parentUuid": "289899a6_83608db9",
+      "range": {
+        "startLine": 135,
+        "startChar": 22,
+        "endLine": 135,
+        "endChar": 72
+      },
+      "revId": "c316aabddc32d959d6e3ba659ce653470a55fb51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
