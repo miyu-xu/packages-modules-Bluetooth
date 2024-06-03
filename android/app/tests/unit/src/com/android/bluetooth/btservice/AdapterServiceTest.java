@@ -103,6 +103,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -983,7 +984,7 @@ public class AdapterServiceTest {
     @Test
     @Ignore("b/296127545: This is a native test")
     public void testObfuscateBluetoothAddress_BluetoothDisabled() {
-        HashMap<String, HashMap<String, String>> adapterConfig = TestUtils.readAdapterConfig();
+        Map<String, Map<String, String>> adapterConfig = TestUtils.readAdapterConfig();
         assertThat(adapterConfig).isNotNull();
 
         assertThat(mAdapterService.getState()).isEqualTo(STATE_OFF);
@@ -1003,7 +1004,7 @@ public class AdapterServiceTest {
     @Test
     @Ignore("b/296127545: This is a native test")
     public void testObfuscateBluetoothAddress_BluetoothEnabled() {
-        HashMap<String, HashMap<String, String>> adapterConfig = TestUtils.readAdapterConfig();
+        Map<String, Map<String, String>> adapterConfig = TestUtils.readAdapterConfig();
         assertThat(adapterConfig).isNotNull();
 
         assertThat(mAdapterService.getState()).isEqualTo(STATE_OFF);
@@ -1022,7 +1023,7 @@ public class AdapterServiceTest {
     @Test
     @Ignore("b/296127545: This is a native test")
     public void testObfuscateBluetoothAddress_PersistentBetweenToggle() {
-        HashMap<String, HashMap<String, String>> adapterConfig = TestUtils.readAdapterConfig();
+        Map<String, Map<String, String>> adapterConfig = TestUtils.readAdapterConfig();
         assertThat(adapterConfig).isNotNull();
 
         assertThat(mAdapterService.getState()).isEqualTo(STATE_OFF);
@@ -1077,8 +1078,8 @@ public class AdapterServiceTest {
         assertThat(mAdapterService.getIdentityAddress(device.getAddress())).isNull();
     }
 
-    public static byte[] getMetricsSalt(HashMap<String, HashMap<String, String>> adapterConfig) {
-        HashMap<String, String> metricsSection = adapterConfig.get("Metrics");
+    public static byte[] getMetricsSalt(Map<String, Map<String, String>> adapterConfig) {
+        Map<String, String> metricsSection = adapterConfig.get("Metrics");
         if (metricsSection == null) {
             Log.e(TAG, "Metrics section is null: " + adapterConfig.toString());
             return null;
