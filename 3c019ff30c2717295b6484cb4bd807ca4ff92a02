@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82a25a7e_cd4f18e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-03T22:52:18Z",
+      "side": 1,
+      "message": "Changing the value of the expectedPhy, and not changing anything else, and still expect the test to pass is just showing that this test do not test what it is supposede to test.\n\nThis is dead code in test as it require native properties.\n\nI am voting +2 because I want the errorprone to disappear, but I want to make clear that this branch is dead and this test will never return true for isLeCodedPhySupported.\n\nIf there is anything interesting to test with the isLeCodedPhySupportede, please consider the following for the future:\n\n\u003e duplicate test into 2 tests, one that test with false and in which the isLeCodedPhySupported is never true (assert is false) and one that set the adapterproperties and test with true (assert is always true).",
+      "revId": "3c019ff30c2717295b6484cb4bd807ca4ff92a02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
