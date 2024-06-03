@@ -93,6 +93,7 @@ java_sdk_library {
 
             "-Xep:CatchFail:ERROR",
             "-Xep:EmptyCatch:ERROR",
+            "-Xep:FutureReturnValueIgnored:ERROR",
             "-Xep:InvalidInlineTag:ERROR",
             "-Xep:NonApiType:ERROR",
             "-Xep:UnnecessaryAssignment:ERROR",
