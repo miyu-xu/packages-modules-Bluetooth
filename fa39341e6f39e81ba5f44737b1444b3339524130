@@ -97,6 +97,24 @@
       "parentUuid": "8c3a52f5_8c337b99",
       "revId": "fa39341e6f39e81ba5f44737b1444b3339524130",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b95aee63_4fa466dc",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 1008,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-06-03T08:21:16Z",
+      "side": 1,
+      "message": "The same question with Lukasz. The audio configuraiton is brounght to bluetooth audio seesion with StartSession, why we need to do it again?",
+      "parentUuid": "85388211_e6f41ce8",
+      "revId": "fa39341e6f39e81ba5f44737b1444b3339524130",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
