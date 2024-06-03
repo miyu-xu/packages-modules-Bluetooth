@@ -46,6 +46,30 @@
       },
       "revId": "7e936545fc62362e6f6eb11bfc774b78ef0068a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "602e6d6c_0bd9662c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2313,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-03T23:17:36Z",
+      "side": 1,
+      "message": "I just wanted to see if it was posted or not in the logs.\n\nIf you added an error log, you could remove the \"This is bad :(\" comment :)",
+      "parentUuid": "6f051448_6f6d37e7",
+      "range": {
+        "startLine": 2313,
+        "startChar": 49,
+        "endLine": 2313,
+        "endChar": 62
+      },
+      "revId": "7e936545fc62362e6f6eb11bfc774b78ef0068a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
