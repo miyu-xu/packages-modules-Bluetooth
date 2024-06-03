@@ -70,6 +70,24 @@
       "parentUuid": "e1e51309_246698e9",
       "revId": "c31309a5a144bde814f9950dba8d5cef57a914a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c18b29b6_9092d908",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-03T15:12:19Z",
+      "side": 1,
+      "message": "1. Adds another layer, new BTA message. Additional delay would be minimal but the design seems a bit complicated.\n2. Reports have to be protected anyway because of produce/consumer nature. So routing through BTIF is unnecessary.\nIf you feel strongly about it, we can move ahead at this time with the current approach. This is not a blocker.",
+      "parentUuid": "a3059a94_48da7f0c",
+      "revId": "c31309a5a144bde814f9950dba8d5cef57a914a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
