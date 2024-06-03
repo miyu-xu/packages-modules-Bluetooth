@@ -16,6 +16,24 @@
       "message": "It should be `com::android::bluetooth::flags::bond_transport_after_bond_cancel_fix()`",
       "revId": "8759390d8577f1881f7b3c98aa4f31c2b8007221",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4af7d2d_1c582bc9",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-06-03T17:35:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76b02700_309b6d49",
+      "revId": "8759390d8577f1881f7b3c98aa4f31c2b8007221",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
