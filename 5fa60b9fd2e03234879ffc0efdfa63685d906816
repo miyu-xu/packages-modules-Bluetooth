@@ -1,0 +1,169 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19504ffd_91156235",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-03T16:51:52Z",
+      "side": 1,
+      "message": "The formatting looks inconsistent.",
+      "range": {
+        "startLine": 445,
+        "startChar": 2,
+        "endLine": 446,
+        "endChar": 18
+      },
+      "revId": "5fa60b9fd2e03234879ffc0efdfa63685d906816",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b3397b4_55f9fb52",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-03T16:51:52Z",
+      "side": 1,
+      "message": "Can we pull this out of the switch?",
+      "range": {
+        "startLine": 446,
+        "startChar": 16,
+        "endLine": 447,
+        "endChar": 77
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ce2bac4d_eb37f758",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 443,
+                "startChar": 0,
+                "endLine": 443,
+                "endChar": 0
+              },
+              "replacement": "        DistanceMeasurementResult result \u003d new DistanceMeasurementResult.Builder(\n                centimeter / 100.0, errorCentimeter / 100.0).build();\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 445,
+                "startChar": 0,
+                "endLine": 448,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 449,
+                "startChar": 0,
+                "endLine": 450,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 452,
+                "startChar": 0,
+                "endLine": 459,
+                "endChar": 0
+              },
+              "replacement": "                handleCsResult(address, result);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "5fa60b9fd2e03234879ffc0efdfa63685d906816",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7ea662f_8efbce6e",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-03T16:51:52Z",
+      "side": 1,
+      "message": "Can we pull this out of the try?",
+      "range": {
+        "startLine": 491,
+        "startChar": 0,
+        "endLine": 493,
+        "endChar": 17
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "df40ae07_8729bd87",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 472,
+                "startChar": 0,
+                "endLine": 472,
+                "endChar": 0
+              },
+              "replacement": "            if (!tracker.mStarted) {\n                continue;\n            }\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 473,
+                "startChar": 0,
+                "endLine": 476,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 490,
+                "startChar": 0,
+                "endLine": 490,
+                "endChar": 0
+              },
+              "replacement": "            if (!tracker.mStarted) {\n                continue;\n            }\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+              "range": {
+                "startLine": 491,
+                "startChar": 0,
+                "endLine": 494,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "5fa60b9fd2e03234879ffc0efdfa63685d906816",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
