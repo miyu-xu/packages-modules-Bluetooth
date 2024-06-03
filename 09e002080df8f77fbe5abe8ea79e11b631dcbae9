@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "363671d6_403e20a5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-06-03T09:21:38Z",
+      "side": 1,
+      "message": "Can we abandon this revert?",
+      "revId": "09e002080df8f77fbe5abe8ea79e11b631dcbae9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cfe30fd6_383c64d3",
         "filename": "android/app/src/com/android/bluetooth/btservice/AbstractionLayer.java",
         "patchSetId": 1
