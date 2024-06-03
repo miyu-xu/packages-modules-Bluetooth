@@ -52,6 +52,24 @@
       "parentUuid": "06b138b1_331aaea2",
       "revId": "c31309a5a144bde814f9950dba8d5cef57a914a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3059a94_48da7f0c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-06-03T07:17:45Z",
+      "side": 1,
+      "message": "Yes, I think mutex will work, but I wonder why it\u0027s a better approach than doing it like this? After all, the other feature reports are passed through btif, so this is consistent with the flow.\nIs it perhaps because passing it to btif introduces a layer of delay that we don\u0027t want with input reports?\n\n\u003e It is unlikely for the multiple HID devices to be connected at the same time, so it should not impact the performance\n\nI think the busiest case might be two gamepad connected and used at the same time.",
+      "parentUuid": "e1e51309_246698e9",
+      "revId": "c31309a5a144bde814f9950dba8d5cef57a914a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
