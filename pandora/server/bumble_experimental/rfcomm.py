@@ -44,78 +44,83 @@ from pandora_experimental.rfcomm_pb2 import (
 
 
 class RFCOMMService(RFCOMMServicer):
-    #TODO Add support for multiple servers
     device: Device
-    server_id: Optional[ServerId]
-    server: Optional[Server]
 
     def __init__(self, device: Device) -> None:
         super().__init__()
         self.device = device
-        self.server_id = None
-        self.server = None
-        self.server_name = None
-        self.server_uuid = None
-        self.connections = {}  # key = id, value = dlc
+        self.servers = {}  # key = id, value = ServerInstance
         self.next_server_id = 1
+        self.connections = {}  # key = id, value = dlc
         self.next_conn_id = 1
-        self.open_channel = None
-        self.wait_dlc = None
-        self.dlc = None
-        self.data_queue = asyncio.Queue()
+
+    class Connection:
+
+        def __init__(self, dlc):
+            self.dlc = dlc
+            self.data_queue = asyncio.Queue()
+
+    class ServerInstance:
+
+        def __init__(self, name, uuid, server):
+            self.name = name
+            self.uuid = uuid
+            self.server = server
+            self.wait_dlc = None
+            self.open_channel = None
 
     @utils.rpc
     async def StartServer(self, request: StartServerRequest, context: grpc.ServicerContext) -> StartServerResponse:
-        logging.info(f"StartServer")
-        if self.server_id:
-            logging.warning(f"Server already started, returning existing server")
-            return StartServerResponse(server=self.server_id)
-        else:
-            self.server_id = ServerId(id=self.next_server_id)
-            self.next_server_id += 1
-            self.server = Server(self.device)
-            self.server_name = request.name
-            self.server_uuid = core.UUID(request.uuid)
-        self.wait_dlc = asyncio.get_running_loop().create_future()
-        handle = 1
+        uuid = core.UUID(request.uuid)
+        logging.info(f"StartServer {uuid}")
+
+        for existing_id, server in self.servers:
+            if server.uuid == uuid:
+                logging.warning(f"Server already started for {uuid}, returning existing server")
+                return StartServerResponse(server=ServerId(id=existing_id))
+
+        id = self.next_server_id
+        self.next_server_id += 1
+        self.servers[id] = self.ServerInstance(name=request.name, uuid=uuid, server=Server(self.device))
+        self.servers[id].wait_dlc = asyncio.get_running_loop().create_future()
         #TODO Add support for multiple clients
-        self.open_channel = self.server.listen(acceptor=self.wait_dlc.set_result, channel=2)
-        records = make_service_sdp_records(handle, self.open_channel, self.server_uuid)
+        self.servers[id].open_channel = self.servers[id].server.listen(acceptor=self.servers[id].wait_dlc.set_result,
+                                                                       channel=2)
+        handle = 1
+        records = make_service_sdp_records(handle, self.servers[id].open_channel, uuid)
         self.device.sdp_service_records[handle] = records
-        return StartServerResponse(server=self.server_id)
+        return StartServerResponse(server=ServerId(id=id))
 
     @utils.rpc
     async def AcceptConnection(self, request: AcceptConnectionRequest,
                                context: grpc.ServicerContext) -> AcceptConnectionResponse:
         logging.info(f"AcceptConnection")
-        assert self.server_id.id == request.server.id
-        self.dlc = await self.wait_dlc
-        self.dlc.sink = self.data_queue.put_nowait
-        new_conn = RfcommConnection(id=self.next_conn_id)
+        assert self.servers[request.server.id] is not None
+        dlc = await self.servers[request.server.id].wait_dlc
+        id = self.next_conn_id
         self.next_conn_id += 1
-        self.connections[new_conn.id] = self.dlc
-        return AcceptConnectionResponse(connection=new_conn)
+        self.connections[id] = self.Connection(dlc=dlc)
+        self.connections[id].dlc.sink = self.connections[id].data_queue.put_nowait
+        return AcceptConnectionResponse(connection=RfcommConnection(id=id))
 
     @utils.rpc
     async def StopServer(self, request: StopServerRequest, context: grpc.ServicerContext) -> StopServerResponse:
         logging.info(f"StopServer")
-        assert self.server_id.id == request.server.id
-        self.server = None
-        self.server_id = None
-        self.server_name = None
-        self.server_uuid = None
+        assert self.servers[request.server.id] is not None
+        self.servers[request.server.id] = None
 
         return StopServerResponse()
 
     @utils.rpc
     async def Send(self, request: TxRequest, context: grpc.ServicerContext) -> TxResponse:
         logging.info(f"Send")
-        dlc = self.connections[request.connection.id]
-        dlc.write(request.data)
+        assert self.connections[request.connection.id] is not None
+        self.connections[request.connection.id].dlc.write(request.data)
         return TxResponse()
 
     @utils.rpc
     async def Receive(self, request: RxRequest, context: grpc.ServicerContext) -> RxResponse:
         logging.info(f"Receive")
-        received_data = await self.data_queue.get()
+        assert self.connections[request.connection.id] is not None
+        received_data = await self.connections[request.connection.id].data_queue.get()
         return RxResponse(data=received_data)
