@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86184185_d2419202",
+        "filename": "system/gd/sysprops/sysprops_module.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-03T22:09:59Z",
+      "side": 1,
+      "message": "nit: maybe follow format to be `le_audio`?",
+      "range": {
+        "startLine": 122,
+        "startChar": 17,
+        "endLine": 122,
+        "endChar": 24
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "428cbc9a_5e0ceb3f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/sysprops/sysprops_module.cc",
+              "range": {
+                "startLine": 122,
+                "startChar": 0,
+                "endLine": 123,
+                "endChar": 0
+              },
+              "replacement": "      \"bluetooth.le_audio.dual_bidirection_swb.supported\",\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a2720bc2804ec559bce20846ffd16ccebb72ead7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
