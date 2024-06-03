@@ -83,6 +83,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab1d7f8b_9a04446a",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 932,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-06-03T12:01:58Z",
+      "side": 1,
+      "message": "Noted, have b/344532111 to track the cleanup, thanks!",
+      "parentUuid": "4fb022a0_fd476b19",
+      "revId": "8f29050e7987f681e47080508962edd201a843f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "31be220f_04dc187d",

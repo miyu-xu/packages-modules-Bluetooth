@@ -204,6 +204,24 @@
       ],
       "revId": "a9f6054980f4db6bb6a7cd111a13d9d4153f08f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90f7f3ae_9195075b",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-06-03T12:01:58Z",
+      "side": 0,
+      "message": "Sorry, I didn\u0027t really get the suggestion. If we remove this state from the enum, I don\u0027t see how we can represent that state as something to be returned if we want to have a function like `decode_buf_status` (did you mean that was unnecessary?).",
+      "parentUuid": "adc86cbc_5c3bae05",
+      "revId": "a9f6054980f4db6bb6a7cd111a13d9d4153f08f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
