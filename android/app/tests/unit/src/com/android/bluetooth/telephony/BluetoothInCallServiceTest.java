@@ -105,16 +105,11 @@ public class BluetoothInCallServiceTest {
 
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
-    @Mock
-    private BluetoothHeadsetProxy mMockBluetoothHeadset;
-    @Mock
-    private BluetoothLeCallControlProxy mMockBluetoothLeCallControl;
-    @Mock
-    private BluetoothInCallService.CallInfo mMockCallInfo;
-    @Mock
-    private TelephonyManager mMockTelephonyManager;
-    @Mock
-    private Context mContext = ApplicationProvider.getApplicationContext();
+    @Mock private BluetoothHeadsetProxy mMockBluetoothHeadset;
+    @Mock private BluetoothLeCallControlProxy mMockBluetoothLeCallControl;
+    @Mock private BluetoothInCallService.CallInfo mMockCallInfo;
+    @Mock private TelephonyManager mMockTelephonyManager;
+    @Mock private Context mContext;
 
     public class TestableBluetoothInCallService extends BluetoothInCallService {
         @Override
