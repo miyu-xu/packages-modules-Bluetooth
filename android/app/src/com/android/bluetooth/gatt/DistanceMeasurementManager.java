@@ -442,9 +442,20 @@ public class DistanceMeasurementManager {
                 + ", centimeter " + centimeter);
         switch (method) {
             case DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_RSSI:
+                {
                 DistanceMeasurementResult result = new DistanceMeasurementResult.Builder(
                         centimeter / 100.0, errorCentimeter / 100.0).build();
                 handleRssiResult(address, result);
+                }
+                break;
+            case DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_CHANNEL_SOUNDING:
+                {
+                    DistanceMeasurementResult result =
+                            new DistanceMeasurementResult.Builder(
+                                            centimeter / 100.0, errorCentimeter / 100.0)
+                                    .build();
+                    handleCsResult(address, result);
+                }
                 break;
             default:
                 Log.w(TAG, "onDistanceMeasurementResult: invalid method " + method);
@@ -455,6 +466,24 @@ public class DistanceMeasurementManager {
         CopyOnWriteArraySet<DistanceMeasurementTracker> set = mRssiTrackers.get(address);
         if (set == null) {
             Log.w(TAG, "Can't find rssi tracker");
+            return;
+        }
+        for (DistanceMeasurementTracker tracker : set) {
+            try {
+                if (!tracker.mStarted) {
+                    continue;
+                }
+                tracker.mCallback.onResult(tracker.mDevice, result);
+            } catch (RemoteException e) {
+                Log.e(TAG, "Exception: " + e);
+            }
+        }
+    }
+
+    void handleCsResult(String address, DistanceMeasurementResult result) {
+        CopyOnWriteArraySet<DistanceMeasurementTracker> set = mCsTrackers.get(address);
+        if (set == null) {
+            Log.w(TAG, "Can't find cs tracker");
             return;
         }
         for (DistanceMeasurementTracker tracker : set) {
