@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb724f8c_a8e1f57c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2313,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-03T21:27:49Z",
+      "side": 1,
+      "message": "Do we want to log this somewhere if we\u0027re running it on the main looper?",
+      "range": {
+        "startLine": 2313,
+        "startChar": 49,
+        "endLine": 2313,
+        "endChar": 62
+      },
+      "revId": "7e936545fc62362e6f6eb11bfc774b78ef0068a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
