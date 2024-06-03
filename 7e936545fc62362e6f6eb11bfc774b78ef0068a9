@@ -70,6 +70,30 @@
       },
       "revId": "7e936545fc62362e6f6eb11bfc774b78ef0068a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8089acb_023d4f3c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2313,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-03T23:52:41Z",
+      "side": 1,
+      "message": "The error log for that is already in the BluetoothManagerService:\n\n```\n\ntry {\n    // Force kill the bluetooth to make sure the process is not reused.\n    // Note that in a perfect world, we should be able to re-init the same process.\n    // Unfortunately, this require an heavy rework of the shutdown implementation\n    // TODO: b/339501753 - Properly stop Bluetooth without killing it\n    mAdapter.killBluetoothProcess(true);\n\n    // if the kill throw, skip waiting as there is no bluetooth to wait for\n    binderDead.get(1, TimeUnit.SECONDS);\n} catch (android.os.DeadObjectException e) {\n    // Reduce error -\u003e info since Bluetooth may already be dead prior to this call\n    Log.i(TAG, \"Bluetooth already dead 💀\");\n} catch (RemoteException e) {\n    Log.e(TAG, \"Unexpected error when calling killBluetoothProcess(true)\", e);\n} catch (TimeoutException | InterruptedException | ExecutionException e) {\n    Log.e(TAG, \"Bluetooth death not received in time\", e);                \u003c ---------- Here I can update the log to specify something more explicit ?\n    Counter.logIncrement(\"bluetooth.value_shutdown_not_properly\");\n    try {\n        mAdapter.killBluetoothProcess(false);\n    } catch (RemoteException ee) {\n        Log.e(TAG, \"Unexpected error when calling killBluetoothProcess(false)\", ee);\n    }\n}\n```",
+      "parentUuid": "602e6d6c_0bd9662c",
+      "range": {
+        "startLine": 2313,
+        "startChar": 49,
+        "endLine": 2313,
+        "endChar": 62
+      },
+      "revId": "7e936545fc62362e6f6eb11bfc774b78ef0068a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
