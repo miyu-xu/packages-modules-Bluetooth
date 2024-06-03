@@ -117,6 +117,23 @@
       "parentUuid": "6b446d9a_d75c7279",
       "revId": "3f4f7faa5ad084e7aa7f65ffdfa86a313bc42d6f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44910e04_55fc6ef8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-03T22:58:40Z",
+      "side": 1,
+      "message": "I don\u0027t think this should be added.  If we need to not assert for Floss, we can use #ifdef in those cases.  As I looked at the ones that were changed, it was hard for me to believe that they are different Floss vs Android expectations on the controllers.",
+      "revId": "3f4f7faa5ad084e7aa7f65ffdfa86a313bc42d6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
