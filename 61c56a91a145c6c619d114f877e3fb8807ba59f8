@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b98cb74d_8bf48eab",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 5188,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2024-06-03T12:10:01Z",
+      "side": 1,
+      "message": "we need to add below also\n \n LE_CODED_PHY_S8 \u003d 0x03,\n LE_CODED_PHY_S2 \u003d 0x04,",
+      "range": {
+        "startLine": 5188,
+        "startChar": 2,
+        "endLine": 5188,
+        "endChar": 12
+      },
+      "revId": "61c56a91a145c6c619d114f877e3fb8807ba59f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14fd4279_8008d64a",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 5233,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2024-06-03T12:10:01Z",
+      "side": 1,
+      "message": "We need to update this command as per new spec\n\npacket LeCsTest : DistanceMeasurementCommand (op_code \u003d LE_CS_TEST) {\n  main_mode_type : 8,\n  sub_mode_type : 8,\n  main_mode_repetition : 8,\n  mode_0_steps : 8,\n  role : 8,\n  rtt_type : 8,\n  cs_sync_phy : 8,\n  cs_sync_antenna_selection : 8,\n  cs_subevent_length : 24,\n  cs_subevent_interval : 16,\n  transmit_power_level : 8,\n  t_ip1_time : 8,\n  t_ip2_time : 8,\n  t_fcs_time : 8,\n  t_pm_time : 8,\n  t_sw_time : 8,\n  tone_antenna_config : 8,\n  companion_signal_enable : 8,\n  tone_antenna_permutation : 8,\n  drbg_nonce : 16,\n  override_config : 8,\n  override_parameters_length : 8,\n  override_parameters_data : 8[],\n}",
+      "revId": "61c56a91a145c6c619d114f877e3fb8807ba59f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14805c11_9eb04f27",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 5276,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2024-06-03T12:10:01Z",
+      "side": 1,
+      "message": "we need to add below also:\n\npacket LeCsTestEndComplete : LeMetaEvent (subevent_code \u003d LE_CS_TEST_END_COMPLETE) {\n  status : ErrorCode,\n}",
+      "revId": "61c56a91a145c6c619d114f877e3fb8807ba59f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
