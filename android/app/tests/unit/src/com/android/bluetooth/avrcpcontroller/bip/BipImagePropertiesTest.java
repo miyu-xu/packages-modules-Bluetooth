@@ -99,11 +99,7 @@ public class BipImagePropertiesTest {
     private static final String IMAGE_PROPERTIES_END = "</image-properties>";
 
     private InputStream toUtf8Stream(String s) {
-        try {
-            return new ByteArrayInputStream(s.getBytes("UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            return null;
-        }
+        return new ByteArrayInputStream(s.getBytes(java.nio.charset.StandardCharsets.UTF_8));
     }
 
     /**
