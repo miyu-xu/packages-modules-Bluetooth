@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "12416a74_48ff56d9",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-03T16:41:46Z",
+      "side": 1,
+      "message": "Need to update this, as well:\nLE_CS_Read_Local_Supported_Capabilities \u003d 205,\nLE_CS_Read_Remote_Supported_Capabilities \u003d 206,\nLE_CS_Write_Cached_Remote_Supported_Capabilities \u003d 207,\nLE_CS_Security_Enable \u003d 241,\nLE_CS_Set_Default_Settings \u003d 247,\nLE_CS_Read_Remote_FAE_Table \u003d 122,\nLE_CS_Write_Cached_Remote_FAE_Table \u003d 123,\nLE_CS_Create_Config \u003d 166,\nLE_CS_Remove_Config \u003d 167,\nLE_CS_Set_Channel_Classification \u003d 290,\nLE_CS_Set_Procedure_Parameters \u003d 291,\nLE_CS_Procedure_Enable \u003d 292,\nLE_CS_Test \u003d 233,\nLE_CS_Test_End \u003d 234,",
+      "range": {
+        "startLine": 599,
+        "startChar": 0,
+        "endLine": 599,
+        "endChar": 33
+      },
+      "revId": "61c56a91a145c6c619d114f877e3fb8807ba59f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "b98cb74d_8bf48eab",
@@ -14,6 +37,30 @@
       "writtenOn": "2024-06-03T12:10:01Z",
       "side": 1,
       "message": "we need to add below also\n \n LE_CODED_PHY_S8 \u003d 0x03,\n LE_CODED_PHY_S2 \u003d 0x04,",
+      "range": {
+        "startLine": 5188,
+        "startChar": 2,
+        "endLine": 5188,
+        "endChar": 12
+      },
+      "revId": "61c56a91a145c6c619d114f877e3fb8807ba59f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fbd7e38_9b518eb4",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 5188,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-03T16:41:46Z",
+      "side": 1,
+      "message": "Unresolved comments get more attention.",
+      "parentUuid": "b98cb74d_8bf48eab",
       "range": {
         "startLine": 5188,
         "startChar": 2,
@@ -41,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "aab938b0_af4bfc71",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 5233,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-03T16:41:46Z",
+      "side": 1,
+      "message": "same",
+      "parentUuid": "14fd4279_8008d64a",
+      "revId": "61c56a91a145c6c619d114f877e3fb8807ba59f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "14805c11_9eb04f27",
@@ -54,6 +119,24 @@
       "writtenOn": "2024-06-03T12:10:01Z",
       "side": 1,
       "message": "we need to add below also:\n\npacket LeCsTestEndComplete : LeMetaEvent (subevent_code \u003d LE_CS_TEST_END_COMPLETE) {\n  status : ErrorCode,\n}",
+      "revId": "61c56a91a145c6c619d114f877e3fb8807ba59f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7357e53d_119b7b87",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 5276,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-03T16:41:46Z",
+      "side": 1,
+      "message": "same",
+      "parentUuid": "14805c11_9eb04f27",
       "revId": "61c56a91a145c6c619d114f877e3fb8807ba59f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
