@@ -46,6 +46,30 @@
       },
       "revId": "c316aabddc32d959d6e3ba659ce653470a55fb51",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad896d11_56170313",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-03T16:10:31Z",
+      "side": 1,
+      "message": "I think we could if we don\u0027t keep it in the library, but I could be wrong.  I feel like it would be better to hide this a little more.  I think I prefer using stringstream in one place: ugly, but contained.",
+      "parentUuid": "90c13708_a81ea1aa",
+      "range": {
+        "startLine": 135,
+        "startChar": 22,
+        "endLine": 135,
+        "endChar": 72
+      },
+      "revId": "c316aabddc32d959d6e3ba659ce653470a55fb51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
