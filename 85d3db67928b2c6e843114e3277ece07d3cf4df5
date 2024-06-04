@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7165f598_1f69f4a2",
+        "filename": "android/app/src/com/android/bluetooth/pan/PanService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-06-04T18:13:29Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Build Warnings: cannot find symbol\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    cannot find symbol\n        @VisibleForTesting ConcurrentHashMap\u003cBluetoothDevice, BluetoothPanDevice\u003e mPanDevices;\n                           ^\n      symbol:   class ConcurrentHashMap\n      location: class PanService\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P75669637/targets/cf_x86_64_phone-trunk_staging-userdebug, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the git_main branch.",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 90
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2517b5d9_433dd5dd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/pan/PanService.java",
+              "range": {
+                "startLine": 54,
+                "startChar": 0,
+                "endLine": 54,
+                "endChar": 0
+              },
+              "replacement": "import java.util.concurrent.ConcurrentHashMap;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "85d3db67928b2c6e843114e3277ece07d3cf4df5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
