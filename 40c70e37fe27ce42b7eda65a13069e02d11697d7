@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b85e23e6_9053a234",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-06-04T10:18:10Z",
+      "side": 1,
+      "message": "ahh same mistake again:) thanks:)",
+      "parentUuid": "d4051554_34155517",
+      "revId": "40c70e37fe27ce42b7eda65a13069e02d11697d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e2c170e_2968705e",
