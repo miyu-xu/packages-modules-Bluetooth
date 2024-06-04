@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "299a2913_4d6da4e4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-06-04T11:01:25Z",
+      "side": 1,
+      "message": "I updated go/floss-api-version-tracker. FYI",
+      "revId": "2c6f19501a373e00c1843c8aa585b1a9f7097069",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
