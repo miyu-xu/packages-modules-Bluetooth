@@ -30,6 +30,7 @@ cc_library_static {
         "libchrome",
         "liblog",
         "server_configurable_flags",
+        "libaconfig_storage_read_api_cc",
     ],
     static_libs: [
         "bluetooth_flags_c_lib",
@@ -68,6 +69,7 @@ cc_library_host_shared {
     ],
     shared_libs: [
         "server_configurable_flags",
+        "libaconfig_storage_read_api_cc",
     ],
     static_libs: [
         "bluetooth_flags_c_lib",
