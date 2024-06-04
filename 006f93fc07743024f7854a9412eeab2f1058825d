@@ -135,6 +135,30 @@
       },
       "revId": "006f93fc07743024f7854a9412eeab2f1058825d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7f02e50_8bf8b657",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-04T16:04:33Z",
+      "side": 1,
+      "message": "Since the flag was already merged with (is name is `abs_volume_sdp_conflict`, see flags/avrcp.aconfig) we just need to make use of it like bellow:\n\n```suggestion\n    if (com::android::bluetooth::flags::abs_volume_sdp_conflict()) {\n      // Peer may connect avrcp during SDP. Check the connection state when\n      // SDP completed to resolve the conflict.\n      for (const auto\u0026 pair : instance_-\u003edevice_map_) {\n        if (bdaddr \u003d\u003d pair.second-\u003eGetAddress()) {\n          log::warn(\"Connected by peer device with address {}\", bdaddr);\n          if (features \u0026 BTA_AV_FEAT_ADV_CTRL) {\n            pair.second-\u003eRegisterVolumeChanged();\n          } else if (instance_-\u003evol_ !\u003d nullptr) {\n            instance_-\u003evol_-\u003eDeviceConnected(pair.second-\u003eGetAddress());\n          }\n          return;\n        }\n      }\n    }\n```\n\n(Also note, I changed back the `ADDRESS_TO_LOGGABLE_STR` because meantime, this has been promoted to be the default formatter when printing a RawAddress)",
+      "parentUuid": "c7e41948_d7a11f78",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 5
+      },
+      "revId": "006f93fc07743024f7854a9412eeab2f1058825d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
