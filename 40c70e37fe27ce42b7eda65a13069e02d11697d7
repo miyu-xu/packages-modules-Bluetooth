@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e2c170e_2968705e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-04T08:47:45Z",
+      "side": 1,
+      "message": "In case that above broadcast id check failed, we will return early here and skip updating mSyncHandleToDeviceMap in Java, but native layer might still have this handle as synced.\n\nIs this resolved by the implementation of leaudioBroadcastExtractPeriodicScannerFromStateMachine? if so, should we put the logic move under that flag #288 \u0026 #359.",
+      "revId": "40c70e37fe27ce42b7eda65a13069e02d11697d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
