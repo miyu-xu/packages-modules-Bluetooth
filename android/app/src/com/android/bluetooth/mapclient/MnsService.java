@@ -54,6 +54,10 @@ public class MnsService {
         sContext = context;
         sAcceptThread = new SocketAcceptor();
         sServerSockets = ObexServerSockets.create(sAcceptThread);
+        if (sServerSockets == null) {
+            Log.e(TAG, "Can't create ObexServerSockets");
+            return;
+        }
         SdpManagerNativeInterface nativeInterface = SdpManagerNativeInterface.getInstance();
         if (!nativeInterface.isAvailable()) {
             Log.e(TAG, "SdpManagerNativeInterface is not available");
