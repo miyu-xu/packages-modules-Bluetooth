@@ -40,6 +40,30 @@
       ],
       "revId": "a2720bc2804ec559bce20846ffd16ccebb72ead7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d95ac84d_39aa5783",
+        "filename": "system/gd/sysprops/sysprops_module.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-06-04T00:17:40Z",
+      "side": 1,
+      "message": "I would like to (even did make a mistake to include that underscore), but it is already defined so in the native stack. Also, `bluetooth.le_audio.enable_le_audio_only` shall be removed soon.",
+      "parentUuid": "86184185_d2419202",
+      "range": {
+        "startLine": 122,
+        "startChar": 17,
+        "endLine": 122,
+        "endChar": 24
+      },
+      "revId": "a2720bc2804ec559bce20846ffd16ccebb72ead7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
