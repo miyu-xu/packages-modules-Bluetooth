@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ff64c2c_a5985686",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MnsService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-06-04T19:21:23Z",
+      "side": 1,
+      "message": "This issue is indicative of a hardware problem and we actually want this to blow up and expose it. There\u0027s no way for us to recover or exit gracefully. This basically means we can\u0027t even talk to the hardware to try to create an RFCOMM or L2CAP connection. There will never be a way to do messaging unless we reset and the hardware behaves. And even if we essentially short circuit an exception here, the same ones will appear for other \"socket\" based Bluetooth features.\n\nWhere are you seeing this crash? Are you seeing it a lot?",
+      "range": {
+        "startLine": 57,
+        "startChar": 8,
+        "endLine": 57,
+        "endChar": 37
+      },
+      "revId": "3cf814a9c38280a858da378eb45f92af8b6eea73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
