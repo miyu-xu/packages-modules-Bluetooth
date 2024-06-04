@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c67e3505_f37b9b38",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-06-04T23:23:08Z",
+      "side": 1,
+      "message": "Need to change the polling logic of uhid_start_polling. `std::array\u003cstruct pollfd, 1\u003e pfds \u003d {};` is only one element.",
+      "parentUuid": "3164223d_1032f0b8",
+      "revId": "19f51c3703a449fc83e5fb1287339cfa142e260a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "07e2ad92_35588f58",
         "filename": "system/test/mock/mock_bta_hh_utils.h",
         "patchSetId": 1
