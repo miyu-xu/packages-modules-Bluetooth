@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86134775_64af6898",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 2589,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-06-04T04:12:27Z",
+      "side": 0,
+      "message": "This line was specifically confusing hence the quick CL.",
+      "range": {
+        "startLine": 2589,
+        "startChar": 28,
+        "endLine": 2589,
+        "endChar": 47
+      },
+      "revId": "545cc3b043a095654b091d947e53109a3bbd8105",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
