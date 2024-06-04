@@ -78,7 +78,6 @@ static btgatt_interface_t btgattInterface = {
 
     .client = &btgattClientInterface,
     .server = &btgattServerInterface,
-    .scanner = nullptr,    // filled in btif_gatt_get_interface
     .advertiser = nullptr  // filled in btif_gatt_get_interface
 };
 
@@ -95,7 +94,6 @@ const btgatt_interface_t* btif_gatt_get_interface() {
   // TODO(jpawlowski) right now initializing advertiser field in static
   // structure cause explosion of dependencies. It must be initialized here
   // until those dependencies are properly abstracted for tests.
-  btgattInterface.scanner = get_ble_scanner_instance();
   btgattInterface.advertiser = bluetooth::shim::get_ble_advertiser_instance();
   btgattInterface.distance_measurement_manager =
       bluetooth::shim::get_distance_measurement_instance();
