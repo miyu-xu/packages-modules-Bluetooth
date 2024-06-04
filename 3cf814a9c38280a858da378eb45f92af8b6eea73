@@ -22,6 +22,30 @@
       },
       "revId": "3cf814a9c38280a858da378eb45f92af8b6eea73",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd4f9dd4_d8d7e841",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MnsService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2024-06-04T19:23:42Z",
+      "side": 1,
+      "message": "It was just one of the crashes that hit when I was fixing other crashes in this bug on cuttlefish. I don\u0027t have bug report or log, so as long as ABTD run https://android-build.corp.google.com/builds/abtd/run/L38300030004287024 passes I\u0027m fine dropping this change.",
+      "parentUuid": "4ff64c2c_a5985686",
+      "range": {
+        "startLine": 57,
+        "startChar": 8,
+        "endLine": 57,
+        "endChar": 37
+      },
+      "revId": "3cf814a9c38280a858da378eb45f92af8b6eea73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
