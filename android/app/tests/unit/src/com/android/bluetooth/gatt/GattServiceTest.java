@@ -50,6 +50,7 @@ import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.CompanionManager;
 import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.le_scan.ScanManager;
+import com.android.bluetooth.le_scan.ScanObjectsFactory;
 import com.android.bluetooth.le_scan.TransitionalScanHelper;
 
 import org.junit.After;
@@ -104,7 +105,8 @@ public class GattServiceTest {
 
     @Mock private Resources mResources;
     @Mock private AdapterService mAdapterService;
-    @Mock private GattObjectsFactory mFactory;
+    @Mock private GattObjectsFactory mGattObjectsFactory;
+    @Mock private ScanObjectsFactory mScanObjectsFactory;
     @Mock private GattNativeInterface mNativeInterface;
     private BluetoothDevice mCurrentDevice;
     private CompanionManager mBtCompanionManager;
@@ -115,12 +117,13 @@ public class GattServiceTest {
 
         TestUtils.setAdapterService(mAdapterService);
 
-        GattObjectsFactory.setInstanceForTesting(mFactory);
-        doReturn(mNativeInterface).when(mFactory).getNativeInterface();
-        doReturn(mScanManager).when(mFactory).createScanManager(any(), any(), any(), any(), any());
-        doReturn(mDistanceMeasurementManager)
-                .when(mFactory)
-                .createDistanceMeasurementManager(any());
+        GattObjectsFactory.setInstanceForTesting(mGattObjectsFactory);
+        ScanObjectsFactory.setInstanceForTesting(mScanObjectsFactory);
+        doReturn(mNativeInterface).when(mGattObjectsFactory).getNativeInterface();
+        doReturn(mDistanceMeasurementManager).when(mGattObjectsFactory);
+        doReturn(mScanManager)
+                .when(mScanObjectsFactory)
+                .createScanManager(any(), any(), any(), any(), any());
 
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         mAttributionSource = mAdapter.getAttributionSource();
