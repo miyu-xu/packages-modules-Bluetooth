@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d62a2423_9adb15ac",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1248,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-04T16:53:42Z",
+      "side": 1,
+      "message": "nit:requires\n```suggestion\n            // Unfortunately, this requires heavy rework of the Bluetooth app\n```",
+      "range": {
+        "startLine": 1248,
+        "startChar": 35,
+        "endLine": 1248,
+        "endChar": 42
+      },
+      "revId": "34d58bcd2e1e1e9e67f8e1d7146a9870dee4c5ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "950c82c2_47f56a28",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1252,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-04T16:53:42Z",
+      "side": 1,
+      "message": "By this logic, should 1256 also be info?",
+      "range": {
+        "startLine": 1252,
+        "startChar": 11,
+        "endLine": 1252,
+        "endChar": 70
+      },
+      "revId": "34d58bcd2e1e1e9e67f8e1d7146a9870dee4c5ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16ea3595_1f99447d",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1264,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-04T16:53:42Z",
+      "side": 1,
+      "message": "nit: send\n```suggestion\n            // The binder did not send a death notification.\n```",
+      "range": {
+        "startLine": 1264,
+        "startChar": 34,
+        "endLine": 1264,
+        "endChar": 38
+      },
+      "revId": "34d58bcd2e1e1e9e67f8e1d7146a9870dee4c5ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83d64e83_c3d55abc",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1293,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-04T16:53:42Z",
+      "side": 1,
+      "message": "nit: unwanted\n```suggestion\n            // Unbind first to avoid receiving unwanted \"onServiceDisconnected\"\n```",
+      "revId": "34d58bcd2e1e1e9e67f8e1d7146a9870dee4c5ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9d27359_80e354cf",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1298,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-04T16:53:42Z",
+      "side": 1,
+      "message": "```suggestion\n                // Bluetooth cannot be killed on the main thread; it is in a deadLock.\n                // Try to recover by killing Bluetooth from the binder thread.\n```",
+      "range": {
+        "startLine": 1297,
+        "startChar": 0,
+        "endLine": 1298,
+        "endChar": 81
+      },
+      "revId": "34d58bcd2e1e1e9e67f8e1d7146a9870dee4c5ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8f9beca_9ea91455",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1305,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-04T16:53:42Z",
+      "side": 1,
+      "message": "Are we allowed to Log.wtf in this case?",
+      "range": {
+        "startLine": 1305,
+        "startChar": 24,
+        "endLine": 1305,
+        "endChar": 25
+      },
+      "revId": "34d58bcd2e1e1e9e67f8e1d7146a9870dee4c5ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
