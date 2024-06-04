@@ -46,6 +46,30 @@
       },
       "revId": "3cf814a9c38280a858da378eb45f92af8b6eea73",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84e35832_dba2287c",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MnsService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-06-04T19:32:04Z",
+      "side": 1,
+      "message": "Ah, okay, that\u0027s a relief. I didn\u0027t think it was widespread, but figured I\u0027d ask.\n\nIn general, when you see this, there\u0027s usually complaints at the HAL service level. For CF devices, that usually means our emulation went bad and someone from the Core team needs to figure out why.\n\nOnce every 6 months maybe someone tries to submit this change. I\u0027m pretty sure even you have before 😊. It ends up being the same conversation, and sometimes we get to fix a bug closer to hardware.",
+      "parentUuid": "dd4f9dd4_d8d7e841",
+      "range": {
+        "startLine": 57,
+        "startChar": 8,
+        "endLine": 57,
+        "endChar": 37
+      },
+      "revId": "3cf814a9c38280a858da378eb45f92af8b6eea73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
