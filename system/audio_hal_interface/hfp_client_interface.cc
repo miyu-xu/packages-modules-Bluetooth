@@ -78,12 +78,17 @@ HfpConfiguration get_default_hfp_configuration() {
 }
 
 CodecId get_codec_id_by_peer_codec(tBTA_AG_PEER_CODEC sco_codec) {
-  if (sco_codec & BTM_SCO_CODEC_LC3) return CodecId::Core::LC3;
-  if (sco_codec & BTM_SCO_CODEC_MSBC) return CodecId::Core::MSBC;
-  if (sco_codec & BTM_SCO_CODEC_CVSD) return CodecId::Core::CVSD;
-  // Unknown vendor codec otherwise
-  CodecId codec_id = CodecId::Vendor();
-  return codec_id;
+  switch (sco_codec) {
+    case UUID_CODEC_LC3:
+      return CodecId::Core::LC3;
+    case UUID_CODEC_MSBC:
+      return CodecId::Core::MSBC;
+    case UUID_CODEC_CVSD:
+      return CodecId::Core::CVSD;
+    default:
+      log::warn("Unknown sco_codec {}, defaulting to vendor codec", sco_codec);
+      return CodecId::Vendor();
+  }
 }
 
 AudioConfiguration offload_config_to_hal_audio_config(
