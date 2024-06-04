@@ -210,10 +210,11 @@ static void btif_storage_load_bonded_hid_device(const tAclLinkSpec link_spec) {
   size_t len =
       btif_config_get_bin_length(name, BTIF_STORAGE_KEY_HID_DESCRIPTOR);
   if (len > 0) {
-    dscp_info.descriptor.dl_len = (uint16_t)len;
-    dscp_info.descriptor.dsc_list = (uint8_t*)alloca(len);
+    dscp_info.num_descriptors = 1;
+    dscp_info.descriptors[0].dl_len = (uint16_t)len;
+    dscp_info.descriptors[0].dsc_list = (uint8_t*)alloca(len);
     btif_config_get_bin(name, BTIF_STORAGE_KEY_HID_DESCRIPTOR,
-                        (uint8_t*)dscp_info.descriptor.dsc_list, &len);
+                        (uint8_t*)dscp_info.descriptors[0].dsc_list, &len);
   }
 
   btif_storage_get_hid_connection_policy(link_spec, &reconnect_allowed);
@@ -259,10 +260,11 @@ static void btif_storage_load_bonded_hogp_device(const tAclLinkSpec link_spec) {
   size_t len =
       btif_config_get_bin_length(name, BTIF_STORAGE_KEY_HOGP_DESCRIPTOR);
   if (len > 0) {
-    dscp_info.descriptor.dl_len = (uint16_t)len;
-    dscp_info.descriptor.dsc_list = (uint8_t*)alloca(len);
+    dscp_info.num_descriptors = 1;
+    dscp_info.descriptors[0].dl_len = (uint16_t)len;
+    dscp_info.descriptors[0].dsc_list = (uint8_t*)alloca(len);
     btif_config_get_bin(name, BTIF_STORAGE_KEY_HOGP_DESCRIPTOR,
-                        (uint8_t*)dscp_info.descriptor.dsc_list, &len);
+                        (uint8_t*)dscp_info.descriptors[0].dsc_list, &len);
   }
 
   btif_storage_get_hid_connection_policy(link_spec, &reconnect_allowed);

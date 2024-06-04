@@ -139,7 +139,9 @@ void bta_hh_clean_up_kdev(tBTA_HH_DEV_CB* p_cb) {
   index = p_cb->index; /* Preserve index for this control block */
 
   /* Free buffer for report descriptor info */
-  osi_free_and_reset((void**)&p_cb->dscp_info.descriptor.dsc_list);
+  osi_free_and_reset((void**)&p_cb->dscp_info.descriptors[0].dsc_list);
+  osi_free_and_reset((void**)&p_cb->dscp_info.descriptors[1].dsc_list);
+  osi_free_and_reset((void**)&p_cb->dscp_info.descriptors[2].dsc_list);
 
   memset(p_cb, 0, sizeof(tBTA_HH_DEV_CB)); /* Reset control block */
 
@@ -180,7 +182,7 @@ void bta_hh_update_di_info(tBTA_HH_DEV_CB* p_cb, uint16_t vendor_id,
  ******************************************************************************/
 void bta_hh_add_device_to_list(tBTA_HH_DEV_CB* p_cb, uint8_t handle,
                                uint16_t attr_mask,
-                               const tHID_DEV_DSCP_INFO* p_dscp_info,
+                               const tHID_DEV_DSCP_INFO* p_dscp_info, uint8_t num_dscp,
                                uint8_t sub_class, uint16_t ssr_max_latency,
                                uint16_t ssr_min_tout, uint8_t app_id) {
 #if (BTA_HH_DEBUG == TRUE)
@@ -198,15 +200,17 @@ void bta_hh_add_device_to_list(tBTA_HH_DEV_CB* p_cb, uint8_t handle,
   p_cb->dscp_info.ssr_min_tout = ssr_min_tout;
 
   /* store report descriptor info */
-  if (p_dscp_info) {
-    osi_free_and_reset((void**)&p_cb->dscp_info.descriptor.dsc_list);
+  if (p_dscp_info && num_dscp > 0) {
+    for (uint8_t i = 0; i < num_dscp; i++) {
+      osi_free_and_reset((void**)&p_cb->dscp_info.descriptors[i].dsc_list);
 
-    if (p_dscp_info->dl_len) {
-      p_cb->dscp_info.descriptor.dsc_list =
-          (uint8_t*)osi_malloc(p_dscp_info->dl_len);
-      p_cb->dscp_info.descriptor.dl_len = p_dscp_info->dl_len;
-      memcpy(p_cb->dscp_info.descriptor.dsc_list, p_dscp_info->dsc_list,
-             p_dscp_info->dl_len);
+      if (p_dscp_info[i].dl_len) {
+        p_cb->dscp_info.descriptors[i].dsc_list =
+            (uint8_t*)osi_malloc(p_dscp_info[i].dl_len);
+        p_cb->dscp_info.descriptors[i].dl_len = p_dscp_info[i].dl_len;
+        memcpy(p_cb->dscp_info.descriptors[i].dsc_list, p_dscp_info[i].dsc_list,
+              p_dscp_info[i].dl_len);
+      }
     }
   }
 }
@@ -316,7 +320,11 @@ void bta_hh_cleanup_disable(tBTA_HH_STATUS status) {
   /* free buffer in CB holding report descriptors */
   for (xx = 0; xx < BTA_HH_MAX_DEVICE; xx++) {
     osi_free_and_reset(
-        (void**)&bta_hh_cb.kdev[xx].dscp_info.descriptor.dsc_list);
+        (void**)&bta_hh_cb.kdev[xx].dscp_info.descriptors[0].dsc_list);
+    osi_free_and_reset(
+        (void**)&bta_hh_cb.kdev[xx].dscp_info.descriptors[1].dsc_list);
+    osi_free_and_reset(
+        (void**)&bta_hh_cb.kdev[xx].dscp_info.descriptors[2].dsc_list);
   }
 
   if (bta_hh_cb.p_disc_db) {

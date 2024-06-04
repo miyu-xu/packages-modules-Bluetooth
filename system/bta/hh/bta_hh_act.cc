@@ -234,7 +234,7 @@ static void bta_hh_sdp_cback(uint16_t result, uint16_t attr_mask,
 
       if (p_cb->app_id != 0) {
         /* update cb information with attr_mask, dscp_info etc. */
-        bta_hh_add_device_to_list(p_cb, hdl, attr_mask, &sdp_rec->dscp_info,
+        bta_hh_add_device_to_list(p_cb, hdl, attr_mask, &sdp_rec->dscp_info, 1,
                                   sdp_rec->sub_class, sdp_rec->ssr_max_latency,
                                   sdp_rec->ssr_min_tout, p_cb->app_id);
 
@@ -469,7 +469,7 @@ static void bta_hh_bredr_conn(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) 
       if (HID_HostAddDev(p_cb->link_spec.addrt.bda, p_cb->attr_mask, &hdl) ==
           HID_SUCCESS) {
         /* update device CB with newly register device handle */
-        bta_hh_add_device_to_list(p_cb, hdl, p_cb->attr_mask, NULL,
+        bta_hh_add_device_to_list(p_cb, hdl, p_cb->attr_mask, NULL, 0,
                                   p_cb->sub_class,
                                   p_cb->dscp_info.ssr_max_latency,
                                   p_cb->dscp_info.ssr_min_tout, p_cb->app_id);
@@ -919,6 +919,7 @@ void bta_hh_get_dscp_act(tBTA_HH_DEV_CB* p_cb,
     bta_hh_le_get_dscp_act(p_cb);
   } else {
     p_cb->dscp_info.hid_handle = p_cb->hid_handle;
+    p_cb->dscp_info.num_descriptors = 1;
     (*bta_hh_cb.p_cback)(BTA_HH_GET_DSCP_EVT, (tBTA_HH*)&p_cb->dscp_info);
   }
 }
@@ -974,7 +975,7 @@ void bta_hh_maint_dev_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
             /* add to BTA device list */
             bta_hh_add_device_to_list(
                 p_cb, dev_handle, p_dev_info->attr_mask,
-                &p_dev_info->dscp_info.descriptor, p_dev_info->sub_class,
+                p_dev_info->dscp_info.descriptors, 1, p_dev_info->sub_class,
                 p_dev_info->dscp_info.ssr_max_latency,
                 p_dev_info->dscp_info.ssr_min_tout, p_dev_info->app_id);
             /* update cb_index[] map */

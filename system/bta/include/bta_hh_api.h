@@ -248,7 +248,8 @@ typedef struct {
 #define BTA_HH_LE_NORMAL_CONN 0x02
 
   uint8_t flag;
-  tBTA_HH_DEV_DESCR descriptor;
+  uint8_t num_descriptors;
+  tBTA_HH_DEV_DESCR descriptors[3]; // In this CL, let's hardcode the usages of non-HoGP to descriptor[0]
   uint8_t hid_handle;
 
   std::string ToString() const {
