@@ -62,6 +62,46 @@
       },
       "revId": "66a7145e7078b2259d4c38d50bac3e4d4a058d38",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b106c884_a7a28b94",
+        "filename": "pandora/interfaces/pandora_experimental/hid.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-06-04T19:13:08Z",
+      "side": 1,
+      "message": "Is this necessary ?  Can you register the SDP record at the initialization of the service ?",
+      "revId": "66a7145e7078b2259d4c38d50bac3e4d4a058d38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e11cbf7_9e932f9d",
+        "filename": "pandora/server/bumble_experimental/hid.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-06-04T19:13:08Z",
+      "side": 1,
+      "message": "Can this logic be moved into the constructor ?",
+      "range": {
+        "startLine": 368,
+        "startChar": 8,
+        "endLine": 372,
+        "endChar": 32
+      },
+      "revId": "66a7145e7078b2259d4c38d50bac3e4d4a058d38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
