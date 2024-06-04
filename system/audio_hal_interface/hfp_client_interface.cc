@@ -77,19 +77,25 @@ HfpConfiguration get_default_hfp_configuration() {
   return hfp_config;
 }
 
-CodecId get_codec_id_by_peer_codec(tBTA_AG_PEER_CODEC sco_codec) {
-  if (sco_codec & BTM_SCO_CODEC_LC3) return CodecId::Core::LC3;
-  if (sco_codec & BTM_SCO_CODEC_MSBC) return CodecId::Core::MSBC;
-  if (sco_codec & BTM_SCO_CODEC_CVSD) return CodecId::Core::CVSD;
-  // Unknown vendor codec otherwise
-  CodecId codec_id = CodecId::Vendor();
-  return codec_id;
+CodecId sco_codec_to_hal_codec(tBTA_AG_UUID_CODEC sco_codec) {
+  switch (sco_codec) {
+    case UUID_CODEC_LC3:
+      return CodecId::Core::LC3;
+    case UUID_CODEC_MSBC:
+      return CodecId::Core::MSBC;
+    case UUID_CODEC_CVSD:
+      return CodecId::Core::CVSD;
+    default:
+      log::warn("Unknown sco_codec {}, defaulting to vendor codec",
+                bta_ag_uuid_codec_text(sco_codec));
+      return CodecId::Vendor();
+  }
 }
 
 AudioConfiguration offload_config_to_hal_audio_config(
     const ::hfp::offload_config& offload_config) {
   HfpConfiguration hfp_config{
-      .codecId = get_codec_id_by_peer_codec(offload_config.sco_codec),
+      .codecId = sco_codec_to_hal_codec(offload_config.sco_codec),
       .connectionHandle = offload_config.connection_handle,
       .nrec = offload_config.is_nrec,
       .controllerCodec = offload_config.is_controller_codec,

@@ -218,9 +218,9 @@ static void bta_ag_sco_disc_cback(uint16_t sco_idx) {
         is_hfp_aptx_voice_enabled() &&
         (bta_ag_cb.sco.p_curr_scb->is_aptx_swb_codec == true) &&
         (bta_ag_cb.sco.p_curr_scb->inuse_codec ==
-         BTA_AG_SCO_APTX_SWB_SETTINGS_Q0);
-    log::verbose("aptx_voice={}, inuse_codec={:#x}", aptx_voice,
-                 bta_ag_cb.sco.p_curr_scb->inuse_codec);
+         static_cast<tBTA_AG_UUID_CODEC>(BTA_AG_SCO_APTX_SWB_SETTINGS_Q0));
+    log::verbose("aptx_voice={}, inuse_codec={}", aptx_voice,
+                 bta_ag_uuid_codec_text(bta_ag_cb.sco.p_curr_scb->inuse_codec));
 
     /* Restore settings */
     if (bta_ag_cb.sco.p_curr_scb->inuse_codec == UUID_CODEC_MSBC ||
@@ -303,7 +303,7 @@ static void bta_ag_sco_disc_cback(uint16_t sco_idx) {
       }
     }
 
-    bta_ag_cb.sco.p_curr_scb->inuse_codec = BTM_SCO_CODEC_NONE;
+    bta_ag_cb.sco.p_curr_scb->inuse_codec = UUID_CODEC_NONE;
 
     do_in_main_thread(
         FROM_HERE, base::BindOnce(&bta_ag_sm_execute_by_handle, handle,
@@ -440,7 +440,7 @@ static void bta_ag_cback_sco(tBTA_AG_SCB* p_scb, tBTA_AG_EVT event) {
  ******************************************************************************/
 void bta_ag_create_sco(tBTA_AG_SCB* p_scb, bool is_orig) {
   log::debug("BEFORE {}", p_scb->ToString());
-  tBTA_AG_PEER_CODEC esco_codec = UUID_CODEC_CVSD;
+  tBTA_AG_UUID_CODEC esco_codec = UUID_CODEC_CVSD;
 
   if (!bta_ag_sco_is_active_device(p_scb->peer_addr)) {
     log::warn("device {} is not active, active_device={}", p_scb->peer_addr,
@@ -468,7 +468,8 @@ void bta_ag_create_sco(tBTA_AG_SCB* p_scb, bool is_orig) {
   if (is_hfp_aptx_voice_enabled()) {
     if ((p_scb->sco_codec == BTA_AG_SCO_APTX_SWB_SETTINGS_Q0) &&
         !p_scb->codec_fallback) {
-      esco_codec = BTA_AG_SCO_APTX_SWB_SETTINGS_Q0;
+      esco_codec =
+          static_cast<tBTA_AG_UUID_CODEC>(BTA_AG_SCO_APTX_SWB_SETTINGS_Q0);
     }
   }
 
@@ -1420,7 +1421,7 @@ void bta_ag_sco_conn_open(tBTA_AG_SCB* p_scb, const tBTA_AG_DATA& /* data */) {
     bool is_controller_codec = false;
     if (sco_config_map.find(p_scb->inuse_codec) == sco_config_map.end()) {
       log::error("sco_config_map does not have inuse_codec={}",
-                 p_scb->inuse_codec);
+                 bta_ag_uuid_codec_text(p_scb->inuse_codec));
     } else {
       is_controller_codec =
           sco_config_map[p_scb->inuse_codec].useControllerCodec;
@@ -1538,7 +1539,7 @@ void bta_ag_sco_conn_rsp(tBTA_AG_SCB* p_scb,
   }
 
   /* If SCO open was initiated from HS, it must be CVSD */
-  p_scb->inuse_codec = BTM_SCO_CODEC_NONE;
+  p_scb->inuse_codec = UUID_CODEC_NONE;
   /* Send pending commands to create SCO connection to peer */
   enh_esco_params_t params = {};
   bool offload = hfp_hal_interface::get_offload_enabled();
