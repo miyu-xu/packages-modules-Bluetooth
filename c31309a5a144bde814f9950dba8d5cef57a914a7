@@ -88,6 +88,24 @@
       "parentUuid": "a3059a94_48da7f0c",
       "revId": "c31309a5a144bde814f9950dba8d5cef57a914a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d57ba13b_02d9aa36",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-06-04T04:05:36Z",
+      "side": 1,
+      "message": "\u003e the design seems a bit complicated.\n\nYes, while I agree the design is complicated, but it matches the behavior of similar flow (e.g. feature report), so it doesn\u0027t add much burden to maintain and to understand it.\nAdding a mutex, on the other hand, introduces a new mechanism, therefore I think is complicated to maintain.\n\n\u003e Reports have to be protected anyway because of produce/consumer nature. So routing through BTIF is unnecessary.\n\nDo you mean we eventually need the mutex?\nI think we shouldn\u0027t need the mutex if the uhid thread and the btif thread aren\u0027t accessing the same struct. It\u0027s best if we can just separate the access. Otherwise we need to put mutex in a lot of places which looks dirty.\nIf we do this, we will still need to make sure the main thread and btif thread aren\u0027t shooting at each other\u0027s feet, so it\u0027s still necessary to route the events to btif (or alternatively, never route anything to btif).\n\nwdyt?",
+      "parentUuid": "c18b29b6_9092d908",
+      "revId": "c31309a5a144bde814f9950dba8d5cef57a914a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
