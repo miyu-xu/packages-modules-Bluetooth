@@ -126,9 +126,11 @@ inline std::string sdp_attr_id_text(const unsigned& id) {
   }
 }
 
-#define UUID_CODEC_CVSD 0x0001 /* CVSD */
-#define UUID_CODEC_MSBC 0x0002 /* mSBC */
-#define UUID_CODEC_LC3 0x0003  /* LC3 */
+enum : uint16_t {
+  UUID_CODEC_CVSD = 0x0001 /* CVSD */,
+  UUID_CODEC_MSBC = 0x0002 /* mSBC */,
+  UUID_CODEC_LC3 = 0x0003 /* LC3 */,
+};
 
 /* Define all the 'Descriptor Type' values.
 */
