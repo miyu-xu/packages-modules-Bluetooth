@@ -120,6 +120,30 @@
       ],
       "revId": "4cff6053c84f2686b5cce4fce04cfdab924a7305",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd03cc77_bc0c019f",
+        "filename": "android/app/src/com/android/bluetooth/pan/PanService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-06-04T11:30:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65c68f29_cb315f2d",
+      "range": {
+        "startLine": 75,
+        "startChar": 4,
+        "endLine": 75,
+        "endChar": 30
+      },
+      "revId": "4cff6053c84f2686b5cce4fce04cfdab924a7305",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
