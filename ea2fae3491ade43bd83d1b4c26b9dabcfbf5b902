@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "852bab75_c3c32fb9",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-06-04T07:27:08Z",
+      "side": 1,
+      "message": "nit: Encapsulate group related data, such as Le_audio_group_status, le_audio_group_volume, le_audio_groups etc into a type and managing them in one HashMap might be more concise and easy to manage these data.\n\nConsolidating LeAudio group data (e.g., status, volume, devices) into a struct might help improve code organization and maintainability.\n\nEx:\n```\nstruct LeAudioGroup {\n  devices: HashSet\u003cRawAddress\u003e,\n  status: BtLeAudioGroupStatus,\n  volume: u8,\n  ...\n};\n\npub struct BluetoothMedia {\n  ...\n  le_audio_groups: HashMap\u003ci32,LeAudioGroup\u003e,\n  ...\n};\n```",
+      "range": {
+        "startLine": 475,
+        "startChar": 0,
+        "endLine": 475,
+        "endChar": 44
+      },
+      "revId": "ea2fae3491ade43bd83d1b4c26b9dabcfbf5b902",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00e662c6_6b4e23d8",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1022,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-06-04T07:27:08Z",
+      "side": 1,
+      "message": "Do you mind adding a helper function for removing a device from the old_group? Line 1014~1022 and line 1041~1048 share the same logic.",
+      "range": {
+        "startLine": 1014,
+        "startChar": 0,
+        "endLine": 1022,
+        "endChar": 37
+      },
+      "revId": "ea2fae3491ade43bd83d1b4c26b9dabcfbf5b902",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
