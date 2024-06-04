@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d407d6d_c3f3e01a",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1248,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-04T18:12:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d62a2423_9adb15ac",
+      "range": {
+        "startLine": 1248,
+        "startChar": 35,
+        "endLine": 1248,
+        "endChar": 42
+      },
+      "revId": "34d58bcd2e1e1e9e67f8e1d7146a9870dee4c5ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "950c82c2_47f56a28",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-06-04T16:53:42Z",
       "side": 1,
       "message": "By this logic, should 1256 also be info?",
+      "range": {
+        "startLine": 1252,
+        "startChar": 11,
+        "endLine": 1252,
+        "endChar": 70
+      },
+      "revId": "34d58bcd2e1e1e9e67f8e1d7146a9870dee4c5ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb9ac625_75928c45",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1252,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-04T18:12:06Z",
+      "side": 1,
+      "message": "No, it should not.\nFor now `RemoteException` is either a `DeadObjectException` or a `TransactionTooLargeException`.\nI want to only consider the dead one as normal and intended.\n\nAny other `RemoteException` are an error, but because we can\u0027t be sure the call went threw, and because it is unlikely that another call will solve something, it is returning true already",
+      "parentUuid": "950c82c2_47f56a28",
       "range": {
         "startLine": 1252,
         "startChar": 11,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7784fb73_1c4dafff",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1264,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-04T18:12:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16ea3595_1f99447d",
+      "range": {
+        "startLine": 1264,
+        "startChar": 34,
+        "endLine": 1264,
+        "endChar": 38
+      },
+      "revId": "34d58bcd2e1e1e9e67f8e1d7146a9870dee4c5ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83d64e83_c3d55abc",
@@ -83,6 +155,24 @@
       "writtenOn": "2024-06-04T16:53:42Z",
       "side": 1,
       "message": "nit: unwanted\n```suggestion\n            // Unbind first to avoid receiving unwanted \"onServiceDisconnected\"\n```",
+      "revId": "34d58bcd2e1e1e9e67f8e1d7146a9870dee4c5ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e20924e_03d7945d",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1293,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-04T18:12:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83d64e83_c3d55abc",
       "revId": "34d58bcd2e1e1e9e67f8e1d7146a9870dee4c5ee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -110,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15d66ec4_640fabba",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1298,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-04T18:12:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e9d27359_80e354cf",
+      "range": {
+        "startLine": 1297,
+        "startChar": 0,
+        "endLine": 1298,
+        "endChar": 81
+      },
+      "revId": "34d58bcd2e1e1e9e67f8e1d7146a9870dee4c5ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8f9beca_9ea91455",
@@ -123,6 +237,30 @@
       "writtenOn": "2024-06-04T16:53:42Z",
       "side": 1,
       "message": "Are we allowed to Log.wtf in this case?",
+      "range": {
+        "startLine": 1305,
+        "startChar": 24,
+        "endLine": 1305,
+        "endChar": 25
+      },
+      "revId": "34d58bcd2e1e1e9e67f8e1d7146a9870dee4c5ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bda21b1e_c076730b",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1305,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-04T18:12:06Z",
+      "side": 1,
+      "message": "I don\u0027t want to try Log.wtf since in certain condition it can assert.\nI must not assert from within the system server.\n\nBut that mean we can also do that differently, by doing a Log.wtf from within the binder thread directly.\n\nUpdating...",
+      "parentUuid": "f8f9beca_9ea91455",
       "range": {
         "startLine": 1305,
         "startChar": 24,
