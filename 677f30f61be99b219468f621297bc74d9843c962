@@ -16,6 +16,24 @@
       "message": "add flagging",
       "revId": "677f30f61be99b219468f621297bc74d9843c962",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e8c29b3_1b665489",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-04T21:01:59Z",
+      "side": 1,
+      "message": "confirmed with Antoine, transparent data path is not used right now. Current implementation is using DSP\u0027s LC3 codec, so this patch does not need the flag",
+      "parentUuid": "d3a53e35_fc3a8e8c",
+      "revId": "677f30f61be99b219468f621297bc74d9843c962",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
