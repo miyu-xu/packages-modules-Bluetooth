@@ -92,10 +92,14 @@ typedef struct {
   tBTA_HH_ATTR_MASK attr_mask;
   uint8_t sub_class;
   uint8_t app_id;
-  int fd;
+  // int fd;
+  int fd_cnt;
+  int fds[3]; // hardcode 3 services
   bool ready_for_data;
-  pthread_t hh_poll_thread_id;
-  uint8_t hh_keep_polling;
+  // pthread_t hh_poll_thread_id;
+  // uint8_t hh_keep_polling;
+  pthread_t hh_poll_thread_ids[3];
+  uint8_t hh_keep_polling[3];
   alarm_t* vup_timer;
   fixed_queue_t* get_rpt_id_queue;
 #if ENABLE_UHID_SET_REPORT

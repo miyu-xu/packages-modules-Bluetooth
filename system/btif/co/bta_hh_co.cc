@@ -149,7 +149,7 @@ static int uhid_read_event(btif_hh_device_t* p_dev) {
   memset(&ev, 0, sizeof(ev));
 
   ssize_t ret;
-  OSI_NO_INTR(ret = read(p_dev->fd, &ev, sizeof(ev)));
+  OSI_NO_INTR(ret = read(p_dev->fds[0], &ev, sizeof(ev)));
 
   if (ret == 0) {
     log::error("Read HUP on uhid-cdev {}", strerror(errno));
@@ -266,30 +266,34 @@ static inline pthread_t create_thread(void* (*start_routine)(void*),
 
 /* Internal function to close the UHID driver*/
 static void uhid_fd_close(btif_hh_device_t* p_dev) {
-  if (p_dev->fd >= 0) {
-    struct uhid_event ev = {};
-    ev.type = UHID_DESTROY;
-    uhid_write(p_dev->fd, &ev);
-    log::debug("Closing fd={}, addr:{}", p_dev->fd, p_dev->link_spec);
-    close(p_dev->fd);
-    p_dev->fd = -1;
-  }
+  for (uint8_t i = 0; i < 3; ++i)
+    if (p_dev->fds[i] >= 0) {
+      struct uhid_event ev = {};
+      ev.type = UHID_DESTROY;
+      uhid_write(p_dev->fds[i], &ev);
+      log::debug("Closing fd={}, addr:{}", p_dev->fds[i], p_dev->link_spec);
+      close(p_dev->fds[i]);
+      p_dev->fds[i] = -1;
+    }
 }
 
 /* Internal function to open the UHID driver*/
-static bool uhid_fd_open(btif_hh_device_t* p_dev) {
-  if (p_dev->fd < 0) {
-    p_dev->fd = open(dev_path, O_RDWR | O_CLOEXEC);
-    if (p_dev->fd < 0) {
-      log::error("Failed to open uhid, err:{}", strerror(errno));
-      return false;
+static bool uhid_fd_open(btif_hh_device_t* p_dev, int num_services) {
+  for (uint8_t i = 0; i < num_services; i++)
+    if (p_dev->fds[i] < 0) {
+      p_dev->fds[i] = open(dev_path, O_RDWR | O_CLOEXEC);
+      if (p_dev->fds[i] < 0) {
+        log::error("Failed to open uhid, err:{}", strerror(errno));
+        return false;
+      }
     }
-  }
 
-  if (p_dev->hh_keep_polling == 0) {
-    p_dev->hh_keep_polling = 1;
-    p_dev->hh_poll_thread_id = create_thread(btif_hh_poll_event_thread, p_dev);
-  }
+  for (uint8_t i = 0; i < num_services; i++)
+    if (p_dev->hh_keep_polling[i] == 0) {
+      p_dev->hh_keep_polling[i] = 1;
+      // TODO: pass fd id to the polling thread, a struct with p_dev + id?
+      p_dev->hh_poll_thread_ids[i] = create_thread(btif_hh_poll_event_thread, p_dev);
+    }
   return true;
 }
 
@@ -300,7 +304,7 @@ static int uhid_fd_poll(btif_hh_device_t* p_dev,
 
   do {
     if (com::android::bluetooth::flags::break_uhid_polling_early() &&
-        !p_dev->hh_keep_polling) {
+        !p_dev->hh_keep_polling[0]) {
       log::debug("Polling stopped");
       return -1;
     }
@@ -326,10 +330,10 @@ static int uhid_fd_poll(btif_hh_device_t* p_dev,
 
 static void uhid_start_polling(btif_hh_device_t* p_dev) {
   std::array<struct pollfd, 1> pfds = {};
-  pfds[0].fd = p_dev->fd;
+  pfds[0].fd = p_dev->fds[0];
   pfds[0].events = POLLIN;
 
-  while (p_dev->hh_keep_polling) {
+  while (p_dev->hh_keep_polling[0]) {
     int ret = uhid_fd_poll(p_dev, pfds);
 
     if (ret < 0) {
@@ -370,10 +374,10 @@ static bool uhid_configure_thread(btif_hh_device_t* p_dev) {
           p_dev->link_spec.addrt.bda.address[5]);
   pthread_setname_np(pthread_self(), thread_name);
   log::debug("Host hid polling thread created name:{} pid:{} fd:{}",
-             thread_name, pid, p_dev->fd);
+             thread_name, pid, p_dev->fds[0]);
 
   // Set the uhid fd as non-blocking to ensure we never block the BTU thread
-  uhid_set_non_blocking(p_dev->fd);
+  uhid_set_non_blocking(p_dev->fds[0]);
 
   return true;
 }
@@ -396,8 +400,8 @@ static void* btif_hh_poll_event_thread(void* arg) {
 
   /* Todo: Disconnect if loop exited due to a failure */
   log::info("Polling thread stopped for device {}", p_dev->link_spec);
-  p_dev->hh_poll_thread_id = -1;
-  p_dev->hh_keep_polling = 0;
+  p_dev->hh_poll_thread_ids[0] = -1;
+  p_dev->hh_keep_polling[0] = 0;
   uhid_fd_close(p_dev);
   return 0;
 }
@@ -456,15 +460,18 @@ bool bta_hh_co_open(uint8_t dev_handle, uint8_t sub_class,
     log::verbose("New HID device added for handle {}", dev_handle);
 
     // [Archie] make an array of fd here, as many as num_services.
-    p_dev->fd = -1;
-    p_dev->hh_keep_polling = 0;
+    for (uint8_t i = 0; i < num_services; i++) {
+      p_dev->fds[i] = -1;
+      p_dev->hh_keep_polling[i] = 0;
+      p_dev->hh_poll_thread_ids[i] = -1;
+    }
     p_dev->attr_mask = attr_mask;
     p_dev->sub_class = sub_class;
     p_dev->app_id = app_id;
     p_dev->local_vup = false;
   }
 
-  if (!uhid_fd_open(p_dev)) {
+  if (!uhid_fd_open(p_dev, num_services)) {
     return false;
   }
 
@@ -513,10 +520,10 @@ void bta_hh_co_close(btif_hh_device_t* p_dev) {
 #endif  // ENABLE_UHID_SET_REPORT
 
   /* Stop the polling thread */
-  if (p_dev->hh_keep_polling) {
-    p_dev->hh_keep_polling = 0;
-    pthread_join(p_dev->hh_poll_thread_id, NULL);
-    p_dev->hh_poll_thread_id = -1;
+  if (p_dev->hh_keep_polling[0]) {
+    p_dev->hh_keep_polling[0] = 0;
+    pthread_join(p_dev->hh_poll_thread_ids[0], NULL);
+    p_dev->hh_poll_thread_ids[0] = -1;
   }
   /* UHID file descriptor is closed by the polling thread */
 }
@@ -556,7 +563,7 @@ void bta_hh_co_data(uint8_t dev_handle, uint8_t* p_rpt, uint16_t len,
 
   // Wait a maximum of MAX_POLLING_ATTEMPTS x POLLING_SLEEP_DURATION in case
   // device creation is pending.
-  if (p_dev->fd >= 0) {
+  if (p_dev->fds[0] >= 0) {
     uint32_t polling_attempts = 0;
     while (!p_dev->ready_for_data &&
            polling_attempts++ < BTIF_HH_MAX_POLLING_ATTEMPTS) {
@@ -565,10 +572,10 @@ void bta_hh_co_data(uint8_t dev_handle, uint8_t* p_rpt, uint16_t len,
   }
 
   // Send the HID data to the kernel.
-  if ((p_dev->fd >= 0) && p_dev->ready_for_data) {
-    bta_hh_co_write(p_dev->fd, p_rpt, len);
+  if ((p_dev->fds[0] >= 0) && p_dev->ready_for_data) {
+    bta_hh_co_write(p_dev->fds[0], p_rpt, len);
   } else {
-    log::warn("Error: fd = {}, ready {}, len = {}", p_dev->fd,
+    log::warn("Error: fd = {}, ready {}, len = {}", p_dev->fds[0],
               p_dev->ready_for_data, len);
   }
 }
@@ -633,17 +640,17 @@ void bta_hh_co_send_hid_info(btif_hh_device_t* p_dev, const char* dev_name,
     ev.u.create.rd_size = dscps[i].dl_len;
     ev.u.create.rd_data = dscps[i].dsc_list;
     // [Archie] make fd an array
-    result = uhid_write(p_dev->fd, &ev);
+    result = uhid_write(p_dev->fds[0], &ev);
 
     log::warn("wrote descriptor to fd = {}, dscp_len = {}, result = {}",
-              p_dev->fd, dscps[i].dl_len, result);
+              p_dev->fds[0], dscps[i].dl_len, result);
 
     if (result) {
       log::warn("Error: failed to send DSCP, result = {}", result);
 
       /* The HID report descriptor is corrupted. Close the driver. */
-      close(p_dev->fd);
-      p_dev->fd = -1;
+      close(p_dev->fds[0]);
+      p_dev->fds[0] = -1;
     }
   }
 }
@@ -674,7 +681,7 @@ void bta_hh_co_set_rpt_rsp(uint8_t dev_handle, uint8_t status) {
   }
 
   // Send the HID set report reply to the kernel.
-  if (p_dev->fd < 0) {
+  if (p_dev->fds[0] < 0) {
     log::error("Unexpected Set Report response");
     return;
   }
@@ -695,7 +702,7 @@ void bta_hh_co_set_rpt_rsp(uint8_t dev_handle, uint8_t status) {
           },
       },
   };
-  uhid_write(p_dev->fd, &ev);
+  uhid_write(p_dev->fds[0], &ev);
   osi_free(context);
 
 #else
@@ -731,7 +738,7 @@ void bta_hh_co_get_rpt_rsp(uint8_t dev_handle, uint8_t status,
   }
 
   // Send the HID report to the kernel.
-  if (p_dev->fd < 0) {
+  if (p_dev->fds[0] < 0) {
     log::warn("Unexpected Get Report response");
     return;
   }
@@ -760,7 +767,7 @@ void bta_hh_co_get_rpt_rsp(uint8_t dev_handle, uint8_t status,
   };
   memcpy(ev.u.feature_answer.data, p_rpt, len);
 
-  uhid_write(p_dev->fd, &ev);
+  uhid_write(p_dev->fds[0], &ev);
   osi_free(context);
 }
 
