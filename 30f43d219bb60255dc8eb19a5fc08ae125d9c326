@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "460c048f_808df35e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-04T03:33:33Z",
+      "side": 1,
+      "message": "@belusiak@google.com merge conflicts to resolve for those 2 CLs.",
+      "revId": "30f43d219bb60255dc8eb19a5fc08ae125d9c326",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
