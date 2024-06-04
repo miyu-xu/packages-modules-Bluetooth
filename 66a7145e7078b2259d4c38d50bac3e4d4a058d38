@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4072f84e_9284f19e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/HidHostTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-06-04T19:05:23Z",
+      "side": 1,
+      "message": "I think the whole connection logic can be moved to the setup test since this appears to be needed for all HID tests.",
+      "revId": "66a7145e7078b2259d4c38d50bac3e4d4a058d38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e892d6da_c2bcf0a5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/HidHostTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-06-04T19:05:23Z",
+      "side": 1,
+      "message": "Please factor the disconnection logic.",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 62
+      },
+      "revId": "66a7145e7078b2259d4c38d50bac3e4d4a058d38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd2815a9_89492f41",
+        "filename": "framework/tests/bumble/src/android/bluetooth/HidHostTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-06-04T19:05:23Z",
+      "side": 1,
+      "message": "nit: Create a variable for the hid stub",
+      "range": {
+        "startLine": 148,
+        "startChar": 8,
+        "endLine": 148,
+        "endChar": 29
+      },
+      "revId": "66a7145e7078b2259d4c38d50bac3e4d4a058d38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
