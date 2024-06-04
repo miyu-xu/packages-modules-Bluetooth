@@ -34,6 +34,24 @@
       "parentUuid": "5e2c170e_2968705e",
       "revId": "40c70e37fe27ce42b7eda65a13069e02d11697d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52c0f0da_8318690a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-04T09:17:15Z",
+      "side": 1,
+      "message": "I meant what if we return at #350 or #319?",
+      "parentUuid": "84ad35c8_f4ada986",
+      "revId": "40c70e37fe27ce42b7eda65a13069e02d11697d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
