@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fc5532b_4ac10386",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-06-04T02:49:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19504ffd_91156235",
+      "range": {
+        "startLine": 445,
+        "startChar": 2,
+        "endLine": 446,
+        "endChar": 18
+      },
+      "revId": "5fa60b9fd2e03234879ffc0efdfa63685d906816",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8b3397b4_55f9fb52",
@@ -95,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5acf377a_e52f56ac",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-06-04T02:49:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b3397b4_55f9fb52",
+      "range": {
+        "startLine": 446,
+        "startChar": 16,
+        "endLine": 447,
+        "endChar": 77
+      },
+      "revId": "5fa60b9fd2e03234879ffc0efdfa63685d906816",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7ea662f_8efbce6e",
@@ -162,6 +210,30 @@
           ]
         }
       ],
+      "revId": "5fa60b9fd2e03234879ffc0efdfa63685d906816",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfa73df2_c0cdfb7b",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-06-04T02:49:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7ea662f_8efbce6e",
+      "range": {
+        "startLine": 491,
+        "startChar": 0,
+        "endLine": 493,
+        "endChar": 17
+      },
       "revId": "5fa60b9fd2e03234879ffc0efdfa63685d906816",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
