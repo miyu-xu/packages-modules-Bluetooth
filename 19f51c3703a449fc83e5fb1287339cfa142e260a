@@ -16,6 +16,23 @@
       "message": "This is the remaining work for the verification (assuming we don\u0027t create a bug previously, which is very much possible)",
       "revId": "19f51c3703a449fc83e5fb1287339cfa142e260a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07e2ad92_35588f58",
+        "filename": "system/test/mock/mock_bta_hh_utils.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-06-04T23:17:02Z",
+      "side": 1,
+      "message": "nit: use single *",
+      "revId": "19f51c3703a449fc83e5fb1287339cfa142e260a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
