@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b12d2d95_2aa6e5b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-04T18:48:48Z",
+      "side": 1,
+      "message": "The intent is related to devices connection status and need to be protected by BLUETOOTH_CONNECT.\n\nBLUETOOTH_PRIVILEGED is not enough",
+      "revId": "6690f7e2654691818bec29a3937913c00d4afd2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
