@@ -22,6 +22,30 @@
       },
       "revId": "21b5501f20a416e79ba13ff0da4979e46b437e5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c525945_51408155",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1882770
+      },
+      "writtenOn": "2024-06-04T19:11:41Z",
+      "side": 1,
+      "message": "We are ramping up new storage design of aconfig flags. In the transition period, both old and new storage will be used. We will read from both to ensure the value match, but we are still returning the old storage value. That is why server_configruable_flags still exists now. Once we have the new storage system fully baked and confident about it, we will remove the reliance of server_configurable_flags.",
+      "parentUuid": "63b8defe_172143de",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 36
+      },
+      "revId": "21b5501f20a416e79ba13ff0da4979e46b437e5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
