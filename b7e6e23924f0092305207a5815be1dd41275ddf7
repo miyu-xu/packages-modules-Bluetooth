@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94627bce_23fadf48",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlProfile.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-04T17:16:09Z",
+      "side": 1,
+      "message": "requireNonNull",
+      "range": {
+        "startLine": 284,
+        "startChar": 19,
+        "endLine": 284,
+        "endChar": 29
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4706c9c4_241735f4",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/mcp/MediaControlProfile.java",
+              "range": {
+                "startLine": 20,
+                "startChar": 0,
+                "endLine": 20,
+                "endChar": 0
+              },
+              "replacement": "import static java.util.Objects.requireNonNull;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/mcp/MediaControlProfile.java",
+              "range": {
+                "startLine": 284,
+                "startChar": 0,
+                "endLine": 285,
+                "endChar": 0
+              },
+              "replacement": "        mContext \u003d requireNonNull(mcpService);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b7e6e23924f0092305207a5815be1dd41275ddf7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
