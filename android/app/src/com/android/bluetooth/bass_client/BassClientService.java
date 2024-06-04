@@ -3256,7 +3256,7 @@ public class BassClientService extends ProfileService {
             mCallbacks.finishBroadcast();
         }
 
-        private class ObjParams {
+        private static class ObjParams {
             Object mObj1;
             Object mObj2;
 

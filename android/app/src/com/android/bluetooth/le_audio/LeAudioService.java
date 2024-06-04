@@ -229,7 +229,7 @@ public class LeAudioService extends ProfileService {
         mContext = ctx;
     }
 
-    private class LeAudioGroupDescriptor {
+    private static class LeAudioGroupDescriptor {
         LeAudioGroupDescriptor(boolean isInbandRingtonEnabled) {
             mIsConnected = false;
             mActiveState = ACTIVE_STATE_INACTIVE;
