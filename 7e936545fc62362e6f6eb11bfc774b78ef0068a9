@@ -118,6 +118,30 @@
       },
       "revId": "7e936545fc62362e6f6eb11bfc774b78ef0068a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1d2525e_271c1e83",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2313,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-04T00:49:59Z",
+      "side": 1,
+      "message": "I moved the \"this is bad\" comment and rewrite the system server side to make it (I believe) more explicit.\n\nI have added a future for when the kill is performed from the binder too.\n\nNow we also have a \"this is really really bad\" 😊",
+      "parentUuid": "0b3fbadc_493dbe1b",
+      "range": {
+        "startLine": 2313,
+        "startChar": 49,
+        "endLine": 2313,
+        "endChar": 62
+      },
+      "revId": "7e936545fc62362e6f6eb11bfc774b78ef0068a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
