@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3164223d_1032f0b8",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-06-04T11:26:43Z",
+      "side": 1,
+      "message": "This is the remaining work for the verification (assuming we don\u0027t create a bug previously, which is very much possible)",
+      "revId": "19f51c3703a449fc83e5fb1287339cfa142e260a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
