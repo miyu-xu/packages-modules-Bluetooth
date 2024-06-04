@@ -381,19 +381,21 @@ void set_codec_datapath(int codec_uuid) {
   bt_codec* codec;
   uint8_t codec_id;
 
-  if (codec_uuid == UUID_CODEC_LC3 && get_offload_enabled()) {
+  if (codec_uuid == static_cast<std::underlying_type_t<tBTA_AG_UUID_CODEC>>(
+                        tBTA_AG_UUID_CODEC::UUID_CODEC_LC3) &&
+      get_offload_enabled()) {
     log::error("Offload path for LC3 is not implemented.");
     return;
   }
 
-  switch (codec_uuid) {
-    case UUID_CODEC_CVSD:
+  switch (static_cast<std::underlying_type_t<tBTA_AG_UUID_CODEC>>(codec_uuid)) {
+    case tBTA_AG_UUID_CODEC::UUID_CODEC_CVSD:
       codec_id = codec::CVSD;
       break;
-    case UUID_CODEC_MSBC:
+    case tBTA_AG_UUID_CODEC::UUID_CODEC_MSBC:
       codec_id = get_offload_enabled() ? codec::MSBC : codec::MSBC_TRANSPARENT;
       break;
-    case UUID_CODEC_LC3:
+    case tBTA_AG_UUID_CODEC::UUID_CODEC_LC3:
       codec_id = get_offload_enabled() ? codec::LC3 : codec::MSBC_TRANSPARENT;
       break;
     default:
@@ -420,11 +422,12 @@ void set_codec_datapath(int codec_uuid) {
 
   if (get_offload_enabled()) {
     std::vector<uint8_t> data;
-    switch (codec_uuid) {
-      case UUID_CODEC_CVSD:
+    switch (
+        static_cast<std::underlying_type_t<tBTA_AG_UUID_CODEC>>(codec_uuid)) {
+      case tBTA_AG_UUID_CODEC::UUID_CODEC_CVSD:
         data = {0x00};
         break;
-      case UUID_CODEC_MSBC:
+      case tBTA_AG_UUID_CODEC::UUID_CODEC_MSBC:
         data = {0x01};
         break;
       default:
