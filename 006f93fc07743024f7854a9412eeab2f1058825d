@@ -111,6 +111,30 @@
       },
       "revId": "006f93fc07743024f7854a9412eeab2f1058825d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7e41948_d7a11f78",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 3235591
+      },
+      "writtenOn": "2024-06-04T11:09:59Z",
+      "side": 1,
+      "message": "I\u0027m not able the access https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/3023044. Any action required from my side for this flag?",
+      "parentUuid": "71f0fff6_14552e71",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 5
+      },
+      "revId": "006f93fc07743024f7854a9412eeab2f1058825d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
