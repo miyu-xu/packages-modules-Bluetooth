@@ -98,7 +98,7 @@ typedef struct {
  *  Functions
  ******************************************************************************/
 
-bt_status_t do_in_jni_thread(base::OnceClosure task);
+bt_status_t do_in_jni_thread(base::RepeatingClosure task);
 bool is_on_jni_thread();
 
 using BtJniClosure = std::function<void()>;
@@ -112,7 +112,7 @@ template <typename R, typename... Args>
 base::Callback<R(Args...)> jni_thread_wrapper(base::Callback<R(Args...)> cb) {
   return base::Bind(
       [](base::Callback<R(Args...)> cb, Args... args) {
-        do_in_jni_thread(base::BindOnce(cb, std::forward<Args>(args)...));
+        do_in_jni_thread(base::Bind(cb, std::forward<Args>(args)...));
       },
       std::move(cb));
 }

@@ -96,14 +96,14 @@ bt_status_t btif_transfer_context(tBTIF_CBACK* p_cback, uint16_t event,
     memcpy(p_msg->p_param, p_params, param_len); /* callback parameter data */
   }
 
-  return do_in_jni_thread(base::BindOnce(&bt_jni_msg_ready, p_msg));
+  return do_in_jni_thread(base::Bind(&bt_jni_msg_ready, p_msg));
 }
 
 /**
  * This function posts a task into the btif message loop, that executes it in
  * the JNI message loop.
  **/
-bt_status_t do_in_jni_thread(base::OnceClosure task) {
+bt_status_t do_in_jni_thread(base::RepeatingClosure task) {
   if (!jni_thread.DoInThread(FROM_HERE, std::move(task))) {
     log::error("Post task to task runner failed!");
     return BT_STATUS_JNI_THREAD_ATTACH_ERROR;
@@ -119,7 +119,7 @@ static void do_post_on_bt_jni(BtJniClosure closure) { closure(); }
 
 void post_on_bt_jni(BtJniClosure closure) {
   log::assert_that(
-      do_in_jni_thread(base::BindOnce(do_post_on_bt_jni, std::move(closure))) ==
+      do_in_jni_thread(base::Bind(do_post_on_bt_jni, std::move(closure))) ==
           BT_STATUS_SUCCESS,
       "assert failed: do_in_jni_thread("
       "base::BindOnce(do_post_on_bt_jni, std::move(closure))) == "

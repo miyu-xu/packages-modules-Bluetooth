@@ -39,13 +39,7 @@ bt_status_t btif_transfer_context(tBTIF_CBACK* /* p_cback */,
   inc_func_call_count(__func__);
   return BT_STATUS_SUCCESS;
 }
-bt_status_t do_in_jni_thread(base::OnceClosure task) {
-  inc_func_call_count(__func__);
-  do_in_jni_thread_task_queue.push(std::move(task));
-  return BT_STATUS_SUCCESS;
-}
-bt_status_t do_in_jni_thread(const base::Location& /* from_here */,
-                             base::OnceClosure task) {
+bt_status_t do_in_jni_thread(base::RepeatingClosure task) {
   inc_func_call_count(__func__);
   do_in_jni_thread_task_queue.push(std::move(task));
   return BT_STATUS_SUCCESS;

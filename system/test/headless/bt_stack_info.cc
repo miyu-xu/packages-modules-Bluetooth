@@ -41,9 +41,7 @@ BtStackInfo::BtStackInfo() {
   {
     std::promise<pid_t> promise;
     auto future = promise.get_future();
-    do_in_jni_thread(base::BindOnce(
-        [](std::promise<pid_t> promise) { promise.set_value(getpid()); },
-        std::move(promise)));
+    post_on_bt_jni([&promise]() { promise.set_value(getpid()); });
     jni_pid_ = future.get();
   }
 }

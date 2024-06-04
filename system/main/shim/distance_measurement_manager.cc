@@ -63,7 +63,7 @@ class DistanceMeasurementInterfaceImpl
   // Callbacks of bluetooth::hci::DistanceMeasurementCallbacks
   void OnDistanceMeasurementStarted(bluetooth::hci::Address address,
                                     DistanceMeasurementMethod method) override {
-    do_in_jni_thread(base::BindOnce(
+    do_in_jni_thread(base::Bind(
         &::DistanceMeasurementCallbacks::OnDistanceMeasurementStarted,
         base::Unretained(distance_measurement_callbacks_),
         bluetooth::ToRawAddress(address), static_cast<uint8_t>(method)));
@@ -72,7 +72,7 @@ class DistanceMeasurementInterfaceImpl
   void OnDistanceMeasurementStartFail(
       bluetooth::hci::Address address, DistanceMeasurementErrorCode reason,
       DistanceMeasurementMethod method) override {
-    do_in_jni_thread(base::BindOnce(
+    do_in_jni_thread(base::Bind(
         &::DistanceMeasurementCallbacks::OnDistanceMeasurementStartFail,
         base::Unretained(distance_measurement_callbacks_),
         bluetooth::ToRawAddress(address), static_cast<uint8_t>(reason),
@@ -82,7 +82,7 @@ class DistanceMeasurementInterfaceImpl
   void OnDistanceMeasurementStopped(bluetooth::hci::Address address,
                                     DistanceMeasurementErrorCode reason,
                                     DistanceMeasurementMethod method) override {
-    do_in_jni_thread(base::BindOnce(
+    do_in_jni_thread(base::Bind(
         &::DistanceMeasurementCallbacks::OnDistanceMeasurementStopped,
         base::Unretained(distance_measurement_callbacks_),
         bluetooth::ToRawAddress(address), static_cast<uint8_t>(reason),
@@ -95,7 +95,7 @@ class DistanceMeasurementInterfaceImpl
                                    int error_azimuth_angle, int altitude_angle,
                                    int error_altitude_angle,
                                    DistanceMeasurementMethod method) override {
-    do_in_jni_thread(base::BindOnce(
+    do_in_jni_thread(base::Bind(
         &::DistanceMeasurementCallbacks::OnDistanceMeasurementResult,
         base::Unretained(distance_measurement_callbacks_),
         bluetooth::ToRawAddress(address), centimeter, error_centimeter,
