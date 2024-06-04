@@ -356,6 +356,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b1006240_4e69fdfe",
+        "filename": "system/profile/avrcp/avrc_sdp_records.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-06-04T21:49:45Z",
+      "side": 1,
+      "message": "Incomplete thought!!\n\nWith the current state of code(for the bta_av_main \u0026 bta_av_act), the ownership of registration \u0026 de-registration is de-coupled in the two source. It might require re-factoring the code in order to support just removing the categories.",
+      "parentUuid": "b0501c04_38d46760",
+      "range": {
+        "startLine": 73,
+        "startChar": 30,
+        "endLine": 73,
+        "endChar": 42
+      },
+      "revId": "ae69604334f3c1c09c2c48eb0dbe1b68e736885c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c1c339c3_4b2ebca4",
         "filename": "system/profile/avrcp/avrc_sdp_records.h",
         "patchSetId": 2
