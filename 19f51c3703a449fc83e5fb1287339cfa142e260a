@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f2489ff7_92bf2dc2",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-06-04T23:37:49Z",
+      "side": 1,
+      "message": "Instead of 0 and 1, maybe change to polling_cnt or a array to show polling status.",
+      "range": {
+        "startLine": 289,
+        "startChar": 13,
+        "endLine": 289,
+        "endChar": 28
+      },
+      "revId": "19f51c3703a449fc83e5fb1287339cfa142e260a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d61e8a36_6a01081d",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-06-04T23:37:49Z",
+      "side": 1,
+      "message": "Create a new thread for each fd to poll new events.",
+      "range": {
+        "startLine": 291,
+        "startChar": 11,
+        "endLine": 291,
+        "endChar": 28
+      },
+      "revId": "19f51c3703a449fc83e5fb1287339cfa142e260a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3164223d_1032f0b8",
         "filename": "system/btif/co/bta_hh_co.cc",
         "patchSetId": 1
