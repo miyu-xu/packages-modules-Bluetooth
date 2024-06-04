@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "694707d9_5c7af187",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-04T00:03:25Z",
+      "side": 1,
+      "message": "also, please follow [guideline](https://g3doc.corp.google.com/company/teams/android-bluetooth/contribution-guide/create-a-flag.md?cl\u003dhead) about adding flag. aosp/3088925 and its relation chain would be an example",
+      "revId": "e8d4d42ed51e5c7e7e99a811942b7ab291e04bde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30634986_3680a6c7",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-04T00:03:25Z",
+      "side": 1,
+      "message": "we can see, this line of warn log is not triggered in the bugreport, so the following code should not put inside this `if` statement.",
+      "range": {
+        "startLine": 386,
+        "startChar": 10,
+        "endLine": 386,
+        "endChar": 19
+      },
+      "revId": "e8d4d42ed51e5c7e7e99a811942b7ab291e04bde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78dd3750_b83369e4",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-04T00:03:25Z",
+      "side": 1,
+      "message": "Instead, in the bugreport, the log is\n```\n05-17 13:43:12.606154  1002  2268  2673 I BluetoothHeadsetServiceJni: android/app/jni/com_android_bluetooth_hfp.cpp:83 ConnectionStateCallback: 1 for xx:xx:xx:xx:7a:13\n05-17 13:43:12.606548  1002  2268  2673 E bt_btif_hf: system/btif/src/btif_hf.cc:427 btif_hf_upstreams_evt: self initiated AG open failed for xx:xx:xx:xx:7a:13, status 2\n05-17 13:43:12.606583  1002  2268  2673 I BluetoothHeadsetServiceJni: android/app/jni/com_android_bluetooth_hfp.cpp:83 ConnectionStateCallback: 0 for xx:xx:xx:xx:7a:13\n```\n\nso here is the place that triggers the callback",
+      "range": {
+        "startLine": 447,
+        "startChar": 8,
+        "endLine": 447,
+        "endChar": 23
+      },
+      "revId": "e8d4d42ed51e5c7e7e99a811942b7ab291e04bde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
