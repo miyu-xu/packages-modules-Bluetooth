@@ -1163,7 +1163,9 @@ void bta_hh_le_notify_enc_cmpl(tBTA_HH_DEV_CB* p_cb,
  ******************************************************************************/
 static void bta_hh_clear_service_cache(tBTA_HH_DEV_CB* p_cb) {
   p_cb->app_id = 0;
-  p_cb->dscp_info.descriptor.dsc_list = NULL;
+  p_cb->dscp_info.descriptors[0].dsc_list = NULL;
+  p_cb->dscp_info.descriptors[1].dsc_list = NULL;
+  p_cb->dscp_info.descriptors[2].dsc_list = NULL;
 
   for (uint8_t i = 0; i < p_cb->hid_srv_num; i++) {
     tBTA_HH_LE_HID_SRVC* p_hid_srvc = &p_cb->hid_srvcs[i];
@@ -2216,11 +2218,15 @@ void bta_hh_le_get_dscp_act(tBTA_HH_DEV_CB* p_cb) {
 
   if (p_cb->srvc_state >= BTA_HH_SERVICE_DISCOVERED) {
     p_cb->dscp_info.hid_handle = p_cb->hid_handle;
-    if (p_cb->hid_srvcs[0].descriptor.dl_len != 0) {
-      p_cb->dscp_info.descriptor.dl_len = p_cb->hid_srvcs[0].descriptor.dl_len;
-      p_cb->dscp_info.descriptor.dsc_list = p_cb->hid_srvcs[0].descriptor.dsc_list;
-    } else {
-      log::warn("hid_srvc.descriptor.dl_len is 0");
+    p_cb->dscp_info.num_descriptors = p_cb->hid_srv_num;
+
+    for (uint8_t i = 0; i < p_cb->hid_srv_num; i++) {
+      if (p_cb->hid_srvcs[i].descriptor.dl_len != 0) {
+        p_cb->dscp_info.descriptors[i].dl_len = p_cb->hid_srvcs[i].descriptor.dl_len;
+        p_cb->dscp_info.descriptors[i].dsc_list = p_cb->hid_srvcs[i].descriptor.dsc_list;
+      } else {
+        log::warn("hid_srvc.descriptor.dl_len is 0");
+      }
     }
 
     (*bta_hh_cb.p_cback)(BTA_HH_GET_DSCP_EVT, (tBTA_HH*)&p_cb->dscp_info);
@@ -2270,7 +2276,7 @@ uint8_t bta_hh_le_add_device(tBTA_HH_DEV_CB* p_cb,
   /* add to BTA device list */
   bta_hh_add_device_to_list(
       p_cb, p_cb->hid_handle, p_dev_info->attr_mask,
-      &p_dev_info->dscp_info.descriptor, p_dev_info->sub_class,
+      p_dev_info->dscp_info.descriptors, p_dev_info->dscp_info.num_descriptors, p_dev_info->sub_class,
       p_dev_info->dscp_info.ssr_max_latency, p_dev_info->dscp_info.ssr_min_tout,
       p_dev_info->app_id);
 
@@ -2312,8 +2318,8 @@ static void bta_hh_le_service_changed(tAclLinkSpec link_spec) {
 
   /* Forget the cached reports */
   bta_hh_le_co_reset_rpt_cache(p_cb->link_spec, p_cb->app_id);
-  p_cb->dscp_info.descriptor.dsc_list = NULL;
   for (uint8_t i = 0; i < p_cb->hid_srv_num; i++) {
+    p_cb->dscp_info.descriptors[i].dsc_list = NULL;
     osi_free_and_reset((void**)&p_cb->hid_srvcs[i].rpt_map);
     p_cb->hid_srvcs[i] = {};
   }
@@ -2452,9 +2458,9 @@ static void bta_hh_process_cache_rpt(tBTA_HH_DEV_CB* p_cb,
     p_cb->srvc_state = BTA_HH_SERVICE_DISCOVERED;
 
     /* set the descriptor info */
-    // [Archie] TODO: We need to make the dscp_info.descriptor an array
-    p_cb->hid_srvcs[0].descriptor.dl_len = p_cb->dscp_info.descriptor.dl_len;
-    p_cb->hid_srvcs[0].descriptor.dsc_list = p_cb->dscp_info.descriptor.dsc_list;
+    // [Archie] TODO: We need to figure out the save/load cache mechanism
+    p_cb->hid_srvcs[0].descriptor.dl_len = p_cb->dscp_info.descriptors[0].dl_len;
+    p_cb->hid_srvcs[0].descriptor.dsc_list = p_cb->dscp_info.descriptors[0].dsc_list;
 
     for (; i < num_rpt; i++, p_rpt_cache++) {
       if ((p_rpt = bta_hh_le_find_alloc_report_entry(

@@ -316,7 +316,12 @@ void BTA_HhGetDscpInfo(uint8_t dev_handle) {
 void BTA_HhAddDev(const tAclLinkSpec& link_spec, tBTA_HH_ATTR_MASK attr_mask,
                   uint8_t sub_class, uint8_t app_id,
                   tBTA_HH_DEV_DSCP_INFO dscp_info) {
-  size_t len = sizeof(tBTA_HH_MAINT_DEV) + dscp_info.descriptor.dl_len;
+  size_t descriptors_len = 0;
+  for (uint8_t i = 0; i < dscp_info.num_descriptors; i++) {
+    descriptors_len += dscp_info.descriptors[i].dl_len;
+  }
+
+  size_t len = sizeof(tBTA_HH_MAINT_DEV) + descriptors_len;
   tBTA_HH_MAINT_DEV* p_buf = (tBTA_HH_MAINT_DEV*)osi_calloc(len);
 
   p_buf->hdr.event = BTA_HH_API_MAINT_DEV_EVT;
@@ -329,14 +334,18 @@ void BTA_HhAddDev(const tAclLinkSpec& link_spec, tBTA_HH_ATTR_MASK attr_mask,
   p_buf->link_spec = link_spec;
 
   memcpy(&p_buf->dscp_info, &dscp_info, sizeof(tBTA_HH_DEV_DSCP_INFO));
-  if (dscp_info.descriptor.dl_len != 0 && dscp_info.descriptor.dsc_list) {
-    p_buf->dscp_info.descriptor.dl_len = dscp_info.descriptor.dl_len;
-    p_buf->dscp_info.descriptor.dsc_list = (uint8_t*)(p_buf + 1);
-    memcpy(p_buf->dscp_info.descriptor.dsc_list, dscp_info.descriptor.dsc_list,
-           dscp_info.descriptor.dl_len);
-  } else {
-    p_buf->dscp_info.descriptor.dsc_list = NULL;
-    p_buf->dscp_info.descriptor.dl_len = 0;
+  uint8_t *desc_addr = (uint8_t*)(p_buf + 1);
+  for (uint8_t i = 0; i < dscp_info.num_descriptors; i++) {
+    if (dscp_info.descriptors[i].dl_len != 0 && dscp_info.descriptors[i].dsc_list) {
+      p_buf->dscp_info.descriptors[i].dl_len = dscp_info.descriptors[i].dl_len;
+      p_buf->dscp_info.descriptors[i].dsc_list = desc_addr;
+      memcpy(p_buf->dscp_info.descriptors[i].dsc_list, dscp_info.descriptors[i].dsc_list,
+            dscp_info.descriptors[i].dl_len);
+      desc_addr += dscp_info.descriptors[i].dl_len;
+    } else {
+      p_buf->dscp_info.descriptors[i].dsc_list = NULL;
+      p_buf->dscp_info.descriptors[i].dl_len = 0;
+    }
   }
 
   bta_sys_sendmsg(p_buf);

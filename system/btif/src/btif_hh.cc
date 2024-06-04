@@ -154,8 +154,8 @@ bool check_cod_hid_major(const RawAddress& bd_addr, uint32_t cod);
 void bta_hh_co_close(btif_hh_device_t* p_dev);
 void bta_hh_co_send_hid_info(btif_hh_device_t* p_dev, const char* dev_name,
                              uint16_t vendor_id, uint16_t product_id,
-                             uint16_t version, uint8_t ctry_code, int dscp_len,
-                             uint8_t* p_dscp);
+                             uint16_t version, uint8_t ctry_code,
+                             tBTA_HH_DEV_DESCR *dscps, uint8_t num_dscps);
 void bta_hh_co_write(int fd, uint8_t* rpt, uint16_t len);
 static void bte_hh_evt(tBTA_HH_EVT event, tBTA_HH* p_data);
 void btif_dm_hh_open_failed(RawAddress* bdaddr);
@@ -557,7 +557,7 @@ static void hh_open_handler(tBTA_HH_CONN& conn) {
 
   /* Initialize device driver */
   if (!bta_hh_co_open(conn.handle, conn.sub_class, conn.attr_mask,
-                      conn.app_id)) {
+                      conn.app_id, conn.num_services)) {
     log::warn("Failed to find the uhid driver");
     hh_connect_complete(conn.handle, conn.link_spec, BTIF_HH_DEV_DISCONNECTED);
     return;
@@ -642,11 +642,12 @@ void btif_hh_load_bonded_dev(const tAclLinkSpec& link_spec_ref,
 
     // remove and re-write the hid info
     btif_storage_remove_hid_info(link_spec);
+    // [Archie] TODO: manage load/save HID device
     btif_storage_add_hid_device_info(
         link_spec, attr_mask, sub_class, app_id, dscp_info.vendor_id,
         dscp_info.product_id, dscp_info.version, dscp_info.ctry_code,
         dscp_info.ssr_max_latency, dscp_info.ssr_min_tout,
-        dscp_info.descriptor.dl_len, dscp_info.descriptor.dsc_list);
+        dscp_info.descriptors[0].dl_len, dscp_info.descriptors[0].dsc_list);
   }
 
   if (hh_add_device(link_spec, attr_mask, reconnect_allowed)) {
@@ -715,13 +716,16 @@ void btif_hh_remove_device(const tAclLinkSpec& link_spec) {
 bool btif_hh_copy_hid_info(tBTA_HH_DEV_DSCP_INFO* dest,
                            tBTA_HH_DEV_DSCP_INFO* src) {
   memset(dest, 0, sizeof(tBTA_HH_DEV_DSCP_INFO));
-  dest->descriptor.dl_len = 0;
-  if (src->descriptor.dl_len > 0) {
-    dest->descriptor.dsc_list = (uint8_t*)osi_malloc(src->descriptor.dl_len);
+  dest->num_descriptors = src->num_descriptors;
+  for (uint8_t i = 0; i < src->num_descriptors; i++) {
+    dest->descriptors[i].dl_len = 0;
+    if (src->descriptors[i].dl_len > 0) {
+      dest->descriptors[i].dsc_list = (uint8_t*)osi_malloc(src->descriptors[i].dl_len);
+    }
+    memcpy(dest->descriptors[i].dsc_list, src->descriptors[i].dsc_list,
+          src->descriptors[i].dl_len);
+    dest->descriptors[i].dl_len = src->descriptors[i].dl_len;
   }
-  memcpy(dest->descriptor.dsc_list, src->descriptor.dsc_list,
-         src->descriptor.dl_len);
-  dest->descriptor.dl_len = src->descriptor.dl_len;
   dest->vendor_id = src->vendor_id;
   dest->product_id = src->product_id;
   dest->version = src->version;
@@ -1174,7 +1178,7 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
 
     case BTA_HH_GET_DSCP_EVT: {
       uint8_t hid_handle = p_data->dscp_info.hid_handle;
-      int len = p_data->dscp_info.descriptor.dl_len;
+      int len = p_data->dscp_info.descriptors[0].dl_len;
       log::verbose("BTA_HH_GET_DSCP_EVT: len = {}, handle = {}", len,
                    hid_handle);
 
@@ -1206,8 +1210,8 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
       bta_hh_co_send_hid_info(p_dev, cached_name, p_data->dscp_info.vendor_id,
                               p_data->dscp_info.product_id,
                               p_data->dscp_info.version,
-                              p_data->dscp_info.ctry_code, len,
-                              p_data->dscp_info.descriptor.dsc_list);
+                              p_data->dscp_info.ctry_code,
+                              p_data->dscp_info.descriptors, p_data->dscp_info.num_descriptors);
       if (hh_add_device(p_dev->link_spec, p_dev->attr_mask, true)) {
         tBTA_HH_DEV_DSCP_INFO dscp_info;
         bt_status_t ret;
@@ -1222,7 +1226,7 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
             p_data->dscp_info.vendor_id, p_data->dscp_info.product_id,
             p_data->dscp_info.version, p_data->dscp_info.ctry_code,
             p_data->dscp_info.ssr_max_latency, p_data->dscp_info.ssr_min_tout,
-            len, p_data->dscp_info.descriptor.dsc_list);
+            len, p_data->dscp_info.descriptors[0].dsc_list);
 
         // Allow incoming connections
         if (com::android::bluetooth::flags::allow_switching_hid_and_hogp() &&
@@ -1235,10 +1239,12 @@ static void btif_hh_upstreams_evt(uint16_t event, char* p_param) {
         log::warn("BTA_HH_GET_DSCP_EVT: Called add device");
 
         // Free buffer created for dscp_info;
-        if (dscp_info.descriptor.dl_len > 0 &&
-            dscp_info.descriptor.dsc_list != NULL) {
-          osi_free_and_reset((void**)&dscp_info.descriptor.dsc_list);
-          dscp_info.descriptor.dl_len = 0;
+        for (uint8_t i = 0; i < dscp_info.num_descriptors; i++) {
+          if (dscp_info.descriptors[i].dl_len > 0 &&
+              dscp_info.descriptors[i].dsc_list != NULL) {
+            osi_free_and_reset((void**)&dscp_info.descriptors[i].dsc_list);
+            dscp_info.descriptors[i].dl_len = 0;
+          }
         }
       } else {
         // Device already added.
@@ -1825,10 +1831,11 @@ static bt_status_t set_info(RawAddress* bd_addr, tBLE_ADDR_TYPE addr_type,
   dscp_info.version = hid_info.version;
   dscp_info.ctry_code = hid_info.ctry_code;
 
-  dscp_info.descriptor.dl_len = hid_info.dl_len;
-  dscp_info.descriptor.dsc_list =
-      (uint8_t*)osi_malloc(dscp_info.descriptor.dl_len);
-  memcpy(dscp_info.descriptor.dsc_list, &(hid_info.dsc_list), hid_info.dl_len);
+  // [Archie] When is this called? not sure whether this can safely be extended to array
+  dscp_info.descriptors[0].dl_len = hid_info.dl_len;
+  dscp_info.descriptors[0].dsc_list =
+      (uint8_t*)osi_malloc(dscp_info.descriptors[0].dl_len);
+  memcpy(dscp_info.descriptors[0].dsc_list, &(hid_info.dsc_list), hid_info.dl_len);
 
   if (transport == BT_TRANSPORT_AUTO) {
     btif_hh_transport_select(link_spec);
@@ -1839,7 +1846,7 @@ static bt_status_t set_info(RawAddress* bd_addr, tBLE_ADDR_TYPE addr_type,
                  hid_info.app_id, dscp_info);
   }
 
-  osi_free_and_reset((void**)&dscp_info.descriptor.dsc_list);
+  osi_free_and_reset((void**)&dscp_info.descriptors[0].dsc_list);
 
   return BT_STATUS_SUCCESS;
 }

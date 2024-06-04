@@ -428,7 +428,7 @@ int bta_hh_co_write(int fd, uint8_t* rpt, uint16_t len) {
  * Returns       True if platform specific initialization is successful
  ******************************************************************************/
 bool bta_hh_co_open(uint8_t dev_handle, uint8_t sub_class,
-                    tBTA_HH_ATTR_MASK attr_mask, uint8_t app_id) {
+                    tBTA_HH_ATTR_MASK attr_mask, uint8_t app_id, uint8_t num_services) {
   bool new_device = false;
 
   if (dev_handle == BTA_HH_INVALID_HANDLE) {
@@ -455,6 +455,7 @@ bool bta_hh_co_open(uint8_t dev_handle, uint8_t sub_class,
     new_device = true;
     log::verbose("New HID device added for handle {}", dev_handle);
 
+    // [Archie] make an array of fd here, as many as num_services.
     p_dev->fd = -1;
     p_dev->hh_keep_polling = 0;
     p_dev->attr_mask = attr_mask;
@@ -587,11 +588,12 @@ void bta_hh_co_data(uint8_t dev_handle, uint8_t* p_rpt, uint16_t len,
  ******************************************************************************/
 void bta_hh_co_send_hid_info(btif_hh_device_t* p_dev, const char* dev_name,
                              uint16_t vendor_id, uint16_t product_id,
-                             uint16_t version, uint8_t ctry_code, int dscp_len,
-                             uint8_t* p_dscp) {
+                             uint16_t version, uint8_t ctry_code,
+                             tBTA_HH_DEV_DESCR *dscps, uint8_t num_dscps) {
   int result;
   struct uhid_event ev;
 
+  /*
   if (p_dev->fd < 0) {
     log::warn("Error: fd = {}, dscp_len = {}", p_dev->fd, dscp_len);
     return;
@@ -599,6 +601,8 @@ void bta_hh_co_send_hid_info(btif_hh_device_t* p_dev, const char* dev_name,
 
   log::warn("fd = {}, name = [{}], dscp_len = {}", p_dev->fd, dev_name,
             dscp_len);
+  */
+
   log::warn(
       "vendor_id = 0x{:04x}, product_id = 0x{:04x}, version= "
       "0x{:04x},ctry_code=0x{:02x}",
@@ -619,24 +623,28 @@ void bta_hh_co_send_hid_info(btif_hh_device_t* p_dev, const char* dev_name,
   snprintf((char*)ev.u.create.phys, sizeof(ev.u.create.phys), "%s",
            controller->GetMacAddress().ToString().c_str());
 
-  ev.u.create.rd_size = dscp_len;
-  ev.u.create.rd_data = p_dscp;
   ev.u.create.bus = BUS_BLUETOOTH;
   ev.u.create.vendor = vendor_id;
   ev.u.create.product = product_id;
   ev.u.create.version = version;
   ev.u.create.country = ctry_code;
-  result = uhid_write(p_dev->fd, &ev);
 
-  log::warn("wrote descriptor to fd = {}, dscp_len = {}, result = {}",
-            p_dev->fd, dscp_len, result);
+  for (uint8_t i = 0; i < num_dscps; i++) {
+    ev.u.create.rd_size = dscps[i].dl_len;
+    ev.u.create.rd_data = dscps[i].dsc_list;
+    // [Archie] make fd an array
+    result = uhid_write(p_dev->fd, &ev);
 
-  if (result) {
-    log::warn("Error: failed to send DSCP, result = {}", result);
+    log::warn("wrote descriptor to fd = {}, dscp_len = {}, result = {}",
+              p_dev->fd, dscps[i].dl_len, result);
 
-    /* The HID report descriptor is corrupted. Close the driver. */
-    close(p_dev->fd);
-    p_dev->fd = -1;
+    if (result) {
+      log::warn("Error: failed to send DSCP, result = {}", result);
+
+      /* The HID report descriptor is corrupted. Close the driver. */
+      close(p_dev->fd);
+      p_dev->fd = -1;
+    }
   }
 }
 

@@ -41,19 +41,19 @@ namespace bta_hh_utils {
 // uint16_t ssr_min_tout, uint8_t app_id Return: void
 struct bta_hh_add_device_to_list {
   std::function<void(tBTA_HH_DEV_CB* p_cb, uint8_t handle, uint16_t attr_mask,
-                     const tHID_DEV_DSCP_INFO* p_dscp_info, uint8_t sub_class,
+                     const tHID_DEV_DSCP_INFO* p_dscp_info, uint8_t num_dscp, uint8_t sub_class,
                      uint16_t ssr_max_latency, uint16_t ssr_min_tout,
                      uint8_t app_id)>
       body{[](tBTA_HH_DEV_CB* /* p_cb */, uint8_t /* handle */,
               uint16_t /* attr_mask */,
-              const tHID_DEV_DSCP_INFO* /* p_dscp_info */,
+              const tHID_DEV_DSCP_INFO* /* p_dscp_info */, uint8_t /* num_dscp */,
               uint8_t /* sub_class */, uint16_t /* ssr_max_latency */,
               uint16_t /* ssr_min_tout */, uint8_t /* app_id */) {}};
   void operator()(tBTA_HH_DEV_CB* p_cb, uint8_t handle, uint16_t attr_mask,
-                  const tHID_DEV_DSCP_INFO* p_dscp_info, uint8_t sub_class,
+                  const tHID_DEV_DSCP_INFO* p_dscp_info, uint8_t num_dscp, uint8_t sub_class,
                   uint16_t ssr_max_latency, uint16_t ssr_min_tout,
                   uint8_t app_id) {
-    body(p_cb, handle, attr_mask, p_dscp_info, sub_class, ssr_max_latency,
+    body(p_cb, handle, attr_mask, p_dscp_info, num_dscp, sub_class, ssr_max_latency,
          ssr_min_tout, app_id);
   };
 };

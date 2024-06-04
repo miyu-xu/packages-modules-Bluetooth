@@ -283,7 +283,7 @@ void bta_hh_clean_up_kdev(tBTA_HH_DEV_CB* p_cb);
 
 void bta_hh_add_device_to_list(tBTA_HH_DEV_CB* p_cb, uint8_t handle,
                                uint16_t attr_mask,
-                               const tHID_DEV_DSCP_INFO* p_dscp_info,
+                               const tHID_DEV_DSCP_INFO* p_dscp_info, uint8_t num_dscp,
                                uint8_t sub_class, uint16_t max_latency,
                                uint16_t min_tout, uint8_t app_id);
 void bta_hh_update_di_info(tBTA_HH_DEV_CB* p_cb, uint16_t vendor_id,
