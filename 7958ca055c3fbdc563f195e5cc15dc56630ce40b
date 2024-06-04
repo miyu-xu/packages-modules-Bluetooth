@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4ffced8_1549474a",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-06-04T20:49:18Z",
+      "side": 1,
+      "message": "Should this also be cancelled before initializing null to it? (not sure if it is being used actively or not.)",
+      "revId": "7958ca055c3fbdc563f195e5cc15dc56630ce40b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
