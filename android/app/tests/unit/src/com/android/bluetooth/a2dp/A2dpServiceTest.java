@@ -37,8 +37,8 @@ import android.media.BluetoothProfileConnectionInfo;
 import android.os.Looper;
 import android.os.ParcelUuid;
 
-import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.MediumTest;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.TestUtils;
@@ -93,7 +93,7 @@ public class A2dpServiceTest {
 
         TestUtils.mockGetSystemService(
                 mAdapterService, Context.AUDIO_SERVICE, AudioManager.class, mAudioManager);
-        doReturn(InstrumentationRegistry.getTargetContext().getResources())
+        doReturn(InstrumentationRegistry.getInstrumentation().getTargetContext().getResources())
                 .when(mAdapterService)
                 .getResources();
 
