@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b977e099_dbdfcc13",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/bip/BipImagePropertiesTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-06-04T23:54:11Z",
+      "side": 1,
+      "message": "Import `java.nio.charset.StandardCharsets` ?",
+      "range": {
+        "startLine": 110,
+        "startChar": 51,
+        "endLine": 110,
+        "endChar": 84
+      },
+      "revId": "db0a5e231f29c6b398ad25a6e31075278ffb470c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
