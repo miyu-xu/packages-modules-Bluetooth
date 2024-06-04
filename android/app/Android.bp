@@ -147,6 +147,7 @@ cc_library_shared {
         "libudrv-uipc",
         "libutils",
         "server_configurable_flags",
+        "libaconfig_storage_read_api_cc",
     ],
     shared_libs: [
         "libaaudio",
@@ -164,6 +165,7 @@ cc_library_shared {
         "com.android.btservices",
     ],
     min_sdk_version: "Tiramisu",
+    ldflags: ["-Wl,--allow-multiple-definition"],
 }
 
 cc_library {
