@@ -90,7 +90,7 @@ const MEDIA_LE_AUDIO_PROFILES: &[Profile] =
     &[Profile::LeAudio, Profile::VolumeControl, Profile::CoordinatedSet];
 
 /// Group ID used to identify unknown/non-existent groups.
-const LEA_UNKNOWN_GROUP_ID: i32 = -1;
+pub const LEA_UNKNOWN_GROUP_ID: i32 = -1;
 
 /// Refer to |pairDeviceByCsip| in |CachedBluetoothDeviceManager.java|.
 /// Number of attempts for CSIS to bond set members of a connected group.
@@ -876,8 +876,7 @@ impl BluetoothMedia {
                     return;
                 }
 
-                let group_id =
-                    *self.le_audio_node_to_group.get(&addr).unwrap_or(&LEA_UNKNOWN_GROUP_ID);
+                let group_id = self.get_group_id(addr);
                 if group_id == LEA_UNKNOWN_GROUP_ID {
                     warn!(
                         "LeAudioClientCallbacks::ConnectionState: [{}] Ignored dispatching of LeAudio callback on a device with no group",
@@ -2950,6 +2949,14 @@ impl BluetoothMedia {
         self.phone_state.num_active = 1;
         self.phone_state_change("".into());
     }
+
+    pub fn get_group_devices(&self, group_id: i32) -> Option<&HashSet<RawAddress>> {
+        self.le_audio_groups.get(&group_id)
+    }
+
+    pub fn get_group_id(&self, addr: RawAddress) -> i32 {
+        *self.le_audio_node_to_group.get(&addr).unwrap_or(&LEA_UNKNOWN_GROUP_ID)
+    }
 }
 
 fn get_a2dp_dispatcher(tx: Sender<Message>) -> A2dpCallbacksDispatcher {
@@ -3103,7 +3110,7 @@ impl IBluetoothMedia for BluetoothMedia {
     }
 
     fn disconnect_lea_group_by_member_address(&mut self, addr: RawAddress) {
-        let group_id = *self.le_audio_node_to_group.get(&addr).unwrap_or(&LEA_UNKNOWN_GROUP_ID);
+        let group_id = self.get_group_id(addr);
         if group_id == LEA_UNKNOWN_GROUP_ID {
             warn!(
                 "disconnect_lea_group_by_member_address: [{}]: address belongs to no group",
