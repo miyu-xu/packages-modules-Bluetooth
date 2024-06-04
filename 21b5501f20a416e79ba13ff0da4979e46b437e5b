@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63b8defe_172143de",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-04T18:35:35Z",
+      "side": 1,
+      "message": "The commit message mention\n\u003e use new aconfig storage read api instead of server_configurable_flags\n\nBut server_configurable_flags is still use here.  \nCan you remove it from the dependency ?\nOr can you provide documentation on what this is changing ? The bug b/321077378 doesn\u0027t really give any explanation on what is happening here",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 36
+      },
+      "revId": "21b5501f20a416e79ba13ff0da4979e46b437e5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
