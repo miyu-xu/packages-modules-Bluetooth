@@ -16,6 +16,24 @@
       "message": "Hi Jakub T, in the CL, you annotate the change with Flagging, but the actual change does not have flag or system property, so it is not guarded behind the flag.   \n\nIf you are going to use the flag, please use `Flag.xxx \u0026\u0026 xxx_system_property` for the multi-codec, same for other CLs inside the chain",
       "revId": "1b379f2062a5d7fec007c5bcac3a24cfd03b4ebd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fd05102_dde69c33",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-04T20:57:11Z",
+      "side": 1,
+      "message": "I find this part is well covered by the the unit test, and won\u0027t impact existing part because it checks whether it has value or not",
+      "parentUuid": "451da80e_1242bb07",
+      "revId": "1b379f2062a5d7fec007c5bcac3a24cfd03b4ebd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
