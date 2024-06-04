@@ -56,6 +56,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5b012313_15ce7c59",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-04T09:25:22Z",
+      "side": 1,
+      "message": "Is this CL only to resolve the failure in testStopStartStopService? \nIf so, are we planning to remove the test case instead as @wescande suggested?",
+      "revId": "b297db503dcd84cd8df3db4f1c2dc3b8292a445a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3c4cdb58_942de54e",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 1
