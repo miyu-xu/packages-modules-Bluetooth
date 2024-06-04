@@ -77,10 +77,14 @@ HfpConfiguration get_default_hfp_configuration() {
   return hfp_config;
 }
 
-CodecId get_codec_id_by_peer_codec(tBTA_AG_PEER_CODEC sco_codec) {
-  if (sco_codec & BTM_SCO_CODEC_LC3) return CodecId::Core::LC3;
-  if (sco_codec & BTM_SCO_CODEC_MSBC) return CodecId::Core::MSBC;
-  if (sco_codec & BTM_SCO_CODEC_CVSD) return CodecId::Core::CVSD;
+CodecId get_codec_id_by_peer_codec(uint16_t sco_codec) {
+  if (sco_codec == UUID_CODEC_LC3) return CodecId::Core::LC3;
+  if (sco_codec == UUID_CODEC_MSBC) return CodecId::Core::MSBC;
+  if (sco_codec == UUID_CODEC_CVSD) return CodecId::Core::CVSD;
+  if (sco_codec == BTM_SCO_CODEC_NONE) {
+    log::error("sco_codec is not set, reset to CVSD ");
+    return CodecId::Core::CVSD;
+  }
   // Unknown vendor codec otherwise
   CodecId codec_id = CodecId::Vendor();
   return codec_id;
