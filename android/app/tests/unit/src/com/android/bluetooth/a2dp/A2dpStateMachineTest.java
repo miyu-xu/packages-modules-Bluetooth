@@ -177,6 +177,7 @@ public class A2dpStateMachineTest {
         // Verify that no connection state broadcast is executed
         verify(mA2dpService, after(TIMEOUT_MS).never()).sendBroadcast(any(Intent.class),
                 anyString(), any(Bundle.class));
+        verify(mA2dpService, times(1)).disconnectAvrcp(mTestDevice);
         // Check that we are in Disconnected state
         assertThat(mA2dpStateMachine.getCurrentState())
                 .isInstanceOf(A2dpStateMachine.Disconnected.class);
