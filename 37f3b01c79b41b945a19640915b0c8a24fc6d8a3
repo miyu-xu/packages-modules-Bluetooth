@@ -16,6 +16,23 @@
       "message": "Hi @michaelfsun@google.com friendly ping for review. Please let me know if you\u0027re out of bandwidth and I\u0027d re-distribute these to other approvers, thanks.",
       "revId": "37f3b01c79b41b945a19640915b0c8a24fc6d8a3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba2a8122_d7f9f7bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-06-04T21:57:51Z",
+      "side": 1,
+      "message": "LGTM with a question, you only masked out the middle part of the UUDI. All traditional profile can still be identified right?",
+      "revId": "37f3b01c79b41b945a19640915b0c8a24fc6d8a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
