@@ -16,6 +16,24 @@
       "message": "In case that above broadcast id check failed, we will return early here and skip updating mSyncHandleToDeviceMap in Java, but native layer might still have this handle as synced.\n\nIs this resolved by the implementation of leaudioBroadcastExtractPeriodicScannerFromStateMachine? if so, should we put the logic move under that flag #288 \u0026 #359.",
       "revId": "40c70e37fe27ce42b7eda65a13069e02d11697d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84ad35c8_f4ada986",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-06-04T09:08:41Z",
+      "side": 1,
+      "message": "With and without leaudioBroadcastExtractPeriodicScannerFromStateMachine it will works in the same way.\n\nupdatePeriodicAdvertisementResultMap is called twice:\nIn selectSource/handleSelectSourceRequest:\n```\nupdatePeriodicAdvertisementResultMap(\n        scanRes.getDevice(),\n        scanRes.getDevice().getAddressType(),\n        BassConstants.INVALID_SYNC_HANDLE,\n        BassConstants.INVALID_ADV_SID,\n        scanRes.getPeriodicAdvertisingInterval(),\n        broadcastId,\n        pbData,\n        broadcastName);\n```\nHere syncHandle is always invalid so mSyncHandleToDeviceMap.put(syncHandle, device); will be never called.\n\n                \nIn onSyncEstablished:\n```\nupdatePeriodicAdvertisementResultMap(\n        device,\n        BassConstants.INVALID_ADV_ADDRESS_TYPE,\n        syncHandle,\n        advertisingSid,\n        BassConstants.INVALID_ADV_INTERVAL,\n        BassConstants.INVALID_BROADCAST_ID,\n        null,\n        null);\n```\nHere syncHandle is always valid and broadcastId is always invalid so mSyncHandleToDeviceMap.put(syncHandle, device); will be always called.",
+      "parentUuid": "5e2c170e_2968705e",
+      "revId": "40c70e37fe27ce42b7eda65a13069e02d11697d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
