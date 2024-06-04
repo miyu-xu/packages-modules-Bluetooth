@@ -151,6 +151,24 @@
       "message": "Hi everyone, I marked this as WIP. Please don\u0027t modify it.",
       "revId": "3f4f7faa5ad084e7aa7f65ffdfa86a313bc42d6f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1e53042_74a91f67",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-06-04T00:43:58Z",
+      "side": 1,
+      "message": "Controller difference is always there and we\u0027d like to manage that better in Floss when possible. This WIP patch is for us the explore the possibility of handling the divergence with template. Thanks for suggestions, please leave them in bugnizier as I\u0027ll remove the WIP CL soon.",
+      "parentUuid": "44910e04_55fc6ef8",
+      "revId": "3f4f7faa5ad084e7aa7f65ffdfa86a313bc42d6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
