@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0bce8ad_a691e3fe",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2038,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-06-04T12:27:07Z",
+      "side": 1,
+      "message": "Probably won\u0027t work this way since the different HID services might use the same report_id. We need to revamp this function so we can identify the correct HID service, most probably by keeping a reference of (hid_service \u003c-\u003e uhid_fd) association.",
+      "revId": "011e2d5fe6d6110071ae8d03fc221028f825a3fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
