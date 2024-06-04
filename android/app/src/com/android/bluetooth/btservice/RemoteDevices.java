@@ -21,6 +21,7 @@ import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 import static android.Manifest.permission.BLUETOOTH_SCAN;
 
 import android.annotation.RequiresPermission;
+import android.app.Activity;
 import android.app.admin.SecurityLog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothAssignedNumbers;
@@ -52,6 +53,7 @@ import com.android.bluetooth.bas.BatteryService;
 import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.hfp.HeadsetHalConstants;
 import com.android.internal.annotations.VisibleForTesting;
+import com.android.modules.utils.build.SdkLevel;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayDeque;
@@ -1344,10 +1346,25 @@ public class RemoteDevices {
                             .addFlags(
                                     Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
                                             | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
-            mAdapterService.sendBroadcastMultiplePermissions(
-                    intent,
-                    new String[] {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
-                    Utils.getTempBroadcastOptions());
+
+            if (Flags.keyMissingAsOrderedBroadcast() & SdkLevel.isAtLeastV()
+                    && android.os.Flags.orderedBroadcastMultiplePermissions()) {
+                mAdapterService.sendOrderedBroadcastMultiplePermissions(
+                        intent,
+                        new String[] {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+                        null /* receiverAppOp */,
+                        null /* resultReceiver */,
+                        null /* scheduler */,
+                        Activity.RESULT_OK /* initialCode */,
+                        null /* initialData */,
+                        null /* initialExtras */,
+                        Utils.getTempBroadcastOptions().toBundle());
+            } else {
+                mAdapterService.sendBroadcastMultiplePermissions(
+                        intent,
+                        new String[] {BLUETOOTH_CONNECT, BLUETOOTH_PRIVILEGED},
+                        Utils.getTempBroadcastOptions());
+            }
         }
     }
 

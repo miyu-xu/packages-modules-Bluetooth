@@ -240,6 +240,7 @@ android_app {
 
     jni_uses_platform_apis: true,
     libs: [
+        "android.os.flags-aconfig-java",
         "app-compat-annotations",
         "bluetooth_flags_java_lib",
         "error_prone_annotations",
