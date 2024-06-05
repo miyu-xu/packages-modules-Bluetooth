@@ -27,11 +27,9 @@
 #include "os/log.h"
 #include "os/utils.h"
 
-#ifdef __ANDROID__
-#define ALARM_CLOCK CLOCK_BOOTTIME_ALARM
-#else
+
 #define ALARM_CLOCK CLOCK_BOOTTIME
-#endif
+
 
 namespace bluetooth {
 namespace os {
