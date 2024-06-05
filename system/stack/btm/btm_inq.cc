@@ -1898,6 +1898,7 @@ tBTM_STATUS btm_initiate_rem_name(const RawAddress& remote_bda, uint8_t origin,
       btm_cb.btm_inq_vars.p_remname_cmpl_cb = p_cb;
       btm_cb.btm_inq_vars.remname_bda = remote_bda;
       btm_cb.btm_inq_vars.remname_dev_type = BT_DEVICE_TYPE_BREDR;
+      btm_cb.btm_inq_vars.remname_active = true;
 
       alarm_set_on_mloop(btm_cb.btm_inq_vars.remote_name_timer, timeout_ms,
                          btm_inq_remote_name_timer_timeout, NULL);
@@ -1927,8 +1928,6 @@ tBTM_STATUS btm_initiate_rem_name(const RawAddress& remote_bda, uint8_t origin,
             remote_bda, HCI_PAGE_SCAN_REP_MODE_R1, HCI_MANDATARY_PAGE_SCAN_MODE,
             clock_offset);
       }
-
-      btm_cb.btm_inq_vars.remname_active = true;
       return BTM_CMD_STARTED;
     }
   } else {
