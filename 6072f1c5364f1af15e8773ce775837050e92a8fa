@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a81a22d4_76cea74c",
+        "filename": "system/bta/hearing_aid/gatt/att.pdl",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-06-05T18:44:38Z",
+      "side": 1,
+      "message": "To be able to express it as a NonZeroU16 in Rust.",
+      "parentUuid": "e3ac705f_e8854ab9",
+      "range": {
+        "startLine": 3,
+        "startChar": 13,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "6072f1c5364f1af15e8773ce775837050e92a8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "037e50b5_b966bc02",
         "filename": "system/bta/hearing_aid/gatt/att.pdl",
         "patchSetId": 6
@@ -37,6 +61,30 @@
       "writtenOn": "2024-06-05T18:36:24Z",
       "side": 1,
       "message": "I would love to have some test packets from wireshark in here.  I\u0027m happy to help if you have interesting wireshark logs.  Here\u0027s one from a log that I had.\n\ntest FindInformationReq {\n  \"Bytes copied from wireshark\"\n}\n```suggestion\n}\n\ntest FindInformationReq {\n    \"\\x04\\x07\\x00\\x09\\x00\"\n}\n```",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 1
+      },
+      "revId": "6072f1c5364f1af15e8773ce775837050e92a8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1c4b8b3_a33124c5",
+        "filename": "system/bta/hearing_aid/gatt/att.pdl",
+        "patchSetId": 6
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-06-05T18:44:38Z",
+      "side": 1,
+      "message": "I would love too, unfortunately pdl in Rust doesn\u0027t support the `test` construct, it\u0027s on my todo.",
+      "parentUuid": "037e50b5_b966bc02",
       "range": {
         "startLine": 108,
         "startChar": 0,
@@ -95,6 +143,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "034d7678_72325a6c",
+        "filename": "system/bta/hearing_aid/gatt/src/att.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-06-05T18:44:38Z",
+      "side": 1,
+      "message": "Some old code from an old pdl definition, I need to remove those.",
+      "parentUuid": "97ea71e8_26b92853",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 34
+      },
+      "revId": "6072f1c5364f1af15e8773ce775837050e92a8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1e035b5f_13d07cd9",
         "filename": "system/bta/hearing_aid/gatt/src/att/packets.rs",
         "patchSetId": 6
@@ -118,6 +190,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "96212547_c64d2767",
+        "filename": "system/bta/hearing_aid/gatt/src/att/packets.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-06-05T18:44:38Z",
+      "side": 1,
+      "message": "This is the PDL generated code 😊, it\u0027ll go away soon.",
+      "parentUuid": "1e035b5f_13d07cd9",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 22
+      },
+      "revId": "6072f1c5364f1af15e8773ce775837050e92a8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6331845e_786ac662",
         "filename": "system/bta/hearing_aid/gatt/src/att/packets.rs",
         "patchSetId": 6
@@ -129,6 +225,30 @@
       "writtenOn": "2024-06-05T18:36:24Z",
       "side": 1,
       "message": "same thing.  Should PDL be generating more helpers for Rust?",
+      "range": {
+        "startLine": 412,
+        "startChar": 9,
+        "endLine": 412,
+        "endChar": 18
+      },
+      "revId": "6072f1c5364f1af15e8773ce775837050e92a8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f59fc075_4b98841c",
+        "filename": "system/bta/hearing_aid/gatt/src/att/packets.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-06-05T18:44:38Z",
+      "side": 1,
+      "message": "This is the PDL generated code 😊, it\u0027ll go away soon.",
+      "parentUuid": "6331845e_786ac662",
       "range": {
         "startLine": 412,
         "startChar": 9,
