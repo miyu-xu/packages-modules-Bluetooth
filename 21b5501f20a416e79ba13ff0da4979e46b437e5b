@@ -166,6 +166,30 @@
       },
       "revId": "21b5501f20a416e79ba13ff0da4979e46b437e5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "012f59a5_a09fe277",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-06-05T19:20:07Z",
+      "side": 1,
+      "message": "After clarification, it is a no-op to prepare the transition to the new library. This will apply to all repos, not only Bluetooth. LGTM, will let William confirm 😊",
+      "parentUuid": "4f641cdf_eb01305b",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 36
+      },
+      "revId": "21b5501f20a416e79ba13ff0da4979e46b437e5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
