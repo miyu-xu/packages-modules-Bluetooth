@@ -118,6 +118,30 @@
       },
       "revId": "21b5501f20a416e79ba13ff0da4979e46b437e5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f641cdf_eb01305b",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-05T19:07:08Z",
+      "side": 1,
+      "message": "\u003e We read from both to test if the new pipeline is working properly.\n\nBluetooth is not a testing ground.\n\n\u003e The change is only in trunk staging and trunk food build.\n\nSo it impact droidfooder which is an issue.\nAlso I don\u0027t understand what prevent this change to be effective on next since this is 100% unflagged.\n\nPlease add a build flag.",
+      "parentUuid": "b3fb4218_12d975e5",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 36
+      },
+      "revId": "21b5501f20a416e79ba13ff0da4979e46b437e5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
