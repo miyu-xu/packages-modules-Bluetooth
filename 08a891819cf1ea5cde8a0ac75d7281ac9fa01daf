@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41b75e4f_a70818b5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 2334,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-05T17:16:37Z",
+      "side": 1,
+      "message": "I would prefer a little more margin.  750?  500?",
+      "range": {
+        "startLine": 2334,
+        "startChar": 29,
+        "endLine": 2334,
+        "endChar": 32
+      },
+      "revId": "08a891819cf1ea5cde8a0ac75d7281ac9fa01daf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
