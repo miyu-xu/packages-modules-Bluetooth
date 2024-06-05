@@ -1,0 +1,512 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "204c9188_2e90025f",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-05T18:35:42Z",
+      "side": 1,
+      "message": "I don\u0027t understand this comment. (you have it below multiple times too)",
+      "range": {
+        "startLine": 122,
+        "startChar": 11,
+        "endLine": 122,
+        "endChar": 42
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "983c5c34_57eeef72",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-05T18:35:42Z",
+      "side": 1,
+      "message": "Synchronized is used only here, but this is run inside the handler already and therefore it is not necessary.\n\nI notice that The other usage of mRequestsList is not withing a synchronized block and also happen on the \"mRunHandler\".\n\nI think we are safe removing it",
+      "range": {
+        "startLine": 202,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 39
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d5f06ad_3560e452",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-05T18:35:42Z",
+      "side": 1,
+      "message": "Why do you use a subclass specific handler and not the class handler `mRunHandler`?\n\nAnd the question is reversed but the same for line 335:\nWhy do you use `mRunHandler` and not the subclass specific handler ?\n\nThe only thing to push toward a class specific handler would be to have the inner class static, and do not depend on the outer class (no mRunHandler, no mSubscribedIds, no mWrappedBrowser). But that is not the pattern of the code here, nor in MediaConnectionCallback",
+      "range": {
+        "startLine": 314,
+        "startChar": 12,
+        "endLine": 314,
+        "endChar": 27
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f6eb4bb6_7f97b76a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+              "range": {
+                "startLine": 298,
+                "startChar": 0,
+                "endLine": 299,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+              "range": {
+                "startLine": 303,
+                "startChar": 0,
+                "endLine": 304,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+              "range": {
+                "startLine": 307,
+                "startChar": 0,
+                "endLine": 308,
+                "endChar": 0
+              },
+              "replacement": "            mRunHandler.postDelayed(mTimeoutRunnable, BROWSER_DISCONNECT_TIMEOUT.toMillis());\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+              "range": {
+                "startLine": 314,
+                "startChar": 0,
+                "endLine": 315,
+                "endChar": 0
+              },
+              "replacement": "            mRunHandler.removeCallbacks(mTimeoutRunnable);\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+              "range": {
+                "startLine": 351,
+                "startChar": 0,
+                "endLine": 356,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7da997db_c01c97c0",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-05T18:35:42Z",
+      "side": 1,
+      "message": "This is scary that we need to clone.\nAre the callback going up to external application or do we keep it internally ?\n\nThe only usage I see is toward the native code, I don\u0027t think we need it but I may be wrong",
+      "range": {
+        "startLine": 339,
+        "startChar": 43,
+        "endLine": 339,
+        "endChar": 57
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6c2c6b00_f631a5bb",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+              "range": {
+                "startLine": 339,
+                "startChar": 0,
+                "endLine": 339,
+                "endChar": 0
+              },
+              "replacement": "                    // TODO(b/289011111): Remove cloneList() when we have a better solution.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dfd4a14_6d65339f",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-05T18:35:42Z",
+      "side": 1,
+      "message": "unused ? and not needed to override as it does not appear in MediaBrowser.SubscriptionCallback",
+      "range": {
+        "startLine": 352,
+        "startChar": 8,
+        "endLine": 355,
+        "endChar": 9
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ce251caa_ea909290",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+              "range": {
+                "startLine": 351,
+                "startChar": 0,
+                "endLine": 356,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ee982e5_4b0e16fa",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-05T18:35:42Z",
+      "side": 1,
+      "message": "Because it\u0027s init time:\n\nWhy do we have to check for havePlayerId ? Does the name appear multiples times ?\n\nAnd if we can have it multiple time, would adding it to the mMediaBrowserWrappers be an issue as it would override the previous element ?",
+      "range": {
+        "startLine": 229,
+        "startChar": 15,
+        "endLine": 232,
+        "endChar": 98
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "467fcc60_73f2dac1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+              "range": {
+                "startLine": 229,
+                "startChar": 0,
+                "endLine": 232,
+                "endChar": 0
+              },
+              "replacement": "                mMediaPlayerIds.put(wrapper.getPackageName(), getFreeMediaPlayerId());\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d31b6cb_bf10ac9b",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-05T18:35:42Z",
+      "side": 1,
+      "message": "What is this assignation supposed to do ? (same below for song)",
+      "range": {
+        "startLine": 667,
+        "startChar": 0,
+        "endLine": 667,
+        "endChar": 70
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2df577f_2e3c9fb1",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-05T18:35:42Z",
+      "side": 1,
+      "message": "I would move this down to the last moment we need it, just before the \n`for (ResolveInfo browsablePlayerInfo : browsablePlayerList) {`",
+      "range": {
+        "startLine": 785,
+        "startChar": 26,
+        "endLine": 785,
+        "endChar": 52
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "93dfbb4d_1c35e914",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+              "range": {
+                "startLine": 785,
+                "startChar": 0,
+                "endLine": 787,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+              "range": {
+                "startLine": 808,
+                "startChar": 0,
+                "endLine": 808,
+                "endChar": 0
+              },
+              "replacement": "        List\u003cResolveInfo\u003e validBrowsablePackagesList \u003d new ArrayList\u003c\u003e();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48644036_b4af61c2",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-05T18:35:42Z",
+      "side": 1,
+      "message": "nit: I don\u0027t think `getApplicationContext` is necessary here. We are doing direct request that doesn\u0027t involve the app lifetime \n\nSame below for browsable.",
+      "range": {
+        "startLine": 795,
+        "startChar": 0,
+        "endLine": 795,
+        "endChar": 42
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bd82d7b_c0d6ea45",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 813,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-05T18:35:42Z",
+      "side": 1,
+      "message": "Are we sure it is non null?\nLooking at https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:frameworks/base/core/java/android/content/pm/PackageItemInfo.java;l\u003d220;drc\u003db7822b0ee6d0f8081cc6d733ce15ec8df7f90a2f they are using `Object.equals` to compare the name and prevent from NPE",
+      "range": {
+        "startLine": 813,
+        "startChar": 49,
+        "endLine": 813,
+        "endChar": 60
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4796921_7d6b469e",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 820,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-05T18:35:42Z",
+      "side": 1,
+      "message": "We can remove the counter by using break\n\n```suggestion\n            for (ResolveInfo audioPlayerInfo : audioPlayerList) {\n                if (audioPlayerInfo.activityInfo.packageName\n                        .equals(browsablePlayerInfo.serviceInfo.packageName)) {\n                    validBrowsablePackagesList.add(browsablePlayerInfo);\n                    // Make sure we only add one activities per package\n                    break;\n                }\n            }\n```",
+      "range": {
+        "startLine": 809,
+        "startChar": 11,
+        "endLine": 820,
+        "endChar": 13
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7a740c5_34e2be78",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1061,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-05T18:35:42Z",
+      "side": 1,
+      "message": "Format should have put that on one line\n```suggestion\n                        Log.i(TAG, \"package removed from browsable list: \" + packageName);\n```",
+      "range": {
+        "startLine": 1060,
+        "startChar": 24,
+        "endLine": 1061,
+        "endChar": 47
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cf62295_2b5b0404",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1074,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-05T18:35:42Z",
+      "side": 1,
+      "message": "At this point, I know for sure that packageName is not null. Can I say the same for  info.serviceInfo.packageName ?\n\nIf not, we need to reverse the equal or use Object.equals",
+      "range": {
+        "startLine": 1074,
+        "startChar": 32,
+        "endLine": 1074,
+        "endChar": 80
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb87b86c_a2b90012",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1081,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-05T18:35:42Z",
+      "side": 1,
+      "message": "You can win a lot of indent space by using a early return pattern\n\n```suggestion\n                if (packageName \u003d\u003d null) {\n                    return;\n                }\n\n                if (!Flags.browsingRefactor()) {\n                    return;\n                }\n                for (ResolveInfo info : getValidBrowsablePlayersPackages()) {\n                    // Check if added package is browsable\n                    if (!info.serviceInfo.packageName.equals(packageName)) {\n                        continue;\n                    }\n                    // Add it to the existing list\n                    MediaBrowserWrapper wrapper \u003d new MediaBrowserWrapper(\n                        mContext,\n                        mLooper,\n                        info.serviceInfo.packageName,\n                        info.serviceInfo.name);\n\n                    if (havePlayerId(wrapper.getPackageName())) {\n                        continue;\n                    }\n                    [...]\n```",
+      "range": {
+        "startLine": 1070,
+        "startChar": 16,
+        "endLine": 1081,
+        "endChar": 78
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "374111c9_599f1eb4",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1087,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-05T18:35:42Z",
+      "side": 1,
+      "message": "If saving the mediaId in a temporary variable, you don\u0027t need to look for it again from the map\n```suggestion\n                                    int mediaId \u003d getFreeMediaPlayerId()\n                                    mMediaPlayerIds.put(\n                                            wrapper.getPackageName(), mediaId);\n                                    mMediaBrowserWrappers.put(mediaId, wrapper);\n```",
+      "range": {
+        "startLine": 1084,
+        "startChar": 36,
+        "endLine": 1087,
+        "endChar": 100
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f69dee7b_5ca15852",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1089,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-05T18:35:42Z",
+      "side": 1,
+      "message": "Does it work to simply use packageName everywhere ?\n\ninstead of comparing with `packageName`, then using `info.serviceInfo.packageName` then using `wrapper.getPackageName()`\n\n\n```suggestion\n                            if (info.serviceInfo.packageName.equals(packageName)) {\n                                // Add it to the existing list\n                                MediaBrowserWrapper wrapper \u003d new MediaBrowserWrapper(\n                                    mContext,\n                                    mLooper,\n                                    packageName,\n                                    info.serviceInfo.name);\n                                if (!havePlayerId(packageName)) {\n                                    Log.i(TAG, \"package added to browsable list: \"\n                                            + packageName);\n                                    mMediaPlayerIds.put(packageName, getFreeMediaPlayerId());\n                                    mMediaBrowserWrappers.put(\n                                            mMediaPlayerIds.get(packageName), wrapper);\n                                    sendFolderUpdate(true, false, false);\n                                }\n```",
+      "range": {
+        "startLine": 1074,
+        "startChar": 28,
+        "endLine": 1089,
+        "endChar": 33
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
