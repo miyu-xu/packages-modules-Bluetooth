@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e091905d_1db6ca3b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-05T20:38:53Z",
+      "side": 1,
+      "message": "This is not conform to the Flag stanza:\ngo/android-flags-guidelines#exceptions-anchor",
+      "range": {
+        "startLine": 11,
+        "startChar": 6,
+        "endLine": 11,
+        "endChar": 35
+      },
+      "revId": "03c424713e4a26c840f91766d16e0cf88c50fa13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
