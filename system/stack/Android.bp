@@ -291,6 +291,7 @@ cc_library_static {
         "BluetoothGeneratedDumpsysDataSchema_h",
     ],
     cflags: [
+        "-Wno-unused-parameter",
         /* we export all classes, so change default visibility, instead of having EXPORT_SYMBOL on each class*/
         "-fvisibility=default",
     ],
