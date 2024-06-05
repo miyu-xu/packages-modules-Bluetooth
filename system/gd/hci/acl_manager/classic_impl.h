@@ -252,12 +252,12 @@ public:
     return connections.send_packet_upward(handle, cb);
   }
 
-  void on_incoming_connection(Address address, ClassOfDevice cod) {
+  bool on_incoming_connection(Address address, ClassOfDevice cod) {
     if (client_callbacks_ == nullptr) {
       log::error("No callbacks to call");
       auto reason = RejectConnectionReason::LIMITED_RESOURCES;
       this->reject_connection(RejectConnectionRequestBuilder::Create(address, reason));
-      return;
+      return false;
     }
 
     client_handler_->CallOn(client_callbacks_, &ConnectionCallbacks::OnConnectRequest, address,
@@ -270,12 +270,9 @@ public:
     if (is_classic_link_already_connected(address)) {
       auto reason = RejectConnectionReason::UNACCEPTABLE_BD_ADDR;
       this->reject_connection(RejectConnectionRequestBuilder::Create(address, reason));
-    } else if (should_accept_connection_.Run(address, cod)) {
-      this->accept_connection(address);
-    } else {
-      auto reason = RejectConnectionReason::LIMITED_RESOURCES;  // TODO: determine reason
-      this->reject_connection(RejectConnectionRequestBuilder::Create(address, reason));
+      return false;
     }
+    return true;
   }
 
   bool is_classic_link_already_connected(Address address) {
@@ -692,10 +689,10 @@ public:
     log::info("UNIMPLEMENTED called");
   }
 
-  void on_accept_connection_status(Address address, CommandStatusView status) {
+  void on_accept_connection_status(Address address, bool accepted, CommandStatusView status) {
     auto accept_status = AcceptConnectionRequestStatusView::Create(status);
     log::assert_that(accept_status.IsValid(), "assert failed: accept_status.IsValid()");
-    if (status.GetStatus() != ErrorCode::SUCCESS) {
+    if (!accepted) {
       cancel_connect(address);
     }
   }
@@ -724,13 +721,14 @@ public:
     auto role = AcceptConnectionRequestRole::BECOME_CENTRAL;  // We prefer to be central
     acl_connection_interface_->EnqueueCommand(
             AcceptConnectionRequestBuilder::Create(address, role),
-            handler_->BindOnceOn(this, &classic_impl::on_accept_connection_status, address));
+            handler_->BindOnceOn(this, &classic_impl::on_accept_connection_status, address, true));
   }
 
   void reject_connection(std::unique_ptr<RejectConnectionRequestBuilder> builder) {
     acl_connection_interface_->EnqueueCommand(
             std::move(builder),
-            handler_->BindOnce(check_status<RejectConnectionRequestStatusView>));
+             handler_->BindOnceOn(this, &classic_impl::on_accept_connection_status,
+		                  builder->GetBdAddr(), false));
   }
 
   uint16_t HACK_get_handle(Address address) { return connections.HACK_get_handle(address); }
