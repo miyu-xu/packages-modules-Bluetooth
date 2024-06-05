@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3ac705f_e8854ab9",
+        "filename": "system/bta/hearing_aid/gatt/att.pdl",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-05T18:36:24Z",
+      "side": 1,
+      "message": "Why does this need to be a custom field?",
+      "range": {
+        "startLine": 3,
+        "startChar": 13,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "6072f1c5364f1af15e8773ce775837050e92a8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "037e50b5_b966bc02",
+        "filename": "system/bta/hearing_aid/gatt/att.pdl",
+        "patchSetId": 6
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-05T18:36:24Z",
+      "side": 1,
+      "message": "I would love to have some test packets from wireshark in here.  I\u0027m happy to help if you have interesting wireshark logs.  Here\u0027s one from a log that I had.\n\ntest FindInformationReq {\n  \"Bytes copied from wireshark\"\n}\n```suggestion\n}\n\ntest FindInformationReq {\n    \"\\x04\\x07\\x00\\x09\\x00\"\n}\n```",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 1
+      },
+      "revId": "6072f1c5364f1af15e8773ce775837050e92a8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7305bcb_e81b4004",
+        "filename": "system/bta/hearing_aid/gatt/att.pdl",
+        "patchSetId": 6
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-05T18:36:24Z",
+      "side": 1,
+      "message": "I\u0027d prefer an enum for this\n\n// Vol 3, Part F - Table 3.9: Format field values\nenum Format: 8 {\n    HANDLES_AND_16_BIT_UUIDS \u003d 0x01,\n    HANDLES_AND_128_BIT_UUIDS \u003d 0x02,\n}",
+      "range": {
+        "startLine": 112,
+        "startChar": 12,
+        "endLine": 112,
+        "endChar": 13
+      },
+      "revId": "6072f1c5364f1af15e8773ce775837050e92a8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97ea71e8_26b92853",
+        "filename": "system/bta/hearing_aid/gatt/src/att.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-05T18:36:24Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 34
+      },
+      "revId": "6072f1c5364f1af15e8773ce775837050e92a8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e035b5f_13d07cd9",
+        "filename": "system/bta/hearing_aid/gatt/src/att/packets.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-05T18:36:24Z",
+      "side": 1,
+      "message": "Can we use the PDL definitions here?",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 22
+      },
+      "revId": "6072f1c5364f1af15e8773ce775837050e92a8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6331845e_786ac662",
+        "filename": "system/bta/hearing_aid/gatt/src/att/packets.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-05T18:36:24Z",
+      "side": 1,
+      "message": "same thing.  Should PDL be generating more helpers for Rust?",
+      "range": {
+        "startLine": 412,
+        "startChar": 9,
+        "endLine": 412,
+        "endChar": 18
+      },
+      "revId": "6072f1c5364f1af15e8773ce775837050e92a8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d353db1_8c56d689",
+        "filename": "system/bta/hearing_aid/gatt/src/client.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-05T18:36:24Z",
+      "side": 1,
+      "message": "nit: discovered_all_services ?",
+      "range": {
+        "startLine": 35,
+        "startChar": 12,
+        "endLine": 35,
+        "endChar": 16
+      },
+      "revId": "6072f1c5364f1af15e8773ce775837050e92a8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6408c1cf_cc9e5ad5",
+        "filename": "system/bta/hearing_aid/gatt/src/database.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-05T18:36:24Z",
+      "side": 1,
+      "message": "rename?  uuids_with_known_services ?\nuuids_with_discovered_services?",
+      "range": {
+        "startLine": 13,
+        "startChar": 8,
+        "endLine": 13,
+        "endChar": 25
+      },
+      "revId": "6072f1c5364f1af15e8773ce775837050e92a8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
