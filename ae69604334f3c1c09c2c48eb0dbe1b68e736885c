@@ -472,6 +472,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39c57f8b_da5d4f7b",
+        "filename": "system/profile/avrcp/avrc_sdp_service.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2024-06-05T16:58:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14e9a4ef_c9c5357f",
+      "range": {
+        "startLine": 26,
+        "startChar": 10,
+        "endLine": 26,
+        "endChar": 14
+      },
+      "revId": "ae69604334f3c1c09c2c48eb0dbe1b68e736885c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "384eaab2_3ff7c4f3",
