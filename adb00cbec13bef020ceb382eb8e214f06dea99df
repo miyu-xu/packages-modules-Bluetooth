@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09e4b1a2_62453f0a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-06-05T22:07:12Z",
+      "side": 1,
+      "message": "Could we remove (at least) the ImportOrder check if we do that?",
+      "revId": "adb00cbec13bef020ceb382eb8e214f06dea99df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
