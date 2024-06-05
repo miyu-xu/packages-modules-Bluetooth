@@ -39,6 +39,30 @@
       },
       "revId": "cceb8e52acc40dbe59d73155cfac7cfb13597b13",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a9e9e99_667e477d",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1216,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-06-05T15:06:26Z",
+      "side": 1,
+      "message": "This code change is intended . Please raise a bug if you encounter any issue with respect to this",
+      "parentUuid": "2c5cac3e_25100cb6",
+      "range": {
+        "startLine": 1216,
+        "startChar": 5,
+        "endLine": 1216,
+        "endChar": 67
+      },
+      "revId": "cceb8e52acc40dbe59d73155cfac7cfb13597b13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
