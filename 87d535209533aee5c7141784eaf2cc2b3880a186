@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a313de18_96f38efc",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 684,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-05T01:44:21Z",
+      "side": 1,
+      "message": "Nit: can you enclose it in a bracket?",
+      "revId": "87d535209533aee5c7141784eaf2cc2b3880a186",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
