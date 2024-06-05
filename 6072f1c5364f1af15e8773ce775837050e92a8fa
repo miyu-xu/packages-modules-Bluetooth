@@ -212,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fb5ee89_255a6261",
+        "filename": "system/bta/hearing_aid/gatt/src/att/packets.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-06-05T19:06:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96212547_c64d2767",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 22
+      },
+      "revId": "6072f1c5364f1af15e8773ce775837050e92a8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6331845e_786ac662",
@@ -249,6 +273,30 @@
       "side": 1,
       "message": "This is the PDL generated code 😊, it\u0027ll go away soon.",
       "parentUuid": "6331845e_786ac662",
+      "range": {
+        "startLine": 412,
+        "startChar": 9,
+        "endLine": 412,
+        "endChar": 18
+      },
+      "revId": "6072f1c5364f1af15e8773ce775837050e92a8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a8e9817_a3e8bce5",
+        "filename": "system/bta/hearing_aid/gatt/src/att/packets.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-06-05T19:06:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f59fc075_4b98841c",
       "range": {
         "startLine": 412,
         "startChar": 9,
