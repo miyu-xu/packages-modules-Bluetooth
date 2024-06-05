@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d544fe71_19bad0af",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 5
+      },
+      "lineNbr": 5280,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-05T16:59:08Z",
+      "side": 1,
+      "message": "Can we put LeCsTestEndComplete here with the other related packets?\n\n```suggestion\n}\n\npacket LeCsTestEndComplete : LeMetaEvent (subevent_code \u003d LE_CS_TEST_END_COMPLETE) {\n  status : ErrorCode,\n}\n```",
+      "range": {
+        "startLine": 5280,
+        "startChar": 0,
+        "endLine": 5280,
+        "endChar": 1
+      },
+      "revId": "c609d9179aaa7f34a5e1a5c4f716cc6b5da416f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74407fb6_61241266",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 5
+      },
+      "lineNbr": 6958,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-05T16:59:08Z",
+      "side": 1,
+      "message": "```suggestion\n// Vendor specific events\n```",
+      "range": {
+        "startLine": 6954,
+        "startChar": 0,
+        "endLine": 6958,
+        "endChar": 0
+      },
+      "revId": "c609d9179aaa7f34a5e1a5c4f716cc6b5da416f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
