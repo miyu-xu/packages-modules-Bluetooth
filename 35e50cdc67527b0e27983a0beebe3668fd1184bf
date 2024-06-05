@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ab23526_1f5adcda",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-05T22:41:27Z",
+      "side": 1,
+      "message": "Can you do only one log with all this information ?",
+      "range": {
+        "startLine": 312,
+        "startChar": 3,
+        "endLine": 314,
+        "endChar": 63
+      },
+      "revId": "35e50cdc67527b0e27983a0beebe3668fd1184bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb89bbcd_4c255b05",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1011,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-05T22:41:27Z",
+      "side": 1,
+      "message": "This will be print in the log on multiline too, like if it was multiples logs. Can we keep them inline ?",
+      "range": {
+        "startLine": 1003,
+        "startChar": 3,
+        "endLine": 1011,
+        "endChar": 38
+      },
+      "revId": "35e50cdc67527b0e27983a0beebe3668fd1184bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ac7b3c3_d4b602e1",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1664,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-05T22:41:27Z",
+      "side": 1,
+      "message": "bd_addr\u003d ?",
+      "range": {
+        "startLine": 1664,
+        "startChar": 45,
+        "endLine": 1664,
+        "endChar": 46
+      },
+      "revId": "35e50cdc67527b0e27983a0beebe3668fd1184bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc63a796_7045a964",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1693,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-05T22:41:27Z",
+      "side": 1,
+      "message": "verbose but the other case are info, is this intendted ?",
+      "range": {
+        "startLine": 1693,
+        "startChar": 13,
+        "endLine": 1693,
+        "endChar": 20
+      },
+      "revId": "35e50cdc67527b0e27983a0beebe3668fd1184bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5444aa92_d03be099",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2073,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-05T22:41:27Z",
+      "side": 1,
+      "message": "bd_addr?",
+      "range": {
+        "startLine": 2073,
+        "startChar": 20,
+        "endLine": 2073,
+        "endChar": 26
+      },
+      "revId": "35e50cdc67527b0e27983a0beebe3668fd1184bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
