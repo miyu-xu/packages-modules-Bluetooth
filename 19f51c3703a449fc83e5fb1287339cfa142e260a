@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb2f96b8_af6dbdb6",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-06-05T00:26:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2489ff7_92bf2dc2",
+      "range": {
+        "startLine": 289,
+        "startChar": 13,
+        "endLine": 289,
+        "endChar": 28
+      },
+      "revId": "19f51c3703a449fc83e5fb1287339cfa142e260a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d61e8a36_6a01081d",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-06-04T23:37:49Z",
       "side": 1,
       "message": "Create a new thread for each fd to poll new events.",
+      "range": {
+        "startLine": 291,
+        "startChar": 11,
+        "endLine": 291,
+        "endChar": 28
+      },
+      "revId": "19f51c3703a449fc83e5fb1287339cfa142e260a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7256ce9a_4c3d8d97",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-06-05T00:26:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d61e8a36_6a01081d",
       "range": {
         "startLine": 291,
         "startChar": 11,
@@ -95,6 +143,24 @@
       "writtenOn": "2024-06-04T23:17:02Z",
       "side": 1,
       "message": "nit: use single *",
+      "revId": "19f51c3703a449fc83e5fb1287339cfa142e260a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d14daba5_f3db82f1",
+        "filename": "system/test/mock/mock_bta_hh_utils.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-06-05T00:26:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07e2ad92_35588f58",
       "revId": "19f51c3703a449fc83e5fb1287339cfa142e260a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
