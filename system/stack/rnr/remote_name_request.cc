@@ -307,7 +307,8 @@ tBTM_STATUS BTM_CancelRemoteDeviceName(void) {
   if (!btm_cb.rnr.remname_active) {
     return tBTM_STATUS::BTM_WRONG_MODE;
   }
-
+  
+  btm_cb.rnr.remname_active = false;
   if (com::android::bluetooth::flags::rnr_store_device_type()) {
     is_le = (btm_cb.rnr.remname_dev_type == BT_DEVICE_TYPE_BLE);
   } else {
