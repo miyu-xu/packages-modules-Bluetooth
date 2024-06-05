@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4b0d1bd_6d35bcfd",
+        "filename": "system/btif/include/btif_hh.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-06-05T00:26:04Z",
+      "side": 1,
+      "message": "I think we need to have multiple threads polling or rework to stop/start polling in a single thread every time a new fd is opened.",
+      "revId": "ce99c4b302d01b591c3ab4cfdbbc6f3cd7b6d1d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
