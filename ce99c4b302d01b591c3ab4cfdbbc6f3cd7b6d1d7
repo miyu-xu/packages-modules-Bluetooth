@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e7c45e4d_442d267a",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-06-05T00:29:25Z",
+      "side": 1,
+      "message": "To open new thread for each fd, need to pass fd id as well. It looks it only takes one argument, so maybe need to define a new struct.",
+      "revId": "ce99c4b302d01b591c3ab4cfdbbc6f3cd7b6d1d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d4b0d1bd_6d35bcfd",
         "filename": "system/btif/include/btif_hh.h",
         "patchSetId": 1
