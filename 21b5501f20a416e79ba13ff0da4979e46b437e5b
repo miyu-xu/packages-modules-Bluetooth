@@ -94,6 +94,30 @@
       },
       "revId": "21b5501f20a416e79ba13ff0da4979e46b437e5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3fb4218_12d975e5",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1882770
+      },
+      "writtenOn": "2024-06-05T18:45:39Z",
+      "side": 1,
+      "message": "So there should no functionality change in release build. The change is only in trunk staging and trunk food build.",
+      "parentUuid": "3333a50b_98ec67ac",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 36
+      },
+      "revId": "21b5501f20a416e79ba13ff0da4979e46b437e5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
