@@ -46,6 +46,30 @@
       },
       "revId": "21b5501f20a416e79ba13ff0da4979e46b437e5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fed6f9f9_3daa3d74",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-05T17:36:01Z",
+      "side": 1,
+      "message": "I am confused about that.\n\nIf the new library is not working, we don\u0027t want to ship it in Bluetooth.\nIf the new library is working, we don\u0027t want to keep the old library.\n\nIf you are unsure about \"We will read from both to ensure the value match\" then I believe we should not do it. If you are not confident about the storage system, then we should not ship it.\n\nI am adding the Lead of Bluetooth release so he is aware of your request and can have a final say on the matter. He also is the one that can provide Dr No if he thinks this is acceptable.\n\nLooking at b/321077378, nobody is using the new library yet.\n\n@girardier@google.com FYI",
+      "parentUuid": "7c525945_51408155",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 36
+      },
+      "revId": "21b5501f20a416e79ba13ff0da4979e46b437e5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
