@@ -859,6 +859,7 @@ tBTM_STATUS BTM_CancelRemoteDeviceName(void) {
 
   /* Make sure there is not already one in progress */
   if (btm_cb.btm_inq_vars.remname_active) {
+    btm_cb.btm_inq_vars.remname_active = false;
     if (com::android::bluetooth::flags::rnr_store_device_type()) {
       is_le = (btm_cb.btm_inq_vars.remname_dev_type == BT_DEVICE_TYPE_BLE);
     } else {
