@@ -106,6 +106,24 @@
       "parentUuid": "2fc3fb31_bed32ac1",
       "revId": "a8e04e740da5b8f00f7f93a0d8e54af34c58f904",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0834bfb3_c6b094dd",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-06-05T23:42:10Z",
+      "side": 1,
+      "message": "Here is the run with the current configuration: https://android-build.corp.google.com/builds/abtd/run/L10500030004342918\n\nThe verbose logs seems to be well enabled.",
+      "parentUuid": "40f2b399_f8b7eb37",
+      "revId": "a8e04e740da5b8f00f7f93a0d8e54af34c58f904",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
