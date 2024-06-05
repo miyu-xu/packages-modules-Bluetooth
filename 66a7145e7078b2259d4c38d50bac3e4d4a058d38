@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35cfc789_3a04734c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/HidHostTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-06-05T11:35:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4072f84e_9284f19e",
+      "revId": "66a7145e7078b2259d4c38d50bac3e4d4a058d38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e892d6da_c2bcf0a5",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-06-04T19:05:23Z",
       "side": 1,
       "message": "Please factor the disconnection logic.",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 62
+      },
+      "revId": "66a7145e7078b2259d4c38d50bac3e4d4a058d38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a190d88_52cc201e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/HidHostTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-06-05T11:35:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e892d6da_c2bcf0a5",
       "range": {
         "startLine": 116,
         "startChar": 0,
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4557105_55f25768",
+        "filename": "framework/tests/bumble/src/android/bluetooth/HidHostTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-06-05T11:35:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd2815a9_89492f41",
+      "range": {
+        "startLine": 148,
+        "startChar": 8,
+        "endLine": 148,
+        "endChar": 29
+      },
+      "revId": "66a7145e7078b2259d4c38d50bac3e4d4a058d38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b106c884_a7a28b94",
@@ -81,6 +147,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f652b981_259c4d55",
+        "filename": "pandora/interfaces/pandora_experimental/hid.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-06-05T11:35:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b106c884_a7a28b94",
+      "revId": "66a7145e7078b2259d4c38d50bac3e4d4a058d38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e11cbf7_9e932f9d",
@@ -94,6 +178,30 @@
       "writtenOn": "2024-06-04T19:13:08Z",
       "side": 1,
       "message": "Can this logic be moved into the constructor ?",
+      "range": {
+        "startLine": 368,
+        "startChar": 8,
+        "endLine": 372,
+        "endChar": 32
+      },
+      "revId": "66a7145e7078b2259d4c38d50bac3e4d4a058d38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28f6956a_d0332fb5",
+        "filename": "pandora/server/bumble_experimental/hid.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-06-05T11:35:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e11cbf7_9e932f9d",
       "range": {
         "startLine": 368,
         "startChar": 8,
