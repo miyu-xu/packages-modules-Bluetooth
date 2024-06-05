@@ -16,6 +16,24 @@
       "message": "Is it possible that this would cause a2dp to not resume after a call?\nWho has the responsibility for unpausing a2dp if isScoManagedByAudioEnabled is true ?",
       "revId": "770fc700de77f78a9d553b91cd84138fefc59cb4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4395cfdb_4e245571",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2387,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-05T20:27:07Z",
+      "side": 1,
+      "message": "When `isScoManagedByAudioEnabled` is true, Audio framework does the mutual exclusion",
+      "parentUuid": "66f6c35e_f6cdeac0",
+      "revId": "770fc700de77f78a9d553b91cd84138fefc59cb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
