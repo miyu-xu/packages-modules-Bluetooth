@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94428628_0638b3f1",
+        "filename": "system/bta/hearing_aid/gatt/att.pdl",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-05T20:19:35Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a81a22d4_76cea74c",
+      "range": {
+        "startLine": 3,
+        "startChar": 13,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "6072f1c5364f1af15e8773ce775837050e92a8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "037e50b5_b966bc02",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "I would love too, unfortunately pdl in Rust doesn\u0027t support the `test` construct, it\u0027s on my todo.",
       "parentUuid": "037e50b5_b966bc02",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 1
+      },
+      "revId": "6072f1c5364f1af15e8773ce775837050e92a8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfe264c5_9a3f569a",
+        "filename": "system/bta/hearing_aid/gatt/att.pdl",
+        "patchSetId": 6
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-05T20:19:35Z",
+      "side": 1,
+      "message": "😭",
+      "parentUuid": "e1c4b8b3_a33124c5",
       "range": {
         "startLine": 108,
         "startChar": 0,
@@ -155,6 +203,30 @@
       "side": 1,
       "message": "Some old code from an old pdl definition, I need to remove those.",
       "parentUuid": "97ea71e8_26b92853",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 34
+      },
+      "revId": "6072f1c5364f1af15e8773ce775837050e92a8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9405fe5_ac83308e",
+        "filename": "system/bta/hearing_aid/gatt/src/att.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-05T20:19:35Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "034d7678_72325a6c",
       "range": {
         "startLine": 28,
         "startChar": 0,
