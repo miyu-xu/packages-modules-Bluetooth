@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c0782a5_be81f6b9",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-06-05T09:30:53Z",
+      "side": 1,
+      "message": "Thanks for the suggestion, this will be in aosp/3115479.",
+      "parentUuid": "852bab75_c3c32fb9",
+      "range": {
+        "startLine": 475,
+        "startChar": 0,
+        "endLine": 475,
+        "endChar": 44
+      },
+      "revId": "ea2fae3491ade43bd83d1b4c26b9dabcfbf5b902",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "00e662c6_6b4e23d8",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-06-04T07:27:08Z",
       "side": 1,
       "message": "Do you mind adding a helper function for removing a device from the old_group? Line 1014~1022 and line 1041~1048 share the same logic.",
+      "range": {
+        "startLine": 1014,
+        "startChar": 0,
+        "endLine": 1022,
+        "endChar": 37
+      },
+      "revId": "ea2fae3491ade43bd83d1b4c26b9dabcfbf5b902",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fea7ae10_41f99493",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1022,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-06-05T09:30:53Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "00e662c6_6b4e23d8",
       "range": {
         "startLine": 1014,
         "startChar": 0,
