@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67566663_77ffb675",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-06-05T08:09:15Z",
+      "side": 1,
+      "message": "Chen, can you please take another look? This patch helps memory efficiency.",
+      "revId": "6e5bafd582484790fad61c0c6409a0b57bdcc788",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
