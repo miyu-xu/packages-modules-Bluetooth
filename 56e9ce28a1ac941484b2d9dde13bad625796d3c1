@@ -1,0 +1,162 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eff1290b_6fef1409",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-05T23:50:18Z",
+      "side": 1,
+      "message": "add comments here:\n```\nWhen conference call member removed from the conference call, Telecom keeps the conference call parent, but disconnects all children, and creates new children except the removed one. This map targets to memorize the CLCC index for newly created children.\n```\nnit: variable name maybe `mConferenceCallClccIndexMap`? as it is only used during conference call",
+      "range": {
+        "startLine": 140,
+        "startChar": 43,
+        "endLine": 140,
+        "endChar": 56
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "82356201_0a37677e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+              "range": {
+                "startLine": 140,
+                "startChar": 0,
+                "endLine": 140,
+                "endChar": 0
+              },
+              "replacement": "    // When conference call member removed from the conference call, Telecom\n    // keeps the conference call parent, but disconnects all children, and\n    // creates new children except the removed\n"
+            }
+          ]
+        }
+      ],
+      "revId": "56e9ce28a1ac941484b2d9dde13bad625796d3c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2694898_8edb716a",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-05T23:50:18Z",
+      "side": 1,
+      "message": "nit: if it is string comparison, then maybe `equals`?",
+      "range": {
+        "startLine": 686,
+        "startChar": 38,
+        "endLine": 686,
+        "endChar": 47
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a3219ec1_fad69b29",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+              "range": {
+                "startLine": 686,
+                "startChar": 0,
+                "endLine": 687,
+                "endChar": 0
+              },
+              "replacement": "                if (cause.getReason().equals(\"IMS_MERGED_SUCCESSFULLY\")) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "56e9ce28a1ac941484b2d9dde13bad625796d3c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08a521ca_9dfeb4cb",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-05T23:50:18Z",
+      "side": 1,
+      "message": "there are other call states, e.g. ringing, new, dialing, etc. \n\nIf here we would like to know whether there is no more remaining call, we can use `mBluetoothCallHashMap` because every new BluetoothCall is added into `mBluetoothCallHashMap` in `oncalladded`",
+      "range": {
+        "startLine": 713,
+        "startChar": 12,
+        "endLine": 713,
+        "endChar": 52
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "08d883ea_f6d1619d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+              "range": {
+                "startLine": 710,
+                "startChar": 0,
+                "endLine": 714,
+                "endChar": 0
+              },
+              "replacement": "        // If no call is active or held or ringing clear the hashmap.\n        if (mCallInfo.isNullCall(mCallInfo.getActiveCall())\n                \u0026\u0026 mCallInfo.getNumHeldCalls() \u003d\u003d 0\n                \u0026\u0026 mCallInfo.isNullCall(mCallInfo.getRingingOrSimulatedRingingCall())) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "56e9ce28a1ac941484b2d9dde13bad625796d3c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18e44d94_d2424934",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1059,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-05T23:50:18Z",
+      "side": 1,
+      "message": "nit: add a info log before return, as two empty calls would lead to map key collision",
+      "fixSuggestions": [
+        {
+          "fixId": "b07a1301_c213592b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+              "range": {
+                "startLine": 1059,
+                "startChar": 0,
+                "endLine": 1059,
+                "endChar": 0
+              },
+              "replacement": "            Log.d(TAG, \"getClccMapKey: call is null or handle is null\");\n"
+            }
+          ]
+        }
+      ],
+      "revId": "56e9ce28a1ac941484b2d9dde13bad625796d3c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
