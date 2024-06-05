@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "36c138ce_7bcf127a",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-06-05T08:57:40Z",
+      "side": 1,
+      "message": "Done, thanks!",
+      "parentUuid": "12416a74_48ff56d9",
+      "range": {
+        "startLine": 599,
+        "startChar": 0,
+        "endLine": 599,
+        "endChar": 33
+      },
+      "revId": "61c56a91a145c6c619d114f877e3fb8807ba59f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "b98cb74d_8bf48eab",
         "filename": "system/pdl/hci/hci_packets.pdl",
         "patchSetId": 2
@@ -73,6 +97,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "718fb802_706f360c",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 5188,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-06-05T08:57:40Z",
+      "side": 1,
+      "message": "This doesn\u0027t contain in the newest release spec https://www.bluetooth.com/specifications/specs/channel-sounding-cr-pr/",
+      "parentUuid": "8fbd7e38_9b518eb4",
+      "range": {
+        "startLine": 5188,
+        "startChar": 2,
+        "endLine": 5188,
+        "endChar": 12
+      },
+      "revId": "61c56a91a145c6c619d114f877e3fb8807ba59f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "14fd4279_8008d64a",
         "filename": "system/pdl/hci/hci_packets.pdl",
         "patchSetId": 2
@@ -108,6 +156,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "b1afa5c4_a9bdfd1d",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 5233,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-06-05T08:57:40Z",
+      "side": 1,
+      "message": "Updated based on the newest release spec https://www.bluetooth.com/specifications/specs/channel-sounding-cr-pr/\n\nBTW, it doesn\u0027t contains tone_antenna_permutation",
+      "parentUuid": "aab938b0_af4bfc71",
+      "revId": "61c56a91a145c6c619d114f877e3fb8807ba59f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "14805c11_9eb04f27",
         "filename": "system/pdl/hci/hci_packets.pdl",
         "patchSetId": 2
@@ -137,6 +203,24 @@
       "side": 1,
       "message": "same",
       "parentUuid": "14805c11_9eb04f27",
+      "revId": "61c56a91a145c6c619d114f877e3fb8807ba59f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e8fcd33_08d6d883",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 5276,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-06-05T08:57:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7357e53d_119b7b87",
       "revId": "61c56a91a145c6c619d114f877e3fb8807ba59f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
