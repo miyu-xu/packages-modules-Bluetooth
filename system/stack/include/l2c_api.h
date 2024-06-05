@@ -590,7 +590,7 @@ void L2CA_DeregisterLECoc(uint16_t psm);
 // remote channel identifier, |rcid|. If
 // |lcid| is not known or is invalid, this function returns false and does not
 // modify the value pointed at by |rcid|. |rcid| may be NULL.
-[[nodiscard]] bool L2CA_GetRemoteCid(uint16_t lcid, uint16_t* rcid);
+[[nodiscard]] bool L2CA_GetRemoteChannelId(uint16_t lcid, uint16_t* rcid);
 
 /*******************************************************************************
  *
@@ -945,20 +945,6 @@ void L2CA_SetMediaStreamChannel(uint16_t local_media_cid, bool status);
 *******************************************************************************/
 [[nodiscard]] bool L2CA_isMediaChannel(uint16_t handle, uint16_t channel_id,
                                        bool is_local_cid);
-
-/*******************************************************************************
- *
- *  Function        L2CA_GetPeerChannelId
- *
- *  Description     Get remote channel ID for Connection Oriented Channel.
- *
- *  Parameters:     lcid: Local CID
- *                  rcid: Pointer to remote CID
- *
- *  Return value:   true if peer is connected
- *
- ******************************************************************************/
-[[nodiscard]] bool L2CA_GetPeerChannelId(uint16_t lcid, uint16_t* rcid);
 
 namespace fmt {
 template <>
