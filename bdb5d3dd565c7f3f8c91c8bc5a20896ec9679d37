@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2cf8eb9_150fcdcb",
+        "filename": "system/audio_hal_interface/hfp_client_interface.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-05T15:22:56Z",
+      "side": 1,
+      "message": "nit: this should be a match statement",
+      "range": {
+        "startLine": 81,
+        "startChar": 2,
+        "endLine": 87,
+        "endChar": 3
+      },
+      "revId": "bdb5d3dd565c7f3f8c91c8bc5a20896ec9679d37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3467d79f_26033b34",
+        "filename": "system/bta/include/bta_ag_api.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-05T15:22:56Z",
+      "side": 1,
+      "message": "nit: you should name the enum declaring UUID_CODEC_XXX, to be able to use the type here.",
+      "range": {
+        "startLine": 300,
+        "startChar": 2,
+        "endLine": 300,
+        "endChar": 10
+      },
+      "revId": "bdb5d3dd565c7f3f8c91c8bc5a20896ec9679d37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
