@@ -22,6 +22,30 @@
       },
       "revId": "08a891819cf1ea5cde8a0ac75d7281ac9fa01daf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46a3f062_c9e59e07",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 2334,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-05T21:42:06Z",
+      "side": 1,
+      "message": "The only difference between the start of both timer is a single binder call.\nIt should be a matter of less than a milliseconds.\nThe only delta is when it will be awaken and this is more in the 4~10 ms magnitude.\n\nI think that this is enough marging.\nIf the log in the server start to pop too much, we can revisit that later.",
+      "parentUuid": "41b75e4f_a70818b5",
+      "range": {
+        "startLine": 2334,
+        "startChar": 29,
+        "endLine": 2334,
+        "endChar": 32
+      },
+      "revId": "08a891819cf1ea5cde8a0ac75d7281ac9fa01daf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
