@@ -10,3 +10,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "handle_unexpected_vendor_specific_command_status"
+    namespace: "bluetooth"
+    description: "If vendor specific command receives an unexpected command status, don't treat as a hard failure"
+    bug: "341166368"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
