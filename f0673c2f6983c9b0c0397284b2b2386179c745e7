@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd918050_22eac586",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-06-06T09:18:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "204c9188_2e90025f",
+      "range": {
+        "startLine": 122,
+        "startChar": 11,
+        "endLine": 122,
+        "endChar": 42
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "983c5c34_57eeef72",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-06-05T18:35:42Z",
       "side": 1,
       "message": "Synchronized is used only here, but this is run inside the handler already and therefore it is not necessary.\n\nI notice that The other usage of mRequestsList is not withing a synchronized block and also happen on the \"mRunHandler\".\n\nI think we are safe removing it",
+      "range": {
+        "startLine": 202,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 39
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67d02d49_ebae8ee8",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-06-06T09:18:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "983c5c34_57eeef72",
       "range": {
         "startLine": 202,
         "startChar": 0,
@@ -128,6 +176,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "161fbcfe_c2a0ccdd",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-06-06T09:18:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d5f06ad_3560e452",
+      "range": {
+        "startLine": 314,
+        "startChar": 12,
+        "endLine": 314,
+        "endChar": 27
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7da997db_c01c97c0",
@@ -165,6 +237,30 @@
           ]
         }
       ],
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03bed0fe_fef4d02b",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-06-06T09:18:17Z",
+      "side": 1,
+      "message": "I don\u0027t have access to the issue",
+      "parentUuid": "7da997db_c01c97c0",
+      "range": {
+        "startLine": 339,
+        "startChar": 43,
+        "endLine": 339,
+        "endChar": 57
+      },
       "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -210,6 +306,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e67594a4_0aef6cbc",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-06-06T09:18:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7dfd4a14_6d65339f",
+      "range": {
+        "startLine": 352,
+        "startChar": 8,
+        "endLine": 355,
+        "endChar": 9
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ee982e5_4b0e16fa",
@@ -251,6 +371,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d45a14c_21c6d738",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-06-06T09:18:17Z",
+      "side": 1,
+      "message": "A player can be browsable so when adding browsable players, we also add it to the player list. If we already know this player, we just add it to the browsable list.\n\nIdeally we should use #addMediaPlayer, but here we didn\u0027t retrieve it controller so we can\u0027t.\n\nHere the operation consists of giving the player an ID by getting the next ID available. If we call this and the player already exists we will replace its original ID by a new one, which we don\u0027t want.",
+      "parentUuid": "1ee982e5_4b0e16fa",
+      "range": {
+        "startLine": 229,
+        "startChar": 15,
+        "endLine": 232,
+        "endChar": 98
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9d31b6cb_bf10ac9b",
@@ -264,6 +408,30 @@
       "writtenOn": "2024-06-05T18:35:42Z",
       "side": 1,
       "message": "What is this assignation supposed to do ? (same below for song)",
+      "range": {
+        "startLine": 667,
+        "startChar": 0,
+        "endLine": 667,
+        "endChar": 70
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0544fa8b_142ef4ec",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-06-06T09:18:17Z",
+      "side": 1,
+      "message": "Looks like a missing TODO :) Thanks for catching that!",
+      "parentUuid": "9d31b6cb_bf10ac9b",
       "range": {
         "startLine": 667,
         "startChar": 0,
@@ -325,6 +493,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfe5c4b3_4376fd33",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-06-06T09:18:17Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d2df577f_2e3c9fb1",
+      "range": {
+        "startLine": 785,
+        "startChar": 26,
+        "endLine": 785,
+        "endChar": 52
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "48644036_b4af61c2",
@@ -371,6 +563,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af17559c_881aafb8",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 813,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-06-06T09:18:17Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8bd82d7b_c0d6ea45",
+      "range": {
+        "startLine": 813,
+        "startChar": 49,
+        "endLine": 813,
+        "endChar": 60
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4796921_7d6b469e",
@@ -384,6 +600,30 @@
       "writtenOn": "2024-06-05T18:35:42Z",
       "side": 1,
       "message": "We can remove the counter by using break\n\n```suggestion\n            for (ResolveInfo audioPlayerInfo : audioPlayerList) {\n                if (audioPlayerInfo.activityInfo.packageName\n                        .equals(browsablePlayerInfo.serviceInfo.packageName)) {\n                    validBrowsablePackagesList.add(browsablePlayerInfo);\n                    // Make sure we only add one activities per package\n                    break;\n                }\n            }\n```",
+      "range": {
+        "startLine": 809,
+        "startChar": 11,
+        "endLine": 820,
+        "endChar": 13
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bdfa872_d39f57e7",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 820,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-06-06T09:18:17Z",
+      "side": 1,
+      "message": "I wonder why I didn\u0027t do it first, maybe the code was slightly different and I modified it without resolving this too...",
+      "parentUuid": "e4796921_7d6b469e",
       "range": {
         "startLine": 809,
         "startChar": 11,
@@ -417,6 +657,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8b2f610_f4e7fd1b",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1061,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-06-06T09:18:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7a740c5_34e2be78",
+      "range": {
+        "startLine": 1060,
+        "startChar": 24,
+        "endLine": 1061,
+        "endChar": 47
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2cf62295_2b5b0404",
@@ -430,6 +694,30 @@
       "writtenOn": "2024-06-05T18:35:42Z",
       "side": 1,
       "message": "At this point, I know for sure that packageName is not null. Can I say the same for  info.serviceInfo.packageName ?\n\nIf not, we need to reverse the equal or use Object.equals",
+      "range": {
+        "startLine": 1074,
+        "startChar": 32,
+        "endLine": 1074,
+        "endChar": 80
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75bcb317_a242c737",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1074,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-06-06T09:18:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2cf62295_2b5b0404",
       "range": {
         "startLine": 1074,
         "startChar": 32,
@@ -463,6 +751,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90f6a43b_111f8c5b",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1081,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-06-06T09:18:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb87b86c_a2b90012",
+      "range": {
+        "startLine": 1070,
+        "startChar": 16,
+        "endLine": 1081,
+        "endChar": 78
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "374111c9_599f1eb4",
@@ -486,6 +798,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfdf2044_c18ac5c1",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1087,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-06-06T09:18:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "374111c9_599f1eb4",
+      "range": {
+        "startLine": 1084,
+        "startChar": 36,
+        "endLine": 1087,
+        "endChar": 100
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f69dee7b_5ca15852",
@@ -499,6 +835,30 @@
       "writtenOn": "2024-06-05T18:35:42Z",
       "side": 1,
       "message": "Does it work to simply use packageName everywhere ?\n\ninstead of comparing with `packageName`, then using `info.serviceInfo.packageName` then using `wrapper.getPackageName()`\n\n\n```suggestion\n                            if (info.serviceInfo.packageName.equals(packageName)) {\n                                // Add it to the existing list\n                                MediaBrowserWrapper wrapper \u003d new MediaBrowserWrapper(\n                                    mContext,\n                                    mLooper,\n                                    packageName,\n                                    info.serviceInfo.name);\n                                if (!havePlayerId(packageName)) {\n                                    Log.i(TAG, \"package added to browsable list: \"\n                                            + packageName);\n                                    mMediaPlayerIds.put(packageName, getFreeMediaPlayerId());\n                                    mMediaBrowserWrappers.put(\n                                            mMediaPlayerIds.get(packageName), wrapper);\n                                    sendFolderUpdate(true, false, false);\n                                }\n```",
+      "range": {
+        "startLine": 1074,
+        "startChar": 28,
+        "endLine": 1089,
+        "endChar": 33
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77252a71_3bb85682",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1089,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-06-06T09:18:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f69dee7b_5ca15852",
       "range": {
         "startLine": 1074,
         "startChar": 28,
