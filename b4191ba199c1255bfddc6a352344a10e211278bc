@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e569c59e_c3252163",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-06-06T12:09:54Z",
+      "side": 1,
+      "message": "Hi William, could you take a look? Thanks!\nI\u0027m not sure whether bta.sysprop is a good place for this. Let me know what you think.",
+      "revId": "b4191ba199c1255bfddc6a352344a10e211278bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
