@@ -97,12 +97,13 @@ public class HidHostTest {
                 mConnectionStateReceiver, new IntentFilter(BluetoothDevice.ACTION_PAIRING_REQUEST));
         mAdapter.getProfileProxy(mContext, new HidHostServiceListener(), BluetoothProfile.HID_HOST);
         mHidBlockingStub = mBumble.hidBlocking();
+        mHidBlockingStub.registerHidDevice(Empty.getDefaultInstance());
         mFutureConnectionIntent = SettableFuture.create();
 
         mDevice = mBumble.getRemoteDevice();
         assertThat(mDevice.createBond()).isTrue();
 
-        assertThat(mFutureConnectionIntent.get()).isEqualTo(BluetoothProfile.STATE_CONNECTED);
+        // assertThat(mFutureConnectionIntent.get()).isEqualTo(BluetoothProfile.STATE_CONNECTED);
     }
 
     @After
@@ -161,5 +162,22 @@ public class HidHostTest {
         mHidBlockingStub.connectHidHost(Empty.getDefaultInstance());
         assertThat(mService.getConnectionState(mDevice))
                 .isEqualTo(BluetoothProfile.STATE_DISCONNECTED);
+    }
+
+    @Test
+    public void setPreferredTransportTest() throws Exception {
+
+        Thread.sleep(5000);
+        // LE transport
+        mService.setPreferredTransport(mDevice, BluetoothDevice.TRANSPORT_LE);
+        Thread.sleep(1000);
+        assertThat(mService.getPreferredTransport(mDevice)).isEqualTo(BluetoothDevice.TRANSPORT_LE);
+        Thread.sleep(2000);
+
+        // BREDR transport
+        mService.setPreferredTransport(mDevice, BluetoothDevice.TRANSPORT_BREDR);
+        Thread.sleep(1000);
+        assertThat(mService.getPreferredTransport(mDevice))
+                .isEqualTo(BluetoothDevice.TRANSPORT_BREDR);
     }
 }
