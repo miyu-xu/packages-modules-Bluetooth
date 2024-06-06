@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b80ce8e_e4d1cfe3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-06-06T18:55:35Z",
+      "side": 1,
+      "message": "Thanks for the review! I also made a small change to check the UUIDs if the LEA device is not part of a CSIS group",
+      "revId": "5fd175e8b22786391ae0f4cacb963d8ba8dac8e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
