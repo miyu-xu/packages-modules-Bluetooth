@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdb85527_e9f8a747",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-06T21:21:56Z",
+      "side": 1,
+      "message": "I can\u0027t review this, but it looks well made.\nPlease @rwt@google.com, can you validate this pairing change and proceed with the appropriate flagging",
+      "revId": "31bda9d6980aee9bdb1fd692a83148f0f40a0265",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
