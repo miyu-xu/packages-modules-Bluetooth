@@ -9,4 +9,10 @@ prop {
     prop_name: "bluetooth.bta.disable_delay.millis"
 }
 
-
+prop {
+    api_name: "stack_cleanup_wait"
+    type: Integer
+    scope: Internal
+    access: Readonly
+    prop_name: "bluetooth.bta.stack_cleanup_wait.millis"
+}

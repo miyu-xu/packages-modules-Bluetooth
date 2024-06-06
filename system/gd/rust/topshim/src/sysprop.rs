@@ -19,6 +19,9 @@ pub enum PropertyI32 {
     ProductVersion,
     VendorId,
     VendorIdSource,
+
+    // bluetooth.bta
+    StackCleanupWait
 }
 
 impl Into<(CString, i32)> for PropertyI32 {
@@ -45,6 +48,9 @@ impl Into<(CString, i32)> for PropertyI32 {
 
             // Vendor ID source defaults to Bluetooth Sig (0x1)
             PropertyI32::VendorIdSource => ("bluetooth.device_id.vendor_id_source", 0x1),
+
+            // Time to wait the stack to finish clean up
+            PropertyI32::StackCleanupWait => ("bluetooth.bta.stack_cleanup_wait.millis", 1000),
         };
 
         (CString::new(key).expect("CString::new failed on sysprop key"), default_value)

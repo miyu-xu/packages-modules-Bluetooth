@@ -4,6 +4,7 @@ use dbus_tokio::connection;
 use futures::future;
 use lazy_static::lazy_static;
 use nix::sys::signal;
+use std::convert::TryInto;
 use std::error::Error;
 use std::sync::{Arc, Condvar, Mutex};
 use std::time::Duration;
@@ -13,7 +14,7 @@ use tokio::sync::mpsc::Sender;
 #[allow(unused_imports)]
 use bt_shim;
 
-use bt_topshim::{btif::get_btinterface, topstack};
+use bt_topshim::{btif::get_btinterface, sysprop, topstack};
 use btstack::{
     battery_manager::BatteryManager,
     battery_provider_manager::BatteryProviderManager,
@@ -47,8 +48,6 @@ const ADMIN_SETTINGS_FILE_PATH: &str = "/var/lib/bluetooth/admin_policy.json";
 // The maximum ACL disconnect timeout is 3.5s defined by BTA_DM_DISABLE_TIMER_MS
 // and BTA_DM_DISABLE_TIMER_RETRIAL_MS
 const STACK_TURN_OFF_TIMEOUT_MS: Duration = Duration::from_millis(4000);
-// Time bt_stack_manager waits for cleanup
-const STACK_CLEANUP_TIMEOUT_MS: Duration = Duration::from_millis(1000);
 
 const INIT_LOGGING_MAX_RETRY: u8 = 3;
 
@@ -309,8 +308,9 @@ extern "C" fn handle_sigterm(_signum: i32) {
 
         let guard = notifier.thread_attached.lock().unwrap();
         if *guard {
-            log::debug!("Waiting for stack to clean up for {:?}", STACK_CLEANUP_TIMEOUT_MS);
-            let _ = notifier.thread_notify.wait_timeout(guard, STACK_CLEANUP_TIMEOUT_MS);
+            let timeout_ms = sysprop::get_i32(sysprop::PropertyI32::StackCleanupWait) as u64;
+            log::debug!("Waiting for stack to clean up for {:?}", timeout_ms);
+            let _ = notifier.thread_notify.wait_timeout(guard, Duration::from_millis(timeout_ms));
         }
     }
 
