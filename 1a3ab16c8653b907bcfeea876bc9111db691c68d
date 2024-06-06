@@ -52,6 +52,24 @@
       "parentUuid": "d7cb139e_2c0ace1c",
       "revId": "1a3ab16c8653b907bcfeea876bc9111db691c68d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4550d4de_d4383ae2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-06-06T17:51:51Z",
+      "side": 1,
+      "message": "I disagree that it breaks the pattern as all checks are done and there is no exit point aligned with your premise.\n\nThe active setting is split breaking another pattern:\n```\n      btm_cb.btm_inq_vars.p_remname_cmpl_cb \u003d p_cb;\n      btm_cb.btm_inq_vars.remname_bda \u003d remote_bda;\n      btm_cb.btm_inq_vars.remname_dev_type \u003d BT_DEVICE_TYPE_BREDR;\n```\nand \n```\n      btm_cb.btm_inq_vars.remname_active \u003d true;\n```\n\nWould you prefer if I moved the top lines to the bottom ?\n\ne.g.\n\n```\n      /* If there is no remote name request running,call the callback function\n       * and start timer */\n      btm_cb.btm_inq_vars.p_remname_cmpl_cb \u003d p_cb;\n      btm_cb.btm_inq_vars.remname_bda \u003d remote_bda;\n      btm_cb.btm_inq_vars.remname_dev_type \u003d BT_DEVICE_TYPE_BREDR;\n      btm_cb.btm_inq_vars.remname_active \u003d true;\n\n      alarm_set_on_mloop(btm_cb.btm_inq_vars.remote_name_timer, timeout_ms,\n                         btm_inq_remote_name_timer_timeout, NULL);\n      return BTM_CMD_STARTED;\n```\nI didn\u0027t do this approach (although I agree is better) primarily because of the setting of a timer before this call `bluetooth::shim::ACL_RemoteNameRequest`\n\nThis pattern already exists for BLE\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/btm/btm_ble_gap.cc;l\u003d1881;drc\u003d1ee853117d9bebfb1a77a759e4876e9e8d19ba28\n\nWould you be ok if I flagged this change ?",
+      "parentUuid": "c71fcca4_8f9500e8",
+      "revId": "1a3ab16c8653b907bcfeea876bc9111db691c68d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
