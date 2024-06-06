@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b109b78_29e7c072",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-06T21:26:11Z",
+      "side": 1,
+      "message": "1 second is a huge amount of time.\nI believe it is even too high and we should be able to cleanup in 50~100 ms.\n\nBefore increasing the value:\nWhat is taking that much time ?\nIs there a specific task to execute in background while we let the cleanup finish ?",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 25
+      },
+      "revId": "b4191ba199c1255bfddc6a352344a10e211278bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "e569c59e_c3252163",
