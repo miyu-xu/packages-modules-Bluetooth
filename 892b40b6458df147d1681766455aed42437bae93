@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90a5ae2f_a88dc09e",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1281,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-06T18:42:29Z",
+      "side": 1,
+      "message": "I got your idea, basically, when switching, clear the old source and sink hal, here, later, assign new hal to that. \nBefore this change, it tries to directly replace that, but triggers override error log.\nnit: If I understand correctly, would you like to add one line comment before this line e.g. // clean the prior hal client",
+      "range": {
+        "startLine": 1281,
+        "startChar": 47,
+        "endLine": 1281,
+        "endChar": 52
+      },
+      "revId": "892b40b6458df147d1681766455aed42437bae93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
