@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37dd1fcc_7ab0b0b6",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2980,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-06-06T11:09:08Z",
+      "side": 1,
+      "message": "nit: How about simply lock once? It can be reused in line 2990 to 2993.\n\n```\nlet media \u003d self.bluetooth_media.lock().unwrap();\nlet group_id \u003d media.get_group_id(device.address);\n...\nfor addr in media\n    .get_group_devices(group_id)\n    .unwrap_or(\u0026HashSet::new())\n    .iter()\n...\n```",
+      "range": {
+        "startLine": 2980,
+        "startChar": 23,
+        "endLine": 2980,
+        "endChar": 59
+      },
+      "revId": "456fe80d2528b6f8fe90f66c8a33655ecd5d478d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd309063_ef3d657a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 3007,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-06-06T11:09:08Z",
+      "side": 1,
+      "message": "nit: any() for conciseness\n\n```\n.any(|addr| {\n  let uuids \u003d self.get_remote_uuids(BluetoothDevice::new(*addr, \"\".to_string()));\n  uuids.contains(\u0026get_unwrapped_uuid(Profile::LeAudio))\n                \u0026\u0026 (uuids.contains(\u0026get_unwrapped_uuid(Profile::A2dpSink))\n                    || uuids.contains(\u0026get_unwrapped_uuid(Profile::Hfp)))\n})\n```",
+      "range": {
+        "startLine": 2997,
+        "startChar": 0,
+        "endLine": 3007,
+        "endChar": 13
+      },
+      "revId": "456fe80d2528b6f8fe90f66c8a33655ecd5d478d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
