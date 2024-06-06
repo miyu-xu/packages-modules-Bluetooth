@@ -124,6 +124,24 @@
       "parentUuid": "40f2b399_f8b7eb37",
       "revId": "a8e04e740da5b8f00f7f93a0d8e54af34c58f904",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae9dd66f_7a9412f5",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-06T00:04:18Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0834bfb3_c6b094dd",
+      "revId": "a8e04e740da5b8f00f7f93a0d8e54af34c58f904",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
