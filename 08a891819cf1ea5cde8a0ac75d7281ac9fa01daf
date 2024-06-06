@@ -46,6 +46,30 @@
       },
       "revId": "08a891819cf1ea5cde8a0ac75d7281ac9fa01daf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9ad67b5_c0c67412",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 2334,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-06T01:16:34Z",
+      "side": 1,
+      "message": "I made a few tests and confirm that the whole cleanup + kill should be done in the first 100 ms.\n\nWe have a lot of margin in both side.",
+      "parentUuid": "46a3f062_c9e59e07",
+      "range": {
+        "startLine": 2334,
+        "startChar": 29,
+        "endLine": 2334,
+        "endChar": 32
+      },
+      "revId": "08a891819cf1ea5cde8a0ac75d7281ac9fa01daf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
