@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "76e4fd52_db5d81c6",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 5
+      },
+      "lineNbr": 5280,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-06-06T05:54:07Z",
+      "side": 1,
+      "message": "We can\u0027t, because \"packet LeMetaEvent\" was defined in line 6300, and all LE Events defined after line 6315.",
+      "parentUuid": "d544fe71_19bad0af",
+      "range": {
+        "startLine": 5280,
+        "startChar": 0,
+        "endLine": 5280,
+        "endChar": 1
+      },
+      "revId": "c609d9179aaa7f34a5e1a5c4f716cc6b5da416f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "74407fb6_61241266",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-06-05T16:59:08Z",
       "side": 1,
       "message": "```suggestion\n// Vendor specific events\n```",
+      "range": {
+        "startLine": 6954,
+        "startChar": 0,
+        "endLine": 6958,
+        "endChar": 0
+      },
+      "revId": "c609d9179aaa7f34a5e1a5c4f716cc6b5da416f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93e07f8a_f59e765e",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 5
+      },
+      "lineNbr": 6958,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-06-06T05:54:07Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "74407fb6_61241266",
       "range": {
         "startLine": 6954,
         "startChar": 0,
