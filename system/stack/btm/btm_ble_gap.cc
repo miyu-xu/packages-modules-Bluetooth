@@ -1802,7 +1802,7 @@ tBTM_STATUS btm_ble_start_inquiry(uint8_t duration) {
     btm_send_hci_scan_enable(BTM_BLE_SCAN_ENABLE, BTM_BLE_DUPLICATE_DISABLE);
   }
 
-  btm_cb.btm_inq_vars.inq_active |= BTM_BLE_GENERAL_INQUIRY;
+  btm_cb.btm_inq_vars.inq_active |= BTM_LE_GENERAL_INQUIRY_ACTIVE;
   btm_cb.ble_ctr_cb.set_ble_inquiry_active();
 
   log::verbose("btm_ble_start_inquiry inq_active = 0x{:02x}",
@@ -1979,7 +1979,7 @@ static uint8_t btm_ble_is_discoverable(const RawAddress& /* bda */,
     if (p_flag != NULL && data_len != 0) {
       flag = *p_flag;
 
-      if ((btm_cb.btm_inq_vars.inq_active & BTM_BLE_GENERAL_INQUIRY) &&
+      if ((btm_cb.btm_inq_vars.inq_active & BTM_LE_GENERAL_INQUIRY_ACTIVE) &&
           (flag & (BTM_BLE_LIMIT_DISC_FLAG | BTM_BLE_GEN_DISC_FLAG)) != 0) {
         scan_state |= BTM_BLE_INQ_RESULT;
       }
@@ -2664,9 +2664,9 @@ void btm_ble_stop_inquiry(void) {
                btm_cb.btm_inq_vars.inq_cmpl_info.num_resp);
 
   // TODO: remove this call and make btm_process_inq_complete static
-  btm_process_inq_complete(
-      HCI_SUCCESS,
-      (uint8_t)(btm_cb.btm_inq_vars.inqparms.mode & BTM_BLE_GENERAL_INQUIRY));
+  btm_process_inq_complete(HCI_SUCCESS,
+                           (uint8_t)(btm_cb.btm_inq_vars.inqparms.mode &
+                                     BTM_LE_GENERAL_INQUIRY_ACTIVE));
 }
 
 /*******************************************************************************
