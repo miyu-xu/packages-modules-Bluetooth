@@ -508,7 +508,7 @@ uint16_t BTM_IsInquiryActive(void) {
 static void BTM_CancelLeScan() {
   if (!bluetooth::shim::is_classic_discovery_only_enabled()) {
     log::assert_that(BTM_IsDeviceUp(), "assert failed: BTM_IsDeviceUp()");
-    if ((btm_cb.btm_inq_vars.inqparms.mode & BTM_BLE_INQUIRY_MASK) != 0)
+    if ((btm_cb.btm_inq_vars.inqparms.mode & BTM_BLE_GENERAL_INQUIRY) != 0)
       btm_ble_stop_inquiry();
   } else {
     log::info(
@@ -588,7 +588,7 @@ static void btm_classic_inquiry_timeout(void* /* data */) {
   // will be marked as completed. Therefore, we only need to mark
   // the BLE inquiry as completed here to stop processing BLE results
   // as inquiry results.
-  btm_process_inq_complete(HCI_SUCCESS, BTM_BLE_INQUIRY_MASK);
+  btm_process_inq_complete(HCI_SUCCESS, BTM_BLE_GENERAL_INQUIRY);
 }
 
 /*******************************************************************************
@@ -611,7 +611,7 @@ static tBTM_STATUS BTM_StartLeScan() {
       return BTM_CMD_STARTED;
     } else {
       log::warn("Trying to do LE scan on a non-LE adapter");
-      btm_cb.btm_inq_vars.inqparms.mode &= ~BTM_BLE_INQUIRY_MASK;
+      btm_cb.btm_inq_vars.inqparms.mode &= ~BTM_BLE_GENERAL_INQUIRY;
     }
   } else {
     log::info(
