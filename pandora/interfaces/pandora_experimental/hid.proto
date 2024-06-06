@@ -11,6 +11,8 @@ service HID {
   rpc ConnectHidHost(google.protobuf.Empty) returns (google.protobuf.Empty);
   // Disconnect HID Host
   rpc DisconnectHidHost(google.protobuf.Empty) returns (google.protobuf.Empty);
+  // Virtual Cable Unplug HID Host
+  rpc VirtualCableUnplugHidHost(google.protobuf.Empty) returns (google.protobuf.Empty);
   // Send a SET_REPORT command, acting as a HID host, to a connected HID device
   rpc SendHostReport(SendHostReportRequest) returns (SendHostReportResponse);
 }
