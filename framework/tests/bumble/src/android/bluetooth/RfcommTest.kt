@@ -31,11 +31,16 @@ import io.grpc.stub.StreamObserver
 import java.time.Duration
 import java.util.UUID
 import java.util.concurrent.TimeUnit
-import kotlinx.coroutines.*
-import kotlinx.coroutines.channels.*
+import java.util.concurrent.locks.Condition
+import java.util.concurrent.locks.ReentrantLock
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.trySendBlocking
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withTimeout
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -325,6 +330,9 @@ class RfcommTest {
         Truth.assertThat(remoteDevice.createBond()).isTrue()
 
         flow.first()
+
+        // HFP will try to connect, and bumble doesn't support HFP yet
+        disableHfp()
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -364,5 +372,86 @@ class RfcommTest {
         private val BOND_TIMEOUT = Duration.ofSeconds(20)
         private const val TEST_UUID = "00001101-0000-1000-8000-00805F9B34FB"
         private const val TEST_SERVER_NAME = "RFCOMM Server"
+    }
+
+    private fun disableHfp() {
+        var proxy: BluetoothHeadset? = null
+        try {
+
+            // Prevent HFP from trying to connect
+            val isProfileReady = false
+            val profileConnectionLock: ReentrantLock = ReentrantLock()
+            val conditionProfileConnection: Condition = profileConnectionLock.newCondition()
+
+            val listener =
+                BluetoothHeadsetServiceListener(
+                    isProfileReady,
+                    conditionProfileConnection,
+                    profileConnectionLock
+                )
+            mAdapter.getProfileProxy(mContext, listener, BluetoothProfile.HEADSET)
+            proxy = listener.waitForProfileConnect()
+            proxy.setConnectionPolicy(mBumbleDevice, BluetoothProfile.CONNECTION_POLICY_FORBIDDEN)
+        } finally {
+            mAdapter.closeProfileProxy(BluetoothProfile.HEADSET, proxy)
+        }
+    }
+
+    private class BluetoothHeadsetServiceListener(
+        var mIsProfileReady: Boolean,
+        var mConditionProfileConnection: Condition,
+        var mProfileConnectionLock: ReentrantLock
+    ) : BluetoothProfile.ServiceListener {
+
+        private var mBluetoothHeadset: BluetoothHeadset? = null
+
+        fun waitForProfileConnect(): BluetoothHeadset {
+            mProfileConnectionLock.lock()
+            try {
+                // Wait for the Adapter to be disabled
+                while (!mIsProfileReady) {
+                    if (
+                        !mConditionProfileConnection.await(
+                            PROXY_CONNECTION_TIMEOUT_MS,
+                            TimeUnit.MILLISECONDS
+                        )
+                    ) {
+                        // Timeout
+                        Log.e(TAG, "Timeout while waiting for Profile Connect")
+                        break
+                    } // else spurious wakeups
+                }
+            } catch (e: InterruptedException) {
+                Log.e(TAG, "waitForProfileConnect: interrupted")
+            } finally {
+                mProfileConnectionLock.unlock()
+            }
+            return mBluetoothHeadset!!
+        }
+
+        override fun onServiceConnected(profile: Int, proxy: BluetoothProfile) {
+            mProfileConnectionLock.lock()
+            mBluetoothHeadset = proxy as BluetoothHeadset
+            mIsProfileReady = true
+            try {
+                mConditionProfileConnection.signal()
+            } finally {
+                mProfileConnectionLock.unlock()
+            }
+        }
+
+        override fun onServiceDisconnected(profile: Int) {
+            mProfileConnectionLock.lock()
+            mIsProfileReady = false
+            try {
+                mConditionProfileConnection.signal()
+            } finally {
+                mProfileConnectionLock.unlock()
+            }
+        }
+
+        companion object {
+            private const val PROXY_CONNECTION_TIMEOUT_MS: Long = 500
+        }
     }
 }
