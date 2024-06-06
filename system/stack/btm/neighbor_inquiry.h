@@ -67,11 +67,9 @@ enum : uint8_t {
   BTM_BR_INQUIRY_MASK_ACTIVE = 0x01,
   /* high nibble of inquiry mode for BLE inquiry mode */
   BTM_LE_GENERAL_INQUIRY_ACTIVE = 0x10,
-  /* LE inquiry activity mask*/
-  BTM_BLE_INQ_ACTIVE_MASK = (BTM_LE_GENERAL_INQUIRY_ACTIVE),
   /* inquiry activity mask */
   BTM_INQUIRY_ACTIVE_MASK =
-      (BTM_BR_INQUIRY_MASK_ACTIVE | BTM_BLE_INQ_ACTIVE_MASK),
+      (BTM_BR_INQUIRY_MASK_ACTIVE | BTM_LE_GENERAL_INQUIRY_ACTIVE),
 };
 
 /* Define scan types */
