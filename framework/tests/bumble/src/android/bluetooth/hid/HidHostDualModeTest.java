@@ -30,7 +30,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import com.android.compatibility.common.util.AdoptShellPermissionsRule;
 
 import com.google.common.util.concurrent.SettableFuture;
-import com.google.protobuf.Empty;
 
 import org.junit.After;
 import org.junit.Before;
@@ -39,11 +38,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import pandora.HIDGrpc;
+import pandora.HostProto.AdvertiseRequest;
+import pandora.HostProto.OwnAddressType;
 
 /** Test cases for {@link Hid Host}. */
 @RunWith(AndroidJUnit4.class)
-public class HidHostTest {
-    private static final String TAG = "HidHostTest";
+public class HidHostDualModeTest {
+    private static final String TAG = "HidHostDualModeTest";
     private SettableFuture<Integer> mFutureConnectionIntent;
     private BluetoothDevice mDevice;
     private BluetoothHidHost mService;
@@ -97,11 +98,18 @@ public class HidHostTest {
                 mConnectionStateReceiver, new IntentFilter(BluetoothDevice.ACTION_PAIRING_REQUEST));
         mAdapter.getProfileProxy(mContext, new HidHostServiceListener(), BluetoothProfile.HID_HOST);
         mHidBlockingStub = mBumble.hidBlocking();
+        AdvertiseRequest request =
+                AdvertiseRequest.newBuilder()
+                        .setLegacy(true)
+                        .setConnectable(true)
+                        .setOwnAddressType(OwnAddressType.RANDOM)
+                        .build();
+        mBumble.hostBlocking().advertise(request);
+
         mFutureConnectionIntent = SettableFuture.create();
 
         mDevice = mBumble.getRemoteDevice();
         assertThat(mDevice.createBond()).isTrue();
-
         assertThat(mFutureConnectionIntent.get()).isEqualTo(BluetoothProfile.STATE_CONNECTED);
     }
 
@@ -112,54 +120,27 @@ public class HidHostTest {
     }
 
     /**
-     * Test HID Disconnection:
+     * Test HID Preferred transport selection Test case
      *
      * <ol>
-     *   <li>1. Android tries to create bond, emitting bonding intent 4. Android confirms the
-     *       pairing via pairing request intent
-     *   <li>2. Bumble confirms the pairing internally
-     *   <li>3. Android tries to HID connect and verifies Connection state intent
-     *   <li>4. Bumble Disconnect the HID and Android verifies Connection state intent
+     *   <li>1. Android to creates bonding and HID connected with default transport.
+     *   <li>2. Android switch the transport to LE and Verifies the transport
+     *   <li>3. Android switch the transport to BR/EDR and Verifies the transport
      * </ol>
      */
     @Test
-    public void disconnectHidDeviceTest() throws Exception {
+    public void setPreferredTransportTest() throws Exception {
 
-        mFutureConnectionIntent = SettableFuture.create();
-        mHidBlockingStub.disconnectHidHost(Empty.getDefaultInstance());
+        Thread.sleep(1000);
+        // LE transport
+        mService.setPreferredTransport(mDevice, BluetoothDevice.TRANSPORT_LE);
+        Thread.sleep(1000);
+        assertThat(mService.getPreferredTransport(mDevice)).isEqualTo(BluetoothDevice.TRANSPORT_LE);
 
-        assertThat(mFutureConnectionIntent.get()).isEqualTo(BluetoothProfile.STATE_DISCONNECTED);
-    }
-
-    /**
-     * Test HID Connection Policy Disable:
-     *
-     * <ol>
-     *   <li>1. Android tries to create bond, emitting bonding intent 4. Android confirms the
-     *       pairing via pairing request intent
-     *   <li>2. Bumble confirms the pairing internally
-     *   <li>3. Android tries to HID connect and verifies Connection state intent
-     *   <li>4. Bumble Disconnect the HID and Android verifies Connection state intent
-     *   <li>5. Android Disable the HID connection policy
-     *   <li>6. Bumble connetct the HID and Android verifies Connection state intent
-     * </ol>
-     */
-    @Test
-    public void disableHidConnectionPolicyTest() throws Exception {
-
-        mFutureConnectionIntent = SettableFuture.create();
-        mHidBlockingStub.disconnectHidHost(Empty.getDefaultInstance());
-
-        assertThat(mFutureConnectionIntent.get()).isEqualTo(BluetoothProfile.STATE_DISCONNECTED);
-
-        assertThat(
-                        mService.setConnectionPolicy(
-                                mDevice, BluetoothProfile.CONNECTION_POLICY_FORBIDDEN))
-                .isTrue();
-
-        mFutureConnectionIntent = SettableFuture.create();
-        mHidBlockingStub.connectHidHost(Empty.getDefaultInstance());
-        assertThat(mService.getConnectionState(mDevice))
-                .isEqualTo(BluetoothProfile.STATE_DISCONNECTED);
+        // BREDR transport
+        mService.setPreferredTransport(mDevice, BluetoothDevice.TRANSPORT_BREDR);
+        Thread.sleep(1000);
+        assertThat(mService.getPreferredTransport(mDevice))
+                .isEqualTo(BluetoothDevice.TRANSPORT_BREDR);
     }
 }
