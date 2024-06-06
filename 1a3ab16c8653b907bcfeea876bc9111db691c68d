@@ -16,6 +16,24 @@
       "message": "There is a good reason to set remname_active\u003dtrue only before returning SUCCESS; and had there been any error handling done in the block before it would have been the preferred place.",
       "revId": "1a3ab16c8653b907bcfeea876bc9111db691c68d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7cb139e_2c0ace1c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-06-06T17:37:14Z",
+      "side": 1,
+      "message": "Please help me understand this issue as there is no error handling that would trigger the scenario you describe since there is only one exit point.",
+      "parentUuid": "24ea2e7a_3cd9fac9",
+      "revId": "1a3ab16c8653b907bcfeea876bc9111db691c68d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
