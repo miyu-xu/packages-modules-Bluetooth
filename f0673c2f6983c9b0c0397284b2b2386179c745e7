@@ -267,6 +267,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a3ec89cd_a67682cd",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-06T23:28:32Z",
+      "side": 1,
+      "message": "I haven\u0027t mention any issue, the snippet is an ai generated fix that is not intended, sorry ^^",
+      "parentUuid": "03bed0fe_fef4d02b",
+      "range": {
+        "startLine": 339,
+        "startChar": 43,
+        "endLine": 339,
+        "endChar": 57
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7dfd4a14_6d65339f",
         "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
         "patchSetId": 11
