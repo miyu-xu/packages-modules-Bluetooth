@@ -495,7 +495,7 @@ typedef struct {
 
 /* data type for tBTM_LE_COMPLT */
 typedef struct {
-  uint8_t reason;
+  tHCI_STATUS reason;
   uint8_t sec_level;
   bool is_pair_cancel;
   bool smp_over_br;
