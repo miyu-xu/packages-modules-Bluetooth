@@ -159,6 +159,30 @@
       },
       "revId": "006f93fc07743024f7854a9412eeab2f1058825d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e382be48_2b5564d2",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 3235591
+      },
+      "writtenOn": "2024-06-06T12:09:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7f02e50_8bf8b657",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 5
+      },
+      "revId": "006f93fc07743024f7854a9412eeab2f1058825d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
