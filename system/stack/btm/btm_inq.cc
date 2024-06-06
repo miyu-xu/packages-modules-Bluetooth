@@ -566,14 +566,15 @@ void BTM_CancelInquiry(void) {
         NULL;                                 /* Do not notify caller anymore */
     btm_cb.btm_inq_vars.p_inq_cmpl_cb = NULL; /* Do not notify caller anymore */
 
-    if ((btm_cb.btm_inq_vars.inqparms.mode & BTM_BR_INQUIRY_MASK) != 0) {
+    if ((btm_cb.btm_inq_vars.inqparms.mode & BTM_BR_INQUIRY_MASK_ACTIVE) != 0) {
       bluetooth::shim::GetHciLayer()->EnqueueCommand(
           bluetooth::hci::InquiryCancelBuilder::Create(),
           get_main_thread()->BindOnce(
               [](bluetooth::hci::CommandCompleteView complete_view) {
                 bluetooth::hci::check_complete<
                     bluetooth::hci::InquiryCancelCompleteView>(complete_view);
-                btm_process_cancel_complete(HCI_SUCCESS, BTM_BR_INQUIRY_MASK);
+                btm_process_cancel_complete(HCI_SUCCESS,
+                                            BTM_BR_INQUIRY_MASK_ACTIVE);
               }));
     }
     BTM_CancelLeScan();
@@ -720,7 +721,7 @@ tBTM_STATUS BTM_StartInquiry(tBTM_INQ_RESULTS_CB* p_results_cb,
    * setting/clearing the inquiry filter */
   btm_cb.btm_inq_vars.inqparms = {
       // tBTM_INQ_PARMS
-      .mode = BTM_BR_INQUIRY_MASK | BTM_BLE_GENERAL_INQUIRY,
+      .mode = BTM_BR_INQUIRY_MASK_ACTIVE | BTM_BLE_GENERAL_INQUIRY,
       .duration = inq_length,
   };
 
@@ -2414,7 +2415,7 @@ static void on_inquiry_complete(bluetooth::hci::EventView event) {
   log::assert_that(complete.IsValid(), "assert failed: complete.IsValid()");
   auto status = to_hci_status_code(static_cast<uint8_t>(complete.GetStatus()));
 
-  btm_process_inq_complete(status, BTM_BR_INQUIRY_MASK);
+  btm_process_inq_complete(status, BTM_BR_INQUIRY_MASK_ACTIVE);
 }
 /*******************************************************************************
  *
