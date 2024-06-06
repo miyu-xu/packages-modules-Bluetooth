@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e15adbb_824d4294",
+        "filename": "flags/hfp.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-06T22:50:29Z",
+      "side": 1,
+      "message": "please use flag tracking bug",
+      "range": {
+        "startLine": 134,
+        "startChar": 10,
+        "endLine": 134,
+        "endChar": 19
+      },
+      "revId": "828476e45b78bf772efa5426fd6bb86b375bb51b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
