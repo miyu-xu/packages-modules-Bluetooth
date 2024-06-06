@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65861c32_7ec36cd4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-06T00:25:54Z",
+      "side": 1,
+      "message": "I really don\u0027t like factory. We should inject the dependency in the constructor to not have to rely on static assignment.\n\nBut I understand that this is just a copy cat that does not aim further.\nI am still +1\u0027ed this change to not block you",
+      "revId": "7fb67f969fd7ec676b2582f5ff35fc2bada972de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
