@@ -1282,7 +1282,7 @@ static void btm_process_inq_results_standard(bluetooth::hci::EventView event) {
              btm_cb.btm_inq_vars.inq_active, btm_cb.btm_inq_vars.state);
 
   /* Only process the results if the BR inquiry is still active */
-  if (!(btm_cb.btm_inq_vars.inq_active & BTM_BR_INQ_ACTIVE_MASK)) {
+  if (!(btm_cb.btm_inq_vars.inq_active & BTM_BR_INQUIRY_MASK_ACTIVE)) {
     log::info("Inquiry is inactive so dropping inquiry result");
     return;
   }
@@ -1403,7 +1403,7 @@ static void btm_process_inq_results_rssi(bluetooth::hci::EventView event) {
              btm_cb.btm_inq_vars.inq_active, btm_cb.btm_inq_vars.state);
 
   /* Only process the results if the BR inquiry is still active */
-  if (!(btm_cb.btm_inq_vars.inq_active & BTM_BR_INQ_ACTIVE_MASK)) {
+  if (!(btm_cb.btm_inq_vars.inq_active & BTM_BR_INQUIRY_MASK_ACTIVE)) {
     log::info("Inquiry is inactive so dropping inquiry result");
     return;
   }
@@ -1547,7 +1547,7 @@ static void btm_process_inq_results_extended(bluetooth::hci::EventView event) {
              btm_cb.btm_inq_vars.inq_active, btm_cb.btm_inq_vars.state);
 
   /* Only process the results if the BR inquiry is still active */
-  if (!(btm_cb.btm_inq_vars.inq_active & BTM_BR_INQ_ACTIVE_MASK)) {
+  if (!(btm_cb.btm_inq_vars.inq_active & BTM_BR_INQUIRY_MASK_ACTIVE)) {
     log::info("Inquiry is inactive so dropping inquiry result");
     return;
   }
