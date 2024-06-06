@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "882447c7_db614691",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-06-06T21:33:09Z",
+      "side": 1,
+      "message": "Feel free to propose a better name if you have one.",
+      "range": {
+        "startLine": 74,
+        "startChar": 11,
+        "endLine": 74,
+        "endChar": 35
+      },
+      "revId": "4869eb1a12154a59bef6a62ff72d3ec349772e94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
