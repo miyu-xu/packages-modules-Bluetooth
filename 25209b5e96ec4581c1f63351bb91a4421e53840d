@@ -3,6 +3,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6fe214ac_f77a60ee",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-06-06T20:55:58Z",
+      "side": 1,
+      "message": "Could you create a TODO bug that acknowledge what the fix should be instead of this workaround?",
+      "revId": "25209b5e96ec4581c1f63351bb91a4421e53840d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0408276_5ad51b05",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-06-06T20:55:58Z",
+      "side": 1,
+      "message": "This seems strange to have the companion object in the middle of the class, it should be either at the end (to follow the kotlin convention) or in the beginning.",
+      "revId": "25209b5e96ec4581c1f63351bb91a4421e53840d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66de9bbf_9acc53c3",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-06-06T20:55:58Z",
+      "side": 1,
+      "message": "This seems copy pasted from our CTS tests, the implementation of this is very complex (and ugly) for not a lot and CTS tests are being converted to using a mock for this.\n\nIn kotlin you could also use a `callbackFlow` or `suspendCoroutine` to to this.",
+      "revId": "25209b5e96ec4581c1f63351bb91a4421e53840d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "53fb0ce2_1d0854a5",
         "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
         "patchSetId": 2
