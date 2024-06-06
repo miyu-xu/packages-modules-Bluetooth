@@ -22,6 +22,30 @@
       },
       "revId": "892b40b6458df147d1681766455aed42437bae93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c85a919_b3ee3837",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1281,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-06-06T21:38:52Z",
+      "side": 1,
+      "message": "You got it right.\nWhen switching devices, GroupSetActive would disable and then enable the UpdateActiveUnicastAudioHalClient.\n\nOnly case when 2nd earbuds connect during already active session was not taken into account.\n\nI will add the comment with unit tests later in follow up CL, as I already got all presumbmits pass.",
+      "parentUuid": "90a5ae2f_a88dc09e",
+      "range": {
+        "startLine": 1281,
+        "startChar": 47,
+        "endLine": 1281,
+        "endChar": 52
+      },
+      "revId": "892b40b6458df147d1681766455aed42437bae93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
