@@ -126,3 +126,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "maintain_call_index_after_conference"
+    namespace: "bluetooth"
+    description: "Avoid change of clcc call index after call disconnects from conference"
+    bug: "318460024"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
