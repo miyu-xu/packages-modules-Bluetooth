@@ -124,6 +124,8 @@ void SyspropsModule::parse_config(std::string file_path) {
       "bluetooth.sco.swb_supported",
       // Profile
       "persist.bluetooth.avrcpcontrolversion",
+      // BTA
+      "bluetooth.bta.stack_cleanup_wait.millis",
   };
 
   auto config = storage::LegacyConfigFile::FromPath(file_path).Read(kDefaultCapacity);

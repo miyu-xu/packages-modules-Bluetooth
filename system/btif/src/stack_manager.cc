@@ -18,6 +18,7 @@
 
 #define LOG_TAG "bt_stack_manager"
 
+#include <android_bluetooth_sysprop.h>
 #include <bluetooth/log.h>
 #include <com_android_bluetooth_flags.h>
 #include <hardware/bluetooth.h>
@@ -180,8 +181,9 @@ static void clean_up_stack(ProfileStopCallback stopProfiles) {
       FROM_HERE,
       base::BindOnce(event_clean_up_stack, std::move(promise), stopProfiles));
 
-  auto status =
-      future.wait_for(std::chrono::milliseconds(BT_STACK_CLEANUP_WAIT_MS));
+  int cleanup_wait_millis =
+      GET_SYSPROP(Bta, stack_cleanup_wait, BT_STACK_CLEANUP_WAIT_MS);
+  auto status = future.wait_for(std::chrono::milliseconds(cleanup_wait_millis));
   if (status == std::future_status::ready) {
     management_thread.ShutDown();
   } else {
