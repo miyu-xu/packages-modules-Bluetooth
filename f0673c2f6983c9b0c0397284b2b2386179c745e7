@@ -468,6 +468,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "241a1244_0203654e",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-06T23:45:17Z",
+      "side": 1,
+      "message": "You reply but didn\u0027t change the code. Did you forget to save/push ?",
+      "parentUuid": "0544fa8b_142ef4ec",
+      "range": {
+        "startLine": 667,
+        "startChar": 0,
+        "endLine": 667,
+        "endChar": 70
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d2df577f_2e3c9fb1",
         "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
         "patchSetId": 11
@@ -554,6 +578,30 @@
       "writtenOn": "2024-06-05T18:35:42Z",
       "side": 1,
       "message": "nit: I don\u0027t think `getApplicationContext` is necessary here. We are doing direct request that doesn\u0027t involve the app lifetime \n\nSame below for browsable.",
+      "range": {
+        "startLine": 795,
+        "startChar": 0,
+        "endLine": 795,
+        "endChar": 42
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d4bd783_2846f094",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-06T23:45:17Z",
+      "side": 1,
+      "message": "I see that this is what was used before too.\nI still think is wrong but I understand that this is not the scope of this change to update it.",
+      "parentUuid": "48644036_b4af61c2",
       "range": {
         "startLine": 795,
         "startChar": 0,

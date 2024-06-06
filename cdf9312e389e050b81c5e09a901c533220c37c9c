@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63b2e7fb_681dd216",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-06T23:45:17Z",
+      "side": 1,
+      "message": "You may have a race here, depending on the implementation of the caller of onChildrenLoaded. Either it is called from the timeout, or for the MediaBrowser.\n\nThe timeout is on the mRunHandler, but not the MediaBrowser. When the call come from the MediaBroswer we put it on the handler later on in the method, but unconditionally. so if the onChildrenLoaded is already called by the timeout but hasn\u0027t ended yet, it will be called twice\n```suggestion\n        boolean childrenLoaded \u003d false;\n\n        public BrowserSubscriptionCallback(Looper looper, String mediaId) {\n            mTimeoutRunnable \u003d\n                    () -\u003e {\n                        _onChildrenLoaded(mediaId, Collections.emptyList());\n                    };\n            mRunHandler.postDelayed(mTimeoutRunnable, BROWSER_DISCONNECT_TIMEOUT.toMillis());\n        }\n\n        @Override\n        public void onChildrenLoaded(String parentId, List\u003cMediaItem\u003e children) {\n            mRunHandler.post(() -\u003e _onChildrenLoaded(parentId, children));\n        }\n\n        private void _onChildrenLoaded(String parentId, List\u003cMediaItem\u003e children) {\n            if (childrenLoaded) {\n                return;\n            }\n            childrenLoaded \u003d true;\n\n            mRunHandler.removeCallbacks(mTimeoutRunnable);\n\n            ArrayList\u003cListItem\u003e browsableContent \u003d new ArrayList\u003c\u003e();\n\n            for (MediaItem item : children) {\n                if (item.isBrowsable()) {\n                    String title \u003d item.getDescription().getTitle().toString();\n                    if (title.isEmpty()) {\n                        title \u003d mContext.getString(R.string.not_provided);\n                    }\n                    Folder f \u003d new Folder(item.getMediaId(), false, title);\n                    browsableContent.add(new ListItem(f));\n                } else {\n                    Metadata data \u003d Util.toMetadata(mContext, item);\n                    if (Util.isEmptyData(data)) {\n                        continue;\n                    }\n                    browsableContent.add(new ListItem(data));\n                }\n            }\n\n            for (GetFolderItemsCallback callback : mSubscribedIds.get(parentId)) {\n                Log.v(\n                        TAG,\n                        \"getFolderItems for \"\n                                + mPackageName\n                                + \" and \"\n                                + parentId\n                                + \": callback called with \"\n                                + browsableContent.size()\n                                + \" items.\");\n                callback.run(parentId, Util.cloneList(browsableContent));\n            }\n\n            mSubscribedIds.remove(parentId);\n            mWrappedBrowser.unsubscribe(parentId);\n        }\n```",
+      "range": {
+        "startLine": 323,
+        "startChar": 8,
+        "endLine": 373,
+        "endChar": 9
+      },
+      "revId": "cdf9312e389e050b81c5e09a901c533220c37c9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
