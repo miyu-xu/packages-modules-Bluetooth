@@ -493,8 +493,7 @@ tBTM_STATUS BTM_SetConnectability(uint16_t page_mode) {
  * Description      This function returns a bit mask of the current inquiry
  *                  state
  *
- * Returns          BTM_INQUIRY_INACTIVE if inactive (0)
- *                  BTM_GENERAL_INQUIRY_ACTIVE if a general inquiry is active
+ * Returns          Bitmask of current inquiry state
  *
  ******************************************************************************/
 uint16_t BTM_IsInquiryActive(void) {
@@ -725,7 +724,7 @@ tBTM_STATUS BTM_StartInquiry(tBTM_INQ_RESULTS_CB* p_results_cb,
    * setting/clearing the inquiry filter */
   btm_cb.btm_inq_vars.inqparms = {
       // tBTM_INQ_PARMS
-      .mode = BTM_GENERAL_INQUIRY | BTM_BLE_GENERAL_INQUIRY,
+      .mode = BTM_BR_INQUIRY_MASK | BTM_BLE_GENERAL_INQUIRY,
       .duration = inq_length,
   };
 
@@ -1025,7 +1024,7 @@ void btm_inq_db_reset(void) {
 
     /* If not a periodic inquiry, the complete callback must be called to notify
      * caller */
-    if (temp_inq_active == BTM_GENERAL_INQUIRY_ACTIVE) {
+    if (temp_inq_active == BTM_BR_INQUIRY_MASK_ACTIVE) {
       if (btm_cb.btm_inq_vars.p_inq_cmpl_cb) {
         num_responses = 0;
         (*btm_cb.btm_inq_vars.p_inq_cmpl_cb)(&num_responses);
