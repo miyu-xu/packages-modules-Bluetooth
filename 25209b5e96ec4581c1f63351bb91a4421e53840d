@@ -22,6 +22,30 @@
       },
       "revId": "25209b5e96ec4581c1f63351bb91a4421e53840d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "278cd01d_e48f1036",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-06T18:54:04Z",
+      "side": 1,
+      "message": "Never mind.  This should all be removed soon enough, and it\u0027s possible that there will be spurious wakeups.",
+      "parentUuid": "53fb0ce2_1d0854a5",
+      "range": {
+        "startLine": 421,
+        "startChar": 21,
+        "endLine": 421,
+        "endChar": 46
+      },
+      "revId": "25209b5e96ec4581c1f63351bb91a4421e53840d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
