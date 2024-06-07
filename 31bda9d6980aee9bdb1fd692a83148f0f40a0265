@@ -34,6 +34,24 @@
       "parentUuid": "cdb85527_e9f8a747",
       "revId": "31bda9d6980aee9bdb1fd692a83148f0f40a0265",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ff683f9_b9f666ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3235591
+      },
+      "writtenOn": "2024-06-07T04:17:24Z",
+      "side": 1,
+      "message": "It\u0027s great if you are going to provide a fix. May I know the release plan?",
+      "parentUuid": "313c113a_edf0798e",
+      "revId": "31bda9d6980aee9bdb1fd692a83148f0f40a0265",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
