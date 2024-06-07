@@ -52,6 +52,24 @@
       "parentUuid": "8b4ac2f9_7afd4410",
       "revId": "bcd7b636f035001932eaca5400a8150774d84636",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d0d314d_341f1bab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-06-07T18:11:22Z",
+      "side": 1,
+      "message": "Ah mistyped, \"container environment\" -\u003e \"linux build environment\"\nTo run in container it should be `podman exec -it floss-container-runner /root/src/build.py --target clippy`",
+      "parentUuid": "8b4ac2f9_7afd4410",
+      "revId": "bcd7b636f035001932eaca5400a8150774d84636",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
