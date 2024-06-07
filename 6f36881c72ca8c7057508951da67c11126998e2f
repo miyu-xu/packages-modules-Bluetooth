@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3a559d7_aa749577",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-06-07T05:40:04Z",
+      "side": 1,
+      "message": "Merged b/324157549#comment7 with the patch set 1, and made it compilable.",
+      "revId": "6f36881c72ca8c7057508951da67c11126998e2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
