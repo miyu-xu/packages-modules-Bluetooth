@@ -1030,6 +1030,11 @@ impl IBluetooth for BluetoothDBus {
     fn is_le_audio_supported(&self) -> bool {
         dbus_generated!()
     }
+
+    #[dbus_method("GetDumpsys")]
+    fn get_dumpsys(&self) -> String {
+        dbus_generated!()
+    }
 }
 
 pub(crate) struct BluetoothQALegacyDBus {

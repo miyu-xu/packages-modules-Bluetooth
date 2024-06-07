@@ -34,10 +34,12 @@ use std::convert::TryInto;
 use std::fs::File;
 use std::hash::Hash;
 use std::io::Write;
+use std::os::fd::AsRawFd;
 use std::process;
 use std::sync::{Arc, Condvar, Mutex};
 use std::time::Duration;
 use std::time::Instant;
+use tempfile::NamedTempFile;
 use tokio::sync::mpsc::Sender;
 use tokio::task::JoinHandle;
 use tokio::time;
@@ -258,6 +260,9 @@ pub trait IBluetooth {
 
     /// Returns whether LE Audio is supported.
     fn is_le_audio_supported(&self) -> bool;
+
+    /// Gets diagnostic output.
+    fn get_dumpsys(&self) -> String;
 }
 
 /// Adapter API for Bluetooth qualification and verification.
@@ -2970,6 +2975,16 @@ impl IBluetooth for Bluetooth {
         // We determine LE Audio support by checking CIS Central support
         // See Core 5.3, Vol 6, 4.6 FEATURE SUPPORT
         self.le_local_supported_features >> 28 & 1 == 1u64
+    }
+
+    fn get_dumpsys(&self) -> String {
+        NamedTempFile::new()
+            .and_then(|file| {
+                let fd = file.as_raw_fd();
+                self.intf.lock().unwrap().dump(fd);
+                std::fs::read_to_string(file.path())
+            })
+            .unwrap_or_default()
     }
 }
 

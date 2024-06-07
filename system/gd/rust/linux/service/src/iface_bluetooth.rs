@@ -765,6 +765,11 @@ impl IBluetooth for IBluetoothDBus {
     fn is_le_audio_supported(&self) -> bool {
         dbus_generated!()
     }
+
+    #[dbus_method("GetDumpsys", DBusLog::Disable)]
+    fn get_dumpsys(&self) -> String {
+        dbus_generated!()
+    }
 }
 
 impl_dbus_arg_enum!(SocketType);
