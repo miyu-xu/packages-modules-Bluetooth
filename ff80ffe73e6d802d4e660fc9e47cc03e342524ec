@@ -16,6 +16,24 @@
       "message": "Flag: EXEMPT, mechanical refactor - no logical change",
       "revId": "ff80ffe73e6d802d4e660fc9e47cc03e342524ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6b3abd3_5e96c6d4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-06-07T06:23:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7d3b785_d2d2b195",
+      "revId": "ff80ffe73e6d802d4e660fc9e47cc03e342524ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
