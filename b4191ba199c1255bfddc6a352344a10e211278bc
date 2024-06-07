@@ -96,6 +96,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3492222_61b1f3b2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-07T21:51:27Z",
+      "side": 1,
+      "message": "In this case you want to use a ifdef TARGET_FLOSS to not had non necessary parameterization to android too, and to make it obvious this settings is only use for floss\n\nSomething like:\n\n```\n#ifndef TARGET_FLOSS\n#ifndef BT_STACK_CLEANUP_WAIT_MS\n#define BT_STACK_CLEANUP_WAIT_MS 1000\n#endif\n#else // define TARGET_FLOSS\n#define BT_STACK_CLEANUP_WAIT_MS 2000\n#endig\n```\n\nThis is straightforward and doesn\u0027t require sysprop module nor other on the side modification.",
+      "parentUuid": "3ed2bc54_3ea33c57",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 25
+      },
+      "revId": "b4191ba199c1255bfddc6a352344a10e211278bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "e569c59e_c3252163",
