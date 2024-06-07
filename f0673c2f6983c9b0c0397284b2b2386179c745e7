@@ -291,6 +291,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "87291c77_7912648e",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-06-07T05:26:39Z",
+      "side": 1,
+      "message": "Ah got it",
+      "parentUuid": "a3ec89cd_a67682cd",
+      "range": {
+        "startLine": 339,
+        "startChar": 43,
+        "endLine": 339,
+        "endChar": 57
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7dfd4a14_6d65339f",
         "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
         "patchSetId": 11
@@ -480,6 +504,30 @@
       "side": 1,
       "message": "You reply but didn\u0027t change the code. Did you forget to save/push ?",
       "parentUuid": "0544fa8b_142ef4ec",
+      "range": {
+        "startLine": 667,
+        "startChar": 0,
+        "endLine": 667,
+        "endChar": 70
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4844a236_f5334a31",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-06-07T05:26:39Z",
+      "side": 1,
+      "message": "No I just didn\u0027t do it yet, that\u0027s why I didn\u0027t mark it as resolved!",
+      "parentUuid": "241a1244_0203654e",
       "range": {
         "startLine": 667,
         "startChar": 0,
