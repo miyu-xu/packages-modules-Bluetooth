@@ -9,8 +9,7 @@ use log::warn;
 #[cxx::bridge(namespace = bluetooth::topshim::rust)]
 pub mod ffi {
     unsafe extern "C++" {
-        include!("types/raw_address.h");
-        #[namespace = ""]
+        include!("gd/rust/topshim/common/type_alias.h");
         type RawAddress = crate::btif::RawAddress;
     }
 

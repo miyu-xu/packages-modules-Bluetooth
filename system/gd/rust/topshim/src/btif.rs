@@ -15,7 +15,9 @@ use std::mem;
 use std::os::raw::c_char;
 use std::sync::{Arc, Mutex};
 use std::vec::Vec;
-use topshim_macros::{cb_variant, gen_cxx_extern_trivial};
+use topshim_macros::cb_variant;
+
+use cxx::{type_id, ExternType};
 
 #[derive(Clone, Debug, FromPrimitive, ToPrimitive, PartialEq, PartialOrd)]
 #[repr(u32)]
@@ -416,6 +418,12 @@ pub type BtLocalLeFeatures = bindings::bt_local_le_features_t;
 pub type BtPinCode = bindings::bt_pin_code_t;
 pub type BtRemoteVersion = bindings::bt_remote_version_t;
 pub type BtVendorProductInfo = bindings::bt_vendor_product_info_t;
+pub type Uuid = bindings::bluetooth::Uuid;
+
+unsafe impl ExternType for Uuid {
+    type Id = type_id!("bluetooth::topshim::rust::Uuid");
+    type Kind = cxx::kind::Trivial;
+}
 
 impl TryFrom<Uuid> for Vec<u8> {
     type Error = &'static str;
@@ -902,30 +910,27 @@ mod ffi {
     }
 }
 
-/// Generate impl cxx::ExternType for RawAddress and Uuid.
+/// The RawAddress directly exported from the bindings.
 ///
-/// To make use of RawAddress and Uuid in cxx::bridge C++ blocks,
+/// To make use of RawAddress in cxx::bridge C++ blocks,
 /// include the following snippet in the ffi module.
 /// ```ignore
 /// #[cxx::bridge(namespace = bluetooth::topshim::rust)]
 /// mod ffi {
 ///     unsafe extern "C++" {
-///         include!("types/raw_address.h");
-///         include!("types/bluetooth/uuid.h");
-///
-///         #[namespace = ""]
+///         include!("gd/rust/topshim/common/type_alias.h");
 ///         type RawAddress = crate::btif::RawAddress;
-///
-///         #[namespace = "bluetooth"]
-///         type Uuid = crate::btif::Uuid;
 ///     }
 ///     // Place you shared stuff here.
 /// }
 /// ```
-#[gen_cxx_extern_trivial]
 pub type RawAddress = bindings::RawAddress;
-#[gen_cxx_extern_trivial]
-pub type Uuid = bindings::bluetooth::Uuid;
+pub type OobData = bindings::bt_oob_data_s;
+
+unsafe impl ExternType for RawAddress {
+    type Id = type_id!("bluetooth::topshim::rust::RawAddress");
+    type Kind = cxx::kind::Trivial;
+}
 
 impl Hash for RawAddress {
     fn hash<H: Hasher>(&self, state: &mut H) {
@@ -1001,8 +1006,6 @@ impl<'a> Display for DisplayAddress<'a> {
         }
     }
 }
-
-pub type OobData = bindings::bt_oob_data_s;
 
 /// An enum representing `bt_callbacks_t` from btif.
 #[derive(Clone, Debug)]
