@@ -434,11 +434,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         let default_adapter = context.lock().unwrap().default_adapter;
 
         {
-            let mut context_locked = context.lock().unwrap();
-            match context_locked.manager_dbus.rpc.get_adapter_enabled(default_adapter).await {
+            let rpc = &mut context.lock().unwrap().manager_dbus.rpc.clone();
+            match rpc.get_adapter_enabled(default_adapter).await {
                 Ok(ret) => {
                     if ret {
-                        context_locked.set_adapter_enabled(default_adapter, true);
+                        context.lock().unwrap().set_adapter_enabled(default_adapter, true);
                     }
                 }
                 Err(e) => {
@@ -578,45 +578,27 @@ async fn handle_client_command(
                 let dbus_connection = context.lock().unwrap().dbus_connection.clone();
                 let dbus_crossroads = context.lock().unwrap().dbus_crossroads.clone();
 
-                context
-                    .lock()
-                    .unwrap()
-                    .adapter_dbus
-                    .as_mut()
-                    .unwrap()
-                    .rpc
-                    .register_callback(Box::new(BtCallback::new(
-                        cb_objpath.clone(),
-                        context.clone(),
-                        dbus_connection.clone(),
-                        dbus_crossroads.clone(),
-                    )))
-                    .await
-                    .expect("D-Bus error on IBluetooth::RegisterCallback");
-                context
-                    .lock()
-                    .unwrap()
-                    .adapter_dbus
-                    .as_mut()
-                    .unwrap()
-                    .rpc
-                    .register_connection_callback(Box::new(BtConnectionCallback::new(
-                        conn_cb_objpath,
-                        context.clone(),
-                        dbus_connection.clone(),
-                        dbus_crossroads.clone(),
-                    )))
-                    .await
-                    .expect("D-Bus error on IBluetooth::RegisterConnectionCallback");
+                let rpc = &mut context.lock().unwrap().adapter_dbus.as_mut().unwrap().rpc.clone();
+                rpc.register_callback(Box::new(BtCallback::new(
+                    cb_objpath.clone(),
+                    context.clone(),
+                    dbus_connection.clone(),
+                    dbus_crossroads.clone(),
+                )))
+                .await
+                .expect("D-Bus error on IBluetooth::RegisterCallback");
+                rpc.register_connection_callback(Box::new(BtConnectionCallback::new(
+                    conn_cb_objpath,
+                    context.clone(),
+                    dbus_connection.clone(),
+                    dbus_crossroads.clone(),
+                )))
+                .await
+                .expect("D-Bus error on IBluetooth::RegisterConnectionCallback");
 
                 // Register callback listener for le-scan`commands.
-                let scanner_callback_id = context
-                    .lock()
-                    .unwrap()
-                    .gatt_dbus
-                    .as_mut()
-                    .unwrap()
-                    .rpc
+                let rpc = &mut context.lock().unwrap().gatt_dbus.as_mut().unwrap().rpc.clone();
+                let scanner_callback_id = rpc
                     .register_scanner_callback(Box::new(ScannerCallback::new(
                         scanner_cb_objpath.clone(),
                         context.clone(),
@@ -627,13 +609,7 @@ async fn handle_client_command(
                     .expect("D-Bus error on IBluetoothGatt::RegisterScannerCallback");
                 context.lock().unwrap().scanner_callback_id = Some(scanner_callback_id);
 
-                let advertiser_callback_id = context
-                    .lock()
-                    .unwrap()
-                    .gatt_dbus
-                    .as_mut()
-                    .unwrap()
-                    .rpc
+                let advertiser_callback_id = rpc
                     .register_advertiser_callback(Box::new(AdvertisingSetCallback::new(
                         advertiser_cb_objpath.clone(),
                         context.clone(),
@@ -644,13 +620,8 @@ async fn handle_client_command(
                     .expect("D-Bus error on IBluetoothGatt::RegisterAdvertiserCallback");
                 context.lock().unwrap().advertiser_callback_id = Some(advertiser_callback_id);
 
-                let admin_callback_id = context
-                    .lock()
-                    .unwrap()
-                    .admin_dbus
-                    .as_mut()
-                    .unwrap()
-                    .rpc
+                let rpc = &mut context.lock().unwrap().admin_dbus.as_mut().unwrap().rpc.clone();
+                let admin_callback_id = rpc
                     .register_admin_policy_callback(Box::new(AdminCallback::new(
                         admin_cb_objpath.clone(),
                         dbus_connection.clone(),
@@ -660,13 +631,9 @@ async fn handle_client_command(
                     .expect("D-Bus error on IBluetoothAdmin::RegisterAdminCallback");
                 context.lock().unwrap().admin_callback_id = Some(admin_callback_id);
 
-                let socket_manager_callback_id = context
-                    .lock()
-                    .unwrap()
-                    .socket_manager_dbus
-                    .as_mut()
-                    .unwrap()
-                    .rpc
+                let rpc =
+                    &mut context.lock().unwrap().socket_manager_dbus.as_mut().unwrap().rpc.clone();
+                let socket_manager_callback_id = rpc
                     .register_callback(Box::new(BtSocketManagerCallback::new(
                         socket_manager_cb_objpath.clone(),
                         context.clone(),
@@ -678,13 +645,8 @@ async fn handle_client_command(
                 context.lock().unwrap().socket_manager_callback_id =
                     Some(socket_manager_callback_id);
 
-                let qa_callback_id = context
-                    .lock()
-                    .unwrap()
-                    .qa_dbus
-                    .as_mut()
-                    .unwrap()
-                    .rpc
+                let rpc = &mut context.lock().unwrap().qa_dbus.as_mut().unwrap().rpc.clone();
+                let qa_callback_id = rpc
                     .register_qa_callback(Box::new(QACallback::new(
                         qa_cb_objpath.clone(),
                         context.clone(),
@@ -705,53 +667,36 @@ async fn handle_client_command(
                     ),
                 ));
 
-                context
-                    .lock()
-                    .unwrap()
-                    .media_dbus
-                    .as_mut()
-                    .unwrap()
-                    .rpc
-                    .register_callback(Box::new(MediaCallback::new(
-                        media_cb_objpath,
-                        context.clone(),
-                        dbus_connection.clone(),
-                        dbus_crossroads.clone(),
-                    )))
-                    .await
-                    .expect("D-Bus error on IBluetoothMedia::RegisterCallback");
+                let rpc = &mut context.lock().unwrap().media_dbus.as_mut().unwrap().rpc.clone();
+                rpc.register_callback(Box::new(MediaCallback::new(
+                    media_cb_objpath,
+                    context.clone(),
+                    dbus_connection.clone(),
+                    dbus_crossroads.clone(),
+                )))
+                .await
+                .expect("D-Bus error on IBluetoothMedia::RegisterCallback");
 
-                context
-                    .lock()
-                    .unwrap()
-                    .telephony_dbus
-                    .as_mut()
-                    .unwrap()
-                    .rpc
-                    .register_telephony_callback(Box::new(TelephonyCallback::new(
-                        telephony_cb_objpath,
-                        context.clone(),
-                        dbus_connection.clone(),
-                        dbus_crossroads.clone(),
-                    )))
-                    .await
-                    .expect("D-Bus error on IBluetoothMedia::RegisterTelephonyCallback");
+                let rpc = &mut context.lock().unwrap().telephony_dbus.as_mut().unwrap().rpc.clone();
+                rpc.register_telephony_callback(Box::new(TelephonyCallback::new(
+                    telephony_cb_objpath,
+                    context.clone(),
+                    dbus_connection.clone(),
+                    dbus_crossroads.clone(),
+                )))
+                .await
+                .expect("D-Bus error on IBluetoothMedia::RegisterTelephonyCallback");
 
-                context
-                    .lock()
-                    .unwrap()
-                    .battery_manager_dbus
-                    .as_mut()
-                    .unwrap()
-                    .rpc
-                    .register_battery_callback(Box::new(BatteryManagerCallback::new(
-                        battery_cb_objpath,
-                        context.clone(),
-                        dbus_connection.clone(),
-                        dbus_crossroads.clone(),
-                    )))
-                    .await
-                    .expect("D-Bus error on IBatteryManagerDBus::RegisterBatteryCallback");
+                let rpc =
+                    &mut context.lock().unwrap().battery_manager_dbus.as_mut().unwrap().rpc.clone();
+                rpc.register_battery_callback(Box::new(BatteryManagerCallback::new(
+                    battery_cb_objpath,
+                    context.clone(),
+                    dbus_connection.clone(),
+                    dbus_crossroads.clone(),
+                )))
+                .await
+                .expect("D-Bus error on IBatteryManagerDBus::RegisterBatteryCallback");
 
                 context.lock().unwrap().adapter_ready = true;
                 let adapter_address = context.lock().unwrap().update_adapter_address();
@@ -804,7 +749,7 @@ async fn handle_client_command(
                             break 'foreground_actions;
                         }
 
-                        handler.process_cmd_line(cmd, &rest.to_vec());
+                        handler.process_cmd_line(cmd, rest);
                         break 'readline;
                     }
 
