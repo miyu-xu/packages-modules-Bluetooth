@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffff8601_da0b978f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-06-07T22:39:34Z",
+      "side": 1,
+      "message": "created b/345842833",
+      "parentUuid": "6fe214ac_f77a60ee",
+      "revId": "25209b5e96ec4581c1f63351bb91a4421e53840d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a0408276_5ad51b05",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "378b85fe_778d691e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-06-07T22:39:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0408276_5ad51b05",
+      "revId": "25209b5e96ec4581c1f63351bb91a4421e53840d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66de9bbf_9acc53c3",
@@ -48,6 +84,24 @@
       "writtenOn": "2024-06-06T20:55:58Z",
       "side": 1,
       "message": "This seems copy pasted from our CTS tests, the implementation of this is very complex (and ugly) for not a lot and CTS tests are being converted to using a mock for this.\n\nIn kotlin you could also use a `callbackFlow` or `suspendCoroutine` to to this.",
+      "revId": "25209b5e96ec4581c1f63351bb91a4421e53840d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ee54d51_15c1bfe0",
+        "filename": "framework/tests/bumble/src/android/bluetooth/RfcommTest.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-06-07T22:39:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66de9bbf_9acc53c3",
       "revId": "25209b5e96ec4581c1f63351bb91a4421e53840d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
