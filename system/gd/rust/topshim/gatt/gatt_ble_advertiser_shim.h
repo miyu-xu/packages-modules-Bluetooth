@@ -19,11 +19,16 @@
 #include <memory>
 
 #include "include/hardware/ble_advertiser.h"
+#include "include/hardware/bt_gatt.h"
 #include "rust/cxx.h"
 
 namespace bluetooth {
 namespace topshim {
 namespace rust {
+
+struct RustAdvertiseParameters;
+struct RustPeriodicAdvertisingParameters;
+struct RustUuid;
 
 // See include/hardware/ble_advertiser.h for more documentation.
 //
@@ -51,25 +56,25 @@ class BleAdvertiserIntf : public AdvertisingCallbacks {
   void Unregister(uint8_t adv_id);
 
   void GetOwnAddress(uint8_t adv_id);
-  void SetParameters(uint8_t adv_id, AdvertiseParameters params);
+  void SetParameters(uint8_t adv_id, RustAdvertiseParameters params);
   void SetData(uint8_t adv_id, bool set_scan_rsp, ::rust::Vec<uint8_t> data);
   void Enable(uint8_t adv_id, bool enable, uint16_t duration, uint8_t max_ext_adv_events);
   void StartAdvertising(
       uint8_t adv_id,
-      AdvertiseParameters params,
+      RustAdvertiseParameters params,
       ::rust::Vec<uint8_t> advertise_data,
       ::rust::Vec<uint8_t> scan_response_data,
       int32_t timeout_in_sec);
   void StartAdvertisingSet(
       int32_t reg_id,
-      AdvertiseParameters params,
+      RustAdvertiseParameters params,
       ::rust::Vec<uint8_t> advertise_data,
       ::rust::Vec<uint8_t> scan_response_data,
-      PeriodicAdvertisingParameters periodic_params,
+      RustPeriodicAdvertisingParameters periodic_params,
       ::rust::Vec<uint8_t> periodic_data,
       uint16_t duration,
       uint8_t max_ext_adv_events);
-  void SetPeriodicAdvertisingParameters(uint8_t adv_id, PeriodicAdvertisingParameters params);
+  void SetPeriodicAdvertisingParameters(uint8_t adv_id, RustPeriodicAdvertisingParameters params);
   void SetPeriodicAdvertisingData(uint8_t adv_id, ::rust::Vec<uint8_t> data);
   void SetPeriodicAdvertisingEnable(uint8_t adv_id, bool enable, bool include_adi);
 
