@@ -172,6 +172,8 @@ typedef struct tBTM_CB {
             kMaxInquiryScanHistory);
   } neighbor;
 
+  bluetooth::rnr::RemoteNameRequest rnr;
+
   void Init() {
     memset(&devcb, 0, sizeof(devcb));
     memset(&ble_ctr_cb, 0, sizeof(ble_ctr_cb));
@@ -182,6 +184,9 @@ typedef struct tBTM_CB {
 
     acl_cb_ = {};
     neighbor = {};
+    alarm_free(rnr.remote_name_timer);
+    rnr = {};
+    rnr.remote_name_timer = alarm_new("remote_name_request_timer");
 
     /* Initialize BTM component structures */
     btm_inq_vars.Init(); /* Inquiry Database and Structures */
@@ -196,6 +201,7 @@ typedef struct tBTM_CB {
   }
 
   void Free() {
+    alarm_free(rnr.remote_name_timer);
     history_.reset();
 
     devcb.Free();
