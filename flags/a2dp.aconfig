@@ -85,3 +85,13 @@ flag {
         purpose: PURPOSE_BUGFIX
     }
 }
+
+flag {
+    name: "stop_on_offload_fail"
+    namespace: "bluetooth"
+    description: "Stop instead of disconnecting AVDT when offload fails"
+    bug: "340245529"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+}
