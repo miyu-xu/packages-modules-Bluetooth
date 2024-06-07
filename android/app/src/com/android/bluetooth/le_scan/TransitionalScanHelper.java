@@ -376,7 +376,8 @@ public class TransitionalScanHelper {
         byte[] legacyAdvData = Arrays.copyOfRange(advData, 0, 62);
 
         for (ScanClient client : mScanManager.getRegularScanQueue()) {
-            ScannerMap.App app = mScannerMap.getById(client.scannerId);
+            ContextMap<IScannerCallback, PendingIntentInfo>.App app =
+                    mScannerMap.getById(client.scannerId);
             if (app == null) {
                 Log.v(TAG, "App is null; skip.");
                 continue;
@@ -524,7 +525,7 @@ public class TransitionalScanHelper {
                         + status);
 
         // First check the callback map
-        ScannerMap.App cbApp = mScannerMap.getByUuid(uuid);
+        ContextMap<IScannerCallback, PendingIntentInfo>.App cbApp = mScannerMap.getByUuid(uuid);
         if (cbApp != null) {
             if (status == 0) {
                 cbApp.id = scannerId;
@@ -698,7 +699,8 @@ public class TransitionalScanHelper {
         Set<ScanResult> results = parseBatchScanResults(numRecords, reportType, recordData);
         if (reportType == ScanManager.SCAN_RESULT_TYPE_TRUNCATED) {
             // We only support single client for truncated mode.
-            ScannerMap.App app = mScannerMap.getById(scannerId);
+            ContextMap<IScannerCallback, PendingIntentInfo>.App app =
+                    mScannerMap.getById(scannerId);
             if (app == null) {
                 return;
             }
@@ -750,7 +752,9 @@ public class TransitionalScanHelper {
     }
 
     private void sendBatchScanResults(
-            ScannerMap.App app, ScanClient client, ArrayList<ScanResult> results) {
+            ContextMap<IScannerCallback, PendingIntentInfo>.App app,
+            ScanClient client,
+            ArrayList<ScanResult> results) {
         try {
             if (app.callback != null) {
                 if (mScanManager.isAutoBatchScanClientEnabled(client)) {
@@ -959,7 +963,8 @@ public class TransitionalScanHelper {
                         + " adv_state = "
                         + trackingInfo.getAdvState());
 
-        ScannerMap.App app = mScannerMap.getById(trackingInfo.getClientIf());
+        ContextMap<IScannerCallback, PendingIntentInfo>.App app =
+                mScannerMap.getById(trackingInfo.getClientIf());
         if (app == null || (app.callback == null && app.info == null)) {
             Log.e(TAG, "app or callback is null");
             return;
@@ -1021,7 +1026,7 @@ public class TransitionalScanHelper {
 
     // callback from ScanManager for dispatch of errors apps.
     public void onScanManagerErrorCallback(int scannerId, int errorCode) throws RemoteException {
-        ScannerMap.App app = mScannerMap.getById(scannerId);
+        ContextMap<IScannerCallback, PendingIntentInfo>.App app = mScannerMap.getById(scannerId);
         if (app == null || (app.callback == null && app.info == null)) {
             Log.e(TAG, "App or callback is null");
             return;
@@ -1250,7 +1255,8 @@ public class TransitionalScanHelper {
         }
     }
 
-    public void continuePiStartScan(int scannerId, ScannerMap.App app) {
+    public void continuePiStartScan(
+            int scannerId, ContextMap<IScannerCallback, PendingIntentInfo>.App app) {
         final PendingIntentInfo piInfo = app.info;
         final ScanClient scanClient =
                 new ScanClient(scannerId, piInfo.settings, piInfo.filters, piInfo.callingUid);
