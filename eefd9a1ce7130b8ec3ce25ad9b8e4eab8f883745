@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee20f28b_743d7f5e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-07T18:22:28Z",
+      "side": 1,
+      "message": "The google-java-format want to add some \u003cp\u003e to mark the different section",
+      "revId": "eefd9a1ce7130b8ec3ce25ad9b8e4eab8f883745",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
