@@ -16,6 +16,24 @@
       "message": "The other two CL LGTM. This one I still have the same concern as we discussed offline. Will enable clippy generates too much noise? Or is your other two CLs addressed most already?",
       "revId": "bcd7b636f035001932eaca5400a8150774d84636",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b4ac2f9_7afd4410",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-06-07T18:08:53Z",
+      "side": 1,
+      "message": "The cargo clippy is not enabled in presubmit yet with this CL. This CL only provides an easier way to run clippy in the container environment (`build.py --target clippy`).",
+      "parentUuid": "90ebb336_b7f3ed7e",
+      "revId": "bcd7b636f035001932eaca5400a8150774d84636",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
