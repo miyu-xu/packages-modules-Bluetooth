@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "edc5c6ca_c8ba5cd3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-07T08:04:33Z",
+      "side": 1,
+      "message": "I still prefer a crash, that increasing the timeout.\n\nIf the timeout is increase to 2, then if there are a crash we will increase it to 3, if there is no crash but a too long cleanup, we will just freeze some operation for that long and the quality of the code is only going down.\n\nIf we have a crash, we can monitor it and potentially have a bugreport / logs that help fixing it.\n\nAnother reason to not increase this timer is that there are other component that may be relying on the cleanup being done in 1 second. I am thinking on android of the systemServer, in case we are switching user, that has a few time constrain to relaunch a Bluetooth process for the new user. But there will be a few other scenario. I am sure ChromeOs will have some scenario too",
+      "parentUuid": "ce83fa24_e57a1415",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 25
+      },
+      "revId": "b4191ba199c1255bfddc6a352344a10e211278bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "e569c59e_c3252163",
