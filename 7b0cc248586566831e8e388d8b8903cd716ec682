@@ -16,6 +16,24 @@
       "message": "How did you test this?",
       "revId": "7b0cc248586566831e8e388d8b8903cd716ec682",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "883ecb0e_1379f7d8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-06-07T18:17:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4f25f1d_4503fa5f",
+      "revId": "7b0cc248586566831e8e388d8b8903cd716ec682",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
