@@ -19,6 +19,8 @@
  *   Functions generated:17
  */
 
+#include <base/strings/stringprintf.h>
+
 #include <cstdint>
 
 #include "stack/btm/power_mode.h"
