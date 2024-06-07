@@ -1178,7 +1178,8 @@ public class AudioRoutingManagerTest {
             mAudioRoutingManager.removeActiveDevice(BluetoothProfile.A2DP, false);
         } else {
             android.util.Log.e("WILLIAM", "A2dp");
-            CompletableFuture<Boolean> future = mAudioRoutingManager.activateDeviceProfile(device, BluetoothProfile.A2DP);
+            CompletableFuture<Boolean> future =
+                    mAudioRoutingManager.activateDeviceProfile(device, BluetoothProfile.A2DP);
             mTestLooper.dispatchAll();
             future.join();
         }
@@ -1230,7 +1231,8 @@ public class AudioRoutingManagerTest {
             mAudioRoutingManager.removeActiveDevice(BluetoothProfile.HEADSET, false);
         } else {
             android.util.Log.e("WILLIAM", "Headset");
-            CompletableFuture<Boolean> future = mAudioRoutingManager.activateDeviceProfile(device, BluetoothProfile.HEADSET);
+            CompletableFuture<Boolean> future =
+                    mAudioRoutingManager.activateDeviceProfile(device, BluetoothProfile.HEADSET);
             mTestLooper.dispatchAll();
             future.join();
         }
@@ -1276,7 +1278,9 @@ public class AudioRoutingManagerTest {
             mAudioRoutingManager.removeActiveDevice(BluetoothProfile.HEARING_AID, false);
         } else {
             android.util.Log.e("WILLIAM", "HearingAid");
-            CompletableFuture<Boolean> future = mAudioRoutingManager.activateDeviceProfile(device, BluetoothProfile.HEARING_AID);
+            CompletableFuture<Boolean> future =
+                    mAudioRoutingManager.activateDeviceProfile(
+                            device, BluetoothProfile.HEARING_AID);
             mTestLooper.dispatchAll();
             future.join();
         }
@@ -1320,7 +1324,8 @@ public class AudioRoutingManagerTest {
             mAudioRoutingManager.removeActiveDevice(BluetoothProfile.LE_AUDIO, false);
         } else {
             android.util.Log.e("WILLIAM", "LeAudio");
-            CompletableFuture<Boolean> future = mAudioRoutingManager.activateDeviceProfile(device, BluetoothProfile.LE_AUDIO);
+            CompletableFuture<Boolean> future =
+                    mAudioRoutingManager.activateDeviceProfile(device, BluetoothProfile.LE_AUDIO);
             mTestLooper.dispatchAll();
             future.join();
         }
