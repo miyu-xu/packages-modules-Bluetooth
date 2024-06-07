@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3156e2c_c5c002c4",
+        "filename": "flags/a2dp.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-07T21:35:20Z",
+      "side": 1,
+      "message": "The bug should be created in the [flag tracking component](https://b.corp.google.com/issues?q\u003dstatus:open%20componentid:1387432\u0026s\u003dcreated_time:desc)",
+      "range": {
+        "startLine": 83,
+        "startChar": 10,
+        "endLine": 83,
+        "endChar": 19
+      },
+      "revId": "b75ab5d72a6134d2b82c652f3132a059b82b30e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
