@@ -16,6 +16,24 @@
       "message": "Isn\u0027t this fixed by r.android.com/3118117 ?",
       "revId": "a51bad7295ee0eccbd0898068769cede250b2152",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c36d1a5_1b4be926",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-06-07T23:08:42Z",
+      "side": 1,
+      "message": "No, it addresses a different problem, but we found it with the same test",
+      "parentUuid": "63b9a945_6c7e84fd",
+      "revId": "a51bad7295ee0eccbd0898068769cede250b2152",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
