@@ -15,7 +15,7 @@ use num_traits::cast::{FromPrimitive, ToPrimitive};
 use std::fmt::{Display, Formatter, Result};
 use std::sync::{Arc, Mutex};
 
-use topshim_macros::{cb_variant, gen_cxx_extern_trivial};
+use topshim_macros::cb_variant;
 
 pub type BtGattNotifyParams = bindings::btgatt_notify_params_t;
 pub type BtGattReadParams = bindings::btgatt_read_params_t;
@@ -30,8 +30,11 @@ pub mod ffi {
         include!("types/raw_address.h");
         #[namespace = ""]
         type RawAddress = crate::btif::RawAddress;
-        #[namespace = "bluetooth"]
-        type Uuid = crate::btif::Uuid;
+    }
+
+    #[derive(Debug, Copy, Clone)]
+    pub struct RustUuid {
+        uu: [u8; 16],
     }
 
     #[derive(Debug, Clone)]
@@ -52,14 +55,29 @@ pub mod ffi {
         scan_response: Vec<u8>,
     }
 
+    // Original definition exists in C++.
+    #[derive(Debug, Clone)]
+    pub struct RustGattFilterParam {
+        feat_seln: u16,
+        list_logic_type: u16,
+        filt_logic_type: u8,
+        rssi_high_thres: u8,
+        rssi_low_thres: u8,
+        delay_mode: u8,
+        found_timeout: u16,
+        lost_timeout: u16,
+        found_timeout_count: u8,
+        num_of_tracking_entries: u16,
+    }
+
     // Defined in C++ and needs a translation in shim.
     #[derive(Debug, Clone)]
     pub struct RustApcfCommand {
         type_: u8,
         address: RawAddress,
         addr_type: u8,
-        uuid: Uuid,
-        uuid_mask: Uuid,
+        uuid: RustUuid,
+        uuid_mask: RustUuid,
         name: Vec<u8>,
         company: u16,
         company_mask: u16,
@@ -100,6 +118,28 @@ pub mod ffi {
         pub addr_info: RustMsftAdvMonitorAddress,
     }
 
+    #[derive(Debug, Clone)]
+    pub struct RustAdvertiseParameters {
+        advertising_event_properties: u16,
+        min_interval: u32,
+        max_interval: u32,
+        channel_map: u8,
+        tx_power: i8,
+        primary_advertising_phy: u8,
+        secondary_advertising_phy: u8,
+        scan_request_notification_enable: u8,
+        own_address_type: i8,
+    }
+
+    #[derive(Debug, Clone)]
+    pub struct RustPeriodicAdvertisingParameters {
+        enable: bool,
+        include_adi: bool,
+        min_interval: u16,
+        max_interval: u16,
+        periodic_advertising_properties: u16,
+    }
+
     unsafe extern "C++" {
         include!("gatt/gatt_shim.h");
 
@@ -138,13 +178,9 @@ pub mod ffi {
 
         type BleScannerIntf;
 
-        #[namespace = ""]
-        #[cxx_name = "btgatt_filt_param_setup_t"]
-        type GattFilterParam = super::GattFilterParam;
-
         unsafe fn GetBleScannerIntf(gatt: *const u8) -> UniquePtr<BleScannerIntf>;
 
-        fn RegisterScanner(self: Pin<&mut BleScannerIntf>, uuid: Uuid);
+        fn RegisterScanner(self: Pin<&mut BleScannerIntf>, uuid: RustUuid);
         fn Unregister(self: Pin<&mut BleScannerIntf>, scanner_id: u8);
         fn Scan(self: Pin<&mut BleScannerIntf>, start: bool);
         fn ScanFilterParamSetup(
@@ -152,7 +188,7 @@ pub mod ffi {
             scanner_id: u8,
             action: u8,
             filter_index: u8,
-            filt_param: GattFilterParam,
+            filt_param: RustGattFilterParam,
         );
         fn ScanFilterAdd(
             self: Pin<&mut BleScannerIntf>,
@@ -260,7 +296,7 @@ pub mod ffi {
         unsafe fn gdscan_on_batch_scan_threshold_crossed(client_if: i32);
 
         // Static cb_variant! callbacks using base::Callback
-        unsafe fn gdscan_register_callback(uuid: Uuid, scanner_id: u8, btm_status: u8);
+        unsafe fn gdscan_register_callback(uuid: RustUuid, scanner_id: u8, btm_status: u8);
         unsafe fn gdscan_status_callback(scanner_id: u8, btm_status: u8);
         unsafe fn gdscan_enable_callback(action: u8, btm_status: u8);
         unsafe fn gdscan_filter_param_setup_callback(
@@ -310,11 +346,6 @@ pub mod ffi {
 
         type BleAdvertiserIntf;
 
-        #[namespace = ""]
-        type AdvertiseParameters = super::AdvertiseParameters;
-        #[namespace = ""]
-        type PeriodicAdvertisingParameters = super::PeriodicAdvertisingParameters;
-
         /// Given the gatt profile interface, creates a shim interface for
         /// |BleAdvertiserInterface|.
         unsafe fn GetBleAdvertiserIntf(gatt: *const u8) -> UniquePtr<BleAdvertiserIntf>;
@@ -326,7 +357,7 @@ pub mod ffi {
         fn SetParameters(
             self: Pin<&mut BleAdvertiserIntf>,
             adv_id: u8,
-            params: AdvertiseParameters,
+            params: RustAdvertiseParameters,
         );
         fn SetData(
             self: Pin<&mut BleAdvertiserIntf>,
@@ -344,7 +375,7 @@ pub mod ffi {
         fn StartAdvertising(
             self: Pin<&mut BleAdvertiserIntf>,
             adv_id: u8,
-            params: AdvertiseParameters,
+            params: RustAdvertiseParameters,
             advertise_data: Vec<u8>,
             scan_response_data: Vec<u8>,
             timeout_in_sec: i32,
@@ -352,10 +383,10 @@ pub mod ffi {
         fn StartAdvertisingSet(
             self: Pin<&mut BleAdvertiserIntf>,
             reg_id: i32,
-            params: AdvertiseParameters,
+            params: RustAdvertiseParameters,
             advertise_data: Vec<u8>,
             scan_response_data: Vec<u8>,
-            periodic_params: PeriodicAdvertisingParameters,
+            periodic_params: RustPeriodicAdvertisingParameters,
             periodic_data: Vec<u8>,
             duration: u16,
             max_ext_adv_events: u8,
@@ -363,7 +394,7 @@ pub mod ffi {
         fn SetPeriodicAdvertisingParameters(
             self: Pin<&mut BleAdvertiserIntf>,
             adv_id: u8,
-            params: PeriodicAdvertisingParameters,
+            params: RustPeriodicAdvertisingParameters,
         );
         fn SetPeriodicAdvertisingData(self: Pin<&mut BleAdvertiserIntf>, adv_id: u8, data: Vec<u8>);
         fn SetPeriodicAdvertisingEnable(
@@ -403,20 +434,39 @@ pub mod ffi {
     }
 }
 
-// Non-trivial types, conversion in .cc is necessary.
 pub type AdvertisingTrackInfo = ffi::RustAdvertisingTrackInfo;
+pub type GattFilterParam = ffi::RustGattFilterParam;
 pub type ApcfCommand = ffi::RustApcfCommand;
 pub type MsftAdvMonitor = ffi::RustMsftAdvMonitor;
 pub type MsftAdvMonitorPattern = ffi::RustMsftAdvMonitorPattern;
 pub type MsftAdvMonitorAddress = ffi::RustMsftAdvMonitorAddress;
 
-#[gen_cxx_extern_trivial]
-pub type GattFilterParam = bindings::btgatt_filt_param_setup_t;
+pub type AdvertiseParameters = ffi::RustAdvertiseParameters;
+pub type PeriodicAdvertisingParameters = ffi::RustPeriodicAdvertisingParameters;
 
-#[gen_cxx_extern_trivial]
-pub type AdvertiseParameters = bindings::AdvertiseParameters;
-#[gen_cxx_extern_trivial]
-pub type PeriodicAdvertisingParameters = bindings::PeriodicAdvertisingParameters;
+impl Default for PeriodicAdvertisingParameters {
+    fn default() -> Self {
+        PeriodicAdvertisingParameters {
+            enable: false,
+            include_adi: false,
+            min_interval: 0,
+            max_interval: 0,
+            periodic_advertising_properties: 0,
+        }
+    }
+}
+
+impl From<ffi::RustUuid> for Uuid {
+    fn from(item: ffi::RustUuid) -> Self {
+        Uuid::from(item.uu)
+    }
+}
+
+impl From<Uuid> for ffi::RustUuid {
+    fn from(item: Uuid) -> Self {
+        ffi::RustUuid { uu: item.uu }
+    }
+}
 
 #[derive(Clone, Copy, Debug, FromPrimitive, ToPrimitive, PartialEq, PartialOrd)]
 #[repr(u32)]
@@ -998,7 +1048,7 @@ pub struct GattScannerInbandCallbacksDispatcher {
 type GDScannerInbandCb = Arc<Mutex<GattScannerInbandCallbacksDispatcher>>;
 
 cb_variant!(GDScannerInbandCb, gdscan_register_callback -> GattScannerInbandCallbacks::RegisterCallback,
-    Uuid, u8, u8);
+    ffi::RustUuid -> Uuid, u8, u8);
 
 cb_variant!(GDScannerInbandCb, gdscan_status_callback -> GattScannerInbandCallbacks::StatusCallback, u8, u8);
 cb_variant!(GDScannerInbandCb, gdscan_enable_callback -> GattScannerInbandCallbacks::EnableCallback, u8, u8);
