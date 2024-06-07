@@ -1,0 +1,154 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f750a1ff_3af5b253",
+        "filename": "android/pandora/server/src/A2dp.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-06-07T00:09:42Z",
+      "side": 1,
+      "message": "I am not sure this should be part of the `start` API.\n\nIt looks like a side behavior.",
+      "revId": "f047ace8e532a3cdfd091163f51bcb59b5c097af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d52a4448_f0d7ea98",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-06-07T00:09:42Z",
+      "side": 1,
+      "message": "This is already the default:\nhttps://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/tests/bumble/bumble_config.json;l\u003d4",
+      "fixSuggestions": [
+        {
+          "fixId": "75f4b602_1e2f6783",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/test/a2dp_test.py",
+              "range": {
+                "startLine": 186,
+                "startChar": 0,
+                "endLine": 187,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "f047ace8e532a3cdfd091163f51bcb59b5c097af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4b7b839_688b315c",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-06-07T00:09:42Z",
+      "side": 1,
+      "message": "```suggestion\ndevice.server_config.io_capability \u003d \u0027display_output_only\u0027\n```",
+      "range": {
+        "startLine": 189,
+        "startChar": 16,
+        "endLine": 194,
+        "endChar": 17
+      },
+      "revId": "f047ace8e532a3cdfd091163f51bcb59b5c097af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31abcae0_8fd60fdc",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-06-07T00:09:42Z",
+      "side": 1,
+      "message": "Please avoid magic numbers",
+      "revId": "f047ace8e532a3cdfd091163f51bcb59b5c097af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "510aa57a_ea0c2fc4",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-06-07T00:09:42Z",
+      "side": 1,
+      "message": "Please rename the test to something clearer",
+      "fixSuggestions": [
+        {
+          "fixId": "b9659812_18cae560",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/pandora/test/a2dp_test.py",
+              "range": {
+                "startLine": 227,
+                "startChar": 0,
+                "endLine": 228,
+                "endChar": 0
+              },
+              "replacement": "    async def test_basic_a2dp_connection_and_streaming(self) -\u003e None:\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f047ace8e532a3cdfd091163f51bcb59b5c097af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de9a84a5_59912088",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-06-07T00:09:42Z",
+      "side": 1,
+      "message": "There is only one reference device, we don\u0027t really need to precise the `ref1` here.",
+      "range": {
+        "startLine": 237,
+        "startChar": 6,
+        "endLine": 257,
+        "endChar": 0
+      },
+      "revId": "f047ace8e532a3cdfd091163f51bcb59b5c097af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
