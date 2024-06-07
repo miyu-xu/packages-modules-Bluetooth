@@ -16,6 +16,23 @@
       "message": "Chen, can you please take another look? This patch helps memory efficiency.",
       "revId": "6e5bafd582484790fad61c0c6409a0b57bdcc788",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4d4695d_5041d17d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-06-07T08:51:38Z",
+      "side": 1,
+      "message": "Hi @cncn@google.com, friendly ping",
+      "revId": "6e5bafd582484790fad61c0c6409a0b57bdcc788",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
