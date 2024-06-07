@@ -426,6 +426,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f926ca6a_6cbe1e80",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-07T18:52:33Z",
+      "side": 1,
+      "message": "Apparently Bluetooth is wrapping the class in \npackages/modules/Bluetooth/android/app/src/com/android/bluetooth/audio_util/mockable/MediaBrowser.java line 61. \n\nI don\u0027t have the context of why we need this \"mockable\" interface.\n\nWe should be able to go without and to clear all of this, but that looks like an overstretch and a bit out of scope of this change.",
+      "parentUuid": "4e2e04fa_a8bc40d7",
+      "range": {
+        "startLine": 352,
+        "startChar": 8,
+        "endLine": 355,
+        "endChar": 9
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ee982e5_4b0e16fa",

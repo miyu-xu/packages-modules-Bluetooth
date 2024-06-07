@@ -1,0 +1,91 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73e08573_8cf48791",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-07T18:52:33Z",
+      "side": 1,
+      "message": "private",
+      "range": {
+        "startLine": 59,
+        "startChar": 4,
+        "endLine": 59,
+        "endChar": 8
+      },
+      "revId": "826a6038812a5786d607b812e82afb6a081a5b53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dc1cbc3_89d75718",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-07T18:52:33Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 88,
+        "startChar": 39,
+        "endLine": 88,
+        "endChar": 52
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2ed47ff8_5c2b1719",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+              "range": {
+                "startLine": 88,
+                "startChar": 0,
+                "endLine": 89,
+                "endChar": 0
+              },
+              "replacement": "    // got the results and prevent new subscriptions.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "826a6038812a5786d607b812e82afb6a081a5b53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "013d4d5a_9fb77594",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-07T18:52:33Z",
+      "side": 1,
+      "message": "you have 2 disconnect.\nOne that is called from the other class in this CL, what that is already on the handler (with the postDelayed)\n\nThat is not that much important since everything being done here is to post on the handler but we may want to clarify that",
+      "range": {
+        "startLine": 243,
+        "startChar": 16,
+        "endLine": 243,
+        "endChar": 26
+      },
+      "revId": "826a6038812a5786d607b812e82afb6a081a5b53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
