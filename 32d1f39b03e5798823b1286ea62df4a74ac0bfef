@@ -52,6 +52,24 @@
       "parentUuid": "8056f5b4_48409c4f",
       "revId": "32d1f39b03e5798823b1286ea62df4a74ac0bfef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7506b58c_9e429e6b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-07T14:46:07Z",
+      "side": 1,
+      "message": "Good point, I should add myself",
+      "parentUuid": "5381bdb3_a53c37b9",
+      "revId": "32d1f39b03e5798823b1286ea62df4a74ac0bfef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
