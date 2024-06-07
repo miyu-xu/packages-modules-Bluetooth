@@ -1554,7 +1554,6 @@ public class BassClientService extends ProfileService {
     public void registerCallback(IBluetoothLeBroadcastAssistantCallback cb) {
         Log.i(TAG, "registerCallback");
         mCallbacks.register(cb);
-        return;
     }
 
     /**
@@ -1565,7 +1564,6 @@ public class BassClientService extends ProfileService {
     public void unregisterCallback(IBluetoothLeBroadcastAssistantCallback cb) {
         Log.i(TAG, "unregisterCallback");
         mCallbacks.unregister(cb);
-        return;
     }
 
     /**
