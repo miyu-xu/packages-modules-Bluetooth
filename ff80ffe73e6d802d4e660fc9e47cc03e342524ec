@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7d3b785_d2d2b195",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-07T06:17:47Z",
+      "side": 1,
+      "message": "Flag: EXEMPT, mechanical refactor - no logical change",
+      "revId": "ff80ffe73e6d802d4e660fc9e47cc03e342524ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
