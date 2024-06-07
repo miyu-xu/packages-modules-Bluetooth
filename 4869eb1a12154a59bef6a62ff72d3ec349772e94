@@ -46,6 +46,30 @@
       },
       "revId": "4869eb1a12154a59bef6a62ff72d3ec349772e94",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cf72a5a_e28ad331",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-06-07T17:24:12Z",
+      "side": 1,
+      "message": "Indeed that\u0027s looks better, just updated it.",
+      "parentUuid": "2409a5ab_59ba066e",
+      "range": {
+        "startLine": 74,
+        "startChar": 11,
+        "endLine": 74,
+        "endChar": 35
+      },
+      "revId": "4869eb1a12154a59bef6a62ff72d3ec349772e94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
