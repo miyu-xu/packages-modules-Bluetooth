@@ -22,6 +22,30 @@
       },
       "revId": "db0a5e231f29c6b398ad25a6e31075278ffb470c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e17097c_274cbdbf",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/bip/BipImagePropertiesTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-07T03:22:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b977e099_dbdfcc13",
+      "range": {
+        "startLine": 110,
+        "startChar": 51,
+        "endLine": 110,
+        "endChar": 84
+      },
+      "revId": "db0a5e231f29c6b398ad25a6e31075278ffb470c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
