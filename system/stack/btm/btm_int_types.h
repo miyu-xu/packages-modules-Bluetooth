@@ -184,6 +184,8 @@ typedef struct tBTM_CB {
 
     acl_cb_ = {};
     neighbor = {};
+    alarm_free(rnr.remote_name_timer);
+    rnr.remote_name_timer = alarm_new("remote_name_request_timer");
 
     /* Initialize BTM component structures */
     btm_inq_vars.Init(); /* Inquiry Database and Structures */
@@ -198,6 +200,7 @@ typedef struct tBTM_CB {
   }
 
   void Free() {
+    alarm_free(rnr.remote_name_timer);
     history_.reset();
 
     devcb.Free();

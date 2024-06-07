@@ -300,10 +300,7 @@ struct tBTM_INQUIRY_VAR_ST {
     inq_active = 0;
     registered_for_hci_events = false;
   }
-  void Free() {
-    alarm_free(rnr.remote_name_timer);
-    alarm_free(classic_inquiry_timer);
-  }
+  void Free() { alarm_free(classic_inquiry_timer); }
 };
 
 bool btm_inq_find_bdaddr(const RawAddress& p_bda);
