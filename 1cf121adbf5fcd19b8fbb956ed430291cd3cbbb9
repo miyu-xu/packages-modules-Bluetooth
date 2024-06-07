@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "640fcff8_7c568944",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-06-07T03:46:42Z",
+      "side": 1,
+      "message": "I know that we had agreement on putting this as Floss only, but since we are trying to deprecate TARGET_FLOSS and use aflag instead, I wonder if we can just reused the same flag for HFP qualification 1.9 in this case.",
+      "revId": "1cf121adbf5fcd19b8fbb956ed430291cd3cbbb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
