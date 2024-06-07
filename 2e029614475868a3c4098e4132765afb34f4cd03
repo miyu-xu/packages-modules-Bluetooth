@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "128553ea_e3ab6f35",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-06-07T17:31:37Z",
+      "side": 1,
+      "message": "nit: remove",
+      "range": {
+        "startLine": 7,
+        "startChar": 27,
+        "endLine": 7,
+        "endChar": 29
+      },
+      "revId": "2e029614475868a3c4098e4132765afb34f4cd03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b25796b4_0575ab9b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/HidHostTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-06-07T17:31:37Z",
+      "side": 1,
+      "message": "Now this looks like more a disconnection test.",
+      "revId": "2e029614475868a3c4098e4132765afb34f4cd03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
