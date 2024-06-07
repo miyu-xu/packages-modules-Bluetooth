@@ -313,6 +313,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2559ad30_b2dcca2e",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-06-07T09:20:02Z",
+      "side": 1,
+      "message": "Nevermind, it was used because previous implementation was caching the results, we don\u0027t do it anymore...",
+      "parentUuid": "87291c77_7912648e",
+      "range": {
+        "startLine": 339,
+        "startChar": 43,
+        "endLine": 339,
+        "endChar": 57
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7dfd4a14_6d65339f",
@@ -368,6 +392,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "7dfd4a14_6d65339f",
+      "range": {
+        "startLine": 352,
+        "startChar": 8,
+        "endLine": 355,
+        "endChar": 9
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e2e04fa_a8bc40d7",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-06-07T09:20:02Z",
+      "side": 1,
+      "message": "It doesn\u0027t build without it though",
+      "parentUuid": "e67594a4_0aef6cbc",
       "range": {
         "startLine": 352,
         "startChar": 8,
@@ -528,6 +576,30 @@
       "side": 1,
       "message": "No I just didn\u0027t do it yet, that\u0027s why I didn\u0027t mark it as resolved!",
       "parentUuid": "241a1244_0203654e",
+      "range": {
+        "startLine": 667,
+        "startChar": 0,
+        "endLine": 667,
+        "endChar": 70
+      },
+      "revId": "f0673c2f6983c9b0c0397284b2b2386179c745e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af863bdd_59bfd1c4",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-06-07T09:20:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4844a236_f5334a31",
       "range": {
         "startLine": 667,
         "startChar": 0,

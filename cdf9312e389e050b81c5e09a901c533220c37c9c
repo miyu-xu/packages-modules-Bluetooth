@@ -22,6 +22,30 @@
       },
       "revId": "cdf9312e389e050b81c5e09a901c533220c37c9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31f36b00_43c5c874",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-06-07T09:20:02Z",
+      "side": 1,
+      "message": "Done, moved the flag inner class (a new class is created everytime), added it for onError also, and left the Foler/Metadata creation in onChildrenLoaded",
+      "parentUuid": "63b2e7fb_681dd216",
+      "range": {
+        "startLine": 323,
+        "startChar": 8,
+        "endLine": 373,
+        "endChar": 9
+      },
+      "revId": "cdf9312e389e050b81c5e09a901c533220c37c9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
