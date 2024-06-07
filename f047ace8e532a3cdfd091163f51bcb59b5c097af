@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "18acb111_2bb8c0f2",
+        "filename": "android/pandora/server/src/A2dp.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-07T00:20:52Z",
+      "side": 1,
+      "message": "That will become essential once we start writing multi device tests; or is the expected behavior that we suspend the stream first then start with a different device ?",
+      "parentUuid": "f750a1ff_3af5b253",
+      "revId": "f047ace8e532a3cdfd091163f51bcb59b5c097af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d52a4448_f0d7ea98",
         "filename": "android/pandora/test/a2dp_test.py",
         "patchSetId": 2
@@ -55,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d69e9a3a_9f9f26fc",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-07T00:20:52Z",
+      "side": 1,
+      "message": "Sure, but might as well leave it for documentation.",
+      "parentUuid": "d52a4448_f0d7ea98",
+      "revId": "f047ace8e532a3cdfd091163f51bcb59b5c097af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a4b7b839_688b315c",
         "filename": "android/pandora/test/a2dp_test.py",
         "patchSetId": 2
@@ -78,6 +114,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "999aa0b7_c891136a",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-07T00:20:52Z",
+      "side": 1,
+      "message": "Suggested edit looks incorrect",
+      "parentUuid": "a4b7b839_688b315c",
+      "range": {
+        "startLine": 189,
+        "startChar": 16,
+        "endLine": 194,
+        "endChar": 17
+      },
+      "revId": "f047ace8e532a3cdfd091163f51bcb59b5c097af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "31abcae0_8fd60fdc",
         "filename": "android/pandora/test/a2dp_test.py",
         "patchSetId": 2
@@ -89,6 +149,24 @@
       "writtenOn": "2024-06-07T00:09:42Z",
       "side": 1,
       "message": "Please avoid magic numbers",
+      "revId": "f047ace8e532a3cdfd091163f51bcb59b5c097af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd3705d5_0730b438",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-07T00:20:52Z",
+      "side": 1,
+      "message": "The service record handle has an arbitrary value.",
+      "parentUuid": "31abcae0_8fd60fdc",
       "revId": "f047ace8e532a3cdfd091163f51bcb59b5c097af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -141,6 +219,30 @@
       "writtenOn": "2024-06-07T00:09:42Z",
       "side": 1,
       "message": "There is only one reference device, we don\u0027t really need to precise the `ref1` here.",
+      "range": {
+        "startLine": 237,
+        "startChar": 6,
+        "endLine": 257,
+        "endChar": 0
+      },
+      "revId": "f047ace8e532a3cdfd091163f51bcb59b5c097af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e48909f5_4bff5097",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-07T00:20:52Z",
+      "side": 1,
+      "message": "I am anticipating having tests with two devices.",
+      "parentUuid": "de9a84a5_59912088",
       "range": {
         "startLine": 237,
         "startChar": 6,
