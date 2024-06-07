@@ -3,6 +3,7 @@ use crate::state_machine::{RealHciIndex, VirtualHciIndex};
 use log::LevelFilter;
 use serde_json::{Map, Value};
 use std::convert::TryInto;
+use std::io::BufRead;
 use std::path::Path;
 
 // Directory for Bluetooth hci devices
@@ -22,6 +23,10 @@ const FLOSS_SYSPROPS_OVERRIDE_DIR: &str = "/var/lib/bluetooth/sysprops.conf.d";
 /// entry. It is also used by the user-space crash reporter to enable/disable
 /// parsing of the devcoredump.
 const FLOSS_COREDUMP_CONF_PATH: &str = "/var/run/bluetooth/coredump_disabled";
+
+const FLOSS_CONTROLLER_ALLOW_LIST: &str = "/etc/bluetooth/floss_controller_allowlist.conf";
+
+const FLOSS_AVAILABILITY: &str = "/var/lib/bluetooth/floss_availability";
 
 /// Key used for default adapter entry.
 const DEFAULT_ADAPTER_KEY: &str = "default_adapter";
@@ -48,6 +53,17 @@ pub fn write_floss_enabled(enabled: bool) -> bool {
         match enabled {
             true => "floss",
             _ => "bluez",
+        },
+    )
+    .is_ok()
+}
+
+pub fn write_floss_available(available: bool) -> bool {
+    std::fs::write(
+        FLOSS_AVAILABILITY,
+        match available {
+            true => "1",
+            _ => "0",
         },
     )
     .is_ok()
@@ -178,6 +194,58 @@ pub fn get_devpath_for_hci(hci: RealHciIndex) -> Option<String> {
             None
         }
     }
+}
+
+pub fn get_vid_pid_for_hci(hci: RealHciIndex) -> Option<(u16, u16)> {
+    let modalias_path = format!("{}/hci{}/device/modalias", HCI_DEVICES_DIR, hci.to_i32());
+
+    let modalias_content = match std::fs::read_to_string(modalias_path) {
+        Ok(content) => content,
+        Err(e) => {
+            log::error!("Failed to read modalias file: {}", e);
+            return None;
+        }
+    };
+
+    // Parse VID and PID
+    if let Some(captures) = regex::Regex::new(r".*v([0-9a-fA-F]{4})p([0-9a-fA-F]{4})")
+        .unwrap()
+        .captures(&modalias_content)
+    {
+        let vid = u16::from_str_radix(&captures[1], 16);
+        let pid = u16::from_str_radix(&captures[2], 16);
+
+        if vid.is_ok() && pid.is_ok() {
+            Some((vid.unwrap(), pid.unwrap()))
+        } else {
+            log::error!("Invalid VID or PID format");
+            None
+        }
+    } else {
+        log::error!("VID/PID pattern not found in modalias");
+        None
+    }
+}
+
+pub fn is_controller_allowlisted(vid: u16, pid: u16) -> bool {
+    if let Ok(file) = std::fs::File::open(FLOSS_CONTROLLER_ALLOW_LIST) {
+        let reader = std::io::BufReader::new(file);
+        for line_result in reader.lines() {
+            if let Ok(line) = line_result {
+                let parts: Vec<&str> = line.split(':').collect();
+                if parts.len() == 2 {
+                    if let (Ok(parsed_vid), Ok(parsed_pid)) =
+                        (u16::from_str_radix(parts[0], 16), u16::from_str_radix(parts[1], 16))
+                    {
+                        if parsed_vid == vid && parsed_pid == pid {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    false
 }
 
 pub fn list_pid_files(pid_dir: &str) -> Vec<String> {

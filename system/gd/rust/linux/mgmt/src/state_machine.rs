@@ -355,6 +355,7 @@ fn configure_pid(pid_tx: mpsc::Sender<Message>) {
 fn configure_hci(hci_tx: mpsc::Sender<Message>) {
     let mut btsock = BtSocket::new();
 
+    config_util::write_floss_available(false);
     // If the bluetooth socket isn't available, the kernel module is not loaded and we can't
     // actually listen to it for index added/removed events.
     match btsock.open() {
@@ -698,6 +699,20 @@ pub async fn mainloop(
                     }
 
                     AdapterStateActions::HciDevicePresence(devpath, i, present) => {
+                        if let Some((vid, pid)) = config_util::get_vid_pid_for_hci(*i) {
+                            if config_util::is_controller_allowlisted(vid, pid) {
+                                config_util::write_floss_available(true);
+                            } else {
+                                log::info!(
+                                    "Non-allowlisted controller found: VID: {:04X}, PID: {:04X}",
+                                    vid,
+                                    pid
+                                );
+                            }
+                        } else {
+                            log::error!("Failed to get VID/PID for HCI {}", *i);
+                        }
+
                         let previous_real_hci = match context
                             .state_machine
                             .get_virtual_id_by_devpath(devpath.clone())
