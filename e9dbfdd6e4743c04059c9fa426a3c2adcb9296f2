@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4360a923_ea090cac",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1554,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-06-08T00:48:48Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "40d2c967_bea45148",
+      "range": {
+        "startLine": 1554,
+        "startChar": 7,
+        "endLine": 1554,
+        "endChar": 14
+      },
+      "revId": "e9dbfdd6e4743c04059c9fa426a3c2adcb9296f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5d577a95_e15ca152",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-06-08T00:09:44Z",
       "side": 1,
       "message": "check scanner",
+      "range": {
+        "startLine": 1574,
+        "startChar": 7,
+        "endLine": 1574,
+        "endChar": 14
+      },
+      "revId": "e9dbfdd6e4743c04059c9fa426a3c2adcb9296f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb095b38_abb25f82",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1574,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-06-08T00:48:48Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "5d577a95_e15ca152",
       "range": {
         "startLine": 1574,
         "startChar": 7,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03a67fb4_f99d61bc",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1626,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-06-08T00:48:48Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "4e91f3b4_91ed0d2f",
+      "range": {
+        "startLine": 1626,
+        "startChar": 7,
+        "endLine": 1626,
+        "endChar": 14
+      },
+      "revId": "e9dbfdd6e4743c04059c9fa426a3c2adcb9296f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f7f32bc_bbdc6b73",
@@ -100,6 +172,30 @@
       "writtenOn": "2024-06-08T00:09:44Z",
       "side": 1,
       "message": "check scanner",
+      "range": {
+        "startLine": 1636,
+        "startChar": 7,
+        "endLine": 1636,
+        "endChar": 14
+      },
+      "revId": "e9dbfdd6e4743c04059c9fa426a3c2adcb9296f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e20ee5b_9e678143",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1636,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-06-08T00:48:48Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "0f7f32bc_bbdc6b73",
       "range": {
         "startLine": 1636,
         "startChar": 7,
@@ -133,6 +229,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "803c873c_a7fc1d0e",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1657,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-06-08T00:48:48Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "0250d8bb_036051be",
+      "range": {
+        "startLine": 1657,
+        "startChar": 7,
+        "endLine": 1657,
+        "endChar": 14
+      },
+      "revId": "e9dbfdd6e4743c04059c9fa426a3c2adcb9296f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e46b8a9_e9177a08",
@@ -146,6 +266,30 @@
       "writtenOn": "2024-06-08T00:09:44Z",
       "side": 1,
       "message": "check scanner ?",
+      "range": {
+        "startLine": 1818,
+        "startChar": 7,
+        "endLine": 1818,
+        "endChar": 14
+      },
+      "revId": "e9dbfdd6e4743c04059c9fa426a3c2adcb9296f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a9bb091_2efd5ca4",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1818,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-06-08T00:48:48Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "5e46b8a9_e9177a08",
       "range": {
         "startLine": 1818,
         "startChar": 7,
@@ -179,6 +323,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc5436a9_2537c731",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1835,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-06-08T00:48:48Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "f052e885_1af54e71",
+      "range": {
+        "startLine": 1835,
+        "startChar": 7,
+        "endLine": 1835,
+        "endChar": 14
+      },
+      "revId": "e9dbfdd6e4743c04059c9fa426a3c2adcb9296f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97cd2433_17bcbaff",
@@ -192,6 +360,30 @@
       "writtenOn": "2024-06-08T00:09:44Z",
       "side": 1,
       "message": "Check scanner instead ?",
+      "range": {
+        "startLine": 1881,
+        "startChar": 7,
+        "endLine": 1881,
+        "endChar": 14
+      },
+      "revId": "e9dbfdd6e4743c04059c9fa426a3c2adcb9296f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "203b1ac5_ea0ea897",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1881,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-06-08T00:48:48Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "97cd2433_17bcbaff",
       "range": {
         "startLine": 1881,
         "startChar": 7,
@@ -225,6 +417,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ce57e67_c289d2df",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1903,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-06-08T00:48:48Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "d4084cda_01b4815b",
+      "range": {
+        "startLine": 1903,
+        "startChar": 7,
+        "endLine": 1903,
+        "endChar": 14
+      },
+      "revId": "e9dbfdd6e4743c04059c9fa426a3c2adcb9296f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8883e637_6742d219",
@@ -248,6 +464,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "42504732_3adb3123",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1912,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-06-08T00:48:48Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "8883e637_6742d219",
+      "range": {
+        "startLine": 1912,
+        "startChar": 7,
+        "endLine": 1912,
+        "endChar": 14
+      },
+      "revId": "e9dbfdd6e4743c04059c9fa426a3c2adcb9296f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43121448_10ee9ae0",
@@ -261,6 +501,30 @@
       "writtenOn": "2024-06-08T00:09:44Z",
       "side": 1,
       "message": "scanner",
+      "range": {
+        "startLine": 1920,
+        "startChar": 7,
+        "endLine": 1920,
+        "endChar": 14
+      },
+      "revId": "e9dbfdd6e4743c04059c9fa426a3c2adcb9296f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b05978f5_bb978df7",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1920,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-06-08T00:48:48Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "43121448_10ee9ae0",
       "range": {
         "startLine": 1920,
         "startChar": 7,
