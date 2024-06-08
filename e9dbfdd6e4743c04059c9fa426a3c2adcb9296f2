@@ -1,0 +1,274 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4dfd88c0_b2b8fa35",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-08T00:09:44Z",
+      "side": 1,
+      "message": "Beside the null check, lgtm.\n\nA good stretch would be to have a jni file specific to scan",
+      "revId": "e9dbfdd6e4743c04059c9fa426a3c2adcb9296f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40d2c967_bea45148",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1554,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-08T00:09:44Z",
+      "side": 1,
+      "message": "check scanner",
+      "range": {
+        "startLine": 1554,
+        "startChar": 7,
+        "endLine": 1554,
+        "endChar": 14
+      },
+      "revId": "e9dbfdd6e4743c04059c9fa426a3c2adcb9296f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d577a95_e15ca152",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1574,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-08T00:09:44Z",
+      "side": 1,
+      "message": "check scanner",
+      "range": {
+        "startLine": 1574,
+        "startChar": 7,
+        "endLine": 1574,
+        "endChar": 14
+      },
+      "revId": "e9dbfdd6e4743c04059c9fa426a3c2adcb9296f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e91f3b4_91ed0d2f",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1626,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-08T00:09:44Z",
+      "side": 1,
+      "message": "check scanner",
+      "range": {
+        "startLine": 1626,
+        "startChar": 7,
+        "endLine": 1626,
+        "endChar": 14
+      },
+      "revId": "e9dbfdd6e4743c04059c9fa426a3c2adcb9296f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f7f32bc_bbdc6b73",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1636,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-08T00:09:44Z",
+      "side": 1,
+      "message": "check scanner",
+      "range": {
+        "startLine": 1636,
+        "startChar": 7,
+        "endLine": 1636,
+        "endChar": 14
+      },
+      "revId": "e9dbfdd6e4743c04059c9fa426a3c2adcb9296f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0250d8bb_036051be",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1657,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-08T00:09:44Z",
+      "side": 1,
+      "message": "check scanner",
+      "range": {
+        "startLine": 1657,
+        "startChar": 7,
+        "endLine": 1657,
+        "endChar": 14
+      },
+      "revId": "e9dbfdd6e4743c04059c9fa426a3c2adcb9296f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e46b8a9_e9177a08",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1818,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-08T00:09:44Z",
+      "side": 1,
+      "message": "check scanner ?",
+      "range": {
+        "startLine": 1818,
+        "startChar": 7,
+        "endLine": 1818,
+        "endChar": 14
+      },
+      "revId": "e9dbfdd6e4743c04059c9fa426a3c2adcb9296f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f052e885_1af54e71",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1835,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-08T00:09:44Z",
+      "side": 1,
+      "message": "Check scanner ?",
+      "range": {
+        "startLine": 1835,
+        "startChar": 7,
+        "endLine": 1835,
+        "endChar": 14
+      },
+      "revId": "e9dbfdd6e4743c04059c9fa426a3c2adcb9296f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97cd2433_17bcbaff",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1881,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-08T00:09:44Z",
+      "side": 1,
+      "message": "Check scanner instead ?",
+      "range": {
+        "startLine": 1881,
+        "startChar": 7,
+        "endLine": 1881,
+        "endChar": 14
+      },
+      "revId": "e9dbfdd6e4743c04059c9fa426a3c2adcb9296f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4084cda_01b4815b",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1903,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-08T00:09:44Z",
+      "side": 1,
+      "message": "scanner",
+      "range": {
+        "startLine": 1903,
+        "startChar": 7,
+        "endLine": 1903,
+        "endChar": 14
+      },
+      "revId": "e9dbfdd6e4743c04059c9fa426a3c2adcb9296f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8883e637_6742d219",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1912,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-08T00:09:44Z",
+      "side": 1,
+      "message": "scanner",
+      "range": {
+        "startLine": 1912,
+        "startChar": 7,
+        "endLine": 1912,
+        "endChar": 14
+      },
+      "revId": "e9dbfdd6e4743c04059c9fa426a3c2adcb9296f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43121448_10ee9ae0",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 1920,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-08T00:09:44Z",
+      "side": 1,
+      "message": "scanner",
+      "range": {
+        "startLine": 1920,
+        "startChar": 7,
+        "endLine": 1920,
+        "endChar": 14
+      },
+      "revId": "e9dbfdd6e4743c04059c9fa426a3c2adcb9296f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
