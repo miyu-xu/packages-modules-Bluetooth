@@ -19,9 +19,12 @@ package com.android.bluetooth.opp;
 import static android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_ENABLED;
 import static android.content.pm.PackageManager.DONT_KILL_APP;
 
+import static com.google.common.truth.Truth.assertThat;
+
 import android.content.ComponentName;
 import android.content.ContentValues;
 import android.content.Context;
+import android.platform.test.flag.junit.SetFlagsRule;
 
 import androidx.test.annotation.UiThreadTest;
 import androidx.test.filters.SmallTest;
@@ -29,6 +32,7 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.flags.Flags;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -39,6 +43,7 @@ import org.mockito.junit.MockitoRule;
 @SmallTest
 @RunWith(AndroidJUnit4.class)
 public class BluetoothOppServiceCleanupTest {
+    @Rule public final SetFlagsRule mSetFlagsRule = new SetFlagsRule();
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     private final Context mTargetContext =
@@ -69,6 +74,27 @@ public class BluetoothOppServiceCleanupTest {
         } finally {
             mTargetContext.getContentResolver().delete(BluetoothShare.CONTENT_URI, null, null);
         }
+    }
+
+    @Test
+    @UiThreadTest
+    public void testContentObserverIsMarkedAsUnregisteredAfterStopCalled() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_OPP_START_ACTIVITY_DIRECTLY_FROM_NOTIFICATION);
+
+        AdapterService adapterService = new AdapterService(mTargetContext);
+
+        // Don't need to disable again since it will be handled in OppService.stop
+        enableBtOppProvider();
+
+        BluetoothOppService service = new BluetoothOppService(adapterService);
+        service.start();
+        service.setAvailable(true);
+
+        final BluetoothOppService.BluetoothShareContentObserver observer = service.mObserver;
+        service.stop();
+        assertThat(observer.mUnregistered).isTrue();
+
+        service.cleanup();
     }
 
     private void enableBtOppProvider() {
