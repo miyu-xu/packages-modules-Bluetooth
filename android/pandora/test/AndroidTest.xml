@@ -28,6 +28,8 @@
     <target_preparer class="com.android.tradefed.targetprep.RunCommandTargetPreparer">
         <option name="run-command" value="cmd bluetooth_manager enable" />
         <option name="run-command" value="cmd bluetooth_manager wait-for-state:STATE_ON" />
+        <option name="run-command" value="setprop persist.bluetooth.btsnooplogmode full" />
+        <option name="run-command" value="setprop persist.bluetooth.btsnoopsize 0xfffffffffffffff" />
     </target_preparer>
     <target_preparer class="com.android.tradefed.targetprep.PythonVirtualenvPreparer">
         <option name="dep-module" value="grpcio==1.51.1" />
@@ -38,6 +40,11 @@
          <option name="set-property" key="persist.log.tag.bluetooth" value="VERBOSE"/>
          <option name="restore-properties" value="true"/>
     </target_preparer>
+    <metrics_collector class="com.android.tradefed.device.metric.FilePullerLogCollector">
+        <option name="clean-up" value="true" />
+        <option name="collect-on-run-ended-only" value="false" />
+        <option name="directory-keys" value="/data/misc/bluetooth/logs" />
+    </metrics_collector>
     <test class="com.android.tradefed.testtype.mobly.MoblyBinaryHostTest">
         <option name="mobly-par-file-name" value="avatar" />
         <option name="mobly-config-file-name" value="config.yml" />
