@@ -158,6 +158,30 @@
       },
       "revId": "826a6038812a5786d607b812e82afb6a081a5b53",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66304977_09695bed",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-10T17:48:31Z",
+      "side": 1,
+      "message": "If mDisconnectRunnable stop posting but call _disconnect instead and the disconnect post on _disconnect, you are optimizing the number of post by only posting when coming from an external caller.\n\nsomething like:\n\n```suggestion\n   private final Runnable mDisconnectRunnable \u003d () -\u003e _disconnect();\n\n    public void disconnect() {\n        mRunHandler.post(() -\u003e _disconnect());\n    }\n\n    private void _disconnect() {\n        mRunHandler.removeCallbacks(mDisconnectRunnable);\n        // [etc…]\n    }\n```",
+      "parentUuid": "bfe8873e_cec33152",
+      "range": {
+        "startLine": 243,
+        "startChar": 16,
+        "endLine": 243,
+        "endChar": 26
+      },
+      "revId": "826a6038812a5786d607b812e82afb6a081a5b53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
