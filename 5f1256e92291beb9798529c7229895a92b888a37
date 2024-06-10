@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1739a739_224d19be",
+        "filename": "system/btif/include/btif_hh.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-10T16:39:21Z",
+      "side": 1,
+      "message": "This also belongs in the uhid control block",
+      "revId": "5f1256e92291beb9798529c7229895a92b888a37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
