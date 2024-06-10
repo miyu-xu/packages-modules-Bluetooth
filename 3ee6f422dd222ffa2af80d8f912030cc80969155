@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "add18c76_234305d9",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-10T17:36:26Z",
+      "side": 1,
+      "message": "Should it be removed from the `bt_gatt.h` file ?",
+      "range": {
+        "startLine": 202,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 37
+      },
+      "revId": "3ee6f422dd222ffa2af80d8f912030cc80969155",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eee3a05f_ecb3508e",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 1284,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-10T17:36:26Z",
+      "side": 1,
+      "message": "What about this one ? Should we move them to the scanning native init too ?",
+      "range": {
+        "startLine": 1284,
+        "startChar": 2,
+        "endLine": 1284,
+        "endChar": 75
+      },
+      "revId": "3ee6f422dd222ffa2af80d8f912030cc80969155",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
