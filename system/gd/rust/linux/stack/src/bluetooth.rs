@@ -17,7 +17,7 @@ use bt_topshim::{
     },
     profiles::sdp::{BtSdpRecord, Sdp, SdpCallbacks, SdpCallbacksDispatcher},
     profiles::ProfileConnectionState,
-    topstack,
+    sysprop, topstack,
 };
 
 use bt_utils::array_utils;
@@ -262,6 +262,9 @@ pub trait IBluetooth {
     /// Returns whether the remote device is a dual mode audio sink device (supports both classic and
     /// LE Audio sink roles).
     fn is_dual_mode_audio_sink_device(&self, device: BluetoothDevice) -> bool;
+
+    /// Returns whether the remote device is LE audio stable.
+    fn is_le_audio_stable(&self, device: BluetoothDevice) -> bool;
 }
 
 /// Adapter API for Bluetooth qualification and verification.
@@ -2997,6 +3000,20 @@ impl IBluetooth for Bluetooth {
         media.get_group_devices(group_id).iter().any(|addr| {
             is_dual_mode(self.get_remote_uuids(BluetoothDevice::new(*addr, "".to_string())))
         })
+    }
+
+    fn is_le_audio_stable(&self, device: BluetoothDevice) -> bool {
+        let model_name =
+            match self.get_remote_device_property(&device, &BtPropertyType::RemoteModelName) {
+                Some(BluetoothProperty::RemoteModelName(name)) => name,
+                _ => {
+                    return false;
+                }
+            };
+
+        sysprop::get_string(sysprop::PropertyString::LeAudioAllowList)
+            .split(",")
+            .any(|model| model == model_name)
     }
 }
 

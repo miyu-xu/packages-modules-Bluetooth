@@ -770,6 +770,11 @@ impl IBluetooth for IBluetoothDBus {
     fn is_dual_mode_audio_sink_device(&self, device: BluetoothDevice) -> bool {
         dbus_generated!()
     }
+
+    #[dbus_method("IsLEAudioStable", DBusLog::Disable)]
+    fn is_le_audio_stable(&self, device: BluetoothDevice) -> bool {
+        dbus_generated!()
+    }
 }
 
 impl_dbus_arg_enum!(SocketType);
