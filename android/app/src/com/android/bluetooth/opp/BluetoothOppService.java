@@ -109,7 +109,9 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
         (byte) 0xFF /* Any type of object */
     };
 
-    private class BluetoothShareContentObserver extends ContentObserver {
+    @VisibleForTesting
+    class BluetoothShareContentObserver extends ContentObserver {
+        boolean mUnregistered = false;
 
         BluetoothShareContentObserver() {
             super(new Handler());
@@ -118,6 +120,11 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
         @Override
         public void onChange(boolean selfChange) {
             Log.v(TAG, "ContentObserver received notification");
+
+            if (Flags.oppIgnoreContentObserverAfterServiceStop() && mUnregistered) {
+                Log.d(TAG, "onChange() called after stop() is called.");
+                return;
+            }
             updateFromProvider();
         }
     }
@@ -125,7 +132,7 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
     private static final String TAG = "BtOppService";
 
     /** Observer to get notified when the content observer's data changes */
-    private BluetoothShareContentObserver mObserver;
+    @VisibleForTesting BluetoothShareContentObserver mObserver;
 
     /** Class to handle Notification Manager updates */
     private BluetoothOppNotification mNotifier;
@@ -553,6 +560,9 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
     private void unregisterReceivers() {
         try {
             if (mObserver != null) {
+                if (Flags.oppIgnoreContentObserverAfterServiceStop()) {
+                    mObserver.mUnregistered = true;
+                }
                 getContentResolver().unregisterContentObserver(mObserver);
                 mObserver = null;
             }
