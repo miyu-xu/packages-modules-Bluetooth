@@ -118,6 +118,11 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
         @Override
         public void onChange(boolean selfChange) {
             Log.v(TAG, "ContentObserver received notification");
+
+            if (Flags.oppIgnoreContentObserverAfterServiceStop() && mObserver != this) {
+                Log.d(TAG, "onChange() called after stop() is called.");
+                return;
+            }
             updateFromProvider();
         }
     }
