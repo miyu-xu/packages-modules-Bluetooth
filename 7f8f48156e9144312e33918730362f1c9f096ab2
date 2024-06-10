@@ -16,6 +16,23 @@
       "message": "Adding Thomas to do a first pass API review as part of the shadowing process.",
       "revId": "7f8f48156e9144312e33918730362f1c9f096ab2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8161253_ea253d07",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-06-10T18:27:05Z",
+      "side": 1,
+      "message": "Adds a (missing) `@RequiresPermission` annotation to an API calling `getOffloadedTransportDiscoveryDataScanSupported` which enforces this permission (https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothAdapter.java;l\u003d5599?q\u003dgetOffloadedTransportDiscoveryDataScanSupported\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%2Fmain%20b:main).",
+      "revId": "7f8f48156e9144312e33918730362f1c9f096ab2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
