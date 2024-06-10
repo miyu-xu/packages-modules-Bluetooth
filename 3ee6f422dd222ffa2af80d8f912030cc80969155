@@ -26,6 +26,53 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fd976283_f925ee56",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-06-10T20:12:16Z",
+      "side": 1,
+      "message": "Set to NULL to be consistent with the rest of these static variables.",
+      "range": {
+        "startLine": 202,
+        "startChar": 28,
+        "endLine": 202,
+        "endChar": 36
+      },
+      "revId": "3ee6f422dd222ffa2af80d8f912030cc80969155",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3f2df00_5a04652d",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-06-10T20:12:16Z",
+      "side": 1,
+      "message": "I believe Omer tried that and the reference there is used in the rust code, here:\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/gd/rust/topshim/src/profiles/gatt.rs;l\u003d1470;drc\u003d89f48ed30064180765f965efb79e62f51340a8f8",
+      "parentUuid": "add18c76_234305d9",
+      "range": {
+        "startLine": 202,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 37
+      },
+      "revId": "3ee6f422dd222ffa2af80d8f912030cc80969155",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eee3a05f_ecb3508e",
         "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
         "patchSetId": 5
@@ -37,6 +84,30 @@
       "writtenOn": "2024-06-10T17:36:26Z",
       "side": 1,
       "message": "What about this one ? Should we move them to the scanning native init too ?",
+      "range": {
+        "startLine": 1284,
+        "startChar": 2,
+        "endLine": 1284,
+        "endChar": 75
+      },
+      "revId": "3ee6f422dd222ffa2af80d8f912030cc80969155",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9820040_7d29df94",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 1284,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-06-10T20:12:16Z",
+      "side": 1,
+      "message": "Yes, there should be no more references to sGattIf-\u003escanner. Moving to scanInitializeNative is correct.\n\nIdeally we\u0027d create a new jni file for scanning, but that might be too many changes for this CL.",
+      "parentUuid": "eee3a05f_ecb3508e",
       "range": {
         "startLine": 1284,
         "startChar": 2,
