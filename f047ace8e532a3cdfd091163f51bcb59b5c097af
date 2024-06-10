@@ -196,6 +196,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3ab2c1f_1865d7c1",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-10T18:13:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ffbba53_544dc62d",
+      "range": {
+        "startLine": 189,
+        "startChar": 16,
+        "endLine": 194,
+        "endChar": 17
+      },
+      "revId": "f047ace8e532a3cdfd091163f51bcb59b5c097af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "31abcae0_8fd60fdc",
@@ -245,6 +269,24 @@
       "side": 1,
       "message": "I see, could we precise it with a comment ?",
       "parentUuid": "dd3705d5_0730b438",
+      "revId": "f047ace8e532a3cdfd091163f51bcb59b5c097af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abf89803_cccbeb10",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-10T18:13:56Z",
+      "side": 1,
+      "message": "That\u0027s not very useful...",
+      "parentUuid": "5b9e8374_b111d01a",
       "revId": "f047ace8e532a3cdfd091163f51bcb59b5c097af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -363,6 +405,30 @@
       "side": 1,
       "message": "That\u0027s sounds ok for `self.ref1`. But could we rename `dut_ref1` and `ref1_dut` to `dut_ref` and `ref_dut` since there is only one ref in this test ?",
       "parentUuid": "e48909f5_4bff5097",
+      "range": {
+        "startLine": 237,
+        "startChar": 6,
+        "endLine": 257,
+        "endChar": 0
+      },
+      "revId": "f047ace8e532a3cdfd091163f51bcb59b5c097af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6e93ddc_3b3290ba",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-10T18:13:56Z",
+      "side": 1,
+      "message": "I am accessing `self.ref1.*` for some actions, it is clearer to have the same reference everywhere",
+      "parentUuid": "7cbfbc38_4f010539",
       "range": {
         "startLine": 237,
         "startChar": 6,
