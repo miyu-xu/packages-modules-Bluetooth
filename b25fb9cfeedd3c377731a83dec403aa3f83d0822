@@ -22,6 +22,30 @@
       },
       "revId": "b25fb9cfeedd3c377731a83dec403aa3f83d0822",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "808d3a09_1273429e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3023,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-06-10T09:27:54Z",
+      "side": 1,
+      "message": "@wescande@google.com I\u0027m a bit confused about this warning... do you see in this CL the exact object that this checker is complaining about ?",
+      "parentUuid": "6ccd43ae_524e597b",
+      "range": {
+        "startLine": 3023,
+        "startChar": 17,
+        "endLine": 3023,
+        "endChar": 44
+      },
+      "revId": "b25fb9cfeedd3c377731a83dec403aa3f83d0822",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
