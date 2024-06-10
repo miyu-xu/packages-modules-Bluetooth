@@ -6184,10 +6184,12 @@ class SourceCallbacksImpl : public LeAudioSourceAudioHalClient::Callbacks {
     if (instance) instance->OnAudioDataReady(data);
   }
   void OnAudioSuspend(void) override {
+    log::info("MICHAL LeAudioSourceAudioHalClient OnAudioSuspend");
     if (instance) instance->OnLocalAudioSourceSuspend();
   }
 
   void OnAudioResume(void) override {
+    log::info("MICHAL LeAudioSourceAudioHalClient OnAudioResume");
     if (instance) instance->OnLocalAudioSourceResume();
   }
 
@@ -6202,9 +6204,11 @@ class SourceCallbacksImpl : public LeAudioSourceAudioHalClient::Callbacks {
 class SinkCallbacksImpl : public LeAudioSinkAudioHalClient::Callbacks {
  public:
   void OnAudioSuspend(void) override {
+    log::info("MICHAL LeAudioSinkAudioHalClient OnAudioSuspend");
     if (instance) instance->OnLocalAudioSinkSuspend();
   }
   void OnAudioResume(void) override {
+    log::info("MICHAL LeAudioSinkAudioHalClient OnAudioResume");
     if (instance) instance->OnLocalAudioSinkResume();
   }
 

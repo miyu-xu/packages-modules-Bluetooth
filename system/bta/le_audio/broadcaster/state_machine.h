@@ -129,9 +129,10 @@ class BroadcastStateMachine : public StateMachine<5> {
     START = 0,
     SUSPEND,
     STOP,
+    RESUME,
   };
   static const std::underlying_type<Message>::type MESSAGE_COUNT =
-      static_cast<std::underlying_type<Message>::type>(Message::STOP) + 1;
+      static_cast<std::underlying_type<Message>::type>(Message::RESUME) + 1;
 
   enum class State : uint8_t {
     STOPPED = 0,

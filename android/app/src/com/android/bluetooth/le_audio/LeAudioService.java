@@ -1330,7 +1330,7 @@ public class LeAudioService extends ProfileService {
             return false;
         }
 
-        return descriptor.mState.equals(LeAudioStackEvent.BROADCAST_STATE_STREAMING);
+        return descriptor.mState.equals(LeAudioStackEvent.BROADCAST_STATE_PAUSED);
     }
 
     /**
@@ -3394,6 +3394,31 @@ public class LeAudioService extends ProfileService {
 
                     /* Stop here if Broadcast was not in Streaming state before */
                     if (previousState != LeAudioStackEvent.BROADCAST_STATE_STREAMING) {
+                        // Stream resumed
+                        mHandler.post(
+                                () ->
+                                        notifyPlaybackStarted(
+                                                broadcastId,
+                                                BluetoothStatusCodes.REASON_LOCAL_STACK_REQUEST));
+
+                        clearBroadcastTimeoutCallback();
+
+                        //if (previousState == LeAudioStackEvent.BROADCAST_STATE_PAUSED) {
+                            if (bassClientService != null) {
+                                bassClientService.resumeReceiversSourceSynchronization();
+                            }
+                        //}
+
+                        //Notify audio manager
+                        if (mBroadcastDescriptors.values().stream()
+                                .anyMatch(
+                                        d ->
+                                                d.mState.equals(
+                                                        LeAudioStackEvent.BROADCAST_STATE_PAUSED))) {
+                            if (!Objects.equals(device, mActiveBroadcastAudioDevice)) {
+                                updateBroadcastActiveDevice(device, mActiveBroadcastAudioDevice, true);
+                            }
+                        }
                         return;
                     }
 
@@ -3418,31 +3443,31 @@ public class LeAudioService extends ProfileService {
                 case LeAudioStackEvent.BROADCAST_STATE_STREAMING:
                     Log.d(TAG, "Broadcast broadcastId: " + broadcastId + " streaming.");
 
-                    // Stream resumed
-                    mHandler.post(
-                            () ->
-                                    notifyPlaybackStarted(
-                                            broadcastId,
-                                            BluetoothStatusCodes.REASON_LOCAL_STACK_REQUEST));
+                    // //Stream resumed
+                    // mHandler.post(
+                    //         () ->
+                    //                 notifyPlaybackStarted(
+                    //                         broadcastId,
+                    //                         BluetoothStatusCodes.REASON_LOCAL_STACK_REQUEST));
 
-                    clearBroadcastTimeoutCallback();
+                    // clearBroadcastTimeoutCallback();
 
-                    if (previousState == LeAudioStackEvent.BROADCAST_STATE_PAUSED) {
-                        if (bassClientService != null) {
-                            bassClientService.resumeReceiversSourceSynchronization();
-                        }
-                    }
+                    // if (previousState == LeAudioStackEvent.BROADCAST_STATE_PAUSED) {
+                    //     if (bassClientService != null) {
+                    //         bassClientService.resumeReceiversSourceSynchronization();
+                    //     }
+                    // }
 
-                    // Notify audio manager
-                    if (mBroadcastDescriptors.values().stream()
-                            .anyMatch(
-                                    d ->
-                                            d.mState.equals(
-                                                    LeAudioStackEvent.BROADCAST_STATE_STREAMING))) {
-                        if (!Objects.equals(device, mActiveBroadcastAudioDevice)) {
-                            updateBroadcastActiveDevice(device, mActiveBroadcastAudioDevice, true);
-                        }
-                    }
+                    // // Notify audio manager
+                    // if (mBroadcastDescriptors.values().stream()
+                    //         .anyMatch(
+                    //                 d ->
+                    //                         d.mState.equals(
+                    //                                 LeAudioStackEvent.BROADCAST_STATE_STREAMING))) {
+                    //     if (!Objects.equals(device, mActiveBroadcastAudioDevice)) {
+                    //         updateBroadcastActiveDevice(device, mActiveBroadcastAudioDevice, true);
+                    //     }
+                    // }
                     break;
                 default:
                     Log.e(TAG, "Invalid state of broadcast: " + descriptor.mState);

@@ -689,6 +689,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
       return;
     }
 
+      queued_start_broadcast_request_ = broadcast_id;
     if (is_iso_running_) {
       queued_start_broadcast_request_ = broadcast_id;
       return;
@@ -893,7 +894,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     if (!is_iso_running_) {
       if (queued_start_broadcast_request_) {
         auto broadcast_id = *queued_start_broadcast_request_;
-        queued_start_broadcast_request_ = std::nullopt;
+        // queued_start_broadcast_request_ = std::nullopt;
 
         log::info("Start queued broadcast.");
         StartAudioBroadcast(broadcast_id);
@@ -966,7 +967,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
                                           sm.second->GetBroadcastId(),
                                           ToString(sm.second->GetState()));
                              return sm.second->GetState() ==
-                                    BroadcastStateMachine::State::STREAMING;
+                                    BroadcastStateMachine::State::CONFIGURED;
                            });
     }
 
@@ -980,16 +981,14 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
           /* Pass through */
         case BroadcastStateMachine::State::CONFIGURING:
           /* Pass through */
+          break;
         case BroadcastStateMachine::State::CONFIGURED:
           /* Pass through */
-        case BroadcastStateMachine::State::STOPPING:
-          /* Nothing to do here? */
-          break;
-        case BroadcastStateMachine::State::STREAMING:
           if (getStreamerCount() == 1) {
             log::info("Starting AudioHalClient");
 
             if (instance->broadcasts_.count(broadcast_id) != 0) {
+              log::info("Starting AudioHalClient 2");
               const auto& broadcast = instance->broadcasts_.at(broadcast_id);
               const auto& broadcast_config = broadcast->GetBroadcastConfig();
 
@@ -999,15 +998,44 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
               broadcast->SetMuted(false);
               auto is_started = instance->le_audio_source_hal_client_->Start(
                   broadcast_config.GetAudioHalClientConfig(), &audio_receiver_);
+              log::info("Starting AudioHalClient 3");
               if (!is_started) {
+                log::info("Starting AudioHalClient 3 1");
                 /* Audio Source setup failed - stop the broadcast */
                 instance->StopAudioBroadcast(broadcast_id);
                 return;
               }
-
+              log::info("Starting AudioHalClient 4");
               instance->audio_data_path_state_ = AudioDataPathState::ACTIVE;
             }
           }
+          break;
+        case BroadcastStateMachine::State::STOPPING:
+          /* Nothing to do here? */
+          break;
+        case BroadcastStateMachine::State::STREAMING:
+          // if (getStreamerCount() == 1) {
+          //   log::info("Starting AudioHalClient");
+
+          //   if (instance->broadcasts_.count(broadcast_id) != 0) {
+          //     const auto& broadcast = instance->broadcasts_.at(broadcast_id);
+          //     const auto& broadcast_config = broadcast->GetBroadcastConfig();
+
+          //     // Reconfigure encoder instances for the new stream requirements
+          //     audio_receiver_.CheckAndReconfigureEncoders(broadcast_config);
+
+          //     broadcast->SetMuted(false);
+          //     auto is_started = instance->le_audio_source_hal_client_->Start(
+          //         broadcast_config.GetAudioHalClientConfig(), &audio_receiver_);
+          //     if (!is_started) {
+          //       /* Audio Source setup failed - stop the broadcast */
+          //       instance->StopAudioBroadcast(broadcast_id);
+          //       return;
+          //     }
+
+          //     instance->audio_data_path_state_ = AudioDataPathState::ACTIVE;
+          //   }
+          // }
           break;
       };
 
@@ -1229,23 +1257,37 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     }
 
     virtual void OnAudioSuspend(void) override {
-      log::info("");
+      log::info("MICHAL OnAudioSuspend");
       /* TODO: Should we suspend all broadcasts - remove BIGs? */
       if (instance)
         instance->audio_data_path_state_ = AudioDataPathState::SUSPENDED;
     }
 
     virtual void OnAudioResume(void) override {
-      log::info("");
+      log::info("MICHAL OnAudioResume");
       if (!instance) return;
 
       /* TODO: Should we resume all broadcasts - recreate BIGs? */
+      auto broadcast_id = *(instance->queued_start_broadcast_request_);
+      log::info("MICHAL OnAudioResume 2={}", broadcast_id);
+      instance->queued_start_broadcast_request_ = std::nullopt;
+      log::info("MICHAL OnAudioResume 3");
+      instance->broadcasts_[broadcast_id]->ProcessMessage(
+          BroadcastStateMachine::Message::RESUME, nullptr);
+          log::info("MICHAL OnAudioResume 4");
+      bluetooth::le_audio::MetricsCollector::Get()->OnBroadcastStateChanged(
+          true);
+      log::info("MICHAL OnAudioResume 5");
       instance->audio_data_path_state_ = AudioDataPathState::ACTIVE;
+      log::info("MICHAL OnAudioResume 6");
+      // if (!IsAnyoneStreaming()) {
+      //   log::info("MICHAL OnAudioResume 6 1");
+      //   instance->le_audio_source_hal_client_->CancelStreamingRequest();
+      //   return;
+      // }
+      log::info("MICHAL OnAudioResume 7");
 
-      if (!IsAnyoneStreaming()) {
-        instance->le_audio_source_hal_client_->CancelStreamingRequest();
-        return;
-      }
+      instance->broadcasts_[broadcast_id]->SetMuted(false);
 
       instance->le_audio_source_hal_client_->ConfirmStreamingRequest();
     }

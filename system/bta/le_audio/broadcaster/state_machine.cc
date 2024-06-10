@@ -233,6 +233,9 @@ class BroadcastStateMachineImpl : public BroadcastStateMachine {
       case Message::SUSPEND:
         suspend_msg_handlers[StateMachine::GetState()](data);
         break;
+      case Message::RESUME:
+        resume_msg_handlers[StateMachine::GetState()](data);
+        break;
     };
   }
 
@@ -257,7 +260,7 @@ class BroadcastStateMachineImpl : public BroadcastStateMachine {
           /* in CONFIGURING state */
           [](const void*) { /* Do nothing */ },
           /* in CONFIGURED state */
-          [this](const void*) { CreateBig(); },
+          [](const void*) { /* Do nothing */ }, //{ CreateBig(); },
           /* in STOPPING state */
           [](const void*) { /* Do nothing */ },
           /* in STREAMING state */
@@ -629,7 +632,7 @@ namespace broadcaster {
 std::ostream& operator<<(std::ostream& os,
                          const BroadcastStateMachine::Message& msg) {
   static const char* char_value_[BroadcastStateMachine::MESSAGE_COUNT] = {
-      "START", "SUSPEND", "STOP"};
+      "START", "SUSPEND", "STOP", "RESUME"};
   os << char_value_[static_cast<uint8_t>(msg)];
   return os;
 }
