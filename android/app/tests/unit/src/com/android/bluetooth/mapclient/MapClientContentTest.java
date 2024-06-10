@@ -79,7 +79,6 @@ public class MapClientContentTest {
     private BluetoothAdapter mAdapter;
     private BluetoothDevice mTestDevice;
 
-    private Handler mHandler;
     private Bmessage mTestMessage1;
     private Bmessage mTestMessage2;
     private Long mTestMessage1Timestamp = 1234L;
@@ -90,15 +89,10 @@ public class MapClientContentTest {
 
     private VCardEntry mOriginator;
 
-    private ArgumentCaptor<Uri> mUriArgument = ArgumentCaptor.forClass(Uri.class);
-
     private MapClientContent mMapClientContent;
 
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
-    @Mock private AdapterService mAdapterService;
-    @Mock private DatabaseManager mDatabaseManager;
-    @Mock private MapClientService mMockMapClientService;
     @Mock private Context mMockContext;
     @Mock private MapClientContent.Callbacks mCallbacks;
 
