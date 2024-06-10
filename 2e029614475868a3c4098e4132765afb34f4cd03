@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45a61f13_71d58882",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-06-10T14:52:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "128553ea_e3ab6f35",
+      "range": {
+        "startLine": 7,
+        "startChar": 27,
+        "endLine": 7,
+        "endChar": 29
+      },
+      "revId": "2e029614475868a3c4098e4132765afb34f4cd03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b25796b4_0575ab9b",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-06-07T17:31:37Z",
       "side": 1,
       "message": "Now this looks like more a disconnection test.",
+      "revId": "2e029614475868a3c4098e4132765afb34f4cd03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a8e06c2_6ec77583",
+        "filename": "framework/tests/bumble/src/android/bluetooth/HidHostTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1956925
+      },
+      "writtenOn": "2024-06-10T14:52:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b25796b4_0575ab9b",
       "revId": "2e029614475868a3c4098e4132765afb34f4cd03",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
