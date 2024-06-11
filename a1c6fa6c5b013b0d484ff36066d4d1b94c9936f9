@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6e568a25_5917a8b2",
+        "filename": "system/gd/rust/topshim/src/sysprop.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2024-06-11T10:24:09Z",
+      "side": 1,
+      "message": "We already have a Rust API for getting system properties, can you use that? You can either generated typed wrapper with `sysprop_library` (see https://source.android.com/docs/core/architecture/configuration/sysprops-apis#defining_system_properties_libraries) or access them directly through the functions in `rustutils::system_properties`.",
+      "revId": "a1c6fa6c5b013b0d484ff36066d4d1b94c9936f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9b9a6f1a_9eb618b7",
         "filename": "system/gd/rust/topshim/src/sysprop.rs",
         "patchSetId": 1
