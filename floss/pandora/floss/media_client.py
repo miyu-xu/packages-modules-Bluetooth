@@ -442,18 +442,19 @@ class FlossMediaClient(BluetoothMediaCallbacks):
         return True
 
     @utils.glib_call(False)
-    def start_sco_call(self, address, sco_offload, force_cvsd):
+    def start_sco_call(self, address, sco_offload, force_cvsd, listener):
         """Starts the SCO call.
 
         Args:
             address: Device address to make SCO call.
             sco_offload: Whether SCO offload is enabled.
             force_cvsd: True to force the stack to use CVSD even if mSBC is supported.
+            listener: The file descriptor to write the codec id on audio connection.
 
         Returns:
             True on success, False otherwise.
         """
-        self.proxy().StartScoCall(address, sco_offload, force_cvsd)
+        self.proxy().StartScoCall(address, sco_offload, force_cvsd, listener)
         return True
 
     @utils.glib_call(None)
