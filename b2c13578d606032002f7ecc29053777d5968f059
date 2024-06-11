@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6d2098b_fd5be9df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-06-11T18:33:01Z",
+      "side": 1,
+      "message": "Added unit test cases to verify the logging of app scan stats, radio scan stats, adv stats, etc. For radio scan stats test case, it tested multiple scan clients with screen on/off events to check if the correct scan mode and app attribution are logged.\n\nAlso changed the logging of app attribution of `recordScanRadioStart()` from the converted scan mode of the most aggressive app to the original scan mode of that app. We can infer the converted mode from the scan window and interval.",
+      "revId": "b2c13578d606032002f7ecc29053777d5968f059",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
