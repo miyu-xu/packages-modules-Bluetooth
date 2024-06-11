@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cae515a2_29bc2853",
+        "filename": "framework/java/android/bluetooth/BluetoothManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-11T17:13:01Z",
+      "side": 1,
+      "message": "Holding a context or an AttributionSource should be the same level of memory leak4",
+      "parentUuid": "3ad63ba4_cc45cb87",
+      "revId": "a266e91fd39788c27a48fb046f19cb6389a2a91c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa3c854c_0d3fc8d3",
@@ -95,6 +113,24 @@
       "writtenOn": "2024-06-11T17:03:41Z",
       "side": 1,
       "message": "Should we let `BluetoothAdapter` take `Context` so that it won\u0027t have an outdated `AttributionSource` either?",
+      "revId": "a266e91fd39788c27a48fb046f19cb6389a2a91c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4aa5f6c5_38a4d38c",
+        "filename": "framework/java/android/bluetooth/BluetoothManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-11T17:13:01Z",
+      "side": 1,
+      "message": "This is currently not possible because robolectric depends on the AttributionSource constructor.\nI tried to make this modification a few weeks earlier and it break a few tests (I opened b/343739429 for that)\n\nEven when keeping the old constructor to take an optional context, the reflexion made by robolectric doesn\u0027t catch the correct constructor.\n\nAlso, the BluetoothAdapter can be retrieve from the deprecated static method getDefaultAdapter and this does not require a context in argument.",
+      "parentUuid": "ed4cecad_3cf5e8f6",
       "revId": "a266e91fd39788c27a48fb046f19cb6389a2a91c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
