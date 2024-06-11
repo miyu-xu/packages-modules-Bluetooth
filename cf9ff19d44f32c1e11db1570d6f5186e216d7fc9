@@ -16,6 +16,24 @@
       "message": "Can you add:\n```\nBug: 316927319\nFix: 316927319\n```\n\nTo automatically grant you DrNo and to close the flag bug at the same time",
       "revId": "cf9ff19d44f32c1e11db1570d6f5186e216d7fc9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b97213c_2ac66eb8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-06-11T15:24:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0cddbb75_ca201782",
+      "revId": "cf9ff19d44f32c1e11db1570d6f5186e216d7fc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
