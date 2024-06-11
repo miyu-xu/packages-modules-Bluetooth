@@ -143,6 +143,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf0a357f_6072c551",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-11T08:18:05Z",
+      "side": 1,
+      "message": "I see.\n\nBut if we want to remove the usage of the gattif-\u003escanner we should do it across the entire repository.\n\nI am not oppose to splitting it in 2 CLs.",
+      "parentUuid": "d4522cbe_5bfec26b",
+      "range": {
+        "startLine": 202,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 37
+      },
+      "revId": "3ee6f422dd222ffa2af80d8f912030cc80969155",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eee3a05f_ecb3508e",
