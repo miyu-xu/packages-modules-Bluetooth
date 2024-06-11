@@ -343,7 +343,7 @@ public class MediaPlayerList {
      * <p>The root ID will always be an empty string to correspond to bluetooth player ID.
      */
     public void getPlayerRoot(int playerId, GetPlayerRootCallback cb) {
-        /** M: Fix PTS AVRCP/TG/MCN/CB/BI-02-C fail @{ */
+        // Fix PTS AVRCP/TG/MCN/CB/BI-02-C
         if (Utils.isPtsTestMode()) {
             d("PTS test mode: getPlayerRoot");
             BrowsedPlayerWrapper wrapper = mBrowsablePlayers.get(BLUETOOTH_PLAYER_ID + 1);
@@ -360,9 +360,6 @@ public class MediaPlayerList {
                     });
             return;
         }
-        /**
-         * @}
-         */
         cb.run(playerId, playerId == BLUETOOTH_PLAYER_ID, "", mBrowsablePlayers.size());
     }
 
@@ -583,7 +580,7 @@ public class MediaPlayerList {
         // The playerId is unused since we always assume the remote device is using the
         // Bluetooth Player.
         d("getFolderItems(): playerId=" + playerId + ", mediaId=" + mediaId);
-        /** M: Fix PTS AVRCP/TG/MCN/CB/BI-02-C fail @{ */
+        // Fix PTS AVRCP/TG/MCN/CB/BI-02-C
         if (Utils.isPtsTestMode()) {
             d("PTS test mode: getFolderItems");
             BrowsedPlayerWrapper wrapper = mBrowsablePlayers.get(BLUETOOTH_PLAYER_ID + 1);
@@ -603,9 +600,6 @@ public class MediaPlayerList {
                     });
             return;
         }
-        /**
-         * @}
-         */
 
         // The device is requesting the content of the root folder. This folder contains a list of
         // Browsable Media Players displayed as folders with their contents contained within.
