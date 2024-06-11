@@ -22,6 +22,30 @@
       },
       "revId": "b75ab5d72a6134d2b82c652f3132a059b82b30e8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6c1e1b8_f13aa68a",
+        "filename": "flags/a2dp.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-11T07:53:44Z",
+      "side": 1,
+      "message": "sorry, added wrong by mistake. Fixed",
+      "parentUuid": "c3156e2c_c5c002c4",
+      "range": {
+        "startLine": 83,
+        "startChar": 10,
+        "endLine": 83,
+        "endChar": 19
+      },
+      "revId": "b75ab5d72a6134d2b82c652f3132a059b82b30e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
