@@ -16,6 +16,29 @@
       "message": "Hey @vladokom, is this what you had in mind ?",
       "revId": "a266e91fd39788c27a48fb046f19cb6389a2a91c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa3c854c_0d3fc8d3",
+        "filename": "framework/java/android/bluetooth/BluetoothManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1651020
+      },
+      "writtenOn": "2024-06-11T12:48:11Z",
+      "side": 1,
+      "message": "Should we create context.createDeviceContext(DEVICE_ID_DEFAULT).getAttributionSource() here?",
+      "range": {
+        "startLine": 59,
+        "startChar": 50,
+        "endLine": 59,
+        "endChar": 78
+      },
+      "revId": "a266e91fd39788c27a48fb046f19cb6389a2a91c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
