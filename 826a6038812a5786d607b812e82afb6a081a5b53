@@ -230,6 +230,30 @@
       },
       "revId": "826a6038812a5786d607b812e82afb6a081a5b53",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74182d47_694c04e7",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-06-11T18:19:56Z",
+      "side": 1,
+      "message": "Ah yes that makes sense! Great catch!",
+      "parentUuid": "c17f10e7_0a9cd8af",
+      "range": {
+        "startLine": 243,
+        "startChar": 16,
+        "endLine": 243,
+        "endChar": 26
+      },
+      "revId": "826a6038812a5786d607b812e82afb6a081a5b53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
