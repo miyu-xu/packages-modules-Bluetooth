@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ecb27c5_989bddaa",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3853,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-11T00:07:11Z",
+      "side": 0,
+      "message": "Can you do the minimal change and just remove the do_in_main_thread invocation here? Your change splits the logic unnecessarily I find",
+      "range": {
+        "startLine": 3839,
+        "startChar": 2,
+        "endLine": 3853,
+        "endChar": 77
+      },
+      "revId": "1c201bc4a45e389d05c27f380444da73fdc4ecd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

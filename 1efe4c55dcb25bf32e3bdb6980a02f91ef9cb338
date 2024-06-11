@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79269b05_576f14e5",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-11T00:07:11Z",
+      "side": 1,
+      "message": "nit: GetPeersCount() ?",
+      "range": {
+        "startLine": 602,
+        "startChar": 6,
+        "endLine": 602,
+        "endChar": 19
+      },
+      "revId": "1efe4c55dcb25bf32e3bdb6980a02f91ef9cb338",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e58307a2_d6545475",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-11T00:07:11Z",
+      "side": 1,
+      "message": "nit: PostStreamEvent ?\n\nAvoid using a reference to pass return parameters, as it is error prone.",
+      "range": {
+        "startLine": 613,
+        "startChar": 7,
+        "endLine": 613,
+        "endChar": 28
+      },
+      "revId": "1efe4c55dcb25bf32e3bdb6980a02f91ef9cb338",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56538ddd_4b074b75",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 638,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-11T00:07:11Z",
+      "side": 1,
+      "message": "I was going to say to avoid recursive mutexes, but it is already declared as such ...",
+      "range": {
+        "startLine": 638,
+        "startChar": 15,
+        "endLine": 638,
+        "endChar": 30
+      },
+      "revId": "1efe4c55dcb25bf32e3bdb6980a02f91ef9cb338",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f382e307_ca4e8529",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1263,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-11T00:07:11Z",
+      "side": 1,
+      "message": "I am wondering about the need for taking the mutex in this function:\nby returning a pointer to an element inside the peers map you implicitly make an assumption that it is not going to be edited (i.e. that the lock is held for the duration the pointer is held).",
+      "range": {
+        "startLine": 1262,
+        "startChar": 0,
+        "endLine": 1263,
+        "endChar": 71
+      },
+      "revId": "1efe4c55dcb25bf32e3bdb6980a02f91ef9cb338",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
