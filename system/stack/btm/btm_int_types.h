@@ -25,7 +25,6 @@
 #include <string>
 
 #include "common/circular_buffer.h"
-#include "internal_include/bt_target.h"
 #include "osi/include/fixed_queue.h"
 #include "stack/acl/acl.h"
 #include "stack/btm/btm_ble_int_types.h"
@@ -33,6 +32,7 @@
 #include "stack/btm/neighbor_inquiry.h"
 #include "stack/include/btm_ble_api_types.h"
 #include "stack/include/security_client_callbacks.h"
+#include "stack/rnr/remote_name_request.h"
 #include "types/raw_address.h"
 
 constexpr size_t kMaxLogSize = 255;
@@ -171,6 +171,8 @@ typedef struct tBTM_CB {
             bluetooth::common::TimestampedCircularBuffer<tBTM_INQUIRY_CMPL>>(
             kMaxInquiryScanHistory);
   } neighbor;
+
+  bluetooth::rnr::RemoteNameRequest rnr;
 
   void Init() {
     memset(&devcb, 0, sizeof(devcb));
