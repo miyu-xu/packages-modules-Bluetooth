@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e91502ca_39c667b3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-06-11T14:58:50Z",
+      "side": 1,
+      "message": "Do we have the context on _why_ we thought we were doing that in the past? I remember we found it, and it was silly, but I don\u0027t remember what it was.\n\nIf its easy to find, lets add the context here again.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 61
+      },
+      "revId": "83aa59968e4f5fb789fcc1da5d9075691a352082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99eadd48_cfd1be35",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-06-11T14:58:50Z",
+      "side": 1,
+      "message": "I think the best practice is to have tests that cover the before and after state of the flag. You shouldn\u0027t just set the flag to active for all tests in the suite.\n\nThe flag will take the value that the build is currently setup to take, so you\u0027ll want to be explicit in the tests you write.\n\nThere appears to be existing tests that cover requesting to send a message and driving the mocked obex client. You could make some new assertions on the handle to check this new behavior, and set the flag to disabled at the top. You could then (sigh...) copy paste that test and instead set the flag to enabled at the top.\n\nWe also have some existing coverage that checks the pending intents. We should be able to check the behavior of the first two bytes on these",
+      "range": {
+        "startLine": 251,
+        "startChar": 7,
+        "endLine": 251,
+        "endChar": 72
+      },
+      "revId": "83aa59968e4f5fb789fcc1da5d9075691a352082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
