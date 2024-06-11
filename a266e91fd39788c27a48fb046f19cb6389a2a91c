@@ -133,6 +133,24 @@
       "parentUuid": "ed4cecad_3cf5e8f6",
       "revId": "a266e91fd39788c27a48fb046f19cb6389a2a91c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e649a89a_74e5f97a",
+        "filename": "framework/java/android/bluetooth/BluetoothManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1351609
+      },
+      "writtenOn": "2024-06-11T17:32:39Z",
+      "side": 1,
+      "message": "Ack, I don\u0027t think this need to block the submission of the current CL.\n\n@marvinramin@google.com wdyt?",
+      "parentUuid": "4aa5f6c5_38a4d38c",
+      "revId": "a266e91fd39788c27a48fb046f19cb6389a2a91c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
