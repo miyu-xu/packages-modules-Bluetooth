@@ -196,7 +196,7 @@ public class BluetoothMapUtils {
         }
         Log.v(TAG, "getLongFromString(): converting: " + valueStr);
         byte[] nibbles;
-        nibbles = valueStr.getBytes("US-ASCII");
+        nibbles = valueStr.getBytes(StandardCharsets.US_ASCII);
         Log.v(TAG, "  byte values: " + Arrays.toString(nibbles));
         byte c;
         int count = 0;
@@ -211,7 +211,11 @@ public class BluetoothMapUtils {
             } else if (c >= 'a' && c <= 'f') {
                 c -= ('a' - 10);
             } else if (c <= ' ' || c == '-') {
-                Log.v(TAG, "Skipping c = '" + new String(new byte[] {(byte) c}, "US-ASCII") + "'");
+                Log.v(
+                        TAG,
+                        "Skipping c = '"
+                                + new String(new byte[] {(byte) c}, StandardCharsets.US_ASCII)
+                                + "'");
                 continue; // Skip any whitespace and '-' (which is used for UUIDs)
             } else {
                 throw new NumberFormatException("Invalid character:" + c);
@@ -421,17 +425,8 @@ public class BluetoothMapUtils {
             throws UnsupportedEncodingException {
 
         byte[] utf8Bytes = new byte[utf8String.length() + 1];
-        try {
-            System.arraycopy(utf8String.getBytes("UTF-8"), 0, utf8Bytes, 0, utf8String.length());
-        } catch (UnsupportedEncodingException e) {
-            ContentProfileErrorReportUtils.report(
-                    BluetoothProfile.MAP,
-                    BluetoothProtoEnums.BLUETOOTH_MAP_UTILS,
-                    BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED__TYPE__EXCEPTION,
-                    1);
-            Log.e(TAG, "truncateUtf8StringToBytearray: getBytes exception ", e);
-            throw e;
-        }
+        System.arraycopy(
+                utf8String.getBytes(StandardCharsets.UTF_8), 0, utf8Bytes, 0, utf8String.length());
 
         if (utf8Bytes.length > maxLength) {
             /* if 'continuation' byte is in place 200,
@@ -569,17 +564,7 @@ public class BluetoothMapUtils {
      */
     public static byte[] quotedPrintableToUtf8(String text, String charset) {
         byte[] output = new byte[text.length()]; // We allocate for the worst case memory need
-        byte[] input = null;
-        try {
-            input = text.getBytes("US-ASCII");
-        } catch (UnsupportedEncodingException e) {
-            ContentProfileErrorReportUtils.report(
-                    BluetoothProfile.MAP,
-                    BluetoothProtoEnums.BLUETOOTH_MAP_UTILS,
-                    BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED__TYPE__EXCEPTION,
-                    5);
-            /* This cannot happen as "US-ASCII" is supported for all Java implementations */
-        }
+        byte[] input = text.getBytes(StandardCharsets.US_ASCII);
 
         if (input == null) {
             return "".getBytes();
