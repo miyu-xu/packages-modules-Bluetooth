@@ -2254,7 +2254,20 @@ public class AdapterService extends Service {
     /** Update Adapter Properties when BT profiles connection state changes. */
     public void updateProfileConnectionAdapterProperties(
             BluetoothDevice device, int profile, int state, int prevState) {
-        mAdapterProperties.updateOnProfileConnectionChanged(device, profile, state, prevState);
+        if (!Flags.noHandlerInAdapterProperties()) {
+            mAdapterProperties.updateOnProfileConnectionChanged(device, profile, state, prevState);
+            return;
+        }
+
+        Runnable onProfileConnectionChanged =
+                () ->
+                        mAdapterProperties.updateOnProfileConnectionChanged(
+                                device, profile, state, prevState);
+        if (Looper.myLooper() == Looper.getMainLooper()) {
+            onProfileConnectionChanged.run();
+        } else {
+            mHandler.post(onProfileConnectionChanged);
+        }
     }
 
     /**

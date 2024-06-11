@@ -152,7 +152,7 @@ class AdapterProperties {
     private boolean mReceiverRegistered;
     private Handler mHandler;
 
-    private BroadcastReceiver mReceiver =
+    private final BroadcastReceiver mReceiver =
             new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
@@ -261,8 +261,9 @@ class AdapterProperties {
                 SystemProperties.getBoolean(A2DP_OFFLOAD_SUPPORTED_PROPERTY, false)
                         && !SystemProperties.getBoolean(A2DP_OFFLOAD_DISABLED_PROPERTY, false);
 
-        mHandler = new Handler(Looper.getMainLooper());
-
+        if (!Flags.noHandlerInAdapterProperties()) {
+            mHandler = new Handler(Looper.getMainLooper());
+        }
         IntentFilter filter = new IntentFilter();
         filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
         filter.addAction(BluetoothHeadset.ACTION_CONNECTION_STATE_CHANGED);
@@ -778,6 +779,9 @@ class AdapterProperties {
     @RequiresPermission(android.Manifest.permission.INTERACT_ACROSS_USERS)
     void updateOnProfileConnectionChanged(
             BluetoothDevice device, int profile, int state, int prevState) {
+        if (Flags.noHandlerInAdapterProperties()) {
+            sendConnectionStateChange(device, profile, state, prevState);
+        }
         mHandler.post(() -> sendConnectionStateChange(device, profile, state, prevState));
     }
 
