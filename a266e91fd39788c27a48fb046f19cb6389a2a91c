@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ad63ba4_cc45cb87",
+        "filename": "framework/java/android/bluetooth/BluetoothManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1351609
+      },
+      "writtenOn": "2024-06-11T17:03:41Z",
+      "side": 1,
+      "message": "Just in case, is `BluetoothManager` ever held in any static field in framework code? Asking just to make sure we aren\u0027t introducing a memory leak.",
+      "revId": "a266e91fd39788c27a48fb046f19cb6389a2a91c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa3c854c_0d3fc8d3",
@@ -61,6 +78,23 @@
         "endLine": 59,
         "endChar": 78
       },
+      "revId": "a266e91fd39788c27a48fb046f19cb6389a2a91c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed4cecad_3cf5e8f6",
+        "filename": "framework/java/android/bluetooth/BluetoothManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1351609
+      },
+      "writtenOn": "2024-06-11T17:03:41Z",
+      "side": 1,
+      "message": "Should we let `BluetoothAdapter` take `Context` so that it won\u0027t have an outdated `AttributionSource` either?",
       "revId": "a266e91fd39788c27a48fb046f19cb6389a2a91c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
