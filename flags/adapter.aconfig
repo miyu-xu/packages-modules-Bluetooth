@@ -1,0 +1,13 @@
+package: "com.android.bluetooth.flags"
+container: "com.android.btservices"
+
+flag {
+    name: "no_handler_in_adapter_properties"
+    namespace: "bluetooth"
+    description: "Adapter properties should be called from correct thread already"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
+    bug: "346610153"
+}
+

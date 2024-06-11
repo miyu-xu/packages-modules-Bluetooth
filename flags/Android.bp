@@ -10,6 +10,7 @@ aconfig_declarations {
     // LINT.IfChange
     srcs: [
         "a2dp.aconfig",
+        "adapter.aconfig",
         "asha.aconfig",
         "audio_routing.aconfig",
         "avrcp.aconfig",
