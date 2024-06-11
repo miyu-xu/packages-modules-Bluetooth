@@ -206,6 +206,30 @@
       },
       "revId": "826a6038812a5786d607b812e82afb6a081a5b53",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c17f10e7_0a9cd8af",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-11T17:54:19Z",
+      "side": 1,
+      "message": "Right now the difference could be close to none.\n\nBut this make it weird to investigate later on as you will have a timeout that call disconnect, but the disconnect is put on the queue instead of being performed when supposed.",
+      "parentUuid": "0768060a_5fb460d4",
+      "range": {
+        "startLine": 243,
+        "startChar": 16,
+        "endLine": 243,
+        "endChar": 26
+      },
+      "revId": "826a6038812a5786d607b812e82afb6a081a5b53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
