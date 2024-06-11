@@ -4079,7 +4079,7 @@ void btm_sec_link_key_notification(const RawAddress& p_bda,
     /* If it is for bonding nothing else will follow, so we need to start name
      * resolution */
     if (we_are_bonding) {
-      bluetooth::shim::ACL_RemoteNameRequest(bd_addr, HCI_PAGE_SCAN_REP_MODE_R1,
+      bluetooth::shim::ACL_RemoteNameRequest(p_bda, HCI_PAGE_SCAN_REP_MODE_R1,
                                              HCI_MANDATARY_PAGE_SCAN_MODE, 0);
     }
 
