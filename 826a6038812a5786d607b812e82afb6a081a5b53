@@ -182,6 +182,30 @@
       },
       "revId": "826a6038812a5786d607b812e82afb6a081a5b53",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0768060a_5fb460d4",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaBrowserWrapper.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2024-06-11T11:37:22Z",
+      "side": 1,
+      "message": "I see, done.\n\nI\u0027m not really familiar with Handler posts, but is it really important to have 2 consecutive posts here? What\u0027s the implications?",
+      "parentUuid": "66304977_09695bed",
+      "range": {
+        "startLine": 243,
+        "startChar": 16,
+        "endLine": 243,
+        "endChar": 26
+      },
+      "revId": "826a6038812a5786d607b812e82afb6a081a5b53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
