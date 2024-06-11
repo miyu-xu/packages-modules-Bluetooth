@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "134132fa_063d40f4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-11T23:34:33Z",
+      "side": 1,
+      "message": "After running some of the lint, checking the different error I come to the conclusion that they are valid feedback and we should fix them.\n\nIf we apply the rule blindly there is more tha 21_000 errors.\nIf we allowed for 100 line length (as we should) and running clang-format this drop to 8005 error across the whole stack\n\n2600 of them are only due to casting, I believe this can be fix automatically\n650 of them are due to wrong braces, it could be automatically fixed too.\n\nFor these reason I believe we should keep the linter and simply make the code better",
+      "revId": "c08a90898de7d790eec421ea6ea597f109473f47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
