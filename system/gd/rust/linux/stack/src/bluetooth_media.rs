@@ -46,6 +46,9 @@ use itertools::Itertools;
 use log::{debug, info, warn};
 use std::collections::{HashMap, HashSet};
 use std::convert::{TryFrom, TryInto};
+use std::fs::File;
+use std::io::Write;
+use std::mem;
 use std::sync::Arc;
 use std::sync::Mutex;
 
@@ -169,6 +172,7 @@ pub trait IBluetoothMedia {
         address: RawAddress,
         sco_offload: bool,
         disabled_codecs: HfpCodecBitId,
+        listener: File,
     ) -> bool;
     fn stop_sco_call(&mut self, address: RawAddress);
 
@@ -492,6 +496,7 @@ pub struct BluetoothMedia {
     csis: Option<CsisClient>,
     csis_states: HashMap<RawAddress, BtCsisConnectionState>,
     is_le_audio_only_enabled: bool, // TODO: remove this once there is dual mode.
+    hfp_audio_connected_listener: Option<File>,
 }
 
 impl BluetoothMedia {
@@ -557,6 +562,7 @@ impl BluetoothMedia {
             csis: None,
             csis_states: HashMap::new(),
             is_le_audio_only_enabled: false,
+            hfp_audio_connected_listener: None,
         }
     }
 
@@ -1492,6 +1498,22 @@ impl BluetoothMedia {
                         info!("[{}]: hfp audio connected.", DisplayAddress(&addr));
 
                         self.hfp_audio_state.insert(addr, state);
+
+                        if self.hfp_audio_connected_listener.is_some() {
+                            let codec = self.get_hfp_audio_final_codecs(addr);
+                            let data: [u8; 1] = [codec];
+
+                            match self.hfp_audio_connected_listener.take().unwrap().write(&data) {
+                                Ok(nwritten) => {
+                                    if nwritten != mem::size_of_val(&data) {
+                                        warn!("Did not write full data into the hfp audio connection listener.");
+                                    }
+                                }
+                                Err(e) => {
+                                    warn!("Cannot write data into the hfp audio connection listener: {}", e);
+                                }
+                            }
+                        }
 
                         if self.should_insert_call_when_sco_start(addr) {
                             // This triggers a +CIEV command to set the call status for HFP devices.
@@ -2636,8 +2658,6 @@ impl BluetoothMedia {
         disabled_codecs: HfpCodecBitId,
     ) -> bool {
         match (|| -> Result<(), &str> {
-            info!("Start sco call for {}", DisplayAddress(&addr));
-
             let hfp = self.hfp.as_mut().ok_or("Uninitialized HFP to start the sco call")?;
             let disabled_codecs = disabled_codecs.try_into().expect("Can't parse disabled_codecs");
             if hfp.connect_audio(addr, sco_offload, disabled_codecs) != 0 {
@@ -3847,7 +3867,13 @@ impl IBluetoothMedia for BluetoothMedia {
         address: RawAddress,
         sco_offload: bool,
         disabled_codecs: HfpCodecBitId,
+        listener: File,
     ) -> bool {
+        if self.hfp_audio_connected_listener.is_some() {
+            warn!("start_sco_call: replacing an unresolved listener");
+        }
+
+        self.hfp_audio_connected_listener = Some(listener);
         self.start_sco_call_impl(address, sco_offload, disabled_codecs)
     }
 

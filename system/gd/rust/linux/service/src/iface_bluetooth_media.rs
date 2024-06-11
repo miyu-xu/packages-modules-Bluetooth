@@ -26,6 +26,7 @@ use crate::dbus_arg::{DBusArg, DBusArgError, RefArgToRust};
 use num_traits::{FromPrimitive, ToPrimitive};
 
 use std::convert::{TryFrom, TryInto};
+use std::fs::File;
 use std::sync::Arc;
 
 #[allow(dead_code)]
@@ -380,6 +381,7 @@ impl IBluetoothMedia for IBluetoothMediaDBus {
         address: RawAddress,
         sco_offload: bool,
         disabled_codecs: HfpCodecBitId,
+        listener: File,
     ) -> bool {
         dbus_generated!()
     }
