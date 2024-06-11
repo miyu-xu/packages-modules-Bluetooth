@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "44d26a8e_495c831a",
+        "filename": "system/gd/rust/topshim/src/sysprop.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-06-11T20:26:20Z",
+      "side": 1,
+      "message": "Hi Andrew, I believe those are both Android specific tools that we don\u0027t support yet in CrOS. Would you be OK with implementing what I have now with a followup bug that we explore supporting those tools in CrOS later?",
+      "parentUuid": "6e568a25_5917a8b2",
+      "revId": "a1c6fa6c5b013b0d484ff36066d4d1b94c9936f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9b9a6f1a_9eb618b7",
         "filename": "system/gd/rust/topshim/src/sysprop.rs",
         "patchSetId": 1
@@ -31,6 +49,30 @@
       "writtenOn": "2024-06-11T03:37:10Z",
       "side": 1,
       "message": "osi_property_get returns 0 in the  case (!result \u0026\u0026 !default_value). Even with default_value initialization in this patch, it\u0027s safer to handle (len \u003c\u003d 0) case before resizing dest buffer.",
+      "range": {
+        "startLine": 137,
+        "startChar": 4,
+        "endLine": 137,
+        "endChar": 37
+      },
+      "revId": "a1c6fa6c5b013b0d484ff36066d4d1b94c9936f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "495363d7_7cfd6cc3",
+        "filename": "system/gd/rust/topshim/src/sysprop.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-06-11T20:26:20Z",
+      "side": 1,
+      "message": "Done. Thanks",
+      "parentUuid": "9b9a6f1a_9eb618b7",
       "range": {
         "startLine": 137,
         "startChar": 4,
