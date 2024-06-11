@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9c13b278_110c1e0b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-11T20:45:31Z",
+      "side": 1,
+      "message": "this change is target as a follow up for prior P0 in this file. \nI would prefer keep the scope as it is for this issue :)",
+      "parentUuid": "f588390c_f0ec965c",
+      "revId": "63c96b4a1c9ff2553e8db6393cef50e7858aa994",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5ca8869a_de745e0b",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 4
@@ -31,6 +49,24 @@
       "writtenOn": "2024-06-10T23:43:58Z",
       "side": 1,
       "message": "Should this also be converted to vector?",
+      "revId": "63c96b4a1c9ff2553e8db6393cef50e7858aa994",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cad4883_8169a114",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2050,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-11T20:45:31Z",
+      "side": 1,
+      "message": "ack, I can do that",
+      "parentUuid": "5ca8869a_de745e0b",
       "revId": "63c96b4a1c9ff2553e8db6393cef50e7858aa994",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
