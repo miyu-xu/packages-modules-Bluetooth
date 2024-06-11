@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad51ef0e_dc03a0d9",
+        "filename": "framework/java/android/bluetooth/BluetoothManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1351609
+      },
+      "writtenOn": "2024-06-11T17:34:00Z",
+      "side": 1,
+      "message": "Holding a `Context` that is actually an `Activity` in a static field would leak that `Activity` - I don\u0027t think that can happen with holding an `AttributionSource` in a static field.",
+      "parentUuid": "cae515a2_29bc2853",
+      "revId": "a266e91fd39788c27a48fb046f19cb6389a2a91c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa3c854c_0d3fc8d3",
