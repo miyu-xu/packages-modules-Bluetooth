@@ -22,6 +22,30 @@
       },
       "revId": "8687388240c72ef71a72895bcd6d37a8aad0cb39",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1364276_0acd1a9e",
+        "filename": "flags/opp.aconfig",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-06-11T23:54:28Z",
+      "side": 1,
+      "message": "Thanks for catching. Done.",
+      "parentUuid": "86df38a4_4b5de8d8",
+      "range": {
+        "startLine": 25,
+        "startChar": 10,
+        "endLine": 25,
+        "endChar": 19
+      },
+      "revId": "8687388240c72ef71a72895bcd6d37a8aad0cb39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
