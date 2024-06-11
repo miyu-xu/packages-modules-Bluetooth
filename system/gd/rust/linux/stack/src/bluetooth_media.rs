@@ -46,6 +46,9 @@ use itertools::Itertools;
 use log::{debug, info, warn};
 use std::collections::{HashMap, HashSet};
 use std::convert::{TryFrom, TryInto};
+use std::fs::File;
+use std::io::Write;
+use std::mem;
 use std::sync::Arc;
 use std::sync::Mutex;
 
@@ -169,8 +172,9 @@ pub trait IBluetoothMedia {
         address: RawAddress,
         sco_offload: bool,
         disabled_codecs: HfpCodecBitId,
+        listener: File,
     ) -> bool;
-    fn stop_sco_call(&mut self, address: RawAddress);
+    fn stop_sco_call(&mut self, address: RawAddress, listener: File);
 
     /// Set the current playback status: e.g., playing, paused, stopped, etc. The method is a copy
     /// of the existing CRAS API, hence not following Floss API conventions.
@@ -492,6 +496,7 @@ pub struct BluetoothMedia {
     csis: Option<CsisClient>,
     csis_states: HashMap<RawAddress, BtCsisConnectionState>,
     is_le_audio_only_enabled: bool, // TODO: remove this once there is dual mode.
+    hfp_audio_connection_listener: Option<File>,
 }
 
 impl BluetoothMedia {
@@ -557,6 +562,7 @@ impl BluetoothMedia {
             csis: None,
             csis_states: HashMap::new(),
             is_le_audio_only_enabled: false,
+            hfp_audio_connection_listener: None,
         }
     }
 
@@ -1489,6 +1495,22 @@ impl BluetoothMedia {
 
                         self.hfp_audio_state.insert(addr, state);
 
+                        if self.hfp_audio_connection_listener.is_some() {
+                            let codec = self.get_hfp_audio_final_codecs(addr);
+                            let data: [u8; 1] = [codec];
+
+                            match self.hfp_audio_connection_listener.take().unwrap().write(&data) {
+                                Ok(nwritten) => {
+                                    if nwritten != mem::size_of_val(&data) {
+                                        warn!("Did not write full data into the hfp audio connection listener.");
+                                    }
+                                }
+                                Err(e) => {
+                                    warn!("Cannot write data into the hfp audio connection listener: {}", e);
+                                }
+                            }
+                        }
+
                         if self.should_insert_call_when_sco_start(addr) {
                             // This triggers a +CIEV command to set the call status for HFP devices.
                             // It is required for some devices to provide sound.
@@ -1498,6 +1520,21 @@ impl BluetoothMedia {
                     }
                     BthfAudioState::Disconnected => {
                         info!("[{}]: hfp audio disconnected.", DisplayAddress(&addr));
+
+                        if self.hfp_audio_connection_listener.is_some() {
+                            let data: [u8; 1] = [0];
+
+                            match self.hfp_audio_connection_listener.take().unwrap().write(&data) {
+                                Ok(nwritten) => {
+                                    if nwritten != mem::size_of_val(&data) {
+                                        warn!("Did not write full data into the hfp audio connection listener.");
+                                    }
+                                }
+                                Err(e) => {
+                                    warn!("Cannot write data into the hfp audio connection listener: {}", e);
+                                }
+                            }
+                        }
 
                         // Ignore disconnected -> disconnected
                         if let Some(BthfAudioState::Connected) =
@@ -3840,11 +3877,22 @@ impl IBluetoothMedia for BluetoothMedia {
         address: RawAddress,
         sco_offload: bool,
         disabled_codecs: HfpCodecBitId,
+        listener: File,
     ) -> bool {
+        if self.hfp_audio_connection_listener.is_some() {
+            warn!("start_sco_call: replacing an unresolved listener");
+        }
+
+        self.hfp_audio_connection_listener = Some(listener);
         self.start_sco_call_impl(address, sco_offload, disabled_codecs)
     }
 
-    fn stop_sco_call(&mut self, address: RawAddress) {
+    fn stop_sco_call(&mut self, address: RawAddress, listener: File) {
+        if self.hfp_audio_connection_listener.is_some() {
+            warn!("stop_sco_call: replacing an unresolved listener");
+        }
+
+        self.hfp_audio_connection_listener = Some(listener);
         self.stop_sco_call_impl(address)
     }
 
