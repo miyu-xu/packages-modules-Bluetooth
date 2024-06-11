@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a5679da_c3fb8d6c",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-11T17:20:29Z",
+      "side": 1,
+      "message": "stop does not call `setGattService(null);`",
+      "range": {
+        "startLine": 238,
+        "startChar": 16,
+        "endLine": 238,
+        "endChar": 20
+      },
+      "revId": "b3514b03d301191e929b43fdffb5cb0f2832ff44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
