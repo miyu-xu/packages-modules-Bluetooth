@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cddbb75_ca201782",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-11T08:25:25Z",
+      "side": 1,
+      "message": "Can you add:\n```\nBug: 316927319\nFix: 316927319\n```\n\nTo automatically grant you DrNo and to close the flag bug at the same time",
+      "revId": "cf9ff19d44f32c1e11db1570d6f5186e216d7fc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
