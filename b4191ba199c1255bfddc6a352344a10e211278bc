@@ -120,6 +120,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e6998aa_34b2dacc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-06-11T11:57:06Z",
+      "side": 1,
+      "message": "Different types of storage devices in ChromeOS might affect how fast it can write data. Even for the same eMMC device, its performance depends on its run-time usage. For example, when an eMMC device reaches 90% capacity, it takes 3x longer to write compared to when it was at 30% capacity.\n\nSo, using sysprop to manage this wait time offers several advantages:\n\n1. Centralized Management: Platform-specific configurations are easier to maintain in a central local. Especially when number for platforms and parameters increases.\n\n2. Consistent Approach: This aligns with how other configurations (connection, scan parameters) are handled.\n\n3. Model-Based Customization: Different ChromeOS boards can have tailored configurations.",
+      "parentUuid": "e3492222_61b1f3b2",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 25
+      },
+      "revId": "b4191ba199c1255bfddc6a352344a10e211278bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "e569c59e_c3252163",
