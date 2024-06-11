@@ -21,6 +21,7 @@ flag {
 flag {
     name: "browsing_refactor"
     namespace: "bluetooth"
+    state: ENABLED
     description: "Broadcast all players instead of BT player, remove MediaBrowser preload, support package modification"
     bug: "338156685"
     metadata {
