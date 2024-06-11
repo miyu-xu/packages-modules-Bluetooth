@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6434a49_c60f8eb3",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-06-11T03:45:52Z",
+      "side": 1,
+      "message": "For non-USB device, ex. Trogdor, the modalias outputs \n`of:NbluetoothT(null)Cqcom,wcn3991-bt`\nIn this case, we might need to compare it with name or find other ways to find its vid/pid.",
+      "revId": "174895a1b80f18989c50eda5c7c0fc2bf5e966f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
