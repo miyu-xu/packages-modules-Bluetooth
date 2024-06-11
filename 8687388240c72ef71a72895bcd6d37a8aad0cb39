@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86df38a4_4b5de8d8",
+        "filename": "flags/opp.aconfig",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-06-11T20:25:06Z",
+      "side": 1,
+      "message": "Please refer to the flag tracking bug here (i.e. 346467641)",
+      "range": {
+        "startLine": 25,
+        "startChar": 10,
+        "endLine": 25,
+        "endChar": 19
+      },
+      "revId": "8687388240c72ef71a72895bcd6d37a8aad0cb39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
