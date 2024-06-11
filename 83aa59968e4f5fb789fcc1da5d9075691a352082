@@ -45,6 +45,30 @@
       },
       "revId": "83aa59968e4f5fb789fcc1da5d9075691a352082",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24dbc4a4_7e24a378",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientStateMachineTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-11T17:06:53Z",
+      "side": 1,
+      "message": "To go one step further, if your flag can change the underlying behavior of everything, but there are no specific test here, you can write a parametric tests to run all test with the flag on and with the flag off.\n\nsee example of the first parametric test in bluetooth here: aosp/3107395, or another usage here: aosp/3063415\n\nBut if you can, I would really love to see a negative test that shows that your CL is indeed addressing the issue it is suppose to (FYI I am writing that before looking at the CL at all, so sorry if no such thing apply here  😂)",
+      "parentUuid": "99eadd48_cfd1be35",
+      "range": {
+        "startLine": 251,
+        "startChar": 7,
+        "endLine": 251,
+        "endChar": 72
+      },
+      "revId": "83aa59968e4f5fb789fcc1da5d9075691a352082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
