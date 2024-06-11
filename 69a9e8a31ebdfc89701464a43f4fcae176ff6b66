@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7165cc32_b8b0223c",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2148,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-11T21:23:49Z",
+      "side": 0,
+      "message": "I guess at some point we should care about hi_priority channels again?",
+      "range": {
+        "startLine": 2148,
+        "startChar": 7,
+        "endLine": 2148,
+        "endChar": 31
+      },
+      "revId": "69a9e8a31ebdfc89701464a43f4fcae176ff6b66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
