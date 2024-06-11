@@ -106,8 +106,8 @@ import java.time.Duration;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -134,7 +134,7 @@ class BluetoothManagerService {
     private static final int TIMEOUT_BIND_MS = 4000 * HW_MULTIPLIER;
 
     // Timeout value for synchronous binder call
-    private static final Duration STATE_TIMEOUT = Duration.ofSeconds(4 * HW_MULTIPLIER);
+    private static final Duration STATE_TIMEOUT = Duration.ofSeconds(4L * HW_MULTIPLIER);
 
     // Maximum msec to wait for service restart
     private static final int SERVICE_RESTART_TIME_MS = 400 * HW_MULTIPLIER;
@@ -252,8 +252,8 @@ class BluetoothManagerService {
         }
     }
 
-    private final LinkedList<ActiveLog> mActiveLogs = new LinkedList<>();
-    private final LinkedList<Long> mCrashTimestamps = new LinkedList<>();
+    private final List<ActiveLog> mActiveLogs = new ArrayList<>();
+    private final List<Long> mCrashTimestamps = new ArrayList<>();
     private int mCrashes = 0;
     private long mLastEnabledTime;
 
@@ -1810,8 +1810,11 @@ class BluetoothManagerService {
                         handleEnable(mQuietEnable);
                     } else {
                         mAdapterLock.writeLock().lock();
-                        mAdapter = null;
-                        mAdapterLock.writeLock().unlock();
+                        try {
+                            mAdapter = null;
+                        } finally {
+                            mAdapterLock.writeLock().unlock();
+                        }
                         Log.e(TAG, "Reach maximum retry to restart Bluetooth!");
                     }
                     break;
@@ -2173,10 +2176,13 @@ class BluetoothManagerService {
     }
 
     private void addActiveLog(int reason, String packageName, boolean enable, boolean isBle) {
-        ActiveLog lastActiveLog = mActiveLogs.peekLast();
         synchronized (mActiveLogs) {
-            if (mActiveLogs.size() > ACTIVE_LOG_MAX_SIZE) {
-                mActiveLogs.remove();
+            ActiveLog lastActiveLog = null;
+            if (!mActiveLogs.isEmpty()) {
+                lastActiveLog = mActiveLogs.get(mActiveLogs.size() - 1);
+                if (mActiveLogs.size() > ACTIVE_LOG_MAX_SIZE) {
+                    mActiveLogs.remove(0);
+                }
             }
             mActiveLogs.add(
                     new ActiveLog(reason, packageName, enable, isBle, System.currentTimeMillis()));
@@ -2215,7 +2221,7 @@ class BluetoothManagerService {
     private void addCrashLog() {
         synchronized (mCrashTimestamps) {
             if (mCrashTimestamps.size() == CRASH_LOG_MAX_SIZE) {
-                mCrashTimestamps.removeFirst();
+                mCrashTimestamps.remove(0);
             }
             mCrashTimestamps.add(System.currentTimeMillis());
             mCrashes++;
