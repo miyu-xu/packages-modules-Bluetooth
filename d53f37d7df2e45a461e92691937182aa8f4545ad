@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "744bc1a1_91895f9d",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-06-11T23:59:54Z",
+      "side": 1,
+      "message": "How about `client_if\u003d{}`? There are many search results for this.\n\nhttps://cs.android.com/search?q\u003d%22client_if%3D%22\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%2Fmain%20b:main",
+      "range": {
+        "startLine": 215,
+        "startChar": 28,
+        "endLine": 215,
+        "endChar": 39
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6a4cd4fc_d081ae54",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/main/shim/le_scanning_manager.cc",
+              "range": {
+                "startLine": 215,
+                "startChar": 0,
+                "endLine": 216,
+                "endChar": 0
+              },
+              "replacement": "  log::info(\"in shim layer, client_if:{}\", client_if);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d53f37d7df2e45a461e92691937182aa8f4545ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
