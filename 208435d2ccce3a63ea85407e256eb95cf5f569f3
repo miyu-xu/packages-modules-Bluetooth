@@ -16,6 +16,47 @@
       "message": "Both the boolean and pointer effectively provide the same information",
       "revId": "208435d2ccce3a63ea85407e256eb95cf5f569f3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "261b3ace_566ffba4",
+        "filename": "system/stack/rfcomm/port_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-06-11T22:30:37Z",
+      "side": 1,
+      "message": "nit: You have parentheses here but not in the next argument- it\u0027d be prettier if it was there for both or for neither.",
+      "range": {
+        "startLine": 518,
+        "startChar": 16,
+        "endLine": 518,
+        "endChar": 35
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e6fb9242_c4637f3e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/rfcomm/port_api.cc",
+              "range": {
+                "startLine": 518,
+                "startChar": 0,
+                "endLine": 519,
+                "endChar": 0
+              },
+              "replacement": "                p_port !\u003d nullptr ? \"T\" : \"F\",\n"
+            }
+          ]
+        }
+      ],
+      "revId": "208435d2ccce3a63ea85407e256eb95cf5f569f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
