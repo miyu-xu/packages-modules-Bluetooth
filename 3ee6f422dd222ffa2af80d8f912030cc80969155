@@ -167,6 +167,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "28990bb0_bdf285da",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-06-11T09:31:11Z",
+      "side": 1,
+      "message": "True. This should be cleaned up and not ignored.\nI\u0027ve filed b/346494745 to track this. Thank you.",
+      "parentUuid": "cf0a357f_6072c551",
+      "range": {
+        "startLine": 202,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 37
+      },
+      "revId": "3ee6f422dd222ffa2af80d8f912030cc80969155",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eee3a05f_ecb3508e",
