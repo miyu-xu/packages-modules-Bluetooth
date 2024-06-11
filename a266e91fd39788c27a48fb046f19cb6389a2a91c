@@ -71,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c6bb7f2_126e9aa7",
+        "filename": "framework/java/android/bluetooth/BluetoothManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-11T17:49:49Z",
+      "side": 1,
+      "message": "Oh I see.\n\nI believe there is no such thin. The BluetoothManager is create as a context aware service [here](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothFrameworkInitializer.java;l\u003d99;drc\u003d1c07fc7429516c128c0725796c8db4c582b2b8cb), and the way this is retrieve is by doing:\n\n`context.getSystemService(BluetoothManager.class)`",
+      "parentUuid": "ad51ef0e_dc03a0d9",
+      "revId": "a266e91fd39788c27a48fb046f19cb6389a2a91c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa3c854c_0d3fc8d3",
