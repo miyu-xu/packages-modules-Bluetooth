@@ -1,0 +1,62 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e587a3a6_7156d39f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-06-11T07:05:48Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 9,
+        "startChar": 25,
+        "endLine": 9,
+        "endChar": 33
+      },
+      "revId": "f260e3f74784bd9bf5821b54f0ca7a7db0108431",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e0c52ff_d93a0ddf",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-06-11T07:05:48Z",
+      "side": 1,
+      "message": "please add more comment here saying that for old AIDL version, where json is used, there is no location in the config and it works different comparing to new AIDL version, where location is provided in the configuration.\n\nAlso let\u0027s add test for it.",
+      "fixSuggestions": [
+        {
+          "fixId": "bebe55a8_7f505466",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/devices.cc",
+              "range": {
+                "startLine": 273,
+                "startChar": 0,
+                "endLine": 274,
+                "endChar": 0
+              },
+              "replacement": "                 // Pass as matching if config has no allocation to match.\n                 // For old AIDL version, where json is used, there is no\n                 // location in the config and it works different comparing to\n                 // new AIDL version, where location is provided in the config.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f260e3f74784bd9bf5821b54f0ca7a7db0108431",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
