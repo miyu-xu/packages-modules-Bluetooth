@@ -187,6 +187,48 @@
       "parentUuid": "4aa5f6c5_38a4d38c",
       "revId": "a266e91fd39788c27a48fb046f19cb6389a2a91c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65e6cc96_4416ab3a",
+        "filename": "framework/java/android/bluetooth/BluetoothManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1651020
+      },
+      "writtenOn": "2024-06-11T18:08:10Z",
+      "side": 1,
+      "message": "Agreed.",
+      "parentUuid": "e649a89a_74e5f97a",
+      "revId": "a266e91fd39788c27a48fb046f19cb6389a2a91c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4f10024_f1afcefd",
+        "filename": "framework/java/android/bluetooth/BluetoothManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1651020
+      },
+      "writtenOn": "2024-06-11T18:08:10Z",
+      "side": 1,
+      "message": "It would effectively modify/overwrite the deviceID of the device the calling app is running on (e.g. on the phone vs streamed to a chromebook). It\u0027s best if we don\u0027t overwrite it and honor the context that was passed in. In case we need further workarounds we can consider createDeviceContext() which we use both inside and outside the framework (my team owns this API).",
+      "parentUuid": "82375685_ae377e70",
+      "range": {
+        "startLine": 59,
+        "startChar": 50,
+        "endLine": 59,
+        "endChar": 78
+      },
+      "revId": "a266e91fd39788c27a48fb046f19cb6389a2a91c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
