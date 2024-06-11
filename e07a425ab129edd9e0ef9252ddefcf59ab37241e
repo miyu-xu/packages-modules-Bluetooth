@@ -80,6 +80,30 @@
       ],
       "revId": "e07a425ab129edd9e0ef9252ddefcf59ab37241e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "462dc0fe_90b3185f",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/AppScanStats.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-06-11T08:31:55Z",
+      "side": 1,
+      "message": "I have added unit test case `testMetricsRadioScanScreenOnOffMultiScan()` and verified that the app attribution of the most aggressive LE scan is logged when there are multiple scan clients.",
+      "parentUuid": "5bcffe3f_63573bdc",
+      "range": {
+        "startLine": 599,
+        "startChar": 20,
+        "endLine": 599,
+        "endChar": 55
+      },
+      "revId": "e07a425ab129edd9e0ef9252ddefcf59ab37241e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
