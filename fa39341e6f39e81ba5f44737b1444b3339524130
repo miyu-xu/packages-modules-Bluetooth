@@ -38,6 +38,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3d569598_1e0cd4c0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-11T20:11:18Z",
+      "side": 1,
+      "message": "hi @silens@google.com, is this change still needed? what\u0027s the plan here?",
+      "revId": "fa39341e6f39e81ba5f44737b1444b3339524130",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8c3a52f5_8c337b99",
         "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
         "patchSetId": 16
