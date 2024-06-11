@@ -39,6 +39,30 @@
       },
       "revId": "a266e91fd39788c27a48fb046f19cb6389a2a91c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82375685_ae377e70",
+        "filename": "framework/java/android/bluetooth/BluetoothManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-11T16:53:37Z",
+      "side": 1,
+      "message": "I don\u0027t understand what this will do.\nAlso…\nBy looking at the usage, `createDeviceContext` is only used in `Activity.java`, in `VirtualDeviceInternal.java`, in the PermissionManagerService.\nEverything else is test.\n\nThis is not a very spread usage and make me worries that this is not really intended for here.\nBluetooth doesn\u0027t care about what device it is running on and only use the one given at construction. I believe that if an app knows what it is doing, they can do the `createDeviceContext` on their own, before calling getSystemService on it ?",
+      "parentUuid": "aa3c854c_0d3fc8d3",
+      "range": {
+        "startLine": 59,
+        "startChar": 50,
+        "endLine": 59,
+        "endChar": 78
+      },
+      "revId": "a266e91fd39788c27a48fb046f19cb6389a2a91c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
