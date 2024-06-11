@@ -71,6 +71,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49fe70cd_1a3564a4",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-06-11T00:26:40Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "fd976283_f925ee56",
+      "range": {
+        "startLine": 202,
+        "startChar": 28,
+        "endLine": 202,
+        "endChar": 36
+      },
+      "revId": "3ee6f422dd222ffa2af80d8f912030cc80969155",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4522cbe_5bfec26b",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-06-11T00:26:40Z",
+      "side": 1,
+      "message": "As Omair said, I did try it and the build compilation fails due to the mismatching signature of the cpp code in rust. It\u0027s of course still possible to remove from `bt_gatt.h` but requires changes in a few more files and so to minimize the impact of this non-flagged mechanical refactor, we believed it\u0027s safer to just keep it as an additional reference.",
+      "parentUuid": "d3f2df00_5a04652d",
+      "range": {
+        "startLine": 202,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 37
+      },
+      "revId": "3ee6f422dd222ffa2af80d8f912030cc80969155",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eee3a05f_ecb3508e",
@@ -108,6 +156,30 @@
       "side": 1,
       "message": "Yes, there should be no more references to sGattIf-\u003escanner. Moving to scanInitializeNative is correct.\n\nIdeally we\u0027d create a new jni file for scanning, but that might be too many changes for this CL.",
       "parentUuid": "eee3a05f_ecb3508e",
+      "range": {
+        "startLine": 1284,
+        "startChar": 2,
+        "endLine": 1284,
+        "endChar": 75
+      },
+      "revId": "3ee6f422dd222ffa2af80d8f912030cc80969155",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98a85b8f_54c64164",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 1284,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-06-11T00:26:40Z",
+      "side": 1,
+      "message": "This was already added to `scanInitializeNative` but I had not removed it from here. So cleaned up now, thank you.",
+      "parentUuid": "b9820040_7d29df94",
       "range": {
         "startLine": 1284,
         "startChar": 2,
