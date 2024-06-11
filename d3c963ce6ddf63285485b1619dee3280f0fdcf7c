@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f003b837_716d3ac7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-06-11T14:43:18Z",
+      "side": 1,
+      "message": "You can use Bug: 315241296 for automatic Dr. No for this flag and others",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 14
+      },
+      "revId": "d3c963ce6ddf63285485b1619dee3280f0fdcf7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
