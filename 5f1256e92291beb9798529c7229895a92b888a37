@@ -34,6 +34,24 @@
       "parentUuid": "1739a739_224d19be",
       "revId": "5f1256e92291beb9798529c7229895a92b888a37",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac3975b2_3059e297",
+        "filename": "system/btif/include/btif_hh.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-11T15:36:38Z",
+      "side": 1,
+      "message": "We can create a function to do that `bta_hh_co`.",
+      "parentUuid": "7a47fe48_966156be",
+      "revId": "5f1256e92291beb9798529c7229895a92b888a37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
