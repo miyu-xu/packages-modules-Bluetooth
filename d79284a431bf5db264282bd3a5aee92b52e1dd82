@@ -22,6 +22,30 @@
       },
       "revId": "d79284a431bf5db264282bd3a5aee92b52e1dd82",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cd3108e_5b269284",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-06-12T21:31:00Z",
+      "side": 1,
+      "message": "My mistake, I missed this one.\n\nI went back and took another look at the remaining `BT_STATUS_FAIL` uses, but I believe this is the only one that could be changed.",
+      "parentUuid": "713a9f7a_9c1175ca",
+      "range": {
+        "startLine": 393,
+        "startChar": 13,
+        "endLine": 393,
+        "endChar": 27
+      },
+      "revId": "d79284a431bf5db264282bd3a5aee92b52e1dd82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
