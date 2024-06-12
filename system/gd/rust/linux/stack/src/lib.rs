@@ -110,8 +110,10 @@ pub enum Message {
 
     // Follows IBluetooth's on_device_(dis)connected callback but doesn't require depending on
     // Bluetooth.
-    OnAclConnected(BluetoothDevice, BtTransport),
     OnAclDisconnected(BluetoothDevice),
+
+    // Follows IBluetooth's bond_state callback
+    OnDeviceBonded(BluetoothDevice, BtTransport),
 
     // Suspend related
     SuspendCallbackRegistered(u32),
@@ -377,16 +379,6 @@ impl Stack {
                     bluetooth.lock().unwrap().handle_delayed_actions(action);
                 }
 
-                // Any service needing an updated list of devices can have an
-                // update method triggered from here rather than needing a
-                // reference to Bluetooth.
-                Message::OnAclConnected(device, transport) => {
-                    battery_service
-                        .lock()
-                        .unwrap()
-                        .handle_action(BatteryServiceActions::Connect(device, transport));
-                }
-
                 // For battery service, use this to clean up internal handles. GATT connection is
                 // already dropped if ACL disconnect has occurred.
                 Message::OnAclDisconnected(device) => {
@@ -394,6 +386,14 @@ impl Stack {
                         .lock()
                         .unwrap()
                         .handle_action(BatteryServiceActions::Disconnect(device));
+                }
+
+                // Used by BatteryService to determine when to fire read requests.
+                Message::OnDeviceBonded(device, transport) => {
+                    battery_service
+                        .lock()
+                        .unwrap()
+                        .handle_action(BatteryServiceActions::Connect(device, transport));
                 }
 
                 Message::SuspendCallbackRegistered(id) => {

@@ -1884,16 +1884,29 @@ impl BtifBluetoothCallbacks for Bluetooth {
                         Instant::now(),
                         vec![],
                     ));
+                    let acl_reported_transport = device.acl_reported_transport.clone();
                     let device_info = device.info.clone();
 
                     // Since this is a newly bonded device, we also need to trigger SDP on it.
                     device.services_resolved = false;
-                    self.fetch_remote_uuids(device_info);
+                    self.fetch_remote_uuids(device_info.clone());
                     if self.get_wake_allowed_device_bonded() {
                         self.create_uhid_for_suspend_wakesource();
                     }
                     // Update the connectable mode since bonded list is changed.
                     self.trigger_update_connectable_mode();
+
+                    let transport = match self.get_remote_type(device_info.clone()) {
+                        BtDeviceType::Bredr => BtTransport::Bredr,
+                        BtDeviceType::Ble => BtTransport::Le,
+                        _ => acl_reported_transport,
+                    };
+
+                    let tx = self.tx.clone();
+                    tokio::spawn(async move {
+                        let _ =
+                            tx.send(Message::OnDeviceBonded(device_info.clone(), transport)).await;
+                    });
                 }
                 BtBondState::Bonding => {}
             }
@@ -2058,18 +2071,9 @@ impl BtifBluetoothCallbacks for Bluetooth {
 
         match state {
             BtAclState::Connected => {
-                let acl_reported_transport = device.acl_reported_transport.clone();
                 Bluetooth::send_metrics_remote_device_info(device);
                 self.connection_callbacks.for_all_callbacks(|callback| {
                     callback.on_device_connected(info.clone());
-                });
-                let transport = match self.get_remote_type(info.clone()) {
-                    BtDeviceType::Bredr => BtTransport::Bredr,
-                    BtDeviceType::Ble => BtTransport::Le,
-                    _ => acl_reported_transport,
-                };
-                tokio::spawn(async move {
-                    let _ = txl.send(Message::OnAclConnected(info, transport)).await;
                 });
             }
             BtAclState::Disconnected => {
