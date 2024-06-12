@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e21818a_24be9bdf",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2138,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-12T18:25:51Z",
+      "side": 1,
+      "message": "With this change, does UI still need to call stopBroadcast?\n\nwould that be handled by this previous CL?\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3088479",
+      "revId": "3996a0cfc2ab32b4923824f842138ac630c65a5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
