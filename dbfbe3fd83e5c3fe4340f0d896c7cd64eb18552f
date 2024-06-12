@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30d6cf92_d0928fc7",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-12T17:40:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f8a71af_1e7081cf",
+      "range": {
+        "startLine": 579,
+        "startChar": 0,
+        "endLine": 586,
+        "endChar": 10
+      },
+      "revId": "dbfbe3fd83e5c3fe4340f0d896c7cd64eb18552f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "843ad2c5_08fcf7ab",
@@ -61,6 +85,30 @@
       "writtenOn": "2024-06-12T16:51:02Z",
       "side": 1,
       "message": "```suggestion\n        assert_eq!(\n            characteristic_decl,\n            AttAttributeDataChild::GattCharacteristicDeclarationValue(\n                GattCharacteristicDeclarationValueBuilder {\n                    properties: GattCharacteristicPropertiesBuilder {\n                        read: 1,\n                        broadcast: 0,\n                        write_without_response: 0,\n                        write: 1,\n                        notify: 0,\n                        indicate: 1,\n                        authenticated_signed_writes: 0,\n                        extended_properties: 0,\n                    },\n                    handle: CHARACTERISTIC_VALUE_HANDLE.into(),\n                    uuid: CHARACTERISTIC_TYPE.into()\n                }\n            )\n            .to_vec()\n        );\n```",
+      "range": {
+        "startLine": 718,
+        "startChar": 0,
+        "endLine": 738,
+        "endChar": 10
+      },
+      "revId": "dbfbe3fd83e5c3fe4340f0d896c7cd64eb18552f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d9f7e60_e142bbde",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 738,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-12T17:40:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "843ad2c5_08fcf7ab",
       "range": {
         "startLine": 718,
         "startChar": 0,
@@ -88,6 +136,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3eae9ccb_584e5bf6",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-12T17:40:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94f4ed8a_7b40631e",
+      "revId": "dbfbe3fd83e5c3fe4340f0d896c7cd64eb18552f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "55eb5804_2c2c91cc",
@@ -101,6 +167,30 @@
       "writtenOn": "2024-06-12T16:51:02Z",
       "side": 1,
       "message": "```suggestion\n        assert_eq!(\n            Ok(resp),\n            GattClientCharacteristicConfigurationBuilder { notification: 0, indication: 0 }\n                .to_vec()\n        );\n```",
+      "range": {
+        "startLine": 260,
+        "startChar": 0,
+        "endLine": 265,
+        "endChar": 10
+      },
+      "revId": "dbfbe3fd83e5c3fe4340f0d896c7cd64eb18552f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f9f6cc3_edb98024",
+        "filename": "system/rust/src/gatt/server/services/gatt.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-12T17:40:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55eb5804_2c2c91cc",
       "range": {
         "startLine": 260,
         "startChar": 0,
@@ -134,6 +224,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c34971dd_e9e6b07d",
+        "filename": "system/rust/src/gatt/server/services/gatt.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-12T17:40:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "823ac8a8_5c269bd0",
+      "range": {
+        "startLine": 296,
+        "startChar": 0,
+        "endLine": 301,
+        "endChar": 10
+      },
+      "revId": "dbfbe3fd83e5c3fe4340f0d896c7cd64eb18552f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e607d16_20e55a90",
@@ -147,6 +261,30 @@
       "writtenOn": "2024-06-12T16:51:02Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 335,
+        "startChar": 0,
+        "endLine": 340,
+        "endChar": 10
+      },
+      "revId": "dbfbe3fd83e5c3fe4340f0d896c7cd64eb18552f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa72ce07_e4104c44",
+        "filename": "system/rust/src/gatt/server/services/gatt.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-12T17:40:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e607d16_20e55a90",
       "range": {
         "startLine": 335,
         "startChar": 0,
@@ -174,6 +312,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3386c2a_d93f9fef",
+        "filename": "system/rust/src/gatt/server/transactions/helpers/att_filter_by_size_type.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-12T17:40:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a717b2ee_68ce2713",
+      "revId": "dbfbe3fd83e5c3fe4340f0d896c7cd64eb18552f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f73e580_413f2eee",
@@ -187,6 +343,24 @@
       "writtenOn": "2024-06-12T16:51:02Z",
       "side": 1,
       "message": "nit: Remove trailing comma",
+      "revId": "dbfbe3fd83e5c3fe4340f0d896c7cd64eb18552f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ffad174_5104b657",
+        "filename": "system/rust/tests/gatt_callbacks_test.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-12T17:40:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f73e580_413f2eee",
       "revId": "dbfbe3fd83e5c3fe4340f0d896c7cd64eb18552f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -208,6 +382,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a58dae4e_e716ef18",
+        "filename": "system/rust/tests/gatt_callbacks_test.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-12T17:40:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7731cbeb_f67a3130",
+      "revId": "dbfbe3fd83e5c3fe4340f0d896c7cd64eb18552f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d4bffe7_395e2229",
@@ -221,6 +413,30 @@
       "writtenOn": "2024-06-12T16:51:02Z",
       "side": 1,
       "message": "```suggestion\n        assert_eq!(\n            resp.to_vec(),\n            AttBuilder {\n                opcode: AttOpcode::READ_RESPONSE,\n                _child_: AttReadResponseBuilder {\n                    value: build_att_data(GattServiceDeclarationValueBuilder {\n                        uuid: SERVICE_TYPE.into()\n                    })\n                }\n                .into()\n            }\n            .to_vec()\n        );\n```",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 10
+      },
+      "revId": "dbfbe3fd83e5c3fe4340f0d896c7cd64eb18552f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e162f663_2bda4a89",
+        "filename": "system/rust/tests/gatt_server_test.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-12T17:40:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d4bffe7_395e2229",
       "range": {
         "startLine": 131,
         "startChar": 0,
