@@ -3,6 +3,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "58b08fd8_9ff8f522",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-12T04:59:45Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: sleep and its variants should never be used in tests or in production code - prefer event driven systems.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nsleep and its variants should never be used in tests or in production code - prefer event driven systems.",
+      "range": {
+        "startLine": 209,
+        "startChar": 8,
+        "endLine": 209,
+        "endChar": 15
+      },
+      "revId": "4c1a1e3c967638d23b9aaf2b1c0f5bf25d90b2d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a75391e6_8193963d",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-12T04:59:45Z",
+      "side": 1,
+      "message": "This value should be a system property",
+      "revId": "4c1a1e3c967638d23b9aaf2b1c0f5bf25d90b2d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9f82792b_6bd45e12",
         "filename": "system/btif/include/btif_hh.h",
         "patchSetId": 1
