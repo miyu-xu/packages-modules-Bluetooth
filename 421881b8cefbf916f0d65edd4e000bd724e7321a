@@ -39,6 +39,30 @@
       },
       "revId": "421881b8cefbf916f0d65edd4e000bd724e7321a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e56eb05_d9cf44e9",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/AppScanStats.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-06-12T17:35:44Z",
+      "side": 1,
+      "message": "That looks good to me.",
+      "parentUuid": "f28d9d09_6a114fe1",
+      "range": {
+        "startLine": 461,
+        "startChar": 8,
+        "endLine": 463,
+        "endChar": 9
+      },
+      "revId": "421881b8cefbf916f0d65edd4e000bd724e7321a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

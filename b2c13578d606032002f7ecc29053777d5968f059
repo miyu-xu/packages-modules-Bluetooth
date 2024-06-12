@@ -16,6 +16,231 @@
       "message": "Added unit test cases to verify the logging of app scan stats, radio scan stats, adv stats, etc. For radio scan stats test case, it tested multiple scan clients with screen on/off events to check if the correct scan mode and app attribution are logged.\n\nAlso changed the logging of app attribution of `recordScanRadioStart()` from the converted scan mode of the most aggressive app to the original scan mode of that app. We can infer the converted mode from the scan window and interval.",
       "revId": "b2c13578d606032002f7ecc29053777d5968f059",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "696be82a_e9c62a2a",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1082,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-06-12T17:35:44Z",
+      "side": 1,
+      "message": "I think we are still interested in the client (not clientByAppScanMode) configuring the radio scan but we may want to record AppScanMode of the client.",
+      "range": {
+        "startLine": 1082,
+        "startChar": 28,
+        "endLine": 1082,
+        "endChar": 47
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "bd914c23_41bd461d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+              "range": {
+                "startLine": 1082,
+                "startChar": 0,
+                "endLine": 1083,
+                "endChar": 0
+              },
+              "replacement": "                            client.scanModeApp,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b2c13578d606032002f7ecc29053777d5968f059",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e217dcf1_36133c3e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1462,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-06-12T17:35:44Z",
+      "side": 1,
+      "message": "We had random failures due to different system delay. I suggest to remove the test for outbound check through isAtMost.",
+      "range": {
+        "startLine": 1462,
+        "startChar": 0,
+        "endLine": 1462,
+        "endChar": 92
+      },
+      "revId": "b2c13578d606032002f7ecc29053777d5968f059",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bf5d9ad_0b513dc8",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1524,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-06-12T17:35:44Z",
+      "side": 1,
+      "message": "We had random failures due to different system delay. I suggest to remove the test for outbound check through isAtMost.",
+      "range": {
+        "startLine": 1524,
+        "startChar": 0,
+        "endLine": 1524,
+        "endChar": 91
+      },
+      "revId": "b2c13578d606032002f7ecc29053777d5968f059",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6026b521_01cd9403",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1558,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-06-12T17:35:44Z",
+      "side": 1,
+      "message": "We had random failures due to different system delay. I suggest to remove the test for outbound check through isAtMost.",
+      "range": {
+        "startLine": 1558,
+        "startChar": 0,
+        "endLine": 1558,
+        "endChar": 72
+      },
+      "revId": "b2c13578d606032002f7ecc29053777d5968f059",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4319c909_8982976a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1615,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-06-12T17:35:44Z",
+      "side": 1,
+      "message": "We had random failures due to different system delay. I suggest to remove the test for outbound check through isAtMost.",
+      "range": {
+        "startLine": 1615,
+        "startChar": 0,
+        "endLine": 1615,
+        "endChar": 72
+      },
+      "revId": "b2c13578d606032002f7ecc29053777d5968f059",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d6c5fd8_44d88b4b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1644,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-06-12T17:35:44Z",
+      "side": 1,
+      "message": "We had random failures due to different system delay. I suggest to remove the test for outbound check through isAtMost.",
+      "range": {
+        "startLine": 1644,
+        "startChar": 0,
+        "endLine": 1644,
+        "endChar": 45
+      },
+      "revId": "b2c13578d606032002f7ecc29053777d5968f059",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55060349_51efbb29",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1686,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-06-12T17:35:44Z",
+      "side": 1,
+      "message": "We had random failures due to different system delay. I suggest to remove the test for outbound check through isAtMost.",
+      "range": {
+        "startLine": 1686,
+        "startChar": 0,
+        "endLine": 1686,
+        "endChar": 72
+      },
+      "revId": "b2c13578d606032002f7ecc29053777d5968f059",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd5a0154_1c498479",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1709,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-06-12T17:35:44Z",
+      "side": 1,
+      "message": "We had random failures due to different system delay. I suggest to remove the test for outbound check through isAtMost.",
+      "range": {
+        "startLine": 1709,
+        "startChar": 0,
+        "endLine": 1709,
+        "endChar": 89
+      },
+      "revId": "b2c13578d606032002f7ecc29053777d5968f059",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fb90397_051cc713",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1732,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-06-12T17:35:44Z",
+      "side": 1,
+      "message": "We had random failures due to different system delay. I suggest to remove the test for outbound check through isAtMost.",
+      "range": {
+        "startLine": 1732,
+        "startChar": 0,
+        "endLine": 1732,
+        "endChar": 72
+      },
+      "revId": "b2c13578d606032002f7ecc29053777d5968f059",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
