@@ -22,6 +22,30 @@
       },
       "revId": "b3514b03d301191e929b43fdffb5cb0f2832ff44",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "206ad6bd_776ac1d2",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-06-12T01:25:54Z",
+      "side": 1,
+      "message": "Ah yes. Good call out; I missed that. Thank you!",
+      "parentUuid": "4a5679da_c3fb8d6c",
+      "range": {
+        "startLine": 238,
+        "startChar": 16,
+        "endLine": 238,
+        "endChar": 20
+      },
+      "revId": "b3514b03d301191e929b43fdffb5cb0f2832ff44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
