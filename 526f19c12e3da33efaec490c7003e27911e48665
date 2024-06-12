@@ -16,6 +16,24 @@
       "message": "Will this affect existing autotest?",
       "revId": "526f19c12e3da33efaec490c7003e27911e48665",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d157494f_3d8427dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-06-12T07:14:59Z",
+      "side": 1,
+      "message": "Interface-wise, our autotest and the LEA tests in mobly use cras related tools to control audio, not through this DBus API, so probably no affect. I\u0027m not sure about the pts-bot.  +@johnlai@google.com\n\nOne thing might worth to change is https://source.corp.google.com/chromeos_public/src/third_party/autotest/files/client/cros/bluetooth/floss/media_client.py, although we are not using the API but it\u0027s still good to keep them sync.\n\nAs for behavior-wise, let\u0027s monitor the autotest result in the lab.",
+      "parentUuid": "c54bb90f_76e734d6",
+      "revId": "526f19c12e3da33efaec490c7003e27911e48665",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
