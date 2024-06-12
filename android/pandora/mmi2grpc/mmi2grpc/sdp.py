@@ -145,9 +145,9 @@ class SDPProxy(ProfileProxy):
             "HandsfreeAudioGateway",
             "GenericAudio",
             "Message Access Server",
-            "TMAS",
             "NAP",
             "PANU",
+            "TMAS",
             "Phonebook Access - PSE",
             "OBEXObjectPush",
             "Android Auto Compatibility",
@@ -160,6 +160,7 @@ class SDPProxy(ProfileProxy):
         ]
         movable_services = [
             "Message Access Server",
+            "TMAS", # TODO: b/341385684 Remove from movable
         ]
         # yapf: enable
 
