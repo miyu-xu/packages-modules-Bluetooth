@@ -170,6 +170,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4611d1be_6a68e37a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-06-12T04:57:51Z",
+      "side": 1,
+      "message": "We\u0027ve begun internal discussions to address the file write performance on ChromeOS side.",
+      "parentUuid": "8e3b53ec_dd934c3a",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 25
+      },
+      "revId": "b4191ba199c1255bfddc6a352344a10e211278bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "37748e68_35b87e04",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -181,6 +205,30 @@
       "writtenOn": "2024-06-12T00:29:24Z",
       "side": 1,
       "message": "Is this correct ?\n\nI looked at the log in it and check the bluetooth.log to search for  `cleanup could not be completed in time, abandon it` but couldn\u0027t find it.\n\nI wanted to create a separate tracking bug on the cleanup and the storage beeing to slow",
+      "range": {
+        "startLine": 16,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 14
+      },
+      "revId": "b4191ba199c1255bfddc6a352344a10e211278bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06853ffd_ef6739d4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-06-12T04:57:51Z",
+      "side": 1,
+      "message": "b/310147428",
+      "parentUuid": "37748e68_35b87e04",
       "range": {
         "startLine": 16,
         "startChar": 5,
