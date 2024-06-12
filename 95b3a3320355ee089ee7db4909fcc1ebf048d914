@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03ef4dc5_455fcc4a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2024-06-12T03:56:47Z",
+      "side": 1,
+      "message": "Added b/315241296, thanks!",
+      "parentUuid": "607c25d2_7b3110dd",
+      "revId": "95b3a3320355ee089ee7db4909fcc1ebf048d914",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eec539f3_22b6d552",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-06-11T20:23:37Z",
       "side": 1,
       "message": "Please refer the flag tracking bug here (i.e. 346475618) as indicated in https://g3doc.corp.google.com/company/teams/android-bluetooth/contribution-guide/create-a-flag.md?cl\u003dhead.",
+      "range": {
+        "startLine": 83,
+        "startChar": 10,
+        "endLine": 83,
+        "endChar": 19
+      },
+      "revId": "95b3a3320355ee089ee7db4909fcc1ebf048d914",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bac98d4_650d7356",
+        "filename": "flags/a2dp.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2024-06-12T03:56:47Z",
+      "side": 1,
+      "message": "Fixed the bug no, thanks!",
+      "parentUuid": "eec539f3_22b6d552",
       "range": {
         "startLine": 83,
         "startChar": 10,
