@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de7763a0_268813ab",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-12T15:39:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79269b05_576f14e5",
+      "range": {
+        "startLine": 602,
+        "startChar": 6,
+        "endLine": 602,
+        "endChar": 19
+      },
+      "revId": "1efe4c55dcb25bf32e3bdb6980a02f91ef9cb338",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e58307a2_d6545475",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-06-11T00:07:11Z",
       "side": 1,
       "message": "nit: PostStreamEvent ?\n\nAvoid using a reference to pass return parameters, as it is error prone.",
+      "range": {
+        "startLine": 613,
+        "startChar": 7,
+        "endLine": 613,
+        "endChar": 28
+      },
+      "revId": "1efe4c55dcb25bf32e3bdb6980a02f91ef9cb338",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4013653a_58e8e900",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-12T15:39:29Z",
+      "side": 1,
+      "message": "PostStreamEvent would suggest accepting ANY event and we should only handle SUSPEND and STOP here",
+      "parentUuid": "e58307a2_d6545475",
       "range": {
         "startLine": 613,
         "startChar": 7,
@@ -83,6 +131,30 @@
       "writtenOn": "2024-06-11T00:07:11Z",
       "side": 1,
       "message": "I am wondering about the need for taking the mutex in this function:\nby returning a pointer to an element inside the peers map you implicitly make an assumption that it is not going to be edited (i.e. that the lock is held for the duration the pointer is held).",
+      "range": {
+        "startLine": 1262,
+        "startChar": 0,
+        "endLine": 1263,
+        "endChar": 71
+      },
+      "revId": "1efe4c55dcb25bf32e3bdb6980a02f91ef9cb338",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0419c114_0315aa48",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1263,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-12T15:39:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f382e307_ca4e8529",
       "range": {
         "startLine": 1262,
         "startChar": 0,

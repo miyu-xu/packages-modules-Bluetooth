@@ -22,6 +22,30 @@
       },
       "revId": "1c201bc4a45e389d05c27f380444da73fdc4ecd5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89b2f868_90f41fd1",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3853,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-12T15:39:29Z",
+      "side": 0,
+      "message": "If I want to remove Peers() and protect peers_ with mutex the function had to be moved inside the class. Only removing do_in_main_thread won\u0027t help here.",
+      "parentUuid": "7ecb27c5_989bddaa",
+      "range": {
+        "startLine": 3839,
+        "startChar": 2,
+        "endLine": 3853,
+        "endChar": 77
+      },
+      "revId": "1c201bc4a45e389d05c27f380444da73fdc4ecd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
