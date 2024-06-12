@@ -214,6 +214,9 @@ void FuzzHciLayer::injectLeIsoEvent(std::vector<uint8_t> data) {
 
 const ModuleFactory FuzzHciLayer::Factory = ModuleFactory([]() { return new FuzzHciLayer(); });
 
+const std::chrono::milliseconds FuzzHciLayer::kDefaultHciTimeoutMs(2000);
+const std::chrono::milliseconds FuzzHciLayer::kDefaultHciTimeoutRestartMs(5000);
+
 }  // namespace fuzz
 }  // namespace hci
 }  // namespace bluetooth
