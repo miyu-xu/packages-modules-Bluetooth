@@ -14,8 +14,6 @@
 
 #include "gatt_shim.h"
 
-#include <base/functional/bind.h>
-#include <base/location.h>
 #include <bluetooth/log.h>
 
 #include <cstdint>
@@ -31,7 +29,7 @@
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
 
-bt_status_t do_in_jni_thread(base::RepeatingClosure task);
+bt_status_t do_in_jni_thread(std::function<void()> task);
 
 namespace {
 std::optional<RawAddress> AddressOfConnection(uint16_t conn_id) {
@@ -64,14 +62,14 @@ void GattServerCallbacks::OnServerRead(uint16_t conn_id, uint32_t trans_id,
 
   switch (attr_type) {
     case AttributeBackingType::CHARACTERISTIC:
-      do_in_jni_thread(base::Bind(callbacks.request_read_characteristic_cb,
-                                  conn_id, trans_id, addr.value(), attr_handle,
-                                  offset, is_long));
+      do_in_jni_thread(std::bind(callbacks.request_read_characteristic_cb,
+                                 conn_id, trans_id, addr.value(), attr_handle,
+                                 offset, is_long));
       break;
     case AttributeBackingType::DESCRIPTOR:
-      do_in_jni_thread(base::Bind(callbacks.request_read_descriptor_cb, conn_id,
-                                  trans_id, addr.value(), attr_handle, offset,
-                                  is_long));
+      do_in_jni_thread(std::bind(callbacks.request_read_descriptor_cb, conn_id,
+                                 trans_id, addr.value(), attr_handle, offset,
+                                 is_long));
       break;
     default:
       log::fatal("Unexpected backing type {}", attr_type);
@@ -103,16 +101,16 @@ void GattServerCallbacks::OnServerWrite(
 
   switch (attr_type) {
     case AttributeBackingType::CHARACTERISTIC:
-      do_in_jni_thread(base::Bind(
+      do_in_jni_thread(std::bind(
           request_write_with_vec, callbacks.request_write_characteristic_cb,
           conn_id, trans_id, addr.value(), attr_handle, offset, need_response,
           is_prepare, std::move(buf)));
       break;
     case AttributeBackingType::DESCRIPTOR:
-      do_in_jni_thread(base::Bind(
-          request_write_with_vec, callbacks.request_write_descriptor_cb,
-          conn_id, trans_id, addr.value(), attr_handle, offset, need_response,
-          is_prepare, std::move(buf)));
+      do_in_jni_thread(std::bind(request_write_with_vec,
+                                 callbacks.request_write_descriptor_cb, conn_id,
+                                 trans_id, addr.value(), attr_handle, offset,
+                                 need_response, is_prepare, std::move(buf)));
       break;
     default:
       log::fatal("Unexpected backing type {}", attr_type);
@@ -121,7 +119,7 @@ void GattServerCallbacks::OnServerWrite(
 
 void GattServerCallbacks::OnIndicationSentConfirmation(uint16_t conn_id,
                                                        int status) const {
-  do_in_jni_thread(base::Bind(callbacks.indication_sent_cb, conn_id, status));
+  do_in_jni_thread(std::bind(callbacks.indication_sent_cb, conn_id, status));
 }
 
 void GattServerCallbacks::OnExecute(uint16_t conn_id, uint32_t trans_id,
@@ -133,8 +131,8 @@ void GattServerCallbacks::OnExecute(uint16_t conn_id, uint32_t trans_id,
     return;
   }
 
-  do_in_jni_thread(base::Bind(callbacks.request_exec_write_cb, conn_id,
-                              trans_id, addr.value(), execute));
+  do_in_jni_thread(std::bind(callbacks.request_exec_write_cb, conn_id, trans_id,
+                             addr.value(), execute));
 }
 
 }  // namespace gatt

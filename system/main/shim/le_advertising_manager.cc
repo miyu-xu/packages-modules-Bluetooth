@@ -89,7 +89,7 @@ class BleAdvertiserInterfaceImpl : public BleAdvertiserInterface,
 
   void GetOwnAddress(uint8_t advertiser_id, GetAddressCallback cb) override {
     log::info("in shim layer");
-    address_callbacks_[advertiser_id] = jni_thread_wrapper(cb);
+    address_callbacks_[advertiser_id] = std_jni_thread_wrapper(cb);
     bluetooth::shim::GetAdvertising()->GetOwnAddress(advertiser_id);
   }
 
@@ -243,9 +243,9 @@ class BleAdvertiserInterfaceImpl : public BleAdvertiserInterface,
                      reg_id, advertiser_id, tx_power, status));
       return;
     }
-    do_in_jni_thread(base::Bind(&AdvertisingCallbacks::OnAdvertisingSetStarted,
-                                base::Unretained(advertising_callbacks_),
-                                reg_id, advertiser_id, tx_power, status));
+    do_in_jni_thread(std::bind(&AdvertisingCallbacks::OnAdvertisingSetStarted,
+                               std::ref(advertising_callbacks_), reg_id,
+                               advertiser_id, tx_power, status));
   }
 
   void OnAdvertisingEnabled(uint8_t advertiser_id, bool enable,
@@ -262,62 +262,60 @@ class BleAdvertiserInterfaceImpl : public BleAdvertiserInterface,
                      advertiser_id, enable, status));
       return;
     }
-    do_in_jni_thread(base::Bind(&AdvertisingCallbacks::OnAdvertisingEnabled,
-                                base::Unretained(advertising_callbacks_),
-                                advertiser_id, enable, status));
+    do_in_jni_thread(std::bind(&AdvertisingCallbacks::OnAdvertisingEnabled,
+                               std::ref(advertising_callbacks_), advertiser_id,
+                               enable, status));
   }
 
   void OnAdvertisingDataSet(uint8_t advertiser_id, uint8_t status) {
-    do_in_jni_thread(base::Bind(&AdvertisingCallbacks::OnAdvertisingDataSet,
-                                base::Unretained(advertising_callbacks_),
-                                advertiser_id, status));
+    do_in_jni_thread(std::bind(&AdvertisingCallbacks::OnAdvertisingDataSet,
+                               std::ref(advertising_callbacks_), advertiser_id,
+                               status));
   }
   void OnScanResponseDataSet(uint8_t advertiser_id, uint8_t status) {
-    do_in_jni_thread(base::Bind(&AdvertisingCallbacks::OnScanResponseDataSet,
-                                base::Unretained(advertising_callbacks_),
-                                advertiser_id, status));
+    do_in_jni_thread(std::bind(&AdvertisingCallbacks::OnScanResponseDataSet,
+                               std::ref(advertising_callbacks_), advertiser_id,
+                               status));
   }
 
   void OnAdvertisingParametersUpdated(uint8_t advertiser_id, int8_t tx_power,
                                       uint8_t status) {
-    do_in_jni_thread(
-        base::Bind(&AdvertisingCallbacks::OnAdvertisingParametersUpdated,
-                   base::Unretained(advertising_callbacks_), advertiser_id,
-                   tx_power, status));
+    do_in_jni_thread(std::bind(
+        &AdvertisingCallbacks::OnAdvertisingParametersUpdated,
+        std::ref(advertising_callbacks_), advertiser_id, tx_power, status));
   }
 
   void OnPeriodicAdvertisingParametersUpdated(uint8_t advertiser_id,
                                               uint8_t status) {
-    do_in_jni_thread(base::Bind(
-        &AdvertisingCallbacks::OnPeriodicAdvertisingParametersUpdated,
-        base::Unretained(advertising_callbacks_), advertiser_id, status));
+    do_in_jni_thread(
+        std::bind(&AdvertisingCallbacks::OnPeriodicAdvertisingParametersUpdated,
+                  std::ref(advertising_callbacks_), advertiser_id, status));
   }
 
   void OnPeriodicAdvertisingDataSet(uint8_t advertiser_id, uint8_t status) {
-    do_in_jni_thread(base::Bind(
-        &AdvertisingCallbacks::OnPeriodicAdvertisingDataSet,
-        base::Unretained(advertising_callbacks_), advertiser_id, status));
+    do_in_jni_thread(
+        std::bind(&AdvertisingCallbacks::OnPeriodicAdvertisingDataSet,
+                  std::ref(advertising_callbacks_), advertiser_id, status));
   }
 
   void OnPeriodicAdvertisingEnabled(uint8_t advertiser_id, bool enable,
                                     uint8_t status) {
-    do_in_jni_thread(
-        base::Bind(&AdvertisingCallbacks::OnPeriodicAdvertisingEnabled,
-                   base::Unretained(advertising_callbacks_), advertiser_id,
-                   enable, status));
+    do_in_jni_thread(std::bind(
+        &AdvertisingCallbacks::OnPeriodicAdvertisingEnabled,
+        std::ref(advertising_callbacks_), advertiser_id, enable, status));
   }
 
   void OnOwnAddressRead(uint8_t advertiser_id, uint8_t address_type,
                         bluetooth::hci::Address address) {
     RawAddress raw_address = bluetooth::ToRawAddress(address);
     if (address_callbacks_.find(advertiser_id) != address_callbacks_.end()) {
-      address_callbacks_[advertiser_id].Run(address_type, raw_address);
+      address_callbacks_[advertiser_id](address_type, raw_address);
       address_callbacks_.erase(advertiser_id);
       return;
     }
-    do_in_jni_thread(base::Bind(&AdvertisingCallbacks::OnOwnAddressRead,
-                                base::Unretained(advertising_callbacks_),
-                                advertiser_id, address_type, raw_address));
+    do_in_jni_thread(std::bind(&AdvertisingCallbacks::OnOwnAddressRead,
+                               std::ref(advertising_callbacks_), advertiser_id,
+                               address_type, raw_address));
   }
 
   AdvertisingCallbacks* advertising_callbacks_;

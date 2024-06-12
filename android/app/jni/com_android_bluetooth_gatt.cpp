@@ -1404,7 +1404,8 @@ static void gattClientReadPhyNative(JNIEnv* env, jobject /* object */,
   if (!sGattIf) return;
 
   RawAddress bda = str2addr(env, address);
-  sGattIf->client->read_phy(bda, base::Bind(&readClientPhyCb, clientIf, bda));
+  sGattIf->client->read_phy(bda,
+                            std::bind_front(&readClientPhyCb, clientIf, bda));
 }
 
 static void gattClientRefreshNative(JNIEnv* env, jobject /* object */,
@@ -1551,9 +1552,10 @@ static void gattSetScanParametersNative(JNIEnv* /* env */, jobject /* object */,
                                         jint client_if, jint scan_interval_unit,
                                         jint scan_window_unit, jint scan_phy) {
   if (!sScanner) return;
-  sScanner->SetScanParameters(client_if, /* use active scan */ 0x01,
-                              scan_interval_unit, scan_window_unit, scan_phy,
-                              base::Bind(&set_scan_params_cmpl_cb, client_if));
+  sScanner->SetScanParameters(
+      client_if, /* use active scan */ 0x01, scan_interval_unit,
+      scan_window_unit, scan_phy,
+      std::bind_front(&set_scan_params_cmpl_cb, client_if));
 }
 
 void scan_filter_param_cb(uint8_t client_if, uint8_t avbl_space, uint8_t action,
@@ -1612,9 +1614,16 @@ static void gattClientScanFilterParamAddNative(JNIEnv* env,
   methodId = env->GetMethodID(filtparam.get(), "getRSSILowValue", "()I");
   filt_params->rssi_low_thres = env->CallIntMethod(params, methodId);
 
+<<<<<<< HEAD
   sScanner->ScanFilterParamSetup(client_if, add_scan_filter_params_action,
                                  filt_index, std::move(filt_params),
                                  base::Bind(&scan_filter_param_cb, client_if));
+=======
+  sGattIf->scanner->ScanFilterParamSetup(
+      client_if, add_scan_filter_params_action, filt_index,
+      std::move(filt_params),
+      std::bind_front(&scan_filter_param_cb, client_if));
+>>>>>>> e68bdc0a89 (Move to std::function)
 }
 
 static void gattClientScanFilterParamDeleteNative(JNIEnv* /* env */,
@@ -1623,9 +1632,15 @@ static void gattClientScanFilterParamDeleteNative(JNIEnv* /* env */,
                                                   jint filt_index) {
   if (!sScanner) return;
   const int delete_scan_filter_params_action = 1;
+<<<<<<< HEAD
   sScanner->ScanFilterParamSetup(client_if, delete_scan_filter_params_action,
                                  filt_index, nullptr,
                                  base::Bind(&scan_filter_param_cb, client_if));
+=======
+  sGattIf->scanner->ScanFilterParamSetup(
+      client_if, delete_scan_filter_params_action, filt_index, nullptr,
+      std::bind_front(&scan_filter_param_cb, client_if));
+>>>>>>> e68bdc0a89 (Move to std::function)
 }
 
 static void gattClientScanFilterParamClearAllNative(JNIEnv* /* env */,
@@ -1633,9 +1648,15 @@ static void gattClientScanFilterParamClearAllNative(JNIEnv* /* env */,
                                                     jint client_if) {
   if (!sScanner) return;
   const int clear_scan_filter_params_action = 2;
+<<<<<<< HEAD
   sScanner->ScanFilterParamSetup(client_if, clear_scan_filter_params_action,
                                  0 /* index, unused */, nullptr,
                                  base::Bind(&scan_filter_param_cb, client_if));
+=======
+  sGattIf->scanner->ScanFilterParamSetup(
+      client_if, clear_scan_filter_params_action, 0 /* index, unused */,
+      nullptr, std::bind_front(&scan_filter_param_cb, client_if));
+>>>>>>> e68bdc0a89 (Move to std::function)
 }
 
 static void scan_filter_cfg_cb(uint8_t client_if, uint8_t filt_type,
@@ -1667,8 +1688,14 @@ static void gattClientScanFilterAddNative(JNIEnv* env, jobject /* object */,
 
   int numFilters = env->GetArrayLength(filters);
   if (numFilters == 0) {
+<<<<<<< HEAD
     sScanner->ScanFilterAdd(filter_index, std::move(native_filters),
                             base::Bind(&scan_filter_cfg_cb, client_if));
+=======
+    sGattIf->scanner->ScanFilterAdd(
+        filter_index, std::move(native_filters),
+        std::bind_front(&scan_filter_cfg_cb, client_if));
+>>>>>>> e68bdc0a89 (Move to std::function)
     return;
   }
 
@@ -1806,16 +1833,28 @@ static void gattClientScanFilterAddNative(JNIEnv* env, jobject /* object */,
     native_filters.push_back(curr);
   }
 
+<<<<<<< HEAD
   sScanner->ScanFilterAdd(filter_index, std::move(native_filters),
                           base::Bind(&scan_filter_cfg_cb, client_if));
+=======
+  sGattIf->scanner->ScanFilterAdd(
+      filter_index, std::move(native_filters),
+      std::bind_front(&scan_filter_cfg_cb, client_if));
+>>>>>>> e68bdc0a89 (Move to std::function)
 }
 
 static void gattClientScanFilterClearNative(JNIEnv* /* env */,
                                             jobject /* object */,
                                             jint client_if, jint filt_index) {
+<<<<<<< HEAD
   if (!sScanner) return;
   sScanner->ScanFilterClear(filt_index,
                             base::Bind(&scan_filter_cfg_cb, client_if));
+=======
+  if (!sGattIf) return;
+  sGattIf->scanner->ScanFilterClear(
+      filt_index, std::bind_front(&scan_filter_cfg_cb, client_if));
+>>>>>>> e68bdc0a89 (Move to std::function)
 }
 
 void scan_enable_cb(uint8_t client_if, uint8_t action, uint8_t status) {
@@ -1830,8 +1869,14 @@ void scan_enable_cb(uint8_t client_if, uint8_t action, uint8_t status) {
 static void gattClientScanFilterEnableNative(JNIEnv* /* env */,
                                              jobject /* object */,
                                              jint client_if, jboolean enable) {
+<<<<<<< HEAD
   if (!sScanner) return;
   sScanner->ScanFilterEnable(enable, base::Bind(&scan_enable_cb, client_if));
+=======
+  if (!sGattIf) return;
+  sGattIf->scanner->ScanFilterEnable(
+      enable, std::bind_front(&scan_enable_cb, client_if));
+>>>>>>> e68bdc0a89 (Move to std::function)
 }
 
 static void gattClientConfigureMTUNative(JNIEnv* /* env */,
@@ -1879,7 +1924,7 @@ static void gattClientConfigBatchScanStorageNative(
   sScanner->BatchscanConfigStorage(
       client_if, max_full_reports_percent, max_trunc_reports_percent,
       notify_threshold_level_percent,
-      base::Bind(&batchscan_cfg_storage_cb, client_if));
+      std::bind_front(&batchscan_cfg_storage_cb, client_if));
 }
 
 void batchscan_enable_cb(uint8_t client_if, uint8_t status) {
@@ -1897,17 +1942,30 @@ static void gattClientStartBatchScanNative(JNIEnv* /* env */,
                                            jint scan_interval_unit,
                                            jint scan_window_unit,
                                            jint addr_type, jint discard_rule) {
+<<<<<<< HEAD
   if (!sScanner) return;
   sScanner->BatchscanEnable(scan_mode, scan_interval_unit, scan_window_unit,
                             addr_type, discard_rule,
                             base::Bind(&batchscan_enable_cb, client_if));
+=======
+  if (!sGattIf) return;
+  sGattIf->scanner->BatchscanEnable(
+      scan_mode, scan_interval_unit, scan_window_unit, addr_type, discard_rule,
+      std::bind_front(&batchscan_enable_cb, client_if));
+>>>>>>> e68bdc0a89 (Move to std::function)
 }
 
 static void gattClientStopBatchScanNative(JNIEnv* /* env */,
                                           jobject /* object */,
                                           jint client_if) {
+<<<<<<< HEAD
   if (!sScanner) return;
   sScanner->BatchscanDisable(base::Bind(&batchscan_enable_cb, client_if));
+=======
+  if (!sGattIf) return;
+  sGattIf->scanner->BatchscanDisable(
+      std::bind_front(&batchscan_enable_cb, client_if));
+>>>>>>> e68bdc0a89 (Move to std::function)
 }
 
 static void gattClientReadScanReportsNative(JNIEnv* /* env */,
@@ -1980,7 +2038,8 @@ static void gattServerReadPhyNative(JNIEnv* env, jobject /* object */,
   if (!sGattIf) return;
 
   RawAddress bda = str2addr(env, address);
-  sGattIf->server->read_phy(bda, base::Bind(&readServerPhyCb, serverIf, bda));
+  sGattIf->server->read_phy(bda,
+                            std::bind_front(&readServerPhyCb, serverIf, bda));
 }
 
 static void gattServerAddServiceNative(JNIEnv* env, jobject /* object */,
@@ -2331,7 +2390,7 @@ static void getOwnAddressNative(JNIEnv* /* env */, jobject /* object */,
                                 jint advertiser_id) {
   if (!sGattIf) return;
   sGattIf->advertiser->GetOwnAddress(
-      advertiser_id, base::Bind(&getOwnAddressCb, advertiser_id));
+      advertiser_id, std::bind_front(&getOwnAddressCb, advertiser_id));
 }
 
 static void callJniCallback(jmethodID method, uint8_t advertiser_id,

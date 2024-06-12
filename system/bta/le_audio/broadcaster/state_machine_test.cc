@@ -168,7 +168,7 @@ class StateMachineTest : public Test {
               RawAddress address;
               const uint8_t addr[] = {0x11, 0x22, 0x33, 0x44, 0x55, 0x66};
               address.FromOctets(addr);
-              cb.Run(address_type, address);
+              cb(address_type, address);
             });
 
     ON_CALL(*(sm_callbacks_.get()), OnStateMachineCreateStatus)

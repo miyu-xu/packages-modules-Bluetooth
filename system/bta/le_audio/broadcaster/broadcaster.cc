@@ -810,7 +810,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
       return;
     }
 
-    broadcasts_[broadcast_id]->RequestOwnAddress(base::Bind(
+    broadcasts_[broadcast_id]->RequestOwnAddress(std::bind_front(
         [](uint32_t broadcast_id, uint8_t req_address_type,
            RawAddress req_address,
            base::Callback<void(uint8_t /* broadcast_id */,

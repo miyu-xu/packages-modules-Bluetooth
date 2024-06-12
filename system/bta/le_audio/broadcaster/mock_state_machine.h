@@ -126,7 +126,7 @@ class MockBroadcastStateMachine
       GetStateMachineConfig, (), (const override));
   MOCK_METHOD(
       (void), RequestOwnAddress,
-      (base::Callback<void(uint8_t /* address_type*/, RawAddress /*address*/)>
+      (std::function<void(uint8_t /* address_type*/, RawAddress /*address*/)>
            cb),
       (override));
   MOCK_METHOD((const bluetooth::le_audio::broadcaster::BroadcastConfiguration&),

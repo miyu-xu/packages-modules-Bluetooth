@@ -943,11 +943,11 @@ bt_status_t HeadsetInterface::ConnectAudio(RawAddress* bd_addr,
     log::error("SLC not connected for {}", *bd_addr);
     return BT_STATUS_NOT_READY;
   }
-  do_in_jni_thread(base::Bind(&Callbacks::AudioStateCallback,
-                              // Manual pointer management for now
-                              base::Unretained(bt_hf_callbacks),
-                              BTHF_AUDIO_STATE_CONNECTING,
-                              &btif_hf_cb[idx].connected_bda));
+  do_in_jni_thread(std::bind(&Callbacks::AudioStateCallback,
+                             // Manual pointer management for now
+                             std::ref(bt_hf_callbacks),
+                             BTHF_AUDIO_STATE_CONNECTING,
+                             &btif_hf_cb[idx].connected_bda));
   BTA_AgAudioOpen(btif_hf_cb[idx].handle, disabled_codecs);
 
   DEVICE_IOT_CONFIG_ADDR_INT_ADD_ONE(*bd_addr, IOT_CONF_KEY_HFP_SCO_CONN_COUNT);
@@ -1538,7 +1538,7 @@ void HeadsetInterface::Cleanup() {
     }
   }
 
-  do_in_jni_thread(base::Bind([]() { bt_hf_callbacks = nullptr; }));
+  do_in_jni_thread(std::bind([]() { bt_hf_callbacks = nullptr; }));
 }
 
 bt_status_t HeadsetInterface::SetScoOffloadEnabled(bool value) {

@@ -119,18 +119,18 @@ class BleScannerInterface {
   using RegisterCallback =
       base::Callback<void(uint8_t /* scanner_id */, uint8_t /* btm_status */)>;
 
-  using Callback = base::Callback<void(uint8_t /* btm_status */)>;
+  using Callback = std::function<void(uint8_t /* btm_status */)>;
 
   using EnableCallback =
-      base::Callback<void(uint8_t /* action */, uint8_t /* btm_status */)>;
+      std::function<void(uint8_t /* action */, uint8_t /* btm_status */)>;
 
   using FilterParamSetupCallback =
-      base::Callback<void(uint8_t /* avbl_space */, uint8_t /* action_type */,
-                          uint8_t /* btm_status */)>;
+      std::function<void(uint8_t /* avbl_space */, uint8_t /* action_type */,
+                         uint8_t /* btm_status */)>;
 
   using FilterConfigCallback =
-      base::Callback<void(uint8_t /* filt_type */, uint8_t /* avbl_space */,
-                          uint8_t /* action */, uint8_t /* btm_status */)>;
+      std::function<void(uint8_t /* filt_type */, uint8_t /* avbl_space */,
+                         uint8_t /* action */, uint8_t /* btm_status */)>;
 
 #if TARGET_FLOSS
   using MsftAdvMonitorAddCallback =

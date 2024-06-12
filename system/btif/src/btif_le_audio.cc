@@ -49,37 +49,39 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
 
   void OnInitialized(void) {
     do_in_jni_thread(
-        Bind(&LeAudioClientCallbacks::OnInitialized, Unretained(callbacks)));
+        std::bind(&LeAudioClientCallbacks::OnInitialized, std::ref(callbacks)));
   }
 
   void OnConnectionState(ConnectionState state,
                          const RawAddress& address) override {
-    do_in_jni_thread(Bind(&LeAudioClientCallbacks::OnConnectionState,
-                          Unretained(callbacks), state, address));
+    do_in_jni_thread(std::bind(&LeAudioClientCallbacks::OnConnectionState,
+                               std::ref(callbacks), state, address));
   }
 
   void OnGroupStatus(int group_id, GroupStatus group_status) override {
-    do_in_jni_thread(Bind(&LeAudioClientCallbacks::OnGroupStatus,
-                          Unretained(callbacks), group_id, group_status));
+    do_in_jni_thread(std::bind(&LeAudioClientCallbacks::OnGroupStatus,
+                               std::ref(callbacks), group_id, group_status));
   }
 
   void OnGroupNodeStatus(const RawAddress& addr, int group_id,
                          GroupNodeStatus node_status) override {
-    do_in_jni_thread(Bind(&LeAudioClientCallbacks::OnGroupNodeStatus,
-                          Unretained(callbacks), addr, group_id, node_status));
+    do_in_jni_thread(std::bind(&LeAudioClientCallbacks::OnGroupNodeStatus,
+                               std::ref(callbacks), addr, group_id,
+                               node_status));
   }
 
   void OnAudioConf(uint8_t direction, int group_id, uint32_t snk_audio_location,
                    uint32_t src_audio_location, uint16_t avail_cont) override {
-    do_in_jni_thread(Bind(&LeAudioClientCallbacks::OnAudioConf,
-                          Unretained(callbacks), direction, group_id,
-                          snk_audio_location, src_audio_location, avail_cont));
+    do_in_jni_thread(std::bind(
+        &LeAudioClientCallbacks::OnAudioConf, std::ref(callbacks), direction,
+        group_id, snk_audio_location, src_audio_location, avail_cont));
   }
 
   void OnSinkAudioLocationAvailable(const RawAddress& address,
                                     uint32_t snk_audio_location) override {
-    do_in_jni_thread(Bind(&LeAudioClientCallbacks::OnSinkAudioLocationAvailable,
-                          Unretained(callbacks), address, snk_audio_location));
+    do_in_jni_thread(
+        std::bind(&LeAudioClientCallbacks::OnSinkAudioLocationAvailable,
+                  std::ref(callbacks), address, snk_audio_location));
   }
 
   void OnAudioLocalCodecCapabilities(
@@ -87,17 +89,17 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
       std::vector<btle_audio_codec_config_t> local_output_capa_codec_conf)
       override {
     do_in_jni_thread(
-        Bind(&LeAudioClientCallbacks::OnAudioLocalCodecCapabilities,
-             Unretained(callbacks), local_input_capa_codec_conf,
-             local_output_capa_codec_conf));
+        std::bind(&LeAudioClientCallbacks::OnAudioLocalCodecCapabilities,
+                  std::ref(callbacks), local_input_capa_codec_conf,
+                  local_output_capa_codec_conf));
   }
 
   void OnAudioGroupCurrentCodecConf(
       int group_id, btle_audio_codec_config_t input_codec_conf,
       btle_audio_codec_config_t output_codec_conf) override {
-    do_in_jni_thread(Bind(&LeAudioClientCallbacks::OnAudioGroupCurrentCodecConf,
-                          Unretained(callbacks), group_id, input_codec_conf,
-                          output_codec_conf));
+    do_in_jni_thread(std::bind(
+        &LeAudioClientCallbacks::OnAudioGroupCurrentCodecConf,
+        std::ref(callbacks), group_id, input_codec_conf, output_codec_conf));
   }
 
   void OnAudioGroupSelectableCodecConf(
@@ -106,38 +108,39 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
       std::vector<btle_audio_codec_config_t> output_selectable_codec_conf)
       override {
     do_in_jni_thread(
-        Bind(&LeAudioClientCallbacks::OnAudioGroupSelectableCodecConf,
-             Unretained(callbacks), group_id, input_selectable_codec_conf,
-             output_selectable_codec_conf));
+        std::bind(&LeAudioClientCallbacks::OnAudioGroupSelectableCodecConf,
+                  std::ref(callbacks), group_id, input_selectable_codec_conf,
+                  output_selectable_codec_conf));
   }
 
   void OnHealthBasedRecommendationAction(
       const RawAddress& address,
       bluetooth::le_audio::LeAudioHealthBasedAction action) override {
     do_in_jni_thread(
-        Bind(&LeAudioClientCallbacks::OnHealthBasedRecommendationAction,
-             Unretained(callbacks), address, action));
+        std::bind(&LeAudioClientCallbacks::OnHealthBasedRecommendationAction,
+                  std::ref(callbacks), address, action));
   }
 
   void OnHealthBasedGroupRecommendationAction(
       int group_id,
       bluetooth::le_audio::LeAudioHealthBasedAction action) override {
-    do_in_jni_thread(
-        Bind(&LeAudioClientCallbacks::OnHealthBasedGroupRecommendationAction,
-             Unretained(callbacks), group_id, action));
+    do_in_jni_thread(std::bind(
+        &LeAudioClientCallbacks::OnHealthBasedGroupRecommendationAction,
+        std::ref(callbacks), group_id, action));
   }
 
   void OnUnicastMonitorModeStatus(uint8_t direction,
                                   UnicastMonitorModeStatus status) override {
-    do_in_jni_thread(Bind(&LeAudioClientCallbacks::OnUnicastMonitorModeStatus,
-                          Unretained(callbacks), direction, status));
+    do_in_jni_thread(
+        std::bind(&LeAudioClientCallbacks::OnUnicastMonitorModeStatus,
+                  std::ref(callbacks), direction, status));
   }
 
   void OnGroupStreamStatus(int group_id,
                            GroupStreamStatus group_stream_status) override {
-    do_in_jni_thread(Bind(&LeAudioClientCallbacks::OnGroupStreamStatus,
-                          Unretained(callbacks), group_id,
-                          group_stream_status));
+    do_in_jni_thread(std::bind(&LeAudioClientCallbacks::OnGroupStreamStatus,
+                               std::ref(callbacks), group_id,
+                               group_stream_status));
   }
 
   void Initialize(LeAudioClientCallbacks* callbacks,
@@ -149,14 +152,14 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
       log::info("supported codec: {}", codec.ToString());
     }
 
-    do_in_main_thread(
-        FROM_HERE,
-        Bind(&LeAudioClient::Initialize, this,
-             jni_thread_wrapper(Bind(&btif_storage_load_bonded_leaudio)),
-             base::Bind([]() -> bool {
-               return LeAudioHalVerifier::SupportsLeAudio();
-             }),
-             offloading_preference));
+    do_in_main_thread(FROM_HERE,
+                      Bind(&LeAudioClient::Initialize, this,
+                           jni_thread_wrapper(
+                               std::function(btif_storage_load_bonded_leaudio)),
+                           base::Bind([]() -> bool {
+                             return LeAudioHalVerifier::SupportsLeAudio();
+                           }),
+                           offloading_preference));
 
     /* It might be not yet initialized, but setting this flag here is safe,
      * because other calls will check this and the native instance
@@ -183,7 +186,7 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
           "call ignored, due to already started cleanup procedure or service "
           "being not read");
 
-      do_in_jni_thread(Bind(&btif_storage_remove_leaudio, address));
+      do_in_jni_thread(std::bind(&btif_storage_remove_leaudio, address));
       return;
     }
 
@@ -191,7 +194,7 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
                       Bind(&LeAudioClient::RemoveDevice,
                            Unretained(LeAudioClient::Get()), address));
 
-    do_in_jni_thread(Bind(&btif_storage_remove_leaudio, address));
+    do_in_jni_thread(std::bind(&btif_storage_remove_leaudio, address));
   }
 
   void Connect(const RawAddress& address) override {

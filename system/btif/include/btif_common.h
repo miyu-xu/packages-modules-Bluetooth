@@ -98,7 +98,7 @@ typedef struct {
  *  Functions
  ******************************************************************************/
 
-bt_status_t do_in_jni_thread(base::RepeatingClosure task);
+bt_status_t do_in_jni_thread(std::function<void()> task);
 bool is_on_jni_thread();
 
 using BtJniClosure = std::function<void()>;
@@ -109,10 +109,19 @@ void post_on_bt_jni(BtJniClosure closure);
  * thread
  */
 template <typename R, typename... Args>
-base::Callback<R(Args...)> jni_thread_wrapper(base::Callback<R(Args...)> cb) {
+base::Callback<R(Args...)> jni_thread_wrapper(std::function<R(Args...)> cb) {
   return base::Bind(
-      [](base::Callback<R(Args...)> cb, Args... args) {
-        do_in_jni_thread(base::Bind(cb, std::forward<Args>(args)...));
+      [](std::function<R(Args...)> cb, Args... args) {
+        do_in_jni_thread(std::bind(cb, std::forward<Args>(args)...));
+      },
+      std::move(cb));
+}
+
+template <typename R, typename... Args>
+std::function<R(Args...)> std_jni_thread_wrapper(std::function<R(Args...)> cb) {
+  return std::bind_front(
+      [](std::function<R(Args...)> cb, Args... args) {
+        do_in_jni_thread(std::bind(cb, std::forward<Args>(args)...));
       },
       std::move(cb));
 }

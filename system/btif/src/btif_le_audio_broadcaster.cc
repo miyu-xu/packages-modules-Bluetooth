@@ -104,27 +104,29 @@ class LeAudioBroadcasterInterfaceImpl : public LeAudioBroadcasterInterface,
   }
 
   void OnBroadcastCreated(uint32_t broadcast_id, bool success) override {
-    do_in_jni_thread(Bind(&LeAudioBroadcasterCallbacks::OnBroadcastCreated,
-                          Unretained(callbacks_), broadcast_id, success));
+    do_in_jni_thread(std::bind(&LeAudioBroadcasterCallbacks::OnBroadcastCreated,
+                               std::ref(callbacks_), broadcast_id, success));
   }
 
   void OnBroadcastDestroyed(uint32_t broadcast_id) override {
-    do_in_jni_thread(Bind(&LeAudioBroadcasterCallbacks::OnBroadcastDestroyed,
-                          Unretained(callbacks_), broadcast_id));
+    do_in_jni_thread(
+        std::bind(&LeAudioBroadcasterCallbacks::OnBroadcastDestroyed,
+                  std::ref(callbacks_), broadcast_id));
   }
 
   void OnBroadcastStateChanged(uint32_t broadcast_id,
                                BroadcastState state) override {
-    do_in_jni_thread(Bind(&LeAudioBroadcasterCallbacks::OnBroadcastStateChanged,
-                          Unretained(callbacks_), broadcast_id, state));
+    do_in_jni_thread(
+        std::bind(&LeAudioBroadcasterCallbacks::OnBroadcastStateChanged,
+                  std::ref(callbacks_), broadcast_id, state));
   }
 
   void OnBroadcastMetadataChanged(uint32_t broadcast_id,
                                   const bluetooth::le_audio::BroadcastMetadata&
                                       broadcast_metadata) override {
     do_in_jni_thread(
-        Bind(&LeAudioBroadcasterCallbacks::OnBroadcastMetadataChanged,
-             Unretained(callbacks_), broadcast_id, broadcast_metadata));
+        std::bind(&LeAudioBroadcasterCallbacks::OnBroadcastMetadataChanged,
+                  std::ref(callbacks_), broadcast_id, broadcast_metadata));
   }
 
   void Stop(void) override {

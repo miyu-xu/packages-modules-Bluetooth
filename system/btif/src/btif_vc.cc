@@ -47,10 +47,9 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
   void Init(VolumeControlCallbacks* callbacks) override {
     this->callbacks_ = callbacks;
     do_in_main_thread(
-        FROM_HERE,
-        Bind(&VolumeControl::Initialize, this,
-             jni_thread_wrapper(
-                 Bind(&btif_storage_load_bonded_volume_control_devices))));
+        FROM_HERE, Bind(&VolumeControl::Initialize, this,
+                        jni_thread_wrapper(std::function(
+                            btif_storage_load_bonded_volume_control_devices))));
 
     /* It might be not yet initialized, but setting this flag here is safe,
      * because other calls will check this and the native instance
@@ -60,28 +59,28 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
 
   void OnConnectionState(ConnectionState state,
                          const RawAddress& address) override {
-    do_in_jni_thread(Bind(&VolumeControlCallbacks::OnConnectionState,
-                          Unretained(callbacks_), state, address));
+    do_in_jni_thread(std::bind(&VolumeControlCallbacks::OnConnectionState,
+                               callbacks_, state, address));
   }
 
   void OnVolumeStateChanged(const RawAddress& address, uint8_t volume,
                             bool mute, bool isAutonomous) override {
-    do_in_jni_thread(Bind(&VolumeControlCallbacks::OnVolumeStateChanged,
-                          Unretained(callbacks_), address, volume, mute,
-                          isAutonomous));
+    do_in_jni_thread(std::bind(&VolumeControlCallbacks::OnVolumeStateChanged,
+                               callbacks_, address, volume, mute,
+                               isAutonomous));
   }
 
   void OnGroupVolumeStateChanged(int group_id, uint8_t volume, bool mute,
                                  bool isAutonomous) override {
-    do_in_jni_thread(Bind(&VolumeControlCallbacks::OnGroupVolumeStateChanged,
-                          Unretained(callbacks_), group_id, volume, mute,
-                          isAutonomous));
+    do_in_jni_thread(
+        std::bind(&VolumeControlCallbacks::OnGroupVolumeStateChanged,
+                  callbacks_, group_id, volume, mute, isAutonomous));
   }
 
   void OnDeviceAvailable(const RawAddress& address,
                          uint8_t num_offset) override {
-    do_in_jni_thread(Bind(&VolumeControlCallbacks::OnDeviceAvailable,
-                          Unretained(callbacks_), address, num_offset));
+    do_in_jni_thread(std::bind(&VolumeControlCallbacks::OnDeviceAvailable,
+                               callbacks_, address, num_offset));
   }
 
   /* Callbacks for Volume Offset Control Service (VOCS) - Extended Audio Outputs
@@ -91,24 +90,24 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
                                         uint8_t ext_output_id,
                                         int16_t offset) override {
     do_in_jni_thread(
-        Bind(&VolumeControlCallbacks::OnExtAudioOutVolumeOffsetChanged,
-             Unretained(callbacks_), address, ext_output_id, offset));
+        std::bind(&VolumeControlCallbacks::OnExtAudioOutVolumeOffsetChanged,
+                  callbacks_, address, ext_output_id, offset));
   }
 
   void OnExtAudioOutLocationChanged(const RawAddress& address,
                                     uint8_t ext_output_id,
                                     uint32_t location) override {
-    do_in_jni_thread(Bind(&VolumeControlCallbacks::OnExtAudioOutLocationChanged,
-                          Unretained(callbacks_), address, ext_output_id,
-                          location));
+    do_in_jni_thread(
+        std::bind(&VolumeControlCallbacks::OnExtAudioOutLocationChanged,
+                  callbacks_, address, ext_output_id, location));
   }
 
   void OnExtAudioOutDescriptionChanged(const RawAddress& address,
                                        uint8_t ext_output_id,
                                        std::string descr) override {
     do_in_jni_thread(
-        Bind(&VolumeControlCallbacks::OnExtAudioOutDescriptionChanged,
-             Unretained(callbacks_), address, ext_output_id, descr));
+        std::bind(&VolumeControlCallbacks::OnExtAudioOutDescriptionChanged,
+                  callbacks_, address, ext_output_id, descr));
   }
 
   void Connect(const RawAddress& address) override {

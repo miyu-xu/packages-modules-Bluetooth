@@ -157,7 +157,7 @@ class BroadcastStateMachine : public StateMachine<5> {
   virtual std::optional<BigConfig> const& GetBigConfig() const = 0;
   virtual BroadcastStateMachineConfig const& GetStateMachineConfig() const = 0;
   virtual void RequestOwnAddress(
-      base::Callback<void(uint8_t /* address_type*/, RawAddress /*address*/)>
+      std::function<void(uint8_t /* address_type*/, RawAddress /*address*/)>
           cb) = 0;
   virtual void RequestOwnAddress() = 0;
   virtual RawAddress GetOwnAddress() = 0;

@@ -61,7 +61,7 @@ class BluetoothKeystoreInterfaceImpl
       log::info("callback isn't ready.");
       return;
     }
-    do_in_jni_thread(base::Bind([]() {
+    do_in_jni_thread(std::bind([]() {
       shim::BtifConfigInterface::ConvertEncryptOrDecryptKeyIfNeeded();
     }));
   }
@@ -79,9 +79,9 @@ class BluetoothKeystoreInterfaceImpl
     key_map[prefix] = decryptedString;
 
     do_in_jni_thread(
-        base::Bind(&bluetooth::bluetooth_keystore::BluetoothKeystoreCallbacks::
-                       set_encrypt_key_or_remove_key,
-                   base::Unretained(callbacks), prefix, decryptedString));
+        std::bind(&bluetooth::bluetooth_keystore::BluetoothKeystoreCallbacks::
+                      set_encrypt_key_or_remove_key,
+                  std::ref(callbacks), prefix, decryptedString));
     return true;
   }
 
