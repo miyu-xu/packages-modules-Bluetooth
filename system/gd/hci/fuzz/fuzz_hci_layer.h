@@ -145,6 +145,16 @@ class FuzzHciLayer : public HciLayer {
     return "FuzzHciLayer";
   }
 
+  static std::chrono::milliseconds getHciTimeoutMs() {
+    return kDefaultHciTimeoutMs;
+  };
+  static std::chrono::milliseconds getHciTimeoutRestartMs() {
+    return kDefaultHciTimeoutRestartMs;
+  };
+
+  static const std::chrono::milliseconds kDefaultHciTimeoutMs;
+  static const std::chrono::milliseconds kDefaultHciTimeoutRestartMs;
+
   static const ModuleFactory Factory;
 
  protected:
