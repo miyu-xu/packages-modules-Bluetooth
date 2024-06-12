@@ -1277,6 +1277,11 @@ void SnoopLogger::DumpSnoozLogToFile(const std::vector<std::string>& data) const
     return;
   }
 
+#if TARGET_FLOSS
+  // Floss doesn't support user space snoop log.
+  return;
+#endif
+
   log::debug("Dumping btsnooz log data to {}", snooz_log_path_);
   auto last_file_path = get_last_log_path(snooz_log_path_);
 
