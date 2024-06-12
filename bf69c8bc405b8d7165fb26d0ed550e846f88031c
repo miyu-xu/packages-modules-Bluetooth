@@ -67,6 +67,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "6767bd47_b7dcd26d",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1435,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-06-12T18:24:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4205a8e5_bcb5b04f",
+      "revId": "bf69c8bc405b8d7165fb26d0ed550e846f88031c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a66611d5_8ac5eb99",
         "filename": "system/stack/l2cap/l2c_ble.cc",
         "patchSetId": 2
