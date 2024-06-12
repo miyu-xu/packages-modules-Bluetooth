@@ -21,6 +21,7 @@
 #include <string.h>
 
 #include <algorithm>
+#include <bluetooth/log.h>
 #include <optional>
 #include <string>
 
@@ -66,6 +67,7 @@ int32_t osi_property_get_int32(const char* key, int32_t default_value) {
 
 bool osi_property_get_bool(const char* key, bool default_value) {
   std::optional<std::string> result = bluetooth::os::GetSystemProperty(key);
+  bluetooth::log::info("key:{}'s value is:{}", key, *result == std::string("true"));
   if (result) {
     return *result == std::string("true");
   } else {

@@ -31,6 +31,7 @@ namespace os {
 std::optional<std::string> GetSystemProperty(const std::string& property) {
   std::array<char, PROPERTY_VALUE_MAX> value_array{0};
   auto value_len = property_get(property.c_str(), value_array.data(), nullptr);
+  log::info("value_len is:{}",value_len);
   if (value_len <= 0) {
     return std::nullopt;
   }
