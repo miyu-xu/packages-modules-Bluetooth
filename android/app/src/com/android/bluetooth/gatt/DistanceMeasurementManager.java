@@ -31,6 +31,7 @@ import android.util.Log;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.internal.annotations.VisibleForTesting;
 
+import java.util.ArrayList;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -71,11 +72,22 @@ public class DistanceMeasurementManager {
     }
 
     DistanceMeasurementMethod[] getSupportedDistanceMeasurementMethods() {
-        DistanceMeasurementMethod rssi =
+
+        ArrayList<DistanceMeasurementMethod> methodsList =
+                new ArrayList<DistanceMeasurementMethod>();
+        methodsList.add(
                 new DistanceMeasurementMethod.Builder(
                                 DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_RSSI)
-                        .build();
-        DistanceMeasurementMethod[] methods = {rssi};
+                        .build());
+        if (mAdapterService.isLeChannelSoundingSupported()) {
+            methodsList.add(
+                    new DistanceMeasurementMethod.Builder(
+                                    DistanceMeasurementMethod
+                                            .DISTANCE_MEASUREMENT_METHOD_CHANNEL_SOUNDING)
+                            .build());
+        }
+        DistanceMeasurementMethod[] methods =
+                methodsList.toArray(new DistanceMeasurementMethod[methodsList.size()]);
         return methods;
     }
 
