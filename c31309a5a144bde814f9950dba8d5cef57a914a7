@@ -106,6 +106,103 @@
       "parentUuid": "c18b29b6_9092d908",
       "revId": "c31309a5a144bde814f9950dba8d5cef57a914a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ea1ad0f_a94e6908",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-12T04:59:24Z",
+      "side": 1,
+      "message": "Preferred pattern is \nif (!flag) {\n  // original_logic\n  return;\n}\n\n// new logic",
+      "revId": "c31309a5a144bde814f9950dba8d5cef57a914a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "484d1d5b_6a07b1f8",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-12T04:59:24Z",
+      "side": 1,
+      "message": "Use hid_report_queuing flag",
+      "fixSuggestions": [
+        {
+          "fixId": "b58e18db_ca2303ca",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/hh/bta_hh_act.cc",
+              "range": {
+                "startLine": 657,
+                "startChar": 0,
+                "endLine": 658,
+                "endChar": 0
+              },
+              "replacement": "  if (com::android::bluetooth::flags::hid_report_queuing()) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c31309a5a144bde814f9950dba8d5cef57a914a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3715d16_d38a478d",
+        "filename": "system/bta/include/bta_hh_api.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-12T04:59:24Z",
+      "side": 1,
+      "message": "Nit: handle should be the first member",
+      "fixSuggestions": [
+        {
+          "fixId": "880c676f_9985b95e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/include/bta_hh_api.h",
+              "range": {
+                "startLine": 329,
+                "startChar": 0,
+                "endLine": 329,
+                "endChar": 0
+              },
+              "replacement": "  uint8_t handle; /* device handle */\n"
+            },
+            {
+              "path": "system/bta/include/bta_hh_api.h",
+              "range": {
+                "startLine": 331,
+                "startChar": 0,
+                "endLine": 332,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "c31309a5a144bde814f9950dba8d5cef57a914a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
