@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "713a9f7a_9c1175ca",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-06-12T17:01:17Z",
+      "side": 1,
+      "message": "I\u0027m having trouble understanding what qualifies as a socket stream error and what doesn\u0027t.  For example, why is this not a socket stream error?",
+      "range": {
+        "startLine": 393,
+        "startChar": 13,
+        "endLine": 393,
+        "endChar": 27
+      },
+      "revId": "d79284a431bf5db264282bd3a5aee92b52e1dd82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
