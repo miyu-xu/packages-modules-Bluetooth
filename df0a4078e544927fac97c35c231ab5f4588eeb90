@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad44b219_b8d0e5f9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-12T02:53:38Z",
+      "side": 1,
+      "message": "Why is this better ?",
+      "range": {
+        "startLine": 7,
+        "startChar": 53,
+        "endLine": 7,
+        "endChar": 63
+      },
+      "revId": "df0a4078e544927fac97c35c231ab5f4588eeb90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43bce779_e1060fce",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-12T02:53:38Z",
+      "side": 1,
+      "message": "unwrap 😞\n\nBut the method return a result, this should be gracefully handle",
+      "range": {
+        "startLine": 191,
+        "startChar": 21,
+        "endLine": 191,
+        "endChar": 27
+      },
+      "revId": "df0a4078e544927fac97c35c231ab5f4588eeb90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e4e26fb_f9be3b43",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-12T02:53:38Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 229,
+        "startChar": 21,
+        "endLine": 229,
+        "endChar": 27
+      },
+      "revId": "df0a4078e544927fac97c35c231ab5f4588eeb90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88f1494b_54d06963",
+        "filename": "system/rust/src/gatt/server/gatt_database.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-12T02:53:38Z",
+      "side": 1,
+      "message": "Why do we need to clone again ? didn\u0027t the value got already cloned above ?",
+      "range": {
+        "startLine": 363,
+        "startChar": 67,
+        "endLine": 363,
+        "endChar": 72
+      },
+      "revId": "df0a4078e544927fac97c35c231ab5f4588eeb90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "112ee82a_2cbc9034",
+        "filename": "system/rust/src/gatt/server/services/gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-12T02:53:38Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 76,
+        "startChar": 13,
+        "endLine": 76,
+        "endChar": 19
+      },
+      "revId": "df0a4078e544927fac97c35c231ab5f4588eeb90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
