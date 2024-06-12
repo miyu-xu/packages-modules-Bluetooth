@@ -16,6 +16,24 @@
       "message": "How a mechanical refactor can introduced a P0 regression?",
       "revId": "b3568a1111073cf2dd5366c8e188f5470fcb0817",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fab19af4_395c301e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-06-12T18:17:48Z",
+      "side": 1,
+      "message": "The build failure should have been caught in presubmit but was not",
+      "parentUuid": "421b23f8_5c07d831",
+      "revId": "b3568a1111073cf2dd5366c8e188f5470fcb0817",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
