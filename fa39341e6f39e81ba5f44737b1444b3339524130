@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fefd476d_1e185aaa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2051151
+      },
+      "writtenOn": "2024-06-12T10:46:42Z",
+      "side": 1,
+      "message": "Hi, @rongxuan@google.com, this changed is no longer needed.\nOnly Andy\u0027s CLs are enough for broadcast.",
+      "parentUuid": "3d569598_1e0cd4c0",
+      "revId": "fa39341e6f39e81ba5f44737b1444b3339524130",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8c3a52f5_8c337b99",
         "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
         "patchSetId": 16
