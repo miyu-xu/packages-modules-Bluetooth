@@ -144,6 +144,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e3b53ec_dd934c3a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-12T00:22:47Z",
+      "side": 1,
+      "message": "Even at 3x slower it should be done under the second.\nThis cleanup code is running on very slower devices including TV, watches. I expect ChromeOs to run on better hardware, but I may be wrong here.\n\nIf we were to add a sysprop, at some point someone will just increase it for its device instead of doing a proper investigation.\nAnd any future code modification in android will have to take this into consideration too.\nAlso, other timer on top of it may already expect the native cleanup to complete under the second and there is no plan to increase those.\n\nIf really you want and need a sysprop, we should use it only for FLOSS in order to avoid spreading the usage in a uncontrolled way.\n\n```\n#ifndef TARGET_FLOSS\n  int cleanup_wait_millis \u003d BT_STACK_CLEANUP_WAIT_MS\n#else  \n  int cleanup_wait_millis \u003d  \n      GET_SYSPROP(Bta, stack_cleanup_wait, BT_STACK_CLEANUP_WAIT_MS);\n#endif\n  auto status \u003d future.wait_for(std::chrono::milliseconds(cleanup_wait_millis));\n```\n\nYou said \"the storage module\" take ~ 1s. \nIs there a bug that track why is that ? Do we have the log of such situation to see what is the last operation ?\nIf this is writing on disk, what is the data that need to be write at shutdown (I believe we should not have any data written or close to none and this should be done asynchronously when the data is updated, because if anything happen before cleanup we loose the data)",
+      "parentUuid": "0e6998aa_34b2dacc",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 25
+      },
+      "revId": "b4191ba199c1255bfddc6a352344a10e211278bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "e569c59e_c3252163",
