@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e284660_fc546b1f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-12T18:41:20Z",
+      "side": 1,
+      "message": "See ag/27792650 for flag activation failure",
+      "revId": "7f5a08b6f0c05de277061128cd2b700d98d89929",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
