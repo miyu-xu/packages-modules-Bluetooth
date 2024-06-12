@@ -33,6 +33,7 @@
 #include "module.h"
 #include "os/fake_timer/fake_timerfd.h"
 #include "os/handler.h"
+#include "os/system_properties.h"
 #include "os/thread.h"
 #include "packet/raw_builder.h"
 
@@ -132,7 +133,7 @@ TEST_F(HciLayerTest, reset_command_sent_on_start) {
 
 TEST_F(HciLayerTest, controller_debug_info_requested_on_hci_timeout) {
   FailIfResetNotSent();
-  FakeTimerAdvance(HciLayer::kHciTimeoutMs.count());
+  FakeTimerAdvance(hci_->getHciTimeoutMs().count());
 
   sync_handler();
 
@@ -144,7 +145,7 @@ TEST_F(HciLayerTest, controller_debug_info_requested_on_hci_timeout) {
 
 TEST_F(HciLayerDeathTest, abort_after_hci_restart_timeout) {
   FailIfResetNotSent();
-  FakeTimerAdvance(HciLayer::kHciTimeoutMs.count());
+  FakeTimerAdvance(hci_->getHciTimeoutMs().count());
 
   auto sent_command = hal_->GetSentCommand();
   ASSERT_TRUE(sent_command.has_value());
@@ -154,7 +155,7 @@ TEST_F(HciLayerDeathTest, abort_after_hci_restart_timeout) {
   ASSERT_DEATH(
       {
         sync_handler();
-        FakeTimerAdvance(HciLayer::kHciTimeoutRestartMs.count());
+        FakeTimerAdvance(hci_->getHciTimeoutRestartMs().count());
         sync_handler();
       },
       "");
@@ -519,6 +520,24 @@ TEST_F(HciLayerTest, command_status_callback_is_invoked_with_failure_status) {
       hci_handler_->BindOnce([](CommandStatusView /* view */) {}));
   hal_->InjectEvent(ReadClockOffsetStatusBuilder::Create(ErrorCode::HARDWARE_FAILURE, 1));
   sync_handler();
+}
+
+TEST_F(HciLayerTest, hci_timeout_without_property_set_should_use_default_value_2000) {
+  ASSERT_EQ(hci_->getHciTimeoutMs(), std::chrono::milliseconds(2000));
+}
+
+TEST_F(HciLayerTest, hci_timeout_with_property_set_should_use_property_value) {
+  os::SetSystemProperty("bluetooth.hci.timeout_milliseconds", 3000);
+  ASSERT_EQ(hci_->getHciTimeoutMs(), std::chrono::milliseconds(3000));
+}
+
+TEST_F(HciLayerTest, hci_restart_timeout_without_property_set_should_use_default_value_5000) {
+  ASSERT_EQ(hci_->getHciTimeoutRestartMs(), std::chrono::milliseconds(5000));
+}
+
+TEST_F(HciLayerTest, hci_restart_timeout_with_property_set_should_use_property_value) {
+  os::SetSystemProperty("bluetooth.hci.restart_timeout_milliseconds", 3000);
+  ASSERT_EQ(hci_->getHciTimeoutRestartMs(), std::chrono::milliseconds(3000));
 }
 
 }  // namespace hci

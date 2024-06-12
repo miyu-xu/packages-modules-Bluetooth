@@ -33,6 +33,7 @@
 #include "os/alarm.h"
 #include "os/metrics.h"
 #include "os/queue.h"
+#include "os/system_properties.h"
 #include "osi/include/stack_power_telemetry.h"
 #include "packet/raw_builder.h"
 #include "storage/storage_module.h"
@@ -286,7 +287,8 @@ struct HciLayer::impl {
     }
     if (hci_abort_alarm_ == nullptr) {
       hci_abort_alarm_ = new Alarm(module_.GetHandler());
-      hci_abort_alarm_->Schedule(BindOnce(&abort_after_time_out, op_code), kHciTimeoutRestartMs);
+      hci_abort_alarm_->Schedule(
+          BindOnce(&abort_after_time_out, op_code), getHciTimeoutRestartMs());
     } else {
       log::warn("Unable to schedul abort timer");
     }
@@ -317,7 +319,8 @@ struct HciLayer::impl {
     waiting_command_ = op_code;
     command_credits_ = 0;  // Only allow one outstanding command
     if (hci_timeout_alarm_ != nullptr) {
-      hci_timeout_alarm_->Schedule(BindOnce(&impl::on_hci_timeout, common::Unretained(this), op_code), kHciTimeoutMs);
+      hci_timeout_alarm_->Schedule(
+          BindOnce(&impl::on_hci_timeout, common::Unretained(this), op_code), getHciTimeoutMs());
     } else {
       log::warn("{} sent without an hci-timeout timer", OpCodeText(op_code));
     }
@@ -386,7 +389,8 @@ struct HciLayer::impl {
     }
     if (hci_abort_alarm_ == nullptr) {
       hci_abort_alarm_ = new Alarm(module_.GetHandler());
-      hci_abort_alarm_->Schedule(BindOnce(&abort_after_root_inflammation, vse_error_reason), kHciTimeoutRestartMs);
+      hci_abort_alarm_->Schedule(
+          BindOnce(&abort_after_root_inflammation, vse_error_reason), getHciTimeoutRestartMs());
     } else {
       log::warn("Abort timer already scheduled");
     }
@@ -846,6 +850,19 @@ void HciLayer::Stop() {
   impl_->sco_queue_.GetDownEnd()->UnregisterDequeue();
   impl_->iso_queue_.GetDownEnd()->UnregisterDequeue();
   delete impl_;
+}
+
+std::chrono::milliseconds HciLayer::getHciTimeoutMs() const {
+  static const uint16_t sHciTimeoutMs = std::chrono::milliseconds(
+      bluetooth::os::GetSystemPropertyUint32Base("bluetooth.hci.timeout_milliseconds", 2000));
+  return sHciTimeoutMs;
+}
+
+std::chrono::milliseconds HciLayer::getHciTimeoutRestartMs() const {
+  static const uint16_t sRestartHciTimeoutMs =
+      std::chrono::milliseconds(bluetooth::os::GetSystemPropertyUint32Base(
+          "bluetooth.hci.restart_timeout_milliseconds", 5000));
+  return sRestartHciTimeoutMs;
 }
 
 }  // namespace hci
