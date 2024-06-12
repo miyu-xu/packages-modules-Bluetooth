@@ -40,6 +40,30 @@
       ],
       "revId": "d53f37d7df2e45a461e92691937182aa8f4545ad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b578b44_3bed4522",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-06-12T02:53:02Z",
+      "side": 1,
+      "message": "Sounds good! Also changed changing scanner_id: to scannerId\u003d since there are other logs using the same format. Thanks for the comment!",
+      "parentUuid": "744bc1a1_91895f9d",
+      "range": {
+        "startLine": 215,
+        "startChar": 28,
+        "endLine": 215,
+        "endChar": 39
+      },
+      "revId": "d53f37d7df2e45a461e92691937182aa8f4545ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
