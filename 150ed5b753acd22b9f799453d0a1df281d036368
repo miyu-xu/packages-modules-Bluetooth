@@ -51,6 +51,24 @@
       "message": "Flag: EXEMPT removing dead code",
       "revId": "150ed5b753acd22b9f799453d0a1df281d036368",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3adf193a_b53479cb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-06-12T05:44:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7bef0f69_8304bbf6",
+      "revId": "150ed5b753acd22b9f799453d0a1df281d036368",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
