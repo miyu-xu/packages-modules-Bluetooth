@@ -123,6 +123,7 @@ cc_defaults {
                 "android.system.suspend.control-V1-ndk",
                 "libbinder_ndk",
                 "libcutils",
+                "libexpresslog",
                 "libhidlbase",
                 "libstatslog_bt",
                 "libutils",
