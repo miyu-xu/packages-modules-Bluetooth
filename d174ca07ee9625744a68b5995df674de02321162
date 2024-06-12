@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8bc51be_b06b6ccd",
+        "filename": "floss/pandora/floss/floss_enums.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2024-06-12T21:43:32Z",
+      "side": 1,
+      "message": "NIT: Do we need the BT_STATUS_ here?",
+      "range": {
+        "startLine": 138,
+        "startChar": 4,
+        "endLine": 138,
+        "endChar": 30
+      },
+      "revId": "d174ca07ee9625744a68b5995df674de02321162",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
