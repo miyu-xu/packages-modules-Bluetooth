@@ -125,4 +125,13 @@ flag {
     metadata {
         purpose: PURPOSE_BUGFIX
     }
+
+flag {
+    name: "ignore_notify_when_already_connected"
+    namespace: "bluetooth"
+    description: "Ignore connection state notification from Native to JAVA layer when already connected with same peer"
+    bug: "346679106"
+    metadata {
+        purpose: PURPOSE_BUGFIX
+    }
 }
