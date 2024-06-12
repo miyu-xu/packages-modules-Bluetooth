@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "84d6baf6_d30f65de",
+        "filename": "system/gd/rust/topshim/src/sysprop.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2024-06-12T12:38:33Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "44d26a8e_495c831a",
+      "revId": "a1c6fa6c5b013b0d484ff36066d4d1b94c9936f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b9a6f1a_9eb618b7",
