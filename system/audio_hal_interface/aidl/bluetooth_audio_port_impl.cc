@@ -39,6 +39,7 @@ BluetoothAudioPortImpl::BluetoothAudioPortImpl(
 BluetoothAudioPortImpl::~BluetoothAudioPortImpl() {}
 
 ndk::ScopedAStatus BluetoothAudioPortImpl::startStream(bool is_low_latency) {
+  log::info("MICHAL");
   StopWatchLegacy stop_watch(__func__);
   BluetoothAudioCtrlAck ack = transport_instance_->StartRequest(is_low_latency);
   if (ack != BluetoothAudioCtrlAck::PENDING) {
@@ -52,6 +53,7 @@ ndk::ScopedAStatus BluetoothAudioPortImpl::startStream(bool is_low_latency) {
 }
 
 ndk::ScopedAStatus BluetoothAudioPortImpl::suspendStream() {
+  log::info("MICHAL");
   StopWatchLegacy stop_watch(__func__);
   BluetoothAudioCtrlAck ack = transport_instance_->SuspendRequest();
   if (ack != BluetoothAudioCtrlAck::PENDING) {
@@ -65,6 +67,7 @@ ndk::ScopedAStatus BluetoothAudioPortImpl::suspendStream() {
 }
 
 ndk::ScopedAStatus BluetoothAudioPortImpl::stopStream() {
+  log::info("MICHAL");
   StopWatchLegacy stop_watch(__func__);
   transport_instance_->StopRequest();
   return ndk::ScopedAStatus::ok();

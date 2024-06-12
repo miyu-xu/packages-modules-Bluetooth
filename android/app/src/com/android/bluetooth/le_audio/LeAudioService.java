@@ -3404,6 +3404,21 @@ public class LeAudioService extends ProfileService {
 
                     /* Stop here if Broadcast was not in Streaming state before */
                     if (previousState != LeAudioStackEvent.BROADCAST_STATE_STREAMING) {
+                        // Stream resumed
+                        mHandler.post(
+                                () ->
+                                        notifyPlaybackStarted(
+                                                broadcastId,
+                                                BluetoothStatusCodes.REASON_LOCAL_STACK_REQUEST));
+
+                        clearBroadcastTimeoutCallback();
+
+                        //if (previousState == LeAudioStackEvent.BROADCAST_STATE_PAUSED) {
+                            if (bassClientService != null) {
+                                Log.d(TAG, "Broadcast broadcastId: " + broadcastId + " paused. 2");
+                                bassClientService.resumeReceiversSourceSynchronization();
+                            }
+                        //}
                         return;
                     }
 
@@ -3414,13 +3429,13 @@ public class LeAudioService extends ProfileService {
                                             broadcastId,
                                             BluetoothStatusCodes.REASON_LOCAL_STACK_REQUEST));
 
-                    if (!Flags.leaudioBroadcastAssistantPeripheralEntrustment()) {
-                        if (bassClientService != null) {
-                            bassClientService.suspendReceiversSourceSynchronization(broadcastId);
-                        }
-                    }
+                    // if (!Flags.leaudioBroadcastAssistantPeripheralEntrustment()) {
+                    //     if (bassClientService != null) {
+                    //         bassClientService.suspendReceiversSourceSynchronization(broadcastId);
+                    //     }
+                    // }
 
-                    transitionFromBroadcastToUnicast();
+                    // transitionFromBroadcastToUnicast();
                     break;
                 case LeAudioStackEvent.BROADCAST_STATE_STOPPING:
                     Log.d(TAG, "Broadcast broadcastId: " + broadcastId + " stopping.");
@@ -3428,20 +3443,20 @@ public class LeAudioService extends ProfileService {
                 case LeAudioStackEvent.BROADCAST_STATE_STREAMING:
                     Log.d(TAG, "Broadcast broadcastId: " + broadcastId + " streaming.");
 
-                    // Stream resumed
-                    mHandler.post(
-                            () ->
-                                    notifyPlaybackStarted(
-                                            broadcastId,
-                                            BluetoothStatusCodes.REASON_LOCAL_STACK_REQUEST));
+                    // //Stream resumed
+                    // mHandler.post(
+                    //         () ->
+                    //                 notifyPlaybackStarted(
+                    //                         broadcastId,
+                    //                         BluetoothStatusCodes.REASON_LOCAL_STACK_REQUEST));
 
-                    clearBroadcastTimeoutCallback();
+                    // clearBroadcastTimeoutCallback();
 
-                    if (previousState == LeAudioStackEvent.BROADCAST_STATE_PAUSED) {
-                        if (bassClientService != null) {
-                            bassClientService.resumeReceiversSourceSynchronization();
-                        }
-                    }
+                    // if (previousState == LeAudioStackEvent.BROADCAST_STATE_PAUSED) {
+                    //     if (bassClientService != null) {
+                    //         bassClientService.resumeReceiversSourceSynchronization();
+                    //     }
+                    // }
 
                     // Notify audio manager
                     if (mBroadcastDescriptors.values().stream()

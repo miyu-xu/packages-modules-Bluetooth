@@ -119,6 +119,7 @@ class SourceImpl : public LeAudioSourceAudioHalClient {
 };
 
 bool SourceImpl::Acquire() {
+  log::info("MICHAL Acquire");
   auto sink_stream_cb = bluetooth::audio::le_audio::StreamCallbacks{
       .on_resume_ =
           std::bind(&SourceImpl::OnResumeReq, this, std::placeholders::_1),
@@ -183,6 +184,7 @@ void SourceImpl::Release() {
 }
 
 bool SourceImpl::OnResumeReq(bool start_media_task) {
+  log::info("MICHAL OnResumeReq");
   std::lock_guard<std::mutex> guard(audioSourceCallbacksMutex_);
   if (audioSourceCallbacks_ == nullptr) {
     log::error("audioSourceCallbacks_ not set");
@@ -284,6 +286,7 @@ void SourceImpl::StopAudioTicks() {
 }
 
 bool SourceImpl::OnSuspendReq() {
+  log::info("MICHAL OnSuspendReq");
   std::lock_guard<std::mutex> guard(audioSourceCallbacksMutex_);
   if (CodecManager::GetInstance()->GetCodecLocation() ==
       types::CodecLocation::HOST) {

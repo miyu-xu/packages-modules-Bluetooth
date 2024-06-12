@@ -160,6 +160,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
   static PublicBroadcastAnnouncementData preparePublicAnnouncement(
       uint8_t features, const LeAudioLtvMap& metadata) {
     PublicBroadcastAnnouncementData announcement;
+    log::info("MICHAL preparePublicAnnouncement");
 
     /* Prepare the announcement */
     announcement.features = features;
@@ -171,6 +172,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
       const std::vector<BroadcastSubgroupCodecConfig>& subgroup_configs,
       const std::vector<LeAudioLtvMap>& metadata_group) {
     BasicAudioAnnouncementData announcement;
+    log::info("MICHAL prepareBasicAnnouncement");
 
     /* Prepare the announcement */
     announcement.presentation_delay_us = 40000; /* us */
@@ -255,6 +257,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
 
   void UpdateStreamingContextTypeOnAllSubgroups(const AudioContexts& contexts) {
     log::debug("context_type_map={}", contexts.to_string());
+    log::info("MICHAL UpdateStreamingContextTypeOnAllSubgroups");
 
     auto ccids = ContentControlIdKeeper::GetInstance()->GetAllCcids(contexts);
     if (ccids.empty()) {
@@ -335,6 +338,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
       const std::vector<uint8_t>& public_metadata,
       const std::vector<std::vector<uint8_t>>& subgroup_metadata) override {
     std::vector<LeAudioLtvMap> subgroup_ltvs;
+    log::info("MICHAL UpdateMetadata");
 
     if (broadcasts_.count(broadcast_id) == 0) {
       log::error("No such broadcast_id={}", broadcast_id);
@@ -433,6 +437,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
   LeAudioContextType ChooseConfigurationContextType(
       AudioContexts audio_contexts) {
     log::debug("Got contexts={}", bluetooth::common::ToString(audio_contexts));
+    log::info("MICHAL ChooseConfigurationContextType");
 
     /* Prioritize the most common use cases. */
     if (audio_contexts.any()) {
@@ -465,6 +470,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     uint8_t public_features = 0;
     LeAudioLtvMap public_ltv;
     std::vector<LeAudioLtvMap> subgroup_ltvs;
+    log::info("MICHAL CreateAudioBroadcast");
 
     if (queued_create_broadcast_request_) {
       log::error("Not processed yet queued broadcast");
@@ -642,6 +648,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
 
   void InstantiateBroadcast(BroadcastStateMachineConfig msg) {
     log::info("CreateAudioBroadcast");
+    log::info("MICHAL InstantiateBroadcast");
 
     /* Put the new broadcast on the initialization queue, notify the error and
      * drop the pending broadcast data if init fails.
@@ -657,6 +664,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
 
   void SuspendAudioBroadcast(uint32_t broadcast_id) override {
     log::info("broadcast_id={}", broadcast_id);
+    log::info("MICHAL SuspendAudioBroadcast");
 
     if (broadcasts_.count(broadcast_id) != 0) {
       log::info("Stopping AudioHalClient");
@@ -683,6 +691,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
 
   void StartAudioBroadcast(uint32_t broadcast_id) override {
     log::info("Starting broadcast_id={}", broadcast_id);
+    log::info("MICHAL StartAudioBroadcast");
 
     if (queued_start_broadcast_request_) {
       log::error("Not processed yet start broadcast request");
@@ -724,6 +733,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
   }
 
   void StopAudioBroadcast(uint32_t broadcast_id) override {
+    log::info("MICHAL StopAudioBroadcast");
     if (broadcasts_.count(broadcast_id) == 0) {
       log::error("no such broadcast_id={}", broadcast_id);
       return;
@@ -740,6 +750,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
   }
 
   void DestroyAudioBroadcast(uint32_t broadcast_id) override {
+    log::info("MICHAL DestroyAudioBroadcast");
     log::info("Destroying broadcast_id={}", broadcast_id);
     broadcasts_.erase(broadcast_id);
 
@@ -776,6 +787,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
   }
 
   void GetBroadcastMetadata(uint32_t broadcast_id) override {
+    log::info("MICHAL GetBroadcastMetadata");
     if (broadcasts_.count(broadcast_id) == 0) {
       log::error("No such broadcast_id={}", broadcast_id);
       return;
@@ -804,6 +816,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
       base::Callback<void(uint8_t /* broadcast_id */, uint8_t /* addr_type */,
                           RawAddress /* addr */, bool /* is_local */)>
           cb) override {
+    log::info("MICHAL IsValidBroadcast");
     if (broadcasts_.count(broadcast_id) == 0) {
       log::error("No such broadcast_id={}", broadcast_id);
       std::move(cb).Run(broadcast_id, addr_type, addr, false);
@@ -844,6 +857,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
 
   void OnSetupIsoDataPath(uint8_t status, uint16_t conn_handle,
                           uint8_t big_handle) override {
+    log::info("MICHAL OnSetupIsoDataPath");
     auto broadcast_id = BroadcastIdFromBigHandle(big_handle);
     log::assert_that(broadcasts_.count(broadcast_id) != 0,
                      "assert failed: broadcasts_.count(broadcast_id) != 0");
@@ -852,6 +866,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
 
   void OnRemoveIsoDataPath(uint8_t status, uint16_t conn_handle,
                            uint8_t big_handle) override {
+    log::info("MICHAL OnRemoveIsoDataPath");
     auto broadcast_id = BroadcastIdFromBigHandle(big_handle);
     log::assert_that(broadcasts_.count(broadcast_id) != 0,
                      "assert failed: broadcasts_.count(broadcast_id) != 0");
@@ -859,6 +874,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
   }
 
   void OnBigEvent(uint8_t event, void* data) override {
+    log::info("MICHAL OnBigEvent");
     switch (event) {
       case bluetooth::hci::iso_manager::kIsoEventBigOnCreateCmpl: {
         auto* evt = static_cast<big_create_cmpl_evt*>(data);
@@ -876,11 +892,11 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
                          "assert failed: broadcasts_.count(broadcast_id) != 0");
         broadcasts_[broadcast_id]->HandleHciEvent(HCI_BLE_TERM_BIG_CPL_EVT,
                                                   evt);
-        auto result =
-            CodecManager::GetInstance()->UpdateActiveBroadcastAudioHalClient(
-                le_audio_source_hal_client_.get(), false);
-        log::assert_that(result, "Could not update session in codec manager");
-        le_audio_source_hal_client_.reset();
+        // auto result =
+        //     CodecManager::GetInstance()->UpdateActiveBroadcastAudioHalClient(
+        //         le_audio_source_hal_client_.get(), false);
+        // log::assert_that(result, "Could not update session in codec manager");
+        // le_audio_source_hal_client_.reset();
       } break;
       default:
         log::error("Invalid event={}", event);
@@ -925,6 +941,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
       : public IBroadcastStateMachineCallbacks {
     void OnStateMachineCreateStatus(uint32_t broadcast_id,
                                     bool initialized) override {
+      log::info("MICHAL OnStateMachineCreateStatus");
       auto pending_broadcast = std::find_if(
           instance->pending_broadcasts_.begin(),
           instance->pending_broadcasts_.end(), [broadcast_id](auto& sm) {
@@ -980,13 +997,58 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
           /* Pass through */
         case BroadcastStateMachine::State::CONFIGURING:
           /* Pass through */
+          break;
         case BroadcastStateMachine::State::CONFIGURED:
-          /* Pass through */
+            log::info("MICHAL CONFIGURED");
+            // if (instance->broadcasts_.count(broadcast_id) != 0) {
+            //   log::info("MICHAL CONFIGURED 2");
+            //   const auto& broadcast = instance->broadcasts_.at(broadcast_id);
+            //   const auto& broadcast_config = broadcast->GetBroadcastConfig();
+
+            //   // Reconfigure encoder instances for the new stream requirements
+            //   audio_receiver_.CheckAndReconfigureEncoders(broadcast_config);
+
+            //   auto is_started = instance->le_audio_source_hal_client_->Start(
+            //       broadcast_config.GetAudioHalClientConfig(), &audio_receiver_);
+            //   log::info("MICHAL CONFIGURED 3");
+            //   if (!is_started) {
+            //     log::info("MICHAL CONFIGURED 3 1");
+            //     /* Audio Source setup failed - stop the broadcast */
+            //     // instance->StopAudioBroadcast(broadcast_id);
+            //     return;
+            //   }
+            // }
+          break;
         case BroadcastStateMachine::State::STOPPING:
           /* Nothing to do here? */
           break;
+        // case BroadcastStateMachine::State::STREAMING:
+        //   if (getStreamerCount() == 1) {
+        //     log::info("MICHAL STREAMING");
+        //     if (instance->broadcasts_.count(broadcast_id) != 0) {
+        //       log::info("MICHAL STREAMING 2");
+        //       const auto& broadcast = instance->broadcasts_.at(broadcast_id);
+
+        //       ///////
+        //       instance->le_audio_source_hal_client_->Stop();
+        //       const auto& broadcast_config = broadcast->GetBroadcastConfig();
+
+        //       // Reconfigure encoder instances for the new stream requirements
+        //       audio_receiver_.CheckAndReconfigureEncoders(broadcast_config);
+
+        //       auto is_started = instance->le_audio_source_hal_client_->Start(
+        //           broadcast_config.GetAudioHalClientConfig(), &audio_receiver_);
+        //       /////////
+
+        //       broadcast->SetMuted(false);
+        //       instance->audio_data_path_state_ = AudioDataPathState::ACTIVE;
+        //       instance->le_audio_source_hal_client_->ConfirmStreamingRequest();
+        //     }
+        //   }
+        //   break;
         case BroadcastStateMachine::State::STREAMING:
           if (getStreamerCount() == 1) {
+            log::info("MICHAL STREAMING");
             log::info("Starting AudioHalClient");
 
             if (instance->broadcasts_.count(broadcast_id) != 0) {
@@ -1001,8 +1063,8 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
                   broadcast_config.GetAudioHalClientConfig(), &audio_receiver_);
               if (!is_started) {
                 /* Audio Source setup failed - stop the broadcast */
-                instance->StopAudioBroadcast(broadcast_id);
-                return;
+                //instance->StopAudioBroadcast(broadcast_id);
+                //return;
               }
 
               instance->audio_data_path_state_ = AudioDataPathState::ACTIVE;
@@ -1022,6 +1084,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     }
 
     void OnBigCreated(const std::vector<uint16_t>& conn_handle) {
+      log::info("MICHAL OnBigCreated");
       CodecManager::GetInstance()->UpdateBroadcastConnHandle(
           conn_handle,
           std::bind(
@@ -1034,6 +1097,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
   static class BroadcastAdvertisingCallbacks : public AdvertisingCallbacks {
     void OnAdvertisingSetStarted(int reg_id, uint8_t advertiser_id,
                                  int8_t tx_power, uint8_t status) {
+      log::info("MICHAL OnAdvertisingSetStarted");
       if (!instance) return;
 
       if (reg_id == BroadcastStateMachine::kLeAudioBroadcastRegId &&
@@ -1050,6 +1114,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
 
     void OnAdvertisingEnabled(uint8_t advertiser_id, bool enable,
                               uint8_t status) {
+      log::info("MICHAL");
       if (!instance) return;
 
       auto const& iter = std::find_if(
@@ -1066,6 +1131,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     }
 
     void OnAdvertisingDataSet(uint8_t advertiser_id, uint8_t status) {
+      log::info("MICHAL");
       log::warn(
           "Not being used, ignored OnAdvertisingDataSet callback "
           "advertiser_id:{}",
@@ -1073,6 +1139,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     }
 
     void OnScanResponseDataSet(uint8_t advertiser_id, uint8_t status) {
+      log::info("MICHAL");
       log::warn(
           "Not being used, ignored OnScanResponseDataSet callback "
           "advertiser_id:{}",
@@ -1081,6 +1148,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
 
     void OnAdvertisingParametersUpdated(uint8_t advertiser_id, int8_t tx_power,
                                         uint8_t status) {
+      log::info("MICHAL");
       log::warn(
           "Not being used, ignored OnAdvertisingParametersUpdated callback "
           "advertiser_id:{}",
@@ -1089,6 +1157,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
 
     void OnPeriodicAdvertisingParametersUpdated(uint8_t advertiser_id,
                                                 uint8_t status) {
+      log::info("MICHAL");
       log::warn(
           "Not being used, ignored OnPeriodicAdvertisingParametersUpdated "
           "callback advertiser_id:{}",
@@ -1104,6 +1173,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
 
     void OnPeriodicAdvertisingEnabled(uint8_t advertiser_id, bool enable,
                                       uint8_t status) {
+      log::info("MICHAL");
       log::warn(
           "Not being used, ignored OnPeriodicAdvertisingEnabled callback "
           "advertiser_id:{}",
@@ -1112,6 +1182,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
 
     void OnOwnAddressRead(uint8_t advertiser_id, uint8_t address_type,
                           RawAddress address) {
+      log::info("MICHAL");
       log::warn(
           "Not being used, ignored OnOwnAddressRead callback advertiser_id:{}",
           advertiser_id);
@@ -1124,6 +1195,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     LeAudioSourceCallbacksImpl() = default;
     void CheckAndReconfigureEncoders(
         const BroadcastConfiguration& broadcast_config) {
+      log::info("MICHAL CheckAndReconfigureEncoders");
       /* TODO: Move software codec instance management to the Codec Manager */
       if (CodecManager::GetInstance()->GetCodecLocation() ==
           CodecLocation::ADSP) {
@@ -1163,6 +1235,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
         const std::unique_ptr<BroadcastStateMachine>& broadcast,
         std::vector<std::unique_ptr<bluetooth::le_audio::CodecInterface>>&
             encoders) {
+      log::info("MICHAL sendBroadcastData");
       auto const& config = broadcast->GetBigConfig();
       if (config == std::nullopt) {
         log::error(
@@ -1186,6 +1259,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     }
 
     virtual void OnAudioDataReady(const std::vector<uint8_t>& data) override {
+      log::info("MICHAL OnAudioDataReady");
       if (!instance) return;
 
       log::verbose("Received {} bytes.", data.size());
@@ -1229,22 +1303,27 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     }
 
     virtual void OnAudioSuspend(void) override {
-      log::info("");
-      /* TODO: Should we suspend all broadcasts - remove BIGs? */
-      if (instance)
-        instance->audio_data_path_state_ = AudioDataPathState::SUSPENDED;
+      log::info("MICHAL OnAudioSuspend");
+      if (!instance) return;
+
+      // TODO: execute below code after 5 seconds
+      instance->audio_data_path_state_ = AudioDataPathState::SUSPENDED;
+      for (auto& broadcast_pair : instance->broadcasts_) {
+        auto& broadcast = broadcast_pair.second;
+        log::info("MICHAL OnAudioSuspend 2={}", broadcast->GetBroadcastId());
+        broadcast->SetMuted(true);
+        broadcast->ProcessMessage(BroadcastStateMachine::Message::SUSPEND, nullptr);
+      }
     }
 
     virtual void OnAudioResume(void) override {
-      log::info("");
+      log::info("MICHAL OnAudioResume");
       if (!instance) return;
 
-      /* TODO: Should we resume all broadcasts - recreate BIGs? */
-      instance->audio_data_path_state_ = AudioDataPathState::ACTIVE;
-
-      if (!IsAnyoneStreaming()) {
-        instance->le_audio_source_hal_client_->CancelStreamingRequest();
-        return;
+      for (auto& broadcast_pair : instance->broadcasts_) {
+        auto& broadcast = broadcast_pair.second;
+        log::info("MICHAL OnAudioResume 2={}", broadcast->GetBroadcastId());
+        broadcast->ProcessMessage(BroadcastStateMachine::Message::RESUME, nullptr);
       }
 
       instance->le_audio_source_hal_client_->ConfirmStreamingRequest();
