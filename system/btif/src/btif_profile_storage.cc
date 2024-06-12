@@ -443,7 +443,7 @@ std::vector<RawAddress> btif_storage_get_wake_capable_classic_hid_devices(
 
 void btif_storage_add_hearing_aid(const HearingDevice& dev_info) {
   do_in_jni_thread(
-      Bind(
+      std::bind(
           [](const HearingDevice& dev_info) {
             std::string bdstr = dev_info.address.ToString();
             log::verbose("saving hearing aid device: {}", dev_info.address);
@@ -667,7 +667,7 @@ bool btif_storage_get_hearing_aid_prop(
 /** Set autoconnect information for LeAudio device */
 void btif_storage_set_leaudio_autoconnect(const RawAddress& addr,
                                           bool autoconnect) {
-  do_in_jni_thread(Bind(
+  do_in_jni_thread(std::bind(
       [](const RawAddress& addr, bool autoconnect) {
         std::string bdstr = addr.ToString();
         log::verbose("saving le audio device: {}", addr);
@@ -682,7 +682,7 @@ void btif_storage_leaudio_update_handles_bin(const RawAddress& addr) {
   std::vector<uint8_t> handles;
 
   if (LeAudioClient::GetHandlesForStorage(addr, handles)) {
-    do_in_jni_thread(Bind(
+    do_in_jni_thread(std::bind(
         [](const RawAddress& bd_addr, std::vector<uint8_t> handles) {
           auto bdstr = bd_addr.ToString();
           btif_config_set_bin(bdstr, BTIF_STORAGE_KEY_LEAUDIO_HANDLES_BIN,
@@ -697,7 +697,7 @@ void btif_storage_leaudio_update_pacs_bin(const RawAddress& addr) {
   std::vector<uint8_t> sink_pacs;
 
   if (LeAudioClient::GetSinkPacsForStorage(addr, sink_pacs)) {
-    do_in_jni_thread(Bind(
+    do_in_jni_thread(std::bind(
         [](const RawAddress& bd_addr, std::vector<uint8_t> sink_pacs) {
           auto bdstr = bd_addr.ToString();
           btif_config_set_bin(bdstr, BTIF_STORAGE_KEY_LEAUDIO_SINK_PACS_BIN,
@@ -708,7 +708,7 @@ void btif_storage_leaudio_update_pacs_bin(const RawAddress& addr) {
 
   std::vector<uint8_t> source_pacs;
   if (LeAudioClient::GetSourcePacsForStorage(addr, source_pacs)) {
-    do_in_jni_thread(Bind(
+    do_in_jni_thread(std::bind(
         [](const RawAddress& bd_addr, std::vector<uint8_t> source_pacs) {
           auto bdstr = bd_addr.ToString();
           btif_config_set_bin(bdstr, BTIF_STORAGE_KEY_LEAUDIO_SOURCE_PACS_BIN,
@@ -723,7 +723,7 @@ void btif_storage_leaudio_update_ase_bin(const RawAddress& addr) {
   std::vector<uint8_t> ases;
 
   if (LeAudioClient::GetAsesForStorage(addr, ases)) {
-    do_in_jni_thread(Bind(
+    do_in_jni_thread(std::bind(
         [](const RawAddress& bd_addr, std::vector<uint8_t> ases) {
           auto bdstr = bd_addr.ToString();
           btif_config_set_bin(bdstr, BTIF_STORAGE_KEY_LEAUDIO_ASES_BIN,
@@ -738,7 +738,7 @@ void btif_storage_set_leaudio_audio_location(const RawAddress& addr,
                                              uint32_t sink_location,
                                              uint32_t source_location) {
   do_in_jni_thread(
-      Bind(
+      std::bind(
           [](const RawAddress& addr, int sink_location, int source_location) {
             std::string bdstr = addr.ToString();
             log::debug("saving le audio device: {}", addr);
@@ -757,7 +757,7 @@ void btif_storage_set_leaudio_supported_context_types(
     const RawAddress& addr, uint16_t sink_supported_context_type,
     uint16_t source_supported_context_type) {
   do_in_jni_thread(
-      Bind(
+      std::bind(
           [](const RawAddress& addr, int sink_supported_context_type,
              int source_supported_context_type) {
             std::string bdstr = addr.ToString();
@@ -884,7 +884,7 @@ void btif_storage_add_leaudio_has_device(const RawAddress& address,
                                          uint8_t features,
                                          uint8_t active_preset) {
   do_in_jni_thread(
-      Bind(
+      std::bind(
           [](const RawAddress& address, std::vector<uint8_t> presets_bin,
              uint8_t features, uint8_t active_preset) {
             const std::string& name = address.ToString();
@@ -906,7 +906,7 @@ void btif_storage_add_leaudio_has_device(const RawAddress& address,
 
 void btif_storage_set_leaudio_has_active_preset(const RawAddress& address,
                                                 uint8_t active_preset) {
-  do_in_jni_thread(Bind(
+  do_in_jni_thread(std::bind(
       [](const RawAddress& address, uint8_t active_preset) {
         const std::string& name = address.ToString();
 
@@ -930,7 +930,7 @@ bool btif_storage_get_leaudio_has_features(const RawAddress& address,
 
 void btif_storage_set_leaudio_has_features(const RawAddress& address,
                                            uint8_t features) {
-  do_in_jni_thread(Bind(
+  do_in_jni_thread(std::bind(
       [](const RawAddress& address, uint8_t features) {
         const std::string& name = address.ToString();
 
@@ -987,7 +987,7 @@ void btif_storage_set_leaudio_has_acceptlist(const RawAddress& address,
 void btif_storage_set_leaudio_has_presets(const RawAddress& address,
                                           std::vector<uint8_t> presets_bin) {
   do_in_jni_thread(
-      Bind(
+      std::bind(
           [](const RawAddress& address, std::vector<uint8_t> presets_bin) {
             const std::string& name = address.ToString();
 
@@ -1026,7 +1026,7 @@ void btif_storage_add_groups(const RawAddress& addr) {
   auto not_empty = DeviceGroups::GetForStorage(addr, group_info);
 
   if (not_empty)
-    do_in_jni_thread(Bind(
+    do_in_jni_thread(std::bind(
         [](const RawAddress& bd_addr, std::vector<uint8_t> group_info) {
           auto bdstr = bd_addr.ToString();
           btif_config_set_bin(bdstr, BTIF_STORAGE_KEY_DEVICE_GROUP_BIN,
@@ -1078,7 +1078,7 @@ void btif_storage_update_csis_info(const RawAddress& addr) {
   auto not_empty = CsisClient::GetForStorage(addr, set_info);
 
   if (not_empty)
-    do_in_jni_thread(Bind(
+    do_in_jni_thread(std::bind(
         [](const RawAddress& bd_addr, std::vector<uint8_t> set_info) {
           auto bdstr = bd_addr.ToString();
           btif_config_set_bin(bdstr, BTIF_STORAGE_KEY_CSIS_SET_INFO_BIN,

@@ -104,8 +104,8 @@ class BroadcastStateMachineImpl : public BroadcastStateMachine {
   }
 
   void RequestOwnAddress(
-      base::Callback<void(uint8_t /* address_type*/, RawAddress /*address*/)>
-          cb) override {
+      std::function<void(uint8_t /* address_type*/, RawAddress /*address*/)> cb)
+      override {
     uint8_t advertising_sid = GetAdvertisingSid();
     advertiser_if_->GetOwnAddress(advertising_sid, cb);
   }
@@ -113,8 +113,8 @@ class BroadcastStateMachineImpl : public BroadcastStateMachine {
   void RequestOwnAddress(void) override {
     auto broadcast_id = GetBroadcastId();
     RequestOwnAddress(
-        base::Bind(&IBroadcastStateMachineCallbacks::OnOwnAddressResponse,
-                   base::Unretained(this->callbacks_), broadcast_id));
+        std::bind_front(&IBroadcastStateMachineCallbacks::OnOwnAddressResponse,
+                        this->callbacks_, broadcast_id));
   }
 
   RawAddress GetOwnAddress() override { return addr_; }
@@ -163,8 +163,7 @@ class BroadcastStateMachineImpl : public BroadcastStateMachine {
 
     advertiser_if_->GetOwnAddress(
         advertising_sid,
-        base::Bind(&BroadcastStateMachineImpl::OnAddressResponse,
-                   base::Unretained(this)));
+        std::bind_front(&BroadcastStateMachineImpl::OnAddressResponse, this));
   }
 
   void OnEnableAnnouncement(bool enable, uint8_t status) {

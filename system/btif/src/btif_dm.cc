@@ -3326,7 +3326,7 @@ static void start_advertising_callback(uint8_t id, tBT_TRANSPORT transport,
   log::debug("OOB advertiser with id {}", id);
   auto advertiser = bluetooth::shim::get_ble_advertiser_instance();
   advertiser->GetOwnAddress(
-      id, base::Bind(&get_address_callback, transport, is_valid, c, r));
+      id, std::bind_front(&get_address_callback, transport, is_valid, c, r));
 }
 
 static void timeout_cb(uint8_t id, tBTM_STATUS status) {

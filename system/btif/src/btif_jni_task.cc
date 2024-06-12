@@ -96,15 +96,17 @@ bt_status_t btif_transfer_context(tBTIF_CBACK* p_cback, uint16_t event,
     memcpy(p_msg->p_param, p_params, param_len); /* callback parameter data */
   }
 
-  return do_in_jni_thread(base::Bind(&bt_jni_msg_ready, p_msg));
+  return do_in_jni_thread(std::bind(&bt_jni_msg_ready, p_msg));
 }
+
+static void do_post_on_bt_jni(BtJniClosure closure) { closure(); }
 
 /**
  * This function posts a task into the btif message loop, that executes it in
  * the JNI message loop.
  **/
-bt_status_t do_in_jni_thread(base::RepeatingClosure task) {
-  if (!jni_thread.DoInThread(FROM_HERE, std::move(task))) {
+bt_status_t do_in_jni_thread(std::function<void()> task) {
+  if (!jni_thread.DoInThread(FROM_HERE, base::Bind(do_post_on_bt_jni, task))) {
     log::error("Post task to task runner failed!");
     return BT_STATUS_JNI_THREAD_ATTACH_ERROR;
   }
@@ -115,15 +117,10 @@ bool is_on_jni_thread() {
   return jni_thread.GetThreadId() == PlatformThread::CurrentId();
 }
 
-static void do_post_on_bt_jni(BtJniClosure closure) { closure(); }
-
 void post_on_bt_jni(BtJniClosure closure) {
   log::assert_that(
-      do_in_jni_thread(base::Bind(do_post_on_bt_jni, std::move(closure))) ==
-          BT_STATUS_SUCCESS,
-      "assert failed: do_in_jni_thread("
-      "base::BindOnce(do_post_on_bt_jni, std::move(closure))) == "
-      "BT_STATUS_SUCCESS");
+      do_in_jni_thread(closure) == BT_STATUS_SUCCESS,
+      "assert failed: do_in_jni_thread(closure) == BT_STATUS_SUCCESS");
 }
 
 bluetooth::common::PostableContext* get_jni() { return jni_thread.Postable(); }

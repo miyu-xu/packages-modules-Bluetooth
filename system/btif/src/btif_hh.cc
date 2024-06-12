@@ -694,7 +694,7 @@ void btif_hh_remove_device(const tAclLinkSpec& link_spec) {
     /* need to notify up-layer device is disconnected to avoid state out of sync
      * with up-layer */
 
-    do_in_jni_thread(base::Bind(
+    do_in_jni_thread(std::bind(
         [](tAclLinkSpec link_spec) {
           BTHH_STATE_UPDATE(link_spec, BTHH_CONN_STATE_DISCONNECTED);
         },
@@ -775,7 +775,7 @@ bt_status_t btif_hh_virtual_unplug(const tAclLinkSpec& link_spec) {
 
       /* need to notify up-layer device is disconnected to avoid
        * state out of sync with up-layer */
-      do_in_jni_thread(base::Bind(
+      do_in_jni_thread(std::bind(
           [](tAclLinkSpec link_spec) {
             BTHH_STATE_UPDATE(link_spec, BTHH_CONN_STATE_DISCONNECTED);
           },
@@ -849,7 +849,7 @@ bt_status_t btif_hh_connect(const tAclLinkSpec& link_spec) {
   btif_hh_cb.pending_link_spec = link_spec;
   BTA_HhOpen(btif_hh_cb.pending_link_spec);
 
-  do_in_jni_thread(base::Bind(
+  do_in_jni_thread(std::bind(
       [](tAclLinkSpec link_spec) {
         BTHH_STATE_UPDATE(link_spec, BTHH_CONN_STATE_CONNECTING);
       },

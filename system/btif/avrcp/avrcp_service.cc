@@ -176,8 +176,8 @@ class MediaInterfaceWrapper : public MediaInterface {
   MediaInterfaceWrapper(MediaInterface* cb) : wrapped_(cb){};
 
   void SendKeyEvent(uint8_t key, KeyState state) override {
-    do_in_jni_thread(base::Bind(&MediaInterface::SendKeyEvent,
-                                base::Unretained(wrapped_), key, state));
+    do_in_jni_thread(std::bind(&MediaInterface::SendKeyEvent,
+                               std::ref(wrapped_), key, state));
   }
 
   void GetSongInfo(SongInfoCallback info_cb) override {
@@ -187,8 +187,8 @@ class MediaInterfaceWrapper : public MediaInterface {
 
     auto bound_cb = base::Bind(cb_lambda, info_cb);
 
-    do_in_jni_thread(base::Bind(&MediaInterface::GetSongInfo,
-                                base::Unretained(wrapped_), bound_cb));
+    do_in_jni_thread(
+        std::bind(&MediaInterface::GetSongInfo, std::ref(wrapped_), bound_cb));
   }
 
   void GetPlayStatus(PlayStatusCallback status_cb) override {
@@ -198,8 +198,8 @@ class MediaInterfaceWrapper : public MediaInterface {
 
     auto bound_cb = base::Bind(cb_lambda, status_cb);
 
-    do_in_jni_thread(base::Bind(&MediaInterface::GetPlayStatus,
-                                base::Unretained(wrapped_), bound_cb));
+    do_in_jni_thread(std::bind(&MediaInterface::GetPlayStatus,
+                               std::ref(wrapped_), bound_cb));
   }
 
   void GetNowPlayingList(NowPlayingCallback now_playing_cb) override {
@@ -211,8 +211,8 @@ class MediaInterfaceWrapper : public MediaInterface {
 
     auto bound_cb = base::Bind(cb_lambda, now_playing_cb);
 
-    do_in_jni_thread(base::Bind(&MediaInterface::GetNowPlayingList,
-                                base::Unretained(wrapped_), bound_cb));
+    do_in_jni_thread(std::bind(&MediaInterface::GetNowPlayingList,
+                               std::ref(wrapped_), bound_cb));
   }
 
   void GetMediaPlayerList(MediaListCallback list_cb) override {
@@ -224,8 +224,8 @@ class MediaInterfaceWrapper : public MediaInterface {
 
     auto bound_cb = base::Bind(cb_lambda, list_cb);
 
-    do_in_jni_thread(base::Bind(&MediaInterface::GetMediaPlayerList,
-                                base::Unretained(wrapped_), bound_cb));
+    do_in_jni_thread(std::bind(&MediaInterface::GetMediaPlayerList,
+                               std::ref(wrapped_), bound_cb));
   }
 
   void GetFolderItems(uint16_t player_id, std::string media_id,
@@ -237,9 +237,9 @@ class MediaInterfaceWrapper : public MediaInterface {
 
     auto bound_cb = base::Bind(cb_lambda, folder_cb);
 
-    do_in_jni_thread(base::Bind(&MediaInterface::GetFolderItems,
-                                base::Unretained(wrapped_), player_id, media_id,
-                                bound_cb));
+    do_in_jni_thread(std::bind(&MediaInterface::GetFolderItems,
+                               std::ref(wrapped_), player_id, media_id,
+                               bound_cb));
   }
 
   void SetBrowsedPlayer(uint16_t player_id,
@@ -252,21 +252,19 @@ class MediaInterfaceWrapper : public MediaInterface {
 
     auto bound_cb = base::Bind(cb_lambda, browse_cb);
 
-    do_in_jni_thread(base::Bind(&MediaInterface::SetBrowsedPlayer,
-                                base::Unretained(wrapped_), player_id,
-                                bound_cb));
+    do_in_jni_thread(std::bind(&MediaInterface::SetBrowsedPlayer,
+                               std::ref(wrapped_), player_id, bound_cb));
   }
 
   void PlayItem(uint16_t player_id, bool now_playing,
                 std::string media_id) override {
-    do_in_jni_thread(base::Bind(&MediaInterface::PlayItem,
-                                base::Unretained(wrapped_), player_id,
-                                now_playing, media_id));
+    do_in_jni_thread(std::bind(&MediaInterface::PlayItem, std::ref(wrapped_),
+                               player_id, now_playing, media_id));
   }
 
   void SetActiveDevice(const RawAddress& address) override {
-    do_in_jni_thread(base::Bind(&MediaInterface::SetActiveDevice,
-                                base::Unretained(wrapped_), address));
+    do_in_jni_thread(std::bind(&MediaInterface::SetActiveDevice,
+                               std::ref(wrapped_), address));
   }
 
   void RegisterUpdateCallback(MediaCallbacks* callback) override {
@@ -289,9 +287,9 @@ class VolumeInterfaceWrapper : public VolumeInterface {
 
   void DeviceConnected(const RawAddress& bdaddr) override {
     do_in_jni_thread(
-        base::Bind(static_cast<void (VolumeInterface::*)(const RawAddress&)>(
-                       &VolumeInterface::DeviceConnected),
-                   base::Unretained(wrapped_), bdaddr));
+        std::bind(static_cast<void (VolumeInterface::*)(const RawAddress&)>(
+                      &VolumeInterface::DeviceConnected),
+                  std::ref(wrapped_), bdaddr));
   }
 
   void DeviceConnected(const RawAddress& bdaddr, VolumeChangedCb cb) override {
@@ -301,20 +299,20 @@ class VolumeInterfaceWrapper : public VolumeInterface {
 
     auto bound_cb = base::Bind(cb_lambda, cb);
 
-    do_in_jni_thread(base::Bind(static_cast<void (VolumeInterface::*)(
-                                    const RawAddress&, VolumeChangedCb)>(
-                                    &VolumeInterface::DeviceConnected),
-                                base::Unretained(wrapped_), bdaddr, bound_cb));
+    do_in_jni_thread(std::bind(static_cast<void (VolumeInterface::*)(
+                                   const RawAddress&, VolumeChangedCb)>(
+                                   &VolumeInterface::DeviceConnected),
+                               std::ref(wrapped_), bdaddr, bound_cb));
   }
 
   void DeviceDisconnected(const RawAddress& bdaddr) override {
-    do_in_jni_thread(base::Bind(&VolumeInterface::DeviceDisconnected,
-                                base::Unretained(wrapped_), bdaddr));
+    do_in_jni_thread(std::bind(&VolumeInterface::DeviceDisconnected,
+                               std::ref(wrapped_), bdaddr));
   }
 
   void SetVolume(int8_t volume) override {
-    do_in_jni_thread(base::Bind(&VolumeInterface::SetVolume,
-                                base::Unretained(wrapped_), volume));
+    do_in_jni_thread(
+        std::bind(&VolumeInterface::SetVolume, std::ref(wrapped_), volume));
   }
 
  private:
@@ -336,8 +334,8 @@ class PlayerSettingsInterfaceWrapper : public PlayerSettingsInterface {
 
     auto bound_cb = base::Bind(cb_lambda, cb);
 
-    do_in_jni_thread(base::Bind(&PlayerSettingsInterface::ListPlayerSettings,
-                                base::Unretained(wrapped_), bound_cb));
+    do_in_jni_thread(std::bind(&PlayerSettingsInterface::ListPlayerSettings,
+                               std::ref(wrapped_), bound_cb));
   }
 
   void ListPlayerSettingValues(PlayerAttribute setting,
@@ -351,8 +349,8 @@ class PlayerSettingsInterfaceWrapper : public PlayerSettingsInterface {
     auto bound_cb = base::Bind(cb_lambda, cb);
 
     do_in_jni_thread(
-        base::Bind(&PlayerSettingsInterface::ListPlayerSettingValues,
-                   base::Unretained(wrapped_), setting, bound_cb));
+        std::bind(&PlayerSettingsInterface::ListPlayerSettingValues,
+                  std::ref(wrapped_), setting, bound_cb));
   }
 
   void GetCurrentPlayerSettingValue(
@@ -367,9 +365,9 @@ class PlayerSettingsInterfaceWrapper : public PlayerSettingsInterface {
 
     auto bound_cb = base::Bind(cb_lambda, cb);
 
-    do_in_jni_thread(base::Bind(
-        &PlayerSettingsInterface::GetCurrentPlayerSettingValue,
-        base::Unretained(wrapped_), std::move(attributes), bound_cb));
+    do_in_jni_thread(
+        std::bind(&PlayerSettingsInterface::GetCurrentPlayerSettingValue,
+                  std::ref(wrapped_), std::move(attributes), bound_cb));
   }
 
   void SetPlayerSettings(std::vector<PlayerAttribute> attributes,
@@ -381,9 +379,9 @@ class PlayerSettingsInterfaceWrapper : public PlayerSettingsInterface {
 
     auto bound_cb = base::Bind(cb_lambda, cb);
 
-    do_in_jni_thread(base::Bind(
-        &PlayerSettingsInterface::SetPlayerSettings, base::Unretained(wrapped_),
-        std::move(attributes), std::move(values), bound_cb));
+    do_in_jni_thread(std::bind(&PlayerSettingsInterface::SetPlayerSettings,
+                               std::ref(wrapped_), std::move(attributes),
+                               std::move(values), bound_cb));
   }
 
  private:

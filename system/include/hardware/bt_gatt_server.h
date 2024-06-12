@@ -184,7 +184,7 @@ typedef struct {
 
   bt_status_t (*read_phy)(
       const RawAddress& bd_addr,
-      base::Callback<void(uint8_t tx_phy, uint8_t rx_phy, uint8_t status)> cb);
+      std::function<void(uint8_t tx_phy, uint8_t rx_phy, uint8_t status)> cb);
 
 } btgatt_server_interface_t;
 

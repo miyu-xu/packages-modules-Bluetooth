@@ -918,10 +918,10 @@ class BluetoothQualityReportInterfaceImpl
       return;
     }
 
-    do_in_jni_thread(base::Bind(
+    do_in_jni_thread(std::bind(
         &bluetooth::bqr::BluetoothQualityReportCallbacks::bqr_delivery_callback,
-        base::Unretained(callbacks), bd_addr, lmp_ver, lmp_subver,
-        manufacturer_id, std::move(raw_data)));
+        std::ref(callbacks), bd_addr, lmp_ver, lmp_subver, manufacturer_id,
+        std::move(raw_data)));
   }
 
  private:

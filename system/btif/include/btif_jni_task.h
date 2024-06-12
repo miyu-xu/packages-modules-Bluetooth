@@ -48,7 +48,7 @@ bt_status_t btif_transfer_context(tBTIF_CBACK* p_cback, uint16_t event,
  * This function posts a task into the btif message loop, that executes it in
  * the JNI message loop.
  **/
-bt_status_t do_in_jni_thread(base::RepeatingClosure task);
+bt_status_t do_in_jni_thread(std::function<void()> task);
 
 bool is_on_jni_thread();
 
