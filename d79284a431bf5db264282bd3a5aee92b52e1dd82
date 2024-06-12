@@ -46,6 +46,30 @@
       },
       "revId": "d79284a431bf5db264282bd3a5aee92b52e1dd82",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6c076be_71146328",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-06-12T22:56:34Z",
+      "side": 1,
+      "message": "Now it looks like you replaced all of the BT_STATUS_FAIL in `btif_sock.*` files.  Would you consider renaming the status code to something like BT_STATUS_BTIF_SOCK_ERROR or something a little more generic than SOCKET_STREAM_ERROR?\n\nAdding \"stream\" makes me think we\u0027re trying to catch a particular class of errors perhaps related to the fds, when it actually covers a few different kinds of errors.",
+      "parentUuid": "6cd3108e_5b269284",
+      "range": {
+        "startLine": 393,
+        "startChar": 13,
+        "endLine": 393,
+        "endChar": 27
+      },
+      "revId": "d79284a431bf5db264282bd3a5aee92b52e1dd82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
