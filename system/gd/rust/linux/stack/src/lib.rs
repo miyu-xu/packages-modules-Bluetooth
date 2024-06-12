@@ -46,7 +46,7 @@ use crate::dis::{DeviceInformation, ServiceCallbacks};
 use crate::socket_manager::{BluetoothSocketManager, SocketActions};
 use crate::suspend::Suspend;
 use bt_topshim::{
-    btif::{BaseCallbacks, BtTransport, RawAddress},
+    btif::{BaseCallbacks, BtAclState, BtBondState, BtTransport, RawAddress},
     profiles::{
         a2dp::A2dpCallbacks,
         avrcp::AvrcpCallbacks,
@@ -110,8 +110,11 @@ pub enum Message {
 
     // Follows IBluetooth's on_device_(dis)connected callback but doesn't require depending on
     // Bluetooth.
-    OnAclConnected(BluetoothDevice, BtTransport),
+    OnAclConnected(BluetoothDevice, BtBondState, BtTransport),
     OnAclDisconnected(BluetoothDevice),
+
+    // Follows IBluetooth's bond_state callback
+    OnDeviceBonded(BluetoothDevice, BtAclState, BtTransport),
 
     // Suspend related
     SuspendCallbackRegistered(u32),
@@ -380,11 +383,13 @@ impl Stack {
                 // Any service needing an updated list of devices can have an
                 // update method triggered from here rather than needing a
                 // reference to Bluetooth.
-                Message::OnAclConnected(device, transport) => {
-                    battery_service
-                        .lock()
-                        .unwrap()
-                        .handle_action(BatteryServiceActions::Connect(device, transport));
+                Message::OnAclConnected(device, bond_state, transport) => {
+                    battery_service.lock().unwrap().handle_action(BatteryServiceActions::Connect(
+                        device,
+                        BtAclState::Connected,
+                        bond_state,
+                        transport,
+                    ));
                 }
 
                 // For battery service, use this to clean up internal handles. GATT connection is
@@ -394,6 +399,16 @@ impl Stack {
                         .lock()
                         .unwrap()
                         .handle_action(BatteryServiceActions::Disconnect(device));
+                }
+
+                // Used by BatteryService to determine when to fire read requests.
+                Message::OnDeviceBonded(device, acl_state, transport) => {
+                    battery_service.lock().unwrap().handle_action(BatteryServiceActions::Connect(
+                        device,
+                        acl_state,
+                        BtBondState::Bonded,
+                        transport,
+                    ));
                 }
 
                 Message::SuspendCallbackRegistered(id) => {
