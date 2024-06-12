@@ -120,11 +120,7 @@ public class HidHostDualModeTest {
     }
 
     /**
-<<<<<<< HEAD:framework/tests/bumble/src/android/bluetooth/HidHostTest.java
-     * Test HID Disconnection:
-=======
-     * Test HID Preferred transport selection Test case:
->>>>>>> 97c26f4821 (Bumble Java  HID Test cases):framework/tests/bumble/src/android/bluetooth/hid/HidHostDualModeTest.java
+     * Test HID Preferred transport selection Test case
      *
      * <ol>
      *   <li>1. Android to creates bonding and HID connected with default transport.

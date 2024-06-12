@@ -48,13 +48,25 @@ import pandora.HIDGrpc;
 @RunWith(AndroidJUnit4.class)
 public class HidHostTest {
     private static final String TAG = "HidHostTest";
-    private SettableFuture<Integer> mFutureConnectionIntent, mFutureAdapterStateIntent;
+    private SettableFuture<Integer> mFutureConnectionIntent,
+            mFutureAdapterStateIntent,
+            mFutureBondIntent,
+            mFutureHandShakeIntent,
+            mFutureProtocolModeIntent,
+            mFutureVirtualUnplugIntent,
+            mFutureReportIntent;
     private BluetoothDevice mDevice;
     private BluetoothHidHost mService;
     private final Context mContext = ApplicationProvider.getApplicationContext();
     private final BluetoothManager mManager = mContext.getSystemService(BluetoothManager.class);
     private final BluetoothAdapter mAdapter = mManager.getAdapter();
     private HIDGrpc.HIDBlockingStub mHidBlockingStub;
+    private byte mReportId;
+    private static final int KEYBD_RPT_ID = 1;
+    private static final int KEYBD_RPT_SIZE = 9;
+    private static final int MOUSE_RPT_ID = 2;
+    private static final int MOUSE_RPT_SIZE = 4;
+    private static final int INVALID_RPT_ID = 3;
 
     @Rule(order = 0)
     public final CheckFlagsRule mCheckFlagsRule = DeviceFlagsValueProvider.createCheckFlagsRule();
@@ -93,6 +105,55 @@ public class HidHostTest {
                             if (mFutureAdapterStateIntent != null) {
                                 mFutureAdapterStateIntent.set(adapterState);
                             }
+                        }
+                    } else if (BluetoothDevice.ACTION_BOND_STATE_CHANGED.equals(
+                            intent.getAction())) {
+                        int bondState =
+                                intent.getIntExtra(
+                                        BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.ERROR);
+                        Log.i(TAG, "Bond state change:" + bondState);
+                        if (bondState == BluetoothDevice.BOND_BONDED
+                                || bondState == BluetoothDevice.BOND_NONE) {
+                            if (mFutureBondIntent != null) {
+                                mFutureBondIntent.set(bondState);
+                            }
+                        }
+                    } else if (BluetoothHidHost.ACTION_PROTOCOL_MODE_CHANGED.equals(
+                            intent.getAction())) {
+                        int protocolMode =
+                                intent.getIntExtra(
+                                        BluetoothHidHost.EXTRA_PROTOCOL_MODE,
+                                        BluetoothHidHost.PROTOCOL_UNSUPPORTED_MODE);
+                        Log.i(TAG, "Protocol mode:" + protocolMode);
+                        if (mFutureProtocolModeIntent != null) {
+                            mFutureProtocolModeIntent.set(protocolMode);
+                        }
+                    } else if (BluetoothHidHost.ACTION_HANDSHAKE.equals(intent.getAction())) {
+                        int handShake =
+                                intent.getIntExtra(
+                                        BluetoothHidHost.EXTRA_STATUS,
+                                        BluetoothHidDevice.ERROR_RSP_UNKNOWN);
+                        Log.i(TAG, "Handshake status:" + handShake);
+                        if (mFutureHandShakeIntent != null) {
+                            mFutureHandShakeIntent.set(handShake);
+                        }
+                    } else if (BluetoothHidHost.ACTION_VIRTUAL_UNPLUG_STATUS.equals(
+                            intent.getAction())) {
+                        int virtualUnplug =
+                                intent.getIntExtra(
+                                        BluetoothHidHost.EXTRA_VIRTUAL_UNPLUG_STATUS,
+                                        BluetoothHidHost.VIRTUAL_UNPLUG_STATUS_FAIL);
+                        Log.i(TAG, "Virtual Unplug status:" + virtualUnplug);
+                        if (mFutureVirtualUnplugIntent != null) {
+                            mFutureVirtualUnplugIntent.set(virtualUnplug);
+                        }
+                    } else if (BluetoothHidHost.ACTION_REPORT.equals(intent.getAction())) {
+                        byte[] report = intent.getByteArrayExtra(BluetoothHidHost.EXTRA_REPORT);
+                        int reportSize =
+                                intent.getIntExtra(BluetoothHidHost.EXTRA_REPORT_BUFFER_SIZE, 0);
+                        mReportId = report[0];
+                        if (mFutureReportIntent != null) {
+                            mFutureReportIntent.set((reportSize - 1));
                         }
                     }
                 }
@@ -307,6 +368,154 @@ public class HidHostTest {
         mHidBlockingStub.connectHidHost(Empty.getDefaultInstance());
         assertThat(mService.getConnectionState(mDevice))
                 .isEqualTo(BluetoothProfile.STATE_DISCONNECTED);
+    }
+
+    /**
+     * Test Virtual Unplug from Hid Host
+     *
+     * <ol>
+     *   <li>1. Android creates bonding and connect the HID Device
+     *   <li>2. Android Virtual Unplug and verifies Bonding
+     * </ol>
+     */
+    @Test
+    public void hidVirtualUnplugFromHidHostTest() throws Exception {
+        mContext.registerReceiver(
+                mConnectionStateReceiver,
+                new IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED));
+
+        mService.virtualUnplug(mDevice);
+        mFutureBondIntent = SettableFuture.create();
+        assertThat(mFutureBondIntent.get()).isEqualTo(BluetoothDevice.BOND_NONE);
+    }
+
+    /**
+     * Test Virtual Unplug from Hid Device
+     *
+     * <ol>
+     *   <li>1. Android creates bonding and connect the HID Device
+     *   <li>2. Bumble Virtual Unplug and Android verifies Bonding
+     * </ol>
+     */
+    @Test
+    public void hidVirtualUnplugFromHidDeviceTest() throws Exception {
+        mContext.registerReceiver(
+                mConnectionStateReceiver,
+                new IntentFilter(BluetoothHidHost.ACTION_VIRTUAL_UNPLUG_STATUS));
+
+        mHidBlockingStub.virtualCableUnplugHidHost(Empty.getDefaultInstance());
+        mFutureVirtualUnplugIntent = SettableFuture.create();
+        assertThat(mFutureVirtualUnplugIntent.get())
+                .isEqualTo(BluetoothHidHost.VIRTUAL_UNPLUG_STATUS_SUCCESS);
+    }
+
+    /**
+     * Test Get Protocol mode
+     *
+     * <ol>
+     *   <li>1. Android creates bonding and connect the HID Device
+     *   <li>2. Android Gets the Protocol mode and verifies the mode
+     * </ol>
+     */
+    @Test
+    public void hidGetProtocolModeTest() throws Exception {
+        mContext.registerReceiver(
+                mConnectionStateReceiver,
+                new IntentFilter(BluetoothHidHost.ACTION_PROTOCOL_MODE_CHANGED));
+
+        mService.getProtocolMode(mDevice);
+        mFutureProtocolModeIntent = SettableFuture.create();
+        assertThat(mFutureProtocolModeIntent.get())
+                .isEqualTo(BluetoothHidHost.PROTOCOL_REPORT_MODE);
+    }
+
+    /**
+     * Test Set Protocol mode
+     *
+     * <ol>
+     *   <li>1. Android creates bonding and connect the HID Device
+     *   <li>2. Android Sets the Protocol mode and verifies the mode
+     * </ol>
+     */
+    @Test
+    public void hidSetProtocolModeTest() throws Exception {
+        mContext.registerReceiver(
+                mConnectionStateReceiver, new IntentFilter(BluetoothHidHost.ACTION_HANDSHAKE));
+
+        mService.setProtocolMode(mDevice, BluetoothHidHost.PROTOCOL_BOOT_MODE);
+        mFutureHandShakeIntent = SettableFuture.create();
+        assertThat(mFutureHandShakeIntent.get())
+                .isEqualTo(BluetoothHidDevice.ERROR_RSP_UNSUPPORTED_REQ);
+    }
+
+    /**
+     * Test Get Report
+     *
+     * <ol>
+     *   <li>1. Android creates bonding and connect the HID Device
+     *   <li>2. Android get report and verifies the report
+     * </ol>
+     */
+    @Test
+    public void hidGetReportTest() throws Exception {
+        mContext.registerReceiver(
+                mConnectionStateReceiver, new IntentFilter(BluetoothHidHost.ACTION_REPORT));
+        mContext.registerReceiver(
+                mConnectionStateReceiver, new IntentFilter(BluetoothHidHost.ACTION_HANDSHAKE));
+
+        // Keyboard report
+        byte id = KEYBD_RPT_ID;
+        mService.getReport(mDevice, BluetoothHidHost.REPORT_TYPE_INPUT, id, (int) 0);
+        mFutureReportIntent = SettableFuture.create();
+        assertThat(mFutureReportIntent.get()).isEqualTo(KEYBD_RPT_SIZE);
+        assertThat(mReportId).isEqualTo(KEYBD_RPT_ID);
+
+        // Mouse report
+        id = MOUSE_RPT_ID;
+        mService.getReport(mDevice, BluetoothHidHost.REPORT_TYPE_INPUT, id, (int) 0);
+        mFutureReportIntent = SettableFuture.create();
+        assertThat(mFutureReportIntent.get()).isEqualTo(MOUSE_RPT_SIZE);
+        assertThat(mReportId).isEqualTo(MOUSE_RPT_ID);
+
+        // Invalid report
+        id = INVALID_RPT_ID;
+        mService.getReport(mDevice, BluetoothHidHost.REPORT_TYPE_INPUT, id, (int) 0);
+        mFutureHandShakeIntent = SettableFuture.create();
+        assertThat(mFutureHandShakeIntent.get())
+                .isEqualTo(BluetoothHidDevice.ERROR_RSP_INVALID_RPT_ID);
+    }
+
+    /**
+     * Test Set Report
+     *
+     * <ol>
+     *   <li>1. Android creates bonding and connect the HID Device
+     *   <li>2. Android Set report and verifies the report
+     * </ol>
+     */
+    @Test
+    public void hidSetReportTest() throws Exception {
+        mContext.registerReceiver(
+                mConnectionStateReceiver, new IntentFilter(BluetoothHidHost.ACTION_HANDSHAKE));
+
+        // Keyboard report
+        mService.setReport(mDevice, BluetoothHidHost.REPORT_TYPE_INPUT, "010203040506070809");
+        mFutureHandShakeIntent = SettableFuture.create();
+        assertThat(mFutureHandShakeIntent.get()).isEqualTo(BluetoothHidDevice.ERROR_RSP_SUCCESS);
+        // Keyboard report - Invalid param
+        mService.setReport(mDevice, BluetoothHidHost.REPORT_TYPE_INPUT, "0102030405");
+        mFutureHandShakeIntent = SettableFuture.create();
+        assertThat(mFutureHandShakeIntent.get())
+                .isEqualTo(BluetoothHidDevice.ERROR_RSP_INVALID_PARAM);
+        // Mouse report
+        mService.setReport(mDevice, BluetoothHidHost.REPORT_TYPE_INPUT, "02030405");
+        mFutureHandShakeIntent = SettableFuture.create();
+        assertThat(mFutureHandShakeIntent.get()).isEqualTo(BluetoothHidDevice.ERROR_RSP_SUCCESS);
+        // Invalid report id
+        mService.setReport(mDevice, BluetoothHidHost.REPORT_TYPE_INPUT, "0304");
+        mFutureHandShakeIntent = SettableFuture.create();
+        assertThat(mFutureHandShakeIntent.get())
+                .isEqualTo(BluetoothHidDevice.ERROR_RSP_INVALID_RPT_ID);
     }
 
     private void bluetoothRestart() throws Exception {
