@@ -48,7 +48,9 @@ import pandora.HIDGrpc;
 @RunWith(AndroidJUnit4.class)
 public class HidHostTest {
     private static final String TAG = "HidHostTest";
-    private SettableFuture<Integer> mFutureConnectionIntent, mFutureAdapterStateIntent;
+    private SettableFuture<Integer> mFutureConnectionIntent,
+            mFutureAdapterStateIntent,
+            mFutureBondIntent;
     private BluetoothDevice mDevice;
     private BluetoothHidHost mService;
     private final Context mContext = ApplicationProvider.getApplicationContext();
@@ -92,6 +94,18 @@ public class HidHostTest {
                                 || adapterState == BluetoothAdapter.STATE_OFF) {
                             if (mFutureAdapterStateIntent != null) {
                                 mFutureAdapterStateIntent.set(adapterState);
+                            }
+                        }
+                    } else if (BluetoothDevice.ACTION_BOND_STATE_CHANGED.equals(
+                            intent.getAction())) {
+                        int bondState =
+                                intent.getIntExtra(
+                                        BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.ERROR);
+                        Log.i(TAG, "Bond state change:" + bondState);
+                        if (bondState == BluetoothDevice.BOND_BONDED
+                                || bondState == BluetoothDevice.BOND_NONE) {
+                            if (mFutureBondIntent != null) {
+                                mFutureBondIntent.set(bondState);
                             }
                         }
                     }
@@ -289,6 +303,26 @@ public class HidHostTest {
         mHidBlockingStub.connectHidHost(Empty.getDefaultInstance());
         assertThat(mService.getConnectionState(mDevice))
                 .isEqualTo(BluetoothProfile.STATE_DISCONNECTED);
+    }
+
+    /**
+     * Test Virtual Unplug from Hid Host
+     *
+     * <ol>
+     *   <li>1. Android creates bonding and connect the HID Device
+     *   <li>2. Android verifies the connection policy
+     *   <li>3. Android Virtual Unplug and verifies Bonding
+     * </ol>
+     */
+    @Test
+    public void hidVirtualUnplugFromHidHostTest() throws Exception {
+        mContext.registerReceiver(
+                mConnectionStateReceiver,
+                new IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED));
+
+        mService.virtualUnplug(mDevice);
+        mFutureBondIntent = SettableFuture.create();
+        assertThat(mFutureBondIntent.get()).isEqualTo(BluetoothDevice.BOND_NONE);
     }
 
     private void bluetoothRestart() throws Exception {
