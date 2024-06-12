@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8bef805_fb3aded3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-06-12T08:34:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e587a3a6_7156d39f",
+      "range": {
+        "startLine": 9,
+        "startChar": 25,
+        "endLine": 9,
+        "endChar": 33
+      },
+      "revId": "f260e3f74784bd9bf5821b54f0ca7a7db0108431",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e0c52ff_d93a0ddf",
@@ -55,6 +79,24 @@
           ]
         }
       ],
+      "revId": "f260e3f74784bd9bf5821b54f0ca7a7db0108431",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62e71450_cb82e943",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-06-12T08:34:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e0c52ff_d93a0ddf",
       "revId": "f260e3f74784bd9bf5821b54f0ca7a7db0108431",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
