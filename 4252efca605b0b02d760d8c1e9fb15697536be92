@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15a676c7_e07fd99a",
+        "filename": "android/app/src/com/android/bluetooth/gatt/DistanceMeasurementManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-12T15:50:36Z",
+      "side": 1,
+      "message": "nit: It\u0027s easier for me to read if we remove methods vs methodsList\n\n```suggestion\n        ArrayList\u003cDistanceMeasurementMethod\u003e methods \u003d\n                new ArrayList\u003cDistanceMeasurementMethod\u003e();\n        methods.add(\n                new DistanceMeasurementMethod.Builder(\n                                DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_RSSI)\n                        .build());\n        if (mAdapterService.isLeChannelSoundingSupported()) {\n            methods.add(\n                    new DistanceMeasurementMethod.Builder(\n                                    DistanceMeasurementMethod\n                                            .DISTANCE_MEASUREMENT_METHOD_CHANNEL_SOUNDING)\n                            .build());\n        }\n                \n        return methods.toArray(new DistanceMeasurementMethod[methods.size()]);\n```",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 23
+      },
+      "revId": "4252efca605b0b02d760d8c1e9fb15697536be92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5957c0aa_4fe1237a",
+        "filename": "system/gd/discovery/device/bt_property_unittest.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 671,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-12T15:50:36Z",
+      "side": 1,
+      "message": ",",
+      "range": {
+        "startLine": 671,
+        "startChar": 42,
+        "endLine": 671,
+        "endChar": 43
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "22d672d5_b5e1173f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/discovery/device/bt_property_unittest.cc",
+              "range": {
+                "startLine": 671,
+                "startChar": 0,
+                "endLine": 672,
+                "endChar": 0
+              },
+              "replacement": "        \"le_channel_sounding_supported:1\", bt_property_text(prop).c_str());\n"
+            }
+          ]
+        }
+      ],
+      "revId": "4252efca605b0b02d760d8c1e9fb15697536be92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
