@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5bcf128_26124650",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-13T01:53:33Z",
+      "side": 1,
+      "message": "I am fine with the change, adding Henri for a2dp visibility to take a look.",
+      "revId": "7a64e3a9be862fee7a573f45c9ba84d5d61dae27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
