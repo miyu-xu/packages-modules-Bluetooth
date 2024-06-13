@@ -1,0 +1,59 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d31c270_26f7c6b7",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-06-13T08:41:06Z",
+      "side": 1,
+      "message": "Can we just check if this !\u003d mObserver?",
+      "fixSuggestions": [
+        {
+          "fixId": "b7f7b750_c3f711d1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/opp/BluetoothOppService.java",
+              "range": {
+                "startLine": 114,
+                "startChar": 0,
+                "endLine": 116,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/opp/BluetoothOppService.java",
+              "range": {
+                "startLine": 124,
+                "startChar": 0,
+                "endLine": 125,
+                "endChar": 0
+              },
+              "replacement": "            if (Flags.oppIgnoreContentObserverAfterServiceStop() \u0026\u0026 this !\u003d mObserver) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/opp/BluetoothOppService.java",
+              "range": {
+                "startLine": 563,
+                "startChar": 0,
+                "endLine": 566,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "d01f86cccdab16a661bf9c58545746138b5b0022",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
