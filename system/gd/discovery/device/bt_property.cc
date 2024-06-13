@@ -33,25 +33,25 @@ std::string bt_property_type_text(const bt_property_type_t& type) {
     CASE_RETURN_TEXT(BT_PROPERTY_CLASS_OF_DEVICE);
     CASE_RETURN_TEXT(BT_PROPERTY_TYPE_OF_DEVICE);
     CASE_RETURN_TEXT(BT_PROPERTY_SERVICE_RECORD);
-    CASE_RETURN_TEXT(BT_PROPERTY_ADAPTER_SCAN_MODE);
     CASE_RETURN_TEXT(BT_PROPERTY_ADAPTER_BONDED_DEVICES);
     CASE_RETURN_TEXT(BT_PROPERTY_ADAPTER_DISCOVERABLE_TIMEOUT);
     CASE_RETURN_TEXT(BT_PROPERTY_REMOTE_FRIENDLY_NAME);
     CASE_RETURN_TEXT(BT_PROPERTY_REMOTE_RSSI);
     CASE_RETURN_TEXT(BT_PROPERTY_REMOTE_VERSION_INFO);
     CASE_RETURN_TEXT(BT_PROPERTY_LOCAL_LE_FEATURES);
-    CASE_RETURN_TEXT(BT_PROPERTY_RESERVED_0E);
-    CASE_RETURN_TEXT(BT_PROPERTY_RESERVED_0F);
     CASE_RETURN_TEXT(BT_PROPERTY_DYNAMIC_AUDIO_BUFFER);
     CASE_RETURN_TEXT(BT_PROPERTY_REMOTE_IS_COORDINATED_SET_MEMBER);
     CASE_RETURN_TEXT(BT_PROPERTY_APPEARANCE);
     CASE_RETURN_TEXT(BT_PROPERTY_VENDOR_PRODUCT_INFO);
-    CASE_RETURN_TEXT(BT_PROPERTY_RESERVED_0x14);
     CASE_RETURN_TEXT(BT_PROPERTY_REMOTE_ASHA_CAPABILITY);
     CASE_RETURN_TEXT(BT_PROPERTY_REMOTE_ASHA_TRUNCATED_HISYNCID);
     CASE_RETURN_TEXT(BT_PROPERTY_REMOTE_MODEL_NUM);
     CASE_RETURN_TEXT(BT_PROPERTY_REMOTE_ADDR_TYPE);
     CASE_RETURN_TEXT(BT_PROPERTY_REMOTE_DEVICE_TIMESTAMP);
+    CASE_RETURN_TEXT(BT_PROPERTY_RESERVED_07);
+    CASE_RETURN_TEXT(BT_PROPERTY_RESERVED_0E);
+    CASE_RETURN_TEXT(BT_PROPERTY_RESERVED_0F);
+    CASE_RETURN_TEXT(BT_PROPERTY_RESERVED_0x14);
   }
   return base::StringPrintf("Unknown [%d]", (int)type);
 }
@@ -96,12 +96,6 @@ std::string bt_property_text(const bt_property_t& property) {
           (((bt_service_record_t*)property.val)->uuid).ToString().c_str(),
           (((bt_service_record_t*)property.val)->channel),
           (((bt_service_record_t*)property.val)->name));
-
-    case BT_PROPERTY_ADAPTER_SCAN_MODE:
-      return base::StringPrintf(
-          "type:%s scan_mode:%u",
-          bt_property_type_text(property.type).c_str(),
-          *((bt_scan_mode_t*)property.val));
 
     case BT_PROPERTY_ADAPTER_BONDED_DEVICES: {
       std::ostringstream oss;
@@ -180,12 +174,6 @@ std::string bt_property_text(const bt_property_t& property) {
               ->le_periodic_advertising_sync_transfer_recipient_supported,
           ((bt_local_le_features_t*)property.val)->adv_filter_extended_features_mask);
 
-    case BT_PROPERTY_RESERVED_0E:
-      return base::StringPrintf("type:%s", bt_property_type_text(property.type).c_str());
-
-    case BT_PROPERTY_RESERVED_0F:
-      return base::StringPrintf("type:%s", bt_property_type_text(property.type).c_str());
-
     case BT_PROPERTY_DYNAMIC_AUDIO_BUFFER:
       return base::StringPrintf("type:%s", bt_property_type_text(property.type).c_str());
 
@@ -209,9 +197,6 @@ std::string bt_property_text(const bt_property_t& property) {
           ((bt_vendor_product_info_t*)property.val)->vendor_id,
           ((bt_vendor_product_info_t*)property.val)->product_id,
           ((bt_vendor_product_info_t*)property.val)->version);
-
-    case BT_PROPERTY_RESERVED_0x14:
-      return base::StringPrintf("type:%s", bt_property_type_text(property.type).c_str());
 
     case BT_PROPERTY_REMOTE_ASHA_CAPABILITY:
       return base::StringPrintf(
@@ -238,6 +223,12 @@ std::string bt_property_text(const bt_property_t& property) {
           (*(uint8_t*)property.val));
 
     case BT_PROPERTY_REMOTE_DEVICE_TIMESTAMP:
+      return base::StringPrintf("type:%s", bt_property_type_text(property.type).c_str());
+
+    case BT_PROPERTY_RESERVED_07:
+    case BT_PROPERTY_RESERVED_0E:
+    case BT_PROPERTY_RESERVED_0F:
+    case BT_PROPERTY_RESERVED_0x14:
       return base::StringPrintf("type:%s", bt_property_type_text(property.type).c_str());
   }
   return std::string("Unknown");
@@ -296,9 +287,6 @@ std::shared_ptr<TypeOfDevice> TypeOfDevice::Create(const bt_device_type_t& type)
 }
 std::shared_ptr<ServiceRecord> ServiceRecord::Create(const bt_service_record_t& record) {
   return std::make_shared<ServiceRecord>(ServiceRecord(record));
-}
-std::shared_ptr<AdapterScanMode> AdapterScanMode::Create(const bt_scan_mode_t& mode) {
-  return std::make_shared<AdapterScanMode>(AdapterScanMode(mode));
 }
 std::shared_ptr<AdapterBondedDevices> AdapterBondedDevices::Create(
     const RawAddress* bd_addr, size_t len) {
