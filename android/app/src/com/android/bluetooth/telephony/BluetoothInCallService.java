@@ -334,10 +334,7 @@ public class BluetoothInCallService extends InCallService {
     @Override
     public IBinder onBind(Intent intent) {
         Log.i(TAG, "onBind. Intent: " + intent);
-        IBinder binder = super.onBind(intent);
-        mTelephonyManager = getSystemService(TelephonyManager.class);
-        mTelecomManager = getSystemService(TelecomManager.class);
-        return binder;
+        return super.onBind(intent);
     }
 
     @Override
@@ -717,6 +714,8 @@ public class BluetoothInCallService extends InCallService {
         Log.d(TAG, "onCreate");
         super.onCreate();
         mAdapter = requireNonNull(getSystemService(BluetoothManager.class)).getAdapter();
+        mTelephonyManager = getSystemService(TelephonyManager.class);
+        mTelecomManager = getSystemService(TelecomManager.class);
         mAdapter.getProfileProxy(this, mProfileListener, BluetoothProfile.HEADSET);
         mAdapter.getProfileProxy(this, mProfileListener, BluetoothProfile.LE_CALL_CONTROL);
         mBluetoothAdapterReceiver = new BluetoothAdapterReceiver();
