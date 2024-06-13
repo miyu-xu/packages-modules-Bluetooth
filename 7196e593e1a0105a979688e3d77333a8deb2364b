@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af1addb0_3e65905e",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 3289503
+      },
+      "writtenOn": "2024-06-13T06:29:30Z",
+      "side": 1,
+      "message": "Nit: more accurate to have this at the end of this block (after in_use is set to false etc.)",
+      "range": {
+        "startLine": 575,
+        "startChar": 6,
+        "endLine": 575,
+        "endChar": 9
+      },
+      "revId": "7196e593e1a0105a979688e3d77333a8deb2364b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
