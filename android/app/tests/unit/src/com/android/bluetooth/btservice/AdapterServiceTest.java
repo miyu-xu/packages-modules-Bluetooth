@@ -570,14 +570,8 @@ public class AdapterServiceTest {
 
         final int expectedScanMode = BluetoothAdapter.SCAN_MODE_CONNECTABLE;
 
-        int type = AbstractionLayer.BT_PROPERTY_ADAPTER_SCAN_MODE;
-        byte[] val = Utils.intToByteArray(AdapterService.convertScanModeToHal(expectedScanMode));
-
-        verify(mNativeInterface).setAdapterProperty(eq(type), eq(val));
-        // Intercept native call and simulate its callback
-        mAdapterService.mAdapterProperties.adapterPropertyChangedCallback(
-                new int[] {type}, new byte[][] {val});
-        assertThat(mAdapterService.getScanMode()).isEqualTo(BluetoothAdapter.SCAN_MODE_CONNECTABLE);
+        verify(mNativeInterface).setScanMode(eq(expectedScanMode));
+        assertThat(mAdapterService.getScanMode()).isEqualTo(expectedScanMode);
     }
 
     /** Test: Turn Bluetooth on/off. Check whether the AdapterService gets started and stopped. */
