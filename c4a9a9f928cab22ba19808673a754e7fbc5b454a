@@ -1,0 +1,181 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dcbff3d_726ff51a",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 947,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-06-13T08:42:10Z",
+      "side": 1,
+      "message": "Previously this function was used only for the group change. This IF checks if it was completed correctly.\n\nNow, with the new API setDeviceVolume() it might be called also in other use case i.e. when changing volume for Broadcast device.\n\nI think we do miss something which would check that the setDeviceVolume has ended correctly.",
+      "range": {
+        "startLine": 944,
+        "startChar": 11,
+        "endLine": 947,
+        "endChar": 13
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "829e1702_b74c55f9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+              "range": {
+                "startLine": 943,
+                "startChar": 0,
+                "endLine": 949,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+              "range": {
+                "startLine": 968,
+                "startChar": 0,
+                "endLine": 968,
+                "endChar": 0
+              },
+              "replacement": "                    } else {\n                        Log.i(\n                                TAG,\n                                \" Volume:\"\n                                        + volume\n                                        + \", mute:\"\n                                        + mute\n                                        + \" confirmed by remote side.\");\n                        return;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+              "range": {
+                "startLine": 973,
+                "startChar": 0,
+                "endLine": 973,
+                "endChar": 0
+              },
+              "replacement": "                    } else {\n                        Log.i(\n                                TAG,\n                                \" Volume:\"\n                                        + volume\n                                        + \", mute:\"\n                                        + mute\n                                        + \" confirmed by remote side.\");\n                        return;\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+              "range": {
+                "startLine": 983,
+                "startChar": 0,
+                "endLine": 983,
+                "endChar": 0
+              },
+              "replacement": "                } else {\n                    Log.i(\n                            TAG,\n                            \" Volume:\" + volume + \", mute:\" + mute + \" confirmed by remote side.\");\n                    return;\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c4a9a9f928cab22ba19808673a754e7fbc5b454a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db348c20_80b11c48",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 958,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-06-13T08:42:10Z",
+      "side": 1,
+      "message": "Seems we can return early if can_change_volume is false, right?\n\nif (!can_change_volume) {\n  Log.d(TAG, device + \" is not connected anymore, cannot change volume\");\n  return;\n}",
+      "fixSuggestions": [
+        {
+          "fixId": "60c3b4ca_d71c0b4d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+              "range": {
+                "startLine": 959,
+                "startChar": 0,
+                "endLine": 959,
+                "endChar": 0
+              },
+              "replacement": "                if (!can_change_volume) {\n                    Log.d(TAG, device + \" is not connected anymore\");\n                    return;\n                }\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+              "range": {
+                "startLine": 961,
+                "startChar": 0,
+                "endLine": 963,
+                "endChar": 0
+              },
+              "replacement": "                    if (groupVolume !\u003d volume\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+              "range": {
+                "startLine": 970,
+                "startChar": 0,
+                "endLine": 971,
+                "endChar": 0
+              },
+              "replacement": "                    if (groupVolume !\u003d volume) {\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+              "range": {
+                "startLine": 976,
+                "startChar": 0,
+                "endLine": 977,
+                "endChar": 0
+              },
+              "replacement": "                if (groupMute !\u003d mute) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c4a9a9f928cab22ba19808673a754e7fbc5b454a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cd1bb76_2d3978c7",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 965,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-06-13T08:42:10Z",
+      "side": 1,
+      "message": "if the comment from line 958 would be applied then here I believe it should be enough to check\n\nif ((groupVolume !\u003d volume \u0026\u0026 deviceVolume !\u003d volume)) but that make me think that we are missing something around line 944",
+      "range": {
+        "startLine": 965,
+        "startChar": 39,
+        "endLine": 965,
+        "endChar": 60
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "16afeada_dbd8049e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+              "range": {
+                "startLine": 963,
+                "startChar": 0,
+                "endLine": 966,
+                "endChar": 0
+              },
+              "replacement": "                            \u0026\u0026 deviceVolume !\u003d volume) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "c4a9a9f928cab22ba19808673a754e7fbc5b454a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
