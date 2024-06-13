@@ -94,6 +94,30 @@
       },
       "revId": "d79284a431bf5db264282bd3a5aee92b52e1dd82",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf1d9053_9ebb5718",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-06-13T00:02:19Z",
+      "side": 1,
+      "message": "Yeah, that works",
+      "parentUuid": "aef52c25_10d66c4a",
+      "range": {
+        "startLine": 393,
+        "startChar": 13,
+        "endLine": 393,
+        "endChar": 27
+      },
+      "revId": "d79284a431bf5db264282bd3a5aee92b52e1dd82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
