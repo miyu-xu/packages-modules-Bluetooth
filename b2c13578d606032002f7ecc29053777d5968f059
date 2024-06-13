@@ -59,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aec9002e_966ecba4",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1082,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-06-13T02:49:36Z",
+      "side": 1,
+      "message": "Sounds good, I have changed to use client (not clientByAppScanMode).",
+      "parentUuid": "696be82a_e9c62a2a",
+      "range": {
+        "startLine": 1082,
+        "startChar": 28,
+        "endLine": 1082,
+        "endChar": 47
+      },
+      "revId": "b2c13578d606032002f7ecc29053777d5968f059",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e217dcf1_36133c3e",
@@ -72,6 +96,30 @@
       "writtenOn": "2024-06-12T17:35:44Z",
       "side": 1,
       "message": "We had random failures due to different system delay. I suggest to remove the test for outbound check through isAtMost.",
+      "range": {
+        "startLine": 1462,
+        "startChar": 0,
+        "endLine": 1462,
+        "endChar": 92
+      },
+      "revId": "b2c13578d606032002f7ecc29053777d5968f059",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee07e599_0fbd4ab1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1462,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-06-13T02:49:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e217dcf1_36133c3e",
       "range": {
         "startLine": 1462,
         "startChar": 0,
@@ -105,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "568c9491_27521b95",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1524,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-06-13T02:49:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6bf5d9ad_0b513dc8",
+      "range": {
+        "startLine": 1524,
+        "startChar": 0,
+        "endLine": 1524,
+        "endChar": 91
+      },
+      "revId": "b2c13578d606032002f7ecc29053777d5968f059",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6026b521_01cd9403",
@@ -118,6 +190,30 @@
       "writtenOn": "2024-06-12T17:35:44Z",
       "side": 1,
       "message": "We had random failures due to different system delay. I suggest to remove the test for outbound check through isAtMost.",
+      "range": {
+        "startLine": 1558,
+        "startChar": 0,
+        "endLine": 1558,
+        "endChar": 72
+      },
+      "revId": "b2c13578d606032002f7ecc29053777d5968f059",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87779ffb_8583396b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1558,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-06-13T02:49:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6026b521_01cd9403",
       "range": {
         "startLine": 1558,
         "startChar": 0,
@@ -151,6 +247,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d17cded_f947f7d0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1615,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-06-13T02:49:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4319c909_8982976a",
+      "range": {
+        "startLine": 1615,
+        "startChar": 0,
+        "endLine": 1615,
+        "endChar": 72
+      },
+      "revId": "b2c13578d606032002f7ecc29053777d5968f059",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d6c5fd8_44d88b4b",
@@ -164,6 +284,30 @@
       "writtenOn": "2024-06-12T17:35:44Z",
       "side": 1,
       "message": "We had random failures due to different system delay. I suggest to remove the test for outbound check through isAtMost.",
+      "range": {
+        "startLine": 1644,
+        "startChar": 0,
+        "endLine": 1644,
+        "endChar": 45
+      },
+      "revId": "b2c13578d606032002f7ecc29053777d5968f059",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1588f79f_0b335e77",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1644,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-06-13T02:49:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d6c5fd8_44d88b4b",
       "range": {
         "startLine": 1644,
         "startChar": 0,
@@ -197,6 +341,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc1adee6_f7b490d3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1686,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-06-13T02:49:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55060349_51efbb29",
+      "range": {
+        "startLine": 1686,
+        "startChar": 0,
+        "endLine": 1686,
+        "endChar": 72
+      },
+      "revId": "b2c13578d606032002f7ecc29053777d5968f059",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd5a0154_1c498479",
@@ -220,6 +388,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "281c07b9_a46698ab",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1709,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-06-13T02:49:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd5a0154_1c498479",
+      "range": {
+        "startLine": 1709,
+        "startChar": 0,
+        "endLine": 1709,
+        "endChar": 89
+      },
+      "revId": "b2c13578d606032002f7ecc29053777d5968f059",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3fb90397_051cc713",
@@ -233,6 +425,30 @@
       "writtenOn": "2024-06-12T17:35:44Z",
       "side": 1,
       "message": "We had random failures due to different system delay. I suggest to remove the test for outbound check through isAtMost.",
+      "range": {
+        "startLine": 1732,
+        "startChar": 0,
+        "endLine": 1732,
+        "endChar": 72
+      },
+      "revId": "b2c13578d606032002f7ecc29053777d5968f059",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db793e50_6ebd3b85",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_scan/ScanManagerTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1732,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-06-13T02:49:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fb90397_051cc713",
       "range": {
         "startLine": 1732,
         "startChar": 0,

@@ -107,6 +107,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bdc492fa_4ee233d0",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/AppScanStats.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 580,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-06-13T02:49:36Z",
+      "side": 1,
+      "message": "Yes, when the screen state changed, `setScreenState` will record the radio scan duration with `recordScanRadioDurationMetrics`, and the screen state being logged is the state before the change, e.g. when the screen turns off, it will log the radio scan duration before screen is off and log the screen state as `on`.",
+      "parentUuid": "b072cf11_488813ee",
+      "range": {
+        "startLine": 577,
+        "startChar": 12,
+        "endLine": 580,
+        "endChar": 13
+      },
+      "revId": "1a87fe6d7a378c4af24f62e5e909b16edc29a949",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9c86b807_91520443",
         "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
         "patchSetId": 8
