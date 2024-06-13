@@ -43,6 +43,7 @@ import android.sysprop.BluetoothProperties;
 import android.util.Log;
 
 import com.android.bluetooth.Utils;
+import com.android.bluetooth.bass_client.BassClientService;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.btservice.ServiceFactory;
@@ -605,6 +606,21 @@ public class VolumeControlService extends ProfileService {
             return;
         }
 
+        if (Flags.leaudioBroadcastVolumeControlWithSetVolume()) {
+            BassClientService bassClientService = mFactory.getBassClientService();
+            int currentlyActiveGroupId = leAudioService.getActiveGroupId();
+
+            if (currentlyActiveGroupId != IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID
+                    && groupId == currentlyActiveGroupId
+                    && bassClientService != null
+                    && !bassClientService.getActiveBroadcastSinks().contains(device)) {
+                // Block setting device volume for the active device not actively receiving
+                // broadcast stream, application should set group volume instead
+                Log.e(TAG, "Cannot set volume for active group without broadcast stream");
+                return;
+            }
+        }
+
         if (isGroupOp) {
             setGroupVolume(groupId, volume);
         } else {
@@ -940,11 +956,23 @@ public class VolumeControlService extends ProfileService {
                                 (sm.getConnectionState() == BluetoothProfile.STATE_CONNECTED);
                     }
                 }
-
-                if (can_change_volume && (groupVolume != volume)) {
-                    Log.i(TAG, "Setting value:" + groupVolume + " to " + device);
-                    mVolumeControlNativeInterface.setVolume(device, groupVolume);
+                if (Flags.leaudioBroadcastVolumeControlWithSetVolume()) {
+                    Integer deviceVolume = getDeviceVolume(device);
+                    if (can_change_volume
+                            && groupVolume != volume
+                            && (deviceVolume
+                                            == IBluetoothVolumeControl.VOLUME_CONTROL_UNKNOWN_VOLUME
+                                    || deviceVolume != volume)) {
+                        Log.i(TAG, "Setting value:" + groupVolume + " to " + device);
+                        mVolumeControlNativeInterface.setVolume(device, groupVolume);
+                    }
+                } else {
+                    if (can_change_volume && (groupVolume != volume)) {
+                        Log.i(TAG, "Setting value:" + groupVolume + " to " + device);
+                        mVolumeControlNativeInterface.setVolume(device, groupVolume);
+                    }
                 }
+
                 if (can_change_volume && (groupMute != mute)) {
                     Log.i(TAG, "Setting mute:" + groupMute + " to " + device);
                     if (groupMute) {
