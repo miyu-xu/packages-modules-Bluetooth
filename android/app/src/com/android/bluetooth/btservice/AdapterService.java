@@ -1559,6 +1559,16 @@ public class AdapterService extends Service {
                 ProfileService profileService = PROFILE_CONSTRUCTORS.get(profileId).apply(this);
                 mStartedProfiles.put(profileId, profileService);
                 addProfile(profileService);
+                // This is not a very elegant solution but if the flag Flags.scanManagerRefactor()
+                // is true, `GattService` needs to access the `TransitionalScanHelper` belonging
+                // to `ScanController` instead of using its own as it is the one that is started.
+                // This place is the only place that that `GattService` is started with the flag
+                // true and so we need to make sure it has access to the instance after its
+                // initialized and before it is started.
+                if (Flags.scanManagerRefactor() && profileId == BluetoothProfile.GATT) {
+                    ((GattService) profileService)
+                            .setTransitionalScanHelper(mScanController.getTransitionalScanHelper());
+                }
                 profileService.start();
                 profileService.setAvailable(true);
                 onProfileServiceStateChanged(profileService, BluetoothAdapter.STATE_ON);
