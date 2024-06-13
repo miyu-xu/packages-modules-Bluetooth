@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2aedacb5_7ea4d8c5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-06-13T08:38:03Z",
+      "side": 1,
+      "message": "Added missing `return;` in `le_advertising_manager.cc`.",
+      "revId": "3268834e29ca5fec0584491a4d3a3be253affc62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
