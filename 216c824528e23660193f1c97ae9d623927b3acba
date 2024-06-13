@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c11fe62e_11c3248f",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1483,
+      "author": {
+        "id": 2034140
+      },
+      "writtenOn": "2024-06-13T21:27:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3c120a2_3850cc62",
+      "range": {
+        "startLine": 1455,
+        "startChar": 0,
+        "endLine": 1483,
+        "endChar": 5
+      },
+      "revId": "216c824528e23660193f1c97ae9d623927b3acba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd12b4b7_99ee29ef",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-06-06T22:39:24Z",
       "side": 1,
       "message": "Same as above.\n```suggestion\n    /* Checking if the device is present in inquiry database before checking if\n     * this address has already been processed for this inquiry */\n    if (p_i !\u003d null) {\n      if (btm_inq_find_bdaddr(bda)) {\n        /* By default suppose no update needed */\n        i_rssi \u003d (int8_t)rssi;\n\n        /* If this new RSSI is higher than the last one */\n        if ((rssi !\u003d 0) \u0026\u0026\n            (i_rssi \u003e p_i-\u003einq_info.results.rssi ||\n             p_i-\u003einq_info.results.rssi \u003d\u003d 0\n             /* BR/EDR inquiry information update */\n             ||\n             (p_i-\u003einq_info.results.device_type \u0026 BT_DEVICE_TYPE_BREDR) !\u003d 0)) {\n          p_cur \u003d \u0026p_i-\u003einq_info.results;\n          log::verbose(\"update RSSI new:{}, old:{}\", i_rssi, p_cur-\u003erssi);\n          p_cur-\u003erssi \u003d i_rssi;\n          update \u003d true;\n        }\n        /* If we received a second Extended Inq Event for an already */\n        /* discovered device, this is because for the first one EIR was not\n           received */\n        else if (p_i) {\n          p_cur \u003d \u0026p_i-\u003einq_info.results;\n          update \u003d true;\n        }\n        /* If no update needed continue with next response (if any) */\n        else\n          return;\n      }\n\n    /* If existing entry, use that, else get a new one (possibly reusing the\n     * oldest) */\n    } else {\n      p_i \u003d btm_inq_db_new(bda, false);\n      is_new \u003d true;\n    }\n```",
+      "range": {
+        "startLine": 1598,
+        "startChar": 0,
+        "endLine": 1633,
+        "endChar": 5
+      },
+      "revId": "216c824528e23660193f1c97ae9d623927b3acba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f9705f3_691c65c0",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1633,
+      "author": {
+        "id": 2034140
+      },
+      "writtenOn": "2024-06-13T21:27:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd12b4b7_99ee29ef",
       "range": {
         "startLine": 1598,
         "startChar": 0,
