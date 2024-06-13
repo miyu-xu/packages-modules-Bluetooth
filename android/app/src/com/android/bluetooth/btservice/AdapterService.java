@@ -141,6 +141,7 @@ import com.android.bluetooth.hid.HidHostService;
 import com.android.bluetooth.le_audio.LeAudioService;
 import com.android.bluetooth.le_scan.ScanController;
 import com.android.bluetooth.le_scan.ScanManager;
+import com.android.bluetooth.le_scan.TransitionalScanHelper;
 import com.android.bluetooth.map.BluetoothMapService;
 import com.android.bluetooth.mapclient.MapClientService;
 import com.android.bluetooth.mcp.McpService;
@@ -326,6 +327,9 @@ public class AdapterService extends Service {
     private BluetoothQualityReportNativeInterface mBluetoothQualityReportNativeInterface;
     private GattService mGattService;
     private ScanController mScanController;
+
+    private final TransitionalScanHelper mTransitionalScanHelper =
+            new TransitionalScanHelper(this, () -> false);
 
     private volatile boolean mTestModeEnabled = false;
 
@@ -1135,7 +1139,7 @@ public class AdapterService extends Service {
     }
 
     private void startScanController() {
-        mScanController = new ScanController(this);
+        mScanController = new ScanController(mTransitionalScanHelper);
         mNativeInterface.enable();
     }
 
@@ -5973,6 +5977,10 @@ public class AdapterService extends Service {
 
     public ScanController getBluetoothScanController() {
         return mScanController;
+    }
+
+    public TransitionalScanHelper getTransitionalScanHelper() {
+        return mTransitionalScanHelper;
     }
 
     void unregAllGattClient(AttributionSource source) {

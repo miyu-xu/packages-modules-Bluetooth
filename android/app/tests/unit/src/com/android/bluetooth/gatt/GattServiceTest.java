@@ -102,6 +102,7 @@ public class GattServiceTest {
     @Mock private ScanObjectsFactory mScanObjectsFactory;
     @Mock private GattNativeInterface mNativeInterface;
     private CompanionManager mBtCompanionManager;
+    private TransitionalScanHelper mScanHelper;
 
     @Before
     public void setUp() throws Exception {
@@ -135,11 +136,14 @@ public class GattServiceTest {
         doReturn(mBtCompanionManager).when(mAdapterService).getCompanionManager();
 
         AdvertiseManagerNativeInterface.setInstance(mAdvertiseManagerNativeInterface);
-        mService = new GattService(InstrumentationRegistry.getTargetContext());
+        mService = new GattService(mAdapterService);
         mService.start();
 
         mService.mClientMap = mClientMap;
-        mService.mTransitionalScanHelper.setScannerMap(mScannerMap);
+        mScanHelper =
+                new TransitionalScanHelper(InstrumentationRegistry.getTargetContext(), () -> false);
+        when(mAdapterService.getTransitionalScanHelper()).thenReturn(mScanHelper);
+        mAdapterService.getTransitionalScanHelper().setScannerMap(mScannerMap);
         mService.mReliableQueue = mReliableQueue;
         mService.mServerMap = mServerMap;
     }
@@ -165,7 +169,7 @@ public class GattServiceTest {
             reset(mAdapterService);
             TestUtils.setAdapterService(mAdapterService);
 
-            mService = new GattService(InstrumentationRegistry.getTargetContext());
+            mService = new GattService(mAdapterService);
             mService.start();
         }
     }
@@ -636,12 +640,6 @@ public class GattServiceTest {
         mService.unregAll(mAttributionSource);
         verify(mClientMap).remove(appId);
         verify(mNativeInterface).gattClientUnregisterApp(appId);
-    }
-
-    @Test
-    public void numHwTrackFiltersAvailable() {
-        mService.getTransitionalScanHelper().numHwTrackFiltersAvailable(mAttributionSource);
-        verify(mScanManager).getCurrentUsedTrackingAdvertisement();
     }
 
     @Test

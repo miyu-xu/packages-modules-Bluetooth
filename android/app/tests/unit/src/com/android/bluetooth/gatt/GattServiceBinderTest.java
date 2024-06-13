@@ -69,7 +69,7 @@ public class GattServiceBinderTest {
     @Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     @Mock private GattService mService;
-    @Mock private TransitionalScanHelper mScanHelper;
+    private TransitionalScanHelper mScanHelper;
 
     private Context mContext;
     private BluetoothDevice mDevice;
@@ -85,7 +85,7 @@ public class GattServiceBinderTest {
         mPendingIntent =
                 PendingIntent.getBroadcast(mContext, 0, intent, PendingIntent.FLAG_IMMUTABLE);
         when(mService.isAvailable()).thenReturn(true);
-        when(mService.getTransitionalScanHelper()).thenReturn(mScanHelper);
+        mScanHelper = new TransitionalScanHelper(mContext, () -> false);
         mBinder = new GattService.BluetoothGattBinder(mService);
         mAttributionSource = new AttributionSource.Builder(1).build();
         mDevice = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(REMOTE_DEVICE_ADDRESS);
