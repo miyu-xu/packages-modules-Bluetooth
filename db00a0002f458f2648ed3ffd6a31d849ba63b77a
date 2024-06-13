@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cfde9ecf_e15fc4a1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-13T22:31:04Z",
+      "side": 1,
+      "message": "bloat-buster indicate that there are size change of various component.\n\nThe bluetooth apex is only increased by 96Kb, so that should be acceptable, but This is not a no-op.\n\nCan we identify what / why there is a size change ?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 56
+      },
+      "revId": "db00a0002f458f2648ed3ffd6a31d849ba63b77a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a60449a3_de944c9d",
         "filename": "android/app/Android.bp",
         "patchSetId": 4
