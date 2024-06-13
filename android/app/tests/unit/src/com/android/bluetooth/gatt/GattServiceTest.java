@@ -139,7 +139,7 @@ public class GattServiceTest {
         mService.start();
 
         mService.mClientMap = mClientMap;
-        mService.mTransitionalScanHelper.setScannerMap(mScannerMap);
+        mService.getTransitionalScanHelper().setScannerMap(mScannerMap);
         mService.mReliableQueue = mReliableQueue;
         mService.mServerMap = mServerMap;
     }
