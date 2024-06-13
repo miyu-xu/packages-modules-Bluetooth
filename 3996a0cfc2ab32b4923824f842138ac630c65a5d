@@ -16,6 +16,24 @@
       "message": "With this change, does UI still need to call stopBroadcast?\n\nwould that be handled by this previous CL?\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/3088479",
       "revId": "3996a0cfc2ab32b4923824f842138ac630c65a5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cda7ea3f_7ebcec9b",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2138,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-06-13T07:35:23Z",
+      "side": 1,
+      "message": "Actually that is the missing part for mentioned CL idea. There were not considered setting device to NULL. When device is set to null, fallback group should be set to INVALID and monitor stream should be closed.\n\nI\u0027ve talked with UI team and they have a scenario when user want to switch to classic device while broadcasting then:\n- stop broadcast would be called from UI\n- set active device would be called with classic device (this would expropriate fallback group device with INVALID)",
+      "parentUuid": "7e21818a_24be9bdf",
+      "revId": "3996a0cfc2ab32b4923824f842138ac630c65a5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
