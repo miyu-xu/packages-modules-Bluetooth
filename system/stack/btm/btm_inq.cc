@@ -43,6 +43,7 @@
 #include "hci/controller_interface.h"
 #include "hci/event_checkers.h"
 #include "hci/hci_interface.h"
+#include "hci/hci_packets.h"
 #include "internal_include/bt_target.h"
 #include "main/shim/acl_api.h"
 #include "main/shim/entry.h"
@@ -373,7 +374,20 @@ void BTM_EnableInterlacedInquiryScan() {
     return;
   }
 
-  btsnd_hcic_write_inqscan_type(BTM_SCAN_TYPE_INTERLACED);
+  hci::InquiryScanType inquiry_scan_type =
+      (inq_scan_type == BTM_SCAN_TYPE_INTERLACED)
+          ? hci::InquiryScanType::INTERLACED
+          : hci::InquiryScanType::STANDARD;
+
+  bluetooth::shim::GetHciLayer()->EnqueueCommand(
+      bluetooth::hci::WriteInquiryScanTypeBuilder::Create(inquiry_scan_type),
+      get_main_thread()->BindOnce(
+          [](bluetooth::hci::CommandCompleteView complete_view) {
+            bluetooth::hci::check_complete<
+                bluetooth::hci::WriteInquiryScanTypeCompleteView>(
+                complete_view);
+          }));
+
   btm_cb.btm_inq_vars.inq_scan_type = BTM_SCAN_TYPE_INTERLACED;
 }
 
