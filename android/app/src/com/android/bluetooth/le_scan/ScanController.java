@@ -36,7 +36,7 @@ import java.util.List;
 public class ScanController {
     private static final String TAG = ScanController.class.getSimpleName();
 
-    public final TransitionalScanHelper mTransitionalScanHelper;
+    private final TransitionalScanHelper mTransitionalScanHelper;
 
     private final BluetoothScanBinder mBinder;
 
@@ -64,7 +64,7 @@ public class ScanController {
         mTransitionalScanHelper.notifyProfileConnectionStateChange(profile, fromState, toState);
     }
 
-    TransitionalScanHelper getTransitionalScanHelper() {
+    public TransitionalScanHelper getTransitionalScanHelper() {
         return mTransitionalScanHelper;
     }
 
