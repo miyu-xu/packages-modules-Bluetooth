@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "def37cd5_a36d2be4",
+        "filename": "system/stack/acl/btm_pm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 860,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-13T17:02:01Z",
+      "side": 1,
+      "message": "nit: BTM_INQUIRY_ACTIVE_MASK?\n```suggestion\n  if ((btm_cb.btm_inq_vars.inq_active \u0026 BTM_INQUIRY_ACTIVE_MASK) !\u003d 0) {\n```\n\nNo need for it to be in this CL",
+      "range": {
+        "startLine": 859,
+        "startChar": 0,
+        "endLine": 860,
+        "endChar": 63
+      },
+      "revId": "83fdf135a9ed71cbca82331b9c4b00b65b0e1f57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
