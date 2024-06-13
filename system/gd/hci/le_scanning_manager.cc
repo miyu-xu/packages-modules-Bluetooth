@@ -572,6 +572,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     }
 
     if (scanners_[scanner_id].in_use) {
+      log::debug("Unregister scanner successful, scannerId={}", scanner_id);
       scanners_[scanner_id].in_use = false;
       scanners_[scanner_id].app_uuid = Uuid::kEmpty;
     } else {
