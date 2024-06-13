@@ -1802,17 +1802,7 @@ public class LeAudioService extends ProfileService {
                 Log.d(TAG, "Scanner is already registered with id " + mScannerId);
                 return;
             }
-            if (Flags.scanManagerRefactor()) {
-                mAdapterService
-                        .getBluetoothScanController()
-                        .getTransitionalScanHelper()
-                        .registerScannerInternal(this, null);
-            } else {
-                mAdapterService
-                        .getBluetoothGattService()
-                        .getTransitionalScanHelper()
-                        .registerScannerInternal(this, null);
-            }
+            mAdapterService.getTransitionalScanHelper().registerScannerInternal(this, null);
         }
 
         synchronized void stopBackgroundScan() {
@@ -1820,27 +1810,8 @@ public class LeAudioService extends ProfileService {
                 Log.d(TAG, "Scanner is already unregistered");
                 return;
             }
-            if (Flags.scanManagerRefactor()) {
-                mAdapterService
-                        .getBluetoothScanController()
-                        .getTransitionalScanHelper()
-                        .stopScanInternal(mScannerId);
-
-                mAdapterService
-                        .getBluetoothScanController()
-                        .getTransitionalScanHelper()
-                        .unregisterScannerInternal(mScannerId);
-            } else {
-                mAdapterService
-                        .getBluetoothGattService()
-                        .getTransitionalScanHelper()
-                        .stopScanInternal(mScannerId);
-
-                mAdapterService
-                        .getBluetoothGattService()
-                        .getTransitionalScanHelper()
-                        .unregisterScannerInternal(mScannerId);
-            }
+            mAdapterService.getTransitionalScanHelper().stopScanInternal(mScannerId);
+            mAdapterService.getTransitionalScanHelper().unregisterScannerInternal(mScannerId);
             mScannerId = 0;
         }
 
@@ -1864,17 +1835,9 @@ public class LeAudioService extends ProfileService {
                             .setPhy(BluetoothDevice.PHY_LE_1M)
                             .build();
 
-            if (Flags.scanManagerRefactor()) {
-                mAdapterService
-                        .getBluetoothScanController()
-                        .getTransitionalScanHelper()
-                        .startScanInternal(scannerId, settings, List.of(filter));
-            } else {
-                mAdapterService
-                        .getBluetoothGattService()
-                        .getTransitionalScanHelper()
-                        .startScanInternal(scannerId, settings, List.of(filter));
-            }
+            mAdapterService
+                    .getTransitionalScanHelper()
+                    .startScanInternal(scannerId, settings, List.of(filter));
         }
 
         // Eventually we should be able to start scan from native when b/276350722 is done
