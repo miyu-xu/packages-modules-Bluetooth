@@ -75,8 +75,8 @@ import java.util.function.Predicate;
 /**
  * A helper class which contains all scan related functions extracted from {@link
  * com.android.bluetooth.gatt.GattService}. The purpose of this class is to preserve scan
- * functionality within GattService and provide the same functionality in a new scan dedicated
- * {@link com.android.bluetooth.btservice.ProfileService} when introduced.
+ * functionality within GattService and provide the same functionality in the new scan dedicated
+ * {@link com.android.bluetooth.le_scan.ScanController}.
  */
 public class TransitionalScanHelper {
     private static final String TAG = GattServiceConfig.TAG_PREFIX + "ScanHelper";

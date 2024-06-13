@@ -139,7 +139,7 @@ public class GattServiceTest {
         mService.start();
 
         mService.mClientMap = mClientMap;
-        mService.mTransitionalScanHelper.setScannerMap(mScannerMap);
+        mAdapterService.getTransitionalScanHelper().setScannerMap(mScannerMap);
         mService.mReliableQueue = mReliableQueue;
         mService.mServerMap = mServerMap;
     }
@@ -636,12 +636,6 @@ public class GattServiceTest {
         mService.unregAll(mAttributionSource);
         verify(mClientMap).remove(appId);
         verify(mNativeInterface).gattClientUnregisterApp(appId);
-    }
-
-    @Test
-    public void numHwTrackFiltersAvailable() {
-        mService.getTransitionalScanHelper().numHwTrackFiltersAvailable(mAttributionSource);
-        verify(mScanManager).getCurrentUsedTrackingAdvertisement();
     }
 
     @Test

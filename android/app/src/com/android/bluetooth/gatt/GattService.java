@@ -22,6 +22,9 @@ import static com.android.bluetooth.Utils.callerIsSystemOrActiveOrManagedUser;
 import static com.android.bluetooth.Utils.checkCallerTargetSdk;
 import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
 
+import static java.util.Objects.requireNonNull;
+
+import android.annotation.NonNull;
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
@@ -53,7 +56,6 @@ import android.bluetooth.le.ScanFilter;
 import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
 import android.content.AttributionSource;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.PackageManager.PackageInfoFlags;
@@ -137,8 +139,7 @@ public class GattService extends ProfileService {
                 "0201061AFF4C000215426C7565436861726D426561636F6E730EFE1355C509168020691E0EFE13551109426C7565436861726D5F31363936383500000000",
             };
 
-    public final TransitionalScanHelper mTransitionalScanHelper =
-            new TransitionalScanHelper(this, this::isTestModeEnabled);
+    private final TransitionalScanHelper mTransitionalScanHelper;
 
     /** This is only used when Flags.scanManagerRefactor() is true. */
     private static GattService sGattService;
@@ -174,7 +175,7 @@ public class GattService extends ProfileService {
      */
     private final HashMap<String, Integer> mPermits = new HashMap<>();
 
-    private AdapterService mAdapterService;
+    private final AdapterService mAdapterService;
     AdvertiseManager mAdvertiseManager;
     DistanceMeasurementManager mDistanceMeasurementManager;
     private Handler mTestModeHandler;
@@ -182,8 +183,11 @@ public class GattService extends ProfileService {
     private PackageManager mPackageManager;
     private final Object mTestModeLock = new Object();
 
-    public GattService(Context ctx) {
-        super(ctx);
+    public GattService(@NonNull AdapterService adapterService) {
+        super(adapterService);
+
+        mAdapterService = requireNonNull(adapterService);
+        mTransitionalScanHelper = mAdapterService.getTransitionalScanHelper();
     }
 
     public static boolean isEnabled() {
@@ -213,7 +217,6 @@ public class GattService extends ProfileService {
 
         mNativeInterface = GattObjectsFactory.getInstance().getNativeInterface();
         mNativeInterface.init(this);
-        mAdapterService = AdapterService.getAdapterService();
         mAdvertiseManager =
                 new AdvertiseManager(
                         this, AdvertiseManagerNativeInterface.getInstance(), mAdvertiserMap);
@@ -223,6 +226,7 @@ public class GattService extends ProfileService {
             thread.start();
             mTransitionalScanHelper.start(thread.getLooper());
         }
+
         mDistanceMeasurementManager =
                 GattObjectsFactory.getInstance().createDistanceMeasurementManager(mAdapterService);
 
@@ -246,7 +250,9 @@ public class GattService extends ProfileService {
             setGattService(null);
         }
 
-        mTransitionalScanHelper.stop();
+        if (!Flags.scanManagerRefactor()) {
+            mTransitionalScanHelper.stop();
+        }
         mAdvertiserMap.clear();
         mClientMap.clear();
         if (Flags.gattCleanupRestrictedHandles()) {
@@ -271,7 +277,9 @@ public class GattService extends ProfileService {
         if (mDistanceMeasurementManager != null) {
             mDistanceMeasurementManager.cleanup();
         }
-        mTransitionalScanHelper.cleanup();
+        if (!Flags.scanManagerRefactor()) {
+            mTransitionalScanHelper.cleanup();
+        }
     }
 
     /** This is only used when Flags.scanManagerRefactor() is true. */
@@ -292,10 +300,6 @@ public class GattService extends ProfileService {
         sGattService = instance;
     }
 
-    public TransitionalScanHelper getTransitionalScanHelper() {
-        return mTransitionalScanHelper;
-    }
-
     // While test mode is enabled, pretend as if the underlying stack
     // discovered a specific set of well-known beacons every second
     @Override
@@ -306,7 +310,8 @@ public class GattService extends ProfileService {
                         new Handler(getMainLooper()) {
                             public void handleMessage(Message msg) {
                                 synchronized (mTestModeLock) {
-                                    if (!GattService.this.isTestModeEnabled()) {
+                                    if (!GattService.this.isTestModeEnabled()
+                                            || Flags.scanManagerRefactor()) {
                                         return;
                                     }
                                     for (String test : TEST_MODE_BEACONS) {
@@ -365,7 +370,9 @@ public class GattService extends ProfileService {
 
     /** Notify Scan manager of bluetooth profile connection state changes */
     public void notifyProfileConnectionStateChange(int profile, int fromState, int toState) {
-        mTransitionalScanHelper.notifyProfileConnectionStateChange(profile, fromState, toState);
+        if (!Flags.scanManagerRefactor()) {
+            mTransitionalScanHelper.notifyProfileConnectionStateChange(profile, fromState, toState);
+        }
     }
 
     class ServerDeathRecipient implements IBinder.DeathRecipient {
@@ -468,8 +475,8 @@ public class GattService extends ProfileService {
             if (service == null) {
                 return;
             }
-            service.getTransitionalScanHelper()
-                    .registerScanner(callback, workSource, attributionSource);
+            service.mTransitionalScanHelper.registerScanner(
+                    callback, workSource, attributionSource);
         }
 
         @Override
@@ -478,7 +485,7 @@ public class GattService extends ProfileService {
             if (service == null) {
                 return;
             }
-            service.getTransitionalScanHelper().unregisterScanner(scannerId, attributionSource);
+            service.mTransitionalScanHelper.unregisterScanner(scannerId, attributionSource);
         }
 
         @Override
@@ -491,8 +498,8 @@ public class GattService extends ProfileService {
             if (service == null) {
                 return;
             }
-            service.getTransitionalScanHelper()
-                    .startScan(scannerId, settings, filters, attributionSource);
+            service.mTransitionalScanHelper.startScan(
+                    scannerId, settings, filters, attributionSource);
         }
 
         @Override
@@ -505,8 +512,8 @@ public class GattService extends ProfileService {
             if (service == null) {
                 return;
             }
-            service.getTransitionalScanHelper()
-                    .registerPiAndStartScan(intent, settings, filters, attributionSource);
+            service.mTransitionalScanHelper.registerPiAndStartScan(
+                    intent, settings, filters, attributionSource);
         }
 
         @Override
@@ -515,7 +522,7 @@ public class GattService extends ProfileService {
             if (service == null) {
                 return;
             }
-            service.getTransitionalScanHelper().stopScan(intent, attributionSource);
+            service.mTransitionalScanHelper.stopScan(intent, attributionSource);
         }
 
         @Override
@@ -524,7 +531,7 @@ public class GattService extends ProfileService {
             if (service == null) {
                 return;
             }
-            service.getTransitionalScanHelper().stopScan(scannerId, attributionSource);
+            service.mTransitionalScanHelper.stopScan(scannerId, attributionSource);
         }
 
         @Override
@@ -533,8 +540,7 @@ public class GattService extends ProfileService {
             if (service == null) {
                 return;
             }
-            service.getTransitionalScanHelper()
-                    .flushPendingBatchResults(scannerId, attributionSource);
+            service.mTransitionalScanHelper.flushPendingBatchResults(scannerId, attributionSource);
         }
 
         @Override
@@ -1124,8 +1130,8 @@ public class GattService extends ProfileService {
             if (service == null) {
                 return;
             }
-            service.getTransitionalScanHelper()
-                    .registerSync(scanResult, skip, timeout, callback, attributionSource);
+            service.mTransitionalScanHelper.registerSync(
+                    scanResult, skip, timeout, callback, attributionSource);
         }
 
         @Override
@@ -1138,8 +1144,8 @@ public class GattService extends ProfileService {
             if (service == null) {
                 return;
             }
-            service.getTransitionalScanHelper()
-                    .transferSync(bda, serviceData, syncHandle, attributionSource);
+            service.mTransitionalScanHelper.transferSync(
+                    bda, serviceData, syncHandle, attributionSource);
         }
 
         @Override
@@ -1153,8 +1159,8 @@ public class GattService extends ProfileService {
             if (service == null) {
                 return;
             }
-            service.getTransitionalScanHelper()
-                    .transferSetInfo(bda, serviceData, advHandle, callback, attributionSource);
+            service.mTransitionalScanHelper.transferSetInfo(
+                    bda, serviceData, advHandle, callback, attributionSource);
         }
 
         @Override
@@ -1164,7 +1170,7 @@ public class GattService extends ProfileService {
             if (service == null) {
                 return;
             }
-            service.getTransitionalScanHelper().unregisterSync(callback, attributionSource);
+            service.mTransitionalScanHelper.unregisterSync(callback, attributionSource);
         }
 
         @Override
@@ -1182,8 +1188,7 @@ public class GattService extends ProfileService {
             if (service == null) {
                 return 0;
             }
-            return service.getTransitionalScanHelper()
-                    .numHwTrackFiltersAvailable(attributionSource);
+            return service.mTransitionalScanHelper.numHwTrackFiltersAvailable(attributionSource);
         }
 
         @Override

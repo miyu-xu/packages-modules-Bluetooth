@@ -25,7 +25,6 @@ import android.bluetooth.le.ScanFilter;
 import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
 import android.content.AttributionSource;
-import android.content.Context;
 import android.os.HandlerThread;
 import android.os.IBinder;
 import android.os.WorkSource;
@@ -36,14 +35,14 @@ import java.util.List;
 public class ScanController {
     private static final String TAG = ScanController.class.getSimpleName();
 
-    public final TransitionalScanHelper mTransitionalScanHelper;
+    private final TransitionalScanHelper mTransitionalScanHelper;
 
     private final BluetoothScanBinder mBinder;
 
     private boolean mIsAvailable;
 
-    public ScanController(Context ctx) {
-        mTransitionalScanHelper = new TransitionalScanHelper(ctx, () -> false);
+    public ScanController(TransitionalScanHelper transitionalScanHelper) {
+        mTransitionalScanHelper = transitionalScanHelper;
         mBinder = new BluetoothScanBinder(this);
         mIsAvailable = true;
         HandlerThread thread = new HandlerThread("BluetoothScanManager");
@@ -62,10 +61,6 @@ public class ScanController {
     /** Notify Scan manager of bluetooth profile connection state changes */
     public void notifyProfileConnectionStateChange(int profile, int fromState, int toState) {
         mTransitionalScanHelper.notifyProfileConnectionStateChange(profile, fromState, toState);
-    }
-
-    public TransitionalScanHelper getTransitionalScanHelper() {
-        return mTransitionalScanHelper;
     }
 
     public IBinder getBinder() {
@@ -88,9 +83,8 @@ public class ScanController {
             if (mScanController == null) {
                 return;
             }
-            mScanController
-                    .getTransitionalScanHelper()
-                    .registerScanner(callback, workSource, attributionSource);
+            mScanController.mTransitionalScanHelper.registerScanner(
+                    callback, workSource, attributionSource);
         }
 
         @Override
@@ -99,9 +93,7 @@ public class ScanController {
             if (mScanController == null) {
                 return;
             }
-            mScanController
-                    .getTransitionalScanHelper()
-                    .unregisterScanner(scannerId, attributionSource);
+            mScanController.mTransitionalScanHelper.unregisterScanner(scannerId, attributionSource);
         }
 
         @Override
@@ -114,9 +106,8 @@ public class ScanController {
             if (mScanController == null) {
                 return;
             }
-            mScanController
-                    .getTransitionalScanHelper()
-                    .startScan(scannerId, settings, filters, attributionSource);
+            mScanController.mTransitionalScanHelper.startScan(
+                    scannerId, settings, filters, attributionSource);
         }
 
         @Override
@@ -129,9 +120,8 @@ public class ScanController {
             if (mScanController == null) {
                 return;
             }
-            mScanController
-                    .getTransitionalScanHelper()
-                    .registerPiAndStartScan(intent, settings, filters, attributionSource);
+            mScanController.mTransitionalScanHelper.registerPiAndStartScan(
+                    intent, settings, filters, attributionSource);
         }
 
         @Override
@@ -140,7 +130,7 @@ public class ScanController {
             if (mScanController == null) {
                 return;
             }
-            mScanController.getTransitionalScanHelper().stopScan(scannerId, attributionSource);
+            mScanController.mTransitionalScanHelper.stopScan(scannerId, attributionSource);
         }
 
         @Override
@@ -149,7 +139,7 @@ public class ScanController {
             if (mScanController == null) {
                 return;
             }
-            mScanController.getTransitionalScanHelper().stopScan(intent, attributionSource);
+            mScanController.mTransitionalScanHelper.stopScan(intent, attributionSource);
         }
 
         @Override
@@ -158,9 +148,8 @@ public class ScanController {
             if (mScanController == null) {
                 return;
             }
-            mScanController
-                    .getTransitionalScanHelper()
-                    .flushPendingBatchResults(scannerId, attributionSource);
+            mScanController.mTransitionalScanHelper.flushPendingBatchResults(
+                    scannerId, attributionSource);
         }
 
         @Override
@@ -174,9 +163,8 @@ public class ScanController {
             if (mScanController == null) {
                 return;
             }
-            mScanController
-                    .getTransitionalScanHelper()
-                    .registerSync(scanResult, skip, timeout, callback, attributionSource);
+            mScanController.mTransitionalScanHelper.registerSync(
+                    scanResult, skip, timeout, callback, attributionSource);
         }
 
         @Override
@@ -186,7 +174,7 @@ public class ScanController {
             if (mScanController == null) {
                 return;
             }
-            mScanController.getTransitionalScanHelper().unregisterSync(callback, attributionSource);
+            mScanController.mTransitionalScanHelper.unregisterSync(callback, attributionSource);
         }
 
         @Override
@@ -199,9 +187,8 @@ public class ScanController {
             if (mScanController == null) {
                 return;
             }
-            mScanController
-                    .getTransitionalScanHelper()
-                    .transferSync(bda, serviceData, syncHandle, attributionSource);
+            mScanController.mTransitionalScanHelper.transferSync(
+                    bda, serviceData, syncHandle, attributionSource);
         }
 
         @Override
@@ -215,9 +202,8 @@ public class ScanController {
             if (mScanController == null) {
                 return;
             }
-            mScanController
-                    .getTransitionalScanHelper()
-                    .transferSetInfo(bda, serviceData, advHandle, callback, attributionSource);
+            mScanController.mTransitionalScanHelper.transferSetInfo(
+                    bda, serviceData, advHandle, callback, attributionSource);
         }
 
         @Override
@@ -226,9 +212,8 @@ public class ScanController {
             if (mScanController == null) {
                 return 0;
             }
-            return mScanController
-                    .getTransitionalScanHelper()
-                    .numHwTrackFiltersAvailable(attributionSource);
+            return mScanController.mTransitionalScanHelper.numHwTrackFiltersAvailable(
+                    attributionSource);
         }
 
         private void clearScanController() {
