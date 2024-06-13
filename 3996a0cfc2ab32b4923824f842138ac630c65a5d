@@ -34,6 +34,24 @@
       "parentUuid": "7e21818a_24be9bdf",
       "revId": "3996a0cfc2ab32b4923824f842138ac630c65a5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d3e437a_4c22e6cb",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2138,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-13T16:16:03Z",
+      "side": 1,
+      "message": "I see, thanks.\n\nWondering then with other app like calling, do we still need the app to stop broadcast? or that would be handled by the stack. e.g. the issue mentioned in b/329172203.",
+      "parentUuid": "cda7ea3f_7ebcec9b",
+      "revId": "3996a0cfc2ab32b4923824f842138ac630c65a5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
