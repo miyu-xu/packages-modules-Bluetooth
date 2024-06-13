@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9362c77c_819736be",
+        "filename": "flags/l2cap.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-13T23:06:59Z",
+      "side": 1,
+      "message": "nit:\n\n```suggestion\n    name: \"l2cap_le_do_not_adjust_min_interval\"\n```",
+      "range": {
+        "startLine": 19,
+        "startChar": 11,
+        "endLine": 19,
+        "endChar": 45
+      },
+      "revId": "a42011cb33682b861237c50829df8382dceed533",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
