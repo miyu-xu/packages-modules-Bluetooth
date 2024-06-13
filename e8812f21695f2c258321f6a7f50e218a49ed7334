@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab4d7447_8ed1d112",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-06-13T23:12:49Z",
+      "side": 1,
+      "message": "A mechanical refactor isn\u0027t supposed to introduce a bug fix. How could this happen?",
+      "revId": "e8812f21695f2c258321f6a7f50e218a49ed7334",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
