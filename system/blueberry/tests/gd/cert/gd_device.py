@@ -555,11 +555,6 @@ class GdAndroidDevice(GdDeviceBase):
             if ADB_FILE_NOT_EXIST_ERROR not in str(error):
                 logging.error("Error during setup: " + str(error))
 
-        try:
-            self.adb.shell("rm /data/misc/bluedroid/bt_config.bak")
-        except AdbError as error:
-            if ADB_FILE_NOT_EXIST_ERROR not in str(error):
-                logging.error("Error during setup: " + str(error))
         logging.info("Old logs removed from device %s %s" % (self.label, self.serial_number))
 
         # Ensure Bluetooth is disabled
@@ -629,14 +624,6 @@ class GdAndroidDevice(GdDeviceBase):
                  str(os.path.join(base_dir, "%s_bt_config.conf" % self.label))])
         except AdbError as error:
             # Some tests have no config file, and that's OK
-            if ADB_FILE_NOT_EXIST_ERROR not in str(error):
-                logging.error(PULL_LOG_FILE_ERROR_MSG_PREFIX + str(error))
-        try:
-            self.adb.pull(
-                ["/data/misc/bluedroid/bt_config.bak",
-                 str(os.path.join(base_dir, "%s_bt_config.bak" % self.label))])
-        except AdbError as error:
-            # Some tests have no config.bak file, and that's OK
             if ADB_FILE_NOT_EXIST_ERROR not in str(error):
                 logging.error(PULL_LOG_FILE_ERROR_MSG_PREFIX + str(error))
 
