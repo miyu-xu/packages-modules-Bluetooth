@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91ac0c12_08ac2033",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-06-13T07:44:05Z",
+      "side": 1,
+      "message": "Previous CL mentioned: aosp/3125853",
+      "revId": "92561b7c8c000a33423bed64e83e46062bc670db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
