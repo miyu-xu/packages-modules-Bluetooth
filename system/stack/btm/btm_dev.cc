@@ -89,10 +89,17 @@ void BTM_SecAddDevice(const RawAddress& bd_addr, DEV_CLASS dev_class, LinkKey li
 
   if (!p_dev_rec) {
     p_dev_rec = btm_sec_allocate_dev_rec();
+
+    if (p_dev_rec == nullptr) {
+      log::warn("device record allocation failed bd_addr:{}", bd_addr);
+      return;
+    }
+
     log::info(
             "Caching new record from config file device: {}, dev_class: {:02x}:{:02x}:{:02x}, "
             "link_key_type: 0x{:x}",
             bd_addr, dev_class[0], dev_class[1], dev_class[2], key_type);
+
 
     p_dev_rec->bd_addr = bd_addr;
     p_dev_rec->hci_handle =
@@ -276,6 +283,11 @@ tBTM_SEC_DEV_REC* btm_sec_alloc_dev(const RawAddress& bd_addr) {
   tBTM_INQ_INFO* p_inq_info;
 
   tBTM_SEC_DEV_REC* p_dev_rec = btm_sec_allocate_dev_rec();
+
+  if (p_dev_rec == nullptr) {
+    log::warn("device record allocation failed bd_addr:{}", bd_addr);
+    return NULL;
+  }
 
   log::debug("Allocated device record bd_addr:{}", bd_addr);
 
