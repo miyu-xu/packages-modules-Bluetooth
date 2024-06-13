@@ -16,6 +16,24 @@
       "message": "Nit: extraneous new line?",
       "revId": "6b8cda4a551b45427a116a982a4f93221df816c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcdf19bc_c04fd9e3",
+        "filename": "android/app/src/com/android/bluetooth/pan/PanService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-06-13T08:29:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfac0db2_1fac8fcf",
+      "revId": "6b8cda4a551b45427a116a982a4f93221df816c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
