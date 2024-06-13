@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a60449a3_de944c9d",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-13T22:28:41Z",
+      "side": 1,
+      "message": "Looks like this todo is about libmedia_jni.\nShould we have another bug to track the bluetooth ? or do you want to open the scope of the bug to include more target ?",
+      "range": {
+        "startLine": 169,
+        "startChar": 14,
+        "endLine": 169,
+        "endChar": 23
+      },
+      "revId": "db00a0002f458f2648ed3ffd6a31d849ba63b77a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
