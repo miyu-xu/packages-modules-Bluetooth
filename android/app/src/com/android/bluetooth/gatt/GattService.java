@@ -22,6 +22,9 @@ import static com.android.bluetooth.Utils.callerIsSystemOrActiveOrManagedUser;
 import static com.android.bluetooth.Utils.checkCallerTargetSdk;
 import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
 
+import static java.util.Objects.requireNonNull;
+
+import android.annotation.NonNull;
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
@@ -53,7 +56,6 @@ import android.bluetooth.le.ScanFilter;
 import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
 import android.content.AttributionSource;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.PackageManager.PackageInfoFlags;
@@ -137,8 +139,7 @@ public class GattService extends ProfileService {
                 "0201061AFF4C000215426C7565436861726D426561636F6E730EFE1355C509168020691E0EFE13551109426C7565436861726D5F31363936383500000000",
             };
 
-    public final TransitionalScanHelper mTransitionalScanHelper =
-            new TransitionalScanHelper(this, this::isTestModeEnabled);
+    private final TransitionalScanHelper mTransitionalScanHelper;
 
     /** This is only used when Flags.scanManagerRefactor() is true. */
     private static GattService sGattService;
@@ -174,7 +175,7 @@ public class GattService extends ProfileService {
      */
     private final HashMap<String, Integer> mPermits = new HashMap<>();
 
-    private AdapterService mAdapterService;
+    private final AdapterService mAdapterService;
     AdvertiseManager mAdvertiseManager;
     DistanceMeasurementManager mDistanceMeasurementManager;
     private Handler mTestModeHandler;
@@ -182,8 +183,17 @@ public class GattService extends ProfileService {
     private PackageManager mPackageManager;
     private final Object mTestModeLock = new Object();
 
-    public GattService(Context ctx) {
-        super(ctx);
+    public GattService(@NonNull AdapterService adapterService) {
+        super(adapterService);
+
+        mAdapterService = requireNonNull(adapterService);
+
+        if (Flags.scanManagerRefactor()) {
+            mTransitionalScanHelper =
+                    mAdapterService.getBluetoothScanController().getTransitionalScanHelper();
+        } else {
+            mTransitionalScanHelper = new TransitionalScanHelper(this, this::isTestModeEnabled);
+        }
     }
 
     public static boolean isEnabled() {
@@ -213,7 +223,6 @@ public class GattService extends ProfileService {
 
         mNativeInterface = GattObjectsFactory.getInstance().getNativeInterface();
         mNativeInterface.init(this);
-        mAdapterService = AdapterService.getAdapterService();
         mAdvertiseManager =
                 new AdvertiseManager(
                         this, AdvertiseManagerNativeInterface.getInstance(), mAdvertiserMap);
@@ -223,6 +232,7 @@ public class GattService extends ProfileService {
             thread.start();
             mTransitionalScanHelper.start(thread.getLooper());
         }
+
         mDistanceMeasurementManager =
                 GattObjectsFactory.getInstance().createDistanceMeasurementManager(mAdapterService);
 
@@ -246,7 +256,9 @@ public class GattService extends ProfileService {
             setGattService(null);
         }
 
-        mTransitionalScanHelper.stop();
+        if (!Flags.scanManagerRefactor()) {
+            mTransitionalScanHelper.stop();
+        }
         mAdvertiserMap.clear();
         mClientMap.clear();
         if (Flags.gattCleanupRestrictedHandles()) {
@@ -271,7 +283,9 @@ public class GattService extends ProfileService {
         if (mDistanceMeasurementManager != null) {
             mDistanceMeasurementManager.cleanup();
         }
-        mTransitionalScanHelper.cleanup();
+        if (!Flags.scanManagerRefactor()) {
+            mTransitionalScanHelper.cleanup();
+        }
     }
 
     /** This is only used when Flags.scanManagerRefactor() is true. */
@@ -306,7 +320,8 @@ public class GattService extends ProfileService {
                         new Handler(getMainLooper()) {
                             public void handleMessage(Message msg) {
                                 synchronized (mTestModeLock) {
-                                    if (!GattService.this.isTestModeEnabled()) {
+                                    if (!GattService.this.isTestModeEnabled()
+                                            || Flags.scanManagerRefactor()) {
                                         return;
                                     }
                                     for (String test : TEST_MODE_BEACONS) {
@@ -365,7 +380,9 @@ public class GattService extends ProfileService {
 
     /** Notify Scan manager of bluetooth profile connection state changes */
     public void notifyProfileConnectionStateChange(int profile, int fromState, int toState) {
-        mTransitionalScanHelper.notifyProfileConnectionStateChange(profile, fromState, toState);
+        if (!Flags.scanManagerRefactor()) {
+            mTransitionalScanHelper.notifyProfileConnectionStateChange(profile, fromState, toState);
+        }
     }
 
     class ServerDeathRecipient implements IBinder.DeathRecipient {
