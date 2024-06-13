@@ -137,8 +137,11 @@ public class GattService extends ProfileService {
                 "0201061AFF4C000215426C7565436861726D426561636F6E730EFE1355C509168020691E0EFE13551109426C7565436861726D5F31363936383500000000",
             };
 
-    public final TransitionalScanHelper mTransitionalScanHelper =
+    private final TransitionalScanHelper mTransitionalScanHelper =
             new TransitionalScanHelper(this, this::isTestModeEnabled);
+
+    /** This is only used when Flags.scanManagerRefactor() is true. */
+    private TransitionalScanHelper mTransitionalScanHelperShared;
 
     /** This is only used when Flags.scanManagerRefactor() is true. */
     private static GattService sGattService;
@@ -246,7 +249,9 @@ public class GattService extends ProfileService {
             setGattService(null);
         }
 
-        mTransitionalScanHelper.stop();
+        if (!Flags.scanManagerRefactor()) {
+            mTransitionalScanHelper.stop();
+        }
         mAdvertiserMap.clear();
         mClientMap.clear();
         if (Flags.gattCleanupRestrictedHandles()) {
@@ -271,7 +276,9 @@ public class GattService extends ProfileService {
         if (mDistanceMeasurementManager != null) {
             mDistanceMeasurementManager.cleanup();
         }
-        mTransitionalScanHelper.cleanup();
+        if (!Flags.scanManagerRefactor()) {
+            mTransitionalScanHelper.cleanup();
+        }
     }
 
     /** This is only used when Flags.scanManagerRefactor() is true. */
@@ -287,13 +294,22 @@ public class GattService extends ProfileService {
         return sGattService;
     }
 
+    /** This is only used when Flags.scanManagerRefactor() is true. */
+    public void setTransitionalScanHelper(TransitionalScanHelper transitionalScanHelper) {
+        mTransitionalScanHelperShared = transitionalScanHelper;
+    }
+
     private static synchronized void setGattService(GattService instance) {
         Log.d(TAG, "setGattService(): set to: " + instance);
         sGattService = instance;
     }
 
     public TransitionalScanHelper getTransitionalScanHelper() {
-        return mTransitionalScanHelper;
+        if (!Flags.scanManagerRefactor()) {
+            return mTransitionalScanHelper;
+        } else {
+            return mTransitionalScanHelperShared;
+        }
     }
 
     // While test mode is enabled, pretend as if the underlying stack
@@ -306,22 +322,24 @@ public class GattService extends ProfileService {
                         new Handler(getMainLooper()) {
                             public void handleMessage(Message msg) {
                                 synchronized (mTestModeLock) {
-                                    if (!GattService.this.isTestModeEnabled()) {
+                                    if (!GattService.this.isTestModeEnabled()
+                                            || Flags.scanManagerRefactor()) {
                                         return;
                                     }
                                     for (String test : TEST_MODE_BEACONS) {
-                                        mTransitionalScanHelper.onScanResultInternal(
-                                                0x1b,
-                                                0x1,
-                                                "DD:34:02:05:5C:4D",
-                                                1,
-                                                0,
-                                                0xff,
-                                                127,
-                                                -54,
-                                                0x0,
-                                                HexEncoding.decode(test),
-                                                "DD:34:02:05:5C:4E");
+                                        getTransitionalScanHelper()
+                                                .onScanResultInternal(
+                                                        0x1b,
+                                                        0x1,
+                                                        "DD:34:02:05:5C:4D",
+                                                        1,
+                                                        0,
+                                                        0xff,
+                                                        127,
+                                                        -54,
+                                                        0x0,
+                                                        HexEncoding.decode(test),
+                                                        "DD:34:02:05:5C:4E");
                                     }
                                     sendEmptyMessageDelayed(0, DateUtils.SECOND_IN_MILLIS);
                                 }
@@ -365,7 +383,10 @@ public class GattService extends ProfileService {
 
     /** Notify Scan manager of bluetooth profile connection state changes */
     public void notifyProfileConnectionStateChange(int profile, int fromState, int toState) {
-        mTransitionalScanHelper.notifyProfileConnectionStateChange(profile, fromState, toState);
+        if (!Flags.scanManagerRefactor()) {
+            getTransitionalScanHelper()
+                    .notifyProfileConnectionStateChange(profile, fromState, toState);
+        }
     }
 
     class ServerDeathRecipient implements IBinder.DeathRecipient {
@@ -2090,7 +2111,7 @@ public class GattService extends ProfileService {
         }
 
         Log.d(TAG, "registerClient() - UUID=" + uuid);
-        mClientMap.add(uuid, null, callback, null, this, mTransitionalScanHelper);
+        mClientMap.add(uuid, null, callback, null, this, getTransitionalScanHelper());
         mNativeInterface.gattClientRegisterApp(
                 uuid.getLeastSignificantBits(), uuid.getMostSignificantBits(), eatt_support);
     }
@@ -3131,7 +3152,7 @@ public class GattService extends ProfileService {
         }
 
         Log.d(TAG, "registerServer() - UUID=" + uuid);
-        mServerMap.add(uuid, null, callback, null, this, mTransitionalScanHelper);
+        mServerMap.add(uuid, null, callback, null, this, getTransitionalScanHelper());
         mNativeInterface.gattServerRegisterApp(
                 uuid.getLeastSignificantBits(), uuid.getMostSignificantBits(), eatt_support);
     }
@@ -3500,13 +3521,13 @@ public class GattService extends ProfileService {
 
     void dumpRegisterId(StringBuilder sb) {
         sb.append("  Scanner:\n");
-        for (Integer appId : mTransitionalScanHelper.getScannerMap().getAllAppsIds()) {
+        for (Integer appId : getTransitionalScanHelper().getScannerMap().getAllAppsIds()) {
             println(
                     sb,
                     "    app_if: "
                             + appId
                             + ", appName: "
-                            + mTransitionalScanHelper.getScannerMap().getById(appId).name);
+                            + getTransitionalScanHelper().getScannerMap().getById(appId).name);
         }
         sb.append("  Client:\n");
         for (Integer appId : mClientMap.getAllAppsIds()) {
@@ -3531,7 +3552,7 @@ public class GattService extends ProfileService {
         dumpRegisterId(sb);
 
         sb.append("GATT Scanner Map\n");
-        mTransitionalScanHelper.getScannerMap().dump(sb);
+        getTransitionalScanHelper().getScannerMap().dump(sb);
 
         sb.append("GATT Advertiser Map\n");
         mAdvertiserMap.dumpAdvertiser(sb);
@@ -3591,7 +3612,7 @@ public class GattService extends ProfileService {
 
     @Override
     public void dumpProto(BluetoothMetricsProto.BluetoothLog.Builder builder) {
-        mTransitionalScanHelper.dumpProto(builder);
+        getTransitionalScanHelper().dumpProto(builder);
     }
 
     /**************************************************************************
