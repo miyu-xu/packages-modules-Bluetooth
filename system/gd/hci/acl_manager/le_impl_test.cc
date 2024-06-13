@@ -1117,7 +1117,10 @@ TEST_F(LeImplWithConnectionTest, on_le_event__DATA_LENGTH_CHANGE) {
 TEST_F(LeImplWithConnectionTest, on_le_event__REMOTE_CONNECTION_PARAMETER_REQUEST) {
   std::promise<void> request_promise;
   auto request = request_promise.get_future();
-  EXPECT_CALL(connection_management_callbacks_, OnParameterUpdateRequest(kIntervalMin, kIntervalMax, kLatency, kTimeout)).WillOnce([&request_promise](){request_promise.set_value();});
+  EXPECT_CALL(
+      connection_management_callbacks_,
+      OnParameterUpdateRequest(kIntervalMin, kIntervalMax, kLatency, kTimeout))
+      .WillOnce([&request_promise]() { request_promise.set_value(); });
 
   // Send a remote connection parameter request
   auto command = hci::LeRemoteConnectionParameterRequestBuilder::Create(
