@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc53bec2_51f91dea",
+        "filename": "system/gd/os/android/metrics.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-14T00:30:47Z",
+      "side": 1,
+      "message": "is the tex_test prefix something needed ?\n\nWe don\u0027t use it when working from java express counter",
+      "range": {
+        "startLine": 231,
+        "startChar": 19,
+        "endLine": 231,
+        "endChar": 27
+      },
+      "revId": "1cccc09f229b6c0c2b03891c62969ea2a48abc40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
