@@ -22,6 +22,30 @@
       },
       "revId": "10a73b41c968092a3105d4a9e5fde03654f04213",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3409e7dd_95c849f7",
+        "filename": "flags/l2cap.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-06-14T07:48:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2652fe7e_652798dd",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 20
+      },
+      "revId": "10a73b41c968092a3105d4a9e5fde03654f04213",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
