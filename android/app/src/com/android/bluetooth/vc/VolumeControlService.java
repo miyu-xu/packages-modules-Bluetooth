@@ -50,6 +50,7 @@ import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.csip.CsipSetCoordinatorService;
 import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.le_audio.LeAudioService;
+import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 
 import libcore.util.SneakyThrow;
@@ -85,7 +86,10 @@ public class VolumeControlService extends ProfileService {
     private HandlerThread mStateMachinesThread;
     private Handler mHandler = null;
 
-    @VisibleForTesting RemoteCallbackList<IBluetoothVolumeControlCallback> mCallbacks;
+    @VisibleForTesting
+    @GuardedBy("mCallbacks")
+    final RemoteCallbackList<IBluetoothVolumeControlCallback> mCallbacks =
+            new RemoteCallbackList<>();
 
     @VisibleForTesting
     static class VolumeControlOffsetDescriptor {
@@ -251,7 +255,6 @@ public class VolumeControlService extends ProfileService {
         mGroupVolumeCache.clear();
         mGroupMuteCache.clear();
         mDeviceVolumeCache.clear();
-        mCallbacks = new RemoteCallbackList<IBluetoothVolumeControlCallback>();
 
         // Mark service as started
         setVolumeControlService(this);
@@ -312,7 +315,6 @@ public class VolumeControlService extends ProfileService {
 
         if (mCallbacks != null) {
             mCallbacks.kill();
-            mCallbacks = null;
         }
     }
 
@@ -1048,19 +1050,17 @@ public class VolumeControlService extends ProfileService {
         }
         offsets.setValue(id, value);
 
-        if (mCallbacks == null) {
-            return;
-        }
-
-        int n = mCallbacks.beginBroadcast();
-        for (int i = 0; i < n; i++) {
-            try {
-                mCallbacks.getBroadcastItem(i).onVolumeOffsetChanged(device, id, value);
-            } catch (RemoteException e) {
-                continue;
+        synchronized (mCallbacks) {
+            int n = mCallbacks.beginBroadcast();
+            for (int i = 0; i < n; i++) {
+                try {
+                    mCallbacks.getBroadcastItem(i).onVolumeOffsetChanged(device, id, value);
+                } catch (RemoteException e) {
+                    continue;
+                }
             }
+            mCallbacks.finishBroadcast();
         }
-        mCallbacks.finishBroadcast();
     }
 
     void handleDeviceExtAudioLocationChanged(BluetoothDevice device, int id, int location) {
@@ -1074,21 +1074,19 @@ public class VolumeControlService extends ProfileService {
         offsets.setLocation(id, location);
 
         if (Flags.leaudioMultipleVocsInstancesApi()) {
-            if (mCallbacks == null) {
-                return;
-            }
-
-            int n = mCallbacks.beginBroadcast();
-            for (int i = 0; i < n; i++) {
-                try {
-                    mCallbacks
-                            .getBroadcastItem(i)
-                            .onVolumeOffsetAudioLocationChanged(device, id, location);
-                } catch (RemoteException e) {
-                    continue;
+            synchronized (mCallbacks) {
+                int n = mCallbacks.beginBroadcast();
+                for (int i = 0; i < n; i++) {
+                    try {
+                        mCallbacks
+                                .getBroadcastItem(i)
+                                .onVolumeOffsetAudioLocationChanged(device, id, location);
+                    } catch (RemoteException e) {
+                        continue;
+                    }
                 }
+                mCallbacks.finishBroadcast();
             }
-            mCallbacks.finishBroadcast();
         }
     }
 
@@ -1104,21 +1102,19 @@ public class VolumeControlService extends ProfileService {
         offsets.setDescription(id, description);
 
         if (Flags.leaudioMultipleVocsInstancesApi()) {
-            if (mCallbacks == null) {
-                return;
-            }
-
-            int n = mCallbacks.beginBroadcast();
-            for (int i = 0; i < n; i++) {
-                try {
-                    mCallbacks
-                            .getBroadcastItem(i)
-                            .onVolumeOffsetAudioDescriptionChanged(device, id, description);
-                } catch (RemoteException e) {
-                    continue;
+            synchronized (mCallbacks) {
+                int n = mCallbacks.beginBroadcast();
+                for (int i = 0; i < n; i++) {
+                    try {
+                        mCallbacks
+                                .getBroadcastItem(i)
+                                .onVolumeOffsetAudioDescriptionChanged(device, id, description);
+                    } catch (RemoteException e) {
+                        continue;
+                    }
                 }
+                mCallbacks.finishBroadcast();
             }
-            mCallbacks.finishBroadcast();
         }
     }
 
