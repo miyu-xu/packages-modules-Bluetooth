@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "678ba4b4_71d2240a",
+        "filename": "system/rust/src/gatt/server/services/gatt.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-14T20:39:30Z",
+      "side": 1,
+      "message": "unwrap 😊",
+      "range": {
+        "startLine": 139,
+        "startChar": 33,
+        "endLine": 139,
+        "endChar": 39
+      },
+      "revId": "0d0ce8597e1cd19affd50fa8d88843e3f62383ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
