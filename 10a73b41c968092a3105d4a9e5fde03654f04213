@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2652fe7e_652798dd",
+        "filename": "flags/l2cap.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-14T07:34:51Z",
+      "side": 1,
+      "message": "Since the bug indicate this is a bugfix, please add the metadata saying so.\n(if not, it is a pain to release as we need to ask for exemption afterward)",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 20
+      },
+      "revId": "10a73b41c968092a3105d4a9e5fde03654f04213",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
