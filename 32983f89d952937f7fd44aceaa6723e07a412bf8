@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f86c7f8_dca19bf7",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-14T10:58:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ec4c6d0_034d7e23",
+      "revId": "32983f89d952937f7fd44aceaa6723e07a412bf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db564787_54ec9b1d",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-06-13T16:43:18Z",
       "side": 1,
       "message": "very nit: useless comment 😄",
+      "range": {
+        "startLine": 614,
+        "startChar": 0,
+        "endLine": 616,
+        "endChar": 5
+      },
+      "revId": "32983f89d952937f7fd44aceaa6723e07a412bf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14750ef9_d55947a7",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-14T10:58:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db564787_54ec9b1d",
       "range": {
         "startLine": 614,
         "startChar": 0,
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee1341d3_bfb10694",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 775,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-14T10:58:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70959851_d97ba0af",
+      "range": {
+        "startLine": 775,
+        "startChar": 2,
+        "endLine": 775,
+        "endChar": 21
+      },
+      "revId": "32983f89d952937f7fd44aceaa6723e07a412bf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dd904d5e_fad6d5e8",
@@ -87,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1face4e_c41ef85e",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 783,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-14T10:58:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd904d5e_fad6d5e8",
+      "range": {
+        "startLine": 783,
+        "startChar": 7,
+        "endLine": 783,
+        "endChar": 20
+      },
+      "revId": "32983f89d952937f7fd44aceaa6723e07a412bf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba6ddf6a_889ef500",
@@ -100,6 +190,30 @@
       "writtenOn": "2024-06-13T16:43:18Z",
       "side": 1,
       "message": "`btif_av_sink.GetPeersCount() !\u003d 0`",
+      "range": {
+        "startLine": 1379,
+        "startChar": 7,
+        "endLine": 1379,
+        "endChar": 44
+      },
+      "revId": "32983f89d952937f7fd44aceaa6723e07a412bf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38703a7c_fd977537",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1379,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-06-14T10:58:33Z",
+      "side": 1,
+      "message": "I have no idea what I\u0027ve thought when I did that xD",
+      "parentUuid": "ba6ddf6a_889ef500",
       "range": {
         "startLine": 1379,
         "startChar": 7,
