@@ -208,9 +208,15 @@ public class LeAudioService extends ProfileService {
 
     @VisibleForTesting BassClientService mBassClientService;
 
-    @VisibleForTesting RemoteCallbackList<IBluetoothLeBroadcastCallback> mBroadcastCallbacks;
+    @VisibleForTesting
+    @GuardedBy("mBroadcastCallbacks")
+    final RemoteCallbackList<IBluetoothLeBroadcastCallback> mBroadcastCallbacks =
+            new RemoteCallbackList<IBluetoothLeBroadcastCallback>();
 
-    @VisibleForTesting RemoteCallbackList<IBluetoothLeAudioCallback> mLeAudioCallbacks;
+    @VisibleForTesting
+    @GuardedBy("mLeAudioCallbacks")
+    final RemoteCallbackList<IBluetoothLeAudioCallback> mLeAudioCallbacks =
+            new RemoteCallbackList<IBluetoothLeAudioCallback>();
 
     BluetoothLeScanner mAudioServersScanner;
     /* When mScanCallback is not null, it means scan is started. */
@@ -443,9 +449,6 @@ public class LeAudioService extends ProfileService {
             mGroupWriteLock.unlock();
         }
 
-        // Setup broadcast callbacks
-        mLeAudioCallbacks = new RemoteCallbackList<IBluetoothLeAudioCallback>();
-
         mTmapRoleMask =
                 LeAudioTmapGattServer.TMAP_ROLE_FLAG_CG | LeAudioTmapGattServer.TMAP_ROLE_FLAG_UMS;
 
@@ -454,7 +457,6 @@ public class LeAudioService extends ProfileService {
                         & (1 << BluetoothProfile.LE_AUDIO_BROADCAST))
                 != 0) {
             Log.i(TAG, "Init Le Audio broadcaster");
-            mBroadcastCallbacks = new RemoteCallbackList<IBluetoothLeBroadcastCallback>();
             mLeAudioBroadcasterNativeInterface =
                     Objects.requireNonNull(
                             LeAudioBroadcasterNativeInterface.getInstance(),
@@ -2644,7 +2646,12 @@ public class LeAudioService extends ProfileService {
     }
 
     private void notifyGroupStreamStatusChanged(int groupId, int groupStreamStatus) {
-        if (mLeAudioCallbacks != null) {
+        if (mLeAudioCallbacks == null) {
+            Log.e(TAG, "mLeAudioCallbacks does not exist");
+            return;
+        }
+
+        synchronized (mLeAudioCallbacks) {
             int n = mLeAudioCallbacks.beginBroadcast();
             for (int i = 0; i < n; i++) {
                 try {
@@ -4422,7 +4429,12 @@ public class LeAudioService extends ProfileService {
             volumeControlService.handleGroupNodeAdded(groupId, device);
         }
 
-        if (mLeAudioCallbacks != null) {
+        if (mLeAudioCallbacks == null) {
+            Log.e(TAG, "mLeAudioCallbacks does not exist");
+            return;
+        }
+
+        synchronized (mLeAudioCallbacks) {
             int n = mLeAudioCallbacks.beginBroadcast();
             for (int i = 0; i < n; i++) {
                 try {
@@ -4504,7 +4516,12 @@ public class LeAudioService extends ProfileService {
     }
 
     private void notifyGroupNodeRemoved(BluetoothDevice device, int groupId) {
-        if (mLeAudioCallbacks != null) {
+        if (mLeAudioCallbacks == null) {
+            Log.e(TAG, "mLeAudioCallbacks does not exist");
+            return;
+        }
+
+        synchronized (mLeAudioCallbacks) {
             int n = mLeAudioCallbacks.beginBroadcast();
             for (int i = 0; i < n; i++) {
                 try {
@@ -4518,7 +4535,12 @@ public class LeAudioService extends ProfileService {
     }
 
     private void notifyGroupStatusChanged(int groupId, int status) {
-        if (mLeAudioCallbacks != null) {
+        if (mLeAudioCallbacks == null) {
+            Log.e(TAG, "mLeAudioCallbacks does not exist");
+            return;
+        }
+
+        synchronized (mLeAudioCallbacks) {
             int n = mLeAudioCallbacks.beginBroadcast();
             for (int i = 0; i < n; i++) {
                 try {
@@ -4546,7 +4568,12 @@ public class LeAudioService extends ProfileService {
     }
 
     private void notifyBroadcastStarted(Integer broadcastId, int reason) {
-        if (mBroadcastCallbacks != null) {
+        if (mBroadcastCallbacks == null) {
+            Log.e(TAG, "mBroadcastCallbacks does not exist");
+            return;
+        }
+
+        synchronized (mBroadcastCallbacks) {
             int n = mBroadcastCallbacks.beginBroadcast();
             for (int i = 0; i < n; i++) {
                 try {
@@ -4560,7 +4587,12 @@ public class LeAudioService extends ProfileService {
     }
 
     private void notifyBroadcastStartFailed(int reason) {
-        if (mBroadcastCallbacks != null) {
+        if (mBroadcastCallbacks == null) {
+            Log.e(TAG, "mBroadcastCallbacks does not exist");
+            return;
+        }
+
+        synchronized (mBroadcastCallbacks) {
             int n = mBroadcastCallbacks.beginBroadcast();
             for (int i = 0; i < n; i++) {
                 try {
@@ -4574,7 +4606,12 @@ public class LeAudioService extends ProfileService {
     }
 
     private void notifyOnBroadcastStopped(Integer broadcastId, int reason) {
-        if (mBroadcastCallbacks != null) {
+        if (mBroadcastCallbacks == null) {
+            Log.e(TAG, "mBroadcastCallbacks does not exist");
+            return;
+        }
+
+        synchronized (mBroadcastCallbacks) {
             int n = mBroadcastCallbacks.beginBroadcast();
             for (int i = 0; i < n; i++) {
                 try {
@@ -4588,7 +4625,12 @@ public class LeAudioService extends ProfileService {
     }
 
     private void notifyOnBroadcastStopFailed(int reason) {
-        if (mBroadcastCallbacks != null) {
+        if (mBroadcastCallbacks == null) {
+            Log.e(TAG, "mBroadcastCallbacks does not exist");
+            return;
+        }
+
+        synchronized (mBroadcastCallbacks) {
             int n = mBroadcastCallbacks.beginBroadcast();
             for (int i = 0; i < n; i++) {
                 try {
@@ -4602,7 +4644,12 @@ public class LeAudioService extends ProfileService {
     }
 
     private void notifyPlaybackStarted(Integer broadcastId, int reason) {
-        if (mBroadcastCallbacks != null) {
+        if (mBroadcastCallbacks == null) {
+            Log.e(TAG, "mBroadcastCallbacks does not exist");
+            return;
+        }
+
+        synchronized (mBroadcastCallbacks) {
             int n = mBroadcastCallbacks.beginBroadcast();
             for (int i = 0; i < n; i++) {
                 try {
@@ -4616,7 +4663,12 @@ public class LeAudioService extends ProfileService {
     }
 
     private void notifyPlaybackStopped(Integer broadcastId, int reason) {
-        if (mBroadcastCallbacks != null) {
+        if (mBroadcastCallbacks == null) {
+            Log.e(TAG, "mBroadcastCallbacks does not exist");
+            return;
+        }
+
+        synchronized (mBroadcastCallbacks) {
             int n = mBroadcastCallbacks.beginBroadcast();
             for (int i = 0; i < n; i++) {
                 try {
@@ -4630,7 +4682,12 @@ public class LeAudioService extends ProfileService {
     }
 
     private void notifyBroadcastUpdateFailed(int broadcastId, int reason) {
-        if (mBroadcastCallbacks != null) {
+        if (mBroadcastCallbacks == null) {
+            Log.e(TAG, "mBroadcastCallbacks does not exist");
+            return;
+        }
+
+        synchronized (mBroadcastCallbacks) {
             int n = mBroadcastCallbacks.beginBroadcast();
             for (int i = 0; i < n; i++) {
                 try {
@@ -4647,7 +4704,12 @@ public class LeAudioService extends ProfileService {
 
     private void notifyBroadcastMetadataChanged(
             int broadcastId, BluetoothLeBroadcastMetadata metadata) {
-        if (mBroadcastCallbacks != null) {
+        if (mBroadcastCallbacks == null) {
+            Log.e(TAG, "mBroadcastCallbacks does not exist");
+            return;
+        }
+
+        synchronized (mBroadcastCallbacks) {
             int n = mBroadcastCallbacks.beginBroadcast();
             for (int i = 0; i < n; i++) {
                 try {

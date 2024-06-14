@@ -172,6 +172,7 @@ public class BassClientService extends ProfileService {
             mPeriodicAdvertisementResultMap =
                     new HashMap<BluetoothDevice, HashMap<Integer, PeriodicAdvertisementResult>>();
     private ScanCallback mSearchScanCallback = null;
+    private static final Object mCallbacksGuard = new Object();
     private Callbacks mCallbacks;
     private boolean mIsAssistantActive = false;
     private boolean mIsAllowedContextOfActiveGroupModified = false;
@@ -3309,17 +3310,24 @@ public class BassClientService extends ProfileService {
         @Override
         public void handleMessage(Message msg) {
             checkForPendingGroupOpRequest(msg);
-            final int n = mCallbacks.beginBroadcast();
-            for (int i = 0; i < n; i++) {
-                final IBluetoothLeBroadcastAssistantCallback callback =
-                        mCallbacks.getBroadcastItem(i);
-                try {
-                    invokeCallback(callback, msg);
-                } catch (RemoteException e) {
-                    continue;
-                }
+            if (mCallbacks == null) {
+                Log.e(TAG, "mCallbacks does not exist");
+                return;
             }
-            mCallbacks.finishBroadcast();
+
+            synchronized (mCallbacksGuard) {
+                final int n = mCallbacks.beginBroadcast();
+                for (int i = 0; i < n; i++) {
+                    final IBluetoothLeBroadcastAssistantCallback callback =
+                            mCallbacks.getBroadcastItem(i);
+                    try {
+                        invokeCallback(callback, msg);
+                    } catch (RemoteException e) {
+                        continue;
+                    }
+                }
+                mCallbacks.finishBroadcast();
+            }
         }
 
         private static class ObjParams {
