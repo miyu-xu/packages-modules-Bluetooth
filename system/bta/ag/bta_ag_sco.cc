@@ -689,7 +689,7 @@ void bta_ag_codec_negotiate(tBTA_AG_SCB* p_scb) {
   if (!HCI_LMP_TRANSPNT_SUPPORTED(p_rem_feat) || !sdp_wbs_support ||
       !(p_scb->peer_features & BTA_AG_PEER_FEAT_CODEC)) {
     log::info("Assume CVSD by default due to mask mismatch");
-    p_scb->sco_codec = UUID_CODEC_CVSD;
+    p_scb->sco_codec = BTM_SCO_CODEC_CVSD;
   }
   const bool aptx_voice =
       is_hfp_aptx_voice_enabled() &&
