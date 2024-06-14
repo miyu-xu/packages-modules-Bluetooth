@@ -52,6 +52,24 @@
       "parentUuid": "cda7ea3f_7ebcec9b",
       "revId": "3996a0cfc2ab32b4923824f842138ac630c65a5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d738fdd8_6c893918",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2138,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-06-14T08:31:14Z",
+      "side": 1,
+      "message": "This should be solved with aosp/3088479 (https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java;drc\u003d10095dc53cc8b8a807dc36807fb4238bda3a7aea;l\u003d4334)",
+      "parentUuid": "2d3e437a_4c22e6cb",
+      "revId": "3996a0cfc2ab32b4923824f842138ac630c65a5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
