@@ -28,6 +28,7 @@ pub fn initialize_arbiter() -> Arc<Mutex<IsolationManager>> {
     assert!(lock.is_none(), "Rust stack should only start up once");
     *lock = Some(arbiter.clone());
 
+    error!("WILLIAM StoreCallbacksFromRust");
     StoreCallbacksFromRust(
         on_le_connect,
         on_le_disconnect,
@@ -114,6 +115,7 @@ fn on_le_disconnect(tcb_idx: u8) {
 }
 
 fn intercept_packet(tcb_idx: u8, packet: Vec<u8>) -> InterceptAction {
+    error!("WILLIAM into intercept");
     // Events may be received after a FactoryReset
     // is initiated for Bluetooth and the rust arbiter is taken
     // down.
@@ -122,11 +124,18 @@ fn intercept_packet(tcb_idx: u8, packet: Vec<u8>) -> InterceptAction {
         return InterceptAction::Drop;
     }
 
+    error!("WILLIAM TransportIndex");
     let tcb_idx = TransportIndex(tcb_idx);
+    error!("WILLIAM with arbiter ?");
     if let Some(att) = with_arbiter(|arbiter| {
-        try_parse_att_server_packet(arbiter, tcb_idx, packet.into_boxed_slice())
+        error!("WILLIAM try parse ?");
+        let foo = try_parse_att_server_packet(arbiter, tcb_idx, packet.into_boxed_slice());
+        error!("WILLIAM parse done");
+        foo
     }) {
+        error!("WILLIAM do in rust");
         do_in_rust_thread(move |modules| {
+            error!("WILLIAM doing rust now");
             trace!("pushing packet to GATT");
             if let Some(bearer) = modules.gatt_module.get_bearer(tcb_idx) {
                 bearer.handle_packet(att.view())
@@ -134,8 +143,10 @@ fn intercept_packet(tcb_idx: u8, packet: Vec<u8>) -> InterceptAction {
                 error!("Bearer for {tcb_idx:?} not found");
             }
         });
+        error!("WILLIAM return drop");
         InterceptAction::Drop
     } else {
+        error!("WILLIAM return forward");
         InterceptAction::Forward
     }
 }

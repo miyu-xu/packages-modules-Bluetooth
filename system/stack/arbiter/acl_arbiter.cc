@@ -70,9 +70,11 @@ InterceptAction AclArbiter::InterceptAttPacket(uint8_t tcb_idx,
 
   uint8_t* packet_start = (uint8_t*)(packet + 1) + packet->offset;
   uint8_t* packet_end = packet_start + packet->len;
+  log::error("WILLIAM packet_start & packet end done");
 
   auto vec = ::rust::Vec<uint8_t>();
   std::copy(packet_start, packet_end, std::back_inserter(vec));
+  log::error("WILLIAM callback now");
   return callbacks_.intercept_packet(tcb_idx, std::move(vec));
 }
 
