@@ -143,7 +143,6 @@ static void btu_hcif_log_event_metrics(uint8_t evt_code,
                                 value);
       break;
     case HCI_SIMPLE_PAIRING_COMPLETE_EVT:
-    case HCI_RMT_NAME_REQUEST_COMP_EVT:
       STREAM_TO_UINT8(status, p_event);
       STREAM_TO_BDADDR(bda, p_event);
       log_classic_pairing_event(bda, handle, cmd, evt_code, status, reason,
@@ -196,6 +195,7 @@ static void btu_hcif_log_event_metrics(uint8_t evt_code,
     case HCI_CONNECTION_COMP_EVT:  // EventCode::CONNECTION_COMPLETE
     case HCI_CONNECTION_REQUEST_EVT:  // EventCode::CONNECTION_REQUEST
     case HCI_DISCONNECTION_COMP_EVT:  // EventCode::DISCONNECTION_COMPLETE
+    case HCI_RMT_NAME_REQUEST_COMP_EVT:  // EventCode::REMOTE_NAME_REQUEST_COMPLETE
     default:
       log::error(
           "Unexpectedly received event_code:0x{:02x} that should not be "
