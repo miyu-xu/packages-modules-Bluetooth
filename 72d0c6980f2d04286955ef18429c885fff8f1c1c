@@ -67,6 +67,41 @@
       ],
       "revId": "72d0c6980f2d04286955ef18429c885fff8f1c1c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "526e60cb_276bc205",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1283,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-06-14T22:40:40Z",
+      "side": 1,
+      "message": "Compiler directive is sufficient but discussed offline a fourth option should be added along the lines of `disabledKernel` or `disabledKernel` which would satisfy this condition w/out a compiler directive.",
+      "fixSuggestions": [
+        {
+          "fixId": "18efd720_9ed1940c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger.cc",
+              "range": {
+                "startLine": 1279,
+                "startChar": 0,
+                "endLine": 1284,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "72d0c6980f2d04286955ef18429c885fff8f1c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
