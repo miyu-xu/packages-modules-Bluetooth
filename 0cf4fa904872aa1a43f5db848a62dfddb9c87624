@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3162a03_98a454e1",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-14T03:13:25Z",
+      "side": 1,
+      "message": "Is it still being thrown ?",
+      "range": {
+        "startLine": 193,
+        "startChar": 65,
+        "endLine": 193,
+        "endChar": 93
+      },
+      "revId": "0cf4fa904872aa1a43f5db848a62dfddb9c87624",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1c1712c_964c2c07",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-14T03:13:25Z",
+      "side": 1,
+      "message": "Idem",
+      "range": {
+        "startLine": 425,
+        "startChar": 19,
+        "endLine": 425,
+        "endChar": 47
+      },
+      "revId": "0cf4fa904872aa1a43f5db848a62dfddb9c87624",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "680de1d7_50634acc",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-14T03:13:25Z",
+      "side": 1,
+      "message": "Idem",
+      "range": {
+        "startLine": 461,
+        "startChar": 19,
+        "endLine": 461,
+        "endChar": 47
+      },
+      "revId": "0cf4fa904872aa1a43f5db848a62dfddb9c87624",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
