@@ -104,6 +104,30 @@
       },
       "revId": "4c1a1e3c967638d23b9aaf2b1c0f5bf25d90b2d1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "938feff7_ac477353",
+        "filename": "system/btif/include/btif_hh.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-06-14T09:22:55Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9f82792b_6bd45e12",
+      "range": {
+        "startLine": 106,
+        "startChar": 17,
+        "endLine": 106,
+        "endChar": 28
+      },
+      "revId": "4c1a1e3c967638d23b9aaf2b1c0f5bf25d90b2d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
