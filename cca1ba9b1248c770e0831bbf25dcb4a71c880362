@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3089b0c6_413fabb6",
+        "filename": "system/gd/hci/remote_name_request_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-14T03:04:05Z",
+      "side": 1,
+      "message": "This define looks unused now. We can delete it",
+      "range": {
+        "startLine": 662,
+        "startChar": 0,
+        "endLine": 662,
+        "endChar": 49
+      },
+      "revId": "cca1ba9b1248c770e0831bbf25dcb4a71c880362",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
