@@ -16,6 +16,24 @@
       "message": "Should be moved within the synchronized ?",
       "revId": "824db53bd576eaa410f4e0cbe4b21147b0870ed2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1281549a_a50900e2",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2179,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-14T22:34:06Z",
+      "side": 1,
+      "message": "all of that is deleted in soon to be follow-up",
+      "parentUuid": "d475a7fd_ec6e03e7",
+      "revId": "824db53bd576eaa410f4e0cbe4b21147b0870ed2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
