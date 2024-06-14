@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5045530f_b68fb97e",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1747,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-06-14T11:28:10Z",
+      "side": 1,
+      "message": "consider adding lambda function like this\n\n```\n auto lambda \u003d [\u0026] (RawAddress\u0026 addr, std::set\u003cUuid\u003e\u0026 uuids) -\u003e void {\n    Uuid existing_uuids[BT_MAX_NUM_UUIDS] \u003d {};\n    bt_status_t existing_lookup_result \u003d\n    btif_get_existing_uuids(\u0026addr, existing_uuids);\n\n    if (existing_lookup_result !\u003d BT_STATUS_FAIL) {\n      for (int i \u003d 0; i \u003c BT_MAX_NUM_UUIDS; i++) {\n        Uuid uuid \u003d existing_uuids[i];\n        if (btif_should_ignore_uuid(uuid)) {\n          continue;\n        }\n        if (btif_is_interesting_le_service(uuid)) {\n          log::info(\"interesting le service {} insert\", uuid.ToString());\n          uuids.insert(uuid);\n        }\n      }\n    }\n  };\n```\n\nand later call\n\n```\n    if (results_during_pairing) {\n        lambda(pairing_cb.static_bdaddr, uuids);\n        lambda(pairing_cb.bd_addr, uuids);\n    } else {\n        lambda(bd_addr, uuids);\n    }\n```",
+      "revId": "b43ea4943ea4ebf794126602fe2dc7dcaf15c51f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
