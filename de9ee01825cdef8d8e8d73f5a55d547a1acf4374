@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17d5f17a_ddd7ab2e",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-14T16:46:00Z",
+      "side": 1,
+      "message": "```suggestion\n      get_main()-\u003eBindOnce(hci::check_complete\u003chci::WriteInquiryScanTypeCompleteView\u003e));\n\n```",
+      "range": {
+        "startLine": 384,
+        "startChar": 0,
+        "endLine": 389,
+        "endChar": 14
+      },
+      "revId": "de9ee01825cdef8d8e8d73f5a55d547a1acf4374",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
