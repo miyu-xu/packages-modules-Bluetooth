@@ -1,0 +1,178 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b78541d0_9f17d5b2",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapAppParams.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1477,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-14T15:12:51Z",
+      "side": 1,
+      "message": "Not thrown (need to update SignedLongLong.fromString)",
+      "range": {
+        "startLine": 1477,
+        "startChar": 17,
+        "endLine": 1477,
+        "endChar": 45
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "08ec8dcd_e88cefea",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/map/BluetoothMapAppParams.java",
+              "range": {
+                "startLine": 1477,
+                "startChar": 0,
+                "endLine": 1478,
+                "endChar": 0
+              },
+              "replacement": "        } catch (NumberFormatException e) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "6c64446e9302556fab78906f8b5b838f061bdba6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7f7184a_388e3c22",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapContent.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3285,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-14T15:12:51Z",
+      "side": 1,
+      "message": "No longer thrown I believe",
+      "range": {
+        "startLine": 3285,
+        "startChar": 25,
+        "endLine": 3285,
+        "endChar": 53
+      },
+      "revId": "6c64446e9302556fab78906f8b5b838f061bdba6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f16ba0a7_018d36a7",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapContentObserver.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3632,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-14T15:12:51Z",
+      "side": 1,
+      "message": "Is it still being thrown ?",
+      "range": {
+        "startLine": 3632,
+        "startChar": 17,
+        "endLine": 3632,
+        "endChar": 45
+      },
+      "revId": "6c64446e9302556fab78906f8b5b838f061bdba6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f87b008_f984f7ed",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-14T15:12:51Z",
+      "side": 1,
+      "message": "Comment not updated",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 53
+      },
+      "revId": "6c64446e9302556fab78906f8b5b838f061bdba6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33b454df_713997b0",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 525,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-14T15:12:51Z",
+      "side": 1,
+      "message": "No longer being thrown by encodedText.getBytes(charset)",
+      "range": {
+        "startLine": 525,
+        "startChar": 29,
+        "endLine": 525,
+        "endChar": 57
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2dd9dab9_25b9af7e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/map/BluetoothMapUtils.java",
+              "range": {
+                "startLine": 525,
+                "startChar": 0,
+                "endLine": 533,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "6c64446e9302556fab78906f8b5b838f061bdba6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "235b4bd6_7867c973",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapbMessageMime.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-14T15:12:51Z",
+      "side": 1,
+      "message": "nit: Should refactor this to `Charset` and use `Charset.forName` in the code to convert to it.",
+      "range": {
+        "startLine": 50,
+        "startChar": 22,
+        "endLine": 50,
+        "endChar": 34
+      },
+      "revId": "6c64446e9302556fab78906f8b5b838f061bdba6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
