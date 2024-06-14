@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "090c8f27_57e63d8a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-06-14T03:00:38Z",
+      "side": 1,
+      "message": "Move logging into a more contextually aware situation with pairing",
+      "revId": "0e8ffc23d8c677bf96cb47875fca7f00987fe4df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
