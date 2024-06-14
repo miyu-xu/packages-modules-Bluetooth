@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2703262e_32bd2df7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-14T22:42:31Z",
+      "side": 1,
+      "message": "There is a lot of error prone about `[SynchronizeOnNonFinalField]`\n\nI believe that most of the callback list can be put final to remove this warning",
+      "revId": "e6b50e9ad6b01f7895e18898554858b3a88e29dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
