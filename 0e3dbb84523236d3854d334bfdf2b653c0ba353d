@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94f18c79_ca182170",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2179,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-14T15:30:53Z",
+      "side": 0,
+      "message": "The implementation is much cleaned when using the LinkedList\u003c\u003e API; I think you are going too far here, even more because it is an private member.",
+      "range": {
+        "startLine": 2178,
+        "startChar": 12,
+        "endLine": 2179,
+        "endChar": 37
+      },
+      "revId": "0e3dbb84523236d3854d334bfdf2b653c0ba353d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
