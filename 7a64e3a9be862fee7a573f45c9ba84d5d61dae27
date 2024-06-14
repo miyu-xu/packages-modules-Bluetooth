@@ -16,6 +16,24 @@
       "message": "I am fine with the change, adding Henri for a2dp visibility to take a look.",
       "revId": "7a64e3a9be862fee7a573f45c9ba84d5d61dae27",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a83f02f_f737ba96",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2024-06-14T05:34:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5bcf128_26124650",
+      "revId": "7a64e3a9be862fee7a573f45c9ba84d5d61dae27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
