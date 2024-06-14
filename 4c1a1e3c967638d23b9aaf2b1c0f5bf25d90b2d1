@@ -41,6 +41,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb0b1145_7f205440",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-06-14T09:22:21Z",
+      "side": 1,
+      "message": "Let\u0027s put the timer on backlog - we can address this in the future CL.",
+      "parentUuid": "a75391e6_8193963d",
+      "revId": "4c1a1e3c967638d23b9aaf2b1c0f5bf25d90b2d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aec33d27_438aa5d0",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-06-14T09:22:21Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "58b08fd8_9ff8f522",
+      "range": {
+        "startLine": 209,
+        "startChar": 8,
+        "endLine": 209,
+        "endChar": 15
+      },
+      "revId": "4c1a1e3c967638d23b9aaf2b1c0f5bf25d90b2d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f82792b_6bd45e12",
