@@ -33,6 +33,24 @@
       "message": "does this CL resolve the issue b/346483569 here?",
       "revId": "1d672717a4a596b08e4f5e5a74e417fbd1e8006e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b269ce9_d1264f59",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-06-14T18:53:01Z",
+      "side": 1,
+      "message": "Yes, added  \"Bug: ...\" for this issue too",
+      "parentUuid": "15ec3d69_9602479f",
+      "revId": "1d672717a4a596b08e4f5e5a74e417fbd1e8006e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
