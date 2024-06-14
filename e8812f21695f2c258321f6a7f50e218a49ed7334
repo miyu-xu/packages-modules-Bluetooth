@@ -16,6 +16,24 @@
       "message": "A mechanical refactor isn\u0027t supposed to introduce a bug fix. How could this happen?",
       "revId": "e8812f21695f2c258321f6a7f50e218a49ed7334",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eba592d3_935b27e5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2024-06-14T05:23:46Z",
+      "side": 1,
+      "message": "I say it\u0027s a lack of communication. \nHimanshu probably think the CL is done and thoroughly tested, but i plan to test that with the next CL. I clicked presubmit+1 because the CL is almost done, because my impression the presubmit is needy and might fail in a way that I don\u0027t see in my local build, so I want to get the presubmit result earlier.\nOTOH, Himanshu CR+2\u0027d, asked for Dr No. approval, and see presubmit success, so he went ahead and submitted the CL.\n\nAdditionally, the bug doesn\u0027t always manifest, it needs two HID devices connected, and the 2nd one needs to set/get/output report. On some devices, even if the set/get/output report fails, the device could just still work (but perhaps are missing some advanced features).\n\nProbably I should tell Himanshu to wait submitting because I haven\u0027t thoroughly tested the CL.",
+      "parentUuid": "ab4d7447_8ed1d112",
+      "revId": "e8812f21695f2c258321f6a7f50e218a49ed7334",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
