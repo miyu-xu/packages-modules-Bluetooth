@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a230d25f_3e3b880f",
+        "filename": "system/audio_hal_interface/hfp_client_interface.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-14T23:59:22Z",
+      "side": 1,
+      "message": "Parameter should of type tBTA_AG_UUID_CODEC",
+      "fixSuggestions": [
+        {
+          "fixId": "876a3384_c6df4ed2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/audio_hal_interface/hfp_client_interface.cc",
+              "range": {
+                "startLine": 80,
+                "startChar": 0,
+                "endLine": 81,
+                "endChar": 0
+              },
+              "replacement": "CodecId get_codec_id_by_peer_codec(tBTA_AG_UUID_CODEC sco_codec) {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "46eafffec5225d249f61c2fcefc30b5e6a30ad1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
