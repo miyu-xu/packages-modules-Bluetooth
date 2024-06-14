@@ -1688,8 +1688,12 @@ static void btif_on_service_discovery_results(
   std::set<Uuid> uuids;
   bool a2dp_sink_capable = false;
 
+  bool results_for_bonding_device =
+      (bd_addr == pairing_cb.bd_addr || bd_addr == pairing_cb.static_bdaddr);
+
   if (result != BTA_SUCCESS && pairing_cb.state == BT_BOND_STATE_BONDED &&
-      pairing_cb.sdp_attempts < BTIF_DM_MAX_SDP_ATTEMPTS_AFTER_PAIRING) {
+      pairing_cb.sdp_attempts < BTIF_DM_MAX_SDP_ATTEMPTS_AFTER_PAIRING &&
+      results_for_bonding_device) {
     if (pairing_cb.sdp_attempts) {
       log::warn("SDP failed after bonding re-attempting for {}", bd_addr);
       pairing_cb.sdp_attempts++;
@@ -1704,7 +1708,7 @@ static void btif_on_service_discovery_results(
     return;
   }
 
-  if ((bd_addr == pairing_cb.bd_addr || bd_addr == pairing_cb.static_bdaddr)) {
+  if (results_for_bonding_device) {
     log::info("SDP finished for {}:", bd_addr);
     pairing_cb.sdp_over_classic =
         btif_dm_pairing_cb_t::ServiceDiscoveryState::FINISHED;
@@ -1723,8 +1727,9 @@ static void btif_on_service_discovery_results(
     }
 
     Uuid existing_uuids[BT_MAX_NUM_UUIDS] = {};
-    bt_status_t existing_lookup_result =
-        btif_get_existing_uuids(&pairing_cb.bd_addr, existing_uuids);
+    bt_status_t existing_lookup_result = btif_get_existing_uuids(
+        results_for_bonding_device ? &pairing_cb.bd_addr : &bd_addr,
+        existing_uuids);
 
     if (existing_lookup_result != BT_STATUS_FAIL) {
       for (int i = 0; i < BT_MAX_NUM_UUIDS; i++) {
@@ -1739,18 +1744,20 @@ static void btif_on_service_discovery_results(
       }
     }
 
-    existing_lookup_result =
-        btif_get_existing_uuids(&pairing_cb.static_bdaddr, existing_uuids);
+    if (results_for_bonding_device) {
+      existing_lookup_result =
+          btif_get_existing_uuids(&pairing_cb.static_bdaddr, existing_uuids);
 
-    if (existing_lookup_result != BT_STATUS_FAIL) {
-      for (int i = 0; i < BT_MAX_NUM_UUIDS; i++) {
-        Uuid uuid = existing_uuids[i];
-        if (btif_should_ignore_uuid(uuid)) {
-          continue;
-        }
-        if (btif_is_interesting_le_service(uuid)) {
-          log::info("interesting le service {} insert", uuid.ToString());
-          uuids.insert(uuid);
+      if (existing_lookup_result != BT_STATUS_FAIL) {
+        for (int i = 0; i < BT_MAX_NUM_UUIDS; i++) {
+          Uuid uuid = existing_uuids[i];
+          if (btif_should_ignore_uuid(uuid)) {
+            continue;
+          }
+          if (btif_is_interesting_le_service(uuid)) {
+            log::info("interesting le service {} insert", uuid.ToString());
+            uuids.insert(uuid);
+          }
         }
       }
     }
@@ -1772,7 +1779,7 @@ static void btif_on_service_discovery_results(
    * capable of a2dp, and both sides can do LE Audio, and it haven't
    * finished GATT over LE yet, then wait for LE service discovery to finish
    * before before passing services to upper layers. */
-  if (a2dp_sink_capable &&
+  if (results_for_bonding_device && a2dp_sink_capable &&
       pairing_cb.gatt_over_le !=
           btif_dm_pairing_cb_t::ServiceDiscoveryState::FINISHED &&
       is_le_audio_capable_during_service_discovery(bd_addr)) {
@@ -1785,7 +1792,7 @@ static void btif_on_service_discovery_results(
   size_t num_eir_uuids = 0U;
   Uuid uuid = {};
   if (pairing_cb.state == BT_BOND_STATE_BONDED && pairing_cb.sdp_attempts &&
-      (bd_addr == pairing_cb.bd_addr || bd_addr == pairing_cb.static_bdaddr)) {
+      results_for_bonding_device) {
     log::info("SDP search done for {}", bd_addr);
     pairing_cb.sdp_attempts = 0;
 
