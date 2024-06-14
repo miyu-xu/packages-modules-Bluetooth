@@ -83,19 +83,15 @@ std::mutex instance_mutex;
  * for test purposes.
  */
 class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
-  enum class AudioDataPathState {
-    INACTIVE,
-    ACTIVE,
-    SUSPENDED,
-  };
+  enum class AudioState { SUSPENDED, ACTIVE };
 
  public:
   LeAudioBroadcasterImpl(
       bluetooth::le_audio::LeAudioBroadcasterCallbacks* callbacks_)
       : callbacks_(callbacks_),
         current_phy_(PHY_LE_2M),
-        audio_data_path_state_(AudioDataPathState::INACTIVE),
-        le_audio_source_hal_client_(nullptr) {
+        le_audio_source_hal_client_(nullptr),
+        audio_state_(AudioState::SUSPENDED) {
     log::info("");
 
     /* Register State machine callbacks */
@@ -147,6 +143,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
       log::assert_that(result, "Could not update session in codec manager");
       le_audio_source_hal_client_.reset();
     }
+    audio_state_ = AudioState::SUSPENDED;
   }
 
   void Stop() {
@@ -330,6 +327,54 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     }
   }
 
+  void UpdateAudioActiveStateOnSubgroups() {
+    for (auto const& kv_it : broadcasts_) {
+      auto& broadcast = kv_it.second;
+      auto announcement = broadcast->GetBroadcastAnnouncement();
+      bool broadcast_update = false;
+
+      bool audio_active_state =
+          (audio_state_ == AudioState::ACTIVE) &&
+          (broadcast->GetState() == BroadcastStateMachine::State::STREAMING);
+
+      log::info("broadcast_id={}, audio_active_state={}",
+                broadcast->GetBroadcastId(), audio_active_state);
+
+      for (auto& subgroup : announcement.subgroup_configs) {
+        auto subgroup_ltv = LeAudioLtvMap(subgroup.metadata);
+        bool subgroup_update = false;
+
+        auto existing_audio_active_state = subgroup_ltv.Find(
+            bluetooth::le_audio::types::kLeAudioMetadataTypeAudioActiveState);
+
+        if (existing_audio_active_state &&
+            !existing_audio_active_state->empty()) {
+          if (audio_active_state !=
+              static_cast<bool>(existing_audio_active_state->at(0))) {
+            subgroup_ltv.Add(bluetooth::le_audio::types::
+                                 kLeAudioMetadataTypeAudioActiveState,
+                             audio_active_state);
+            subgroup_update = true;
+          }
+        } else {
+          subgroup_ltv.Add(
+              bluetooth::le_audio::types::kLeAudioMetadataTypeAudioActiveState,
+              audio_active_state);
+          subgroup_update = true;
+        }
+
+        if (subgroup_update) {
+          subgroup.metadata = subgroup_ltv.Values();
+          broadcast_update = true;
+        }
+      }
+
+      if (broadcast_update) {
+        broadcast->UpdateBroadcastAnnouncement(std::move(announcement));
+      }
+    }
+  }
+
   void UpdateMetadata(
       uint32_t broadcast_id, const std::string& broadcast_name,
       const std::vector<uint8_t>& public_metadata,
@@ -394,6 +439,17 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
       if (!ccid_vec.empty()) {
         ltv.Add(bluetooth::le_audio::types::kLeAudioMetadataTypeCcidList,
                 ccid_vec);
+      }
+
+      if (com::android::bluetooth::flags::
+              leaudio_big_depends_on_audio_state()) {
+        // Append the Audio Active State
+        bool audio_active_state = (audio_state_ == AudioState::ACTIVE) &&
+                                  (broadcasts_[broadcast_id]->GetState() ==
+                                   BroadcastStateMachine::State::STREAMING);
+        ltv.Add(
+            bluetooth::le_audio::types::kLeAudioMetadataTypeAudioActiveState,
+            audio_active_state);
       }
 
       // Push to subgroup ltvs
@@ -568,6 +624,14 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
                 ccid_vec);
       }
 
+      if (com::android::bluetooth::flags::
+              leaudio_big_depends_on_audio_state()) {
+        // Append the Audio Active State
+        ltv.Add(
+            bluetooth::le_audio::types::kLeAudioMetadataTypeAudioActiveState,
+            false);
+      }
+
       // Push to subgroup ltvs
       subgroup_ltvs.push_back(ltv);
     }
@@ -661,6 +725,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     if (broadcasts_.count(broadcast_id) != 0) {
       log::info("Stopping AudioHalClient");
       if (le_audio_source_hal_client_) le_audio_source_hal_client_->Stop();
+      audio_state_ = AudioState::SUSPENDED;
       broadcasts_[broadcast_id]->SetMuted(true);
       broadcasts_[broadcast_id]->ProcessMessage(
           BroadcastStateMachine::Message::SUSPEND, nullptr);
@@ -732,6 +797,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     log::info("Stopping AudioHalClient, broadcast_id={}", broadcast_id);
 
     if (le_audio_source_hal_client_) le_audio_source_hal_client_->Stop();
+    audio_state_ = AudioState::SUSPENDED;
     broadcasts_[broadcast_id]->SetMuted(true);
     broadcasts_[broadcast_id]->ProcessMessage(
         BroadcastStateMachine::Message::STOP, nullptr);
@@ -977,13 +1043,16 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
 
       switch (state) {
         case BroadcastStateMachine::State::STOPPED:
-          /* Pass through */
+          break;
         case BroadcastStateMachine::State::CONFIGURING:
-          /* Pass through */
+          break;
         case BroadcastStateMachine::State::CONFIGURED:
-          /* Pass through */
+          if (com::android::bluetooth::flags::
+                  leaudio_big_depends_on_audio_state()) {
+            instance->UpdateAudioActiveStateOnSubgroups();
+          }
+          break;
         case BroadcastStateMachine::State::STOPPING:
-          /* Nothing to do here? */
           break;
         case BroadcastStateMachine::State::STREAMING:
           if (getStreamerCount() == 1) {
@@ -1005,7 +1074,10 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
                 return;
               }
 
-              instance->audio_data_path_state_ = AudioDataPathState::ACTIVE;
+              if (com::android::bluetooth::flags::
+                      leaudio_big_depends_on_audio_state()) {
+                instance->UpdateAudioActiveStateOnSubgroups();
+              }
             }
           }
           break;
@@ -1231,8 +1303,14 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     virtual void OnAudioSuspend(void) override {
       log::info("");
       /* TODO: Should we suspend all broadcasts - remove BIGs? */
-      if (instance)
-        instance->audio_data_path_state_ = AudioDataPathState::SUSPENDED;
+      if (!instance) return;
+
+      instance->audio_state_ = AudioState::SUSPENDED;
+
+      if (com::android::bluetooth::flags::
+              leaudio_big_depends_on_audio_state()) {
+        instance->UpdateAudioActiveStateOnSubgroups();
+      }
     }
 
     virtual void OnAudioResume(void) override {
@@ -1240,7 +1318,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
       if (!instance) return;
 
       /* TODO: Should we resume all broadcasts - recreate BIGs? */
-      instance->audio_data_path_state_ = AudioDataPathState::ACTIVE;
+      instance->audio_state_ = AudioState::ACTIVE;
 
       if (!IsAnyoneStreaming()) {
         instance->le_audio_source_hal_client_->CancelStreamingRequest();
@@ -1248,6 +1326,11 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
       }
 
       instance->le_audio_source_hal_client_->ConfirmStreamingRequest();
+
+      if (com::android::bluetooth::flags::
+              leaudio_big_depends_on_audio_state()) {
+        instance->UpdateAudioActiveStateOnSubgroups();
+      }
     }
 
     virtual void OnAudioMetadataUpdate(source_metadata_v7 source_metadata,
@@ -1281,9 +1364,11 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
 
   /* Some BIG params are set globally */
   uint8_t current_phy_;
-  AudioDataPathState audio_data_path_state_;
   std::unique_ptr<LeAudioSourceAudioHalClient> le_audio_source_hal_client_;
   std::vector<BroadcastId> available_broadcast_ids_;
+
+  // Current state of audio playback
+  AudioState audio_state_;
 
   // Flag to track iso state
   bool is_iso_running_ = false;
