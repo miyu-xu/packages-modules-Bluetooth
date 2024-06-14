@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e710a2b_5625ec90",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1087625
+      },
+      "writtenOn": "2024-06-14T03:45:12Z",
+      "side": 1,
+      "message": "This is expected. We initially turned on --lto-O0 and significantly reduced binary size. Turning to --lto-O2 trades some of the savings for better performance.",
+      "parentUuid": "cfde9ecf_e15fc4a1",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 56
+      },
+      "revId": "db00a0002f458f2648ed3ffd6a31d849ba63b77a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a60449a3_de944c9d",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-06-13T22:28:41Z",
       "side": 1,
       "message": "Looks like this todo is about libmedia_jni.\nShould we have another bug to track the bluetooth ? or do you want to open the scope of the bug to include more target ?",
+      "range": {
+        "startLine": 169,
+        "startChar": 14,
+        "endLine": 169,
+        "endChar": 23
+      },
+      "revId": "db00a0002f458f2648ed3ffd6a31d849ba63b77a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fefa0bc_28de989b",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1087625
+      },
+      "writtenOn": "2024-06-14T03:45:12Z",
+      "side": 1,
+      "message": "Thanks for spotting this. I used the wrong bug link.",
+      "parentUuid": "a60449a3_de944c9d",
       "range": {
         "startLine": 169,
         "startChar": 14,
