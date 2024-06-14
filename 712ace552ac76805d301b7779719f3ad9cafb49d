@@ -16,6 +16,24 @@
       "message": "Question is, if should we connect Audio Active State with BIG existence or with real audio state (onAudioResume/onAudioSuspend) or both?\n\nRight now there is a big difference in that, because BIG is always on, but music could be stopped. Only on call handover BIG is stopped.\n\nIn the next approach we will terminate BIG on onAudioSuspend but after some time (30s?) so there still will be a difference but little smaller.\n\nRight now there is a 5s gap between media pause and onAudioSuspend.\n\nSo i.e. it can look like this:\n\nmediaPause \u003e 5s \u003e onAudioSuspend \u003e audioActiveState false \u003e 30s \u003e BIG termination\nor\nmediaPause \u003e 5s \u003e onAudioSuspend \u003e 30s \u003e BIG termination \u003e audioActiveState false\n\nI tied it with BIG existence right now, but what is your opinion?",
       "revId": "712ace552ac76805d301b7779719f3ad9cafb49d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25d16452_bf1f9cdc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-14T20:53:21Z",
+      "side": 1,
+      "message": "Thank you Michal for the discussion offline.\n\nAs we talked about this, I agreed that we might need to set this state with real audio state, not BIG. In this way, we will closely follow the spec\u0027s definition. There would be some situation that BIG is created but no audio, and we should set audioActiveState to false. \n\nmediaPause \u003e 5s \u003e onAudioSuspend \u003e audioActiveState false \u003e 30s \u003e BIG termination\n\nthe best approach in my minds,\nset audioActiveState true when onAudioResume \u0026 BIG created, set with whichever comes later.\nset audioActiveState false when onAudioSuspend.\n\nif you\u0027d like to make it simple with onAudioResume/onAudioSuspend should also be good to start with.",
+      "parentUuid": "ab51cccf_06047541",
+      "revId": "712ace552ac76805d301b7779719f3ad9cafb49d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
