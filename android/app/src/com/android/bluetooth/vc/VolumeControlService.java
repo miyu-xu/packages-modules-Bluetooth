@@ -1052,15 +1052,17 @@ public class VolumeControlService extends ProfileService {
             return;
         }
 
-        int n = mCallbacks.beginBroadcast();
-        for (int i = 0; i < n; i++) {
-            try {
-                mCallbacks.getBroadcastItem(i).onVolumeOffsetChanged(device, id, value);
-            } catch (RemoteException e) {
-                continue;
+        synchronized (mCallbacks) {
+            int n = mCallbacks.beginBroadcast();
+            for (int i = 0; i < n; i++) {
+                try {
+                    mCallbacks.getBroadcastItem(i).onVolumeOffsetChanged(device, id, value);
+                } catch (RemoteException e) {
+                    continue;
+                }
             }
+            mCallbacks.finishBroadcast();
         }
-        mCallbacks.finishBroadcast();
     }
 
     void handleDeviceExtAudioLocationChanged(BluetoothDevice device, int id, int location) {
@@ -1077,18 +1079,19 @@ public class VolumeControlService extends ProfileService {
             if (mCallbacks == null) {
                 return;
             }
-
-            int n = mCallbacks.beginBroadcast();
-            for (int i = 0; i < n; i++) {
-                try {
-                    mCallbacks
-                            .getBroadcastItem(i)
-                            .onVolumeOffsetAudioLocationChanged(device, id, location);
-                } catch (RemoteException e) {
-                    continue;
+            synchronized (mCallbacks) {
+                int n = mCallbacks.beginBroadcast();
+                for (int i = 0; i < n; i++) {
+                    try {
+                        mCallbacks
+                                .getBroadcastItem(i)
+                                .onVolumeOffsetAudioLocationChanged(device, id, location);
+                    } catch (RemoteException e) {
+                        continue;
+                    }
                 }
+                mCallbacks.finishBroadcast();
             }
-            mCallbacks.finishBroadcast();
         }
     }
 
@@ -1107,18 +1110,19 @@ public class VolumeControlService extends ProfileService {
             if (mCallbacks == null) {
                 return;
             }
-
-            int n = mCallbacks.beginBroadcast();
-            for (int i = 0; i < n; i++) {
-                try {
-                    mCallbacks
-                            .getBroadcastItem(i)
-                            .onVolumeOffsetAudioDescriptionChanged(device, id, description);
-                } catch (RemoteException e) {
-                    continue;
+            synchronized (mCallbacks) {
+                int n = mCallbacks.beginBroadcast();
+                for (int i = 0; i < n; i++) {
+                    try {
+                        mCallbacks
+                                .getBroadcastItem(i)
+                                .onVolumeOffsetAudioDescriptionChanged(device, id, description);
+                    } catch (RemoteException e) {
+                        continue;
+                    }
                 }
+                mCallbacks.finishBroadcast();
             }
-            mCallbacks.finishBroadcast();
         }
     }
 
