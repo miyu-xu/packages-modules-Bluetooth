@@ -29,13 +29,32 @@
 #include "include/hardware/bt_av.h"
 #include "types/raw_address.h"
 
-// #include "bta/include/bta_av_api.h"
-// #include "btif/include/btif_common.h"
+/*
+ * Methods from the `btif_source_interface_t` interface exposed
+ * by `btif_av_get_src_interface`. Bluetooth is free internally to use
+ * these methods as there is no use case for mocking the interface right now.
+ */
+
+bt_status_t btif_av_source_init(
+    btav_source_callbacks_t* callbacks, int max_connected_audio_devices,
+    const std::vector<btav_a2dp_codec_config_t>& codec_priorities,
+    const std::vector<btav_a2dp_codec_config_t>& offloading_preference,
+    std::vector<btav_a2dp_codec_info_t>* supported_codecs);
+bt_status_t btif_av_source_connect(const RawAddress& peer_address);
+bt_status_t btif_av_source_disconnect(const RawAddress& peer_address);
+bt_status_t btif_av_source_set_silence_device(const RawAddress& peer_address,
+                                              bool silence);
+bt_status_t btif_av_source_set_active_device(const RawAddress& peer_address);
+bt_status_t btif_av_source_set_codec_config_preference(
+    const RawAddress& peer_address,
+    std::vector<btav_a2dp_codec_config_t> codec_preferences);
+void btif_av_source_cleanup();
 
 /**
  * Enum to represent the type of local a2dp profile.
  */
 enum class A2dpType { kSource, kSink, kUnknown };
+
 /**
  * When the local device is A2DP source, get the address of the active peer.
  */
@@ -224,15 +243,6 @@ uint16_t btif_av_get_audio_delay(const A2dpType local_a2dp_type);
 void btif_av_reset_audio_delay(void);
 
 /**
- * Called to disconnect peer device when
- *  remote initiatied offload start failed
- *
- * @param peer_address to disconnect
- *
- */
-void btif_av_src_disconnect_sink(const RawAddress& peer_address);
-
-/**
  *  check A2DP offload support enabled
  *  @param  none
  */
@@ -297,4 +307,5 @@ extern bool btif_av_peer_is_connected_sink(const RawAddress& peer_address);
 extern bool btif_av_peer_is_connected_source(const RawAddress& peer_address);
 extern bool btif_av_peer_is_sink(const RawAddress& peer_address);
 extern bool btif_av_peer_is_source(const RawAddress& peer_address);
+
 #endif /* BTIF_AV_H */
