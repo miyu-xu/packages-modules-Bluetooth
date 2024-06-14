@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3688fa29_4c06122d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-14T18:09:45Z",
+      "side": 1,
+      "message": "I am surprise we are adding / using a mutex here.\n\nI would expect the code to ba callable by only one thread only.\n\nResolve this comment if you are sure this is intended to be multi-threaded.\nIf the only exterior thread is during dump, maybe we should put the dump on the correct thread instead ?",
+      "revId": "f7600ea2eb4b0fcde592e5bc3d9aa860c58cb7fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
