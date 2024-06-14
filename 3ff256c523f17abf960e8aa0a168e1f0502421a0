@@ -16,6 +16,23 @@
       "message": "By adding:\n```\nBug: 336915955\nFlag: com.android.bluetooth.flags.abs_volume_sdp_conflict\n```\n\nYou will be granted DrNo automatically for this change",
       "revId": "3ff256c523f17abf960e8aa0a168e1f0502421a0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2940b4b3_35233a92",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3235591
+      },
+      "writtenOn": "2024-06-14T08:59:10Z",
+      "side": 1,
+      "message": "Looks like there is pre test failure. What can I do for it?",
+      "revId": "3ff256c523f17abf960e8aa0a168e1f0502421a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
