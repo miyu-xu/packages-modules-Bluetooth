@@ -80,6 +80,7 @@ public class HapClientService extends ProfileService {
     private final Map<BluetoothDevice, Integer> mDeviceFeaturesMap = new HashMap<>();
     private final Map<BluetoothDevice, List<BluetoothHapPresetInfo>> mPresetsMap = new HashMap<>();
 
+    private final Object mCallbacksGuard = new Object();
     @VisibleForTesting RemoteCallbackList<IBluetoothHapClientCallback> mCallbacks;
 
     @VisibleForTesting ServiceFactory mFactory = new ServiceFactory();
@@ -576,7 +577,12 @@ public class HapClientService extends ProfileService {
      */
     public void selectPreset(BluetoothDevice device, int presetIndex) {
         if (presetIndex == BluetoothHapClient.PRESET_INDEX_UNAVAILABLE) {
-            if (mCallbacks != null) {
+            if (mCallbacks == null) {
+                Log.e(TAG, "mCallbacks does not exist");
+                return;
+            }
+
+            synchronized (mCallbacksGuard) {
                 int n = mCallbacks.beginBroadcast();
                 for (int i = 0; i < n; i++) {
                     try {
@@ -613,7 +619,12 @@ public class HapClientService extends ProfileService {
         }
 
         if (status != BluetoothStatusCodes.SUCCESS) {
-            if (mCallbacks != null) {
+            if (mCallbacks == null) {
+                Log.e(TAG, "mCallbacks does not exist");
+                return;
+            }
+
+            synchronized (mCallbacksGuard) {
                 int n = mCallbacks.beginBroadcast();
                 for (int i = 0; i < n; i++) {
                     try {
@@ -744,7 +755,12 @@ public class HapClientService extends ProfileService {
         List current_presets = mPresetsMap.get(device);
         if (current_presets == null) return;
 
-        if (mCallbacks != null) {
+        if (mCallbacks == null) {
+            Log.e(TAG, "mCallbacks does not exist");
+            return;
+        }
+
+        synchronized (mCallbacksGuard) {
             int n = mCallbacks.beginBroadcast();
             for (int i = 0; i < n; i++) {
                 try {
@@ -775,7 +791,12 @@ public class HapClientService extends ProfileService {
 
     private void notifyActivePresetChanged(
             BluetoothDevice device, int presetIndex, int reasonCode) {
-        if (mCallbacks != null) {
+        if (mCallbacks == null) {
+            Log.e(TAG, "mCallbacks does not exist");
+            return;
+        }
+
+        synchronized (mCallbacksGuard) {
             int n = mCallbacks.beginBroadcast();
             for (int i = 0; i < n; i++) {
                 try {
@@ -819,7 +840,12 @@ public class HapClientService extends ProfileService {
     }
 
     private void notifySelectActivePresetFailed(BluetoothDevice device, int statusCode) {
-        if (mCallbacks != null) {
+        if (mCallbacks == null) {
+            Log.e(TAG, "mCallbacks does not exist");
+            return;
+        }
+
+        synchronized (mCallbacksGuard) {
             int n = mCallbacks.beginBroadcast();
             for (int i = 0; i < n; i++) {
                 try {
@@ -836,7 +862,12 @@ public class HapClientService extends ProfileService {
     }
 
     private void notifySelectActivePresetForGroupFailed(int groupId, int statusCode) {
-        if (mCallbacks != null) {
+        if (mCallbacks == null) {
+            Log.e(TAG, "mCallbacks does not exist");
+            return;
+        }
+
+        synchronized (mCallbacksGuard) {
             int n = mCallbacks.beginBroadcast();
             for (int i = 0; i < n; i++) {
                 try {
@@ -853,7 +884,12 @@ public class HapClientService extends ProfileService {
     }
 
     private void notifySetPresetNameFailed(BluetoothDevice device, int statusCode) {
-        if (mCallbacks != null) {
+        if (mCallbacks == null) {
+            Log.e(TAG, "mCallbacks does not exist");
+            return;
+        }
+
+        synchronized (mCallbacksGuard) {
             int n = mCallbacks.beginBroadcast();
             for (int i = 0; i < n; i++) {
                 try {
@@ -870,7 +906,12 @@ public class HapClientService extends ProfileService {
     }
 
     private void notifySetPresetNameForGroupFailed(int groupId, int statusCode) {
-        if (mCallbacks != null) {
+        if (mCallbacks == null) {
+            Log.e(TAG, "mCallbacks does not exist");
+            return;
+        }
+
+        synchronized (mCallbacksGuard) {
             int n = mCallbacks.beginBroadcast();
             for (int i = 0; i < n; i++) {
                 try {
@@ -930,7 +971,12 @@ public class HapClientService extends ProfileService {
      */
     public void setPresetName(BluetoothDevice device, int presetIndex, String name) {
         if (!isPresetIndexValid(device, presetIndex)) {
-            if (mCallbacks != null) {
+            if (mCallbacks == null) {
+                Log.e(TAG, "mCallbacks does not exist");
+                return;
+            }
+
+            synchronized (mCallbacksGuard) {
                 int n = mCallbacks.beginBroadcast();
                 for (int i = 0; i < n; i++) {
                     try {
@@ -969,7 +1015,12 @@ public class HapClientService extends ProfileService {
             status = BluetoothStatusCodes.ERROR_HAP_INVALID_PRESET_INDEX;
         }
         if (status != BluetoothStatusCodes.SUCCESS) {
-            if (mCallbacks != null) {
+            if (mCallbacks == null) {
+                Log.e(TAG, "mCallbacks does not exist");
+                return;
+            }
+
+            synchronized (mCallbacksGuard) {
                 int n = mCallbacks.beginBroadcast();
                 for (int i = 0; i < n; i++) {
                     try {
