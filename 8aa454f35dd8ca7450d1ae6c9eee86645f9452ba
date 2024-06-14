@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c997de5_40896d49",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-06-14T16:21:13Z",
+      "side": 1,
+      "message": "I think the bd_addr/transport pattern is definitely preferred throughout the codebase.\n\nThis is the key part if an LE link goes down we skip informing a2dp profiles.",
+      "fixSuggestions": [
+        {
+          "fixId": "4743a623_4ee91608",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/bluetooth.cc",
+              "range": {
+                "startLine": 334,
+                "startChar": 0,
+                "endLine": 335,
+                "endChar": 0
+              },
+              "replacement": "  void onLinkDown(const RawAddress\u0026 bd_addr, tBT_TRANSPORT transport,\n                  bool is_direct) override {\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8aa454f35dd8ca7450d1ae6c9eee86645f9452ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
