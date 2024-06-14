@@ -22,6 +22,30 @@
       },
       "revId": "0e3dbb84523236d3854d334bfdf2b653c0ba353d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b44f881_7adba62f",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2179,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-14T17:36:49Z",
+      "side": 0,
+      "message": "I have a CL in progress to entirely remove this and it\u0027s complexity in follow-up.\n\nBut it was a bit too big to be part of this change.\n\nIf you don\u0027t mind, I would like to merge this one so I can already enforce the linter and it will be removed in follow-up",
+      "parentUuid": "94f18c79_ca182170",
+      "range": {
+        "startLine": 2178,
+        "startChar": 12,
+        "endLine": 2179,
+        "endChar": 37
+      },
+      "revId": "0e3dbb84523236d3854d334bfdf2b653c0ba353d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

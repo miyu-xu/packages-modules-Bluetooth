@@ -22,6 +22,30 @@
       },
       "revId": "63d6444e52482e93376b7c6d317b79d641017a57",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9dda0a6_bf36797b",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1814,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-14T17:36:49Z",
+      "side": 1,
+      "message": "It can, but the unlock should be in a finally block to remove an errorprone warning.\n\nI sneaked the fix into this CL because this is straightforward",
+      "parentUuid": "fba372d6_76b92aa6",
+      "range": {
+        "startLine": 1814,
+        "startChar": 28,
+        "endLine": 1814,
+        "endChar": 36
+      },
+      "revId": "63d6444e52482e93376b7c6d317b79d641017a57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
