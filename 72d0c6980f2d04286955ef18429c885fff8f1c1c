@@ -16,6 +16,57 @@
       "message": "Frindly ping, Chris.",
       "revId": "72d0c6980f2d04286955ef18429c885fff8f1c1c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f077950d_a208f4c9",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1283,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-06-14T22:30:03Z",
+      "side": 1,
+      "message": "Offline discussion w/ cmanton@: we can override btsnoopo_moode_ with a value for Floss (e.g. disabledFloss).",
+      "range": {
+        "startLine": 1280,
+        "startChar": 0,
+        "endLine": 1283,
+        "endChar": 6
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "43f9688d_97bbcb22",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/gd/hal/snoop_logger.cc",
+              "range": {
+                "startLine": 1279,
+                "startChar": 0,
+                "endLine": 1284,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "system/gd/hal/snoop_logger.cc",
+              "range": {
+                "startLine": 1328,
+                "startChar": 0,
+                "endLine": 1328,
+                "endChar": 0
+              },
+              "replacement": "#if TARGET_FLOSS\n  // Floss doesn\u0027t support user space snoop log.\n  btsnoop_mode_ \u003d \"disabledFloss\";\n#endif\n\n"
+            }
+          ]
+        }
+      ],
+      "revId": "72d0c6980f2d04286955ef18429c885fff8f1c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
