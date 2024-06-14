@@ -330,6 +330,49 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     }
   }
 
+  void UpdateAudioActiveStateOnSubgroups(bool audio_active_state) {
+    log::info("audio_active_state={}", audio_active_state);
+
+    for (auto const& kv_it : broadcasts_) {
+      auto& broadcast = kv_it.second;
+      auto announcement = broadcast->GetBroadcastAnnouncement();
+      bool broadcast_update = false;
+
+      for (auto& subgroup : announcement.subgroup_configs) {
+        auto subgroup_ltv = LeAudioLtvMap(subgroup.metadata);
+        bool subgroup_update = false;
+
+        auto existing_audio_active_state = subgroup_ltv.Find(
+            bluetooth::le_audio::types::kLeAudioMetadataTypeAudioActiveState);
+
+        if (existing_audio_active_state &&
+            !existing_audio_active_state->empty()) {
+          if (audio_active_state !=
+              static_cast<bool>(existing_audio_active_state->at(0))) {
+            subgroup_ltv.Add(bluetooth::le_audio::types::
+                                 kLeAudioMetadataTypeAudioActiveState,
+                             audio_active_state);
+            subgroup_update = true;
+          }
+        } else {
+          subgroup_ltv.Add(
+              bluetooth::le_audio::types::kLeAudioMetadataTypeAudioActiveState,
+              audio_active_state);
+          subgroup_update = true;
+        }
+
+        if (subgroup_update) {
+          subgroup.metadata = subgroup_ltv.Values();
+          broadcast_update = true;
+        }
+      }
+
+      if (broadcast_update) {
+        broadcast->UpdateBroadcastAnnouncement(std::move(announcement));
+      }
+    }
+  }
+
   void UpdateMetadata(
       uint32_t broadcast_id, const std::string& broadcast_name,
       const std::vector<uint8_t>& public_metadata,
@@ -395,6 +438,15 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
         ltv.Add(bluetooth::le_audio::types::kLeAudioMetadataTypeCcidList,
                 ccid_vec);
       }
+
+      // Append the Audio Active State
+      bool audio_active_state = false;
+      if (broadcasts_[broadcast_id]->GetState() ==
+          BroadcastStateMachine::State::STREAMING) {
+        audio_active_state = true;
+      }
+      ltv.Add(bluetooth::le_audio::types::kLeAudioMetadataTypeAudioActiveState,
+              audio_active_state);
 
       // Push to subgroup ltvs
       subgroup_ltvs.push_back(ltv);
@@ -567,6 +619,10 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
         ltv.Add(bluetooth::le_audio::types::kLeAudioMetadataTypeCcidList,
                 ccid_vec);
       }
+
+      // Append the Audio Active State
+      ltv.Add(bluetooth::le_audio::types::kLeAudioMetadataTypeAudioActiveState,
+              false);
 
       // Push to subgroup ltvs
       subgroup_ltvs.push_back(ltv);
@@ -977,13 +1033,13 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
 
       switch (state) {
         case BroadcastStateMachine::State::STOPPED:
-          /* Pass through */
+          break;
         case BroadcastStateMachine::State::CONFIGURING:
-          /* Pass through */
+          break;
         case BroadcastStateMachine::State::CONFIGURED:
-          /* Pass through */
+          instance->UpdateAudioActiveStateOnSubgroups(false);
+          break;
         case BroadcastStateMachine::State::STOPPING:
-          /* Nothing to do here? */
           break;
         case BroadcastStateMachine::State::STREAMING:
           if (getStreamerCount() == 1) {
@@ -1006,6 +1062,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
               }
 
               instance->audio_data_path_state_ = AudioDataPathState::ACTIVE;
+              instance->UpdateAudioActiveStateOnSubgroups(true);
             }
           }
           break;
