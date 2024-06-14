@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9b8d1569_324ea1a1",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 947,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-14T02:03:25Z",
+      "side": 1,
+      "message": "Within setDeviceVolume, we\u0027d have 2 paths, \n1. setGroupVolume, this is identical to the setVolume path, we can rely on the current check here.\n2. setVolume for the individual device, I used \u0027deviceVolume \u003d\u003d IBluetoothVolumeControl.VOLUME_CONTROL_UNKNOWN_VOLUME || deviceVolume !\u003d volume\u0027 below to check for this use case, do you worry this is not sufficient? need to check active broadcast sinks?",
+      "parentUuid": "2dcbff3d_726ff51a",
+      "range": {
+        "startLine": 944,
+        "startChar": 11,
+        "endLine": 947,
+        "endChar": 13
+      },
+      "revId": "c4a9a9f928cab22ba19808673a754e7fbc5b454a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "db348c20_80b11c48",
         "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
         "patchSetId": 4
@@ -133,6 +157,24 @@
           ]
         }
       ],
+      "revId": "c4a9a9f928cab22ba19808673a754e7fbc5b454a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05121028_b0031f95",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 958,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-14T02:03:25Z",
+      "side": 1,
+      "message": "Acknowledged, I can move this up here to simplify the below logic.",
+      "parentUuid": "db348c20_80b11c48",
       "revId": "c4a9a9f928cab22ba19808673a754e7fbc5b454a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
