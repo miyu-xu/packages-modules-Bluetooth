@@ -16,6 +16,23 @@
       "message": "Owner cp change in tool toolkey definitely",
       "revId": "3ec88e9df68acf1a91579912d44a2a89b82b18ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a444c20_bd2ae176",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3464845
+      },
+      "writtenOn": "2024-06-15T19:20:55Z",
+      "side": 1,
+      "message": "Connect owner",
+      "revId": "3ec88e9df68acf1a91579912d44a2a89b82b18ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
