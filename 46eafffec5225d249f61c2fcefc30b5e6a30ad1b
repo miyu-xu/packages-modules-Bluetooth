@@ -34,6 +34,24 @@
       ],
       "revId": "46eafffec5225d249f61c2fcefc30b5e6a30ad1b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e89eb0c_bd1e2f93",
+        "filename": "system/audio_hal_interface/hfp_client_interface.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-15T00:12:05Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "a230d25f_3e3b880f",
+      "revId": "46eafffec5225d249f61c2fcefc30b5e6a30ad1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
