@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89e4eaa1_4a2fd71d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3464845
+      },
+      "writtenOn": "2024-06-15T19:01:35Z",
+      "side": 1,
+      "message": "Wicne keine hosnr exche  include etf lmn",
+      "revId": "cf31dcf0d89955f9276bcc12f3d9d44da6c97889",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
