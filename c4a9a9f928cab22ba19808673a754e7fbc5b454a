@@ -48,6 +48,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e996513e_03ac502f",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-17T17:31:06Z",
+      "side": 1,
+      "message": "We\u0027re only blocking to use this API to change device volume in that case.\n\nIf app wants to set volume for streaming unicast, it should use the setVolume API instead which is routed through the Audio path.",
+      "parentUuid": "cc9ad1bf_65c22611",
+      "revId": "c4a9a9f928cab22ba19808673a754e7fbc5b454a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2dcbff3d_726ff51a",
         "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
         "patchSetId": 4
