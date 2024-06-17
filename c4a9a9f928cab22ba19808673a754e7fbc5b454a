@@ -3,6 +3,51 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cc9ad1bf_65c22611",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-06-17T09:55:57Z",
+      "side": 1,
+      "message": "Could you please explain me this part - I\u0027m not into this change for broadcast assistant.\n\nWhy set of volume is blocked for device which is not actively synced to broadcast ? The device could be e.g. streaming Unicast.",
+      "fixSuggestions": [
+        {
+          "fixId": "94242fc5_e20c9c8b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+              "range": {
+                "startLine": 609,
+                "startChar": 0,
+                "endLine": 609,
+                "endChar": 0
+              },
+              "replacement": "        // If broadcast volume control is enabled, we should not allow setting volume for the\n        // active device not actively receiving broadcast stream, application should set group\n        // volume instead\n"
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+              "range": {
+                "startLine": 617,
+                "startChar": 0,
+                "endLine": 619,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "c4a9a9f928cab22ba19808673a754e7fbc5b454a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2dcbff3d_726ff51a",
         "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
         "patchSetId": 4
