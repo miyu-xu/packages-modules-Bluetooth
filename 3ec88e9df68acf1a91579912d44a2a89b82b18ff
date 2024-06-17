@@ -86,6 +86,24 @@
       "parentUuid": "dc7545d2_aab615da",
       "revId": "3ec88e9df68acf1a91579912d44a2a89b82b18ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcf275f8_835c1bf8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-06-17T18:08:26Z",
+      "side": 1,
+      "message": "Yes it is incorrect behavior.\n\nThis is required to separate out security manager from RNR.  Currently they are too dependent.",
+      "parentUuid": "76814c03_b708ae05",
+      "revId": "3ec88e9df68acf1a91579912d44a2a89b82b18ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
