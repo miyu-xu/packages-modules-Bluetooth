@@ -331,6 +331,14 @@ public:
     }
     return cnt;
   }
+
+  unsigned NumberOfActiveBredrLinks() const {
+    unsigned cnt = 0;
+    for (int i = 0; i < MAX_L2CAP_LINKS; i++) {
+      if ((acl_db[i].InUse()) && (acl_db[i].is_transport_br_edr())) ++cnt;
+    }
+    return cnt;
+  }
 };
 
 tACL_CONN* btm_acl_for_bda(const RawAddress& bd_addr, tBT_TRANSPORT transport);
