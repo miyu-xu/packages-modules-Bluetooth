@@ -179,6 +179,18 @@ tBTM_STATUS BTM_ReadTxPower(const RawAddress& remote_bda, tBT_TRANSPORT transpor
 uint16_t BTM_GetNumAclLinks(void);
 
 void btm_set_packet_types_from_address(const RawAddress& bda, uint16_t pkt_types);
+/*******************************************************************************
+ *
+ * Function         BTM_GetNumBredrAclLinks
+ *
+ * Description      This function is called to count the number of
+ *                  BREDR ACL links that are active.
+ *
+ * Returns          uint16_t Number of active BREDR ACL links
+ *
+ ******************************************************************************/
+uint16_t BTM_GetNumBredrAclLinks(void);
+
 
 #define BLE_RESOLVE_ADDR_MASK 0xc0
 #define BLE_RESOLVE_ADDR_MSB 0x40

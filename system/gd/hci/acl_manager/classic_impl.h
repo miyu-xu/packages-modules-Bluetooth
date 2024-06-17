@@ -33,6 +33,9 @@
 #include "hci/remote_name_request.h"
 #include "metrics/bluetooth_event.h"
 #include "os/metrics.h"
+#include "device/include/interop.h"
+#include "stack/include/acl_api.h"
+#include "main/shim/helpers.h"
 
 namespace bluetooth {
 namespace hci {
@@ -722,6 +725,9 @@ public:
 
   void accept_connection(Address address) {
     auto role = AcceptConnectionRequestRole::BECOME_CENTRAL;  // We prefer to be central
+    RawAddress bda = bluetooth::ToRawAddress(address);
+    if (interop_match_addr(INTEROP_DISABLE_ROLE_SWITCH, &bda) || (BTM_GetNumBredrAclLinks() < 1))
+      role = AcceptConnectionRequestRole::REMAIN_PERIPHERAL;
     acl_connection_interface_->EnqueueCommand(
             AcceptConnectionRequestBuilder::Create(address, role),
             handler_->BindOnceOn(this, &classic_impl::on_accept_connection_status, address));
