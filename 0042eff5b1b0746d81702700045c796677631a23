@@ -22,6 +22,30 @@
       },
       "revId": "0042eff5b1b0746d81702700045c796677631a23",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08074c7a_a6f3031d",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 3136,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-06-17T17:58:33Z",
+      "side": 1,
+      "message": "This was erroneous put here way-back-when.\n\nMy plan was to get the interfaces all up and then rename to make more sense. e.g. take this out of lifecycle and make a new group or something.\n\nI could also rename them before to something else instead.\ne.g.\n`get_btm_client_interface().vendor.BTM_VendorSpecificCommand()`",
+      "parentUuid": "ede5567f_0d060488",
+      "range": {
+        "startLine": 3136,
+        "startChar": 39,
+        "endLine": 3136,
+        "endChar": 64
+      },
+      "revId": "0042eff5b1b0746d81702700045c796677631a23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
