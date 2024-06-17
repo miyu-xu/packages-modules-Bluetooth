@@ -782,44 +782,54 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
         }
     }
 
+    private boolean isWiredAudioHeadset(int deviceType) {
+        switch (deviceType) {
+            case AudioDeviceInfo.TYPE_WIRED_HEADSET:
+            case AudioDeviceInfo.TYPE_WIRED_HEADPHONES:
+            case AudioDeviceInfo.TYPE_USB_HEADSET:
+                return true;
+            default:
+                break;
+        }
+        return false;
+    }
+
+    @VisibleForTesting
+    void handleAudioDeviceAdded(int type, CharSequence productName) {
+        Log.d(TAG, "Audio device added: " + productName + " type: " + type);
+        if (isWiredAudioHeadset(type)) {
+            wiredAudioDeviceConnected();
+            return;
+        }
+    }
+
+    @VisibleForTesting
+    void handleAudioDeviceRemoved(int type, CharSequence productName) {
+        Log.d(TAG, "Audio device removed: " + productName + " type: " + type);
+        if (Flags.fallbackWhenWiredAudioDisconnected() && isWiredAudioHeadset(type)) {
+            setFallbackDeviceActiveLocked();
+            return;
+        }
+    }
+
     /** Notifications of audio device connection and disconnection events. */
     @SuppressLint("AndroidFrameworkRequiresPermission")
     private class AudioManagerAudioDeviceCallback extends AudioDeviceCallback {
-        private boolean isWiredAudioHeadset(AudioDeviceInfo deviceInfo) {
-            switch (deviceInfo.getType()) {
-                case AudioDeviceInfo.TYPE_WIRED_HEADSET:
-                case AudioDeviceInfo.TYPE_WIRED_HEADPHONES:
-                case AudioDeviceInfo.TYPE_USB_HEADSET:
-                    return true;
-                default:
-                    break;
-            }
-            return false;
-        }
-
         @Override
         public void onAudioDevicesAdded(AudioDeviceInfo[] addedDevices) {
             Log.d(TAG, "onAudioDevicesAdded");
-            boolean hasAddedWiredDevice = false;
             for (AudioDeviceInfo deviceInfo : addedDevices) {
-                Log.d(
-                        TAG,
-                        "Audio device added: "
-                                + deviceInfo.getProductName()
-                                + " type: "
-                                + deviceInfo.getType());
-                if (isWiredAudioHeadset(deviceInfo)) {
-                    hasAddedWiredDevice = true;
-                    break;
-                }
-            }
-            if (hasAddedWiredDevice) {
-                wiredAudioDeviceConnected();
+                handleAudioDeviceAdded(deviceInfo.getType(), deviceInfo.getProductName());
             }
         }
 
         @Override
-        public void onAudioDevicesRemoved(AudioDeviceInfo[] removedDevices) {}
+        public void onAudioDevicesRemoved(AudioDeviceInfo[] removedDevices) {
+            Log.d(TAG, "onAudioDevicesRemoved");
+            for (AudioDeviceInfo deviceInfo : removedDevices) {
+                handleAudioDeviceRemoved(deviceInfo.getType(), deviceInfo.getProductName());
+            }
+        }
     }
 
     ActiveDeviceManager(AdapterService service, ServiceFactory factory) {

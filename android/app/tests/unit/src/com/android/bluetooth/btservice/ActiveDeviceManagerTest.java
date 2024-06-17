@@ -40,6 +40,7 @@ import android.bluetooth.BluetoothLeBroadcastMetadata;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothSinkAudioPolicy;
 import android.content.Context;
+import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.os.test.TestLooper;
 import android.platform.test.flag.junit.SetFlagsRule;
@@ -1215,6 +1216,31 @@ public class ActiveDeviceManagerTest {
         verify(mA2dpService, timeout(TIMEOUT_MS)).removeActiveDevice(false);
         verify(mHeadsetService, timeout(TIMEOUT_MS)).setActiveDevice(isNull());
         verify(mHearingAidService, timeout(TIMEOUT_MS)).removeActiveDevice(false);
+    }
+
+    /** A wired audio device is disonnected. Check if falls back to connected A2DP. */
+    @Test
+    public void wiredAudioDeviceDisconnected_setFallbackDevice() {
+        mSetFlagsRule.enableFlags(Flags.FLAG_FALLBACK_WHEN_WIRED_AUDIO_DISCONNECTED);
+        // Connect A2DP heaphones
+        mActiveDeviceManager.handleAudioDeviceAdded(AudioDeviceInfo.TYPE_BLUETOOTH_A2DP, "a2dp");
+        a2dpConnected(mA2dpDevice, false);
+        headsetConnected(mHeadsetDevice, false);
+        verify(mA2dpService, timeout(TIMEOUT_MS)).setActiveDevice(mA2dpDevice);
+        verify(mHeadsetService, timeout(TIMEOUT_MS)).setActiveDevice(mHeadsetDevice);
+
+        // Connect wired heaphones
+        mActiveDeviceManager.handleAudioDeviceAdded(AudioDeviceInfo.TYPE_USB_HEADSET, "usb");
+        verify(mA2dpService, timeout(TIMEOUT_MS)).removeActiveDevice(false);
+        verify(mHeadsetService, timeout(TIMEOUT_MS)).setActiveDevice(isNull());
+        verify(mHearingAidService, timeout(TIMEOUT_MS)).removeActiveDevice(false);
+
+        // Disconnect wired headphones
+        mActiveDeviceManager.handleAudioDeviceRemoved(AudioDeviceInfo.TYPE_USB_HEADSET, "usb");
+
+        // Verify that active device will fallback to A2DP
+        verify(mA2dpService, timeout(TIMEOUT_MS)).setActiveDevice(mA2dpDevice);
+        mSetFlagsRule.disableFlags(Flags.FLAG_FALLBACK_WHEN_WIRED_AUDIO_DISCONNECTED);
     }
 
     /**
