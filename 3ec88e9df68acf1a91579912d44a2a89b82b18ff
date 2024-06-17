@@ -104,6 +104,24 @@
       "parentUuid": "76814c03_b708ae05",
       "revId": "3ec88e9df68acf1a91579912d44a2a89b82b18ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb7aa0ce_431809d5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-06-17T18:12:28Z",
+      "side": 1,
+      "message": "There is another check/hack storing the previous security state\n`old_sec_state \u003d p_dev_rec-\u003esec_rec.sec_state;`\n\nWhich only checks if the device bonding was in the RNR stage.\n\n`  if (old_sec_state !\u003d BTM_SEC_STATE_GETTING_NAME) return;`\n\nThis needs to be fixed too.\n\nMy proposal is to not store a copy of the security state, but just that it was in the bonding phase.\n`const bool is_in_rnr_bonding_phase \u003d (p_dev_rec-\u003esec_rec.sec_state \u003d\u003d BTM_SEC_STATE_GETTING_NAME);`",
+      "parentUuid": "dcf275f8_835c1bf8",
+      "revId": "3ec88e9df68acf1a91579912d44a2a89b82b18ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
