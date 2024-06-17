@@ -70,6 +70,30 @@
       },
       "revId": "828476e45b78bf772efa5426fd6bb86b375bb51b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4591342_6d85a9a4",
+        "filename": "flags/hfp.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2024-06-17T15:55:19Z",
+      "side": 1,
+      "message": "@yuyangh@google.com I have refereed the suggested example. Made the suggested changes along with updated the commit message with b/315241296",
+      "parentUuid": "a0a310c1_aa2d16fd",
+      "range": {
+        "startLine": 134,
+        "startChar": 10,
+        "endLine": 134,
+        "endChar": 19
+      },
+      "revId": "828476e45b78bf772efa5426fd6bb86b375bb51b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
