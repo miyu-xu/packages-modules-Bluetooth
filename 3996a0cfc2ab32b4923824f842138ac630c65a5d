@@ -177,6 +177,24 @@
       "parentUuid": "0d17c690_dd22a159",
       "revId": "3996a0cfc2ab32b4923824f842138ac630c65a5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d7a6517_4317b2b3",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2138,
+      "author": {
+        "id": 1944471
+      },
+      "writtenOn": "2024-06-17T14:06:50Z",
+      "side": 1,
+      "message": "You can try this scenario by connecting a classic buds and click stop on the dialog. Current impl is: call set active first then stop broadcast.",
+      "parentUuid": "0d17c690_dd22a159",
+      "revId": "3996a0cfc2ab32b4923824f842138ac630c65a5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
