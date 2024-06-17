@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "616b7d1c_ada8542e",
+        "filename": "system/stack/include/btm_api_types.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-06-17T15:20:12Z",
+      "side": 1,
+      "message": "Please add a tag for BTA_AG_SCO_APTX_SWB_SETTINGS_Q0 (\u003d\u003d 0x0) to avoid casting this constant when setting the value. You can remove it in a follow up change.",
+      "fixSuggestions": [
+        {
+          "fixId": "151db866_ec259c61",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/include/btm_api_types.h",
+              "range": {
+                "startLine": 91,
+                "startChar": 0,
+                "endLine": 95,
+                "endChar": 0
+              },
+              "replacement": "#define BTA_AG_SCO_APTX_SWB_SETTINGS_Q0 0x0008\n#define BTA_AG_SCO_APTX_SWB_SETTINGS_Q1 0x0016\n#define BTA_AG_SCO_APTX_SWB_SETTINGS_Q2 0x0032\n#define BTA_AG_SCO_APTX_SWB_SETTINGS_Q3 0x0064\n"
+            }
+          ]
+        }
+      ],
+      "revId": "f767452805520c537f32c619cb4a156334ea5120",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
