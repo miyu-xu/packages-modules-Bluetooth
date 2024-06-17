@@ -195,6 +195,24 @@
       "parentUuid": "0d17c690_dd22a159",
       "revId": "3996a0cfc2ab32b4923824f842138ac630c65a5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffe42741_6a625b1b",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2138,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-06-17T17:05:35Z",
+      "side": 1,
+      "message": "@yiyishen@google.com in that case, we might not be able to try the e2e scenarios. if you got a chance, could you give a try with your local change? or we can also move forward to merge this first and then you apply your UI change later?",
+      "parentUuid": "9d7a6517_4317b2b3",
+      "revId": "3996a0cfc2ab32b4923824f842138ac630c65a5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
