@@ -34,6 +34,24 @@
       ],
       "revId": "f767452805520c537f32c619cb4a156334ea5120",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5ef97f6_b151da8a",
+        "filename": "system/stack/include/btm_api_types.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-17T21:18:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "616b7d1c_ada8542e",
+      "revId": "f767452805520c537f32c619cb4a156334ea5120",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
