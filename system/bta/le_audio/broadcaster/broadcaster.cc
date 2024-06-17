@@ -17,6 +17,7 @@
 
 #include <base/functional/bind.h>
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 #include <lc3.h>
 
 #include <mutex>
@@ -31,6 +32,7 @@
 #include "bta_le_audio_api.h"
 #include "common/strings.h"
 #include "hci/controller_interface.h"
+#include "hci/le_advertising_manager.h"
 #include "internal_include/stack_config.h"
 #include "main/shim/entry.h"
 #include "os/log.h"
@@ -1066,10 +1068,34 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     }
 
     void OnAdvertisingDataSet(uint8_t advertiser_id, uint8_t status) {
-      log::warn(
-          "Not being used, ignored OnAdvertisingDataSet callback "
-          "advertiser_id:{}",
-          advertiser_id);
+      if (com::android::bluetooth::flags::
+              leaudio_broadcast_update_metadata_callback()) {
+        if (!instance) return;
+
+        auto const& iter = std::find_if(
+            instance->broadcasts_.cbegin(), instance->broadcasts_.cend(),
+            [advertiser_id](auto const& sm) {
+              return sm.second->GetAdvertisingSid() == advertiser_id;
+            });
+        if (iter != instance->broadcasts_.cend()) {
+          const uint32_t broadcast_id = iter->second->GetBroadcastId();
+          if (status ==
+              bluetooth::hci::AdvertisingCallback::AdvertisingStatus::SUCCESS) {
+            instance->GetBroadcastMetadata(broadcast_id);
+          } else {
+            log::error("OnAdvertisingDataSet error advertiser_id:{} ",
+                       "status:{}", advertiser_id, status);
+          }
+        } else {
+          log::warn("Ignored OnAdvertisingDataSet callback advertiser_id:{}",
+                    advertiser_id);
+        }
+      } else {
+        log::warn(
+            "Not being used, ignored OnAdvertisingDataSet callback "
+            "advertiser_id:{}",
+            advertiser_id);
+      }
     }
 
     void OnScanResponseDataSet(uint8_t advertiser_id, uint8_t status) {
@@ -1096,10 +1122,35 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     }
 
     void OnPeriodicAdvertisingDataSet(uint8_t advertiser_id, uint8_t status) {
-      log::warn(
-          "Not being used, ignored OnPeriodicAdvertisingDataSet callback "
-          "advertiser_id:{}",
-          advertiser_id);
+      if (com::android::bluetooth::flags::
+              leaudio_broadcast_update_metadata_callback()) {
+        if (!instance) return;
+
+        auto const& iter = std::find_if(
+            instance->broadcasts_.cbegin(), instance->broadcasts_.cend(),
+            [advertiser_id](auto const& sm) {
+              return sm.second->GetAdvertisingSid() == advertiser_id;
+            });
+        if (iter != instance->broadcasts_.cend()) {
+          const uint32_t broadcast_id = iter->second->GetBroadcastId();
+          if (status ==
+              bluetooth::hci::AdvertisingCallback::AdvertisingStatus::SUCCESS) {
+            instance->GetBroadcastMetadata(broadcast_id);
+          } else {
+            log::error("OnPeriodicAdvertisingDataSet error advertiser_id:{} ",
+                       "status:{}", advertiser_id, status);
+          }
+        } else {
+          log::warn(
+              "Ignored OnPeriodicAdvertisingDataSet callback advertiser_id:{}",
+              advertiser_id);
+        }
+      } else {
+        log::warn(
+            "Not being used, ignored OnPeriodicAdvertisingDataSet callback "
+            "advertiser_id:{}",
+            advertiser_id);
+      }
     }
 
     void OnPeriodicAdvertisingEnabled(uint8_t advertiser_id, bool enable,
