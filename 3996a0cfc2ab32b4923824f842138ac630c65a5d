@@ -159,6 +159,24 @@
       "parentUuid": "6f995089_939b7864",
       "revId": "3996a0cfc2ab32b4923824f842138ac630c65a5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbacd136_8fa56f43",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2138,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-06-17T13:52:16Z",
+      "side": 1,
+      "message": "I\u0027ve tried to do the A1 but can\u0027t. In theory active device should be switched to a2dp but audio should be still broadcasting. After stopping broadcast a2dp device should be streaming.\n\nDo you know how to try such scenario ?",
+      "parentUuid": "0d17c690_dd22a159",
+      "revId": "3996a0cfc2ab32b4923824f842138ac630c65a5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
