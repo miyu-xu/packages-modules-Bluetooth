@@ -127,6 +127,8 @@ void SyspropsModule::parse_config(std::string file_path) {
       "bluetooth.sco.swb_supported",
       // Profile
       "persist.bluetooth.avrcpcontrolversion",
+      // btsnoop logger
+      "persist.bluetooth.btsnooplogmode",
   };
 
   auto config = storage::LegacyConfigFile::FromPath(file_path).Read(kDefaultCapacity);
