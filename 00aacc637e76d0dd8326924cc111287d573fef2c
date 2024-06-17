@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76417aa2_6514de98",
+        "filename": "system/stack/btm/neighbor_inquiry.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-17T16:38:48Z",
+      "side": 1,
+      "message": "This looks wrong to me.  Not for this CL, though",
+      "range": {
+        "startLine": 266,
+        "startChar": 0,
+        "endLine": 267,
+        "endChar": 38
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0c77f643_7bf33d70",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/stack/btm/neighbor_inquiry.h",
+              "range": {
+                "startLine": 266,
+                "startChar": 0,
+                "endLine": 269,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "00aacc637e76d0dd8326924cc111287d573fef2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
