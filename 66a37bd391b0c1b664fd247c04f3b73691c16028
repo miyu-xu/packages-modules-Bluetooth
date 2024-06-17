@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f26f6384_a62b4bf3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-17T21:38:41Z",
+      "side": 1,
+      "message": "the description can be:\n```\ndon\u0027t notify java state machine about failure when the remote device is already connected\n\nWhen there is a HFP collision, the phone accepts remote request, and fails the outgoing request. When outgoing request cancelled, native layer notifies java layer as disconnected. This confuses the java state machine to make a reconnection. This change target to not notify java layer for the failure. \n```",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 57
+      },
+      "revId": "66a37bd391b0c1b664fd247c04f3b73691c16028",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2ee8131_cd01c3b1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-17T21:38:41Z",
+      "side": 1,
+      "message": "you can try to add a unit test in packages/modules/Bluetooth/system/bta/test/bta_ag_test.cc",
+      "range": {
+        "startLine": 11,
+        "startChar": 6,
+        "endLine": 11,
+        "endChar": 10
+      },
+      "revId": "66a37bd391b0c1b664fd247c04f3b73691c16028",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eb68d887_f7829926",
         "filename": "system/btif/src/btif_hf.cc",
         "patchSetId": 1
