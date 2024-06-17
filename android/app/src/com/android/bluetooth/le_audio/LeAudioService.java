@@ -102,6 +102,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -213,7 +215,20 @@ public class LeAudioService extends ProfileService {
     @VisibleForTesting RemoteCallbackList<IBluetoothLeAudioCallback> mLeAudioCallbacks;
 
     BluetoothLeScanner mAudioServersScanner;
-    /* When mScanCallback is not null, it means scan is started. */
+
+    final Executor mStartScanExecutor = Executors.newSingleThreadExecutor();
+
+    enum ScanState {
+        DISABLED,
+        ENABLING,
+        ENABLED
+    };
+
+    @GuardedBy("mStartScanExecutor")
+    ScanState mScanState = ScanState.DISABLED;
+
+    /* When mScanCallback is not null and flag leaudioScanStartInBackgroundThread is disabled,
+     * it means that scan is started. */
     ScanCallback mScanCallback;
 
     public LeAudioService(Context ctx) {
@@ -1820,7 +1835,13 @@ public class LeAudioService extends ProfileService {
                     break;
                 default:
                     /* Indicate scan is no running */
-                    mScanCallback = null;
+                    if (Flags.leaudioScanStartInBackgroundThread()) {
+                        synchronized(mStartScanExecutor) {
+                            mScanState = ScanState.DISABLED;
+                        }
+                    } else {
+                        mScanCallback = null;
+                    }
                     break;
             }
         }
@@ -2791,6 +2812,11 @@ public class LeAudioService extends ProfileService {
     void stopAudioServersBackgroundScan() {
         Log.d(TAG, "stopAudioServersBackgroundScan");
 
+        if (Flags.leaudioScanStartInBackgroundThread()) {
+            stopAudioServersBackgroundScanV2();
+            return;
+        }
+
         if (mAudioServersScanner == null || mScanCallback == null) {
             Log.d(TAG, "stopAudioServersBackgroundScan: already stopped");
             return;
@@ -2806,8 +2832,43 @@ public class LeAudioService extends ProfileService {
         mScanCallback = null;
     }
 
+    void stopAudioServersBackgroundScanV2() {
+        Log.d(TAG, "stopAudioServersBackgroundScanV2");
+
+        synchronized(mStartScanExecutor) {
+            if (mScanState == ScanState.DISABLED) {
+                Log.d(TAG, "Already disabled");
+                return;
+            }
+
+            if (mScanState == ScanState.ENABLING) {
+                Log.d(TAG, "Not yet enabled");
+                mScanState = ScanState.DISABLED;
+                return;
+            }
+
+            if (mAudioServersScanner == null) {
+                Log.d(TAG, "stopAudioServersBackgroundScan: already stopped");
+                mScanState = ScanState.DISABLED;
+                return;
+            }
+
+            try {
+                mAudioServersScanner.stopScan(mScanCallback);
+            } catch (IllegalStateException e) {
+                Log.e(TAG, "Fail to stop scanner, consider it stopped", e);
+            }
+            mScanState = ScanState.DISABLED;
+        }
+    }
+
     void startAudioServersBackgroundScan(boolean retry) {
         Log.d(TAG, "startAudioServersBackgroundScan, retry: " + retry);
+
+        if (Flags.leaudioScanStartInBackgroundThread()) {
+            startAudioServersBackgroundScanV2(retry);
+            return;
+        }
 
         if (!isScannerNeeded()) {
             return;
@@ -2854,6 +2915,85 @@ public class LeAudioService extends ProfileService {
         } catch (IllegalStateException e) {
             Log.e(TAG, "Fail to start scanner, consider it stopped", e);
             mScanCallback = null;
+        }
+    }
+
+    void startAudioServersBackgroundScanV2(boolean retry) {
+        Log.d(TAG, "startAudioServersBackgroundScanV2 retry: " + retry);
+
+        synchronized(mStartScanExecutor) {
+            if (retry) {
+                /* Just reset state to DISABLE as eventually scanning did not happen */
+                mScanState = ScanState.DISABLED;
+            }
+
+            if (mScanState != ScanState.DISABLED) {
+                Log.d(TAG, "Scanner started or starting. State: " + mScanState);
+                return;
+            }
+
+            if (!isScannerNeeded()) {
+                return;
+            }
+
+            if (mAudioServersScanner == null) {
+                mAudioServersScanner = BluetoothAdapter.getDefaultAdapter().getBluetoothLeScanner();
+                if (mAudioServersScanner == null) {
+                    Log.e(TAG, "startAudioServersBackgroundScan: Could not get scanner");
+                    return;
+                }
+            }
+
+            if (mScanCallback == null) {
+                mScanCallback = new AudioServerScanCallback();
+            }
+
+            /* Filter we are building here will not match to anything.
+            * Eventually we should be able to start scan from native when
+            * b/276350722 is done
+            */
+            byte[] serviceData = new byte[] {0x11};
+
+            ArrayList filterList = new ArrayList<ScanFilter>();
+            ScanFilter filter =
+                    new ScanFilter.Builder()
+                            .setServiceData(BluetoothUuid.LE_AUDIO, serviceData)
+                            .build();
+            filterList.add(filter);
+
+            ScanSettings settings =
+                    new ScanSettings.Builder()
+                            .setLegacy(false)
+                            .setScanMode(ScanSettings.SCAN_MODE_BALANCED)
+                            .setPhy(BluetoothDevice.PHY_LE_1M)
+                            .build();
+
+            Runnable startScanTask =
+                    () -> {
+                        synchronized(mStartScanExecutor) {
+                            if (mScanState != ScanState.ENABLING) {
+                                Log.e(TAG, "Scanner not in ENABLING state: " + mScanState);
+                                return;
+                            }
+
+                            try {
+                                Log.d("TAG", "Starting scan task");
+                                mAudioServersScanner.startScan(filterList, settings, mScanCallback);
+                            } catch (IllegalStateException e) {
+                                Log.e(TAG, "Fail to start scanner, consider it stopped", e);
+                                mScanState = ScanState.DISABLED;
+                            }
+
+                            if (mScanState == ScanState.ENABLING) {
+                                mScanState =  ScanState.ENABLED;
+                            }
+                        }
+                    };
+
+            mScanState = ScanState.ENABLING;
+
+            Log.d("TAG", "Scheduling starting scan task");
+            mStartScanExecutor.execute(startScanTask);
         }
     }
 
