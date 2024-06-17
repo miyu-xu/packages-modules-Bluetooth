@@ -316,6 +316,7 @@ static void btif_hf_upstreams_evt(uint16_t event, char* p_param) {
   }
   tBTA_AG* p_data = (tBTA_AG*)p_param;
   int idx = p_data->hdr.handle - 1;
+  bool ignore_ntf_when_already_connected = false;
 
   log::debug("HF Upstream event:{}", dump_hf_event(event));
 
@@ -428,8 +429,32 @@ static void btif_hf_upstreams_evt(uint16_t event, char* p_param) {
                    btif_hf_cb[idx].connected_bda, p_data->open.status);
         RawAddress connected_bda = btif_hf_cb[idx].connected_bda;
         reset_control_block(&btif_hf_cb[idx]);
-        bt_hf_callbacks->ConnectionStateCallback(btif_hf_cb[idx].state,
-                                                 &connected_bda);
+
+        if (com::android::bluetooth::flags::
+                ignore_notify_when_already_connected()) {
+          /**
+           * Check if already an active connection exists with same peer device,
+           * if yes, do not notify Higher/Java layer.
+           */
+          for (int i = 0; i < BTA_AG_MAX_NUM_CLIENTS; i++) {
+            if ((i != idx) &&
+                (BTHF_CONNECTION_STATE_CONNECTED == btif_hf_cb[i].state) &&
+                (connected_bda == btif_hf_cb[i].connected_bda)) {
+              /* Mark as not to notify */
+              ignore_ntf_when_already_connected = true;
+              break;
+            }
+          }
+
+          if (false == ignore_ntf_when_already_connected) {
+            bt_hf_callbacks->ConnectionStateCallback(btif_hf_cb[idx].state,
+                                                     &connected_bda);
+          }
+        } else {
+          bt_hf_callbacks->ConnectionStateCallback(btif_hf_cb[idx].state,
+                                                   &connected_bda);
+        }
+
         log_counter_metrics_btif(android::bluetooth::CodePathCounterKeyEnum::
                                      HFP_SELF_INITIATED_AG_FAILED,
                                  1);
