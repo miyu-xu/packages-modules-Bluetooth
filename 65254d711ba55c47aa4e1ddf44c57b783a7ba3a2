@@ -16,6 +16,24 @@
       "message": "Please add `Flag: EXEMPT \u003creason\u003e` to your commit description.",
       "revId": "65254d711ba55c47aa4e1ddf44c57b783a7ba3a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "933d58fa_51c02233",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-06-17T01:17:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d20a1d4d_8062e2b3",
+      "revId": "65254d711ba55c47aa4e1ddf44c57b783a7ba3a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
