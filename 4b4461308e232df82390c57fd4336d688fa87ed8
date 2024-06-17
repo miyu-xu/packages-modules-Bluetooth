@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0031b3b_bec2221b",
+        "filename": "system/stack/rfcomm/port_api.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-17T17:00:41Z",
+      "side": 1,
+      "message": "I was thinking of removing this whole PORT_IsOpening function.  It\u0027s only used by HFP, and whether or not we have it, we need to handle collisions.",
+      "range": {
+        "startLine": 507,
+        "startChar": 5,
+        "endLine": 507,
+        "endChar": 19
+      },
+      "revId": "4b4461308e232df82390c57fd4336d688fa87ed8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
