@@ -16,6 +16,24 @@
       "message": "is there a plan to extend it in EXT ADV ? For now it looks like all BISes are driven by AF.",
       "revId": "447cde516ee09ba3b303f3562bca885e1eaa129f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5669fd68_2b0e8d83",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-06-17T15:36:46Z",
+      "side": 1,
+      "message": "You maybe have right. @rongxuan@google.com, @rlukasz@google.com, does audio_active_state should be added to basic announcement or maybe it should be in public or in both?\n\nRongxuan you sent to me a screen from documentation (what documentation is this?) where is information:\n```\nThe Audio_Active_State Metadata should be included in the Public Broadcast Announcement in Extended Advertising data if....\n```\nSo it suggests using in public data.",
+      "parentUuid": "ca24fb41_9da8751b",
+      "revId": "447cde516ee09ba3b303f3562bca885e1eaa129f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
