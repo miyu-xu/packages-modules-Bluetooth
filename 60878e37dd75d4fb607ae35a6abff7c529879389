@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81f89607_91a0f98d",
+        "filename": "system/stack/fuzzers/rfcomm_fuzzer.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-17T16:49:32Z",
+      "side": 1,
+      "message": "nit: 2024",
+      "revId": "60878e37dd75d4fb607ae35a6abff7c529879389",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
