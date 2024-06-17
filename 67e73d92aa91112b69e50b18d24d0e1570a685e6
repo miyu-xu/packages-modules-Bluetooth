@@ -1,0 +1,86 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79495e90_b3e8f3ac",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 709,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-17T22:47:29Z",
+      "side": 1,
+      "message": "nit: combine 2 if conditions",
+      "range": {
+        "startLine": 708,
+        "startChar": 8,
+        "endLine": 709,
+        "endChar": 55
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7cc1782b_3edd91b2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+              "range": {
+                "startLine": 708,
+                "startChar": 0,
+                "endLine": 716,
+                "endChar": 0
+              },
+              "replacement": "        if (Flags.maintainCallIndexAfterConference() \u0026\u0026 mConferenceCallClccIndexMap.size() \u003e 0) {\n            int anyActiveCalls \u003d mCallInfo.isNullCall(mCallInfo.getActiveCall()) ? 0 : 1;\n            int numHeldCalls \u003d mCallInfo.getNumHeldCalls();\n            // If no call is active or held clear the hashmap.\n            if (anyActiveCalls \u003d\u003d 0 \u0026\u0026 numHeldCalls \u003d\u003d 0) {\n                mConferenceCallClccIndexMap.clear();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "67e73d92aa91112b69e50b18d24d0e1570a685e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f16a4c2c_3343b409",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 1096,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-17T22:47:29Z",
+      "side": 1,
+      "message": "nit: same, combine if statements",
+      "range": {
+        "startLine": 1094,
+        "startChar": 12,
+        "endLine": 1096,
+        "endChar": 75
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5584c072_82df5542",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+              "range": {
+                "startLine": 1094,
+                "startChar": 0,
+                "endLine": 1099,
+                "endChar": 0
+              },
+              "replacement": "        // Check if the call handle is already stored. Return the previously stored index.\n        if (Flags.maintainCallIndexAfterConference()\n                \u0026\u0026 mConferenceCallClccIndexMap.containsKey(getClccMapKey(call))) {\n            call.mClccIndex \u003d mConferenceCallClccIndexMap.get(getClccMapKey(call));\n"
+            }
+          ]
+        }
+      ],
+      "revId": "67e73d92aa91112b69e50b18d24d0e1570a685e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
