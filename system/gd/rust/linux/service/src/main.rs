@@ -10,7 +10,7 @@ use std::time::Duration;
 use tokio::sync::mpsc::Sender;
 
 // Necessary to link right entries.
-#[allow(unused_imports)]
+#[allow(clippy::single_component_path_imports, unused_imports)]
 use bt_shim;
 
 use bt_topshim::{btif::get_btinterface, topstack};
@@ -216,7 +216,11 @@ fn main() -> Result<(), Box<dyn Error>> {
 
         // Set up the disconnect watcher to monitor client disconnects.
         let disconnect_watcher = Arc::new(Mutex::new(DisconnectWatcher::new()));
-        disconnect_watcher.lock().unwrap().setup_watch(conn.clone()).await;
+        {
+            // Avoid holding mutex across an `await` point
+            let mut cloned = disconnect_watcher.lock().unwrap().clone();
+            cloned.setup_watch(conn.clone()).await;
+        }
 
         tokio::spawn(interface_manager::InterfaceManager::dispatch(
             api_rx,

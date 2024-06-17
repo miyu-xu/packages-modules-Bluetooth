@@ -65,6 +65,7 @@ pub mod prelude {
 ///
 /// When the watched bus address disconnects, all the callbacks associated with it are called with
 /// their associated ids.
+#[derive(Clone)]
 pub struct DisconnectWatcher {
     /// Global counter to provide a unique id every time `get_next_id` is called.
     next_id: u32,
