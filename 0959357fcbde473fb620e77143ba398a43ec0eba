@@ -46,6 +46,30 @@
       },
       "revId": "0959357fcbde473fb620e77143ba398a43ec0eba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdfede84_6cde5b6b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1849,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-06-17T20:49:07Z",
+      "side": 1,
+      "message": "So in this scenario:\n \n 1. Device is initially connected to host\n 1.1. ACL connected\n 1.2. Bonded\n 1.3. BAS attempts to read GATT data\n 2. Device is disconnected\n 2.1. ACL disconnected\n 2.2. BAS disconnects it\u0027s GATT client\n 3. Device is connected again\n 3.1. ACL connected\n ...\n BAS never connects as the bonding process is not performed again\n \n It\u0027s possible my understanding of the process is wrong, but I\u0027m pretty sure we persist bond state between connections. I think we want to do one of a couple of options:\n \n 1. Trigger Battery service actions::Connect on both events and internal to BAS check if the device is bonded\n 2. Generalize the message to just be something like OnDeviceConnectedStateChange or similar and set the expectation that subscribers check the fields they care about\n \n There\u0027s a separate question that comes up about whether we should alter the way on_device_connected works as well that I don\u0027t have that authority to OK.",
+      "parentUuid": "6c8f3b3c_b213d845",
+      "range": {
+        "startLine": 1848,
+        "startChar": 0,
+        "endLine": 1849,
+        "endChar": 7
+      },
+      "revId": "0959357fcbde473fb620e77143ba398a43ec0eba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
