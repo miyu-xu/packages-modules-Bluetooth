@@ -2977,7 +2977,8 @@ public class LeAudioService extends ProfileService {
                         case LeAudioStackEvent.CONNECTION_STATE_DISCONNECTING:
                         case LeAudioStackEvent.CONNECTION_STATE_DISCONNECTED:
                             deviceDescriptor.mAclConnected = false;
-                            startAudioServersBackgroundScan(/* retry= */ false);
+                            mHandler.post(
+                                    () -> startAudioServersBackgroundScan(/* retry= */ false));
 
                             boolean disconnectDueToUnbond =
                                     (BluetoothDevice.BOND_NONE
