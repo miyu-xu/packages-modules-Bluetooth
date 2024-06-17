@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20d5059e_aeef85aa",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2980,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-17T16:32:40Z",
+      "side": 1,
+      "message": "`mHandler` is on the mainLooper. We don\u0027t want to do long lasting operation on the main looper.\n\nThe main looper is shared across the entirety of the app and making it block for 2 sec may generate a lot of issue.\n\nAlso I am surprise / shock that this is going without flag. This is a huge behavor change.\n\nNote that I prefer 100 times the jni thread to block than the main thread. But I think we should instead look at why this is taking 2 sec and blocking 2 sec.\nIf there is a legitimate reason for blocking 2 sec, then this may need to be a background executor (but this is the last ressort and unlikely to be our solution)",
+      "range": {
+        "startLine": 2980,
+        "startChar": 28,
+        "endLine": 2980,
+        "endChar": 36
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c970111a_c6506630",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+              "range": {
+                "startLine": 2980,
+                "startChar": 0,
+                "endLine": 2982,
+                "endChar": 0
+              },
+              "replacement": "                             startAudioServersBackgroundScan(/* retry\u003d */ false);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "81e7ef134ba9888d623a5e7136f134c450b2301b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
