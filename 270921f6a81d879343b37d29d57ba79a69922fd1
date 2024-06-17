@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "85819ba4_06ec6827",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-17T21:42:22Z",
+      "side": 1,
+      "message": "make a new line at the end of the description so the title would be shorter",
+      "range": {
+        "startLine": 7,
+        "startChar": 42,
+        "endLine": 7,
+        "endChar": 51
+      },
+      "revId": "270921f6a81d879343b37d29d57ba79a69922fd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "12fcb2cf_788154ce",
         "filename": "/COMMIT_MSG",
         "patchSetId": 2
