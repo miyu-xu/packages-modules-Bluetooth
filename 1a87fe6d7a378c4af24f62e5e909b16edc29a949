@@ -198,6 +198,30 @@
       },
       "revId": "1a87fe6d7a378c4af24f62e5e909b16edc29a949",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e521f72_00263c2a",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/ScanManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1128,
+      "author": {
+        "id": 1959878
+      },
+      "writtenOn": "2024-06-17T18:47:17Z",
+      "side": 1,
+      "message": "@kaishi@google.com I ran tests with `statsd_testdrive` think this is duplicated so I removed `recordScanRadioStart()` here.",
+      "parentUuid": "b6fafad8_60c2aa28",
+      "range": {
+        "startLine": 1128,
+        "startChar": 16,
+        "endLine": 1128,
+        "endChar": 56
+      },
+      "revId": "1a87fe6d7a378c4af24f62e5e909b16edc29a949",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
