@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b130121_b6fc2f56",
+        "filename": "system/gd/rust/linux/service/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-06-17T06:39:52Z",
+      "side": 1,
+      "message": "The clone looks redundant. Have you considered using async mutext (tokio::sync::Mutex) to avoid the potential deadlock across await point?",
+      "range": {
+        "startLine": 221,
+        "startChar": 0,
+        "endLine": 222,
+        "endChar": 51
+      },
+      "revId": "340d8abe79c17aa76b0c7bf34d15265d65e68a86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
