@@ -34,6 +34,23 @@
       "parentUuid": "3688fa29_4c06122d",
       "revId": "f7600ea2eb4b0fcde592e5bc3d9aa860c58cb7fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34b2124a_ff093762",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966998
+      },
+      "writtenOn": "2024-06-17T18:56:01Z",
+      "side": 1,
+      "message": "Talked to William - some disagreements in the approach but OK to move forward.",
+      "revId": "f7600ea2eb4b0fcde592e5bc3d9aa860c58cb7fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
