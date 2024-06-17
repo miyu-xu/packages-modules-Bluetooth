@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27c7adfc_da3c01a2",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3769,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-06-17T17:38:03Z",
+      "side": 1,
+      "message": "I think you can remove this alongside `btif_av_get_src_interface`",
+      "revId": "86d815af8b0eb8f73445bd883d181e422e005d84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
