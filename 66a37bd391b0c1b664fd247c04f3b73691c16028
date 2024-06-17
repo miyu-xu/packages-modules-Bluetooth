@@ -1,0 +1,65 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb68d887_f7829926",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-17T21:31:56Z",
+      "side": 1,
+      "message": "we can optimize here to be: \n```\nif(flag.xx) {\n  // new logic\n} else {\n  // original logic\n}\n\n```",
+      "range": {
+        "startLine": 434,
+        "startChar": 54,
+        "endLine": 434,
+        "endChar": 55
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e83df315_b066c52f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/btif/src/btif_hf.cc",
+              "range": {
+                "startLine": 433,
+                "startChar": 0,
+                "endLine": 435,
+                "endChar": 0
+              },
+              "replacement": "        if (com::android::bluetooth::flags::ignore_notify_when_already_connected() \u0026\u0026\n            ignore_ntf_when_already_connected) {\n"
+            },
+            {
+              "path": "system/btif/src/btif_hf.cc",
+              "range": {
+                "startLine": 448,
+                "startChar": 0,
+                "endLine": 451,
+                "endChar": 0
+              },
+              "replacement": "        } else {\n"
+            },
+            {
+              "path": "system/btif/src/btif_hf.cc",
+              "range": {
+                "startLine": 452,
+                "startChar": 0,
+                "endLine": 453,
+                "endChar": 0
+              },
+              "replacement": "                                               \u0026connected_bda);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "66a37bd391b0c1b664fd247c04f3b73691c16028",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
