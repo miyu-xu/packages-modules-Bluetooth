@@ -68,6 +68,24 @@
       "parentUuid": "a10fdc9e_c5417f7f",
       "revId": "3ec88e9df68acf1a91579912d44a2a89b82b18ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76814c03_b708ae05",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-17T17:52:07Z",
+      "side": 1,
+      "message": "I started trying, but it\u0027s anyone who calls a btm_sec function that checks if the state machine is idle, as well.\n\nDoes that count as \"very wrong behavior\"?  It fanned out quickly.",
+      "parentUuid": "dc7545d2_aab615da",
+      "revId": "3ec88e9df68acf1a91579912d44a2a89b82b18ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
