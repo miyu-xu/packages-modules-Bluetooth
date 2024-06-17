@@ -141,6 +141,24 @@
       "parentUuid": "1ad1a470_507f3242",
       "revId": "3996a0cfc2ab32b4923824f842138ac630c65a5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d17c690_dd22a159",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2138,
+      "author": {
+        "id": 1944471
+      },
+      "writtenOn": "2024-06-17T13:24:51Z",
+      "side": 1,
+      "message": "A1: Then what\u0027s the intended behavior if app set classic device to active during broadcast? \nA2: Yes we agreed on this;) app side will stop the broadcast first then set active to classic.",
+      "parentUuid": "6f995089_939b7864",
+      "revId": "3996a0cfc2ab32b4923824f842138ac630c65a5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
