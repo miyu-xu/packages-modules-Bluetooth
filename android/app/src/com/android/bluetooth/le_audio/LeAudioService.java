@@ -102,6 +102,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -214,6 +216,7 @@ public class LeAudioService extends ProfileService {
 
     BluetoothLeScanner mAudioServersScanner;
     /* When mScanCallback is not null, it means scan is started. */
+    final Executor mStartScanExecutor = Executors.newSingleThreadExecutor();
     ScanCallback mScanCallback;
 
     public LeAudioService(Context ctx) {
@@ -2849,12 +2852,19 @@ public class LeAudioService extends ProfileService {
                         .setPhy(BluetoothDevice.PHY_LE_1M)
                         .build();
 
-        try {
-            mAudioServersScanner.startScan(filterList, settings, mScanCallback);
-        } catch (IllegalStateException e) {
-            Log.e(TAG, "Fail to start scanner, consider it stopped", e);
-            mScanCallback = null;
-        }
+        Runnable startScanTask =
+                () -> {
+                    try {
+                        Log.d("TAG", "Starting scan task");
+                        mAudioServersScanner.startScan(filterList, settings, mScanCallback);
+                    } catch (IllegalStateException e) {
+                        Log.e(TAG, "Fail to start scanner, consider it stopped", e);
+                        mScanCallback = null;
+                    }
+                };
+
+        Log.d("TAG", "Scheduling starting scan task");
+        mStartScanExecutor.execute(startScanTask);
     }
 
     void transitionFromBroadcastToUnicast() {
