@@ -123,6 +123,24 @@
       "parentUuid": "56031bce_5d745eb1",
       "revId": "3996a0cfc2ab32b4923824f842138ac630c65a5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f995089_939b7864",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2138,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-06-17T11:47:27Z",
+      "side": 1,
+      "message": "Hi @yiyishen@google.com\n\nA 1: Broadcast stop is called from upper layers - there is no such logic to stop broadcast and do handover unicast.\nA 2: Yes this is the expected behavior - I thought we agreed on that 😊 there are two steps inside this solution:\n a) Broadcast stop: means that user must agree/application decides to not broadcast audio - why it should broadcast if intention is to switch to classic.\n b) change active/fallback LE Audio device to null - this is basically a normal procedure for changing active device. Changing LE Audio device to null should always result in no fallback device and/or current active device.\n \nFeel free if something is not clear ;)\n\nRegards,\nGrzegorz",
+      "parentUuid": "1ad1a470_507f3242",
+      "revId": "3996a0cfc2ab32b4923824f842138ac630c65a5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
