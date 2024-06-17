@@ -362,7 +362,7 @@ public class MapClientStateMachineTest {
 
         // Send an empty notification event, verify the mMceStateMachine is still connected
         Message notification = Message.obtain(mHandler, MceStateMachine.MSG_NOTIFICATION);
-        mMceStateMachine.getCurrentState().processMessage(notification);
+        mMceStateMachine.getCurrentState().processMessage(msg);
         Assert.assertEquals(BluetoothProfile.STATE_CONNECTED, mMceStateMachine.getState());
     }
 
