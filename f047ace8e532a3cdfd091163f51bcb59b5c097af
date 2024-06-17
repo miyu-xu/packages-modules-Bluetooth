@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f01c98b_98fcc39d",
+        "filename": "android/pandora/server/src/A2dp.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-06-17T16:21:20Z",
+      "side": 1,
+      "message": "As discussed offline with the team. Let merge the `setActiveDevice` method as is. It __should__ not introduce any flakiness since we are only doing single device tests. It might be a deeper discussion when/if we start multi device test.",
+      "parentUuid": "b97043d5_f3ec039b",
+      "revId": "f047ace8e532a3cdfd091163f51bcb59b5c097af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d52a4448_f0d7ea98",
@@ -287,6 +305,24 @@
       "side": 1,
       "message": "That\u0027s not very useful...",
       "parentUuid": "5b9e8374_b111d01a",
+      "revId": "f047ace8e532a3cdfd091163f51bcb59b5c097af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8194bf0_142b2209",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-06-17T16:21:20Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "abf89803_cccbeb10",
       "revId": "f047ace8e532a3cdfd091163f51bcb59b5c097af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
