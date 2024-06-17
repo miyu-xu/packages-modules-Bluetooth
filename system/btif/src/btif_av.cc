@@ -102,6 +102,11 @@ typedef struct {
   bool is_low_latency;
 } btif_av_set_latency_req_t;
 
+typedef struct {
+  std::vector<btav_a2dp_codec_config_t> codec_preferences;
+  std::promise<void> reconf_ready_promise;
+} btif_av_reconfig_req_t;
+
 /**
  * BTIF AV events
  */
@@ -119,6 +124,7 @@ typedef enum {
   BTIF_AV_AVRCP_CLOSE_EVT,
   BTIF_AV_AVRCP_REMOTE_PLAY_EVT,
   BTIF_AV_SET_LATENCY_REQ_EVT,
+  BTIF_AV_RECONFIGURE_REQ_EVT,
 } btif_av_sm_event_t;
 
 class BtifAvEvent {
@@ -251,6 +257,7 @@ public:
     kFlagRemoteSuspend = 0x2,
     kFlagPendingStart = 0x4,
     kFlagPendingStop = 0x8,
+    kFlagPendingReconfigure = 0x10,
   };
   static constexpr uint64_t kTimeoutAvOpenOnRcMs = 2 * 1000;  // 2s
 
@@ -360,6 +367,10 @@ public:
   bool UseLatencyMode() const { return use_latency_mode_; }
   void SetUseLatencyMode(bool use_latency_mode) { use_latency_mode_ = use_latency_mode; }
 
+  void SetReconfigureStreamData(btif_av_reconfig_req_t&& req) { reconfig_req_ = std::move(req); }
+
+  btif_av_reconfig_req_t GetReconfigureStreamData() { return std::move(reconfig_req_); }
+
 private:
   const RawAddress peer_address_;
   uint8_t peer_sep_;  // SEP type of peer device
@@ -374,6 +385,7 @@ private:
   uint16_t delay_report_;
   bool mandatory_codec_preferred_ = false;
   bool use_latency_mode_ = false;
+  btif_av_reconfig_req_t reconfig_req_;
 };
 
 class BtifAvSource {
@@ -963,6 +975,7 @@ const char* dump_av_sm_event_name(btif_av_sm_event_t event) {
     CASE_RETURN_STR(BTIF_AV_AVRCP_CLOSE_EVT)
     CASE_RETURN_STR(BTIF_AV_AVRCP_REMOTE_PLAY_EVT)
     CASE_RETURN_STR(BTIF_AV_SET_LATENCY_REQ_EVT)
+    CASE_RETURN_STR(BTIF_AV_RECONFIGURE_REQ_EVT)
     default:
       return "UNKNOWN_EVENT";
   }
@@ -1117,6 +1130,12 @@ std::string BtifAvPeer::FlagsToString() const {
       result += "|";
     }
     result += "PENDING_STOP";
+  }
+  if (flags_ & BtifAvPeer::kFlagPendingReconfigure) {
+    if (!result.empty()) {
+      result += "|";
+    }
+    result += "PENDING_RECONFIGURE";
   }
   if (result.empty()) {
     result = "None";
@@ -2060,6 +2079,13 @@ bool BtifAvStateMachine::StateIdle::ProcessEvent(uint32_t event, void* p_data) {
       btif_a2dp_on_offload_started(peer_.PeerAddress(), BTA_AV_FAIL);
       break;
 
+    case BTIF_AV_RECONFIGURE_REQ_EVT: {
+      // Unlock JNI thread only
+      auto req_data = peer_.GetReconfigureStreamData();
+      req_data.reconf_ready_promise.set_value();
+      break;
+    }
+
     default:
       log::warn("Peer {} : Unhandled event={}", peer_.PeerAddress(), BtifAvEvent::EventName(event));
       return false;
@@ -2321,6 +2347,13 @@ bool BtifAvStateMachine::StateOpening::ProcessEvent(uint32_t event, void* p_data
       }
       break;
 
+    case BTIF_AV_RECONFIGURE_REQ_EVT: {
+      // Unlock JNI thread only
+      auto req_data = peer_.GetReconfigureStreamData();
+      req_data.reconf_ready_promise.set_value();
+      break;
+    }
+
       CHECK_RC_EVENT(event, reinterpret_cast<tBTA_AV*>(p_data));
 
     default:
@@ -2442,6 +2475,16 @@ bool BtifAvStateMachine::StateOpened::ProcessEvent(uint32_t event, void* p_data)
       if (should_suspend) {
         btif_av_source_dispatch_sm_event(peer_.PeerAddress(), BTIF_AV_SUSPEND_STREAM_REQ_EVT);
       }
+
+      if (com::android::bluetooth::flags::av_stream_reconfigure_fix() &&
+          peer_.CheckFlags(BtifAvPeer::kFlagPendingReconfigure)) {
+        log::info(
+                "Peer {} : Stream started but reconfiguration pending. "
+                "Reconfiguring stream",
+                peer_.PeerAddress());
+        btif_av_source_dispatch_sm_event(peer_.PeerAddress(), BTIF_AV_RECONFIGURE_REQ_EVT);
+      }
+
       peer_.StateMachine().TransitionTo(BtifAvStateMachine::kStateStarted);
       break;
     }
@@ -2549,6 +2592,30 @@ bool BtifAvStateMachine::StateOpened::ProcessEvent(uint32_t event, void* p_data)
                 p_set_latency_req->is_low_latency);
 
       BTA_AvSetLatency(peer_.BtaHandle(), p_set_latency_req->is_low_latency);
+    } break;
+
+    case BTIF_AV_RECONFIGURE_REQ_EVT: {
+      log::info("Peer {} : event={} flags={}", peer_.PeerAddress(), BtifAvEvent::EventName(event),
+                peer_.FlagsToString());
+      if (!peer_.IsSink()) {
+        log::verbose("Peer {} is not sink", peer_.PeerAddress());
+        break;
+      }
+
+      if (peer_.CheckFlags(BtifAvPeer::kFlagPendingStart)) {
+        // The start stream request was sent but we wait for response.
+        // Enable the reconfigure pending flag to schedule reconfiguration
+        // after start stream response.
+        peer_.SetFlags(BtifAvPeer::kFlagPendingReconfigure);
+      } else {
+        // Reconfigure
+        peer_.ClearFlags(BtifAvPeer::kFlagPendingReconfigure);
+        if (btif_av_source.Enabled()) {
+          auto req_data = peer_.GetReconfigureStreamData();
+          btif_av_source.UpdateCodecConfig(peer_.PeerAddress(), req_data.codec_preferences,
+                                           std::move(req_data.reconf_ready_promise));
+        }
+      }
     } break;
 
     default:
@@ -2767,6 +2834,17 @@ bool BtifAvStateMachine::StateStarted::ProcessEvent(uint32_t event, void* p_data
 
       CHECK_RC_EVENT(event, reinterpret_cast<tBTA_AV*>(p_data));
 
+    case BTIF_AV_RECONFIGURE_REQ_EVT: {
+      log::info("Peer {} : event={} flags={}", peer_.PeerAddress(), BtifAvEvent::EventName(event),
+                peer_.FlagsToString());
+      peer_.ClearFlags(BtifAvPeer::kFlagPendingReconfigure);
+      if (btif_av_source.Enabled()) {
+        auto req_data = peer_.GetReconfigureStreamData();
+        btif_av_source.UpdateCodecConfig(peer_.PeerAddress(), req_data.codec_preferences,
+                                         std::move(req_data.reconf_ready_promise));
+      }
+    } break;
+
     default:
       log::warn("Peer {} : Unhandled event={}", peer_.PeerAddress(), BtifAvEvent::EventName(event));
       return false;
@@ -2840,6 +2918,13 @@ bool BtifAvStateMachine::StateClosing::ProcessEvent(uint32_t event, void* p_data
       btif_queue_advance();
       peer_.StateMachine().TransitionTo(BtifAvStateMachine::kStateIdle);
       break;
+
+    case BTIF_AV_RECONFIGURE_REQ_EVT: {
+      // Unlock JNI thread only
+      auto req_data = peer_.GetReconfigureStreamData();
+      req_data.reconf_ready_promise.set_value();
+      break;
+    }
 
     default:
       log::warn("Peer {} : Unhandled event={}", peer_.PeerAddress(), BtifAvEvent::EventName(event));
@@ -3671,17 +3756,46 @@ bt_status_t btif_av_source_set_codec_config_preference(
     return BT_STATUS_PARM_INVALID;
   }
 
+  BtifAvPeer* peer = btif_av_source.FindPeer(peer_address);
+  if (peer == nullptr) {
+    log::warn("BTIF AV Source can not find peer");
+    return BT_STATUS_NOT_READY;
+  }
+
   std::promise<void> peer_ready_promise;
   std::future<void> peer_ready_future = peer_ready_promise.get_future();
-  bt_status_t status = do_in_main_thread(
-          FROM_HERE,
-          base::BindOnce(&BtifAvSource::UpdateCodecConfig, base::Unretained(&btif_av_source),
-                         peer_address, codec_preferences, std::move(peer_ready_promise)));
-  if (status == BT_STATUS_SUCCESS) {
-    peer_ready_future.wait();
+  bt_status_t status = BT_STATUS_FAIL;
+  if (com::android::bluetooth::flags::av_stream_reconfigure_fix()) {
+    btif_av_reconfig_req_t reconf_stream_req = {
+            .codec_preferences = codec_preferences,
+            .reconf_ready_promise = std::move(peer_ready_promise),
+    };
+
+    BtifAvEvent btif_av_event(BTIF_AV_RECONFIGURE_REQ_EVT, nullptr, 0);
+
+    peer->SetReconfigureStreamData(std::move(reconf_stream_req));
+
+    status = do_in_main_thread(FROM_HERE,
+                               base::BindOnce(&btif_av_handle_event,
+                                              AVDT_TSEP_SNK,  // peer_sep
+                                              peer_address, kBtaHandleUnknown, btif_av_event));
   } else {
-    log::warn("BTIF AV Source fails to config codec");
+    status = do_in_main_thread(
+            FROM_HERE,
+            base::BindOnce(&BtifAvSource::UpdateCodecConfig, base::Unretained(&btif_av_source),
+                           peer_address, codec_preferences, std::move(peer_ready_promise)));
   }
+
+  if (status != BT_STATUS_SUCCESS) {
+    log::error("do_in_main_thread failed, status: {}", status);
+    return status;
+  }
+
+  if (peer_ready_future.wait_for(std::chrono::seconds(1)) != std::future_status::ready) {
+    log::error("BTIF AV Source fails to config codec");
+    return BT_STATUS_FAIL;
+  }
+
   return status;
 }
 
