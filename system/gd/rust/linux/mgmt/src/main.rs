@@ -111,7 +111,11 @@ pub async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // Set up the disconnect watcher to monitor client disconnects.
     let disconnect_watcher = Arc::new(Mutex::new(DisconnectWatcher::new()));
-    disconnect_watcher.lock().unwrap().setup_watch(conn.clone()).await;
+    {
+        // Avoid holding mutex across an `await` point
+        let mut cloned = disconnect_watcher.lock().unwrap().clone();
+        cloned.setup_watch(conn.clone()).await;
+    }
 
     // We add the Crossroads instance to the connection so that incoming method calls will be
     // handled.
