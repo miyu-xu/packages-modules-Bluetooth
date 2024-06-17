@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc6f7b48_dec833c1",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-17T17:07:09Z",
+      "side": 1,
+      "message": "We don\u0027t need a separate object.\n\nIf we want to be sure it is under lock, we should use a guardedBy annotation\n\n```suggestion\n    @VisibleForTesting\n    @GuardedBy(\"mLeAudioCallbacks\")\n    final RemoteCallbackList\u003cIBluetoothLeAudioCallback\u003e mLeAudioCallbacks \u003d new RemoteCallbackList\u003c\u003e();\n```",
+      "range": {
+        "startLine": 213,
+        "startChar": 0,
+        "endLine": 215,
+        "endChar": 87
+      },
+      "revId": "7d1c5f0cc079aedfa8eca2bf39799469e9b2e755",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
