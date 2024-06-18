@@ -16,6 +16,7 @@
  *
  ******************************************************************************/
 
+#include <com_android_bluetooth_flags.h>
 #include <dlfcn.h>
 #include <gtest/gtest.h>
 
@@ -92,39 +93,79 @@ const uint8_t codec_info_sbc_sink_capability[AVDT_CODEC_SIZE] = {
         9                                   // Fake
 };
 
-const uint8_t codec_info_aac[AVDT_CODEC_SIZE] = {
-        8,           // Length (A2DP_AAC_INFO_LEN)
-        0,           // Media Type: AVDT_MEDIA_TYPE_AUDIO
-        2,           // Media Codec Type: A2DP_MEDIA_CT_AAC
-        0x80,        // Object Type: A2DP_AAC_OBJECT_TYPE_MPEG2_LC
-        0x01,        // Sampling Frequency: A2DP_AAC_SAMPLING_FREQ_44100
-        0x04,        // Channels: A2DP_AAC_CHANNEL_MODE_STEREO
-        0x00 | 0x4,  // Variable Bit Rate:
-                     // A2DP_AAC_VARIABLE_BIT_RATE_DISABLED
-                     // Bit Rate: 320000 = 0x4e200
-        0xe2,        // Bit Rate: 320000 = 0x4e200
-        0x00,        // Bit Rate: 320000 = 0x4e200
-        7,           // Unused
-        8,           // Unused
-        9            // Unused
-};
+const uint8_t* GetAacCodecInfo(const bool enable_48kHz) {
+  static const uint8_t without_48kHz[AVDT_CODEC_SIZE] = {
+      8,           // Length (A2DP_AAC_INFO_LEN)
+      0,           // Media Type: AVDT_MEDIA_TYPE_AUDIO
+      2,           // Media Codec Type: A2DP_MEDIA_CT_AAC
+      0x80,        // Object Type: A2DP_AAC_OBJECT_TYPE_MPEG2_LC
+      0x01,        // Sampling Frequency: A2DP_AAC_SAMPLING_FREQ_44100
+      0x04,        // Channels: A2DP_AAC_CHANNEL_MODE_STEREO
+      0x00 | 0x4,  // Variable Bit Rate:
+                   // A2DP_AAC_VARIABLE_BIT_RATE_DISABLED
+                   // Bit Rate: 320000 = 0x4e200
+      0xe2,        // Bit Rate: 320000 = 0x4e200
+      0x00,        // Bit Rate: 320000 = 0x4e200
+      7,           // Unused
+      8,           // Unused
+      9            // Unused
+  };
+  static const uint8_t with_48kHz[AVDT_CODEC_SIZE] = {
+      8,           // Length (A2DP_AAC_INFO_LEN)
+      0,           // Media Type: AVDT_MEDIA_TYPE_AUDIO
+      2,           // Media Codec Type: A2DP_MEDIA_CT_AAC
+      0x80,        // Object Type: A2DP_AAC_OBJECT_TYPE_MPEG2_LC
+      0x00,        // Sampling Frequency: Empty
+      0x80 |       // Sampling Frequency: A2DP_AAC_SAMPLING_FREQ_48000
+          0x04,    // Channels: A2DP_AAC_CHANNEL_MODE_STEREO
+      0x00 | 0x4,  // Variable Bit Rate:
+                   // A2DP_AAC_VARIABLE_BIT_RATE_DISABLED
+                   // Bit Rate: 320000 = 0x4e200
+      0xe2,        // Bit Rate: 320000 = 0x4e200
+      0x00,        // Bit Rate: 320000 = 0x4e200
+      7,           // Unused
+      8,           // Unused
+      9            // Unused
+  };
+  return enable_48kHz ? with_48kHz : without_48kHz;
+}
 
-const uint8_t codec_info_aac_vbr[AVDT_CODEC_SIZE] = {
-        8,           // Length (A2DP_AAC_INFO_LEN)
-        0,           // Media Type: AVDT_MEDIA_TYPE_AUDIO
-        2,           // Media Codec Type: A2DP_MEDIA_CT_AAC
-        0x80,        // Object Type: A2DP_AAC_OBJECT_TYPE_MPEG2_LC
-        0x01,        // Sampling Frequency: A2DP_AAC_SAMPLING_FREQ_44100
-        0x04,        // Channels: A2DP_AAC_CHANNEL_MODE_STEREO
-        0x80 | 0x4,  // Variable Bit Rate:
-                     // A2DP_AAC_VARIABLE_BIT_RATE_ENABLED
-                     // Bit Rate: 320000 = 0x4e200
-        0xe2,        // Bit Rate: 320000 = 0x4e200
-        0x00,        // Bit Rate: 320000 = 0x4e200
-        7,           // Unused
-        8,           // Unused
-        9            // Unused
-};
+const uint8_t* GetAacVbrCodecInfo(const bool enable_48kHz) {
+  static const uint8_t without_48kHz[AVDT_CODEC_SIZE] = {
+      8,           // Length (A2DP_AAC_INFO_LEN)
+      0,           // Media Type: AVDT_MEDIA_TYPE_AUDIO
+      2,           // Media Codec Type: A2DP_MEDIA_CT_AAC
+      0x80,        // Object Type: A2DP_AAC_OBJECT_TYPE_MPEG2_LC
+      0x01,        // Sampling Frequency: A2DP_AAC_SAMPLING_FREQ_44100
+      0x04,        // Channels: A2DP_AAC_CHANNEL_MODE_STEREO
+      0x80 | 0x4,  // Variable Bit Rate:
+                   // A2DP_AAC_VARIABLE_BIT_RATE_ENABLED
+                   // Bit Rate: 320000 = 0x4e200
+      0xe2,        // Bit Rate: 320000 = 0x4e200
+      0x00,        // Bit Rate: 320000 = 0x4e200
+      7,           // Unused
+      8,           // Unused
+      9            // Unused
+  };
+  static const uint8_t with_48kHz[AVDT_CODEC_SIZE] = {
+      8,           // Length (A2DP_AAC_INFO_LEN)
+      0,           // Media Type: AVDT_MEDIA_TYPE_AUDIO
+      2,           // Media Codec Type: A2DP_MEDIA_CT_AAC
+      0x80,        // Object Type: A2DP_AAC_OBJECT_TYPE_MPEG2_LC
+      0x00,        // Sampling Frequency: Empty
+      0x80 |       // Sampling Frequency: A2DP_AAC_SAMPLING_FREQ_48000
+          0x04,    // Channels: A2DP_AAC_CHANNEL_MODE_STEREO
+      0x80 | 0x4,  // Variable Bit Rate:
+                   // A2DP_AAC_VARIABLE_BIT_RATE_ENABLED
+                   // Bit Rate: 320000 = 0x4e200
+      0xe2,        // Bit Rate: 320000 = 0x4e200
+      0x00,        // Bit Rate: 320000 = 0x4e200
+      7,           // Unused
+      8,           // Unused
+      9            // Unused
+  };
+  return enable_48kHz ? with_48kHz : without_48kHz;
+}
 
 const uint8_t codec_info_aac_capability[AVDT_CODEC_SIZE] = {
         8,     // Length (A2DP_AAC_INFO_LEN)
@@ -319,11 +360,22 @@ protected:
         supported_codecs_.insert(codec_index);
       }
     }
+
+    // Init aac codec info according to flag config
+    is_aac_48kHz_enabled =
+        com::android::bluetooth::flags::a2dp_variable_aac_capability();
+    codec_info_aac = GetAacCodecInfo(is_aac_48kHz_enabled);
+    codec_info_aac_vbr = GetAacVbrCodecInfo(is_aac_48kHz_enabled);
   }
 
   bool has_codec_support(btav_a2dp_codec_index_t codec_index) {
     return supported_codecs_.find(codec_index) != supported_codecs_.end();
   }
+
+protected:
+  bool is_aac_48kHz_enabled{false};
+  const uint8_t* codec_info_aac{nullptr};
+  const uint8_t* codec_info_aac_vbr{nullptr};
 
 private:
   std::set<btav_a2dp_codec_index_t> supported_codecs_;
@@ -405,13 +457,13 @@ TEST_F(StackA2dpTest, test_a2dp_is_codec_valid_aac) {
 
   // Test with invalid AAC codecs
   uint8_t codec_info_aac_invalid[AVDT_CODEC_SIZE];
-  memcpy(codec_info_aac_invalid, codec_info_aac, sizeof(codec_info_aac));
+  memcpy(codec_info_aac_invalid, codec_info_aac, AVDT_CODEC_SIZE);
   codec_info_aac_invalid[0] = 0;  // Corrupt the Length field
   EXPECT_FALSE(A2DP_IsSourceCodecValid(codec_info_aac_invalid));
   EXPECT_FALSE(A2DP_IsPeerSourceCodecValid(codec_info_aac_invalid));
   EXPECT_FALSE(A2DP_IsPeerSinkCodecValid(codec_info_aac_invalid));
 
-  memcpy(codec_info_aac_invalid, codec_info_aac, sizeof(codec_info_aac));
+  memcpy(codec_info_aac_invalid, codec_info_aac, AVDT_CODEC_SIZE);
   codec_info_aac_invalid[1] = 0xff;  // Corrupt the Media Type field
   EXPECT_FALSE(A2DP_IsSourceCodecValid(codec_info_aac_invalid));
   EXPECT_FALSE(A2DP_IsPeerSourceCodecValid(codec_info_aac_invalid));
@@ -573,7 +625,7 @@ TEST_F(StackA2dpTest, test_a2dp_codec_equals) {
 
   // Test two identical AAC codecs
   memset(codec_info_aac_test, 0xAB, sizeof(codec_info_aac_test));
-  memcpy(codec_info_aac_test, codec_info_aac, sizeof(codec_info_aac));
+  memcpy(codec_info_aac_test, codec_info_aac, AVDT_CODEC_SIZE);
   EXPECT_TRUE(A2DP_CodecEquals(codec_info_aac, codec_info_aac_test));
 
   // Test two identical Opus codecs
@@ -602,7 +654,7 @@ TEST_F(StackA2dpTest, test_a2dp_codec_equals) {
 
   // Test two AAC codecs that are slightly different
   memset(codec_info_aac_test, 0xAB, sizeof(codec_info_aac_test));
-  memcpy(codec_info_aac_test, codec_info_aac, sizeof(codec_info_aac));
+  memcpy(codec_info_aac_test, codec_info_aac, AVDT_CODEC_SIZE);
   codec_info_aac_test[7] = codec_info_aac[7] + 1;
   EXPECT_FALSE(A2DP_CodecEquals(codec_info_aac, codec_info_aac_test));
   codec_info_aac_test[7] = codec_info_aac[7];
@@ -619,7 +671,7 @@ TEST_F(StackA2dpTest, test_a2dp_codec_equals) {
   // Test two AAC codecs that are identical, but with different fake
   // trailer data.
   memset(codec_info_aac_test, 0xAB, sizeof(codec_info_aac_test));
-  memcpy(codec_info_aac_test, codec_info_aac, sizeof(codec_info_aac));
+  memcpy(codec_info_aac_test, codec_info_aac, AVDT_CODEC_SIZE);
   codec_info_aac_test[9] = codec_info_aac[9] + 1;
   EXPECT_TRUE(A2DP_CodecEquals(codec_info_aac, codec_info_aac_test));
 }
@@ -798,9 +850,10 @@ TEST_F(StackA2dpTest, test_a2dp_adjust_codec) {
 
   // Test updating a valid AAC codec that doesn't need adjustment
   memset(codec_info_aac_test, 0xAB, sizeof(codec_info_aac_test));
-  memcpy(codec_info_aac_test, codec_info_aac, sizeof(codec_info_aac));
+  memcpy(codec_info_aac_test, codec_info_aac, AVDT_CODEC_SIZE);
   EXPECT_TRUE(A2DP_AdjustCodec(codec_info_aac_test));
-  EXPECT_TRUE(memcmp(codec_info_aac_test, codec_info_aac, sizeof(codec_info_aac)) == 0);
+  EXPECT_TRUE(memcmp(codec_info_aac_test, codec_info_aac, AVDT_CODEC_SIZE) ==
+              0);
 
   // Test updating a non-A2DP codec that is not recognized
   memset(codec_info_non_a2dp_test, 0xAB, sizeof(codec_info_non_a2dp_test));
@@ -1095,7 +1148,7 @@ TEST_F(A2dpCodecConfigTest, setCodecConfig) {
   codec_config = a2dp_codecs->findSourceCodecConfig(codec_info_aac_vbr);
   ASSERT_NE(codec_config, nullptr);
   ASSERT_TRUE(a2dp_codecs->setCodecConfig(
-      false /* is_in_48kHz_aac_allow_list */, codec_info_aac_vbr,
+      is_aac_48kHz_enabled /* is_in_48kHz_aac_allow_list */, codec_info_aac_vbr,
       false /* is_capability */, codec_info_result,
       true /* select_current_codec */));
   ASSERT_EQ(a2dp_codecs->getCurrentCodecConfig(), codec_config);
