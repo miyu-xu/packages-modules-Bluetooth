@@ -34,6 +34,7 @@
 
 #include <alloca.h>
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
@@ -47,6 +48,8 @@
 #include "btif/include/core_callbacks.h"
 #include "btif/include/stack_manager_t.h"
 #include "common/init_flags.h"
+#include "device/include/interop.h"
+#include "gd/discovery/device/bt_property.h"
 #include "hci/controller_interface.h"
 #include "internal_include/bt_target.h"
 #include "main/shim/entry.h"
@@ -106,6 +109,60 @@ void btif_gatts_add_bonded_dev_from_nv(const RawAddress& bda);
  ******************************************************************************/
 
 static bool btif_has_ble_keys(const std::string& bdstr);
+
+/*******************************************************************************
+ *  Internal Helper Class
+ ******************************************************************************/
+namespace {
+class VendorProdInfoParser {
+ public:
+  static bool GetFromCfg(const RawAddress* const addr,
+                         bt_vendor_product_info_t* info) {
+    if (GetWithKeySet(addr, ordinary_keys, info)) {
+      return true;
+    }
+    const std::string addr_log_str =
+        addr ? addr->ToStringForLogging() : std::string("null");
+    log::debug(
+        "failed to get vendor product info of {} with ordinary keys, fallback "
+        "with fallback keys",
+        addr_log_str);
+    return GetWithKeySet(addr, fallback_keys, info);
+  }
+
+ private:
+  // keys for [vendor_id_source, vendor_id, product_id, version]
+  static constexpr size_t keySetSize = 4;
+  static constexpr std::array<const char*, keySetSize> ordinary_keys = {
+      BTIF_STORAGE_KEY_VENDOR_ID_SOURCE, BTIF_STORAGE_KEY_VENDOR_ID,
+      BTIF_STORAGE_KEY_PRODUCT_ID, BTIF_STORAGE_KEY_VERSION};
+  static constexpr std::array<const char*, keySetSize> fallback_keys = {
+      BTIF_STORAGE_KEY_SDP_DI_VENDOR_ID_SRC,
+      BTIF_STORAGE_KEY_SDP_DI_MANUFACTURER, BTIF_STORAGE_KEY_SDP_DI_MODEL,
+      BTIF_STORAGE_KEY_SDP_DI_HW_VERSION};
+  static bool GetWithKeySet(const RawAddress* const addr,
+                            const std::array<const char*, keySetSize>& key_set,
+                            bt_vendor_product_info_t* info) {
+    const std::string addr_str = addr ? addr->ToString() : std::string();
+    const std::string addr_log_str =
+        addr ? addr->ToStringForLogging() : std::string("null");
+    int result[keySetSize] = {0};
+    for (size_t i = 0; i < keySetSize; ++i) {
+      if (!btif_config_get_int(addr_str, key_set[i], &result[i])) {
+        log::warn("failed to get '{}' from config for {}", key_set[i],
+                  addr_log_str);
+        return false;
+      }
+    }
+    info->vendor_id_src = (uint8_t)result[0];
+    info->vendor_id = (uint16_t)result[1];
+    info->product_id = (uint16_t)result[2];
+    info->version = (uint16_t)result[3];
+    return true;
+  }
+};
+
+}  // namespace
 
 /*******************************************************************************
  *  Static functions
@@ -344,26 +401,41 @@ static bool cfg2prop(const RawAddress* remote_bd_addr, bt_property_t* prop) {
     } break;
 
     case BT_PROPERTY_VENDOR_PRODUCT_INFO: {
-      bt_vendor_product_info_t* info =
-          reinterpret_cast<bt_vendor_product_info_t*>(prop->val);
-      int val;
+      if (!com::android::bluetooth::flags::a2dp_variable_aac_capability()) {
+        bt_vendor_product_info_t* info =
+            reinterpret_cast<bt_vendor_product_info_t*>(prop->val);
+        int val{0};
 
-      if (prop->len >= static_cast<int>(sizeof(bt_vendor_product_info_t))) {
-        ret =
-            btif_config_get_int(bdstr, BTIF_STORAGE_KEY_VENDOR_ID_SOURCE, &val);
-        info->vendor_id_src = static_cast<uint8_t>(val);
+        if (prop->len >= static_cast<int>(sizeof(bt_vendor_product_info_t))) {
+          ret = btif_config_get_int(bdstr, BTIF_STORAGE_KEY_VENDOR_ID_SOURCE,
+                                    &val);
+          info->vendor_id_src = static_cast<uint8_t>(val);
 
-        if (ret) {
-          ret = btif_config_get_int(bdstr, BTIF_STORAGE_KEY_VENDOR_ID, &val);
-          info->vendor_id = static_cast<uint16_t>(val);
+          if (ret) {
+            ret = btif_config_get_int(bdstr, BTIF_STORAGE_KEY_VENDOR_ID, &val);
+            info->vendor_id = static_cast<uint16_t>(val);
+          }
+          if (ret) {
+            ret = btif_config_get_int(bdstr, BTIF_STORAGE_KEY_PRODUCT_ID, &val);
+            info->product_id = static_cast<uint16_t>(val);
+          }
+          if (ret) {
+            ret = btif_config_get_int(bdstr, BTIF_STORAGE_KEY_VERSION, &val);
+            info->version = static_cast<uint16_t>(val);
+          }
         }
-        if (ret) {
-          ret = btif_config_get_int(bdstr, BTIF_STORAGE_KEY_PRODUCT_ID, &val);
-          info->product_id = static_cast<uint16_t>(val);
-        }
-        if (ret) {
-          ret = btif_config_get_int(bdstr, BTIF_STORAGE_KEY_VERSION, &val);
-          info->version = static_cast<uint16_t>(val);
+      } else {
+        if (prop->len >= static_cast<int>(sizeof(bt_vendor_product_info_t))) {
+          ret = VendorProdInfoParser::GetFromCfg(
+              remote_bd_addr,
+              reinterpret_cast<bt_vendor_product_info_t*>(prop->val));
+        } else {
+          const std::string addr_log_str =
+              remote_bd_addr ? remote_bd_addr->ToStringForLogging()
+                             : std::string("null");
+          log::error("invalid property len {} < {}, failed to get {} for {}",
+                     prop->len, sizeof(bt_vendor_product_info_t),
+                     bt_property_type_text(prop->type), addr_log_str);
         }
       }
     } break;
@@ -1510,4 +1582,26 @@ void btif_debug_linkkey_type_dump(int fd) {
 
     dprintf(fd, "\n");
   }
+}
+
+bool btif_storage_is_in_aac_48kHz_allow_list(const RawAddress& addr) {
+  if (!com::android::bluetooth::flags::a2dp_variable_aac_capability()) {
+    return false;
+  }
+  bt_vendor_product_info_t vp_info;
+  {
+    bt_property_t property{.type = BT_PROPERTY_VENDOR_PRODUCT_INFO,
+                           .len = sizeof(vp_info),
+                           .val = &vp_info};
+    const auto res = btif_storage_get_remote_device_property(&addr, &property);
+    if (res != BT_STATUS_SUCCESS) {
+      log::debug(
+          "failed to get vendor_product_info from remote device property of "
+          "{}, default to out of allow list",
+          addr);
+      return false;  // default not in allow list
+    }
+  }
+  return interop_match_vendor_product_ids(
+      INTEROP_A2DP_ENABLE_AAC_48KHZ, vp_info.vendor_id, vp_info.product_id);
 }
