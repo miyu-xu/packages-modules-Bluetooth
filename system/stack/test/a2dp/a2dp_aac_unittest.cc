@@ -31,6 +31,15 @@
 #include "test_util.h"
 #include "wav_reader.h"
 
+namespace server_configurable_flags {
+std::string GetServerConfigurableFlag(
+    const std::string& /* experiment_category_name */,
+    const std::string& /* experiment_flag_name */,
+    const std::string& /* default_value */) {
+  return "";
+}
+}  // namespace server_configurable_flags
+
 namespace {
 constexpr uint32_t kAacReadSize = 1024 * 2 * 2;
 constexpr uint32_t kA2dpTickUs = 23 * 1000;
