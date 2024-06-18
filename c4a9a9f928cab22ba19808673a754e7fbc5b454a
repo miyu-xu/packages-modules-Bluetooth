@@ -66,6 +66,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "20eb1c75_72744e7c",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-06-18T11:45:17Z",
+      "side": 1,
+      "message": "Ok, but why ?\n\nThis method seems to be generic for device regardless of type, why do it should be specially handled ?\n\nI would expect from this method looking at its parameter that it\u0027ll request to set some volume for device. In body it looks like there is a \"instruction\" comment that it\u0027s not possible for not receiving broadcast device - this should do someone else. This sounds for me like a fixing symptoms but not root cause, but I don\u0027t understand well problem at all for this change...",
+      "parentUuid": "e996513e_03ac502f",
+      "revId": "c4a9a9f928cab22ba19808673a754e7fbc5b454a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2dcbff3d_726ff51a",
         "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
         "patchSetId": 4
