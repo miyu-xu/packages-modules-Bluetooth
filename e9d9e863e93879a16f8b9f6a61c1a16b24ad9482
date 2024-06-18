@@ -39,6 +39,30 @@
       },
       "revId": "e9d9e863e93879a16f8b9f6a61c1a16b24ad9482",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cd0e990_338a0147",
+        "filename": "android/pandora/test/a2dp_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-06-18T16:44:42Z",
+      "side": 1,
+      "message": "The CL is merged, feel free to open a CL to correct this if you feel like to 😊",
+      "parentUuid": "e66dc144_d4385712",
+      "range": {
+        "startLine": 1,
+        "startChar": 12,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "e9d9e863e93879a16f8b9f6a61c1a16b24ad9482",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
