@@ -29,6 +29,7 @@
 #define LOG_TAG "bluetooth-a2dp"
 
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 #include <string.h>
 
 #include "avdt_api.h"
@@ -38,6 +39,8 @@
 #include "os/log.h"
 #include "osi/include/allocator.h"
 #include "osi/include/osi.h"
+#include "stack/include/a2dp_aac.h"
+#include "stack/include/a2dp_codec_api.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_types.h"
 
@@ -455,6 +458,44 @@ static void avdt_msg_bld_discover_rsp(uint8_t** p, tAVDT_MSG* p_msg) {
 
 /*******************************************************************************
  *
+ * Function         avdt_msg_bld_svccap_impl
+ *
+ * Description      This is a helper function for building a message
+ *                  for both getcap and getallcap requests.
+ *
+ * Returns          void.
+ *
+ ******************************************************************************/
+static void avdt_msg_bld_svccap_impl(uint8_t** p, tAVDT_MSG* p_msg,
+                                     const bool not_get_all_cap) {
+  AvdtpSepConfig cfg = *p_msg->svccap.p_cfg;
+
+#if !defined(EXCLUDE_NONSTANDARD_CODECS) // to prevent floss build fail
+  if (com::android::bluetooth::flags::a2dp_variable_aac_capability()) {
+    if (A2DP_SourceCodecIndex(cfg.codec_info) ==
+        BTAV_A2DP_CODEC_INDEX_SOURCE_AAC) {
+      const AvdtpCcb& ccb = avdtp_cb.ccb[p_msg->svccap.hdr.ccb_idx];
+      const RawAddress& peer_addr = ccb.peer_addr;
+      log::verbose(
+          "building codec config for {} response to peer {} "
+          "(is_in_48kHz_aac_allow_list: {})",
+          std::string(not_get_all_cap ? "getcap" : "getallcap"), peer_addr,
+          ccb.is_in_48kHz_aac_allow_list);
+      Change48kHzForAACCodecConfigIfNeeded(ccb.is_in_48kHz_aac_allow_list,
+                                           cfg.codec_info);
+    }
+  }
+#endif
+
+  if (not_get_all_cap) {
+    // Include only the Basic Capability
+    cfg.psc_mask &= AVDT_LEG_PSC;
+  }
+  avdt_msg_bld_cfg(p, &cfg);
+}
+
+/*******************************************************************************
+ *
  * Function         avdt_msg_bld_svccap
  *
  * Description      This message building function builds a message containing
@@ -465,12 +506,7 @@ static void avdt_msg_bld_discover_rsp(uint8_t** p, tAVDT_MSG* p_msg) {
  *
  ******************************************************************************/
 static void avdt_msg_bld_svccap(uint8_t** p, tAVDT_MSG* p_msg) {
-  AvdtpSepConfig cfg = *p_msg->svccap.p_cfg;
-
-  // Include only the Basic Capability
-  cfg.psc_mask &= AVDT_LEG_PSC;
-
-  avdt_msg_bld_cfg(p, &cfg);
+  avdt_msg_bld_svccap_impl(p, p_msg, true);
 }
 
 /*******************************************************************************
@@ -485,7 +521,7 @@ static void avdt_msg_bld_svccap(uint8_t** p, tAVDT_MSG* p_msg) {
  *
  ******************************************************************************/
 static void avdt_msg_bld_all_svccap(uint8_t** p, tAVDT_MSG* p_msg) {
-  avdt_msg_bld_cfg(p, p_msg->svccap.p_cfg);
+  avdt_msg_bld_svccap_impl(p, p_msg, false);
 }
 
 /*******************************************************************************
