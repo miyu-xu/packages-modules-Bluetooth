@@ -284,3 +284,24 @@ TEST_F(BtmDeviceInquiryTest, bta_dm_disc_device_discovery_single_result) {
 
   EXPECT_EQ(std::future_status::ready, one_result.wait_for(std::chrono::seconds(1)));
 }
+
+TEST_F(BtmDeviceInquiryTest, bta_dm_disc_device_discovery_thousand_results) {
+  EXPECT_CALL(*inquiry_callback_ptr, btm_inq_results_cb(_, _, _)).Times(1024);
+
+  uint8_t address_bytes[Address::kLength];
+  std::copy(kAddress2.data(), kAddress2.data() + Address::kLength, address_bytes);
+
+  for (size_t i = 0; i < 1024; i++) {
+    Address address;
+    address.FromOctets(address_bytes);
+    address_bytes[0]++;
+    if (i % 256 == 0) {
+      address_bytes[1]++;
+    }
+
+    InquiryResponse one_device(address, bluetooth::hci::PageScanRepetitionMode::R0,
+                               bluetooth::hci::ClassOfDevice(), 0x2345);
+    hci_layer_.IncomingEvent(InquiryResultBuilder::Create({one_device}));
+    std::this_thread::sleep_for(std::chrono::nanoseconds(1000000));
+  }
+}
