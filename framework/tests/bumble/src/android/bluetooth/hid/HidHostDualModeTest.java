@@ -52,6 +52,9 @@ public class HidHostDualModeTest {
     private static final String TAG = "HidHostDualModeTest";
     private SettableFuture<Integer> mFutureConnectionIntent,
             mFutureBondIntent,
+            mFutureHandShakeIntent,
+            mFutureReportIntent,
+            mFutureProtocolModeIntent,
             mFutureTransportIntent;
     private SettableFuture<Boolean> mFutureHogpServiceIntent;
     private BluetoothDevice mDevice;
@@ -60,6 +63,11 @@ public class HidHostDualModeTest {
     private final BluetoothManager mManager = mContext.getSystemService(BluetoothManager.class);
     private final BluetoothAdapter mAdapter = mManager.getAdapter();
     private HIDGrpc.HIDBlockingStub mHidBlockingStub;
+    private byte mReportId;
+    private static final int KEYBD_RPT_ID = 1;
+    private static final int KEYBD_RPT_SIZE = 9;
+    private static final int MOUSE_RPT_ID = 2;
+    private static final int MOUSE_RPT_SIZE = 4;
 
     @Rule(order = 0)
     public final CheckFlagsRule mCheckFlagsRule = DeviceFlagsValueProvider.createCheckFlagsRule();
@@ -129,6 +137,36 @@ public class HidHostDualModeTest {
                                 }
                             }
                             break;
+                        case BluetoothHidHost.ACTION_PROTOCOL_MODE_CHANGED:
+                            int protocolMode =
+                                    intent.getIntExtra(
+                                            BluetoothHidHost.EXTRA_PROTOCOL_MODE,
+                                            BluetoothHidHost.PROTOCOL_UNSUPPORTED_MODE);
+                            Log.i(TAG, "Protocol mode:" + protocolMode);
+                            if (mFutureProtocolModeIntent != null) {
+                                mFutureProtocolModeIntent.set(protocolMode);
+                            }
+                            break;
+                        case BluetoothHidHost.ACTION_HANDSHAKE:
+                            int handShake =
+                                    intent.getIntExtra(
+                                            BluetoothHidHost.EXTRA_STATUS,
+                                            BluetoothHidDevice.ERROR_RSP_UNKNOWN);
+                            Log.i(TAG, "Handshake status:" + handShake);
+                            if (mFutureHandShakeIntent != null) {
+                                mFutureHandShakeIntent.set(handShake);
+                            }
+                            break;
+                        case BluetoothHidHost.ACTION_REPORT:
+                            byte[] report = intent.getByteArrayExtra(BluetoothHidHost.EXTRA_REPORT);
+                            int reportSize =
+                                    intent.getIntExtra(
+                                            BluetoothHidHost.EXTRA_REPORT_BUFFER_SIZE, 0);
+                            mReportId = report[0];
+                            if (mFutureReportIntent != null) {
+                                mFutureReportIntent.set((reportSize - 1));
+                            }
+                            break;
                         default:
                             break;
                     }
@@ -152,6 +190,9 @@ public class HidHostDualModeTest {
         filter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
         filter.addAction(BluetoothDevice.ACTION_PAIRING_REQUEST);
         filter.addAction(BluetoothDevice.ACTION_UUID);
+        filter.addAction(BluetoothHidHost.ACTION_PROTOCOL_MODE_CHANGED);
+        filter.addAction(BluetoothHidHost.ACTION_HANDSHAKE);
+        filter.addAction(BluetoothHidHost.ACTION_REPORT);
         mContext.registerReceiver(mHidStateReceiver, filter);
         mAdapter.getProfileProxy(mContext, new HidHostServiceListener(), BluetoothProfile.HID_HOST);
 
@@ -169,6 +210,19 @@ public class HidHostDualModeTest {
         mDevice = mBumble.getRemoteDevice();
         assertThat(mDevice.createBond()).isTrue();
         assertThat(mFutureConnectionIntent.get()).isEqualTo(BluetoothProfile.STATE_CONNECTED);
+        mFutureHogpServiceIntent = SettableFuture.create();
+        assertThat(mFutureHogpServiceIntent.get()).isTrue();
+        assertThat(mService.getPreferredTransport(mDevice))
+                .isEqualTo(BluetoothDevice.TRANSPORT_BREDR);
+        // LE transport
+        mFutureTransportIntent = SettableFuture.create();
+        mService.setPreferredTransport(mDevice, BluetoothDevice.TRANSPORT_LE);
+        // Verifies BREDR transport Disconnected
+        mFutureConnectionIntent = SettableFuture.create();
+        assertThat(mFutureConnectionIntent.get()).isEqualTo(BluetoothProfile.STATE_DISCONNECTED);
+
+        assertThat(mFutureTransportIntent.get()).isEqualTo(BluetoothDevice.TRANSPORT_LE);
+        assertThat(mService.getPreferredTransport(mDevice)).isEqualTo(BluetoothDevice.TRANSPORT_LE);
     }
 
     @After
@@ -197,21 +251,6 @@ public class HidHostDualModeTest {
     })
     public void setPreferredTransportTest() throws Exception {
 
-        mFutureHogpServiceIntent = SettableFuture.create();
-        assertThat(mFutureHogpServiceIntent.get()).isTrue();
-
-        assertThat(mService.getPreferredTransport(mDevice))
-                .isEqualTo(BluetoothDevice.TRANSPORT_BREDR);
-        // LE transport
-        mFutureTransportIntent = SettableFuture.create();
-        mService.setPreferredTransport(mDevice, BluetoothDevice.TRANSPORT_LE);
-        // Verifies BREDR transport Disconnected
-        mFutureConnectionIntent = SettableFuture.create();
-        assertThat(mFutureConnectionIntent.get()).isEqualTo(BluetoothProfile.STATE_DISCONNECTED);
-
-        assertThat(mFutureTransportIntent.get()).isEqualTo(BluetoothDevice.TRANSPORT_LE);
-        assertThat(mService.getPreferredTransport(mDevice)).isEqualTo(BluetoothDevice.TRANSPORT_LE);
-
         // BREDR transport
         mFutureTransportIntent = SettableFuture.create();
         mService.setPreferredTransport(mDevice, BluetoothDevice.TRANSPORT_BREDR);
@@ -222,5 +261,117 @@ public class HidHostDualModeTest {
         assertThat(mFutureTransportIntent.get()).isEqualTo(BluetoothDevice.TRANSPORT_BREDR);
         assertThat(mService.getPreferredTransport(mDevice))
                 .isEqualTo(BluetoothDevice.TRANSPORT_BREDR);
+    }
+
+    /**
+     * Test Get Report
+     *
+     * <ol>
+     *   <li>1. Android creates bonding and connect the HID Device
+     *   <li>2. Android get report and verifies the report
+     * </ol>
+     */
+    @Test
+    @RequiresFlagsEnabled({
+        Flags.FLAG_ALLOW_SWITCHING_HID_AND_HOGP,
+        Flags.FLAG_SAVE_INITIAL_HID_CONNECTION_POLICY
+    })
+    public void hogpGetReportTest() throws Exception {
+
+        // Keyboard report
+        byte id = KEYBD_RPT_ID;
+        mService.getReport(mDevice, BluetoothHidHost.REPORT_TYPE_INPUT, id, (int) 0);
+        mFutureReportIntent = SettableFuture.create();
+        assertThat(mFutureReportIntent.get()).isEqualTo(KEYBD_RPT_SIZE);
+        assertThat(mReportId).isEqualTo(KEYBD_RPT_ID);
+
+        // Mouse report
+        id = MOUSE_RPT_ID;
+        mService.getReport(mDevice, BluetoothHidHost.REPORT_TYPE_INPUT, id, (int) 0);
+        mFutureReportIntent = SettableFuture.create();
+        assertThat(mFutureReportIntent.get()).isEqualTo(MOUSE_RPT_SIZE);
+        assertThat(mReportId).isEqualTo(MOUSE_RPT_ID);
+    }
+
+    /**
+     * Test Get Protocol mode
+     *
+     * <ol>
+     *   <li>1. Android creates bonding and connect the HID Device
+     *   <li>2. Android Gets the Protocol mode and verifies the mode
+     * </ol>
+     */
+    @Test
+    @RequiresFlagsEnabled({
+        Flags.FLAG_ALLOW_SWITCHING_HID_AND_HOGP,
+        Flags.FLAG_SAVE_INITIAL_HID_CONNECTION_POLICY
+    })
+    public void hogpGetProtocolModeTest() throws Exception {
+        mService.getProtocolMode(mDevice);
+        mFutureProtocolModeIntent = SettableFuture.create();
+        assertThat(mFutureProtocolModeIntent.get())
+                .isEqualTo(BluetoothHidHost.PROTOCOL_REPORT_MODE);
+    }
+
+    /**
+     * Test Set Protocol mode
+     *
+     * <ol>
+     *   <li>1. Android creates bonding and connect the HID Device
+     *   <li>2. Android Sets the Protocol mode and verifies the mode
+     * </ol>
+     */
+    @Test
+    @RequiresFlagsEnabled({
+        Flags.FLAG_ALLOW_SWITCHING_HID_AND_HOGP,
+        Flags.FLAG_SAVE_INITIAL_HID_CONNECTION_POLICY
+    })
+    public void hogpSetProtocolModeTest() throws Exception {
+        mService.setProtocolMode(mDevice, BluetoothHidHost.PROTOCOL_BOOT_MODE);
+        mFutureHandShakeIntent = SettableFuture.create();
+        assertThat(mFutureHandShakeIntent.get()).isEqualTo(BluetoothHidDevice.ERROR_RSP_SUCCESS);
+    }
+
+    /**
+     * Test Set Report
+     *
+     * <ol>
+     *   <li>1. Android creates bonding and connect the HID Device
+     *   <li>2. Android Set report and verifies the report
+     * </ol>
+     */
+    @Test
+    @RequiresFlagsEnabled({
+        Flags.FLAG_ALLOW_SWITCHING_HID_AND_HOGP,
+        Flags.FLAG_SAVE_INITIAL_HID_CONNECTION_POLICY
+    })
+    public void hogpSetReportTest() throws Exception {
+        // Keyboard report
+        mService.setReport(mDevice, BluetoothHidHost.REPORT_TYPE_INPUT, "010203040506070809");
+        mFutureHandShakeIntent = SettableFuture.create();
+        assertThat(mFutureHandShakeIntent.get()).isEqualTo(BluetoothHidDevice.ERROR_RSP_SUCCESS);
+        // Mouse report
+        mService.setReport(mDevice, BluetoothHidHost.REPORT_TYPE_INPUT, "02030405");
+        mFutureHandShakeIntent = SettableFuture.create();
+        assertThat(mFutureHandShakeIntent.get()).isEqualTo(BluetoothHidDevice.ERROR_RSP_SUCCESS);
+    }
+
+    /**
+     * Test Virtual Unplug from Hid Host
+     *
+     * <ol>
+     *   <li>1. Android creates bonding and connect the HID Device
+     *   <li>2. Android Virtual Unplug and verifies Bonding
+     * </ol>
+     */
+    @Test
+    @RequiresFlagsEnabled({
+        Flags.FLAG_ALLOW_SWITCHING_HID_AND_HOGP,
+        Flags.FLAG_SAVE_INITIAL_HID_CONNECTION_POLICY
+    })
+    public void hogpVirtualUnplugFromHidHostTest() throws Exception {
+        mService.virtualUnplug(mDevice);
+        mFutureBondIntent = SettableFuture.create();
+        assertThat(mFutureBondIntent.get()).isEqualTo(BluetoothDevice.BOND_NONE);
     }
 }
