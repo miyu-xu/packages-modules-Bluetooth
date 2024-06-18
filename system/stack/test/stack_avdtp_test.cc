@@ -28,6 +28,14 @@
 #include "test/common/mock_functions.h"
 #include "types/raw_address.h"
 
+namespace server_configurable_flags {
+std::string GetServerConfigurableFlag(
+    const std::string& experiment_category_name,
+    const std::string& experiment_flag_name, const std::string& default_value) {
+  return "";
+}
+}  // namespace server_configurable_flags
+
 class StackAvdtpTest : public ::testing::Test {
 protected:
   StackAvdtpTest() = default;
