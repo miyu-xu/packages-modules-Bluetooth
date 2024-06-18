@@ -424,6 +424,17 @@ bt_status_t btif_storage_set_hid_connection_policy(const tAclLinkSpec& link_spec
 bt_status_t btif_storage_get_hid_connection_policy(const tAclLinkSpec& link_spec,
                                                    bool* reconnect_allowed);
 
+/*******************************************************************************
+ *
+ * Function         btif_storage_is_in_aac_48kHz_allow_list
+ *
+ * Description      Check if the given device is in the AAC 48 kHz allow list.
+ *
+ * Returns          true if is in allow list for AAC 48 kHz sampling rate
+ *
+ ******************************************************************************/
+bool btif_storage_is_in_aac_48kHz_allow_list(const RawAddress& addr);
+
 /******************************************************************************
  * Exported for unit tests
  *****************************************************************************/
