@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ab4353d_192076e9",
+        "filename": "system/gd/rust/linux/client/src/bt_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-06-18T07:17:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07baf8ee_a85b846a",
+      "range": {
+        "startLine": 8,
+        "startChar": 4,
+        "endLine": 8,
+        "endChar": 9
+      },
+      "revId": "10b440ba8738d7ef6ae58d73e22ae00ddc9f27e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc72f74e_8ad3b622",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03c71f50_2b1aef9e",
+        "filename": "system/gd/rust/linux/client/src/bt_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-06-18T07:17:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc72f74e_8ad3b622",
+      "range": {
+        "startLine": 41,
+        "startChar": 31,
+        "endLine": 41,
+        "endChar": 36
+      },
+      "revId": "10b440ba8738d7ef6ae58d73e22ae00ddc9f27e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca822833_5d980e37",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-06-18T05:27:32Z",
       "side": 1,
       "message": "Using async mutex?",
+      "range": {
+        "startLine": 437,
+        "startChar": 0,
+        "endLine": 437,
+        "endChar": 76
+      },
+      "revId": "10b440ba8738d7ef6ae58d73e22ae00ddc9f27e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddc728a3_99169356",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-06-18T07:17:03Z",
+      "side": 1,
+      "message": "As offline discussion, I\u0027ve reverted these hunks.",
+      "parentUuid": "ca822833_5d980e37",
       "range": {
         "startLine": 437,
         "startChar": 0,
