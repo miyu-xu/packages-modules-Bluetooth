@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c474127d_f1080ea8",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2960,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-06-18T16:41:08Z",
+      "side": 1,
+      "message": "Nit: I feel this function should not run in JNI thread. We should have performed a context switch here.",
+      "revId": "946fb29c661fba450e77477bcb1643c8295f817e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
