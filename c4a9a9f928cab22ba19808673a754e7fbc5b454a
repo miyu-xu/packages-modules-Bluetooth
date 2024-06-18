@@ -102,6 +102,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a81ebaf5_85f340fb",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-06-18T15:15:25Z",
+      "side": 1,
+      "message": "Hmmm this method declaration for me looks clear and transparent - use Volume Control to change volume on device:\n- Single\n- Group (if grouped by CSIS)\n\nI can imagine that this could be simply, standalone non even related to: Unicast, broadcast, broadcast delegator usage API.\n\nIf the idea was as you said \"only to control Broadcast Sink devices which are connected along with the main active Broadcast Sink device\" which seems to me be a weird construction - mixing Broadcast inside of Volume Control (I would rather understand Broadcast Assistant using VC API) - then I agree that this naming is confusing, but if this function intention is to be generic I don\u0027t see a reason for limitiation here - there is a UL request and needs to be handled e.g. we don\u0027t care if calling some functions .",
+      "parentUuid": "df74ea70_7aee08fd",
+      "revId": "c4a9a9f928cab22ba19808673a754e7fbc5b454a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2dcbff3d_726ff51a",
         "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
         "patchSetId": 4
