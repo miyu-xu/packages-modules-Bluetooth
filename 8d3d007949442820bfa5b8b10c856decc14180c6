@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fb20d6df_cd57a608",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-06-18T06:08:50Z",
+      "side": 1,
+      "message": "\u003e Don\u0027t execute this loop when the flag is enabled.\n\nDone. Thank you.\n\n\u003e if there\u0027s any desirable effect to keep\n\nThe flag changes does not have any impact on the calling of this. This is only called from the `AdapterService.dump()` method so I believe keeping the rest the same would be beneficial to not modify the logs/logging structure. WDYT?",
+      "parentUuid": "a074dced_d4c113c5",
+      "range": {
+        "startLine": 328,
+        "startChar": 36,
+        "endLine": 328,
+        "endChar": 39
+      },
+      "revId": "8d3d007949442820bfa5b8b10c856decc14180c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cf4d9439_69c8d5c1",
         "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2024-06-18T05:16:49Z",
       "side": 1,
       "message": "I think this is one of the few places where we might want to add a flag guard and not notify the scan helper of the change. I didn\u0027t trace the code all the way, so it may not be harmful to leave as is (there should be no scan clients associated with the local instance of the scan helper and its scan manager instance when the flag is on).\n\nBesides this and test mode the other references are fine, including stop and cleanup.",
+      "range": {
+        "startLine": 383,
+        "startChar": 16,
+        "endLine": 383,
+        "endChar": 50
+      },
+      "revId": "8d3d007949442820bfa5b8b10c856decc14180c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c211884_f9e33df1",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-06-18T06:08:50Z",
+      "side": 1,
+      "message": "\u003e I didn\u0027t trace the code all the way, so it may not be harmful to leave as is (there should be no scan clients associated with the local instance of the scan helper and its scan manager instance when the flag is on).\n\nI agree but just to be on the safe side,\n\n\u003e I think this is one of the few places where we might want to add a flag guard and not notify the scan helper of the change\n\nDone. Thank you.",
+      "parentUuid": "cf4d9439_69c8d5c1",
       "range": {
         "startLine": 383,
         "startChar": 16,
