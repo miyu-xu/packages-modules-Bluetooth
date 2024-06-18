@@ -16,6 +16,24 @@
       "message": "Is there a reason to move this ?",
       "revId": "6f0b511f811141eb2c69da410485f94864cbdd0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0759e9ed_e9d3773c",
+        "filename": "system/main/shim/stack.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-06-18T23:56:33Z",
+      "side": 1,
+      "message": "GetBtSnoopMode() depends on sysprop and it\u0027s been used in factory of SnoopLogger. In short, the dependency looks like:\n\n   SnoopLogger ctor -\u003e GetBtSnoopMode() -\u003e SyspropsModule\n\nAs current module dependency is fullfilled after module contructed, the override of btsnoop_mode_ in sysprop won\u0027t take effected on Floss even we specify the dependency between btsnoop and sysprop. \nSo, creating SyspropsModule earlier can resolve the dependency required in the module ctor. WDYT?",
+      "parentUuid": "c2254909_cfc28b07",
+      "revId": "6f0b511f811141eb2c69da410485f94864cbdd0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
