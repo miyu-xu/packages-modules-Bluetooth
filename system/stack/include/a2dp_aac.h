@@ -263,4 +263,9 @@ bool A2DP_InitCodecConfigAac(AvdtpSepConfig* p_cfg);
 // configuration entry pointed by |p_cfg|.
 bool A2DP_InitCodecConfigAacSink(AvdtpSepConfig* p_cfg);
 
+// Modify the codec info according to whether we should enable 48 kHz sampling
+// rate for AAC.
+void Change48kHzForAACCodecConfigIfNeeded(const bool should_enable_AAC_48kHz,
+                                          uint8_t* codec_info);
+
 #endif  // A2DP_AAC_H
