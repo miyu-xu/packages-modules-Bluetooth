@@ -26,6 +26,7 @@
 #include "a2dp_aac.h"
 
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 #include <string.h>
 
 #include "a2dp_aac_decoder.h"
@@ -53,7 +54,8 @@ typedef struct {
 } tA2DP_AAC_CIE;
 
 static bool aac_source_caps_configured = false;
-static tA2DP_AAC_CIE a2dp_aac_source_caps = {};
+static tA2DP_AAC_CIE a2dp_aac_source_caps_without_48kHz = {};
+static tA2DP_AAC_CIE a2dp_aac_source_caps_with_48kHz = {};
 
 /* AAC Source codec capabilities */
 static const tA2DP_AAC_CIE a2dp_aac_cbr_source_caps = {
@@ -102,15 +104,21 @@ static const tA2DP_AAC_CIE a2dp_aac_sink_caps = {
         // bits_per_sample
         BTAV_A2DP_CODEC_BITS_PER_SAMPLE_16};
 
-/* Default AAC codec configuration */
-static const tA2DP_AAC_CIE a2dp_aac_default_config = {
-        A2DP_AAC_OBJECT_TYPE_MPEG2_LC,        // objectType
-        A2DP_AAC_SAMPLING_FREQ_44100,         // sampleRate
-        A2DP_AAC_CHANNEL_MODE_STEREO,         // channelMode
-        A2DP_AAC_VARIABLE_BIT_RATE_DISABLED,  // variableBitRateSupport
-        A2DP_AAC_DEFAULT_BITRATE,             // bitRate
-        BTAV_A2DP_CODEC_BITS_PER_SAMPLE_16    // bits_per_sample
-};
+/* Get default AAC codec configuration */
+static const tA2DP_AAC_CIE& GetA2dpAacDefaultConfig() {
+  static const tA2DP_AAC_CIE config = {
+      A2DP_AAC_OBJECT_TYPE_MPEG2_LC,  // objectType
+      static_cast<uint16_t>(
+          com::android::bluetooth::flags::a2dp_variable_aac_capability()
+              ? A2DP_AAC_SAMPLING_FREQ_48000
+              : A2DP_AAC_SAMPLING_FREQ_44100),  // sampleRate
+      A2DP_AAC_CHANNEL_MODE_STEREO,             // channelMode
+      A2DP_AAC_VARIABLE_BIT_RATE_DISABLED,      // variableBitRateSupport
+      A2DP_AAC_DEFAULT_BITRATE,                 // bitRate
+      BTAV_A2DP_CODEC_BITS_PER_SAMPLE_16        // bits_per_sample
+  };
+  return config;
+}
 
 static const tA2DP_ENCODER_INTERFACE a2dp_encoder_interface_aac = {
         a2dp_aac_encoder_init,
@@ -135,6 +143,15 @@ static const tA2DP_DECODER_INTERFACE a2dp_decoder_interface_aac = {
 static tA2DP_STATUS A2DP_CodecInfoMatchesCapabilityAac(const tA2DP_AAC_CIE* p_cap,
                                                        const uint8_t* p_codec_info,
                                                        bool is_capability);
+
+static const tA2DP_AAC_CIE* GetSourceCaps(
+    const bool enable_48kHz_sampling_rate) {
+  if (!com::android::bluetooth::flags::a2dp_variable_aac_capability()) {
+    return &a2dp_aac_source_caps_without_48kHz;
+  }
+  return enable_48kHz_sampling_rate ? &a2dp_aac_source_caps_with_48kHz
+                                    : &a2dp_aac_source_caps_without_48kHz;
+}
 
 // Builds the AAC Media Codec Capabilities byte sequence beginning from the
 // LOSC octet. |media_type| is the media type |AVDT_MEDIA_TYPE_*|.
@@ -178,6 +195,23 @@ static bool A2DP_BuildInfoAac(uint8_t media_type, const tA2DP_AAC_CIE* p_ie, uin
   *p_result++ = (uint8_t)(p_ie->bitRate & A2DP_AAC_BIT_RATE_MASK2);
 
   return true;
+}
+
+void Change48kHzForAACCodecConfigIfNeeded(const bool should_enable_AAC_48kHz,
+                                          uint8_t* codec_info) {
+  if (!com::android::bluetooth::flags::a2dp_variable_aac_capability()) {
+    log::warn(
+        "accidentally calling this function without the flag enabled, no op");
+    return;
+  }
+  const bool is_48khz_turned_on =
+      ((codec_info[5] << 8) & A2DP_AAC_SAMPLING_FREQ_MASK1) &
+      A2DP_AAC_SAMPLING_FREQ_48000;
+  if ((int)should_enable_AAC_48kHz ^ (int)is_48khz_turned_on) {
+    log::debug("changing AAC codec_info for, turn {} 48 kHz sampling rate",
+               std::string(should_enable_AAC_48kHz ? "on" : "off"));
+    codec_info[5] ^= (A2DP_AAC_SAMPLING_FREQ_48000 >> 8);
+  }
 }
 
 // Parses the AAC Media Codec Capabilities byte sequence beginning from the
@@ -680,15 +714,23 @@ static void aac_source_caps_initialize() {
   if (aac_source_caps_configured) {
     return;
   }
-  a2dp_aac_source_caps = osi_property_get_bool("persist.bluetooth.a2dp_aac.vbr_supported", false)
-                                 ? a2dp_aac_vbr_source_caps
-                                 : a2dp_aac_cbr_source_caps;
+  // Initialize source caps without 48kHz
+  a2dp_aac_source_caps_without_48kHz =
+      osi_property_get_bool("persist.bluetooth.a2dp_aac.vbr_supported", false)
+          ? a2dp_aac_vbr_source_caps
+          : a2dp_aac_cbr_source_caps;
+  // Initialize source caps with 48kHz
+  a2dp_aac_source_caps_with_48kHz = a2dp_aac_source_caps_without_48kHz;
+  a2dp_aac_source_caps_with_48kHz.sampleRate |= A2DP_AAC_SAMPLING_FREQ_48000;
+
   aac_source_caps_configured = true;
 }
 
 bool A2DP_InitCodecConfigAac(AvdtpSepConfig* p_cfg) {
   aac_source_caps_initialize();
-  return A2DP_BuildInfoAac(AVDT_MEDIA_TYPE_AUDIO, &a2dp_aac_source_caps, p_cfg->codec_info);
+  // At A2dpService setup, initialize Ssb without 48kHz sampling rate first
+  const tA2DP_AAC_CIE* const source_caps = GetSourceCaps(false);
+  return A2DP_BuildInfoAac(AVDT_MEDIA_TYPE_AUDIO, source_caps, p_cfg->codec_info);
 }
 
 bool A2DP_InitCodecConfigAacSink(AvdtpSepConfig* p_cfg) {
@@ -699,24 +741,26 @@ A2dpCodecConfigAacSource::A2dpCodecConfigAacSource(btav_a2dp_codec_priority_t co
     : A2dpCodecConfigAacBase(BTAV_A2DP_CODEC_INDEX_SOURCE_AAC, A2DP_CodecIndexStrAac(),
                              codec_priority, true) {
   aac_source_caps_initialize();
+  // At A2dpService setup, init BtaAvCoSep without 48kHz sampling rate first
+  const tA2DP_AAC_CIE* const source_caps = GetSourceCaps(false);
   // Compute the local capability
-  if (a2dp_aac_source_caps.sampleRate & A2DP_AAC_SAMPLING_FREQ_44100) {
+  if (source_caps->sampleRate & A2DP_AAC_SAMPLING_FREQ_44100) {
     codec_local_capability_.sample_rate |= BTAV_A2DP_CODEC_SAMPLE_RATE_44100;
   }
-  if (a2dp_aac_source_caps.sampleRate & A2DP_AAC_SAMPLING_FREQ_48000) {
+  if (source_caps->sampleRate & A2DP_AAC_SAMPLING_FREQ_48000) {
     codec_local_capability_.sample_rate |= BTAV_A2DP_CODEC_SAMPLE_RATE_48000;
   }
-  if (a2dp_aac_source_caps.sampleRate & A2DP_AAC_SAMPLING_FREQ_88200) {
+  if (source_caps->sampleRate & A2DP_AAC_SAMPLING_FREQ_88200) {
     codec_local_capability_.sample_rate |= BTAV_A2DP_CODEC_SAMPLE_RATE_88200;
   }
-  if (a2dp_aac_source_caps.sampleRate & A2DP_AAC_SAMPLING_FREQ_96000) {
+  if (source_caps->sampleRate & A2DP_AAC_SAMPLING_FREQ_96000) {
     codec_local_capability_.sample_rate |= BTAV_A2DP_CODEC_SAMPLE_RATE_96000;
   }
-  codec_local_capability_.bits_per_sample = a2dp_aac_source_caps.bits_per_sample;
-  if (a2dp_aac_source_caps.channelMode & A2DP_AAC_CHANNEL_MODE_MONO) {
+  codec_local_capability_.bits_per_sample = source_caps->bits_per_sample;
+  if (source_caps->channelMode & A2DP_AAC_CHANNEL_MODE_MONO) {
     codec_local_capability_.channel_mode |= BTAV_A2DP_CODEC_CHANNEL_MODE_MONO;
   }
-  if (a2dp_aac_source_caps.channelMode & A2DP_AAC_CHANNEL_MODE_STEREO) {
+  if (source_caps->channelMode & A2DP_AAC_CHANNEL_MODE_STEREO) {
     codec_local_capability_.channel_mode |= BTAV_A2DP_CODEC_CHANNEL_MODE_STEREO;
   }
 }
@@ -940,7 +984,9 @@ tA2DP_STATUS A2dpCodecConfigAacBase::setCodecConfig(
   uint8_t channelMode;
   uint16_t sampleRate;
   btav_a2dp_codec_bits_per_sample_t bits_per_sample;
-  const tA2DP_AAC_CIE* p_a2dp_aac_caps = (is_source_) ? &a2dp_aac_source_caps : &a2dp_aac_sink_caps;
+  const tA2DP_AAC_CIE* p_a2dp_aac_caps =
+      (is_source_) ? GetSourceCaps(is_in_48kHz_aac_allow_list)
+                   : &a2dp_aac_sink_caps;
 
   // Save the internal state
   btav_a2dp_codec_config_t saved_codec_config = codec_config_;
@@ -1086,8 +1132,9 @@ tA2DP_STATUS A2dpCodecConfigAacBase::setCodecConfig(
     }
 
     // No user preference - try the default config
-    if (select_best_sample_rate(a2dp_aac_default_config.sampleRate & peer_info_cie.sampleRate,
-                                &result_config_cie, &codec_config_)) {
+    if (select_best_sample_rate(
+            GetA2dpAacDefaultConfig().sampleRate & peer_info_cie.sampleRate,
+            &result_config_cie, &codec_config_)) {
       break;
     }
 
@@ -1160,8 +1207,8 @@ tA2DP_STATUS A2dpCodecConfigAacBase::setCodecConfig(
     }
 
     // No user preference - try the default config
-    if (select_best_bits_per_sample(a2dp_aac_default_config.bits_per_sample, &result_config_cie,
-                                    &codec_config_)) {
+    if (select_best_bits_per_sample(GetA2dpAacDefaultConfig().bits_per_sample,
+                                    &result_config_cie, &codec_config_)) {
       break;
     }
 
@@ -1173,9 +1220,10 @@ tA2DP_STATUS A2dpCodecConfigAacBase::setCodecConfig(
   } while (false);
   if (codec_config_.bits_per_sample == BTAV_A2DP_CODEC_BITS_PER_SAMPLE_NONE) {
     log::error(
-            "cannot match bits per sample: default = 0x{:x} user preference = "
-            "0x{:x}",
-            a2dp_aac_default_config.bits_per_sample, codec_user_config_.bits_per_sample);
+      "cannot match bits per sample: default = 0x{:x} user preference = "
+      "0x{:x}",
+      GetA2dpAacDefaultConfig().bits_per_sample,
+      codec_user_config_.bits_per_sample);
     status = A2DP_NOT_SUPPORTED_BIT_RATE;
     goto fail;
   }
@@ -1235,8 +1283,9 @@ tA2DP_STATUS A2dpCodecConfigAacBase::setCodecConfig(
     }
 
     // No user preference - try the default config
-    if (select_best_channel_mode(a2dp_aac_default_config.channelMode & peer_info_cie.channelMode,
-                                 &result_config_cie, &codec_config_)) {
+    if (select_best_channel_mode(
+            GetA2dpAacDefaultConfig().channelMode & peer_info_cie.channelMode,
+            &result_config_cie, &codec_config_)) {
       break;
     }
 
@@ -1337,7 +1386,9 @@ bool A2dpCodecConfigAacBase::setPeerCodecCapabilities(
   uint8_t channelMode;
   uint16_t sampleRate;
   uint8_t variableBitRateSupport;
-  const tA2DP_AAC_CIE* p_a2dp_aac_caps = (is_source_) ? &a2dp_aac_source_caps : &a2dp_aac_sink_caps;
+  const tA2DP_AAC_CIE* p_a2dp_aac_caps =
+      (is_source_) ? GetSourceCaps(is_in_48kHz_aac_allow_list)
+                   : &a2dp_aac_sink_caps;
 
   // Save the internal state
   btav_a2dp_codec_config_t saved_codec_selectable_capability = codec_selectable_capability_;
@@ -1356,8 +1407,19 @@ bool A2dpCodecConfigAacBase::setPeerCodecCapabilities(
   if (sampleRate & A2DP_AAC_SAMPLING_FREQ_44100) {
     codec_selectable_capability_.sample_rate |= BTAV_A2DP_CODEC_SAMPLE_RATE_44100;
   }
-  if (sampleRate & A2DP_AAC_SAMPLING_FREQ_48000) {
-    codec_selectable_capability_.sample_rate |= BTAV_A2DP_CODEC_SAMPLE_RATE_48000;
+  if (com::android::bluetooth::flags::a2dp_variable_aac_capability()) {
+    const bool enable_48khz_sample_rate =
+        is_source_ && is_in_48kHz_aac_allow_list;
+    if (enable_48khz_sample_rate &&
+        (sampleRate & A2DP_AAC_SAMPLING_FREQ_48000)) {
+      codec_selectable_capability_.sample_rate |=
+          BTAV_A2DP_CODEC_SAMPLE_RATE_48000;
+    }
+  } else {
+    if (sampleRate & A2DP_AAC_SAMPLING_FREQ_48000) {
+      codec_selectable_capability_.sample_rate |=
+          BTAV_A2DP_CODEC_SAMPLE_RATE_48000;
+    }
   }
   if (sampleRate & A2DP_AAC_SAMPLING_FREQ_88200) {
     codec_selectable_capability_.sample_rate |= BTAV_A2DP_CODEC_SAMPLE_RATE_88200;
