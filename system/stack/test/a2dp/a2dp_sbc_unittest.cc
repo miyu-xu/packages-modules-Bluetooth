@@ -105,14 +105,16 @@ class A2dpSbcTest : public ::testing::Test {
     ASSERT_NE(peer_codec_index, BTAV_A2DP_CODEC_INDEX_MAX);
     sink_codec_config_ = a2dp_codecs_->findSinkCodecConfig(kCodecInfoSbcCapability);
     ASSERT_NE(sink_codec_config_, nullptr);
-    ASSERT_TRUE(a2dp_codecs_->setSinkCodecConfig(kCodecInfoSbcCapability, true,
-                                                 codec_info_result, true));
-    ASSERT_TRUE(a2dp_codecs_->setPeerSinkCodecCapabilities(kCodecInfoSbcCapability));
+    ASSERT_TRUE(a2dp_codecs_->setSinkCodecConfig(
+        false, kCodecInfoSbcCapability, true, codec_info_result, true));
+    ASSERT_TRUE(a2dp_codecs_->setPeerSinkCodecCapabilities(
+        false, kCodecInfoSbcCapability));
     // Compare the result codec with the local test codec info
     for (size_t i = 0; i < kCodecInfoSbcCapability[0] + 1; i++) {
       ASSERT_EQ(codec_info_result[i], kCodecInfoSbcCapability[i]);
     }
-    ASSERT_TRUE(a2dp_codecs_->setCodecConfig(kCodecInfoSbcCapability, true, codec_info_result, true));
+    ASSERT_TRUE(a2dp_codecs_->setCodecConfig(false, kCodecInfoSbcCapability,
+                                             true, codec_info_result, true));
     source_codec_config_ = a2dp_codecs_->getCurrentCodecConfig();
   }
 
@@ -239,7 +241,8 @@ TEST_F(A2dpSbcTest, decoded_data_cb_invoked) {
 
 TEST_F(A2dpSbcTest, set_source_codec_config_works) {
   uint8_t codec_info_result[AVDT_CODEC_SIZE];
-  ASSERT_TRUE(a2dp_codecs_->setCodecConfig(kCodecInfoSbcCapability, true, codec_info_result, true));
+  ASSERT_TRUE(a2dp_codecs_->setCodecConfig(false, kCodecInfoSbcCapability, true,
+                                           codec_info_result, true));
   ASSERT_TRUE(A2DP_CodecTypeEqualsSbc(codec_info_result, kCodecInfoSbcCapability));
   ASSERT_TRUE(A2DP_CodecEqualsSbc(codec_info_result, kCodecInfoSbcCapability));
   auto* codec_config = a2dp_codecs_->findSourceCodecConfig(kCodecInfoSbcCapability);

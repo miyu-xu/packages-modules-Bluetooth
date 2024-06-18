@@ -37,9 +37,11 @@ class A2dpCodecConfigAacBase : public A2dpCodecConfig {
                          bool is_source)
       : A2dpCodecConfig(codec_index, A2DP_CODEC_ID_AAC, name, codec_priority),
         is_source_(is_source) {}
-  bool setCodecConfig(const uint8_t* p_peer_codec_info, bool is_capability,
+  bool setCodecConfig(const bool is_in_48kHz_aac_allow_list,
+                      const uint8_t* p_peer_codec_info, bool is_capability,
                       uint8_t* p_result_codec_config) override;
   bool setPeerCodecCapabilities(
+      const bool is_in_48kHz_aac_allow_list,
       const uint8_t* p_peer_codec_capabilities) override;
 
  private:
@@ -260,5 +262,10 @@ bool A2DP_InitCodecConfigAac(AvdtpSepConfig* p_cfg);
 // Initializes A2DP AAC Sink codec information into |AvdtpSepConfig|
 // configuration entry pointed by |p_cfg|.
 bool A2DP_InitCodecConfigAacSink(AvdtpSepConfig* p_cfg);
+
+// Modify the codec info according to whether we should enable 48 kHz sampling
+// rate for AAC.
+void Change48kHzForAACCodecConfigIfNeeded(const bool should_enable_AAC_48kHz,
+                                          uint8_t* codec_info);
 
 #endif  // A2DP_AAC_H

@@ -40,6 +40,7 @@
 #include "btif/include/bta_av_co_peer.h"
 #include "btif/include/btif_a2dp_source.h"
 #include "btif/include/btif_av.h"
+#include "btif/include/btif_storage.h"
 #include "device/include/device_iot_config.h"
 #include "include/hardware/bt_av.h"
 #include "internal_include/bt_trace.h"
@@ -298,6 +299,7 @@ tA2DP_STATUS BtaAvCo::ProcessSourceGetConfig(
         tA2DP_ENCODER_INIT_PEER_PARAMS peer_params;
         GetPeerEncoderParameters(p_peer->addr, &peer_params);
         p_peer->GetCodecs()->setCodecUserConfig(
+            btif_storage_is_in_aac_48kHz_allow_list(peer_address),
             high_priority_mandatory, &peer_params, p_sink->codec_caps,
             result_codec_config, &restart_input, &restart_output,
             &config_updated);
@@ -870,6 +872,7 @@ bool BtaAvCo::SetCodecUserConfig(
   tA2DP_ENCODER_INIT_PEER_PARAMS peer_params;
   GetPeerEncoderParameters(p_peer->addr, &peer_params);
   if (!p_peer->GetCodecs()->setCodecUserConfig(
+          btif_storage_is_in_aac_48kHz_allow_list(peer_address),
           codec_user_config, &peer_params, p_sink->codec_caps,
           result_codec_config, &restart_input, &restart_output,
           &config_updated)) {
@@ -961,6 +964,7 @@ bool BtaAvCo::SetCodecAudioConfig(
   tA2DP_ENCODER_INIT_PEER_PARAMS peer_params;
   GetPeerEncoderParameters(p_peer->addr, &peer_params);
   if (!p_peer->GetCodecs()->setCodecAudioConfig(
+          btif_storage_is_in_aac_48kHz_allow_list(p_peer->addr),
           codec_audio_config, &peer_params, p_sink->codec_caps,
           result_codec_config, &restart_output, &config_updated)) {
     return false;
@@ -1198,6 +1202,7 @@ const BtaAvCoSep* BtaAvCo::SelectSourceCodec(BtaAvCoPeer* p_peer) {
     }
 
     if (!p_peer->GetCodecs()->setCodecConfig(
+            btif_storage_is_in_aac_48kHz_allow_list(p_peer->addr),
             p_sink->codec_caps, true /* is_capability */, new_codec_config,
             false /* select_current_codec */)) {
       log::verbose("cannot set source codec {}", iter->name());
@@ -1265,6 +1270,7 @@ const BtaAvCoSep* BtaAvCo::AttemptSourceCodecSelection(
     return nullptr;
   }
   if (!p_peer->GetCodecs()->setCodecConfig(
+          btif_storage_is_in_aac_48kHz_allow_list(p_peer->addr),
           p_sink->codec_caps, true /* is_capability */, new_codec_config,
           true /* select_current_codec */)) {
     log::verbose("cannot set source codec {}", codec_config.name());
@@ -1292,6 +1298,7 @@ const BtaAvCoSep* BtaAvCo::AttemptSinkCodecSelection(
     return nullptr;
   }
   if (!p_peer->GetCodecs()->setSinkCodecConfig(
+          btif_storage_is_in_aac_48kHz_allow_list(p_peer->addr),
           p_source->codec_caps, true /* is_capability */, new_codec_config,
           true /* select_current_codec */)) {
     log::verbose("cannot set sink codec {}", codec_config.name());
@@ -1329,7 +1336,9 @@ bool BtaAvCo::UpdateSelectableSourceCodec(const A2dpCodecConfig& codec_config,
     // The peer Sink device does not support this codec
     return false;
   }
-  if (!p_peer->GetCodecs()->setPeerSinkCodecCapabilities(p_sink->codec_caps)) {
+  if (!p_peer->GetCodecs()->setPeerSinkCodecCapabilities(
+          btif_storage_is_in_aac_48kHz_allow_list(p_peer->addr),
+          p_sink->codec_caps)) {
     log::warn("cannot update peer {} codec capabilities for {}", p_peer->addr,
               A2DP_CodecName(p_sink->codec_caps));
     return false;
@@ -1362,6 +1371,7 @@ bool BtaAvCo::UpdateSelectableSinkCodec(const A2dpCodecConfig& codec_config,
     return false;
   }
   if (!p_peer->GetCodecs()->setPeerSourceCodecCapabilities(
+          btif_storage_is_in_aac_48kHz_allow_list(p_peer->addr),
           p_source->codec_caps)) {
     log::warn("cannot update peer {} codec capabilities for {}", p_peer->addr,
               A2DP_CodecName(p_source->codec_caps));
@@ -1442,6 +1452,7 @@ bool BtaAvCo::SetCodecOtaConfig(BtaAvCoPeer* p_peer,
   tA2DP_ENCODER_INIT_PEER_PARAMS peer_params;
   GetPeerEncoderParameters(p_peer->addr, &peer_params);
   if (!p_peer->GetCodecs()->setCodecOtaConfig(
+          btif_storage_is_in_aac_48kHz_allow_list(p_peer->addr),
           p_ota_codec_config, &peer_params, result_codec_config, &restart_input,
           &restart_output, &config_updated)) {
     log::error("peer {} : cannot set OTA config", p_peer->addr);
