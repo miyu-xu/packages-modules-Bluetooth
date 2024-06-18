@@ -833,8 +833,8 @@ bool BtaAvCo::SetCodecUserConfig(
   bool config_updated = false;
   bool success = true;
 
-  log::verbose("peer_address={} codec_user_config={{}}", peer_address,
-               codec_user_config.ToString());
+  log::verbose("peer_address={} codec_user_config={}", peer_address,
+               "{" + codec_user_config.ToString() + "}");
 
   *p_restart_output = false;
 
@@ -1218,6 +1218,13 @@ const BtaAvCoSep* BtaAvCo::SelectSourceCodec(BtaAvCoPeer* p_peer) {
     }
   }
 
+  log::info("prefer software_codec {}  offload_codec {}",
+            software_codec_config ? software_codec_config->name()
+                                  : std::string("null"),
+            provider_codec_config.has_value()
+                ? provider_codec_config->toString()
+                : std::string("null"));
+
   if (provider_codec_config.has_value() &&
       (software_codec_config == nullptr ||
        bta_av_co_should_select_hardware_codec(*software_codec_config,
@@ -1332,13 +1339,13 @@ size_t BtaAvCo::UpdateAllSelectableSourceCodecs(BtaAvCoPeer* p_peer) {
 
 bool BtaAvCo::UpdateSelectableSourceCodec(const A2dpCodecConfig& codec_config,
                                           BtaAvCoPeer* p_peer) {
-  log::verbose("peer {}", p_peer->addr);
-
   // Find the peer Sink for the codec
   const BtaAvCoSep* p_sink = peer_cache_->FindPeerSink(
       p_peer, codec_config.codecIndex(), ContentProtectFlag());
   if (p_sink == nullptr) {
     // The peer Sink device does not support this codec
+    log::verbose("peer {} does not support codec {}",
+                 p_peer->addr, codec_config.codecIndex());
     return false;
   }
   if (!p_peer->GetCodecs()->setPeerSinkCodecCapabilities(
@@ -1348,6 +1355,8 @@ bool BtaAvCo::UpdateSelectableSourceCodec(const A2dpCodecConfig& codec_config,
               A2DP_CodecName(p_sink->codec_caps));
     return false;
   }
+  log::verbose("successfully set codec {} of sink peer {}",
+               codec_config.codecIndex(), p_peer->addr);
   return true;
 }
 
