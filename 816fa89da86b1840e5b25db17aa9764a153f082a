@@ -1,0 +1,214 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4a49200_151b353b",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-18T16:35:10Z",
+      "side": 1,
+      "message": "It seems like we should also print the disconnect reason here.",
+      "range": {
+        "startLine": 207,
+        "startChar": 37,
+        "endLine": 207,
+        "endChar": 47
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c4ff1ccf_8b36d65a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ras/ras_client.cc",
+              "range": {
+                "startLine": 207,
+                "startChar": 0,
+                "endLine": 209,
+                "endChar": 0
+              },
+              "replacement": "    log::info(\"{}, conn_id\u003d0x{:04x}, status:{}, reason:{}\", evt.remote_bda,\n              evt.conn_id, gatt_status_text(evt.status), evt.reason);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "816fa89da86b1840e5b25db17aa9764a153f082a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4f90498_a611fc99",
+        "filename": "system/bta/ras/ras_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-18T16:35:10Z",
+      "side": 1,
+      "message": "There are a lot of different status and reasons here.  Do we want to print which one it is, instead of just \"failed to connect\"?  It looks like we might have been connected, and had a problem disconnecting.",
+      "range": {
+        "startLine": 217,
+        "startChar": 0,
+        "endLine": 220,
+        "endChar": 5
+      },
+      "revId": "816fa89da86b1840e5b25db17aa9764a153f082a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e9ad68f_2506fa2d",
+        "filename": "system/bta/ras/ras_server.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-18T16:35:10Z",
+      "side": 1,
+      "message": "Why is this not handled by line 605?\n\nShould we log it here?",
+      "range": {
+        "startLine": 579,
+        "startChar": 0,
+        "endLine": 581,
+        "endChar": 13
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a7bba493_9ed6c95f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ras/ras_server.cc",
+              "range": {
+                "startLine": 580,
+                "startChar": 0,
+                "endLine": 580,
+                "endChar": 0
+              },
+              "replacement": "      log::warn(\"Unknown opcode:0x{:02x}\", (uint16_t)command.opcode_);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "816fa89da86b1840e5b25db17aa9764a153f082a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fec1c3a3_7a7ea8ca",
+        "filename": "system/bta/ras/ras_types.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-18T16:35:10Z",
+      "side": 1,
+      "message": "This looks like PERSISTED in the spec.",
+      "range": {
+        "startLine": 89,
+        "startChar": 2,
+        "endLine": 89,
+        "endChar": 26
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8c30cc3d_81f4a4cd",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ras/ras_types.h",
+              "range": {
+                "startLine": 89,
+                "startChar": 0,
+                "endLine": 90,
+                "endChar": 0
+              },
+              "replacement": "  PERSISTED \u003d 0x04,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "816fa89da86b1840e5b25db17aa9764a153f082a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f014da75_3fc0fc54",
+        "filename": "system/bta/ras/ras_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-18T16:35:10Z",
+      "side": 1,
+      "message": "This feels unnecessary, to me.",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 39
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8b5257f8_b1b6d194",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "system/bta/ras/ras_utils.cc",
+              "range": {
+                "startLine": 87,
+                "startChar": 0,
+                "endLine": 88,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "816fa89da86b1840e5b25db17aa9764a153f082a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f79ba4df_3bbc2e7d",
+        "filename": "system/bta/ras/ras_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-18T16:35:10Z",
+      "side": 1,
+      "message": "PERSISTED\n```suggestion\n    case ResponseCodeValue::PERSISTED:\n      return \"PERSISTED\";\n```",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 39
+      },
+      "revId": "816fa89da86b1840e5b25db17aa9764a153f082a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
