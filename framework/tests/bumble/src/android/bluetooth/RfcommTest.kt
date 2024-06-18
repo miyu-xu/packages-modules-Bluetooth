@@ -182,7 +182,8 @@ class RfcommTest {
         startServer { serverId ->
             runBlocking { withTimeout(BOND_TIMEOUT.toMillis()) { bondDevice(mBumbleDevice) } }
 
-            val (insecureSocket, connection) = createAndConnectSocket(isSecure = false, serverId)
+            val (insecureSocket, connection) =
+                createAndConnectSocket(isSecure = false, serverId, TEST_UUID)
             val data: ByteArray = "Test data for clientSendDataOverInsecureSocket".toByteArray()
             val socketOs = insecureSocket.outputStream
 
@@ -201,7 +202,8 @@ class RfcommTest {
         startServer { serverId ->
             runBlocking { withTimeout(BOND_TIMEOUT.toMillis()) { bondDevice(mBumbleDevice) } }
 
-            val (secureSocket, connection) = createAndConnectSocket(isSecure = true, serverId)
+            val (secureSocket, connection) =
+                createAndConnectSocket(isSecure = true, serverId)
             val data: ByteArray = "Test data for clientSendDataOverSecureSocket".toByteArray()
             val socketOs = secureSocket.outputStream
 
@@ -220,7 +222,8 @@ class RfcommTest {
         startServer { serverId ->
             runBlocking { withTimeout(BOND_TIMEOUT.toMillis()) { bondDevice(mBumbleDevice) } }
 
-            val (insecureSocket, connection) = createAndConnectSocket(isSecure = false, serverId)
+            val (insecureSocket, connection) =
+                createAndConnectSocket(isSecure = false, serverId)
             val buffer = ByteArray(64)
             val socketIs = insecureSocket.inputStream
             val data: ByteString =
@@ -240,7 +243,8 @@ class RfcommTest {
         startServer { serverId ->
             runBlocking { withTimeout(BOND_TIMEOUT.toMillis()) { bondDevice(mBumbleDevice) } }
 
-            val (secureSocket, connection) = createAndConnectSocket(isSecure = true, serverId)
+            val (secureSocket, connection) =
+                createAndConnectSocket(isSecure = true, serverId)
             val buffer = ByteArray(64)
             val socketIs = secureSocket.inputStream
             val data: ByteString =
@@ -257,13 +261,14 @@ class RfcommTest {
 
     private fun createAndConnectSocket(
         isSecure: Boolean,
-        server: ServerId
+        server: ServerId,
+        uuid: String = TEST_UUID
     ): Pair<BluetoothSocket, RfcommProto.RfcommConnection> {
         val socket =
             if (isSecure) {
-                mBumbleDevice.createRfcommSocketToServiceRecord(UUID.fromString(TEST_UUID))
+                mBumbleDevice.createRfcommSocketToServiceRecord(UUID.fromString(uuid))
             } else {
-                mBumbleDevice.createInsecureRfcommSocketToServiceRecord(UUID.fromString(TEST_UUID))
+                mBumbleDevice.createInsecureRfcommSocketToServiceRecord(UUID.fromString(uuid))
             }
         socket.connect()
 
