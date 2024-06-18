@@ -37,6 +37,7 @@
 
 extern tBTM_CB btm_cb;
 
+using bluetooth::common::BindOnce;
 using bluetooth::common::ContextualCallback;
 using bluetooth::common::ContextualOnceCallback;
 using bluetooth::hci::Address;
@@ -212,6 +213,7 @@ class BtmDeviceInquiryTest : public BtmInqTest {
   void SetUp() override {
     BtmInqTest::SetUp();
     main_thread_start_up();
+    get_main()->Post(BindOnce([]() { btm_cb.btm_inq_vars.Init(); }));
     inquiry_callback_ptr = &callbacks_;
     bluetooth::hci::testing::mock_controller_ = &controller_;
     ON_CALL(controller_, SupportsBle()).WillByDefault(Return(true));
@@ -244,6 +246,17 @@ class BtmDeviceInquiryTest : public BtmInqTest {
   void TearDown() override {
     BTM_CancelInquiry();
     inquiry_callback_ptr = nullptr;
+
+    // Synchronize with cleaning up.
+    std::promise<void> free_promise;
+    auto freed = free_promise.get_future();
+    get_main()->Post(BindOnce(
+            [](std::promise<void>* free_promise) {
+              btm_cb.btm_inq_vars.Free();
+              free_promise->set_value();
+            },
+            &free_promise));
+    EXPECT_EQ(std::future_status::ready, freed.wait_for(std::chrono::seconds(1)));
     main_thread_shut_down();
     BtmInqTest::TearDown();
   }
@@ -271,4 +284,25 @@ TEST_F(BtmDeviceInquiryTest, bta_dm_disc_device_discovery_single_result) {
 
   EXPECT_EQ(std::future_status::ready,
             one_result.wait_for(std::chrono::seconds(1)));
+}
+
+TEST_F(BtmDeviceInquiryTest, bta_dm_disc_device_discovery_thousand_results) {
+  EXPECT_CALL(*inquiry_callback_ptr, btm_inq_results_cb(_, _, _)).Times(1024);
+
+  uint8_t address_bytes[Address::kLength];
+  std::copy(kAddress2.data(), kAddress2.data() + Address::kLength, address_bytes);
+
+  for (size_t i = 0; i < 1024; i++) {
+    Address address;
+    address.FromOctets(address_bytes);
+    address_bytes[0]++;
+    if (i % 256 == 0) {
+      address_bytes[1]++;
+    }
+
+    InquiryResponse one_device(address, bluetooth::hci::PageScanRepetitionMode::R0,
+                               bluetooth::hci::ClassOfDevice(), 0x2345);
+    hci_layer_.IncomingEvent(InquiryResultBuilder::Create({one_device}));
+    std::this_thread::sleep_for(std::chrono::nanoseconds(1000000));
+  }
 }
