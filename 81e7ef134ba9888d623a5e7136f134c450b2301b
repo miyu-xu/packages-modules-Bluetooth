@@ -40,6 +40,30 @@
       ],
       "revId": "81e7ef134ba9888d623a5e7136f134c450b2301b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1592f752_b0c907d8",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2980,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-06-18T10:26:37Z",
+      "side": 1,
+      "message": "I don\u0027t see this is behavior change, especially huge 😄\n\nstartScan seems to block by design, when scanner is not registered.\n I recall that some refactor is going on at scanner but not sure if that touches this part. Anyways, this is another issue. So I will create separate issue on that matter, \n \n From LeAudioService point of view I will go with your suggestion to use Executor and as long as we do believe that Executors works, I do not consider it as a behavior change. LeAudioService uses callbacks anyways to communicate with a scanner and does not rely on immediate start scan.",
+      "parentUuid": "20d5059e_aeef85aa",
+      "range": {
+        "startLine": 2980,
+        "startChar": 28,
+        "endLine": 2980,
+        "endChar": 36
+      },
+      "revId": "81e7ef134ba9888d623a5e7136f134c450b2301b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
