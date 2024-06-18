@@ -547,6 +547,7 @@ cc_test {
     include_dirs: btifCommonIncludes +
         ["frameworks/av/media/libaaudio/include"],
     srcs: [
+        ":BluetoothDiscoverySources",
         ":BtaDmSources",
         ":LibBluetoothSources",
         ":OsiCompatSources",
@@ -669,6 +670,7 @@ cc_test {
     include_dirs: btifCommonIncludes +
         ["frameworks/av/media/libaaudio/include"],
     srcs: [
+        ":BluetoothDiscoverySources",
         ":BtaDmSources",
         ":LibBluetoothSources",
         ":OsiCompatSources",
