@@ -482,17 +482,28 @@ def sdp_records():
 
 # -----------------------------------------------------------------------------
 def hogp_device(device):
-    global input_report_characteristic
     # Create an 'input report' characteristic to send keyboard reports to the host
-    input_report_characteristic = Characteristic(
+    input_report_kb_characteristic = Characteristic(
         GATT_REPORT_CHARACTERISTIC,
         Characteristic.Properties.READ | Characteristic.Properties.WRITE | Characteristic.Properties.NOTIFY,
         Characteristic.READABLE | Characteristic.WRITEABLE,
-        bytes([0, 0, 0, 0, 0, 0, 0, 0]),
+        bytes([0, 0, 0, 0, 0, 0, 0, 0, 0]),
         [Descriptor(
             GATT_REPORT_REFERENCE_DESCRIPTOR,
             Descriptor.READABLE,
             bytes([0x01, HID_INPUT_REPORT]),
+        )],
+    )
+    # Create an 'input report' characteristic to send mouse reports to the host
+    input_report_mouse_characteristic = Characteristic(
+        GATT_REPORT_CHARACTERISTIC,
+        Characteristic.Properties.READ | Characteristic.Properties.WRITE | Characteristic.Properties.NOTIFY,
+        Characteristic.READABLE | Characteristic.WRITEABLE,
+        bytes([0, 0, 0, 0]),
+        [Descriptor(
+            GATT_REPORT_REFERENCE_DESCRIPTOR,
+            Descriptor.READABLE,
+            bytes([0x02, HID_INPUT_REPORT]),
         )],
     )
 
@@ -551,7 +562,8 @@ def hogp_device(device):
                     Characteristic.READABLE,
                     HID_KEYBOARD_REPORT_MAP,
                 ),
-                input_report_characteristic,
+                input_report_kb_characteristic,
+                input_report_mouse_characteristic,
                 output_report_characteristic,
             ],
         ),
