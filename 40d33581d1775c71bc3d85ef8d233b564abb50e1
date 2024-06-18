@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60706190_dddffb58",
+        "filename": "android/app/jni/com_android_bluetooth_a2dp.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-06-18T23:14:03Z",
+      "side": 1,
+      "message": "Do we really need this, now that we don\u0027t have an interface?\n\n```suggestion\n  }\n\n  if (mCallbacksObj !\u003d nullptr) {\n```",
+      "range": {
+        "startLine": 261,
+        "startChar": 2,
+        "endLine": 266,
+        "endChar": 0
+      },
+      "revId": "40d33581d1775c71bc3d85ef8d233b564abb50e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
