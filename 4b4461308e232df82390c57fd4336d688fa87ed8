@@ -22,6 +22,30 @@
       },
       "revId": "4b4461308e232df82390c57fd4336d688fa87ed8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3049e5a4_c911f91e",
+        "filename": "system/stack/rfcomm/port_api.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-06-18T15:57:52Z",
+      "side": 1,
+      "message": "That is a great idea...after running through this function I\u0027m not sure what the point of it is.",
+      "parentUuid": "c0031b3b_bec2221b",
+      "range": {
+        "startLine": 507,
+        "startChar": 5,
+        "endLine": 507,
+        "endChar": 19
+      },
+      "revId": "4b4461308e232df82390c57fd4336d688fa87ed8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
