@@ -22,6 +22,30 @@
       },
       "revId": "54278fe8dd8b40c4b0542a2a7aadabde18df56cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e69d243_56b02dc1",
+        "filename": "system/gd/rust/linux/mgmt/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-06-18T07:17:24Z",
+      "side": 1,
+      "message": "I switched the order of calling async method and wrapping it with Mutex.",
+      "parentUuid": "56db97a2_ceda5d05",
+      "range": {
+        "startLine": 116,
+        "startChar": 8,
+        "endLine": 117,
+        "endChar": 47
+      },
+      "revId": "54278fe8dd8b40c4b0542a2a7aadabde18df56cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
