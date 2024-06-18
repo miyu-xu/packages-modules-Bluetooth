@@ -1024,13 +1024,13 @@ public class TransitionalScanHelper {
         }
     }
 
-    public void onScanParamSetupCompleted(int status, int scannerId) throws RemoteException {
+    /** Callback method for configuration of scan parameters. */
+    public void onScanParamSetupCompleted(int status, int scannerId) {
+        Log.d(TAG, "onScanParamSetupCompleted() - scannerId=" + scannerId + ", status=" + status);
         ContextMap.App app = mScannerMap.getById(scannerId);
         if (app == null || app.callback == null) {
             Log.e(TAG, "Advertise app or callback is null");
-            return;
         }
-        Log.d(TAG, "onScanParamSetupCompleted : " + status);
     }
 
     // callback from ScanManager for dispatch of errors apps.
