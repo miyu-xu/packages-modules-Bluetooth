@@ -216,6 +216,8 @@ void avdt_ccb_hdl_getcap_cmd(AvdtpCcb* p_ccb, tAVDT_CCB_EVT* p_data) {
     return;
   }
 
+  log::verbose("got getcap request from {}, SEP {}", p_ccb->peer_addr,
+               p_data->msg.single.seid);
   p_data->msg.svccap.p_cfg = &p_scb->stream_config.cfg;
 
   avdt_ccb_event(p_ccb, AVDT_CCB_API_GETCAP_RSP_EVT, p_data);
@@ -467,6 +469,11 @@ void avdt_ccb_snd_getcap_rsp(AvdtpCcb* p_ccb, tAVDT_CCB_EVT* p_data) {
   if (p_data->msg.hdr.sig_id == AVDT_SIG_GET_ALLCAP) {
     sig_id = AVDT_SIG_GET_ALLCAP;
   }
+
+  log::verbose(
+      "handling send getcap response event, peer {} / {}, GetAllCap {}",
+      p_ccb->peer_addr, avdtp_cb.ccb[p_data->msg.hdr.ccb_idx].peer_addr,
+      sig_id == AVDT_SIG_GET_ALLCAP);
 
   /* send response */
   avdt_msg_send_rsp(p_ccb, sig_id, &p_data->msg);
