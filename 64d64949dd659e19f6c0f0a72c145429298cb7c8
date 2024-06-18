@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c24fb18_5e012618",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-18T21:42:59Z",
+      "side": 1,
+      "message": "also, rebase the change on top of the flax CL",
+      "range": {
+        "startLine": 434,
+        "startChar": 16,
+        "endLine": 434,
+        "endChar": 52
+      },
+      "revId": "64d64949dd659e19f6c0f0a72c145429298cb7c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
