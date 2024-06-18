@@ -16,6 +16,24 @@
       "message": "Should this also be cancelled before initializing null to it? (not sure if it is being used actively or not.)",
       "revId": "7958ca055c3fbdc563f195e5cc15dc56630ce40b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "970c5885_32cd4a45",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-06-18T17:21:08Z",
+      "side": 1,
+      "message": "Interesting.\n\nThis might be dead code? I see us set it to nullptr here, and call alarm_free in cleanup() code, but I never see us actually create an alarm and set this value.\n\nhttps://source.corp.google.com/search?q\u003drc_play_status_timer\u0026sq\u003d\u0026ss\u003dh%2Fandroid%2Fplatform%2Fsuperproject%2Fmain%2F%2B%2Frefs%2Fheads%2Fmain:packages%2Fmodules%2FBluetooth%2F\n\nSo, I think we\u0027re okay, but perhaps a closer pass on this is warranted next.",
+      "parentUuid": "d4ffced8_1549474a",
+      "revId": "7958ca055c3fbdc563f195e5cc15dc56630ce40b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
