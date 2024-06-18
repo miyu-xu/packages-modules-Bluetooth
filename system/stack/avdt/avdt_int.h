@@ -532,6 +532,7 @@ class AvdtpCcb {
         label(0),
         reconn(false),
         ret_count(0),
+        is_in_48kHz_aac_allow_list(false),
         bta_av_scb_index_(0) {}
 
   /**
@@ -592,6 +593,7 @@ class AvdtpCcb {
     label = 0;
     reconn = false;
     ret_count = 0;
+    is_in_48kHz_aac_allow_list = false;
   }
 
   /**
@@ -629,6 +631,7 @@ class AvdtpCcb {
   bool reconn;        // If true, reinitiate connection after transitioning from
                       // CLOSING to IDLE state
   uint8_t ret_count;  // Command retransmission count
+  bool is_in_48kHz_aac_allow_list;
 
  private:
   // The corresponding BTA AV stream control block index for this entry
