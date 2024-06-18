@@ -64,6 +64,30 @@
       },
       "revId": "81e7ef134ba9888d623a5e7136f134c450b2301b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "220fbb3a_fe81ef6b",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2980,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-18T18:19:01Z",
+      "side": 1,
+      "message": "Potentially blocking another thread for 2 sec is huge. For example if it\u0027s the main thread this will generate ANR and crash across all the settings.\n\nBut any thread change is a behavior change.\n\nHow do you now handle the synchronization between `stopAudioServersBackgroundScan` and `startAudioServersBackgroundScan` ?\n\nIf start is posting on a random new background thread, I consider this to be undefined behavior.\n\nI don\u0027t recommend making this change until we are willing to put effort in the threading model of this class and properly test the different interaction.\n\n\u003e startScan seems to block by design, when scanner is not registered.\n\nWhere is it blocking ? Is this really intended or is there a deadlock ?",
+      "parentUuid": "1592f752_b0c907d8",
+      "range": {
+        "startLine": 2980,
+        "startChar": 28,
+        "endLine": 2980,
+        "endChar": 36
+      },
+      "revId": "81e7ef134ba9888d623a5e7136f134c450b2301b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
