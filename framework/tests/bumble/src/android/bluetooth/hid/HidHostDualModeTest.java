@@ -45,13 +45,21 @@ import pandora.HostProto.OwnAddressType;
 @RunWith(AndroidJUnit4.class)
 public class HidHostDualModeTest {
     private static final String TAG = "HidHostDualModeTest";
-    private SettableFuture<Integer> mFutureConnectionIntent;
+    private SettableFuture<Integer> mFutureConnectionIntent,
+            mFutureHandShakeIntent,
+            mFutureReportIntent;
     private BluetoothDevice mDevice;
     private BluetoothHidHost mService;
     private final Context mContext = ApplicationProvider.getApplicationContext();
     private final BluetoothManager mManager = mContext.getSystemService(BluetoothManager.class);
     private final BluetoothAdapter mAdapter = mManager.getAdapter();
     private HIDGrpc.HIDBlockingStub mHidBlockingStub;
+    private byte mReportId;
+    private static final int KEYBD_RPT_ID = 1;
+    private static final int KEYBD_RPT_SIZE = 9;
+    private static final int MOUSE_RPT_ID = 2;
+    private static final int MOUSE_RPT_SIZE = 4;
+    private static final int INVALID_RPT_ID = 3;
 
     @Rule public final AdoptShellPermissionsRule mPermissionRule = new AdoptShellPermissionsRule();
 
@@ -61,20 +69,44 @@ public class HidHostDualModeTest {
             new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
-                    if (BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED.equals(
-                            intent.getAction())) {
-                        int state =
-                                intent.getIntExtra(
-                                        BluetoothProfile.EXTRA_STATE, BluetoothAdapter.ERROR);
-                        Log.i(TAG, "Connection state change:" + state);
-                        if (state == BluetoothProfile.STATE_CONNECTED
-                                || state == BluetoothProfile.STATE_DISCONNECTED) {
-                            if (mFutureConnectionIntent != null) {
-                                mFutureConnectionIntent.set(state);
+                    switch (intent.getAction()) {
+                        case BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED:
+                            int state =
+                                    intent.getIntExtra(
+                                            BluetoothProfile.EXTRA_STATE, BluetoothAdapter.ERROR);
+                            Log.i(TAG, "Connection state change:" + state);
+                            if (state == BluetoothProfile.STATE_CONNECTED
+                                    || state == BluetoothProfile.STATE_DISCONNECTED) {
+                                if (mFutureConnectionIntent != null) {
+                                    mFutureConnectionIntent.set(state);
+                                }
                             }
-                        }
-                    } else if (BluetoothDevice.ACTION_PAIRING_REQUEST.equals(intent.getAction())) {
-                        mBumble.getRemoteDevice().setPairingConfirmation(true);
+                            break;
+                        case BluetoothDevice.ACTION_PAIRING_REQUEST:
+                            mBumble.getRemoteDevice().setPairingConfirmation(true);
+                            break;
+                        case BluetoothHidHost.ACTION_HANDSHAKE:
+                            int handShake =
+                                    intent.getIntExtra(
+                                            BluetoothHidHost.EXTRA_STATUS,
+                                            BluetoothHidDevice.ERROR_RSP_UNKNOWN);
+                            Log.i(TAG, "Handshake status:" + handShake);
+                            if (mFutureHandShakeIntent != null) {
+                                mFutureHandShakeIntent.set(handShake);
+                            }
+                            break;
+                        case BluetoothHidHost.ACTION_REPORT:
+                            byte[] report = intent.getByteArrayExtra(BluetoothHidHost.EXTRA_REPORT);
+                            int reportSize =
+                                    intent.getIntExtra(
+                                            BluetoothHidHost.EXTRA_REPORT_BUFFER_SIZE, 0);
+                            mReportId = report[0];
+                            if (mFutureReportIntent != null) {
+                                mFutureReportIntent.set((reportSize - 1));
+                            }
+                            break;
+                        default:
+                            break;
                     }
                 }
             };
@@ -91,11 +123,13 @@ public class HidHostDualModeTest {
 
     @Before
     public void setUp() throws Exception {
-        mContext.registerReceiver(
-                mConnectionStateReceiver,
-                new IntentFilter(BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED));
-        mContext.registerReceiver(
-                mConnectionStateReceiver, new IntentFilter(BluetoothDevice.ACTION_PAIRING_REQUEST));
+        final IntentFilter filter = new IntentFilter();
+        filter.addAction(BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED);
+        filter.addAction(BluetoothDevice.ACTION_PAIRING_REQUEST);
+        filter.addAction(BluetoothHidHost.ACTION_HANDSHAKE);
+        filter.addAction(BluetoothHidHost.ACTION_REPORT);
+
+        mContext.registerReceiver(mConnectionStateReceiver, filter);
         mAdapter.getProfileProxy(mContext, new HidHostServiceListener(), BluetoothProfile.HID_HOST);
         mHidBlockingStub = mBumble.hidBlocking();
         AdvertiseRequest request =
@@ -142,5 +176,35 @@ public class HidHostDualModeTest {
         Thread.sleep(1000);
         assertThat(mService.getPreferredTransport(mDevice))
                 .isEqualTo(BluetoothDevice.TRANSPORT_BREDR);
+    }
+
+    /**
+     * Test Get Report
+     *
+     * <ol>
+     *   <li>1. Android creates bonding and connect the HID Device
+     *   <li>2. Android get report and verifies the report
+     * </ol>
+     */
+    @Test
+    public void hogpGetReportTest() throws Exception {
+
+        Thread.sleep(1000);
+        // LE transport
+        mService.setPreferredTransport(mDevice, BluetoothDevice.TRANSPORT_LE);
+        Thread.sleep(2000);
+        // Keyboard report
+        byte id = KEYBD_RPT_ID;
+        mService.getReport(mDevice, BluetoothHidHost.REPORT_TYPE_INPUT, id, (int) 0);
+        mFutureReportIntent = SettableFuture.create();
+        assertThat(mFutureReportIntent.get()).isEqualTo(KEYBD_RPT_SIZE);
+        assertThat(mReportId).isEqualTo(KEYBD_RPT_ID);
+
+        // Mouse report
+        id = MOUSE_RPT_ID;
+        mService.getReport(mDevice, BluetoothHidHost.REPORT_TYPE_INPUT, id, (int) 0);
+        mFutureReportIntent = SettableFuture.create();
+        assertThat(mFutureReportIntent.get()).isEqualTo(MOUSE_RPT_SIZE);
+        assertThat(mReportId).isEqualTo(MOUSE_RPT_ID);
     }
 }
