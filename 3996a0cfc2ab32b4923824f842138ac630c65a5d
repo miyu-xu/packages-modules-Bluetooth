@@ -213,6 +213,24 @@
       "parentUuid": "9d7a6517_4317b2b3",
       "revId": "3996a0cfc2ab32b4923824f842138ac630c65a5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e641ea88_0633a763",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2138,
+      "author": {
+        "id": 1944471
+      },
+      "writtenOn": "2024-06-18T02:44:25Z",
+      "side": 1,
+      "message": "I mean current behavior is: set active first then stop broadcast. So if like gkolodziejczyk@ mentioned: in theory active device should be switched to a2dp but audio should be still broadcasting and after stopping broadcast a2dp device should be streaming, No extra change is needed on app side to fix b/338341279.\n\nOtherwise, we need do some change on app side to: stop the broadcast first then set active.",
+      "parentUuid": "ffe42741_6a625b1b",
+      "revId": "3996a0cfc2ab32b4923824f842138ac630c65a5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
