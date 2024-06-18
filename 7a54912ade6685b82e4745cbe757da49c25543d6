@@ -22,6 +22,30 @@
       },
       "revId": "7a54912ade6685b82e4745cbe757da49c25543d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44334a45_a1aeb7f0",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1031,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-06-18T11:33:24Z",
+      "side": 0,
+      "message": "Oh, maybe that was intentional due to the last line\u0027s `return`... But then why does this method exist?",
+      "parentUuid": "a0698e4d_af776edc",
+      "range": {
+        "startLine": 1031,
+        "startChar": 12,
+        "endLine": 1031,
+        "endChar": 19
+      },
+      "revId": "7a54912ade6685b82e4745cbe757da49c25543d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
