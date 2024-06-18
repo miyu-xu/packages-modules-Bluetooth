@@ -34,6 +34,52 @@
       "parentUuid": "d4ffced8_1549474a",
       "revId": "7958ca055c3fbdc563f195e5cc15dc56630ce40b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4a909a2_b4f062c5",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-18T17:30:50Z",
+      "side": 1,
+      "message": "should this be simplified (maybe in follow-up) to take the transaction in parameter ? I quickly look and I don\u0027t think we are using anything from p_dev outside of the structure\n\nIt would make sense with the name of the method too",
+      "range": {
+        "startLine": 477,
+        "startChar": 0,
+        "endLine": 477,
+        "endChar": 31
+      },
+      "revId": "7958ca055c3fbdc563f195e5cc15dc56630ce40b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dfd32fd_03c873ad",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 5409,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-18T17:30:50Z",
+      "side": 1,
+      "message": "this is not needed anymore. the default log formatter for address is using the masked address",
+      "range": {
+        "startLine": 5409,
+        "startChar": 17,
+        "endLine": 5409,
+        "endChar": 41
+      },
+      "revId": "7958ca055c3fbdc563f195e5cc15dc56630ce40b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
