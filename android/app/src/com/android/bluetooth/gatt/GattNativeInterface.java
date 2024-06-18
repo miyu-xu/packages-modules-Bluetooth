@@ -16,7 +16,9 @@
 
 package com.android.bluetooth.gatt;
 
+import android.annotation.Nullable;
 import android.os.RemoteException;
+import android.util.Log;
 
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
@@ -28,7 +30,7 @@ import java.util.List;
 public class GattNativeInterface {
     private static final String TAG = GattNativeInterface.class.getSimpleName();
 
-    private GattService mGattService;
+    @Nullable private GattService mGattService;
 
     @GuardedBy("INSTANCE_LOCK")
     private static GattNativeInterface sInstance;
@@ -37,6 +39,7 @@ public class GattNativeInterface {
 
     private GattNativeInterface() {}
 
+    @Nullable
     GattService getGattService() {
         return mGattService;
     }
@@ -67,117 +70,242 @@ public class GattNativeInterface {
 
     void onClientRegistered(int status, int clientIf, long uuidLsb, long uuidMsb)
             throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onClientRegistered(status, clientIf, uuidLsb, uuidMsb);
     }
 
     void onConnected(int clientIf, int connId, int status, String address) throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onConnected(clientIf, connId, status, address);
     }
 
     void onDisconnected(int clientIf, int connId, int status, String address)
             throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onDisconnected(clientIf, connId, status, address);
     }
 
     void onClientPhyUpdate(int connId, int txPhy, int rxPhy, int status) throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onClientPhyUpdate(connId, txPhy, rxPhy, status);
     }
 
     void onClientPhyRead(int clientIf, String address, int txPhy, int rxPhy, int status)
             throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onClientPhyRead(clientIf, address, txPhy, rxPhy, status);
     }
 
     void onClientConnUpdate(int connId, int interval, int latency, int timeout, int status)
             throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onClientConnUpdate(connId, interval, latency, timeout, status);
     }
 
     void onServiceChanged(int connId) throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onServiceChanged(connId);
     }
 
     void onClientSubrateChange(
             int connId, int subrateFactor, int latency, int contNum, int timeout, int status)
             throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService()
                 .onClientSubrateChange(connId, subrateFactor, latency, contNum, timeout, status);
     }
 
     void onServerPhyUpdate(int connId, int txPhy, int rxPhy, int status) throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onServerPhyUpdate(connId, txPhy, rxPhy, status);
     }
 
     void onServerPhyRead(int serverIf, String address, int txPhy, int rxPhy, int status)
             throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onServerPhyRead(serverIf, address, txPhy, rxPhy, status);
     }
 
     void onServerConnUpdate(int connId, int interval, int latency, int timeout, int status)
             throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onServerConnUpdate(connId, interval, latency, timeout, status);
     }
 
     void onServerSubrateChange(
             int connId, int subrateFactor, int latency, int contNum, int timeout, int status)
             throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService()
                 .onServerSubrateChange(connId, subrateFactor, latency, contNum, timeout, status);
     }
 
     void onSearchCompleted(int connId, int status) throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onSearchCompleted(connId, status);
     }
 
     GattDbElement getSampleGattDbElement() {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return null;
+        }
+
         return getGattService().getSampleGattDbElement();
     }
 
     void onGetGattDb(int connId, ArrayList<GattDbElement> db) throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onGetGattDb(connId, db);
     }
 
     void onRegisterForNotifications(int connId, int status, int registered, int handle) {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onRegisterForNotifications(connId, status, registered, handle);
     }
 
     void onNotify(int connId, String address, int handle, boolean isNotify, byte[] data)
             throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onNotify(connId, address, handle, isNotify, data);
     }
 
     void onReadCharacteristic(int connId, int status, int handle, byte[] data)
             throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onReadCharacteristic(connId, status, handle, data);
     }
 
     void onWriteCharacteristic(int connId, int status, int handle, byte[] data)
             throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onWriteCharacteristic(connId, status, handle, data);
     }
 
     void onExecuteCompleted(int connId, int status) throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onExecuteCompleted(connId, status);
     }
 
     void onReadDescriptor(int connId, int status, int handle, byte[] data) throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onReadDescriptor(connId, status, handle, data);
     }
 
     void onWriteDescriptor(int connId, int status, int handle, byte[] data) throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onWriteDescriptor(connId, status, handle, data);
     }
 
     void onReadRemoteRssi(int clientIf, String address, int rssi, int status)
             throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onReadRemoteRssi(clientIf, address, rssi, status);
     }
 
     void onConfigureMTU(int connId, int status, int mtu) throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onConfigureMTU(connId, status, mtu);
     }
 
     void onClientCongestion(int connId, boolean congested) throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onClientCongestion(connId, congested);
     }
 
@@ -185,30 +313,60 @@ public class GattNativeInterface {
 
     void onServerRegistered(int status, int serverIf, long uuidLsb, long uuidMsb)
             throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onServerRegistered(status, serverIf, uuidLsb, uuidMsb);
     }
 
     void onServiceAdded(int status, int serverIf, List<GattDbElement> service)
             throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onServiceAdded(status, serverIf, service);
     }
 
     void onServiceStopped(int status, int serverIf, int srvcHandle) throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onServiceStopped(status, serverIf, srvcHandle);
     }
 
     void onServiceDeleted(int status, int serverIf, int srvcHandle) {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onServiceDeleted(status, serverIf, srvcHandle);
     }
 
     void onClientConnected(String address, boolean connected, int connId, int serverIf)
             throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onClientConnected(address, connected, connId, serverIf);
     }
 
     void onServerReadCharacteristic(
             String address, int connId, int transId, int handle, int offset, boolean isLong)
             throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService()
                 .onServerReadCharacteristic(address, connId, transId, handle, offset, isLong);
     }
@@ -216,6 +374,11 @@ public class GattNativeInterface {
     void onServerReadDescriptor(
             String address, int connId, int transId, int handle, int offset, boolean isLong)
             throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onServerReadDescriptor(address, connId, transId, handle, offset, isLong);
     }
 
@@ -230,6 +393,11 @@ public class GattNativeInterface {
             boolean isPrep,
             byte[] data)
             throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService()
                 .onServerWriteCharacteristic(
                         address, connId, transId, handle, offset, length, needRsp, isPrep, data);
@@ -246,6 +414,11 @@ public class GattNativeInterface {
             boolean isPrep,
             byte[] data)
             throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService()
                 .onServerWriteDescriptor(
                         address, connId, transId, handle, offset, length, needRsp, isPrep, data);
@@ -253,22 +426,47 @@ public class GattNativeInterface {
 
     void onExecuteWrite(String address, int connId, int transId, int execWrite)
             throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onExecuteWrite(address, connId, transId, execWrite);
     }
 
     void onResponseSendCompleted(int status, int attrHandle) {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onResponseSendCompleted(status, attrHandle);
     }
 
     void onNotificationSent(int connId, int status) throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onNotificationSent(connId, status);
     }
 
     void onServerCongestion(int connId, boolean congested) throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onServerCongestion(connId, congested);
     }
 
     void onMtuChanged(int connId, int mtu) throws RemoteException {
+        if (getGattService() == null) {
+            Log.e(TAG, "GattService is null!");
+            return;
+        }
+
         getGattService().onMtuChanged(connId, mtu);
     }
 

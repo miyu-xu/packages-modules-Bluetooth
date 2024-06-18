@@ -127,6 +127,7 @@ import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.btservice.storage.MetadataDatabase;
 import com.android.bluetooth.csip.CsipSetCoordinatorService;
 import com.android.bluetooth.flags.Flags;
+import com.android.bluetooth.gatt.GattObjectsFactory;
 import com.android.bluetooth.gatt.GattService;
 import com.android.bluetooth.hap.HapClientService;
 import com.android.bluetooth.hearingaid.HearingAidService;
@@ -1123,6 +1124,7 @@ public class AdapterService extends Service {
     private void startScanController() {
         mScanController = new ScanController(this);
         mNativeInterface.enable();
+        GattObjectsFactory.getInstance().getNativeInterface().init(null);
     }
 
     private void stopGattProfileService() {
@@ -1153,6 +1155,7 @@ public class AdapterService extends Service {
             mScanController.stop();
             mScanController = null;
             mNativeInterface.disable();
+            GattObjectsFactory.getInstance().getNativeInterface().cleanup();
         }
     }
 
