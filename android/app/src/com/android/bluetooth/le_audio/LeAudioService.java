@@ -196,6 +196,7 @@ public class LeAudioService extends ProfileService {
     private final LinkedList<BluetoothLeBroadcastSettings> mCreateBroadcastQueue =
             new LinkedList<>();
     boolean mIsSourceStreamMonitorModeEnabled = false;
+    boolean mIsBroadcastPausedFromOutside = false;
 
     @VisibleForTesting TbsService mTbsService;
 
@@ -530,6 +531,7 @@ public class LeAudioService extends ProfileService {
         mCreateBroadcastQueue.clear();
         mAwaitingBroadcastCreateResponse = false;
         mIsSourceStreamMonitorModeEnabled = false;
+        mIsBroadcastPausedFromOutside = false;
 
         clearBroadcastTimeoutCallback();
 
@@ -1262,21 +1264,33 @@ public class LeAudioService extends ProfileService {
             return;
         }
 
-        if (Flags.leaudioBroadcastAssistantPeripheralEntrustment()) {
-            if (!isPlaying(broadcastId)) {
-                Log.d(TAG, "pauseBroadcast: Broadcast is not playing, skip pause request");
-                return;
+        if (Flags.leaudioBigDependsOnAudioState()) {
+            if (isPlaying(broadcastId)) {
+                Log.d(TAG, "pauseBroadcast");
+                mIsBroadcastPausedFromOutside = true;
+                mLeAudioBroadcasterNativeInterface.pauseBroadcast(broadcastId);
+            } else if (isPaused(broadcastId)) {
+                transitionFromBroadcastToUnicast();
+            } else {
+                Log.d(TAG, "pauseBroadcast: Broadcast is stopped, skip pause request");
+            }
+        } else {
+            if (Flags.leaudioBroadcastAssistantPeripheralEntrustment()) {
+                if (!isPlaying(broadcastId)) {
+                    Log.d(TAG, "pauseBroadcast: Broadcast is not playing, skip pause request");
+                    return;
+                }
+
+                // Due to broadcast pause sinks may lose synchronization
+                BassClientService bassClientService = getBassClientService();
+                if (bassClientService != null) {
+                    bassClientService.cacheSuspendingSources(broadcastId);
+                }
             }
 
-            // Due to broadcast pause sinks may lose synchronization
-            BassClientService bassClientService = getBassClientService();
-            if (bassClientService != null) {
-                bassClientService.cacheSuspendingSources(broadcastId);
-            }
+            Log.d(TAG, "pauseBroadcast");
+            mLeAudioBroadcasterNativeInterface.pauseBroadcast(broadcastId);
         }
-
-        Log.d(TAG, "pauseBroadcast");
-        mLeAudioBroadcasterNativeInterface.pauseBroadcast(broadcastId);
     }
 
     /**
@@ -1345,7 +1359,24 @@ public class LeAudioService extends ProfileService {
             return false;
         }
 
-        return descriptor.mState.equals(LeAudioStackEvent.BROADCAST_STATE_STREAMING);
+        return (descriptor.mState.equals(LeAudioStackEvent.BROADCAST_STATE_STREAMING));
+    }
+
+    /**
+     * Checks if Broadcast instance is paused.
+     *
+     * @param broadcastId broadcast instance identifier
+     * @return true if if broadcast is paused, false otherwise
+     */
+    public boolean isPaused(int broadcastId) {
+        Log.d(TAG, "MICHAL isPaused");
+        LeAudioBroadcastDescriptor descriptor = mBroadcastDescriptors.get(broadcastId);
+        if (descriptor == null) {
+            Log.e(TAG, "isPaused: No valid descriptor for broadcastId: " + broadcastId);
+            return false;
+        }
+
+        return (descriptor.mState.equals(LeAudioStackEvent.BROADCAST_STATE_PAUSED));
     }
 
     /**
@@ -3541,13 +3572,18 @@ public class LeAudioService extends ProfileService {
                                             broadcastId,
                                             BluetoothStatusCodes.REASON_LOCAL_STACK_REQUEST));
 
-                    if (!Flags.leaudioBroadcastAssistantPeripheralEntrustment()) {
-                        if (bassClientService != null) {
+                    if (bassClientService != null) {
+                        if (!Flags.leaudioBroadcastAssistantPeripheralEntrustment()) {
                             bassClientService.suspendReceiversSourceSynchronization(broadcastId);
+                        } else if (Flags.leaudioBigDependsOnAudioState()) {
+                            bassClientService.cacheSuspendingSources(broadcastId);
                         }
                     }
 
-                    transitionFromBroadcastToUnicast();
+                    if (!Flags.leaudioBigDependsOnAudioState() || mIsBroadcastPausedFromOutside) {
+                        mIsBroadcastPausedFromOutside = false;
+                        transitionFromBroadcastToUnicast();
+                    }
                     break;
                 case LeAudioStackEvent.BROADCAST_STATE_STOPPING:
                     Log.d(TAG, "Broadcast broadcastId: " + broadcastId + " stopping.");

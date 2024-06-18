@@ -2425,7 +2425,8 @@ public class BassClientService extends ProfileService {
             if (isLocalBroadcast(sourceMetadata)) {
                 LeAudioService leAudioService = mServiceFactory.getLeAudioService();
                 if (leAudioService == null
-                        || !leAudioService.isPlaying(sourceMetadata.getBroadcastId())) {
+                        || !(leAudioService.isPaused(sourceMetadata.getBroadcastId())
+                                || leAudioService.isPlaying(sourceMetadata.getBroadcastId()))) {
                     Log.w(TAG, "addSource: Local source can't be add");
 
                     mCallbacks.notifySourceAddFailed(
@@ -2969,8 +2970,8 @@ public class BassClientService extends ProfileService {
             Integer broadcastId = entry.getKey();
             HashSet<BluetoothDevice> devices = entry.getValue();
 
-            /* If somehow there is a non playing broadcast, let's remove it */
-            if (!leAudioService.isPlaying(broadcastId)) {
+            /* If somehow there is a non playing and non configured broadcast, let's remove it */
+            if (!(leAudioService.isPaused(broadcastId)) || leAudioService.isPlaying(broadcastId)) {
                 Log.w(TAG, "Non playing broadcast remove from receivers list");
                 mLocalBroadcastReceivers.remove(broadcastId);
                 continue;
