@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56db97a2_ceda5d05",
+        "filename": "system/gd/rust/linux/mgmt/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-06-18T05:27:12Z",
+      "side": 1,
+      "message": "Using async mutex instead?",
+      "range": {
+        "startLine": 116,
+        "startChar": 8,
+        "endLine": 117,
+        "endChar": 47
+      },
+      "revId": "54278fe8dd8b40c4b0542a2a7aadabde18df56cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
