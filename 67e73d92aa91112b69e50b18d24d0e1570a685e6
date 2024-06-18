@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a4a62d2_7a357bd6",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 709,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2024-06-18T08:51:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79495e90_b3e8f3ac",
+      "range": {
+        "startLine": 708,
+        "startChar": 8,
+        "endLine": 709,
+        "endChar": 55
+      },
+      "revId": "67e73d92aa91112b69e50b18d24d0e1570a685e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f16a4c2c_3343b409",
@@ -79,6 +103,30 @@
           ]
         }
       ],
+      "revId": "67e73d92aa91112b69e50b18d24d0e1570a685e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "332ae706_0073c9f5",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 1096,
+      "author": {
+        "id": 3373698
+      },
+      "writtenOn": "2024-06-18T08:51:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f16a4c2c_3343b409",
+      "range": {
+        "startLine": 1094,
+        "startChar": 12,
+        "endLine": 1096,
+        "endChar": 75
+      },
       "revId": "67e73d92aa91112b69e50b18d24d0e1570a685e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
