@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f7e81b5_5c52e525",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-06-18T05:34:51Z",
+      "side": 1,
+      "message": "Done. Thank you.",
+      "parentUuid": "1b4fcc53_dc6d634f",
+      "range": {
+        "startLine": 236,
+        "startChar": 38,
+        "endLine": 236,
+        "endChar": 58
+      },
+      "revId": "e792ec2dc24d50da31adef8d88e6fe995efd9139",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3883241_11a6b138",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-06-18T05:21:44Z",
       "side": 1,
       "message": "Need to make this @Nullable in GattNativeInterface and then handle when it is actually null.",
+      "range": {
+        "startLine": 1131,
+        "startChar": 34,
+        "endLine": 1131,
+        "endChar": 38
+      },
+      "revId": "e792ec2dc24d50da31adef8d88e6fe995efd9139",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4147e9ed_87beb43c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1131,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-06-18T05:34:51Z",
+      "side": 1,
+      "message": "Done. Following the @Nullable structure in other `NativeInterface` classes such as `ScanNativeInterface.java`, I am only logging and returning from the method if it is null. PTAL.",
+      "parentUuid": "f3883241_11a6b138",
       "range": {
         "startLine": 1131,
         "startChar": 34,
