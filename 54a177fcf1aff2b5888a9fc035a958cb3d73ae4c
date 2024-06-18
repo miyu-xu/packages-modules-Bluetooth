@@ -16,6 +16,196 @@
       "message": "need to fix test code now...\n\n mLeAudioService.mLeAudioCallbacks \u003d mLeAudioCallbacks;",
       "revId": "54a177fcf1aff2b5888a9fc035a958cb3d73ae4c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccf369ef_e877b95e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-18T17:41:06Z",
+      "side": 1,
+      "message": "The two test concerned are not really relevant.\nyou can simply not mock and not replace the real abstraction but check the size of the remoteCallbackList and detect if it as been increase / decrease accordingly",
+      "parentUuid": "963b52c0_394e34f4",
+      "revId": "54a177fcf1aff2b5888a9fc035a958cb3d73ae4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78f7be9a_975e4e1b",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-18T17:41:06Z",
+      "side": 1,
+      "message": "you don\u0027t need to repeat the type when instantiating the object",
+      "range": {
+        "startLine": 87,
+        "startChar": 35,
+        "endLine": 87,
+        "endChar": 62
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4655e92a_b9bb7c71",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+              "range": {
+                "startLine": 87,
+                "startChar": 0,
+                "endLine": 88,
+                "endChar": 0
+              },
+              "replacement": "            new RemoteCallbackList\u003c\u003e();\n"
+            }
+          ]
+        }
+      ],
+      "revId": "54a177fcf1aff2b5888a9fc035a958cb3d73ae4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "772a073e_91fe1d7a",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-06-18T17:41:06Z",
+      "side": 1,
+      "message": "this can never be null since you put it final and created at construct time",
+      "range": {
+        "startLine": 581,
+        "startChar": 2,
+        "endLine": 584,
+        "endChar": 13
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4d0c8d0c_738a17ac",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+              "range": {
+                "startLine": 581,
+                "startChar": 0,
+                "endLine": 586,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+              "range": {
+                "startLine": 623,
+                "startChar": 0,
+                "endLine": 628,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+              "range": {
+                "startLine": 759,
+                "startChar": 0,
+                "endLine": 764,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+              "range": {
+                "startLine": 795,
+                "startChar": 0,
+                "endLine": 800,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+              "range": {
+                "startLine": 844,
+                "startChar": 0,
+                "endLine": 849,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+              "range": {
+                "startLine": 866,
+                "startChar": 0,
+                "endLine": 871,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+              "range": {
+                "startLine": 888,
+                "startChar": 0,
+                "endLine": 893,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+              "range": {
+                "startLine": 910,
+                "startChar": 0,
+                "endLine": 915,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+              "range": {
+                "startLine": 975,
+                "startChar": 0,
+                "endLine": 980,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+              "range": {
+                "startLine": 1019,
+                "startChar": 0,
+                "endLine": 1024,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "54a177fcf1aff2b5888a9fc035a958cb3d73ae4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
