@@ -1126,6 +1126,7 @@ cc_test {
     srcs: [
         ":TestCommonMockFunctions",
         ":TestMockBta",
+        ":TestMockBtif",
         ":TestMockDevice",
         ":TestMockStackA2dp",
         ":TestMockStackAcl",
