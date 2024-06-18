@@ -40,6 +40,7 @@
 #include "btif/include/bta_av_co_peer.h"
 #include "btif/include/btif_a2dp_source.h"
 #include "btif/include/btif_av.h"
+#include "btif/include/btif_storage.h"
 #include "device/include/device_iot_config.h"
 #include "include/hardware/bt_av.h"
 #include "internal_include/bt_trace.h"
@@ -284,7 +285,7 @@ tA2DP_STATUS BtaAvCo::ProcessSourceGetConfig(tBTA_AV_HNDL bta_av_handle,
         tA2DP_ENCODER_INIT_PEER_PARAMS peer_params;
         GetPeerEncoderParameters(p_peer->addr, &peer_params);
         p_peer->GetCodecs()->setCodecUserConfig(
-            false, /* TODO: use the real value instead of this place holder */
+            btif_storage_is_in_aac_48kHz_allow_list(peer_address),
             high_priority_mandatory, &peer_params, p_sink->codec_caps,
             result_codec_config, &restart_input, &restart_output,
             &config_updated);
@@ -801,7 +802,7 @@ bool BtaAvCo::SetCodecUserConfig(const RawAddress& peer_address,
   tA2DP_ENCODER_INIT_PEER_PARAMS peer_params;
   GetPeerEncoderParameters(p_peer->addr, &peer_params);
   if (!p_peer->GetCodecs()->setCodecUserConfig(
-          false, /* TODO: use the real value instead of this place holder */
+          btif_storage_is_in_aac_48kHz_allow_list(peer_address),
           codec_user_config, &peer_params, p_sink->codec_caps,
           result_codec_config, &restart_input, &restart_output,
           &config_updated)) {
@@ -889,7 +890,7 @@ bool BtaAvCo::SetCodecAudioConfig(const btav_a2dp_codec_config_t& codec_audio_co
   tA2DP_ENCODER_INIT_PEER_PARAMS peer_params;
   GetPeerEncoderParameters(p_peer->addr, &peer_params);
   if (!p_peer->GetCodecs()->setCodecAudioConfig(
-          false, /* TODO: use the real value instead of this place holder */
+          btif_storage_is_in_aac_48kHz_allow_list(p_peer->addr),
           codec_audio_config, &peer_params, p_sink->codec_caps,
           result_codec_config, &restart_output, &config_updated)) {
     return false;
@@ -1117,7 +1118,7 @@ const BtaAvCoSep* BtaAvCo::SelectSourceCodec(BtaAvCoPeer* p_peer) {
     }
 
     if (!p_peer->GetCodecs()->setCodecConfig(
-            false, /* TODO: use the real value instead of this place holder */
+            btif_storage_is_in_aac_48kHz_allow_list(p_peer->addr),
             p_sink->codec_caps, true /* is_capability */, new_codec_config,
             false /* select_current_codec */)) {
       log::verbose("cannot set source codec {}", iter->name());
@@ -1184,7 +1185,7 @@ const BtaAvCoSep* BtaAvCo::AttemptSourceCodecSelection(const A2dpCodecConfig& co
     return nullptr;
   }
   if (!p_peer->GetCodecs()->setCodecConfig(
-          false, /* TODO: use the real value instead of this place holder */
+          btif_storage_is_in_aac_48kHz_allow_list(p_peer->addr),
           p_sink->codec_caps, true /* is_capability */, new_codec_config,
           true /* select_current_codec */)) {
     log::verbose("cannot set source codec {}", codec_config.name());
@@ -1212,7 +1213,7 @@ const BtaAvCoSep* BtaAvCo::AttemptSinkCodecSelection(const A2dpCodecConfig& code
     return nullptr;
   }
   if (!p_peer->GetCodecs()->setSinkCodecConfig(
-          false, /* TODO: use the real value instead of this place holder */
+          btif_storage_is_in_aac_48kHz_allow_list(p_peer->addr),
           p_source->codec_caps, true /* is_capability */, new_codec_config,
           true /* select_current_codec */)) {
     log::verbose("cannot set sink codec {}", codec_config.name());
@@ -1251,7 +1252,7 @@ bool BtaAvCo::UpdateSelectableSourceCodec(const A2dpCodecConfig& codec_config,
     return false;
   }
   if (!p_peer->GetCodecs()->setPeerSinkCodecCapabilities(
-          false, /* TODO: use the real value instead of this place holder */
+          btif_storage_is_in_aac_48kHz_allow_list(p_peer->addr),
           p_sink->codec_caps)) {
     log::warn("cannot update peer {} codec capabilities for {}", p_peer->addr,
               A2DP_CodecName(p_sink->codec_caps));
@@ -1284,7 +1285,7 @@ bool BtaAvCo::UpdateSelectableSinkCodec(const A2dpCodecConfig& codec_config, Bta
     return false;
   }
   if (!p_peer->GetCodecs()->setPeerSourceCodecCapabilities(
-          false, /* TODO: use the real value instead of this place holder */
+          btif_storage_is_in_aac_48kHz_allow_list(p_peer->addr),
           p_source->codec_caps)) {
     log::warn("cannot update peer {} codec capabilities for {}", p_peer->addr,
               A2DP_CodecName(p_source->codec_caps));
@@ -1360,8 +1361,9 @@ tA2DP_STATUS BtaAvCo::SetCodecOtaConfig(BtaAvCoPeer* p_peer, const uint8_t* p_ot
 
   tA2DP_ENCODER_INIT_PEER_PARAMS peer_params;
   GetPeerEncoderParameters(p_peer->addr, &peer_params);
+  const bool in_48kHzAAC_allow_list = btif_storage_is_in_aac_48kHz_allow_list(p_peer->addr);
   const tA2DP_STATUS status = p_peer->GetCodecs()->setCodecOtaConfig(
-    false, /* TODO: use the real value instead of this place holder */
+    in_48kHzAAC_allow_list,
     p_ota_codec_config, &peer_params, result_codec_config,
     &restart_input, &restart_output, &config_updated);
   if (status != A2DP_SUCCESS) {
