@@ -1446,4 +1446,17 @@ void L2CA_SetEcosystemBaseInterval(uint32_t base_interval) {
           return;
         }
       }));
+
+  if (base_interval != 0) {
+    tL2C_LCB* p_lcb = &l2cb.lcb_pool[0];
+
+    for (int i = 0; i < MAX_L2CAP_LINKS; i++, p_lcb++) {
+      if ((p_lcb->in_use) && p_lcb->transport == BT_TRANSPORT_LE) {
+        bool ret = L2CA_UpdateBleConnParams(
+            p_lcb->remote_bd_addr, p_lcb->min_interval, p_lcb->max_interval,
+            p_lcb->latency, p_lcb->timeout, p_lcb->min_ce_len,
+            p_lcb->max_ce_len);
+      }
+    }
+  }
 }
