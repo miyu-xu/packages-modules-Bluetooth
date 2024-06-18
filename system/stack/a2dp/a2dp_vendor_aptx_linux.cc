@@ -125,13 +125,15 @@ bool A2dpCodecConfigAptx::useRtpHeaderMarkerBit() const { return false; }
 
 void A2dpCodecConfigAptx::debug_codec_dump(int fd) {}
 
-bool A2dpCodecConfigAptx::setCodecConfig(const uint8_t* p_peer_codec_info,
+bool A2dpCodecConfigAptx::setCodecConfig(const bool is_in_48kHz_aac_allow_list,
+                                         const uint8_t* p_peer_codec_info,
                                          bool is_capability,
                                          uint8_t* p_result_codec_config) {
   return false;
 }
 
 bool A2dpCodecConfigAptx::setPeerCodecCapabilities(
+    const bool is_in_48kHz_aac_allow_list,
     const uint8_t* p_peer_codec_capabilities) {
   return false;
 }
