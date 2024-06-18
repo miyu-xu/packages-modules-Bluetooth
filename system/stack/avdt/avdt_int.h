@@ -528,6 +528,7 @@ public:
         label(0),
         reconn(false),
         ret_count(0),
+        is_in_48kHz_aac_allow_list(false),
         bta_av_scb_index_(0) {}
 
   /**
@@ -588,6 +589,7 @@ public:
     label = 0;
     reconn = false;
     ret_count = 0;
+    is_in_48kHz_aac_allow_list = false;
   }
 
   /**
@@ -610,21 +612,22 @@ public:
   tAVDT_CTRL_CBACK* proc_cback;    // Procedure callback function
   tAVDT_CTRL_CBACK* p_conn_cback;  // Connection/disconnection callback function
   void* p_proc_data;               // Pointer to data storage for procedure
-  BT_HDR* p_curr_cmd;              // Current command being sent awaiting response
-  BT_HDR* p_curr_msg;              // Current message being sent
-  BT_HDR* p_rx_msg;                // Current message being received
-  bool allocated;                  // Whether ccb is allocated
-  uint8_t state;                   // The CCB state machine state
-  bool ll_opened;                  // True if LL is opened
-  bool proc_busy;                  // True when a discover or get capabilities procedure in
-                                   // progress
-  uint8_t proc_param;              // Procedure parameter; either SEID for get capabilities
-                                   // or number of SEPS for discover
-  bool cong;                       // True if the signaling channel is congested
-  uint8_t label;                   // Message header "label" (sequence number)
-  bool reconn;                     // If true, reinitiate connection after transitioning from
-                                   // CLOSING to IDLE state
-  uint8_t ret_count;               // Command retransmission count
+  BT_HDR* p_curr_cmd;  // Current command being sent awaiting response
+  BT_HDR* p_curr_msg;  // Current message being sent
+  BT_HDR* p_rx_msg;    // Current message being received
+  bool allocated;      // Whether ccb is allocated
+  uint8_t state;       // The CCB state machine state
+  bool ll_opened;      // True if LL is opened
+  bool proc_busy;      // True when a discover or get capabilities procedure in
+                       // progress
+  uint8_t proc_param;  // Procedure parameter; either SEID for get capabilities
+                       // or number of SEPS for discover
+  bool cong;           // True if the signaling channel is congested
+  uint8_t label;       // Message header "label" (sequence number)
+  bool reconn;         // If true, reinitiate connection after transitioning from
+                       // CLOSING to IDLE state
+  uint8_t ret_count;   // Command retransmission count
+  bool is_in_48kHz_aac_allow_list;
 
 private:
   // The corresponding BTA AV stream control block index for this entry
