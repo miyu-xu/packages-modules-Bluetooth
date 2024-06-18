@@ -25,9 +25,11 @@
 #define LOG_TAG "bluetooth-a2dp"
 
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 
 #include "avdt_int.h"
 #include "bta/include/bta_av_api.h"
+#include "btif/include/btif_storage.h"
 #include "device/include/interop.h"
 #include "l2c_api.h"
 #include "l2cdefs.h"
@@ -170,6 +172,14 @@ void avdt_l2c_connect_ind_cback(const RawAddress& bd_addr, uint16_t lcid,
             bd_addr,
             (acl_get_supported_packet_types() | HCI_PKT_TYPES_MASK_NO_3_DH1 |
              HCI_PKT_TYPES_MASK_NO_3_DH3 | HCI_PKT_TYPES_MASK_NO_3_DH5));
+      }
+      if (com::android::bluetooth::flags::a2dp_variable_aac_capability()) {
+        if (btif_storage_is_in_aac_48kHz_allow_list(bd_addr)) {
+          log::debug(
+              "L2cap connected to remote device {} in AAC 48kHz allow list",
+              bd_addr);
+          p_ccb->is_in_48kHz_aac_allow_list = true;
+        }
       }
       /* Assume security check is complete */
       avdt_sec_check_complete_term(&p_ccb->peer_addr, BT_TRANSPORT_BR_EDR,
