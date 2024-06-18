@@ -84,6 +84,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "df74ea70_7aee08fd",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-06-18T14:17:19Z",
+      "side": 1,
+      "message": "I agree that naming of this function is confusing, and more over I think we should have this method in the BluetoothLeBroadcastAssistant object instead - which would make things clear - but at some point of time different decision was made.\n\nThe thing is that we do not want to allow to configure single device for Unicast, and this method was created only to control Broadcast Sink devices which are connected along with the main active Broadcast Sink device.\n\nIf you look at API description: https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothVolumeControl.java;l\u003d754?q\u003dBluetoothVolumeCont\u0026ss\u003dandroid%2Fplatform%2Fsuperproject%2Fmain \n\nyou can see that other method should be used for unicast.",
+      "parentUuid": "20eb1c75_72744e7c",
+      "revId": "c4a9a9f928cab22ba19808673a754e7fbc5b454a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2dcbff3d_726ff51a",
         "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
         "patchSetId": 4
