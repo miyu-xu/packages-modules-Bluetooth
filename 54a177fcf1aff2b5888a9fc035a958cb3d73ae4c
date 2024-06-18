@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "963b52c0_394e34f4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-06-18T14:41:51Z",
+      "side": 1,
+      "message": "need to fix test code now...\n\n mLeAudioService.mLeAudioCallbacks \u003d mLeAudioCallbacks;",
+      "revId": "54a177fcf1aff2b5888a9fc035a958cb3d73ae4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
