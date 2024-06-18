@@ -1262,7 +1262,8 @@ public class LeAudioService extends ProfileService {
             return;
         }
 
-        if (Flags.leaudioBroadcastAssistantPeripheralEntrustment()) {
+        if (Flags.leaudioBroadcastAssistantPeripheralEntrustment()
+                && !Flags.leaudioBigDependsOnAudioState()) {
             if (!isPlaying(broadcastId)) {
                 Log.d(TAG, "pauseBroadcast: Broadcast is not playing, skip pause request");
                 return;
@@ -1277,6 +1278,10 @@ public class LeAudioService extends ProfileService {
 
         Log.d(TAG, "pauseBroadcast");
         mLeAudioBroadcasterNativeInterface.pauseBroadcast(broadcastId);
+
+        if (Flags.leaudioBigDependsOnAudioState()) {
+            transitionFromBroadcastToUnicast();
+        }
     }
 
     /**
@@ -1345,7 +1350,8 @@ public class LeAudioService extends ProfileService {
             return false;
         }
 
-        return descriptor.mState.equals(LeAudioStackEvent.BROADCAST_STATE_STREAMING);
+        return (descriptor.mState.equals(LeAudioStackEvent.BROADCAST_STATE_PAUSED)
+                || descriptor.mState.equals(LeAudioStackEvent.BROADCAST_STATE_STREAMING));
     }
 
     /**
@@ -3528,13 +3534,17 @@ public class LeAudioService extends ProfileService {
                                             broadcastId,
                                             BluetoothStatusCodes.REASON_LOCAL_STACK_REQUEST));
 
-                    if (!Flags.leaudioBroadcastAssistantPeripheralEntrustment()) {
-                        if (bassClientService != null) {
+                    if (bassClientService != null) {
+                        if (!Flags.leaudioBroadcastAssistantPeripheralEntrustment()) {
                             bassClientService.suspendReceiversSourceSynchronization(broadcastId);
+                        } else if (Flags.leaudioBigDependsOnAudioState()) {
+                            bassClientService.cacheSuspendingSources(broadcastId);
                         }
                     }
 
-                    transitionFromBroadcastToUnicast();
+                    if (!Flags.leaudioBigDependsOnAudioState()) {
+                        transitionFromBroadcastToUnicast();
+                    }
                     break;
                 case LeAudioStackEvent.BROADCAST_STATE_STOPPING:
                     Log.d(TAG, "Broadcast broadcastId: " + broadcastId + " stopping.");
