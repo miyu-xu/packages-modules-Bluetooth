@@ -722,8 +722,11 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     log::info("broadcast_id={}", broadcast_id);
 
     if (broadcasts_.count(broadcast_id) != 0) {
-      log::info("Stopping AudioHalClient");
-      if (le_audio_source_hal_client_) le_audio_source_hal_client_->Stop();
+      if (!com::android::bluetooth::flags::
+              leaudio_big_depends_on_audio_state()) {
+        log::info("Stopping AudioHalClient");
+        if (le_audio_source_hal_client_) le_audio_source_hal_client_->Stop();
+      }
       audio_state_ = AudioState::SUSPENDED;
       broadcasts_[broadcast_id]->SetMuted(true);
       broadcasts_[broadcast_id]->ProcessMessage(
@@ -941,11 +944,14 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
                          "assert failed: broadcasts_.count(broadcast_id) != 0");
         broadcasts_[broadcast_id]->HandleHciEvent(HCI_BLE_TERM_BIG_CPL_EVT,
                                                   evt);
-        auto result =
-            CodecManager::GetInstance()->UpdateActiveBroadcastAudioHalClient(
-                le_audio_source_hal_client_.get(), false);
-        log::assert_that(result, "Could not update session in codec manager");
-        le_audio_source_hal_client_.reset();
+        if (!com::android::bluetooth::flags::
+                leaudio_big_depends_on_audio_state()) {
+          auto result =
+              CodecManager::GetInstance()->UpdateActiveBroadcastAudioHalClient(
+                  le_audio_source_hal_client_.get(), false);
+          log::assert_that(result, "Could not update session in codec manager");
+          le_audio_source_hal_client_.reset();
+        }
       } break;
       default:
         log::error("Invalid event={}", event);
@@ -1067,14 +1073,14 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
               broadcast->SetMuted(false);
               auto is_started = instance->le_audio_source_hal_client_->Start(
                   broadcast_config.GetAudioHalClientConfig(), &audio_receiver_);
-              if (!is_started) {
-                /* Audio Source setup failed - stop the broadcast */
-                instance->StopAudioBroadcast(broadcast_id);
-                return;
-              }
-
-              if (com::android::bluetooth::flags::
+              if (!com::android::bluetooth::flags::
                       leaudio_big_depends_on_audio_state()) {
+                if (!is_started) {
+                  /* Audio Source setup failed - stop the broadcast */
+                  instance->StopAudioBroadcast(broadcast_id);
+                  return;
+                }
+              } else {
                 instance->UpdateAudioActiveStateOnSubgroups();
               }
             }
@@ -1301,14 +1307,20 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
 
     virtual void OnAudioSuspend(void) override {
       log::info("");
-      /* TODO: Should we suspend all broadcasts - remove BIGs? */
       if (!instance) return;
 
       instance->audio_state_ = AudioState::SUSPENDED;
-
       if (com::android::bluetooth::flags::
               leaudio_big_depends_on_audio_state()) {
         instance->UpdateAudioActiveStateOnSubgroups();
+
+        // TODO: add some timeout to execute below
+        for (auto& broadcast_pair : instance->broadcasts_) {
+          auto& broadcast = broadcast_pair.second;
+          broadcast->SetMuted(true);
+          broadcast->ProcessMessage(BroadcastStateMachine::Message::SUSPEND,
+                                    nullptr);
+        }
       }
     }
 
@@ -1316,19 +1328,25 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
       log::info("");
       if (!instance) return;
 
-      /* TODO: Should we resume all broadcasts - recreate BIGs? */
       instance->audio_state_ = AudioState::ACTIVE;
-
-      if (!IsAnyoneStreaming()) {
-        instance->le_audio_source_hal_client_->CancelStreamingRequest();
-        return;
-      }
-
-      instance->le_audio_source_hal_client_->ConfirmStreamingRequest();
-
       if (com::android::bluetooth::flags::
               leaudio_big_depends_on_audio_state()) {
         instance->UpdateAudioActiveStateOnSubgroups();
+
+        for (auto& broadcast_pair : instance->broadcasts_) {
+          auto& broadcast = broadcast_pair.second;
+          broadcast->ProcessMessage(BroadcastStateMachine::Message::START,
+                                    nullptr);
+        }
+
+        instance->le_audio_source_hal_client_->ConfirmStreamingRequest();
+      } else {
+        if (!IsAnyoneStreaming()) {
+          instance->le_audio_source_hal_client_->CancelStreamingRequest();
+          return;
+        }
+
+        instance->le_audio_source_hal_client_->ConfirmStreamingRequest();
       }
     }
 
