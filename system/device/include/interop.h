@@ -350,6 +350,11 @@ typedef enum {
 
   // Som A2DP sink devices don't respond SDP request during A2DP reconnection
   INTEROP_A2DP_SKIP_SDP_DURING_RECONNECTION,
+ 
+  // Some carkits have trouble decoding AAC 48 kHz when playing music
+  // (b/38443632); hence, AAC 48 kHz is turned off by default. However, we will
+  // turn it on for the devices listed in the allow list.
+  INTEROP_A2DP_ENABLE_AAC_48KHZ,
 
   // Some devices response slowly after setting non zero latency.
   // To avoid slowing down profile connection set latency to 0.
