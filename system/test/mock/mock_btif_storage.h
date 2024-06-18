@@ -534,6 +534,18 @@ struct btif_storage_set_remote_device_property {
 extern struct btif_storage_set_remote_device_property
     btif_storage_set_remote_device_property;
 
+// Name: btif_storage_set_remote_device_property
+// Params: const RawAddress &addr
+// Return: bool
+struct btif_storage_is_in_aac_48kHz_allow_list {
+  static bool return_value;
+  std::function<bool(const RawAddress& addr)> body{
+      [](const RawAddress&) -> bool { return return_value; }};
+  bool operator()(const RawAddress& addr) { return body(addr); };
+};
+extern struct btif_storage_is_in_aac_48kHz_allow_list
+    btif_storage_is_in_aac_48kHz_allow_list;
+
 }  // namespace btif_storage
 }  // namespace mock
 }  // namespace test
