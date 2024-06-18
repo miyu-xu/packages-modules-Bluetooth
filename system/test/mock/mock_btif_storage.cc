@@ -76,6 +76,8 @@ struct btif_storage_set_gatt_sr_supp_feat btif_storage_set_gatt_sr_supp_feat;
 struct btif_storage_set_remote_addr_type btif_storage_set_remote_addr_type;
 struct btif_storage_set_remote_device_property
     btif_storage_set_remote_device_property;
+struct btif_storage_is_in_aac_48kHz_allow_list
+    btif_storage_is_in_aac_48kHz_allow_list;
 
 }  // namespace btif_storage
 }  // namespace mock
@@ -114,6 +116,7 @@ bt_status_t btif_storage_remove_bonded_device::return_value = BT_STATUS_SUCCESS;
 bt_status_t btif_storage_set_adapter_property::return_value = BT_STATUS_SUCCESS;
 bt_status_t btif_storage_set_remote_device_property::return_value =
     BT_STATUS_SUCCESS;
+bool btif_storage_is_in_aac_48kHz_allow_list::return_value = false;
 
 }  // namespace btif_storage
 }  // namespace mock
@@ -301,6 +304,11 @@ bt_status_t btif_storage_set_remote_device_property(
   inc_func_call_count(__func__);
   return test::mock::btif_storage::btif_storage_set_remote_device_property(
       remote_bd_addr, property);
+}
+bool btif_storage_is_in_aac_48kHz_allow_list(const RawAddress& addr) {
+  inc_func_call_count(__func__);
+  return test::mock::btif_storage::btif_storage_is_in_aac_48kHz_allow_list(
+      addr);
 }
 // Mocked functions complete
 // END mockcify generation
