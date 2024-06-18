@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8f47f56_b66b9fc3",
+        "filename": "android/app/src/com/android/bluetooth/le_scan/TransitionalScanHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1027,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-06-18T11:32:12Z",
+      "side": 1,
+      "message": "Q) Is this needed?",
+      "range": {
+        "startLine": 1027,
+        "startChar": 4,
+        "endLine": 1027,
+        "endChar": 64
+      },
+      "revId": "d46d828d2b8b0bddd2ee45a162bf75abba4d4760",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
