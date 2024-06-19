@@ -938,8 +938,10 @@ TEST_F(A2dpCodecConfigTest, setCodecConfig) {
   EXPECT_NE(peer_codec_index, BTAV_A2DP_CODEC_INDEX_MAX);
   codec_config = a2dp_codecs->findSourceCodecConfig(codec_info_sbc_sink_capability);
   EXPECT_NE(codec_config, nullptr);
-  EXPECT_TRUE(a2dp_codecs->setCodecConfig(codec_info_sbc_sink_capability, true /* is_capability */,
-                                          codec_info_result, true /* select_current_codec */));
+  EXPECT_TRUE(a2dp_codecs->setCodecConfig(
+      false /* is_in_48kHz_aac_allow_list */, codec_info_sbc_sink_capability,
+      true /* is_capability */, codec_info_result,
+      true /* select_current_codec */));
   EXPECT_EQ(a2dp_codecs->getCurrentCodecConfig(), codec_config);
   // Compare the result codec with the local test codec info
   for (size_t i = 0; i < codec_info_sbc[0] + 1; i++) {
@@ -953,8 +955,10 @@ TEST_F(A2dpCodecConfigTest, setCodecConfig) {
   EXPECT_NE(peer_codec_index, BTAV_A2DP_CODEC_INDEX_MAX);
   codec_config = a2dp_codecs->findSourceCodecConfig(codec_info_sbc);
   EXPECT_NE(codec_config, nullptr);
-  EXPECT_TRUE(a2dp_codecs->setCodecConfig(codec_info_sbc, false /* is_capability */,
-                                          codec_info_result, true /* select_current_codec */));
+  EXPECT_TRUE(a2dp_codecs->setCodecConfig(
+      false /* is_in_48kHz_aac_allow_list */, codec_info_sbc,
+      false /* is_capability */, codec_info_result,
+      true /* select_current_codec */));
   EXPECT_EQ(a2dp_codecs->getCurrentCodecConfig(), codec_config);
   // Compare the result codec with the local test codec info
   for (size_t i = 0; i < codec_info_sbc[0] + 1; i++) {
@@ -968,8 +972,10 @@ TEST_F(A2dpCodecConfigTest, setCodecConfig) {
   EXPECT_NE(peer_codec_index, BTAV_A2DP_CODEC_INDEX_MAX);
   codec_config = a2dp_codecs->findSourceCodecConfig(codec_info_aac);
   EXPECT_NE(codec_config, nullptr);
-  EXPECT_TRUE(a2dp_codecs->setCodecConfig(codec_info_aac, false /* is_capability */,
-                                          codec_info_result, true /* select_current_codec */));
+  EXPECT_TRUE(a2dp_codecs->setCodecConfig(
+      false /* is_in_48kHz_aac_allow_list */, codec_info_aac,
+      false /* is_capability */, codec_info_result,
+      true /* select_current_codec */));
   EXPECT_EQ(a2dp_codecs->getCurrentCodecConfig(), codec_config);
   // Compare the result codec with the local test codec info
   for (size_t i = 0; i < codec_info_aac[0] + 1; i++) {
@@ -983,8 +989,10 @@ TEST_F(A2dpCodecConfigTest, setCodecConfig) {
   EXPECT_NE(peer_codec_index, BTAV_A2DP_CODEC_INDEX_MAX);
   codec_config = a2dp_codecs->findSinkCodecConfig(codec_info_sbc_capability);
   EXPECT_NE(codec_config, nullptr);
-  EXPECT_TRUE(a2dp_codecs->setSinkCodecConfig(codec_info_sbc_capability, true /* is_capability */,
-                                              codec_info_result, true /* select_current_codec */));
+  EXPECT_TRUE(a2dp_codecs->setSinkCodecConfig(
+      false /* is_in_48kHz_aac_allow_list */, codec_info_sbc_capability,
+      true /* is_capability */, codec_info_result,
+      true /* select_current_codec */));
   EXPECT_EQ(a2dp_codecs->getCurrentCodecConfig(), codec_config);
   // Compare the result codec with the local test codec info
   for (size_t i = 0; i < codec_info_sbc[0] + 1; i++) {
@@ -998,8 +1006,10 @@ TEST_F(A2dpCodecConfigTest, setCodecConfig) {
   EXPECT_NE(peer_codec_index, BTAV_A2DP_CODEC_INDEX_MAX);
   codec_config = a2dp_codecs->findSinkCodecConfig(codec_info_aac_capability);
   EXPECT_NE(codec_config, nullptr);
-  EXPECT_TRUE(a2dp_codecs->setSinkCodecConfig(codec_info_aac_capability, true /* is_capability */,
-                                              codec_info_result, true /* select_current_codec */));
+  EXPECT_TRUE(a2dp_codecs->setSinkCodecConfig(
+      false /* is_in_48kHz_aac_allow_list */, codec_info_aac_capability,
+      true /* is_capability */, codec_info_result,
+      true /* select_current_codec */));
   EXPECT_EQ(a2dp_codecs->getCurrentCodecConfig(), codec_config);
   // Compare the result codec with the local test codec info
   for (size_t i = 0; i < codec_info_aac[0] + 1; i++) {
@@ -1013,8 +1023,10 @@ TEST_F(A2dpCodecConfigTest, setCodecConfig) {
   EXPECT_NE(peer_codec_index, BTAV_A2DP_CODEC_INDEX_MAX);
   codec_config = a2dp_codecs->findSinkCodecConfig(codec_info_sbc);
   EXPECT_NE(codec_config, nullptr);
-  EXPECT_TRUE(a2dp_codecs->setSinkCodecConfig(codec_info_sbc, false /* is_capability */,
-                                              codec_info_result, true /* select_current_codec */));
+  EXPECT_TRUE(a2dp_codecs->setSinkCodecConfig(
+      false /* is_in_48kHz_aac_allow_list */, codec_info_sbc,
+      false /* is_capability */, codec_info_result,
+      true /* select_current_codec */));
   EXPECT_EQ(a2dp_codecs->getCurrentCodecConfig(), codec_config);
   // Compare the result codec with the local test codec info
   for (size_t i = 0; i < codec_info_sbc[0] + 1; i++) {
@@ -1028,8 +1040,10 @@ TEST_F(A2dpCodecConfigTest, setCodecConfig) {
   EXPECT_NE(peer_codec_index, BTAV_A2DP_CODEC_INDEX_MAX);
   codec_config = a2dp_codecs->findSinkCodecConfig(codec_info_aac);
   EXPECT_NE(codec_config, nullptr);
-  EXPECT_TRUE(a2dp_codecs->setSinkCodecConfig(codec_info_aac, false /* is_capability */,
-                                              codec_info_result, true /* select_current_codec */));
+  EXPECT_TRUE(a2dp_codecs->setSinkCodecConfig(
+      false /* is_in_48kHz_aac_allow_list */, codec_info_aac,
+      false /* is_capability */, codec_info_result,
+      true /* select_current_codec */));
   EXPECT_EQ(a2dp_codecs->getCurrentCodecConfig(), codec_config);
   // Compare the result codec with the local test codec info
   for (size_t i = 0; i < codec_info_aac[0] + 1; i++) {
@@ -1041,8 +1055,10 @@ TEST_F(A2dpCodecConfigTest, setCodecConfig) {
   uint8_t codec_info_sbc_test1[AVDT_CODEC_SIZE];
   memset(codec_info_result, 0, sizeof(codec_info_result));
   memset(codec_info_sbc_test1, 0, sizeof(codec_info_sbc_test1));
-  EXPECT_FALSE(a2dp_codecs->setCodecConfig(codec_info_sbc_test1, true /* is_capability */,
-                                           codec_info_result, true /* select_current_codec */));
+  EXPECT_FALSE(a2dp_codecs->setCodecConfig(
+      false /* is_in_48kHz_aac_allow_list */, codec_info_sbc_test1,
+      true /* is_capability */, codec_info_result,
+      true /* select_current_codec */));
 
   AvdtpSepConfig avdt_cfg;
   memset(&avdt_cfg, 0, sizeof(avdt_cfg));
@@ -1055,8 +1071,10 @@ TEST_F(A2dpCodecConfigTest, setCodecConfig) {
   ASSERT_NE(peer_codec_index, BTAV_A2DP_CODEC_INDEX_MAX);
   codec_config = a2dp_codecs->findSourceCodecConfig(codec_info_aac_sink_capability);
   ASSERT_NE(codec_config, nullptr);
-  ASSERT_TRUE(a2dp_codecs->setCodecConfig(codec_info_aac_sink_capability, true /* is_capability */,
-                                          codec_info_result, true /* select_current_codec */));
+  ASSERT_TRUE(a2dp_codecs->setCodecConfig(
+      false /* is_in_48kHz_aac_allow_list */, codec_info_aac_sink_capability,
+      true /* is_capability */, codec_info_result,
+      true /* select_current_codec */));
   ASSERT_EQ(a2dp_codecs->getCurrentCodecConfig(), codec_config);
   // Compare the result codec with the local test codec info
   if (aac_vbr_mode_enabled) {
@@ -1076,12 +1094,14 @@ TEST_F(A2dpCodecConfigTest, setCodecConfig) {
   ASSERT_NE(peer_codec_index, BTAV_A2DP_CODEC_INDEX_MAX);
   codec_config = a2dp_codecs->findSourceCodecConfig(codec_info_aac_vbr);
   ASSERT_NE(codec_config, nullptr);
-  ASSERT_TRUE(a2dp_codecs->setCodecConfig(codec_info_aac_vbr, false /* is_capability */,
-                                          codec_info_result, true /* select_current_codec */));
+  ASSERT_TRUE(a2dp_codecs->setCodecConfig(
+      false /* is_in_48kHz_aac_allow_list */, codec_info_aac_vbr,
+      false /* is_capability */, codec_info_result,
+      true /* select_current_codec */));
   ASSERT_EQ(a2dp_codecs->getCurrentCodecConfig(), codec_config);
   // Compare the result codec with the local test codec info
   if (aac_vbr_mode_enabled) {
-    for (size_t i = 0; i < codec_info_aac[0] + 1; i++) {
+    for (size_t i = 0; i < codec_info_aac_vbr[0] + 1; i++) {
       ASSERT_EQ(codec_info_result[i], codec_info_aac_vbr[i]);
     }
   } else {
