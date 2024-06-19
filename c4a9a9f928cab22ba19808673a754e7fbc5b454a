@@ -120,6 +120,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "48f443da_68ebb2fd",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-06-19T05:39:30Z",
+      "side": 1,
+      "message": "that is the case, There was no intention to make it generic - please read description pointed out above.",
+      "parentUuid": "a81ebaf5_85f340fb",
+      "revId": "c4a9a9f928cab22ba19808673a754e7fbc5b454a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2dcbff3d_726ff51a",
         "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
         "patchSetId": 4
