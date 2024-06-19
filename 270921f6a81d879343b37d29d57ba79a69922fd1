@@ -47,6 +47,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e9fa63b_b70a7c39",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2024-06-19T05:44:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85819ba4_06ec6827",
+      "range": {
+        "startLine": 7,
+        "startChar": 42,
+        "endLine": 7,
+        "endChar": 51
+      },
+      "revId": "270921f6a81d879343b37d29d57ba79a69922fd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6655b2de_b0c2f5ab",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2024-06-19T05:44:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60ed430c_9a3b52ff",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 6
+      },
+      "revId": "270921f6a81d879343b37d29d57ba79a69922fd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "12fcb2cf_788154ce",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-06-17T21:41:21Z",
       "side": 1,
       "message": "change it to: Test: mmm packages/modules/Bluetooth",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 4
+      },
+      "revId": "270921f6a81d879343b37d29d57ba79a69922fd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbacdd62_0e629578",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2024-06-19T05:44:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12fcb2cf_788154ce",
       "range": {
         "startLine": 8,
         "startChar": 0,
