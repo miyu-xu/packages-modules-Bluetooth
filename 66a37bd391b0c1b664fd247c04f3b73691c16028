@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8989d2a6_afa7fb0b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-06-19T00:22:40Z",
+      "side": 1,
+      "message": "Hard to write unit test, as it is a static function.  \n\nmaybe write: `Test: m packages/modules/Bluetooth with Manual testing`",
+      "parentUuid": "e2ee8131_cd01c3b1",
+      "range": {
+        "startLine": 11,
+        "startChar": 6,
+        "endLine": 11,
+        "endChar": 10
+      },
+      "revId": "66a37bd391b0c1b664fd247c04f3b73691c16028",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eb68d887_f7829926",
         "filename": "system/btif/src/btif_hf.cc",
         "patchSetId": 1
