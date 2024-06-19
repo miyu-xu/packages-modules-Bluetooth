@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af6361eb_bbe34ab7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2024-06-19T05:43:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f26f6384_a62b4bf3",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 57
+      },
+      "revId": "66a37bd391b0c1b664fd247c04f3b73691c16028",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e2ee8131_cd01c3b1",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "Hard to write unit test, as it is a static function.  \n\nmaybe write: `Test: m packages/modules/Bluetooth with Manual testing`",
       "parentUuid": "e2ee8131_cd01c3b1",
+      "range": {
+        "startLine": 11,
+        "startChar": 6,
+        "endLine": 11,
+        "endChar": 10
+      },
+      "revId": "66a37bd391b0c1b664fd247c04f3b73691c16028",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acf088e8_0c435a61",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2024-06-19T05:43:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8989d2a6_afa7fb0b",
       "range": {
         "startLine": 11,
         "startChar": 6,
@@ -128,6 +176,30 @@
           ]
         }
       ],
+      "revId": "66a37bd391b0c1b664fd247c04f3b73691c16028",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "336f47e4_e70afcf0",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 3466841
+      },
+      "writtenOn": "2024-06-19T05:43:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb68d887_f7829926",
+      "range": {
+        "startLine": 434,
+        "startChar": 54,
+        "endLine": 434,
+        "endChar": 55
+      },
       "revId": "66a37bd391b0c1b664fd247c04f3b73691c16028",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
