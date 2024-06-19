@@ -103,9 +103,39 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
                                       &state_machine_adv_callbacks_);
 
     GenerateBroadcastIds();
+    InitializeAudioSession();
   }
 
   ~LeAudioBroadcasterImpl() override = default;
+
+  void InitializeAudioSession() {
+    le_audio_source_hal_client_ =
+        LeAudioSourceAudioHalClient::AcquireBroadcast();
+
+    if (!le_audio_source_hal_client_) {
+      log::error("Could not acquire le audio");
+      return;
+    }
+    // auto result =
+    //     CodecManager::GetInstance()->UpdateActiveBroadcastAudioHalClient(
+    //         le_audio_source_hal_client_.get(), true);
+    // log::assert_that(result, "Could not update session in codec manager");
+
+    le_audio::LeAudioCodecConfiguration conf = {
+        // Get the maximum number of channels
+        .num_channels = 2,
+        // Get the max sampling frequency
+        .sample_rate = 48000,
+        // Use the default 16 bits per sample resolution in the audio framework
+        .bits_per_sample = 16,
+        // Get the data interval
+        .data_interval_us = 10000,
+    };
+
+    auto is_started =
+        le_audio_source_hal_client_->Start(conf, &audio_receiver_);
+    log::assert_that(is_started, "Could not start session");
+  }
 
   void GenerateBroadcastIds(void) {
     btsnd_hcic_ble_rand(base::Bind([](BT_OCTET8 rand) {
@@ -962,13 +992,14 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
               audio_receiver_.CheckAndReconfigureEncoders(broadcast_config);
 
               broadcast->SetMuted(false);
-              auto is_started = instance->le_audio_source_hal_client_->Start(
-                  broadcast_config.GetAudioHalClientConfig(), &audio_receiver_);
-              if (!is_started) {
-                /* Audio Source setup failed - stop the broadcast */
-                instance->StopAudioBroadcast(broadcast_id);
-                return;
-              }
+              // auto is_started = instance->le_audio_source_hal_client_->Start(
+              //     broadcast_config.GetAudioHalClientConfig(),
+              //     &audio_receiver_);
+              // if (!is_started) {
+              //   /* Audio Source setup failed - stop the broadcast */
+              //   instance->StopAudioBroadcast(broadcast_id);
+              //   return;
+              // }
 
               instance->audio_data_path_state_ = AudioDataPathState::ACTIVE;
             }
