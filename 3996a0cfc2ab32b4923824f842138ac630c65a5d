@@ -231,6 +231,24 @@
       "parentUuid": "ffe42741_6a625b1b",
       "revId": "3996a0cfc2ab32b4923824f842138ac630c65a5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2ea4887_fe697f06",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2138,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-06-19T12:27:05Z",
+      "side": 1,
+      "message": "Hi!\n\nI\u0027ve tested such scenario and it looks like it does stopBroadcast before ActiveDeviceManager does device switch to a2dp.\n```\n06-19 14:22:43.819  2532  2532 D LocalBluetoothLeBroadcast: stopBroadcast()\n06-19 14:22:43.820  4388  4398 D LeAudioService: stopBroadcast\n06-19 14:22:44.259  4388  4431 D ActiveDeviceManager: onAudioDevicesAdded\n06-19 14:22:44.259  4388  4431 D ActiveDeviceManager: Audio device added: BT Speaker type: 8\n06-19 14:22:44.264  4388  4431 D ActiveDeviceManager: handleA2dpActiveDeviceChanged: XX:XX:XX:XX:4E:E2, mA2dpActiveDevice\u003dnull\n06-19 14:22:44.264  4388  4431 D ActiveDeviceManager: setHearingAidActiveDevice(null) hasFallbackDevice\u003dtrue\n06-19 14:22:44.265  4388  4431 D ActiveDeviceManager: setLeAudioActiveDevice(null) hasFallbackDevice\u003dtrue\n06-19 14:22:44.276  4388  4431 D ActiveDeviceManager: handleLeAudioActiveDeviceChanged: null, mLeAudioActiveDevice\u003dnull\n06-19 14:22:44.637  4388  4431 D ActiveDeviceManager: onAudioDevicesAdded\n06-19 14:22:44.637  4388  4431 D ActiveDeviceManager: Audio device added: \u0010Galaxy Buds2 Pr type: 26\n```\n\nand finally it works fine for me, audio is transferred to a2dp.",
+      "parentUuid": "e641ea88_0633a763",
+      "revId": "3996a0cfc2ab32b4923824f842138ac630c65a5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
