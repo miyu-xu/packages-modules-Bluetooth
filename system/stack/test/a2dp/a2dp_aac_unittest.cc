@@ -101,15 +101,16 @@ protected:
     ASSERT_NE(peer_codec_index, BTAV_A2DP_CODEC_INDEX_MAX);
     sink_codec_config_ = a2dp_codecs_->findSinkCodecConfig(kCodecInfoAacCapability);
     ASSERT_NE(sink_codec_config_, nullptr);
-    ASSERT_TRUE(a2dp_codecs_->setSinkCodecConfig(kCodecInfoAacCapability, true, codec_info_result,
-                                                 true));
-    ASSERT_TRUE(a2dp_codecs_->setPeerSinkCodecCapabilities(kCodecInfoAacCapability));
+    ASSERT_TRUE(a2dp_codecs_->setSinkCodecConfig(
+        false, kCodecInfoAacCapability, true, codec_info_result, true));
+    ASSERT_TRUE(a2dp_codecs_->setPeerSinkCodecCapabilities(
+        false, kCodecInfoAacCapability));
     // Compare the result codec with the local test codec info
     for (size_t i = 0; i < kCodecInfoAacCapability[0] + 1; i++) {
       ASSERT_EQ(codec_info_result[i], kCodecInfoAacCapability[i]);
     }
-    ASSERT_TRUE(
-            a2dp_codecs_->setCodecConfig(kCodecInfoAacCapability, true, codec_info_result, true));
+    ASSERT_TRUE(a2dp_codecs_->setCodecConfig(false, kCodecInfoAacCapability,
+                                             true, codec_info_result, true));
     source_codec_config_ = a2dp_codecs_->getCurrentCodecConfig();
   }
 
@@ -221,7 +222,8 @@ TEST_F(A2dpAacTest, decoded_data_cb_invoked) {
 
 TEST_F(A2dpAacTest, set_source_codec_config_works) {
   uint8_t codec_info_result[AVDT_CODEC_SIZE];
-  ASSERT_TRUE(a2dp_codecs_->setCodecConfig(kCodecInfoAacCapability, true, codec_info_result, true));
+  ASSERT_TRUE(a2dp_codecs_->setCodecConfig(false, kCodecInfoAacCapability, true,
+                                           codec_info_result, true));
   ASSERT_TRUE(A2DP_CodecTypeEqualsAac(codec_info_result, kCodecInfoAacCapability));
   ASSERT_TRUE(A2DP_CodecEqualsAac(codec_info_result, kCodecInfoAacCapability));
   auto* codec_config = a2dp_codecs_->findSourceCodecConfig(kCodecInfoAacCapability);

@@ -125,12 +125,16 @@ bool A2dpCodecConfig::isCodecConfigEmpty(const btav_a2dp_codec_config_t& /* code
   return false;
 }
 tA2DP_STATUS A2dpCodecConfig::setCodecUserConfig(
-        const btav_a2dp_codec_config_t& /* codec_user_config */,
-        const btav_a2dp_codec_config_t& /* codec_audio_config */,
-        const tA2DP_ENCODER_INIT_PEER_PARAMS* /* p_peer_params */,
-        const uint8_t* /* p_peer_codec_info */, bool /* is_capability */,
-        uint8_t* /* p_result_codec_config */, bool* /* p_restart_input */,
-        bool* /* p_restart_output */, bool* /* p_config_updated */) {
+  const bool /* is_in_48kHz_aac_allow_list */,
+  const btav_a2dp_codec_config_t& /* codec_user_config */,
+  const btav_a2dp_codec_config_t& /* codec_audio_config */,
+  const tA2DP_ENCODER_INIT_PEER_PARAMS* /* p_peer_params */,
+  const uint8_t* /* p_peer_codec_info */,
+  bool /* is_capability */,
+  uint8_t* /* p_result_codec_config */,
+  bool* /* p_restart_input */,
+  bool* /* p_restart_output */,
+  bool* /* p_config_updated */) {
   inc_func_call_count(__func__);
   return AVDTP_UNSUPPORTED_CONFIGURATION;
 }
@@ -149,47 +153,64 @@ bool A2dpCodecs::isSupportedCodec(btav_a2dp_codec_index_t /* codec_index */) {
   inc_func_call_count(__func__);
   return false;
 }
-bool A2dpCodecs::setCodecAudioConfig(const btav_a2dp_codec_config_t& /* codec_audio_config */,
-                                     const tA2DP_ENCODER_INIT_PEER_PARAMS* /* p_peer_params */,
-                                     const uint8_t* /* p_peer_sink_capabilities */,
-                                     uint8_t* /* p_result_codec_config */,
-                                     bool* /* p_restart_output */, bool* /* p_config_updated */) {
+bool A2dpCodecs::setCodecAudioConfig(
+    const bool /* is_in_48kHz_aac_allow_list */,
+    const btav_a2dp_codec_config_t& /* codec_audio_config */,
+    const tA2DP_ENCODER_INIT_PEER_PARAMS* /* p_peer_params */,
+    const uint8_t* /* p_peer_sink_capabilities */,
+    uint8_t* /* p_result_codec_config */,
+    bool* /* p_restart_output */,
+    bool* /* p_config_updated */) {
   inc_func_call_count(__func__);
   return false;
 }
-bool A2dpCodecs::setCodecConfig(const uint8_t* /* p_peer_codec_info */, bool /* is_capability */,
+bool A2dpCodecs::setCodecConfig(const bool /* is_in_48kHz_aac_allow_list */,
+                                const uint8_t* /* p_peer_codec_info */,
+                                bool /* is_capability */,
                                 uint8_t* /* p_result_codec_config */,
                                 bool /* select_current_codec */) {
   inc_func_call_count(__func__);
   return false;
 }
 tA2DP_STATUS A2dpCodecs::setCodecOtaConfig(
-        const uint8_t* /* p_ota_codec_config */,
-        const tA2DP_ENCODER_INIT_PEER_PARAMS* /* p_peer_params */,
-        uint8_t* /* p_result_codec_config */, bool* /* p_restart_input */,
-        bool* /* p_restart_output */, bool* /* p_config_updated */) {
+  const bool /* is_in_48kHz_aac_allow_list */,
+  const uint8_t* /* p_ota_codec_config */,
+  const tA2DP_ENCODER_INIT_PEER_PARAMS* /* p_peer_params */,
+  uint8_t* /* p_result_codec_config */,
+  bool* /* p_restart_input */,
+  bool* /* p_restart_output */,
+  bool* /* p_config_updated */) {
   inc_func_call_count(__func__);
   return AVDTP_UNSUPPORTED_CONFIGURATION;
 }
-bool A2dpCodecs::setCodecUserConfig(const btav_a2dp_codec_config_t& /* codec_user_config */,
-                                    const tA2DP_ENCODER_INIT_PEER_PARAMS* /* p_peer_params */,
-                                    const uint8_t* /* p_peer_sink_capabilities */,
+bool A2dpCodecs::setCodecUserConfig(
+    const bool /* is_in_48kHz_aac_allow_list */,
+    const btav_a2dp_codec_config_t& /* codec_user_config */,
+    const tA2DP_ENCODER_INIT_PEER_PARAMS* /* p_peer_params */,
+    const uint8_t* /* p_peer_sink_capabilities */,
+    uint8_t* /* p_result_codec_config */,
+    bool* /* p_restart_input */,
+    bool* /* p_restart_output */,
+    bool* /* p_config_updated */) {
+  inc_func_call_count(__func__);
+  return false;
+}
+bool A2dpCodecs::setPeerSinkCodecCapabilities(
+    const bool /* is_in_48kHz_aac_allow_list */,
+    const uint8_t* /* p_peer_codec_capabilities */) {
+  inc_func_call_count(__func__);
+  return false;
+}
+bool A2dpCodecs::setPeerSourceCodecCapabilities(
+    const bool /* is_in_48kHz_aac_allow_list */,
+    const uint8_t* /* p_peer_codec_capabilities */) {
+  inc_func_call_count(__func__);
+  return false;
+}
+bool A2dpCodecs::setSinkCodecConfig(const bool /* is_in_48kHz_aac_allow_list */,
+                                    const uint8_t* /* p_peer_codec_info */,
+                                    bool /* is_capability */,
                                     uint8_t* /* p_result_codec_config */,
-                                    bool* /* p_restart_input */, bool* /* p_restart_output */,
-                                    bool* /* p_config_updated */) {
-  inc_func_call_count(__func__);
-  return false;
-}
-bool A2dpCodecs::setPeerSinkCodecCapabilities(const uint8_t* /* p_peer_codec_capabilities */) {
-  inc_func_call_count(__func__);
-  return false;
-}
-bool A2dpCodecs::setPeerSourceCodecCapabilities(const uint8_t* /* p_peer_codec_capabilities */) {
-  inc_func_call_count(__func__);
-  return false;
-}
-bool A2dpCodecs::setSinkCodecConfig(const uint8_t* /* p_peer_codec_info */,
-                                    bool /* is_capability */, uint8_t* /* p_result_codec_config */,
                                     bool /* select_current_codec */) {
   inc_func_call_count(__func__);
   return false;
