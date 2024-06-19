@@ -48,7 +48,8 @@ A2dpCodecConfigExt::A2dpCodecConfigExt(btav_a2dp_codec_index_t codec_index,
   codec_selectable_capability_ = codec_capability_;
 }
 
-bool A2dpCodecConfigExt::setCodecConfig(const uint8_t* p_peer_codec_info,
+bool A2dpCodecConfigExt::setCodecConfig(const bool is_in_48kHz_aac_allow_list,
+                                        const uint8_t* p_peer_codec_info,
                                         bool is_capability,
                                         uint8_t* p_result_codec_config) {
   // Call get_a2dp_config to recompute best capabilities.
@@ -78,6 +79,7 @@ bool A2dpCodecConfigExt::setCodecConfig(const uint8_t* p_peer_codec_info,
 }
 
 bool A2dpCodecConfigExt::setPeerCodecCapabilities(
+    const bool is_in_48kHz_aac_allow_list,
     const uint8_t* p_peer_codec_capabilities) {
   // setPeerCodecCapabilities updates the selectable
   // capabilities in the codec config. It can be safely
