@@ -22,6 +22,7 @@
  *
  ******************************************************************************/
 
+#include <ag/bta_ag_int.h>
 #include <bluetooth/log.h>
 
 #include <cstdint>
@@ -348,6 +349,9 @@ void bta_sys_sco_unuse(tBTA_SYS_ID /* id */, uint8_t app_id,
   if ((bta_sys_cb.p_sco_cb)) {
     uint8_t num_sco_links = BTM_GetNumScoLinks();
     bta_sys_cb.p_sco_cb(BTA_SYS_SCO_CLOSE, num_sco_links, app_id, peer_addr);
+  }
+  if (bta_ag_is_sco_managed_by_audio() && BTM_GetNumScoLinks() == 0) {
+    bta_ag_ack_stop_stream();
   }
 }
 

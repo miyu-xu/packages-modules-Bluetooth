@@ -1606,6 +1606,12 @@ bool bta_ag_is_sco_managed_by_audio() {
   return value;
 }
 
+void bta_ag_ack_stop_stream() {
+  if (bta_ag_is_sco_managed_by_audio() && hfp_offload_interface) {
+    hfp_offload_interface->CancelStreamingRequest();
+  }
+}
+
 const RawAddress& bta_ag_get_active_device() { return active_device_addr; }
 
 void bta_clear_active_device() {
