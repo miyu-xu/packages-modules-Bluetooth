@@ -88,6 +88,30 @@
       },
       "revId": "81e7ef134ba9888d623a5e7136f134c450b2301b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29aaafb2_58050a73",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2980,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-06-19T05:53:07Z",
+      "side": 1,
+      "message": "`startAudioServersBackgroundScan` is called already in the mainthead in other cases and so far no issues reported on this.\n \n William, all the details are in the bugreport along with a link to where this 2 sec wait is implemented.",
+      "parentUuid": "220fbb3a_fe81ef6b",
+      "range": {
+        "startLine": 2980,
+        "startChar": 28,
+        "endLine": 2980,
+        "endChar": 36
+      },
+      "revId": "81e7ef134ba9888d623a5e7136f134c450b2301b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
